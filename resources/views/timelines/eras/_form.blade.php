@@ -1,6 +1,6 @@
 <x-grid>
     <x-forms.field field="name" :required="true" :label="__('crud.fields.name')">
-        <input type="text" name="name"  placeholder="{{ __('timelines/eras.placeholders.name') }}" value="{!! old('name', $model->name ?? null) !!}" maxlength="191" required />
+        <input type="text" name="name"  placeholder="{{ __('timelines/eras.placeholders.name') }}" value="{!! htmlspecialchars((old('name', $model->name ?? null)) !!}" maxlength="191" required />
     </x-forms.field>
 
     <x-forms.field field="abbrev" :label="__('timelines/eras.fields.abbreviation')">

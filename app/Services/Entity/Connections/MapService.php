@@ -61,7 +61,7 @@ class MapService
     /**  */
     protected string|null $option = null;
 
-    public function option(string $option = null): self
+    public function option(?string $option = null): self
     {
         if (!in_array($option, ['related', 'mentions', 'only_relations'])) {
             $option = null;
@@ -145,7 +145,7 @@ class MapService
     /**
      * Add an entity to the map, only loading its data if it hasn't been already into memory
      */
-    protected function addEntity(Entity $entity, string $image = null): self
+    protected function addEntity(Entity $entity, ?string $image = null): self
     {
         //dump('add entity ' . $entity->name);
         if (Arr::has($this->entities, (string)$entity->id)) {
@@ -293,7 +293,7 @@ class MapService
     /**
      * Add the relations between character organisation members
      */
-    protected function addOrganisationRelations(Organisation $organisation = null)
+    protected function addOrganisationRelations(?Organisation $organisation = null)
     {
         if (empty($organisation) || $organisation->entity === null) {
             return;
@@ -484,7 +484,7 @@ class MapService
         /** @var Family $family */
         $family = $this->entity->child;
 
-        foreach ($family->families()->with(['entity', 'entity.image'])->has('entity')->get() as $subfamily) {
+        foreach ($family->children()->with(['entity', 'entity.image'])->has('entity')->get() as $subfamily) {
             $this->addEntity($subfamily->entity);
             $this->addRelations($subfamily->entity);
 
@@ -534,7 +534,7 @@ class MapService
         /** @var Organisation $organisation */
         $organisation = $this->entity->child;
 
-        foreach ($organisation->organisations()->with(['entity', 'entity.image'])->has('entity')->get() as $sub) {
+        foreach ($organisation->children()->with(['entity', 'entity.image'])->has('entity')->get() as $sub) {
             $this->addEntity($sub->entity);
             $this->addRelations($sub->entity);
 
@@ -582,7 +582,7 @@ class MapService
         /** @var Item $parent */
         $parent = $this->entity->child;
         /** @var Item $item */
-        foreach ($parent->items()->with(['entity', 'entity.image'])->has('entity')->get() as $item) {
+        foreach ($parent->children()->with(['entity', 'entity.image'])->has('entity')->get() as $item) {
             $this->addEntity($item->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -604,7 +604,7 @@ class MapService
         /** @var Journal $parent */
         $parent = $this->entity->child;
         /** @var Journal $journal */
-        foreach ($parent->journals()->with(['entity', 'entity.image'])->has('entity')->get() as $journal) {
+        foreach ($parent->children()->with(['entity', 'entity.image'])->has('entity')->get() as $journal) {
             $this->addEntity($journal->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -796,7 +796,7 @@ class MapService
         /** @var Map $parent */
         $parent = $this->entity->child;
         /** @var Map $related */
-        foreach ($parent->maps()->with(['entity', 'entity.image'])->has('entity')->get() as $related) {
+        foreach ($parent->children()->with(['entity', 'entity.image'])->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -839,7 +839,7 @@ class MapService
         /** @var Race $race */
         $race = $this->entity->child;
 
-        foreach ($race->races()->with(['entity', 'entity.image'])->has('entity')->get() as $subrace) {
+        foreach ($race->children()->with(['entity', 'entity.image'])->has('entity')->get() as $subrace) {
             $this->addEntity($subrace->entity);
             $this->addRelations($subrace->entity);
 

@@ -2,22 +2,21 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property int $id
- * @property int $user_id
  * @property string $token
- * @property bool $is_valid
- * @property User $user
+ * @property bool|int $is_valid
  *
  * @method static self|Builder valid()
  */
 class UserValidation extends Model
 {
+    use HasUser;
     use Prunable;
 
     protected $fillable = [
@@ -31,18 +30,9 @@ class UserValidation extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
      * Automatically prune old elements from the db
-     * @return Builder
      */
-    public function prunable()
+    public function prunable(): Builder
     {
         return static::where('is_valid', false)->where('created_at', '<=', now()->subDays(1));
     }

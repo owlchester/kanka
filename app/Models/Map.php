@@ -6,24 +6,27 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
+use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
- * Class Ability
+ * Class Map
  * @package App\Models
- * @property int|null $map_id
- * @property int|null $location_id
- * @property int|null $width
- * @property int|null $height
+ * @property ?int $map_id
+ * @property ?int $width
+ * @property ?int $height
  * @property int $grid
  * @property int $min_zoom
  * @property int $max_zoom
@@ -31,13 +34,10 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property float $center_x
  * @property float $center_y
  * @property int $center_marker_id
- * @property bool $is_real
- * @property bool $has_clustering
+ * @property bool|int $is_real
+ * @property bool|int $has_clustering
  * @property int $chunking_status
  * @property array $config
- * @property Map|null $map
- * @property Map[] $maps
- * @property Location|null $location
  * @property Collection|MapLayer[] $layers
  * @property Collection|MapMarker[] $markers
  * @property MapMarker $center_marker
@@ -52,7 +52,10 @@ class Map extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use HasRecursiveRelationships;
+    use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
@@ -70,7 +73,6 @@ class Map extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'type',
         'entry',
         'map_id',
@@ -136,6 +138,11 @@ class Map extends MiscModel
         'config',
     ];
 
+    protected array $sanitizable = [
+        'name',
+        'type',
+    ];
+
     /**
      * Entity type
      */
@@ -177,9 +184,6 @@ class Map extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'maps' => function ($sub) {
-                $sub->select('id', 'map_id', 'name');
-            },
             'children' => function ($sub) {
                 $sub->select('id', 'map_id');
             },
@@ -200,59 +204,24 @@ class Map extends MiscModel
         return ['map_id', 'location_id'];
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function map()
+    public function layers(): HasMany
     {
-        return $this->belongsTo('App\Models\Map', 'map_id', 'id');
+        return $this->hasMany('App\Models\MapLayer', 'map_id', 'id')
+            ->with('image');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function location()
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function maps()
-    {
-        return $this->hasMany('App\Models\Map', 'map_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function layers()
-    {
-        return $this->hasMany('App\Models\MapLayer', 'map_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function groups()
+    public function groups(): HasMany
     {
         return $this->hasMany('App\Models\MapGroup', 'map_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function markers()
+    public function markers(): HasMany
     {
         return $this->hasMany('App\Models\MapMarker', 'map_id', 'id')
             ->with(['entity', 'group', 'map', 'entity.image']);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function center_marker()
+    public function center_marker(): HasOne
     {
         return $this->hasOne('App\Models\MapMarker', 'id', 'center_marker_id');
     }
@@ -301,7 +270,7 @@ class Map extends MiscModel
     /**
      * @return array|string[]
      */
-    public function groupPositionOptions($position = null): array
+    public function groupPositionOptions(?int $position = null): array
     {
         $options = [1 => __('maps/groups.placeholders.position')];
         $groups = $this->groups->sortBy('position');
@@ -320,7 +289,7 @@ class Map extends MiscModel
     /**
      * @return array|string[]
      */
-    public function layerPositionOptions($position = null): array
+    public function layerPositionOptions(?int $position = null): array
     {
         $options = [1 => __('maps/layers.placeholders.position')];
         $layers = $this->layers->sortBy('position');
@@ -568,57 +537,6 @@ class Map extends MiscModel
         $this->height = $height;
         $this->width = $width;
         $this->saveQuietly();
-    }
-
-    /**
-     * Copy related elements to the target
-     */
-    public function copyRelatedToTarget(MiscModel $target)
-    {
-        $groups = [];
-        foreach ($this->layers as $sub) {
-            $newSub = $sub->replicate(['map_id']);
-            $newSub->map_id = $target->id;
-
-            if (!empty($sub->image) && Storage::exists($sub->image)) {
-                $uniqid = uniqid();
-                $newPath = str_replace('.', $uniqid . '.', $sub->image);
-                $newSub->image = $newPath;
-                if (!Storage::exists($newPath)) {
-                    Storage::copy($sub->image, $newPath);
-                }
-            }
-            $newSub->saveQuietly();
-        }
-        foreach ($this->groups as $sub) {
-            $newSub = $sub->replicate(['map_id']);
-            $newSub->map_id = $target->id;
-            $newSub->saveQuietly();
-            $groups[$sub->id] = $newSub->id;
-        }
-        foreach ($this->markers as $sub) {
-            $newSub = $sub->replicate(['map_id']);
-            $newSub->map_id = $target->id;
-            $newSub->group_id = !empty($newSub->group_id) && isset($groups[$newSub->group_id]) ? $groups[$newSub->group_id] : null;
-
-            // If moving to another campaign, switch the markers pointing to an entity
-            if (!empty($newSub->entity_id) && $target->campaign_id != $this->campaign_id) {
-                $newSub->entity_id = null;
-                if ($newSub->icon == 4) {
-                    $newSub->icon = 1;
-                }
-                if (empty($newSub->name)) {
-                    // Because the permission engine is already set on the new campaign, searching the marker's entity
-                    // will always fail. So we need to go get it directly
-                    $raw = DB::table('entities')
-                        ->select('name')
-                        ->where('id', $sub->entity_id)
-                        ->first();
-                    $newSub->name = $raw ? $raw->name : 'Copy of #' . $sub->id;
-                }
-            }
-            $newSub->saveQuietly();
-        }
     }
 
     /**

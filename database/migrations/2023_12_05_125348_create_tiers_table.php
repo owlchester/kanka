@@ -14,8 +14,8 @@ return new class () extends Migration {
             $table->id();
             $table->string('code', 30)->unique();
             $table->string('name', 30);
-            $table->float('monthly', 5, 2);
-            $table->float('yearly', 5, 2);
+            $table->float('monthly');
+            $table->float('yearly');
             $table->tinyInteger('position');
             $table->index(['position', 'deleted_at']);
             $table->timestamps();

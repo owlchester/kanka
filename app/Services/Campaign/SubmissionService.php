@@ -29,7 +29,7 @@ class SubmissionService
         return $this;
     }
 
-    public function apply(string $reason = null): self
+    public function apply(?string $reason = null): self
     {
         $submission = new CampaignSubmission();
         $submission->text = $reason;

@@ -18,7 +18,7 @@ if (isset($inventory)) {
         :required="true"
         :helper="__('entities/inventories.helpers.name')"
         :label="__('entities/inventories.fields.name')">
-        <input type="text" name="name" value="{!! old('name', $inventory->name ?? null) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/inventories.placeholders.name') }}" />
+        <input type="text" name="name" value="{!! htmlspecialchars(old('name', $inventory->name ?? null)) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/inventories.placeholders.name') }}" />
     </x-forms.field>
 
     <input type="hidden" name="item_id" value="" />

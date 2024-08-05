@@ -8,21 +8,14 @@ use Illuminate\View\Component;
 
 class Header extends Component
 {
-    public ?string $id;
-    public ?string $title;
-    public bool $dismissible = true;
-
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $id = null,
-        string $title = null,
-        bool $dismissible = true,
+        public ?string $id = null,
+        public ?string $title = null,
+        public bool $dismissible = true,
     ) {
-        $this->id = $id;
-        $this->title = $title;
-        $this->dismissible = $dismissible;
     }
 
     /**

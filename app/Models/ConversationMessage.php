@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasUser;
 use App\Models\Concerns\LastSync;
-use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -15,22 +17,21 @@ use Illuminate\Support\Facades\Auth;
  *
  * @property int $id
  * @property int $conversation_id
- * @property int $created_by
  * @property int $character_id
  * @property int $user_id
  * @property string $message
  *
- * @property Character|null $character
- * @property User|null $user
+ * @property ?Character $character
  * @property Conversation $conversation
  */
-class ConversationMessage extends MiscModel
+class ConversationMessage extends Model
 {
     use Blameable;
     use HasFactory;
+    use HasUser;
     use LastSync;
 
-    public $isGroupped = false;
+    public bool $isGroupped = false;
 
     protected $fillable = [
         'conversation_id',
@@ -57,34 +58,18 @@ class ConversationMessage extends MiscModel
 
     /**
      * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function creator()
+    public function creator(): BelongsTo
     {
         return $this->belongsTo('App\User', 'created_by');
     }
 
-    /**
-     * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'user_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function character()
+    public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function conversation()
+    public function conversation(): BelongsTo
     {
         return $this->belongsTo('App\Models\Conversation', 'conversation_id');
     }
@@ -123,10 +108,8 @@ class ConversationMessage extends MiscModel
     }
 
     /**
-     * @param null|int $oldestId
-     * @param null|int $newestId
      */
-    public function scopeDefault(Builder $query, $oldestId = null, $newestId = null)
+    public function scopeDefault(Builder $query, ?int $oldestId = null, ?int $newestId = null)
     {
         $query->with(['user', 'character'])
             ->latest()
@@ -146,7 +129,7 @@ class ConversationMessage extends MiscModel
         return Auth::check() && $this->created_by == Auth::user()->id;
     }
 
-    public function grouppedWith(ConversationMessage $previous = null): self
+    public function grouppedWith(?ConversationMessage $previous = null): self
     {
         if (empty($previous)) {
             return $this;

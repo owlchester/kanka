@@ -6,7 +6,7 @@
  */
 ?>
 <li id="timeline-element-{{ $element->id }}" class="relative mr-2">
-    {!! $element->htmlIcon() !!}
+    @include('timelines.elements._icon')
 
     <div class="timeline-item p-0 pb-2 relative rounded-sm ml-16 mr-4">
         <x-box css="flex gap-2 flex-col p-2" :padding="0">
@@ -32,7 +32,7 @@
                     <span class="text-neutral-content text-sm truncate">{{isset($element->entity->event->date) && $element->use_event_date ? $element->entity->event->date : $element->date}}</span>
                 @endif
                 <div class="flex-none flex items-center gap-2">
-                    @if (auth()->check()) {!! $element->visibilityIcon('') !!}@endif
+                    @includeWhen(auth()->check(), 'icons.visibility', ['icon' => $element->visibilityIcon('')])
 
                     @can('update', $timeline)
                         <div class="dropdown inline">

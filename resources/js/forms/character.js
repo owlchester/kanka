@@ -62,4 +62,6 @@ const characterDeleteRowHandler = () => {
     window.initForeignSelect();
 };
 
-initCharacterOrganisation();
+window.onReady(() => {
+    initCharacterOrganisation();
+})

@@ -15,7 +15,7 @@
         </h3>
         <div class="post-buttons flex items-center gap-2 flex-wrap justify-end">
             @if (auth()->check())
-                {!! $post->visibilityIcon('') !!}
+                @include('icons.visibility', ['icon' => $post->visibilityIcon('')])
                 <div class="dropdown">
                     <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-tree="escape">
                         <x-icon class="fa-solid fa-ellipsis-v" />
@@ -88,5 +88,38 @@
 
         @endphp
         @include('locations.panels.characters')
+    @elseif ($post->layout?->code == 'location_events')
+        @php
+            $options = [$campaign, 'location' => $entity->child];
+
+            Datagrid::layout(\App\Renderers\Layouts\Location\Event::class)
+                ->route('locations.events', $options);
+
+            $rows = $entity->child
+                ->allEvents()
+                ->filteredEvents()
+                ->paginate();
+            $rows->withPath(route('locations.events', $options));
+
+        @endphp
+        @include('locations.panels.events')
+    @elseif ($post->layout?->code == 'reminders')
+        @php
+        Datagrid::layout(\App\Renderers\Layouts\Entity\Reminder::class)
+            ->route('entities.entity_events.index', ['campaign' => $campaign, 'entity' => $entity]);
+
+        $rows = $entity
+            ->reminders()
+            ->has('calendar')
+            ->has('calendar.entity')
+            ->with(['calendar', 'calendar.entity', 'entity'])
+            ->sort(request()->only(['o', 'k']))
+            ->paginate();
+        @endphp
+        @if ($rows->count() > 0)
+            <div id="datagrid-parent" class="table-responsive">
+                @include('layouts.datagrid._table')
+            </div>
+        @endif
     @endif
 </div>

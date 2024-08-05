@@ -41,7 +41,7 @@ class FocusController extends Controller
             $params = ['folder_id' => $image->folder_id];
         }
 
-        return redirect()->route('campaign.gallery.index', [$campaign] + $params)
+        return redirect()->route('gallery', [$campaign] + $params)
             ->with('success', __('campaigns/gallery.focus.' . ($added ? 'updated' : 'removed')));
     }
 }

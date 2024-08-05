@@ -13,7 +13,7 @@ trait Searchable
      * Scope a query to only include users of a given type.
      *
      */
-    public function scopeSearch(Builder $query, string $term = null): Builder
+    public function scopeSearch(Builder $query, ?string $term = null): Builder
     {
         if (empty($term)) {
             return $query;

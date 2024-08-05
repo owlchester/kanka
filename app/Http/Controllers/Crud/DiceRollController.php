@@ -26,7 +26,7 @@ class DiceRollController extends CrudController
 
     protected string $forceMode = 'table';
 
-    protected function getNavActions(): CrudController
+    protected function setNavActions(): CrudController
     {
         $this->addNavAction(
             route('dice_roll_results.index', $this->campaign),
@@ -38,7 +38,7 @@ class DiceRollController extends CrudController
             '',
             true
         );
-        return parent::getNavActions();
+        return parent::setNavActions();
     }
 
     /**

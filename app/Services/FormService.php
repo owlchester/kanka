@@ -11,14 +11,13 @@ use Illuminate\Database\Eloquent\Model;
 class FormService
 {
     /**
-     * @var MiscModel|null
      */
-    protected $source;
+    protected MiscModel $source;
 
     /**
      * @return $this
      */
-    public function source(MiscModel $source = null)
+    public function source(?MiscModel $source = null)
     {
         $this->source = $source;
         return $this;
@@ -26,11 +25,10 @@ class FormService
 
     /**
      * Prefill the field with the copies values
-     * @param string $field
      * @param MiscModel|Entity|null $entity
      * @return mixed|null
      */
-    public function prefill($field, $entity = null, $default = null)
+    public function prefill(string $field, mixed $entity = null, mixed $default = null)
     {
         // Only copy on MiscModel (entity) models
         if ($entity instanceof MiscModel) {
@@ -42,12 +40,9 @@ class FormService
 
     /**
      * Prefill a select dropdown
-     * @param string $field
      * @param null|MiscModel|Model $entity
-     * @param bool $checkForParent
-     * @return array
      */
-    public function prefillSelect($field, $entity = null, $checkForParent = false, $parentClass = null)
+    public function prefillSelect(string $field, mixed $entity = null, bool $checkForParent = false, ?string $parentClass = null): array
     {
         // Only copy on MiscModel (entity) models
         if ($entity instanceof MiscModel) {
@@ -61,7 +56,7 @@ class FormService
         if ($checkForParent && $parent !== false) {
             /** @var MiscModel $class */
             $class = new $parentClass();
-            /** @var MiscModel|null $parent */
+            /** @var ?MiscModel $parent */
             $parent = $class->find($parent);
             if ($parent) {
                 return [$parent->id => $parent->name];
@@ -76,7 +71,7 @@ class FormService
      * @param null|MiscModel|Character $entity
      * @return array|Collection
      */
-    public function prefillCharacterPersonality($entity = null)
+    public function prefillCharacterPersonality(mixed $entity = null)
     {
         if ($entity instanceof Character) {
             return $entity->characterTraits()->personality()->get();
@@ -89,7 +84,7 @@ class FormService
      * @param null|MiscModel|Character $entity
      * @return array|Collection
      */
-    public function prefillCharacterAppearance($entity = null)
+    public function prefillCharacterAppearance(mixed $entity = null)
     {
         if ($entity instanceof Character) {
             return $entity->characterTraits()->appearance()->get();
@@ -102,7 +97,7 @@ class FormService
      * @param null|Character $entity
      * @return array|Collection
      */
-    public function prefillCharacterOrganisation($entity = null)
+    public function prefillCharacterOrganisation(mixed $entity = null)
     {
         if ($entity instanceof MiscModel) {
             return $entity->organisationMemberships()
@@ -114,10 +109,9 @@ class FormService
     }
 
     /**
-     * @param string $field
      * @param null|MiscModel $entity
      */
-    public function prefillBoolean($field, $entity = null)
+    public function prefillBoolean(string $field, mixed $entity = null)
     {
         // Only copy on MiscModel (entity) models
         if ($entity instanceof MiscModel) {
@@ -132,7 +126,7 @@ class FormService
      * @param null|MiscModel $entity
      * @return null|MiscModel
      */
-    public function prefillModel($entity = null)
+    public function prefillModel(mixed $entity = null)
     {
         // Only copy on MiscModel (entity) models
         if ($entity instanceof MiscModel) {
@@ -143,9 +137,8 @@ class FormService
 
     /**
      * Prefill a value based on an attribute
-     * @param MiscModel|null $entity
      */
-    public function prefillEntity(string $field, $entity = null)
+    public function prefillEntity(string $field, mixed $entity = null)
     {
         if ($entity instanceof MiscModel && !empty($entity->entity)) {
             return $entity->entity->$field;

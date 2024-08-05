@@ -11,7 +11,7 @@
         field="name"
         css="col-span-2"
         :label="__('calendars/weather.fields.name')">
-        <input type="text" name="name" placeholder="{{ __('calendars/weather.placeholders.name') }}" maxlength="40" value="{!! old('name', $source->name ?? $weather->name ?? null) !!}" />
+        <input type="text" name="name" placeholder="{{ __('calendars/weather.placeholders.name') }}" maxlength="40" value="{!! htmlspecialchars(old('name', $source->name ?? $weather->name ?? null)) !!}" />
     </x-forms.field>
 
     <x-forms.field

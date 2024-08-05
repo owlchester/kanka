@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\Sanitizable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class CampaignDashboard
@@ -23,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
 class CampaignDashboard extends Model
 {
     use HasCampaign;
+    use Sanitizable;
 
     public $fillable = [
         'name',
@@ -30,12 +33,16 @@ class CampaignDashboard extends Model
         'created_by'
     ];
 
-    public function widgets()
+    protected array $sanitizable = [
+        'name',
+    ];
+
+    public function widgets(): HasMany
     {
         return $this->hasMany(CampaignDashboardWidget::class, 'dashboard_id', 'id');
     }
 
-    public function roles()
+    public function roles(): HasMany
     {
         return $this->hasMany(CampaignDashboardRole::class, 'campaign_dashboard_id', 'id');
     }
@@ -43,7 +50,7 @@ class CampaignDashboard extends Model
     /**
      * @return Builder
      */
-    public function scopeExclude(Builder $builder, CampaignDashboard $campaignDashboard = null)
+    public function scopeExclude(Builder $builder, ?CampaignDashboard $campaignDashboard = null)
     {
         if (empty($campaignDashboard)) {
             return $builder;

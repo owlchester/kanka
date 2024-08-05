@@ -28,7 +28,7 @@ class BookmarkController extends CrudController
 
     protected string $forceMode = 'table';
 
-    protected function getNavActions(): CrudController
+    protected function setNavActions(): CrudController
     {
         $this->addNavAction(
             route('bookmarks.reorder', $this->campaign),
@@ -47,7 +47,7 @@ class BookmarkController extends CrudController
             '',
             true
         );
-        return parent::getNavActions();
+        return parent::setNavActions();
     }
 
     /**
@@ -93,7 +93,44 @@ class BookmarkController extends CrudController
      */
     public function update(StoreBookmark $request, Campaign $campaign, Bookmark $bookmark)
     {
-        return $this->campaign($campaign)->crudUpdate($request, $bookmark);
+
+        $this->authorize('update', $bookmark);
+
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
+        $data = $request->all();
+        $bookmark->update($data);
+
+
+        $link = '<a href="' . route(
+                $this->view . '.show',
+                [$campaign, $bookmark->id]
+            )
+            . '">' . $bookmark->name . '</a>';
+        $success = __('general.success.updated', [
+            'name' => $link
+        ]);
+
+        session()->flash('success_raw', $success);
+
+        $options = [];
+        $options = [$campaign, $bookmark] + $options;
+        $route = route($this->view . '.show', $options + [$bookmark]);
+
+        if ($request->has('submit-new')) {
+            $route = route($this->route . '.create', $campaign);
+        } elseif ($request->has('submit-update')) {
+            $route = route($this->route . '.edit', [$campaign, $bookmark->id]);
+        } elseif ($request->has('submit-close')) {
+            $route = route($this->route . '.index', [$campaign]);
+        } elseif ($request->has('submit-copy')) {
+            $route = route($this->route . '.create', [$campaign, 'copy' => $bookmark->id]);
+            return response()->redirectTo($route);
+        }
+        return response()->redirectTo($route);
     }
 
     /**

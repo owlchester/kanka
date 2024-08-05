@@ -23,7 +23,7 @@ class HomeController extends Controller
         // Go to the user's last campaign, if any
         $last = auth()->user()->last_campaign_id;
         if (!empty($last)) {
-            /** @var Campaign|null $lastCampaign */
+            /** @var ?Campaign $lastCampaign */
             $lastCampaign = Campaign::acl($last)->first();
             if ($lastCampaign) {
                 return redirect()->route('dashboard', $last);

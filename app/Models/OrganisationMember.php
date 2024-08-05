@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,12 +20,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $organisation_id
  * @property int $parent_id
  * @property string $role
- * @property bool $is_private
+ * @property bool|int $is_private
  * @property int $pin_id
  * @property int $status_id
- * @property Character|null $character
- * @property Organisation|null $organisation
- * @property OrganisationMember|null $parent
+ * @property ?Character $character
+ * @property ?Organisation $organisation
+ * @property ?OrganisationMember $parent
  *
  */
 class OrganisationMember extends Model
@@ -32,6 +33,7 @@ class OrganisationMember extends Model
     use HasFilters;
     use Paginatable;
     use Privatable;
+    use Sanitizable;
     use SortableTrait;
 
     public const PIN_CHARACTER = 1;
@@ -65,6 +67,10 @@ class OrganisationMember extends Model
         'parent_id',
         'role',
         //'character.location.name',
+    ];
+
+    protected array $sanitizable = [
+        'role',
     ];
 
     public function character(): BelongsTo

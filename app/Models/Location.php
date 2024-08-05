@@ -6,6 +6,8 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,13 +24,13 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $name
  * @property string $type
  * @property string $image
- * @property string|null $map
+ * @property ?string $map
  * @property bool|int $is_private
  * @property bool|int $is_map_private
- * @property int|null $location_id
+ * @property ?int $location_id
  * @property Map[]|Collection $maps
  * @property Location[]|Collection $descendants
- * @property Location[]|Collection $locations
+ * @property Event[]|Collection $events
  * @property Character[]|Collection $characters
  * @property Organisation[]|Collection $organisations
  * @property Creature[]|Collection $creatures
@@ -45,12 +47,13 @@ class Location extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
+    use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'name',
-        'slug',
         'type',
         'entry',
         'location_id',
@@ -79,6 +82,11 @@ class Location extends MiscModel
 
     protected array $exportFields = [
         'base',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'type',
     ];
 
     public function getParentKeyName()
@@ -110,9 +118,6 @@ class Location extends MiscModel
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'locations' => function ($sub) {
-                $sub->select('id', 'location_id');
-            },
             'characters' => function ($sub) {
                 $sub->select('id', 'location_id');
             },
@@ -126,14 +131,6 @@ class Location extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['location_id'];
-    }
-
-    /**
-     * Parent Location
-     */
-    public function location()
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
     }
 
     public function characters(): HasMany
@@ -165,20 +162,31 @@ class Location extends MiscModel
             ->select(['id', 'name', 'is_real']);
     }
 
-    public function locations(): HasMany
-    {
-        return $this->hasMany('App\Models\Location', 'location_id', 'id');
-    }
-
     public function events(): HasMany
     {
         return $this->hasMany('App\Models\Event', 'location_id', 'id');
     }
 
     /**
+     * Get all events in the location and descendants
+     */
+    public function allEvents(): Builder|Event
+    {
+        $locationIds = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $locationIds[] = $descendant->id;
+        };
+
+        $table = new Event();
+        return Event::whereIn($table->getTable() . '.location_id', $locationIds)
+            ->with('location')
+            ->has('entity');
+    }
+
+    /**
      * Get all characters in the location and descendants
      */
-    public function allCharacters()
+    public function allCharacters(): Builder|Character
     {
         $locationIds = [$this->id];
         foreach ($this->descendants as $descendant) {
@@ -199,7 +207,7 @@ class Location extends MiscModel
     /**
      * Get all families in the location and descendants
      */
-    public function allFamilies()
+    public function allFamilies(): Builder
     {
         $locationIds = [$this->id];
         foreach ($this->descendants as $descendant) {

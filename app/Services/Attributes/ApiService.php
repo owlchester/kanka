@@ -8,6 +8,7 @@ use App\Models\CampaignPlugin;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
+use Illuminate\Support\Collection;
 
 class ApiService
 {
@@ -15,7 +16,7 @@ class ApiService
     use EntityAware;
     use EntityTypeAware;
 
-    protected array $attributes = [];
+    protected Collection $attributes;
 
     protected bool $copy = false;
     protected bool $template = false;
@@ -30,7 +31,7 @@ class ApiService
     {
         $this->buildAttributes();
         return [
-            'attributes' => $this->attributes,
+            'attributes' => $this->attributes->toArray(),
             'i18n' => $this->i18n(),
             'meta' => $this->meta(),
             'templates' => $this->templates(),
@@ -80,8 +81,8 @@ class ApiService
                 'toggle_deleted' => __('entities/attributes.toasts.bulk_deleted'),
                 'toggled_privacy' => __('entities/attributes.toasts.bulk_privacy'),
                 'template' => __('entities/attributes.template.load.success'),
-                'max_reached' => __('entities/attributes.errors.too_many', [
-                    'max' => number_format((int) ini_get('max_input_vars'))
+                'max_reached' => __('entities/attributes.errors.too_many_v2', [
+                    'max' => number_format($this->maxFields())
                 ])
             ],
             'templates' => [
@@ -99,18 +100,19 @@ class ApiService
             'is_admin' => auth()->check() && auth()->user()->isAdmin(),
             'template' => route('templates.load-attributes', $this->campaign),
             'mentions' => route('search.live', $this->campaign),
-            'max' => ini_get('max_input_vars'),
+            'max' => $this->maxFields(),
         ];
     }
 
     protected function buildAttributes(): void
     {
-        $this->buildAutoTemplates();
+        $this->attributes = new Collection();
         if (isset($this->entity)) {
             foreach ($this->entity->attributes()->ordered()->get() as $attribute) {
                 $this->parseAttribute($attribute);
             }
         }
+        $this->buildAutoTemplates();
     }
 
     protected function buildAutoTemplates(): void
@@ -152,6 +154,11 @@ class ApiService
 
     protected function parseAttribute(Attribute $attribute, AttributeTemplate $template = null, int $templateTotalAttributes = 0): void
     {
+        // If an attribute with the same name already exists, don't add it again
+        $existing = $this->attributes->where('name', $attribute->name)->first();
+        if ($existing) {
+            return;
+        }
         $formatted = [
             'id' => $this->copy ? null : $attribute->id,
             'source_id' => $this->template ? $attribute->id : null,
@@ -189,7 +196,7 @@ class ApiService
             ];
         }
 
-        $this->attributes[] = $formatted;
+        $this->attributes->add($formatted);
     }
 
     protected function templates(): array
@@ -212,7 +219,6 @@ class ApiService
 
         // Marketplace campaigns
         $key = __('attributes/templates.list.marketplace');
-        // @phpstan-ignore-next-line
         foreach (CampaignPlugin::templates($this->campaign)->with(['plugin', 'plugin.user'])->get() as $plugin) {
             if (empty($plugin->plugin)) {
                 continue;
@@ -224,5 +230,13 @@ class ApiService
         }
 
         return $templates;
+    }
+
+    /**
+     * Get the max amount of fields a form can have
+     */
+    protected function maxFields(): int
+    {
+        return app()->isProduction() ? ini_get('max_input_vars') : 200;
     }
 }

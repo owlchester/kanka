@@ -1,4 +1,4 @@
-@php $breadcrumbs[] = ['url' => route('campaign.gallery.index', $campaign), 'label' => __('campaigns/gallery.breadcrumb')];
+@php $breadcrumbs[] = ['url' => route('gallery', $campaign), 'label' => __('campaigns/gallery.breadcrumb')];
 @endphp
 @extends('layouts.app', [
     'title' => __('campaigns/gallery.breadcrumb') . ' - ' . $campaign->name,

@@ -5,7 +5,7 @@
         'dialog' => true,
         'mode' => 'edit',
         'title' => __('dashboard.setup.widgets.' . $model->widget->value),
-        'titleIcon' => $model->widgetIcon(),
+        'titleIcon' => '<i class="' . $model->widgetIcon() . '" aria-hidden="true"></i>',
         'content' => 'dashboard.widgets.forms._' . $widget,
         'deleteID' => '#delete-form-widget-' . $model->id,
     ])

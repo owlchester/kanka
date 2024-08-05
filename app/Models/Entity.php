@@ -44,12 +44,12 @@ use Illuminate\Support\Str;
  * @property bool|int $is_attributes_private
  * @property string $tooltip
  * @property string $header_image
- * @property string|null $image_uuid
- * @property string|null $header_uuid
- * @property string|null $marketplace_uuid
- * @property int|null $focus_x
- * @property int|null $focus_y
- * @property string|null $image_path
+ * @property ?string $image_uuid
+ * @property ?string $header_uuid
+ * @property ?string $marketplace_uuid
+ * @property ?int $focus_x
+ * @property ?int $focus_y
+ * @property ?string $image_path
  *
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -162,20 +162,6 @@ class Entity extends Model
     {
         $this->fireModelEvent('crudSaved', false);
     }
-
-    /**
-     * Create a short name for the interface
-     * @return mixed|string
-     */
-    public function shortName()
-    {
-        if (mb_strlen($this->name) > 30) {
-            return '<span title="' . e($this->name) . '">' . mb_substr(e($this->name), 0, 28) . '...</span>';
-        }
-        return $this->name;
-    }
-
-
 
     /**
      * Preview of the entity with mapped mentions. For map markers
@@ -308,13 +294,13 @@ class Entity extends Model
 
     /**
      */
-    public function hasHeaderImage(bool $superboosted = false): bool
+    public function hasHeaderImage(): bool
     {
         if (!empty($this->header_image)) {
             return true;
         }
 
-        return (bool) ($superboosted && !empty($this->header_uuid) && !empty($this->header));
+        return !empty($this->header_uuid) && !empty($this->header);
     }
 
     /**
@@ -334,19 +320,16 @@ class Entity extends Model
     }
 
     /**
+     * Get the entity background header image
      */
-    public function getHeaderUrl(bool $superboosted = false): string
+    public function getHeaderUrl(): string|null
     {
         if (!empty($this->header_image)) {
             return $this->thumbnail(1200, 400, 'header_image');
         }
 
-        if (!$superboosted) {
-            return '';
-        }
-
         if (empty($this->header)) {
-            return '';
+            return null;
         }
 
         return $this->header->getUrl(1200, 400);
@@ -369,7 +352,7 @@ class Entity extends Model
     /**
      * @return array|string[]
      */
-    public function postPositionOptions($position = null): array
+    public function postPositionOptions(?int $position = null): array
     {
         $options = $position ? [
             null => __('posts.position.dont_change'),

@@ -47,7 +47,7 @@ class EntitySearchService
     /**
      * Send search request
      */
-    public function search(string $term = null, string $term2 = null): array
+    public function search(?string $term = null, ?string $term2 = null): array
     {
         //Get results from Meilisearch
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Models\Ability;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Http\Requests\StoreEntityAbility as Request;
 use App\Http\Resources\EntityAbilityResource as Resource;
 use App\Models\EntityAbility;
+use Illuminate\Support\Collection;
 
 class EntityAbilityApiController extends ApiController
 {
@@ -32,7 +34,6 @@ class EntityAbilityApiController extends ApiController
     }
 
     /**
-     * @return Resource
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Entity $entity)
@@ -41,6 +42,19 @@ class EntityAbilityApiController extends ApiController
         $this->authorize('update', $entity->child);
         $data = $request->all();
         $data['entity_id'] = $entity->id;
+        if (isset($data['abilities']) && is_array($data['abilities'])) {
+            $models = new Collection();
+            foreach ($data['abilities'] as $abilityId) {
+                $ability = Ability::find($abilityId);
+                if (!$ability) {
+                    continue;
+                }
+                $data['ability_id'] = $ability->id;
+                $models->add(EntityAbility::create($data));
+            }
+            return Resource::collection($models);
+        }
+
         $model = EntityAbility::create($data);
         return new Resource($model);
     }

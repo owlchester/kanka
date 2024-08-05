@@ -117,13 +117,13 @@ it('POSTS a new character with 1 tag')
 //Update the character with one of those tags and a third new tag.
 //The result contains one of the original tags + the new tag.
 
-it('POSTS a new character with 2 tags')
+it('PUT the character with 2 tags')
     ->asUser()
     ->withCampaign()
     ->withCharacterTags()
     ->putJson('/api/1.0/campaigns/1/characters/1', [
         'tags' => [1,3],
-        'name' => 'bob'
+        'name' => fake()->name(),
     ])
     ->assertJsonStructure([
         'data' => [

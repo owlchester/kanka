@@ -6,12 +6,16 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasSlug;
+use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\TagScopes;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -23,11 +27,9 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $name
  * @property string $type
  * @property string $colour
- * @property int|null $tag_id
- * @property Tag|null $tag
- * @property Tag[]|Collection $tags
- * @property bool $is_auto_applied
- * @property bool $is_hidden
+ * @property ?int $tag_id
+ * @property bool|int $is_auto_applied
+ * @property bool|int $is_hidden
  *
  * @property Entity[]|Collection $entities
  */
@@ -40,6 +42,9 @@ class Tag extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
+    use HasSlug;
+    use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
     use TagScopes;
@@ -82,6 +87,12 @@ class Tag extends MiscModel
         'is_hidden',
     ];
 
+    protected array $sanitizable = [
+        'name',
+        'type',
+        'colour',
+    ];
+
     /**
      * Nullable values (foreign keys)
      * @var string[]
@@ -96,22 +107,6 @@ class Tag extends MiscModel
         'is_auto_applied',
         'is_hidden',
     ];
-
-    /**
-     * Parent
-     */
-    public function tag()
-    {
-        return $this->belongsTo('App\Models\Tag', 'tag_id', 'id');
-    }
-
-    /**
-     * Children
-     */
-    public function tags()
-    {
-        return $this->hasMany('App\Models\Tag', 'tag_id', 'id');
-    }
 
     public function getParentKeyName(): string
     {
@@ -162,7 +157,7 @@ class Tag extends MiscModel
      */
     public function detach(): void
     {
-        /** @var Tag $child */
+        /** @var Entity $child */
         foreach ($this->allChildren(true)->get() as $child) {
             $child->tags()->detach($this->id);
             //            if (!empty($child->child)) {
@@ -207,10 +202,7 @@ class Tag extends MiscModel
         );
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function entityTags()
+    public function entityTags(): HasMany
     {
         return $this->hasMany(EntityTag::class);
     }
@@ -260,15 +252,6 @@ class Tag extends MiscModel
     {
         $data = $this->entities()->syncWithoutDetaching($entityIds);
         return count($data['attached']);
-    }
-
-    /**
-     * Get the tag's html
-     */
-    public function html(): string
-    {
-        return '<span class="badge ' . ($this->hasColour() ? $this->colourClass() . 'py-1 rounded-sm' : 'color-tag rounded-sm px-2 py-1') . '">'
-            . $this->name . '</span>';
     }
 
     /**

@@ -1,5 +1,5 @@
 <template>
-    <div class="box-footer mt-5" v-if="commentable">
+    <div :class="boxClass()" v-if="commentable">
         <div class="flex items-center gap-2">
             <div class="max-w-xs" v-if="targetCharacter">
                 <select class="w-full" v-model="character_id">
@@ -26,10 +26,10 @@
 </template>
 
 <script>
-    /**
-     * The form to send messages to a conversation.
-     * Messy party: we can have a list of characters that the user can edit, or send as the current user.
-     */
+  /**
+   * The form to send messages to a conversation.
+   * Messy party: we can have a list of characters that the user can edit, or send as the current user.
+   */
     export default {
         props: {
             target: undefined,
@@ -38,8 +38,17 @@
             disabled: {
                 type: Boolean
             },
+            current_message: {
+              type: Object,
+              default: null
+            },
             trans: undefined
         },
+        emits: [
+            'sending_message',
+            'edited_message',
+            'sent_message'
+        ],
 
         data() {
             return {
@@ -65,6 +74,7 @@
                 this.message_id = message.id;
                 this.edit_message = message;
                 this.body = message.message;
+                this.character_id = message.from_id;
                 document.getElementById("message").focus();
             },
             /**
@@ -79,7 +89,7 @@
                     return;
                 }
                 this.sending = true;
-                this.emitter.emit('sending_message');
+                this.$emit('sending_message');
 
                 let url = this.api;
                 let data = {
@@ -92,7 +102,7 @@
                     url += '/' + this.message_id;
 
                     axios.put(url, data).then((res) => {
-                        this.emitter.emit('edited_message', res.data.data);
+                        this.$emit('edited_message', res.data.data);
                         this.messageHandler();
                     }).catch(() => {
                         this.sending = false;
@@ -109,11 +119,18 @@
                 this.sending = false;
                 this.body = null;
                 this.message_id = null;
-                this.emitter.emit('sent_message');
+                this.$emit('sent_message');
             },
 
             translate(key) {
                 return this.json_trans[key] ?? 'unknown';
+            },
+            boxClass() {
+              let bg = 'bg-base-100';
+              if (this.current_message) {
+                bg = 'bg-accent';
+              }
+              return 'box-footer rounded p-2 ' + bg;
             }
         },
 
@@ -132,10 +149,14 @@
             }
         },
 
-        mounted() {
-            this.emitter.on('edit_message', (message, body) => {
-                this.editMessage(message, body);
-            });
+        watch: {
+          current_message: {
+              handler(newValue, oldValue) {
+                if (newValue !== oldValue && newValue) {
+                  this.editMessage(newValue)
+                }
+              }
+            }
         }
     }
 </script>

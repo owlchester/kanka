@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class PostPermission
@@ -11,14 +12,14 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property int $post_id
- * @property int $user_id
  * @property int $role_id
  * @property int $permission
- * @property User $user
  * @property Post $post
  */
 class PostPermission extends Model
 {
+    use HasUser;
+
     public $fillable = [
         'user_id',
         'role_id',
@@ -26,26 +27,12 @@ class PostPermission extends Model
         'permission'
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function role()
+    public function role(): BelongsTo
     {
         return $this->belongsTo(CampaignRole::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function post()
+    public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class, 'post_id', 'id');
     }

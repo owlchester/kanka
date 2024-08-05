@@ -7,7 +7,7 @@
         @include('cruds.fields.entity')
     </x-forms.field>
     <x-forms.field field="name" :required="true" :label="__('quests.elements.fields.name')">
-        <input type="text" name="name" maxlength="100" spellcheck="true" placeholder="{{ __('quests.elements.fields.name') }}" value="{!! old('name', $model->name ?? null) !!}" />
+        <input type="text" name="name" maxlength="100" spellcheck="true" placeholder="{{ __('quests.elements.fields.name') }}" value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" />
     </x-forms.field>
 
     <hr class="col-span-2" />
@@ -16,7 +16,14 @@
         field="role"
         css="col-span-2"
         :label="__('quests.fields.role')">
-        <input type="text" name="role" value="{{ old('role', $model->role ?? null) }}" spellcheck="true" maxlength="45" />
+        <input type="text" name="role" value="{{ old('role', $model->role ?? null) }}" spellcheck="true" maxlength="45" autocomplete="off" list="quest-element-roles" />
+        <div class="hidden">
+            <datalist id="quest-element-roles">
+                @foreach (\App\Facades\QuestCache::roleSuggestion() as $name)
+                    <option value="{{ $name }}">{{ $name }}</option>
+                @endforeach
+            </datalist>
+        </div>
     </x-forms.field>
 
     <x-forms.field

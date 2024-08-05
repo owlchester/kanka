@@ -8,7 +8,7 @@
         css="col-span-2"
         :required="true"
         :label="__('entities/files.fields.file')">
-        <input type="file" name="file" class="image w-full" id="file_{{ rand() }}" accept="" />
+        <input type="file" accept="image/*, .pdf, .gif, .webp, .pdf, .xls, .xlsx, .csv, .mp3, .ogg, .json" name="file" class="image w-full" id="file_{{ rand() }}" accept="" />
 
         <p class="text-neutral-content m-0">
             {{ __('crud.files.hints.limitations', ['formats' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json', 'size' => Limit::readable()->upload()]) }}
@@ -22,7 +22,7 @@
         css="col-span-2"
         :required="isset($entityAsset)"
         :label="__('entities/files.fields.name')">
-        <input type="text" name="name" value="{!! old('name', $entityAsset->name ?? null) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/files.fields.name') }}" />
+        <input type="text" name="name" value="{!! htmlspecialchars(old('name', $entityAsset->name ?? null)) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/files.fields.name') }}" />
     </x-forms.field>
 
     @include('cruds.fields.is_pinned', ['model' => $entity ?? null, 'fieldName' => 'is_pinned'])

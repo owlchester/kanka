@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Sanitizable;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,11 +16,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App\Models
  * @property string $name
  * @property string $image
- * @property string $slug
  * @property string $type
  * @property int $target_id
- * @property bool $is_private
- * @property bool $is_closed
+ * @property bool|int $is_private
+ * @property bool|int $is_closed
  *
  * @property ConversationParticipant[]|Collection $participants
  * @property ConversationMessage[]|Collection $messages
@@ -30,11 +30,11 @@ class Conversation extends MiscModel
     use HasCampaign;
     use HasFactory;
     use HasFilters;
+    use Sanitizable;
     use SoftDeletes;
 
     protected $fillable = [
         'name',
-        'slug',
         'type',
         'campaign_id',
         'target_id',
@@ -63,6 +63,11 @@ class Conversation extends MiscModel
         'colour',
     ];
 
+    protected array $sanitizable = [
+        'name',
+        'type',
+    ];
+
     /**
      * Set to false if this entity type doesn't have relations
      */
@@ -80,7 +85,8 @@ class Conversation extends MiscModel
 
     public function participants(): HasMany
     {
-        return $this->hasMany('App\Models\ConversationParticipant', 'conversation_id');
+        return $this->hasMany('App\Models\ConversationParticipant', 'conversation_id')
+            ->with('character');
     }
 
     /**

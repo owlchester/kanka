@@ -34,7 +34,7 @@
                                 <input type="hidden" name="timeline_element[{{ $era->id }}][]" value="{{ $element->id }}" />
                                 <x-icon class="fa-solid fa-sort" />
                                 <div class="dragger relative rounded-full text-2xl text-center grow-0 w-8">
-                                    {!! $element->htmlIcon(false) !!}
+                                    @include('timelines.elements._icon', ['absolute' => false])
                                 </div>
                                 <div class="overflow-hidden flex-grow">
                                     @if ($element->entity)

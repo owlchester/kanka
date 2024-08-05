@@ -6,8 +6,10 @@
     $preset = null;
     if (isset($model) && $model->location) {
         $preset = $model->location;
+    } elseif (isset($model) && ($isParent ?? false) && $model->parent) {
+        $preset = $model->parent;
     } elseif (!isset($bulk)) {
-        $preset = FormCopy::field('location')->select($isParent ?? false, \App\Models\Location::class);
+        $preset = FormCopy::field(isset($isParent) && $isParent ? 'parent' : 'location')->select($isParent ?? false, \App\Models\Location::class);
     }
 @endphp
 <x-forms.foreign

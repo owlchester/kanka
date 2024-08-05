@@ -18,10 +18,34 @@
         </div>
     </div>
 
+    @php
+    $min = 4.16;
+    $currency = 'USD';
+    $country = 'US';
+    if (isset($_SERVER["HTTP_CF_IPCOUNTRY"])) {
+        $country = mb_substr($_SERVER["HTTP_CF_IPCOUNTRY"], 0, 6);
+    }
+    $euro = [
+        // EuroZone
+        'AT', 'BE', 'HR', 'CY', 'EE', 'FI', 'FR', 'DE', 'GR', 'IE',
+        'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PT', 'SI', 'SK', 'ES',
+        // Pegged to the EUR
+        'DK',
+    ];
+    if (in_array($country, $euro)) {
+        $currency = 'EUR';
+    }
+    elseif ($country === 'BR') {
+        $min = 16.66;
+        $currency = 'BRL';
+    }
+    @endphp
     <p class="text-center text-muted my-2">
-        {!! __('misc.ads.remove_v3', [
+        {!! __('misc.ads.remove_v4', [
             'subscribing' => '<a href="' . route('settings.subscription') . '">' . __('misc.ads.subscribing') . '</a>',
-            'boosting' => '<a href="https://kanka.io/premium">' . __('misc.ads.premium') . '</a>',
+            'premium' => '<a href="https://kanka.io/premium">' . __('misc.ads.premium') . '</a>',
+            'currency' => $currency,
+            'price' => $min,
         ]) !!}
     </p>
 </x-ad>

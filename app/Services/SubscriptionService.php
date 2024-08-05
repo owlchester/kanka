@@ -109,7 +109,7 @@ class SubscriptionService
     /**
      * @return $this
      */
-    public function coupon(string $coupon = null): self
+    public function coupon(?string $coupon = null): self
     {
         if ($this->period === PricingPeriod::Yearly && !empty($coupon)) {
             $this->coupon = $coupon;
@@ -124,7 +124,7 @@ class SubscriptionService
      */
     public function plan(string $plan): self
     {
-        /** @var TierPrice|null $price */
+        /** @var ?TierPrice $price */
         $price = TierPrice::where('stripe_id', $plan)->first();
         $this->tier = $price->tier;
         return $this;
@@ -320,7 +320,7 @@ class SubscriptionService
     public function downgrading(): bool
     {
         // Elemental downgrading -> owl or wyv
-        if ($this->user->isElemental() && in_array($this->tier->code, [Pledge::OWLBEAR, Pledge::WYVERN])) {
+        if ($this->user->isElemental() && in_array($this->tier->name, [Pledge::OWLBEAR, Pledge::WYVERN])) {
             return true;
         }
 
@@ -355,7 +355,7 @@ class SubscriptionService
         }
 
         // Check if the user's active sub is from before the current date
-        /** @var \Laravel\Cashier\Subscription|null $sub */
+        /** @var ?\Laravel\Cashier\Subscription $sub */
         $sub = \Laravel\Cashier\Subscription::where('user_id', $this->user->id)->where('stripe_status', 'active')->first();
         if ($sub === null) {
             return false;

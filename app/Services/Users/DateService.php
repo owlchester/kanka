@@ -15,7 +15,7 @@ class DateService
     /**
      * Display a date to the user's preferred format
      */
-    public function format(string $date = null): string
+    public function format(?string $date = null): string
     {
         if (empty($date)) {
             return '';

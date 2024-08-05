@@ -27,7 +27,7 @@ class HallOfFameService
             'kobold' => []
         ];
 
-        /** @var Role|null $role */
+        /** @var ?Role $role */
         $role = Role::where(['name' => Pledge::ROLE])->first();
 
         // No subscriber role? Local instance or not properly set up. Let's just avoid throwing an error.

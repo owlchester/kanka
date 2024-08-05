@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUser;
 use App\Models\Concerns\SortableTrait;
-use App\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -19,20 +20,22 @@ use Illuminate\Support\Str;
  * @property string $uuid
  * @property int $type_id
  * @property int $status_id
- * @property int $created_by
+ * @property ?int $created_by
  * @property string $name
- * @property bool $is_obsolete
+ * @property bool|int $is_obsolete
  *
  * @property PluginVersion[]|Collection $versions
  * @property PluginVersion $version
- * @property User|null $user
  *
  * @method static self|Builder highlighted(string $uuid)
  */
 class Plugin extends Model
 {
+    use HasUser;
     use SoftDeletes;
     use SortableTrait;
+
+    protected string $userField = 'created_by';
 
     protected bool $cachedHasUpdate;
 
@@ -74,20 +77,9 @@ class Plugin extends Model
             ->count() > 0;
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function versions()
+    public function versions(): HasMany
     {
         return $this->hasMany(PluginVersion::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'created_by');
     }
 
     public function scopePreparedSelect(Builder $builder): Builder
@@ -150,7 +142,7 @@ class Plugin extends Model
 
     /**
      */
-    public function scopeHighlighted(Builder $query, string $uuid = null): Builder
+    public function scopeHighlighted(Builder $query, ?string $uuid = null): Builder
     {
         if (empty($uuid) || !Str::isUuid($uuid)) {
             return $query;

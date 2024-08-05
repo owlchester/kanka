@@ -1,13 +1,13 @@
 <?php /**
- * @var \App\Models\MiscModel $model
+ * @var \App\Models\Character $model
  * @var \App\Models\Entity $entity
  */?>
-@if ($campaign->enabled('families') && !$model->families->isEmpty())
+@if ($campaign->enabled('families') && !$model->characterFamilies->isEmpty())
 @php
 $existingFamilies = [];
 $counter = 0;
 @endphp
-| {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!} | @foreach ($model->families as $family) @if(!empty($existingFamilies[$family->id])) @continue @endif @php $existingRaces[$family->id] = true; @endphp {!! $family->name !!}@if ($counter < $model->families->count() - 1)@php $counter++; @endphp, @endif @endforeach |
+| {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!} | @foreach ($model->characterFamilies as $family) @if(!empty($existingFamilies[$family->family_id])) @continue @endif @php $existingRaces[$family->family_id] = true; @endphp {!! $family->family->name !!}@if ($counter < $model->characterFamilies->count() - 1)@php $counter++; @endphp, @endif @endforeach |
 @endif
 @if (!$model->characterRaces->isEmpty() || $model->hasAge())
 @if (!$model->characterRaces->isEmpty() && !$model->hasAge())
@@ -23,7 +23,7 @@ $counter = 0;
 $existingRaces = [];
 $counter = 0;
 @endphp
-| {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!} | @foreach ($model->characterRaces as $race) @if(!empty($existingRaces[$race->race_id])) @continue @endif @php $existingRaces[$race->race_id] = true; @endphp {!! $race->name !!}@if ($counter < $model->characterRaces->count() - 1)@php $counter++; @endphp, @endif @endforeach |
+| {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!} | @foreach ($model->characterRaces as $race) @if(!empty($existingRaces[$race->race_id])) @continue @endif @php $existingRaces[$race->race_id] = true; @endphp {!! $race->race->name !!}@if ($counter < $model->characterRaces->count() - 1)@php $counter++; @endphp, @endif @endforeach |
 | {{ __('characters.fields.age') }} | {{ $model->age }} |
 @endif
 @endif

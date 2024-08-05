@@ -18,8 +18,8 @@ if (!empty($previous)) {
 // If we didn't get anything, and there is a model sent, use that
 elseif(!empty($model)) {
     /** @var \App\Models\Family $family */
-    foreach ($model->families as $family) {
-        $selectedOption[$family->id] = strip_tags($family->name);
+    foreach ($model->characterFamilies as $family) {
+        $selectedOption[$family->family->id] = strip_tags($family->family->name);
     }
 }
 

@@ -32,15 +32,12 @@ class CreateMapsTable extends Migration
             $table->longText('entry')->nullable();
             $table->text('config')->nullable();
 
-            $table->float('center_x', 8, 3)->nullable()->change();
-            $table->float('center_y', 8, 3)->nullable()->change();
+            $table->float('center_x')->nullable();
+            $table->float('center_y')->nullable();
 
             $table->smallInteger('min_zoom')->nullable();
             $table->smallInteger('max_zoom')->nullable();
             $table->smallInteger('initial_zoom')->nullable();
-
-            $table->unsignedSmallInteger('center_x')->nullable();
-            $table->unsignedSmallInteger('center_y')->nullable();
 
             $table->unsignedSmallInteger('grid')->nullable();
 
@@ -96,8 +93,8 @@ class CreateMapsTable extends Migration
             $table->string('name')->nullable();
             $table->longText('entry')->nullable();
 
-            $table->float('longitude', 12, 5);
-            $table->float('latitude', 12, 5);
+            $table->float('longitude');
+            $table->float('latitude');
             $table->string('colour', 7)->nullable();
             $table->unsignedTinyInteger('shape_id')->default(1);
             $table->unsignedTinyInteger('size_id')->default(1);

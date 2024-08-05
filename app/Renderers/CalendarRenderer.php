@@ -31,7 +31,6 @@ class CalendarRenderer
 
     /**
      * Current Year
-     * @var int
      */
     protected int $year;
 

@@ -5,11 +5,18 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\LastSync;
+use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Privatable;
+use App\Models\Concerns\Sanitizable;
+use App\Models\Concerns\Searchable;
+use App\Models\Concerns\Sortable;
 use App\Models\Concerns\Taggable;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
@@ -20,20 +27,20 @@ use Illuminate\Support\Str;
  * @package App\Models
  *
  * @property string $name
- * @property string|null $tab
- * @property string|null $menu
- * @property string|null $type
+ * @property ?string $tab
+ * @property ?string $menu
+ * @property ?string $type
  * @property string $icon
- * @property string|null $filters
- * @property string|null $parent
+ * @property ?string $filters
+ * @property ?string $parent
  * @property string $css
  * @property string $random_entity_type
  * @property int $position
- * @property int|null $dashboard_id
- * @property int|null $entity_id
+ * @property ?int $dashboard_id
+ * @property ?int $entity_id
  * @property array $options
- * @property CampaignDashboard|null $dashboard
- * @property Entity|null $target
+ * @property ?CampaignDashboard $dashboard
+ * @property ?Entity $target
  * @property bool|int $is_private
  * @property bool|int $is_active
  * @property array $optionsAllowedKeys
@@ -41,12 +48,18 @@ use Illuminate\Support\Str;
  * @method static self|Builder ordered()
  * @method static self|Builder active()
  */
-class Bookmark extends MiscModel
+class Bookmark extends Model
 {
     use HasCampaign;
     use HasFactory;
+    use HasFilters;
     use Privatable;
+    use Sanitizable;
+    use Searchable;
+    use Sortable;
+    use Orderable;
     use Taggable;
+    use LastSync;
 
     protected $fillable = [
         'campaign_id',
@@ -73,6 +86,12 @@ class Bookmark extends MiscModel
      */
     protected $casts = [
         'options' => 'array',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'icon',
+        'css'
     ];
 
     /**
@@ -130,6 +149,11 @@ class Bookmark extends MiscModel
         ]);
     }
 
+    public function scopePreparedSelect(Builder $query): Builder
+    {
+        return $query;
+    }
+
     /**
      * Scope for Active menu links
      */
@@ -148,12 +172,12 @@ class Bookmark extends MiscModel
             ->orderBy('name', 'ASC');
     }
 
-    public function campaign(): BelongsTo
+    public function target(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Campaign', 'campaign_id');
+        return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
 
-    public function target(): BelongsTo
+    public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
@@ -161,6 +185,14 @@ class Bookmark extends MiscModel
     public function dashboard(): BelongsTo
     {
         return $this->belongsTo('App\Models\CampaignDashboard', 'dashboard_id');
+    }
+
+    /**
+     * Need this because we're using the Crud Controllers instead of doing our own for bookmarks
+     */
+    public function hasEntityType(): bool
+    {
+        return false;
     }
 
     /**
@@ -308,7 +340,7 @@ class Bookmark extends MiscModel
             $entityTypeID = config('entities.ids.' . $entityType);
         }
 
-        /** @var Entity|null $entity */
+        /** @var ?Entity $entity */
         $entity = Entity::inTags($this->tags->pluck('id')->toArray())
             ->inTypes($entityTypeID)
             ->whereNotIn('entities.id', Dashboard::excluding())

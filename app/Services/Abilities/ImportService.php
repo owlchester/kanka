@@ -21,7 +21,7 @@ class ImportService
         }
         /** @var Character $character */
         $character = $this->entity->child;
-        if (empty($character->races)) {
+        if (empty($character->characterRaces)) {
             throw new Exception('no_race');
         }
         $count = 0;
@@ -37,9 +37,9 @@ class ImportService
             $existingIds[] = $ability->ability_id;
         }
 
-        foreach ($character->races()->with('entity')->get() as $race) {
+        foreach ($character->characterRaces as $race) {
             /** @var EntityAbility[] $abilities */
-            $abilities = $race->entity->abilities;
+            $abilities = $race->race->entity->abilities;
             $count = 0;
             foreach ($abilities as $ability) {
                 // If it's deleted or already on this entity, skip

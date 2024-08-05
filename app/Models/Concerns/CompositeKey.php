@@ -28,7 +28,7 @@ trait CompositeKey
      * Get the primary key value for a save query.
      *
      */
-    protected function getKeyForSaveQuery($keyName = null)
+    protected function getKeyForSaveQuery(?string $keyName = null)
     {
         if (null === $keyName) {
             $keyName = $this->getKeyName();

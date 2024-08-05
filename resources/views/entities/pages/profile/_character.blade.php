@@ -35,17 +35,17 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                 </p>
                 @endforeach
             @endif
-            @if ($campaign->enabled('families') && !$model->families->isEmpty())
+            @if ($campaign->enabled('families') && !$model->characterFamilies->isEmpty())
                 @php $existingFamilies = []; @endphp
-                @foreach ($model->families as $family)
-                    @if(!empty($existingFamilies[$family->id]) || !$family->entity)
+                @foreach ($model->characterFamilies as $family)
+                    @if(!empty($existingFamilies[$family->family_id]))
                         @continue
                     @endif
-                    @php $existingFamilies[$family->id] = true; @endphp
-                    <p class="entity-family" data-foreign="{{ $family->id }}">
+                    @php $existingFamilies[$family->family_id] = true; @endphp
+                    <p class="entity-family" data-foreign="{{ $family->family_id }}">
                         <b>{{ __('entities.families') }}</b><br />
                         <x-entity-link
-                            :entity="$family->entity"
+                            :entity="$family->family->entity"
                             :campaign="$campaign" />
                     </p>
                 @endforeach

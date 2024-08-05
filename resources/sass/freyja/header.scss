@@ -35,27 +35,6 @@
                 color: var(--campaign-switcher-text, hsl(var(--bc)/1));
             }
         }
-
-        .campaign.boosted {
-            &:before {
-                content: "\f135";
-                font-family: "Font Awesome 6 Pro";
-                font-weight: 900;
-                font-style: normal;
-                font-variant: normal;
-                line-height: 1;
-                text-rendering: auto;
-                font-size: 14px;
-                position: absolute;
-                z-index: 10;
-                display: block;
-                border-radius: 9999px;
-                --tw-bg-opacity: 1;
-                color: hsl(var(--boosted)/var(--tw-text-opacity));
-                top: 15px;
-                right: 15px;
-            }
-        }
     }
     .profile {
         .marketplace {

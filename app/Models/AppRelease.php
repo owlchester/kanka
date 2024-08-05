@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Facades\UserCache;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class AppRelease
@@ -22,11 +24,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class AppRelease extends Model
 {
-    public const CATEGORY_RELEASE = 1;
-    public const CATEGORY_EVENT = 2;
-    public const CATEGORY_VOTE = 3;
-    public const CATEGORY_OTHER = 4;
-    public const CATEGORY_LIVESTREAM = 5;
+    public const int CATEGORY_RELEASE = 1;
+    public const int CATEGORY_EVENT = 2;
+    public const int CATEGORY_VOTE = 3;
+    public const int CATEGORY_OTHER = 4;
+    public const int CATEGORY_LIVESTREAM = 5;
 
     public $table = 'releases';
 
@@ -35,10 +37,7 @@ class AppRelease extends Model
         'end_at' => 'date',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function author()
+    public function author(): BelongsTo
     {
         return $this->belongsTo('App\User', 'created_by');
     }
@@ -72,8 +71,8 @@ class AppRelease extends Model
         if ($firstVisibility->isBefore(auth()->user()->created_at)) {
             return true;
         }
-        $lastRelease = auth()->user()->settings()->get('releases_' . $this->category_id);
-        return $lastRelease == $this->id;
+        //Check if the user has the release tutorial entry on the db.
+        return UserCache::user(auth()->user())->dismissedTutorial('releases_' . $this->category_id . '_' . $this->id);
     }
 
     /**

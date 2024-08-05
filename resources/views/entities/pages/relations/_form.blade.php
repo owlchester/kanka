@@ -23,7 +23,7 @@
     ])
 @endif
     <x-forms.field field="relation" :required="true" :label="__('entities/relations.fields.relation')">
-        <input type="text" name="relation" value="{{ old('relation', $relation->relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.relation') }}" placeholder="{{ __('entities/relations.placeholders.relation') }}" />
+        <input type="text" name="relation" value="{!! htmlspecialchars(old('relation', $relation->relation ?? null)) !!}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.relation') }}" placeholder="{{ __('entities/relations.placeholders.relation') }}" />
     </x-forms.field>
 
     @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#primary-dialog', 'model' => $relation ?? null] : ['model' => $relation ?? null])

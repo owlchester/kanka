@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Scopes\CommunityVoteScopes;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -30,10 +31,10 @@ class CommunityVote extends Model
 {
     use CommunityVoteScopes;
 
-    public const STATUS_DRAFT = 'draft';
-    public const STATUS_SCHEDULED = 'scheduled';
-    public const STATUS_VOTING = 'voting';
-    public const STATUS_PUBLISHED = 'published';
+    public const string STATUS_DRAFT = 'draft';
+    public const string STATUS_SCHEDULED = 'scheduled';
+    public const string STATUS_VOTING = 'voting';
+    public const string STATUS_PUBLISHED = 'published';
 
     protected $cachedStatus = false;
     protected $cachedResults = false;
@@ -43,10 +44,7 @@ class CommunityVote extends Model
         'published_at' => 'date',
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function ballots()
+    public function ballots(): HasMany
     {
         return $this->hasMany(CommunityVoteBallot::class);
     }

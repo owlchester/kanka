@@ -29,8 +29,8 @@ class FamilyObserver extends MiscObserver
         // Only use tags the user can actually view. This way admins can
         // have tags on entities that the user doesn't know about.
         $existing = [];
-        foreach ($family->members()->get() as $member) {
-            // The m_ prefix is to differanciate from existing members to new members
+        foreach ($family->members as $member) {
+            // The m_ prefix is to differentiate from existing members to new members
             $existing['m_' . $member->id] = $member;
         }
         $new = [];
@@ -39,7 +39,7 @@ class FamilyObserver extends MiscObserver
             if (!empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
-                /** @var Character|null $character */
+                /** @var ?Character $character */
                 $character = Character::find($id);
                 if (!empty($character)) {
                     $new[] = $character->id;
@@ -56,17 +56,5 @@ class FamilyObserver extends MiscObserver
             EntityLogger::dirty('members', null);
         }
         return $this;
-    }
-
-    public function deleting(Family $family)
-    {
-        /**
-         * We need to do this ourselves and not let mysql to it (set null), because the nested wants to delete
-         * all descendants when deleting the parent (soft delete)
-         */
-        foreach ($family->families as $sub) {
-            $sub->family_id = null;
-            $sub->saveQuietly();
-        }
     }
 }

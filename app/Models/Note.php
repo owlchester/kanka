@@ -6,20 +6,19 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Collection;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Note
  * @package App\Models
  *
- * @property int|null $note_id
- * @property Note|null $note
- * @property Note[]|Collection $notes
+ * @property ?int $note_id
  */
 class Note extends MiscModel
 {
@@ -30,12 +29,13 @@ class Note extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
+    use Nested;
+    use Sanitizable;
     use SoftDeletes;
 
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'entry',
         'type',
         'is_private',
@@ -58,6 +58,11 @@ class Note extends MiscModel
         'base',
     ];
 
+    protected array $sanitizable = [
+        'name',
+        'type',
+    ];
+
     /**
      * Performance with for datagrids
      */
@@ -75,9 +80,6 @@ class Note extends MiscModel
             },
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-            'notes' => function ($sub) {
-                $sub->select('id', 'note_id', 'name');
             },
             'children' => function ($sub) {
                 $sub->select('id', 'note_id');
@@ -100,24 +102,6 @@ class Note extends MiscModel
     {
         return (int) config('entities.ids.note');
     }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function note()
-    {
-        return $this->belongsTo(Note::class, 'note_id');
-    }
-
-    /**
-     * Child notes
-     */
-    public function notes()
-    {
-        return $this->hasMany(Note::class, 'note_id', 'id')
-            ->with('entity');
-    }
-
 
     /**
      * Parent ID field for the Node trait

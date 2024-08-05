@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -20,7 +22,6 @@ use Illuminate\Support\Str;
  * @package App\Models
  *
  * @property int $id
- * @property int $campaign_id
  * @property int $entity_id
  * @property int $dashboard_id
  * @property Widget $widget
@@ -32,7 +33,7 @@ use Illuminate\Support\Str;
  * @property CampaignDashboardWidgetTag[] $dashboardWidgetTags
  *
  * @method static self|Builder positioned()
- * @method static self|Builder onDashboard(CampaignDashboard $dashboard = null)
+ * @method static self|Builder onDashboard(?CampaignDashboard $dashboard = null)
  */
 class CampaignDashboardWidget extends Model
 {
@@ -56,11 +57,6 @@ class CampaignDashboardWidget extends Model
         'widget' => Widget::class,
     ];
 
-    public function campaign(): BelongsTo
-    {
-        return $this->belongsTo(Campaign::class);
-    }
-
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
@@ -71,10 +67,7 @@ class CampaignDashboardWidget extends Model
         return $this->belongsTo(CampaignDashboard::class, 'dashboard_id', 'id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function tags()
+    public function tags(): BelongsToMany
     {
         return $this->belongsToMany(
             Tag::class,
@@ -84,7 +77,7 @@ class CampaignDashboardWidget extends Model
         )->using(CampaignDashboardWidgetTag::class);
     }
 
-    public function dashboardWidgetTags()
+    public function dashboardWidgetTags(): HasMany
     {
         return $this->hasMany(CampaignDashboardWidgetTag::class, 'widget_id', 'id');
     }
@@ -119,7 +112,7 @@ class CampaignDashboardWidget extends Model
 
     /**
      */
-    public function scopeOnDashboard(Builder $query, CampaignDashboard $dashboard = null): Builder
+    public function scopeOnDashboard(Builder $query, ?CampaignDashboard $dashboard = null): Builder
     {
         if (empty($dashboard)) {
             return $query->whereNull('dashboard_id');
@@ -202,7 +195,7 @@ class CampaignDashboardWidget extends Model
      * @param Entity|null $entity
      * @return bool
      */
-    public function showMembers(Entity $entity = null): bool
+    public function showMembers(?Entity $entity = null): bool
     {
         if ($this->conf('members') !== '1') {
             return false;
@@ -379,25 +372,20 @@ class CampaignDashboardWidget extends Model
      */
     public function widgetIcon(): string
     {
-        $icon = null;
         if ($this->widget === Widget::Recent) {
-            $icon = 'fa-solid fa-list';
+            return 'fa-solid fa-list';
         } elseif ($this->widget === Widget::Header) {
-            $icon = 'fa-solid fa-heading';
+            return 'fa-solid fa-heading';
         } elseif ($this->widget === Widget::Preview) {
-            $icon = 'fa-solid fa-align-justify';
+            return 'fa-solid fa-align-justify';
         } elseif ($this->widget === Widget::Calendar) {
-            $icon = 'ra ra-moon-sun';
+            return 'ra ra-moon-sun';
         } elseif ($this->widget === Widget::Random) {
-            $icon = 'fa-solid fa-dice-d20';
+            return 'fa-solid fa-dice-d20';
         } elseif ($this->widget === Widget::Campaign) {
-            $icon = 'fa-solid fa-th-list';
+            return 'fa-solid fa-th-list';
         }
-
-        if (empty($icon)) {
-            return '';
-        }
-        return '<i class="' . $icon . '"></i>';
+        return 'fa-solid fa-question-circle';
     }
 
     /**

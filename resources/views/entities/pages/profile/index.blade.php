@@ -9,6 +9,7 @@
     'bodyClass' => 'entity-profile'
 ])
 
+@include('entities.components.og')
 
 @section('entity-header-actions')
     @can('update', $model)

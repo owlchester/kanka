@@ -8,39 +8,23 @@ use Illuminate\View\Component;
 
 class Item extends Component
 {
-    public string $link;
-    public ?string $target;
-    public ?string $css;
-    public ?string $popup;
-    public ?string $icon;
-    public ?string $dialog;
-    public ?string $keyboard;
-    public bool $active = false;
-
     public array $dataProperties;
+
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $link,
-        string $target = null,
-        string $css = null,
-        string $dialog = null,
-        string $popup = null,
-        string $keyboard = null,
+        public string $link,
+        public ?string $target = null,
+        public ?string $css = null,
+        public ?string $dialog = null,
+        public ?string $popup = null,
+        public ?string $keyboard = null,
         array $data = [],
-        string $icon = null,
-        bool $active = false,
+        public ?string $icon = null,
+        public bool $active = false,
     ) {
-        $this->link = $link;
-        $this->target = $target;
-        $this->css = $css;
-        $this->dialog = $dialog;
-        $this->popup = $popup;
-        $this->keyboard = $keyboard;
         $this->dataProperties = $data;
-        $this->icon = $icon;
-        $this->active = $active;
     }
 
     /**

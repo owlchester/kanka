@@ -9,7 +9,7 @@
 
 <x-grid>
     <x-forms.field field="name" :required="true" css="col-span-2" :label="__('entities/links.fields.name')">
-        <input type="text" name="name" value="{!! old('name', $entityAsset->name ?? null) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/aliases.placeholders.name') }}" />
+        <input type="text" name="name" value="{!! htmlspecialchars(old('name', $entityAsset->name ?? null)) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/aliases.placeholders.name') }}" />
     </x-forms.field>
 
     @include('cruds.fields.is_pinned', ['model' => $entity ?? null, 'fieldName' => 'is_pinned'])

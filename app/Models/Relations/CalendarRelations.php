@@ -5,6 +5,8 @@ namespace App\Models\Relations;
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\EntityEvent;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property EntityEvent[] $calendarEvents
@@ -13,34 +15,22 @@ use App\Models\EntityEvent;
  */
 trait CalendarRelations
 {
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function calendarEvents()
+    public function calendarEvents(): HasMany
     {
         return $this->hasMany(EntityEvent::class, 'calendar_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function calendarWeather()
+    public function calendarWeather(): HasMany
     {
         return $this->hasMany(CalendarWeather::class, 'calendar_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function calendar()
+    public function calendar(): BelongsTo
     {
         return $this->belongsTo(Calendar::class);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function calendars()
+    public function calendars(): HasMany
     {
         return $this->hasMany(Calendar::class);
     }

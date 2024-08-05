@@ -2,22 +2,29 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * @property DiceRoll|null $diceRoll
+ * @property ?DiceRoll $diceRoll
+ * @property ?int $dice_roll_id
+ * @property int|bool $is_private
+ * @property string $results
  */
 class DiceRollResult extends Model
 {
+    use Blameable;
     use HasFilters;
+    use HasUser;
     use Orderable;
     use Searchable;
     use Sortable;
-
 
     protected $fillable = [
         'dice_roll_id',
@@ -39,6 +46,7 @@ class DiceRollResult extends Model
 
     protected string $defaultOrderField = 'created_at';
     protected string $defaultOrderDirection = 'DESC';
+    protected string $userField = 'created_by';
 
     /**
      * We want to use the dice_roll entity type for permissions
@@ -49,39 +57,14 @@ class DiceRollResult extends Model
     protected bool $hasRelations = false;
 
     /**
-     *
-     */
-    public function newQuery()
-    {
-        // When exporting in console, we don't have this so don't use it
-        if (!app()->runningInConsole()) {
-            return parent::newQuery()->has('diceRoll');
-        }
-        return parent::newQuery();
-    }
-
-    /**
      * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function creator()
+    public function creator(): BelongsTo
     {
         return $this->belongsTo('App\User', 'created_by');
     }
 
-    /**
-     * Who created this entry
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'created_by');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function diceRoll()
+    public function diceRoll(): BelongsTo
     {
         return $this->belongsTo('App\Models\DiceRoll', 'dice_roll_id');
     }

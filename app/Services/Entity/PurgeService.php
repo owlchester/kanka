@@ -5,7 +5,7 @@ namespace App\Services\Entity;
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\MiscModel;
-use App\Services\ImageService;
+use App\Facades\Images;
 use Exception;
 
 class PurgeService
@@ -39,7 +39,7 @@ class PurgeService
         $this->entityIds[] = $entity->id;
         $entity->forceDelete();
 
-        ImageService::cleanup($child);
+        Images::cleanup($child);
 
         $this->count++;
     }
@@ -48,7 +48,7 @@ class PurgeService
      * @param MiscModel|Location|null $child
      * @throws Exception
      */
-    protected function trashChild(Entity $entity, MiscModel $child = null)
+    protected function trashChild(Entity $entity, ?MiscModel $child = null)
     {
         if (empty($child)) {
             return false;
@@ -93,10 +93,10 @@ class PurgeService
         $this->childIds[$child->getEntityType()][] = $child->id;
 
         // Cleanup any images attached to the child.
-        ImageService::cleanup($child);
+        Images::cleanup($child);
 
         if ($child instanceof Location && !empty($child->map)) {
-            ImageService::cleanup($child, 'map');
+            Images::cleanup($child, 'map');
         }
 
         $child->forceDelete();

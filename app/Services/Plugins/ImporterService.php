@@ -9,6 +9,7 @@ use App\Models\CharacterTrait;
 use App\Models\Entity;
 use App\Models\Post;
 use App\Models\EntityTag;
+use App\Models\Image;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Plugin;
@@ -96,7 +97,6 @@ class ImporterService
         // Prepare the uuids for already imported lookups
         $campaignPlugin = $this->campaignPlugin();
         $version = $campaignPlugin->version;
-        // @phpstan-ignore-next-line
         $entities = $version->entities()->with('type')->get();
         $uuids = $entities->pluck('uuid');
 
@@ -196,10 +196,10 @@ class ImporterService
             $this->model->is_private = true;
         }
 
-        $model = $this->importImage($this->model, $pluginEntity);
+        $this->importImage($pluginEntity);
 
         // Mentions
-        $model->entry = preg_replace_callback('`\[entity:(.*?)\]`i', function ($matches) {
+        $this->model->entry = preg_replace_callback('`\[entity:(.*?)\]`i', function ($matches) {
             $id = (int) $matches[1];
             if (empty($id) || !isset($this->entityIds[$id])) {
                 return 'wat';
@@ -208,7 +208,8 @@ class ImporterService
             return '[' . $this->entityTypes[$id] . ':' . $this->entityIds[$id] . ']';
         }, $pluginEntity->entry);
 
-        $model->save();
+        $this->model->save();
+        $this->model->entity->save();
 
         // Relations
         if (!empty($pluginEntity->related)) {
@@ -381,30 +382,42 @@ class ImporterService
     }
 
     /**
-     * @return MiscModel
+     * Images are stored in the campaign gallery and need to be mapped to their uuid
      */
-    protected function importImage(MiscModel $model, PluginVersionEntity $entity)
+    protected function importImage(PluginVersionEntity $entity): self
     {
         // Don't do anything if no image or replacing an image (too many false positives)
-        if (empty($entity->image_path) || !empty($model->entity->image_path)) {
-            return $model;
+        if (empty($entity->image_path) || !empty($this->model->entity->image_path) || !empty($this->model->entity->image_uuid)) {
+            return $this;
         }
 
         // Need to download the image from the marketplace's s3 (if possible)
         try {
-            $path = 'w/' . $this->campaign->id . '/' . Str::uuid() . '.' . Str::afterLast($entity->image_path, '.');
-            Storage::writeStream($path, Storage::disk('s3-marketplace')->readStream($entity->image_path));
-            $model->entity->image_path = $path;
+            $imageExt = Str::afterLast($entity->image_path, '.');
+
+            // We need to create a new Image to migrate to the new system. Maybe in the future
+            // we can store the marketplace's uuid here and avoid duplicates.
+            $image = new Image();
+            $image->campaign_id = $this->campaign->id;
+            $image->ext = $imageExt;
+            $image->name = $entity->name;
+            $image->visibility_id = Visibility::All;
+            $size = Storage::disk('s3-marketplace')->size($entity->image_path);
+            $image->size = (int) ceil($size / 1024); // kb
+            $image->save();
+
+            Storage::writeStream($image->path, Storage::disk('s3-marketplace')->readStream($entity->image_path));
+            $this->model->entity->image_uuid = $image->id;
         } catch (Exception $e) {
             Log::error('Error importing image from ' . $entity->id . ': ' . $e->getMessage());
         }
 
-        return $model;
+        return $this;
     }
 
     /**
      */
-    protected function importBlock(string $block, array $values = null): void
+    protected function importBlock(string $block, ?array $values = null): void
     {
         if (empty($values)) {
             return;
@@ -432,7 +445,7 @@ class ImporterService
     }
 
 
-    protected function importTags(array $values = null): void
+    protected function importTags(?array $values = null): void
     {
         if (empty($values)) {
             return;

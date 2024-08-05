@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,11 +20,10 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 /**
  * Class Ability
  * @package App\Models
- * @property int|null $ability_id
+ * @property ?int $ability_id
  * @property mixed|null $charges
- * @property Ability|null $ability
+ * @property ?Ability $parent
  * @property Collection|Ability[] $descendants
- * @property Collection|Ability[] $abilities
  * @property Ability[] $orderedAbilities
  * @property Collection|Entity[] $entities
  *
@@ -38,13 +38,14 @@ class Ability extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
+    use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'type',
         'entry',
         'ability_id',
@@ -76,6 +77,12 @@ class Ability extends MiscModel
         'charges'
     ];
 
+    protected array $sanitizable = [
+        'name',
+        'type',
+        'charges',
+    ];
+
     /**
      * Parent ID used for the Node Trait
      * @return string
@@ -103,9 +110,6 @@ class Ability extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'abilities' => function ($sub) {
-                $sub->select('id', 'name', 'ability_id');
-            },
             'children' => function ($sub) {
                 $sub->select('id', 'ability_id');
             },
@@ -121,22 +125,6 @@ class Ability extends MiscModel
     public function datagridSelectFields(): array
     {
         return ['ability_id'];
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function ability()
-    {
-        return $this->belongsTo('App\Models\Ability', 'ability_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function abilities()
-    {
-        return $this->hasMany('App\Models\Ability', 'ability_id', 'id');
     }
 
     public function entities()
@@ -160,13 +148,6 @@ class Ability extends MiscModel
     public function entityTypeId(): int
     {
         return (int) config('entities.ids.ability');
-    }
-
-    /**
-     */
-    public function entryWithAttributes()
-    {
-        return Mentions::map($this);
     }
 
     /**

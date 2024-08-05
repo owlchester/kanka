@@ -3,14 +3,19 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
 use App\Models\Concerns\Blameable;
-use App\Models\Concerns\Paginatable;
-use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Copiable;
-use App\Traits\VisibilityIDTrait;
+use App\Models\Concerns\HasEntry;
+use App\Models\Concerns\HasSuggestions;
+use App\Models\Concerns\HasVisibility;
+use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\Sanitizable;
+use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -19,38 +24,41 @@ use Illuminate\Support\Str;
  * @package App\Models
  *
  * @property Map $map
- * @property Entity|null $entity
+ * @property ?Entity $entity
  * @property int $id
  * @property int $map_id
- * @property int|null $entity_id
+ * @property ?int $entity_id
  * @property string $name
  * @property string $entry
  * @property int $longitude
  * @property int $latitude
  * @property string $colour
  * @property string $font_colour
- * @property int|null $shape_id
- * @property int|null $size_id
- * @property int|null $icon
+ * @property ?int $shape_id
+ * @property ?int $size_id
+ * @property ?int $icon
  * @property string $custom_icon
  * @property string $custom_shape
- * @property int|null $circle_radius
- * @property bool $is_draggable
- * @property bool $is_popupless
+ * @property ?int $circle_radius
+ * @property bool|int $is_draggable
+ * @property bool|int $is_popupless
  * @property array $polygon_style
  * @property float $opacity
- * @property int|null $group_id
- * @property int|null $pin_size
+ * @property ?int $group_id
+ * @property ?int $pin_size
  * @property MapGroup|null $group
  */
 class MapMarker extends Model
 {
     use Blameable;
     use Copiable;
+    use HasEntry;
     use HasFactory;
+    use HasSuggestions;
+    use HasVisibility;
     use Paginatable;
+    use Sanitizable;
     use SortableTrait;
-    use VisibilityIDTrait;
 
     public const SHAPE_MARKER = 1;
     public const SHAPE_LABEL = 2;
@@ -96,38 +104,43 @@ class MapMarker extends Model
         'visibility_id' => \App\Enums\Visibility::class,
     ];
 
-    /** @var bool Editing the map */
-    protected $editing = false;
+    protected array $suggestions = [
+        MapMarkerCache::class => 'clearSuggestion',
+    ];
 
-    /** @var bool Exploring the map */
-    protected $exploring = false;
+    protected array $sanitizable = [
+        'name',
+    ];
 
-    /** @var string Marker MouseOver Popup on explore */
-    protected $tooltipPopup = '';
+    /** Editing the map */
+    protected bool $editing = false;
 
-    /** @var int size multiplier for circles */
-    protected $sizeMultiplier = 1;
+    /** Exploring the map */
+    protected bool $exploring = false;
+
+    /** Marker MouseOver Popup on explore */
+    protected string $tooltipPopup = '';
+
+    /** size multiplier for circles */
+    protected int $sizeMultiplier = 1;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function map()
+    public function map(): BelongsTo
     {
         return $this->belongsTo(Map::class, 'map_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class, 'entity_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function group()
+    public function group(): BelongsTo
     {
         return $this->belongsTo(MapGroup::class, 'group_id');
     }
@@ -676,7 +689,7 @@ class MapMarker extends Model
     /**
      * Generate link for the datagrid
      */
-    public function markerLink(string $displayName = null): string
+    public function markerLink(?string $displayName = null): string
     {
         return '<a href="' . $this->getLink() . '">' .
             (!empty($displayName) ? $displayName : e($this->name)) .

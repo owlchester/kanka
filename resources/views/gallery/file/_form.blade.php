@@ -6,12 +6,12 @@
                 </div>
             @else
 
-                @if ($image->isFont())
-                    <x-helper text="This file is a font file." />
-                @else
+                @if ($image->hasThumbnail())
                     <div class="text-center">
                         <img src="{{ $image->getUrl(192, 144) }}" class="max-w-full rounded" alt="{{ $image->name }}" />
                     </div>
+                @else
+                    <x-helper text="This file can't be previewed." />
                 @endif
 
                 <hr />
@@ -69,7 +69,7 @@
 
             @can('edit', [$image, $campaign])
             <x-forms.field field="name" :label="__('crud.fields.name')" :required="true">
-                <input type="text" name="name" maxlength="45" required value="{!! old('name', $image->name ?? null) !!}" />
+                <input type="text" name="name" maxlength="45" required value="{!! htmlspecialchars(old('name', $image->name ?? null)) !!}" />
             </x-forms.field>
 
             @if(!$image->isFolder())

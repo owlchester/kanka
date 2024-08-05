@@ -24,9 +24,6 @@ class AbilityService extends BaseAbilityService
         'meta' => [],
     ];
 
-    /** @var array A list of abilities that have already been loaded */
-    protected array $abilityIds = [];
-
     protected array $groups = [];
 
     /**
@@ -40,7 +37,7 @@ class AbilityService extends BaseAbilityService
                 // entity
                 'ability.entity', 'ability.entity.image', 'ability.entity.attributes', 'ability.entity.attributes.entity',
                 // parent
-                'ability.ability', 'ability.ability.entity', 'ability.ability.entity.tags', 'ability.ability.entity.image',
+                'ability.parent', 'ability.parent.entity', 'ability.parent.entity.tags', 'ability.parent.entity.image',
             ])
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
             ->defaultOrder()
@@ -77,7 +74,7 @@ class AbilityService extends BaseAbilityService
     protected function add(EntityAbility $entityAbility): void
     {
         $ability = $entityAbility->ability;
-        $parent = $ability->ability;
+        $parent = $ability->parent;
 
         $groupKey = $parent->id ?? 'unorganised';
 

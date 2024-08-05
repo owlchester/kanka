@@ -23,7 +23,7 @@
             <a href="{{ route('tags.tags', [$campaign, $model, 'tag_id' => $model->id, '#tag-tags']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden md:inline">{{ __('crud.filters.direct') }}</span>
-                ({{ $model->tags()->count() }})
+                ({{ $model->children()->count() }})
             </a>
         @endif
     </div>

@@ -35,7 +35,7 @@
                 <x-forms.field
                     field="name"
                     :label="__('crud.fields.name')">
-                    <input type="text" name="name" placeholder="{{ __('crud.placeholders.name') }}" maxlength="191" value="{!! old('name', $source->name ?? $model->name ?? null) !!}" />
+                    <input type="text" name="name" placeholder="{{ __('crud.placeholders.name') }}" maxlength="191" value="{!! htmlspecialchars(old('name', $source->name ?? $model->name ?? null)) !!}" />
                 </x-forms.field>
             </div>
             <div class="self-start">

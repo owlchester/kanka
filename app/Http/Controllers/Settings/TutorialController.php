@@ -30,7 +30,6 @@ class TutorialController extends Controller
 
     public function dismiss(string $code)
     {
-        $length = mb_strlen($code);
         $this->service
             ->user(auth()->user())
             ->track($code);

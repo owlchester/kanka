@@ -6,6 +6,9 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
+use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\ExportableTrait;
@@ -18,12 +21,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Event
  * @package App\Models
  *
- * @property int|null $event_id
- * @property int|null $location_id
+ * @property ?int $event_id
  * @property string $date
- * @property Location|null $location
- * @property Event|null $event
- * @property Event[] $events
  * @property Event[] $descendants
  */
 class Event extends MiscModel
@@ -35,14 +34,16 @@ class Event extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use HasRecursiveRelationships;
+    use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'type',
         'date',
         'entry',
@@ -83,6 +84,12 @@ class Event extends MiscModel
         'location_id',
     ];
 
+    protected array $sanitizable = [
+        'name',
+        'type',
+        'date',
+    ];
+
     /**
      * Performance with for datagrids
      */
@@ -108,9 +115,6 @@ class Event extends MiscModel
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
             //            'descendants',
-            'events' => function ($sub) {
-                $sub->select('id', 'name', 'event_id');
-            },
             'children' => function ($sub) {
                 $sub->select('id', 'event_id');
             },
@@ -127,27 +131,18 @@ class Event extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function location()
+    public function scopeFilteredEvents(Builder $query): Builder
     {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function event()
-    {
-        return $this->belongsTo('App\Models\Event', 'event_id', 'id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function events()
-    {
-        return $this->hasMany('App\Models\Event', 'event_id', 'id');
+        // @phpstan-ignore-next-line
+        return $query
+            ->select(['id', 'name', 'date', 'type', 'location_id', 'is_private'])
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+            ->with([
+                'location', 'location.entity',
+                'parent', 'parent.entity',
+                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'])
+            ->has('entity');
     }
 
     /**

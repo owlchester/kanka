@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Paginatable;
 use App\User;
 use Carbon\Carbon;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -15,9 +17,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @package App\Models
  *
  * @property int $id
- * @property int $user_id
  * @property int $campaign_id
- * @property User $user
  * @property Campaign $campaign
  * @property Carbon $created_at
  *
@@ -25,6 +25,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class CampaignUser extends Pivot
 {
+    use HasUser;
     use Paginatable;
     use SortableTrait;
 
@@ -39,16 +40,10 @@ class CampaignUser extends Pivot
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo('App\User', 'user_id', 'id');
-    }
-
     /**
      * Get the user's roles
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function roles()
+    public function roles(): HasManyThrough
     {
         return $this->hasManyThrough(
             'App\Models\CampaignRole',
@@ -69,7 +64,7 @@ class CampaignUser extends Pivot
         return $this->roles()->where(['is_admin' => true])->count() > 0;
     }
 
-    public function scopeSearch(Builder $builder, string $search = null): Builder
+    public function scopeSearch(Builder $builder, ?string $search = null): Builder
     {
         return $builder
             ->select($this->getTable() . '.*')

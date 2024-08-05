@@ -14,17 +14,17 @@
 
 @if ($model->isQuestElement())
     @if ($model->questElement && $model->entity)
-        - {!! $model->questElement->skipAllIcon()->visibilityIcon() !!}
+        - @include('icons.visibility', ['icon' => $model->questElement->skipAllIcon()->visibilityIcon()])
         <a href="{{ $model->getLink() }}">{!! $model->questElement->name() !!}</a>
     @endif
 @elseif ($model->isTimelineElement())
     @if ($model->timelineElement && $model->entity)
-        - {!! $model->timelineElement->skipAllIcon()->visibilityIcon() !!}
+        - @include('icons.visibility', ['icon' => $model->timelineElement->skipAllIcon()->visibilityIcon()])
         <a href="{{ $model->getLink() }}">{!! $model->timelineElement->elementName() !!}</a>
     @endif
 @elseif ($model->isPost())
     @if ($model->post && $model->entity)
-        - {!! $model->post->skipAllIcon()->visibilityIcon() !!}
+        - @include('icons.visibility', ['icon' => $model->post->skipAllIcon()->visibilityIcon()])
         <a href="{{ $model->getLink() }}">{!! $model->post->name !!}</a>
     @endif
 @elseif ($model->isCampaign())

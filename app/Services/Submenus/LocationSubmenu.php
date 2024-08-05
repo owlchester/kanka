@@ -13,8 +13,7 @@ class LocationSubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Location $location */
         $location = $this->model;
 
-        // @phpstan-ignore-next-line
-        $count = $location->descendants()->has('location')->count();
+        $count = $location->descendants()->has('parent')->count();
         if ($count > 0) {
             $items['second']['locations'] = [
                 'name' => Module::plural($location->entityTypeId(), 'entities.locations'),

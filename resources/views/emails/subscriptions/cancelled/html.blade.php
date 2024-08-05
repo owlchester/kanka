@@ -2,17 +2,17 @@
 <html lang="en">
 <body>
     <p>
-        Cancelled subscription for user <a href="https://admin.kanka.io/users/{{ $user->id }}">{{ $user->name }}</a> (#{{ $user->id }}) <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>.
+        <a href="https://admin.kanka.io/users/{{ $user->id }}">{{ $user->name }}</a> cancelled.
     </p>
 
     @if (!empty($custom))
         <p>
-            <strong>Reason provided: </strong><br />
+            <strong>Reason: </strong><br />
             {!! nl2br(e($custom)) !!}
         </p>
     @elseif (!empty($reason))
         <p>
-            <strong>Reason provided: </strong><br />
+            <strong>Reason: </strong><br />
             {{ __('settings.subscription.cancel.options.' . $reason) }}<br />
         </p>
     @endif

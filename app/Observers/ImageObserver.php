@@ -8,15 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageObserver
 {
-    use PurifiableTrait;
-
-    /**
-     */
-    public function saving(Image $image)
-    {
-        $image->name = $this->purify($image->name);
-    }
-
     public function deleting(Image $image)
     {
         if (!$image->isFolder()) {

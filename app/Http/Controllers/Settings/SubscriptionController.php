@@ -198,11 +198,11 @@ class SubscriptionController extends Controller
                 return redirect()
                     ->route('settings.subscription')
                     ->with('error_raw', __('subscription.errors.invalid_currency', [
-                        'old' => strtoupper($currencies[1][0]),
-                        'new' => strtoupper($currencies[1][1]),
+                        'old' => mb_strtoupper($currencies[1][0]),
+                        'new' => mb_strtoupper($currencies[1][1]),
                         'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>'
                     ]))
-                    ;
+                ;
             }
             // Error? json
             return response()->json([

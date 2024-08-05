@@ -58,8 +58,8 @@ window.formErrorHandler = function(err, form) {
     });
 
     // If not all error fields could be found, show a generic error message on top of the form.
-    if (!foundAllErrors) {
-        const genericError = document.querySelector('#entity-form-generic-error .error-logs');
+    const genericError = document.querySelector('#entity-form-generic-error .error-logs');
+    if (!foundAllErrors && genericError) {
         genericError.innerHTML = '';
         logs.forEach(function (i) {
             genericError.append(i);

@@ -11,7 +11,7 @@
         @if (!$tag->entity) @continue @endif
         <x-tags.bubble :tag="$tag" />
     @endforeach
-@elseif ($model instanceof \App\Models\CharacterRace)
+@elseif ($model instanceof \App\Models\CharacterRace || $model instanceof \App\Models\CharacterFamily)
     @foreach ($model->character->entity->tags as $tag)
         @if (!$tag->entity) @continue @endif
         <x-tags.bubble :tag="$tag" />

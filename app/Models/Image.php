@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use App\Facades\Img;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\HasUser;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\LastSync;
+use App\Models\Concerns\Sanitizable;
 use App\Traits\ExportableTrait;
-use App\Traits\VisibilityIDTrait;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,26 +27,21 @@ use Illuminate\Support\Facades\Storage;
  * @property string $name
  * @property string $ext
  * @property int $size
- * @property int $created_by
  * @property ?int $focus_x
  * @property ?int $focus_y
- * @property string $folder_id
- * @property bool $is_default
- * @property bool $is_folder
+ * @property ?string $folder_id
+ * @property bool|int $is_default
+ * @property bool|int $is_folder
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Image $imageFolder
  *
- * @property User $user
  * @property Image[] $folders
  * @property Image[] $images
  * @property Entity[] $entities
+ * @property MapLayer[] $mapLayers
  * @property Inventory[] $inventories
  * @property Entity[] $headers
- *
- *
- * @property int $visibility_id
- * @property Visibility $visibility
  *
  * @property string $path
  * @property string $file
@@ -53,14 +51,20 @@ use Illuminate\Support\Facades\Storage;
  * @property int $_usageCount
  *
  * @method static Builder|self acl(bool $browse)
+ * @method static Builder|self named(string|null $term)
+ * @method static Builder|self imageFolder(string|null $folder)
  */
 class Image extends Model
 {
+    use Blameable;
     use ExportableTrait;
     use HasCampaign;
     use HasFactory;
+    use HasUser;
+    use HasUuids;
+    use HasVisibility;
     use LastSync;
-    use VisibilityIDTrait;
+    use Sanitizable;
 
     public $fillable = [
         'name',
@@ -73,15 +77,11 @@ class Image extends Model
         'visibility_id' => \App\Enums\Visibility::class,
     ];
 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
+    protected string $userField = 'created_by';
 
-    public function campaign(): BelongsTo
-    {
-        return $this->belongsTo(Campaign::class);
-    }
+    protected array $sanitizable = [
+        'name',
+    ];
 
     public function imageFolder(): BelongsTo
     {
@@ -104,9 +104,20 @@ class Image extends Model
         return $this->hasMany(Entity::class, 'image_uuid', 'id');
     }
 
+    public function mapLayers(): HasMany
+    {
+        return $this->hasMany(MapLayer::class, 'image_uuid', 'id');
+    }
+
     public function inventories(): HasMany
     {
         return $this->hasMany(Inventory::class, 'image_uuid', 'id');
+    }
+
+    public function entityAssets(): HasMany
+    {
+        return $this->hasMany(EntityAsset::class, 'image_uuid', 'id')
+            ->with('entity');
     }
 
     public function headers(): HasMany
@@ -114,17 +125,12 @@ class Image extends Model
         return $this->hasMany(Entity::class, 'header_uuid', 'id');
     }
 
-    public function visibility(): BelongsTo
-    {
-        return $this->belongsTo(Visibility::class);
-    }
-
     public function mentions(): HasMany
     {
         return $this->hasMany(ImageMention::class, 'image_id', 'id')
             ->with('entity')
             ->with('post')
-        ;
+            ;
     }
 
     public function inEntities(): array
@@ -142,8 +148,24 @@ class Image extends Model
             }
             $entities[$entity->id] = $entity;
         }
+        foreach ($this->entityAssets as $asset) {
+            if (isset($entities[$asset->entity->id])) {
+                continue;
+            }
+            $entities[$asset->entity->id] = $asset->entity;
+        }
 
         return $entities;
+    }
+
+    public function isUsed(): bool
+    {
+        $entities = count($this->inEntities());
+        $mentions = $this->mentions()->count();
+        $layers = $this->mapLayers()->count();
+        $inventories = $this->inventories()->count();
+
+        return $entities || $mentions || $layers || $inventories;
     }
 
     public function inEntitiesCount(): int
@@ -205,13 +227,13 @@ class Image extends Model
 
     /**
      */
-    public function scopeImageFolder(Builder $query, string $folderUuid = null): Builder
+    public function scopeImageFolder(Builder $query, ?string $folder = null): Builder
     {
-        if (empty($folderUuid)) {
+        if (empty($folder)) {
             return $query->whereNull('folder_id');
         }
 
-        return $query->where('folder_id', $folderUuid);
+        return $query->where('folder_id', $folder);
     }
 
     /**
@@ -222,7 +244,7 @@ class Image extends Model
             ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')
             ->orderBy('name', 'asc')
-        ;
+            ;
     }
 
     /**
@@ -240,6 +262,14 @@ class Image extends Model
             return $query->where('created_by', auth()->user()->id);
         }
         return $query;
+    }
+
+    public function scopeNamed(Builder $query, string|null $term): Builder
+    {
+        if (empty($term)) {
+            return $query;
+        }
+        return $query->where('name', 'like', '%' . $term . '%');
     }
 
     /**
@@ -266,8 +296,16 @@ class Image extends Model
         return in_array($this->ext, ['woff', 'woff2']);
     }
 
-    public function getUrl(int $sizeX = null, int $sizeY = null): string
+    public function hasThumbnail(): bool
     {
+        return in_array($this->ext, ['jpg', 'png', 'jpeg', 'gif', 'webp']);
+    }
+
+    public function getUrl(?int $sizeX = null, ?int $sizeY = null): string
+    {
+        if ($this->isSvg()) {
+            return $this->url();
+        }
         Img::reset();
 
         if (!$sizeY && $sizeX) {
@@ -287,6 +325,11 @@ class Image extends Model
         }
 
         return Img::url($this->path);
+    }
+
+    public function isSvg(): bool
+    {
+        return $this->ext == 'svg';
     }
 
     public function url(): string

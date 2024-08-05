@@ -6,10 +6,6 @@ use App\Models\MapGroup;
 
 class MapGroupObserver
 {
-    /**
-     * Purify trait
-     */
-    use PurifiableTrait;
     use ReorderTrait;
 
     /**
@@ -32,7 +28,7 @@ class MapGroupObserver
      */
     public function deleted(MapGroup $mapGroup)
     {
-        $mapGroup->map->touch();
+        $mapGroup->map->touchSilently();
     }
 
     /**

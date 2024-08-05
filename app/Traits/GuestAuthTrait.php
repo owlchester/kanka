@@ -19,7 +19,7 @@ trait GuestAuthTrait
         }
     }
 
-    public function authEntityView(Entity $entity = null): void
+    public function authEntityView(?Entity $entity = null): void
     {
         if (empty($entity)) {
             abort(403);
@@ -38,7 +38,7 @@ trait GuestAuthTrait
      * Secondary Authentication for Guest users
      * @return void
      */
-    protected function authorizeForGuest(int $action, MiscModel $model = null, int $modelType = null)
+    protected function authorizeForGuest(int $action, ?MiscModel $model = null, ?int $modelType = null)
     {
         $campaign = CampaignLocalization::getCampaign();
         if (empty($modelType)) {
@@ -66,7 +66,7 @@ trait GuestAuthTrait
      * Secondary Authentication for Guest users
      * @return void
      */
-    protected function authorizeEntityForGuest(int $action, MiscModel $model = null)
+    protected function authorizeEntityForGuest(int $action, ?MiscModel $model = null)
     {
         // If the misc model is null ($entity->child), the user has no valid access
         if ($model === null) {

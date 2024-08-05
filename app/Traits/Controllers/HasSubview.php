@@ -11,6 +11,7 @@ trait HasSubview
             ->with([
                 'fullview' => $view,
                 'model' => $model,
+                'entity' => $model->entity,
                 'campaign' => $this->campaign,
                 'rows' => $this->rows,
             ]);

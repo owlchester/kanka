@@ -5,13 +5,13 @@
  * @var \App\Services\Campaign\GalleryService $galleryService
  */
 
-$breadcrumbs[] = ['url' => route('campaign.gallery.index', $campaign), 'label' => __('campaigns/gallery.breadcrumb')];
+$breadcrumbs[] = ['url' => route('gallery', $campaign), 'label' => __('campaigns/gallery.breadcrumb')];
 if ($folder) {
     if (!empty($folder->folder_id)) {
         if (!empty($folder->imageFolder->folder_id)) {
             $breadcrumbs[] = '...';
         }
-        $breadcrumbs[] = ['url' => route('campaign.gallery.index', [$campaign, 'folder_id' => $folder->folder_id]), 'label' => e($folder->imageFolder->name)];
+        $breadcrumbs[] = ['url' => route('gallery', [$campaign, 'folder_id' => $folder->folder_id]), 'label' => e($folder->imageFolder->name)];
     }
     $breadcrumbs[] = e($folder->name);
 }

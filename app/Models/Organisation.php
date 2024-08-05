@@ -7,13 +7,14 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocations;
+use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -22,14 +23,11 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Organisation
  * @package App\Models
  *
- * @property int|null $organisation_id
- * @property int|null $location_id
- * @property Organisation|null $organisation
+ * @property ?int $organisation_id
+ * @property ?int $location_id
  * @property Collection|OrganisationMember[] $members
  * @property Collection|Organisation[] $descendants
- * @property Collection|Organisation[] $organisations
- * @property Collection|Location[] $locations
- * @property bool $is_defunct
+ * @property bool|int $is_defunct
  */
 class Organisation extends MiscModel
 {
@@ -39,14 +37,16 @@ class Organisation extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocations;
     use HasRecursiveRelationships;
+    use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'entry',
         'organisation_id',
         'type',
@@ -88,12 +88,20 @@ class Organisation extends MiscModel
 
     protected array $exploreGridFields = ['is_defunct'];
 
+    protected string $locationPivot = 'organisation_location';
+    protected string $locationPivotKey = 'organisation_id';
+
     /**
      * Nullable values (foreign keys)
      * @var string[]
      */
     public array $nullableForeignKeys = [
         'organisation_id',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'type',
     ];
 
     protected array $organisationAndDescendantIds;
@@ -117,45 +125,10 @@ class Organisation extends MiscModel
                     $sub->select('id', 'name', 'entity_id', 'type_id');
                 },
                 'members',
-                'organisations',
                 'children' => function ($sub) {
                     $sub->select('id', 'organisation_id');
                 },
             ]);
-    }
-
-    /**
-     * Filter on organisations in specific locations
-     */
-    public function scopeLocation(Builder $query, int|null $location, FilterOption $filter): Builder
-    {
-        if ($filter === FilterOption::NONE) {
-            if (!empty($location)) {
-                return $query;
-            }
-            return $query
-                ->whereRaw('(select count(*) from organisation_location as ol where ol.organisation_id = ' .
-                    $this->getTable() . '.id and ol.location_id = ' . ((int) $location) . ') = 0');
-        } elseif ($filter === FilterOption::EXCLUDE) {
-            return $query
-                ->whereRaw('(select count(*) from organisation_location as ol where ol.organisation_id = ' .
-                    $this->getTable() . '.id and ol.location_id = ' . ((int) $location) . ') = 0');
-        }
-
-        $ids = [$location];
-        if ($filter === FilterOption::CHILDREN) {
-            /** @var Location|null $model */
-            $model = Location::find($location);
-            if (!empty($model)) {
-                $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
-            }
-        }
-        return $query
-            ->select($this->getTable() . '.*')
-            ->leftJoin('organisation_location as ol', function ($join) {
-                $join->on('ol.organisation_id', '=', $this->getTable() . '.id');
-            })
-            ->whereIn('ol.location_id', $ids)->distinct();
     }
 
     /**
@@ -223,43 +196,11 @@ class Organisation extends MiscModel
     }
 
     /**
-     * Parent
-     */
-    public function organisation(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Organisation', 'organisation_id', 'id');
-    }
-
-    /**
-     * Children
-     */
-    public function organisations(): HasMany
-    {
-        return $this->hasMany('App\Models\Organisation', 'organisation_id', 'id');
-    }
-
-    /**
      * @return string
      */
     public function getParentKeyName()
     {
         return 'organisation_id';
-    }
-
-    /**
-     */
-    public function location(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
-    }
-
-    /**
-     * Organisations have multiple locations
-     */
-    public function locations(): BelongsToMany
-    {
-        return $this->belongsToMany('App\Models\Location', 'organisation_location')
-            ->with('entity');
     }
 
     public function pivotLocations(): HasMany
@@ -321,7 +262,7 @@ class Organisation extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        return !empty($this->type) || !empty($this->location) || !$this->entity->elapsedEvents->isEmpty() || $this->locations->isNotEmpty();
+        return !empty($this->type) || !$this->entity->elapsedEvents->isEmpty() || $this->locations->isNotEmpty();
     }
 
     /**

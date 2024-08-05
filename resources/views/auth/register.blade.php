@@ -2,6 +2,13 @@
     'title' => __('auth.register.title')
 ])
 
+@php 
+    if (app()->isLocal() && config('auth.fast_registration')) {
+        $name = 'Kanka' . rand(100, 9999999);
+        $email = $name . '@kanka.io';
+    }
+@endphp
+
 @section('content')
     <h1 class="text-2xl leading-tight mb-3 dark:text-slate-200">
         {{ __('auth.register.title') }}
@@ -30,16 +37,15 @@
 
         <div class="mb-3 has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
             <div class="flex items-stretch w-full">
-                <input id="name" type="text" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="name" value="{!! old('name') !!}" placeholder="{{ __('auth.register.fields.name') }}" required autofocus>
+                <input id="name" type="text" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="name" @if (app()->isLocal() && config('auth.fast_registration')) value="{{ $name }}" @else value="{!! old('name') !!}" @endif placeholder="{{ __('auth.register.fields.name') }}" required autofocus>
             </div>
-
             @if ($errors->has('name'))
                 <span class="text-red-500">{{ $errors->first('name') }}</span>
             @endif
         </div>
 
         <div class="mb-3 has-feedback{{ $errors->has('email') ? ' has-error' : '' }}">
-            <input id="email" type="email" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="email" value="{{ old('email') }}" placeholder="{{ __('auth.register.fields.email') }}" required>
+            <input id="email" type="email" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="email" @if (app()->isLocal() && config('auth.fast_registration')) value="{{ $email }}" @else value="{!! old('email') !!}" @endif placeholder="{{ __('auth.register.fields.email') }}" required>
 
             @if ($errors->has('email'))
                 <span class="text-red-500">{{ $errors->first('email') }}</span>
@@ -48,7 +54,7 @@
 
         <div class="mb-3{{ $errors->has('password') ? ' has-error' : '' }}">
             <div class="flex items-stretch w-full">
-                <input id="password" type="password" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="password" required placeholder="{{ __('auth.register.fields.password') }}">
+                <input id="password" type="password" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="password" required @if (app()->isLocal() && config('auth.fast_registration')) value="{{ $name }}" @endif placeholder="{{ __('auth.register.fields.password') }}">
                 <a href="#" id="toggle-password" class="p-2" tabindex="-1" title="{{ __('auth.helpers.password') }}">
                     <i id="toggle-password-icon" class="fa-solid fa-eye" aria-hidden="true"></i>
                     <span class="sr-only">{{ __('auth.helpers.password') }}</span>

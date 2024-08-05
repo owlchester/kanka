@@ -13,7 +13,7 @@ trait BulkControllerTrait
     /**
      * Get the Bulk model of an entity
      */
-    protected function bulkModel(MiscModel|Relation $modelClass = null): Bulk
+    protected function bulkModel(MiscModel|Relation|null $modelClass = null): Bulk
     {
         if (isset($this->bulk) && !empty($this->bulk)) {
             return new $this->bulk();

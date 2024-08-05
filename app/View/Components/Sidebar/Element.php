@@ -8,24 +8,15 @@ use Illuminate\View\Component;
 
 class Element extends Component
 {
-    public string $text;
-    public ?string $icon;
-    public ?string $url;
-    public ?string $class;
-
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $text,
-        string $icon = null,
-        string $url = null,
-        string $class = null,
+        public string $text,
+        public ?string $icon = null,
+        public ?string $url = null,
+        public ?string $class = null,
     ) {
-        $this->text = $text;
-        $this->icon = $icon;
-        $this->url = $url;
-        $this->class = $class;
     }
 
     /**

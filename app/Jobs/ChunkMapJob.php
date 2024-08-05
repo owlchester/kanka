@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Map;
-use App\Services\Map\ChunkingService;
+use App\Services\Maps\ChunkingService;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -44,7 +44,7 @@ class ChunkMapJob implements ShouldQueue
         /** @var ChunkingService $service */
         $service = app()->make(ChunkingService::class);
 
-        /** @var Map|null $map */
+        /** @var ?Map $map */
         $map = Map::find($this->mapID);
         if (empty($map)) {
             Log::error('Chunking map: unknown map #' . $this->mapID);
@@ -67,7 +67,7 @@ class ChunkMapJob implements ShouldQueue
 
     public function failed(Exception $exception)
     {
-        /** @var Map|null $map */
+        /** @var ?Map $map */
         $map = Map::find($this->mapID);
         if (empty($map)) {
             Log::error('No map #' . $this->mapID);

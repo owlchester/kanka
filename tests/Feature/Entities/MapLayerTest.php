@@ -11,10 +11,11 @@ it('POSTS an invalid map layer form')
 it('POSTS a new map layer')
     ->asUser()
     ->withCampaign()
+    ->withImages()
     ->withMaps()
     ->postJson('/api/1.0/campaigns/1/maps/1/map_layers', [
         'name' => fake()->name(),
-        'image_url' => 'https://th.kanka.io/gR8y1nxfEhBC1nVYdQpr2pUW3lY=/48x48/smart/src/app/logos/logo.png',
+        'image_uuid' => '1',
         'map_id' => 1,
     ])
     ->assertStatus(201)

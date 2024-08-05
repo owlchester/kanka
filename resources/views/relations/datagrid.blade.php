@@ -56,7 +56,7 @@
             'field' => 'visibility_id',
             'label' => __('crud.fields.visibility'),
             'render' => function ($model) {
-                return $model->visibilityIcon();
+                return view('icons.visibility', ['icon' => $model->visibilityIcon()]);
             }
         ],
     ])

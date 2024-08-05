@@ -8,6 +8,7 @@
     'bodyClass' => 'entity-abilities'
 ])
 
+@include('entities.components.og')
 
 @section('entity-header-actions')
     @can('update', $entity->child)

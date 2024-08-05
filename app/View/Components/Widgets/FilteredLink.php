@@ -21,7 +21,7 @@ class FilteredLink extends Component
     public function __construct(
         Campaign $campaign,
         CampaignDashboardWidget $widget,
-        string $entityString = null,
+        ?string $entityString = null,
     ) {
         $this->campaign = $campaign;
         $this->widget = $widget;

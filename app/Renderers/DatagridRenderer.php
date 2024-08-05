@@ -238,7 +238,7 @@ class DatagridRenderer
     /**
      * @return string
      */
-    private function route(string $field = null, string $label = null)
+    private function route(string $field = null, ?string $label = null)
     {
         // Field is label
         if (empty($label)) {

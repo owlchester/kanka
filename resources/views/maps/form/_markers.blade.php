@@ -4,7 +4,7 @@
 * @var \App\Models\Map $model
 */
 ?>
-@if (!isset($model) || empty($model->entity->image_path))
+@if (!isset($model) || !$model->explorable())
     <x-alert type="warning">
         <p>{{ __('maps.helpers.missing_image') }}</p>
     </x-alert>
@@ -26,10 +26,12 @@
     @parent
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.js' }}" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomdisplay.js" type="text/javascript" ></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.path.drag.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.editable.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomcss.js"></script>
     @vite([
         'resources/js/location/map-v3.js',
     ])
@@ -92,6 +94,7 @@
 @section('styles')
     @parent
     <link rel="stylesheet" href="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.css' }}" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />
+    <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomdisplay.css" />
     @vite('resources/sass/map-v3.scss')
 
     <style>

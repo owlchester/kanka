@@ -10,7 +10,8 @@ Route::get('/w/{campaign}/apply', 'Campaign\ApplyController@index')->name('campa
 Route::post('/w/{campaign}/apply', 'Campaign\ApplyController@save')->name('campaign.apply.save');
 Route::delete('/w/{campaign}/remove', 'Campaign\ApplyController@remove')->name('campaign.apply.remove');
 
-Route::get('/w/{campaign}/gallery', 'Campaign\GalleryController@index')->name('campaign.gallery.index');
+Route::get('/w/{campaign}/gallery', 'Campaign\GalleryController@index')->name('gallery');
+Route::get('/w/{campaign}/gallery-index', 'Campaign\GalleryController@index')->name('campaign.gallery.index');
 Route::get('/w/{campaign}/gallery/search', [App\Http\Controllers\Campaign\Gallery\SearchController::class, 'index'])->name('campaign.gallery.search');
 Route::get('/w/{campaign}/gallery/folders/create', [App\Http\Controllers\Campaign\Gallery\FolderController::class, 'create'])->name('campaign.gallery.folders.create');
 Route::post('/w/{campaign}/gallery/folders', [App\Http\Controllers\Campaign\Gallery\FolderController::class, 'store'])->name('campaign.gallery.folders.store');
@@ -21,6 +22,10 @@ Route::post('/w/{campaign}/gallery/{image}/save-focus', [App\Http\Controllers\Ca
 Route::post('/w/{campaign}/gallery/bulk', [App\Http\Controllers\Campaign\Gallery\BulkController::class, 'delete'])->name('campaign.gallery.bulk.delete');
 Route::post('/w/{campaign}/gallery/ajax-upload', 'Summernote\GalleryController@upload')->name('campaign.gallery.ajax-upload');
 Route::get('/w/{campaign}/gallery/ajax-gallery', 'Summernote\GalleryController@index')->name('campaign.gallery.summernote');
+
+Route::post('/w/{campaign}/gallery/upload/file', [App\Http\Controllers\Gallery\UploadController::class, 'file'])->name('gallery.upload.file');
+Route::post('/w/{campaign}/gallery/upload/url', [App\Http\Controllers\Gallery\UploadController::class, 'url'])->name('gallery.upload.url');
+Route::get('/w/{campaign}/gallery/browse', [App\Http\Controllers\Gallery\BrowseController::class, 'index'])->name('gallery.browse');
 
 
 // Campaign

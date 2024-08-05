@@ -279,6 +279,7 @@ class PurgeService
                 if ($this->count >= $this->limit) {
                     return false;
                 }
+                /** @var User $user */
                 foreach ($users as $user) {
                     if ($this->count >= $this->limit) {
                         return false;

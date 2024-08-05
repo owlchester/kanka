@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-use App\Traits\VisibilityIDTrait;
+use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasVisibility;
+use App\Models\Concerns\Sanitizable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,22 +15,23 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @package App\Models
  *
  * @property int $entity_id
- * @property int|null $item_id
- * @property int|null $created_by
+ * @property ?int $item_id
  * @property string $name
  * @property int $amount
  * @property string $position
  * @property string $description
- * @property string|null $image_uuid
- * @property bool $is_equipped
- * @property bool $copy_item_entry
- * @property Item|null $item
- * @property Entity|null $entity
- * @property Image|null $image
+ * @property ?string $image_uuid
+ * @property bool|int $is_equipped
+ * @property bool|int $copy_item_entry
+ * @property ?Item $item
+ * @property ?Entity $entity
+ * @property ?Image $image
  */
 class Inventory extends Model
 {
-    use VisibilityIDTrait;
+    use Blameable;
+    use HasVisibility;
+    use Sanitizable;
 
     /**
      * Fillable fields
@@ -51,6 +54,12 @@ class Inventory extends Model
         'visibility_id' => \App\Enums\Visibility::class,
     ];
 
+    protected array $sanitizable = [
+        'name',
+        'position',
+        'description',
+    ];
+
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity');
@@ -59,14 +68,6 @@ class Inventory extends Model
     public function item(): BelongsTo
     {
         return $this->belongsTo('App\Models\Item');
-    }
-
-    /**
-     * Who created this entry
-     */
-    public function creator(): BelongsTo
-    {
-        return $this->belongsTo('App\User', 'created_by');
     }
 
     public function image(): HasOne
@@ -102,10 +103,18 @@ class Inventory extends Model
     /**
      * Copy an entity inventory to another target
      */
-    public function copyTo(Entity $target): bool
+    public function copyTo(Entity $target, bool $sameCampaign): bool
     {
-        $new = $this->replicate(['entity_id']);
+        $without = $sameCampaign ? ['entity_id'] : ['entity_id', 'item_id', 'image_uuid'];
+        $new = $this->replicate($without);
         $new->entity_id = $target->id;
+        if ($sameCampaign) {
+            return $new->save();
+        }
+        if (empty($new->name)) {
+            return false;
+        }
         return $new->save();
+
     }
 }

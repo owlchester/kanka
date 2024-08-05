@@ -7,11 +7,15 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
@@ -19,13 +23,11 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 /**
  * Class Quest
  * @package App\Models
- * @property int|null $quest_id
- * @property int|null $instigator_id
+ * @property ?int $quest_id
+ * @property ?int $instigator_id
  * @property bool|int $is_completed
  * @property string $date
- * @property Entity|null $instigator
- * @property Quest|null $quest
- * @property Quest[]|Collection $quests
+ * @property ?Entity $instigator
  * @property QuestElement[]|Collection $elements
  */
 class Quest extends MiscModel
@@ -38,6 +40,8 @@ class Quest extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
+    use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
@@ -45,7 +49,6 @@ class Quest extends MiscModel
         'campaign_id',
         'quest_id',
         'name',
-        'slug',
         'type',
         'entry',
         'is_private',
@@ -60,6 +63,12 @@ class Quest extends MiscModel
         'date',
         'is_completed',
         'parent.name',
+    ];
+
+    protected array $sanitizable = [
+        'name',
+        'type',
+        'date',
     ];
 
     /**
@@ -118,7 +127,6 @@ class Quest extends MiscModel
             'entity.calendarDate',
             'entity.calendarDate.calendar',
             'entity.calendarDate.calendar.entity',
-            'quests',
             'instigator',
             //'elements',
             'parent' => function ($sub) {
@@ -127,7 +135,6 @@ class Quest extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'quests',
             'children' => function ($sub) {
                 $sub->select('id', 'quest_id');
             }
@@ -191,26 +198,10 @@ class Quest extends MiscModel
     }
 
     /**
-     * Parent
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function quest()
-    {
-        return $this->belongsTo(Quest::class);
-    }
-
-    /**
      */
     public function shortDescription()
     {
         return $this->name;
-    }
-
-    /**
-     */
-    public function quests()
-    {
-        return $this->hasMany(Quest::class);
     }
 
     /**
@@ -225,7 +216,7 @@ class Quest extends MiscModel
     /**
      * The Quest Giver
      */
-    public function instigator()
+    public function instigator(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
     }
@@ -233,7 +224,7 @@ class Quest extends MiscModel
     /**
      * Elements of the quest
      */
-    public function elements()
+    public function elements(): HasMany
     {
         return $this->hasMany(QuestElement::class)
             ->with(['entity', 'entity.image']);

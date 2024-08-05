@@ -2,12 +2,10 @@
 
 namespace App\Observers;
 
-use App\Facades\CharacterCache;
 use App\Facades\EntityLogger;
 use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Family;
-use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Race;
 use App\Observers\Concerns\HasMany;
@@ -190,12 +188,5 @@ class CharacterObserver extends MiscObserver
         $this->saveMany($character, 'families', request()->get('families', []), Family::class);
 
         return $this;
-    }
-
-    public function saved(MiscModel $character)
-    {
-        parent::saved($character);
-        // Clear some cache
-        CharacterCache::clearSuggestion();
     }
 }

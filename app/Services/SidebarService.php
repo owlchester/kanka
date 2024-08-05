@@ -328,7 +328,7 @@ class SidebarService
             'gallery' => [
                 'icon' => 'fa-duotone fa-images',
                 'label' => 'sidebar.gallery',
-                'route' => 'campaign.gallery.index',
+                'route' => 'gallery',
                 'perm' => 'gallery',
                 'module' => false,
             ],
@@ -386,7 +386,7 @@ class SidebarService
         }
 
         // Entities? It's complicated
-        /** @var Entity|null $entity */
+        /** @var ?Entity $entity */
         $entity = request()->route('entity');
         if ($entity) {
             if ($entity->pluralType() == $menu) {
@@ -754,7 +754,7 @@ class SidebarService
     /**
      * Get the quick links for a specified section/parent
      */
-    public function bookmarks(string $parent = null): array
+    public function bookmarks(?string $parent = null): array
     {
         if (!$this->hasBookmarks($parent)) {
             return [];

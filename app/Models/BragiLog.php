@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int $user_id
  * @property int $campaign_id
  * @property string $prompt
  * @property string $result
@@ -15,14 +14,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class BragiLog extends Model
 {
+    use HasUser;
+
     public $casts = [
         'data' => 'array'
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function scopeRecent(Builder $query, $cutoffDate): Builder
     {

@@ -18,19 +18,13 @@ class CancelledUserSubscriptionMail extends Mailable
     public $user;
 
     /**
-     * @var string
-     */
-    public $reason;
-
-    /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user, string $reason = null)
+    public function __construct(User $user)
     {
         $this->user = $user;
-        $this->reason = $reason;
     }
 
     /**

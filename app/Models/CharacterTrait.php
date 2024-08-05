@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\Paginatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CharacterTrait
@@ -20,10 +22,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CharacterTrait extends Model
 {
+    use HasEntry;
     use Paginatable;
 
-    public const SECTION_APPEARANCE = 1;
-    public const SECTION_PERSONALITY = 2;
+    public const int SECTION_APPEARANCE = 1;
+    public const int SECTION_PERSONALITY = 2;
 
     protected $fillable = [
         'character_id',
@@ -38,7 +41,7 @@ class CharacterTrait extends Model
 
     /**
      */
-    public function character()
+    public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }

@@ -4,12 +4,15 @@ namespace App\Models;
 
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
-use App\Traits\VisibilityIDTrait;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class MapGroup
@@ -29,9 +32,10 @@ class MapGroup extends Model
 {
     use Blameable;
     use HasFactory;
+    use HasVisibility;
     use Paginatable;
+    use Sanitizable;
     use SortableTrait;
-    use VisibilityIDTrait;
 
     protected array $sortable = [
         'name',
@@ -50,10 +54,10 @@ class MapGroup extends Model
         'visibility_id' => \App\Enums\Visibility::class,
     ];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function map()
+    protected array $sanitizable = [
+        'name',
+    ];
+    public function map(): BelongsTo
     {
         return $this->belongsTo(Map::class, 'map_id');
     }
@@ -68,10 +72,7 @@ class MapGroup extends Model
             ->orderBy('name');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function markers()
+    public function markers(): HasMany
     {
         return $this->hasMany(MapMarker::class, 'group_id');
     }

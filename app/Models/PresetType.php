@@ -10,5 +10,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PresetType extends Model
 {
-    public const MARKER = 1;
+    public const int MARKER = 1;
 }

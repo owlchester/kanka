@@ -16,6 +16,7 @@ use App\Models\MiscModel;
 use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\AttributeService;
+use App\Services\Entity\CopyService;
 use App\Services\MultiEditingService;
 use App\Services\FilterService;
 use App\Traits\BulkControllerTrait;
@@ -72,7 +73,7 @@ class CrudController extends Controller
     protected array $navActions = [];
 
     /** Make the request play nice with the model */
-    protected string $sanitizer = MiscSanitizer::class;
+    protected string $sanitizer;
 
     /**
      * A sorter object for subviews
@@ -131,7 +132,7 @@ class CrudController extends Controller
         }
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
-        /** @var DatagridFilter|null $filter */
+        /** @var ?DatagridFilter $filter */
         $filter = !empty($this->filter) ? new $this->filter() : null;
         if (!empty($filter)) {
             $filter->campaign($this->campaign)->build();
@@ -220,7 +221,7 @@ class CrudController extends Controller
             ]);
         }
 
-        $this->getNavActions();
+        $this->setNavActions();
         $actions = $this->navActions;
         $entityTypeId = $model->entityTypeId();
         $singular = Module::singular($entityTypeId, __('entities.' . \Illuminate\Support\Str::singular($route)));
@@ -361,7 +362,7 @@ class CrudController extends Controller
 
         try {
             // Sanitize the data
-            if (!empty($this->sanitizer)) {
+            if (isset($this->sanitizer)) {
                 /** @var MiscSanitizer $sanitizer */
                 $sanitizer = app()->make($this->sanitizer);
                 $request->merge($sanitizer->request($request)->sanitize());
@@ -376,7 +377,9 @@ class CrudController extends Controller
             $new = $model->create($data);
 
             // Fire an event for the Entity Observer.
-            $new->crudSaved();
+            if (method_exists($model, 'crudSaved')) {
+                $new->crudSaved();
+            }
 
             // MenuLink have no entity attached to them.
             if ($new->entity) {
@@ -394,6 +397,10 @@ class CrudController extends Controller
                             ->replaceMentions((int) $request->post('copy_source_id'));
                     }
                 }
+
+                /** @var CopyService $copyService */
+                $copyService = app()->make(CopyService::class);
+                $copyService->entity($new->entity)->request($request)->fromId()->copy();
             }
 
 
@@ -528,7 +535,7 @@ class CrudController extends Controller
 
         try {
             // Sanitize the data
-            if (!empty($this->sanitizer)) {
+            if (isset($this->sanitizer)) {
                 /** @var MiscSanitizer $sanitizer */
                 $sanitizer = app()->make($this->sanitizer);
                 $request->merge($sanitizer->request($request)->sanitize());
@@ -692,7 +699,7 @@ class CrudController extends Controller
         return $this;
     }
 
-    protected function getNavActions(): self
+    protected function setNavActions(): self
     {
         return $this;
     }

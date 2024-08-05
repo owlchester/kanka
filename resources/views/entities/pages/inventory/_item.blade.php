@@ -2,7 +2,7 @@
 <div class="w-full lg:w-80 h-60 bg-base-100 rounded relative" >
 
     <div class="left-2 top-1  text-lg absolute">
-        {!! $item->visibilityIcon() !!}
+        @include('icons.visibility', ['icon' => $item->visibilityIcon()])
     </div>
 
     <div class="flex flex-col m-4 gap-1 items-center overflow-hidden cursor-pointer" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}" data-target="primary-dialog">

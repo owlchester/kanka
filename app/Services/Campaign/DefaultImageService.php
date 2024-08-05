@@ -7,7 +7,6 @@ use App\Models\Image;
 use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class DefaultImageService
 {
@@ -36,17 +35,11 @@ class DefaultImageService
         if (Arr::has($images, $this->type)) {
             return false;
         }
-
-        // Create new image
-        $uuid = Str::uuid()->toString();
-
         /** @var \Illuminate\Http\UploadedFile $source */
         $source = $request->file('default_entity_image');
 
         $image = new Image();
         $image->campaign_id = $this->campaign->id;
-        $image->created_by = $request->user()->id;
-        $image->id = $uuid;
         $image->ext = $source->extension();
         $image->size = (int) ceil($source->getSize() / 1024); // kb
         $image->name = mb_substr($source->getFileName(), 0, 45);
@@ -59,8 +52,7 @@ class DefaultImageService
                 $image->file
             );
 
-
-        $images[$this->type] = $uuid;
+        $images[$this->type] = $image->id;
         $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
 
@@ -82,7 +74,7 @@ class DefaultImageService
         if (!isset($images[$this->type])) {
             return false;
         }
-        /** @var Image|null $image */
+        /** @var ?Image $image */
         $image = Image::find($images[$this->type]);
         if (empty($image)) {
             return false;

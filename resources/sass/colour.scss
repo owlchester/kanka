@@ -93,6 +93,10 @@
     --tw-bg-opacity: 1;
     background-color: hsl(var(--p)/var(--tw-bg-opacity));
 }
+.bg-primary-content {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--pc)/var(--tw-bg-opacity));
+}
 .bg-secondary {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--s)/var(--tw-bg-opacity));
@@ -137,13 +141,37 @@
     --tw-bg-opacity: 1;
     background-color: hsl(var(--a)/var(--tw-bg-opacity));
 }
+.bg-accent-focus {
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--af)/var(--tw-bg-opacity));
+}
 .gradient-to-base-100 {
     background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient, hsl(var(--b1)/1)));
 }
 
 .border-primary {
     --tw-bg-opacity: 1;
-    border-color: hsl(var(--p)/var(--tw-bg-opacity));
+    border-color: hsl(var(--p)/var(--tw-border-opacity));
+}
+.border-primary-content {
+    --tw-bg-opacity: 1;
+    border-color: hsl(var(--pc)/var(--tw-border-opacity));
+}
+.border-primary-focus {
+    --tw-bg-opacity: 1;
+    border-color: hsl(var(--pf)/var(--tw-border-opacity));
+}
+.border-accent {
+    --tw-bg-opacity: 1;
+    border-color: hsl(var(--a)/var(--tw-border-opacity));
+}
+.border-accent-content {
+    --tw-bg-opacity: 1;
+    border-color: hsl(var(--ac)/var(--tw-border-opacity));
+}
+.border-accent-focus {
+    --tw-bg-opacity: 1;
+    border-color: hsl(var(--af)/var(--tw-border-opacity));
 }
 
 

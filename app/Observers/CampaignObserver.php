@@ -15,7 +15,7 @@ use App\Models\CampaignSetting;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\Campaign\SearchCleanupService;
-use App\Services\ImageService;
+use App\Facades\Images;
 use App\Services\Users\CampaignService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -37,12 +37,10 @@ class CampaignObserver
     public function saving(Campaign $campaign)
     {
         // Purity text
-        $campaign->name = $this->purify($campaign->name);
         $attributes = $campaign->getAttributes();
         if (array_key_exists('excerpt', $attributes)) {
             $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));
         }
-        //$campaign->slug = Str::slug($campaign->name, '');
         $campaign->updated_by = auth()->user()->id;
 
         if (request()->has('is_public')) {
@@ -55,10 +53,6 @@ class CampaignObserver
                 $campaign->visibility_id = Campaign::VISIBILITY_PRIVATE;
             }
         }
-
-        // Handle image. Let's use a service for this.
-        ImageService::handle($campaign, 'w/' . $campaign->id);
-        ImageService::handle($campaign, 'w/' . $campaign->id, 'header_image');
     }
 
     /**
@@ -133,6 +127,11 @@ class CampaignObserver
         $this->saveGenres($campaign);
         $this->saveSystems($campaign);
 
+        // Handle image. Let's use a service for this.
+        Images::handle($campaign, 'w/' . $campaign->id);
+        Images::handle($campaign, 'w/' . $campaign->id, 'header_image');
+        $campaign->saveQuietly();
+
         foreach ($campaign->members()->with('user')->get() as $member) {
             UserCache::user($member->user)->clear();
         }
@@ -151,8 +150,8 @@ class CampaignObserver
     {
         if ($campaign->isForceDeleting()) {
             SearchCleanupService::cleanup($campaign);
-            ImageService::cleanup($campaign);
-            ImageService::cleanup($campaign, 'header_image');
+            Images::cleanup($campaign);
+            Images::cleanup($campaign, 'header_image');
 
             // Cleanup the folder with all the campaign images and files
             $campaignFolder = 'w/' . $campaign->id;

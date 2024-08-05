@@ -4,10 +4,12 @@ namespace App\Models;
 
 use App\User;
 use App\Facades\Img;
-use App\Models\Concerns\Uuid;
 use App\Models\Scopes\CommunityEventScopes;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -31,7 +33,7 @@ use Illuminate\Support\Str;
 class CommunityEvent extends Model
 {
     use CommunityEventScopes;
-    use Uuid;
+    use HasUuids;
 
     public $casts = [
         'start_at' => 'date',
@@ -66,10 +68,7 @@ class CommunityEvent extends Model
         return Img::crop($width, (!empty($height) ? $height : $width))->url($this->$field);
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function entries()
+    public function entries(): HasMany
     {
         return $this->hasMany(CommunityEventEntry::class);
     }
@@ -82,7 +81,7 @@ class CommunityEvent extends Model
     }
 
     /**
-     * @return Model|\Illuminate\Database\Eloquent\Relations\HasMany|object|null
+     * @return Model|HasMany|object|null
      */
     public function userEntry(int $userId)
     {
@@ -113,10 +112,7 @@ class CommunityEvent extends Model
         return !$this->rankedResults->where('rank', 1)->isEmpty();
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function jury()
+    public function jury(): BelongsTo
     {
         return $this->belongsTo(User::class, 'jury_id');
     }
