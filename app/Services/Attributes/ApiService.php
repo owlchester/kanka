@@ -163,7 +163,7 @@ class ApiService
             'id' => $this->copy ? null : $attribute->id,
             'source_id' => $this->template ? $attribute->id : null,
             'name' => $attribute->name,
-            'value' => $attribute->value,
+            'value' => $attribute->isCheckbox() ? (bool) $attribute->value : $attribute->value,
             'is_section' => $attribute->isSection(),
             'is_number' => $attribute->isNumber(),
             'is_multiline' => $attribute->isText(),
