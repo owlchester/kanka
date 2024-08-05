@@ -123,6 +123,7 @@ class GalleryService
         if (!is_array($files)) {
             $files = [$files];
         }
+        $available = $this->available();
         foreach ($files as $source) {
             // Prepare the name as sent by the user. It gets purified in the observer
             if (empty($source)) {
@@ -138,6 +139,14 @@ class GalleryService
             $image->name = mb_substr($name, 0, 45);
             $image->folder_id = $request->post('folder_id');
             $image->visibility_id = $this->campaign->defaultVisibilityID();
+
+            // Check remaining space again before saving, as the user could be near max and uploading multiple
+            // files at a time to bypass the size restrictions
+            $available -= $image->size;
+            if ($available < 0) {
+                continue;
+            }
+
             $image->save();
 
             $source
