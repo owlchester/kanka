@@ -9,12 +9,11 @@ use App\Observers\VisibilityObserver;
 /**
  * Trait VisibilityTrait
  *
- * Prioritize using this package where the visibility is an id, rather than the
- * old one with a string.
+ * Add a visibility permission to subelements, using the Visibility enum
  *
  * @package App\Traits
  *
- * @property string|int|Visibility|null $visibility_id
+ * @property ?Visibility $visibility_id
  */
 trait HasVisibility
 {

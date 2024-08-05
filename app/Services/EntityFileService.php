@@ -52,7 +52,7 @@ class EntityFileService
         $image->ext = $uploadedFile->extension();
         $image->size = (int) ceil($uploadedFile->getSize() / 1024); // kb
         $image->name = mb_substr($name, 0, 45);
-        $image->visibility_id = $this->campaign->defaultVisibilityID();
+        $image->visibility_id = $this->campaign->defaultVisibility();
         $image->save();
 
         $uploadedFile

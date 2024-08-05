@@ -138,7 +138,7 @@ class GalleryService
             $image->size = (int) ceil($source->getSize() / 1024); // kb
             $image->name = mb_substr($name, 0, 45);
             $image->folder_id = $request->post('folder_id');
-            $image->visibility_id = $this->campaign->defaultVisibilityID();
+            $image->visibility_id = $this->campaign->defaultVisibility();
 
             // Check remaining space again before saving, as the user could be near max and uploading multiple
             // files at a time to bypass the size restrictions
@@ -202,7 +202,7 @@ class GalleryService
         $folder->folder_id = $request->post('folder_id');
         $folder->is_folder = true;
         $folder->created_by = $this->user->id;
-        $folder->visibility_id = (int) $request->post('visibility_id');
+        $folder->visibility_id = Visibility::from((int) $request->post('visibility_id'));
         $folder->save();
 
         return $folder;

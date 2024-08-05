@@ -43,9 +43,6 @@ use Illuminate\Support\Facades\Storage;
  * @property Inventory[] $inventories
  * @property Entity[] $headers
  *
- * @property int $visibility_id
- * @property Visibility $visibility
- *
  * @property string $path
  * @property string $file
  * @property string $folder
@@ -128,17 +125,12 @@ class Image extends Model
         return $this->hasMany(Entity::class, 'header_uuid', 'id');
     }
 
-    public function visibility(): BelongsTo
-    {
-        return $this->belongsTo(Visibility::class);
-    }
-
     public function mentions(): HasMany
     {
         return $this->hasMany(ImageMention::class, 'image_id', 'id')
             ->with('entity')
             ->with('post')
-        ;
+            ;
     }
 
     public function inEntities(): array
@@ -252,7 +244,7 @@ class Image extends Model
             ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')
             ->orderBy('name', 'asc')
-        ;
+            ;
     }
 
     /**

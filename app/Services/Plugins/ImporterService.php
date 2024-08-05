@@ -401,7 +401,7 @@ class ImporterService
             $image->campaign_id = $this->campaign->id;
             $image->ext = $imageExt;
             $image->name = $entity->name;
-            $image->visibility_id = 1;
+            $image->visibility_id = Visibility::All;
             $size = Storage::disk('s3-marketplace')->size($entity->image_path);
             $image->size = (int) ceil($size / 1024); // kb
             $image->save();

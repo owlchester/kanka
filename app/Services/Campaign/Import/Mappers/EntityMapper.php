@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
+use App\Enums\Visibility;
 use App\Facades\EntityLogger;
 use App\Models\Attribute;
 use App\Facades\ImportIdMapper;
@@ -174,7 +175,7 @@ trait EntityMapper
         $image->campaign_id = $this->campaign->id;
         $image->ext = $imageExt;
         $image->name = $this->entity->name;
-        $image->visibility_id = 1;
+        $image->visibility_id = Visibility::All;
         $size = Storage::disk('local')->size($this->path . $img);
         $image->size = (int) ceil($size / 1024); // kb
         $image->save();

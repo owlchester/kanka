@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Visibility;
 use App\Facades\CampaignCache;
 use App\Facades\Img;
 use App\Facades\Mentions;
@@ -403,31 +404,29 @@ class Campaign extends Model
 
 
     /**
-     * @return array|\ArrayAccess|mixed
      */
-    public function getDefaultVisibilityAttribute()
+    public function getDefaultVisibilityAttribute(): mixed
     {
-        return Arr::get($this->settings, 'default_visibility', 'all');
+       return Arr::get($this->settings, 'default_visibility', 'all');
     }
 
     /**
      * Determine the campaign's default visibility_id select option
      */
-    public function defaultVisibilityID(): int
+    public function defaultVisibility(): Visibility
     {
-        $visibility = $this->default_visibility;
-
-        if ($visibility == 'admin' && auth()->user()->isAdmin()) {
-            return \App\Enums\Visibility::Admin->value;
+        $visibility = $this->getDefaultVisibilityAttribute();
+        if ($visibility == 'admin'  && auth()->user()->isAdmin()) {
+            return Visibility::Admin;
         } elseif ($visibility == 'admin-self') {
-            return (int) \App\Enums\Visibility::AdminSelf->value;
+            return Visibility::AdminSelf;
         } elseif ($visibility == 'members') {
-            return (int) \App\Enums\Visibility::Member->value;
+            return Visibility::Member;
         } elseif ($visibility == 'self') {
-            return (int) \App\Enums\Visibility::Self->value;
+            return Visibility::Self;
         }
 
-        return (int) \App\Enums\Visibility::All->value;
+        return Visibility::All;
     }
 
     /**
