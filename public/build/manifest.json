@@ -11,9 +11,6 @@
   "_dialog-4600fe8d.js": {
     "file": "assets/dialog-4600fe8d.js"
   },
-  "_mitt-f7ef348c.js": {
-    "file": "assets/mitt-f7ef348c.js"
-  },
   "_sortable.esm-0d19b1d3.js": {
     "file": "assets/sortable.esm-0d19b1d3.js"
   },
@@ -26,8 +23,8 @@
       "__commonjsHelpers-725317a4.js"
     ]
   },
-  "_vue.esm-bundler-8de02e4e.js": {
-    "file": "assets/vue.esm-bundler-8de02e4e.js"
+  "_vue.esm-bundler-e40214d7.js": {
+    "file": "assets/vue.esm-bundler-e40214d7.js"
   },
   "node_modules/rpg-awesome/fonts/rpgawesome-webfont.eot": {
     "file": "assets/rpgawesome-webfont-1fecbf28.eot",
@@ -54,10 +51,9 @@
     "src": "resources/images/leaflet/icon.png"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-70508201.js",
+    "file": "assets/abilities-d0bd4d54.js",
     "imports": [
-      "_vue.esm-bundler-8de02e4e.js",
-      "_mitt-f7ef348c.js",
+      "_vue.esm-bundler-e40214d7.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
     "isEntry": true,
@@ -71,22 +67,21 @@
     "css": [
       "assets/api-bb386fc3.css"
     ],
-    "file": "assets/api-dce6ec13.js",
+    "file": "assets/api-a0236932.js",
     "imports": [
-      "_vue.esm-bundler-8de02e4e.js",
+      "_vue.esm-bundler-e40214d7.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
     "isEntry": true,
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-13a7f0bf.js",
+    "file": "assets/app-0d685360.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_sortable.esm-0d19b1d3.js",
       "_dialog-4600fe8d.js",
-      "_vue.esm-bundler-8de02e4e.js",
-      "_mitt-f7ef348c.js",
+      "_vue.esm-bundler-e40214d7.js",
       "__plugin-vue_export-helper-c27b6911.js",
       "_v-click-outside.umd-1708c20a.js",
       "__commonjsHelpers-725317a4.js"
@@ -95,9 +90,9 @@
     "src": "resources/js/app.js"
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-f9af667b.js",
+    "file": "assets/attributes-manager-23f22efd.js",
     "imports": [
-      "_vue.esm-bundler-8de02e4e.js",
+      "_vue.esm-bundler-e40214d7.js",
       "_v-click-outside.umd-1708c20a.js",
       "__commonjsHelpers-725317a4.js"
     ],
@@ -115,9 +110,9 @@
     "src": "resources/js/auth.js"
   },
   "resources/js/billing.js": {
-    "file": "assets/billing-7f4e5f46.js",
+    "file": "assets/billing-1452600d.js",
     "imports": [
-      "_vue.esm-bundler-8de02e4e.js",
+      "_vue.esm-bundler-e40214d7.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
     "isEntry": true,
@@ -140,10 +135,9 @@
     "src": "resources/js/campaigns/theme-builder.js"
   },
   "resources/js/conversation.js": {
-    "file": "assets/conversation-a2d883ef.js",
+    "file": "assets/conversation-aae67dea.js",
     "imports": [
-      "_vue.esm-bundler-8de02e4e.js",
-      "_mitt-f7ef348c.js",
+      "_vue.esm-bundler-e40214d7.js",
       "_v-click-outside.umd-1708c20a.js",
       "__plugin-vue_export-helper-c27b6911.js",
       "__commonjsHelpers-725317a4.js"
@@ -157,7 +151,7 @@
     "src": "resources/js/cookieconsent.js"
   },
   "resources/js/dashboard.js": {
-    "file": "assets/dashboard-e99d648a.js",
+    "file": "assets/dashboard-f6202cce.js",
     "imports": [
       "_sortable.esm-0d19b1d3.js"
     ],
@@ -170,10 +164,9 @@
     "src": "resources/js/editors/summernote.js"
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-dfb61f81.js",
+    "file": "assets/family-tree-vue-8ceb7897.js",
     "imports": [
-      "_vue.esm-bundler-8de02e4e.js",
-      "_mitt-f7ef348c.js",
+      "_vue.esm-bundler-e40214d7.js",
       "_axios-47b9d439.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
@@ -251,7 +244,7 @@
     "src": "resources/js/vendor-final.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-3509f208.css",
+    "file": "assets/app-2d0223cb.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
@@ -276,7 +269,7 @@
     "src": "resources/sass/family-tree.scss"
   },
   "resources/sass/freyja/freyja.scss": {
-    "file": "assets/freyja-fc630add.css",
+    "file": "assets/freyja-01a4092f.css",
     "isEntry": true,
     "src": "resources/sass/freyja/freyja.scss"
   },
