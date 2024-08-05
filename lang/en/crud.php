@@ -170,9 +170,9 @@ return [
             'manage'    => 'Manage Entity Files',
         ],
         'errors'    => [
-            'max'            => 'You have reached the maximum number (:max) of files for this entity.',
-            'max_size'       => 'You have reached the maximum storage capacity for files of this campaign.',
-            'no_files'       => 'No files.',
+            'max'       => 'You have reached the maximum number (:max) of files for this entity.',
+            'max_size'  => 'The campaign has reached the maximum file storage capacity.',
+            'no_files'  => 'No files.',
         ],
         'files'     => 'Uploaded Files',
         'hints'     => [

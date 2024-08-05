@@ -12,6 +12,12 @@ return [
     'destroy'       => [],
     'dice_rolls'    => [],
     'edit'          => [],
+    'families'      => [
+        'reorder'   => [
+            'success'   => 'Les familles du personage ont été mises à jour avec succès.',
+        ],
+        'title'     => 'Gérer les familles de :name',
+    ],
     'fields'        => [
         'age'                       => 'Age',
         'is_appearance_pinned'      => 'Physique épinglé',
