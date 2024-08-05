@@ -75,6 +75,7 @@ class AttributeController extends Controller
         $template = null;
         $marketplaceTemplate = null;
         $model = $entity->child;
+        $fromDashboard = true;
 
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
         if ($layout) {
@@ -87,7 +88,8 @@ class AttributeController extends Controller
             'model',
             'marketplaceTemplate',
             'template',
-            'campaign'
+            'campaign',
+            'fromDashboard'
         ));
     }
 
