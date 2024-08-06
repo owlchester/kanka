@@ -25,7 +25,7 @@
                 @else
                     <p>
                         <a href="{{ route('maps.explore', [$campaign, $model]) }}" class="btn2 btn-block btn-primary" target="_blank">
-                            <x-icon class="map"></x-icon> {{ __('maps.actions.explore') }}
+                            <x-icon class="map" /> {{ __('maps.actions.explore') }}
                         </a>
                     </p>
                 @endif

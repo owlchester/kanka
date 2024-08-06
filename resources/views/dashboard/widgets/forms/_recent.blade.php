@@ -35,7 +35,7 @@
                     field="recent-filters"
                     :label="__('dashboard.widgets.recent.filters')"
                     link="https://docs.kanka.io/en/latest/guides/dashboard.html"
-                    :tooltip="true"
+                    tooltip
                     :helper="__('dashboard.widgets.helpers.filters')"
                     :hidden="empty($model) || empty($model->conf('entity'))">
                     <input type="text" name="config[filters]" value="{{ old('config[filters]', $model->config['filters'] ?? null) }}" maxlength="191" class="w-full" id="config[filters]" placeholder="" />

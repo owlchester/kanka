@@ -82,7 +82,7 @@
             </x-buttons.confirm>
             <x-form :action="['notifications.clear-all']" id="notifications-clear">
                 <x-buttons.confirm type="danger" full="true" ouline="true">
-                    <x-icon class="trash"></x-icon>
+                    <x-icon class="trash" />
                     <span>{{ __('crud.remove') }}</span>
                 </x-buttons.confirm>
             </x-form>

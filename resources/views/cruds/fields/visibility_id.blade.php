@@ -46,7 +46,7 @@ $visibilityUniqueID = uniqid('visibility_');
 <x-forms.field
     field="visibility"
     label="{{ __('crud.fields.visibility') }}"
-    :tooltip="true"
+    tooltip
     :helper="__('visibilities.tooltip')"
     link="//docs.kanka.io/en/latest/advanced/visibility.html">
     <x-forms.select

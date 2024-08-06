@@ -44,7 +44,7 @@
         </a>
     </div>
     <button type="button" class="btn2 btn-error btn-sm btn-outline" data-toggle="dialog" data-target="attributes-delete-all-confirm">
-        <x-icon class="trash"></x-icon>
+        <x-icon class="trash" />
         {{ __('entities/attributes.actions.remove_all') }}
     </button>
 </div>
@@ -88,7 +88,7 @@
                 {{ __('crud.cancel') }}
             </x-buttons.confirm>
             <x-buttons.confirm type="danger" outline="true" full="true" id="attributes-delete-all-confirm-submit">
-                <x-icon class="trash"></x-icon>
+                <x-icon class="trash" />
                 {{ __('crud.click_modal.confirm') }}
             </x-buttons.confirm>
             <input type="hidden" name="delete-all-attributes" value="" />

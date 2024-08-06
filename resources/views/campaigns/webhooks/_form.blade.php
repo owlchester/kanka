@@ -39,7 +39,7 @@
         field="message"
         :required="true"
         :label="__('campaigns/webhooks.fields.message')"
-        :tooltip="true"
+        tooltip
         :helper="__('campaigns/webhooks.helper.message')"
         link="https://docs.kanka.io/en/latest/features/campaigns/webhooks.html#mappings"
         >

@@ -4,7 +4,7 @@
     <p class="text-neutral-content m-0">{{ __('calendars.hints.moons') }}</p>
 
     <button class="btn2 btn-sm  dynamic-row-add" data-template="template_moon" data-target="calendar-moons" title="{{ __('calendars.actions.add_moon') }}">
-        <x-icon class="plus"></x-icon>
+        <x-icon class="plus" />
         {{ __('calendars.actions.add_moon') }}
     </button>
 <?php

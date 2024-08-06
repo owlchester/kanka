@@ -56,7 +56,7 @@ $fromOrg = request()->get('from') === 'org';
         field="org-pinned"
         :label="__('organisations.members.fields.pinned')"
         :helper="__('organisations.members.helpers.pinned')"
-        :tooltip="true">
+        tooltip>
         <x-forms.select name="pin_id" :options="$options" :selected="$member->pin_id ?? null" />
     </x-forms.field>
 </div>

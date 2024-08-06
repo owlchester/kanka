@@ -44,7 +44,7 @@ $overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-cente
                          data-target="primary-dialog"
                          data-url="{{ route('campaign_dashboards.create', $campaign) }}"
                        >
-                        <x-icon class="plus"></x-icon>
+                        <x-icon class="plus" />
                         <span class="hidden sm:inline">{{ __('dashboard.dashboards.actions.new') }}</span>
                     </a>
 
@@ -128,7 +128,7 @@ $overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-cente
 
                 <div class="col-span-4 {{ $widgetClass }} cursor-pointer shadow-xs hover:shadow-md" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}">
                     <div class="{{ $overlayClass }} text-2xl">
-                        <x-icon class="plus"></x-icon>
+                        <x-icon class="plus" />
                         <span class="block">{{ __('dashboard.setup.actions.add') }}</span>
                     </div>
                 </div>

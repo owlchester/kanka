@@ -102,7 +102,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                     <x-forms.select name="settings[collapsed]" :options="$collapsedOptions" :selected="$model?->collapsed() ?? $defaultCollapsed" class="w-full" />
                 </x-forms.field>
 
-                <x-forms.field field="class" :label=" __('dashboard.widgets.fields.class')" :tooltip="true" :helper="__('dashboard.widgets.helpers.class')">
+                <x-forms.field field="class" :label=" __('dashboard.widgets.fields.class')" tooltip :helper="__('dashboard.widgets.helpers.class')">
                     <input type="text" name="settings[class]" value="{{ old('settings[class]', $model->settings['class'] ?? null) }}" maxlength="191" @if (!$campaign->boosted()) disabled="disabled" @endif class="w-full" id="config[class]" />
                     @includeWhen(!$campaign->boosted(), 'entities.pages.posts._boosted')
                 </x-forms.field>

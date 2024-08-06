@@ -5,13 +5,13 @@
         <x-forms.field
             field="excerpt"
             :label="__('campaigns.fields.excerpt')"
-            :tooltip="true"
+            tooltip
             :helper="__('campaigns.helpers.excerpt')"
         >
             <textarea name="excerpt" id="excerpt" class="w-full html-editor">{!! old('excerpt', $campaign->excerptForEdition) !!}</textarea>
         </x-forms.field>
 
-        <x-forms.field field="header" :label="__('campaigns.fields.header_image')" :tooltip="true" :helper="__('campaigns.helpers.header_image')">
+        <x-forms.field field="header" :label="__('campaigns.fields.header_image')" tooltip :helper="__('campaigns.helpers.header_image')">
             <input type="hidden" name="remove-header_image" />
             <div class="grid gap-2 grid-cols-4">
                 <div class="col-span-3 flex flex-col gap-2 ">

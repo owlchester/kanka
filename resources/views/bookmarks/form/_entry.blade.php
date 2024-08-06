@@ -51,7 +51,7 @@ $premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campa
     <x-forms.field
             field="position"
             :label="__('bookmarks.fields.position')"
-            :tooltip="true"
+            tooltip
             :helper="__('entities/links.helpers.parent')">
         @if ($campaign->boosted())
             <x-forms.select name="parent" :options="$sidebar->campaign($campaign)->availableParents()" :selected="$model->parent ?? 'bookmarks'" />
@@ -75,7 +75,7 @@ $premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campa
     <x-forms.field
             field="class"
             :label="__('dashboard.widgets.fields.class')"
-            :tooltip="true"
+            tooltip
             :helper="__('dashboard.widgets.helpers.class')"
     >
         @if ($campaign->boosted())
@@ -96,7 +96,7 @@ $premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campa
         @endif
     </x-forms.field>
 
-    <x-forms.field field="active" :label="__('bookmarks.fields.active')" :tooltip="true"
+    <x-forms.field field="active" :label="__('bookmarks.fields.active')" tooltip
                    :helper="__('bookmarks.helpers.active')">
         <input type="hidden" name="is_active" value="0" />
 

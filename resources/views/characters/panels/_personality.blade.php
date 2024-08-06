@@ -16,9 +16,9 @@ $traits = $model->personality;
             @if(auth()->check() && auth()->user()->can('personality', $model))
                 <div class="flex-none w-6">
                     @if (!$model->is_personality_visible)
-                        <x-icon class="fa-solid fa-lock" :tooltip="true" title="{{ __('characters.hints.personality_not_visible') }}" />
+                        <x-icon class="fa-solid fa-lock" tooltip title="{{ __('characters.hints.personality_not_visible') }}" />
                     @else
-                        <x-icon class="fa-solid fa-lock-open" :tooltip="true" title="{{ __('characters.hints.personality_visible') }}" />
+                        <x-icon class="fa-solid fa-lock-open" tooltip title="{{ __('characters.hints.personality_visible') }}" />
                     @endif
                 </div>
             @endif

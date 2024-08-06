@@ -10,14 +10,14 @@
     </x-forms.field>
 
     @php $helper = __('entities/abilities.helpers.note', [
-        'code' => '<code>[character:4092]</code>',
-        'attr' => '<code>{Strength}</code>'
+        'code' => '[character:4092]',
+        'attr' => '{Strength}'
     ]); @endphp
     <x-forms.field
         field="note"
         :label="__('entities/abilities.fields.note')"
         :helper="$helper"
-        :tooltip="true">
+        tooltip>
         <textarea name="note" class="w-full" rows="4">{!! $ability->note ?? null !!}</textarea>
     </x-forms.field>
 

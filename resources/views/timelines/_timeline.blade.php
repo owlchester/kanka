@@ -32,7 +32,7 @@ $loadedElements = [];
                        class="btn2 btn-ghost btn-xs " role="button"
                        title="{{ __('crud.edit') }}"
                     >
-                        <x-icon class="edit"></x-icon>
+                        <x-icon class="edit" />
                         <span class="sr-only">{{ __('crud.edit') }}</span>
                     </a>
 
@@ -42,7 +42,7 @@ $loadedElements = [];
                        data-target="primary-dialog"
                        data-url="{{ route('confirm-delete', [$campaign, 'route' => route('timelines.timeline_eras.destroy', [$campaign, $timeline, $era, 'from' => 'view']), 'name' => $era->name, 'permanent' => true]) }}"
                        title="{{ __('crud.remove') }}">
-                        <x-icon class="trash"></x-icon>
+                        <x-icon class="trash" />
                         <span class="sr-only">{{ __('crud.remove') }}</span>
                     </a>
                 @endcan
@@ -68,7 +68,7 @@ $loadedElements = [];
             <a href="{{ route('timelines.timeline_elements.create', [$campaign, $model, 'era_id' => $era, 'position' => $position]) }}" class="btn2 btn-primary btn-sm"
                 title="{{ __('crud.create') }}"
             >
-                <x-icon class="plus"></x-icon>
+                <x-icon class="plus" />
                 <span class="hidden lg:inline">{!! __('timelines.actions.add_element', ['era' => $era->name]) !!}</span>
             </a>
         </div>
@@ -93,7 +93,7 @@ $loadedElements = [];
     @can('update', $timeline)
         <div class="text-center">
             <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $model, 'from' => 'view']) }}" class="btn2 btn-primary btn-sm">
-                <x-icon class="plus"></x-icon>
+                <x-icon class="plus" />
                 {{ __('timelines/eras.actions.add') }}
             </a>
         </div>

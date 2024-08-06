@@ -42,7 +42,7 @@
                 field="target-relation"
                 :label="__('entities/relations.fields.target_relation')"
                 :helper="__('entities/relations.hints.target_relation')"
-                :tooltip="true">
+                tooltip>
                 <input type="text" name="target_relation" value="{{ old('target_relation', $relation->target_relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.target_relation') }}" placeholder="{{ __('entities/relations.placeholders.target_relation') }}" />
             </x-forms.field>
         </div>

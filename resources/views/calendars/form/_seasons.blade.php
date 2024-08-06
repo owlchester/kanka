@@ -2,7 +2,7 @@
     <p class="text-neutral-content m-0">{{ __('calendars.hints.seasons') }}</p>
 
     <button class="btn2 btn-sm  dynamic-row-add" data-template="template_season" data-target="calendar-seasons" title="{{ __('calendars.actions.add_season') }}">
-        <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_season') }}
+        <x-icon class="plus" /> {{ __('calendars.actions.add_season') }}
     </button>
 
     <?php
@@ -58,7 +58,7 @@
 
                         </div>
                         <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
-                            <x-icon class="trash"></x-icon>
+                            <x-icon class="trash" />
                         </div>
                     </div>
                 </x-grid>

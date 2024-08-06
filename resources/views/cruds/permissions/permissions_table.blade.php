@@ -42,7 +42,7 @@ $permissionService->campaign($campaign);
         <div class="">
             <i class="fa-solid fa-sticky-note md:hidden" aria-hidden="true" title="{{ __('entities.posts') }}"></i>
             <span class="hidden md:inline"><strong>{{ __('entities.posts') }}</strong></span>
-            <x-icon class="question" :tooltip="true" :title="__('campaigns.roles.permissions.helpers.entity_note')"></x-icon>
+            <x-icon class="question" tooltip :title="__('campaigns.roles.permissions.helpers.entity_note')"></x-icon>
         </div>
     </div>
     @foreach ($campaign->roles()->withoutAdmin()->get() as $role)
@@ -157,7 +157,7 @@ $permissionService->campaign($campaign);
             <div class="">
                 <i class="fa-solid fa-sticky-note md:hidden" aria-hidden="true" title="{{ __('entities.posts') }}"></i>
                 <span class="hidden md:inline"><strong>{{ __('entities.posts') }}</strong></span>
-                <x-icon class="question" :tooltip="true" :title="__('campaigns.roles.permissions.helpers.entity_note')"></x-icon>
+                <x-icon class="question" tooltip :title="__('campaigns.roles.permissions.helpers.entity_note')"></x-icon>
             </div>
         </div>
         @foreach ($campaign->nonAdmins() as $member)

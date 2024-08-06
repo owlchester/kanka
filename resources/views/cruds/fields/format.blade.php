@@ -1,7 +1,7 @@
 <x-forms.field
     field="format"
     :label="__('calendars.fields.format')"
-    :tooltip="true"
+    tooltip
     :helper="__('calendars.helpers.format')"
     link="https://docs.kanka.io/en/latest/entities/calendars.html#date-format">
 
