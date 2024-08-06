@@ -98,7 +98,6 @@ use App\Enums\Widget;
 @section('styles')
     @if ($hasMap)
     <link rel="stylesheet" href="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.css' }}" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />
-    <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomdisplay.css" />
     @endif
 
     @vite([

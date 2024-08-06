@@ -38,7 +38,6 @@ $specificTheme = null;
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
     <link rel="stylesheet" href="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.css' }}" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />
-    <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomdisplay.css" />
     @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
         @php $specificTheme = $themeOverride; @endphp
         @if($themeOverride != 'base')

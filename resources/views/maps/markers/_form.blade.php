@@ -15,35 +15,35 @@ $sizeOptions = [
     <ul class="nav-tabs bg-base-300 !p-1 rounded" role="tablist">
         <li role="presentation" @if($activeTab == 1) class="active" @endif>
             <a href="#marker-pin" data-nohash="true" data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.marker') }}">
-                <x-icon class="fa-solid fa-2x fa-map-pin"></x-icon>
+                <x-icon class="fa-solid fa-2x fa-map-pin" />
                 <br />
                 {{ __('maps/markers.tabs.marker') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 2) class="active" @endif>
             <a href="#marker-label" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.label') }}">
-                <x-icon class="fa-solid fa-2x fa-font"></x-icon>
+                <x-icon class="fa-solid fa-2x fa-font" />
                 <br />
                 {{ __('maps/markers.tabs.label') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 3) class="active" @endif>
             <a href="#marker-circle" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.circle') }}">
-                <x-icon class="fa-regular fa-2x fa-circle"></x-icon>
+                <x-icon class="fa-regular fa-2x fa-circle" />
                 <br />
                 {{ __('maps/markers.tabs.circle') }}
             </a>
         </li>
         <li role="presentation" @if($activeTab == 5) class="active" @endif>
             <a href="#marker-poly" data-nohash="true"  data-toggle="tooltip" class="text-center" data-title="{{ __('maps/markers.tabs.polygon') }}">
-                <x-icon class="fa-solid fa-2x fa-draw-polygon"></x-icon>
+                <x-icon class="fa-solid fa-2x fa-draw-polygon" />
                 <br />
                 {{ __('maps/markers.tabs.polygon') }}
             </a>
         </li>
         <li role="presentation">
             <a href="#presets" data-nohash="true" class="text-center" data-presets="{{ route('preset_types.presets.index', [$campaign, 'preset_type' => \App\Models\PresetType::MARKER, 'from' => $from ?? null]) }}">
-                <x-icon class="fa-solid fa-2x fa-wand-magic-sparkles"></x-icon>
+                <x-icon class="fa-solid fa-2x fa-wand-magic-sparkles" />
                 <br />
                 {{ __('maps/markers.tabs.preset') }}
             </a>
@@ -77,7 +77,7 @@ $sizeOptions = [
                 </x-forms.field>
 
                 <x-forms.field field="radius" :label="__('maps/markers.fields.circle_radius')">
-                    <input type="text" name="circle_radius" value="{{ old('circle_radius', $source->circle_radius ?? $model->circle_radius ?? null) }}" class="w-full map-marker-circle-radius {{ !isset($model) || !$model->isCircle() ? 'hidden' : null }}" id="circle_radius" />
+                    <input type="text" name="circle_radius" value="{{ old('circle_radius', $source->circle_radius ?? $model->circle_radius ?? null) }}" class="w-full map-marker-circle-radius {{ ($source?->isCircle() ?? $model?->isCircle() ?? false) ? null : 'hidden' }}" id="circle_radius" />
                     <div class="map-marker-circle-helper">
                         <x-helper :text="__('maps/markers.helpers.custom_radius')" />
                     </div>
@@ -98,7 +98,7 @@ $sizeOptions = [
                                 </div>
 
                                 <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm" style="">
-                                    <i class="fa-solid fa-eraser" aria-hidden="true"></i>
+                                    <x-icon class="fa-solid fa-eraser" />
                                     {{ __('maps/markers.actions.reset-polygon') }}
                                 </a>
                             </div>
@@ -107,11 +107,11 @@ $sizeOptions = [
                     </div>
                     <div>
                         <a href="#" id="start-drawing-polygon" class="btn2 btn-primary btn-sm" data-toast="{{ __('maps/explore.notifications.start-drawing') }}">
-                            <x-icon class="pencil"></x-icon>
+                            <x-icon class="pencil" />
                             {{ __('maps/markers.actions.start-drawing') }}
                         </a>
                         <a href="#" id="reset-polygon" class="btn2 btn-error btn-outline btn-sm hidden">
-                            <x-icon class="fa-solid fa-eraser"></x-icon>
+                            <x-icon class="fa-solid fa-eraser" />
                             {{ __('maps/markers.actions.reset-polygon') }}
                         </a>
                     </div>
@@ -134,7 +134,6 @@ $sizeOptions = [
                 </x-forms.field>
 
                 <x-forms.field field="width" :label="__('maps/markers.fields.polygon_style.stroke-width')">
-
                     <input type="number" name="polygon_style[stroke-width]" value="{{ $source->polygon_style['stroke-width'] ?? old('polygon_style[stroke-width]', $model->polygon_style['stroke-width'] ?? null) }}" id="stroke-width" step="1" min="0" max="99" maxlength="2" />
                 </x-forms.field>
 

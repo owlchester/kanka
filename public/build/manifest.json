@@ -279,7 +279,7 @@
     "src": "resources/sass/front.scss"
   },
   "resources/sass/map-v3.scss": {
-    "file": "assets/map-v3-5b459d9e.css",
+    "file": "assets/map-v3-f802a2ea.css",
     "isEntry": true,
     "src": "resources/sass/map-v3.scss"
   },
