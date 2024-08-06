@@ -107,7 +107,7 @@ if (isset($model) && $model->isChunked()) {
                 </li>
             </ul>
             <div class="tab-content bg-base-100 p-4">
-                <div id="coordinates" class="tab-pane fade in active">
+                <div id="coordinates" class="tab-pane active">
                     <x-helper  :text="__('maps.helpers.center')" />
                     <x-grid>
                         <x-forms.field field="center-y" :label="__('maps.fields.center_y')">
@@ -119,7 +119,7 @@ if (isset($model) && $model->isChunked()) {
                         </x-forms.field>
                     </x-grid>
                 </div>
-                <div id="marker" class="tab-pane fade">
+                <div id="marker" class="tab-pane">
                     @if (isset($model) && !empty($model))
                     <?php
                         //get the current center marker or null

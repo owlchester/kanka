@@ -77,7 +77,7 @@ $sizeOptions = [
                 </x-forms.field>
 
                 <x-forms.field field="radius" :label="__('maps/markers.fields.circle_radius')">
-                    <input type="text" name="circle_radius" value="{{ old('circle_radius', $source->circle_radius ?? $model->circle_radius ?? null) }}" class="w-full map-marker-circle-radius {{ !isset($model) || $model->shape_id != 6 ? 'hidden' : null }}" id="circle_radius" />
+                    <input type="text" name="circle_radius" value="{{ old('circle_radius', $source->circle_radius ?? $model->circle_radius ?? null) }}" class="w-full map-marker-circle-radius {{ !isset($model) || !$model->isCircle() ? 'hidden' : null }}" id="circle_radius" />
                     <div class="map-marker-circle-helper">
                         <x-helper :text="__('maps/markers.helpers.custom_radius')" />
                     </div>
