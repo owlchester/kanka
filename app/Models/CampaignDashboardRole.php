@@ -10,8 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @package App\Models
  *
  * @property int $id
- * @property bool $is_default
- * @property bool $is_visible
+ * @property bool|int $is_default
+ * @property bool|int $is_visible
  * @property int $campaign_role_id
  * @property int $campaign_dashboard_id
  *

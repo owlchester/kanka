@@ -24,27 +24,22 @@ class MemberController extends Controller
         $this->campaign($campaign)->authEntityView($race->entity);
 
         $options = ['campaign' => $campaign, 'race' => $race];
-        $relation = 'allCharacterRaces';
+        $relation = 'allCharacters';
         if (request()->has('race_id')) {
             $options['race_id'] = (int) request()->get('race_id');
-            $relation = 'characterRaces';
+            $relation = 'characters';
         }
         Datagrid::layout(\App\Renderers\Layouts\Race\Character::class)
             ->route('races.characters', $options);
-
         $this->rows = $race
             ->{$relation}()
-            ->select('character_race.*')
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
-                'race', 'race.entity',
-                'character', 'character.entity', 'character.entity.tags', 'character.entity.tags.entity', 'character.entity.image',
-                'character.location', 'character.location.entity',
-                'character.characterRaces'
+                'location', 'location.entity',
+                'characterRaces',
+                'entity', 'entity.tags', 'entity.image', 'entity.tags.entity'
             ])
-            ->has('character')
-            ->has('character.entity')
-            ->leftJoin('characters as c', 'c.id', 'character_race.character_id')
-            ->sort(request()->only(['o', 'k']), ['c.name' => 'asc'])
+            ->has('entity')
             ->paginate(15);
 
         return $this->campaign($campaign)->datagridAjax();

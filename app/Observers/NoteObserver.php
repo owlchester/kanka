@@ -2,23 +2,6 @@
 
 namespace App\Observers;
 
-use App\Models\MiscModel;
-use App\Models\Note;
-
 class NoteObserver extends MiscObserver
 {
-    /**
-     * @param Note $note
-     */
-    public function deleting(MiscModel $note)
-    {
-        /**
-         * We need to do this ourselves and not let mysql to it (set null), because the plugin wants to delete
-         * all descendants when deleting the parent, which is stupid.
-         */
-        foreach ($note->notes as $sub) {
-            $sub->note_id = null;
-            $sub->saveQuietly();
-        }
-    }
 }

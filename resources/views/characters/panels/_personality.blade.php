@@ -7,8 +7,8 @@ $traits = $model->personality;
     <div class="flex flex-col gap-3 post-block character-personalities">
         <div class="post-header flex gap-1 md:gap-2 items-center">
             <div class="flex gap-2 items-center grow cursor-pointer element-toggle" data-animate="collapse" data-target="#character-personality-body">
-                <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
-                <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
+                <x-icon class="fa-solid fa-chevron-up icon-show" />
+                <x-icon class="fa-solid fa-chevron-down icon-hide" />
                 <h3 class="post-title grow m-0">
                     {{ __('characters.sections.personality') }}
                 </h3>
@@ -16,9 +16,9 @@ $traits = $model->personality;
             @if(auth()->check() && auth()->user()->can('personality', $model))
                 <div class="flex-none w-6">
                     @if (!$model->is_personality_visible)
-                        <x-icon class="fa-solid fa-lock" :tooltip="true" title="{{ __('characters.hints.personality_not_visible') }}" />
+                        <x-icon class="fa-solid fa-lock" tooltip title="{{ __('characters.hints.personality_not_visible') }}" />
                     @else
-                        <x-icon class="fa-solid fa-lock-open" :tooltip="true" title="{{ __('characters.hints.personality_visible') }}" />
+                        <x-icon class="fa-solid fa-lock-open" tooltip title="{{ __('characters.hints.personality_visible') }}" />
                     @endif
                 </div>
             @endif

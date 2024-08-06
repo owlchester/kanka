@@ -8,14 +8,12 @@ use Illuminate\View\Component;
 
 class Helper extends Component
 {
-    public ?string $text;
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $text = null,
+        public ?string $text = null,
     ) {
-        $this->text = $text;
     }
 
     /**

@@ -75,7 +75,7 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
     <div class="marker-actions text-center sm:rounded-t">
         <div class="join">
             <a href="{{ route('maps.map_markers.edit', [$campaign, $marker->map, $marker, 'from' => 'explore']) }}" class="btn2 btn-ghost btn-sm join-item">
-                <x-icon class="fa-solid fa-map-pin"></x-icon>
+                <x-icon class="fa-solid fa-map-pin" />
                 {{ __('maps/markers.actions.update') }}
             </a>
 

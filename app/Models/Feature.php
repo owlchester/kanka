@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
+use App\Models\Concerns\Sanitizable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,9 +16,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $description
  * @property \App\Enums\FeatureStatus $status_id
  * @property int $category_id
- * @property int $created_by
+ * @property ?int $created_by
  * @property int $upvote_count
- * @property User|null $user
  * @property FeatureCategory $category
  * @property FeatureStatus $status
  *
@@ -27,15 +27,20 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class Feature extends Model
 {
+    use HasUser;
+    use Sanitizable;
+
     public $fillable = [
         'name',
         'description',
     ];
 
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
+    protected string $userField = 'created_by';
+
+    protected array $sanitizable = [
+        'name',
+        'description',
+    ];
 
     public function category(): BelongsTo
     {

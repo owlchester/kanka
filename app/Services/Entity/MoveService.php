@@ -4,14 +4,10 @@ namespace App\Services\Entity;
 
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
-use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Character;
-use App\Models\CharacterTrait;
-use App\Models\Post;
 use App\Models\MiscModel;
-use App\Models\Timeline;
-use App\Models\TimelineEra;
+use App\Services\Campaign\GalleryService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
@@ -29,9 +25,18 @@ class MoveService
 
     protected Campaign $to;
 
+    protected GalleryService $galleryService;
+    protected CopyService $copyService;
+
     protected bool $copy = false;
 
     protected int $count = 0;
+
+    public function __construct(GalleryService $galleryService, CopyService $copyService)
+    {
+        $this->galleryService = $galleryService;
+        $this->copyService = $copyService;
+    }
 
     public function to(Campaign|int $campaign): self
     {
@@ -71,7 +76,7 @@ class MoveService
     public function validate(): self
     {
         // First we make sure we have access to the new campaign.
-        /** @var Campaign|null $campaign */
+        /** @var ?Campaign $campaign */
         $campaign = $this->user->campaigns()->where('campaign_id', $this->to->id)->first();
         if (empty($campaign)) {
             throw new TranslatableException('entities/move.errors.unknown_campaign');
@@ -111,6 +116,7 @@ class MoveService
                 }
             }
             $newModel->campaign_id = $this->to->id;
+            $image = $this->entity->image; // Load the image before switching campaigns
 
             CampaignLocalization::forceCampaign($this->to);
 
@@ -119,61 +125,58 @@ class MoveService
             $newModel->createEntity();
 
             // Copy the image to avoid issues when deleting/replacing one image
-            if (!empty($this->entity->image_path)) {
-                $uniqid = uniqid();
-                $newPath = str_replace('.', $uniqid . '.', $this->entity->image_path);
-                $newModel->entity->image_path = $newPath;
-                $newModel->entity->saveQuietly();
-                if (!Storage::exists($newPath)) {
-                    Storage::copy($this->entity->image_path, $newPath);
+            //            if (!empty($this->entity->image_path)) {
+            //                $uniqid = uniqid();
+            //                // If the image is in the w folder, just copy the image to the new world folder
+            //                if (Str::contains('w/' . $this->entity->campaign_id, $this->entity->image_path)) {
+            //                    $newPath = Str::replace(
+            //                        'w/' . $this->entity->campaign_id,
+            //                        'w/' . $this->to->id,
+            //                        $this->entity->image_path
+            //                    );
+            //                } else {
+            //                    $newPath = Str::replace('.', $uniqid . '.', $this->entity->image_path);
+            //                }
+            //                $newModel->entity->image_path = $newPath;
+            //                $newModel->entity->saveQuietly();
+            //                if (!Storage::exists($newPath)) {
+            //                    Storage::copy($this->entity->image_path, $newPath);
+            //                }
+            //            }
+
+            // Copy the gallery image over
+            if (!empty($image)) {
+                // If there is enough space in the target campaign gallery
+                $available = $this->galleryService->campaign($this->campaign)->available();
+                if ($available > $image->size) {
+                    $newImage = $image->replicate(['id', 'campaign_id']);
+                    $newImage->campaign_id = $this->to->id;
+                    $newImage->save();
+
+                    Storage::copy($image->path, $newImage->path);
+
+                    $newModel->entity->image_uuid = $newImage->id;
+                    $newModel->entity->saveQuietly();
                 }
             }
 
-            // Copy posts over
-            foreach ($this->entity->posts as $note) {
-                /** @var Post $newNote */
-                $newNote = $note->replicate(['entity_id', 'created_by', 'updated_by']);
-                $newNote->entity_id = $newModel->entity->id;
-                $newNote->created_by = auth()->user()->id;
-                $newNote->saveQuietly();
-            }
-
-            // Attributes please
-            foreach ($this->entity->attributes as $attribute) {
-                /** @var Attribute $newAttribute */
-                $newAttribute = $attribute->replicate(['entity_id']);
-                $newAttribute->entity_id = $newModel->entity->id;
-                $newAttribute->saveQuietly();
-            }
-
-            // Characters: copy traits
-            if ($this->entity->child instanceof Character) {
-                /** @var CharacterTrait $trait */
-                foreach ($this->entity->child->characterTraits as $trait) {
-                    $newTrait = $trait->replicate(['character_id']);
-                    $newTrait->character_id = $newModel->id;
-                    $newTrait->saveQuietly();
-                }
-            }
-
-            // Timeline: copy eras
-            if ($this->entity->child instanceof Timeline) {
-                foreach ($this->entity->child->eras as $era) {
-                    /** @var TimelineEra $newEra **/
-                    $newEra = $era->replicate(['timeline_id']);
-                    $newEra->timeline_id = $newModel->id;
-                    $newEra->saveQuietly();
-                }
-            }
-
-            if (request()->has('copy_related_elements') && request()->filled('copy_related_elements')) {
-                $this->entity->child->copyRelatedToTarget($newModel);
-            }
+            $this->copyService
+                ->entity($newModel->entity)
+                ->source($this->entity)
+                ->force()
+                ->posts()
+                ->inventory()
+                ->attributes()
+                ->character()
+                ->timeline()
+                ->map()
+            ;
 
             DB::commit();
             $success = true;
         } catch (Exception $e) {
             DB::rollBack();
+            throw $e;
         }
 
         CampaignLocalization::forceCampaign($this->campaign);
@@ -189,7 +192,7 @@ class MoveService
             // relations and, since they won't make sense on the new campaign.
             $this->entity->relationships()->delete();
             $this->entity->targetRelationships()->delete();
-            $this->entity->events()->delete();
+            $this->entity->reminders()->delete();
             $this->entity->imageMentions()->delete();
 
             // Get the child of the entity (the actual Location, Character etc) and remove the permissions, since they
@@ -217,9 +220,6 @@ class MoveService
 
             // Update child second. We do this otherwise we'll have an old entity and a new one
             $child->campaign_id = $this->to->id;
-            if (empty($child->slug)) {
-                $child->slug = Str::slug($child->name, '');
-            }
             $child->saveQuietly();
 
             DB::commit();

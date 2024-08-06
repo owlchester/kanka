@@ -1,7 +1,7 @@
 <div class="sidebar-section-box entity-history overflow-hidden flex flex-col gap-2">
     <div class="sidebar-section-title cursor-pointer text-lg user-select border-b element-toggle" data-animate="collapse" data-target="#sidebar-history">
-        <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
-        <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
+        <x-icon class="fa-solid fa-chevron-up icon-show" />
+        <x-icon class="fa-solid fa-chevron-down icon-hide" />
 
         {{ __('entities/profile.history') }}
     </div>

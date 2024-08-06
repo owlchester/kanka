@@ -3,6 +3,7 @@
 namespace App\Renderers\Layouts\Campaign;
 
 use App\Facades\CampaignLocalization;
+use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
 class CampaignRole extends Layout
@@ -38,38 +39,15 @@ class CampaignRole extends Layout
                 'label' => 'campaigns.roles.fields.type',
                 'render' => function ($model) {
                     /** @var \App\Models\CampaignRole $model */
-                    $html =  __('campaigns.roles.types.' . ($model->is_admin ? 'owner' : ($model->is_public ? 'public' : 'standard')));
+                    $html =  __('campaigns.roles.types.' . ($model->isAdmin() ? 'owner' : ($model->isPublic() ? 'public' : 'standard')));
 
                     return $html;
                 },
             ],
             'permissions' => [
                 'label' => 'campaigns.roles.fields.permissions',
-                'render' => function ($model) {
-                    $html = '';
-                    $campaign = CampaignLocalization::getCampaign();
-
-                    /** @var \App\Models\CampaignRole $model */
-                    if (!$model->is_admin) {
-                        $html = '<a href="' . route('campaign_roles.show', [$campaign, 'campaign_role' => $model])
-                            . '" title="'
-                            . __('campaigns.roles.actions.permissions')
-                            . '">'
-                            . $model->permissions->whereNull('entity_id')->count()
-                            . '</a>';
-                    }
-                    if ($model->is_public && !$campaign->isPublic() && $model->permissions->whereNull('entity_id')->count() > 0) {
-                        $html .= '<div class="sm:hidden"> <i class="fa-solid fa-exclamation-triangle" data-toggle="tooltip" data-title="'
-                            . __('campaigns.roles.hints.campaign_not_public')
-                            . '"></i></div> <div class="visible-xs">
-                                <i class="fa-solid fa-exclamation-triangle" data-toggle="collapse" data-target="#campaign-public-warning"></i>
-                                <span class="collapse help-block" id="campaign-public-warning">'
-                            . __('campaigns.roles.hints.campaign_not_public')
-                            . '</span> </div>';
-                    }
-
-                    return $html;
-                },
+                'render' => Standard::VIEW,
+                'with' => 'campaigns.roles.rows.permissions',
             ],
 
         ];

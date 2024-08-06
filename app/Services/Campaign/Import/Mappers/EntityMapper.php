@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
+use App\Enums\Visibility;
 use App\Facades\EntityLogger;
 use App\Models\Attribute;
 use App\Facades\ImportIdMapper;
@@ -11,6 +12,7 @@ use App\Models\EntityAsset;
 use App\Models\EntityEvent;
 use App\Models\EntityMention;
 use App\Models\EntityTag;
+use App\Models\Image;
 use App\Models\Inventory;
 use App\Models\Post;
 use App\Models\Relation;
@@ -61,7 +63,7 @@ trait EntityMapper
         return $this;
     }
 
-    protected function trackMappings(string $parent = null): void
+    protected function trackMappings(?string $parent = null): void
     {
         $this->mapping[$this->data['id']] = $this->model->id;
         ImportIdMapper::put($this->mappingName, $this->data['id'], $this->model->id);
@@ -88,8 +90,7 @@ trait EntityMapper
 
 
         $this
-            ->image()
-            ->header()
+            ->images()
             ->gallery();
         $this->entity->save();
 
@@ -134,48 +135,56 @@ trait EntityMapper
         ;
     }
 
-    protected function image(): self
+    /**
+     * Migrate old entity image system to the gallery.
+     */
+    protected function images(): self
     {
-        $img = Arr::get($this->data, 'entity.image_path');
-        if (empty($img)) {
-            return $this;
+        $oldImages = ['image_path', 'header_image'];
+        foreach ($oldImages as $old) {
+            $this->migrateToGallery($old);
         }
-
-        // An image needs the image saved locally
-        $imageName = Str::after($img, '/');
-        $destination = 'w/' . $this->campaign->id . '/' . $this->entity->pluralType() . '/' . $imageName;
-
-        if (!Storage::disk('local')->exists($this->path . $img)) {
-            //dd('image ' . $this->path . $img . ' doesnt exist');
-            return $this;
-        }
-
-        // Upload the file to s3 using streams
-        Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $img));
-        $this->entity->image_path = $destination;
         return $this;
     }
 
-    protected function header(): self
+    protected function migrateToGallery(string $old): self
     {
-        $img = Arr::get($this->data, 'entity.header_image');
-        if (empty($img)) {
+        $img = Arr::get($this->data, 'entity.' . $old);
+
+        if (empty($img) || !Storage::disk('local')->exists($this->path . $img)) {
             return $this;
         }
 
-        // An image needs the image saved locally
-        $imageName = Str::afterLast($img, '/');
-        $destination = 'w/' . $this->campaign->id . '/' . $imageName;
+        $image = $this->migrateImage($img);
 
-        if (!Storage::disk('local')->exists($this->path . $img)) {
-            //dd('header image ' . $this->path . $img . ' doesnt exist');
-            return $this;
+        if ($old == 'image_path') {
+            $this->entity->image_uuid = ImportIdMapper::getGallery($image->id);
+        } else {
+            $this->entity->header_uuid = ImportIdMapper::getGallery($image->id);
         }
+
+        return $this;
+    }
+
+    protected function migrateImage(string $img): Image
+    {
+        $imageExt = Str::after($img, '.');
+
+        //We need to create a new Image to migrate to the new system.
+        $image = new Image();
+        $image->campaign_id = $this->campaign->id;
+        $image->ext = $imageExt;
+        $image->name = $this->entity->name;
+        $image->visibility_id = Visibility::All;
+        $size = Storage::disk('local')->size($this->path . $img);
+        $image->size = (int) ceil($size / 1024); // kb
+        $image->save();
 
         // Upload the file to s3 using streams
-        Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $img));
-        $this->entity->header_image = $destination;
-        return $this;
+        Storage::writeStream($image->path, Storage::disk('local')->readStream($this->path . $img));
+        ImportIdMapper::putGallery($image->id, $image->id);
+
+        return $image;
     }
 
     protected function gallery(): self
@@ -183,12 +192,10 @@ trait EntityMapper
         $image = Arr::get($this->data, 'entity.image_uuid');
         if (!empty($image)) {
             $this->entity->image_uuid = ImportIdMapper::getGallery($image);
-            ;
         }
         $image = Arr::get($this->data, 'entity.header_uuid');
         if (!empty($image)) {
             $this->entity->header_uuid = ImportIdMapper::getGallery($image);
-            ;
         }
         return $this;
     }
@@ -214,7 +221,7 @@ trait EntityMapper
             foreach ($import as $field) {
                 $post->$field = $data[$field];
             }
-            if (!empty($data['location_id'])) {
+            if (!empty($data['location_id']) && ImportIdMapper::has('locations', $data['location_id'])) {
                 $locationID = ImportIdMapper::get('locations', $data['location_id']);
                 if (!empty($locationID)) {
                     $post->location_id = $locationID;
@@ -258,19 +265,22 @@ trait EntityMapper
             if (!empty($data['metadata'])) {
                 if (!empty($data['metadata']['path'])) {
                     $img = $data['metadata']['path'];
-                    $ext = Str::afterLast($img, '.');
-                    $destination = 'w/' . $this->campaign->id . '/entity-assets/' . uniqid() . '.' . $ext;
-
                     if (!Storage::disk('local')->exists($this->path . $img)) {
                         //dd('image ' . $this->path . $img . ' doesnt exist');
                         continue;
                     }
-                    Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $img));
-                    $data['metadata']['path'] = $destination;
+
+                    $image = $this->migrateImage($img);
+                    $asset->image_uuid = $image->id;
+                    unset($data['metadata']['path']);
                     $asset->metadata = $data['metadata'];
+
                 } else {
                     $asset->metadata = $data['metadata'];
                 }
+            }
+            if (isset($data['image_uuid'])) {
+                $asset->image_uuid = ImportIdMapper::getGallery($data['image_uuid']);
             }
             $asset->created_by = $this->user->id;
             $asset->save();

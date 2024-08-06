@@ -3,7 +3,7 @@
 namespace App\Models\Concerns;
 
 /**
- * @property int|null $type_id
+ * @property ?int $type_id
  */
 trait EntityType
 {

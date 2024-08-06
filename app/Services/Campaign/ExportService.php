@@ -315,6 +315,9 @@ class ExportService
 
         /** @var EntityAsset $file */
         foreach ($model->entity->files as $file) {
+            if (!isset($file->metadata['path'])) {
+                continue;
+            }
             $path = $file->metadata['path'];
             if (!Storage::exists($path)) {
                 continue;

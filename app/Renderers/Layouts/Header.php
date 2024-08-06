@@ -92,9 +92,9 @@ class Header
         }
 
         if ($this->orderDir == 'asc') {
-            return '<i class="fa-solid fa-arrow-up-a-z"></i> ';
+            return 'fa-solid fa-arrow-up-a-z';
         }
-        return '<i class="fa-solid fa-arrow-down-z-a"></i> ';
+        return 'fa-solid fa-arrow-down-z-a';
     }
 
     /**

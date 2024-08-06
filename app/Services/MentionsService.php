@@ -82,7 +82,7 @@ class MentionsService
     /**
      * Map a string
      */
-    public function mapText(string $text = null): string
+    public function mapText(?string $text = null): string
     {
         $this->text = $text;
         return $this->extractAndReplace();
@@ -121,7 +121,7 @@ class MentionsService
      * Map the mentions in an attribute
      * @return string|string[]|null
      */
-    public function mapAttribute(Attribute $attribute, string $text = null)
+    public function mapAttribute(Attribute $attribute, ?string $text = null)
     {
         // If the attribute mentions itself in the value, don't do any parsing, it would cause an endless loop.
         if (Str::contains($attribute->value, $attribute->mentionName())) {
@@ -548,7 +548,7 @@ class MentionsService
         $this->text = preg_replace_callback('`\{attribute:(.*?)\}`i', function ($matches) {
             $id = (int) $matches[1];
 
-            /** @var Attribute|null $attribute */
+            /** @var ?Attribute $attribute */
             $attribute = $this->attribute($id);
 
             // No entity found, the user might not be allowed to see it

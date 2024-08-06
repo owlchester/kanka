@@ -56,7 +56,7 @@ class ReminderController extends Controller
             ->route('entities.entity_events.index', $options);
 
         $this->rows = $entity
-            ->events()
+            ->reminders()
             ->has('calendar')
             ->has('calendar.entity')
             ->with(['calendar', 'calendar.entity', 'entity'])

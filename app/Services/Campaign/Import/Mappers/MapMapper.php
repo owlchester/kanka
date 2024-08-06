@@ -80,7 +80,7 @@ class MapMapper extends MiscMapper
     protected function layers(): self
     {
         $fields = [
-            'name', 'position', 'image', 'height', 'width', 'entry', 'visibility_id', 'type_id'
+            'name', 'position', 'image_uuid', 'image', 'image_path', 'height', 'width', 'entry', 'visibility_id', 'type_id'
         ];
         $this->layers = [];
         foreach ($this->data['layers'] as $data) {
@@ -93,17 +93,22 @@ class MapMapper extends MiscMapper
             $el->created_by = $this->user->id;
 
             // Move image
-            $imageName = Str::afterLast($el->image, '/');
-            $destination = 'w/' . $this->campaign->id . '/maps/' . $el->map_id . '/' . $imageName;
+            $imageField = isset($data['image_path']) ? 'image' : 'image_path';
+            if (!empty($el->$imageField)) {
+                $imageName = Str::afterLast($el->$imageField, '/');
+                $destination = 'w/' . $this->campaign->id . '/maps/' . $el->map_id . '/' . $imageName;
 
-            if (!Storage::disk('local')->exists($this->path . $el->image)) {
-                Log::error('map layer image ' . $this->path . $el->image . ' doesnt exist');
-                return $this;
+                if (!Storage::disk('local')->exists($this->path . $el->$imageField)) {
+                    Log::error('map layer image ' . $this->path . $el->$imageField . ' doesnt exist');
+                    return $this;
+                }
+
+                // Upload the file to s3 using streams
+                Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $el->$imageField));
+                $el->image_path = $destination;
+            } else {
+                $el->image_uuid = ImportIdMapper::getGallery($el->image_uuid);
             }
-
-            // Upload the file to s3 using streams
-            Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $el->image));
-            $el->image = $destination;
             $el->save();
             $this->layers[$data['id']] = $el->id;
         }

@@ -4,10 +4,10 @@
 
 @php
     $preset = null;
-    if (isset($model) && $model->family) {
-        $preset = $model->family;
+    if (isset($model) && $model->parent) {
+        $preset = $model->parent;
     } elseif (!isset($bulk)) {
-        $preset = FormCopy::field('family')->select($isParent ?? false, \App\Models\Family::class);
+        $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Family::class);
     }
 @endphp
 <x-forms.foreign

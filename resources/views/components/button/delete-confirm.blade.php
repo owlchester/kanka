@@ -3,6 +3,6 @@
    data-confirm="{{ __('crud.delete_modal.confirm') }}"
    data-target="{{ $target }}"
 >
-    <x-icon class="trash"></x-icon>
+    <x-icon class="trash" />
         <span class="hidden @if(!$iconOnly) md:inline @endif">{{ $text ?? __('crud.remove') }}</span>
 </a>

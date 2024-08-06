@@ -7,21 +7,20 @@ use App\Http\Requests\StoreImageFocus;
 use App\Http\Requests\UpdateEntityImage;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\ImageService;
 
 class ImageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function focus(Campaign $campaign, Entity $entity)
     {
-        if (!auth()->check()) {
-            return abort(400);
-        } else {
-            $this->authorize('update', $entity->child);
-        }
+        $this->authorize('update', $entity->child);
 
         return view('entities.pages.image.focus')
             ->with('campaign', $campaign)
@@ -41,23 +40,17 @@ class ImageController extends Controller
         $entity->focus_y = (int) $request->post('focus_y');
         $entity->save();
 
-
         return redirect()
             ->to($entity->url())
             ->with('success', __('entities/image.focus.success'));
     }
 
     /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function replace(Campaign $campaign, Entity $entity)
     {
-        if (!auth()->check()) {
-            return abort(400);
-        } else {
-            $this->authorize('update', $entity->child);
-        }
+        $this->authorize('update', $entity->child);
 
         return view('entities.pages.image.replace')
             ->with('campaign', $campaign)
@@ -72,14 +65,9 @@ class ImageController extends Controller
             return response()->json(['success' => true]);
         }
 
-        if ($request->has('entity_image_uuid')) {
-            $entity->image_uuid = request()->get('entity_image_uuid');
-        } else {
-            $entity->image_uuid = null;
-        }
-        ImageService::entity($entity, 'w/' . $entity->campaign_id, 'image');
+        $entity->image_uuid = request()->get('entity_image_uuid');
         // New image requires a focus reset
-        if ($entity->isDirty(['image_uuid', 'image_path'])) {
+        if ($entity->isDirty(['image_uuid'])) {
             $entity->focus_x = null;
             $entity->focus_y = null;
         }

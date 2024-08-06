@@ -27,7 +27,7 @@
 
                 @if ($model->is_private)
                     <div class="bubble-private absolute left-1.5 top-1.5 text-base shadow-xs flex justify-center align-items-center items-center aspect-square rounded-full w-6 h-6 bg-box opacity-80">
-                        <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')"></x-icon>
+                        <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')" />
                     </div>
                 @endif
             </a>
@@ -37,7 +37,7 @@
                         {!! $model->name !!}
                     </a>
                     <a href="{{ $model->getLink('explore') }}" class="block text-center h-12 p-4" target="_blank" title="{{ __('maps.actions.explore') }}">
-                        <x-icon class="fa-regular fa-map"></x-icon>
+                        <x-icon class="fa-regular fa-map" />
                         <span class="sr-only">{{ __('maps.actions.explore') }}</span>
                     </a>
                 </div>
@@ -60,7 +60,7 @@
         <a href="{{ $model->getLink() }}" class="block avatar grow relative cover-background" style="background-image: url('{{ Avatar::entity($model->entity)->fallback()->size(192, 144)->thumbnail() }}')">
             @if ($model->is_private)
                 <div class="bubble-private absolute left-1.5 top-1.5 shadow-xs flex justify-center align-items-center items-center aspect-square rounded-full w-6 h-6 text-xs bg-box opacity-80">
-                    <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')"></x-icon>
+                    <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')" />
                 </div>
             @endif
         </a>
@@ -70,7 +70,7 @@
                     {!! $model->name !!}
                 </a>
                 <a href="{{ $model->getLink('explore') }}" class="block text-center h-12 p-4" target="_blank" title="{{ __('maps.actions.explore') }}">
-                    <x-icon class="fa-regular fa-map"></x-icon>
+                    <x-icon class="fa-regular fa-map" />
                     <span class="sr-only">{{ __('maps.actions.explore') }}</span>
                 </a>
             </div>

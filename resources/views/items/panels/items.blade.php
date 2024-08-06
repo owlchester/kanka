@@ -12,7 +12,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         {!! \App\Facades\Module::plural(config('entities.ids.item'), __('entities.items')) !!}
     </h3>
     <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
-        <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+        <x-icon class="question" /> {{ __('crud.actions.help') }}
     </a>
 </div>
 <div class="item-subitems" id="subitems">

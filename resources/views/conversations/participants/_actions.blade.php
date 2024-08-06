@@ -12,7 +12,7 @@
             </div>
             <div class="">
                 <button type="submit" class="btn2 btn-primary btn-sm">
-                    <x-icon class="plus"></x-icon> {{ __('crud.add') }}
+                    <x-icon class="plus" /> {{ __('crud.add') }}
                 </button>
             </div>
         </div>

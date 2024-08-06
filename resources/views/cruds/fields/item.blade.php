@@ -1,14 +1,14 @@
-@if (isset($campaign) && $campaign instanceof \App\Models\Campaign && !$campaign->enabled('items'))
+@if (!$campaign->enabled('items'))
     <?php return ?>
 @endif
 
 @if (!isset($preset))
     @php
     $preset = null;
-    if (isset($model) && $model->item) {
-        $preset = $model->item;
+    if (isset($model) && $model->parent) {
+        $preset = $model->parent;
     } elseif (!isset($bulk)) {
-        $preset = FormCopy::field('item')->select($isParent ?? false, \App\Models\Item::class);
+        $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Item::class);
     }
     @endphp
 @endif

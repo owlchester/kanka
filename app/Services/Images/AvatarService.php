@@ -88,7 +88,7 @@ class AvatarService
             return '';
         }
         if ($this->onEntity()) {
-            return $this->entity->image->getUrl();
+            return $this->entity->image->url();
         }
         $path = $this->childThumbnailPath();
         $cloudfront = config('filesystems.disks.cloudfront.url');

@@ -7,7 +7,7 @@
                     {{ $preset->name }}
                 </span>
                 <a href="{{ route('preset_types.presets.edit', [$campaign, $presetType, $preset, 'from' => $from]) }}" class="preset-edit px-1">
-                    <x-icon class="pencil"></x-icon>
+                    <x-icon class="pencil" />
                 </a>
             </div>
         @endforeach

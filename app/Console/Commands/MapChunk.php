@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Jobs\ChunkMapJob;
 use App\Models\Map;
-use App\Services\Map\ChunkingService;
+use App\Services\Maps\ChunkingService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;

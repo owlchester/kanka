@@ -62,7 +62,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
         <div class="tab-pane pane-entry active" id="form-entry">
             <x-grid>
                 <x-forms.field field="name" :required="true">
-                    <input type="text" name="name"  placeholder="{{ __('entities/notes.placeholders.name') }}" value="{!! old('name', $model->name ?? null) !!}" maxlength="191" data-bragi-name="{{ $bragiName }}" data-live-disabled="1" />
+                    <input type="text" name="name"  placeholder="{{ __('entities/notes.placeholders.name') }}" value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" maxlength="191" data-bragi-name="{{ $bragiName }}" data-live-disabled="1" />
                 </x-forms.field>
 
                 <x-forms.field field="layout" :hidden="isset($layoutHelper)">
@@ -71,12 +71,12 @@ $layoutOptions = $layoutDefault + $layoutOptions
                         @includeWhen(!$campaign->superboosted(), 'entities.pages.posts._boosted')
                     </div>
                 </x-forms.field>
+
                 @if (isset($layoutHelper))
                     <p class="text-neutral-content m-0">{{ $layoutHelper }}</p>
                 @endif
 
                 <x-forms.field field="entry" css="md:col-span-2" id="field-entry" :hidden="isset($layoutHelper)">
-
                     <textarea name="entry"
                               id="entry"
                               class="html-editor"
@@ -102,7 +102,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                     <x-forms.select name="settings[collapsed]" :options="$collapsedOptions" :selected="$model?->collapsed() ?? $defaultCollapsed" class="w-full" />
                 </x-forms.field>
 
-                <x-forms.field field="class" :label=" __('dashboard.widgets.fields.class')" :tooltip="true" :helper="__('dashboard.widgets.helpers.class')">
+                <x-forms.field field="class" :label=" __('dashboard.widgets.fields.class')" tooltip :helper="__('dashboard.widgets.helpers.class')">
                     <input type="text" name="settings[class]" value="{{ old('settings[class]', $model->settings['class'] ?? null) }}" maxlength="191" @if (!$campaign->boosted()) disabled="disabled" @endif class="w-full" id="config[class]" />
                     @includeWhen(!$campaign->boosted(), 'entities.pages.posts._boosted')
                 </x-forms.field>

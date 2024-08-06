@@ -63,6 +63,8 @@
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.js' }}" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomdisplay.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomcss.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.path.drag.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.editable.js"></script>
@@ -96,9 +98,7 @@
 
 @section('styles')
     @parent
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="" />
+    <link rel="stylesheet" href="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.css' }}" integrity="{{ config('app.leaflet_css') }}" crossorigin="" />
     @vite('resources/sass/map-v3.scss')
 
     <style>
@@ -128,7 +128,6 @@
         }
 
         @endif
-
     </style>
 @endsection
 @endif

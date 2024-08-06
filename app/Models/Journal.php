@@ -6,11 +6,15 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
+use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\CalendarDateTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
@@ -20,13 +24,11 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property int $id
  * @property string $date
- * @property int|null $character_id
- * @property int|null $journal_id
- * @property int|null $author_id
- * @property Character|null $character
- * @property Entity|null $author
- * @property Journal|null $journal
- * @property Journal[] $journals
+ * @property ?int $character_id
+ * @property ?int $journal_id
+ * @property ?int $author_id
+ * @property ?Character $character
+ * @property ?Entity $author
  * @property Journal[] $descendants
  */
 class Journal extends MiscModel
@@ -38,14 +40,16 @@ class Journal extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use HasRecursiveRelationships;
+    use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'name',
         'campaign_id',
-        'slug',
         'type',
         'entry',
         'date',
@@ -69,6 +73,7 @@ class Journal extends MiscModel
         'calendar_date',
         'author.name',
     ];
+
     protected array $sortable = [
         'name',
         'date',
@@ -101,6 +106,12 @@ class Journal extends MiscModel
         'date',
     ];
 
+    protected array $sanitizable = [
+        'name',
+        'type',
+        'date',
+    ];
+
     /**
      * Performance with for datagrids
      */
@@ -129,9 +140,6 @@ class Journal extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'journals' => function ($sub) {
-                $sub->select('id', 'journal_id', 'name');
-            },
             'children' => function ($sub) {
                 $sub->select('id', 'journal_id');
             }
@@ -147,18 +155,6 @@ class Journal extends MiscModel
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function journal()
-    {
-        return $this->belongsTo(Journal::class);
-    }
-
-    public function journals()
-    {
-        return $this->hasMany(Journal::class);
-    }
-    /**
      * Get all journals in the journal and descendants
      */
     public function allJournals()
@@ -169,32 +165,17 @@ class Journal extends MiscModel
         };
 
         $table = new Journal();
-        return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)->with('journal');
+        return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)->with('parent');
     }
 
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function character()
+    public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function author()
+    public function author(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'author_id');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function location()
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id');
     }
 
     /**

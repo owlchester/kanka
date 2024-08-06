@@ -4,13 +4,13 @@ namespace App\Observers;
 
 use App\Facades\EntityLogger;
 use App\Facades\Permissions;
+use App\Facades\Images;
 use App\Jobs\EntityUpdatedJob;
 use App\Jobs\EntityWebhookJob;
 use App\Enums\WebhookAction;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Services\Entity\TagService;
-use App\Services\ImageService;
 use App\Services\PermissionService;
 use App\Facades\Domain;
 
@@ -38,8 +38,12 @@ class EntityObserver
      */
     public function crudSaved(Entity $entity)
     {
-        ImageService::entity($entity, 'w/' . $entity->campaign_id, 'image');
-        ImageService::entity($entity, 'w/' . $entity->campaign_id);
+        if (request()->post('remove-image') == '1') {
+            Images::cleanup($entity, 'image');
+        }
+        if (request()->post('remove-header_image') == '1') {
+            Images::cleanup($entity, 'header_image');
+        }
         $this->saveTags($entity);
         $this->savePermissions($entity);
         $this->savePremium($entity);
@@ -91,7 +95,7 @@ class EntityObserver
     {
         if (!auth()->user()->can('permission', $entity->child)) {
             return;
-        } elseif (request()->has('copy_source_permissions') && request()->filled('copy_source_permissions')) {
+        } elseif (request()->has('copy_permissions') && request()->filled('copy_permissions')) {
             return;
         } elseif (request()->get('quick-creator') === '1') {
             // If we're creating an entity from the quick creator, there is no form for permissions.

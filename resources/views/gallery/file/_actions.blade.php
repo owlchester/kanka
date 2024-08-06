@@ -1,6 +1,6 @@
 
 @can('edit', [$image, $campaign])
-    @if (!$image->isFont() && !$image->isFolder())
+    @if ($image->hasThumbnail())
         <a href="#" class="btn2 btn-ghost" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('campaign.gallery.focus', [$campaign, $image]) }}">
             <x-icon class="fa-solid fa-bullseye" />
             <span class="hidden md:inline">
@@ -11,7 +11,7 @@
 @endcan
 @if (!$image->isFolder() )
 <a class="btn2 btn-ghost" href="{{ $image->url() }}" target="_blank">
-    <x-icon class="fa-regular fa-link"></x-icon>
+    <x-icon class="fa-regular fa-link" />
     <span class="hidden md:inline">
         {{ __('crud.actions.open') }}
     </span>

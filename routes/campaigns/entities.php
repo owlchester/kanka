@@ -31,6 +31,7 @@ Route::post('/w/{campaign}/maps/{map}/groups/reorder', 'Maps\Reorders\GroupContr
 
 Route::post('/w/{campaign}/maps/{map}/layers/bulk', 'Maps\Bulks\LayerController@index')->name('maps.layers.bulk');
 Route::post('/w/{campaign}/maps/{map}/layers/reorder', 'Maps\Reorders\LayerController@index')->name('maps.layers.reorder-save');
+Route::post('/w/{campaign}/maps/{map}/layers/{map_layer}/migrate', 'Maps\Layers\MigrateController@index')->name('maps.layers.migrate');
 
 Route::post('/w/{campaign}/maps/{map}/markers/bulk', 'Maps\Bulks\MarkerController@index')->name('maps.markers.bulk');
 
@@ -38,6 +39,8 @@ Route::post('/w/{campaign}/maps/{map}/markers/bulk', 'Maps\Bulks\MarkerControlle
 Route::get('/w/{campaign}/characters/{character}/organisations', 'Characters\OrganisationController@index')->name('characters.organisations');
 Route::get('/w/{campaign}/characters/{character}/races/management', 'Characters\Races\ManagementController@index')->name('characters.races.management');
 Route::post('/w/{campaign}/characters/{character}/races/save', 'Characters\Races\ManagementController@save')->name('characters.races.save');
+Route::get('/w/{campaign}/characters/{character}/families/management', 'Characters\Families\ManagementController@index')->name('characters.families.management');
+Route::post('/w/{campaign}/characters/{character}/families/save', 'Characters\Families\ManagementController@save')->name('characters.families.save');
 
 Route::get('/w/{campaign}/dice_rolls/{dice_roll}/roll', 'Crud\DiceRollController@roll')->name('dice_rolls.roll');
 Route::delete('/w/{campaign}/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'Crud\DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
@@ -45,6 +48,7 @@ Route::delete('/w/{campaign}/dice_rolls/{dice_roll}/roll/{dice_roll_result}/dest
 // Locations
 Route::get('/w/{campaign}/locations/{location}/characters', 'Locations\CharacterController@index')->name('locations.characters');
 Route::get('/w/{campaign}/locations/{location}/locations', 'Locations\LocationController@index')->name('locations.locations');
+Route::get('/w/{campaign}/locations/{location}/events', 'Locations\EventController@index')->name('locations.events');
 
 // Organisation menu
 Route::get('/w/{campaign}/organisations/{organisation}/members', 'Organisation\MemberController@index')->name('organisations.members');

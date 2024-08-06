@@ -45,7 +45,7 @@
            class="btn2 btn-primary"
            data-toggle="dialog-ajax" data-target="new-member"
            data-url="{{ route('campaign_roles.campaign_role_users.create', [$campaign, 'campaign_role' => $role]) }}">
-            <x-icon class="plus"></x-icon>
+            <x-icon class="plus" />
             {{ __('campaigns.roles.users.actions.add') }}
         </a>
     @endcan

@@ -24,11 +24,9 @@ class MemberController extends Controller
         $this->campaign($campaign)->authEntityView($family->entity);
 
         $options = ['campaign' => $campaign, 'family' => $family];
-        $filters = [];
         $relation = 'allMembers';
         if (request()->has('family_id')) {
             $options['family_id'] = $family->id;
-            $filters['family_id'] = $options['family_id'];
             $relation = 'members';
         }
         Datagrid::layout(\App\Renderers\Layouts\Family\Character::class)
@@ -38,11 +36,9 @@ class MemberController extends Controller
         $this->rows = $family
             ->{$relation}()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->filter($filters)
             ->with([
                 'location', 'location.entity',
-                'families', 'families.entity',
-                'races', 'races.entity',
+                'characterFamilies',
                 'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'
             ])
             ->has('entity')

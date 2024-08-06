@@ -102,7 +102,7 @@ class EntityCreatorController extends Controller
             // Exclude existing tags to avoid adding a tag several times
             $tags = $values['tags'];
             foreach ($tags as $number => $id) {
-                /** @var Tag|null $tag */
+                /** @var ?Tag $tag */
                 $tag = Tag::find($id);
                 // Create the tag if the user has permission to do so
                 if (empty($tag) && $tagService->isAllowed()) {
@@ -249,7 +249,7 @@ class EntityCreatorController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function renderForm(Request $request, Campaign $campaign, string $type, string $success = null)
+    protected function renderForm(Request $request, Campaign $campaign, string $type, ?string $success = null)
     {
         $this->campaign = $campaign;
         // Make sure the user is allowed to create this kind of entity

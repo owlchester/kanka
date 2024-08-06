@@ -22,7 +22,7 @@
                            data-toggle="dialog" data-target="primary-dialog"
                            data-url="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $position]) }}"
                         >
-                            <x-icon class="plus"></x-icon>
+                            <x-icon class="plus" />
                         </a>
 
                         <a href="#" class="rounded hidden link link-accent bg-box">
@@ -35,7 +35,7 @@
                                 data-target="primary-dialog"
                                 data-url="{{ route('confirm-delete', [$campaign, 'route' => route('entities.inventory.delete.section', [$campaign, $entity, $items['0']]), 'name' => $position, 'permanent' => true]) }}"
                                 title="{{ __('crud.remove') }}">
-                                    <x-icon class="trash"></x-icon>
+                                    <x-icon class="trash" />
                                     <span class="sr-only">{{ __('crud.remove') }}</span>
                                 </a>
                         </td>

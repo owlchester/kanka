@@ -30,13 +30,13 @@ class InviteService
      * @throws RequireLoginException
      * @throws Exception
      */
-    public function useToken(string $token = null)
+    public function useToken(?string $token = null)
     {
         if (empty($token)) {
             throw new Exception(__('campaigns.invites.error.invalid_token'));
         }
 
-        /** @var CampaignInvite|null $invite */
+        /** @var ?CampaignInvite $invite */
         $invite = CampaignInvite::where('token', $token)->first();
         if (empty($invite)) {
             throw new Exception(__('campaigns.invites.error.invalid_token'));
@@ -64,7 +64,7 @@ class InviteService
     /**
      * @return bool|Campaign
      */
-    public function join(string $token = null)
+    public function join(?string $token = null)
     {
         if (empty($token)) {
             $token = Session::get('invite_token');

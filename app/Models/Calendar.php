@@ -6,11 +6,11 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\Nested;
 use App\Models\Relations\CalendarRelations;
 use App\Traits\ExportableTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
@@ -35,9 +35,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $suffix
  * @property int $calendar_id
  * @property array $parameters
- * @property bool $skip_year_zero
- * @property bool $show_birthdays
- * @property Calendar[]|Collection $calendars
+ * @property bool|int $skip_year_zero
+ * @property bool|int $show_birthdays
  */
 class Calendar extends MiscModel
 {
@@ -49,12 +48,12 @@ class Calendar extends MiscModel
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
+    use Nested;
     use SoftDeletes;
 
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'type',
         'entry',
         'start_offset',
@@ -123,9 +122,6 @@ class Calendar extends MiscModel
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
-            },
-            'calendars' => function ($sub) {
-                $sub->select('id', 'name', 'calendar_id');
             },
             'children' => function ($sub) {
                 $sub->select('id', 'calendar_id');
@@ -239,7 +235,7 @@ class Calendar extends MiscModel
 
     /**
      */
-    public function currentDate(string $value = null): mixed
+    public function currentDate(?string $value = null): mixed
     {
         // If we have no date saved at all, skip this part. This happens when an entity was changed to the calendar
         // type and most fields are missing.
@@ -284,7 +280,7 @@ class Calendar extends MiscModel
     /**
      * Get the calendar's nice date
      */
-    public function niceDate($date = null): string
+    public function niceDate(?string $date = null): string
     {
         if (empty($date)) {
             $date = $this->date;
@@ -341,7 +337,7 @@ class Calendar extends MiscModel
     /**
      * Build the list of days for a month
      */
-    public function dayList(int $month = null): array
+    public function dayList(?int $month = null): array
     {
         if (empty($month)) {
             $month = $this->currentMonth();
@@ -404,7 +400,7 @@ class Calendar extends MiscModel
     /**
      * Get the date as an array
      */
-    public function dateArray(string $date = null): array
+    public function dateArray(?string $date = null): array
     {
         if (empty($date)) {
             $date = $this->date;

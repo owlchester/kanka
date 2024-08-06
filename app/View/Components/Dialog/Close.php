@@ -8,18 +8,13 @@ use Illuminate\View\Component;
 
 class Close extends Component
 {
-    public string $dismiss;
-    public bool $modal;
-
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $dismiss = 'modal',
-        bool $modal = false,
+        public string $dismiss = 'modal',
+        public bool $modal = false,
     ) {
-        $this->dismiss = $dismiss;
-        $this->modal = $modal;
     }
 
     /**

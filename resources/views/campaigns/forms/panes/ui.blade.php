@@ -34,7 +34,7 @@ if (!isset($model) || !$model->boosted()) {
                 field="theme"
                 :label="__('campaigns.fields.theme')"
                 :helper="__('campaigns.ui.helpers.theme')"
-                :tooltip="true">
+                tooltip>
                 @php $dizzy = [];
                 if (!isset($campaign) || !$campaign->boosted()) {
                     foreach ($themes as $i => $n) {
@@ -50,7 +50,7 @@ if (!isset($model) || !$model->boosted()) {
                 field="member-list"
                 :label="__('campaigns.ui.fields.member_list')"
                 :helper="__('campaigns.ui.helpers.member-list')"
-                :tooltip="true">
+                tooltip>
                 @php $dizzy = [];
                 if (!isset($campaign) || !$campaign->boosted()) {
                     $dizzy = [1 => ['disabled' => true]];
@@ -66,7 +66,7 @@ if (!isset($model) || !$model->boosted()) {
                 field="entity-history"
                 :label="__('campaigns.ui.fields.entity_history')"
                 :helper="__('campaigns.ui.helpers.entity-history')"
-                :tooltip="true">
+                tooltip>
                 @php $dizzy = [];
                 if (!isset($campaign) || !$campaign->boosted()) {
                     $dizzy = [1 => ['disabled' => true]];
@@ -112,7 +112,7 @@ if (!isset($model) || !$model->boosted()) {
                 field="connections"
                 :label="__('campaigns.ui.fields.connections')"
                 :helper="__('campaigns.ui.helpers.connections')"
-                :tooltip="true">
+                tooltip>
                 <x-forms.select name="ui_settings[connections]" :options="[0 => __('campaigns.ui.connections.explorer'), 1 => __('campaigns.ui.connections.list')]" :selected="$campaign->ui_settings['connections'] ?? null"  />
             </x-forms.field>
 
@@ -120,7 +120,7 @@ if (!isset($model) || !$model->boosted()) {
                 field="connections-mode"
                 :label="__('campaigns.ui.fields.connections_mode')"
                 :helper="__('campaigns.ui.helpers.connections_mode')"
-                :tooltip="true">
+                tooltip>
                 <x-forms.select name="ui_settings[connections_mode]" :options="[0 => __('campaigns.ui.collapsed.default'), 1 => __('entities/relations.options.only_relations'), 2 => __('entities/relations.options.related'), 3 => __('entities/relations.options.mentions')]" :selected="$campaign->ui_settings['connections_mode'] ?? null"  />
             </x-forms.field>
 
@@ -128,7 +128,7 @@ if (!isset($model) || !$model->boosted()) {
                 field="post-collapsed"
                 :label="__('campaigns.ui.fields.post_collapsed')"
                 :helper="__('campaigns.ui.helpers.post_collapsed')"
-                :tooltip="true">
+                tooltip>
                 <x-forms.select name="ui_settings[post_collapsed]" :options="[0 => __('campaigns.ui.collapsed.default'), 1 => __('campaigns.ui.collapsed.collapsed')]" :selected="$campaign->ui_settings['post_collapsed'] ?? null"  />
             </x-forms.field>
         </x-grid>

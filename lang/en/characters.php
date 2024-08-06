@@ -8,6 +8,12 @@ return [
     'create'        => [
         'title' => 'New Character',
     ],
+    'families'      => [
+        'reorder'   => [
+            'success'   => 'Character families updated successfully.',
+        ],
+        'title'     => 'Manage families of :name',
+    ],
     'fields'        => [
         'age'                       => 'Age',
         'is_appearance_pinned'      => 'Pinned appearance',
@@ -80,7 +86,7 @@ return [
     ],
     'races'         => [
         'reorder'   => [
-            'success'   => 'Character races updated successfully.',
+            'success'   => 'Character races updated successfully',
         ],
         'title'     => 'Manage races of :name',
     ],

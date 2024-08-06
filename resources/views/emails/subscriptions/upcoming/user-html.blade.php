@@ -18,7 +18,7 @@
 
     <p>{{ __('emails/subscriptions/upcoming.valid') }}</p>
 
-    <p>{!! __('emails/subscriptions/upcoming.cancel', ['link' => link_to_route('settings.subscription', __('emails/subscriptions/upcoming.link'))]) !!}</p>
+    <p>{!! __('emails/subscriptions/upcoming.cancel', ['link' =>  '<a href="' . route('settings.subscription') . '">' . __('emails/subscriptions/upcoming.link') . '</a>']) !!}</p>
 
     <p>
         {{ __('emails/subscriptions/upcoming.closing') }}<br />

@@ -117,10 +117,9 @@ To create a creature, use the following endpoint.
 | `creature_id` | `string` | Parent creature of the creature |
 | `tags` | `array` | Array of tag ids |
 | `locations` | `array` | Array of location ids |
-| `image_url` | `string` | URL to a picture to be used for the creature |
 | `is_extinct` | `boolean` | If the creature is extinct |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `is_private` | `boolean` | If the creature is only visible to `admin` members of the campaign |
 
 ### Results

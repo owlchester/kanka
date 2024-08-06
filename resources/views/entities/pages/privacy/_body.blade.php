@@ -1,3 +1,8 @@
+<?php /**
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\CampaignRole $role
+ * @var \App\User $user
+ * */?>
 <x-grid type="1/1">
     <x-forms.field field="visibility" :label="__('entities/permissions.quick.field')">
         <select name="privacy" id="quick-privacy-select" class="" data-url="{{ route('entities.quick-privacy.toggle', [$campaign, $entity]) }}">
@@ -12,10 +17,26 @@
         {{ __('entities/permissions.quick.viewable-by') }}
     </p>
     @if (!empty($visibility['roles']) || !empty($visibility['users']))
-        <div class="@if ($entity->is_private) line-through text-slate-400 @endif">
-            @foreach ($visibility['roles'] as $element)<span class="mr-1"><i class="fa-solid fa-user-group" aria-hidden="true"></i> {!! $element !!}</span>@endforeach
-            @if (!empty($visibility['roles']))<br />@endif
-            @foreach ($visibility['users'] as $element)<span class="mr-1"><i class="fa-solid fa-user" aria-hidden="true"></i> {!! $element !!}</span>@endforeach
+        <div class="@if ($entity->is_private) line-through text-slate-400 @endif flex flex-wrap gap-2 items-center ">
+            @foreach ($visibility['roles'] as $role)
+                <span>
+                    <x-icon class="fa-solid fa-user-group" />
+                    {!! $role->name !!}
+                    @if ($role->isPublic() && !$campaign->isPublic())
+                        <x-icon class="fa-solid fa-exclamation-triangle text-accent" tooltip :title="__('campaigns.roles.permissions.helpers.not_public')" />
+                    @endif
+                </span>
+            @endforeach
+            @foreach ($visibility['users'] as $user)
+                <div class="flex gap-1 items-center">
+                    @if ($user->hasAvatar())
+                        <div class="avatar cover-background w-4 h-4 rounded-full" style="background-image: url('{!! $user->getAvatarUrl() !!}')"></div>
+                    @else
+                        <x-icon class="fa-solid fa-user" />
+                    @endif
+                    {!! $user->name !!}
+                </div>
+            @endforeach
         </div>
     @else
         <p class="text-neutral-content m-0">

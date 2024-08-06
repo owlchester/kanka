@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\UploadEntityImage;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\ImageService;
+use App\Facades\Images;
 
 class EntityImageApiController extends Controller
 {
@@ -17,15 +17,15 @@ class EntityImageApiController extends Controller
         $this->authorize('update', $entity->child);
 
         // Let the service handle everything
-        ImageService::handle($entity);
-        $entity->update();
-
-        return response()->json([
-            'entity_id' => $entity->id,
-            'child_id' => $entity->child->id,
-            'image_full' => Avatar::entity($entity)->original(),
-            'image_thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
-        ]);
+        throw new \Exception('API hasnt been migrated');
+        //        $entity->update();
+        //
+        //        return response()->json([
+        //            'entity_id' => $entity->id,
+        //            'child_id' => $entity->child->id,
+        //            'image_full' => Avatar::entity($entity)->original(),
+        //            'image_thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
+        //        ]);
     }
 
     /**
@@ -38,7 +38,7 @@ class EntityImageApiController extends Controller
         $this->authorize('update', $entity->child);
 
         // Let the service handle everything
-        ImageService::cleanup($entity);
+        Images::cleanup($entity);
 
         $entity->update(['image_path' => '']);
 

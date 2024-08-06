@@ -5,13 +5,13 @@
  * @var \App\Services\Campaign\GalleryService $galleryService
  */
 
-$breadcrumbs[] = ['url' => route('campaign.gallery.index', $campaign), 'label' => __('campaigns/gallery.breadcrumb')];
+$breadcrumbs[] = ['url' => route('gallery', $campaign), 'label' => __('campaigns/gallery.breadcrumb')];
 if ($folder) {
     if (!empty($folder->folder_id)) {
         if (!empty($folder->imageFolder->folder_id)) {
             $breadcrumbs[] = '...';
         }
-        $breadcrumbs[] = ['url' => route('campaign.gallery.index', [$campaign, 'folder_id' => $folder->folder_id]), 'label' => e($folder->imageFolder->name)];
+        $breadcrumbs[] = ['url' => route('gallery', [$campaign, 'folder_id' => $folder->folder_id]), 'label' => e($folder->imageFolder->name)];
     }
     $breadcrumbs[] = e($folder->name);
 }
@@ -49,14 +49,14 @@ if ($folder) {
             <div class="grow">
                 @can('galleryUpload', $campaign)
                 <button class="btn2 btn-sm" data-toggle="dialog" data-target="new-folder" data-url="{{ route('campaign.gallery.folders.create', [$campaign, 'folder' => $folder ?? null]) }}">
-                    <x-icon class="fa-solid fa-folder"></x-icon> {{ __('campaigns/gallery.uploader.new_folder') }}
+                    <x-icon class="fa-solid fa-folder" /> {{ __('campaigns/gallery.uploader.new_folder') }}
                 </button>
                 @endauth
 
                 @can('galleryManage', $campaign)
                 @if(!empty($folder))
                     <button class="btn2 btn-sm" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('images.edit', [$campaign, $folder]) }}">
-                        <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
+                        <x-icon class="pencil" /> {{ __('crud.edit') }}
                     </button>
                 @endif
                 @endcan
@@ -64,7 +64,7 @@ if ($folder) {
                 @can('galleryManage', $campaign)
                 <span data-tooltip data-title="{{ __('Use shift+click on images to bulk delete them.') }}">
                 <button class="btn2 btn-sm btn-error btn-disabled " id="bulk-delete" data-toggle="dialog"  data-target="bulk-destroy-dialog">
-                    <x-icon class="trash"></x-icon> {{ __('crud.remove') }}
+                    <x-icon class="trash" /> {{ __('crud.remove') }}
                 </button></span>
                 @endcan
             </div>
@@ -84,7 +84,7 @@ if ($folder) {
                 <p>{{ __('campaigns/gallery.uploader.or') }}</p>
 
                 <span class="btn2 btn-primary btn-sm fileinput-button relative overflow-hidden inline-block">
-                    <x-icon class="plus"></x-icon>
+                    <x-icon class="plus" />
                     <span>{{ __('campaigns/gallery.uploader.select_file') }}</span>
                     <input type="file" id="file-upload" name="file" class="absolute top-0 right-0 m-0 h-full cursor-pointer opacity-0" multiple accept="image/*, .gif, .webp, .woff2" />
                 </span>

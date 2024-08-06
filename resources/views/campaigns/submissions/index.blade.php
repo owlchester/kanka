@@ -22,7 +22,7 @@
             </h3>
             <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                     data-target="submissions-help">
-                <x-icon class="question"></x-icon>
+                <x-icon class="question" />
                 {{ __('crud.actions.help') }}
             </button>
 

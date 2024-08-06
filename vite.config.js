@@ -48,6 +48,7 @@ export default defineConfig({
             'resources/js/cookieconsent.js',
             'resources/js/relations.js',
             'resources/js/gallery.js',
+            // 'resources/js/gallery/selection.js',
             'resources/js/history.js',
             'resources/js/editors/summernote.js',
             'resources/js/family-tree-vue.js',

@@ -52,7 +52,7 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
         }
         @endphp
         <div class="{{ $boxClass }}">
-            <i class="fa-solid fa-rocket fa-2x" aria-hidden="true"></i>
+            <i class="fa-solid fa-gem fa-2x" aria-hidden="true"></i>
             <div class="">
                 @if ($campaign->premium())
                     {!! __('campaigns.fields.premium', ['name' => $link]) !!}

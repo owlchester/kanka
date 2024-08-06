@@ -2,25 +2,18 @@
 
 namespace App\Observers;
 
-use App\Facades\Mentions;
 use App\Models\MapMarker;
-use App\Facades\MapMarkerCache;
 use enshrined\svgSanitize\Sanitizer;
 use Illuminate\Support\Str;
 
 class MapMarkerObserver
 {
-    /**
-     * Purify trait
-     */
     use PurifiableTrait;
 
     /**
      */
     public function saving(MapMarker $mapMarker)
     {
-        $mapMarker->name = $this->purify(Mentions::codify($mapMarker->name));
-        $mapMarker->entry = $this->purify(Mentions::codify($mapMarker->entry));
         $mapMarker->opacity = round($mapMarker->opacity, 1);
         $mapMarker->custom_icon = $this->sanitizeCustomIcon($mapMarker);
 
@@ -34,7 +27,6 @@ class MapMarkerObserver
     public function saved(MapMarker $mapMarker)
     {
         $mapMarker->map->touch();
-        MapMarkerCache::clearSuggestion();
     }
 
     /**
@@ -42,7 +34,6 @@ class MapMarkerObserver
     public function deleted(MapMarker $mapMarker)
     {
         $mapMarker->map->touch();
-        MapMarkerCache::clearSuggestion();
     }
 
     /**

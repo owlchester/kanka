@@ -93,20 +93,20 @@ To create a bookmark, use the following endpoint.
 
 ### Body
 
-| Parameter | Type | Detail |
-| :- |   :-   |  :-  |
-| `name` | `string` (Required) | Name of the bookmark |
-| `entity_id` | `int` (Required without type, random_entity_type, dashboard_id) | Entity id of the bookmark |
-| `type` | `int` (Required without entity_id, random_entity_type, dashboard_id) | The bookmark entity type id |
-| `random_entity_type` | `string` (Required without entity_id, type, dashboard_id) | The entity type (singular) for a random entity of that type |
-| `dashboard_id` | `int` (Required without entity_id, type, random_entity_type) | The dashboard id |
-| `icon` | `string` | Custom icon for boosted campaigns |
-| `tab` | `string` | Tab options for the link |
-| `filters` | `string` | Filter options for the link |
-| `menu` | `string` | Menu options for the link |
-| `position` | `int` | Position of the link |
-| `is_private` | `boolean` | If the bookmark is only visible to admin members of the campaign |
-| `is_active` | `boolean` | If the bookmark is visible |
+| Parameter | Type | Detail                                                                                |
+| :- |   :-   |:--------------------------------------------------------------------------------------|
+| `name` | `string` (Required) | Name of the bookmark                                                                  |
+| `entity_id` | `int` (Required without type, random_entity_type, dashboard_id) | Entity id of the bookmark                                                             |
+| `type` | `int` (Required without entity_id, random_entity_type, dashboard_id) | The bookmark entity type id                                                           |
+| `random_entity_type` | `string` (Required without entity_id, type, dashboard_id) | The entity type (singular) for a random entity of that type                           |
+| `dashboard_id` | `int` (Required without entity_id, type, random_entity_type) | The dashboard id                                                                      |
+| `icon` | `string` | Custom icon for premium campaigns                                                     |
+| `tab` | `string` | Tab options for the link                                                              |
+| `filters` | `string` | Filter options for the link                                                           |
+| `menu` | `string` | Menu options for the link                                                             |
+| `position` | `int` | Position of the link                                                                  |
+| `is_private` | `boolean` | If the bookmark is only visible to admin members of the campaign                      |
+| `is_active` | `boolean` | If the bookmark is visible                                                            |
 | `options`| `object` | Key/Value pairs for optional parameters, currently allowed Keys : `is_nested:boolean` |
 
 ### Results

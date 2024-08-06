@@ -4,10 +4,10 @@
 
 @php
 $preset = null;
-if (isset($model) && $model->note) {
-    $preset = $model->note;
+if (isset($model) && $model->parent) {
+    $preset = $model->parent;
 } elseif (!isset($bulk)) {
-    $preset = FormCopy::field('note')->select($isParent ?? false, \App\Models\Note::class);
+    $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Note::class);
 }
 @endphp
 

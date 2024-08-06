@@ -119,9 +119,8 @@ To create a tag, use the following endpoint.
 | `type` | `string` | The tag's type |
 | `colour` | `string` | The tag's colour |
 | `tag_id` | `integer` | The parent tag |
-| `image_url` | `string` | URL to a picture to be used for the tag |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `is_private` | `boolean` | If the tag is only visible to `admin` members of the campaign |
 | `is_auto_applied` | `boolean` | If the tag is automatically applied to new entities in the campaign |
 | `is_hidden` | `boolean` | If the tag won't be displayed in an entity's header or tooltip |

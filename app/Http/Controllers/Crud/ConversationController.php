@@ -23,7 +23,7 @@ class ConversationController extends CrudController
 
     protected string $forceMode = 'table';
 
-    protected function getNavActions(): CrudController
+    protected function setNavActions(): CrudController
     {
         $this->addNavAction(
             '//docs.kanka.io/en/latest/entities/conversations.html',
@@ -31,7 +31,7 @@ class ConversationController extends CrudController
             '',
             true
         );
-        return parent::getNavActions();
+        return parent::setNavActions();
     }
 
     /**

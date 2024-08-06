@@ -13,7 +13,7 @@ trait HasEntry
 {
     public static function bootHasEntry(): void
     {
-        if (app()->runningInConsole()) {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
             return;
         }
         static::observe(app(EntryObserver::class));

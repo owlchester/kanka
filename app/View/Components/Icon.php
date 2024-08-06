@@ -15,7 +15,7 @@ class Icon extends Component
     public function __construct(
         public ?string $class = null,
         public ?string $entity = null,
-        public ?string $tooltip = null,
+        public bool $tooltip = false,
         public ?string $title = null,
         public ?string $link = null,
         public ?string $size = null,

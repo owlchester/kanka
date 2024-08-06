@@ -12,7 +12,7 @@
         <x-forms.field
             field="start-offset"
             :label="__('calendars.fields.start_offset')"
-            :tooltip="true"
+            tooltip
             :helper="__('calendars.helpers.start_offset')">
             <input type="number" name="start_offset" value="{{ FormCopy::field('start_offset')->string(0) ?: old('start_offset', $model->start_offset ?? null) }}" />
         </x-forms.field>
@@ -20,7 +20,7 @@
         <x-forms.field
             field="reset"
             :label="__('calendars.fields.reset')"
-            :tooltip="true"
+            tooltip
             :helper="__('calendars.hints.reset')">
             <x-forms.select name="reset" :options="__('calendars.options.resets')" :selected="$source->reset ?? $model->reset ?? null" />
         </x-forms.field>
@@ -31,7 +31,7 @@
         <x-forms.field
             field="layout"
             :label="__('calendars.fields.default_layout')"
-            :tooltip="true"
+            tooltip
             :helper="__('calendars.helpers.default_layout')">
             <x-forms.select name="parameters[layout]" :options="['' => __('calendars.layouts.monthly'), 'yearly' => __('calendars.layouts.yearly')]" :selected="$source->parameters['layout'] ?? $model->parameters['layout'] ?? null" />
         </x-forms.field>
@@ -58,7 +58,7 @@
 
 
         <button class="btn2 btn-sm dynamic-row-add" data-template="template_year" data-target="calendar-years" title="{{ __('calendars.actions.add_year') }}">
-            <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_year') }}
+            <x-icon class="plus" /> {{ __('calendars.actions.add_year') }}
         </button>
 
         <?php
@@ -98,7 +98,7 @@
                             </div>
 
                             <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
-                                <x-icon class="trash"></x-icon>
+                                <x-icon class="trash" />
                             </span>
                         </div>
                     </x-grid>
@@ -153,7 +153,7 @@
                         <input type="text" name="year_number[]" value="" maxlength="191" class="w-full" aria-label="{{ __('calendars.parameters.year.number') }}" placeholder="{{ __('calendars.parameters.year.number') }}" />
                     </div>
                     <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
-                        <x-icon class="trash"></x-icon>
+                        <x-icon class="trash" />
                     </span>
                 </div>
             </x-grid>

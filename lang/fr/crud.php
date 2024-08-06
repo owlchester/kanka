@@ -134,6 +134,7 @@ return [
         'copy_links'        => 'Copier les liens d\'entité',
         'copy_permissions'  => 'Copier les permissions (cela ignore les permissions définies dans l\'onglet de permissions)',
         'copy_posts'        => 'Copier les articles (cela inclus les permissions des articles)',
+        'copy_reminders'    => 'Copier les rappels',
         'creator'           => 'Créateur',
         'date_range'        => 'Plage de dates',
         'entity'            => 'Entité',
@@ -171,6 +172,7 @@ return [
         ],
         'errors'    => [
             'max'       => 'Nombre maximal de fichier (:max) atteint pour cette entité.',
+            'max_size'  => 'La campagne a atteint la capacité maximale de stockage de fichiers.',
             'no_files'  => 'Aucun fichier.',
         ],
         'files'     => 'Fichiers uploadés',
@@ -336,6 +338,9 @@ return [
     'relations'                 => [],
     'remove'                    => 'Supprimer',
     'rename'                    => 'Renommer',
+    'reorder'                   => [
+        'empty' => 'Aucun élément à réorganiser.',
+    ],
     'save'                      => 'Enregistrer',
     'save_and_close'            => 'Enregistrer et Fermer',
     'save_and_copy'             => 'Enregistrer et Copier',

@@ -68,9 +68,11 @@
                     </div>
 
                     <div class="flex flex-col gap-2">
-                      <Notification v-for="notification in notifications.messages"
-                                    :notification="notification">
-                      </Notification>
+                        <Notification
+                            v-for="notification in notifications.messages"
+                            :notification="notification"
+                            @read="readNotification">
+                        </Notification>
                     </div>
                     <div class="no-notifications help-block text-neutral-content italic" v-if="notifications.messages.length === 0">
                         {{  notifications.none }}
@@ -85,9 +87,11 @@
                     </div>
 
                     <div class="flex flex-col gap-2">
-                      <Release v-for="release in releases.releases"
-                                    :release="release">
-                      </Release>
+                        <Release
+                            v-for="release in releases.releases"
+                            :release="release"
+                            @read="readRelease">
+                        </Release>
                     </div>
                 </div>
 
@@ -146,7 +150,8 @@
                             <div class="more" v-else>
                                 {{ profile.subscription.call_to_action }}
                                 <div class="link flex gap-1 items-center">{{ profile.subscription.call_to_action_2 }}
-                                    <i class="fa-duotone fa-credit-card" aria-hidden="true"></i>
+                                    <i class="fa-duotone fa-credit-card" aria-hidden="true" v-if="pro"></i>
+                                    <i class="fa-solid fa-credit-card" aria-hidden="true" v-else></i>
                                     <i class="fa-brands fa-paypal" aria-hidden="true"></i>
                                 </div>
                             </div>
@@ -312,6 +317,7 @@ export default {
             show_alerts: false,
             // Determine if data from the api has been loaded
             is_loaded: false,
+            pro: false,
         }
     },
 
@@ -344,6 +350,7 @@ export default {
                 this.has_data = true;
                 this.is_loading = false;
                 this.is_loaded = true;
+                this.pro = response.fontawesome_pro;
             });
         },
         blockClass: function(active) {
@@ -439,12 +446,6 @@ export default {
         },
     },
     mounted() {
-        this.emitter.on('read_release', (release) => {
-            this.readRelease(release);
-        });
-        this.emitter.on('read_notification', (notification) => {
-            this.readNotification(notification);
-        });
         this.show_alerts = this.has_alerts;
         this.queueFetch();
     }

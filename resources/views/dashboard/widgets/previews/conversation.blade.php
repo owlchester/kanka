@@ -10,7 +10,7 @@ $conversation = $entity->child;
     <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity">
         <span class="" data-toggle="tooltip" data-title="{{ __('conversations.tabs.participants') }}">
             <x-badge>
-                <x-icon class="fa-solid fa-users"></x-icon>
+                <x-icon class="fa-solid fa-users" />
                 {{ $conversation->participants()->count() }}
             </x-badge>
         </span>

@@ -11,8 +11,8 @@ use Stevebauman\Purify\Facades\Purify;
  * Trait UserSetting
  * @package App\Models
  *
- * @property bool $mail_vote
- * @property bool $mail_release
+ * @property bool|int $mail_vote
+ * @property bool|int $mail_release
  * @property string $patreon_email
  * @property string $newEntityWorkflow
  * @property string $campaignSwitcherOrderBy
@@ -187,28 +187,6 @@ trait UserSetting
 
             } elseif (!empty($value)) {
                 $settings[$key] = Purify::clean($value);
-            }
-        }
-
-        $this->settings = $settings;
-
-        return $this;
-    }
-
-    /**
-     * Reset tutorials for the user.
-     * @return $this
-     */
-    public function resetTutorials(): self
-    {
-        $settings = $this->settings;
-        if (!is_array($settings)) {
-            return $this;
-        }
-
-        foreach ($settings as $key => $setting) {
-            if (str_starts_with($key, 'tutorial_')) {
-                unset($settings[$key]);
             }
         }
 

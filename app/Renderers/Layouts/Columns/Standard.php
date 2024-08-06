@@ -13,6 +13,7 @@ class Standard extends Column
     public const ENTITYLINK = 'entitylink';
     public const ENTITYLIST = 'entitylist';
     public const ParentLink = 'parentlink';
+    public const VIEW = 'view';
     public const LOCATION = 'location';
     public const MENTION_LINK = 'mention-link';
     public const VISIBILITY = 'visibility';
@@ -25,7 +26,7 @@ class Standard extends Column
     public function __toString(): string
     {
         if (!isset($this->config['render']) && isset($this->config['renter'])) {
-            return 'Mispelt _render_';
+            return 'Misspelled _render_';
         }
         if (!isset($this->config['render'])) {
             return (string)$this->model->{$this->config['key']};
@@ -62,6 +63,7 @@ class Standard extends Column
             self::VISIBILITY_PIVOT,
             self::DATE,
             self::MENTION_LINK,
+            self::VIEW,
         ]);
     }
 

@@ -11,7 +11,7 @@ $typeOptions = [
         field="name"
         :required="true"
         :label="__('crud.fields.name')">
-        <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/layers.placeholders.name') }}" required value="{!! old('name', $model->name ?? null) !!}" />
+        <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/layers.placeholders.name') }}" required value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" />
     </x-forms.field>
     @php
         $options = $map->layerPositionOptions(!empty($model->position) ? $model->position : null);
@@ -42,9 +42,11 @@ $typeOptions = [
         <x-forms.select name="position" :options="$options" :selected="$model->position ?? $last" />
     </x-forms.field>
 
+    @if (!$model || empty($model->image_path))
     <div class="col-span-2">
-    @include('cruds.fields.image', ['imageRequired' => empty($model), 'size' => 'map', 'gallery' => false, 'removable' => false])
+        @include('cruds.fields.image', ['fieldname' => 'image_uuid', 'size' => 'map'])
     </div>
+    @endif
 </x-grid>
 
 @include('editors.editor')

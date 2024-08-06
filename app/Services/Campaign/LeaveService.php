@@ -19,7 +19,7 @@ class LeaveService
 
     public function leave(): void
     {
-        /** @var CampaignUser|null $member */
+        /** @var ?CampaignUser $member */
         $member = CampaignUser::where('campaign_id', $this->campaign->id)
             ->where('user_id', $this->user->id)
             ->first();

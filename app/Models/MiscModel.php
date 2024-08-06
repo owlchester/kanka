@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
@@ -28,8 +29,7 @@ use Laravel\Scout\Searchable as Scout;
  * @property string $entry
  * @property string $name
  * @property string $type
- * @property string $slug
- * @property Entity|null $entity
+ * @property ?Entity $entity
  * @property string $image
  * @property string $tooltip
  * @property string $header_image
@@ -43,6 +43,7 @@ use Laravel\Scout\Searchable as Scout;
 abstract class MiscModel extends Model
 {
     use Copiable;
+    use HasSuggestions;
     use LastSync;
     use Orderable;
     use Paginatable;
@@ -178,7 +179,7 @@ abstract class MiscModel extends Model
         $entity = Entity::create([
             'entity_id' => $this->id,
             'campaign_id' => $this->campaign_id,
-            'is_private' => $this->is_private,
+            'is_private' => $this->isPrivate(),
             'name' => $this->name,
             'type_id' => $this->entityTypeId(),
         ]);
@@ -194,13 +195,6 @@ abstract class MiscModel extends Model
         return static::withoutEvents(function () {
             return $this->touch();
         });
-    }
-
-    /**
-     * Copy related elements to new target. Override this in individual models (ex maps)
-     */
-    public function copyRelatedToTarget(MiscModel $target)
-    {
     }
 
     /**
@@ -285,7 +279,7 @@ abstract class MiscModel extends Model
         $campaign = CampaignLocalization::getCampaign();
         $superboosted = $campaign->superboosted();
 
-        if ($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
+        if ($campaign->boosted() && $entity->hasHeaderImage()) {
             $classes[] = 'entity-with-banner';
         }
 
@@ -379,5 +373,10 @@ abstract class MiscModel extends Model
             'type'  => $this->type,
             'entry'  => strip_tags($this->entry),
         ];
+    }
+
+    public function isPrivate(): bool
+    {
+        return (bool) $this->is_private;
     }
 }

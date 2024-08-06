@@ -115,9 +115,8 @@ To create a event, use the following endpoint.
 | `date` | `string` | Fictional date at which the event took place |
 | `location_id` | `string` | Location of the event |
 | `tags` | `array` | Array of tag ids |
-| `image_url` | `string` | URL to a picture to be used for the event |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `is_private` | `boolean` | If the event is only visible to `admin` members of the campaign |
 ### Results
 

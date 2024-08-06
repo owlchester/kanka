@@ -79,7 +79,7 @@ if (isset($model) && $model->isChunked()) {
     <x-forms.field
         field="distance-measure"
         :label="__('maps.fields.distance_measure')"
-        :tooltip="true"
+        tooltip
         :helper="__('maps.helpers.distance_measure') . ' ' . __('maps.helpers.distance_measure_2')"
         >
         <input type="number" name="config[distance_measure]" class="w-full" value="{{ $source->config['distance_measure'] ?? old('config[distance_measure]', $model->config['distance_measure'] ?? null) }}" min="0.001" max="100.99" step="0.0001"/>
@@ -107,7 +107,7 @@ if (isset($model) && $model->isChunked()) {
                 </li>
             </ul>
             <div class="tab-content bg-base-100 p-4">
-                <div id="coordinates" class="tab-pane fade in active">
+                <div id="coordinates" class="tab-pane active">
                     <x-helper  :text="__('maps.helpers.center')" />
                     <x-grid>
                         <x-forms.field field="center-y" :label="__('maps.fields.center_y')">
@@ -119,7 +119,7 @@ if (isset($model) && $model->isChunked()) {
                         </x-forms.field>
                     </x-grid>
                 </div>
-                <div id="marker" class="tab-pane fade">
+                <div id="marker" class="tab-pane">
                     @if (isset($model) && !empty($model))
                     <?php
                         //get the current center marker or null

@@ -42,7 +42,6 @@ Route::get('/boosters/unpremium/{campaign}', [PremiumController::class, 'unpremi
 
 
 Route::post('/release/{app_release}', [ReleaseController::class, 'read'])->name('settings.release');
-Route::post('/banner', [ReleaseController::class, 'banner'])->name('settings.banner');
 
 Route::get('/account', [AccountController::class, 'index'])->name('settings.account');
 Route::patch('/account/password', [AccountController::class, 'password'])->name('settings.account.password');

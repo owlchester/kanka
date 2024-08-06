@@ -8,20 +8,14 @@ use Illuminate\View\Component;
 
 class Badge extends Component
 {
-    public string $type;
-    public ?string $css;
-    public ?string $title;
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $type = 'default',
-        string $css = null,
-        string $title = null,
+        public string $type = 'default',
+        public string|null $css = null,
+        public string|null $title = null,
     ) {
-        $this->type = $type;
-        $this->css = $css;
-        $this->title = $title;
     }
 
     /**

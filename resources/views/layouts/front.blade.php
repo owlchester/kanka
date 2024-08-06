@@ -68,7 +68,7 @@
 @else
         <link rel="canonical" href="{{ request()->fullUrl() }}" />
 @foreach(LaravelLocalization::getSupportedLocales() as $language => $properties)
-    @if (in_array($language, ['hr', 'he', 'gl', 'hu', 'ca']))@continue @endif
+    @if (in_array($language, ['hr', 'he', 'gl', 'hu', 'ca', 'nl']))@continue @endif
     <link rel="alternate" href="{{ request()->fullUrl() . '?lang=' . $language }}" hreflang="{{ $language }}">
 @endforeach
 @endif

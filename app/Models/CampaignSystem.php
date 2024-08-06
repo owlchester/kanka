@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasCampaign;
-use App\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
@@ -13,8 +12,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
  *
  * @property int $user_id
  * @property string $text
- *
- * @property User $user
  */
 class CampaignSystem extends Pivot
 {

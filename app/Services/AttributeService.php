@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\AttributeType;
 use App\Models\Attribute;
 use App\Models\AttributeTemplate;
 use App\Models\Campaign;
@@ -124,8 +125,8 @@ class AttributeService
 
             // If the linked entity isn't an attribute template, we might be dealing with a random value
             if (!$this->entity->isAttributeTemplate()) {
-                // @phpstan-ignore-next-line
-                list($attr->type, $value) = $this->randomService->randomAttribute($attr->type, $value);
+                list($attr->type, $value) =
+                    $this->randomService->randomAttribute(AttributeType::from($attr->type), $value);
             }
 
             $attribute->name = $name;
@@ -249,7 +250,6 @@ class AttributeService
 
         // Marketplace campaigns
         $key = __('attributes/templates.list.marketplace');
-        // @phpstan-ignore-next-line
         foreach (CampaignPlugin::templates($this->campaign)->with(['plugin', 'plugin.user'])->get() as $plugin) {
             if (empty($plugin->plugin)) {
                 continue;

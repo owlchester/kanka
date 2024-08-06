@@ -42,7 +42,7 @@
 
                     <div class="plugin-head flex items-center gap-2">
                         <div class="grow">
-                            <x-icon class="fa-solid fa-code-branch"></x-icon>
+                            <x-icon class="fa-solid fa-code-branch" />
                             <strong>{{ $version->version }}</strong>
                         </div>
                         <div class="">

@@ -11,7 +11,7 @@
         <div class="header-buttons inline-block ml-auto">
             <a href="{{ route('abilities.entity-add', [$campaign, $model]) }}" class="btn2 btn-sm"
                data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('abilities.entity-add', [$campaign, $model]) }}">
-                <x-icon class="plus"></x-icon> <span class="hidden md:inline">{{ __('abilities.children.actions.attach') }}</span>
+                <x-icon class="plus" /> <span class="hidden md:inline">{{ __('abilities.children.actions.attach') }}</span>
             </a>
         </div>
     @endcan

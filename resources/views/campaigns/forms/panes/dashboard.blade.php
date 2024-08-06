@@ -6,7 +6,7 @@
             field="excerpt"
             :label="__('campaigns.fields.excerpt')"
             :helper="__('campaigns.helpers.excerpt')"
-            :tooltip="true">
+            tooltip>
             <textarea name="excerpt" id="excerpt" class="w-full html-editor">{!! old('excerpt', $model->excerptForEdition ?? null) !!}</textarea>
         </x-forms.field>
 

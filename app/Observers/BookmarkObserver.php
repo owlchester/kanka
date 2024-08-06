@@ -6,8 +6,6 @@ use App\Models\Bookmark;
 
 class BookmarkObserver
 {
-    use PurifiableTrait;
-
     /**
      */
     public function saving(Bookmark $model)

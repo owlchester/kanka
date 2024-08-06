@@ -133,6 +133,7 @@ return [
         'copy_links'        => 'Copy Links',
         'copy_permissions'  => 'Copy Permissions (this will override values set in the permissions tab)',
         'copy_posts'        => 'Copy Posts (this includes the posts permissions)',
+        'copy_reminders'    => 'Copy Reminders',
         'creator'           => 'Creator',
         'date_range'        => 'Date range',
         'entity'            => 'Entity',
@@ -170,6 +171,7 @@ return [
         ],
         'errors'    => [
             'max'       => 'You have reached the maximum number (:max) of files for this entity.',
+            'max_size'  => 'The campaign has reached the maximum file storage capacity.',
             'no_files'  => 'No files.',
         ],
         'files'     => 'Uploaded Files',
@@ -332,6 +334,9 @@ return [
     ],
     'remove'                    => 'Remove',
     'rename'                    => 'Rename',
+    'reorder'                   => [
+        'empty' => 'No elements to reorder.',
+    ],
     'save'                      => 'Save',
     'save_and_close'            => 'Save and Close',
     'save_and_copy'             => 'Save and Copy',

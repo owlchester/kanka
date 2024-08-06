@@ -4,7 +4,7 @@
 * @var \App\Models\Map $model
 */
 ?>
-@if (!isset($model) || empty($model->entity->image_path))
+@if (!isset($model) || !$model->explorable())
     <x-alert type="warning">
         <p>{{ __('maps.helpers.missing_image') }}</p>
     </x-alert>
@@ -16,7 +16,7 @@
     <div class="map" id="map{{ $model->id }}" style="width: 100%; height: 50%;">
         <div class="map-actions absolute bottom-0 right-0 m-4">
             <button class="btn2 btn-sm btn-mode-drawing">
-                <x-icon class="pencil"></x-icon>
+                <x-icon class="pencil" />
                 {{ __('maps/explore.actions.finish-drawing') }}
             </button>
         </div>
@@ -26,10 +26,12 @@
     @parent
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.js' }}" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomdisplay.js" type="text/javascript" ></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.path.drag.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.editable.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomcss.js"></script>
     @vite([
         'resources/js/location/map-v3.js',
     ])

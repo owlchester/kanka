@@ -8,24 +8,15 @@ use Illuminate\View\Component;
 
 class Tab extends Component
 {
-    public string $target;
-    public string $title;
-    public ?string $icon;
-    public bool $default;
-
     /**
      * Create a new component instance.
      */
     public function __construct(
-        string $target,
-        string $title,
-        string $icon = null,
-        bool $default = false,
+        public string $target,
+        public string $title,
+        public ?string $icon = null,
+        public bool $default = false,
     ) {
-        $this->target = $target;
-        $this->title = $title;
-        $this->icon = $icon;
-        $this->default = $default;
     }
 
     /**

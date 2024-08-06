@@ -105,7 +105,6 @@ class GalleryService
         ];
     }
 
-
     /**
      * Total size in mb
      */
@@ -124,6 +123,7 @@ class GalleryService
         if (!is_array($files)) {
             $files = [$files];
         }
+        $available = $this->available();
         foreach ($files as $source) {
             // Prepare the name as sent by the user. It gets purified in the observer
             if (empty($source)) {
@@ -134,13 +134,19 @@ class GalleryService
 
             $image = new Image();
             $image->campaign_id = $this->campaign->id;
-            $image->created_by = $this->user->id;
-            $image->id = Str::uuid()->toString();
             $image->ext = $source->extension();
             $image->size = (int) ceil($source->getSize() / 1024); // kb
             $image->name = mb_substr($name, 0, 45);
             $image->folder_id = $request->post('folder_id');
-            $image->visibility_id = $this->campaign->defaultVisibilityID();
+            $image->visibility_id = $this->campaign->defaultVisibility();
+
+            // Check remaining space again before saving, as the user could be near max and uploading multiple
+            // files at a time to bypass the size restrictions
+            $available -= $image->size;
+            if ($available < 0) {
+                continue;
+            }
+
             $image->save();
 
             $source
@@ -191,13 +197,12 @@ class GalleryService
     public function createFolder(Request $request)
     {
         $folder = new Image();
-        $folder->id = Str::uuid();
         $folder->campaign_id = $this->campaign->id;
-        $folder->name = $this->purify($request->post('name'));
+        $folder->name = $request->post('name');
         $folder->folder_id = $request->post('folder_id');
         $folder->is_folder = true;
         $folder->created_by = $this->user->id;
-        $folder->visibility_id = (int) $request->post('visibility_id');
+        $folder->visibility_id = Visibility::from((int) $request->post('visibility_id'));
         $folder->save();
 
         return $folder;

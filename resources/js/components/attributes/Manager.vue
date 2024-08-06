@@ -65,6 +65,7 @@
                     v-for="attribute in visibleAttributes"
                     :key="attribute.id"
                     :attribute="attribute"
+                    :attributes="attributes"
                     :isAdmin="isAdmin()"
                     :showHidden="showHidden"
                     :i18n="i18n"
@@ -82,6 +83,7 @@
             :visible-attributes="visibleAttributes"
             :i18n="i18n"
             :newAttributeID="newAttributeID"
+            :max="meta.max"
             @incrementNewAttributeID="incrementNewAttributeID">
         </attributes-manager-form>
     </div>
@@ -301,8 +303,9 @@ const loadTemplate = () => {
 }
 
 const importAttribute = (attribute) => {
-    let ex = attributes.value.find(attr => attr.name == attribute.name && !attr.is_deleted);
-    if (ex) {
+    // Don't re-import existing attributes, unless they've been deleted
+    let ex = attributes.value.find(attr => attr.name == attribute.name)
+    if (ex && !ex.is_deleted) {
         return
     }
 

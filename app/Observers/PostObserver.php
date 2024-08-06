@@ -10,7 +10,6 @@ use App\Models\EntityLog;
 
 class PostObserver
 {
-    use PurifiableTrait;
     use ReorderTrait;
 
     /**

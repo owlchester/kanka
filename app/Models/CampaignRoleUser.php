@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Attribute
@@ -12,28 +13,23 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property int $campaign_role_id
- * @property int $user_id
  *
- * @property User $user
  * @property Campaign $campaign
  * @property CampaignRole $campaignRole
  * @property Carbon $created_at
  */
 class CampaignRoleUser extends Model
 {
+    use HasUser;
+
     protected $fillable = [
         'campaign_role_id',
         'user_id',
     ];
 
-    public function campaignRole()
+    public function campaignRole(): BelongsTo
     {
         return $this->belongsTo('App\Models\CampaignRole', 'campaign_role_id', 'id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function recentlyCreated(): bool

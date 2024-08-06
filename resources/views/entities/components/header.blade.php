@@ -32,12 +32,10 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     $buttonsClass ++;
 }
 
-$superboosted = $campaign->superboosted();
-
 $hasBanner = false;
-if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
+if($campaign->boosted() && $entity->hasHeaderImage()) {
     $hasBanner = true;
-    $headerImageUrl = $entity->getHeaderUrl($superboosted);
+    $headerImageUrl = $entity->getHeaderUrl();
 }
 
 ?>
@@ -70,7 +68,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                     <x-dropdowns.item
                         :link="$imageUrl"
                         target="_blank">
-                        <x-icon class="fa-solid fa-external-link"></x-icon>
+                        <x-icon class="fa-solid fa-external-link" />
                         {{ __('entities/image.actions.view') }}
                     </x-dropdowns.item>
                     <hr class="m-0" />
@@ -124,25 +122,25 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
             </h1>
             @if ($model instanceof \App\Models\Character && $model->isDead())
                 <span class="entity-name-icon entity-char-dead cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_dead') }}">
-                    <x-icon class="ra ra-skull entity-icons"></x-icon>
+                    <x-icon class="ra ra-skull entity-icons" />
                     <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
                 </span>
             @endif
             @if ($model instanceof \App\Models\Quest && $model->isCompleted())
                 <span class="entity-name-icon entity-quest-complete cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('quests.fields.is_completed') }}">
-                    <x-icon class="fa-solid fa-check-circle entity-icons"></x-icon>
+                    <x-icon class="fa-solid fa-check-circle entity-icons" />
                     <span class="sr-only">{{ __('quests.fields.is_completed') }}</span>
                 </span>
             @endif
             @if ($model instanceof \App\Models\Organisation && $model->isDefunct())
                 <span class="entity-name-icon entity-org-defunct cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('organisations.hints.is_defunct') }}">
-                    <x-icon class="fa-solid fa-shop-slash entity-icons "></x-icon>
+                    <x-icon class="fa-solid fa-shop-slash entity-icons " />
                     <span class="sr-only">{{ __('organisations.hints.is_defunct') }}</span>
                 </span>
             @endif
             @if ($model instanceof \App\Models\Creature && $model->isExtinct())
                 <span class="entity-name-icon entity-cre-extinct cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_extinct') }}">
-                    <x-icon class="fa-solid fa-skull-cow entity-icons "></x-icon>
+                    <x-icon class="fa-solid fa-skull-cow entity-icons " />
                     <span class="sr-only">{{ __('creatures.hints.is_extinct') }}</span>
                 </span>
             @endif
@@ -164,7 +162,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                 <div class="dropdown-menu hidden" role="menu" id="entity-submenu">
                     @can('update', $model)
                         <x-dropdowns.item :link="route($entity->pluralType() . '.edit', [$campaign, $model->id])" keyboard="edit">
-                            <x-icon class="pencil"></x-icon>
+                            <x-icon class="pencil" />
                             <span class="grow">{{ __('crud.edit') }}</span>
 
                             <span class="keyboard-shortcut"  title="{!! __('crud.keyboard-shortcut', ['code' => '[E]']) !!}" data-html="true">E</span>
@@ -172,17 +170,17 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                     @endcan
                     @can('create', $model)
                         <x-dropdowns.item :link="route($entity->pluralType() . '.create', $campaign)">
-                            <x-icon class="fa-regular fa-plus"></x-icon>
+                            <x-icon class="fa-regular fa-plus" />
                             {{ __('crud.actions.new') }}
                         </x-dropdowns.item>
                         @if (method_exists($model, 'getParentKeyName'))
                             <x-dropdowns.item :link="route($entity->pluralType() . '.create', [$campaign, $model->entity, 'parent_id' => $model->id])">
-                                <x-icon class="fa-regular fa-plus"></x-icon>
+                                <x-icon class="fa-regular fa-plus" />
                                 {{ __('crud.actions.new_child') }}
                             </x-dropdowns.item>
                         @endif
-                        <x-dropdowns.item link="{{ route($entity->pluralType() . '.create', [$campaign, $model->entity, 'copy' => $model->id]) }}">
-                            <x-icon class="fa-regular fa-copy"></x-icon>
+                        <x-dropdowns.item link="{{ route($entity->pluralType() . '.create', [$campaign, 'copy' => $model->id]) }}">
+                            <x-icon class="fa-regular fa-copy" />
                             {{ __('crud.actions.copy') }}
                         </x-dropdowns.item>
                     @endcan
@@ -191,21 +189,21 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                         @if(auth()->check())
                             @can('update', $model)
                                 <x-dropdowns.item :link="route('entities.story.reorder', [$campaign, $model->entity->id])">
-                                    <x-icon class="fa-solid fa-list-ol"></x-icon>
+                                    <x-icon class="fa-solid fa-list-ol" />
                                     {{ __('entities/story.reorder.icon_tooltip') }}
                                 </x-dropdowns.item>
                             @endcan
                                 <x-dropdowns.item link="#" :data="['title' => $model->getEntityType() . ':' . $model->entity->id, 'toggle' => 'tooltip', 'clipboard' => '[' . $model->getEntityType() . ':' . $model->entity->id .']', 'toast' => __('crud.alerts.copy_mention')]">
-                                    <x-icon class="fa-solid fa-link"></x-icon>
+                                    <x-icon class="fa-solid fa-link" />
                                     {{ __('crud.actions.copy_mention') }}
                                 </x-dropdowns.item>
                                 @can('setTemplates', $campaign)
                                     <x-dropdowns.item :link="route('entities.template', [$campaign, $entity])">
                                         @if($entity->isTemplate())
-                                            <x-icon class="fa-regular fa-star"></x-icon>
+                                            <x-icon class="fa-regular fa-star" />
                                             {{ __('entities/actions.templates.unset') }}
                                         @else
-                                            <x-icon class="fa-solid fa-star"></x-icon>
+                                            <x-icon class="fa-solid fa-star" />
                                             {{ __('entities/actions.templates.set') }}
                                         @endif
                                     </x-dropdowns.item>
@@ -213,29 +211,29 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                             <hr class="m-0" />
                                 @can('update', $model)
                                     <x-dropdowns.item link="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}" :dialog="route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table'])">
-                                        <x-icon class="fa-solid fa-people-arrows"></x-icon>
+                                        <x-icon class="fa-solid fa-people-arrows" />
                                         {{ __('entities/relations.create.new_title') }}
                                     </x-dropdowns.item>
                                     <hr class="m-0" />
                                 @endcan
                         @endif
                         <x-dropdowns.item link="{{ route('entities.html-export', [$campaign, $entity]) }}">
-                            <x-icon class="fa-solid fa-print"></x-icon>
+                            <x-icon class="fa-solid fa-print" />
                             {{ __('crud.actions.print') }}
                         </x-dropdowns.item>
                         <x-dropdowns.item link="{{ route('entities.json.export', [$campaign, $entity]) }}">
-                            <x-icon class="fa-solid fa-download"></x-icon>
+                            <x-icon class="fa-solid fa-download" />
                             {{ __('crud.actions.json-export') }}
                         </x-dropdowns.item>
                         <x-dropdowns.item link="{{ route('entities.markdown.export', [$campaign, $entity]) }}">
-                            <x-icon class="fa-solid fa-download"></x-icon>
+                            <x-icon class="fa-solid fa-download" />
                             {{ __('crud.actions.markdown-export') }}
                         </x-dropdowns.item>
                     @endif
                     @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($model->campaign_id))
                         <hr class="m-0" />
                         <x-dropdowns.item link="{{ route('entities.move', [$campaign, $entity->id]) }}">
-                            <x-icon class="fa-regular fa-clone"></x-icon>
+                            <x-icon class="fa-regular fa-clone" />
                             @can('update', $model)
                                 {{ __('crud.actions.move') }}
                             @else
@@ -246,7 +244,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
 
                     @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $model))
                         <x-dropdowns.item link="{{ route('entities.transform', [$campaign, $entity->id]) }}">
-                            <x-icon class="fa-solid fa-exchange-alt"></x-icon>
+                            <x-icon class="fa-solid fa-exchange-alt" />
                             {{ __('crud.actions.transform') }}
                         </x-dropdowns.item>
                     @endif
@@ -257,7 +255,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                         @endphp
                         <hr class="m-0" />
                         <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]">
-                            <x-icon class="trash"></x-icon>
+                            <x-icon class="trash" />
                             {{ __('crud.remove') }}
                         </x-dropdowns.item>
                     @endcan
@@ -286,7 +284,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
                    data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity->id]) }}"
                    data-tag-slug="{{ $tag->slug }}"
                 >
-                    {!! $tag->html() !!}
+                    @include ('tags._badge')
                 </a>
             @endforeach
         @endif
@@ -329,7 +327,7 @@ if($campaign->boosted() && $entity->hasHeaderImage($superboosted)) {
 
     <x-dialog id="quick-privacy" :title="__('Loading')">
         <div class="p-5 text-center">
-            <x-icon class="fa-solid fa-spinner fa-spin fa-2x"></x-icon>
+            <x-icon class="fa-solid fa-spinner fa-spin fa-2x" />
         </div>
     </x-dialog>
 @endsection

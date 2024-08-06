@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use PragmaRX\Google2FA\Google2FA;
 use Illuminate\Support\Facades\Auth;
 use BaconQrCode\Renderer\ImageRenderer;
@@ -13,6 +13,8 @@ use BaconQrCode\Writer;
 
 class PasswordSecurity extends Model
 {
+    use HasUser;
+
     protected $table = 'password_securities';
 
     protected $fillable = [
@@ -20,14 +22,6 @@ class PasswordSecurity extends Model
         'google2fa_enable',
         'google2fa_secret',
     ];
-
-    /**
-     * A Google2FA belongsTo a user
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo('App\User');
-    }
 
     /**
      * Generates the QR code for 2FA

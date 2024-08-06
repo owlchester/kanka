@@ -2,19 +2,12 @@
 
 namespace App\Observers;
 
-use App\Models\Entity;
 use App\Models\Map;
-use App\Models\MiscModel;
 
 class MapObserver extends MiscObserver
 {
-    /**
-     * @param Map $map
-     */
-    public function saving(MiscModel $map)
+    public function saving(Map $map)
     {
-        parent::saving($map);
-
         $map->grid = (int) $map->grid;
     }
 
@@ -26,40 +19,5 @@ class MapObserver extends MiscObserver
         $map->height = null;
         $map->width = null;
         $map->saveQuietly();
-    }
-
-    /**
-     * @param Map $model
-     */
-    public function deleting(MiscModel $model)
-    {
-        /**
-         * We need to do this ourselves and not let mysql to it (set null), because the plugin wants to delete
-         * all descendants when deleting the parent, which is stupid.
-         * @var Map $sub
-         */
-        foreach ($model->maps as $sub) {
-            $sub->map_id = null;
-            $sub->saveQuietly();
-        }
-    }
-
-    /**
-     * When an element is created, check for the copy option
-     */
-    public function created(MiscModel $model)
-    {
-        parent::created($model);
-
-        // Copy eras from timeline
-        if (request()->has('copy_elements') && request()->filled('copy_elements')) {
-            $sourceId = request()->post('copy_source_id');
-
-            /** @var Entity $source */
-            $source = Entity::findOrFail($sourceId);
-            if ($source->isMap()) {
-                $source->child->copyRelatedToTarget($model);
-            }
-        }
     }
 }

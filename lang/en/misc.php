@@ -2,8 +2,8 @@
 
 return [
     'ads'   => [
-        'premium'       => 'enabling premium features for',
-        'remove_v3'     => 'Remove ads by :subscribing to Kanka or :boosting the campaign.',
+        'premium'       => 'enabling premium campaign features',
+        'remove_v4'     => 'Remove ads by :subscribing to Kanka or :premium for as little as :currency :price per month.',
         'subscribing'   => 'subscribing',
     ],
 ];

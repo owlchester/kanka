@@ -11,22 +11,22 @@
         <div class="flex flex-wrap gap-6 text-sm">
 
             <span class="" title="{{ __('campaigns.fields.entity_count') }}" data-toggle="tooltip">
-                <x-icon class="pencil"></x-icon>
+                <x-icon class="pencil" />
                 {{ number_format($campaign->visible_entity_count) }}
             </span>
             <span class="" title="{{ __('campaigns.fields.followers') }}" data-toggle="tooltip">
-                <x-icon class="fa-solid fa-eye"></x-icon>
+                <x-icon class="fa-solid fa-eye" />
                 {{ number_format($campaign->follower) }}
             </span>
             @if ($campaign->locale)
                 <span class="" title="{{ __('languages.codes.' . $campaign->locale) }}" data-toggle="tooltip">
-                    <x-icon class="fa-solid fa-language"></x-icon>
+                    <x-icon class="fa-solid fa-language" />
                     {{ $campaign->locale }}
                 </span>
             @endif
             @if (!empty($campaign->system))
                 <span class="" title="{{ __('campaigns.fields.system') }}" data-toggle="tooltip">
-                    <x-icon class="cog"></x-icon>
+                    <x-icon class="cog" />
                     {{ $campaign->system }}
                 </span>
             @endif

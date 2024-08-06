@@ -10,7 +10,7 @@ class CommunityVoteService
 {
     /**
      */
-    public function cast(CommunityVote $communityVote, User $user, string $option = null): array
+    public function cast(CommunityVote $communityVote, User $user, ?string $option = null): array
     {
         if (empty($option)) {
             $this->remove($communityVote, $user);

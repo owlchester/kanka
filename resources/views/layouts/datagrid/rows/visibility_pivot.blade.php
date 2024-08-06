@@ -4,5 +4,5 @@
     $pivot = new \App\Models\EntityAbility();
     $pivot->visibility_id = $model->pivot->visibility_id;
     @endphp
-    {!! $pivot->visibilityIcon() !!}
+    @include('icons.visibility', ['icon' => $pivot->visibilityIcon()])
 @endif

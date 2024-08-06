@@ -13,7 +13,7 @@ class CampaignSearchService
      * List of roles in a campaign
      * @param string|null $query Search term
      */
-    public function roles(string $query = null): array
+    public function roles(?string $query = null): array
     {
         return $this->campaign->roles()
             ->search($query)
@@ -25,7 +25,7 @@ class CampaignSearchService
      * List of members in a campaign
      * @param string|null $query Search term
      */
-    public function members(string $query = null): array
+    public function members(?string $query = null): array
     {
         $members = $this->campaign->members()->search($query)->get();
         $result = [];

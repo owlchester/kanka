@@ -12,7 +12,7 @@
         <a href="{{ route('webhooks.create', $campaign) }}" class="btn2 btn-primary btn-sm"
            data-url="{{ route('webhooks.create', $campaign) }}"
         >
-            <x-icon class="plus"></x-icon>
+            <x-icon class="plus" />
             {{ __('campaigns/webhooks.actions.add') }}
         </a>
     @endif

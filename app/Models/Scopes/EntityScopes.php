@@ -39,7 +39,7 @@ trait EntityScopes
     /**
      * Filter entities on specific tags
      */
-    public function scopeInTags(Builder $query, array $tags = null): Builder
+    public function scopeInTags(Builder $query, ?array $tags = null): Builder
     {
         if (empty($tags)) {
             return $query;

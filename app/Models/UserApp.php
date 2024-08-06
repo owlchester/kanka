@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @package App\Models
  *
  * @property int $id
- * @property int $user_id
  * @property string $type
  * @property string $access_token
  * @property string $refresh_token
@@ -20,13 +19,14 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $identifier
  * @property string|array $settings
  *
- * @property User $user
  *
  * @method static self|Builder app(string $app)
  * @method static self|Builder discord()
  */
 class UserApp extends Model
 {
+    use HasUser;
+
     public $fillable = [
         'user_id',
         'app',
@@ -54,13 +54,5 @@ class UserApp extends Model
     public function scopeDiscord(Builder $query): Builder
     {
         return $this->app('discord');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 }

@@ -109,4 +109,10 @@ return [
      * If set to true, show a dropdown of users for the login instead of a text field
      */
     'user_list' => env('APP_LOGIN_LIST', false),
+
+
+    /**
+     * If set to true user registration will be prefilled with random data.
+     */
+    'fast_registration' => env('ACCOUNT_FAST_REGISTRATION', false),
 ];

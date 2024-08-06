@@ -60,7 +60,7 @@ abstract class DatagridSorter
     /**
      * Build the list of filters
      */
-    public function options(Campaign $campaign = null): array
+    public function options(?Campaign $campaign = null): array
     {
         // Clean up options that don't make sense for this campaign
         $options = [];
@@ -170,7 +170,7 @@ abstract class DatagridSorter
 
     /**
      */
-    protected function validOption(string $key, Campaign $campaign = null)
+    protected function validOption(string $key, ?Campaign $campaign = null)
     {
         $whitelist = ['tag.name', 'target.name'];
         if (!str_contains($key, '.name')   || in_array($key, $whitelist)) {

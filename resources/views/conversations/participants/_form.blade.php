@@ -13,7 +13,7 @@
             @can('update', $model)
                 <x-form method="DELETE" :action="['conversations.conversation_participants.destroy', $campaign, $model, $participant]">
                     <button class="btn2 btn-error btn-outline btn-sm">
-                        <x-icon class="trash"></x-icon>
+                        <x-icon class="trash" />
                         <span class="sr-only">{{ __('crud.remove') }}</span>
                     </button>
                 </x-form>

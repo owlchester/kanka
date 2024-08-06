@@ -189,9 +189,8 @@ To create a conversation, use the following endpoint.
 | `target_id` | `int` | Available options: 1 for `users` and 2 for `characters`  |
 | `tags` | `array` | Array of tag ids |
 | `is_closed` | `boolean` | If the conversation is closed |
-| `image_url` | `string` | URL to a picture to be used for the conversation |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `is_private` | `boolean` | If the conversation is only visible to `admin` members of the campaign |
 
 ### Results

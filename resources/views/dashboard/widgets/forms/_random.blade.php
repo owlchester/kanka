@@ -30,7 +30,7 @@
                 <x-forms.field field="recent-filters"
                     :hidden="empty($model) || empty($model->conf('entity'))"
                     :label="__('dashboard.widgets.recent.filters')"
-                    :tooltip="true"
+                    tooltip
                     link="https://docs.kanka.io/en/latest/guides/dashboard.html"
                     :helper="__('dashboard.widgets.helpers.filters')">
                     <input type="text" name="config[filters]" value="{{ old('config[filters]', $model?->config['filters'] ?? null) }}" maxlength="191" class="w-full" id="config[filters]" placeholder="" />

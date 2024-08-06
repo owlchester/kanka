@@ -7,7 +7,7 @@ $types = [
 @endphp
 <x-grid>
     <x-forms.field field="name" :required="true" :label=" __('presets.fields.name')">
-        <input type="text" name="name" maxlength="191" placeholder="{{ __('presets.placeholders.name') }}" autofocus required value="{!! old('name', $preset->name ?? null) !!}" />
+        <input type="text" name="name" maxlength="191" placeholder="{{ __('presets.placeholders.name') }}" autofocus required value="{!! htmlspecialchars(old('name', $preset->name ?? null)) !!}" />
     </x-forms.field>
 
     @include('maps.markers.fields.icon', ['fieldname' => 'config[icon]'])

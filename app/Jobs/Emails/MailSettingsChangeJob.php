@@ -36,7 +36,7 @@ class MailSettingsChangeJob implements ShouldQueue
     public function handle()
     {
         // User deleted their account already? Sure thing
-        /** @var User|null $user */
+        /** @var ?User $user */
         $user = User::find($this->userId);
         if (empty($user)) {
             return;

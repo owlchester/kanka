@@ -11,7 +11,8 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('inventories', function (Blueprint $table) {
-            $table->uuid('image_uuid')->nullable();
+            $table->char('image_uuid', 36)->nullable();
+
         });
     }
 

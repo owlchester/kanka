@@ -29,7 +29,7 @@ class GalleryFolderController extends Controller
             ->createFolder($request);
 
         return redirect()
-            ->route('campaign.gallery.index', $campaign)
+            ->route('gallery', $campaign)
             ->withSuccess(__('campaign/gallery.folders.create.success', ['name' => $folder->name]));
     }
 }

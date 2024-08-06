@@ -13,8 +13,6 @@ use Illuminate\View\Component;
 
 class Native extends Component
 {
-    public int $section;
-    public Campaign $campaign;
     public User $user;
     public Ad $ad;
 
@@ -22,13 +20,9 @@ class Native extends Component
      * Create a new component instance.
      */
     public function __construct(
-        int $section,
-        Campaign $campaign = null,
+        public int $section,
+        public ?Campaign $campaign = null,
     ) {
-        $this->section = $section;
-        if ($campaign) {
-            $this->campaign = $campaign;
-        }
         if (auth()->check()) {
             $this->user = auth()->user();
         }

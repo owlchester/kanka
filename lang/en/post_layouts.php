@@ -5,5 +5,6 @@ return [
     'connection_map'        => 'Connection map',
     'helper'                => 'This post is set up to display the :subpage subpage of the entity.',
     'location_characters'   => 'Location characters',
+    'location_events'       => 'Location events',
     'quest_elements'        => 'Quest Elements',
 ];

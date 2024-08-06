@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use App\Models\Concerns\Blameable;
-use App\Traits\VisibilityIDTrait;
+use App\Models\Concerns\HasVisibility;
+use App\Models\Concerns\Sanitizable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
@@ -20,12 +21,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $charges
  * @property int $position
  * @property string $note
- * @property int $created_by
- * @property int $updated_by
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Ability|null $ability
- * @property Entity|null $entity
+ * @property ?Entity $entity
  *
  * @method static Builder|self defaultOrder()
  */
@@ -33,7 +32,8 @@ class EntityAbility extends Model
 {
     use Blameable;
     use HasFactory;
-    use VisibilityIDTrait;
+    use HasVisibility;
+    use Sanitizable;
 
     /**
      * Fillable fields
@@ -50,6 +50,10 @@ class EntityAbility extends Model
 
     public $casts = [
         'visibility_id' => \App\Enums\Visibility::class,
+    ];
+
+    protected array $sanitizable = [
+        'note',
     ];
 
     public function entity(): BelongsTo

@@ -21,7 +21,7 @@
 
             @if ($campaign->boosted())
                 <a class="btn2 btn-sm btn-ghost" href="https://docs.kanka.io/en/latest/features/campaigns/sidebar.html" target="_blank">
-                    <x-icon class="question"></x-icon>
+                    <x-icon class="question" />
                     {{ __('crud.actions.help') }}
                 </a>
           @endif
@@ -95,11 +95,11 @@
             </ul>
             <div class="text-right">
                 <a href="#" class="btn2 btn-error btn-outline pull-left" data-toggle="dialog" data-target="reset-confirm">
-                    <x-icon class="trash"></x-icon>
+                    <x-icon class="trash" />
                     {{ __('campaigns/sidebar.actions.reset') }}
                 </a>
                 <button type="submit" class="btn2 btn-primary">
-                    <x-icon class="save"></x-icon>
+                    <x-icon class="save" />
                     {{ __('crud.save') }}
                 </button>
             </div>

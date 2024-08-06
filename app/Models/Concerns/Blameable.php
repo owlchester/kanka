@@ -12,13 +12,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Trait Blameable
  * @package App\Models\Concerns
- * @property int $created_by
- * @property int $updated_by
- * @property int $deleted_by
+ * @property ?int $created_by
+ * @property ?int $updated_by
+ * @property ?int $deleted_by
  *
- * @property User $creator
- * @property User $updater
- * @property User $remover
+ * @property ?User $creator
+ * @property ?User $updater
+ * @property ?User $remover
  */
 trait Blameable
 {

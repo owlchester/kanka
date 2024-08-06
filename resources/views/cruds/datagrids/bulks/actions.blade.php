@@ -52,7 +52,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
         ];
         /*$dropdownActions[] = '
             <a href="#" class="bulk-copy-campaign" data-toggle="dialog" data-target="primary-dialog" data-url="' .  route('bulk.copy-to-campaign', [$campaign, 'entity_type' => $entityTypeId]) . '" data-bulk-action="ajax">
-                <x-icon class="fa-regular fa-clone"></x-icon> ' .  __('crud.actions.copy_to_campaign') . '
+                <x-icon class="fa-regular fa-clone" /> ' .  __('crud.actions.copy_to_campaign') . '
             </a>';*/
     }
 }
@@ -64,7 +64,7 @@ if ($datagridActions->hasBulkPrint()) {
         ];
     /*$dropdownActions[] = '
     <a href="#" class="bulk-print">
-        <x-icon class="fa-solid fa-print"></x-icon>
+        <x-icon class="fa-solid fa-print" />
         ' . __('crud.actions.print') . '
     </a>';*/
 }

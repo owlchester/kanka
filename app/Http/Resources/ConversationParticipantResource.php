@@ -19,7 +19,6 @@ class ConversationParticipantResource extends ModelResource
 
         return [
             'conversation_id' => $resource->conversation_id,
-            'created_by' => $resource->created_by,
             'character_id' => $resource->character_id,
             'user_id' => $resource->user_id,
         ];

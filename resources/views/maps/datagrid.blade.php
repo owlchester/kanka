@@ -25,7 +25,7 @@
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps')),
             'render' => function($model) {
-                return $model->maps->count();
+                return $model->children->count();
             },
             'disableSort' => true,
         ],

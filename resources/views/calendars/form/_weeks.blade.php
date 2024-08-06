@@ -7,7 +7,7 @@
         </x-forms.field>
 
         <button class="btn2 btn-sm dynamic-row-add" data-template="template_weekday" data-target="calendar-weekdays" title="{{ __('calendars.actions.add_weekday') }}">
-            <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_weekday') }}
+            <x-icon class="plus" /> {{ __('calendars.actions.add_weekday') }}
         </button>
 
         <?php
@@ -36,7 +36,7 @@
                             <input type="text" name="weekday[]" value="{{ $weekday }}" placeholder="{{ __('calendars.parameters.weeks.name') }}" aria-label="{{ __('calendars.parameters.weeks.name') }}" maxlength="191" class="w-full" />
                         </div>
                         <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
-                            <x-icon class="trash"></x-icon>
+                            <x-icon class="trash" />
                             <span class="sr-only">{{ __('crud.remove') }}</span>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
         </x-forms.field>
 
         <button class="btn2 btn-sm dynamic-row-add" data-template="template_week" data-target="calendar-weeks" title="{{ __('calendars.actions.add_week') }}">
-            <x-icon class="plus"></x-icon>
+            <x-icon class="plus" />
             {{ __('calendars.actions.add_week') }}
         </button>
 

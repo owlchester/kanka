@@ -146,9 +146,8 @@ To create a quest, use the following endpoint.
 | `quest_id` | `integer` | The parent quest |
 | `instigator_id` | `integer` | The quest's instigator (entity) |
 | `tags` | `array` | Array of tag ids |
-| `image_url` | `string` | URL to a picture to be used for the quest |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image (limited to superboosted campaigns) |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to superboosted campaigns) |
+| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `is_private` | `boolean` | If the quest is only visible to `admin` members of the campaign |
 
 ### Results

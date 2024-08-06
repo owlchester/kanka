@@ -65,7 +65,7 @@ const registerPermissionDeleteEvents = () => {
     console.log(deletes);
     deletes.forEach((btn) => {
         btn.addEventListener('click', function (e) {
-            console.log('clicking');
+            //console.log('clicking');
             btn.closest('.perm-row').remove();
             e.preventDefault();
 
@@ -85,7 +85,7 @@ const initPostVisibility = () => {
             .post(this.getAttribute('action'), {visibility_id: this.querySelector('[name="visibility_id"]').value})
             .then((res) => {
                 document.getElementById('primary-dialog').close();
-                document.getElementById('visibility-icon-' + res.data.post_id).innerHTML = res.data.icon;
+                document.getElementById('visibility-icon-' + res.data.post_id).firstElementChild.className = res.data.icon.class;
                 window.showToast(res.data.toast);
             });
         return false;

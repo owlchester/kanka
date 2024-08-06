@@ -12,7 +12,7 @@
            data-toggle="dialog-ajax" data-target="role-dialog"
            data-url="{{ route('campaign_roles.create', $campaign) }}"
         >
-            <x-icon class="plus"></x-icon>
+            <x-icon class="plus" />
             {{ __('campaigns.roles.actions.add') }}
         </a>
     @endif

@@ -7,8 +7,10 @@
     $preset = null;
     if (isset($model) && $model->calendar) {
         $preset = $model->calendar;
+    } elseif (isset($model) && $model->parent) {
+        $preset = $model->parent;
     } elseif (!isset($bulk)) {
-        $preset = FormCopy::field('calendar')->select($isParent ?? false, \App\Models\Calendar::class);
+        $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Calendar::class);
     }
 @endphp
 @endif

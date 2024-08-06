@@ -31,7 +31,7 @@ class MemberController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function switch(Campaign $campaign, CampaignUser $campaignUser, Entity $entity = null)
+    public function switch(Campaign $campaign, CampaignUser $campaignUser, ?Entity $entity = null)
     {
         $this->authorize('switch', $campaignUser);
 

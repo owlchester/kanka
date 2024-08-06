@@ -86,7 +86,7 @@ $specificTheme = null;
                             @can('update', $map)
                                 <div class="join">
                                     <a href="{{ route('maps.edit', [$campaign, $map]) }}" class="btn2 btn-primary btn-sm join-item">
-                                        <x-icon class="map"></x-icon> {{ __('maps.actions.edit') }}
+                                        <x-icon class="map" /> {{ __('maps.actions.edit') }}
                                     </a>
                                     <div class="dropdown">
                                         <button type="button" class="btn2 btn-primary btn-sm join-item" data-dropdown aria-expanded="false">
@@ -153,6 +153,7 @@ $specificTheme = null;
 @endif
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.js' }}" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>
+<script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomdisplay.js" type="text/javascript" ></script>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomcss.js"></script>

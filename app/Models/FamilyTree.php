@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Blameable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int $family_id
@@ -19,7 +20,7 @@ class FamilyTree extends Model
         'config' => 'array'
     ];
 
-    public function family()
+    public function family(): BelongsTo
     {
         return $this->belongsTo(Family::class);
     }

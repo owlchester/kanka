@@ -40,7 +40,7 @@ class GalleryController extends Controller
 
     public function show(Campaign $campaign)
     {
-        return redirect()->route('campaign.gallery.index', $campaign);
+        return redirect()->route('gallery', $campaign);
     }
 
     /**
@@ -111,7 +111,7 @@ class GalleryController extends Controller
         $params['campaign'] = $campaign;
 
         $key = $image->isFolder() ? 'folder' : 'success';
-        return redirect()->route('campaign.gallery.index', $params)
+        return redirect()->route('gallery', $params)
             ->with('success', __('campaigns/gallery.update.' . $key));
     }
 
@@ -130,7 +130,7 @@ class GalleryController extends Controller
         $this->service->campaign($campaign)->image($image)->delete();
 
         $key = $image->isFolder() ? 'folder' : 'success';
-        return redirect()->route('campaign.gallery.index', $options)
+        return redirect()->route('gallery', $options)
             ->with('success', __('campaigns/gallery.destroy.' . $key, ['name' => $image->name]));
     }
 }

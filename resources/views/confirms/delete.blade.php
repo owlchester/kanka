@@ -43,7 +43,7 @@
         </menu>
         <menu class="flex flex-wrap gap-3 ps-0">
             <button type="submit" class="btn2 btn-error btn-outline delete-confirm-submit px-8 ml-5 rounded-full">
-                <x-icon class="trash"></x-icon>
+                <x-icon class="trash" />
                 {{ __('crud.remove') }}
             </button>
         </menu>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CampaignPlugin
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $plugin_id
  * @property int $plugin_version_id
  * @property string $name
- * @property bool $is_active
+ * @property bool|int $is_active
  * @property Plugin $plugin
  * @property Campaign $campaign
  * @property PluginVersion $version
@@ -23,22 +24,22 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CampaignPlugin extends Model
 {
-    public function plugin()
+    public function plugin(): BelongsTo
     {
         return $this->belongsTo(Plugin::class);
     }
 
-    public function campaign()
+    public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class);
     }
 
-    public function version()
+    public function version(): BelongsTo
     {
         return $this->belongsTo(PluginVersion::class, 'plugin_version_id');
     }
 
-    public function scopeTemplates(Builder $builder, Campaign $campaign)
+    public function scopeTemplates(Builder $builder, Campaign $campaign): Builder
     {
         return $builder->leftJoin('plugins as p', 'p.id', 'plugin_id')
             ->where('campaign_id', $campaign->id)
@@ -63,8 +64,8 @@ class CampaignPlugin extends Model
     }
 
     /**
-     * Determine if the plug is renderable. This is needed for character sheets in draft statuses, to only
-     * render a sheet for the author, as they can potentially add XSS injections.
+     * Determine if the plug can be rendered. This is needed for character sheets in draft statuses,
+     * to only render a sheet for the author, as they can potentially add XSS injections.
      */
     public function renderable(): bool
     {

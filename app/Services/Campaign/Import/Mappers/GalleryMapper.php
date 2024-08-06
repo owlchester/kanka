@@ -8,7 +8,6 @@ use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class GalleryMapper
 {
@@ -46,7 +45,8 @@ class GalleryMapper
     {
         $this->image = new Image();
         $this->image->campaign_id = $this->campaign->id;
-        $this->image->id = Str::uuid();
+        //Need to save to set the id otherwise it stores wrong data.
+        $this->image->save();
         $this->mapping[$this->data['id']] = $this->image->id;
         ImportIdMapper::putGallery($this->data['id'], $this->image->id);
 

@@ -26,7 +26,7 @@
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')),
             'render' => function($model) {
-                return $model->tags->count();
+                return $model->children->count();
             },
             'disableSort' => true,
         ],

@@ -9,7 +9,7 @@
 @section('entity-header-actions')
     <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
         <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
-            <x-icon class="question"></x-icon>
+            <x-icon class="question" />
             <span class="hidden xl:inline">{{ __('crud.actions.help') }}</span>
         </a>
         @if (request()->has('parent_id'))

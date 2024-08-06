@@ -30,7 +30,7 @@ class DashboardService
      * Get the current or default dashboard for the user
      * @return null|CampaignDashboard
      */
-    public function getDashboard(int $dashboard = null)
+    public function getDashboard(?int $dashboard = null)
     {
         // Only available for boosted campaigns
         if (!$this->campaign->boosted()) {
@@ -134,7 +134,7 @@ class DashboardService
             }
 
             // Validate the role
-            /** @var CampaignRole|null $role */
+            /** @var ?CampaignRole $role */
             $role = $this->campaign->roles()->where('id', $roleId)->first();
             if (empty($role)) {
                 continue;
@@ -176,7 +176,7 @@ class DashboardService
             }
 
             // Validate the role
-            /** @var CampaignRole|null $role */
+            /** @var ?CampaignRole $role */
             $role = $this->campaign->roles()->where('id', $roleId)->first();
             if (empty($role)) {
                 continue;

@@ -63,7 +63,7 @@ use App\Enums\Widget;
         @can('dashboard', $campaign)
             <div class="text-center mt-6">
                 <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 btn-lg btn-primary" title="{{ __('dashboard.settings.title') }}">
-                    <x-icon class="cog"></x-icon>
+                    <x-icon class="cog" />
                     {{ __('dashboard.settings.title') }}
                 </a>
             </div>
@@ -90,6 +90,8 @@ use App\Enums\Widget;
     <script src="{{ 'https://unpkg.com/leaflet@' . config('app.leaflet_source') . '/dist/leaflet.js' }}" integrity="{{ config('app.leaflet_js') }}" crossorigin=""></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.markercluster.layersupport.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomdisplay.js"></script>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomcss.js"></script>
     @endif
 @endsection
 

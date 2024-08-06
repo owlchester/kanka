@@ -41,7 +41,7 @@ if (!empty($widget->conf('entity'))) {
             </div>
             @if ($widget->widget != Widget::Header)
                 <span class="block text-2xl">
-                     {!! $widget->widgetIcon() !!}
+                    <x-icon :class="$widget->widgetIcon()" />
                     {{ __('dashboard.setup.widgets.' . $widget->widget->value) }}
                 </span>
             @endif
@@ -80,7 +80,7 @@ if (!empty($widget->conf('entity'))) {
             @if (!empty($widget->tags))
                 <div class="tags text-xs">
                     @foreach ($widget->tags as $tag)
-                        {!! $tag->html() !!}
+                        @include ('tags._badge')
                     @endforeach
                 </div>
             @endif

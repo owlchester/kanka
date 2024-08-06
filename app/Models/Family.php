@@ -7,27 +7,28 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
+use App\Models\Concerns\Nested;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Family
  * @package App\Models
- * @property int|null $family_id
- * @property int|null $location_id
+ * @property ?int $family_id
  * @property Collection|Character[] $members
- * @property Family $family
- * @property FamilyTree|null $familyTree
- * @property Collection|Family[] $families
+ * @property ?FamilyTree $familyTree
  * @property Collection|Family[] $descendants
+ * @property Collection|CharacterFamily[] $pitvotMembers
  */
 class Family extends MiscModel
 {
@@ -37,14 +38,16 @@ class Family extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use HasRecursiveRelationships;
+    use Nested;
+    use Sanitizable;
     use SoftDeletes;
     use SortableTrait;
 
     protected $fillable = [
         'campaign_id',
         'name',
-        'slug',
         'entry',
         'location_id',
         'family_id',
@@ -88,6 +91,11 @@ class Family extends MiscModel
         'family_id',
     ];
 
+    protected array $sanitizable = [
+        'name',
+        'type',
+    ];
+
     /**
      * Entity type
      */
@@ -125,9 +133,6 @@ class Family extends MiscModel
             },
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-            'families' => function ($sub) {
-                $sub->select('id', 'family_id', 'name');
             },
             'members',
             'children' => function ($sub) {
@@ -188,15 +193,7 @@ class Family extends MiscModel
         return ['family_id', 'location_id'];
     }
 
-    /**
-     * @return BelongsTo
-     */
-    public function location()
-    {
-        return $this->belongsTo('App\Models\Location', 'location_id', 'id');
-    }
-
-    public function familyTree()
+    public function familyTree(): HasOne
     {
         return $this->hasOne(FamilyTree::class);
     }
@@ -205,28 +202,19 @@ class Family extends MiscModel
      */
     public function members(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\Character', 'character_family');
+        $query = $this->belongsToMany('App\Models\Character', 'character_family');
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
+            $query->wherePivot('is_private', false);
+        }
+
+        return $query;
     }
 
     public function pivotMembers(): HasMany
     {
-        return $this->hasMany(CharacterFamily::class);
-    }
+        return $this->hasMany(CharacterFamily::class)
+            ->with(['character', 'character.entity']);
 
-    /**
-     * Parent
-     */
-    public function family(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Family', 'family_id', 'id');
-    }
-
-    /**
-     * Children
-     */
-    public function families(): HasMany
-    {
-        return $this->hasMany('App\Models\Family', 'family_id', 'id');
     }
 
     /**
@@ -239,13 +227,31 @@ class Family extends MiscModel
             $familyId[] = $descendant->id;
         };
 
-        return Character::select('characters.*')
+        $query = Character::select('characters.*')
             ->distinct('characters.id')
             ->leftJoin('character_family as cf', function ($join) {
                 $join->on('cf.character_id', '=', 'characters.id');
             })
             ->has('entity')
             ->whereIn('cf.family_id', $familyId);
+
+        if (auth()->guest() || !auth()->user()->isAdmin()) {
+            $query->where('cf.is_private', false);
+        }
+
+        return $query;
+    }
+
+    /**
+     * Get all characters in the family and descendants
+     */
+    public function allCharacterFamilies()
+    {
+        $familyIDs = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $familyIDs[] = $descendant->id;
+        };
+        return CharacterFamily::groupBy('character_id')->distinct('character_id')->whereIn('character_family.family_id', $familyIDs)->with('character');
     }
 
     /**
@@ -273,7 +279,7 @@ class Family extends MiscModel
         if (!empty($this->type)) {
             return true;
         }
-        if (!empty($this->family)) {
+        if (!empty($this->parent)) {
             return true;
         }
         return (bool) (!$this->entity->elapsedEvents->isEmpty());

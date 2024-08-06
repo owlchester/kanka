@@ -36,21 +36,21 @@ use App\Models\Concerns\LastSync;
  * @property string $name
  * @property string $email
  * @property string $locale
- * @property int|null $last_campaign_id
- * @property string|null $avatar
+ * @property ?int $last_campaign_id
+ * @property ?string $avatar
  * @property string $provider
  * @property int $provider_id
  * @property Carbon $last_login_at
  * @property int $welcome_campaign_id
  * @property bool|int $newsletter
  * @property bool|int $has_last_login_sharing
- * @property string|null $pledge
- * @property string|null $timezone
- * @property string|null $currency
+ * @property ?string $pledge
+ * @property ?string $timezone
+ * @property ?string $currency
  * @property int $referral_id
- * @property Carbon|string|null $card_expires_at
- * @property Carbon|string|null $banned_until
- * @property Carbon|string|null $created_at
+ * @property ?Carbon $card_expires_at
+ * @property ?Carbon $banned_until
+ * @property ?Carbon $created_at
  * @property Collection|array $settings
  * @property Collection|array $profile
  * @property Campaign $campaign
@@ -60,7 +60,7 @@ use App\Models\Concerns\LastSync;
  * @property bool $defaultNested
  * @property string $campaignSwitcherOrderBy
  *
- * @property string $stripe_id
+ * @property ?string $stripe_id
  */
 class User extends \Illuminate\Foundation\Auth\User
 {
@@ -130,15 +130,19 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * @param int $size = 40
      */
     public function getAvatarUrl(int $size = 40): string
     {
-        if (!empty($this->avatar) && $this->avatar != 'users/default.png') {
+        if ($this->hasAvatar()) {
             return Img::crop($size, $size)->url($this->avatar);
         } else {
             return '/images/defaults/user.svg';
         }
+    }
+
+    public function hasAvatar(): bool
+    {
+        return !empty($this->avatar) && $this->avatar != 'users/default.png';
     }
 
     /**
@@ -156,7 +160,7 @@ class User extends \Illuminate\Foundation\Auth\User
                 $roleLinks[] = $role->name;
             }
         }
-        return (string) implode(', ', $roleLinks);
+        return (string)implode(', ', $roleLinks);
     }
 
     /**
@@ -222,7 +226,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isElemental(): bool
     {
-        return (bool) (!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL);
+        return (bool)(!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL);
     }
 
     /**
@@ -287,6 +291,7 @@ class User extends \Illuminate\Foundation\Auth\User
             ->where('campaign_roles.is_admin', 1)->with('campaign')
             ->get();
         foreach ($roles as $role) {
+            /** @var CampaignRole $role */
             $campaigns[$role->campaign->id] = $role->campaign->name;
         }
 
@@ -325,7 +330,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function createdEntitiesCount(): string
     {
-        return (string) number_format(SingleUserCache::user($this)->entitiesCreatedCount());
+        return (string)number_format(SingleUserCache::user($this)->entitiesCreatedCount());
     }
 
     /**
@@ -488,7 +493,7 @@ class User extends \Illuminate\Foundation\Auth\User
         $campaigns = [];
         $userCampaigns = $this->campaigns()->with(['roles', 'roles.users'])->get();
         foreach ($userCampaigns as $campaign) {
-            /** @var CampaignRole|null $adminRole */
+            /** @var ?CampaignRole $adminRole */
             $adminRole = $campaign->roles->where('is_admin', true)->first();
             if (!$adminRole) {
                 continue;
@@ -518,7 +523,9 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function hasPayPal(): bool
     {
-        return $this->subscribed('kanka') && $this->subscription('kanka') && str_contains($this->subscription('kanka')->stripe_price, 'paypal');
+        return $this->subscribed('kanka') &&
+            $this->subscription('kanka') &&
+            str_contains($this->subscription('kanka')->stripe_price, 'paypal');
     }
 
     /**

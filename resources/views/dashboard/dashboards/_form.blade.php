@@ -11,7 +11,7 @@
         :required="true"
         :label="__('dashboard.dashboards.fields.name')">
 
-        <input type="text" name="name" placeholder="{{ __('dashboard.dashboards.placeholders.name') }}" maxlength="45" required value="{!! old('name', $dashboard->name ?? null) !!}" />
+        <input type="text" name="name" placeholder="{{ __('dashboard.dashboards.placeholders.name') }}" maxlength="45" required value="{!! htmlspecialchars(old('name', $dashboard->name ?? null)) !!}" />
     </x-forms.field>
 
     <div class="field grid grid-cols-2 gap-5">

@@ -2,49 +2,18 @@
 
 namespace App\Observers;
 
-use App\Facades\EntityCache;
 use App\Facades\EntityLogger;
 use App\Models\MiscModel;
-use App\Observers\Concerns\Copiable;
-use App\Services\ImageService;
-use Illuminate\Support\Str;
+use App\Facades\Images;
 
 abstract class MiscObserver
 {
-    use Copiable;
-    use PurifiableTrait;
-
-    /**
-     */
-    public function saving(MiscModel $model)
-    {
-        $model->slug = Str::slug($model->name, '');
-        $model->name = trim($model->name); // Remove empty spaces in names
-        //$model->name = strip_tags($model->name);
-
-        // If we're from the "move" service, we can skip this part.
-        // Or if we are deleting, we don't want to re-do the whole set foreign ids to null
-        if (request()->isMethod('delete') === true) {
-            return;
-        }
-
-        // Is private hook for non-admin (who can't set is_private)
-        if (!isset($model->is_private)) {
-            $model->is_private = false;
-        }
-    }
-
-
     /**
      */
     public function created(MiscModel $model)
     {
         // Created a new sub entity? Create the parent entity.
         $entity = $model->createEntity();
-
-        $this->copy($entity);
-
-        EntityCache::clearSuggestion($model);
     }
 
     /**
@@ -62,19 +31,11 @@ abstract class MiscObserver
             return;
         }
 
-        ImageService::cleanup($model);
+        Images::cleanup($model);
     }
 
     /**
      */
-    public function updated(MiscModel $model)
-    {
-        // Clear the cache suggestion for the entity type
-        if ($model->isDirty('type')) {
-            EntityCache::clearSuggestion($model);
-        }
-    }
-
     public function saved(MiscModel $model)
     {
         EntityLogger::model($model);

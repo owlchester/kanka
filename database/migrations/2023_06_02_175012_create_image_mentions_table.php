@@ -13,7 +13,7 @@ return new class () extends Migration {
         Schema::create('image_mentions', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('entity_id');
-            $table->uuid('image_id');
+            $table->char('image_id', 36);
             $table->unsignedInteger('post_id')->nullable();
             $table->timestamps();
 

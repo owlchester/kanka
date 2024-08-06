@@ -28,8 +28,8 @@ return [
     ],
 
     'gallery' => [
-        'standard' => env('APP_GALLERY_STANDARD', 50 * 1024),
-        'premium' => env('APP_GALLERY_PREMIUM', 1 * 1024 * 1024),
+        'standard' => env('APP_GALLERY_STANDARD', 100 * 1024),
+        'premium' => env('APP_GALLERY_PREMIUM', 2 * 1024 * 1024),
         //'premium' => 20 * 1024,
     ]
 ];

@@ -95,7 +95,8 @@ const loadDatagrid = (element, datagrid) => {
                 target.innerHTML = res.data.html;
             }
             if (res.data.deletes) {
-                document.querySelector('#datagrid-delete-forms').innerHTML = res.data.deletes;
+                const forms = document.querySelector('#datagrid-delete-forms');
+                if (forms) forms.innerHTML = res.data.deletes;
             }
             if (res.data.url) {
                 window.history.pushState({}, "", res.data.url);
@@ -105,7 +106,7 @@ const loadDatagrid = (element, datagrid) => {
             window.triggerEvent();
         })
         .catch(err => {
-            console.error('datagrid2 error', datagrid, datagrid.parentNode);
+            //console.error('datagrid2 error', datagrid, datagrid.parentNode);
             //datagrid.querySelector('tfoot')?.classList.add('bg-danger');
         });
 };

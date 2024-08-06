@@ -4,15 +4,15 @@
     :required="$required"
     :label="__($label)"
     :helper="$helper"
-    :tooltip="true">
+    tooltip>
 
     @if ($canNew)
         <div class="join w-full">
     @endif
 
-    <select 
+    <select
             @if ($multiple) multiple="multiple" @endif
-            name="{{ $name }}" 
+            name="{{ $name }}"
             id="{{ $id }}"
             class="w-full select2 join-item"
             style="width: 100%"
@@ -30,7 +30,7 @@
 
     @if ($canNew)
             <a class="quick-creator-subform btn2 join-item btn-sm" data-url="{{ route('entity-creator.form', [$campaign, 'type' => $entityType, 'origin' => 'entity-form', 'target' => $id]) }}">
-                <x-icon class="plus"></x-icon>
+                <x-icon class="plus" />
                 <span class="sr-only">{{ __('crud.create') }}</span>
             </a>
         </div>

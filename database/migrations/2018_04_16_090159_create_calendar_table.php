@@ -52,7 +52,6 @@ class CreateCalendarTable extends Migration
             $table->tinyInteger('leap_year_start')->unsigned()->nullable();
 
             $table->unsignedTinyInteger('start_offset')->nullable()->default(0);
-            $table->string('reset', 5)->nullable()->change();
             $table->boolean('skip_year_zero')->default(false);
 
             $table->timestamps();

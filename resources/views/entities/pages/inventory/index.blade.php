@@ -9,13 +9,13 @@
     'bodyClass' => 'entity-inventory',
 ])
 
-
+@include('entities.components.og')
 
 @section('entity-header-actions')
     @can('inventory', $entity->child)
         <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
             <a href="https://docs.kanka.io/en/latest/features/inventory.html" target="_blank" class="btn2 btn-ghost btn-sm">
-                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+                <x-icon class="question" /> {{ __('crud.actions.help') }}
             </a>
             @include('entities.pages.inventory._buttons')
         </div>

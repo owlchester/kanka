@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $section
  * @property int $created_by
- * @property bool $is_active
+ * @property bool|int $is_active
  * @property string $customer
  * @property string $html
  */
 class Ad extends Model
 {
-    public const SECTION_SIDEBAR = 1;
-    public const SECTION_BANNER = 2;
-    public const SECTION_FOOTER = 3;
+    public const int SECTION_SIDEBAR = 1;
+    public const int SECTION_BANNER = 2;
+    public const int SECTION_FOOTER = 3;
 
     public function scopeSection(Builder $query, int $section)
     {

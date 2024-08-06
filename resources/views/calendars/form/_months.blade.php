@@ -6,7 +6,7 @@
     </x-forms.field>
 
     <button class="btn2 btn-sm dynamic-row-add" data-template="template_month" data-target="calendar-months" title="{{ __('calendars.actions.add_month') }}">
-        <x-icon class="plus"></x-icon> {{ __('calendars.actions.add_month') }}
+        <x-icon class="plus" /> {{ __('calendars.actions.add_month') }}
     </button>
 
     <?php
@@ -75,7 +75,7 @@
                         </div>
                         <div>
                             <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
-                                <x-icon class="trash"></x-icon>
+                                <x-icon class="trash" />
                             </span>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                 </div>
                 <div class="">
                     <span class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" data-remove="4" title="{{ __('crud.remove') }}">
-                        <x-icon class="trash"></x-icon>
+                        <x-icon class="trash" />
                     </span>
                 </div>
             </div>

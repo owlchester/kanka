@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\MassPrunable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -12,7 +13,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @package App\Models
  *
  * @property int $id
- * @property int $user_id
  * @property int $entity_id
  * @property int $campaign_id
  * @property int $post_id
@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $quest_element_id
  * @property int $type_id
  *
- * @property User $user
  * @property Entity $entity
  *
  * @method static self|Builder keepAlive()
@@ -29,51 +28,47 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class EntityUser extends Pivot
 {
+    use HasUser;
     use MassPrunable;
 
-    public const TYPE_KEEPALIVE = 1;
+    public const int TYPE_KEEPALIVE = 1;
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function entity()
+    public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class, 'entity_id');
     }
 
-    public function campaign()
+    public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class, 'campaign_id');
     }
 
-    public function post()
+    public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class, 'post_id');
     }
 
-    public function timelineElement()
+    public function timelineElement(): BelongsTo
     {
         return $this->belongsTo(TimelineElement::class, 'timeline_element_id');
     }
 
-    public function questElement()
+    public function questElement(): BelongsTo
     {
         return $this->belongsTo(QuestElement::class, 'quest_element_id');
     }
 
-    public function scopeKeepAlive(Builder $query)
+    public function scopeKeepAlive(Builder $query): Builder
     {
         return $query->where('type_id', self::TYPE_KEEPALIVE);
     }
 
-    public function scopeUserID(Builder $query, int $userID)
+    public function scopeUserID(Builder $query, int $userID): Builder
     {
         return $query->where('user_id', $userID);
     }
 
-    public function scopeCampaignID(Builder $query, int $campaignID)
+    public function scopeCampaignID(Builder $query, int $campaignID): Builder
     {
         return $query->where('campaign_id', $campaignID);
     }

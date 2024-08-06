@@ -1,9 +1,9 @@
 @php
     $preset = null;
-    if (isset($model) && $model->attributeTemplate) {
-        $preset = $model->attributeTemplate;
+    if (isset($model) && $model->parent) {
+        $preset = $model->parent;
     } elseif (!isset($bulk)) {
-        $preset = FormCopy::field('attribute_template')->select($isParent ?? false, \App\Models\AttributeTemplate::class);
+        $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\AttributeTemplate::class);
     }
 @endphp
 <x-forms.foreign

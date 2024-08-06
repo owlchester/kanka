@@ -1,6 +1,6 @@
 <div class="flex flex-wrap gap-2 items-center">
     <button type="button" class="btn2 btn-sm" data-attribute-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-        <x-icon class="plus"></x-icon> {{ __('entities/attributes.types.attribute') }}
+        <x-icon class="plus" /> {{ __('entities/attributes.types.attribute') }}
     </button>
     <div class="dropdown">
         <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="true">
@@ -44,16 +44,10 @@
         </a>
     </div>
     <button type="button" class="btn2 btn-error btn-sm btn-outline" data-toggle="dialog" data-target="attributes-delete-all-confirm">
-        <x-icon class="trash"></x-icon>
+        <x-icon class="trash" />
         {{ __('entities/attributes.actions.remove_all') }}
     </button>
 </div>
-
-<x-alert type="warning" class="alert-too-many-fields mt-6" :hidden="true">
-    {!! __('entities/attributes.errors.too_many', [
-    'max' => number_format(ini_get('max_input_vars'))
-    ]) !!}
-</x-alert>
 <!-- Modal -->
 
 
@@ -94,7 +88,7 @@
                 {{ __('crud.cancel') }}
             </x-buttons.confirm>
             <x-buttons.confirm type="danger" outline="true" full="true" id="attributes-delete-all-confirm-submit">
-                <x-icon class="trash"></x-icon>
+                <x-icon class="trash" />
                 {{ __('crud.click_modal.confirm') }}
             </x-buttons.confirm>
             <input type="hidden" name="delete-all-attributes" value="" />

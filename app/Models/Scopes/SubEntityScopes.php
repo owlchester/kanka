@@ -107,6 +107,8 @@ trait SubEntityScopes
     {
         $relations = [
             'entity',
+            'entity.image',
+            'entity.header',
             'entity.tags',
             'entity.posts', 'entity.posts.permissions',
             'entity.events',

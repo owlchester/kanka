@@ -22,17 +22,17 @@
             </h3>
             <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                     data-target="recovery-help">
-                <x-icon class="question"></x-icon>
+                <x-icon class="question" />
                 {{ __('crud.actions.help') }}
             </button>
             @if(isset($isPost))
                 <a class="btn2 btn-sm" href="{{ route('recovery', [$campaign]) }}">
-                    <x-icon class="fa-solid fa-rotate"></x-icon>
+                    <x-icon class="fa-solid fa-rotate" />
                     {{ __('campaigns/recovery.toggle.entity') }}
                 </a>
             @else
                 <a class="btn2 btn-sm" href="{{ route('recovery.posts', [$campaign]) }}">
-                    <x-icon class="fa-solid fa-rotate"></x-icon>
+                    <x-icon class="fa-solid fa-rotate" />
                     {{ __('campaigns/recovery.toggle.post') }}
                 </a>
             @endif
