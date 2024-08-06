@@ -15,19 +15,19 @@ $translations = json_encode([
         <div class="header-buttons inline-block  flex gap-2 items-center justify-end">
             <a class="btn2 btn-sm" data-toggle="dialog-ajax" data-target="primary-dialog"
                     data-url="{{ route('conversations.conversation_participants.index', [$campaign, $model]) }}">
-                <x-icon class="fa-solid fa-users"></x-icon>
+                <x-icon class="fa-solid fa-users" />
                 {{ __('conversations.fields.participants') }} {{ $model->participants->count() }}
             </a>
             @include('entities.headers.toggle')
             @can('update', $model)
                 <a href="{{ $model->getLink('edit') }}" class="btn2 btn-primary btn-sm ">
-                    <x-icon class="pencil"></x-icon> {{ __('crud.edit') }}
+                    <x-icon class="pencil" /> {{ __('crud.edit') }}
                 </a>
             @endcan
             @can('post', [$model, 'add'])
                 <a href="{{ route('entities.posts.create', [$campaign, $model->entity]) }}" class="btn2 btn-sm btn-new-post"
                    data-entity-type="post" data-toggle="tooltip" data-title="{{ __('crud.tooltips.new_post') }}">
-                    <x-icon class="plus"></x-icon> {{ __('crud.actions.new_post') }}
+                    <x-icon class="plus" /> {{ __('crud.actions.new_post') }}
                 </a>
             @endcan
         </div>

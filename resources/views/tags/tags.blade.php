@@ -11,7 +11,7 @@
 @section('entity-header-actions')
     <div class="header-buttons inline-block ml-auto">
         <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
-            <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+            <x-icon class="question" /> {{ __('crud.actions.help') }}
         </a>
         @if (request()->has('tag_id'))
             <a href="{{ route('tags.tags', [$campaign, $model, '#tag-tags']) }}" class="btn2 btn-sm">

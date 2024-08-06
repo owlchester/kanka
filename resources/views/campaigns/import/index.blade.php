@@ -19,7 +19,7 @@
                 {{ __('campaigns/import.title') }}
             </h3>
             <a href="https://docs.kanka.io/en/latest/features/campaigns/import.html" target="_blank" class="btn2 btn-sm btn-ghost">
-                <x-icon class="question"></x-icon>
+                <x-icon class="question" />
                 {{ __('crud.actions.help') }}
             </a>
         </div>

@@ -14,7 +14,7 @@
         <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
             <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                     data-target="dialog-help">
-                <x-icon class="question"></x-icon>
+                <x-icon class="question" />
                 {{ __('crud.actions.help') }}
             </button>
         </div>

@@ -5,7 +5,7 @@ $hasOthers = false;
 <div class="dropdown datagrid-bulk-actions">
     <a class="btn2 btn-disabled break-keep" data-dropdown aria-expanded="false" data-tree="escape">
         {{ __('crud.bulk.buttons.label') }}
-        <x-icon class="fa-solid fa-caret-down"></x-icon>
+        <x-icon class="fa-solid fa-caret-down" />
     </a>
     <div class="dropdown-menu hidden" role="menu">
         @foreach (\App\Facades\Datagrid::bulks() as $bulk)

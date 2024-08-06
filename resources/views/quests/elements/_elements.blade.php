@@ -49,7 +49,7 @@
                             <x-button.delete-confirm target="#delete-form-{{ $element->id }}" size="sm" />
 
                             <a href="{{ route('quests.quest_elements.edit', [$campaign, $model, $element]) }}" class="btn2 btn-sm btn-primary">
-                                <x-icon class="edit"></x-icon>
+                                <x-icon class="edit" />
                                 {{ __('crud.edit') }}
                             </a>
                         </div>

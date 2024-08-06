@@ -23,7 +23,7 @@
             </x-alert>
             <p>
                 <a href="{{ $model->getLink() }}">
-                    <x-icon class="fa-regular fa-arrow-left"></x-icon>
+                    <x-icon class="fa-regular fa-arrow-left" />
                     {{ __('crud.actions.back') }}
                 </a>
             </p>
@@ -59,7 +59,7 @@
             </p>
         </x-alert>
         <a href="{{ $model->getLink() }}">
-            <x-icon class="fa-regular fa-arrow-left"></x-icon>
+            <x-icon class="fa-regular fa-arrow-left" />
             {{ __('crud.actions.back') }}
         </a>
     @endif

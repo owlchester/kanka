@@ -18,7 +18,7 @@ $all = $model->descendants()->has('parent')->count();
     </h3>
     <div class="flex-none flex gap-2 flex-wrap">
         <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
-            <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+            <x-icon class="question" /> {{ __('crud.actions.help') }}
         </a>
         @if (request()->has('parent_id'))
             <a href="{{ $entity->url() }}" class="btn2 btn-sm">

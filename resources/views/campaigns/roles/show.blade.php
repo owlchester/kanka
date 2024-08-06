@@ -26,7 +26,7 @@
         <div class="flex gap-2 items-center">
             <h3 class="grow">{{ __('crud.permissions.title') }}</h3>
             <button class="btn2 btn-sm btn-ghost" data-target="permission-modal" data-toggle="dialog">
-                <x-icon class="question"></x-icon> {{ __('crud.actions.help') }}
+                <x-icon class="question" /> {{ __('crud.actions.help') }}
             </button>
         </div>
         @if (!$role->isAdmin())
@@ -43,7 +43,7 @@
                     </div>
                     <div class="text-right">
                         <button class="btn2 btn-primary">
-                            <x-icon class="save"></x-icon>
+                            <x-icon class="save" />
                             {{ __('crud.save') }}
                         </button>
                     </div>

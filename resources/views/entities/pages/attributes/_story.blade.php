@@ -1,6 +1,6 @@
 <div class="entity-attributes flex flex-col gap-2">
     <h3>
-        <x-icon class="fa-solid fa-th-list"></x-icon>
+        <x-icon class="fa-solid fa-th-list" />
         {{ __('crud.tabs.attributes') }}
     </h3>
     <x-box>

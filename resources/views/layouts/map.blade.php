@@ -86,7 +86,7 @@ $specificTheme = null;
                             @can('update', $map)
                                 <div class="join">
                                     <a href="{{ route('maps.edit', [$campaign, $map]) }}" class="btn2 btn-primary btn-sm join-item">
-                                        <x-icon class="map"></x-icon> {{ __('maps.actions.edit') }}
+                                        <x-icon class="map" /> {{ __('maps.actions.edit') }}
                                     </a>
                                     <div class="dropdown">
                                         <button type="button" class="btn2 btn-primary btn-sm join-item" data-dropdown aria-expanded="false">

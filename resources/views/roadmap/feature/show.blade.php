@@ -6,7 +6,7 @@
             {!! $feature->name !!}
         </h4>
         <button autofocus type="button" class="text-md self-start" onclick="this.closest('dialog').close('close')" title="{{ __('crud.delete_modal.close') }}">
-            <x-icon class="fa-regular fa-times"></x-icon>
+            <x-icon class="fa-regular fa-times" />
             <span class="sr-only">{{ __('crud.delete_modal.close') }}</span>
         </button>
     </div>

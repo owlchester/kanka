@@ -2,7 +2,7 @@
         <div class="">
             @if($image->isFolder())
                 <div class="text-center my-5">
-                    <x-icon class="fa-solid fa-folder fa-4x"></x-icon>
+                    <x-icon class="fa-solid fa-folder fa-4x" />
                 </div>
             @else
 
@@ -51,16 +51,16 @@
             <div class="flex gap-2 items-center flex-wrap">
                 @if(!$image->isFolder())
                     <x-badge :title="__('campaigns/gallery.fields.ext')">
-                        <x-icon class="fa-regular fa-image"></x-icon>
+                        <x-icon class="fa-regular fa-image" />
                         {{ strtoupper($image->ext) }}
                     </x-badge>
                     <x-badge :title="__('campaigns/gallery.fields.size')">
-                        <x-icon class="fa-regular fa-weight-hanging"></x-icon>
+                        <x-icon class="fa-regular fa-weight-hanging" />
                         {{ $image->niceSize() }}
                     </x-badge>
                 @endif
                 <x-badge :title="__('campaigns/gallery.fields.created_by')" css="text-xs">
-                    <x-icon class="fa-regular fa-user"></x-icon>
+                    <x-icon class="fa-regular fa-user" />
                     <div class="text-ellipsis truncate">
                         {{ $image->user ? $image->user->name : __('crud.users.unknown') }}
                     </div>

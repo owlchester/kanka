@@ -16,7 +16,7 @@
     <div class="map" id="map{{ $model->id }}" style="width: 100%; height: 50%;">
         <div class="map-actions absolute bottom-0 right-0 m-4">
             <button class="btn2 btn-sm btn-mode-drawing">
-                <x-icon class="pencil"></x-icon>
+                <x-icon class="pencil" />
                 {{ __('maps/explore.actions.finish-drawing') }}
             </button>
         </div>

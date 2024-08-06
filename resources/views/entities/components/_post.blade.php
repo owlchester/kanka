@@ -8,8 +8,8 @@
 <article class="flex flex-col gap-2 post-block post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif " data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}" data-template="{{ $post->isTemplate() ? '1' : '0' }}" id="post-{{ $post->id }}">
     <div class="post-header flex gap-1 md:gap-2 items-center">
         <div class="grow flex gap-2 items-center cursor-pointer element-toggle {{ $post->collapsed() ? "animate-collapsed" : null }}" data-animate="collapse" data-target="#post-body-{{ $post->id }}">
-            <x-icon class="fa-solid fa-chevron-up icon-show"></x-icon>
-            <x-icon class="fa-solid fa-chevron-down icon-hide"></x-icon>
+            <x-icon class="fa-solid fa-chevron-up icon-show" />
+            <x-icon class="fa-solid fa-chevron-down icon-hide" />
             <h3 class="post-title grow {{ $post->collapsed() ? "collapsed" : null }}"  >
                 {{ $post->name  }}
                 @if (app()->isLocal())
@@ -24,7 +24,7 @@
             </span>
                 <div class="dropdown">
                     <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape">
-                        <x-icon class="fa-solid fa-ellipsis-v"></x-icon>
+                        <x-icon class="fa-solid fa-ellipsis-v" />
                         <span class="sr-only">{{__('crud.actions.actions') }}</span>
                     </a>
                     <div class="dropdown-menu hidden" role="menu">

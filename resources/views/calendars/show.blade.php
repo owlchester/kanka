@@ -19,7 +19,7 @@ if (!empty($redirect)) {
         @include('entities.headers.toggle')
         @can('update', $model)
             <a href="{{ route('calendars.edit', $options) }}" class="btn2 btn-primary btn-sm ">
-                <x-icon class="pencil"></x-icon>
+                <x-icon class="pencil" />
                 <span class="hidden xl:inline">{{ __('crud.edit') }}</span>
             </a>
         @endcan

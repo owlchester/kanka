@@ -5,7 +5,7 @@
             @can('update', [$model])
                 <div class="float-right ml-2 mb-2">
                     <a href="{{ route('entities.entry.edit', [$campaign, $model->entity]) }}" data-title="{{ __('crud.edit') }}" role="button" class="" data-toggle="tooltip">
-                        <x-icon class="edit"></x-icon>
+                        <x-icon class="edit" />
                         <span class="sr-only">{{ __('crud.edit') }}</span>
                     </a>
                 </div>

@@ -2,7 +2,7 @@
     data-toggle="dialog" data-target="primary-dialog"
     data-url="{{ route('entities.inventories.create', [$campaign, $entity]) }}"
 >
-    <x-icon class="plus"></x-icon>
+    <x-icon class="plus" />
     {{ __('entities/inventories.actions.add') }}
 </a>
 
@@ -10,6 +10,6 @@
     data-toggle="dialog" data-target="primary-dialog"
     data-url="{{ route('entities.inventory.copy', [$campaign, $entity]) }}"
 >
-    <x-icon class="copy"></x-icon>
+    <x-icon class="copy" />
     {{ __('entities/inventories.actions.copy_from') }}
 </a>

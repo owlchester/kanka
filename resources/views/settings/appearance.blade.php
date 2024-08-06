@@ -21,11 +21,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 <div class="{{ $boxClass }}">
                     <div class="flex gap-2">
                         <h2 class="text-base grow">
-                            <x-icon class="fa-regular fa-moon-over-sun"></x-icon>
+                            <x-icon class="fa-regular fa-moon-over-sun" />
                             {{ __('settings/appearance.fields.theme') }}
                         </h2>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#theme" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="question"></x-icon>
+                            <x-icon class="question" />
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
                     </div>
@@ -45,11 +45,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 <div class="{{ $boxClass }} {{ $highlight === 'pagination' ? $highlightClass : '' }}">
                     <div class="flex gap-2">
                         <h2 class="text-base grow">
-                            <x-icon class="fa-solid fa-list"></x-icon>
+                            <x-icon class="fa-solid fa-list" />
                             {{ __('settings/appearance.fields.pagination') }}
                         </h2>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#results-per-page" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="question"></x-icon>
+                            <x-icon class="question" />
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
                     </div>
@@ -63,11 +63,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 <div class="{{ $boxClass }}">
                     <div class="flex gap-2">
                         <h2 class="text-base grow">
-                            <x-icon class="fa-solid fa-calendar"></x-icon>
+                            <x-icon class="fa-solid fa-calendar" />
                             {{ __('settings/appearance.fields.date-format') }}
                         </h2>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#date-formatting" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="question"></x-icon>
+                            <x-icon class="question" />
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
                     </div>
@@ -88,11 +88,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 <div class="{{ $boxClass }} {{ $highlight === 'campaign-switcher' ? $highlightClass : '' }}">
                     <div class="flex gap-2">
                         <h2 class="text-base grow">
-                            <x-icon class="fa-solid fa-arrow-down-a-z"></x-icon>
+                            <x-icon class="fa-solid fa-arrow-down-a-z" />
                             {{ __('settings/appearance.fields.campaign-order') }}
                         </h2>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#campaign-order" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="question"></x-icon>
+                            <x-icon class="question" />
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
                     </div>
@@ -115,11 +115,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                     <div class="{{ $boxClass }}">
                         <div class="flex gap-2">
                             <h2 class="text-base grow">
-                                <x-icon class="pencil"></x-icon>
+                                <x-icon class="pencil" />
                                 {{ __('settings/appearance.fields.editor') }}
                             </h2>
                             <a href="https://docs.kanka.io/en/latest/account/appearance.html#text-editor" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                                <x-icon class="question"></x-icon>
+                                <x-icon class="question" />
                                 <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                             </a>
                         </div>
@@ -134,11 +134,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 <div class="{{ $boxClass }} {{ $highlight === 'explore' ? $highlightClass : '' }}">
                     <div class="flex gap-2">
                         <h2 class="text-base grow">
-                            <x-icon class="fa-solid fa-grid"></x-icon>
+                            <x-icon class="fa-solid fa-grid" />
                             {{ __('settings/appearance.fields.entity-explore') }}
                         </h2>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#entity-explore" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="question"></x-icon>
+                            <x-icon class="question" />
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
                     </div>
@@ -155,11 +155,11 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 <div class="{{ $boxClass }}">
                     <div class="flex gap-2">
                         <h2 class="text-base grow">
-                            <x-icon class="fa-solid fa-at"></x-icon>
+                            <x-icon class="fa-solid fa-at" />
                             {{ __('settings/appearance.fields.mentions') }}
                         </h2>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#mentions" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="question"></x-icon>
+                            <x-icon class="question" />
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
                     </div>
@@ -173,7 +173,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 </div>
 
                 <x-buttons.confirm type="primary" full="true">
-                    <x-icon class="save"></x-icon>
+                    <x-icon class="save" />
                     <span>{{ __('settings/appearance.actions.save') }}</span>
                 </x-buttons.confirm>
             @if (!empty($from))

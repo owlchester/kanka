@@ -23,7 +23,7 @@ use \Illuminate\Support\Arr;
             @if ($campaign->superboosted())
                 <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                              data-target="stats-help">
-                    <x-icon class="question"></x-icon>
+                    <x-icon class="question" />
                     {{ __('crud.actions.help') }}
                 </button>
             @endif

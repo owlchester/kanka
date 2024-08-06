@@ -32,7 +32,7 @@
                         data-toggle="dialog" data-target="primary-dialog"
                         data-url="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $item->position]) }}"
                     >
-                        <x-icon class="plus"></x-icon>
+                        <x-icon class="plus" />
                     </a>
                 </th>
             </tr>
@@ -76,7 +76,7 @@
                            data-toggle="dialog" data-target="primary-dialog"
                            data-url="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
                            title="{{ __('crud.edit') }}">
-                            <x-icon class="edit"></x-icon> {{ __('crud.edit') }}
+                            <x-icon class="edit" /> {{ __('crud.edit') }}
                         </a>
                     </td>
                 @endcan

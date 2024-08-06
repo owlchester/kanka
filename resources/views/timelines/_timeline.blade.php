@@ -83,7 +83,7 @@ $loadedElements = [];
             @can('update', $timeline)
                 <div>
             <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $model, 'from' => 'view']) }}" class="btn2 btn-sm">
-                <x-icon class="plus"></x-icon> {{ __('timelines/eras.actions.add') }}
+                <x-icon class="plus" /> {{ __('timelines/eras.actions.add') }}
             </a></div>
             @endcan
         </x-grid>

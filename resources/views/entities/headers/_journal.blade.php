@@ -6,7 +6,7 @@
 @if($model->date)
     <div class="entity-header-sub-element">
         <span data-title="{{ __('journals.fields.date') }}" data-toggle="tooltip">
-            <x-icon class="fa-solid fa-calendar-day"></x-icon>
+            <x-icon class="fa-solid fa-calendar-day" />
             {{ $model->date }}
         </span>
     </div>

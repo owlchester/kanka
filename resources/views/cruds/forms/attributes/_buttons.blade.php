@@ -1,6 +1,6 @@
 <div class="flex flex-wrap gap-2 items-center">
     <button type="button" class="btn2 btn-sm" data-attribute-template="#attribute_template" data-sortable="{{ $existing ? 'true' : 'false'}}">
-        <x-icon class="plus"></x-icon> {{ __('entities/attributes.types.attribute') }}
+        <x-icon class="plus" /> {{ __('entities/attributes.types.attribute') }}
     </button>
     <div class="dropdown">
         <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="true">

@@ -44,7 +44,7 @@
 
                     <div class="text-right">
                         <x-buttons.confirm type="primary" outline="true">
-                            <x-icon class="save"></x-icon>
+                            <x-icon class="save" />
                             <span>
                         {{ __('settings.subscription.actions.update_currency') }}</span>
                         </x-buttons.confirm>
@@ -64,7 +64,7 @@
         <textarea name="profile[billing]" placeholder="" class="w-full rounded border p-2 mb-2" rows="5" maxlength="1024">{!! old('profile[billing]', \Illuminate\Support\Arr::get($user->profile, 'billing')) !!}</textarea>
             <div class="text-right">
                 <x-buttons.confirm type="primary"  outline="true">
-                    <x-icon class="save"></x-icon>
+                    <x-icon class="save" />
                     <span>{{ __('settings.billing.save') }}</span>
                 </x-buttons.confirm>
             </div>

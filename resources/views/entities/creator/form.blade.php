@@ -99,7 +99,7 @@
     <footer class="bg-base-200 flex flex-wrap gap-3 justify-center items-center p-3">
         <button class="btn2 btn-primary quick-creator-submit" data-entity-type="{{ $singularType }}">
             <span>
-                <x-icon class="plus"></x-icon> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
+                <x-icon class="plus" /> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
             </span>
         </button>
     </footer>

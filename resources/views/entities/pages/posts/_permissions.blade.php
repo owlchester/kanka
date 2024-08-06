@@ -13,7 +13,7 @@
                     <div class="flex items-center gap-2">
                         <x-forms.select name="perm_role_perm[]" :options="$permissions" :selected="$perm->permission" class="grow" />
                         <a role="button" class="btn2 btn-error btn-sm btn-outline post-delete-perm">
-                            <x-icon class="trash"></x-icon>
+                            <x-icon class="trash" />
                             <span class="sr-only">{{ __('crud.remove') }}</span>
                         </a>
                     </div>
@@ -33,7 +33,7 @@
                         <x-forms.select name="perm_user_perm[]" :options="$permissions" :selected="$perm->permission" class="grow" />
 
                         <a role="button" class="btn2 btn-error btn-sm btn-outline post-delete-perm">
-                            <x-icon class="trash"></x-icon>
+                            <x-icon class="trash" />
                         </a>
                     </div>
                     <input type="hidden" name="perm_user[]" value="{{ $perm->user_id }}" />
@@ -82,7 +82,7 @@
             <div class="flex items-center gap-2">
                 <x-forms.select name="perm_user_perm[]" :options="$permissions" class="grow" />
                 <a role="button" class="btn2 btn-error btn-sm btn-outline post-delete-perm">
-                    <x-icon class="trash"></x-icon>
+                    <x-icon class="trash" />
                 </a>
             </div>
             <input type="hidden" name="perm_user[]" value="$SELECTEDID$" />
@@ -95,7 +95,7 @@
             <div class="flex items-center gap-2">
                 <x-forms.select name="perm_role_perm[]" :options="$permissions" class="grow" />
                 <a role="button" class="btn2 btn-error btn-sm btn-outline post-delete-perm">
-                    <x-icon class="trash"></x-icon>
+                    <x-icon class="trash" />
                 </a>
             </div>
             <input type="hidden" name="perm_role[]" value="$SELECTEDID$" />

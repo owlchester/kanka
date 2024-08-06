@@ -63,7 +63,7 @@ use App\Enums\Widget;
         @can('dashboard', $campaign)
             <div class="text-center mt-6">
                 <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 btn-lg btn-primary" title="{{ __('dashboard.settings.title') }}">
-                    <x-icon class="cog"></x-icon>
+                    <x-icon class="cog" />
                     {{ __('dashboard.settings.title') }}
                 </a>
             </div>

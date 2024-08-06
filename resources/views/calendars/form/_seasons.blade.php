@@ -94,7 +94,7 @@
                     <input type="number" name="season_day[]" class="w-full" value="" placeholder="{{ __('calendars.parameters.seasons.day') }}" />
                 </div>
                 <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
-                    <x-icon class="trash"></x-icon>
+                    <x-icon class="trash" />
                 </div>
             </div>
         </x-grid>

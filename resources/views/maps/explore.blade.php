@@ -21,7 +21,7 @@
                 {{ __('maps/explore.actions.exit-edit-mode') }}
             </button>
             <button class="btn2 btn-mode-drawing">
-                <x-icon class="pencil"></x-icon>
+                <x-icon class="pencil" />
                 {{ __('maps/explore.actions.finish-drawing') }}
             </button>
         </div>

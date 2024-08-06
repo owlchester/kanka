@@ -11,7 +11,7 @@
 @endcan
 @if (!$image->isFolder() )
 <a class="btn2 btn-ghost" href="{{ $image->url() }}" target="_blank">
-    <x-icon class="fa-regular fa-link"></x-icon>
+    <x-icon class="fa-regular fa-link" />
     <span class="hidden md:inline">
         {{ __('crud.actions.open') }}
     </span>
