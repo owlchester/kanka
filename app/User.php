@@ -130,15 +130,19 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * @param int $size = 40
      */
     public function getAvatarUrl(int $size = 40): string
     {
-        if (!empty($this->avatar) && $this->avatar != 'users/default.png') {
+        if ($this->hasAvatar()) {
             return Img::crop($size, $size)->url($this->avatar);
         } else {
             return '/images/defaults/user.svg';
         }
+    }
+
+    public function hasAvatar(): bool
+    {
+        return !empty($this->avatar) && $this->avatar != 'users/default.png';
     }
 
     /**

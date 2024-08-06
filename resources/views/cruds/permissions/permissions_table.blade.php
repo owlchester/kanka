@@ -48,7 +48,18 @@ $permissionService->campaign($campaign);
     @foreach ($campaign->roles()->withoutAdmin()->get() as $role)
         @php $permissionService->reset()->role($role) @endphp
         <div class="grid grid-cols-2 md:grid-cols-5 gap-2 items-center">
-            <div class="w-40 col-span-2 md:col-span-1  ">{{ $role->name }}</div>
+            <div class="w-40 col-span-2 md:col-span-1">
+                @can('update', $role)
+                    <a href="{{ route('campaign_roles.edit', [$campaign, $role]) }}">
+                        {{ $role->name }}
+                    </a>
+                    @if ($role->isPublic() && !$campaign->isPublic())
+                        <x-icon class="fa-solid fa-exclamation-triangle" tooltip :title="__('campaigns.roles.permissions.helpers.not_public')" />
+                    @endif
+                @elsecan
+                    {{ $role->name }}
+                @endcan
+            </div>
             <div class="">
                 <label class="inline md:hidden">{{ __('crud.permissions.actions.read') }}</label>
                 <div class="join w-full field">

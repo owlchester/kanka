@@ -9,11 +9,11 @@ use App\User;
 
 class PrivacyService
 {
-    /**  */
+    protected array $data;
+
     protected Entity $entity;
 
     /**
-     * @return $this
      */
     public function entity(Entity $entity): self
     {
@@ -23,7 +23,7 @@ class PrivacyService
 
     public function visibilities(): array
     {
-        $data = ['roles' => [], 'users' => []];
+        $this->data = ['roles' => [], 'users' => []];
 
         /** @var CampaignRole[] $roles */
         $roles = $this->entity->campaign->roles()->with('permissions')->get();
@@ -43,7 +43,7 @@ class PrivacyService
                     ->where('entity_id', $this->entity->id)
                     ->where('access', 0);
                 if ($subPerm->count() === 0) {
-                    $data['roles'][] = $role->name;
+                    $this->data['roles'][] = $role;
                     continue;
                 }
             }
@@ -53,10 +53,23 @@ class PrivacyService
                 ->where('entity_id', $this->entity->id)
                 ->where('access', 1);
             if ($perm->count() > 0) {
-                $data['roles'][] = $role->name;
+                $this->data['roles'][] = $role;
             }
         }
 
+        $this->members();
+
+
+        return $this->data;
+    }
+
+    public function toggle(): self
+    {
+        return $this;
+    }
+
+    protected function members(): self
+    {
         /** @var User[] $users[] */
         $users = $this->entity->campaign->users()->with('permissions')->get();
         foreach ($users as $user) {
@@ -67,15 +80,9 @@ class PrivacyService
                 ->where('entity_id', $this->entity->id)
                 ->where('access', 1);
             if ($perm->count() > 0) {
-                $data['users'][] = $user->name;
+                $this->data['users'][] = $user;
             }
         }
-
-        return $data;
-    }
-
-    public function toggle(): self
-    {
         return $this;
     }
 }
