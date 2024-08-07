@@ -172,6 +172,7 @@ return [
             'percent_off'   => 'Wir reduzieren dein erstes Jahresabonnement um :percent%!',
         ],
         'currencies'            => [
+            'brl'   => 'BRL',
             'eur'   => 'EUR',
             'usd'   => 'USD',
         ],

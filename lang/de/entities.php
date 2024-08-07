@@ -3,6 +3,7 @@
 return [
     'abilities'             => 'Fähigkeiten',
     'ability'               => 'Fähigkeit',
+    'assets'                => 'Vermögenswerte',
     'attribute_template'    => 'Attributvorlage',
     'attribute_templates'   => 'Attributsvorlagen',
     'bookmark'              => 'Lesezeichen',
@@ -53,6 +54,7 @@ return [
     'creatures'             => 'Kreaturen',
     'dice_roll'             => 'Würfelwurf',
     'dice_rolls'            => 'Würfelwürfe',
+    'entities'              => 'Objekte',
     'entity_attributes'     => 'Attribute',
     'event'                 => 'Ereignis',
     'events'                => 'Ereignisse',

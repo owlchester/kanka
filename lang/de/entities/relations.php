@@ -7,6 +7,16 @@ return [
     ],
     'bulk'              => [
         'delete'    => '{1} :count Beziehung gelöscht.|[2,*] :count Beziehungen gelöscht.',
+        'fields'    => [
+            'delete_mirrored'   => 'Gespiegelte löschen',
+            'unmirror'          => 'Unlink gespiegelt',
+            'update_mirrored'   => 'Aktualisierung gespiegelt',
+        ],
+        'helpers'   => [
+            'delete_mirrored'   => 'Lösche auch die gespiegelte Verbindungen.',
+            'unmirror'          => 'Entkopple gespiegelte Verbindungen.',
+            'update_mirrored'   => 'Aktualisiere gespiegelte Verbindungen.',
+        ],
         'success'   => [
             'editing'           => '{1} :count Beziehung wurde aktualisiert.|[2,*] :count Beziehungen wurden aktualisiert.',
             'editing_partial'   => '{1} :count/:total Beziehung wurde aktualisiert.|[2,*] :count/:total Beziehungen wurden aktualisiert.',
@@ -20,8 +30,9 @@ return [
         'timeline_element'  => 'Zeitstrahlelement',
     ],
     'create'            => [
-        'new_title' => 'Neue Beziehungen',
-        'title'     => 'Beziehung erstellen',
+        'new_title'     => 'Neue Beziehungen',
+        'success_bulk'  => '{1} :count-Verbindung zu :entity.|[2,*] hinzugefügt :count-Verbindungen zu :entity.',
+        'title'         => 'Beziehung erstellen',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Diese Beziehung wird auf dem Zielobjekt gespiegelt. Wähle diese Option, um auch die gespiegelte Beziehung zu entfernen.',
@@ -34,12 +45,17 @@ return [
     'fields'            => [
         'attitude'          => 'Einstellung',
         'connection'        => 'Verbindungen',
+        'is_pinned'         => 'Angeheftet',
         'owner'             => 'Quelle',
         'relation'          => 'Beziehung',
         'target'            => 'Ziel',
         'target_relation'   => 'Zielbeziehung',
         'two_way'           => 'Gespiegelte Beziehung erstellen',
         'unmirror'          => 'Hebe die Spiegelung dieser Beziehung auf.',
+    ],
+    'filters'           => [
+        'connection'    => 'Verbindung Beziehung',
+        'name'          => 'Ziel der Verbindung',
     ],
     'helper'            => 'Richten Sie Beziehungen zwischen Objekten mit Einstellungen und Sichtbarkeit ein. Beziehungen können auch an das Menü der Berechtigung angeheftet werden.',
     'helpers'           => [

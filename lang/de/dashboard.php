@@ -156,6 +156,9 @@ return [
             'helpers'   => [
                 'name'  => 'Sie können den Namen der zufälligen Objekte mit {name} referenzieren',
             ],
+            'type'      => [
+                'all'   => 'Alle',
+            ],
         ],
         'recent'                    => [
             'advanced_filter'   => 'Erweiterter Filter',

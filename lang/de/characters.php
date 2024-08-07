@@ -86,6 +86,12 @@ return [
             'quest_member'  => 'Quests an denen der Charakter teilgenommen hat.',
         ],
     ],
+    'races'         => [
+        'reorder'   => [
+            'success'   => 'Die Charakterrassen wurden erfolgreich aktualisiert.',
+        ],
+        'title'     => 'Verwalten der Rassen von :name',
+    ],
     'sections'      => [
         'appearance'    => 'Aussehen',
         'personality'   => 'Persönlichkeit',

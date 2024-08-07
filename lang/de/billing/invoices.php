@@ -12,6 +12,7 @@ return [
         'invoice'   => 'Rechnung',
         'status'    => 'Status',
     ],
+    'paypal'        => 'Bitte beachte , dass nur Zahlungen, die über Stripe und nicht über PayPal getätigt wurden, hier sichtbar sind.',
     'status'        => [
         'paid'      => 'bezahlt',
         'pending'   => 'Ausstehend',

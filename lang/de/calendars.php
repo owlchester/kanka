@@ -55,6 +55,10 @@ return [
         'success'   => 'Event \':event\' zum Kalender hinzugefügt.',
     ],
     'events'        => [
+        'bulks'     => [
+            'delete'    => '{1} Gelöschte :count reminder.|[2,*] Gelöschte :count reminders.',
+            'patch'     => '{1} Aktualisierte :count reminder.|[2,*] Aktualisierte :count reminders.',
+        ],
         'end'       => '(ende)',
         'filters'   => [
             'show_after'    => 'Zeige heute und die Zukunft',

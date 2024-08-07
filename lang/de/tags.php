@@ -3,11 +3,14 @@
 return [
     'children'      => [
         'actions'   => [
-            'add'   => 'Füge neue Kategorie hinzu',
+            'add'           => 'Füge neue Kategorie hinzu',
+            'add_entity'    => 'Zum Objekt hinzufügen',
         ],
         'create'    => [
-            'attach_success'    => '{1} :count Objekte zum Tag :name hinzugefügt.|[2,*] :count Objekte zum Tag :name hinzugefügt.',
-            'modal_title'       => 'Füge Objekt zu :name hinzu',
+            'attach_success'        => '{1} :count Objekte zum Tag :name hinzugefügt.|[2,*] :count Objekte zum Tag :name hinzugefügt.',
+            'attach_success_entity' => 'Erfolgreich aktualisierte Tags für :name.',
+            'entity'                => 'Tags hinzufügen zu :name',
+            'modal_title'           => 'Füge Objekt zu :name hinzu',
         ],
     ],
     'create'        => [

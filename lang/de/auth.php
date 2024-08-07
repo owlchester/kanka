@@ -23,6 +23,7 @@ return [
         ],
         'login_with_facebook'   => 'Login mit Facebook',
         'login_with_google'     => 'Login mit Google',
+        'login_with_x'          => 'Anmeldung mit X (ehemals Twitter)',
         'new_account'           => 'Registriere einen neuen Account',
         'or'                    => 'ODER',
         'password_forgotten'    => 'Passwort vergessen?',
@@ -45,6 +46,7 @@ return [
         'log-in'                    => 'Log in',
         'register_with_facebook'    => 'Mit Facebook registrieren',
         'register_with_google'      => 'Mit Google registrieren',
+        'register_with_x'           => 'Registriert mit X (ehemals Twitter)',
         'submit'                    => 'Registrieren',
         'title'                     => 'Registrieren',
         'tos'                       => 'Durch die Registrierung eines Kontos stimmst du unseren :terms und :privacy zu.',
@@ -64,4 +66,5 @@ return [
         'title'     => 'Zwei-Faktor-Authentifizierung',
     ],
     'throttle'  => 'Zu viele Anmeldeversuche. Bitte versuche es in :seconds Sekunden noch einmal.',
+    'x-twitter' => 'X früher bekannt als Twitter',
 ];

@@ -4,6 +4,7 @@ return [
     'actions'   => [
         'clear'             => 'Alles löschen',
         'first'             => 'Füge einen Gründer hinzu',
+        'founder'           => 'Einen neuen Gründer hinzufügen',
         'rename-relation'   => 'Beziehung umbenennen',
         'reset'             => 'Änderungen verwerfen',
         'save'              => 'Speichern',
@@ -19,21 +20,25 @@ return [
             'confirm'   => 'Bist du dir sicher, dass du alle Daten aus dem Stammbaum neu initialisieren möchtest?',
         ],
         'entity'    => [
-            'add'   => [
+            'add'       => [
+                'founder'   => 'Gründer',
                 'member'    => 'Mitglied',
                 'success'   => 'Objekt hinzufügt',
                 'title'     => 'Objekt hinzufügen',
             ],
-            'child' => [
+            'child'     => [
                 'success'   => 'Untergeordnetes Objekt hinzugefügt.',
                 'title'     => 'Untergeordnetes Objekt',
             ],
-            'edit'  => [
+            'edit'      => [
                 'helper'    => 'Aktiviere diese Option, wenn die Beziehung unbekannt ist. Ein Charakter kann später hinzugefügt werden.',
                 'success'   => 'Objekt aktualisiert',
                 'title'     => 'Objekt aktualisieren',
             ],
-            'remove'=> [
+            'founder'   => [
+                'title' => 'Einen neuen Gründer hinzufügen',
+            ],
+            'remove'    => [
                 'confirm'   => 'Möchtest du dieses Objekt wirklich aus dem Stammbaum entfernen?',
                 'success'   => 'Objekt entfernt',
             ],

@@ -18,6 +18,7 @@ return [
         'help'              => 'Hilfe',
         'json-export'       => 'Export (json)',
         'manage_links'      => 'Links verwalten',
+        'markdown-export'   => 'Exportieren (Markdown)',
         'move'              => 'Verschieben',
         'new'               => 'Neu',
         'new_child'         => 'neues Unterobjekt',
@@ -51,6 +52,7 @@ return [
             'warning'   => 'Möchten Sie die ausgewählten Objekte wirklich löschen?',
         ],
         'edit'          => [
+            'locations' => 'Aktion für Standorte',
             'tagging'   => 'Aktion für Tags',
             'tags'      => [
                 'add'       => 'Hinzufügen',

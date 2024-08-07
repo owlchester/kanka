@@ -20,6 +20,7 @@ return [
         'nice_image'        => 'Standardobjektbilder',
         'no_ads'            => 'keine ads',
         'pagination'        => ':amount Max paginierte Ergebnisse',
+        'roadmap'           => 'Bewerten Sie Ideen in der Roadmap',
     ],
     'periods'   => [
         'billed_monthly'    => 'monatlich abgerechnet',

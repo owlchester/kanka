@@ -128,6 +128,7 @@ TEXT
             'already_member'    => 'Du bist bereits Mitglied dieser Kampagne',
             'inactive_token'    => 'Dieses Token wurde bereits genutzt oder die Kampagne existiert nicht mehr.',
             'invalid_token'     => 'Dieser Token ist nicht mehr gültig.',
+            'join'              => 'Bitte melde dich an oder registriere  ein neues Konto, um an :campaign teilzunehmen.',
             'login'             => 'Bitte logge dich ein oder registriere dich, um der Kampagne beizutreten.',
         ],
         'fields'                => [
@@ -378,6 +379,7 @@ TEXT
         ],
         'helpers'       => [
             'abilities'         => 'Erstellen Sie Fähigkeiten, seien es Talente, Zauber oder Kräfte, die Objekten zugewiesen werden können.',
+            'assets'            => 'Lade Dateien hoch, setze Links und definiere Aliasnamen für einzelne Objekte.',
             'bookmarks'         => 'Erstelle Lesezeichen für Objekte oder gefilterte Listen, die in der Seitenleiste angezeigt werden.',
             'calendars'         => 'Der Ort, um die Kalender deiner Welt zu erstellen.',
             'characters'        => 'Die Leute, die deine Welt bevölkern.',
@@ -433,6 +435,7 @@ TEXT
             'roles'             => 'Rollen',
             'sidebar'           => 'Einrichtung der Seitenleiste',
             'styles'            => 'Thematisierung',
+            'webhooks'          => 'Webhaken',
         ],
         'title'     => 'Kampagne :name',
     ],
