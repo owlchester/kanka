@@ -11,8 +11,7 @@ return [
         'show_hidden'       => 'Mostrar atributos ocultos',
     ],
     'errors'        => [
-        'loop'      => '¡Hay un bucle infinito en el cálculo de este atributo!',
-        'too_many'  => 'Hay demasiados campos en esta entidad, no se pueden añadir más atributos. Elimina primero algunos atributos antes de poder añadir más.',
+        'loop'  => '¡Hay un bucle infinito en el cálculo de este atributo!',
     ],
     'fields'        => [
         'attribute'             => 'Atributo',

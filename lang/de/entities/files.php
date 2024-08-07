@@ -2,10 +2,8 @@
 
 return [
     'call-to-action'    => [
-        'boost'         => 'Um mehr Dateien hochzuladen, muss die Kampagne geboostet werden.',
-        'error'         => 'Dieses Objekt hat die maximale Anzahl an Dateien erreicht, die es verwalten kann.',
-        'premium'       => 'Das Hochladen weiterer Dateien erfordert eine Premium-Kampagne.',
-        'superboost'    => 'Um mehr Dateien hochzuladen, muss die Kampagne supergeboostet werden.',
+        'error'     => 'Dieses Objekt hat die maximale Anzahl an Dateien erreicht, die es verwalten kann.',
+        'premium'   => 'Das Hochladen weiterer Dateien erfordert eine Premium-Kampagne.',
     ],
     'create'            => [
         'success'   => 'Date :file hinzugefügt',

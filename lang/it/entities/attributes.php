@@ -11,8 +11,7 @@ return [
         'show_hidden'       => 'Mostra attributi nascosti',
     ],
     'errors'        => [
-        'loop'      => 'Il calcolo di questo attributo è un ciclo infinito!',
-        'too_many'  => 'Ci sono troppi campi in questa entità, non è possibile aggiungere altri attributi. Eliminare alcuni attributi prima di poterne aggiungere altri.',
+        'loop'  => 'Il calcolo di questo attributo è un ciclo infinito!',
     ],
     'fields'        => [
         'attribute'             => 'Attributo',

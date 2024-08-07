@@ -8,8 +8,7 @@ return [
         'remove_all'        => 'Eliminar todos',
     ],
     'errors'        => [
-        'loop'      => 'Hai un bucle infinito neste cálculo de atributo!',
-        'too_many'  => 'Hai demasiados campos nesta entidade, non poden ser engadidos máis atributos. Elimina algúns para poder engadir máis.',
+        'loop'  => 'Hai un bucle infinito neste cálculo de atributo!',
     ],
     'fields'        => [
         'attribute'             => 'Atributo',

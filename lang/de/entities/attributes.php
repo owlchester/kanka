@@ -14,8 +14,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'errors'        => [
-        'loop'      => 'Diese Attributberechnung enthält eine Endlosschleife!',
-        'too_many'  => 'Dieses Objekt enthält zu viele Felder. Weitere Attribute können nicht hinzugefügt werden. Löschen Sie zuerst einige Attribute, bevor Sie weitere hinzufügen können.',
+        'loop'  => 'Diese Attributberechnung enthält eine Endlosschleife!',
     ],
     'fields'        => [
         'attribute'             => 'Attribut',

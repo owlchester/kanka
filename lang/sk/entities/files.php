@@ -2,10 +2,8 @@
 
 return [
     'call-to-action'    => [
-        'boost'         => 'Ak chceš nahrať viac súborov, musí byť kampaň boostnutá.',
-        'error'         => 'Tento objekt má max. počet súborov, ktoré mu môže byť pridelený.',
-        'premium'       => 'Nahranie ďalších súborov vyžaduje prémiovú kampaň.',
-        'superboost'    => 'Ak chceš nahrať viac súborov, musí byť kampaň superboostnutá.',
+        'error'     => 'Tento objekt má max. počet súborov, ktoré mu môže byť pridelený.',
+        'premium'   => 'Nahranie ďalších súborov vyžaduje prémiovú kampaň.',
     ],
     'create'            => [
         'success'   => 'Súbor :file pridaný.',

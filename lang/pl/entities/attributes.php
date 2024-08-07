@@ -11,8 +11,7 @@ return [
         'show_hidden'       => 'Pokaż ukryte cechy',
     ],
     'errors'        => [
-        'loop'      => 'W obliczeniu tej cechy występuje nie kończąca się pętla!',
-        'too_many'  => 'Ten element ma zbyt wiele pól, nie można dodać kolejnych cech. Przed ich dodaniem usuń kilka istniejących.',
+        'loop'  => 'W obliczeniu tej cechy występuje nie kończąca się pętla!',
     ],
     'fields'        => [
         'attribute'             => 'Cecha',

@@ -317,9 +317,9 @@ TEXT
                 ],
                 'manage'        => 'Allow editing the campaign as a campaign admin would, without allowing the members to delete the campaign.',
                 'members'       => 'Allow inviting new members to the campaign.',
+                'not_public'    => 'The campaign isn\'t public. Permissions for the public role can be set, but will be ignored. Go and edit the campaign to make it public.',
                 'permission'    => 'Allow setting permissions on entities of this type they can edit.',
                 'read'          => 'Allow viewing all entities of this type that aren\'t private.',
-                'not_public'    => 'The campaign isn\'t public. Permissions for the public role can be set, but will be ignored. Go and edit the campaign to make it public.',
             ],
         ],
         'placeholders'  => [

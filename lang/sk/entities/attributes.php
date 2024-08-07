@@ -11,8 +11,7 @@ return [
         'show_hidden'       => 'Zobraziť skryté atribúty',
     ],
     'errors'        => [
-        'loop'      => 'Vo výpočte atribútu sa vyskytuje nekonečná slučka!',
-        'too_many'  => 'Tento objekt má príliš veľa polí a nie je možné mu pridať ďalšie atribúty. Zmaž niektoré z atribútov, ak chceš pridať nové.',
+        'loop'  => 'Vo výpočte atribútu sa vyskytuje nekonečná slučka!',
     ],
     'fields'        => [
         'attribute'             => 'Atribút',

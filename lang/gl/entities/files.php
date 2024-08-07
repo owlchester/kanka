@@ -2,9 +2,7 @@
 
 return [
     'call-to-action'    => [
-        'boost'         => 'Para subir máis ficheiros, a campaña debe ser potenciada.',
-        'error'         => 'Esta entidade chegou ao número máximo de ficheiros que pode conter.',
-        'superboost'    => 'Para subir máis ficheiros, a campaña debe ser superpotenciada.',
+        'error' => 'Esta entidade chegou ao número máximo de ficheiros que pode conter.',
     ],
     'create'            => [
         'success'   => 'Ficheiro ":file" engadido.',
