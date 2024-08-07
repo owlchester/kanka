@@ -115,9 +115,6 @@ class Location extends MiscModel
             'children' => function ($sub) {
                 $sub->select('id', 'location_id');
             },
-            'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
             'characters' => function ($sub) {
                 $sub->select('id', 'location_id');
             },
