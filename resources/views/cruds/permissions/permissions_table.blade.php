@@ -56,7 +56,7 @@ $permissionService->campaign($campaign);
                     @if ($role->isPublic() && !$campaign->isPublic())
                         <x-icon class="fa-solid fa-exclamation-triangle" tooltip :title="__('campaigns.roles.permissions.helpers.not_public')" />
                     @endif
-                @elsecan
+                @else
                     {{ $role->name }}
                 @endcan
             </div>
