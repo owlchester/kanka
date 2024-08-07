@@ -73,7 +73,7 @@ class Remindable
 
             if ($dirty) {
                 $entity->touchSilently();
-                $entity->child->touchSilently();
+                $model->touchSilently();
             }
         } catch (Exception $e) {
             // Something went wrong, silence the issue
