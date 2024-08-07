@@ -233,9 +233,9 @@ class RelatedService
 
     protected function loadItems(): self
     {
-        /** @var Item $parent */
+        /** @var Character|Location $parent */
         $parent = $this->entity->child;
-        $elements = $parent->children()->with(['entity'])->has('entity')->get();
+        $elements = $parent->items()->with(['entity'])->has('entity')->get();
         foreach ($elements as $sub) {
             $entity = $sub->entity;
             $this->ids[] = $entity->id;
