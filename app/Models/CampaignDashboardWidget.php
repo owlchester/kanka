@@ -274,7 +274,7 @@ class CampaignDashboardWidget extends Model
         return $base
             ->inTags($this->tags->pluck('id')->toArray())
             ->inTypes($entityTypeID)
-            ->with(['image:campaign_id,id,ext', 'mentions', 'mentions.target', 'mentions.target.tags'])
+            ->with(['image:campaign_id,id,ext,focus_x,focus_y', 'mentions', 'mentions.target', 'mentions.target.tags'])
             ->paginate(10, ['*'], 'page', $page)
         ;
     }
