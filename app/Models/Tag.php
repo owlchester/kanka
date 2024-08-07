@@ -130,9 +130,6 @@ class Tag extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'tags' => function ($sub) {
-                $sub->select('id', 'tag_id', 'name');
-            },
             //            'descendants',
             //            'descendants.entities' => function ($sub) {
             //                $sub->select('entities.id', 'entities.name', 'entities.entity_id', 'entities.type_id');
