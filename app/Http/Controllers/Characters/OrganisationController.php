@@ -28,8 +28,8 @@ class OrganisationController extends Controller
         $this->rows = $character
             ->organisationMemberships()
             ->with([
-                'organisation.entity', 'organisation.entity.tags', 'organisation.entity.tags.entity', 'organisation.entity.image',
-                'organisation.location',
+                'organisation.entity', 'organisation.entity.image',
+                'organisation.entity.tags', 'organisation.entity.tags.entity',
             ])
             ->rows()
             ->paginate();

@@ -36,13 +36,13 @@ class OrganisationMember extends Model
     use Sanitizable;
     use SortableTrait;
 
-    public const PIN_CHARACTER = 1;
-    public const PIN_ORGANISATION = 2;
-    public const PIN_BOTH = 3;
+    public const int PIN_CHARACTER = 1;
+    public const int PIN_ORGANISATION = 2;
+    public const int PIN_BOTH = 3;
 
-    public const STATUS_ACTIVE = 0;
-    public const STATUS_INACTIVE = 1;
-    public const STATUS_UNKNOWN = 2;
+    public const int STATUS_ACTIVE = 0;
+    public const int STATUS_INACTIVE = 1;
+    public const int STATUS_UNKNOWN = 2;
 
     public $entityType = 'character';
     public $aclFieldName = 'character_id';
@@ -187,7 +187,7 @@ class OrganisationMember extends Model
         return $query
             ->select('organisation_member.*')
             ->sort(request()->only(['o', 'k']), ['c.name' => 'asc'])
-            ->with(['character', 'character.entity', 'organisation', 'organisation.entity', 'organisation.location', 'organisation.location.entity'])
+            ->with(['character', 'character.entity', 'organisation', 'organisation.entity', 'organisation.locations', 'organisation.locations.entity'])
             ->has('organisation')
             ->has('organisation.entity')
             ->leftJoin('organisations as c', 'c.id', 'organisation_member.organisation_id');
