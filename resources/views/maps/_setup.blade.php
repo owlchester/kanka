@@ -18,10 +18,6 @@ if (isset($single) && $single) {
 
 ?>
 <script type="text/javascript">
-    LControlZoomDisplay.default(L, {
-        position: 'bottomleft',
-        prefix: 'Zoom : ',
-    });
     /** Kanka map {{ $map->id }} setup **/
     var bounds{{ $map->id }} = {{ $map->bounds() }};
     var maxBounds{{ $map->id }} = {{ $map->bounds(true) }};

@@ -82,6 +82,7 @@ const initMapExplore = () => {
 
     initTicker();
     initLegend();
+    initZoom();
 
     // When the sidebar gets triggers, we need to tell the map that its bounds have changed
     $(document).on('expanded.pushMenu collapsed.pushMenu', function () {
@@ -203,6 +204,13 @@ const invalidateMapOnSidebar = () => {
     }, 500);
 };
 
+const initZoom = () => {
+    LControlZoomDisplay.default(L, {
+        position: 'bottomleft',
+        prefix: 'Zoom : ',
+    });
+    L.control.zoomDisplay().addTo(window.map);
+};
 const initMapEntryClick = () => {
     document.querySelector('.map-marker-entry-click')?.addEventListener('click', function (e) {
         e.preventDefault();
