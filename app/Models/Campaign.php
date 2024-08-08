@@ -407,7 +407,7 @@ class Campaign extends Model
      */
     public function getDefaultVisibilityAttribute(): mixed
     {
-       return Arr::get($this->settings, 'default_visibility', 'all');
+        return Arr::get($this->settings, 'default_visibility', 'all');
     }
 
     /**

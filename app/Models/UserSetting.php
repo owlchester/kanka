@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Stevebauman\Purify\Facades\Purify;
 
 /**

@@ -106,9 +106,9 @@ class BookmarkController extends CrudController
 
 
         $link = '<a href="' . route(
-                $this->view . '.show',
-                [$campaign, $bookmark->id]
-            )
+            $this->view . '.show',
+            [$campaign, $bookmark->id]
+        )
             . '">' . $bookmark->name . '</a>';
         $success = __('general.success.updated', [
             'name' => $link

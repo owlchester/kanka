@@ -18,7 +18,7 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
 
         <x-form :action="['settings.appearance.update']" method="PATCH">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <div class="{{ $boxClass }}">
+                <div class="{{ $boxClass }} {{ $highlight === 'dark' ? $highlightClass : '' }}">
                     <div class="flex gap-2">
                         <h2 class="text-base grow">
                             <x-icon class="fa-regular fa-moon-over-sun" />

@@ -53,13 +53,13 @@ class Bookmark extends Model
     use HasCampaign;
     use HasFactory;
     use HasFilters;
+    use LastSync;
+    use Orderable;
     use Privatable;
     use Sanitizable;
     use Searchable;
     use Sortable;
-    use Orderable;
     use Taggable;
-    use LastSync;
 
     protected $fillable = [
         'campaign_id',
