@@ -91,7 +91,7 @@
                         <div class="flex items-center gap-2">
                             <div class="grow field">
                                 <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
-                                <input type="text" name="week_name[]" value="{{ $week }}" placeholder="{{ __('calendars.parameters.weeks.name') }}" aria-label="{{ __('calendars.parameters.weeks.name') }}" maxlength="191" class="w-full" />
+                                <input type="text" name="week_name[]" value="{{ $name }}" placeholder="{{ __('calendars.parameters.weeks.name') }}" aria-label="{{ __('calendars.parameters.weeks.name') }}" maxlength="191" class="w-full" />
                             </div>
                             <div class="dynamic-row-delete btn2 btn-error btn-outline btn-sm" title="{{ __('crud.remove') }}">
                                 <x-icon class="trash" />

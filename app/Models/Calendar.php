@@ -342,11 +342,23 @@ class Calendar extends MiscModel
         if (empty($month)) {
             $month = $this->currentMonth();
         }
-        $month = $month - ($month > 0 ? 1 : 0);
+        $monthId = $month - ($month > 0 ? 1 : 0);
         $days = [];
-        $currentMonth = $this->months()[$month];
+        $currentMonth = $this->months()[$monthId];
         for ($i = 1; $i <= $currentMonth['length']; $i++) {
             $days[$i] = $i;
+        }
+
+
+        // No leaps days, or not on this month
+        if (!$this->has_leap_year || $this->leap_year_month != $month) {
+            return $days;
+        }
+        // We might be on a year with leap years, but the js is too complex so let's just assume
+        $start = count($days);
+        for ($i = 1; $i <= $this->leap_year_amount; $i++) {
+            $day = $start + $i;
+            $days[$day] = $day;
         }
 
         return $days;
