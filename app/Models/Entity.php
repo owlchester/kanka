@@ -107,17 +107,10 @@ class Entity extends Model
         'crudSaved',
     ];
 
-    /**
-     * True if the user granted themselves permission to read/write when creating the entity
-     * @var bool
-     */
-    public $permissionGrantSelf = false;
+    protected string $cachedPluralName;
 
-    /** @var bool|string */
-    protected $cachedPluralName = false;
-
-    /** @var bool|string the entity type string */
-    protected $cachedType = false;
+    /** The entity type string */
+    protected string $cachedType;
 
     /**
      * Get the child entity
@@ -211,7 +204,7 @@ class Entity extends Model
      */
     public function pluralType(): string
     {
-        if ($this->cachedPluralName !== false) {
+        if (isset($this->cachedPluralName)) {
             return $this->cachedPluralName;
         }
         return $this->cachedPluralName = Str::plural($this->type());
@@ -245,7 +238,7 @@ class Entity extends Model
      */
     public function type(): string
     {
-        if ($this->cachedType !== false) {
+        if (isset($this->cachedType)) {
             return $this->cachedType;
         }
         $type = array_search($this->type_id, config('entities.ids'));
@@ -254,8 +247,8 @@ class Entity extends Model
 
     public function cleanCache(): self
     {
-        $this->cachedType = false;
-        $this->cachedPluralName = false;
+        unset($this->cachedType);
+        unset($this->cachedPluralName);
         return $this;
     }
 
