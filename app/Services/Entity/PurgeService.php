@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\CharacterCache;
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\MiscModel;
@@ -45,7 +46,6 @@ class PurgeService
     }
 
     /**
-     * @param MiscModel|Location|null $child
      * @throws Exception
      */
     protected function trashChild(Entity $entity, ?MiscModel $child = null)
@@ -99,6 +99,7 @@ class PurgeService
             Images::cleanup($child, 'map');
         }
 
+        CharacterCache::campaign($entity->campaign);
         $child->forceDelete();
 
         // Unset the campaign id limitation again

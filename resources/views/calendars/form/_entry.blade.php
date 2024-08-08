@@ -15,12 +15,12 @@
         <x-forms.field
             field="month"
             :label="__('calendars.fields.current_month')">
-            <input type="number" name="current_month" class="w-full" value="{{ !empty($model) ? $model->currentDate('month') : (isset($source) ? $source->currentDate('month') : null) }}" placeholder="{{ __('calendars.fields.current_month') }}" aria-label="{{ __('calendars.fields.current_month') }}" />
+            <input type="number" name="current_month" class="w-full" value="{{ !empty($model) ? $model->currentDate('month') : (isset($source) ? $source->currentDate('month') : null) }}" placeholder="{{ __('calendars.fields.current_month') }}" min="1" aria-label="{{ __('calendars.fields.current_month') }}" />
         </x-forms.field>
         <x-forms.field
             field="day"
             :label="__('calendars.fields.current_day')">
-            <input type="number" name="current_day" class="w-full" value="{{ !empty($model) ? $model->currentDate('date') : (isset($source) ? $source->currentDate('date') : null) }}" placeholder="{{ __('calendars.fields.current_day') }}" aria-label="{{ __('calendars.fields.current_day') }}" />
+            <input type="number" name="current_day" class="w-full" value="{{ !empty($model) ? $model->currentDate('date') : (isset($source) ? $source->currentDate('date') : null) }}" placeholder="{{ __('calendars.fields.current_day') }}" min="1" aria-label="{{ __('calendars.fields.current_day') }}" />
         </x-forms.field>
 
     </div>

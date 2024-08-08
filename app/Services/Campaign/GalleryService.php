@@ -87,7 +87,7 @@ class GalleryService
 
     public function human(int $value): string
     {
-        if ($value > 100000) {
+        if ($value > 1000000) {
             return floor($value / (1024 * 1024)) . ' GB';
         } elseif ($value > 1000) {
             return floor($value / 1024) . ' MB';

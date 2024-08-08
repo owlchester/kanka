@@ -713,7 +713,7 @@ class CalendarRenderer
         $this->segments = true;
 
         $segments = $this->splitDate($this->calendar->date);
-        $this->setMonth($segments[1])
+        $this->setMonth((int) $segments[1])
             ->setYear($segments[0]);
 
         if (request()->filled('month')) {
@@ -1027,7 +1027,7 @@ class CalendarRenderer
      * Split the date into segments. Handle negative years
      * @return array
      */
-    protected function splitDate(string $date)
+    protected function splitDate(string $date): array
     {
         $segments = explode('-', ltrim($date, '-'));
         if (str_starts_with($date, '-')) {
