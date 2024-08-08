@@ -58,6 +58,8 @@ class SearchService
      */
     protected bool $new = false;
 
+    protected Collection $pages;
+
     public function __construct(EntityService $entityService, NewService $newService)
     {
         $this->entityService = $entityService;
@@ -403,25 +405,66 @@ class SearchService
 
     protected function pages(): Collection
     {
-        $pages = new Collection();
+        $this->pages = new Collection();
         if (empty($this->term)) {
-            return $pages;
+            return $this->pages;
         }
         // Fill data with hardcoded pages and roles
-        // todo: check permissions
-        $pages->add(['name' => __('campaigns.show.tabs.recovery'), 'url' => route('recovery', [$this->campaign])]);
-        $pages->add(['name' => __('campaigns.show.tabs.achievements'), 'url' => route('stats', [$this->campaign])]);
-        $pages->add(['name' => __('campaigns.show.tabs.members'), 'url' => route('campaign_users.index', [$this->campaign])]);
-        $pages->add(['name' => __('campaigns.show.tabs.roles'), 'url' => route('campaign_roles.index', [$this->campaign])]);
-        $pages->add(['name' => __('campaigns.show.tabs.applications'), 'url' => route('campaign_submissions.index', [$this->campaign])]);
-        $pages->add(['name' => __('campaigns.show.tabs.modules'), 'url' => route('campaign.modules', [$this->campaign])]);
-        $pages->add(['name' => __('campaigns.show.tabs.plugins'), 'url' => route('campaign_plugins.index', [$this->campaign])]);
-        $pages->add(['name' => __('campaigns.show.tabs.styles'), 'url' => route('campaign_styles.index', [$this->campaign])]);
-        $pages->add(['name' => __('campaigns.show.tabs.export'), 'url' => route('campaign.export', [$this->campaign])]);
-        $pages->add(['name' => __('campaigns.show.tabs.webhooks'), 'url' => route('webhooks.index', [$this->campaign])]);
+        $this
+            ->addCampaignPage('crud.tabs.overview', 'overview')
+            ->addCampaignPage('campaigns.show.tabs.achievements', 'stats')
+            ->addCampaignPage('campaigns.show.tabs.members', 'campaign_users.index', 'members')
+            ->addCampaignPage('campaigns.show.tabs.roles', 'campaign_roles.index', 'roles')
+            ->addCampaignPage('campaigns.show.tabs.applications', 'campaign_submissions.index', 'submissions')
+            ->addCampaignPage('campaigns.show.tabs.modules', 'campaign.modules')
+            ->addCampaignPage('campaigns.show.tabs.recovery', 'recovery', 'update')
+            ->addCampaignPage('campaigns.show.tabs.styles', 'campaign_styles.index', 'update')
+            ->addCampaignPage('campaigns.show.tabs.export', 'campaign.export')
+            ->addCampaignPage('campaigns.show.tabs.import', 'campaign.import')
+            ->addCampaignPage('campaigns.show.tabs.webhooks', 'webhooks.index', 'webhooks');
 
-        return $pages->filter(function ($page) {
-            return Str::startsWith(mb_strtolower($page['name']), mb_strtolower($this->term));
+        if (config('marketplace.enabled')) {
+            $this->addCampaignPage('campaigns.show.tabs.plugins', 'campaign_plugins.index');
+        }
+
+        $this->pages
+            ->add(['name' => __('footer.marketplace'), 'url' => 'https://marketplace.kanka.io'])
+            ->add(['name' => __('footer.documentation'), 'url' => 'https://docs.kanka.io/en/latest/index.html'])
+            ->add(['name' => __('front.features.api.link'), 'url' => route('larecipe.index')])
+            ->add(['name' => __('Dark mode'), 'url' => route('settings.appearance', ['highlight' => 'dark'])])
+            ->add(['name' => __('settings.menu.premium'), 'url' => route('settings.premium')])
+            ->add(['name' => __('billing/menu.payment-method'), 'url' => route('billing.payment-method')])
+            ->add(['name' => __('billing/menu.history'), 'url' => route('billing.history')])
+        ;
+
+        $this->addCampaignRoles();
+
+        return $this->pages->filter(function ($page) {
+            return Str::contains(mb_strtolower($page['name']), mb_strtolower($this->term));
         });
     }
+
+    protected function addCampaignPage(string $name, string $route, ?string $perm = null): self
+    {
+        if (!empty($perm) && (auth()->guest() || !auth()->user()->can($perm, $this->campaign))) {
+            return $this;
+        }
+        $this->pages->add(['name' => __($name), 'url' => route($route, [$this->campaign])]);
+        return $this;
+    }
+
+    protected function addCampaignRoles(): self
+    {
+        if (auth()->guest() || !auth()->user()->can('roles', $this->campaign)) {
+            return $this;
+        }
+
+        foreach ($this->campaign->roles as $role) {
+            $this->pages->add(['name' => $role->name . ' (' . __('campaigns.invites.fields.role') . ')', 'url' => route($role->url('show'), [$this->campaign, $role])]);
+        }
+
+        return $this;
+    }
+
+
 }

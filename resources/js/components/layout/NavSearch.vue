@@ -31,15 +31,22 @@
                     <div class="search-results flex flex-col gap-2" v-if="show_results">
                         <div class="text-sm uppercase">{{ texts.results }}</div>
 
-                        <div class="text-neutral-content text-sm" v-if="results.length === 0">
+                        <div class="text-neutral-content text-sm" v-if="results.length === 0 && pages.length === 0">
                             {{ texts.empty_results }}
                         </div>
-                        <LookupEntity
-                            v-else v-for="entity in results"
-                            :entity="entity"
-                            @preview="loadPreview"
-                        >
-                        </LookupEntity>
+                        <div v-else class="flex flex-col gap-2">
+                            <LookupEntity
+                                v-for="entity in results"
+                                :entity="entity"
+                                @preview="loadPreview"
+                            >
+                            </LookupEntity>
+                            <LookupPage
+                                v-for="page in pages"
+                                :page="page">
+                            </LookupPage>
+                        </div>
+
                         <a class="grow text-sm uppercase hover:underline" v-bind:href="searchFullTextUrl()">
                             {{ texts.fulltext }}
                         </a>
@@ -110,6 +117,7 @@
 
 <script>
 import LookupEntity from "./Lookup/LookupEntity.vue";
+import LookupPage from "./Lookup/LookupPage.vue";
 import EntityPreview from "./Lookup/EntityPreview.vue";
 import vClickOutside from "click-outside-vue3";
 export default {
@@ -129,7 +137,8 @@ export default {
     },
     components: {
         LookupEntity,
-        EntityPreview
+        EntityPreview,
+        LookupPage,
     },
     data() {
         return {
@@ -144,7 +153,9 @@ export default {
             bookmarks: [],
             indexes: [],
             results: [],
+            pages: [],
             cached: {},
+            cachedPages: {},
             has_recent: false,
             texts: {},
             timeout_id: null,
@@ -226,11 +237,7 @@ export default {
                 this.show_loading = false;
                 this.show_recent = true;
                 this.has_recent = true;
-                if (this.bookmarks.length > 0) {
-                    this.show_bookmarks = true;
-                } else {
-                    this.show_bookmarks = false;
-                }
+                this.show_bookmarks = this.bookmarks.length > 0;
             }).catch(error => {
                 // Probably un-logged user
                 this.show_loading = false;
@@ -241,11 +248,14 @@ export default {
         // Load results from a search
         parseLookupResponse(response, cacheKey) {
             this.results = response.entities;
+            this.pages = response.pages;
             this.cached[cacheKey] = response.entities;
+            this.cachedPages[cacheKey] = response.pages;
             this.showResults();
         },
         displayCached(key) {
             this.results = this.cached[key];
+            this.pages = this.cachedPages[key];
             this.showResults();
         },
         showResults() {

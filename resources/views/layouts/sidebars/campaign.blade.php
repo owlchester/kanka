@@ -19,7 +19,6 @@
                     :text="__('crud.tabs.overview')"
                 ></x-sidebar.element>
 
-
                 <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
                     @can('update', $campaign)
                         <li class="px-2 section-overview {{ $sidebar->activeCampaign('recovery') }}">
@@ -110,13 +109,13 @@
                     </li>
 
                     @can('update', $campaign)
-                    <li class="px-2 section-modules {{ $sidebar->activeCampaign('campaign_styles') }}">
-                        <x-sidebar.element
-                            :url="route('campaign_styles.index', [$campaign])"
-                            icon="fa-duotone fa-palette"
-                            :text="__('campaigns.show.tabs.styles')"
-                        ></x-sidebar.element>
-                    </li>
+                        <li class="px-2 section-modules {{ $sidebar->activeCampaign('campaign_styles') }}">
+                            <x-sidebar.element
+                                :url="route('campaign_styles.index', [$campaign])"
+                                icon="fa-duotone fa-palette"
+                                :text="__('campaigns.show.tabs.styles')"
+                            ></x-sidebar.element>
+                        </li>
                         <li class="px-2 section-modules {{ $sidebar->activeCampaign('sidebar-setup') }}">
                             <x-sidebar.element
                                 :url="route('campaign-sidebar', [$campaign])"
@@ -127,7 +126,6 @@
                     @endif
                 </ul>
             </li>
-
 
             @can('update', $campaign)
             <li class="px-2 section-management">
