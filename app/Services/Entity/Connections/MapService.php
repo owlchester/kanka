@@ -666,14 +666,13 @@ class MapService
      */
     protected function addParent(): self
     {
-        if (!method_exists($this->entity->child, 'getParentKeyName')) {
-            // If not part of the node model, check for the {self}_id attribute
-            if (!array_key_exists($this->entity->type() . '_id', $this->entity->child->getAttributes())) {
-                return $this;
-            }
+        if (!method_exists($this->entity->child, 'parent')) {
+            return $this;
         }
 
-        $parent = $this->entity->child->parent;
+        /** @var Location $child */
+        $child = $this->entity->child;
+        $parent = $child->parent;
         if (empty($parent)) {
             $this->addChildren();
             return $this;
@@ -700,12 +699,13 @@ class MapService
      */
     protected function addChildren(): self
     {
-        /** @var MiscModel $children */
         if (!method_exists($this->entity->child, 'children')) {
             return $this;
         }
 
-        foreach ($this->entity->child->children()->with(['entity', 'entity.image'])->has('entity')->get() as $related) {
+        /** @var Location $child */
+        $child = $this->entity->child;
+        foreach ($child->children()->with(['entity', 'entity.image'])->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'target' => $this->entity->id,
@@ -788,7 +788,7 @@ class MapService
      */
     protected function addMaps(): self
     {
-        /** @var Map $parent */
+        /** @var Location $parent */
         $parent = $this->entity->child;
         /** @var Map $related */
         foreach ($parent->maps()->with(['entity', 'entity.image'])->has('entity')->get() as $related) {
@@ -831,7 +831,7 @@ class MapService
      */
     protected function addRaces(): self
     {
-        /** @var Race $race */
+        /** @var Character $race */
         $race = $this->entity->child;
 
         foreach ($race->races()->with(['entity', 'entity.image'])->has('entity')->get() as $subrace) {
