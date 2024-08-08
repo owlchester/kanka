@@ -10,7 +10,7 @@
                 <input type="file" v-bind:accept="props.accepts" class="w-full" @change="upload" ref="fileField" />
             </div>
             <div class="flex items-center gap-1" v-if="!hasImage()">
-                <input ref="urlField" type="text" class="w-full" v-model="imageUrl" @blur="download()" :placeholder="trans.url" />
+                <input ref="urlField" type="text" class="w-full" v-model="imageUrl" @blur="download()" @paste="pasteUrl" :placeholder="trans.url" />
                 <i class="fa-solid fa-spin fa-spinner" v-if="downloading" aria-label="Downloading" />
             </div>
             <div class="flex items-center gap-1" v-if="!hasImage()">
@@ -140,6 +140,10 @@ const openGallery = () => {
 }
 
 
+const pasteUrl = (event) => {
+    imageUrl.value = event.clipboardData.getData('text')
+    download()
+}
 const download = () => {
     if (!imageUrl.value || imageUrl.value == lastImageUrl) {
         return
