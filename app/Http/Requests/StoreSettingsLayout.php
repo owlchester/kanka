@@ -40,7 +40,6 @@ class StoreSettingsLayout extends FormRequest
             'date_format' => 'nullable|string|max:5',
             'pagination' => 'nullable|numeric|max:' . $this->pagination->max(),
             'theme' => 'nullable',
-            'default_nested' => 'nullable',
             //            'editor' => 'in:,summernote,markdown',
         ];
     }

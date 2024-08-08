@@ -53,8 +53,9 @@ class AppearanceController extends Controller
         /** @var \App\User $user */
         $user = $request->user();
         $settingFields = $request->only([
-            'editor', 'default_nested', 'advanced_mentions', 'new_entity_workflow',
-            'campaign_switcher_order_by', 'pagination', 'date_format', 'entity_explore'
+            'editor', 'advanced_mentions', 'new_entity_workflow',
+            'campaign_switcher_order_by', 'pagination', 'date_format',
+            'entity_explore'
         ]);
         $user
             ->saveSettings($settingFields)

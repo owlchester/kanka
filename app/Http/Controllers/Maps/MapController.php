@@ -26,7 +26,7 @@ class MapController extends Controller
         $base = 'descendants';
         if (request()->has('map_id')) {
             $options['map_id'] = $map->id;
-            $base = 'maps';
+            $base = 'children';
         }
 
         Datagrid::layout(\App\Renderers\Layouts\Map\Map::class)

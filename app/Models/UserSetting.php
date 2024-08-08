@@ -11,7 +11,6 @@ use Stevebauman\Purify\Facades\Purify;
  * Trait UserSetting
  * @package App\Models
  *
- * @property bool|int $mail_vote
  * @property bool|int $mail_release
  * @property string $patreon_email
  * @property string $newEntityWorkflow
@@ -20,40 +19,11 @@ use Stevebauman\Purify\Facades\Purify;
  */
 trait UserSetting
 {
-    public function settings()
-    {
-        return new Collection($this->settings);
-    }
-
-    /**
-     * Last read release
-     * @param string|null $value
-     */
-    public function setReleaseAttribute($value)
-    {
-        $this->setSettingsOption('app_release', $value);
-    }
-
     /**
      */
     public function getPatreonEmailAttribute()
     {
         return Arr::get($this->settings, 'patreon_email', '');
-    }
-
-    /**
-     */
-    public function getReleaseAttribute()
-    {
-        return Arr::get($this->settings, 'app_release');
-    }
-
-    /**
-     * @param string|null $value
-     */
-    public function setEditorAttribute($value)
-    {
-        $this->setSettingsOption('editor', $value);
     }
 
     /**
@@ -76,21 +46,6 @@ trait UserSetting
     public function getNewEntityWorkflowAttribute()
     {
         return Arr::get($this->settings, 'new_entity_workflow');
-    }
-
-    /**
-     * @param string|null $value
-     */
-    public function setDefaultNestedAttribute($value)
-    {
-        $this->setSettingsOption('default_nested', $value);
-    }
-
-    /**
-     */
-    public function getDefaultNestedAttribute()
-    {
-        return Arr::get($this->settings, 'default_nested');
     }
 
     /**
@@ -145,29 +100,15 @@ trait UserSetting
         return Arr::get($this->settings, 'mail_release', false);
     }
 
-
-    /**
-     * @param string|null $value
-     */
-    public function setMailVoteAttribute($value)
-    {
-        $this->setSettingsOption('mail_vote', $value);
-    }
-
-    /**
-     */
-    public function getMailVoteAttribute()
-    {
-        return Arr::get($this->settings, 'mail_vote', false);
-    }
-
     /**
      * @param string|null $key
      * @param string|null $value
      */
     protected function setSettingsOption($key, $value)
     {
-        $this->attributes['settings'] = collect($this->settings)->merge([$key => $value]);
+        $settings = $this->settings;
+        $settings[$key] = $value;
+        $this->settings = $settings;
     }
 
     /**
