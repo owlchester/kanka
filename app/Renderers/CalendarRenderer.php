@@ -1025,7 +1025,6 @@ class CalendarRenderer
 
     /**
      * Split the date into segments. Handle negative years
-     * @return array
      */
     protected function splitDate(string $date): array
     {

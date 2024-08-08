@@ -130,7 +130,7 @@ class Image extends Model
         return $this->hasMany(ImageMention::class, 'image_id', 'id')
             ->with('entity')
             ->with('post')
-            ;
+        ;
     }
 
     public function inEntities(): array
@@ -244,7 +244,7 @@ class Image extends Model
             ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')
             ->orderBy('name', 'asc')
-            ;
+        ;
     }
 
     /**

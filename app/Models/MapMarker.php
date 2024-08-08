@@ -294,7 +294,6 @@ class MapMarker extends Model
 
     /**
      * Generate the marker's popup that is usually opened on hover
-     * @return ?string
      */
     protected function popup(): ?string
     {
