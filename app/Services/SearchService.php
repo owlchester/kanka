@@ -12,6 +12,7 @@ use App\Models\MiscModel;
 use App\Services\Entity\NewService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 /**
@@ -309,6 +310,7 @@ class SearchService
             if ($this->v2) {
                 return [
                     'entities' => $searchResults,
+                    'pages' => $this->pages()
                 ];
             }
             return $searchResults;
@@ -397,5 +399,29 @@ class SearchService
             'type' => Module::singular($entity->typeId(), __('entities.' . $entity->type())),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
         ];
+    }
+
+    protected function pages(): Collection
+    {
+        $pages = new Collection();
+        if (empty($this->term)) {
+            return $pages;
+        }
+        // Fill data with hardcoded pages and roles
+        // todo: check permissions
+        $pages->add(['name' => __('campaigns.show.tabs.recovery'), 'url' => route('recovery', [$this->campaign])]);
+        $pages->add(['name' => __('campaigns.show.tabs.achievements'), 'url' => route('stats', [$this->campaign])]);
+        $pages->add(['name' => __('campaigns.show.tabs.members'), 'url' => route('campaign_users.index', [$this->campaign])]);
+        $pages->add(['name' => __('campaigns.show.tabs.roles'), 'url' => route('campaign_roles.index', [$this->campaign])]);
+        $pages->add(['name' => __('campaigns.show.tabs.applications'), 'url' => route('campaign_submissions.index', [$this->campaign])]);
+        $pages->add(['name' => __('campaigns.show.tabs.modules'), 'url' => route('campaign.modules', [$this->campaign])]);
+        $pages->add(['name' => __('campaigns.show.tabs.plugins'), 'url' => route('campaign_plugins.index', [$this->campaign])]);
+        $pages->add(['name' => __('campaigns.show.tabs.styles'), 'url' => route('campaign_styles.index', [$this->campaign])]);
+        $pages->add(['name' => __('campaigns.show.tabs.export'), 'url' => route('campaign.export', [$this->campaign])]);
+        $pages->add(['name' => __('campaigns.show.tabs.webhooks'), 'url' => route('webhooks.index', [$this->campaign])]);
+
+        return $pages->filter(function ($page) {
+            return Str::startsWith(mb_strtolower($page['name']), mb_strtolower($this->term));
+        });
     }
 }
