@@ -42,7 +42,7 @@
             </x-forms.field>
 
             <x-buttons.confirm type="danger" full="true">
-                <i class="fa-solid fa-times" aria-hidden="true"></i>
+                <x-icon class="fa-solid fa-times" />
                 {{ __('campaigns/submissions.actions.reject') }}
             </x-buttons.confirm>
         </x-grid>

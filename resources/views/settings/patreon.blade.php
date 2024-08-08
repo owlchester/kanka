@@ -20,7 +20,7 @@
 
                 <div>
                     <x-buttons.confirm type="danger" outline="true" target="remove-patreon">
-                        <i class="fa-solid fa-link-slash" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-link-slash" />
                         <span>
                             {{ __('settings.patreon.remove.button') }}
                         </span>

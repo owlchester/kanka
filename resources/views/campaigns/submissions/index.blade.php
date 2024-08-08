@@ -27,7 +27,7 @@
             </button>
 
             <a href="#" data-url="{{ route('campaign-applications', $campaign) }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-sm">
-                <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
+                <x-icon class="fa-solid fa-users-gear" />
                 {{ __('campaigns/submissions.actions.applications', ['status' => ($campaign->isOpen() ? __('campaigns/submissions.statuses.open') : __('campaigns/submissions.statuses.closed'))]) }}
             </a>
         </div>
@@ -38,7 +38,7 @@
                     <p>{!! __('campaigns/submissions.helpers.not_open') !!}</p>
                     <p>
                         <button data-url="{{ route('campaign-applications', $campaign) }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-outline">
-                            <i class="fa-solid fa-users-gear" aria-hidden="true"></i>
+                            <x-icon class="fa-solid fa-users-gear" />
                             {{ __('campaigns/submissions.actions.change') }}
                         </button>
                     </p>

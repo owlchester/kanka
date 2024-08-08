@@ -96,7 +96,7 @@
         @if (!auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->canceled())
         <div class="flex-0">
             <x-buttons.confirm outline="true" type="danger" target="delete-account">
-                <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                <x-icon class="fa-solid fa-exclamation-triangle" />
                 <span>{{ __('profiles.sections.delete.delete') }}</span>
             </x-buttons.confirm>
         </div>
@@ -124,7 +124,7 @@
                     <input type="text" name="goodbye" required />
                 </x-forms.field>
                 <x-buttons.confirm type="danger" outline="true" full="true">
-                    <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                    <x-icon class="fa-solid fa-exclamation-triangle" />
                     {{ __('profiles.sections.delete.confirm') }}
                 </x-buttons.confirm>
             </x-grid>

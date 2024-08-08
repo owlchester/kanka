@@ -16,7 +16,7 @@
                     data-target="{{ $asset->id }}"
                     data-visibility="{{ $asset->visibility_id }}"
                     class="entity-link flex gap-2">
-                    <i class="{{ $asset->icon() }} text-xl flex-0" aria-hidden="true"></i>
+                    <x-icon class="{{ $asset->icon() }} text-xl flex-0" />
                     <span class="grow">
                         {!! $asset->name !!}
                     </span>

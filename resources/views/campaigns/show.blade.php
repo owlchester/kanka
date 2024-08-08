@@ -110,7 +110,7 @@
                                 {{ __('crud.cancel') }}
                             </x-buttons.confirm>
                             <x-buttons.confirm type="danger" outline="true" full="true">
-                                <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
+                                <x-icon class="fa-solid fa-sign-out-alt" />
                                 {{ __('campaigns.destroy.confirm-button') }}
                             </x-buttons.confirm>
                         </div>

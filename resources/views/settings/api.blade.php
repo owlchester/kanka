@@ -15,7 +15,7 @@
         <p class="text-lg">
             {{ __('settings.api.helper') }}
             <a href="{{ route('larecipe.index') }}" class="" target="_blank">
-                <i class="fa-solid fa-external-link-square" aria-hidden="true"></i>
+                <x-icon class="fa-solid fa-external-link-square" />
                 {{ __('front.features.api.link') }}
             </a>.
         </p>

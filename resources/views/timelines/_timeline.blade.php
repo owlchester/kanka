@@ -16,8 +16,8 @@ $loadedElements = [];
         <div class="timeline-era-head flex gap-2 items-center">
             <h3 class="grow cursor-pointer flex gap-2 items-center element-toggle text-base m-0 {{ $era->collapsed() ? 'animate-collapsed' : null }}" data-animate="collapse" data-target="#era-items-{{ $era->id }}">
 
-                <i class="fa-solid fa-chevron-up icon-show" aria-hidden="true"></i>
-                <i class="fa-solid fa-chevron-down icon-hide" aria-hidden="true"></i>
+                <x-icon class="fa-solid fa-chevron-up icon-show" />
+                <x-icon class="fa-solid fa-chevron-down icon-hide" />
 
                 {!! $era->name !!} @if(!empty($era->abbreviation)) ({{ $era->abbreviation }}) @endif
 

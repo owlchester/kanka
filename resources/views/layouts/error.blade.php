@@ -71,7 +71,7 @@
         <?php /** @var \App\Models\Campaign $campaign */?>
         @foreach (auth()->user()->campaigns as $campaign)
             <a href="{{ route('dashboard', $campaign) }}" class="btn-round rounded flex gap-2 items-center">
-                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                <x-icon class="fa-solid fa-arrow-right" />
                 {!! $campaign->name !!}
             </a>
         @endforeach

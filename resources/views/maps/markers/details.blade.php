@@ -32,7 +32,9 @@ if ($marker->entity && $marker->entity->hasImage($boosted)) {
             </div>
         </div>
         <div class="marker-top px-1 py-1">
-            <span class="marker-close" title="{{ __('crud.click_modal.close') }}"><i class="fa-solid fa-close"></i></span>
+            <span class="marker-close" title="{{ __('crud.click_modal.close') }}">
+                <x-icon class="fa-solid fa-close" />
+            </span>
         </div>
     </div>
 </div>

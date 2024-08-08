@@ -20,7 +20,7 @@ class OrganisationResource extends EntityResource
         return $this->entity([
             'type' => $model->type,
             'organisation_id' => $model->organisation_id,
-            'is_defunct' => (bool) $model->is_defunct,
+            'is_defunct' => $model->isDefunct(),
             'members' => OrganisationMemberResource::collection($model->members()->has('character')->with('character')->get()),
             'locations' => $locationIDs
         ]);

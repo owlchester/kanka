@@ -71,7 +71,7 @@ $permissionService->campaign($campaign);
                         label="__('crud.permissions.actions.read')" />
                 @if ($permissionService->inherited())
                     <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip" data-append="parent">
-                        <i class="text-green-500 fa-solid fa-check-circle" aria-hidden="true"></i>
+                                <x-icon class="text-green-500 fa-solid fa-check-circle" />
                     </span>
                 @endif
                 </div>
@@ -88,7 +88,7 @@ $permissionService->campaign($campaign);
                             label="__('crud.permissions.actions.edit')" />
                         @if ($permissionService->inherited())
                             <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip" data-append="parent">
-                                <i class="text-green-500 fa-solid fa-check-circle" aria-hidden="true"></i>
+                                <x-icon class="text-green-500 fa-solid fa-check-circle" />
                             </span>
                         @endif
                     </div>
@@ -104,7 +104,7 @@ $permissionService->campaign($campaign);
                             label="__('crud.permissions.actions.delete')" />
                         @if ($permissionService->inherited())
                             <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip" data-append="parent">
-                                <i class="text-green-500 fa-solid fa-check-circle" aria-hidden="true"></i>
+                                <x-icon class="text-green-500 fa-solid fa-check-circle" />
                             </span>
                         @endif
                     </div>
@@ -120,7 +120,7 @@ $permissionService->campaign($campaign);
                             label="__('entities.po')" />
                         @if ($permissionService->inherited())
                             <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip" data-append="parent">
-                                <i class="text-green-500 fa-solid fa-check-circle" aria-hidden="true"></i>
+                                <x-icon class="text-green-500 fa-solid fa-check-circle" />
                             </span>
                         @endif
                     </div>
@@ -175,7 +175,7 @@ $permissionService->campaign($campaign);
                     @can('switch', $member)
                         <div class="grow">
                             <a class="btn2 btn-outline btn-xs btn-view-as" href="{{ route('identity.switch-entity', [$campaign, $member, $entity]) }}" data-title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
-                                <i class="fa-solid fa-sign-in-alt" aria-hidden="true"></i>
+                                <x-icon class="fa-solid fa-sign-in-alt" />
                                 {{ __('campaigns.members.actions.switch-entity') }}
                             </a>
                         </div>

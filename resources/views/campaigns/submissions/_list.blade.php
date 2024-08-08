@@ -15,7 +15,7 @@
                     data-url="{{ route('campaign_submissions.edit', [$campaign, $submission->id, 'action' => 'reject']) }}"
                     data-target="submission-dialog"
                     title="{{ __('campaigns/submissions.actions.reject') }}">
-                    <i class="fa-solid fa-times" aria-hidden="true"></i>
+                    <x-icon class="fa-solid fa-times" />
                     <span class="sr-only">{{ __('campaigns/submissions.actions.reject') }}</span>
                 </a>
 

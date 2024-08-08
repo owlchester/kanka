@@ -7,12 +7,12 @@
 @if (empty($entityEvent))
     <x-grid id="calendar-event-first">
         <a href="#" class="btn2 text-2" id="calendar-action-existing">
-            <i class="fa-solid fa-search fa-2x"></i>
+            <x-icon class="fa-solid fa-search fa-2x" />
             {{ __('calendars.event.actions.existing') }}
         </a>
 
         <span class="btn2" id="calendar-action-new">
-            <i class="fa-solid fa-bolt fa-2x"></i>
+            <x-icon class="fa-solid fa-bolt fa-2x" />
             {{ __('calendars.event.actions.new') }}
         </span>
     </x-grid>

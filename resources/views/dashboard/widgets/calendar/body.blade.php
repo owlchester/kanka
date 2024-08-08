@@ -32,13 +32,13 @@ $weather = $calendar->calendarWeather()
 <div class="col-span-2 current-date text-center text-xl flex items-center justify-center gap-2" id="widget-date-{{ $widget->id }}">
     @can('update', $calendar)
         <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" data-title="{{ __('dashboard.widgets.calendar.actions.previous') }}" role="button">
-            <i class="fa-solid fa-chevron-circle-left" aria-hidden="true"></i>
+            <x-icon class="fa-solid fa-chevron-circle-left" />
             <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.previous') }}</span>
         </a>
         <span>{{ $calendar->niceDate() }}</span>
 
         <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.add', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" data-title="{{ __('dashboard.widgets.calendar.actions.next') }}" role="button">
-            <i class="fa-solid fa-chevron-circle-right" aria-hidden="true"></i>
+            <x-icon class="fa-solid fa-chevron-circle-right" />
             <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.next') }}</span>
         </a>
     @else
@@ -50,7 +50,7 @@ $weather = $calendar->calendarWeather()
 @if ($weather)
     <div class="col-span-2 text-center">
         <div class="weather weather-{{ $weather->weather }}" data-html="true" data-toggle="tooltip" data-title="{!! $weather->tooltip() !!}">
-            <i class="fa-solid fa-{{ $weather->weather }}"></i>
+            <x-icon class="fa-solid fa-{{ $weather->weather }}" />
             {{ $weather->weatherName() }}
         </div>
     </div>

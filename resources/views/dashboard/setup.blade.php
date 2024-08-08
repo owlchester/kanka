@@ -53,7 +53,7 @@ $overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-cente
                             <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="false">
                                 <span class="hidden md:inline">{{ __('dashboard.dashboards.actions.switch') }}</span>
                                 <span class="inline md:hidden">
-                                    <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
+                                    <x-icon class="fa-solid fa-exchange-alt" />
                                 </span>
                                 <x-icon class="fa-solid fa-caret-down" />
                             </button>

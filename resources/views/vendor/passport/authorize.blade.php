@@ -46,7 +46,7 @@
             <input type="hidden" name="client_id" value="{{ $client->id }}">
             <input type="hidden" name="auth_token" value="{{ $authToken }}">
             <button class="btn2 btn-error btn-outline btn-block">
-                <i class="fa-solid fa-ban" aria-hidden="true"></i>
+                <x-icon class="fa-solid fa-ban" />
                 Deny
             </button>
         </form>

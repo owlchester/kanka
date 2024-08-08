@@ -53,13 +53,13 @@
                                     @if ($campaign->superboosted())
                                         @if(!empty($log->changes))
                                             <a href="#log-{{ $log->id }}" data-animate="collapse">
-                                                <i class="fa-solid fa-scroll" aria-hidden="true"></i>
+                                                <x-icon class="fa-solid fa-scroll" />
                                                 <span class="hidden md:inline">{{ __('entities/logs.actions.view') }}</span>
                                             </a>
                                         @endif
                                     @else
                                     <a href="#log-cta" data-animate="collapse">
-                                        <i class="fa-solid fa-scroll" aria-hidden="true"></i>
+                                        <x-icon class="fa-solid fa-scroll" />
                                         <span class="hidden md:inline">{{ __('entities/logs.actions.view') }}</span>
                                     </a>
                                     @endif

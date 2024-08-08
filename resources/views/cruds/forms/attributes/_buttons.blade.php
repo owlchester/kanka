@@ -33,7 +33,7 @@
     </div>
     @if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
         <button type="button" class="btn2 btn-ghost" data-toggle="dialog" data-target="hidden-attributes">
-            <i class="fa-solid fa-eye-slash" aria-hidden="true"></i>
+            <x-icon class="fa-solid fa-eye-slash" />
             {{ __('entities/attributes.actions.show_hidden') }}
         </button>
     @endif

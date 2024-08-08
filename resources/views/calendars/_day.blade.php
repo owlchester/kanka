@@ -74,7 +74,7 @@
 
             @if (!empty($day['weather']))
                 <div class="weather weather-{{ $day['weather']->weather }}" data-html="true" data-toggle="tooltip" data-title="{!! $day['weather']->tooltip() !!}">
-                    <i class="fa-solid fa-{{ $day['weather']->weather }}" aria-hidden="true"></i>
+                    <x-icon class="fa-solid fa-{{ $day['weather']->weather }}" />
                     {{ $day['weather']->weatherName() }}
                 </div>
             @endif

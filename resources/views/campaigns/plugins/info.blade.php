@@ -29,7 +29,7 @@
                     <div>
                         <x-form :action="['campaign_plugins.update', $campaign, $plugin]" class="inline-block">
                             <button type="submit" class="btn2 btn-primary btn-sm">
-                                <i class="fa-solid fa-download"></i>
+                                <x-icon class="fa-solid fa-download" />
                                 {{ __('campaigns/plugins.actions.update') }}
                             </button>
                         </x-form>

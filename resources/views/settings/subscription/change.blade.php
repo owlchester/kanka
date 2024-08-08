@@ -49,7 +49,7 @@
             @endif
             <li role="presentation" @if ($limited) class="active" @endif>
                 <a href="#paypal" aria-controls="settings" role="tab" data-toggle="tab">
-                    <i class="fa-brands fa-paypal" aria-hidden="true"></i>
+                    <x-icon class="fa-brands fa-paypal" />
                     PayPal
                 </a>
             </li>
@@ -73,7 +73,7 @@
                 @else
                     <div class="text-center">
                         <strong>{{ __('settings.subscription.fields.payment_method') }}</strong><br />
-                        <i class="fa-solid fa-credit-card"></i> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
+                        <x-icon class="fa-solid fa-credit-card" /> **** {{ $card->card->last4 }} {{ $card->card->exp_month }}/{{ $card->card->exp_year }}
                         <p><a href="{{ route('billing.payment-method') }}">{{ __('settings.subscription.payment_method.actions.change') }}</a></p>
                     </div>
                     @if ($isDowngrading)

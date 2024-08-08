@@ -49,7 +49,7 @@
             <div class="grid grid-cols-2 lg:grid-cols-3 gap-1">
                 <div class="flex items-center">
                     <div class="p-1 w-12 flex-none">
-                        <i class="fa-solid fa-palette fa-2x" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-palette fa-2x" />
                     </div>
                     <div class="p-1">
                         {{ __('settings/boosters.pitch.benefits.customisable') }}

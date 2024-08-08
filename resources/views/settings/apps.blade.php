@@ -21,7 +21,7 @@
                 <x-grid type="1/1">
                     <div class="flex gap-2 items-center ">
                         <div class="flex-0">
-                            <i class="fa-brands fa-discord fa-3x text-indigo-400" aria-hidden="true"></i>
+                            <x-icon class="fa-brands fa-discord fa-3x text-indigo-400" />
                         </div>
                         <div class="grow text-lg font-extrabold truncate">
                             Discord

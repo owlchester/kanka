@@ -2,9 +2,13 @@
     <div class="ui pagination menu" role="navigation">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <a class="icon item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')"> <i class="left chevron icon"></i> </a>
+            <a class="icon item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
+                <x-icon class="left chevron icon" />
+            </a>
         @else
-            <a class="icon item" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')"> <i class="left chevron icon"></i> </a>
+            <a class="icon item" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">
+                <x-icon class="left chevron icon" />
+            </a>
         @endif
 
         {{-- Pagination Elements --}}

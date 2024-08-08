@@ -63,7 +63,7 @@
                 </p>
                 <div class="w-full">
                     <x-buttons.confirm type="danger" outline="true" full="true">
-                        <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                        <x-icon class="fa-solid fa-exclamation-triangle" />
                         {{ __('crud.click_modal.confirm') }}
                     </x-buttons.confirm>
                 </div>

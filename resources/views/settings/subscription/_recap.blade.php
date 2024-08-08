@@ -77,7 +77,7 @@ $box = 'rounded p-2 lg:p-3 bg-box shadow-xs flex flex-col items-center justify-c
            data-target="primary-dialog" data-url="{{ route('billing.currency') }}">
             <div class="text-xl text-center">
                 <span class="uppercase">{{ $user->currency() }}</span>
-                <i class="fa-solid fa-pencil-alt" aria-hidden="true"></i>
+                <x-icon class="fa-solid fa-pencil-alt" />
                 <span class="sr-only">{{ __('crud.edit') }}</span>
             </div>
             <div class="text-muted">
@@ -120,7 +120,7 @@ $box = 'rounded p-2 lg:p-3 bg-box shadow-xs flex flex-col items-center justify-c
         <a href="{{ route('billing.payment-method') }}" class="{{ $box }}">
             <div class="text-xl text-center">
                 {{ __('settings.subscription.payment_method.actions.add' ) }}
-                <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+                <x-icon class="fa-solid fa-credit-card" />
             </div>
 
             <div class="text-muted">
