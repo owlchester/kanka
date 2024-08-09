@@ -9,6 +9,7 @@ use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
 use App\Models\Concerns\CampaignLimit;
 use App\Models\Concerns\HasEntry;
+use App\Models\Concerns\HasImage;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Sanitizable;
@@ -31,7 +32,6 @@ use Illuminate\Support\Collection;
  * @property string $name
  * @property string $slug
  * @property string $locale
- * @property string $image
  * @property Carbon|string $export_date
  * @property int $visibility_id
  * @property bool|int $entity_visibility
@@ -73,6 +73,7 @@ class Campaign extends Model
     use CampaignScopes;
     use HasEntry;
     use HasFactory;
+    use HasImage;
     use LastSync;
     use Sanitizable;
     use SoftDeletes;
@@ -118,6 +119,11 @@ class Campaign extends Model
 
     protected array $sanitizable = [
         'name',
+    ];
+
+    protected array $imageFields = [
+        'image',
+        'header_image',
     ];
 
     public function getRouteKeyName()
@@ -378,7 +384,7 @@ class Campaign extends Model
 
         $data = [];
         foreach ($this->default_images as $type => $uuid) {
-            /** @var Image|null $image */
+            /** @var ?Image $image */
             $image = $images->where('id', $uuid)->first();
             if (empty($image) || in_array($type, ['relations', 'bookmarks', 'menu_links'])) {
                 continue;
@@ -402,7 +408,6 @@ class Campaign extends Model
         return !empty(CampaignCache::themes());
     }
 
-
     /**
      */
     public function getDefaultVisibilityAttribute(): mixed
@@ -416,7 +421,7 @@ class Campaign extends Model
     public function defaultVisibility(): Visibility
     {
         $visibility = $this->getDefaultVisibilityAttribute();
-        if ($visibility == 'admin'  && auth()->user()->isAdmin()) {
+        if ($visibility == 'admin' && auth()->user()->isAdmin()) {
             return Visibility::Admin;
         } elseif ($visibility == 'admin-self') {
             return Visibility::AdminSelf;
@@ -455,7 +460,6 @@ class Campaign extends Model
 
     /**
      * Send a notification to the campaign's admins
-     * @return $this
      */
     public function notifyAdmins(Notification $notification): self
     {
@@ -463,20 +467,6 @@ class Campaign extends Model
             $user->notify($notification);
         }
         return $this;
-    }
-
-    /**
-     * Get the campaign's thumbnail url
-     * @return string
-     */
-    public function thumbnail(int $width = 400, int $height = null, string $field = 'image')
-    {
-        if (empty($this->$field)) {
-            return '';
-        }
-        return Img::resetCrop()
-            ->crop($width, (!empty($height) ? $height : $width))
-            ->url($this->$field);
     }
 
     /**
@@ -540,5 +530,10 @@ class Campaign extends Model
             $systems .= $system->name;
         }
         return $systems;
+    }
+
+    public function imageStoragePath(): string
+    {
+        return 'w/' . $this->id;
     }
 }

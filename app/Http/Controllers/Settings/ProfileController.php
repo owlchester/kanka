@@ -5,23 +5,19 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBillingSettings;
 use App\Http\Requests\StoreSettingsProfile;
-use App\Services\Users\AvatarService;
 use App\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    protected AvatarService $avatarService;
-
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(AvatarService $avatarService)
+    public function __construct()
     {
         $this->middleware(['auth', 'identity']);
-        $this->avatarService = $avatarService;
     }
 
     /**
@@ -46,12 +42,6 @@ class ProfileController extends Controller
         $user->saveSettings($request->only(['settings.hide_subscription', 'settings.marketplace_name']))
             ->update($request->only('name', 'has_last_login_sharing', 'avatar', 'profile'));
 
-        if ($request->hasFile('avatar')) {
-            $this->avatarService
-                ->user($user)
-                ->request($request)
-                ->upload();
-        }
         return redirect()
             ->route('settings.profile')
             ->with('success', trans('settings.profile.success'));

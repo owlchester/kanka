@@ -41,7 +41,6 @@ class CampaignObserver
         if (array_key_exists('excerpt', $attributes)) {
             $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));
         }
-        $campaign->updated_by = auth()->user()->id;
 
         if (request()->has('is_public')) {
             $previousVisibility = $campaign->getOriginal('visibility_id');
@@ -59,7 +58,6 @@ class CampaignObserver
      */
     public function creating(Campaign $campaign)
     {
-        $campaign->created_by = auth()->user()->id;
         //$campaign->is_featured = false;
         $campaign->entity_visibility = false;
         $campaign->entity_personality_visibility = false;
@@ -126,10 +124,6 @@ class CampaignObserver
     {
         $this->saveGenres($campaign);
         $this->saveSystems($campaign);
-
-        // Handle image. Let's use a service for this.
-        Images::handle($campaign, 'w/' . $campaign->id);
-        Images::handle($campaign, 'w/' . $campaign->id, 'header_image');
         $campaign->saveQuietly();
 
         foreach ($campaign->members()->with('user')->get() as $member) {
@@ -150,8 +144,6 @@ class CampaignObserver
     {
         if ($campaign->isForceDeleting()) {
             SearchCleanupService::cleanup($campaign);
-            Images::cleanup($campaign);
-            Images::cleanup($campaign, 'header_image');
 
             // Cleanup the folder with all the campaign images and files
             $campaignFolder = 'w/' . $campaign->id;

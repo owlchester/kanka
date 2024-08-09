@@ -15,6 +15,8 @@ use Stevebauman\Purify\Facades\Purify;
  * @property string $newEntityWorkflow
  * @property string $campaignSwitcherOrderBy
  * @property string $marketplaceName
+ * @property bool $advancedMentions
+ * @property bool $defaultNested
  */
 trait UserSetting
 {

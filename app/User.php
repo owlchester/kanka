@@ -11,6 +11,7 @@ use App\Models\AppRelease;
 use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
+use App\Models\Concerns\HasImage;
 use App\Models\Concerns\UserBoosters;
 use App\Models\Concerns\UserTokens;
 use App\Models\Pledge;
@@ -55,11 +56,6 @@ use App\Models\Concerns\LastSync;
  * @property Collection|array $profile
  * @property Campaign $campaign
  *
- * Virtual (from \App\Models\UserSetting)
- * @property bool $advancedMentions
- * @property bool $defaultNested
- * @property string $campaignSwitcherOrderBy
- *
  * @property ?string $stripe_id
  */
 class User extends \Illuminate\Foundation\Auth\User
@@ -67,6 +63,7 @@ class User extends \Illuminate\Foundation\Auth\User
     use Billable;
     use HasApiTokens;
     use HasFactory;
+    use HasImage;
     use LastSync;
     use Notifiable;
     use UserBoosters;
@@ -117,6 +114,8 @@ class User extends \Illuminate\Foundation\Auth\User
         'trial_ends_at' => 'date',
     ];
 
+    protected array $imageFields = ['avatar'];
+
     /**
      * Get the other campaigns of the user
      */
@@ -134,7 +133,7 @@ class User extends \Illuminate\Foundation\Auth\User
     public function getAvatarUrl(int $size = 40): string
     {
         if ($this->hasAvatar()) {
-            return Img::crop($size, $size)->url($this->avatar);
+            return $this->thumbnail($size, null, 'avatar');
         } else {
             return '/images/defaults/user.svg';
         }
@@ -549,5 +548,10 @@ class User extends \Illuminate\Foundation\Auth\User
             config('subscription.elemental.yearly'),
         );
         return $this->subscribedToPrice($prices, 'kanka');
+    }
+
+    public function imageStoragePath(): string
+    {
+        return 'users/' . (int) floor($this->id / 1000);
     }
 }
