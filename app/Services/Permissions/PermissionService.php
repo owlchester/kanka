@@ -32,6 +32,7 @@ class PermissionService
     protected bool $loadedPermissions = false;
 
     protected bool $tempPermissionCreated = false;
+    protected bool $tempPermissionFilled = false;
 
     /** @var array Permissions for posts */
     protected array $allowedPostIDs = [];
@@ -118,13 +119,16 @@ class PermissionService
 
     public function createTemporaryTable(): self
     {
-        if ($this->tempPermissionCreated || request()->filled('_perm_v1')) {
+        if ($this->tempPermissionFilled || request()->filled('_perm_v1')) {
             return $this;
         }
-        Schema::create('tmp_permissions', function (Blueprint $table) {
-            $table->unsignedInteger('id');
-            $table->temporary();
-        });
+        if (!$this->tempPermissionCreated) {
+            Schema::create('tmp_permissions', function (Blueprint $table) {
+                $table->unsignedInteger('id');
+                $table->temporary();
+            });
+            $this->tempPermissionCreated = true;
+        }
         $batch = [];
         foreach ($this->entityIds as $id) {
             $batch[] = $id;
@@ -140,7 +144,7 @@ class PermissionService
         //        $wa = DB::table('tmp_permissions')
         //            ->where('id', 329259)->get();
         //        dd($wa);
-        $this->tempPermissionCreated = true;
+        $this->tempPermissionFilled = true;
         return $this;
     }
 
@@ -187,6 +191,7 @@ class PermissionService
         $this->granted = true;
         $this->entityIds[] = $entity->id;
         $this->allowedModels[] = $entity->entity_id;
+        $this->tempPermissionFilled = false;
         return $this;
     }
 
