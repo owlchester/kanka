@@ -3,11 +3,12 @@
 @endif
 
 @php
+    $field = isset($isParent) && $isParent ? 'parent' : 'organisation';
     $preset = null;
-    if (isset($model) && $model->parent) {
-        $preset = $model->parent;
+    if (isset($model) && $model->$field) {
+        $preset = $model->$field;
     } elseif (!isset($bulk)) {
-        $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Organisation::class);
+        $preset = FormCopy::field($field)->select($isParent ?? false, \App\Models\Organisation::class);
     }
 @endphp
 <x-forms.foreign
