@@ -550,6 +550,10 @@ class User extends \Illuminate\Foundation\Auth\User
         return $this->subscribedToPrice($prices, 'kanka');
     }
 
+    /**
+     * Determine in which folder to store the user's avatar. We group them by 1000 user ids to avoid
+     * having one massive folder containing everything.
+     */
     public function imageStoragePath(): string
     {
         return 'users/' . (int) floor($this->id / 1000);
