@@ -55,7 +55,7 @@
                 <x-forms.field field="avatar" :label="__('settings.profile.avatar')">
                     <input type="file" name="avatar" class="image w-full" id="header_image" accept=".jpg, .jpeg, .png, .gif, .webp, .gif" />
 
-                    @if (!empty(auth()->user()->avatar) && auth()->user()->avatar != 'users/default.png')
+                    @if (!empty(auth()->user()->avatar) && auth()->user()->hasAvatar())
                         <div class="rounded-full">
                             <img class="avatar rounded-full avatar-user" src="{{ auth()->user()->getAvatarUrl(200) }}" width="200" height="200" alt="{{ auth()->user()->name }}">
                         </div>

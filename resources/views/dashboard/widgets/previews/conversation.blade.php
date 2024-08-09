@@ -48,7 +48,9 @@ $conversation = $entity->child;
                 </div>
                 <div class="flex gap-2 items-center">
                 @if (!empty($message->user_id))
+                    @if ($message->user->hasAvatar())
                     <img class="cover-background w-6 h-6 rounded-full" src="{{ $message->user->getAvatarUrl() }}" alt="{{ $message->user->name }}">
+                    @endif
                 @elseif (!empty($message->character_id))
                     <img class="entity-image cover-background w-6 h-6 rounded-full" src="{{ \App\Facades\Avatar::entity($message->character->entity)->fallback()->size(40)->thumbnail() }}" alt="{{ $message->character->name }}">
                 @endif

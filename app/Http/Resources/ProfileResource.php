@@ -20,8 +20,8 @@ class ProfileResource extends JsonResource
         return [
             'id' => $model->id,
             'name' => $model->name,
-            'avatar' => $model->getAvatarUrl(200),
-            'avatar_thumb' => $model->getAvatarUrl(),
+            'avatar' => $model->hasAvatar() ? $model->getAvatarUrl(200) : null,
+            'avatar_thumb' => $model->hasAvatar() ? $model->getAvatarUrl() : null,
             'locale' => $model->locale,
             'timezone' => $model->timezone,
             'date_format' => $model->dateformat,

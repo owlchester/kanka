@@ -22,7 +22,7 @@ class UserResource extends JsonResource
         $data = [
             'id' => $user->id,
             'name' => $user->name,
-            'avatar' => $user->getAvatarUrl(),
+            'avatar' => $user->hasAvatar() ? $user->getAvatarUrl() : null,
             'password' => 'hihi',
         ];
 

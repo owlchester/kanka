@@ -35,7 +35,7 @@ class CampaignSearchService
             $result[] = [
                 'id' => $member->user->id,
                 'name' => $member->user->name,
-                'avatar' => $member->user->getAvatarUrl()
+                'avatar' => $member->user->hasAvatar() ? $member->user->getAvatarUrl() : null
             ];
         }
 

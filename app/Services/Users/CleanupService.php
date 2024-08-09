@@ -77,7 +77,7 @@ class CleanupService
 
     protected function removeAvatar(): self
     {
-        if (!empty($this->user->avatar) && $this->user->avatar !== 'users/default.png') {
+        if ($this->user->hasAvatar()) {
             Images::cleanup($this->user, 'avatar');
         }
         return $this;

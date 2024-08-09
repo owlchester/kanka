@@ -115,11 +115,6 @@ class UserObserver
      */
     public function deleted(User $user)
     {
-        // If the user has an avatar, delete it from the disk to free up some space.
-        if (!empty($user->avatar) && $user->avatar !== 'users/default.png' && app()->isProduction()) {
-            Images::cleanup($user, 'avatar');
-        }
-
         //Log::info('Deleted user', ['user' => $user->id]);
         UserCache::user($user)
             ->clearName()

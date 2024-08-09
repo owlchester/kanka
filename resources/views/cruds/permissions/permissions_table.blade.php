@@ -165,8 +165,14 @@ $permissionService->campaign($campaign);
             <div class="grid grid-cols-2 md:grid-cols-5 md: gap-2">
                 <div class="col-span-2 md:col-span-1 flex flex-wrap items-center gap-2">
                     <div class="flex-none">
-                        <div class="entity-image cover-background" style="background-image: url({{ $member->user->getAvatarUrl() }})" title="{{ $member->user->name }}">
+                        @if ($member->user->hasAvatar())
+                        <div class="rounded-full w-8 h-8 cover-background" style="background-image: url('{{ $member->user->getAvatarUrl() }}')" title="{{ $member->user->name }}">
                         </div>
+                        @else
+                            <div class="rounded-full w-8 h-8 cover-background bg-neutral text-neutral-content uppercase flex items-center justify-center">
+                                {{ $member->user->initials() }}
+                            </div>
+                        @endif
                     </div>
                     <div class="truncate">
                         {{ $member->user->name }}

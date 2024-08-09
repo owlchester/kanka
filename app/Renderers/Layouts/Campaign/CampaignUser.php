@@ -17,8 +17,11 @@ class CampaignUser extends Layout
             'image' => [
                 'label' => '',
                 'render' => function ($model) {
-                    $html = '<div class="entity-image pull-left" style="background-image: url(' . $model->user->getAvatarUrl() . ')" data-title="' . $model->user->name . '"></div>';
-                    return $html;
+                    /** @var \App\Models\CampaignUser $model */
+                    if ($model->user->hasAvatar()) {
+                        return '<div class="rounded-full h-8 w-8 cover-background" style="background-image: url(' . $model->user->getAvatarUrl() . ')" data-title="' . $model->user->name . '"></div>';
+                    }
+                    return '<div class="rounded-full h-8 w-8 flex items-center justify-center bg-neutral text-neutral-content uppercase">' . $model->user->initials() . '</div>';
                 }
             ],
             'name' => [

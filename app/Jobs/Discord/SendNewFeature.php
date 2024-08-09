@@ -66,7 +66,6 @@ class SendNewFeature implements ShouldQueue
                     'author' => [
                         'name'  => $feature->user->name,
                         'url'   => route('users.profile', $feature->created_by),
-                        'icon'  => $feature->user->getAvatarUrl(),
                     ]
                 ]
             ],

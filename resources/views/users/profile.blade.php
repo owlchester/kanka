@@ -8,7 +8,7 @@
 @section('og')
     @if (!empty($user->profile['bio']))<meta property="og:description" content="{{ $user->profile['bio'] }}" />@endif
     <meta property="og:url" content="{{ route('users.profile', $user) }}" />
-    @if ($user->avatar)
+    @if ($user->hasAvatar())
         <meta property="og:image" content="{{ $user->getAvatarUrl(200)  }}" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:width" content="200" />
