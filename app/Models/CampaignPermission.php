@@ -102,7 +102,6 @@ class CampaignPermission extends Model
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;
         $new->misc_id = $target->entity_id;
-        $new->key = Str::replaceLast('_' . $from, '_' . $to, $new->key);
         return $new->save();
     }
 

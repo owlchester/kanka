@@ -392,7 +392,7 @@ class CrudController extends Controller
                         ->save($request->get('attribute', []));
 
                     // When copying an entity, the user probably wants to update all mentions of attributes to ones on the new entity.
-                    if ($request->has('replace_mentions') && $request->filled('replace_mentions') && $new->entity->child->isFillable('entry')) {
+                    if ($request->has('replace_mentions') && $request->filled('replace_mentions') && $new->isFillable('entry')) {
                         $this->attributeService
                             ->replaceMentions((int) $request->post('copy_source_id'));
                     }
@@ -437,6 +437,9 @@ class CrudController extends Controller
             return response()->redirectTo($route);
 
         } catch (LogicException $exception) {
+            if (app()->isLocal()) {
+                throw $exception;
+            }
             $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));
             return redirect()
                 ->back()
