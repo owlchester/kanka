@@ -8,7 +8,7 @@
     <div class="max-w-2xl mx-auto">
         <h1 class="mb-3">{{ __('helpers.troubleshooting.subtitle') }}</h1>
 
-        <x-form action="'troubleshooting.generate">
+        <x-form action="troubleshooting.generate">
         <x-box>
             <x-grid type="1/1">
                 <p class="">

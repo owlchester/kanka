@@ -21,7 +21,7 @@ class TroubleshootingController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function invite()
+    public function index()
     {
         $campaigns = $this->service
             ->user(auth()->user())
@@ -35,8 +35,11 @@ class TroubleshootingController extends Controller
     /**
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function saveInvite(SaveUserHelp $request)
+    public function store(SaveUserHelp $request)
     {
+        if (request()->ajax()) {
+            return response()->json();
+        }
         try {
             $campaign = Campaign::findOrFail($request->get('campaign'));
             $invite = $this->service

@@ -37,12 +37,13 @@ class EntryObserver
     public function saved(Model $model)
     {
         // @phpstan-ignore-next-line
-        if ($model->isDirty($model->entryFieldName())) {
-            if ($model instanceof MiscModel) {
-                $this->entityMappingService->with($model->entity)->silent()->map();
-            } elseif (method_exists($model, 'mentions')) {
-                $this->entityMappingService->with($model)->silent()->map();
-            }
+        if (!$model->isDirty($model->entryFieldName())) {
+            return;
+        }
+        if ($model instanceof MiscModel) {
+            $this->entityMappingService->with($model->entity)->silent()->map();
+        } elseif (method_exists($model, 'mentions')) {
+            $this->entityMappingService->with($model)->silent()->map();
         }
     }
 }

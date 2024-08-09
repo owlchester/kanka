@@ -15,5 +15,5 @@ Route::post('/new-campaign', [CampaignController::class, 'store'])->name('create
 // Invitation's campaign comes from the token.
 Route::get('/invitation/join/{token}', [InvitationController::class, 'join'])->name('campaigns.join');
 
-Route::get('/assistance', [TroubleshootingController::class, 'invite'])->name('troubleshooting');
-Route::post('/assistance', [TroubleshootingController::class, 'saveInvite'])->name('troubleshooting.generate');
+Route::get('/assistance', [TroubleshootingController::class, 'index'])->name('troubleshooting');
+Route::post('/assistance', [TroubleshootingController::class, 'store'])->name('troubleshooting.generate');
