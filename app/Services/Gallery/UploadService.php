@@ -108,6 +108,10 @@ class UploadService
         $this->image->name = $cleanImageName;
         $this->image->campaign_id = $this->campaign->id;
         $this->image->ext = Str::before($file->getExtension(), '?');
+        // Some servers do weird stuff with their extensions
+        if (Str::startsWith($this->image->ext, 'jpg')) {
+            $this->image->ext = 'jpg';
+        }
         $this->image->size = (int) ceil($copiedFileSize); // kb
         $this->image->visibility_id = $this->campaign->defaultVisibility();
         $this->image->save();
