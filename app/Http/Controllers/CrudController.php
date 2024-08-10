@@ -384,6 +384,10 @@ class CrudController extends Controller
             // MenuLink have no entity attached to them.
             if ($new->entity) {
                 $new->entity->crudSaved();
+                // Weird hack for prod issues
+                if (!$new->entity->child) {
+                    $new->entity->child = $new;
+                }
 
                 if (auth()->user()->can('attributes', $new->entity)) {
                     $this->attributeService
