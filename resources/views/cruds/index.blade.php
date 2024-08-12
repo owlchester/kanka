@@ -8,7 +8,7 @@
 
 @section('entity-header')
     <div class="flex gap-2 items-center mb-5">
-        <h1 class="grow text-4xl category-title">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
+        <h1 class="grow text-4xl category-title truncate">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex flex-wrap gap-2 justify-end">
             @includeWhen(isset($route) && $route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])
             @includeWhen(isset($actions), 'cruds.lists._actions')
@@ -19,6 +19,8 @@
 
 @section('content')
     @include('partials.errors')
+
+    @include('partials.ads.top')
 
     <div class="flex flex-col gap-5">
     @if (auth()->guest())
@@ -34,8 +36,6 @@
             </div>
         @endif
     @endif
-
-    @include('partials.ads.top')
 
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['route' => $route . '.index'])
