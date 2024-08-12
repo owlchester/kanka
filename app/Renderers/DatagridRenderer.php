@@ -41,6 +41,8 @@ class DatagridRenderer
      */
     protected null|string $nestedFilter = null;
 
+    protected bool $showAds;
+
     /**
      *
      */
@@ -299,7 +301,7 @@ class DatagridRenderer
             $rows++;
             $html .= $this->renderRow($model);
 
-            if ($rows%7 === 0) {
+            if ($rows % 7 === 0) {
                 $html .= $this->renderAdRow();
             }
         }
@@ -364,25 +366,28 @@ class DatagridRenderer
 
     protected function showAds(): bool
     {
+        if (isset($this->showAds)) {
+            return $this->showAds;
+        }
         if (!config('tracking.venatus.enabled')) {
-            return false;
+            return $this->showAds = false;
         }
         if (request()->has('_showads')) {
-            return true;
+            return $this->showAds = true;
         }
         if (isset($this->user)) {
             // Subscribed users don't have ads
             if ($this->user->isSubscriber()) {
-                return false;
+                return $this->showAds = false;
             }
             // User has been created less than 24 hours ago
             if ($this->user->created_at->diffInHours(Carbon::now()) < 24) {
-                return false;
+                return $this->showAds = false;
             }
         }
 
         // Premium campaigns don't have ads displayed to their members
-        return !empty($this->campaign) && !$this->campaign->boosted();
+        return $this->showAds = !empty($this->campaign) && !$this->campaign->boosted();
     }
 
     /**
