@@ -172,7 +172,7 @@ const loadCalendarDates = (calendarID) => {
                 id++;
             });
 
-            for (let d = 1; d < monthLength; d++) {
+            for (let d = 1; d <= monthLength; d++) {
                 const option = document.createElement('option');
                 option.text = d;
                 option.value = d;

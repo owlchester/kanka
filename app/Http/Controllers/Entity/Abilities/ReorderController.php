@@ -30,7 +30,7 @@ class ReorderController extends Controller
                 // entity
                 'ability.entity', 'ability.entity.image', 'ability.entity.attributes',
                 // parent
-                'ability.ability', 'ability.ability.entity'
+                'ability.parent', 'ability.parent.entity'
             ])
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
             ->defaultOrder()

@@ -2,4 +2,4 @@
  * @var \App\Models\Location $model
  */
 ?>
-@include('entities.headers.__location')
+@include('entities.headers.__parent_location')

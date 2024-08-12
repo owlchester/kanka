@@ -68,6 +68,7 @@ class ApiController extends Controller
             $this
                 ->service
                 ->family($family)
+                ->campaign($campaign)
                 ->save($request->get('data'))
                 ->api()
         );

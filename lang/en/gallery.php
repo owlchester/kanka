@@ -14,6 +14,7 @@ return [
             'placeholder'   => 'Search for an image in the gallery',
         ],
         'title'     => 'Gallery',
+        'unauthorized' => 'None of your roles have the "browse gallery" permission.',
     ],
     'download'  => [
         'errors'    => [
@@ -22,6 +23,7 @@ return [
             'gallery_full_premium'  => 'The gallery storage space is full. Remove unused files first.',
             'invalid_format'        => 'The file isn\'t a valid file format.',
             'too_big'               => 'The file is too large.',
+            'unauthorized'          => 'None of your roles have the "upload to gallery" permission.',
         ],
     ],
 ];

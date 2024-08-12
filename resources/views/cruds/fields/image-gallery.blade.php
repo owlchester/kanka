@@ -40,6 +40,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
         'remove' => __('crud.remove'),
         'url' => __('gallery.actions.url'),
         'gallery' => __('gallery.actions.gallery'),
+        'unauthorized' => __('gallery.download.errors.unauthorized'),
         'browse' => [
             'title' => __('gallery.browse.title'),
             'layouts' => [
@@ -49,6 +50,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
             'search' => [
                 'placeholder' => __('gallery.browse.search.placeholder'),
             ],
+            'unauthorized' => __('gallery.browse.unauthorized'),
         ],
     ]);
 @endphp
