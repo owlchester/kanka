@@ -93,7 +93,9 @@ const open = () => {
         .catch(err => {
             loading.value = false
             if (err.response.status === 403) {
-                error.value = err.response.data.message //'You aren\'t a member of any roles that have access to the gallery'
+                error.value = err.response.data.message //You aren\'t a member of any roles that have access to the gallery'
+                // Let's give more hints to the users confused by this
+                error.value += '<p>' + trans.value.browse.unauthorized + '</p>'
             }
         })
 }

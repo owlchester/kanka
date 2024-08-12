@@ -233,7 +233,7 @@ const showErrors = (err) => {
     }
 
     if (err.response && err.response.status === 403 && err.response.data.message) {
-        window.showToast(err.response.data.message, 'error')
+        window.showToast(trans.value.unauthorized, 'error')
         return
     }
 

@@ -41,8 +41,7 @@ class BrowseService
         }
 
         $images = Image::acl($canBrowse)
-            ->imageFolder($this->folder)
-            ->named($this->term)
+            ->search($this->folder, $this->term)
             ->where('is_default', false)
             ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')

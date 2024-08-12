@@ -53,6 +53,7 @@ use Illuminate\Support\Facades\Storage;
  * @method static Builder|self acl(bool $browse)
  * @method static Builder|self named(string|null $term)
  * @method static Builder|self imageFolder(string|null $folder)
+ * @method static Builder|self search(?string $folder, ?string $term)
  */
 class Image extends Model
 {
@@ -270,6 +271,14 @@ class Image extends Model
             return $query;
         }
         return $query->where('name', 'like', '%' . $term . '%');
+    }
+
+    public function scopeSearch(Builder $query, ?string $folder, ?string $term): Builder
+    {
+        if (empty($term)) {
+            return $query->imageFolder($folder);
+        }
+        return $query->named($term);
     }
 
     /**
