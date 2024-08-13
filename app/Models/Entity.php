@@ -247,8 +247,8 @@ class Entity extends Model
 
     public function cleanCache(): self
     {
-        unset($this->cachedType);
-        unset($this->cachedPluralName);
+        unset($this->cachedType, $this->cachedPluralName);
+
         return $this;
     }
 

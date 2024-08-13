@@ -7,7 +7,6 @@ use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\UnsubscribeUser;
 use App\Jobs\Users\UpdateEmail;
-use App\Facades\Images;
 use App\User;
 use Exception;
 use Illuminate\Support\Facades\Hash;

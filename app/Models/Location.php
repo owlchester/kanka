@@ -26,6 +26,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $image
  * @property ?string $map
  * @property bool|int $is_private
+ * @property bool|int $is_destroyed
  * @property bool|int $is_map_private
  * @property ?int $location_id
  * @property Map[]|Collection $maps
@@ -60,6 +61,7 @@ class Location extends MiscModel
         'location_id',
         'campaign_id',
         'is_private',
+        'is_destroyed',
     ];
 
 
@@ -67,6 +69,14 @@ class Location extends MiscModel
         'name',
         'type',
         'parent.name',
+        'is_destroyed',
+    ];
+
+    /**
+     * Fields that can be sorted on
+     */
+    protected array $sortableColumns = [
+        'is_destroyed',
     ];
 
     /**
@@ -83,7 +93,10 @@ class Location extends MiscModel
 
     protected array $exportFields = [
         'base',
+        'is_destroyed',
     ];
+
+    protected array $exploreGridFields = ['is_destroyed'];
 
     protected array $sanitizable = [
         'name',
@@ -128,7 +141,7 @@ class Location extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['location_id'];
+        return ['location_id', 'is_destroyed'];
     }
 
     public function characters(): HasMany
@@ -269,6 +282,14 @@ class Location extends MiscModel
     }
 
     /**
+     * Get the value of the is_destroyed variable
+     */
+    public function isDestroyed(): bool
+    {
+        return (bool) $this->is_destroyed;
+    }
+
+    /**
      * Define the fields unique to this model that can be used on filters
      * @return string[]
      */
@@ -276,6 +297,7 @@ class Location extends MiscModel
     {
         return [
             'location_id',
+            'is_destroyed'
         ];
     }
 }

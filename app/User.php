@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Facades\Identity;
-use App\Facades\Img;
 use App\Facades\PostCache;
 use App\Facades\SingleUserCache;
 use App\Facades\UserCache;

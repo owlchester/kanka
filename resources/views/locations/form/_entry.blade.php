@@ -6,6 +6,8 @@
     @include('cruds.fields.location', ['isParent' => true])
 
     @include('cruds.fields.entry2')
+    
+    @include('cruds.fields.destroyed')
 
     @include('cruds.fields.tags')
     @include('cruds.fields.image')
