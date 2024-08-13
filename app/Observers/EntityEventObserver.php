@@ -26,7 +26,15 @@ class EntityEventObserver
 
     public function updated(EntityEvent $entityEvent)
     {
-        // Go touch linked entity?
+        // Go touch linked entity and its child
         $entityEvent->entity->touchSilently();
+        $entityEvent->entity->child?->touchQuietly();
+    }
+
+    public function deleted(EntityEvent $entityEvent)
+    {
+        // Go touch linked entity and its child
+        $entityEvent->entity->touchSilently();
+        $entityEvent->entity->child?->touchQuietly();
     }
 }

@@ -61,8 +61,6 @@
                     </li>
                 @endforeach
             </ul>
-
-            @include('partials.ads.sidebar')
         </section>
     </aside>
 @endif

@@ -49,7 +49,7 @@ $uid = 1;
                                 @if ($attribute->validConstraints())
                                     <span class="font-extrabold">{!! $attribute->name() !!}</span>
                                 @else
-                                    <span class="font-extrabold">{!! $attribute->mappedName() !!}</span>
+                                    <span class="font-extrabold">{!! $attribute->name() !!}</span>
                                 @endif
                             </div>
                         </div>

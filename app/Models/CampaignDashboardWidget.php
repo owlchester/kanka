@@ -99,6 +99,22 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
+     * Get the column size for tablet devices
+     */
+    public function mdColSize(): int
+    {
+        if ($this->widget == Widget::Campaign) {
+            return 12;
+        }
+        if (!empty($this->width)) {
+            return max(6, $this->width);
+        }
+        return ($this->widget == Widget::Preview || $this->widget == Widget::Random ||
+            ($this->widget == Widget::Recent && $this->conf('singular')))
+            ? 6 : 6;
+    }
+
+    /**
      */
     public function scopePositioned(Builder $query): Builder
     {

@@ -11,7 +11,7 @@ window.onEvent(function() {
 const registercalendarForm = () => {
     calendarAdd = document.querySelector('#entity-calendar-form-add');
     calendarField = document.querySelector('select[name="calendar_id"]');
-    calendarHiddenField = document.querySelector('input[name="calendar_id"]'); // Campaigns with a single calendar
+    calendarHiddenField = document.querySelector('[name="calendar_id"]'); // Campaigns with a single calendar
     calendarModalForm = document.querySelector('.entity-calendar-modal-form');
     calendarSubForm = document.querySelector('.entity-calendar-subform');
     calendarCancel = document.querySelector('#entity-calendar-form-cancel');
@@ -40,7 +40,9 @@ const registercalendarForm = () => {
 
         calendarCancel.addEventListener('click', function (e) {
             e.preventDefault();
-            calendarField.value = null;
+            if (calendarField) {
+                calendarField.value = null;
+            }
             calendarHiddenField.value = null;
             calendarCancel.classList.add('hidden');
             calendarHideSubform();
@@ -77,7 +79,7 @@ const registercalendarModal = () => {
         return;
     }
     calendarAdd = document.querySelector('input[name=calendar-data-url]');
-    calendarField = document.querySelector('select[name="calendar_id"]');
+    calendarField = document.querySelector('[name="calendar_id"]');
     calendarYearField = document.querySelector('input[name="year"]');
     calendarMonthField = document.querySelector('select[name="month"]');
     calendarDayField = document.querySelector('#reminder_day');
@@ -220,7 +222,7 @@ const calendarHideSubform = () => {
     document.querySelector('[name="calendar_day"]').value = null;
     document.querySelector('[name="calendar_month"]').value = null;
     document.querySelector('input[name="calendar_year"]').value = null;
-    document.querySelector('select[name="calendar_id"]').value = null;
+    document.querySelector('[name="calendar_id"]').value = null;
 };
 
 /**
@@ -254,7 +256,7 @@ const rebuildCalendarDayList = (max) => {
         const newOption = document.createElement('option');
         newOption.text = d;
         newOption.value = d;
-        if (d == selectedDay) {
+        if (d === selectedDay) {
             newOption.selected = true;
         }
         calendarDayField.appendChild(newOption);

@@ -31,6 +31,11 @@ function dismissPromo(e) {
 function dismissTutorial(e) {
     e.preventDefault();
     let target = this.dataset.target;
+    let btn = e.currentTarget;
+    btn.classList.add('loading');
+    btn.disabled = true;
+    btn.querySelector('i')?.remove();
+
     axios.post(this.dataset.url)
         .then(() => {
             if (!target) {

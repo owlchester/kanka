@@ -104,7 +104,7 @@ class UserObserver
                 ->updateSettings(['mail_release' => 1])
                 ->save();
 
-            MailSettingsChangeJob::dispatch($user);
+            MailSettingsChangeJob::dispatch($user, true);
         }
     }
 

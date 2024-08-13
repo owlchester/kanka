@@ -100,3 +100,5 @@ const initGTM = (w,d,s,l,i) => {
     j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
     f.parentNode.insertBefore(j,f);
 };
+
+initCookieConsent();

@@ -7,6 +7,7 @@ use App\Models\Users\Tutorial;
 use App\Traits\UserAware;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
+use Exception;
 
 class TutorialService
 {
@@ -29,7 +30,6 @@ class TutorialService
 
     /**
      * Reset all the dismissed tutorials for the user
-     * @return $this
      */
     public function reset(): self
     {
@@ -42,6 +42,9 @@ class TutorialService
         return $this;
     }
 
+    /**
+     * Save that a user dismissed a tutorial
+     */
     public function track(string $code): self
     {
         if (UserCache::dismissedTutorial($code)) {
@@ -54,12 +57,17 @@ class TutorialService
             return $this;
         }
 
-        $tutorial = new Tutorial();
-        $tutorial->user_id = $this->user->id;
-        $tutorial->code = $code;
-        $tutorial->save();
+        try {
+            $tutorial = new Tutorial();
+            $tutorial->user_id = $this->user->id;
+            $tutorial->code = $code;
+            $tutorial->save();
 
-        UserCache::clear();
+            UserCache::clear();
+        } catch (Exception $e) {
+            // Someone double-clicked with a slow internet
+            return $this;
+        }
 
         return $this;
     }

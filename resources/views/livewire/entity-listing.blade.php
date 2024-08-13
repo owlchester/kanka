@@ -10,7 +10,7 @@
             href="{{ $entity->url() }}">
         </a>
 
-        <div class="grow break-all">
+        <div class="grow break-all truncate">
             <x-entity-link
                 :entity="$entity"
                 :campaign="$campaign" />

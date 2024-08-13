@@ -16,6 +16,9 @@
 @if ($model instanceof \App\Models\Organisation && $model->isDefunct())
 {{ __('organisations.hints.is_defunct') }}
 @endif
+@if ($model instanceof \App\Models\Location && $model->isDestroyed())
+{{ __('locations.hints.is_destroyed') }}
+@endif
 @if ($model instanceof \App\Models\Creature && $model->isExtinct())
 {{ __('creatures.hints.is_extinct') }}
 @endif

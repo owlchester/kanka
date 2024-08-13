@@ -13,6 +13,7 @@ use App\Models\MiscModel;
 use App\Services\FilterService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -39,6 +40,8 @@ class DatagridRenderer
     /**
      */
     protected null|string $nestedFilter = null;
+
+    protected bool $showAds;
 
     /**
      *
@@ -297,6 +300,10 @@ class DatagridRenderer
         foreach ($this->models as $model) {
             $rows++;
             $html .= $this->renderRow($model);
+
+            if ($rows % 7 === 0) {
+                $html .= $this->renderAdRow();
+            }
         }
 
         // Render an empty row
@@ -343,6 +350,44 @@ class DatagridRenderer
         $html .= $model instanceof MiscModel ? $this->renderEntityActionRow($model) : $this->renderActionRow($model);
 
         return $html . '</tr>';
+    }
+
+    protected function renderAdRow(): string
+    {
+        if (!$this->showAds()) {
+            return '';
+        }
+
+        $colspan = count($this->columns) + (auth()->check() ? 2 : 0);
+        return '<tr><td class="adrow" colspan="' . $colspan . '">' .
+            '<div class="vm-placement" data-id="' . config('tracking.venatus.inline') . '"></div>' .
+        '</td></tr>';
+    }
+
+    protected function showAds(): bool
+    {
+        if (isset($this->showAds)) {
+            return $this->showAds;
+        }
+        if (!config('tracking.venatus.enabled')) {
+            return $this->showAds = false;
+        }
+        if (request()->has('_showads')) {
+            return $this->showAds = true;
+        }
+        if (isset($this->user)) {
+            // Subscribed users don't have ads
+            if ($this->user->isSubscriber()) {
+                return $this->showAds = false;
+            }
+            // User has been created less than 24 hours ago
+            if ($this->user->created_at->diffInHours(Carbon::now()) < 24) {
+                return $this->showAds = false;
+            }
+        }
+
+        // Premium campaigns don't have ads displayed to their members
+        return $this->showAds = !empty($this->campaign) && !$this->campaign->boosted();
     }
 
     /**
