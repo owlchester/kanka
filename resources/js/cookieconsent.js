@@ -103,6 +103,4 @@ const initGTM = (w,d,s,l,i) => {
     f.parentNode.insertBefore(j,f);
 };
 
-window.onEvent(() => {
-    initCookieConsent();
-});
+initCookieConsent();
