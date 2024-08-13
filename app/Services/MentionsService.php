@@ -98,16 +98,6 @@ class MentionsService
     }
 
     /**
-     * Map the mentions in a post
-     * @return string|string[]|null
-     */
-    public function mapPost(Post $post)
-    {
-        $this->text = (string) $post->entry;
-        return $this->extractAndReplace();
-    }
-
-    /**
      * Map the mentions in any model
      * @return string|string[]|null
      */
