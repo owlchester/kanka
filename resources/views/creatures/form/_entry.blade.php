@@ -14,6 +14,15 @@
         </x-checkbox>
     </x-forms.field>
 
+    <x-forms.field
+        field="dead"
+        :label="__('characters.fields.is_dead')">
+        <input type="hidden" name="is_dead" value="0" />
+        <x-checkbox :text="__('creatures.hints.is_dead')">
+            <input type="checkbox" name="is_dead" value="1" @if (old('is_dead', $source->is_dead ?? $model->is_dead ?? false)) checked="checked" @endif />
+        </x-checkbox>
+    </x-forms.field>
+
     @include('cruds.fields.tags')
     @include('cruds.fields.image')
 

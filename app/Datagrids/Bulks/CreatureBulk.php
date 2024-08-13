@@ -12,11 +12,13 @@ class CreatureBulk extends Bulk
         'tags',
         'private_choice',
         'extinct_choice',
+        'dead_choice',
         'entity_image',
         'entity_header',
     ];
 
     protected $booleans = [
-        'is_extinct'
+        'is_extinct',
+        'is_dead',
     ];
 }

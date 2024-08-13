@@ -24,6 +24,7 @@ class CreatureFilter extends DatagridFilter
             ])
             ->location()
             ->add('is_extinct')
+            ->add('is_dead')
             ->isPrivate()
             ->template()
             ->hasImage()

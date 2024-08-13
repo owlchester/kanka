@@ -26,6 +26,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  *
  * @property ?int $creature_id
  * @property bool|int $is_extinct
+ * @property bool|int $is_dead
  */
 class Creature extends MiscModel
 {
@@ -50,6 +51,7 @@ class Creature extends MiscModel
         'is_private',
         'creature_id',
         'is_extinct',
+        'is_dead',
     ];
 
     /**
@@ -59,6 +61,7 @@ class Creature extends MiscModel
 
     protected array $sortableColumns = [
         'is_extinct',
+        'is_dead',
     ];
 
     protected string $locationPivot = 'creature_location';
@@ -69,6 +72,7 @@ class Creature extends MiscModel
         'type',
         'parent.name',
         'is_extinct',
+        'is_dead',
     ];
 
     /**
@@ -89,9 +93,10 @@ class Creature extends MiscModel
     protected array $exportFields = [
         'base',
         'is_extinct',
+        'is_dead',
     ];
 
-    protected array $exploreGridFields = ['is_extinct'];
+    protected array $exploreGridFields = ['is_extinct', 'is_dead'];
 
     protected array $sanitizable = [
         'name',
@@ -139,7 +144,7 @@ class Creature extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['creature_id', 'is_extinct'];
+        return ['creature_id', 'is_extinct', 'is_dead'];
     }
 
     /**
@@ -160,6 +165,7 @@ class Creature extends MiscModel
             'creature_id',
             'location_id',
             'is_extinct',
+            'is_dead',
         ];
     }
 
@@ -186,6 +192,14 @@ class Creature extends MiscModel
     public function isExtinct(): bool
     {
         return (bool) $this->is_extinct;
+    }
+
+    /**
+     * Determine if the model is dead.
+     */
+    public function isDead(): bool
+    {
+        return (bool) $this->is_dead;
     }
 
     /**
