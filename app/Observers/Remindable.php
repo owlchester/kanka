@@ -68,13 +68,7 @@ class Remindable
         $reminder->colour = request()->post('calendar_colour', '#cccccc');
         $reminder->type_id = EntityEventType::CALENDAR_DATE;
         try {
-            $dirty = $reminder->isDirty();
             $reminder->save();
-
-            if ($dirty) {
-                $entity->touchSilently();
-                $model->touchSilently();
-            }
         } catch (Exception $e) {
             // Something went wrong, silence the issue
             throw $e;

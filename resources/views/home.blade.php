@@ -31,7 +31,7 @@ use App\Enums\Widget;
 
         @include('partials.ads.top')
 
-        <div class="dashboard-widgets grid grid-cols-12 gap-2 md:gap-5">
+        <div class="dashboard-widgets grid grid-cols-12 gap-4 md:gap-5">
             @if (!$hasCampaignHeader)
                 <div class="col-span-12 flex gap-5 justify-end">
                     @include('dashboard.widgets._actions')
@@ -54,7 +54,7 @@ use App\Enums\Widget;
                 elseif (!$widget->visible()):
                     continue;
                 endif; ?>
-                    <div class="col-span-12 md:col-span-{{ $widget->colSize() }} widget widget-{{ $widget->widget->value }}" id="widget-col-{{ $widget->id }}">
+                    <div class="col-span-12 md:col-span-{{ $widget->mdColSize() }} lg:col-span-{{ $widget->colSize() }} widget widget-{{ $widget->widget->value }}" id="widget-col-{{ $widget->id }}">
                         @include('dashboard.widgets._' . $widget->widget->value)
                     </div>
             @endforeach

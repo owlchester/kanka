@@ -128,6 +128,9 @@ class Creature extends MiscModel
             'children' => function ($sub) {
                 $sub->select('id', 'creature_id');
             },
+            'locations' => function ($sub) {
+                $sub->select('id');
+            },
         ]);
     }
 
