@@ -50,10 +50,6 @@ class WebhookController extends CashierController
      */
     public function handleCustomerSubscriptionDeleted(array $payload)
     {
-        // sven, lulu, kevin
-        if (in_array($payload['data']['object']['customer'], ['cus_NrradlALXYn5Va', 'cus_PC7QDagztS2xyN', 'cus_Nruxkkq8DiLFWz'])) {
-            return $this->successMethod();
-        }
         // Call parent handler method
         $response = parent::handleCustomerSubscriptionDeleted($payload);
 
