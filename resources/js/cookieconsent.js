@@ -4,8 +4,10 @@ let setup, tracking, api;
 
 const initCookieConsent = () => {
     if (!field) {
+        console.log('missing cookie consent');
         return;
     }
+    console.log('cookie consent present');
 
     setup = field.dataset.setup;
     api = field.dataset.api;
