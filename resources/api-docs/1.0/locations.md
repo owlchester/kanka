@@ -37,6 +37,7 @@ The list of returned entities can be filtered. The available filters are [availa
             "image_full": "{url}",
             "image_thumb": "{url}",
             "has_custom_image": false,
+            "is_destroyed": true,
             "is_private": true,
             "location_id": null,
             "entity_id": 5,
@@ -73,6 +74,7 @@ To get the details of a single location, use the following endpoint.
         "image_full": "{url}",
         "image_thumb": "{url}",
         "has_custom_image": false,
+        "is_destroyed": true,
         "is_private": true,
         "location_id": null,
         "entity_id": 5,
@@ -107,6 +109,7 @@ To create a location, use the following endpoint.
 | `type` | `string` | Type of location |
 | `location_id` | `integer` | The parent location id (where this location is located)|
 | `tags` | `array` | Array of tag ids |
+| `is_destroyed` | `boolean` | If the location is destroyed |
 | `is_private` | `boolean` | If the location is only visible to `admin` members of the campaign |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |

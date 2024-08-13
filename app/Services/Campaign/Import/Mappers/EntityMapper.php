@@ -47,7 +47,6 @@ trait EntityMapper
             $this->model->$field = $value;
         }
 
-        $this->model->slug = Str::slug($this->model->name);
         $this->model->saveQuietly();
         $this->entity();
 
