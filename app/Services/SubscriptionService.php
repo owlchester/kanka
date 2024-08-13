@@ -124,6 +124,10 @@ class SubscriptionService
      */
     public function plan(string $plan): self
     {
+        // Some weird edge cases in prod need mapping
+        if ($plan === 'price_1IRIwTDInN4WlDnRJJU53rej') {
+            $plan = config('subscription.owlbear.usd.monthly');
+        }
         /** @var ?TierPrice $price */
         $price = TierPrice::where('stripe_id', $plan)->first();
         $this->tier = $price->tier;
