@@ -9,6 +9,7 @@ return [
     ],
     'hints'         => [
         'is_extinct'    => 'This creature is extinct.',
+        'is_dead'       => 'This creature is dead.',
     ],
     'placeholders'  => [
         'type'  => 'Herbivore, Aquatic, Mythical',

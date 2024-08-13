@@ -46,6 +46,17 @@
             'class' => 'icon'
         ],
         [
+            'label' => '<i class="ra ra-skull" title="' . __('characters.fields.is_dead') . '"></i>',
+            'field' => 'is_dead',
+            'render' => function($model) {
+                if ($model->isDead()) {
+                    return '<i class="ra ra-skull" title="' . __('characters.fields.is_dead') . '"></i>';
+                }
+                return '';
+            },
+            'class' => 'icon'
+        ],
+        [
             'type' => 'is_private',
         ]
     ])
