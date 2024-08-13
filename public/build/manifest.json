@@ -146,7 +146,7 @@
     "src": "resources/js/conversation.js"
   },
   "resources/js/cookieconsent.js": {
-    "file": "assets/cookieconsent-7a95ed5c.js",
+    "file": "assets/cookieconsent-4312db83.js",
     "isEntry": true,
     "src": "resources/js/cookieconsent.js"
   },
