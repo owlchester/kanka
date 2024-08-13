@@ -276,8 +276,10 @@ class Image extends Model
     public function scopeSearch(Builder $query, ?string $folder, ?string $term): Builder
     {
         if (empty($term)) {
+            // @phpstan-ignore-next-line
             return $query->imageFolder($folder);
         }
+        // @phpstan-ignore-next-line
         return $query->named($term);
     }
 

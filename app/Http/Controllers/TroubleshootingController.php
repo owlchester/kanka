@@ -18,9 +18,6 @@ class TroubleshootingController extends Controller
         $this->service = $service;
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index()
     {
         $campaigns = $this->service
@@ -32,9 +29,6 @@ class TroubleshootingController extends Controller
             ->with(compact('campaigns', 'token'));
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(SaveUserHelp $request)
     {
         if (request()->ajax()) {
