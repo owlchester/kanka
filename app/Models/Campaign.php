@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Enums\Visibility;
 use App\Facades\CampaignCache;
-use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Concerns\Boosted;
 use App\Models\Concerns\CampaignLimit;
