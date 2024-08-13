@@ -22,12 +22,15 @@ class MailSettingsChangeJob implements ShouldQueue
     /** @var int how many times the job can fail before quitting */
     public $tries = 3;
 
+    public bool $new;
+
     /**
      * MailSettingsChangeJob constructor.
      */
-    public function __construct(User $user)
+    public function __construct(User $user, bool $new = false)
     {
         $this->userId = $user->id;
+        $this->new = $new;
     }
 
     /**
@@ -52,7 +55,8 @@ class MailSettingsChangeJob implements ShouldQueue
             $newsletter->remove();
         } elseif ($wantsSomething) {
             $options = [
-                'releases' => (bool) $user->mail_release
+                'releases' => (bool) $user->mail_release,
+                'new' => $this->new,
             ];
 
             $newsletter->update($options);

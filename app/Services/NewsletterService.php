@@ -81,6 +81,9 @@ class NewsletterService
                 if ($this->user && $this->user->isSubscriber()) {
                     $interests[] = config('mailerlite.groups.subs');
                 }
+                if (isset($options['new']) && $options['new']) {
+                    $interests[] = config('mailerlite.groups.new');
+                }
             }
 
             $email = $this->user?->email ?? $this->email;
