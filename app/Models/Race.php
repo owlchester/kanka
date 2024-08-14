@@ -26,6 +26,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property Race[]|Collection $descendants
  *
  * @property ?int $race_id
+ * @property bool|int $is_extinct
  * @property Collection|CharacterRace[] $characterRaces
  */
 class Race extends MiscModel
@@ -49,6 +50,7 @@ class Race extends MiscModel
         'type',
         'entry',
         'is_private',
+        'is_extinct',
         'race_id',
     ];
 
@@ -61,6 +63,11 @@ class Race extends MiscModel
         'name',
         'type',
         'parent.name',
+        'is_extinct',
+    ];
+
+    protected array $sortableColumns = [
+        'is_extinct',
     ];
 
     /**
@@ -70,6 +77,13 @@ class Race extends MiscModel
     public array $nullableForeignKeys = [
         'race_id',
     ];
+
+    protected array $exportFields = [
+        'base',
+        'is_extinct',
+    ];
+
+    protected array $exploreGridFields = ['is_extinct'];
 
     /**
      * Foreign relations to add to export
@@ -127,7 +141,7 @@ class Race extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['race_id'];
+        return ['race_id', 'is_extinct'];
     }
 
     /**
@@ -204,7 +218,8 @@ class Race extends MiscModel
         return [
             'race_id',
             'location_id',
-            'parent'
+            'parent',
+            'is_extinct',
         ];
     }
 
@@ -223,6 +238,15 @@ class Race extends MiscModel
         }
 
         return parent::showProfileInfo();
+    }
+
+
+    /**
+     * Determine if the model is extinct.
+     */
+    public function isExtinct(): bool
+    {
+        return (bool) $this->is_extinct;
     }
 
     /**
