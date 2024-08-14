@@ -25,6 +25,17 @@
             'disableSort' => true,
         ],
         [
+            'label' => '<i class="ra ra-skull" title="' . __('creatures.fields.is_extinct') . '"></i>',
+            'field' => 'is_extinct',
+            'render' => function($model) {
+                if ($model->isExtinct()) {
+                    return '<i class="ra ra-skull" title="' . __('creatures.fields.is_extinct') . '"></i>';
+                }
+                return '';
+            },
+            'class' => 'icon'
+        ],
+        [
             'type' => 'is_private',
         ]
     ])

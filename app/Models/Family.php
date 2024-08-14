@@ -25,6 +25,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Family
  * @package App\Models
  * @property ?int $family_id
+ * @property bool|int $is_extinct
  * @property Collection|Character[] $members
  * @property ?FamilyTree $familyTree
  * @property Collection|Family[] $descendants
@@ -53,6 +54,7 @@ class Family extends MiscModel
         'family_id',
         'is_private',
         'type',
+        'is_extinct',
     ];
 
     /**
@@ -60,6 +62,7 @@ class Family extends MiscModel
      */
     protected array $sortableColumns = [
         'location.name',
+        'is_extinct',
     ];
 
     protected array $sortable = [
@@ -67,6 +70,7 @@ class Family extends MiscModel
         'type',
         'location.name',
         'parent.name',
+        'is_extinct',
     ];
 
     /**
@@ -80,7 +84,10 @@ class Family extends MiscModel
         'base',
         'family_id',
         'location_id',
+        'is_extinct',
     ];
+
+    protected array $exploreGridFields = ['is_extinct'];
 
     /**
      * Nullable values (foreign keys)
@@ -190,7 +197,7 @@ class Family extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['family_id', 'location_id'];
+        return ['family_id', 'location_id', 'is_extinct'];
     }
 
     public function familyTree(): HasOne
@@ -271,6 +278,14 @@ class Family extends MiscModel
     }
 
     /**
+     * Determine if the model is extinct.
+     */
+    public function isExtinct(): bool
+    {
+        return (bool) $this->is_extinct;
+    }
+
+    /**
      * Determine if the model has profile data to be displayed
      */
     public function showProfileInfo(): bool
@@ -295,6 +310,7 @@ class Family extends MiscModel
             'location_id',
             'family_id',
             'member_id',
+            'is_extinct',
             'parent'
         ];
     }
