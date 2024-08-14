@@ -49,6 +49,7 @@ The list of returned entities can be filtered. The available filters are [availa
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
             "location_id": 4,
+            "is_extinct": true,
             "type": "",
             "family_id": 2,
             "members": [
@@ -87,6 +88,7 @@ To get the details of a single family, use the following endpoint.
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
         "location_id": 1,
+        "is_extinct": true,
         "type": "",
         "family_id": 2,
         "members": [
@@ -119,6 +121,7 @@ To create a family, use the following endpoint.
 | `type` | `string` | The type of family |
 | `location_id` | `integer` | The family's location id |
 | `family_id` | `integer` | The parent family id |
+| `is_extinct` | `boolean` | If the family is extinct |
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |

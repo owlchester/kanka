@@ -19,6 +19,7 @@ class FamilyResource extends EntityResource
         return $this->entity([
             'type' => $model->type,
             'family_id' => $model->family_id,
+            'is_extinct' => $model->isExtinct(),
             'members' => $model->members()->pluck('character_id')->toArray()
         ]);
     }

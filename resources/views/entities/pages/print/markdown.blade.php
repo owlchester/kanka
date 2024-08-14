@@ -28,6 +28,9 @@
 @if ($model instanceof \App\Models\Creature && $model->isDead())
 {{ __('creatures.hints.is_dead') }}
 @endif
+@if ($model instanceof \App\Models\Family && $model->isExtinct())
+{{ __('families.hints.is_extinct') }}
+@endif
 
 @if ($model instanceof \App\Models\Character && !empty($model->title))
 {{ $model->title }}

@@ -162,6 +162,12 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                     <span class="sr-only">{{ __('creatures.hints.is_dead') }}</span>
                 </span>
             @endif
+            @if ($model instanceof \App\Models\Family && $model->isExtinct())
+                <span class="entity-name-icon entity-fam-extinct cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('families.hints.is_extinct') }}">
+                    <x-icon class="ra ra-skull entity-icons " />
+                    <span class="sr-only">{{ __('families.hints.is_extinct') }}</span>
+                </span>
+            @endif
             @if (auth()->check() && auth()->user()->isAdmin())
                 <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $model->entity]) }}" data-target="primary-dialog" aria-haspopup="dialog">
                         <i class="fa-solid fa-lock entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>

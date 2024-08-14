@@ -24,6 +24,7 @@ class FamilyFilter extends DatagridFilter
             ])
             ->location()
             ->character('member_id')
+            ->add('is_extinct')
             ->isPrivate()
             ->template()
             ->hasImage()
