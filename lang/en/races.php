@@ -20,6 +20,9 @@ return [
             'title'     => 'New Members',
         ],
     ],
+    'hints'         => [
+        'is_extinct'    => 'This race is extinct.',
+    ],
     'placeholders'  => [
         'type'  => 'Human, Fey, Borg',
     ],

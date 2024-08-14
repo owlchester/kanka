@@ -22,6 +22,9 @@
 @if ($model instanceof \App\Models\Creature && $model->isExtinct())
 {{ __('creatures.hints.is_extinct') }}
 @endif
+@if ($model instanceof \App\Models\Race && $model->isExtinct())
+{{ __('races.hints.is_extinct') }}
+@endif
 @if ($model instanceof \App\Models\Creature && $model->isDead())
 {{ __('creatures.hints.is_dead') }}
 @endif

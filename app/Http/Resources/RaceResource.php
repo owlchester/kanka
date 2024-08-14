@@ -21,6 +21,7 @@ class RaceResource extends EntityResource
         return $this->entity([
             'type' => $model->type,
             'race_id' => $model->race_id,
+            'is_extinct' => $model->isExtinct(),
             'locations' => $locationIDs
         ]);
     }

@@ -144,6 +144,12 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                     <span class="sr-only">{{ __('locations.hints.is_destroyed') }}</span>
                 </span>
             @endif
+            @if ($model instanceof \App\Models\Race && $model->isExtinct())
+                <span class="entity-name-icon entity-rac-extinct cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('races.hints.is_extinct') }}">
+                    <x-icon class="fa-solid fa-skull-cow entity-icons " />
+                    <span class="sr-only">{{ __('races.hints.is_extinct') }}</span>
+                </span>
+            @endif
             @if ($model instanceof \App\Models\Creature && $model->isExtinct())
                 <span class="entity-name-icon entity-cre-extinct cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_extinct') }}">
                     <x-icon class="fa-solid fa-skull-cow entity-icons " />

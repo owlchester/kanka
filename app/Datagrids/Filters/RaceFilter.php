@@ -23,6 +23,7 @@ class RaceFilter extends DatagridFilter
                 'model' => Race::class,
             ])
             ->location()
+            ->add('is_extinct')
             ->isPrivate()
             ->template()
             ->hasImage()

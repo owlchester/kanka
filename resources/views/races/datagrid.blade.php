@@ -21,6 +21,17 @@
             'disableSort' => true,
         ],
         [
+            'label' => '<i class="fa-solid fa-skull-cow" title="' . __('creatures.fields.is_extinct') . '"></i>',
+            'field' => 'is_extinct',
+            'render' => function($model) {
+                if ($model->isExtinct()) {
+                    return '<i class="fa-solid fa-skull-cow" title="' . __('creatures.fields.is_extinct') . '"></i>';
+                }
+                return '';
+            },
+            'class' => 'icon'
+        ],
+        [
             'type' => 'is_private',
         ]
     ])
