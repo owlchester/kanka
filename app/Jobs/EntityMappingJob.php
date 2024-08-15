@@ -20,9 +20,9 @@ class EntityMappingJob implements ShouldQueue
 {
     use Dispatchable;
     use InteractsWithQueue;
+    use MentionTrait;
     use Queueable;
     use SerializesModels;
-    use MentionTrait;
 
     public Model|Post|Entity|QuestElement|TimelineElement|Campaign $model;
 
