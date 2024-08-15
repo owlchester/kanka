@@ -3,8 +3,8 @@
 namespace App\Observers;
 
 use App\Facades\Mentions;
+use App\Jobs\EntityMappingJob;
 use App\Models\MiscModel;
-use App\Services\EntityMappingService;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -13,13 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 class EntryObserver
 {
     use PurifiableTrait;
-
-    protected EntityMappingService $entityMappingService;
-
-    public function __construct(EntityMappingService $entityMappingService)
-    {
-        $this->entityMappingService = $entityMappingService;
-    }
 
     public function saving(Model $model)
     {
@@ -41,9 +34,9 @@ class EntryObserver
             return;
         }
         if ($model instanceof MiscModel) {
-            $this->entityMappingService->with($model->entity)->silent()->map();
+            EntityMappingJob::dispatch($model->entity);
         } elseif (method_exists($model, 'mentions')) {
-            $this->entityMappingService->with($model)->silent()->map();
+            EntityMappingJob::dispatch($model);
         }
     }
 }

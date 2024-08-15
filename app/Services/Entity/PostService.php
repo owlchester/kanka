@@ -4,6 +4,7 @@ namespace App\Services\Entity;
 
 use App\Facades\Identity;
 use App\Http\Requests\MovePostRequest;
+use App\Jobs\EntityMappingJob;
 use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Post;
@@ -49,7 +50,7 @@ class PostService
         $newPost = $this->post->copyTo($entity, true);
 
         // Update the "mentioned in" mapping for the entity
-        $this->mappingService->with($newPost)->map();
+        EntityMappingJob::dispatch($newPost);
 
         $this->log($newPost, EntityLog::ACTION_CREATE_POST);
 
