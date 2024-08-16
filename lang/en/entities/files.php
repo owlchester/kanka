@@ -6,8 +6,9 @@ return [
         'premium'   => 'Uploading more files requires a premium campaign.',
     ],
     'create'            => [
-        'success'   => 'File :file added.',
-        'title'     => 'New file for :entity',
+        'success'          => 'File :file added.',
+        'success_plural'   => 'Added :count files.',
+        'title'            => 'New file for :entity',
     ],
     'destroy'           => [
         'success'   => 'File :name removed.',

@@ -99,14 +99,21 @@ class AssetController extends Controller
         $service = app()->make(EntityFileService::class);
 
         try {
-            $file = $service
+            $files = $service
                 ->entity($entity)
                 ->campaign($campaign)
                 ->upload($request, 'file');
 
+            if (count($files) > 1) {
+                return redirect()
+                ->route('entities.entity_assets.index', [$campaign, $entity])
+                ->with('success', __('entities/files.create.success_plural', ['count' => count($files)]));
+            }
+
             return redirect()
                 ->route('entities.entity_assets.index', [$campaign, $entity])
-                ->with('success', __('entities/files.create.success', ['file' => $file->name]));
+                ->with('success', __('entities/files.create.success', ['file' => $files[0]]));
+
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('entities.entity_assets.index', [$campaign, $entity])
