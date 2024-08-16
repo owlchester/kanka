@@ -106,8 +106,8 @@ class AssetController extends Controller
 
             if (count($files) > 1) {
                 return redirect()
-                ->route('entities.entity_assets.index', [$campaign, $entity])
-                ->with('success', __('entities/files.create.success_plural', ['count' => count($files)]));
+                    ->route('entities.entity_assets.index', [$campaign, $entity])
+                    ->with('success', __('entities/files.create.success_plural', ['count' => count($files)]));
             }
 
             return redirect()
