@@ -2,11 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\Entity;
-use App\Models\Campaign;
-use App\Models\Post;
-use App\Models\QuestElement;
-use App\Models\TimelineElement;
 use App\Services\EntityMappingService;
 use App\Traits\MentionTrait;
 use Illuminate\Bus\Queueable;
@@ -24,7 +19,7 @@ class EntityMappingJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    public Model|Post|Entity|QuestElement|TimelineElement|Campaign $model;
+    public Model $model;
 
     public int $modelId;
     public string $class;
@@ -41,8 +36,9 @@ class EntityMappingJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Model|Post|Entity|QuestElement|TimelineElement|Campaign $model)
+    public function __construct(Model $model)
     {
+        // @phpstan-ignore-next-line
         $this->modelId = $model->id;
         $this->class =  get_class($model);
     }
@@ -57,7 +53,7 @@ class EntityMappingJob implements ShouldQueue
         //Get the model
         $model = $this->class::where('id', $this->modelId)->first();
 
-        /** @var EntityMappingService $service */
+        /** @var EntityMappingService $entityMappingService. */
         $entityMappingService = app()->make(EntityMappingService::class);
         $entityMappingService->with($model)->silent()->map();
     }
