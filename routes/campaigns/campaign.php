@@ -24,9 +24,15 @@ Route::post('/w/{campaign}/gallery/ajax-upload', 'Summernote\GalleryController@u
 Route::get('/w/{campaign}/gallery/ajax-gallery', 'Summernote\GalleryController@index')->name('campaign.gallery.summernote');
 
 Route::post('/w/{campaign}/gallery/upload/file', [App\Http\Controllers\Gallery\UploadController::class, 'file'])->name('gallery.upload.file');
+Route::post('/w/{campaign}/gallery/upload/files', [App\Http\Controllers\Gallery\UploadController::class, 'files'])->name('gallery.upload.files');
 Route::post('/w/{campaign}/gallery/upload/url', [App\Http\Controllers\Gallery\UploadController::class, 'url'])->name('gallery.upload.url');
 Route::get('/w/{campaign}/gallery/browse', [App\Http\Controllers\Gallery\BrowseController::class, 'index'])->name('gallery.browse');
 
+Route::get('/w/{campaign}/gallery/setup', [App\Http\Controllers\Gallery\SetupController::class, 'index'])->name('gallery.setup');
+Route::get('/w/{campaign}/gallery/open/{image}', [App\Http\Controllers\Gallery\ImageController::class, 'show'])->name('gallery.show');
+Route::get('/w/{campaign}/gallery/search/{term?}', [App\Http\Controllers\Gallery\SearchController::class, 'index'])->name('gallery.search');
+Route::post('/w/{campaign}/gallery/delete', [App\Http\Controllers\Gallery\DeleteController::class, 'destroy'])->name('gallery.delete');
+Route::post('/w/{campaign}/gallery/create', [App\Http\Controllers\Gallery\CreateController::class, 'index'])->name('gallery.create');
 
 // Campaign
 Route::get('/w/{campaign}/editing-warning', [App\Http\Controllers\EditingController::class, 'index'])->name('campaign.editing-warning');

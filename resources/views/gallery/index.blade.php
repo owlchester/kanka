@@ -25,6 +25,7 @@ if ($folder) {
 ])
 
 @section('content')
+    @if (request()->filled('old'))
     <x-grid type="1/1">
         <div class="flex flex-col gap-2">
             <div class="flex items-center gap-2">
@@ -121,14 +122,27 @@ if ($folder) {
 
 
     <input type="hidden" id="gallery-config" data-max="{{ ini_get('max_file_uploads') }}" data-error="{{ __('campaigns/gallery.errors.max', ['count' => ini_get('max_file_uploads')]) }}" />
+    @else
+        <div id="gallery">
+            <gallery
+                api="{{ route('gallery.setup', [$campaign]) }}"
+            ></gallery>
+        </div>
+    @endif
 @endsection
 
 @section('scripts')
     @parent
     @vite('resources/js/story.js')
+
+    @if (request()->filled('old'))
     @vite('resources/js/gallery.js')
+    @else
+    @vite('resources/js/gallery/gallery.js')
+    @endif
 @endsection
 
+@if (request()->filled('old'))
 @section('modals')
     @parent
     <x-dialog id="new-folder" :loading="true"></x-dialog>
@@ -146,3 +160,4 @@ if ($folder) {
     @endif
     </form>
 @endsection
+@endif
