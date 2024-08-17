@@ -86,7 +86,6 @@ onMounted(() => {
     trans.value = JSON.parse(props.i18n)
 });
 
-
 const backgroundClass = () => {
     let css = 'relative flex items-end align-middle rounded overflow-hidden bg-no-repeat '
 
@@ -105,6 +104,7 @@ const buttonsClass = () => {
 const hasImage = () => {
     return hasOld.value || currentUuid.value !== null && currentUuid.value !== ''
 }
+
 const hasPreview = () => {
     if (imagePreview.value || hasOld.value) {
         return true
@@ -139,11 +139,11 @@ const openGallery = () => {
     galleryOpened.value = true
 }
 
-
 const pasteUrl = (event) => {
     imageUrl.value = event.clipboardData.getData('text')
     download()
 }
+
 const download = () => {
     if (!imageUrl.value || imageUrl.value == lastImageUrl) {
         return
@@ -196,7 +196,7 @@ const upload = async (event) => {
         },
         cancelToken: cancelTokenSource.value.token,
         onUploadProgress: function (progressEvent) {
-            progress.value = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+            progress.value = Math.round((progressEvent.loaded * 100) / progressEvent.total)
         }
     })
         .then(res => {
@@ -236,7 +236,7 @@ const showErrors = (err) => {
         return
     }
 
-    const errorKeys = Object.keys(err.response.data.errors);
+    const errorKeys = Object.keys(err.response.data.errors)
     errorKeys.forEach(i => {
         window.showToast(err.response.data.errors[i][0], 'error')
     })

@@ -59,6 +59,11 @@ class UploadService
         return $this->format();
     }
 
+    public function files(array $files): array
+    {
+        dd($files);
+    }
+
     public function url(string $url): array
     {
         $this->image = new Image();

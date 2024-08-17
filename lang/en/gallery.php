@@ -26,4 +26,7 @@ return [
             'unauthorized'          => 'None of your roles have the "upload to gallery" permission.',
         ],
     ],
+    'delete' => [
+        'success' => '[0] Deleted 0 elements|[1] Deleted one element|{2,*} Deleted :count elements'
+    ]
 ];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Gallery;
 use App\Exceptions\TranslatableException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Gallery\UploadFile;
+use App\Http\Requests\Gallery\UploadFiles;
 use App\Http\Requests\Gallery\UploadUrl;
 use App\Models\Campaign;
 use App\Services\Gallery\UploadService;
@@ -28,6 +29,25 @@ class UploadController extends Controller
                     ->campaign($campaign)
                     ->user($request->user())
                     ->file($request->file('file'))
+            );
+        } catch (TranslatableException $e) {
+            return response()->json(
+                ['error' => $e->getTranslatedMessage()],
+                421
+            );
+        }
+    }
+
+    public function files(UploadFiles $request, Campaign $campaign)
+    {
+        $this->authorize('galleryUpload', $campaign);
+
+        try {
+            return response()->json(
+                $this->service
+                    ->campaign($campaign)
+                    ->user($request->user())
+                    ->files($request->file('files'))
             );
         } catch (TranslatableException $e) {
             return response()->json(
