@@ -1,6 +1,6 @@
 import 'cookieconsent/build/cookieconsent.min.js';
 const field = document.getElementById('cookieconsent');
-let setup, tracking, api;
+let setup, api;
 
 const initCookieConsent = () => {
     if (!field) {
@@ -9,8 +9,6 @@ const initCookieConsent = () => {
     setup = field.dataset.setup;
 
     api = field.dataset.api;
-    //console.log('cookieconsent setup', setup);
-    tracking = field.dataset.tracking;
 
     //console.log('init cookie consent');
     window.cookieconsent.initialise({
@@ -81,17 +79,17 @@ const toError = (obj) => {
 };
 
 const initTracking = () => {
-    //console.log('initTracking');
-    if (tracking.gtag) {
-        //console.log('add gtag');
+    // console.log('initTracking', field.dataset);
+    if (field.dataset.gtag) {
+        // console.log('add gtag');
         const script = document.createElement("script");
         script.async = true;
-        script.src = "https://www.googletagmanager.com/gtag/js?id=" + tracking.gtag;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=" + field.dataset.gtag;
         document.body.appendChild(script);
     }
-    if (tracking.gtm) {
-        //console.log('add gtm');
-        initGTM(window,document,'script','dataLayer', tracking.gtm);
+    if (field.dataset.gtm) {
+        // console.log('add gtm');
+        initGTM(window,document,'script','dataLayer', field.dataset.gtm);
     }
 };
 

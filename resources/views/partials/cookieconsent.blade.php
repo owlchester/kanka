@@ -12,17 +12,13 @@ $cookieconsent = [
     'policy' => __('cookieconsent.policy'),
     'target' => '_blank',
 ];
-$cookietracking = [];
-if (!empty(config('tracking.ga'))) {
-    $cookietracking['gtag'] = config('tracking.ga');
-}
-if (!empty(config('tracking.gtm'))) {
-    $cookietracking['gtm'] = config('tracking.gtm');
-}
 @endphp
-<div id="cookieconsent"
-     class="hidden"
-     data-api="{{ route('cookieconsent.country') }}"
-     data-country="{{ $countryService->getCountry() }}"
-     data-setup='{{ json_encode($cookieconsent) }}'
-     data-tracking='{{ json_encode($cookietracking) }}'></div>
+<div
+    id="cookieconsent"
+    class="hidden"
+    data-api="{{ route('cookieconsent.country') }}"
+    data-country="{{ $countryService->getCountry() }}"
+    data-setup='{{ json_encode($cookieconsent) }}'
+@if (!empty(config('tracking.ga'))) data-gtag="{{ config('tracking.ga') }}" @endif
+@if (!empty(config('tracking.gtm'))) data-gtm="{{ config('tracking.gtm') }}" @endif
+></div>
