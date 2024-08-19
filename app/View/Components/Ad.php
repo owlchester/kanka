@@ -60,6 +60,8 @@ class Ad extends Component
         if (request()->has('_showads')) {
             return true;
         }
+        // Temp workaround for venatus to fix their ads
+        return false;
         if (isset($this->user)) {
             // Subscribed users don't have ads
             if ($this->user->isSubscriber()) {
