@@ -110,10 +110,10 @@ To create an asset, use the following endpoint.
 | :- |   :-   |  :-  |
 | `name` | `string` | The name of the asset (max 45) |
 | `type_id` | `int`  (Required) | The type of asset being created.
-| `file` | `file` | The file to be uploaded as an asset, exlcusive and required for file assets (`type_id: 1`). |
+| `files` | `file` | The file or files to be uploaded as an asset/assets, exclusive and required for file assets (`type_id: 1`). |
 | `visibility_id` | `int` | The visibility id: 1 `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
 | `metadata` | `array` | `metadata.icon` and `metadata.url` are required for `links`. |
-| `is_pinned` | `bool` | Controls wether or not an asset is shown and linked to on the pins tab in the overview of the entity, exlcusive to file assets (`type_id: 1`). |
+| `is_pinned` | `bool` | Controls wether or not an asset is shown and linked to on the pins tab in the overview of the entity, exclusive to file assets (`type_id: 1`). |
 
 ### Results
 
