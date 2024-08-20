@@ -148,10 +148,9 @@ const download = () => {
     if (!imageUrl.value || imageUrl.value == lastImageUrl) {
         return
     }
-
+    lastImageUrl = imageUrl.value
     downloading.value = true
     urlField.value.disabled = true
-    lastImageUrl = imageUrl.value
 
     axios.post(props.url, {url: imageUrl.value})
         .then(res => {
