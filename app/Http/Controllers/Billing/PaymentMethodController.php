@@ -68,8 +68,7 @@ class PaymentMethodController extends Controller
 
         $from = $request->get('from', 'billing.payment-method');
 
-        if ($request->get('reset_billing') && ($request->get('currency') != $user->currency()))
-        {
+        if ($request->get('reset_billing') && ($request->get('currency') != $user->currency())) {
             $paymentMethods = $user->paymentMethods();
 
             foreach ($paymentMethods as $method) {
