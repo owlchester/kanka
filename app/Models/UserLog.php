@@ -46,6 +46,7 @@ class UserLog extends Model
 
     public const TYPE_EMAIL_UPDATE = 40;
     public const TYPE_SOCIAL_SWITCH = 41;
+    public const TYPE_CURRENCY_SWITCH = 42;
 
     public const TYPE_USER_SWITCH = 50;
     public const TYPE_USER_REVERT = 51;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Billing;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserBillingStore;
+use App\Models\UserLog;
 use App\Services\Users\CurrencyService;
 use Illuminate\Support\Facades\Auth;
 
@@ -51,7 +52,7 @@ class PaymentMethodController extends Controller
 
     public function currency()
     {
-        $content = auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')?->ended() ?
+        $content = auth()->user()->subscribed('kanka') ?
             '_blocked' : '_form';
         return view('settings.subscription.currency.edit')
             ->with('content', $content)
@@ -66,6 +67,20 @@ class PaymentMethodController extends Controller
         $user = $request->user();
 
         $from = $request->get('from', 'billing.payment-method');
+
+        if ($request->get('reset_billing') && ($request->get('currency') != $user->currency())) {
+            $paymentMethods = $user->paymentMethods();
+
+            foreach ($paymentMethods as $method) {
+                $method->delete();
+            }
+            $user->subscriptions()->delete();
+
+            $user->card_expires_at = null;
+            $user->stripe_id = null;
+            $user->log(UserLog::TYPE_CURRENCY_SWITCH);
+        }
+
         $user->saveSettings($request->only('currency'));
         $user->save();
 
