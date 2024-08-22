@@ -52,9 +52,6 @@ Route::get('/w/{campaign}/campaign_user_roles/{campaign_user}', [App\Http\Contro
 Route::get('/w/{campaign}/recovery', 'Campaign\RecoveryController@index')->name('recovery');
 Route::post('/w/{campaign}/recovery', 'Campaign\RecoveryController@recover')->name('recovery.save');
 
-Route::get('/w/{campaign}/recovery/posts', 'Campaign\PostRecoveryController@index')->name('recovery.posts');
-Route::post('/w/{campaign}/recovery/posts', 'Campaign\PostRecoveryController@recover')->name('recovery.save.posts');
-
 // Stats
 Route::get('/w/{campaign}/achievements', 'Campaign\AchievementController@index')->name('stats');
 
