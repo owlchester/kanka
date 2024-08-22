@@ -40,7 +40,11 @@ class FocusController extends Controller
         if (!empty($image->folder_id)) {
             $params = ['folder_id' => $image->folder_id];
         }
-
+        if ($request->focusEntity) {
+            return redirect()
+                ->back()
+                ->with('success', __('campaigns/gallery.focus.' . ($added ? 'updated' : 'removed')));
+        }
         return redirect()->route('gallery', [$campaign] + $params)
             ->with('success', __('campaigns/gallery.focus.' . ($added ? 'updated' : 'removed')));
     }
