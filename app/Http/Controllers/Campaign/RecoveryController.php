@@ -32,7 +32,7 @@ class RecoveryController extends Controller
         $this->authorize('recover', $campaign);
 
         $elements = DB::select(
-                'select id, name, deleted_at, deleted_by, "entity" as type
+            'select id, name, deleted_at, deleted_by, "entity" as type
                 from entities
                 where deleted_at is not null and campaign_id = ' . $campaign->id . '
                 union all
@@ -41,8 +41,7 @@ class RecoveryController extends Controller
                 left join entities as e on e.id = p.entity_id
                 where p.deleted_at is not null and e.deleted_at is null and e.campaign_id = ' . $campaign->id .
                 ' order by deleted_at DESC'
-
-            );
+        );
 
         return view('campaigns.recovery.index', compact('elements', 'campaign'));
     }
