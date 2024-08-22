@@ -3,33 +3,43 @@
         <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
     </div>
     <div v-else class="flex flex-col gap-4 md:gap-5">
-        <div class="flex gap-4 flex-wrap sticky top-14">
+        <div class="flex gap-4 flex-wrap sticky top-14 z-50">
             <div class="flex gap-2 grow">
                 <div class="flex gap-0.5">
                     <input type="text" placeholder="Search" @input="handleSearchInput" />
                 </div>
-                <button class="btn2 btn-default">
+                <button class="btn2 btn-default btn-sm">
                     <i class="fa-solid fa-filter" aria-hidden="true" />
                     <span v-html="trans('filters')"></span>
                 </button>
             </div>
             <div class="flex gap-2 flex-none self-end">
-                <button class="btn2 btn-default" v-if="!isBulking" @click="openNewFolder">
+
+                <button class="btn2 btn-default btn-sm" v-if="!isBulking && folder" @click="openFolderDetails">
+                    <i class="fa-regular fa-clipboard" aria-hidden="true" />
+                    <span v-html="trans('details')"></span>
+                </button>
+                <button class="btn2 btn-default btn-sm" v-if="!isBulking" @click="openNewFolder">
                     <i class="fa-solid fa-plus" aria-hidden="true" />
                     <span v-html="trans('new_folder')"></span>
                 </button>
-                <button class="btn2 btn-default" v-if="!isBulking" @click="startBulking">
-                    <i class="fa-solid fa-plus" aria-hidden="true" />
+                <button class="btn2 btn-default btn-sm" v-if="!isBulking" @click="startBulking">
+                    <i class="fa-solid fa-list-check" aria-hidden="true" />
                     <span v-html="trans('select')"></span>
                 </button>
-                <button class="btn2 btn-default" v-if="isBulking" @click="stopBulking" >
-                    <span v-html="trans('cancel')"></span>
-                </button>
-                <button class="btn2 btn-primary" v-if="isBulking" @click="editBulk">
+                <button class="btn2 btn-primary btn-sm" v-if="isBulking" @click="openMove">
+                    <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true" />
                     <span v-html="trans('move')"></span>
+                    <span v-html="countSelected()"></span>
                 </button>
-                <button class="btn2 btn-error" v-if="isBulking" @click="deleteBulk">
+                <button class="btn2 btn-error btn-sm" v-if="isBulking" @click="deleteBulk">
+                    <i class="fa-regular fa-trash-can" aria-hidden="true" />
                     <span v-html="trans('remove')"></span>
+                    <span v-html="countSelected()"></span>
+                </button>
+                <button class="btn2 btn-default btn-sm" v-if="isBulking" @click="stopBulking" >
+                    <i class="fa-solid fa-xmark" aria-hidden="true" />
+                    <span v-html="trans('cancel')"></span>
                 </button>
 
             </div>
@@ -79,54 +89,25 @@
                     </div>
                 </div>
 
-                <div class="basis-1/4 bg-base-100 p-4 rounded flex flex-col gap-4" v-if="currentFile">
-                    <div class="flex items-center gap-2">
-                        <i class="fa-regular fa-clipboard" aria-hidden="true"></i>
-                        <span class="font-extrabold">Details</span>
-                    </div>
+                <div class="basis-1/2 md:basis-1/4 " v-if="currentFile">
+                    <File
+                        :file="currentFile"
+                        :visibilities="visibilities"
+                        :i18n="i18n"
+                        @updated="updatedFile"
+                        @deleted="deletedFile"
+                        @closed="closeFile"
+                    ></File>
 
-                    <div class="flex flex-col gap-1">
-                        <label class="font-extrabold">Name</label>
-                        <input type="text" class="" maxlength="191" v-model="currentFile.name" />
-                    </div>
-
-
-                    <div class="flex flex-col gap-1">
-                        <label class="font-extrabold">Visibility</label>
-                        <select class="w-full" v-model="currentFile.visibility_id">
-                            <option v-for="(name, id) in visibilities" :value="id" v-html="name"></option>
-                        </select>
-                    </div>
-
-                    <div class="flex flex-col gap-1">
-                        <label>Used in</label>
-
-                        <div class="flex flex-wrap gap-2">
-                            <a href="#" class="rounded-xl bg-base-200 px-4 py-1">Privite</a>
-                        </div>
-                    </div>
-
-
-
-                    <div class="grid grid-cols-2 gap-2">
-                        <div class="text-neutral-content">Size</div>
-                        <div class="text-right" v-html="currentFile.size"></div>
-
-                        <div class="text-neutral-content">Uploaded by</div>
-                        <div class="text-right" v-html="currentFile.creator"></div>
-
-                        <div class="text-neutral-content">File type</div>
-                        <div class="text-right uppercase" v-html="currentFile.ext"></div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <dialog ref="newFolder" class="dialog rounded-2xl text-center" v-if="initiated">
+    <dialog ref="newDialog" class="dialog rounded-2xl text-center" v-if="initiated">
         <header class="bg-base-200 sm:rounded-t">
             <h4 v-html="trans('new_folder')"></h4>
-            <button type="button" class="text-base-content" @click="closeModal(newFolder)" title="Close">
+            <button type="button" class="text-base-content" @click="closeModal(newDialog)" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>
             </button>
@@ -151,12 +132,39 @@
             </menu>
         </footer>
     </dialog>
+
+
+    <dialog ref="moveDialog" class="dialog rounded-2xl text-center" v-if="initiated">
+        <header class="bg-base-200 sm:rounded-t">
+            <h4 v-html="trans('move')"></h4>
+            <button type="button" class="text-base-content" @click="closeModal(moveDialog)" title="Close">
+                <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
+                <span class="sr-only">Close</span>
+            </button>
+        </header>
+        <article class="max-w-4xl flex flex-col gap-2 text-left">
+            <div class="flex flex-col gap-1 w-full">
+                <label>Folder</label>
+                <select class="w-full" v-model="targetFolder">
+                    <option v-for="(name, id) in folders" :value="id" v-html="name"></option>
+                </select>
+            </div>
+        </article>
+        <footer class="bg-base-200 p-2">
+            <menu class="">
+                <button type="submit" class="btn2 btn-primary" @click="moveFiles">
+                    Move
+                </button>
+            </menu>
+        </footer>
+    </dialog>
 </template>
 
 <script setup lang="ts">
 
-import {onMounted, ref} from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
 import Preview from "./Preview.vue";
+import File from "./File.vue";
 
 const props = defineProps<{
     api: String
@@ -189,12 +197,19 @@ const isHome = ref(true)
 // New folder
 const creating = ref(false)
 const createApi = ref()
-const newFolder = ref()
+const newDialog = ref()
+const moveDialog = ref()
 const folderName = ref()
 const folderVisibility = ref(1)
 const visibilities = ref()
 
+// Move
+const targetFolder = ref()
+const folders = ref()
+const moveApi = ref()
+
 // Upload
+const moving = ref(false)
 const uploadApi = ref()
 const fileField = ref()
 const uploading = ref(false)
@@ -213,11 +228,34 @@ onMounted(() => {
             deleteApi.value = res.data.delete
             createApi.value = res.data.create
             uploadApi.value = res.data.upload
+            moveApi.value = res.data.move
             nextPage.value = res.data.next
             visibilities.value = res.data.visibilities
             canUpload.value = res.data.acl.upload
+            folders.value = res.data.folders
         })
+
+    window.addEventListener('keydown', handleEscapeKey)
 })
+
+onUnmounted(() => {
+    window.removeEventListener('keydown', handleEscapeKey);
+})
+
+const handleEscapeKey = (event) => {
+    if (event.key === 'Escape' || event.key === 'Esc') {
+        if (uploading.value) {
+            cancelUpload()
+        }
+        if (currentFile.value) {
+            currentFile.value = null
+        }
+        if (isBulking.value) {
+            isBulking.value = null
+        }
+    }
+}
+
 
 const trans = (key) => {
     if (!i18n.value[key]) {
@@ -235,14 +273,14 @@ const stopBulking = () => {
     isBulking.value = false;
 }
 
-const editBulk = () => {
-
+const openMove = () => {
+    openDialog(moveDialog.value)
 }
 
 const gridClass = () => {
     let css = 'flex gap-4 flex-wrap'
     if (currentFile.value) {
-        css += ' basis-3/4'
+        css += ' basis-2/4 md:basis-3/4'
     }
     return css
 }
@@ -265,8 +303,6 @@ const deleteBulk = () => {
 
             window.showToast(res.data.toast)
         })
-
-
 }
 
 const selectFile = (file) => {
@@ -294,7 +330,7 @@ const openFolder = (file) => {
     loading.value = true
     axios.get(file.open)
         .then(res => {
-            folder.value = res.data.folder
+            folder.value = file
             breadcrumbs.value = res.data.breadcrumbs
             files.value = res.data.files
             nextPage.value = res.data.next
@@ -306,9 +342,11 @@ const openFolder = (file) => {
 const home = () => {
     loading.value = true
     files.value = homeFiles.value
+    currentFile.value = null
     folder.value = null
     loading.value = false
     isHome.value = true
+    isBulking.value = false
 }
 
 const handleSearchInput = (event) => {
@@ -364,21 +402,29 @@ const loadMoreClass = () => {
 
 
 const openNewFolder = () => {
-    newFolder.value.showModal()
-    newFolder.value.addEventListener('click', function (event) {
-        let rect = this.getBoundingClientRect()
-        let isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
-            rect.left <= event.clientX && event.clientX <= rect.left + rect.width)
-        if (!isInDialog && event.target.tagName === 'DIALOG') {
-            closeModal(newFolder.value)
-        }
-    });
+    openDialog(newDialog.value)
 }
+
+const openDialog = (dialog) => {
+    dialog.showModal()
+    dialog.addEventListener('click', clickOutside);
+}
+
+const clickOutside = (event) => {
+    let rect = event.target.getBoundingClientRect()
+    let isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX && event.clientX <= rect.left + rect.width)
+    if (!isInDialog && event.target.tagName === 'DIALOG') {
+        closeModal(event.target)
+    }
+}
+
 const closeModal = (modal) => {
     // DOn't close the modal while it's thinking
     if (creating.value) {
         return
     }
+    modal.removeEventListener('click', clickOutside)
     modal.close()
 }
 
@@ -390,13 +436,45 @@ const createFolder = () => {
     creating.value = true
     data.name = folderName.value
     data.visibility_id = folderVisibility.value
+    if (folder.value) {
+        data.folder_id = folder.value.id
+    }
     axios.post(createApi.value, data).then(res => {
         folderName.value = null
         folderVisibility.value = 1
         creating.value = false
 
         files.value.unshift(res.data.folder)
-        closeModal(newFolder.value)
+        folders.value[res.data.folder.id] = res.data.folder.name
+        closeModal(newDialog.value)
+    })
+}
+
+const moveFiles = () => {
+    if (moving.value) {
+        return
+    }
+    let ids = files.value.filter(f => f.is_selected).map(f => f.id)
+    if (ids.length === 0) {
+        alert('select at least one image')
+    }
+
+    moving.value = true
+    let data = {}
+    data.folder_id = targetFolder.value
+    data.images = ids
+
+    axios.post(moveApi.value, data).then(res => {
+        targetFolder.value = null
+        moving.value = false
+
+        // Remove selected files from current folder
+        files.value = files.value.filter(i => !i.is_selected)
+
+        // If the files were moved to the homepage... do something?
+
+        window.showToast(res.data.toast)
+        closeModal(moveDialog.value)
     })
 }
 
@@ -418,7 +496,6 @@ const filesSelected = async (event) => {
     reader.readAsDataURL(file)
 
     uploading.value = true
-    document.addEventListener('keydown', handleEscape)
     cancelTokenSource.value = axios.CancelToken.source()
     fileField.value.disabled = true
 
@@ -439,7 +516,6 @@ const filesSelected = async (event) => {
             fileField.value.disabled = false
             fileField.value = null
             imagePreview.value = null
-            document.removeEventListener('keydown', handleEscape)
         })
         .catch (err => {
             uploading.value = false
@@ -451,22 +527,53 @@ const filesSelected = async (event) => {
             } else {
                 //showErrors(err)
             }
-            document.removeEventListener('keydown', handleEscape)
         })
+}
+
+const countSelected = () => {
+    let count = files.value.filter(f => f.is_selected).length
+    if (count === 0) {
+        return
+    }
+    return '(' + count + ')'
 }
 
 const progressPercentage = () => {
     return progress.value + '%'
 }
 
-const handleEscape = (event) => {
-    if (event.key === 'Escape' && uploading.value) {
-        cancelUpload()
-    }
-}
 
 const cancelUpload = () => {
     cancelTokenSource.value.cancel('Upload canceled by user.')
+}
+
+// A file has been updated in the side panel, update our main reference?
+const updatedFile = (file) => {
+
+}
+const deletedFile = (file) => {
+    files.value = files.value.filter(f => f.id !== file.id)
+    currentFile.value = null
+
+    if (file.is_folder) {
+        if (file.folder_id) {
+
+        } else {
+            home()
+        }
+    }
+}
+
+const closeFile = () => {
+    currentFile.value = null
+}
+
+const openFolderDetails = () => {
+    if (currentFile.value === folder.value) {
+        currentFile.value = null
+        return
+    }
+    currentFile.value = folder.value;
 }
 
 </script>

@@ -21,22 +21,37 @@ class GalleryFile extends JsonResource
         /** @var Image $file */
         $file = $this->resource;
         return [
-            'id' => $file->id,
-            'is_folder' => $file->isFolder(),
-            'name' => $file->name,
-            'thumbnail' => $file->hasThumbnail() ? $file->getUrl(192, 144) : null,
-            'thumbnails' => $file->isFolder() ? $this->thumbnails($file) : null,
-            'visibility' => $file->visibilityIcon(true),
-            'visibility_id' => $file->visibility_id,
-            'is_selected' => false,
-            'is_deleted' => false,
-            'open' => route('gallery.show', [$this->campaign, $file]),
-            'ext' => $file->ext,
-            'size' => $file->niceSize(),
-            'creator' => $file->creator->name ?? __('crud.unknown')
+            "id" => $file->id,
+            "is_folder" => $file->isFolder(),
+            "name" => $file->name,
+            "thumbnail" => $file->hasThumbnail()
+                ? $file->getUrl(192, 144)
+                : null,
+            "original" => $file->hasThumbnail() ? $file->url() : null,
+            "thumbnails" => $file->isFolder() ? $this->thumbnails($file) : null,
+            "visibility" => $file->visibilityIcon(true),
+            "visibility_id" => $file->visibility_id,
+            "focus_x" => $file->focus_x,
+            "focus_y" => $file->focus_y,
+            "is_selected" => false,
+            "is_deleted" => false,
+            "open" => route("gallery.show", [$this->campaign, $file]),
+            "ext" => $file->ext,
+            "size" => $file->niceSize(),
+            "creator" => $file->creator->name ?? __("crud.unknown"),
+            "api" => [
+                "show" => route("gallery.file.show", [$this->campaign, $file]),
+                "update" => route("gallery.file.update", [
+                    $this->campaign,
+                    $file,
+                ]),
+                "focus" => route("gallery.file.update-focus", [
+                    $this->campaign,
+                    $file,
+                ]),
+            ],
         ];
     }
-
 
     protected function thumbnails(Image $file): array
     {

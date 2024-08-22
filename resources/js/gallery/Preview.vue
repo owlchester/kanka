@@ -1,5 +1,6 @@
 <template>
     <div :class="fileClass()" @click="click">
+        <input type="checkbox" v-model="file.is_selected" v-if="isBulking" class="!absolute top-4 left-4" />
         <div class="w-full h-32" v-if="file.is_folder">
             <div class="w-full h-full" v-if="file.thumbnails.length === 1"  :style="{backgroundImage: previewImage(file.thumbnails[0])}"></div>
             <div class="w-full h-full flex gap-0.5" v-else-if="file.thumbnails.length === 2">
@@ -22,7 +23,7 @@
 
         </div>
         <div v-else class="w-full h-32">
-            No thumbnail
+
         </div>
         <div class="flex gap-2 items-center p-4">
             <div class="grow truncate">
@@ -63,7 +64,7 @@ const click = () => {
 }
 
 const fileClass = () => {
-    let css = 'rounded-xl shadow bg-base-100 overflow-hidden w-[12rem] cursor-pointer hover:shadow-lg';
+    let css = 'rounded-xl shadow bg-base-100 overflow-hidden w-[12rem] cursor-pointer hover:shadow-lg relative';
     if (!props.file.is_selected || !props.isBulking) {
         return css + '  '
     }

@@ -26,7 +26,13 @@ return [
             'unauthorized'          => 'None of your roles have the "upload to gallery" permission.',
         ],
     ],
+    'move' => [
+        'success' => '[0] Moved 0 elements|[1] Moved one element|{2,*} Moved :count elements'
+    ],
     'delete' => [
         'success' => '[0] Deleted 0 elements|[1] Deleted one element|{2,*} Deleted :count elements'
-    ]
+    ],
+    'file' => [
+        'saved' => 'Saved',
+    ],
 ];

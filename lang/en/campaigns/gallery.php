@@ -27,13 +27,17 @@ return [
         'storage'       => 'There is not enough storage space to upload the selected image(s). Available storage space: :available.',
     ],
     'fields'        => [
+        'details'   =>          'Details',
         'created_by'            => 'Uploaded by',
         'ext'                   => 'Ext',
+        'file_type'                   => 'File type',
         'folder'                => 'Folder',
         'image_mentioned_in'    => '{0} This image isn\'t mentioned in any of the campaign\'s entities.|{1} Mentioned in one entry/post.|[2,*] mentioned in :count entries/posts.',
         'image_used_in'         => '{0} This image isn\'t used in any of the campaign\'s entities.|{1} Used as the image of one entity.|[2,*] Used as the image of :count entities.',
         'name'                  => 'Name',
         'size'                  => 'Size',
+        'used_in'                  => 'Used in',
+        'unused'                  => 'Not used anywhere',
     ],
     'focus'         => [
         'removed'   => 'Image focus removed.',

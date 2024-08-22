@@ -33,6 +33,10 @@ Route::get('/w/{campaign}/gallery/open/{image}', [App\Http\Controllers\Gallery\I
 Route::get('/w/{campaign}/gallery/search/{term?}', [App\Http\Controllers\Gallery\SearchController::class, 'index'])->name('gallery.search');
 Route::post('/w/{campaign}/gallery/delete', [App\Http\Controllers\Gallery\DeleteController::class, 'destroy'])->name('gallery.delete');
 Route::post('/w/{campaign}/gallery/create', [App\Http\Controllers\Gallery\CreateController::class, 'index'])->name('gallery.create');
+Route::post('/w/{campaign}/gallery/move', [App\Http\Controllers\Gallery\MoveController::class, 'process'])->name('gallery.move');
+Route::get('/w/{campaign}/gallery/{image}', [App\Http\Controllers\Gallery\ShowController::class, 'show'])->name('gallery.file.show');
+Route::post('/w/{campaign}/gallery/{image}/update', [App\Http\Controllers\Gallery\UpdateController::class, 'process'])->name('gallery.file.update');
+Route::post('/w/{campaign}/gallery/{image}/update-focus', [App\Http\Controllers\Gallery\UpdateController::class, 'focus'])->name('gallery.file.update-focus');
 
 // Campaign
 Route::get('/w/{campaign}/editing-warning', [App\Http\Controllers\EditingController::class, 'index'])->name('campaign.editing-warning');

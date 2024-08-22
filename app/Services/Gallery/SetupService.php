@@ -17,7 +17,7 @@ class SetupService
 
     protected Collection $files;
     protected Image $image;
-    protected ?String $term;
+    protected ?string $term;
     protected ?string $nextPage;
 
     public function image(Image $image): self
@@ -41,12 +41,14 @@ class SetupService
             ],
             'files' => $this->files(),
             'i18n' => $this->i18n(),
+            'folders' => $this->folders(),
             'search' => route('gallery.search', [$this->campaign]),
             'delete' => route('gallery.delete', [$this->campaign]),
             'create' => route('gallery.create', [$this->campaign]),
+            'move' => route('gallery.move', [$this->campaign]),
             'upload' => route('gallery.upload.files', [$this->campaign]),
             'next' => $this->nextPage ?? null,
-            'visibilities' => $this->visibilities()
+            'visibilities' => $this->visibilities(),
         ];
     }
 
@@ -109,8 +111,40 @@ class SetupService
             'move' => __('crud.actions.move'),
             'home' => __('Home'),
             'load_more' => __('Load more'),
-            'upload_hint' => __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif, woff2', 'size' => Limit::readable()->upload()])
+            'upload_hint' => __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif, woff2', 'size' => Limit::readable()->upload()]),
+
+            // FIles
+            'details' => __('campaigns/gallery.fields.details'),
+            'used_in' => __('campaigns/gallery.fields.used_in'),
+            'unused' => __('campaigns/gallery.fields.unused'),
+            'name' => __('crud.fields.name'),
+            'delete' => __('crud.remove'),
+            'save' => __('crud.save'),
+            'saved' => __('gallery.file.saved'),
+            'confirm' => __('crud.click_modal.confirm'),
+            'visibility' => __('crud.fields.visibility'),
+            'size' => __('campaigns/gallery.fields.size'),
+            'file_type' => __('campaigns/gallery.fields.file_type'),
+            'uploaded_by' => __('campaigns/gallery.fields.created_by'),
+            'focus_point' => __('campaigns/gallery.actions.focus_point'),
+
         ];
+    }
+
+    protected function folders(): array
+    {
+        $folders = [];
+        $query = $this
+            ->campaign
+            ->images()
+            ->select(['id', 'name'])
+            ->folders()
+            ->get();
+        foreach ($query as $folder) {
+            $folders[$folder->id] = $folder->name;
+        }
+
+        return $folders;
     }
 
     protected function breadcrumbs(): array
