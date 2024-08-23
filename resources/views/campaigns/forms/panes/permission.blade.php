@@ -34,6 +34,13 @@ $visibilities = [
                 :helper="__('campaigns.helpers.character_personality_visibility')">
                 <x-forms.select name="entity_personality_visibility" :options="[0 => __('campaigns.privacy.visible'), 1 => __('campaigns.privacy.private')]" :selected="$campaign->entity_personality_visibility ?? null" />
             </x-forms.field>
+
+            <x-forms.field
+                field="gallery-visibility"
+                :label="__('campaigns.fields.gallery_visibility')"
+                :helper="__('campaigns.helpers.gallery_visibility')">
+                <x-forms.select name="settings[gallery_visibility]" :options="$visibilities" :selected="$campaign->settings['gallery_visibility'] ?? null" />
+            </x-forms.field>
         </x-grid>
     </x-grid>
 </div>

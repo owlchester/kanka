@@ -415,11 +415,37 @@ class Campaign extends Model
     }
 
     /**
+     */
+    public function getDefaultGalleryVisibilityAttribute(): mixed
+    {
+        return Arr::get($this->settings, 'gallery_visibility', 'all');
+    }
+
+    /**
      * Determine the campaign's default visibility_id select option
      */
     public function defaultVisibility(): Visibility
     {
         $visibility = $this->getDefaultVisibilityAttribute();
+        if ($visibility == 'admin' && auth()->user()->isAdmin()) {
+            return Visibility::Admin;
+        } elseif ($visibility == 'admin-self') {
+            return Visibility::AdminSelf;
+        } elseif ($visibility == 'members') {
+            return Visibility::Member;
+        } elseif ($visibility == 'self') {
+            return Visibility::Self;
+        }
+
+        return Visibility::All;
+    }
+
+    /**
+     * Determine the gallery's default visibility_id select option
+     */
+    public function defaultGalleryVisibility(): Visibility
+    {
+        $visibility = $this->getDefaultGalleryVisibilityAttribute();
         if ($visibility == 'admin' && auth()->user()->isAdmin()) {
             return Visibility::Admin;
         } elseif ($visibility == 'admin-self') {
