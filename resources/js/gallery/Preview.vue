@@ -1,7 +1,7 @@
 <template>
     <div :class="fileClass()" @click="click">
         <input type="checkbox" v-model="file.is_selected" v-if="isBulking" class="!absolute top-4 left-4" />
-        <div class="w-full h-32" v-if="file.is_folder">
+        <div class="flex-none w-20 md:w-full h-16 md:h-32" v-if="file.is_folder">
             <div class="w-full h-full" v-if="file.thumbnails.length === 1"  :style="{backgroundImage: previewImage(file.thumbnails[0])}"></div>
             <div class="w-full h-full flex gap-0.5" v-else-if="file.thumbnails.length === 2">
                 <div class="w-1/2 h-full cover-background" :style="{backgroundImage: previewImage(file.thumbnails[0])}"></div>
@@ -19,18 +19,21 @@
             </div>
 
         </div>
-        <div class="w-full h-32 cover-background" v-else-if="hasThumbnail()" :style="{backgroundImage: previewImage(file.thumbnail)}">
+        <div class="flex-none w-20 md:w-full h-16 md:h-32 cover-background" v-else-if="hasThumbnail()" :style="{backgroundImage: previewImage(file.thumbnail)}">
 
         </div>
-        <div v-else class="w-full h-32">
+        <div v-else class="w-full h-20 md:h-32">
 
         </div>
-        <div class="flex gap-2 items-center p-4">
-            <div class="grow truncate">
-                <span v-html="file.name"></span>
+        <div class="flex gap-1 md:gap-2 items-center md:p-4 truncate">
+            <div class="grow-0 md:hidden" v-if="file.visibility_id > 1">
+                <i :class="visibilityClass()" aria-hidden="true" :title="visibilityTitle()"></i>
             </div>
-            <div v-if="file.visibility.class">
-                <i :class="file.visibility.class" aria-hidden="true" :title="file.visibility.key"></i>
+            <div class="grow truncate">
+                <span v-html="file.name" class=""></span>
+            </div>
+            <div class="hidden md:block grow-0" v-if="file.visibility_id > 1">
+                <i :class="visibilityClass()" aria-hidden="true" :title="visibilityTitle()"></i>
             </div>
         </div>
     </div>
@@ -39,13 +42,15 @@
 
 <script setup lang="ts">
 import {ref, onMounted, watch, onBeforeMount} from 'vue'
+import {matches} from "lodash";
 
 const emit = defineEmits(['select'])
 
 
 const props = defineProps<{
     file: Object,
-    isBulking: Boolean
+    isBulking: Boolean,
+    i18n: Object
 }>()
 
 const hasThumbnail = () => {
@@ -64,11 +69,31 @@ const click = () => {
 }
 
 const fileClass = () => {
-    let css = 'rounded-xl shadow bg-base-100 overflow-hidden w-[12rem] cursor-pointer hover:shadow-lg relative';
+    let css = 'rounded-xl shadow bg-base-100 overflow-hidden sm:w-[12rem] cursor-pointer hover:shadow-lg relative flex flex-row md:flex-col gap-2 md:gap-0';
     if (!props.file.is_selected || !props.isBulking) {
         return css + '  '
     }
     return css + ' bg-base-300'
+}
+
+
+const visibilityClass = () => {
+    switch(parseInt(props.file.visibility_id)) {
+        case 2:
+            return 'fa-solid fa-lock'
+        case 3:
+            return 'fa-solid fa-user-secret'
+        case 4:
+            return 'fa-solid fa-user-lock'
+        case 5:
+            return 'fa-solid fa-users'
+        default:
+            return 'fa-solid fa-eye'
+    }
+}
+
+const visibilityTitle = () => {
+    return props.i18n['visibility.' + props.file.visibility_id]
 }
 
 </script>

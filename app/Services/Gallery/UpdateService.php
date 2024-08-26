@@ -4,8 +4,9 @@ namespace App\Services\Gallery;
 
 use App\Models\Image;
 use App\Traits\CampaignAware;
+use Illuminate\Support\Arr;
 
-class MoveService
+class UpdateService
 {
     use CampaignAware;
 
@@ -25,16 +26,27 @@ class MoveService
         return $this;
     }
 
-    public function move(?string $folderId): int
+    public function update(array $data): int
     {
-        if (isset($folderId) && !empty($folderId)) {
+        $folderId = Arr::get($data, 'folder_id');
+        $home = Arr::get($data, 'folder_home');
+        $visibilityId = Arr::get($data, 'visibility_id');
+
+        if (!empty($folderId)) {
             // Make sure it's a folder from the current campaign
             $folder = Image::where('id', $folderId)->where('is_folder', 1)->firstOrFail();
         }
 
         foreach ($this->files as $file) {
             // todo: prevent loops?
-            $file->folder_id = $folderId;
+            if (isset($folder)) {
+                $file->folder_id = $folder->id;
+            } elseif (!empty($home)) {
+                $file->folder_id = null;
+            }
+            if (!empty($visibilityId)) {
+                $file->visibility_id = $visibilityId;
+            }
             $file->save();
         }
         return count($this->files);

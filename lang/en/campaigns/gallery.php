@@ -8,6 +8,7 @@ return [
         'image-link'    => 'Image link',
         'reset_focus'   => 'Reset focus point',
         'save'          => 'Save',
+        'upgrade' => 'Upgrade storage space',
     ],
     'breadcrumb'    => 'Gallery',
     'bulk'          => [
@@ -29,6 +30,7 @@ return [
     'fields'        => [
         'details'   =>          'Details',
         'created_by'            => 'Uploaded by',
+        'link'            => 'Link',
         'ext'                   => 'Ext',
         'file_type'                   => 'File type',
         'folder'                => 'Folder',
@@ -42,6 +44,7 @@ return [
     'focus'         => [
         'removed'   => 'Image focus removed.',
         'updated'   => 'Image focus updated.',
+        'locked' => 'A premium campaign is required to set the focus point of an image.',
     ],
     'new_folder'    => [
         'title' => 'New folder',
@@ -55,6 +58,10 @@ return [
     'update'        => [
         'folder'    => 'Folder modified.',
         'success'   => 'File modified.',
+    ],
+    'storage' => [
+        'title' => 'Storage',
+        'of' => 'of',
     ],
     'uploader'      => [
         'add'           => 'Add new',

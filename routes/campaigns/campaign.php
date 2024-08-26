@@ -10,16 +10,9 @@ Route::get('/w/{campaign}/apply', 'Campaign\ApplyController@index')->name('campa
 Route::post('/w/{campaign}/apply', 'Campaign\ApplyController@save')->name('campaign.apply.save');
 Route::delete('/w/{campaign}/remove', 'Campaign\ApplyController@remove')->name('campaign.apply.remove');
 
-Route::get('/w/{campaign}/gallery', 'Campaign\GalleryController@index')->name('gallery');
-Route::get('/w/{campaign}/gallery-index', 'Campaign\GalleryController@index')->name('campaign.gallery.index');
-Route::get('/w/{campaign}/gallery/search', [App\Http\Controllers\Campaign\Gallery\SearchController::class, 'index'])->name('campaign.gallery.search');
-Route::get('/w/{campaign}/gallery/folders/create', [App\Http\Controllers\Campaign\Gallery\FolderController::class, 'create'])->name('campaign.gallery.folders.create');
-Route::post('/w/{campaign}/gallery/folders', [App\Http\Controllers\Campaign\Gallery\FolderController::class, 'store'])->name('campaign.gallery.folders.store');
+Route::get('/w/{campaign}/gallery', 'GalleryController@index')->name('gallery');
+Route::get('/w/{campaign}/gallery-index', 'GalleryController@index')->name('campaign.gallery.index');
 
-Route::get('/w/{campaign}/gallery/{image}/save-focus', [App\Http\Controllers\Campaign\Gallery\FocusController::class, 'index'])->name('campaign.gallery.focus');
-Route::post('/w/{campaign}/gallery/{image}/save-focus', [App\Http\Controllers\Campaign\Gallery\FocusController::class, 'save'])->name('campaign.gallery.save-focus');
-
-Route::post('/w/{campaign}/gallery/bulk', [App\Http\Controllers\Campaign\Gallery\BulkController::class, 'delete'])->name('campaign.gallery.bulk.delete');
 Route::post('/w/{campaign}/gallery/ajax-upload', 'Summernote\GalleryController@upload')->name('campaign.gallery.ajax-upload');
 Route::get('/w/{campaign}/gallery/ajax-gallery', 'Summernote\GalleryController@index')->name('campaign.gallery.summernote');
 
@@ -33,9 +26,10 @@ Route::get('/w/{campaign}/gallery/open/{image}', [App\Http\Controllers\Gallery\I
 Route::get('/w/{campaign}/gallery/search/{term?}', [App\Http\Controllers\Gallery\SearchController::class, 'index'])->name('gallery.search');
 Route::post('/w/{campaign}/gallery/delete', [App\Http\Controllers\Gallery\DeleteController::class, 'destroy'])->name('gallery.delete');
 Route::post('/w/{campaign}/gallery/create', [App\Http\Controllers\Gallery\CreateController::class, 'index'])->name('gallery.create');
-Route::post('/w/{campaign}/gallery/move', [App\Http\Controllers\Gallery\MoveController::class, 'process'])->name('gallery.move');
+Route::post('/w/{campaign}/gallery/update/bulk', [App\Http\Controllers\Gallery\UpdateController::class, 'bulk'])->name('gallery.update');
 Route::get('/w/{campaign}/gallery/{image}', [App\Http\Controllers\Gallery\ShowController::class, 'show'])->name('gallery.file.show');
 Route::post('/w/{campaign}/gallery/{image}/update', [App\Http\Controllers\Gallery\UpdateController::class, 'process'])->name('gallery.file.update');
+Route::delete('/w/{campaign}/gallery/{image}/delete', [App\Http\Controllers\Gallery\DeleteController::class, 'file'])->name('gallery.file.delete');
 Route::post('/w/{campaign}/gallery/{image}/update-focus', [App\Http\Controllers\Gallery\UpdateController::class, 'focus'])->name('gallery.file.update-focus');
 
 // Campaign
@@ -96,8 +90,6 @@ Route::resources([
     '/w/{campaign}/campaign_dashboard_widgets' => 'Campaign\DashboardWidgetController',
 
     '/w/{campaign}/preset_types.presets' => 'PresetController',
-
-    '/w/{campaign}/images' => 'Campaign\GalleryController',
 
     '/w/{campaign}/webhooks' => 'Campaign\WebhookController',
 ]);

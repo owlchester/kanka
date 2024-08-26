@@ -10,12 +10,9 @@ use App\Services\Gallery\MoveService;
 
 class ShowController extends Controller
 {
-    protected MoveService $service;
-
-    public function __construct(MoveService $service)
+    public function __construct()
     {
         $this->middleware('auth');
-        $this->service = $service;
     }
 
     public function show(Campaign $campaign, Image $image)

@@ -3,33 +3,63 @@
         <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
     </div>
     <div v-else class="flex flex-col gap-4 md:gap-5">
+        <div class="flex gap-4 items-end">
+            <div class="flex flex-col gap-1 grow">
+                <div class="flex gap-1 items-center">
+                    <i class="fa-regular fa-cloud text-xl" aria-hidden="true"></i>
+                    <span class="font-extrabold" v-html="trans('storage')"></span>
+                </div>
+                <div class="flex gap-1 items-center">
+                    <span v-html="usedSpace()"></span>
+                    <span v-html="trans('of')"></span>
+                    <span v-html="totalSpace()"></span>
+                </div>
+                <div class="bg-base-300 rounded h-2 w-full overflow-hidden transition-all duration-300 ">
+                    <div :class="usedClasses()" :style="{width: usedPercentage() + '%'}"></div>
+                </div>
+            </div>
+            <div v-if="!premium">
+                <a :href="upgradeLink" v-html="trans('upgrade')" class="btn2 btn-default"></a>
+            </div>
+        </div>
+
         <div class="flex gap-4 flex-wrap sticky top-14 z-50">
             <div class="flex gap-2 grow">
                 <div class="flex gap-0.5">
                     <input type="text" placeholder="Search" @input="handleSearchInput" />
                 </div>
-                <button class="btn2 btn-default btn-sm">
-                    <i class="fa-solid fa-filter" aria-hidden="true" />
-                    <span v-html="trans('filters')"></span>
-                </button>
+                <div class="relative">
+                    <button class="btn2 btn-default btn-sm" @click="toggleFilters">
+                        <i class="fa-solid fa-filter" aria-hidden="true" />
+                        <span v-html="trans('filters')" class="hidden md:inline"></span>
+                        <span v-if="showUnused">(1)</span>
+                    </button>
+                    <div class="border shadow rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
+                        <div class="flex gap-2 items-center">
+                            <input type="checkbox" v-model="showUnused" value="1" id="_show_unused" @change="toggleUnused" />
+                            <label for="_show_unused" class="cursor-pointer" v-html="trans('filter_only_unused')">
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="flex gap-2 flex-none self-end">
+            <div class="flex gap-2 self-end flex-wrap">
 
                 <button class="btn2 btn-default btn-sm" v-if="!isBulking && folder" @click="openFolderDetails">
                     <i class="fa-regular fa-clipboard" aria-hidden="true" />
                     <span v-html="trans('details')"></span>
                 </button>
-                <button class="btn2 btn-default btn-sm" v-if="!isBulking" @click="openNewFolder">
+                <button class="btn2 btn-default btn-sm" v-if="!isBulking && canManage" @click="openNewFolder">
                     <i class="fa-solid fa-plus" aria-hidden="true" />
                     <span v-html="trans('new_folder')"></span>
                 </button>
-                <button class="btn2 btn-default btn-sm" v-if="!isBulking" @click="startBulking">
+                <button class="btn2 btn-default btn-sm" v-if="!isBulking && canManage" @click="startBulking">
                     <i class="fa-solid fa-list-check" aria-hidden="true" />
                     <span v-html="trans('select')"></span>
                 </button>
-                <button class="btn2 btn-primary btn-sm" v-if="isBulking" @click="openMove">
-                    <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true" />
-                    <span v-html="trans('move')"></span>
+                <button class="btn2 btn-primary btn-sm" v-if="isBulking" @click="openUpdate">
+                    <i class="fa-solid fa-pencil" aria-hidden="true" />
+                    <span v-html="trans('update')"></span>
                     <span v-html="countSelected()"></span>
                 </button>
                 <button class="btn2 btn-error btn-sm" v-if="isBulking" @click="deleteBulk">
@@ -51,11 +81,14 @@
         <div class="flex flex-col gap-4" v-else>
             <div v-if="folder" class="flex gap-1 flex-wrap text-xl">
                 <a @click="home" v-html="trans('home')" class="text-base-content cursor-pointer"></a>
-                <a v-for="breadcrumb in breadcrumbs" @click="open(breadcrumb)" v-html="breadcrumb.name" class="text-base-content cursor-pointer"></a>
+                <span class="flex gap-1 items-center" v-for="(breadcrumb, index) in breadcrumbs">
+                    <i class="fa-solid fa-chevron-right text-base" aria-hidden="true" />
+                    <a @click="openFolder(breadcrumb)" v-html="breadcrumb.name" class="text-base-content cursor-pointer"></a>
+                </span>
             </div>
             <div class="flex gap-2 flex-row">
                 <div :class="gridClass()">
-                    <div v-if="canUpload" class="rounded-xl shadow bg-base-100 overflow-hidden w-[12rem] cursor-pointer flex justify-center items-center flex-col gap-4" @click="selectFiles">
+                    <div v-if="canUpload && !showUnused" class="rounded-xl shadow bg-base-100 overflow-hidden col-span-2 sm:col-span-3 md:w-[12rem] cursor-pointer flex justify-center items-center flex-col gap-4" @click="selectFiles">
                         <div class="flex flex-col gap-4 p-2" v-if="!uploading">
                             <div class="flex flex-col gap-2 items-center">
                                 <i class="fa-regular fa-image text-4xl text-neutral-content" aria-hidden="true"></i>
@@ -66,7 +99,7 @@
                                 <span v-html="trans('upload_hint')" class="text-neutral-content"></span>
                             </div>
                         </div>
-                        <div v-else class="cover-background w-full h-full flex p-2" :style="{backgroundImage: 'url(\'' + imagePreview + '\')'}">
+                        <div v-else-if="imagePreview.value" class="cover-background w-full h-full flex p-2" :style="{backgroundImage: 'url(\'' + imagePreview.value + '\')'}">
                             <div class="progress h-1 w-full self-end">
                                 <div class="h-1 bg-accent shadow-sm" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" :style="{'width': progressPercentage()}">
                                     <span class="sr-only"></span>
@@ -80,6 +113,7 @@
                         v-for="file in files"
                         :file="file"
                         :isBulking="isBulking"
+                        :i18n="i18n"
                         @select="selectFile(file)"
                     >
                     </Preview>
@@ -89,10 +123,12 @@
                     </div>
                 </div>
 
-                <div class="basis-1/2 md:basis-1/4 " v-if="currentFile">
+                <div class="fixed bottom-0 w-full left-0 right-0 shadow-md md:shadow-none md:relative md:basis-1/4 " v-if="currentFile">
                     <File
                         :file="currentFile"
                         :visibilities="visibilities"
+                        :premium="premium"
+                        :canManage="canManage"
                         :i18n="i18n"
                         @updated="updatedFile"
                         @deleted="deletedFile"
@@ -114,11 +150,11 @@
         </header>
         <article class="max-w-4xl flex flex-col gap-2 text-left">
             <div class="flex flex-col gap-1 w-full">
-                <label>Name</label>
-                <input type="text" class="w-full" v-model="folderName">
+                <label v-html="trans('name')"></label>
+                <input type="text" class="w-full" v-model="folderName" ref="folderNameField" @keyup.enter="createFolder">
             </div>
             <div class="flex flex-col gap-1 w-full">
-                <label>Visibility</label>
+                <label v-html="trans('visibility')"></label>
                 <select class="w-full" v-model="folderVisibility">
                     <option v-for="(name, id) in visibilities" :value="id" v-html="name"></option>
                 </select>
@@ -126,34 +162,37 @@
         </article>
         <footer class="bg-base-200 p-2">
             <menu class="">
-                <button type="submit" class="btn2 btn-primary" @click="createFolder">
-                    Create
+                <button type="submit" class="btn2 btn-primary" @click="createFolder" v-html="trans('create')">
                 </button>
             </menu>
         </footer>
     </dialog>
 
-
-    <dialog ref="moveDialog" class="dialog rounded-2xl text-center" v-if="initiated">
+    <dialog ref="updateDialog" class="dialog rounded-2xl text-center" v-if="initiated">
         <header class="bg-base-200 sm:rounded-t">
-            <h4 v-html="trans('move')"></h4>
-            <button type="button" class="text-base-content" @click="closeModal(moveDialog)" title="Close">
+            <h4 v-html="trans('update')"></h4>
+            <button type="button" class="text-base-content" @click="closeModal(updateDialog)" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>
             </button>
         </header>
         <article class="max-w-4xl flex flex-col gap-2 text-left">
             <div class="flex flex-col gap-1 w-full">
-                <label>Folder</label>
-                <select class="w-full" v-model="targetFolder">
+                <label v-html="trans('visibility')"></label>
+                <select class="w-full" v-model="bulkVisibility">
+                    <option v-for="(name, id) in bulkVisibilities" :value="id" v-html="name"></option>
+                </select>
+            </div>
+            <div class="flex flex-col gap-1 w-full">
+                <label v-html="trans('folder')"></label>
+                <select class="w-full" v-model="bulkFolder">
                     <option v-for="(name, id) in folders" :value="id" v-html="name"></option>
                 </select>
             </div>
         </article>
         <footer class="bg-base-200 p-2">
             <menu class="">
-                <button type="submit" class="btn2 btn-primary" @click="moveFiles">
-                    Move
+                <button type="submit" class="btn2 btn-primary" @click="updateFiles" v-html="trans('change')">
                 </button>
             </menu>
         </footer>
@@ -177,6 +216,8 @@ const deleting = ref(false)
 const loadingMore = ref(false)
 const canUpload = ref(false)
 const isBulking = ref(false)
+const premium = ref(false)
+const canManage = ref(false)
 const breadcrumbs = ref()
 const nextPage = ref()
 const currentFile = ref()
@@ -193,20 +234,26 @@ const homeFiles = ref([])
 const folder = ref()
 const i18n = ref()
 const isHome = ref(true)
+const homeUrl = ref()
 
 // New folder
 const creating = ref(false)
 const createApi = ref()
 const newDialog = ref()
-const moveDialog = ref()
 const folderName = ref()
+const folderNameField = ref()
 const folderVisibility = ref(1)
 const visibilities = ref()
+const bulkVisibilities = ref()
+
+// Visibility folder
+const updateDialog = ref()
+const bulkVisibility = ref()
+const bulkFolder = ref()
 
 // Move
-const targetFolder = ref()
 const folders = ref()
-const moveApi = ref()
+const updateApi = ref()
 
 // Upload
 const moving = ref(false)
@@ -217,22 +264,39 @@ const imagePreview = ref()
 const cancelTokenSource = ref(null)
 const progress = ref(0)
 
+// Filters
+const showFilters = ref(false)
+const showUnused = ref(false)
+
+// Space
+const total = ref()
+const used = ref()
+const upgradeLink = ref()
+
 onMounted(() => {
     axios.get(props.api)
         .then((res) => {
             initiated.value = true
             files.value = res.data.files
             homeFiles.value = res.data.files
+            homeUrl.value = res.data.url
             i18n.value = res.data.i18n
-            searchApi.value = res.data.search
-            deleteApi.value = res.data.delete
-            createApi.value = res.data.create
-            uploadApi.value = res.data.upload
-            moveApi.value = res.data.move
+            searchApi.value = res.data.api.search
+            deleteApi.value = res.data.api.delete
+            updateApi.value = res.data.api.update
+            createApi.value = res.data.api.create
+            uploadApi.value = res.data.api.upload
             nextPage.value = res.data.next
             visibilities.value = res.data.visibilities
+            bulkVisibilities.value = res.data.bulkVisibilities
             canUpload.value = res.data.acl.upload
+            premium.value = res.data.acl.premium
+            canManage.value = res.data.acl.manage
             folders.value = res.data.folders
+
+            total.value = res.data.space.total
+            used.value = res.data.space.used
+            upgradeLink.value = res.data.upgrade
         })
 
     window.addEventListener('keydown', handleEscapeKey)
@@ -253,13 +317,16 @@ const handleEscapeKey = (event) => {
         if (isBulking.value) {
             isBulking.value = null
         }
+        else if (showFilters.value) {
+            showFilters.value = false
+        }
     }
 }
 
 
 const trans = (key) => {
     if (!i18n.value[key]) {
-        console.error('Missing trans', i18n)
+        console.error('Missing trans', key, i18n)
         return 'MISSING'
     }
     return i18n.value[key]
@@ -273,12 +340,14 @@ const stopBulking = () => {
     isBulking.value = false;
 }
 
-const openMove = () => {
-    openDialog(moveDialog.value)
+const openUpdate = () => {
+    openDialog(updateDialog.value)
+    bulkVisibility.value = null
+    bulkFolder.value = null
 }
 
 const gridClass = () => {
-    let css = 'flex gap-4 flex-wrap'
+    let css = 'grid grid-cols-2 sm:grid-cols-3 md:flex gap-2 sm:gap-3 md:gap-4 md:flex-wrap'
     if (currentFile.value) {
         css += ' basis-2/4 md:basis-3/4'
     }
@@ -297,10 +366,12 @@ const deleteBulk = () => {
         .then(res => {
             files.value = files.value.filter(i => !i.is_selected)
             // If we are on the home page, reset the home files
-            if (isHome) {
+            if (isHome.value) {
                 homeFiles.value = files.value
             }
+            used.value = res.data.used;
 
+            isBulking.value = false
             window.showToast(res.data.toast)
         })
 }
@@ -336,6 +407,8 @@ const openFolder = (file) => {
             nextPage.value = res.data.next
             loading.value = false
             isHome.value = false
+
+            //window.history.pushState({}, "", res.data.url);
         })
 }
 
@@ -347,6 +420,8 @@ const home = () => {
     loading.value = false
     isHome.value = true
     isBulking.value = false
+
+    //window.history.pushState({}, "", homeUrl.value);
 }
 
 const handleSearchInput = (event) => {
@@ -373,11 +448,8 @@ const search = () => {
     }
 
     loading.value = true
-    axios.get(searchApi.value + '/' + searchTerm.value).then(res => {
-        files.value = res.data.files
-        nextPage.value = res.data.next
-        folder.value = null
-        loading.value = false
+    axios.get(searchApi.value + '/?term=' + searchTerm.value).then(res => {
+        showSearchResults(res.data)
     })
 }
 
@@ -403,6 +475,7 @@ const loadMoreClass = () => {
 
 const openNewFolder = () => {
     openDialog(newDialog.value)
+    folderNameField.value.focus()
 }
 
 const openDialog = (dialog) => {
@@ -450,31 +523,100 @@ const createFolder = () => {
     })
 }
 
-const moveFiles = () => {
+// const moveFiles = () => {
+//     if (moving.value) {
+//         return
+//     }
+//     let ids = files.value.filter(f => f.is_selected).map(f => f.id)
+//     if (ids.length === 0) {
+//         alert('select at least one image')
+//     }
+//
+//     moving.value = true
+//     let data = {}
+//     data.folder_id = targetFolder.value
+//     data.images = ids
+//
+//     axios.post(moveApi.value, data).then(res => {
+//         targetFolder.value = null
+//         moving.value = false
+//
+//         // Remove selected files from current folder
+//         files.value = files.value.filter(i => !i.is_selected)
+//
+//         // If the files were moved to the homepage... do something?
+//         isBulking.value = false
+//
+//         window.showToast(res.data.toast)
+//         closeModal(moveDialog.value)
+//     })
+// }
+const updateFiles = () => {
     if (moving.value) {
         return
     }
     let ids = files.value.filter(f => f.is_selected).map(f => f.id)
     if (ids.length === 0) {
-        alert('select at least one image')
+        return
     }
 
     moving.value = true
     let data = {}
-    data.folder_id = targetFolder.value
-    data.images = ids
+    if (bulkFolder.value) {
+        if (bulkFolder.value === '0') {
+            data.folder_home = 1
+        } else {
+            data.folder_id = bulkFolder.value
+        }
+    }
+    if (bulkVisibility.value) {
+        data.visibility_id = bulkVisibility.value
+    }
+    data.files = ids
 
-    axios.post(moveApi.value, data).then(res => {
-        targetFolder.value = null
+    axios.post(updateApi.value, data).then(res => {
         moving.value = false
 
-        // Remove selected files from current folder
-        files.value = files.value.filter(i => !i.is_selected)
 
         // If the files were moved to the homepage... do something?
+        if (data.folder_home) {
+            console.log(
+                'move home'
+            )
+            let selectedFiles = files.value.filter(i => i.is_selected)
+            selectedFiles.forEach(f => {
+                homeFiles.value.unshift(f)
+            })
+        }
+
+        // Remove selected files from current folder
+        if (bulkFolder.value) {
+            files.value = files.value.filter(i => !i.is_selected)
+            // If we're currently on the home folder, remove if
+            if (isHome.value) {
+                homeFiles.value = homeFiles.value.filter(i => !i.is_selected)
+            }
+        }
+        if (bulkVisibility.value) {
+            files.value.forEach(f => {
+                if (ids.includes(f.id)) {
+                    f.visibility_id = bulkVisibility.value
+                }
+            })
+        }
+
+        bulkFolder.value = null
+        bulkVisibility.value = null
+        isBulking.value = false
+
+        // Remove old selected files from the home folder
+        let selectedFiles = homeFiles.value.filter(i => i.is_selected)
+        selectedFiles.forEach(f => {
+            f.is_selected = false
+        })
 
         window.showToast(res.data.toast)
-        closeModal(moveDialog.value)
+        closeModal(updateDialog.value)
     })
 }
 
@@ -484,8 +626,8 @@ const selectFiles = () => {
 
 const filesSelected = async (event) => {
     const file = event.target.files[0]
-    const files = event.target.files
-    if (!files) {
+    const selectedFiles = event.target.files
+    if (!selectedFiles) {
         uploading.value = false
         return
     }
@@ -500,7 +642,12 @@ const filesSelected = async (event) => {
     fileField.value.disabled = true
 
     const formData = new FormData()
-    formData.append('files[]', files)
+    if (folder.value) {
+        formData.append('folder_id', folder.value.id)
+    }
+    Array.from(selectedFiles).forEach(f => {
+        formData.append('files[]', f)
+    })
 
     axios.post(uploadApi.value, formData, {
         headers: {
@@ -516,6 +663,23 @@ const filesSelected = async (event) => {
             fileField.value.disabled = false
             fileField.value = null
             imagePreview.value = null
+            // Find the index of the last folder
+            const matchCriterion = f => f.is_folder;
+            const lastIndex = files.value.map((file, index) => matchCriterion(file) ? index : -1)
+                .filter(index => index !== -1)
+                .pop();
+
+            res.data.files.forEach(f => {
+                if (lastIndex !== undefined) {
+                    files.value.splice(lastIndex + 1, 0, f);
+                } else {
+                    // If no match is found, you can push the item to the end or handle accordingly
+                    files.value.push(f);
+                }
+            })
+
+            used.value = res.data.used
+            //console.log(used.value, res.data.used)
         })
         .catch (err => {
             uploading.value = false
@@ -525,9 +689,29 @@ const filesSelected = async (event) => {
                 // User cancelled
                 fileField.value = null
             } else {
-                //showErrors(err)
+                showErrors(err)
             }
         })
+}
+
+const showErrors = (err) => {
+    if (!err.response) {
+        return
+    }
+    if (err.response.data.error) {
+        window.showToast(err.response.data.error, 'error')
+        return
+    }
+
+    if (err.response && err.response.status === 403 && err.response.data.message) {
+        window.showToast(trans.value.unauthorized, 'error')
+        return
+    }
+
+    const errorKeys = Object.keys(err.response.data.errors)
+    errorKeys.forEach(i => {
+        window.showToast(err.response.data.errors[i][0], 'error')
+    })
 }
 
 const countSelected = () => {
@@ -549,9 +733,10 @@ const cancelUpload = () => {
 
 // A file has been updated in the side panel, update our main reference?
 const updatedFile = (file) => {
-
+    // No need as it's editing the reactive component, apparently
 }
-const deletedFile = (file) => {
+
+const deletedFile = (file, newSpace) => {
     files.value = files.value.filter(f => f.id !== file.id)
     currentFile.value = null
 
@@ -562,6 +747,8 @@ const deletedFile = (file) => {
             home()
         }
     }
+
+    used.value = newSpace
 }
 
 const closeFile = () => {
@@ -574,6 +761,69 @@ const openFolderDetails = () => {
         return
     }
     currentFile.value = folder.value;
+}
+
+const toggleFilters = () => {
+    showFilters.value = !showFilters.value;
+}
+
+const onClickOutside = () => {
+    showFilters.value = false
+}
+
+const toggleUnused = () => {
+    if (!showUnused.value) {
+        home()
+        return
+    }
+    console.log('filter')
+    loading.value = true
+    let api = searchApi.value + '/?'
+    if (searchTerm.value) {
+        api += 'term=' + searchTerm.value + '&'
+    }
+    api += 'unused=1'
+    axios.get(api).then(res => {
+        showSearchResults(res.data)
+    })
+}
+
+const showSearchResults = (data) => {
+    files.value = data.files
+    nextPage.value = data.next
+    folder.value = null
+    loading.value = false
+}
+
+const usedSpace = () => {
+    return human(used.value)
+}
+const totalSpace = () => {
+    return human(total.value)
+}
+
+const human = (kb) => {
+    if (kb > 1000000) {
+        return (kb / (1024 * 1024)).toFixed(2) + ' GB'
+    }
+    else if (kb > 1000) {
+        return (kb / (1024)).toFixed(2) + ' MB'
+    }
+    return (kb * 1).toFixed(2) + ' KB'
+}
+
+const usedClasses = () => {
+    let css = 'rounded h-2 transition-all duration-300'
+    let per = usedPercentage()
+    if (per < 60) {
+        return css + ' bg-primary'
+    } else if (per < 90) {
+        return css + ' bg-orange-400'
+    }
+    return css + ' bg-red-500';
+}
+const usedPercentage = () => {
+    return Math.round((used.value / total.value) * 100)
 }
 
 </script>

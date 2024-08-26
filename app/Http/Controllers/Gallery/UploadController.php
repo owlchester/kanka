@@ -8,15 +8,18 @@ use App\Http\Requests\Gallery\UploadFile;
 use App\Http\Requests\Gallery\UploadFiles;
 use App\Http\Requests\Gallery\UploadUrl;
 use App\Models\Campaign;
+use App\Services\Gallery\StorageService;
 use App\Services\Gallery\UploadService;
 
 class UploadController extends Controller
 {
     protected UploadService $service;
+    protected StorageService $storage;
 
-    public function __construct(UploadService $uploadService)
+    public function __construct(UploadService $uploadService, StorageService $storageService)
     {
         $this->service = $uploadService;
+        $this->storage = $storageService;
     }
 
     public function file(UploadFile $request, Campaign $campaign)
@@ -43,12 +46,16 @@ class UploadController extends Controller
         $this->authorize('galleryUpload', $campaign);
 
         try {
-            return response()->json(
-                $this->service
-                    ->campaign($campaign)
-                    ->user($request->user())
-                    ->files($request->file('files'))
-            );
+            $files = $this->service
+                ->campaign($campaign)
+                ->user($request->user())
+                ->folder($request->get('folder_id', ''))
+                ->files($request->file('files'));
+            $this->storage->campaign($campaign)->clearCache();
+            return response()->json([
+                'files' => $files,
+                'used' => $this->storage->uncachedUsedSpace()
+            ]);
         } catch (TranslatableException $e) {
             return response()->json(
                 ['error' => $e->getTranslatedMessage()],

@@ -7,6 +7,7 @@ use App\Facades\Limit;
 use App\Http\Resources\GalleryFile;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use App\Models\Image;
 
@@ -19,6 +20,14 @@ class SetupService
     protected Image $image;
     protected ?string $term;
     protected ?string $nextPage;
+    protected array $filters;
+
+    protected StorageService $storage;
+
+    public function __construct(StorageService $storage)
+    {
+        $this->storage = $storage;
+    }
 
     public function image(Image $image): self
     {
@@ -32,23 +41,36 @@ class SetupService
         return $this;
     }
 
+    public function filters(array $filters): self
+    {
+        $this->filters = $filters;
+        return $this;
+    }
+
     public function setup(): array
     {
         return [
             'acl' => [
                 'manage' => $this->user->can('galleryManage', $this->campaign),
                 'upload' => $this->user->can('galleryUpload', $this->campaign),
+                'premium' => $this->campaign->boosted()
             ],
             'files' => $this->files(),
             'i18n' => $this->i18n(),
             'folders' => $this->folders(),
-            'search' => route('gallery.search', [$this->campaign]),
-            'delete' => route('gallery.delete', [$this->campaign]),
-            'create' => route('gallery.create', [$this->campaign]),
-            'move' => route('gallery.move', [$this->campaign]),
-            'upload' => route('gallery.upload.files', [$this->campaign]),
+            'api' => [
+                'search' => route('gallery.search', [$this->campaign]),
+                'delete' => route('gallery.delete', [$this->campaign]),
+                'create' => route('gallery.create', [$this->campaign]),
+                'update' => route('gallery.update', [$this->campaign]),
+                'upload' => route('gallery.upload.files', [$this->campaign]),
+            ],
             'next' => $this->nextPage ?? null,
             'visibilities' => $this->visibilities(),
+            'bulkVisibilities' => $this->visibilities(true),
+            'url' => route('gallery', $this->campaign),
+            'space' => $this->space(),
+            'upgrade' => $this->upgradeLink()
         ];
     }
 
@@ -62,6 +84,7 @@ class SetupService
             'files' => $this->files(),
             'breadcrumbs' => $this->breadcrumbs(),
             'next' => $this->nextPage ?? null,
+            'url' => route('gallery', [$this->campaign, 'folder' => $this->image->id])
         ];
     }
 
@@ -81,11 +104,26 @@ class SetupService
             ->images()
             ->with(['images', 'creator'])
             ->defaultOrder();
+
+        if (isset($this->filters) && Arr::has($this->filters, 'unused')) {
+            $query
+                ->distinct()
+                ->select('images.*')
+                ->leftJoin('image_mentions as im', 'im.image_id', 'images.id')
+                ->leftJoin('entities as e', 'e.image_uuid', 'images.id')
+                ->whereNull('im.id')
+                ->whereNull('e.id')
+                ->where('is_folder', false)
+            ;
+        }
+
         if (isset($this->term)) {
             $query->named($this->term);
         } else {
             $query->imageFolder(isset($this->image) ? $this->image->id : null);
         }
+
+
 
         $files = $query->paginate(25);
         /** @var Image $file */
@@ -95,7 +133,7 @@ class SetupService
         }
 
         if ($files->hasMorePages()) {
-            $this->nextPage = $files->nextPageUrl();
+            $this->nextPage = $files->appends($this->filters ?? null)->nextPageUrl();
         }
         return $this->files->toArray();
     }
@@ -108,12 +146,19 @@ class SetupService
             'select' => __('crud.select'),
             'cancel' => __('crud.cancel'),
             'remove' => __('crud.remove'),
+            'create' => __('crud.create'),
+            'update' => __('crud.update'),
             'move' => __('crud.actions.move'),
             'home' => __('Home'),
             'load_more' => __('Load more'),
             'upload_hint' => __('crud.files.hints.limitations', ['formats' => 'jpg, png, webp, gif, woff2', 'size' => Limit::readable()->upload()]),
 
-            // FIles
+            // Space
+            'storage' => __('campaigns/gallery.storage.title'),
+            'of' => __('campaigns/gallery.storage.of'),
+            'upgrade' => __('campaigns/gallery.actions.upgrade'),
+
+            // Files
             'details' => __('campaigns/gallery.fields.details'),
             'used_in' => __('campaigns/gallery.fields.used_in'),
             'unused' => __('campaigns/gallery.fields.unused'),
@@ -127,13 +172,30 @@ class SetupService
             'file_type' => __('campaigns/gallery.fields.file_type'),
             'uploaded_by' => __('campaigns/gallery.fields.created_by'),
             'focus_point' => __('campaigns/gallery.actions.focus_point'),
+            'link' => __('campaigns/gallery.fields.link'),
+            'open' => __('crud.actions.open'),
+            'focus_locked' => __('campaigns/gallery.focus.locked'),
+            'folder' => __('campaigns/gallery.fields.folder'),
 
+            'change' => __('crud.actions.change'),
+
+            // Filters
+            'filter_only_unused' => __('gallery.filters.only_unused'),
+
+            'visibility.1' => __('crud.visibilities.all'),
+            'visibility.2' => __('crud.visibilities.admin'),
+            'visibility.3' => __('crud.visibilities.self'),
+            'visibility.4' => __('crud.visibilities.admin-self'),
+            'visibility.5' => __('crud.visibilities.members'),
         ];
     }
 
     protected function folders(): array
     {
-        $folders = [];
+        $folders = [
+            '' => '',
+            0 => __('gallery.update.home')
+        ];
         $query = $this
             ->campaign
             ->images()
@@ -154,6 +216,13 @@ class SetupService
             return $crumbs;
         }
         $parent = $this->image->imageFolder;
+        if ($parent->imageFolder) {
+            $crumbs[] = [
+                'name' => $parent->imageFolder->name,
+                'open' => route('gallery.show', [$this->campaign, $parent->imageFolder]),
+            ];
+        }
+
         $crumbs[] = [
             'name' => $parent->name,
             'open' => route('gallery.show', [$this->campaign, $parent]),
@@ -162,8 +231,12 @@ class SetupService
         return $crumbs;
     }
 
-    protected function visibilities(): array
+    protected function visibilities(bool $withNull = false): array
     {
+        $options = [];
+        if ($withNull) {
+            $options[] = __('');
+        }
         $options[Visibility::All->value] = __('crud.visibilities.all');
 
         if ($this->user->isAdmin()) {
@@ -174,5 +247,21 @@ class SetupService
         $options[Visibility::AdminSelf->value] = __('crud.visibilities.admin-self');
 
         return $options;
+    }
+
+    protected function space(): array
+    {
+        return [
+            'total' => $this->storage->campaign($this->campaign)->totalSpace(),
+            'used' => $this->storage->usedSpace(),
+        ];
+    }
+
+    protected function upgradeLink(): ?string
+    {
+        if ($this->campaign->boosted()) {
+            return null;
+        }
+        return route('settings.premium');
     }
 }

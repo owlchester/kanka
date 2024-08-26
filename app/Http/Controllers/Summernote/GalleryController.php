@@ -7,16 +7,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Models\Campaign;
 use App\Models\Image;
-use App\Services\Campaign\GalleryService;
+use App\Services\Gallery\SummernoteService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
-    protected GalleryService $service;
+    protected SummernoteService $service;
 
-    public function __construct(GalleryService $service)
+    public function __construct(SummernoteService $service)
     {
         $this->middleware('auth');
         $this->service = $service;

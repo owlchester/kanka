@@ -2,12 +2,9 @@
 
 namespace App\Http\Requests\Gallery;
 
-use App\Facades\Limit;
-use App\Rules\GallerySize;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\File;
 
-class UploadFiles extends FormRequest
+class UpdateFiles extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -19,18 +16,17 @@ class UploadFiles extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
-        $types = ['jpeg', 'jpg', 'gif', 'png', 'webp', 'woff2'];
         return [
             'files' => 'required|array',
-            'files.*' => [
-                'required',
-                File::types($types),
-                'max:' . Limit::upload(),
-                new GallerySize(),
-            ],
+            'images.*' => 'distinct|exists:images,id',
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
+            'folder_id' => 'nullable|string|exists:images,id',
+            'folder_home' => 'nullable'
         ];
     }
 }

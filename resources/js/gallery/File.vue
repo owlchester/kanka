@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-base-100 p-4 rounded flex flex-col gap-4 sticky top-24">
+    <div class="bg-base-100 p-2 md:p-4 rounded flex flex-col gap-2 md:gap-4 md:sticky md:top-24">
         <div
             v-if="loading"
             class="text-2xl flex items-center justify-center h-32"
@@ -25,11 +25,13 @@
                     maxlength="191"
                     v-model="name"
                     @change="updateName"
+                    v-if="canManage"
                 />
+                <span v-else v-html="name"></span>
             </div>
 
-            <div class="flex flex-col gap-1">
-                <label class="font-extrabold">
+            <div class="flex flex-col gap-1" v-if="canManage">
+                <label class="font-extrabold flex gap-1 items-center">
                     <i class="fa-solid fa-users" aria-hidden="true" />
                     <span  v-html="trans('visibility')"></span>
                 </label>
@@ -51,7 +53,7 @@
                     class="flex gap-2 items-center cursor-pointer"
                     @click="toggleMentions"
                 >
-                    <div class="grow font-bold">
+                    <div class="grow font-bold flex gap-1 items-center">
                         <i class="fa-solid fa-cubes" aria-hidden="true" />
                         <span v-html="trans('used_in')"></span>
                     </div>
@@ -94,6 +96,12 @@
 
                 <div class="text-neutral-content" v-html="trans('file_type')"></div>
                 <div class="text-right uppercase" v-html="file.ext"></div>
+
+                <div class="text-neutral-content" v-html="trans('link')"></div>
+                <a :href="file.link" class="flex gap-1 items-center justify-end" target="_blank">
+                    <i class="fa-solid fa-external-link" aria-hidden="true" />
+                    <span v-html="trans('open')"></span>
+                </a>
             </div>
 
             <div class="flex gap-2 items-center justify-between">
@@ -102,18 +110,17 @@
                     v-if="deleting"
                     aria-label="Deleting"
                 ></i>
-                <a
-                    href="#"
+                <span role="button"
                     class="text-neutral-content hover:text-error-content hover:bg-error flex items-center gap-1 p-2 rounded"
                     @click="deleteFile"
-                    v-else
+                    v-else-if="canManage"
                 >
                     <i class="fa-regular fa-trash-can" aria-hidden="true" />
                     <span v-if="!confirmed" v-html="trans('delete')"></span>
                     <span v-else v-html="trans('confirm')"></span>
-                </a>
+                </span>
 
-                <button v-if="!props.file.is_folder"
+                <button v-if="!props.file.is_folder && canManage"
                     @click="focus"
                     class="rounded border p-2 flex gap-1 items-center"
                 >
@@ -138,29 +145,37 @@
             </div>
         </div>
         <div v-else class="flex flex-col gap-4 overflow-hidden">
-            <div class="relative inline-block">
-                <div
-                    class="absolute text-white cursor-pointer text-4xl"
-                    :style="focusStyle()"
-                    @click="resetFocus"
-                >
-                    <i
-                        class="fa-duotone fa-arrow-up-left-from-circle hover:text-error"
-                        aria-label="Focus point"
+            <div class="alert alert-warning p-4 flex flex-col gap-2" v-if="!props.premium">
+                <p v-html="trans('focus_locked')"></p>
+                <a href="https://kanka.io/premium">Learn more</a>
+            </div>
+            <div v-else class="max-w-[8rem] flex items-center justify-center">
+                <div class="relative inline-block">
+                    <div
+                        class="absolute cursor-pointer text-4xl text-accent "
+                        :style="focusStyle()"
+                        @click="resetFocus"
+                    >
+                        <i
+                            class="fa-duotone fa-arrow-up-left-from-circle hover:text-error"
+                            aria-label="Focus point"
+                        />
+                    </div>
+
+                    <img
+                        class="cursor-crosshair"
+                        :src="props.file.original"
+                        alt="img"
+                        ref="focusImage"
+                        @click="setFocus"
                     />
                 </div>
-
-                <img
-                    class=""
-                    :src="props.file.original"
-                    alt="img"
-                    ref="focusImage"
-                    @click="setFocus"
-                />
             </div>
+
             <div class="flex gap-2 items-center flex-wrap justify-between">
                 <button class="btn2 btn-primary btn-sm"
                     @click="saveFocus"
+                        v-if="premium"
                 >
                     <span v-html="trans('save')"></span>
                 </button>
@@ -179,6 +194,8 @@ const props = defineProps<{
     file: Object;
     visibilities: Object;
     i18n: Object;
+    premium: Boolean;
+    canManage: Boolean;
 }>();
 
 const emit = defineEmits(["updated", "deleted", "moved", "closed"]);
@@ -283,9 +300,10 @@ const deleteFile = () => {
     }
 
     deleting.value = true;
-
-    window.showToast("Removed " + props.file.name);
-    emit("deleted", props.file);
+    axios.post(props.file.api.delete, {'_method': 'delete'}).then((res) => {
+        window.showToast("Removed " + props.file.name);
+        emit("deleted", props.file, res.data.used);
+    });
 };
 
 const closeFile = () => {

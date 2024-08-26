@@ -4,21 +4,33 @@ namespace App\Http\Controllers\Gallery;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Gallery\UpdateFile;
+use App\Http\Requests\Gallery\UpdateFiles;
 use App\Http\Requests\Gallery\UpdateFocus;
 use App\Http\Resources\GalleryFile;
-use App\Http\Resources\GalleryFileFull;
 use App\Models\Campaign;
 use App\Models\Image;
-use App\Services\Gallery\MoveService;
+use App\Services\Gallery\UpdateService;
 
 class UpdateController extends Controller
 {
-    protected MoveService $service;
+    protected UpdateService $service;
 
-    public function __construct(MoveService $service)
+    public function __construct(UpdateService $service)
     {
         $this->middleware('auth');
         $this->service = $service;
+    }
+
+    public function bulk(UpdateFiles $request, Campaign $campaign)
+    {
+        $this->authorize('gallery', $campaign);
+
+        $count = $this->service
+            ->campaign($campaign)
+            ->files($request->get('files'))
+            ->update($request->only('visibility_id', 'folder_id', 'folder_home'));
+
+        return response()->json(['toast' => trans_choice('gallery.update.success', $count, ['count' => $count])]);
     }
 
     public function process(UpdateFile $request, Campaign $campaign, Image $image)
