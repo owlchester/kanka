@@ -11,52 +11,41 @@
     'centered' => true,
 ])
 
+@php
+$source = empty($entity->image_path) && !empty($entity->image_uuid) ? $entity->image : $entity;
+@endphp
+
 
 @section('content')
 
     @include('partials.errors')
     <x-box>
     @if ($campaign->boosted())
-        @if($campaign->superboosted() && empty($entity->image_path) && !empty($entity->image_uuid))
+        @if(empty($entity->image_path) && !empty($entity->image_uuid))
             <x-alert type="warning">
                 <p>{!! __('entities/image.focus.warning', ['gallery' => '<a href="' . route('gallery', $campaign) . '">' . __('sidebar.gallery') . '</a>']) !!}</p>
             </x-alert>
-            </br>
-            @include('gallery.file.focus._form', [
-                'image' => $entity->image,
-            ])
-            <x-dialog.footer>
-                <a href="{{ $model->getLink() }}" class="btn2 btn-ghost">
-                    {{ __('crud.cancel') }}
-                </a>
-                @include('gallery.file.focus._actions', [
-                    'image' => $entity->image,
-                    'focusEntity' => true,
-                ])
-            </x-dialog.footer>
         @else
-
-    <x-helper>{{ __('entities/image.focus.helper') }}</x-helper>
-
-    <div class="focus-selector relative inline-block">
-        <div class="focus absolute text-white drop-shadow cursor-pointer text-2xl" data-focus-x="{{ $entity->focus_x }}" data-focus-y="{{ $entity->focus_y }}" style="@if(empty($entity->focus_x))display: none; @endif">
-            <x-icon class="fa-duotone fa-arrow-up-left-from-circle fa-2x hover:text-error" />
-        </div>
-
-        <img class="focus-image" src="{{ \App\Facades\Avatar::entity($entity)->original() }}" alt="img" />
-    </div>
-
-    <x-form :action="['entities.image.focus', $campaign, $entity]">
-        <x-dialog.footer>
-            <button type="submit" class="btn2 btn-primary">
-                {{ __('entities/image.actions.save_focus') }}
-            </button>
-        </x-dialog.footer>
-        <input type="hidden" name="focus_x" />
-        <input type="hidden" name="focus_y" />
-    </x-form>
+            <x-helper>{{ __('entities/image.focus.helper') }}</x-helper>
         @endif
 
+        <div class="focus-selector relative inline-block">
+            <div class="focus absolute text-white drop-shadow cursor-pointer text-2xl @if(empty($source->focus_x))hidden @endif" data-focus-x="{{ $source->focus_x }}" data-focus-y="{{ $source->focus_y }}" >
+                <x-icon class="fa-duotone fa-arrow-up-left-from-circle fa-2x hover:text-error" />
+            </div>
+
+            <img class="focus-image cursor-crosshair" src="{{ \App\Facades\Avatar::entity($entity)->original() }}" alt="img" />
+        </div>
+
+        <x-form :action="['entities.image.focus', $campaign, $entity]">
+            <x-dialog.footer>
+                <button type="submit" class="btn2 btn-primary">
+                    {{ __('entities/image.actions.save_focus') }}
+                </button>
+            </x-dialog.footer>
+            <input type="hidden" name="focus_x" />
+            <input type="hidden" name="focus_y" />
+        </x-form>
     @else
         <x-alert type="warning">
             <p>

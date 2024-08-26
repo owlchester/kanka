@@ -36,9 +36,12 @@ class ImageController extends Controller
     {
         $this->authorize('update', $entity->child);
 
-        $entity->focus_x = (int) $request->post('focus_x');
-        $entity->focus_y = (int) $request->post('focus_y');
-        $entity->save();
+        // Gallery image?
+        $source = empty($entity->image_path) && $entity->image ? $entity->image : $entity;
+
+        $source->focus_x = (int) $request->post('focus_x');
+        $source->focus_y = (int) $request->post('focus_y');
+        $source->save();
 
         return redirect()
             ->to($entity->url())
