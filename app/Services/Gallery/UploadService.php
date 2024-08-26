@@ -84,10 +84,11 @@ class UploadService
             // If we have enough space
             $kb = (int) ceil($file->getSize() / 1024);
             if ($kb > $available) {
-                $this->file($file);
-                $available -= $kb;
-                $data[] = (new GalleryFile($this->image))->campaign($this->campaign);
+                continue;
             }
+            $this->file($file);
+            $available -= $kb;
+            $data[] = (new GalleryFile($this->image))->campaign($this->campaign);
         }
         return $data;
     }

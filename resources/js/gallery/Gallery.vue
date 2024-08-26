@@ -99,7 +99,7 @@
                                 <span v-html="trans('upload_hint')" class="text-neutral-content"></span>
                             </div>
                         </div>
-                        <div v-else-if="imagePreview.value" class="cover-background w-full h-full flex p-2" :style="{backgroundImage: 'url(\'' + imagePreview.value + '\')'}">
+                        <div v-else-if="hasPreview()" class="cover-background w-full h-full flex p-2" :style="{backgroundImage: 'url(\'' + imagePreview + '\')'}">
                             <div class="progress h-1 w-full self-end">
                                 <div class="h-1 bg-accent shadow-sm" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" :style="{'width': progressPercentage()}">
                                     <span class="sr-only"></span>
@@ -260,7 +260,7 @@ const moving = ref(false)
 const uploadApi = ref()
 const fileField = ref()
 const uploading = ref(false)
-const imagePreview = ref()
+const imagePreview = ref(null)
 const cancelTokenSource = ref(null)
 const progress = ref(0)
 
@@ -682,6 +682,7 @@ const filesSelected = async (event) => {
             //console.log(used.value, res.data.used)
         })
         .catch (err => {
+            console.error(err)
             uploading.value = false
             fileField.value.disabled = false
             imagePreview.value = null
@@ -826,4 +827,7 @@ const usedPercentage = () => {
     return Math.round((used.value / total.value) * 100)
 }
 
+const hasPreview = () => {
+    return imagePreview.value !== null
+}
 </script>
