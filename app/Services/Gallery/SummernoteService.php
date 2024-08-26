@@ -42,7 +42,7 @@ class SummernoteService
             $image->size = (int) ceil($source->getSize() / 1024); // kb
             $image->name = mb_substr($name, 0, 45);
             $image->folder_id = $request->post('folder_id');
-            $image->visibility_id = $this->campaign->defaultVisibility();
+            $image->visibility_id = $this->campaign->defaultGalleryVisibility();
 
             // Check remaining space again before saving, as the user could be near max and uploading multiple
             // files at a time to bypass the size restrictions

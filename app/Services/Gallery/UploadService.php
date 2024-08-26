@@ -65,7 +65,7 @@ class UploadService
         $this->image->name = Str::beforeLast($file->getClientOriginalName(), '.');
         $this->image->ext = Str::before($file->extension(), '?');
         $this->image->size = (int) ceil($file->getSize() / 1024); // kb
-        $this->image->visibility_id = $this->campaign->defaultVisibility();
+        $this->image->visibility_id = $this->campaign->defaultGalleryVisibility();
         if (isset($this->folder)) {
             $this->image->folder_id = $this->folder;
         }
@@ -142,7 +142,7 @@ class UploadService
         $this->image->campaign_id = $this->campaign->id;
         $this->image->ext = $file->guessExtension();
         $this->image->size = (int) ceil($copiedFileSize); // kb
-        $this->image->visibility_id = $this->campaign->defaultVisibility();
+        $this->image->visibility_id = $this->campaign->defaultGalleryVisibility();
         if (isset($this->folder)) {
             $this->image->folder_id = $this->folder;
         }
