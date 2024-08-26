@@ -26,20 +26,7 @@ return [
             'unauthorized'          => 'None of your roles have the "upload to gallery" permission.',
         ],
     ],
-    'filters' => [
-        'only_unused' => 'Only show unused files',
-    ],
-    'move' => [
-        'success' => '[0] Moved 0 elements|[1] Moved one element|{2,*} Moved :count elements'
-    ],
-    'update' => [
-        'home' => 'Home folder',
-        'success' => '[0] Updated 0 elements|[1] Updated one element|{2,*} Updated :count elements'
-    ],
     'delete' => [
         'success' => '[0] Deleted 0 elements|[1] Deleted one element|{2,*} Deleted :count elements'
-    ],
-    'file' => [
-        'saved' => 'Saved',
-    ],
+    ]
 ];

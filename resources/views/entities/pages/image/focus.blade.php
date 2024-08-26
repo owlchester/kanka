@@ -19,14 +19,21 @@
     @if ($campaign->boosted())
         @if($campaign->superboosted() && empty($entity->image_path) && !empty($entity->image_uuid))
             <x-alert type="warning">
-                <p>{!! __('entities/image.focus.warning_v2', ['gallery' => '<a href="' . route('gallery', $campaign) . '">' . __('sidebar.gallery') . '</a>']) !!}</p>
+                <p>{!! __('entities/image.focus.warning', ['gallery' => '<a href="' . route('gallery', $campaign) . '">' . __('sidebar.gallery') . '</a>']) !!}</p>
             </x-alert>
-            <p>
-                <a href="{{ $model->getLink() }}">
-                    <x-icon class="fa-regular fa-arrow-left" />
-                    {{ __('crud.actions.back') }}
+            </br>
+            @include('gallery.file.focus._form', [
+                'image' => $entity->image,
+            ])
+            <x-dialog.footer>
+                <a href="{{ $model->getLink() }}" class="btn2 btn-ghost">
+                    {{ __('crud.cancel') }}
                 </a>
-            </p>
+                @include('gallery.file.focus._actions', [
+                    'image' => $entity->image,
+                    'focusEntity' => true,
+                ])
+            </x-dialog.footer>
         @else
 
     <x-helper>{{ __('entities/image.focus.helper') }}</x-helper>
