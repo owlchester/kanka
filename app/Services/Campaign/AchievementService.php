@@ -116,22 +116,22 @@ class AchievementService
             'plugins' => [
                 'icon' => 'fa-duotone fa-store',
                 'amount' => $plugins,
-                'target' => $this->target($tags, 3),
-                'level' => $this->level($tags, 3),
+                'target' => $this->target($plugins, 3),
+                'level' => $this->level($plugins, 3),
                 'history' => 'plugins',
             ],
             'markers' => [
                 'icon' => 'fa-duotone fa-map-location',
                 'amount' => $markers,
-                'target' => $this->target($tags, 2),
-                'level' => $this->level($tags, 2),
+                'target' => $this->target($markers, 2),
+                'level' => $this->level($markers, 2),
                 'history' => 'markers',
             ],
             'connections' => [
                 'icon' => 'fa-duotone fa-heart',
                 'amount' => $connections,
-                'target' => $this->target($tags, 2),
-                'level' => $this->level($tags, 2),
+                'target' => $this->target($connections, 2),
+                'level' => $this->level($connections, 2),
                 'history' => 'connections',
             ],
         ];
