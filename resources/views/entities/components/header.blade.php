@@ -11,12 +11,15 @@ if (!isset($entity)) {
 }
 
 $imageUrl = $imagePath = $headerImageUrl = $imagePathXL = $imagePathMobile = null;
-$imageUrl = Avatar::entity($entity ?? $model->entity)->original();
-$imagePath = Avatar::entity($entity ?? $model->entity)->size(192)->thumbnail();
-$imagePathXL = Avatar::entity($entity ?? $model->entity)->size(400)->thumbnail();
-$imagePathMobile = Avatar::entity($entity ?? $model->entity)->size(192)->thumbnail();
+$imageUrl = Avatar::entity($entity)->original();
+$imagePath = Avatar::entity($entity)->size(192)->thumbnail();
+$imagePathXL = Avatar::entity($entity)->size(400)->thumbnail();
+$imagePathMobile = Avatar::entity($entity)->size(192)->thumbnail();
+$imageVisibility = $entity->image ? $entity->image->visibility_id : null;
+$imageClass = (!empty($imageVisibility) ? 'visibility-' . strtolower($imageVisibility->name) : null);
 
-$addTagsUrl = route('entity.tags-add', [$campaign, $model->entity]);
+$addTagsUrl = route('entity.tags-add', [$campaign, $entity]);
+$adminRole = \App\Facades\CampaignCache::adminRole();
 
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $entity->tagsWithEntity();
@@ -52,12 +55,16 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
 
             @if (!isset($printing))
             <a class="cursor-pointer relative cover-background sm:hidden" href="{{ $imageUrl }}" target="_blank" aria-label="Open original image">
-                <img src="{{ $imagePathMobile }}" lazy alt="{{ $model->name }}" class=" w-28 " />
-
+                <img src="{{ $imagePathMobile }}" lazy alt="{{ $model->name }}" class="w-28" />
             </a>
             @endif
             <div class="dropdown">
-                <div class="cursor-pointer hidden sm:block print-none" data-dropdown aria-expanded="false">
+                <div class="cursor-pointer hidden sm:block print-none entity-picture relative {{ $imageClass }}" data-dropdown aria-expanded="false">
+                    @if ($imageVisibility && $imageVisibility !== \App\Enums\Visibility::All)
+                        <div class="absolute bottom-0 right-0 flex items-center justify-center w-6 h-6" data-toggle="tooltip" data-title="{{ __('entities/image.gallery_permissions.' . strtolower($entity->image->visibility_id->name), ['admin' => \Illuminate\Support\Arr::get($adminRole, 'name', __('campaigns.roles.admin_role')), 'creator' => $entity->image->creator?->name]) }}">
+                            <i class="{{ $entity->image->visibilityIcon()['class'] }}" aria-hidden="true"></i>
+                        </div>
+                    @endif
                     <picture>
                         <source media="(min-width:766px)" srcset="{{ $imagePathXL }}">
                         <img src="{{ $imagePath }}" alt="{{ $model->name }}" style="width:auto;">
@@ -91,7 +98,6 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                 </div>
             </div>
         @else
-
             @if(isset($printing) && $printing)
                 <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $model->name }}"/>
             @else

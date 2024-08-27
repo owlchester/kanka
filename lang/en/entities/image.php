@@ -24,4 +24,10 @@ return [
         'success'       => 'Image replaced.',
         'title'         => 'Entity :name image replacement',
     ],
+    'gallery_permissions' => [
+        'admin' => 'This gallery image is only visible to the members of the campaign\'s :admin role.',
+        'adminself' => 'This gallery image is only visible to :creator and the members of the campaign\'s :admin role.',
+        'member' => 'This gallery image is only visible to the members of the campaign.',
+        'self' => 'This gallery image is only visible to you.',
+    ]
 ];
