@@ -183,8 +183,8 @@ class SetupService
 
             'visibility.1' => __('crud.visibilities.all'),
             'visibility.2' => __('crud.visibilities.admin'),
-            'visibility.3' => __('crud.visibilities.self'),
-            'visibility.4' => __('crud.visibilities.admin-self'),
+            'visibility.3' => __('crud.visibilities.admin-self'),
+            'visibility.4' => __('crud.visibilities.self'),
             'visibility.5' => __('crud.visibilities.members'),
         ];
     }

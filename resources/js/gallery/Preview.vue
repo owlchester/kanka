@@ -81,10 +81,10 @@ const visibilityClass = () => {
     switch(parseInt(props.file.visibility_id)) {
         case 2:
             return 'fa-solid fa-lock'
-        case 3:
-            return 'fa-solid fa-user-secret'
-        case 4:
+        case 3: // admin-self
             return 'fa-solid fa-user-lock'
+        case 4:
+            return 'fa-solid fa-user-secret'
         case 5:
             return 'fa-solid fa-users'
         default:
