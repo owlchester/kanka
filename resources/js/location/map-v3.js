@@ -225,15 +225,12 @@ const initMapEntryClick = () => {
  */
 const registerModes = () => {
     const enable = document.querySelector('.btn-mode-enable');
-    if (!enable) {
-        return;
-    }
-    enable.addEventListener('click', function (e) {
+    enable?.addEventListener('click', function (e) {
         e.preventDefault();
         window.exploreEditMode = true;
         document.querySelector('body').classList.add('map-edit-mode');
     });
-    document.querySelector('.btn-mode-disable').addEventListener('click', function (e) {
+    document.querySelector('.btn-mode-disable')?.addEventListener('click', function (e) {
         e.preventDefault();
         window.exploreEditMode = false;
         document.querySelector('body').classList.remove('map-edit-mode');
@@ -241,7 +238,7 @@ const registerModes = () => {
             window.map.removeLayer(window.polygon);
         }
     });
-    document.querySelector('.btn-mode-drawing').addEventListener('click', function (e) {
+    document.querySelector('.btn-mode-drawing')?.addEventListener('click', function (e) {
         e.preventDefault();
         endDrawing();
     });
