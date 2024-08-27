@@ -10,10 +10,6 @@ class Notification extends Model
 {
     use MassPrunable;
 
-    protected $fillable = [
-        'notifiable_type',
-    ];
-
     /**
      * Automatically prune read notifications older than a year
      */
