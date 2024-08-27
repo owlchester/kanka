@@ -35,7 +35,7 @@ trait Blameable
      */
     public function creator(): BelongsTo
     {
-        return $this->belongsTo('App\Models\User', 'created_by');
+        return $this->belongsTo(User::class, 'created_by');
     }
 
     /**
@@ -43,7 +43,7 @@ trait Blameable
      */
     public function updater(): BelongsTo
     {
-        return $this->belongsTo('App\Models\User', 'updated_by');
+        return $this->belongsTo(User::class, 'updated_by');
     }
 
     /**
@@ -51,7 +51,7 @@ trait Blameable
      */
     public function remover(): BelongsTo
     {
-        return $this->belongsTo('App\Models\User', 'deleted_by');
+        return $this->belongsTo(User::class, 'deleted_by');
     }
 
 

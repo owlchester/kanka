@@ -71,7 +71,6 @@ class CampaignRole extends Model
     public function users(): HasMany
     {
         return $this->hasMany('App\Models\CampaignRoleUser', 'campaign_role_id');
-        //return $this->belongsToMany('App\Models\User', 'campaign_role_users');
     }
 
     public function dashboardRoles(): HasMany

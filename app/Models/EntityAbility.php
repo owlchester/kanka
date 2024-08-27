@@ -67,14 +67,6 @@ class EntityAbility extends Model
     }
 
     /**
-     * Who created this entry
-     */
-    public function creator(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\User', 'created_by');
-    }
-
-    /**
      * @return Builder
      */
     public function scopeDefaultOrder(Builder $query)

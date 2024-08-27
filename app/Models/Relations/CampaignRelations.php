@@ -86,12 +86,14 @@ trait CampaignRelations
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\User', 'campaign_user')->using('App\Models\CampaignUser');
+        return $this->belongsToMany(User::class, 'campaign_user')->using('App\Models\CampaignUser');
     }
 
     public function followers(): BelongsToMany
     {
-        return $this->belongsToMany('App\Models\User', 'campaign_followers')->using(CampaignFollower::class);
+        return $this
+            ->belongsToMany(User::class, 'campaign_followers')
+            ->using(CampaignFollower::class);
     }
 
     public function setting(): BelongsTo

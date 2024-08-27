@@ -56,14 +56,6 @@ class DiceRollResult extends Model
     /** @var bool No relations for this entity "type" */
     protected bool $hasRelations = false;
 
-    /**
-     * Who created this entry
-     */
-    public function creator(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\User', 'created_by');
-    }
-
     public function diceRoll(): BelongsTo
     {
         return $this->belongsTo('App\Models\DiceRoll', 'dice_roll_id');

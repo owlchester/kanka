@@ -66,7 +66,7 @@ class EntityLog extends Model
 
     public function impersonator(): BelongsTo
     {
-        return $this->belongsTo('App\Models\User', 'impersonated_by');
+        return $this->belongsTo(User::class, 'impersonated_by');
     }
 
     public function post(): BelongsTo

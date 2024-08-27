@@ -56,14 +56,6 @@ class ConversationMessage extends Model
      */
     protected string $entityType = 'conversation_messages';
 
-    /**
-     * Who created this entry
-     */
-    public function creator(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\User', 'created_by');
-    }
-
     public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
