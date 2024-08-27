@@ -3,7 +3,7 @@
 namespace App\Jobs\Emails;
 
 use App\Mail\WelcomeEmail;
-use App\User;
+use App\Models\User;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

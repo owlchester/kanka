@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\UserApp;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use App\Models\JobLog;

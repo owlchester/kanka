@@ -4,7 +4,7 @@ namespace App\Services\Subscribers;
 
 use App\Models\Pledge;
 use App\Models\Role;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Arr;
 
 class HallOfFameService

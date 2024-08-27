@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Requests\ValidateCoupon;
 use App\Services\Subscription\CouponService;
 use App\Services\SubscriptionService;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

@@ -4,7 +4,7 @@ namespace App\Jobs\Emails;
 
 use App\Mail\Subscription\User\FailedUserSubscriptionMail;
 use App\Notifications\Header;
-use App\User;
+use App\Models\User;
 use App\Models\UserLog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

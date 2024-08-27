@@ -4,7 +4,7 @@ namespace App\Jobs\Emails\Purge;
 
 use App\Mail\Purge\SecondWarning;
 use App\Models\UserLog;
-use App\User;
+use App\Models\User;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

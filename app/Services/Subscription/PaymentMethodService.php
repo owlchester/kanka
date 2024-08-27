@@ -2,7 +2,7 @@
 
 namespace App\Services\Subscription;
 
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Laravel\Cashier\PaymentMethod;
 use Stripe\Card;

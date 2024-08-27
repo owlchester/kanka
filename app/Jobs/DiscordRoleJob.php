@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Services\DiscordService;
-use App\User;
+use App\Models\User;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

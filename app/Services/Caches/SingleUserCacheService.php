@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 /**
- * @property \App\User $user
+ * @property \App\Models\User $user
  */
 class SingleUserCacheService
 {

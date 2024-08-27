@@ -3,7 +3,7 @@
 namespace App\Console\Commands\Migrations;
 
 use App\Services\NewsletterService;
-use App\User;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class NewsletterSubCommand extends Command

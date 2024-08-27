@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
-use App\User;
+use App\Models\User;
 
 trait AdminPolicyTrait
 {

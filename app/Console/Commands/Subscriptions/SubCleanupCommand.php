@@ -3,7 +3,7 @@
 namespace App\Console\Commands\Subscriptions;
 
 use App\Jobs\SubscriptionEndJob;
-use App\User;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class SubCleanupCommand extends Command

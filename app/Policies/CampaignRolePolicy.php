@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\Facades\UserCache;
 use App\Models\Campaign;
-use App\User;
+use App\Models\User;
 use App\Models\CampaignRole;
 use Illuminate\Auth\Access\HandlesAuthorization;
 

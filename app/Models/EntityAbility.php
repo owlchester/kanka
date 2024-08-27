@@ -71,7 +71,7 @@ class EntityAbility extends Model
      */
     public function creator(): BelongsTo
     {
-        return $this->belongsTo('App\User', 'created_by');
+        return $this->belongsTo('App\Models\User', 'created_by');
     }
 
     /**

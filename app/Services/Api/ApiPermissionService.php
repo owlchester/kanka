@@ -4,7 +4,7 @@ namespace App\Services\Api;
 
 use App\Models\CampaignPermission;
 use App\Models\MiscModel;
-use App\User;
+use App\Models\User;
 use App\Facades\EntityPermission;
 use App\Models\Campaign;
 use App\Models\Entity;

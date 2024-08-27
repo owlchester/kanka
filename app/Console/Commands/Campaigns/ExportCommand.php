@@ -4,7 +4,7 @@ namespace App\Console\Commands\Campaigns;
 
 use App\Models\Campaign;
 use App\Services\Campaign\ExportService;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 

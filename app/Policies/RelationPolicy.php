@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\Facades\CampaignLocalization;
 use App\Traits\AdminPolicyTrait;
-use App\User;
+use App\Models\User;
 use App\Models\Relation;
 use Illuminate\Auth\Access\HandlesAuthorization;
 

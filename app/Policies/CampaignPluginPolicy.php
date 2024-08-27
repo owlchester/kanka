@@ -4,7 +4,7 @@ namespace App\Policies;
 
 use App\Models\CampaignPlugin;
 use App\Traits\AdminPolicyTrait;
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignPluginPolicy

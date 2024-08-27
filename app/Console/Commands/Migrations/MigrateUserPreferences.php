@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\Migrations;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class MigrateUserPreferences extends Command

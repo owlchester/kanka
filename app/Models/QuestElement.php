@@ -9,7 +9,7 @@ use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SimpleSortableTrait;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

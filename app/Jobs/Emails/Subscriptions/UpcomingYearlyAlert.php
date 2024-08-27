@@ -3,7 +3,7 @@
 namespace App\Jobs\Emails\Subscriptions;
 
 use App\Mail\Subscription\User\UpcomingYearlyEmail;
-use App\User;
+use App\Models\User;
 use App\Models\UserLog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

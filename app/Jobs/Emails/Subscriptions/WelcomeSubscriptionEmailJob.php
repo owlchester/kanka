@@ -4,7 +4,7 @@ namespace App\Jobs\Emails\Subscriptions;
 
 use App\Mail\Subscription\User\NewSubscriberMail;
 use App\Models\Tier;
-use App\User;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

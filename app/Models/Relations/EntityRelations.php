@@ -28,7 +28,7 @@ use App\Models\Race;
 use App\Models\Relation;
 use App\Models\Tag;
 use App\Models\Timeline;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;

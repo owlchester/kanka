@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Facades\UserCache;
-use App\User;
+use App\Models\User;
 use App\Models\Character;
 
 class CharacterPolicy extends MiscPolicy

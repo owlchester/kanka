@@ -6,7 +6,7 @@ use App\Http\Resources\EntityResource;
 use App\Models\Entity;
 use App\Models\Webhook;
 use App\Models\Campaign;
-use App\User;
+use App\Models\User;
 use App\Facades\CampaignLocalization;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

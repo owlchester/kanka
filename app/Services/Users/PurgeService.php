@@ -6,7 +6,7 @@ use App\Jobs\Emails\Purge\FirstWarningJob;
 use App\Jobs\Emails\Purge\SecondWarningJob;
 use App\Jobs\Users\DeleteUser;
 use App\Models\UserFlag;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 

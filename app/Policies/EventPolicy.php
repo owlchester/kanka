@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\CampaignPermission;
-use App\User;
+use App\Models\User;
 
 class EventPolicy extends MiscPolicy
 {

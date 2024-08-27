@@ -34,7 +34,7 @@ class TestEmail extends Command
     public function handle()
     {
         $userId = $this->argument('user');
-        $user = \App\User::findOrFail($userId);
+        $user = \App\Models\User::findOrFail($userId);
 
         $template = $this->argument('template');
         if ($template === 'welcome') {

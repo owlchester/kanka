@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\UserLog;
-use App\User;
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;

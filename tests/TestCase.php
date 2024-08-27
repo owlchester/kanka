@@ -77,7 +77,7 @@ abstract class TestCase extends BaseTestCase
 
     public function asUser(bool $subscribed = false): self
     {
-        $user = \App\User::factory()->create();
+        $user = \App\Models\User::factory()->create();
         Passport::actingAs(
             $user,
             ['*']
@@ -105,7 +105,7 @@ abstract class TestCase extends BaseTestCase
 
     public function asPlayer(): self
     {
-        $user2 =  \App\User::factory()->create();
+        $user2 =  \App\Models\User::factory()->create();
         Passport::actingAs(
             $user2,
             ['*']
@@ -134,7 +134,7 @@ abstract class TestCase extends BaseTestCase
 
     public function withMember(): self
     {
-        $user3 =  \App\User::factory()->create();
+        $user3 =  \App\Models\User::factory()->create();
 
         CampaignUser::create([
             'campaign_id' => 1,

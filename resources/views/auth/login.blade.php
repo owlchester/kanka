@@ -13,7 +13,7 @@
 
     @if(config('auth.user_list'))
         <ul class="mb-2">
-            @foreach (\App\User::limit(5)->orderBy('last_login_at', 'desc')->get() as $user)
+            @foreach (\App\Models\User::limit(5)->orderBy('last_login_at', 'desc')->get() as $user)
                 <li>
                     <a href="{{ route('login-as-user', ['user' => $user]) }}" class="text-blue-500 hover:text-blue-900">
                         {!! $user->name !!} @if ($user->pledge) ({!! $user->pledge !!}) @endif
@@ -25,7 +25,7 @@
         <form method="GET" action="{{ route('login-as') }}" class="w-full">
             {{ csrf_field() }}
             <select id="user" name="user" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500">
-                @foreach (\App\User::limit(30)->get() as $user)
+                @foreach (\App\Models\User::limit(30)->get() as $user)
                     <option value="{{ $user->id }}">{!! $user->name !!} @if ($user->pledge) ({!! $user->pledge !!}) @endif</option>
                 @endforeach
             </select>

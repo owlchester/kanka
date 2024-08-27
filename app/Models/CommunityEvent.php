@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\User;
+use App\Models\User;
 use App\Facades\Img;
 use App\Models\Scopes\CommunityEventScopes;
 use Carbon\Carbon;

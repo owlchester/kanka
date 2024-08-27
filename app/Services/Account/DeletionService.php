@@ -4,7 +4,7 @@ namespace App\Services\Account;
 
 use App\Jobs\Users\DeleteUser;
 use App\Traits\UserAware;
-use App\User;
+use App\Models\User;
 
 class DeletionService
 {

@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use App\Facades\AdCache;
 use App\Models\Campaign;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\View\View;

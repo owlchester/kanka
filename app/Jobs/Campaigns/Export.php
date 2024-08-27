@@ -6,7 +6,7 @@ use App\Jobs\FileCleanup;
 use App\Models\Campaign;
 use App\Models\CampaignExport;
 use App\Services\Campaign\ExportService;
-use App\User;
+use App\Models\User;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

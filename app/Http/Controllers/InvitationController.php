@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\RequireLoginException;
 use App\Services\InviteService;
-use App\User;
+use App\Models\User;
 use Exception;
 
 class InvitationController extends Controller

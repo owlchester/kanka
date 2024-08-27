@@ -3,7 +3,7 @@
 namespace App\Jobs\Emails;
 
 use App\Mail\Subscription\Admin\DowngradedSubscriptionMail;
-use App\User;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

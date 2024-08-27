@@ -8,7 +8,7 @@ use App\Facades\Identity;
 use App\Facades\UserCache;
 use App\Models\CampaignPermission;
 use App\Traits\AdminPolicyTrait;
-use App\User;
+use App\Models\User;
 use App\Models\Campaign;
 use Illuminate\Auth\Access\HandlesAuthorization;
 

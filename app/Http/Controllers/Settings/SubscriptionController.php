@@ -12,7 +12,7 @@ use App\Services\SubscriptionService;
 use App\Services\SubscriptionUpgradeService;
 use App\Services\Users\CurrencyService;
 use App\Services\Users\EmailValidationService;
-use App\User;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;

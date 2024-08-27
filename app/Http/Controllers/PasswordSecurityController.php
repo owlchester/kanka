@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Settings\UserEnableTfa;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use PragmaRX\Google2FA\Google2FA;
 use App\Models\PasswordSecurity;

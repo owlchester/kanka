@@ -7,7 +7,7 @@ use App\Models\UserLog;
 use App\Services\InviteService;
 use App\Services\StarterService;
 use App\Services\Users\CampaignService;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 
