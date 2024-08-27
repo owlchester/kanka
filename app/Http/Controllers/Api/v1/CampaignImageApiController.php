@@ -7,15 +7,15 @@ use App\Http\Requests\Campaigns\GalleryImageUpdate;
 use App\Models\Campaign;
 use App\Models\Image;
 use App\Http\Resources\ImageResource as Resource;
-use App\Services\Campaign\GalleryService;
+use App\Services\Gallery\SummernoteService;
 
 class CampaignImageApiController extends ApiController
 {
-    protected GalleryService $service;
+    protected SummernoteService $service;
 
-    public function __construct(GalleryService $galleryService)
+    public function __construct(SummernoteService $summernoteService)
     {
-        $this->service = $galleryService;
+        $this->service = $summernoteService;
     }
 
     /**

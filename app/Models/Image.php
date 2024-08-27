@@ -72,6 +72,8 @@ class Image extends Model
         'is_folder',
         'folder_id',
         'visibility_id',
+        'focus_x',
+        'focus_y'
     ];
 
     public $casts = [

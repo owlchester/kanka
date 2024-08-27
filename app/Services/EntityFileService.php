@@ -6,7 +6,7 @@ use App\Exceptions\TranslatableException;
 use App\Http\Requests\StoreEntityAsset;
 use App\Models\EntityAsset;
 use App\Models\Image;
-use App\Services\Campaign\GalleryService;
+use App\Services\Gallery\StorageService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Support\Facades\Cache;
@@ -22,8 +22,8 @@ class EntityFileService
      */
     public function upload(StoreEntityAsset $request, string $field = 'files'): array
     {
-        /** @var GalleryService $service */
-        $service = app()->make(GalleryService::class);
+        /** @var StorageService $service */
+        $service = app()->make(StorageService::class);
 
         // Prepare the file for the journey
         $uploadedFiles = $request->file($field);
@@ -53,7 +53,7 @@ class EntityFileService
             $image->ext = $uploadedFile->extension();
             $image->size = (int) ceil($uploadedFile->getSize() / 1024); // kb
             $image->name = mb_substr($name, 0, 45);
-            $image->visibility_id = $this->campaign->defaultVisibility();
+            $image->visibility_id = $this->campaign->defaultGalleryVisibility();
             $image->save();
 
             $uploadedFile

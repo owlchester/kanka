@@ -5,9 +5,8 @@ namespace App\Services\Entity;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
-use App\Models\Character;
 use App\Models\MiscModel;
-use App\Services\Campaign\GalleryService;
+use App\Services\Gallery\StorageService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
@@ -25,16 +24,16 @@ class MoveService
 
     protected Campaign $to;
 
-    protected GalleryService $galleryService;
+    protected StorageService $storageService;
     protected CopyService $copyService;
 
     protected bool $copy = false;
 
     protected int $count = 0;
 
-    public function __construct(GalleryService $galleryService, CopyService $copyService)
+    public function __construct(StorageService $storageService, CopyService $copyService)
     {
-        $this->galleryService = $galleryService;
+        $this->storageService = $storageService;
         $this->copyService = $copyService;
     }
 
@@ -147,7 +146,7 @@ class MoveService
             // Copy the gallery image over
             if (!empty($image)) {
                 // If there is enough space in the target campaign gallery
-                $available = $this->galleryService->campaign($this->campaign)->available();
+                $available = $this->storageService->campaign($this->campaign)->available();
                 if ($available > $image->size) {
                     $newImage = $image->replicate(['id', 'campaign_id']);
                     $newImage->campaign_id = $this->to->id;

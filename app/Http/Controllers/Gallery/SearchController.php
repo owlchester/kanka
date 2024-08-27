@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Gallery;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Gallery\SetupService;
+use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
@@ -16,17 +17,18 @@ class SearchController extends Controller
         $this->service = $service;
     }
 
-    public function index(Campaign $campaign, $term)
+    public function index(Request $request, Campaign $campaign)
     {
         $this->authorize('gallery', $campaign);
 
-        $term = trim($term);
+        $term = trim($request->get('term'));
 
         return response()->json(
             $this->service
-                ->user(auth()->user())
+                ->user($request->user())
                 ->campaign($campaign)
                 ->term($term)
+                ->filters($request->only('unused'))
                 ->search()
         );
     }

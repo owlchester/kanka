@@ -10,7 +10,7 @@ return [
             'confirm'   => 'Go premium!',
         ],
         'confirm'   => 'How exciting! You\'re about to unlock premium features for :campaign. This will use one of your available premium campaigns.',
-        'duration'  => 'Premium campaigns stay that way until manually remove them, or when your subscription ends.',
+        'duration'  => 'Premium campaigns stay that way until you manually remove them, or your subscription ends.',
         'pitch'     => 'Become a subscriber to unlock premium campaigns.',
         'success'   => 'The :campaign campaign is now premium. Enjoy all the new awesome features!',
     ],

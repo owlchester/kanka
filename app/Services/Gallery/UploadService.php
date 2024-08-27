@@ -3,9 +3,9 @@
 namespace App\Services\Gallery;
 
 use App\Facades\Limit;
+use App\Http\Resources\GalleryFile;
 use App\Models\Image;
 use App\Sanitizers\SvgAllowedAttributes;
-use App\Services\Campaign\GalleryService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use enshrined\svgSanitize\Sanitizer;
@@ -25,16 +25,30 @@ class UploadService
 
     protected Image $image;
 
-    protected GalleryService $galleryService;
+    protected string $folder;
 
-    public function __construct(GalleryService $galleryService)
+    protected StorageService $storage;
+
+    protected int $available;
+
+    public function __construct(StorageService $storageService)
     {
-        $this->galleryService = $galleryService;
+        $this->storage = $storageService;
     }
 
     public function request(FormRequest $request): self
     {
         $this->request = $request;
+        return $this;
+    }
+
+    public function folder(string $folder): self
+    {
+        if (empty($folder)) {
+            unset($this->folder);
+            return $this;
+        }
+        $this->folder = $folder;
         return $this;
     }
 
@@ -52,6 +66,9 @@ class UploadService
         $this->image->ext = Str::before($file->extension(), '?');
         $this->image->size = (int) ceil($file->getSize() / 1024); // kb
         $this->image->visibility_id = $this->campaign->defaultGalleryVisibility();
+        if (isset($this->folder)) {
+            $this->image->folder_id = $this->folder;
+        }
         $this->image->save();
 
         $file->storePubliclyAs($this->image->folder, $this->image->file);
@@ -61,7 +78,19 @@ class UploadService
 
     public function files(array $files): array
     {
-        dd($files);
+        $data = [];
+        $available = $this->storage->campaign($this->campaign)->available();
+        foreach ($files as $file) {
+            // If we have enough space
+            $kb = (int) ceil($file->getSize() / 1024);
+            if ($kb > $available) {
+                continue;
+            }
+            $this->file($file);
+            $available -= $kb;
+            $data[] = (new GalleryFile($this->image))->campaign($this->campaign);
+        }
+        return $data;
     }
 
     public function url(string $url): array
@@ -91,7 +120,7 @@ class UploadService
             unlink($tempImage);
             throw ValidationException::withMessages([__('gallery.download.errors.too_big')]);
         }
-        $available = $this->galleryService->campaign($this->campaign)->available();
+        $available = $this->storage->campaign($this->campaign)->available();
         if ($copiedFileSize > $available) {
             unlink($tempImage);
             $key = 'gallery.download.errors.gallery_full_free';
@@ -115,6 +144,9 @@ class UploadService
         $this->image->ext = $file->guessExtension();
         $this->image->size = (int) ceil($copiedFileSize); // kb
         $this->image->visibility_id = $this->campaign->defaultGalleryVisibility();
+        if (isset($this->folder)) {
+            $this->image->folder_id = $this->folder;
+        }
         $this->image->save();
 
         if ($this->image->isSvg()) {

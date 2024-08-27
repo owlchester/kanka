@@ -23,8 +23,8 @@
       "__commonjsHelpers-725317a4.js"
     ]
   },
-  "_vue.esm-bundler-e40214d7.js": {
-    "file": "assets/vue.esm-bundler-e40214d7.js"
+  "_vue.esm-bundler-d027a2b8.js": {
+    "file": "assets/vue.esm-bundler-d027a2b8.js"
   },
   "node_modules/rpg-awesome/fonts/rpgawesome-webfont.eot": {
     "file": "assets/rpgawesome-webfont-1fecbf28.eot",
@@ -51,9 +51,9 @@
     "src": "resources/images/leaflet/icon.png"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-d0bd4d54.js",
+    "file": "assets/abilities-5a1f7705.js",
     "imports": [
-      "_vue.esm-bundler-e40214d7.js",
+      "_vue.esm-bundler-d027a2b8.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
     "isEntry": true,
@@ -67,21 +67,21 @@
     "css": [
       "assets/api-bb386fc3.css"
     ],
-    "file": "assets/api-a0236932.js",
+    "file": "assets/api-6ef6ab42.js",
     "imports": [
-      "_vue.esm-bundler-e40214d7.js",
+      "_vue.esm-bundler-d027a2b8.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
     "isEntry": true,
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-6ab1c18f.js",
+    "file": "assets/app-dcbd92a1.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_sortable.esm-0d19b1d3.js",
       "_dialog-4600fe8d.js",
-      "_vue.esm-bundler-e40214d7.js",
+      "_vue.esm-bundler-d027a2b8.js",
       "__plugin-vue_export-helper-c27b6911.js",
       "_v-click-outside.umd-1708c20a.js",
       "__commonjsHelpers-725317a4.js"
@@ -90,9 +90,9 @@
     "src": "resources/js/app.js"
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-23f22efd.js",
+    "file": "assets/attributes-manager-fd987faa.js",
     "imports": [
-      "_vue.esm-bundler-e40214d7.js",
+      "_vue.esm-bundler-d027a2b8.js",
       "_v-click-outside.umd-1708c20a.js",
       "__commonjsHelpers-725317a4.js"
     ],
@@ -110,9 +110,9 @@
     "src": "resources/js/auth.js"
   },
   "resources/js/billing.js": {
-    "file": "assets/billing-1452600d.js",
+    "file": "assets/billing-0fc067c5.js",
     "imports": [
-      "_vue.esm-bundler-e40214d7.js",
+      "_vue.esm-bundler-d027a2b8.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
     "isEntry": true,
@@ -135,9 +135,9 @@
     "src": "resources/js/campaigns/theme-builder.js"
   },
   "resources/js/conversation.js": {
-    "file": "assets/conversation-aae67dea.js",
+    "file": "assets/conversation-e2ab9294.js",
     "imports": [
-      "_vue.esm-bundler-e40214d7.js",
+      "_vue.esm-bundler-d027a2b8.js",
       "_v-click-outside.umd-1708c20a.js",
       "__plugin-vue_export-helper-c27b6911.js",
       "__commonjsHelpers-725317a4.js"
@@ -164,9 +164,9 @@
     "src": "resources/js/editors/summernote.js"
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-8ceb7897.js",
+    "file": "assets/family-tree-vue-bd0d9c69.js",
     "imports": [
-      "_vue.esm-bundler-e40214d7.js",
+      "_vue.esm-bundler-d027a2b8.js",
       "_axios-47b9d439.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
@@ -199,6 +199,16 @@
     ],
     "isEntry": true,
     "src": "resources/js/gallery.js"
+  },
+  "resources/js/gallery/gallery.js": {
+    "file": "assets/gallery-ad3d915d.js",
+    "imports": [
+      "_vue.esm-bundler-d027a2b8.js",
+      "__commonjsHelpers-725317a4.js",
+      "_v-click-outside.umd-1708c20a.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/gallery/gallery.js"
   },
   "resources/js/history.js": {
     "file": "assets/history-4d7675f4.js",
@@ -244,12 +254,12 @@
     "src": "resources/js/vendor-final.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-a1d407c3.css",
+    "file": "assets/app-13bcaa84.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-157dbc04.css",
+    "file": "assets/auth-d43043e2.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -274,7 +284,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-36972e8e.css",
+    "file": "assets/front-3baf0c8d.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
