@@ -1,22 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Facades\Identity;
 use App\Facades\PostCache;
 use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
-use App\Models\AppRelease;
-use App\Models\Campaign;
 use App\Facades\CampaignLocalization;
-use App\Models\CampaignRole;
 use App\Models\Concerns\HasImage;
 use App\Models\Concerns\UserBoosters;
 use App\Models\Concerns\UserTokens;
-use App\Models\Pledge;
 use App\Models\Scopes\UserScope;
-use App\Models\UserLog;
-use App\Models\UserSetting;
 use App\Models\Relations\UserRelations;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

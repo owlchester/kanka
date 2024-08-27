@@ -1,4 +1,4 @@
-<?php /** @var \App\User $user */?>
+<?php /** @var \App\Models\User $user */?>
 @extends('layouts.front', [
     'title' => __('footer.roadmap'),
     'skipPerf' => true,

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Facades\CampaignCache;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\User;
+use App\Models\User;
 
 class BoostController extends Controller
 {

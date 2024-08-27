@@ -7,7 +7,7 @@ use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\UnsubscribeUser;
 use App\Jobs\Users\UpdateEmail;
-use App\User;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;

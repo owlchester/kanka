@@ -42,7 +42,7 @@ use App\Models\Timeline;
 use App\Models\CampaignImport;
 use App\Models\Post;
 use App\Models\Webhook;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -86,12 +86,12 @@ trait CampaignRelations
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany('App\User', 'campaign_user')->using('App\Models\CampaignUser');
+        return $this->belongsToMany('App\Models\User', 'campaign_user')->using('App\Models\CampaignUser');
     }
 
     public function followers(): BelongsToMany
     {
-        return $this->belongsToMany('App\User', 'campaign_followers')->using(CampaignFollower::class);
+        return $this->belongsToMany('App\Models\User', 'campaign_followers')->using(CampaignFollower::class);
     }
 
     public function setting(): BelongsTo

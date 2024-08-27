@@ -3,7 +3,7 @@
 namespace App\Models\Concerns;
 
 use App\Observers\BlameableObserver;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -35,7 +35,7 @@ trait Blameable
      */
     public function creator(): BelongsTo
     {
-        return $this->belongsTo('App\User', 'created_by');
+        return $this->belongsTo('App\Models\User', 'created_by');
     }
 
     /**
@@ -43,7 +43,7 @@ trait Blameable
      */
     public function updater(): BelongsTo
     {
-        return $this->belongsTo('App\User', 'updated_by');
+        return $this->belongsTo('App\Models\User', 'updated_by');
     }
 
     /**
@@ -51,7 +51,7 @@ trait Blameable
      */
     public function remover(): BelongsTo
     {
-        return $this->belongsTo('App\User', 'deleted_by');
+        return $this->belongsTo('App\Models\User', 'deleted_by');
     }
 
 

@@ -7,7 +7,7 @@ use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignRoleUser;
 use App\Traits\AdminPolicyTrait;
-use App\User;
+use App\Models\User;
 use App\Models\CampaignUser;
 use Illuminate\Auth\Access\HandlesAuthorization;
 

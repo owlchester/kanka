@@ -1,7 +1,7 @@
 <?php /**
  * @var \App\Models\Entity $entity
  * @var \App\Models\CampaignRole $role
- * @var \App\User $user
+ * @var \App\Models\User $user
  * */?>
 <x-grid type="1/1">
     <x-forms.field field="visibility" :label="__('entities/permissions.quick.field')">

@@ -1,5 +1,5 @@
 <?php /**
- * @var \App\User $user
+ * @var \App\Models\User $user
  * @var \App\Models\TierPrice $current
  * */?>
 @php

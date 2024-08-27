@@ -1,4 +1,4 @@
-<?php /** @var \App\User $user */?>
+<?php /** @var \App\Models\User $user */?>
     <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -8,7 +8,7 @@ use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\MiscModel;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Collection;
 
 class EntityPermission

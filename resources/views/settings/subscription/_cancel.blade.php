@@ -1,4 +1,4 @@
-<?php /** @var \App\User $user */ ?>
+<?php /** @var \App\Models\User $user */ ?>
 @php
 dd('who is calling dis');
     $endDate = date($user->date_format, $user->upcomingInvoice()?->period_end);

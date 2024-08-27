@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Facades\CampaignLocalization;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource

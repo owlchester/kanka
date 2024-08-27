@@ -10,7 +10,7 @@ use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\Post;
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Auth;
 

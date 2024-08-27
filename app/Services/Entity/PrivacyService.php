@@ -5,7 +5,7 @@ namespace App\Services\Entity;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
-use App\User;
+use App\Models\User;
 
 class PrivacyService
 {

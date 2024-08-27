@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUser;
-use App\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -38,7 +37,7 @@ class ConversationParticipant extends Model
      */
     public function creator(): BelongsTo
     {
-        return $this->belongsTo('App\User', 'created_by');
+        return $this->belongsTo('App\Models\User', 'created_by');
     }
 
     public function character(): BelongsTo

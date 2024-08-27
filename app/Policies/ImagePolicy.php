@@ -7,7 +7,7 @@ use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Image;
-use App\User;
+use App\Models\User;
 
 class ImagePolicy
 {

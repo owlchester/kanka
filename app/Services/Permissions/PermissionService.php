@@ -9,7 +9,7 @@ use App\Models\Entity;
 use App\Models\PostPermission;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;

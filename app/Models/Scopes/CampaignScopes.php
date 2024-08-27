@@ -4,7 +4,7 @@ namespace App\Models\Scopes;
 
 use App\Facades\Identity;
 use App\Models\Campaign;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\JoinClause;

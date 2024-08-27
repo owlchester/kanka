@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\v1\ApiController;
 use App\Http\Requests\API\UpdateUserRole;
 use App\Http\Resources\UserResource;
 use App\Models\Campaign;
-use App\User;
+use App\Models\User;
 use App\Services\Campaign\MemberService;
 
 class UserApiController extends ApiController

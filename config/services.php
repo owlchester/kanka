@@ -32,7 +32,7 @@ return [
 
     'stripe' => [
         'enabled' => !empty(env('STRIPE_KEY')) ? true : false,
-        'model' => App\User::class,
+        'model' => App\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

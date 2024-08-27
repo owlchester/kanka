@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\User;
+use App\Models\User;
 
 /**
  * Trait for user aware services

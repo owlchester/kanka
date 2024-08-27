@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\User;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class EntityPolicy

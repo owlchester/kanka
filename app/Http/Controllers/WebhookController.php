@@ -8,7 +8,7 @@ use App\Jobs\SubscriptionEndJob;
 use App\Models\UserLog;
 use App\Services\Subscription\PaymentMethodService;
 use App\Services\SubscriptionService;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;

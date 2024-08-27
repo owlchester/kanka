@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Feature;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 
 class FeaturePolicy

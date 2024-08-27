@@ -1,4 +1,4 @@
-<?php /** @var \App\User $user */?>
+<?php /** @var \App\Models\User $user */?>
 @extends('layouts.app', [
     'title' => __('settings.account.title'),
     'breadcrumbs' => false,

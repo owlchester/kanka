@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Layout\NavigationService;
-use App\User;
+use App\Models\User;
 
 class NotificationController extends Controller
 {

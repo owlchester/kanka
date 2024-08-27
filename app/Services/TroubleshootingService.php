@@ -7,7 +7,7 @@ use App\Models\AdminInvite;
 use App\Models\Campaign;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class TroubleshootingService

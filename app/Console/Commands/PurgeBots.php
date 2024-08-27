@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Jobs\Users\DeleteUser;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;

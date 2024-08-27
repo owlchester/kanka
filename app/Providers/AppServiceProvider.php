@@ -68,7 +68,7 @@ use App\Observers\NoteObserver;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
 use App\Models\Webhook;
-use App\User;
+use App\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;

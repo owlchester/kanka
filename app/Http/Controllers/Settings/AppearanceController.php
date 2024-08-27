@@ -50,7 +50,7 @@ class AppearanceController extends Controller
         if ($request->ajax()) {
             return response()->json();
         }
-        /** @var \App\User $user */
+        /** @var \App\Models\User $user */
         $user = $request->user();
         $settingFields = $request->only([
             'editor', 'advanced_mentions', 'new_entity_workflow',

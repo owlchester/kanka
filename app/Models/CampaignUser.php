@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Paginatable;
-use App\User;
 use Carbon\Carbon;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

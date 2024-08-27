@@ -10,7 +10,7 @@ use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use App\User;
+use App\Models\User;
 
 class MemberService
 {

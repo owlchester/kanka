@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Services\DiscordService;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use App\Models\UserApp;
 use Illuminate\Console\Command;

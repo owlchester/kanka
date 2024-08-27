@@ -7,7 +7,7 @@ use App\Facades\CampaignCache;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Campaign\BoostService;
-use App\User;
+use App\Models\User;
 
 class PremiumController extends Controller
 {

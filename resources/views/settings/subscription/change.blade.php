@@ -1,4 +1,4 @@
-<?php /** @var \App\User $user */ ?>
+<?php /** @var \App\Models\User $user */ ?>
 <x-dialog.header>
     {{ __('settings.subscription.change.title') }}
 </x-dialog.header>

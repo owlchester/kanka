@@ -4,7 +4,7 @@ namespace App\Services\Maps;
 
 use App\Models\Map;
 use App\Notifications\Header;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;

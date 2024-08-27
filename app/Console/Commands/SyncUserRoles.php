@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Services\DiscordService;
-use App\User;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class SyncUserRoles extends Command

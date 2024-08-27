@@ -1,4 +1,4 @@
-<?php /** @var \App\User $user */?>
+<?php /** @var \App\Models\User $user */?>
 @extends('layouts.front', [
     'title' => __('users/profile.title', ['name' => $user->displayName()]),
     'skipPerf' => true,

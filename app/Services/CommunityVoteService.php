@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\CommunityVote;
 use App\Models\CommunityVoteBallot;
-use App\User;
+use App\Models\User;
 
 class CommunityVoteService
 {

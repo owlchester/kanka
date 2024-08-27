@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Settings;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBillingSettings;
 use App\Http\Requests\StoreSettingsProfile;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller

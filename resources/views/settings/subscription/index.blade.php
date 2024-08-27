@@ -2,7 +2,7 @@
  * @var \App\Models\CampaignBoost $boost
  * @var \App\Models\Campaign $campaign
  * @var \App\Services\SubscriptionService $service
- * @var \App\User $user
+ * @var \App\Models\User $user
  */
 
 ?>

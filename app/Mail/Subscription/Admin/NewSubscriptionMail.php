@@ -3,7 +3,7 @@
 namespace App\Mail\Subscription\Admin;
 
 use App\Enums\PricingPeriod;
-use App\User;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;

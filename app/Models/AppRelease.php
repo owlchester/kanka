@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Facades\UserCache;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -39,7 +38,7 @@ class AppRelease extends Model
 
     public function author(): BelongsTo
     {
-        return $this->belongsTo('App\User', 'created_by');
+        return $this->belongsTo('App\Models\User', 'created_by');
     }
 
     /**

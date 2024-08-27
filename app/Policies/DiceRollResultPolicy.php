@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Campaign;
-use App\User;
+use App\Models\User;
 
 class DiceRollResultPolicy extends MiscPolicy
 {

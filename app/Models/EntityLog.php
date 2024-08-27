@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Http\Requests\HistoryRequest;
 use App\Models\Concerns\HasUser;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
@@ -67,7 +66,7 @@ class EntityLog extends Model
 
     public function impersonator(): BelongsTo
     {
-        return $this->belongsTo('App\User', 'impersonated_by');
+        return $this->belongsTo('App\Models\User', 'impersonated_by');
     }
 
     public function post(): BelongsTo

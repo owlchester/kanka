@@ -8,7 +8,7 @@ use App\Models\Role;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\DiscordService;
-use App\User;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

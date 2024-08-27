@@ -4,7 +4,7 @@ namespace App\Console\Commands\Subscriptions;
 
 use App\Jobs\Emails\Subscriptions\ExpiringCardAlert;
 use App\Traits\HasJobLog;
-use App\User;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 

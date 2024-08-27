@@ -14,7 +14,6 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

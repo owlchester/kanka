@@ -1,4 +1,4 @@
-<?php /** @var \App\User $user */ ?>
+<?php /** @var \App\Models\User $user */ ?>
 @php
     $endDate = $user->subscription('kanka')->upcomingInvoice()?->date();
 @endphp
