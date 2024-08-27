@@ -123,7 +123,7 @@ class SetupService
             $query->imageFolder(isset($this->image) ? $this->image->id : null);
         }
 
-      
+
         $files = $query->paginate(25);
         /** @var Image $file */
         foreach ($files as $file) {

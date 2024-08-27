@@ -2,18 +2,9 @@
 
 namespace App\Services\Gallery;
 
-use App\Enums\Visibility;
-use App\Facades\Avatar;
-use App\Http\Requests\Campaigns\GalleryImageStore;
-use App\Http\Requests\StoreImageFocus;
 use App\Models\Image;
-use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
-use App\Traits\UserAware;
-use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Str;
 
 class StorageService
 {
