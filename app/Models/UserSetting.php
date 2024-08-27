@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use Illuminate\Support\Arr;
 use Stevebauman\Purify\Facades\Purify;
 

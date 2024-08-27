@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Http\Requests\HistoryRequest;
 use App\Models\Concerns\HasUser;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
