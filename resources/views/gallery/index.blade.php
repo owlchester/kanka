@@ -30,9 +30,11 @@ if ($folder) {
             api="{{ route('gallery.setup', [$campaign]) }}"
         ></gallery>
     </div>
+
 @endsection
 
 @section('scripts')
     @parent
     @vite('resources/js/gallery/gallery.js')
 @endsection
+@endif

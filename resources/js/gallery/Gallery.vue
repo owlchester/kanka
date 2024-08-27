@@ -134,7 +134,6 @@
                         @deleted="deletedFile"
                         @closed="closeFile"
                     ></File>
-
                 </div>
             </div>
         </div>
@@ -512,6 +511,7 @@ const createFolder = () => {
     if (folder.value) {
         data.folder_id = folder.value.id
     }
+
     axios.post(createApi.value, data).then(res => {
         folderName.value = null
         folderVisibility.value = 1
@@ -638,6 +638,7 @@ const filesSelected = async (event) => {
     reader.readAsDataURL(file)
 
     uploading.value = true
+
     cancelTokenSource.value = axios.CancelToken.source()
     fileField.value.disabled = true
 

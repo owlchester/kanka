@@ -123,8 +123,7 @@ class SetupService
             $query->imageFolder(isset($this->image) ? $this->image->id : null);
         }
 
-
-
+      
         $files = $query->paginate(25);
         /** @var Image $file */
         foreach ($files as $file) {
@@ -237,6 +236,7 @@ class SetupService
         if ($withNull) {
             $options[] = __('');
         }
+
         $options[Visibility::All->value] = __('crud.visibilities.all');
 
         if ($this->user->isAdmin()) {

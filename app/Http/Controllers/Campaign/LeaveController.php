@@ -28,6 +28,9 @@ class LeaveController extends Controller
     public function process(Campaign $campaign)
     {
         $this->authorize('leave', $campaign);
+        if (request()->ajax()) {
+            return response()->json();
+        }
 
         try {
             $this->leaveService

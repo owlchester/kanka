@@ -2,6 +2,7 @@
     <div :class="fileClass()" @click="click">
         <input type="checkbox" v-model="file.is_selected" v-if="isBulking" class="!absolute top-4 left-4" />
         <div class="flex-none w-20 md:w-full h-16 md:h-32" v-if="file.is_folder">
+
             <div class="w-full h-full" v-if="file.thumbnails.length === 1"  :style="{backgroundImage: previewImage(file.thumbnails[0])}"></div>
             <div class="w-full h-full flex gap-0.5" v-else-if="file.thumbnails.length === 2">
                 <div class="w-1/2 h-full cover-background" :style="{backgroundImage: previewImage(file.thumbnails[0])}"></div>
@@ -17,7 +18,6 @@
             <div v-else class="h-full w-full flex items-center justify-center align-middle text-6xl text-neutral-content">
                 <i class="fa-regular fa-folder" aria-hidden="true" />
             </div>
-
         </div>
         <div class="flex-none w-20 md:w-full h-16 md:h-32 cover-background" v-else-if="hasThumbnail()" :style="{backgroundImage: previewImage(file.thumbnail)}">
 
@@ -70,12 +70,12 @@ const click = () => {
 
 const fileClass = () => {
     let css = 'rounded-xl shadow bg-base-100 overflow-hidden sm:w-[12rem] cursor-pointer hover:shadow-lg relative flex flex-row md:flex-col gap-2 md:gap-0';
+
     if (!props.file.is_selected || !props.isBulking) {
         return css + '  '
     }
     return css + ' bg-base-300'
 }
-
 
 const visibilityClass = () => {
     switch(parseInt(props.file.visibility_id)) {
