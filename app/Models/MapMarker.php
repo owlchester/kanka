@@ -492,7 +492,7 @@ class MapMarker extends Model
                 if ($this->entity->isMap()) {
                     $url = $this->entity->url('explore');
                 }
-                return '<a href="' . $url . '">' . e($this->entity->name) . '</a>';
+                return '<a href="' . $url . '">' . $this->entity->name . '</a>';
             }
             return str_replace("'", "\'", $this->entity->name);
         }
@@ -593,8 +593,8 @@ class MapMarker extends Model
             return $this->colour;
         }
 
-        // Entity with no image?
-        if ($this->icon == 4 && empty($this->entity->image_path)) {
+        // Entity with no image? Add a grey background colour to make the pin visible
+        if ($this->icon == 4 && !$this->entity->hasImage()) {
             return '#ccc';
         }
 
