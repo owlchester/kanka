@@ -201,10 +201,11 @@
     "src": "resources/js/gallery.js"
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-4c50635e.js",
+    "file": "assets/gallery-ad3d915d.js",
     "imports": [
       "_vue.esm-bundler-d027a2b8.js",
-      "__commonjsHelpers-725317a4.js"
+      "__commonjsHelpers-725317a4.js",
+      "_v-click-outside.umd-1708c20a.js"
     ],
     "isEntry": true,
     "src": "resources/js/gallery/gallery.js"
@@ -253,12 +254,12 @@
     "src": "resources/js/vendor-final.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-dda7b538.css",
+    "file": "assets/app-13bcaa84.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-770e7415.css",
+    "file": "assets/auth-d43043e2.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -283,7 +284,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-e3103a63.css",
+    "file": "assets/front-3baf0c8d.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
