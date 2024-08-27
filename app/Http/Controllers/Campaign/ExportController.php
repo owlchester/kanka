@@ -54,6 +54,9 @@ class ExportController extends Controller
         if (!$campaign->exportable()) {
             return response()->json(['error' => __('campaigns/export.errors.limit')]);
         }
+        if (request()->ajax()) {
+            return response()->json();
+        }
 
         $this->service
             ->campaign($campaign)
