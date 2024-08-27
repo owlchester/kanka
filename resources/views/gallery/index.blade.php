@@ -37,4 +37,3 @@ if ($folder) {
     @parent
     @vite('resources/js/gallery/gallery.js')
 @endsection
-@endif
