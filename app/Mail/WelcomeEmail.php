@@ -38,7 +38,7 @@ class WelcomeEmail extends Mailable
             ->from(['address' => config('app.email'), 'name' => 'Kanka.io'])
             ->subject(__('emails/welcome.title'))
             ->tag('welcome')
-            ->view('emails.welcome.html')
-            ->text('emails.welcome.text');
+            ->view('emails.welcome.2024.html')
+            ->text('emails.welcome.2024.text');
     }
 }
