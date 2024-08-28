@@ -8,6 +8,7 @@ use App\Jobs\Emails\Subscriptions\ExpiringCardAlert;
 use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
 use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
 use App\Jobs\Emails\WelcomeEmailJob;
+use App\Models\Tier;
 use Illuminate\Console\Command;
 
 class TestEmail extends Command
@@ -42,11 +43,11 @@ class TestEmail extends Command
         } elseif ($template === 'cancelled') {
             SubscriptionCancelEmailJob::dispatch($user, null, 'custom text');
         } elseif ($template === 'elemental') {
-            WelcomeSubscriptionEmailJob::dispatch($user, 'elemental');
+            WelcomeSubscriptionEmailJob::dispatch($user, Tier::where('name', 'elemental')->first());
         } elseif ($template === 'wyvern') {
-            WelcomeSubscriptionEmailJob::dispatch($user, 'wyvern');
+            WelcomeSubscriptionEmailJob::dispatch($user, Tier::where('name', 'wyvern')->first());
         } elseif ($template === 'owlbear') {
-            WelcomeSubscriptionEmailJob::dispatch($user, 'owlbear');
+            WelcomeSubscriptionEmailJob::dispatch($user, Tier::where('name', 'owlbear')->first());
         } elseif ($template === 'expiring') {
             ExpiringCardAlert::dispatch($user);
         } elseif ($template === 'failed') {
