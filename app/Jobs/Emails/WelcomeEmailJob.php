@@ -57,18 +57,18 @@ class WelcomeEmailJob implements ShouldQueue
         }
         Log::info('WelcomeEmailJob', ['user' => $this->userId]);
 
-        try {
+        //try {
             Mail::to($user->email)
                 ->locale($this->language)
                 ->send(
                     new WelcomeEmail($user)
                 );
-        } catch (\GuzzleHttp\Exception\ServerException $e) {
+        /*} catch (\GuzzleHttp\Exception\ServerException $e) {
             // Silence
         } catch (Exception $e) {
             // Something went wrong with mailgun, or the email is invalid. Silence these errors
             // to avoid spamming sentry.
             throw $e;
-        }
+        }*/
     }
 }

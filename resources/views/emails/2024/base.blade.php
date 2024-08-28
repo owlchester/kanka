@@ -14,6 +14,18 @@
                 font-family: 'Inter', sans-serif;
             }
         }
+        html, body, .document { margin: 0 !important; padding: 0 !important; width: 100% !important; height: 100% !important; }
+        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;}
+        img { border: 0; outline: none; text-decoration: none;  -ms-interpolation-mode: bicubic; }
+        table { border-collapse: collapse; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        h1, h2, h3, h4, h5, p { margin:0;}
+        @media all and (max-width:639px) {
+            .wrapper{ width:100%!important; }
+            .container{ width:100%!important; min-width:100%!important; padding: 0 !important; }
+            .row{padding-left: 20px!important; padding-right: 20px!important;}
+        }
     </style>
 </head>
 <body style="margin: 0 !important; padding: 0 !important; background-color: #F4F7FA">
