@@ -22,7 +22,6 @@ class CreateTimelinesTable extends Migration
             $table->unsignedInteger('timeline_id')->nullable();
 
             $table->string('name');
-            $table->string('slug');
             $table->string('type')->nullable();
             $table->string('image', 255)->nullable();
             $table->unsignedInteger('calendar_id')->nullable();
@@ -42,7 +41,7 @@ class CreateTimelinesTable extends Migration
             $table->foreign('timeline_id')->references('id')->on('timelines')->onDelete('set null');
 
             // Index
-            $table->index(['name', 'slug', 'type']);
+            $table->index(['name', 'type']);
         });
 
         Schema::create('timeline_eras', function (Blueprint $table) {

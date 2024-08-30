@@ -8,13 +8,13 @@
     @if ($model->price)
         <div class="element profile-price">
             <div class="title text-uppercase text-xs">{{ __('items.fields.price') }}</div>
-            {{ $model->price }}
+            {!! $model->price !!}
         </div>
     @endif
     @if ($model->size)
         <div class="element profile-size">
             <div class="title text-uppercase text-xs">{{ __('items.fields.size') }}</div>
-            {{ $model->size }}
+            {!! $model->size !!}
         </div>
     @endif
 

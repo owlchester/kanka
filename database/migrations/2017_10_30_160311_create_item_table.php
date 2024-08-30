@@ -16,12 +16,11 @@ class CreateItemTable extends Migration
         Schema::dropIfExists('items');
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->notNull();
-            $table->string('slug');
+            $table->string('name');
             $table->string('type')->nullable();
             $table->string('image', 255)->nullable();
             $table->date('date')->nullable();
-            $table->unsignedInteger('campaign_id')->notNull();
+            $table->unsignedInteger('campaign_id');
             $table->unsignedInteger('item_id')->nullable();
             $table->unsignedInteger('character_id')->nullable();
             $table->unsignedInteger('location_id')->nullable();
@@ -43,7 +42,7 @@ class CreateItemTable extends Migration
             $table->foreign('item_id')->references('id')->on('items')->nullOnDelete();
 
             // Index
-            $table->index(['name', 'slug', 'type', 'is_private']);
+            $table->index(['name', 'type', 'is_private']);
             $table->index(['price', 'size'], 'items_price_idx');
         });
     }

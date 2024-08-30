@@ -18,7 +18,6 @@ class CreateAbilitiesTable extends Migration
         Schema::create('abilities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('slug');
             $table->string('type')->nullable();
             $table->string('image', 255)->nullable();
             $table->unsignedInteger('campaign_id');
@@ -37,7 +36,7 @@ class CreateAbilitiesTable extends Migration
             $table->foreign('ability_id')->references('id')->on('abilities')->onDelete('cascade');
 
             // Index
-            $table->index(['name', 'slug', 'type']);
+            $table->index(['name', 'type']);
         });
 
 

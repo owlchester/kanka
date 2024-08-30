@@ -21,7 +21,6 @@ return new class () extends Migration {
             $table->string('name', 191);
             $table->string('image', 255)->nullable();
             $table->string('type', 45)->nullable();
-            $table->string('slug')->nullable();
             $table->longText('entry')->nullable();
             $table->boolean('is_private')->defaultValue(false);
             $table->timestamps();

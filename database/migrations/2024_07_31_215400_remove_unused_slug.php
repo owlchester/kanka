@@ -30,6 +30,9 @@ return new class () extends Migration {
             'timelines',
         ];
         foreach ($tables as $tableName) {
+            if (!Schema::hasColumn($tableName, 'slug')) {
+                continue;
+            }
             Schema::table($tableName, function (Blueprint $table) {
                 $table->dropColumn('slug');
             });

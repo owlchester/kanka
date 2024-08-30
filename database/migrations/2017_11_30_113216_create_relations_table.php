@@ -18,11 +18,11 @@ class CreateRelationsTable extends Migration
             $table->increments('id');
             $table->boolean('is_private')->default(0);
 
-            $table->integer('owner_id')->unsigned()->notNull();
-            $table->integer('target_id')->unsigned()->notNull();
-            $table->integer('campaign_id')->unsigned()->notNull();
+            $table->integer('owner_id')->unsigned();
+            $table->integer('target_id')->unsigned();
+            $table->integer('campaign_id')->unsigned();
 
-            $table->string('relation', 255)->notNull();
+            $table->string('relation', 255);
             $table->string('colour', 6)->nullable();
             $table->tinyInteger('attitude')->default(0)->nullable();
 

@@ -16,12 +16,11 @@ class CreateAttributeTemplate extends Migration
         Schema::dropIfExists('attribute_templates');
         Schema::create('attribute_templates', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('campaign_id')->unsigned()->notNull();
+            $table->integer('campaign_id')->unsigned();
             $table->unsignedInteger('attribute_template_id')->nullable();
 
-            $table->string('slug');
-            $table->string('name')->notNull();
-            $table->boolean('is_private')->default(false)->notNull();
+            $table->string('name');
+            $table->boolean('is_private')->default(false);
 
             $table->timestamps();
 

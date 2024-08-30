@@ -19,8 +19,7 @@ class CreateLocations extends Migration
 
         Schema::create('locations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->notNull();
-            $table->string('slug');
+            $table->string('name');
             $table->string('type', 45)->nullable();
             $table->string('image')->nullable();
             $table->longText('entry')->nullable();
@@ -28,7 +27,7 @@ class CreateLocations extends Migration
 
             $table->timestamps();
 
-            $table->integer('campaign_id')->unsigned()->notNull();
+            $table->integer('campaign_id')->unsigned();
 
             // Privacy
             $table->boolean('is_private')->default(false);
@@ -36,7 +35,7 @@ class CreateLocations extends Migration
             $table->boolean('is_map_private')->default(0);
 
             // Index
-            $table->index(['name', 'slug', 'type']);
+            $table->index(['name', 'type']);
             $table->index(['is_private']);
 
             // Foreign
@@ -47,8 +46,8 @@ class CreateLocations extends Migration
 
         Schema::create('location_attributes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->notNull();
-            $table->string('value')->notNull();
+            $table->string('name');
+            $table->string('value');
             $table->integer('location_id')->unsigned();
             $table->timestamps();
 

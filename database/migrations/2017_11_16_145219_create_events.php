@@ -15,14 +15,13 @@ class CreateEvents extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->notNull();
-            $table->string('slug');
+            $table->string('name');
             $table->string('type')->nullable();
             $table->string('date')->nullable();
             $table->string('image', 255)->nullable();
             $table->boolean('is_private')->default(false);
 
-            $table->integer('campaign_id')->unsigned()->notNull();
+            $table->integer('campaign_id')->unsigned();
             $table->integer('location_id')->unsigned()->nullable();
             $table->unsignedInteger('event_id')->nullable();
 
@@ -34,7 +33,7 @@ class CreateEvents extends Migration
             $table->foreign('event_id')->references('id')->on('events')->nullOnDelete();
 
             // Index
-            $table->index(['name', 'slug', 'type', 'date', 'is_private']);
+            $table->index(['name', 'type', 'date', 'is_private']);
         });
     }
 

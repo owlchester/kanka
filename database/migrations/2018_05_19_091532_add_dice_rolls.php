@@ -20,7 +20,6 @@ class AddDiceRolls extends Migration
             $table->unsignedInteger('campaign_id');
             $table->unsignedInteger('character_id')->nullable();
             $table->string('name', 191);
-            $table->string('slug')->nullable();
             $table->string('system', 20)->nullable();
             $table->text('parameters')->nullable();
             $table->boolean('is_private')->defaultValue(false);

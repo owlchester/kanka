@@ -18,10 +18,10 @@ class CreateEntityNotesTable extends Migration
         Schema::create('entity_notes', function (Blueprint $table) {
             $table->increments('id');
             ;
-            $table->string('name')->notNull();
+            $table->string('name');
             $table->longText('entry')->nullable();
             $table->boolean('is_private')->default(0);
-            $table->unsignedInteger('entity_id')->notNull();
+            $table->unsignedInteger('entity_id');
             $table->unsignedInteger('created_by')->nullable();
 
             $table->integer('updated_by')->unsigned()->nullable();

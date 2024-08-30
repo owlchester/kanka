@@ -18,7 +18,7 @@ class CreateCustomMenuTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('campaign_id');
             $table->unsignedInteger('entity_id')->nullable();
-            $table->string('name', 100)->notNull();
+            $table->string('name', 100);
             $table->string('icon', 45)->nullable();
             $table->boolean('is_private')->default(false);
 

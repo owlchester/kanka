@@ -30,7 +30,7 @@
                             <x-icon class="fa-solid fa-sort" />
                         </div>
                         <div class="grow flex items-center flex-no-wrap gap-2 overflow-hidden">
-                            <i class="{{ $link->icon() }}" aria-hidden="true"></i>
+                            <i class="{{ $link->iconClass() }}" aria-hidden="true"></i>
                             <span class="truncate">
                                 {!! $link->name !!}
                             </span>

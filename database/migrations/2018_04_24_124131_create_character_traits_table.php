@@ -16,9 +16,9 @@ class CreateCharacterTraitsTable extends Migration
         Schema::dropIfExists('character_traits');
         Schema::create('character_traits', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('character_id')->notNull();
+            $table->unsignedInteger('character_id');
             $table->unsignedInteger('created_by')->nullable();
-            $table->string('name')->notNull();
+            $table->string('name');
             $table->text('entry')->nullable();
             $table->boolean('is_private')->default(0);
             $table->unsignedTinyInteger('section_id')->default(App\Models\CharacterTrait::SECTION_APPEARANCE);

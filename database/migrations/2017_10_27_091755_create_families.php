@@ -17,9 +17,8 @@ class CreateFamilies extends Migration
             $table->increments('id');
             $table->timestamps();
 
-            $table->string('name')->notNull();
-            $table->string('slug');
-            $table->integer('campaign_id')->unsigned()->notNull();
+            $table->string('name');
+            $table->integer('campaign_id')->unsigned();
 
             $table->integer('family_id')->unsigned()->nullable();
 
@@ -37,7 +36,7 @@ class CreateFamilies extends Migration
             $table->foreign('family_id')->references('id')->on('families')->onDelete('set null');
 
             // Indexes
-            $table->index(['name', 'slug']);
+            $table->index(['name']);
         });
     }
 

@@ -3,7 +3,7 @@
     <li class="{{ $css ?? null }} p-0 m-0 subsection sidebar-bookmark sidebar-bookmark-{{ $bookmark->position }} {{ $sidebar->activeBookmark($bookmark) }} {{ $bookmark->customClass($campaign) }}">
         <x-sidebar.element
                 :url="$bookmark->getRoute()"
-                :icon="$bookmark->icon()"
+                :icon="$bookmark->iconClass()"
                 :text="$bookmark->name"
         ></x-sidebar.element>
     </li>
@@ -11,7 +11,7 @@
     <li class="p-0 m-0 subsection sidebar-bookmark sidebar-bookmark-{{ $bookmark->position }} {{ $sidebar->activeBookmark($bookmark) }} {{ $bookmark->customClass($campaign) }}">
         <x-sidebar.element
                 :url="$bookmark->getRoute()"
-                :icon="$bookmark->icon()"
+                :icon="$bookmark->iconClass()"
                 :text="$bookmark->name"
         ></x-sidebar.element>
     </li>
@@ -19,7 +19,7 @@
     <li class="p-0 m-0 subsection sidebar-bookmark sidebar-bookmark-{{ $bookmark->position }} {{ $sidebar->activeBookmark($bookmark) }} {{ $bookmark->customClass($campaign) }}">
         <x-sidebar.element
                 :url="$bookmark->getRoute()"
-                :icon="$bookmark->icon()"
+                :icon="$bookmark->iconClass()"
                 :text="$bookmark->name"
         ></x-sidebar.element>
     </li>
@@ -27,7 +27,7 @@
     <li class="p-0 m-0 subsection sidebar-bookmark sidebar-bookmark-{{ $bookmark->position }} {{ $sidebar->activeBookmark($bookmark) }} {{ $bookmark->customClass($campaign) }}">
         <x-sidebar.element
                 :url="$bookmark->getRoute()"
-                :icon="$bookmark->icon()"
+                :icon="$bookmark->iconClass()"
                 :text="$bookmark->name"
         ></x-sidebar.element>
     </li>

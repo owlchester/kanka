@@ -15,12 +15,11 @@ class CreateOrganisation extends Migration
     {
         Schema::create('organisations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->notNull();
-            $table->string('slug');
+            $table->string('name');
             $table->string('type')->nullable();
             $table->string('image', 255)->nullable();
 
-            $table->integer('campaign_id')->unsigned()->notNull();
+            $table->integer('campaign_id')->unsigned();
             $table->integer('location_id')->unsigned()->nullable();
             $table->unsignedInteger('organisation_id')->nullable();
 
@@ -39,13 +38,13 @@ class CreateOrganisation extends Migration
             $table->foreign('organisation_id')->references('id')->on('organisations')->onDelete('set null');
 
             // Index
-            $table->index(['name', 'slug', 'type']);
+            $table->index(['name', 'type']);
         });
 
         Schema::create('organisation_member', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('organisation_id')->unsigned()->notNull();
-            $table->integer('character_id')->unsigned()->notNull();
+            $table->integer('organisation_id')->unsigned();
+            $table->integer('character_id')->unsigned();
             $table->string('role', 45)->nullable();
             $table->boolean('is_private')->default(false);
 

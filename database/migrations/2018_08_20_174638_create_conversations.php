@@ -20,7 +20,6 @@ class CreateConversations extends Migration
             $table->string('name', 191);
             $table->string('image', 255)->nullable();
             $table->string('type', 45)->nullable();
-            $table->string('slug')->nullable();
             $table->unsignedTinyInteger('target_id')
                 ->default(App\Models\Conversation::TARGET_USERS);
 

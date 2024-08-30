@@ -18,12 +18,11 @@ class CreateQuests extends Migration
             $table->integer('campaign_id')->unsigned()->nullable();
             $table->integer('quest_id')->unsigned()->nullable();
             $table->unsignedInteger('instigator_id')->nullable();
-            $table->string('name')->notNull();
-            $table->string('slug')->nullable();
+            $table->string('name');
             $table->string('type', 45)->nullable();
             $table->longText('entry')->nullable();
             $table->string('image', 255)->nullable();
-            $table->boolean('is_private')->default(false)->notNull();
+            $table->boolean('is_private')->default(false);
             $table->date('date')->nullable();
             $table->boolean('is_completed')->default(false);
 

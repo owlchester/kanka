@@ -119,7 +119,7 @@ class RecentService
     {
         return [
             'url' => $link->getRoute(),
-            'icon' => $link->icon(),
+            'icon' => $link->iconClass(),
             'text' => $link->name,
         ];
     }

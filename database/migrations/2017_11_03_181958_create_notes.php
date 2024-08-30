@@ -15,12 +15,11 @@ class CreateNotes extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->notNull();
-            $table->string('slug');
+            $table->string('name');
             $table->string('type')->nullable();
             $table->string('image', 255)->nullable();
 
-            $table->integer('campaign_id')->unsigned()->notNull();
+            $table->integer('campaign_id')->unsigned();
             $table->unsignedInteger('note_id')->nullable();
 
 
@@ -38,7 +37,7 @@ class CreateNotes extends Migration
             $table->foreign('note_id')->references('id')->on('notes')->nullOnDelete();
 
             // Index
-            $table->index(['name', 'slug', 'type']);
+            $table->index(['name', 'type']);
         });
     }
 

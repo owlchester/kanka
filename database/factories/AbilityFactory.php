@@ -22,6 +22,7 @@ class AbilityFactory extends Factory
     public function definition(): array
     {
         return [
+            'name' => fake()->name(),
             'entry' => '<p>' . fake()->text(500) . '<p>',
         ];
     }

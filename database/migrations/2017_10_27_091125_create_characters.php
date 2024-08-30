@@ -15,9 +15,8 @@ class CreateCharacters extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->notNull();
-            $table->string('slug');
-            $table->integer('campaign_id')->unsigned()->notNull();
+            $table->string('name');
+            $table->integer('campaign_id')->unsigned();
 
             // Overview
             $table->longText('entry')->nullable();
@@ -39,13 +38,13 @@ class CreateCharacters extends Migration
             $table->index(['is_private']);
 
             $table->boolean('is_personality_visible')->default(true);
-            $table->boolean('is_dead')->default(false)->notNull();
+            $table->boolean('is_dead')->default(false);
 
             // Foreign
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
 
             // Index
-            $table->index(['name', 'slug']);
+            $table->index(['name']);
         });
     }
 

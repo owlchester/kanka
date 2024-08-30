@@ -19,7 +19,6 @@ class CreateMapsTable extends Migration
             $table->unsignedInteger('location_id')->nullable();
 
             $table->string('name');
-            $table->string('slug');
             $table->string('type')->nullable();
             $table->string('image', 255)->nullable();
             $table->unsignedSmallInteger('width')->nullable();
@@ -50,7 +49,7 @@ class CreateMapsTable extends Migration
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('set null');
 
             // Index
-            $table->index(['name', 'slug', 'type']);
+            $table->index(['name', 'type']);
         });
 
         Schema::create('map_layers', function (Blueprint $table) {

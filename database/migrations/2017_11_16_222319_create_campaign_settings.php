@@ -15,7 +15,7 @@ class CreateCampaignSettings extends Migration
     {
         Schema::create('campaign_settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('campaign_id')->unsigned()->notNull();
+            $table->integer('campaign_id')->unsigned();
             $table->boolean('characters')->default(true);
             $table->boolean('events')->default(true);
             $table->boolean('families')->default(true);

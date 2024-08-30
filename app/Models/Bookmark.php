@@ -357,7 +357,7 @@ class Bookmark extends Model
     /**
      * Icon HTML class
      */
-    public function icon(): string
+    public function iconClass(): string
     {
         $campaign = CampaignLocalization::getCampaign();
         if (!empty($this->icon) && $campaign->boosted()) {

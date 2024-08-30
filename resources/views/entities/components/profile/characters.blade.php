@@ -83,18 +83,18 @@
         @if (!empty($model->sex) && empty($model->pronouns))
             <div class="element profile-gender">
                 <div class="title text-uppercase text-xs">{{ __('characters.fields.sex') }}</div>
-                <span>{{ $model->sex }}</span>
+                <span>{!! $model->sex !!}</span>
             </div>
         @elseif (empty($model->sex) && !empty($model->pronouns))
             <div class="element profile-pronouns">
                 <div class="title text-uppercase text-xs">{{ __('characters.fields.pronouns') }}</div>
-                <span>{{ $model->pronouns }}</span>
+                <span>{!! $model->pronouns !!}</span>
             </div>
         @else
             <div class="element profile-gender-pronouns">
                 <div class="title text-uppercase text-xs">{{ __('characters.fields.sex') }}, {{ __('characters.fields.pronouns') }}</div>
-                <span>{{ $model->sex }}</span>,
-                <span>{{ $model->pronouns }}</span>
+                <span>{!! $model->sex !!}</span>,
+                <span>{!! $model->pronouns !!}</span>
             </div>
         @endif
     @endif

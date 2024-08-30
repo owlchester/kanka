@@ -15,14 +15,13 @@ class CreateJournalTable extends Migration
     {
         Schema::create('journals', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->notNull();
+            $table->string('name');
 
             $table->unsignedInteger('journal_id')->nullable();
-            $table->string('slug');
             $table->string('type')->nullable();
             $table->string('image', 255)->nullable();
             $table->date('date')->nullable();
-            $table->unsignedInteger('campaign_id')->notNull();
+            $table->unsignedInteger('campaign_id');
             $table->unsignedInteger('author_id')->nullable();
             $table->unsignedInteger('location_id')->nullable();
 
@@ -42,7 +41,7 @@ class CreateJournalTable extends Migration
             $table->foreign('journal_id')->references('id')->on('journals')->nullOnDelete();
 
             // Index
-            $table->index(['name', 'slug', 'type', 'date']);
+            $table->index(['name', 'type', 'date']);
         });
     }
 

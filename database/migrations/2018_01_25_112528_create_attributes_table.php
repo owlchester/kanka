@@ -16,11 +16,11 @@ class CreateAttributesTable extends Migration
         Schema::dropIfExists('attributes');
         Schema::create('attributes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->notNull();
+            $table->string('name');
             $table->text('value', 191)->nullable();
             $table->string('type', 12)->nullable();
             $table->boolean('is_private')->default(0);
-            $table->integer('entity_id')->unsigned()->notNull();
+            $table->integer('entity_id')->unsigned();
 
             $table->unsignedSmallInteger('default_order')->null()->default('0');
             $table->unsignedInteger('origin_attribute_id')->nullable();

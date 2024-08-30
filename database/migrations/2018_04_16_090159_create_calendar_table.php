@@ -17,16 +17,14 @@ class CreateCalendarTable extends Migration
         Schema::create('calendars', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('campaign_id')->unsigned()->nullable();
-            $table->string('name')->notNull();
+            $table->string('name');
 
             $table->unsignedInteger('calendar_id')->nullable();
 
-
-            $table->string('slug')->nullable();
             $table->string('type', 45)->nullable();
             $table->longText('entry')->nullable();
             $table->string('image', 255)->nullable();
-            $table->boolean('is_private')->default(false)->notNull();
+            $table->boolean('is_private')->default(false);
 
             // Settings of the calendar
             $table->text('parameters')->nullable();

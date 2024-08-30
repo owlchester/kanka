@@ -15,11 +15,11 @@ class AddCampaignDashboardCalendar extends Migration
     {
         Schema::create('campaign_dashboard_widgets', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('campaign_id')->unsigned()->notNull();
+            $table->integer('campaign_id')->unsigned();
 
             $table->unsignedInteger('entity_id')->nullable();
             $table->text('config')->nullable();
-            $table->unsignedTinyInteger('position')->notNull();
+            $table->unsignedTinyInteger('position');
 
             $table->string('widget', 12);
             $table->unsignedTinyInteger('width')->default(0);

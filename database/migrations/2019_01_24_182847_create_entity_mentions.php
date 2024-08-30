@@ -18,7 +18,7 @@ class CreateEntityMentions extends Migration
             $table->unsignedInteger('entity_id')->nullable();
             $table->integer('entity_note_id')->unsigned()->nullable();
             $table->integer('campaign_id')->unsigned()->nullable();
-            $table->unsignedInteger('target_id')->notNull();
+            $table->unsignedInteger('target_id');
             $table->timestamps();
 
             // If we delete the entity or target, remove mentions

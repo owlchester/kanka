@@ -16,12 +16,11 @@ class CreateSectionsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('campaign_id')->unsigned()->nullable();
-            $table->string('name')->notNull();
-            $table->string('slug')->nullable();
+            $table->string('name');
             $table->string('type', 45)->nullable();
             $table->string('image', 255)->nullable();
             $table->longText('entry')->nullable();
-            $table->boolean('is_private')->default(false)->notNull();
+            $table->boolean('is_private')->default(false);
             $table->string('colour', 20)->nullable();
 
             $table->unsignedInteger('tag_id')->nullable();

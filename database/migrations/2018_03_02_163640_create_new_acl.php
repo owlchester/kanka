@@ -17,11 +17,11 @@ class CreateNewAcl extends Migration
         Schema::dropIfExists('campaign_roles');
         Schema::create('campaign_roles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->notNull();
-            $table->integer('campaign_id')->unsigned()->notNull();
+            $table->string('name');
+            $table->integer('campaign_id')->unsigned();
 
-            $table->boolean('is_admin')->default(false)->notNull();
-            $table->boolean('is_public')->default(false)->notNull();
+            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_public')->default(false);
 
             $table->timestamps();
 
@@ -36,8 +36,8 @@ class CreateNewAcl extends Migration
         Schema::dropIfExists('campaign_role_users');
         Schema::create('campaign_role_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('campaign_role_id')->unsigned()->notNull();
-            $table->integer('user_id')->unsigned()->notNull();
+            $table->integer('campaign_role_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 
             $table->timestamps();
 
@@ -60,10 +60,10 @@ class CreateNewAcl extends Migration
             // A key is a simple concept that allows us to easily get everything
             // browse_characters => Allow browsing characters
             // edit_locations_4 => Allow editing location id 4
-            //$table->string('key', 191)->notNull();
+            //$table->string('key', 191);
 
             // The table name
-            //$table->string('table_name', 191)->notNull();
+            //$table->string('table_name', 191);
 
             $table->boolean('access')->default(true);
 

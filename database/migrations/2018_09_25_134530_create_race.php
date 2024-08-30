@@ -22,7 +22,6 @@ class CreateRace extends Migration
             $table->unsignedInteger('race_id')->nullable();
             $table->string('image', 255)->nullable();
             $table->string('type', 45)->nullable();
-            $table->string('slug')->nullable();
             $table->longText('entry')->nullable();
             $table->boolean('is_private')->defaultValue(false);
             $table->timestamps();

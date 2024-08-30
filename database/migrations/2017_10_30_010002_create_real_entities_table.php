@@ -19,10 +19,10 @@ class CreateRealEntitiesTable extends Migration
         Schema::create('entities', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('type_id')->nullable();
-            $table->string('name')->notNull();
+            $table->string('name');
             $table->boolean('is_private')->default(0);
-            $table->integer('entity_id')->unsigned()->notNull();
-            $table->integer('campaign_id')->unsigned()->notNull();
+            $table->integer('entity_id')->unsigned();
+            $table->integer('campaign_id')->unsigned();
 
             $table->text('tooltip')->nullable();
             $table->string('header_image')->nullable();
