@@ -22,7 +22,7 @@ class AddDiceRolls extends Migration
             $table->string('name', 191);
             $table->string('system', 20)->nullable();
             $table->text('parameters')->nullable();
-            $table->boolean('is_private')->defaultValue(false);
+            $table->boolean('is_private')->default(false);
             $table->timestamps();
 
             $table->index(['name', 'system', 'is_private']);

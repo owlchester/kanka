@@ -9,7 +9,7 @@ use App\Rules\FontAwesomeIcon;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreEntityAsset extends FormRequest
+class StoreEntityAssets extends FormRequest
 {
     use ApiRequest;
 
@@ -33,7 +33,7 @@ class StoreEntityAsset extends FormRequest
         return $this->clean([
             'name' => 'required_unless:type_id,' . EntityAsset::TYPE_FILE . '|max:45',
             'visibility_id' => 'nullable|integer|exists:visibilities,id',
-            'file' => [
+            'files.*' => [
                 'required_if:type_id,' . EntityAsset::TYPE_FILE,
                 'file',
                 'max:' . Limit::upload(),

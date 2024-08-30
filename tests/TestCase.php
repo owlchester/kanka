@@ -477,7 +477,7 @@ abstract class TestCase extends BaseTestCase
     {
         Image::factory()
             ->count(1)
-            ->create(['campaign_id' => 1] + $extra);
+            ->create(['campaign_id' => 1, 'id' => '16598f1b-7d93-36d9-bea5-212bfa1e354b'] + $extra);
         return $this;
     }
 

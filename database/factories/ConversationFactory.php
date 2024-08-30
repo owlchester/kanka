@@ -22,7 +22,9 @@ class ConversationFactory extends Factory
     public function definition(): array
     {
         return [
+            'name' => fake()->name(),
             'target_id' => 2,
+            'is_private' => false,
         ];
     }
 }

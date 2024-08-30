@@ -22,7 +22,9 @@ class DiceRollFactory extends Factory
     public function definition(): array
     {
         return [
-            'parameters' => '2d2'
+            'name' => fake()->name(),
+            'parameters' => '2d2',
+            'is_private' => false,
         ];
     }
 }

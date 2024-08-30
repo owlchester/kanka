@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Exceptions\TranslatableException;
 use App\Http\Requests\StoreEntityAsset;
+use App\Http\Requests\StoreEntityAssets;
 use App\Models\EntityAsset;
 use App\Models\Image;
 use App\Services\Gallery\StorageService;
@@ -17,16 +18,22 @@ class EntityFileService
     use CampaignAware;
     use EntityAware;
 
+    protected array $files;
+
     /**
      * @throws TranslatableException
      */
-    public function upload(StoreEntityAsset $request, string $field = 'files'): array
+    public function upload(StoreEntityAsset|StoreEntityAssets $request, string $field = 'files'): self
     {
         /** @var StorageService $service */
         $service = app()->make(StorageService::class);
+        $this->files = [];
 
         // Prepare the file for the journey
         $uploadedFiles = $request->file($field);
+        if (!is_array($uploadedFiles)) {
+            $uploadedFiles = [$uploadedFiles];
+        }
         $files = [];
         foreach ($uploadedFiles as $uploadedFile) {
             // Already above max capacity?
@@ -77,9 +84,14 @@ class EntityFileService
             $file->save();
 
             Cache::forget('campaign_' . $this->campaign->id . '_gallery');
-            $files[] = $file->name;
+            $this->files[] = $file;
         }
 
-        return $files;
+        return $this;
+    }
+
+    public function files(): array
+    {
+        return $this->files;
     }
 }

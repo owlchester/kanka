@@ -17,6 +17,7 @@ class CreateSectionsTable extends Migration
             $table->increments('id');
             $table->integer('campaign_id')->unsigned()->nullable();
             $table->string('name');
+            $table->string('slug')->nullable();
             $table->string('type', 45)->nullable();
             $table->string('image', 255)->nullable();
             $table->longText('entry')->nullable();

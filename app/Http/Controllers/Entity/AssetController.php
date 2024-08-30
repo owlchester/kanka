@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Entity;
 use App\Exceptions\TranslatableException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAsset;
+use App\Http\Requests\StoreEntityAssets;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAsset;
@@ -59,7 +60,7 @@ class AssetController extends Controller
         abort(404);
     }
 
-    public function store(StoreEntityAsset $request, Campaign $campaign, Entity $entity)
+    public function store(StoreEntityAssets $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
         if ($request->ajax()) {
@@ -93,7 +94,7 @@ class AssetController extends Controller
             ));
     }
 
-    protected function storeFile(StoreEntityAsset $request, Campaign $campaign, Entity $entity)
+    protected function storeFile(StoreEntityAssets $request, Campaign $campaign, Entity $entity)
     {
         /** @var EntityFileService $service */
         $service = app()->make(EntityFileService::class);
@@ -102,11 +103,12 @@ class AssetController extends Controller
             $files = $service
                 ->entity($entity)
                 ->campaign($campaign)
-                ->upload($request, 'files');
+                ->upload($request)
+                ->files();
 
             return redirect()
                 ->route('entities.entity_assets.index', [$campaign, $entity])
-                ->with('success', trans_choice('entities/files.create.success_plural', count($files), ['count' => count($files), 'name' => $files['0']]));
+                ->with('success', trans_choice('entities/files.create.success_plural', count($files), ['count' => count($files), 'name' => $files['0']->name]));
 
         } catch (TranslatableException $e) {
             return redirect()

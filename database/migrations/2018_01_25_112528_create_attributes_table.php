@@ -29,7 +29,7 @@ class CreateAttributesTable extends Migration
             $table->boolean('is_pinned')->default(false);
             $table->string('api_key', 20)->null();
 
-            $table->boolean('is_hidden')->defaultValue(false);
+            $table->boolean('is_hidden')->default(false);
 
             $table->timestamps();
 

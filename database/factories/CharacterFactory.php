@@ -25,7 +25,6 @@ class CharacterFactory extends Factory
         $name = fake()->name();
         return [
             'name' => $name,
-            'slug' => Str::slug($name),
             'entry' => '<p>' . fake()->text(500) . '<p>',
         ];
     }

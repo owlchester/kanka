@@ -19,7 +19,7 @@ class EntityAssetApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity->child);
-        return Resource::collection($entity->assets()->with('entity')->paginate());
+        return Resource::collection($entity->assets()->with(['entity', 'image'])->paginate());
     }
 
     /**
@@ -43,14 +43,15 @@ class EntityAssetApiController extends ApiController
         $data = $request->all();
         $data['entity_id'] = $entity->id;
 
-        if (request()->get('type_id') == EntityAsset::TYPE_FILE) {
+        if ($request->get('type_id') == EntityAsset::TYPE_FILE) {
             /** @var EntityFileService $service */
             $service = app()->make(EntityFileService::class);
-            $file = $service
+            $files = $service
                 ->entity($entity)
                 ->campaign($campaign)
-                ->upload($request);
-            return new Resource($file);
+                ->upload($request, 'file')
+                ->files();
+            return new Resource($files[0]);
         }
         $model = EntityAsset::create($data);
         return new Resource($model);

@@ -35,7 +35,7 @@ it('POSTS a new File')
     ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/entities/1/entity_assets', [
         'name' => fake()->name(),
-        'entity_id' => 1,
+        //'entity_id' => 1,
         'type_id' => 1,
         'visibility_id' => 1,
         'file' => UploadedFile::fake()->image('avatar.jpg')

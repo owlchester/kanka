@@ -11,7 +11,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->boolean('is_template')->defaultValue(false);
+            $table->boolean('is_template')->default(false);
             $table->index('is_template');
         });
     }

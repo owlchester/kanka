@@ -21,9 +21,8 @@ class ImageFactory extends Factory
      */
     public function definition(): array
     {
-
         return [
-            'id' => '1',
+            'id' => fake()->uuid(),
             'name' => fake()->text(10),
             'ext' => 'png',
             'size' => 209,

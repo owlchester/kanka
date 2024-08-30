@@ -11,7 +11,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('character_family', function (Blueprint $table) {
-            $table->boolean('is_private')->defaultValue(false);
+            $table->boolean('is_private')->default(false);
             $table->index('is_private');
         });
     }

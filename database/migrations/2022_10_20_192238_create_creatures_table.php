@@ -22,7 +22,7 @@ return new class () extends Migration {
             $table->string('image', 255)->nullable();
             $table->string('type', 45)->nullable();
             $table->longText('entry')->nullable();
-            $table->boolean('is_private')->defaultValue(false);
+            $table->boolean('is_private')->default(false);
             $table->timestamps();
             $table->softDeletes();
 
