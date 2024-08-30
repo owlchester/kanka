@@ -22,9 +22,8 @@ class CharacterFactory extends Factory
      */
     public function definition(): array
     {
-        $name = fake()->name();
         return [
-            'name' => $name,
+            'name' => fake()->name(),
             'entry' => '<p>' . fake()->text(500) . '<p>',
         ];
     }

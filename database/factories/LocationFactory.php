@@ -23,6 +23,7 @@ class LocationFactory extends Factory
     {
         return [
             'entry' => '<p>' . fake()->text(500) . '<p>',
+            'is_private' => false,
         ];
     }
 }
