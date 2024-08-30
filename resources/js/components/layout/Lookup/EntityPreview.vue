@@ -48,21 +48,15 @@
         <div class="tab-profile p-5 flex flex-col gap-5" v-if="focus_profile">
             <div class="entity-pinned-attributes flex flex-col gap-3" v-if="entity.attributes.length > 0">
                 <div v-for="attribute in entity.attributes" class="" v-bind:data-attribute="attribute.name" v-bind:data-target="attribute.id">
-                    <span class="inline-block uppercase font-extrabold mr-1">
-                        {{ attribute.name }}
-                    </span>
+                    <span class="inline-block uppercase font-extrabold mr-1" v-html="attribute.name"></span>
                     <span v-html="attribute.value"></span>
                 </div>
             </div>
           <hr  v-if="entity.attributes.length > 0" />
           <div class="flex flex-col gap-3">
             <div v-for="profile in entity.profile" class="" v-bind:class="profileClass(profile)">
-                <div class="uppercase font-extrabold truncate">
-                    {{ profile.field }}
-                </div>
-                <div>
-                    {{ profile.value }}
-                </div>
+                <div class="uppercase font-extrabold truncate" v-html="profile.field"></div>
+                <div v-html="profile.value"></div>
             </div>
           </div>
         </div>
