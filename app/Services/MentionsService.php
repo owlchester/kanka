@@ -113,7 +113,8 @@ class MentionsService
     public function mapAttribute(Attribute $attribute, ?string $text = null)
     {
         // If the attribute mentions itself in the value, don't do any parsing, it would cause an endless loop.
-        if (Str::contains($attribute->value, $attribute->mentionName())) {
+        // The first check is for unchecked checkboxes
+        if (!empty($attribute->value) && Str::contains($attribute->value, $attribute->mentionName())) {
             return Attributes::parse($attribute);
         }
 

@@ -23,9 +23,9 @@
 
             <p class="text-xs text-neutral-content text-center mx-4 overflow-hidden cursor-pointer item-description" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}" data-target="primary-dialog">
                 @if ($item->item && $item->copy_item_entry)
-                    {!! \Illuminate\Support\Str::limit(strip_tags($item->item->parsedEntry()), 100) !!}
+                    {!! \Illuminate\Support\Str::limit(strip_tags($item->item->parsedEntry()) ?? '', 100) !!}
                 @else
-                    {!! \Illuminate\Support\Str::limit($item->description, 100) !!}
+                    {!! \Illuminate\Support\Str::limit($item->description ?? '', 100) !!}
                 @endif
             </p>
         </div>

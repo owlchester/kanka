@@ -28,7 +28,7 @@ class LiveController extends Controller
      */
     public function index(Request $request, Campaign $campaign)
     {
-        $term = trim($request->get('q'));
+        $term = trim($request->get('q', ''));
         $type = $request->get('type', null);
         if (!empty($type)) {
             $type = trim($type);
@@ -65,7 +65,7 @@ class LiveController extends Controller
      */
     public function reminderEntities(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = trim($request->get('q', ''));
 
         return response()->json(
             $this->search
@@ -86,7 +86,7 @@ class LiveController extends Controller
      */
     public function relationEntities(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = trim($request->get('q', ''));
         $exclude = [];
 
         if ($request->has('exclude')) {
@@ -109,7 +109,7 @@ class LiveController extends Controller
      */
     public function tagChildren(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = trim($request->get('q', ''));
 
         $exclude = [];
         if ($request->has('exclude')) {
@@ -133,7 +133,7 @@ class LiveController extends Controller
      */
     public function abilityEntities(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = trim($request->get('q', ''));
 
         $exclude = [];
         if ($request->has('exclude')) {
@@ -157,7 +157,7 @@ class LiveController extends Controller
      */
     public function calendars(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = trim($request->get('q', ''));
 
         return response()->json(
             $this->search
@@ -173,7 +173,7 @@ class LiveController extends Controller
      */
     public function organisationMembers(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = trim($request->get('q', ''));
 
         $exclude = [];
         $data = [];
