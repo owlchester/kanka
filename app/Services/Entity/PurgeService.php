@@ -3,6 +3,7 @@
 namespace App\Services\Entity;
 
 use App\Facades\CharacterCache;
+use App\Facades\EntityCache;
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\MiscModel;
@@ -32,6 +33,8 @@ class PurgeService
      */
     public function trash(Entity $entity): void
     {
+        EntityCache::campaign($entity->campaign);
+
         /** @var MiscModel $child */
         // @phpstan-ignore-next-line
         $child = $entity->child()->onlyTrashed()->first();
@@ -56,6 +59,7 @@ class PurgeService
 
         // Set the campaign scope to avoid hitting entities of other campaigns (this can happen with
         // nested modules)
+        // This probably is no longer the case since.
         \App\Facades\CampaignLocalization::setConsoleCampaign($entity->campaign_id);
 
         // Update the parent_id / tree before
