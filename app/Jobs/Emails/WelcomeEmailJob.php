@@ -58,11 +58,11 @@ class WelcomeEmailJob implements ShouldQueue
         Log::info('WelcomeEmailJob', ['user' => $this->userId]);
 
         //try {
-            Mail::to($user->email)
-                ->locale($this->language)
-                ->send(
-                    new WelcomeEmail($user)
-                );
+        Mail::to($user->email)
+            ->locale($this->language)
+            ->send(
+                new WelcomeEmail($user)
+            );
         /*} catch (\GuzzleHttp\Exception\ServerException $e) {
             // Silence
         } catch (Exception $e) {

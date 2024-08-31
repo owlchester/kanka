@@ -89,7 +89,6 @@ return [
         'string' => 'The :attribute must be at least :min characters.',
         'array' => 'The :attribute must have at least :min items.',
     ],
-    'not_hotmail' => 'Due to Hotmail always rejecting our email, please use another address or use the Invite Link feature.',
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
     'numeric' => 'The :attribute must be a number.',
@@ -119,8 +118,7 @@ return [
     'goodbye' => 'You must write :code to confirm the deletion of your account',
     'delete_campaign' => 'You must write :code to confirm the deletion of your campaign',
 
-
-    'entity_link' => 'Invalid :attribute. Please verify that it is a valid Kanka link, that it points to a public campaign, and that the entity is visible for the campaign\'s public role.',
+    'forbidden_letter' => 'The :attribute cannot contain the letter ":letter."',
     //'entity_file' => 'Allowed extensions: :formats',
 
     'fontawesome' => 'The icon must be the CSS class only, not the whole HTML. For example, use :example.',
