@@ -11,16 +11,18 @@ class RecoveryService
 
     /**
      */
-    public function recover(array $ids): int
+    public function recover(array $ids): array
     {
         $this->count = 0;
+        $entities = [];
         foreach ($ids as $id) {
-            if ($this->entity($id)) {
-                $this->count++;
+            $url = $this->entity($id);
+            if ($url) {
+                $entities[$id] = $url;
             }
         }
 
-        return $this->count;
+        return $entities;
     }
 
 
@@ -33,9 +35,9 @@ class RecoveryService
 
     /**
      * Restore an entity and it's child
-     * @return bool if the restore worked
+     * @return string if the restore worked
      */
-    protected function entity(int $id): bool
+    protected function entity(int $id): string
     {
         $entity = Entity::onlyTrashed()->find($id);
         if (!$entity) {
@@ -45,14 +47,16 @@ class RecoveryService
         // @phpstan-ignore-next-line
         $child = $entity->child()->onlyTrashed()->first();
         if (!$child) {
-            return false;
+            return '';
         }
 
-        $entity->restore();
+        //$entity->restore();
 
         // Refresh the child first to not re-trigger the entity creation on save
-        $child->refresh();
-        $child->restoreQuietly();
-        return true;
+        //$child->refresh();
+        //$child->restoreQuietly();
+        $this->count++;
+
+        return $entity->url();
     }
 }

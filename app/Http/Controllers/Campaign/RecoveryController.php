@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Entity\RecoveryService as EntityRecoveryService;
 use App\Services\Posts\RecoveryService;
+use App\Services\Entity\RecoverySetupService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,13 +15,15 @@ class RecoveryController extends Controller
 {
     protected RecoveryService $postService;
     protected EntityRecoveryService $entityService;
+    protected RecoverySetupService $service;
 
-    public function __construct(RecoveryService $postService, EntityRecoveryService $entityService)
+
+    public function __construct(RecoveryService $postService, EntityRecoveryService $entityService, RecoverySetupService $recoverySetupService)
     {
         $this->middleware('auth');
-
         $this->postService = $postService;
         $this->entityService = $entityService;
+        $this->service = $recoverySetupService;
     }
 
     /**
@@ -46,6 +49,19 @@ class RecoveryController extends Controller
         return view('campaigns.recovery.index', compact('elements', 'campaign'));
     }
 
+
+    public function setup(Campaign $campaign)
+    {
+        $this->authorize('recover', $campaign);
+
+        return response()->json(
+            $this->service
+                ->user(auth()->user())
+                ->campaign($campaign)
+                ->setup()
+        );
+    }
+
     public function recover(Request $request, Campaign $campaign)
     {
         if (!$campaign->boosted()) {
@@ -56,10 +72,13 @@ class RecoveryController extends Controller
         }
 
         try {
-            $countEntity = $this->entityService->recover($request->get('entity', []));
-            $countPost = $this->postService->recover($request->get('post', []));
+            $entities = $this->entityService->recover($request->get('entities', []));
+            $posts = $this->postService->recover($request->get('posts', []));
 
-            $count = $countEntity + $countPost;
+            $count = count($entities) + count($posts);
+
+            return response()->json(['entities' => $entities, 'posts' => $posts, 'toast' => trans_choice('campaigns/recovery.success_v2', $count, ['count' => $count])]);
+
             return redirect()
                 ->route('recovery', $campaign)
                 ->with('success', trans_choice('campaigns/recovery.success_v2', $count, ['count' => $count]));

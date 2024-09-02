@@ -20,34 +20,36 @@ class RecoveryService
 
     /**
      */
-    public function recover(array $ids): int
+    public function recover(array $ids): array
     {
-        $count = 0;
+        $posts = [];
         foreach ($ids as $id) {
-            if ($this->post($id)) {
-                $count++;
+            $url = $this->post($id);
+            if ($url) {
+                $posts[$id] = $url;
             }
         }
 
-        return $count;
+        return $posts;
     }
 
     /**
-     * Restore an entity and it's child
-     * @return bool if the restore worked
+     * Restore an entity post.
+     * @return string if the restore worked
      */
-    protected function post(int $id): bool
+    protected function post(int $id): string
     {
         /** @var ?Post $post */
         $post = Post::onlyTrashed()->find($id);
         if (!$post) {
-            return false;
+            return '';
         }
         if ($post->entity->deleted_at) {
-            return false;
+            return '';
         }
-        $post->restore();
+        //$post->restore();
+        $this->count++;
 
-        return true;
+        return $post->entity->url();
     }
 }
