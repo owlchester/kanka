@@ -53,6 +53,16 @@ if (!isset($entity)) {
 @endforeach
             }
         }
+        const attributeApis = {
+            all: {
+                method: 'GET',
+                url: '{{ route('entities.attributes.live-api.index', [$campaign, $entity]) }}'
+            },
+            create: {
+                method: 'POST',
+                url: '{{ route('entities.attributes.live-api.create', [$campaign, $entity]) }}'
+            },
+        }
     </script>
     <script>
         {!! $plugin->version->javascript !!}
