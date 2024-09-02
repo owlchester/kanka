@@ -8,7 +8,7 @@ return [
         'image-link'    => 'Image link',
         'reset_focus'   => 'Reset focus point',
         'save'          => 'Save',
-        'upgrade' => 'Upgrade storage space',
+        'upgrade'       => 'Upgrade storage space',
     ],
     'breadcrumb'    => 'Gallery',
     'bulk'          => [
@@ -28,23 +28,23 @@ return [
         'storage'       => 'There is not enough storage space to upload the selected image(s). Available storage space: :available.',
     ],
     'fields'        => [
-        'details'   =>          'Details',
         'created_by'            => 'Uploaded by',
-        'link'            => 'Link',
+        'details'               => 'Details',
         'ext'                   => 'Ext',
-        'file_type'                   => 'File type',
+        'file_type'             => 'File type',
         'folder'                => 'Folder',
         'image_mentioned_in'    => '{0} This image isn\'t mentioned in any of the campaign\'s entities.|{1} Mentioned in one entry/post.|[2,*] mentioned in :count entries/posts.',
         'image_used_in'         => '{0} This image isn\'t used in any of the campaign\'s entities.|{1} Used as the image of one entity.|[2,*] Used as the image of :count entities.',
+        'link'                  => 'Link',
         'name'                  => 'Name',
         'size'                  => 'Size',
-        'used_in'                  => 'Used in',
-        'unused'                  => 'Not used anywhere',
+        'unused'                => 'Not used anywhere',
+        'used_in'               => 'Used in',
     ],
     'focus'         => [
+        'locked'    => 'A premium campaign is required to set the focus point of an image.',
         'removed'   => 'Image focus removed.',
         'updated'   => 'Image focus updated.',
-        'locked' => 'A premium campaign is required to set the focus point of an image.',
     ],
     'new_folder'    => [
         'title' => 'New folder',
@@ -54,14 +54,14 @@ return [
     'placeholders'  => [
         'search'    => 'Search image name...',
     ],
+    'storage'       => [
+        'of'    => 'of',
+        'title' => 'Storage',
+    ],
     'title'         => 'Campaign :campaign Gallery',
     'update'        => [
         'folder'    => 'Folder modified.',
         'success'   => 'File modified.',
-    ],
-    'storage' => [
-        'title' => 'Storage',
-        'of' => 'of',
     ],
     'uploader'      => [
         'add'           => 'Add new',

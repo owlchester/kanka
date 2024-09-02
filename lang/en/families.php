@@ -8,8 +8,8 @@ return [
         'members'   => 'Members',
     ],
     'hints'         => [
-        'members'   => 'Members of a family are listed here. A character can be added to a family by editing the desired character and using the "Family" dropdown.',
         'is_extinct'    => 'This family is extinct.',
+        'members'       => 'Members of a family are listed here. A character can be added to a family by editing the desired character and using the "Family" dropdown.',
     ],
     'members'       => [
         'create'    => [

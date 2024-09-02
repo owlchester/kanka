@@ -8,6 +8,7 @@ return [
         'image-link'    => 'Lien d\'image',
         'reset_focus'   => 'Réinitialiser le centrage',
         'save'          => 'Enregistrer',
+        'upgrade'       => 'Augmenter l\'espace de stockage',
     ],
     'breadcrumb'    => 'Galerie',
     'bulk'          => [
@@ -28,14 +29,20 @@ return [
     ],
     'fields'        => [
         'created_by'            => 'Téléchargé par',
+        'details'               => 'Détails',
         'ext'                   => 'Ext',
+        'file_type'             => 'Type de fichier',
         'folder'                => 'Dossier',
         'image_mentioned_in'    => '{0} Mentionné comme image sur aucune entité.|{1} Mentionné comme image sur une entité.|[2,*] Mentionné comme image sur :count entités.',
         'image_used_in'         => '{0} Utilisé comme image sur aucune entité.|{1} Utilisé comme image sur une entité.|[2,*] Utilisé comme image sur :count entités.',
+        'link'                  => 'Lien',
         'name'                  => 'Nom',
         'size'                  => 'Taille',
+        'unused'                => 'N\'est utilisé nulle part',
+        'used_in'               => 'Utilisé dans',
     ],
     'focus'         => [
+        'locked'    => 'Définir le point focal d\'une image requiert une campagne premium.',
         'removed'   => 'Centrage de l\'image retiré.',
         'updated'   => 'Centrage de l\'image mis à jour.',
     ],
@@ -46,6 +53,10 @@ return [
     'pitch'         => 'Télécharge des images dans la galerie de la campagne directement depuis l\'éditeur de text.',
     'placeholders'  => [
         'search'    => 'Recherche d\'image...',
+    ],
+    'storage'       => [
+        'of'    => 'de',
+        'title' => 'Espace',
     ],
     'title'         => 'Galerie de la campagne :campaign',
     'update'        => [

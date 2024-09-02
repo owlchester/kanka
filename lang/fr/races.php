@@ -16,6 +16,9 @@ return [
         'members'   => 'Membres',
     ],
     'helpers'       => [],
+    'hints'         => [
+        'is_extinct'    => 'Cette race est éteinte.',
+    ],
     'index'         => [],
     'members'       => [
         'create'    => [
