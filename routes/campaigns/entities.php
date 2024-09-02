@@ -131,13 +131,13 @@ Route::get('/w/{campaign}/entities/{entity}/attributes/live-edit/{attribute}', [
 Route::post('/w/{campaign}/entities/{entity}/attributes/live-edit/{attribute}/save', [App\Http\Controllers\Entity\Attributes\LiveController::class, 'save'])
     ->name('entities.attributes.live.save');
 
-Route::get('/w/{campaign}/entities/{entity}/attributes/api', [App\Http\Controllers\Entity\Attributes\LiveApiController::class, 'index'])
+Route::get('/w/{campaign}/entities/{entity}/attributes/live-api', [App\Http\Controllers\Entity\Attributes\LiveApiController::class, 'index'])
     ->name('entities.attributes.live-api.index');
-Route::post('/w/{campaign}/entities/{entity}/attributes/api', [App\Http\Controllers\Entity\Attributes\LiveApiController::class, 'store'])
+Route::post('/w/{campaign}/entities/{entity}/attributes/live-api', [App\Http\Controllers\Entity\Attributes\LiveApiController::class, 'store'])
     ->name('entities.attributes.live-api.create');
-Route::post('/w/{campaign}/entities/{entity}/attributes/api/{attribute}', [App\Http\Controllers\Entity\Attributes\LiveApiController::class, 'update'])
+Route::post('/w/{campaign}/entities/{entity}/attributes/live-api/{attribute}', [App\Http\Controllers\Entity\Attributes\LiveApiController::class, 'update'])
     ->name('entities.attributes.live-api.update');
-Route::post('/w/{campaign}/entities/{entity}/attributes/api/{attribute}/delete', [App\Http\Controllers\Entity\Attributes\LiveApiController::class, 'destroy'])
+Route::post('/w/{campaign}/entities/{entity}/attributes/live-api/{attribute}/delete', [App\Http\Controllers\Entity\Attributes\LiveApiController::class, 'destroy'])
     ->name('entities.attributes.live-api.delete');
 
 Route::model('attribute', App\Models\Attribute::class);
