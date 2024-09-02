@@ -11,8 +11,8 @@ return [
             'title' => 'Meurtier/Meurtrière',
         ],
     ],
-    'helper'        => 'Suis ta progression pour débloquer divers accomplissements pour la campagne. Ces chiffres sont mis à jour une fois toutes les 24 heures.',
-    'pitch'         => 'Suis ton progrès dans la worldbuilding de ton monde avec nos accomplissements.',
+    'helper'        => 'Suis la progression pour débloquer divers succès pour la campagne. Ces chiffres sont mis à jour une fois toutes les 24 heures.',
+    'pitch'         => 'Suis ton progrès dans le worldbuilding de ton monde en débloquant des succès.',
     'placeholder'   => ':amount de :target',
     'targets'       => [
         'calendars' => 'Créer :target calendriers',
