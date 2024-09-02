@@ -17,6 +17,7 @@ class LiveAttributeResource extends JsonResource
         $formatted = [
             'id' => $attribute->id,
             'name' => $attribute->name,
+            'type_id' => $attribute->type_id,
             'value' => $attribute->isCheckbox() ? (bool) $attribute->value : $attribute->value,
             'is_section' => $attribute->isSection(),
             'is_number' => $attribute->isNumber(),
