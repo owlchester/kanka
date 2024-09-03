@@ -19,23 +19,28 @@ $source = empty($entity->image_path) && !empty($entity->image_uuid) ? $entity->i
 @section('content')
 
     @include('partials.errors')
+
+    @if ($campaign->boosted() && empty($entity->image_path) && !empty($entity->image_uuid))
+        <x-alert type="warning">
+            <p>{!! __('entities/image.focus.warning', ['gallery' => '<a href="' . route('gallery', $campaign) . '">' . __('sidebar.gallery') . '</a>']) !!}</p>
+        </x-alert>
+    @endif
+
     <x-box>
     @if ($campaign->boosted())
-        @if(empty($entity->image_path) && !empty($entity->image_uuid))
-            <x-alert type="warning">
-                <p>{!! __('entities/image.focus.warning', ['gallery' => '<a href="' . route('gallery', $campaign) . '">' . __('sidebar.gallery') . '</a>']) !!}</p>
-            </x-alert>
-        @else
+        <x-grid type="1/1">
+        @if(!empty($entity->image_path))
             <x-helper>{{ __('entities/image.focus.helper') }}</x-helper>
         @endif
 
-        <div class="focus-selector relative inline-block">
+        <div class="focus-selector relative flex mx-auto max-w-xl">
             <div class="focus absolute text-white drop-shadow cursor-pointer text-2xl @if(empty($source->focus_x))hidden @endif" data-focus-x="{{ $source->focus_x }}" data-focus-y="{{ $source->focus_y }}" >
                 <x-icon class="fa-duotone fa-arrow-up-left-from-circle fa-2x hover:text-error" />
             </div>
 
             <img class="focus-image cursor-crosshair" src="{{ \App\Facades\Avatar::entity($entity)->original() }}" alt="img" />
         </div>
+        </x-grid>
 
         <x-form :action="['entities.image.focus', $campaign, $entity]">
             <x-dialog.footer>
