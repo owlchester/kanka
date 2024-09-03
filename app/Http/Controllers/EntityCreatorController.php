@@ -136,7 +136,9 @@ class EntityCreatorController extends Controller
                 }
             } else {
                 //If position = 0 the post's position is last, else the post's position is first.
-                $this->validateEntity($values, $validator->rules());
+                $rules = $validator->rules();
+                $rules['entity_id'] = 'required|integer|exists:entities,id';
+                $this->validateEntity($values, $rules);
                 if ($values['position'] == 0) {
                     $new = Post::create($values);
                 } else {
