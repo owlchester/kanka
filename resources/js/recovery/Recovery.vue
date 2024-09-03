@@ -3,30 +3,20 @@
         <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
     </div>
     <div v-else class="flex flex-col gap-4 md:gap-5">
-        <div class="flex gap-4 items-end">
-            <div v-if="!premium">
-                <a :href="upgradeLink" v-html="trans('upgrade')" class="btn2 btn-default"></a>
-            </div>
-        </div>
-
         <div class="flex gap-4 flex-wrap sticky top-14 z-50">
             <div class="flex gap-2 grow">
                 <div class="flex gap-0.5">
                     <input type="text" placeholder="Search" @input="handleSearchInput" />
                 </div>
                 <div class="relative">
-                    
                     <button class="btn2 btn-default btn-sm" @click="toggleFilters">
                         <i class="fa-solid fa-filter" aria-hidden="true" />
-                        <span v-html="trans('filters')" class="hidden md:inline"></span>
-                        <span v-if="showUnused">(1)</span>
+                        <span v-html="trans('order_by_' + filter)" class="hidden md:inline"></span>
                     </button>
                     <div class="border shadow rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
-                        <div class="flex gap-2 items-center">
-                            <label @click="orderByNew" class="cursor-pointer"  v-html="trans('newest')"></label>
-                            <label @click="orderByOld" class="cursor-pointer"  v-html="trans('oldest')"></label>
-                            <label @click="orderByType" class="cursor-pointer"  v-html="trans('type')"></label>
-                        </div>
+                        <label @click="orderByNew" class="cursor-pointer" v-html="trans('newest')"></label>
+                        <label @click="orderByOld" class="cursor-pointer" v-html="trans('oldest')"></label>
+                        <label @click="orderByType" class="cursor-pointer" v-html="trans('type')"></label>
                     </div>
                 </div>
             </div>
@@ -60,44 +50,30 @@
                         :file="file"
                         :isBulking="isBulking"
                         :i18n="i18n"
-                        @select="selectFile(file)"
                         @recover="recoverElement(file)"
                     >
                     </element>
-                    <div class="flex items-center justify-center grow" v-if="nextPage">
-                        <button :class="loadMoreClass()" @click="openNextPage()" v-html="trans('load_more')"></button>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <dialog ref="updateDialog" class="dialog rounded-2xl text-center" v-if="initiated">
+    <dialog ref="newDialog" class="dialog rounded-2xl text-center" v-if="initiated">
         <header class="bg-base-200 sm:rounded-t">
-            <h4 v-html="trans('update')"></h4>
-            <button type="button" class="text-base-content" @click="closeModal(updateDialog)" title="Close">
+            <h4 v-html="trans('premium_title')"></h4>
+            <button type="button" class="text-base-content" @click="closeModal(newDialog)" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>
             </button>
         </header>
         <article class="max-w-4xl flex flex-col gap-2 text-left">
             <div class="flex flex-col gap-1 w-full">
-                <label v-html="trans('visibility')"></label>
-                <select class="w-full" v-model="bulkVisibility">
-                    <option v-for="(name, id) in bulkVisibilities" :value="id" v-html="name"></option>
-                </select>
-            </div>
-            <div class="flex flex-col gap-1 w-full">
-                <label v-html="trans('folder')"></label>
-                <select class="w-full" v-model="bulkFolder">
-                    <option v-for="(name, id) in folders" :value="id" v-html="name"></option>
-                </select>
+                <label v-html="trans('premium')"></label>
             </div>
         </article>
         <footer class="bg-base-200 p-2">
             <menu class="">
-                <button type="submit" class="btn2 btn-primary" @click="bulkRecover" v-html="trans('change')">
-                </button>
+                <a :href="upgradeLink" v-html="trans('upgrade')" class="btn2 btn-default"></a>
             </menu>
         </footer>
     </dialog>
@@ -105,8 +81,7 @@
 
 <script setup lang="ts">
 
-import {onMounted, onUnmounted, ref} from "vue";
-import Preview from "./Preview.vue";
+import {onMounted, ref} from "vue";
 import Element from "./Element.vue";
 
 const props = defineProps<{
@@ -115,99 +90,33 @@ const props = defineProps<{
 
 const initiated = ref(false)
 const loading = ref(false)
-const loadingMore = ref(false)
-const canUpload = ref(false)
 const isBulking = ref(false)
 const premium = ref(false)
-const canManage = ref(false)
-const breadcrumbs = ref()
-const nextPage = ref()
 const currentFile = ref()
-
-// Search stuff
 const searchTerm = ref()
 const lastTerm = ref()
-const searching = ref(false)
 const typingTimeout = ref(null)
-
 const files = ref([])
-const homeFiles = ref([])
-const folder = ref()
+const filter = ref('newest')
 const i18n = ref()
-const isHome = ref(true)
-
-// New folder
-const creating = ref(false)
 const newDialog = ref()
-const folderNameField = ref()
-const visibilities = ref()
-const bulkVisibilities = ref()
-
-// Visibility folder
-const updateDialog = ref()
-const bulkVisibility = ref()
-const bulkFolder = ref()
-const orderBy = ref()
-
-// Move
-const folders = ref()
 const updateApi = ref()
-
-// Upload
 const moving = ref(false)
-const uploading = ref(false)
-
-
-// Filters
 const showFilters = ref(false)
-const showUnused = ref(false)
-
-// Space
 const upgradeLink = ref()
 
 onMounted(() => {
     axios.get(props.api)
         .then((res) => {
-            //console.log(res.data.elements)
             initiated.value = true
             files.value = res.data.elements
-            homeFiles.value = res.data.files
             i18n.value = res.data.i18n
             updateApi.value = res.data.api.recovery
-            nextPage.value = res.data.next
-            visibilities.value = res.data.visibilities
-            bulkVisibilities.value = res.data.bulkVisibilities
-            canUpload.value = res.data.acl.upload
             premium.value = res.data.acl.premium
-            canManage.value = res.data.acl.manage
-
             upgradeLink.value = res.data.upgrade
         })
 
-    window.addEventListener('keydown', handleEscapeKey)
 })
-
-onUnmounted(() => {
-    window.removeEventListener('keydown', handleEscapeKey);
-})
-
-const handleEscapeKey = (event) => {
-    if (event.key === 'Escape' || event.key === 'Esc') {
-        if (uploading.value) {
-            cancelUpload()
-        }
-        if (currentFile.value) {
-            currentFile.value = null
-        }
-        if (isBulking.value) {
-            isBulking.value = null
-        }
-        else if (showFilters.value) {
-            showFilters.value = false
-        }
-    }
-}
-
 
 const trans = (key) => {
     if (!i18n.value[key]) {
@@ -217,32 +126,12 @@ const trans = (key) => {
     return i18n.value[key]
 }
 
-const startBulking = () => {
-    isBulking.value = true;
-}
-
-const stopBulking = () => {
-    isBulking.value = false;
-}
-
-const openUpdate = () => {
-    openDialog(updateDialog.value)
-    bulkVisibility.value = null
-    bulkFolder.value = null
-}
-
 const gridClass = () => {
-    let css = 'grid grid-cols-2 sm:grid-cols-3 md:flex gap-2 sm:gap-3 md:gap-4 md:flex-wrap'
+    let css = "grid grid-cols-3 gap-2"
     if (currentFile.value) {
         css += ' basis-2/4 md:basis-3/4'
     }
     return css
-}
-
-const selectFile = (file) => {
-        let f = files.value.find(f => f.id === file.id)
-        f.is_selected = !f.is_selected
-        return;
 }
 
 const selectElements = (file) => {
@@ -260,8 +149,14 @@ const deselectElements = (file) => {
 }
 
 const recoverElement = (file) => {
-        let f = files.value.find(f => f.id === file.id)
-        f.is_recovering = true
+
+    if (!premium.value) {
+        openDialog(newDialog.value)
+        return
+    }
+
+    let f = files.value.find(f => f.id === file.id)
+    f.is_recovering = true
 
     if (moving.value) {
         return
@@ -277,14 +172,14 @@ const recoverElement = (file) => {
         data.entities = [f.id]
         data.posts = []
     }
-        axios.post(updateApi.value, data).then(res => {
+
+    axios.post(updateApi.value, data).then(res => {
         moving.value = false
         
         const entities = Object.keys(res.data.entities).map(
             key => res.data.entities[key]
         );
 
-        //console.log(res.data.entities, entities)
         let ids = files.value.filter(f => f.is_recovering && f.type == 'entity')
         let postIds = files.value.filter(f => f.is_recovering && f.type == 'post')
         
@@ -303,12 +198,10 @@ const recoverElement = (file) => {
             }
         })
 
-
         window.showToast(res.data.toast)
-        })
+    })
 
-
-        return;
+    return;
 }
 
 const selectAll = () => {
@@ -319,33 +212,6 @@ const selectAll = () => {
 const deselectAll = () => {
     files.value.forEach(deselectElements)
     return
-}
-
-const openFolder = (file) => {
-    loading.value = true
-    axios.get(file.open)
-        .then(res => {
-            folder.value = file
-            breadcrumbs.value = res.data.breadcrumbs
-            files.value = res.data.files
-            nextPage.value = res.data.next
-            loading.value = false
-            isHome.value = false
-
-            //window.history.pushState({}, "", res.data.url);
-        })
-}
-
-const home = () => {
-    loading.value = true
-    files.value = homeFiles.value
-    currentFile.value = null
-    folder.value = null
-    loading.value = false
-    isHome.value = true
-    isBulking.value = false
-
-    //window.history.pushState({}, "", homeUrl.value);
 }
 
 const handleSearchInput = (event) => {
@@ -378,25 +244,6 @@ const search = () => {
 
 }
 
-const openNextPage = () => {
-    loadingMore.value = true
-    axios.get(nextPage.value).then(res => {
-        res.data.files.forEach(file => {
-            files.value.push(file)
-        })
-        nextPage.value = res.data.next
-        loadingMore.value = false
-    })
-}
-
-const loadMoreClass = () => {
-    let css = 'btn2 btn-secondary'
-    if (loadingMore.value) {
-        css += ' loading btn-disabled'
-    }
-    return css
-}
-
 const hasSelection = () => {
     let count = files.value.filter(f => f.is_selected).length
     if (count === 0) {
@@ -405,35 +252,13 @@ const hasSelection = () => {
     return true
 }
 
-const openNewFolder = () => {
-    openDialog(newDialog.value)
-    folderNameField.value.focus()
-}
+const bulkRecover = () => {
 
-const openDialog = (dialog) => {
-    dialog.showModal()
-    dialog.addEventListener('click', clickOutside);
-}
-
-const clickOutside = (event) => {
-    let rect = event.target.getBoundingClientRect()
-    let isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
-        rect.left <= event.clientX && event.clientX <= rect.left + rect.width)
-    if (!isInDialog && event.target.tagName === 'DIALOG') {
-        closeModal(event.target)
-    }
-}
-
-const closeModal = (modal) => {
-    // DOn't close the modal while it's thinking
-    if (creating.value) {
+    if (!premium.value) {
+        openDialog(newDialog.value)
         return
     }
-    modal.removeEventListener('click', clickOutside)
-    modal.close()
-}
 
-const bulkRecover = () => {
     if (moving.value) {
         return
     }
@@ -452,12 +277,6 @@ const bulkRecover = () => {
     axios.post(updateApi.value, data).then(res => {
         moving.value = false
 
-        // Remove old selected files from the home folder
-        //let selectedFiles = homeFiles.value.filter(i => i.is_selected)
-
-        //let selectedFiles = files.value.find(f => f.id === file.id)
-
-        
         const entities = Object.keys(res.data.entities).map(
             key => res.data.entities[key]
         );
@@ -481,27 +300,6 @@ const bulkRecover = () => {
 
 
         window.showToast(res.data.toast)
-        //closeModal(updateDialog.value)
-    })
-}
-
-const showErrors = (err) => {
-    if (!err.response) {
-        return
-    }
-    if (err.response.data.error) {
-        window.showToast(err.response.data.error, 'error')
-        return
-    }
-
-    if (err.response && err.response.status === 403 && err.response.data.message) {
-        window.showToast(trans.value.unauthorized, 'error')
-        return
-    }
-
-    const errorKeys = Object.keys(err.response.data.errors)
-    errorKeys.forEach(i => {
-        window.showToast(err.response.data.errors[i][0], 'error')
     })
 }
 
@@ -512,8 +310,6 @@ const countSelected = () => {
     }
     return '(' + count + ')'
 }
-
-
 
 const toggleFilters = () => {
     showFilters.value = !showFilters.value;
@@ -540,7 +336,7 @@ const orderByNew = () => {
     files.value.sort(function(a, b){return a.position - b.position});
     loading.value = false
     showFilters.value = false
-
+    filter.value = 'newest'
 }
 
 const orderByOld = () => {
@@ -548,7 +344,7 @@ const orderByOld = () => {
     files.value.sort(function(a, b){return b.position - a.position});
     loading.value = false
     showFilters.value = false
-
+    filter.value = 'oldest'
 }
 
 const orderByType = () => {
@@ -556,7 +352,26 @@ const orderByType = () => {
     files.value.sort(function(a, b){return trans(a.type_id).localeCompare(trans(b.type_id))});
     loading.value = false
     showFilters.value = false
-
+    filter.value = 'type'
 }
 
+const openDialog = (dialog) => {
+    console.log(dialog)
+    dialog.showModal()
+    dialog.addEventListener('click', clickOutside);
+}
+
+const clickOutside = (event) => {
+    let rect = event.target.getBoundingClientRect()
+    let isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX && event.clientX <= rect.left + rect.width)
+    if (!isInDialog && event.target.tagName === 'DIALOG') {
+        closeModal(event.target)
+    }
+}
+
+const closeModal = (modal) => {
+    modal.removeEventListener('click', clickOutside)
+    modal.close()
+}
 </script>

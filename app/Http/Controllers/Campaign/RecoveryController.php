@@ -78,10 +78,6 @@ class RecoveryController extends Controller
             $count = count($entities) + count($posts);
 
             return response()->json(['entities' => $entities, 'posts' => $posts, 'toast' => trans_choice('campaigns/recovery.success_v2', $count, ['count' => $count])]);
-
-            return redirect()
-                ->route('recovery', $campaign)
-                ->with('success', trans_choice('campaigns/recovery.success_v2', $count, ['count' => $count]));
         } catch (Exception $e) {
             return redirect()
                 ->route('recovery', $campaign)

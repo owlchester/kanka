@@ -187,12 +187,12 @@ class Entity extends Model
     {
         $campaign = CampaignLocalization::getCampaign();
         try {
+            $routeOptions = array_merge([$campaign, $this->entity_id], $options);
             if ($action == 'index') {
                 return route($this->pluralType() . '.index', $campaign);
             } elseif ($action === 'show') {
-                return route('entities.show', [$campaign, $this]);
+                return route('entities.show', $routeOptions);
             }
-            $routeOptions = array_merge([$campaign, $this->entity_id], $options);
             return route($this->pluralType() . '.' . $action, $routeOptions);
         } catch (Exception $e) {
             return route('dashboard', $campaign);

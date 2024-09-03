@@ -50,11 +50,11 @@ class RecoveryService
             return '';
         }
 
-        //$entity->restore();
+        $entity->restore();
 
         // Refresh the child first to not re-trigger the entity creation on save
-        //$child->refresh();
-        //$child->restoreQuietly();
+        $child->refresh();
+        $child->restoreQuietly();
         $this->count++;
 
         return $entity->url();

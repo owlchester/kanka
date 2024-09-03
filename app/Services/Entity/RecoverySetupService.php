@@ -2,13 +2,9 @@
 
 namespace App\Services\Entity;
 
-use App\Facades\CampaignCache;
-use App\Models\Campaign;
-use App\Models\Entity;
 use App\Services\Gallery\StorageService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Barryvdh\Reflection\DocBlock\Type\Collection;
 use Illuminate\Support\Facades\DB;
 
 class RecoverySetupService
@@ -90,62 +86,25 @@ class RecoverySetupService
     {
         $translations = [
             '0' => __('entities.post'),
-            'filters' => __('bookmarks.fields.filters'),
-            'new_folder' => __('campaigns/gallery.uploader.new_folder'),
-            'select' => __('crud.select'),
-            'select_all' => 'Select all',
-            'deselect_all' => 'Cancel selection',
-            'restore'       => 'Restore',
-            'restore_selected' => 'Restore selected',
-            'cancel' => __('crud.cancel'),
-            'remove' => __('crud.remove'),
-            'create' => __('crud.create'),
-            'update' => __('crud.update'),
-            'move' => __('crud.actions.move'),
-            'home' => __('Home'),
-            'load_more' => __('Load more'),
-            
-            'recover' => 'recover',
-            'newest'  => 'newest first',
-            'oldest'  => 'oldest first',
-            'type'  => 'type',
-
-            // Space
-            'storage' => __('campaigns/gallery.storage.title'),
-            'of' => __('campaigns/gallery.storage.of'),
-            'upgrade' => __('campaigns/gallery.actions.upgrade'),
-
-            // Files
-            'details' => __('campaigns/gallery.fields.details'),
-            'used_in' => __('campaigns/gallery.fields.used_in'),
-            'unused' => __('campaigns/gallery.fields.unused'),
-            'name' => __('crud.fields.name'),
-            'delete' => __('crud.remove'),
-            'save' => __('crud.save'),
-            'saved' => __('gallery.file.saved'),
+            'order_by_newest' => __('campaigns/recovery.order.newest'),
+            'order_by_oldest' => __('campaigns/recovery.order.oldest'),
+            'order_by_type' => __('campaigns/recovery.order.type'),
+            'select_all' => __('general.select_all'),
+            'deselect_all' => __('general.deselect_all'),
+            'recover'       => __('campaigns/recovery.actions.recover'),
+            'restore_selected' => __('campaigns/recovery.actions.recover_selected'),
+            'newest'  => __('campaigns/recovery.order.newest_first'),
+            'oldest'  => __('campaigns/recovery.order.oldest_first'),
+            'type'  => __('campaigns/recovery.order.type_order'),
+            'premium_title' =>  __('callouts.premium.title'),
+            'premium' => __('campaigns/recovery.premium'),
+            'upgrade'  => __('cookieconsent.link'),
             'confirm' => __('crud.click_modal.confirm'),
-            'visibility' => __('crud.fields.visibility'),
-            'size' => __('campaigns/gallery.fields.size'),
-            'file_type' => __('campaigns/gallery.fields.file_type'),
-            'uploaded_by' => __('campaigns/gallery.fields.created_by'),
-            'focus_point' => __('campaigns/gallery.actions.focus_point'),
-            'link' => __('campaigns/gallery.fields.link'),
-            'open' => __('crud.actions.open'),
-            'focus_locked' => __('campaigns/gallery.focus.locked'),
-            'folder' => __('campaigns/gallery.fields.folder'),
-
-            'change' => __('crud.actions.change'),
-
-            // Filters
-            'filter_only_unused' => __('gallery.filters.only_unused'),
-
-            'visibility.1' => __('crud.visibilities.all'),
-            'visibility.2' => __('crud.visibilities.admin'),
-            'visibility.3' => __('crud.visibilities.admin-self'),
-            'visibility.4' => __('crud.visibilities.self'),
-            'visibility.5' => __('crud.visibilities.members'),
+            'deleted_at' => __('campaigns/recovery.fields.deleted_at', ['date' => 'placeholder', 'user' => 'placeholder']),
+            'recovery_success' => __('campaigns/recovery.name_link', ['name' => '<a href="placeholder">placeholder</a>']),
+            
         ];
-
+        // Modules
         $modules = config('entities.ids');
         foreach ($modules as $name => $id) {
             $moduleName = __('entities.' . $name);

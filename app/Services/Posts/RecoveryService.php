@@ -47,9 +47,9 @@ class RecoveryService
         if ($post->entity->deleted_at) {
             return '';
         }
-        //$post->restore();
+        $post->restore();
         $this->count++;
-
-        return $post->entity->url();
+        $options = ['#post-' . $post->id];
+        return $post->entity->url('show', $options);
     }
 }
