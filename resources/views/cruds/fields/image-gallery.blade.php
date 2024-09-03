@@ -24,7 +24,7 @@ if (!empty($entity) && $entity->hasImage()) {
 }
 
 // If the image is from the gallery and the user can't browse or upload, disable the field
-$canBrowse = isset($campaign) && auth()->user()->can('browse', [\App\Models\Image::class, $campaign]);
+$canBrowse = isset($campaign) && (auth()->user()->can('browse', [\App\Models\Image::class, $campaign]) || auth()->user()->can('create', [\App\Models\Image::class, $campaign]));
 $fieldname = $fieldname ?? 'entity_image_uuid';
 if (!empty($entity) && !empty($entity->image) && !$canBrowse) {
     ?><input type="hidden" name="{{ $fieldname }}" value="{{ $model->entity->image_uuid }}" /><?php
