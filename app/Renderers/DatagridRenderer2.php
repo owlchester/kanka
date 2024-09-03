@@ -273,7 +273,7 @@ class DatagridRenderer2
     public function rowAttributes(mixed $row): string
     {
         $attributes = [];
-        foreach($row->rowAttributes() as $attr => $val) {
+        foreach ($row->rowAttributes() as $attr => $val) {
             if ($val instanceof UnitEnum) {
                 // @phpstan-ignore-next-line
                 $val = $val->value;

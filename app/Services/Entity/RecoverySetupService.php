@@ -75,11 +75,11 @@ class RecoverySetupService
 
         $users = $this->campaign->users()->pluck('users.name', 'users.id')->toArray();
         foreach ($elements as $key => $element) {
-            $element->deleted_name = isset($users[$element->deleted_by]) ? $users[$element->deleted_by] : 'Unknown';
+            $element->deleted_name = $users[$element->deleted_by] ?? 'Unknown';
             $element->date = \Carbon\Carbon::createFromTimeStamp(strtotime($element->deleted_at))->diffForHumans();
             $element->position = $key;
         }
-        return collect($elements)->map(function($x){ return (array) $x; })->toArray(); 
+        return collect($elements)->map(function ($x) { return (array) $x; })->toArray();
     }
 
     protected function i18n(): array
@@ -102,7 +102,7 @@ class RecoverySetupService
             'confirm' => __('crud.click_modal.confirm'),
             'deleted_at' => __('campaigns/recovery.fields.deleted_at', ['date' => 'placeholder', 'user' => 'placeholder']),
             'recovery_success' => __('campaigns/recovery.name_link', ['name' => '<a href="placeholder">placeholder</a>']),
-            
+
         ];
         // Modules
         $modules = config('entities.ids');
@@ -113,7 +113,7 @@ class RecoverySetupService
             }
             $translations[$id] = $moduleName;
         }
-        return $translations;        
+        return $translations;
     }
 
     protected function upgradeLink(): ?string
