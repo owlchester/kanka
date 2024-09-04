@@ -134,6 +134,7 @@ return [
         'copy_links'        => 'Kopírovať linky objektu',
         'copy_permissions'  => 'Kopírovať oprávnenia (tieto majú prioritu pred nastavenými v karte oprávnení)',
         'copy_posts'        => 'Kopírovať príspevky (inkl. ich oprávnení)',
+        'copy_reminders'    => 'Kopírovať pripomienky',
         'creator'           => 'Autor',
         'date_range'        => 'Obdobie',
         'entity'            => 'Objekt',
@@ -171,6 +172,7 @@ return [
         ],
         'errors'    => [
             'max'       => 'Max. počet (:max) súborov v tomto objekte dosiahnutý.',
+            'max_size'  => 'Kampaň dosiahla maximálnu kapacitu úložiska.',
             'no_files'  => 'Žiadne súbory.',
         ],
         'files'     => 'Nahraté súbory',
@@ -336,6 +338,9 @@ return [
     'relations'                 => [],
     'remove'                    => 'Zmazať',
     'rename'                    => 'Premenovať',
+    'reorder'                   => [
+        'empty' => 'Neexistuje obsah na preusporiadanie.',
+    ],
     'save'                      => 'Uložiť',
     'save_and_close'            => 'Uložiť a zavrieť',
     'save_and_copy'             => 'Uložiť a kopírovať',

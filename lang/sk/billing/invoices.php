@@ -12,6 +12,7 @@ return [
         'invoice'   => 'Faktúra',
         'status'    => 'Stav',
     ],
+    'paypal'        => 'Prosím, ber na vedomie, že sa tu zobrazujú iba platby uskutočnené cez Stripe, a nie cez PayPal.',
     'status'        => [
         'paid'      => 'Zaplatená',
         'pending'   => 'Očakáva sa platba',

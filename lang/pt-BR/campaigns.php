@@ -128,6 +128,7 @@ TEXT
             'already_member'    => 'Você já é um membro dessa campanha.',
             'inactive_token'    => 'Esse token já foi utilizado, ou a campanha não existe mais.',
             'invalid_token'     => 'Esse token não é mais válido.',
+            'join'              => 'Faça login ou registre uma nova conta para participar da :campaign.',
             'login'             => 'Por favor entre ou cadastre-se para juntar-se a campanha.',
         ],
         'fields'                => [
@@ -320,6 +321,7 @@ TEXT
                 ],
                 'manage'        => 'Permitir a edição da campanha como um administrador de campanha faria, sem permitir que os membros excluam a campanha.',
                 'members'       => 'Permitir convidar novos membros para a campanha.',
+                'not_public'    => 'A campanha não é pública. Permissões para a função pública podem ser definidas, mas serão ignoradas. Vá e edite a campanha para torná-la pública.',
                 'permission'    => 'Permitir a configuração de permissões em entidades desse tipo que eles podem editar.',
                 'read'          => 'Permitir a visualização de todas as entidades deste tipo que não sejam privadas.',
             ],

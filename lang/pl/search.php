@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'fulltext'      => 'Szukaj wszędzie',
     'lookup'        => [
         'empty'     => 'Brak wyników',
         'hint'      => 'Wpisz przynajmniej 3 litery, by przeszukać całą kampanię.',

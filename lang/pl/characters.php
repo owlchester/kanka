@@ -12,6 +12,12 @@ return [
     'destroy'       => [],
     'dice_rolls'    => [],
     'edit'          => [],
+    'families'      => [
+        'reorder'   => [
+            'success'   => 'Zmieniono rodziny postaci.',
+        ],
+        'title'     => 'Zarządzanie rodzinami :name',
+    ],
     'fields'        => [
         'age'                       => 'Wiek',
         'is_appearance_pinned'      => 'Przypnij wygląd',
@@ -85,6 +91,12 @@ return [
             'quest_giver'   => 'Zadania, które postać zleciła.',
             'quest_member'  => 'Zadania, w których postać się pojawia.',
         ],
+    ],
+    'races'         => [
+        'reorder'   => [
+            'success'   => 'Zmieniono rasy postaci.',
+        ],
+        'title'     => 'Zarządzanie rasami :name',
     ],
     'sections'      => [
         'appearance'    => 'Wygląd',

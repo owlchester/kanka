@@ -16,7 +16,8 @@ return [
     ],
     'default_position'  => 'Desorganizado',
     'destroy'           => [
-        'success'   => 'Item :item removido de :entuty.',
+        'success'           => 'Item :item removido de :entuty.',
+        'success_position'  => 'Itens em :position removidos de :entity.',
     ],
     'fields'            => [
         'amount'                => 'Quantidade',

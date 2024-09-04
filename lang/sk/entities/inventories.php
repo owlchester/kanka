@@ -16,7 +16,8 @@ return [
     ],
     'default_position'  => 'Bez zoradenia',
     'destroy'           => [
-        'success'   => 'Predmet :name odstránený z :entity.',
+        'success'           => 'Predmet :name odstránený z :entity.',
+        'success_position'  => 'Predmet na :position odstránený z :entity.',
     ],
     'fields'            => [
         'amount'                => 'Počet',

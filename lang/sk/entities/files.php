@@ -16,6 +16,9 @@ return [
         'file'  => 'Súbor',
         'name'  => 'Meno súboru',
     ],
+    'max'               => [
+        'title' => 'Limit dosiahnutý',
+    ],
     'update'            => [
         'success'   => 'Súbor :file aktualizovaný.',
     ],

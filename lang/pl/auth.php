@@ -34,6 +34,7 @@ return [
         ],
         'login_with_facebook'   => 'Zaloguj przez Facebooka',
         'login_with_google'     => 'Zaloguj przez Google',
+        'login_with_x'          => 'Logowanie przez X (dawniej Twitter)',
         'new_account'           => 'Zarejestruj nowe konto',
         'or'                    => 'LUB',
         'password_forgotten'    => 'Nie pamiętasz hasła?',
@@ -56,6 +57,7 @@ return [
         'log-in'                    => 'Zaloguj się',
         'register_with_facebook'    => 'Zarejestruj przez Facebooka',
         'register_with_google'      => 'Zarejestruj przez Google',
+        'register_with_x'           => 'Rejestracja przez X (dawniej Twitter)',
         'submit'                    => 'Zarejestruj',
         'title'                     => 'Rejestracja',
         'tos'                       => 'Rejestrując konto zgadzasz się na nasze :terms i :privacy',
@@ -75,4 +77,5 @@ return [
         'title'     => 'Autoryzacja dwuetapowa',
     ],
     'throttle'  => 'Za dużo nieudanych prób logowania. Proszę spróbować za :seconds sekund.',
+    'x-twitter' => 'X, dawniej pod nazwą Twitter',
 ];

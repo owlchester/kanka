@@ -1,40 +1,56 @@
 <?php
 
 return [
-    'actions'       => [
-        'add'   => 'Dodaj przedmiot',
+    'actions'           => [
+        'add'               => 'Dodaj przedmiot',
+        'copy_from'         => 'Kopiuj od',
+        'copy_inventory'    => 'Kopiuj wyposażenie',
     ],
-    'create'        => [
-        'success'   => 'Dodano :item do elementu :entity.',
-        'title'     => 'Dodaj przedmiot dla :name',
+    'copy'              => [
+        'title' => 'Kopiuj wyposażenie dla: name',
     ],
-    'destroy'       => [
-        'success'   => 'Usunięto przedmiot :item elementu :entity.',
+    'create'            => [
+        'success'       => 'Dodano :item do elementu :entity.',
+        'success_bulk'  => '{0} Nie dodano przedmiotów do wyposażenia :entity.|{1} Dodano :count przedmiot do wyposażenia :entity.|[2,4] Dodano :count przedmioty do wyposażenia :entity.|5,] Dodano :count przedmiotów do wyposażenia :entity.',
+        'title'         => 'Dodaj przedmiot dla :name',
     ],
-    'fields'        => [
-        'amount'        => 'Ilość',
-        'description'   => 'Opis',
-        'is_equipped'   => 'Wyposażono',
-        'name'          => 'Nazwa',
-        'position'      => 'Umiejscowienie',
-        'qty'           => 'Ilość',
+    'default_position'  => 'Nieprzypisane',
+    'destroy'           => [
+        'success'           => 'Usunięto przedmiot :item elementu :entity.',
+        'success_position'  => 'Usunięto przedmioty umieszczone w :position elementu :entity.',
     ],
-    'helpers'       => [
-        'is_equipped'   => 'Zaznacza przedmiot jako wyposażony.',
+    'fields'            => [
+        'amount'                => 'Ilość',
+        'copy_entity_entry_v2'  => 'Użyj opisu elementu',
+        'description'           => 'Opis',
+        'is_equipped'           => 'W użyciu',
+        'name'                  => 'Nazwa',
+        'position'              => 'Umiejscowienie',
+        'qty'                   => 'Ilość',
     ],
-    'placeholders'  => [
+    'helpers'           => [
+        'amount'                => 'Liczba przedmiotów',
+        'copy_entity_entry_v2'  => 'Wyświetla główny opis elementu zamiast lokalnego.',
+        'description'           => 'Dodaj lokalny opis przedmiotu',
+        'is_equipped'           => 'Oznacza przedmioty, których element używa.',
+        'name'                  => 'Nazwij przedmiot. To konieczne, jeśli nie wybrano istniejącego obiektu.',
+    ],
+    'placeholders'      => [
         'amount'        => 'Dowolna ilość',
         'description'   => 'Używany, uszkodzony, przystosowany',
         'name'          => 'Wymagana jeżeli nie wybrano przedmiotu z listy',
         'position'      => 'Pod ręką, w plecaku, w skrzyni, w banku',
     ],
-    'show'          => [
+    'show'              => [
         'helper'    => 'Elementom można przypisywać przedmioty, tworząc ich ekwipunek.',
         'title'     => 'Ekwipunek elementu :name',
         'unsorted'  => 'Nieposortowanie',
     ],
-    'tutorial'      => 'Kontroluj stan posiadania elementu, dodając przedmioty do jego wyposażenia.',
-    'update'        => [
+    'tooltips'          => [
+        'equipped'  => 'Przedmiot jest w użyciu.',
+    ],
+    'tutorial'          => 'Kontroluj stan posiadania elementu, dodając przedmioty do jego wyposażenia.',
+    'update'            => [
         'success'   => 'Zaktualizowano przedmiot :item elementu :entity',
         'title'     => 'Zaktualizowano przedmiot u :name',
     ],

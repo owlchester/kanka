@@ -128,6 +128,7 @@ TEXT
             'already_member'    => 'Už si súčasťou tejto kampane.',
             'inactive_token'    => 'Táto pozvánka už bola použitá alebo daná kampaň už neexistuje.',
             'invalid_token'     => 'Platnosť tejto pozvánky už vypršala.',
+            'join'              => 'Prosím, prihlás sa alebo si registruj nové konto k prístupu do :campaign.',
             'login'             => 'Prosím, prihlás alebo registruj sa, aby si sa pridal/a do kampane.',
         ],
         'fields'                => [
@@ -320,6 +321,7 @@ TEXT
                 ],
                 'manage'        => 'Povolí úpravu kampane ako ju má admin kampane, no bez možnosti zmazať kampaň.',
                 'members'       => 'Povolí zasielať pozvánky pre nových členov do kampane.',
+                'not_public'    => 'Kampaň nie je verejná. Oprávnenia pre verejné role môžu byť nastavené, ale budú ignorované. Ak chceš kampaň zverejniť, uprav jej nastavenia.',
                 'permission'    => 'Povolí nastaviť oprávnenia na objektoch typu, ktoré môže upravovať.',
                 'read'          => 'Povolí zobrazenie všetkých objektov tohto typu, ktoré nie sú súkromné.',
             ],

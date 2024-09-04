@@ -12,6 +12,12 @@ return [
     'destroy'       => [],
     'dice_rolls'    => [],
     'edit'          => [],
+    'families'      => [
+        'reorder'   => [
+            'success'   => 'Rody postavy úspešne aktualizované.',
+        ],
+        'title'     => 'Spravovať rody :name',
+    ],
     'fields'        => [
         'age'                       => 'Vek',
         'is_appearance_pinned'      => 'Pripnutý výzor',
@@ -85,6 +91,12 @@ return [
             'quest_giver'   => 'Úlohy, ktorých zadávateľom je táto postava.',
             'quest_member'  => 'Úlohy, ktorých členom je táto postava.',
         ],
+    ],
+    'races'         => [
+        'reorder'   => [
+            'success'   => 'Rasy postavy úspešne aktualizované.',
+        ],
+        'title'     => 'Spravovať rasy :name',
     ],
     'sections'      => [
         'appearance'    => 'Výzor',

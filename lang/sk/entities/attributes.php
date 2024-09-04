@@ -3,21 +3,26 @@
 return [
     'actions'       => [
         'apply_template'    => 'Použiť šablónu atribútov',
+        'load'              => 'Nahrať',
         'manage'            => 'Spravovať',
         'more'              => 'Ďalšie možnosti',
         'remove_all'        => 'Odstrániť všetko',
         'save_and_edit'     => 'Použiť a Upraviť',
         'save_and_story'    => 'Použiť a Zobraziť',
         'show_hidden'       => 'Zobraziť skryté atribúty',
+        'toggle_privacy'    => 'Súkromný/Verejný',
     ],
     'errors'        => [
-        'loop'  => 'Vo výpočte atribútu sa vyskytuje nekonečná slučka!',
+        'loop'                  => 'Vo výpočte atribútu sa vyskytuje nekonečná slučka!',
+        'no_attribute_selected' => 'Vyber najprv jeden alebo viac atribútov.',
+        'too_many_v2'           => 'Dosiahnuté max. počet polí (:count/:max). Zmaž najprv niektoré z atribútov pred pridaním nových.',
     ],
     'fields'        => [
         'attribute'             => 'Atribút',
         'community_templates'   => 'Komunitné šablóny',
         'is_private'            => 'Súkromné atribúty',
         'is_star'               => 'Pripnutý',
+        'preferences'           => 'Preferencie',
         'template'              => 'Šablóna',
         'value'                 => 'Hodnota',
     ],
@@ -65,20 +70,29 @@ return [
     'ranges'        => [
         'text'  => 'Dostupné možnosti :options',
     ],
+    'sections'      => [
+        'unorganised'   => 'Nezorganizované',
+    ],
     'show'          => [
         'hidden'    => 'Skryté atribúty',
         'title'     => 'Atribúty :name',
     ],
     'template'      => [
+        'load'      => [
+            'success'   => 'Šablóna nahraná',
+            'title'     => 'Nahrať zo šablóny',
+        ],
         'success'   => 'Šablóna atribútov :name použitá na :entity',
         'title'     => 'Použiť šablónu atribútov na :name',
     ],
     'title'         => 'Atribúty',
     'toasts'        => [
-        'lock'      => 'Atribút uzamknutý',
-        'pin'       => 'Atribút pripnutý',
-        'unlock'    => 'Atribút odomknutý',
-        'unpin'     => 'Atribút odopnutý',
+        'bulk_deleted'  => 'Atribúty odstránené',
+        'bulk_privacy'  => 'Súkromie atribútov prepnuté',
+        'lock'          => 'Atribút uzamknutý',
+        'pin'           => 'Atribút pripnutý',
+        'unlock'        => 'Atribút odomknutý',
+        'unpin'         => 'Atribút odopnutý',
     ],
     'tutorial'      => 'Atribúty sú malé informácie pripnuté k objektu. Napr. postava môže mať vlastnosti ako :hp alebo :str, miesto zasa :pop. Tieto je možné zapísať pomocou atribútov.',
     'types'         => [

@@ -50,6 +50,7 @@ return [
     ],
     'features'          => [
         'approved'  => 'Zaaprobowaliśmy twój pomysł na :feature.',
+        'finished'  => 'Twój pomysł :feature stał się częścią Kanki!',
         'rejected'  => 'Odrzuciliśmy twój pomysł na :feature. Przyczyna: :reason.',
     ],
     'header'            => 'Masz :count powiadomień.',

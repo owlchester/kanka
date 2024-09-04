@@ -50,6 +50,7 @@ return [
     ],
     'features'          => [
         'approved'  => 'Tvoj nápad :feature bol schválený.',
+        'finished'  => 'Tvoj nápad :feature je teraz dostupný v Kanke!',
         'rejected'  => 'Tvoj nápad :feature bol odmietnutý, dôvod: :reason.',
     ],
     'header'            => '{1} Máš :count notifikáciu.|[2,4] Máš :count notifikácie.|[5,*] Máš :count notifikácií.',

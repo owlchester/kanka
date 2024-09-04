@@ -172,6 +172,7 @@ return [
             'percent_off'   => 'Iremos descontar sua primeira assinatura anual em :percent%!',
         ],
         'currencies'            => [
+            'brl'   => 'BRL',
             'eur'   => 'EUR',
             'usd'   => 'USD',
         ],

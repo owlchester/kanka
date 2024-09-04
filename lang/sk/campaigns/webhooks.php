@@ -26,20 +26,24 @@ return [
         'title'     => 'Aktualizovať webhook',
     ],
     'fields'        => [
-        'enabled'   => 'Aktivovaný',
-        'event'     => 'Udalosť',
-        'events'    => [
+        'enabled'           => 'Aktivovaný',
+        'event'             => 'Udalosť',
+        'events'            => [
             'deleted'   => 'Zmazaný objekt',
             'edited'    => 'Upravený objekt',
             'new'       => 'Nový objekt',
         ],
-        'message'   => 'Správa',
-        'type'      => 'Typ',
-        'types'     => [
+        'message'           => 'Správa',
+        'private_entities'  => [
+            'helper'    => 'Nespustí webhook pri aktualizácii súkromných objektov.',
+            'skip'      => 'Preskočiť súkromné objekty',
+        ],
+        'type'              => 'Typ',
+        'types'             => [
             'custom'    => 'Správa',
             'payload'   => 'Payload',
         ],
-        'url'       => 'Url',
+        'url'               => 'Url',
     ],
     'helper'        => [
         'active'    => 'Ak je webhook práve aktívny',

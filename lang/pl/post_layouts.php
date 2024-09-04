@@ -5,5 +5,6 @@ return [
     'connection_map'        => 'Mapa powiązań',
     'helper'                => 'Ten komentarz wyświetla podstronę :subpage elementu.',
     'location_characters'   => 'Postaci w miejscu',
+    'location_events'       => 'Wydarzenia w miejscu',
     'quest_elements'        => 'Elementy zadania',
 ];

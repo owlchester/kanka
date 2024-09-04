@@ -16,6 +16,9 @@ return [
         'file'  => 'Plik',
         'name'  => 'Nazwa pliku',
     ],
+    'max'               => [
+        'title' => 'Osiągnięto limit',
+    ],
     'update'            => [
         'success'   => 'Zaktualizowano plik :file.',
     ],

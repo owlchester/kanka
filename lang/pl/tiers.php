@@ -20,6 +20,7 @@ return [
         'nice_image'        => 'Domyślne ikony elementów',
         'no_ads'            => 'Brak reklam',
         'pagination'        => 'Do :amount elementów wyświetlanych na stronie',
+        'roadmap'           => 'Głosuj na pomysły w przygotowaniu',
     ],
     'periods'   => [
         'billed_monthly'    => 'opłata miesięczna',

@@ -5,8 +5,10 @@ return [
         'back_to'   => 'Wróć do :name',
     ],
     'modes'     => [
-        'grid'  => 'Przełącz na kafelki',
-        'table' => 'Przełącz na tabelę',
+        'flatten'   => 'Przełącz na zbiór',
+        'grid'      => 'Przełącz na kafelki',
+        'nested'    => 'Przełącz na hierarchię',
+        'table'     => 'Przełącz na tabelę',
     ],
     'tooltips'  => [
         'nested'    => 'Element ma pochodne. Kliknij na obrazek, by je wyświetlić.',

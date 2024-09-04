@@ -3,21 +3,26 @@
 return [
     'actions'       => [
         'apply_template'    => 'Zastosuj szablon cech',
+        'load'              => 'Wczytaj',
         'manage'            => 'Zarządzaj',
         'more'              => 'Więcej opcji',
         'remove_all'        => 'Usuń wszystko',
         'save_and_edit'     => 'Zastosuj i edytuj',
         'save_and_story'    => 'Zastosuj i zobacz',
         'show_hidden'       => 'Pokaż ukryte cechy',
+        'toggle_privacy'    => 'Prywatne/Publiczne',
     ],
     'errors'        => [
-        'loop'  => 'W obliczeniu tej cechy występuje nie kończąca się pętla!',
+        'loop'                  => 'W obliczeniu tej cechy występuje nie kończąca się pętla!',
+        'no_attribute_selected' => 'Wybierz najpierw jedną lub więcej cech.',
+        'too_many_v2'           => 'Maksymalna liczba pól (:count/max). Skasuj jakieś cechy przed dodaniem nowych.',
     ],
     'fields'        => [
         'attribute'             => 'Cecha',
         'community_templates'   => 'Szablony społeczności',
         'is_private'            => 'Szablony Tajne',
         'is_star'               => 'Przypięte',
+        'preferences'           => 'Ustawienia',
         'template'              => 'Szablon',
         'value'                 => 'Wartość',
     ],
@@ -65,20 +70,29 @@ return [
     'ranges'        => [
         'text'  => 'Dostępne opcje: :options',
     ],
+    'sections'      => [
+        'unorganised'   => 'Nieprzypisane',
+    ],
     'show'          => [
         'hidden'    => 'Ukryte cechy',
         'title'     => 'Cechy elementu :name',
     ],
     'template'      => [
+        'load'      => [
+            'success'   => 'Wczytano szablon',
+            'title'     => 'Wczytaj szablon',
+        ],
         'success'   => 'Zastosowano szablon cech :name dla :entity',
         'title'     => 'Zastosuj szablon cech dla :name',
     ],
     'title'         => 'Cechy',
     'toasts'        => [
-        'lock'      => 'Zablokowano',
-        'pin'       => 'Przypięto',
-        'unlock'    => 'Odblokowano',
-        'unpin'     => 'Odpięto',
+        'bulk_deleted'  => 'Usunięto cechy',
+        'bulk_privacy'  => 'Zmieniono ustawienia prywatności',
+        'lock'          => 'Zablokowano',
+        'pin'           => 'Przypięto',
+        'unlock'        => 'Odblokowano',
+        'unpin'         => 'Odpięto',
     ],
     'tutorial'      => 'Cechy to drobne informacje na temat elementu. Na przykład: postać może mieć współczynnik :hp i :str, a miejsce cechę :pop. Ta funkcjonalność pozwala je łatwo śledzić.',
     'types'         => [

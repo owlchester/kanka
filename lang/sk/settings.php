@@ -172,6 +172,7 @@ return [
             'percent_off'   => 'Tvoje prvé ročné predplatné bude zlacnené o :percent%!',
         ],
         'currencies'            => [
+            'brl'   => 'BRL',
             'eur'   => 'EUR',
             'usd'   => 'USD',
         ],

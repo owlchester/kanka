@@ -52,6 +52,7 @@ return [
             'warning'   => 'Czy na pewno usunąć wybrane elementy?',
         ],
         'edit'          => [
+            'locations' => 'Działania miejsca',
             'tagging'   => 'Działania etykiety',
             'tags'      => [
                 'add'       => 'Dodaj',
@@ -133,6 +134,7 @@ return [
         'copy_links'        => 'Kopiuj odnośniki elementu',
         'copy_permissions'  => 'Kopiuj uprawnienia (zastąpią obecnie obowiązujące uprawnienia)',
         'copy_posts'        => 'Kopiuj komentarze (oraz ich uprawnienia)',
+        'copy_reminders'    => 'Kopiuj przypomnienia',
         'creator'           => 'Tworzenie',
         'date_range'        => 'Zakres dat',
         'entity'            => 'Element',
@@ -170,6 +172,7 @@ return [
         ],
         'errors'    => [
             'max'       => 'Osiągnięto maksymalną liczbę (:max) plików dla tego elementu.',
+            'max_size'  => 'Kampania osiągnęła maksymalną liczbę plików.',
             'no_files'  => 'Brak plików.',
         ],
         'files'     => 'Dodano pliki',
@@ -285,7 +288,7 @@ return [
                 'deny'      => 'Zabroń',
                 'inherit'   => 'Kopiuj',
             ],
-            'delete'        => 'Usuwaj',
+            'delete'        => 'Usuń',
             'edit'          => 'Edytuj',
             'read'          => 'Czytaj',
             'toggle'        => 'Przełącz',
@@ -335,6 +338,9 @@ return [
     'relations'                 => [],
     'remove'                    => 'Usuń',
     'rename'                    => 'Zmień nazwę',
+    'reorder'                   => [
+        'empty' => 'Brak elementów do zmiany kolejności.',
+    ],
     'save'                      => 'Zapisz',
     'save_and_close'            => 'Zapisz i zamknij',
     'save_and_copy'             => 'Zapisz i skopiuj',

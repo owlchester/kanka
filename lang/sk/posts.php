@@ -2,7 +2,10 @@
 
 return [
     'create'        => [
-        'title' => 'Nový komentár',
+        'template'  => [
+            'helper'    => 'Admini kampane definovali nasledujúce príspevky ako šablóny, ktoré môžu byť použité.',
+        ],
+        'title'     => 'Nový komentár',
     ],
     'fields'        => [
         'name'  => 'Názov',

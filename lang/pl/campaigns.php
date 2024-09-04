@@ -128,6 +128,7 @@ TEXT
             'already_member'    => 'Bierzesz już udział w tej kampanii.',
             'inactive_token'    => 'Ta przepustka jest już wykorzystana albo kampania została usunięta.',
             'invalid_token'     => 'Przepustka jest nieważna.',
+            'join'              => 'Zaloguj się lub zarejestruj by dołączyć do kampanii :campaign.',
             'login'             => 'Zaloguj się lub zarejestruj, by dołączyć do kampanii.',
         ],
         'fields'                => [
@@ -320,6 +321,7 @@ TEXT
                 ],
                 'manage'        => 'Pozwala edytować kampanię jakby uczestnik był administratorem, ale nie daje uprawnień by ją usunąć.',
                 'members'       => 'Pozwala zapraszać nowych uczestników kampanii.',
+                'not_public'    => 'Kampania nie jest publiczna, więc stworzone dla niej role publiczne są ignorowane. Kampanię możesz upublicznić zmieniając ustawienia.',
                 'permission'    => 'Pozwala zarządzać uprawnieniami tych elementów danego typu, które uczestnik może też edytować.',
                 'read'          => 'Pozwala widzieć wszystkie elementy danego typu, które nie są tajne.',
             ],
@@ -374,6 +376,7 @@ TEXT
         ],
         'helpers'       => [
             'abilities'         => 'Twórz zdolności specjalne, na przykład czary, moce czy techniki, i przypisuj je innym elementom.',
+            'assets'            => 'Zamieszczanie plików i nadawanie aliasów konkretnym elementom.',
             'bookmarks'         => 'Tworzy w menu bocznym zakładki elementów i filtrowanych list',
             'calendars'         => 'Wyposaż swój świat w systemy liczenia czasu.',
             'characters'        => 'Mieszkańcy tego świata.',
@@ -429,6 +432,7 @@ TEXT
             'roles'             => 'Role',
             'sidebar'           => 'Ustawienia menu bocznego',
             'styles'            => 'Motywy',
+            'webhooks'          => 'Elementy webhook',
         ],
         'title'     => 'Kampania :name',
     ],

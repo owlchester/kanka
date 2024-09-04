@@ -3,6 +3,7 @@
 return [
     'abilities'             => 'Zdolności',
     'ability'               => 'Zdolność',
+    'assets'                => 'Zasoby',
     'attribute_template'    => 'Szablon Cech',
     'attribute_templates'   => 'Szablony Cech',
     'bookmark'              => 'Zakładka',
@@ -53,6 +54,7 @@ return [
     'creatures'             => 'Istoty',
     'dice_roll'             => 'Rzut kośćmi',
     'dice_rolls'            => 'Rzuty kośćmi',
+    'entities'              => 'Elementy',
     'entity_attributes'     => 'Cechy',
     'event'                 => 'Wydarzenie',
     'events'                => 'Wydarzenia',

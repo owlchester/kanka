@@ -172,6 +172,7 @@ return [
             'percent_off'   => 'Uzyskujesz zniżką na pierwszą roczną subskrypcję w wysokości :percent%!',
         ],
         'currencies'            => [
+            'brl'   => 'BRL',
             'eur'   => 'EUR',
             'usd'   => 'USD',
         ],

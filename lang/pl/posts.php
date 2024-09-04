@@ -2,7 +2,10 @@
 
 return [
     'create'        => [
-        'title' => 'Nowy komentarz',
+        'template'  => [
+            'helper'    => 'Administratorzy kampanii oznaczyli poniższe komentarze jako szablony do wielokrotnego użytku.',
+        ],
+        'title'     => 'Nowy komentarz',
     ],
     'fields'        => [
         'name'  => 'Tytuł',

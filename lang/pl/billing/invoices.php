@@ -12,6 +12,7 @@ return [
         'invoice'   => 'Rachunek',
         'status'    => 'Status',
     ],
+    'paypal'        => 'Pamiętaj, że w tym miejscu wyświetlane są wyłącznie wpłaty dokonane z pomocą Stripe, nie  PayPal.',
     'status'        => [
         'paid'      => 'Opłacony',
         'pending'   => 'Oczekujący',

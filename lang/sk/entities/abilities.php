@@ -6,6 +6,9 @@ return [
         'reset' => 'Resetovať vyčerpania schopností',
         'sync'  => 'Pridať z rás',
     ],
+    'charges'   => [
+        'left'  => 'Ostáva :amount',
+    ],
     'create'    => [
         'success'           => 'Schopnosť :ability pridaná k :entity.',
         'success_multiple'  => 'Schopnosti :abilities boli pridané k :entity.',
@@ -14,6 +17,9 @@ return [
     'fields'    => [
         'note'      => 'Poznámka',
         'position'  => 'Pozícia',
+    ],
+    'groups'    => [
+        'unorganised'   => 'Nezorganizované',
     ],
     'helpers'   => [
         'note'      => 'Referencie na iné objekty môžeš vytvoriť pomocou rozšírených referencií (ex :code) a atribútov objektov (ex :attr) v tomto poli.',
@@ -38,6 +44,9 @@ return [
         'helper'    => 'Pridaj schopnosti k tomuto objektu. Môžeš upraviť ich viditeľnosť alebo ich odstrániť. Schopnosti patriace pod nadradenú schopnosť sa zobrazia pod spoločným tlačidlom.',
         'reorder'   => 'Preskupiť schopnosti',
         'title'     => 'Schopnosti objektu :name',
+    ],
+    'types'     => [
+        'unorganised'   => 'Schopnosti sú zoskupené podľa nadradených polí a zvyšné sa zobrazujú tu.',
     ],
     'update'    => [
         'success'   => 'Objektová schopnosť :ability bola aktualizovaná.',

@@ -7,6 +7,7 @@ return [
             'set'   => 'Element :name ustawiono jako szablon.',
             'unset' => 'Element :name nie służy już jako szablon.',
         ],
+        'toggle'    => 'Przełączono status szablonu.',
         'unset'     => 'Usuń jako szablon',
     ],
 ];

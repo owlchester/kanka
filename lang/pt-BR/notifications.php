@@ -50,6 +50,7 @@ return [
     ],
     'features'          => [
         'approved'  => 'Sua ideia :feature foi aprovada',
+        'finished'  => 'Sua ideia :feature agora está disponível em Kanka!',
         'rejected'  => 'Sua ideia :feature foi rejeita, motivo :reason',
     ],
     'header'            => 'Você tem :count notificações.',
