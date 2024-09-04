@@ -25,7 +25,6 @@ class RecoveryService
         return $entities;
     }
 
-
     /**
      */
     public function count(): int
@@ -41,13 +40,13 @@ class RecoveryService
     {
         $entity = Entity::onlyTrashed()->find($id);
         if (!$entity) {
-            return false;
+            return null;
         }
 
         // @phpstan-ignore-next-line
         $child = $entity->child()->onlyTrashed()->first();
         if (!$child) {
-            return '';
+            return null;
         }
 
         $entity->restore();

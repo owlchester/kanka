@@ -9,14 +9,12 @@ use App\Services\Posts\RecoveryService;
 use App\Services\Entity\RecoverySetupService;
 use Exception;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class RecoveryController extends Controller
 {
     protected RecoveryService $postService;
     protected EntityRecoveryService $entityService;
     protected RecoverySetupService $service;
-
 
     public function __construct(RecoveryService $postService, EntityRecoveryService $entityService, RecoverySetupService $recoverySetupService)
     {
@@ -34,21 +32,8 @@ class RecoveryController extends Controller
     {
         $this->authorize('recover', $campaign);
 
-        $elements = DB::select(
-            'select id, name, deleted_at, deleted_by, "entity" as type
-                from entities
-                where deleted_at is not null and campaign_id = ' . $campaign->id . '
-                union all
-                select p.id, p.name, p.deleted_at, p.deleted_by, "post" as type
-                from posts as p
-                left join entities as e on e.id = p.entity_id
-                where p.deleted_at is not null and e.deleted_at is null and e.campaign_id = ' . $campaign->id .
-                ' order by deleted_at DESC'
-        );
-
-        return view('campaigns.recovery.index', compact('elements', 'campaign'));
+        return view('campaigns.recovery.index', compact('campaign'));
     }
-
 
     public function setup(Campaign $campaign)
     {

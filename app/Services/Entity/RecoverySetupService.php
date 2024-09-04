@@ -79,13 +79,14 @@ class RecoverySetupService
             $element->date = \Carbon\Carbon::createFromTimeStamp(strtotime($element->deleted_at))->diffForHumans();
             $element->position = $key;
         }
+        //This will cast each object in the array to an array, and the toArray gets you from the collection back to an array.
         return collect($elements)->map(function ($x) { return (array) $x; })->toArray();
     }
 
     protected function i18n(): array
     {
         $translations = [
-            '0' => __('entities.post'),
+            'model_0' => __('entities.post'),
             'order_by_newest' => __('campaigns/recovery.order.newest'),
             'order_by_oldest' => __('campaigns/recovery.order.oldest'),
             'order_by_type' => __('campaigns/recovery.order.type'),
@@ -111,7 +112,7 @@ class RecoverySetupService
             if ($this->campaign->superboosted() && $this->campaign->hasModuleName($id)) {
                 $moduleName = $this->campaign->moduleName($id);
             }
-            $translations[$id] = $moduleName;
+            $translations['model_' . $id] = $moduleName;
         }
         return $translations;
     }

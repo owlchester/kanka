@@ -42,10 +42,10 @@ class RecoveryService
         /** @var ?Post $post */
         $post = Post::onlyTrashed()->find($id);
         if (!$post) {
-            return '';
+            return null;
         }
         if ($post->entity->deleted_at) {
-            return '';
+            return null;
         }
         $post->restore();
         $this->count++;

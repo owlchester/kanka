@@ -21,10 +21,6 @@
                 {{ __('crud.actions.help') }}
             </button>
         </div>
-        @if (session()->get('boosted-pitch'))
-            <x-cta :campaign="$campaign">
-            </x-cta>
-        @endif
         <div id="recovery">
             <recovery
                 api="{{ route('recovery.setup', [$campaign]) }}"

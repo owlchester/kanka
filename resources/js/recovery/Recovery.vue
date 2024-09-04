@@ -44,13 +44,12 @@
         </div>
         <div class="flex flex-col gap-4" v-else>
             <div class="flex gap-2 flex-row">
-                <div :class="gridClass()">
+                <div class="grid grid-cols-3 gap-2">
                     <Element
-                        v-for="file in files"
-                        :file="file"
-                        :isBulking="isBulking"
+                        v-for="model in models"
+                        :model="model"
                         :i18n="i18n"
-                        @recover="recoverElement(file)"
+                        @recover="recoverElement(model)"
                     >
                     </element>
                 </div>
@@ -58,10 +57,10 @@
         </div>
     </div>
 
-    <dialog ref="newDialog" class="dialog rounded-2xl text-center" v-if="initiated">
+    <dialog ref="premiumDialog" class="dialog rounded-2xl text-center" v-if="initiated">
         <header class="bg-base-200 sm:rounded-t">
             <h4 v-html="trans('premium_title')"></h4>
-            <button type="button" class="text-base-content" @click="closeModal(newDialog)" title="Close">
+            <button type="button" class="text-base-content" @click="closeModal(premiumDialog)" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>
             </button>
@@ -90,18 +89,16 @@ const props = defineProps<{
 
 const initiated = ref(false)
 const loading = ref(false)
-const isBulking = ref(false)
 const premium = ref(false)
-const currentFile = ref()
 const searchTerm = ref()
 const lastTerm = ref()
 const typingTimeout = ref(null)
-const files = ref([])
+const models = ref([])
 const filter = ref('newest')
 const i18n = ref()
-const newDialog = ref()
-const updateApi = ref()
-const moving = ref(false)
+const premiumDialog = ref()
+const recoveryApi = ref()
+const recovering = ref(false)
 const showFilters = ref(false)
 const upgradeLink = ref()
 
@@ -109,9 +106,9 @@ onMounted(() => {
     axios.get(props.api)
         .then((res) => {
             initiated.value = true
-            files.value = res.data.elements
+            models.value = res.data.elements
             i18n.value = res.data.i18n
-            updateApi.value = res.data.api.recovery
+            recoveryApi.value = res.data.api.recovery
             premium.value = res.data.acl.premium
             upgradeLink.value = res.data.upgrade
         })
@@ -126,43 +123,35 @@ const trans = (key) => {
     return i18n.value[key]
 }
 
-const gridClass = () => {
-    let css = "grid grid-cols-3 gap-2"
-    if (currentFile.value) {
-        css += ' basis-2/4 md:basis-3/4'
-    }
-    return css
-}
-
-const selectElements = (file) => {
-        let f = files.value.find(f => f.id === file.id)
+const selectElements = (model) => {
+        let f = models.value.find(f => f.id === model.id)
         if (!f.url && !f.is_hidden) {
             f.is_selected = true
         }
         return;
 }
 
-const deselectElements = (file) => {
-        let f = files.value.find(f => f.id === file.id)
+const deselectElements = (model) => {
+        let f = models.value.find(f => f.id === model.id)
         f.is_selected = false
         return;
 }
 
-const recoverElement = (file) => {
+const recoverElement = (model) => {
 
     if (!premium.value) {
-        openDialog(newDialog.value)
+        openDialog(premiumDialog.value)
         return
     }
 
-    let f = files.value.find(f => f.id === file.id)
+    let f = models.value.find(f => f.id === model.id)
     f.is_recovering = true
 
-    if (moving.value) {
+    if (recovering.value) {
         return
     }
     
-    moving.value = true
+    recovering.value = true
     let data = {}
 
     if (f.type === 'post') {
@@ -173,15 +162,15 @@ const recoverElement = (file) => {
         data.posts = []
     }
 
-    axios.post(updateApi.value, data).then(res => {
-        moving.value = false
+    axios.post(recoveryApi.value, data).then(res => {
+        recovering.value = false
         
         const entities = Object.keys(res.data.entities).map(
             key => res.data.entities[key]
         );
 
-        let ids = files.value.filter(f => f.is_recovering && f.type == 'entity')
-        let postIds = files.value.filter(f => f.is_recovering && f.type == 'post')
+        let ids = models.value.filter(f => f.is_recovering && f.type == 'entity')
+        let postIds = models.value.filter(f => f.is_recovering && f.type == 'post')
         
         ids.forEach(f => {
             f.is_selected = false
@@ -205,12 +194,12 @@ const recoverElement = (file) => {
 }
 
 const selectAll = () => {
-    files.value.forEach(selectElements)
+    models.value.forEach(selectElements)
     return
 }
 
 const deselectAll = () => {
-    files.value.forEach(deselectElements)
+    models.value.forEach(deselectElements)
     return
 }
 
@@ -231,9 +220,8 @@ const search = () => {
     }
     lastTerm.value = searchTerm.value
 
-    // Nothing? Go back home
     if (!searchTerm.value) {
-        files.value.forEach(f => {
+        models.value.forEach(f => {
             f.is_hidden = false
         })
         return;
@@ -245,7 +233,7 @@ const search = () => {
 }
 
 const hasSelection = () => {
-    let count = files.value.filter(f => f.is_selected).length
+    let count = models.value.filter(f => f.is_selected).length
     if (count === 0) {
         return false
     }
@@ -255,35 +243,34 @@ const hasSelection = () => {
 const bulkRecover = () => {
 
     if (!premium.value) {
-        openDialog(newDialog.value)
+        openDialog(premiumDialog.value)
         return
     }
 
-    if (moving.value) {
+    if (recovering.value) {
         return
     }
-    let ids = files.value.filter(f => f.is_selected && f.type == 'entity').map(f => f.id)
-    let postIds = files.value.filter(f => f.is_selected && f.type == 'post').map(f => f.id)
+    let ids = models.value.filter(f => f.is_selected && f.type == 'entity').map(f => f.id)
+    let postIds = models.value.filter(f => f.is_selected && f.type == 'post').map(f => f.id)
     if (ids.length === 0 && postIds.length === 0) {
         return
     }
 
-    moving.value = true
+    recovering.value = true
     let data = {}
 
     data.entities = ids
     data.posts = postIds
 
-    axios.post(updateApi.value, data).then(res => {
-        moving.value = false
+    axios.post(recoveryApi.value, data).then(res => {
+        recovering.value = false
 
         const entities = Object.keys(res.data.entities).map(
             key => res.data.entities[key]
         );
 
-        //console.log(res.data.entities, entities)
-        let ids = files.value.filter(f => f.is_selected && f.type == 'entity')
-        let postIds = files.value.filter(f => f.is_selected && f.type == 'post')
+        let ids = models.value.filter(f => f.is_selected && f.type == 'entity')
+        let postIds = models.value.filter(f => f.is_selected && f.type == 'post')
         
         ids.forEach(f => {
             f.is_selected = false
@@ -304,7 +291,7 @@ const bulkRecover = () => {
 }
 
 const countSelected = () => {
-    let count = files.value.filter(f => f.is_selected).length
+    let count = models.value.filter(f => f.is_selected).length
     if (count === 0) {
         return
     }
@@ -320,7 +307,7 @@ const onClickOutside = () => {
 }
 
 const showSearchResults = () => {
-    files.value.forEach(f => {
+    models.value.forEach(f => {
         const slug = f.name.toLowerCase()
         if (slug.includes(searchTerm.value)) {
             f.is_hidden = false
@@ -333,7 +320,7 @@ const showSearchResults = () => {
 
 const orderByNew = () => {
     loading.value = true
-    files.value.sort(function(a, b){return a.position - b.position});
+    models.value.sort(function(a, b){return a.position - b.position});
     loading.value = false
     showFilters.value = false
     filter.value = 'newest'
@@ -341,7 +328,7 @@ const orderByNew = () => {
 
 const orderByOld = () => {
     loading.value = true
-    files.value.sort(function(a, b){return b.position - a.position});
+    models.value.sort(function(a, b){return b.position - a.position});
     loading.value = false
     showFilters.value = false
     filter.value = 'oldest'
@@ -349,7 +336,7 @@ const orderByOld = () => {
 
 const orderByType = () => {
     loading.value = true
-    files.value.sort(function(a, b){return trans(a.type_id).localeCompare(trans(b.type_id))});
+    models.value.sort(function(a, b){return trans(a.type_id).localeCompare(trans(b.type_id))});
     loading.value = false
     showFilters.value = false
     filter.value = 'type'
