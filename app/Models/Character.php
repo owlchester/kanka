@@ -387,7 +387,7 @@ class Character extends MiscModel
         if (empty($this->title)) {
             return '';
         }
-        return e(strip_tags($this->title));
+        return strip_tags($this->title);
     }
 
     /**
