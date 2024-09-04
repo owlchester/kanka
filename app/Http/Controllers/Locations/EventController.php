@@ -41,8 +41,8 @@ class EventController extends Controller
             return $this->campaign($campaign)->datagridAjax();
         }
 
-        return $this
+        /*return $this
             ->campaign($campaign)
-            ->subview('locations.events', $location);
+            ->subview('locations.events', $location);*/
     }
 }
