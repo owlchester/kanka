@@ -61,6 +61,7 @@ class RecoverySetupService
 
     protected function elements(): array
     {
+        //Query yields array of objects
         $elements = DB::select(
             'select id, name, deleted_at, deleted_by, type_id, "entity" as type
                 from entities
@@ -73,13 +74,16 @@ class RecoverySetupService
                 ' order by deleted_at DESC'
         );
 
+        //We fill the rest of the data needed into the objects
         $users = $this->campaign->users()->pluck('users.name', 'users.id')->toArray();
         foreach ($elements as $key => $element) {
             $element->deleted_name = $users[$element->deleted_by] ?? 'Unknown';
             $element->date = \Carbon\Carbon::createFromTimeStamp(strtotime($element->deleted_at))->diffForHumans();
             $element->position = $key;
         }
-        //This will cast each object in the array to an array, and the toArray gets you from the collection back to an array.
+
+        //We want to send an array of arrays to JS.
+        //So this will cast each object in the array to an array, and the toArray gets you from the collection back to an array.
         return collect($elements)->map(function ($x) { return (array) $x; })->toArray();
     }
 
