@@ -41,7 +41,6 @@ if (!isset($entity)) {
     <script>
         const entityData = {
             name: `{{ $entity->name }}`,
-            type_field: `{{ $entity->child->type }}`,
             is_private: {{ $entity->is_private ? 'true' : 'false' }},
             type: {
                 id: {{ $entity->type_id }},
@@ -54,6 +53,7 @@ if (!isset($entity)) {
 @endforeach
             },
 @if ($entity->child instanceof \App\Models\Character)
+            type_field: `{{ $entity->child->type }}`,
             gender: `{{ $entity->child->sex }}`,
             pronouns: `{{ $entity->child->pronouns }}`,
             is_dead: {{ $entity->child->isDead() ? 'true' : 'false' }},
