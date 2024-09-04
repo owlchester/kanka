@@ -6,7 +6,7 @@
             <div class="" v-if="ability.images.has">
                 <a class="ability-image rounded-xl block w-40 h-40 cover-background"
                    v-bind:href="ability.images.url"
-                   v-bind:style="backgroundImage">
+                   v-bind:style="backgroundImage()">
                 </a>
             </div>
             <div class="flex flex-col gap-4 w-full">
@@ -24,7 +24,7 @@
                     <div v-if="permission" class="">
                         <a role="button"
                             v-on:click="updateAbility(ability)"
-                            v-if="this.canDelete"
+                            v-if="canDelete"
                             class="btn2 btn-ghost btn-sm"
                             v-bind:title="ability.i18n.edit">
                             <i class="fa-solid fa-pencil text-xl" aria-hidden="true"></i>
@@ -64,66 +64,61 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 
-    export default {
-        props: [
-            'ability',
-            'permission',
-            'meta',
-            'trans',
-        ],
+import {ref} from "vue"
 
-        data() {
-            return {
-                details: false,
-            }
-        },
+const details = ref(false)
 
-        computed: {
-            hasAttribute: function() {
-                return this.ability.attributes.length > 0;
-            },
-            canDelete: function() {
-                return this.permission;
-            },
-            backgroundImage: function() {
-                if (this.ability.images.thumb) {
-                    return {
-                        backgroundImage: 'url(' + this.ability.images.thumb + ')'
-                    }
-                }
-                return {}
-            }
-        },
+const props = defineProps<{
+    ability: Object,
+    permission: String,
+}>()
 
-        methods: {
-            updateAbility: function(ability) {
-                window.openDialog('abilities-dialog', ability.actions.edit);
-            },
-            remainingNumber: function() {
-                return this.ability.charges - this.ability.used_charges;
-            },
-            remainingText: function() {
-                return this.ability.i18n.left.replace(/:amount/, '');
-            },
-            useCharge: function(ability, charge) {
-                if (charge > ability.used_charges) {
-                    ability.used_charges += 1;
-                } else {
-                    ability.used_charges -= 1;
-                }
+const hasAttribute = () => {
+    return props.ability.attributes.length > 0;
+}
 
-                axios.post(ability.actions.use, {'used': ability.used_charges})
-                    .then((res) => {
-                        if (!res.data.success) {
-                            ability.used_charges -= 1;
-                        }
-                    })
-                    .catch(() => {
-                        ability.used_charges -= 1;
-                    });
-            },
-        },
+const canDelete = () => {
+    return props.permission.value;
+}
+
+const backgroundImage = () => {
+    if (props.ability.images.thumb) {
+        return {
+            backgroundImage: 'url(' + props.ability.images.thumb + ')'
+        }
     }
+    return {}
+}
+
+const updateAbility = (ability) => {
+    window.openDialog('abilities-dialog', ability.actions.edit);
+}
+
+const remainingNumber = () => {
+    return props.ability.charges - props.ability.used_charges;
+}
+
+const remainingText = () => {
+    return props.ability.i18n.left.replace(/:amount/, '');
+}
+
+const useCharge = (ability, charge) => {
+    if (charge > ability.used_charges) {
+        ability.used_charges += 1;
+    } else {
+        ability.used_charges -= 1;
+    }
+
+    axios.post(ability.actions.use, {'used': ability.used_charges})
+        .then((res) => {
+            if (!res.data.success) {
+                ability.used_charges -= 1;
+            }
+        })
+        .catch(() => {
+            ability.used_charges -= 1;
+        });
+}
 </script>

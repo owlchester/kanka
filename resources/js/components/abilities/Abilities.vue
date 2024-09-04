@@ -16,51 +16,40 @@
 </template>
 
 
-<script>
-    import Parent from "./Parent.vue";
+<script setup lang="ts">
+import Parent from "./Parent.vue";
 
-    export default {
-        props: [
-            'id',
-            'api',
-            'permission',
-        ],
-        components: {
-            Parent
-        },
+import {onMounted, onUpdated, ref} from "vue"
 
-        data() {
-            return {
-                groups: [],
-                meta: [],
-                loading: true,
-                waiting: false,
-            }
-        },
+const props = defineProps<{
+    id: Number,
+    api: String,
+    permission: String,
+}>()
 
-        methods: {
-            getAbilities: function() {
-                fetch(this.api)
-                    .then(response => response.json())
-                    .then(response => {
-                        this.groups = response.data.groups;
-                        this.meta = response.data.meta;
-                        this.loading = false;
-                        this.waiting = false;
-                        });
-            },
-        },
+const groups = ref([])
+const meta = ref([])
+const loading = ref(true)
+const waiting = ref(true)
 
-        mounted() {
-            this.getAbilities();
-        },
+const getAbilities = () => {
+    axios.get(props.api).then(res => {
+        groups.value = res.data.data.groups;
+        meta.value = res.data.data.meta;
+        loading.value = false;
+        waiting.value = false;
+    })
+}
 
-        updated() {
-            // Add the ajax tooltip listener when the dom is updated (for example when displaying
-            // children abilities)
-            window.ajaxTooltip();
-        }
-    }
-</script>
-<script setup>
+
+onMounted(() => {
+    getAbilities()
+})
+
+onUpdated(() => {
+    // Add the ajax tooltip listener when the dom is updated (for example when displaying
+    // children abilities)
+    window.ajaxTooltip();
+})
+
 </script>

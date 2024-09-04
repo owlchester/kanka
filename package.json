@@ -17,12 +17,11 @@
         "sass": "^1.22.9",
         "tailwindcss": "^3.0.24",
         "vite": "^4.5.3",
-        "vue": "^3.0",
-        "vue-loader": "^16.2.0"
+        "vue": "^3.3",
+        "vue-loader": "^17.0.0"
     },
     "dependencies": {
         "@coddicat/vue-pinch-scroll-zoom": "^4.3.5",
-        "@coddicat/vue3-pinch-scroll-zoom": "^0.2.1",
         "@melloware/coloris": "^0.22.0",
         "@syncfusion/ej2-vue-grids": "^24.2.7",
         "bootstrap": "^4.3.1",

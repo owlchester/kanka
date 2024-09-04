@@ -71,65 +71,61 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import LookupEntity from "./LookupEntity.vue";
+import {ref} from "vue";
 
-export default {
-    props: [
-        'entity'
-    ],
-    components: {
-        LookupEntity,
-    },
-    data() {
-        return {
-            focus_profile: true,
-            focus_pins: false,
-            focus_access: false,
-        }
-    },
-    methods: {
-        hasTitle() {
-            return this.entity.title;
-        },
-        tagClass(tag) {
-            let cls = 'inline-block rounded-xl px-3 py-1 bg-base-100 text-base-content text-xs';
-            if (tag.colour) {
-                cls += ' bg-' + tag.colour;
-                if (tag.colour === 'black') {
-                    cls += ' text-white';
-                }
-            }
-            return cls;
-        },
-        backgroundImage: function() {
-            return 'url(\'' + this.entity.image + '\')';
-        },
-        tabClass: function(tab) {
-            let cls = 'p-1 px-1 mx-1 pt-2 select-none text-center truncate border-b-2 border-solid border-r-0 border-t-0 border-l-0';
-            if ((tab === 'profile' && this.focus_profile) || (tab === 'links' && this.focus_pins) || (tab === 'access' && this.focus_access)) {
-                cls += ' font-black border-slate-600';
-            } else {
-                cls += ' cursor-pointer border-base-100';
-            }
+const props = defineProps<{
+  entity: Object,
+}>()
 
-            return cls;
-        },
-        switchTab: function (tab) {
-            this.focus_profile = false;
-            this.focus_pins = false;
-            this.focus_access = false;
-            if (tab === 'profile') {
-                this.focus_profile = true;
-            } else if (tab === 'links') {
-                this.focus_pins = true;
-            } else if (tab === 'access') {
-                this.focus_access = true;
-            }
-        },
-        profileClass: function (profile) {
-            return 'entity-profile-' + profile.slug;
+const focus_profile = ref(true);
+const focus_pins = ref(false);
+const focus_access = ref(false);
+
+const hasTitle = () => {
+    return props.entity.title;
+}
+const tagClass = (tag) => {
+    let cls = 'inline-block rounded-xl px-3 py-1 bg-base-100 text-base-content text-xs';
+    if (tag.colour) {
+        cls += ' bg-' + tag.colour;
+        if (tag.colour === 'black') {
+            cls += ' text-white';
         }
     }
+    return cls;
+}
+
+const backgroundImage = () => {
+    return 'url(\'' + props.entity.image + '\')';
+}
+
+const tabClass = (tab) => {
+    let cls = 'p-1 px-1 mx-1 pt-2 select-none text-center truncate border-b-2 border-solid border-r-0 border-t-0 border-l-0';
+    if ((tab === 'profile' && focus_profile.value) || (tab === 'links' && focus_pins.value) || (tab === 'access' && focus_access.value)) {
+        cls += ' font-black border-slate-600';
+    } else {
+        cls += ' cursor-pointer border-base-100';
+    }
+
+    return cls;
+}
+
+const switchTab = (tab) => {
+    focus_profile.value = false;
+    focus_pins.value = false;
+    focus_access.value = false;
+    if (tab === 'profile') {
+        focus_profile.value = true;
+    } else if (tab === 'links') {
+        focus_pins.value = true;
+    } else if (tab === 'access') {
+        focus_access.value = true;
+    }
+}
+
+const profileClass = (profile) => {
+    return 'entity-profile-' + profile.slug;
 }
 </script>

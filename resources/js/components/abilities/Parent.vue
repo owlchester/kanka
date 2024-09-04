@@ -7,7 +7,7 @@
             <div
                 class="parent-image rounded-full w-12 h-12 md:w-16 md:h-16 cover-background flex-none"
                 v-if="group.has_image"
-                v-bind:style="backgroundImage">
+                v-bind:style="backgroundImage()">
             </div>
             <div class="flex flex-col gap-1 grow overflow-hidden">
                 <div v-if="group.url">
@@ -17,13 +17,13 @@
                 <p class="md:text-lg truncate" v-html="group.type"></p>
             </div>
             <div class="flex-none self-end">
-                <span role="button" v-on:click="click(group)" class="cursor-pointer inline-block">
-                    <i v-if="!this.collapsed" aria-hidden="true" class="fa-thin fa-chevron-circle-up fa-2x"></i>
+                <span role="button" @click="click(group)" class="cursor-pointer inline-block">
+                    <i v-if="!collapsed" aria-hidden="true" class="fa-thin fa-chevron-circle-up fa-2x"></i>
                     <i v-else aria-hidden="true" class="fa-thin fa-chevron-circle-down fa-2x"></i>
                 </span>
             </div>
         </div>
-        <div class="parent-abilities flex flex-col gap-5" v-if="!this.collapsed">
+        <div class="parent-abilities flex flex-col gap-5" v-if="!collapsed">
             <ability v-for="ability in group.abilities"
                     :key="ability.id"
                     :ability="ability"
@@ -34,37 +34,30 @@
     </div>
 </template>
 
-<script>
-    import Ability from "./Ability.vue";
-    export default {
-        components: {Ability},
-        props: [
-            'group',
-            'permission',
-            'meta',
-        ],
+<script setup lang="ts">
 
-        data() {
-            return {
-                collapsed: false
-            };
-        },
+import Ability from "./Ability.vue";
+import {ref} from "vue"
 
-        computed: {
-            backgroundImage: function() {
-                if (this.group.has_image) {
-                    return {
-                        backgroundImage: 'url(' + this.group.image + ')'
-                    }
-                }
-                return {}
-            }
-        },
 
-        methods: {
-            click: function(group) {
-                this.collapsed = !this.collapsed;
-            },
-        },
+const props = defineProps<{
+    group: Object,
+    permission: String,
+    meta: Object,
+}>()
+
+const collapsed = ref(false)
+
+const backgroundImage = () => {
+    if (props.group.has_image) {
+        return {
+            backgroundImage: 'url(' + props.group.image + ')'
+        }
     }
+    return {}
+}
+
+const click = (group) => {
+    collapsed.value = !collapsed.value;
+}
 </script>

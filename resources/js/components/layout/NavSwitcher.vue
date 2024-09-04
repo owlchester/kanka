@@ -246,208 +246,174 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import Campaign from './Campaign.vue';
 import Notification from './Notification.vue';
 import Release from './Release.vue';
-import vClickOutside from "click-outside-vue3"
 import GridSvg from "../icons/GridSvg.vue";
+import {onMounted, ref} from "vue";
 
-export default {
 
-    directives: {
-        clickOutside: vClickOutside.directive
-    },
-    /* Properties provided by the html component initialisation */
-    props: {
-        /* The user ID */
-        user_id: {
-            type: String,
-        },
-        /* Route to the API to get info for the navbar */
-        api: {
-            type: String,
-        },
-        /* Route to the API to get new notifications */
-        fetch: {
-            type: String,
-        },
-        /* User's initials for when they have no picture */
-        initials: {
-            type: String,
-        },
-        /* User's profile picture link */
-        avatar: {
-            type: String,
-        },
-        /* The campaign ID (not used?) */
-        campaign_id: undefined,
-        /* Bool to define if there are unread notifications */
-        has_alerts: {
-            type: Boolean,
-        },
-    },
+const props = defineProps<{
+    /* The user ID */
+    user_id: String,
+    /* Route to the API to get info for the navbar */
+    api: String,
+    /* Route to the API to get new notifications */
+    fetch: String,
+    /* User's initials for when they have no picture */
+    initials: String,
+    /* User's profile picture link */
+    avatar: String,
+    /* The campaign ID (not used?) */
+    campaign_id: undefined,
+    /* Bool to define if there are unread notifications */
+    has_alerts: Boolean,
+}>();
 
-    components: {
-        GridSvg,
-        Campaign,
-        Notification,
-        Release,
-    },
+// Check for updates in the localstorage every minute for new alerts
+const alert_delta = ref( 60 * 1000)
+// Determine if waiting for data to load (show spinning wheel)
+const is_loading = ref( false)
+// Determine if the pop-out menu is out
+const is_expanded = ref( false)
+// Determine if the api data has been loaded
+const has_data = ref( false)
+// Determine if the campaign list is being shown
+const view_campaigns = ref( false)
+// Determine if the profile box is being shown
+const view_profile = ref( false)
+const profile = ref( {})
+const campaigns = ref( {})
+const notifications = ref( {})
+const marketplace = ref( {})
+const releases = ref( {})
+const show_alerts = ref( false)
+// Determine if data from the api has been loaded
+const is_loaded = ref( false)
+const pro = ref( false)
 
-    data() {
-        return {
-            // Check for updates in the localstorage every minute for new alerts
-            alert_delta: 60 * 1000,
-            // Determine if waiting for data to load (show spinning wheel)
-            is_loading: false,
-            // Determine if the pop-out menu is out
-            is_expanded: false,
-            // Determine if the api data has been loaded
-            has_data: false,
-            // Determine if the campaign list is being shown
-            view_campaigns: false,
-            // Determine if the profile box is being shown
-            view_profile: false,
-            profile: {},
-            campaigns: {},
-            notifications: {},
-            marketplace: {},
-            releases: {},
-            show_alerts: false,
-            // Determine if data from the api has been loaded
-            is_loaded: false,
-            pro: false,
-        }
-    },
-
-    methods: {
-        openCampaigns: function() {
-            this.view_campaigns = true;
-            this.view_profile = false;
-            this.loadData();
-        },
-        openProfile: function() {
-            this.view_profile = true;
-            this.view_campaigns = false;
-            this.loadData();
-        },
-        loadData: function() {
-            this.is_expanded = true;
-            if (this.has_data) {
-                return;
-            }
-            this.is_loading = true;
-            fetch(this.api)
-                .then(response => response.json())
-                .then(response => {
-                this.profile = response.profile;
-                this.campaigns = response.campaigns;
-                this.notifications = response.notifications;
-                this.marketplace = response.marketplace;
-                this.releases = response.releases;
-                this.show_alerts = response.has_unread;
-                this.has_data = true;
-                this.is_loading = false;
-                this.is_loaded = true;
-                this.pro = response.fontawesome_pro;
-            });
-        },
-        blockClass: function(active) {
-            if (active) {
-                return 'block p-4 flex-grow items-center focus:box-shadow';
-            }
-            return 'block p-4  items-center bg-base-200 cursor-pointer flex-none focus:box-shadow';
-        },
-        logout: function() {
-            //console.info('loging out');
-            document.getElementById('logout-form').submit();
-        },
-        onClickOutside (event) {
-            //console.log('Clicked outside. Event: ', event)
-            this.is_expanded = false;
-        },
-        readRelease: function(release) {
-            let index = this.releases.releases.findIndex(msg => msg.id === release.id);
-            this.releases.releases.slice(index, 1);
-            this.updateUnread();
-        },
-        readNotification: function(notification) {
-            let index = this.notifications.messages.findIndex(msg => msg.id == notification.id);
-            this.notifications.messages.slice(index, 1);
-            this.updateUnread();
-        },
-        // Figure out if the unread notification is removed
-        updateUnread: function() {
-            //console.log('test', this.notifications.messages.length, this.releases.releases.length);
-            if (this.notifications.messages.length === 0 && this.releases.releases.length === 0) {
-                this.show_alerts = false;
-            }
-        },
-        updateAlerts: function() {
-            //console.log('updateAlerts');
-            // Only do an ajax call if we haven't done one in a while  by looking at the local storage
-            let last = localStorage.getItem('last_notification-' + this.user_id);
-            let now = new Date().getTime();
-            let delay = now - (60 * 5000); // Wait 5 minutes between each request on the db
-
-            if (!last || last < delay) {
-                this.fetchAlerts();
-            } else {
-                //console.log('updating alerts', this.user_id);
-                // If we have up to date info, show it to the user
-                this.show_alerts = localStorage.getItem('notification-has-alerts-' + this.user_id) === 'true';
-                this.queueFetch();
-
-                // If the user hasn't opened the menu, don't bother with more details
-                if (!this.is_loaded) {
-                    //console.log('hasnt loaded yet');
-                    return;
-                }
-                /*let releases = localStorage.getItem('notification-releases-' + this.user_id);
-                if (releases && releases.length != this.releases.releases.length) {
-                    console.log('new releases', releases);
-                    this.releases.releases = releases;
-                    console.log('now', this.releases.releases);
-                }
-                let notifications = localStorage.getItem('notification-notifications-' + this.user_id);;
-                if (notifications && notifications.length != this.notifications.messages.length) {
-                    console.log('new notifications', notifications);
-                    this.notifications.messages = notifications;
-                }*/
-            }
-        },
-        fetchAlerts: function() {
-            //console.log('fetchAlerts');
-            let now = new Date().getTime();
-            localStorage.setItem('last_notification-' + this.user_id, now);
-
-            //console.log('fetch', this.fetch);
-            fetch(this.fetch)
-                .then(response => response.json())
-                .then(response => {
-                //console.log('responses', response);
-                /*localStorage.setItem('notification-notifications-' + this.user_id, response.data.notifications);
-                localStorage.setItem('notification-releases-' + this.user_id, response.data.releases);*/
-                localStorage.setItem('notification-has-alerts-' + this.user_id, response.has_alerts);
-                this.updateAlerts();
-            });
-        },
-        queueFetch: function() {
-            //console.log('queue fetch');
-            let vm = this;
-            setTimeout(function () { vm.updateAlerts() }.bind(this), this.alert_delta);
-        },
-        showInitials: function() {
-            return this.avatar.startsWith('/images/');
-        },
-        profilePictureUrl: function() {
-            return 'url(' + this.avatar + ')'
-        },
-    },
-    mounted() {
-        this.show_alerts = this.has_alerts;
-        this.queueFetch();
+const openCampaigns = () => {
+    view_campaigns.value = true;
+    view_profile.value = false;
+    loadData();
+}
+const openProfile = () => {
+    view_profile.value = true;
+    view_campaigns.value = false;
+    loadData();
+}
+const loadData = () => {
+    is_expanded.value = true;
+    if (has_data.value) {
+        return;
     }
-};
+    is_loading.value = true;
+    axios.get(props.api)
+        .then(response => {
+        profile.value = response.data.profile;
+        campaigns.value = response.data.campaigns;
+        notifications.value = response.data.notifications;
+        marketplace.value = response.data.marketplace;
+        releases.value = response.data.releases;
+        show_alerts.value = response.data.has_unread;
+        has_data.value = true;
+        is_loading.value = false;
+        is_loaded.value = true;
+        pro.value = response.data.fontawesome_pro;
+    });
+}
+const blockClass = (active) => {
+    if (active) {
+        return 'block p-4 flex-grow items-center focus:box-shadow';
+    }
+    return 'block p-4  items-center bg-base-200 cursor-pointer flex-none focus:box-shadow';
+}
+const logout = () => {
+    //console.info('loging out');
+    document.getElementById('logout-form').submit();
+}
+const onClickOutside = (event) => {
+    //console.log('Clicked outside. Event: ', event)
+    is_expanded.value = false;
+}
+const readRelease = (release) => {
+    let index = releases.value.releases.findIndex(msg => msg.id === release.id);
+    releases.value.releases.slice(index, 1);
+    updateUnread();
+}
+const readNotification = (notification) => {
+    let index = notifications.value.messages.findIndex(msg => msg.id == notification.id);
+    notifications.value.messages.slice(index, 1);
+    updateUnread();
+}
+// Figure out if the unread notification is removed
+const updateUnread = () => {
+    //console.log('test', this.notifications.messages.length, this.releases.releases.length);
+    if (notifications.value.messages.length === 0 && releases.value.releases.length === 0) {
+        show_alerts.value = false;
+    }
+}
+const updateAlerts = () => {
+    //console.log('updateAlerts');
+    // Only do an ajax call if we haven't done one in a while  by looking at the local storage
+    let last = localStorage.getItem('last_notification-' + props.user_id);
+    let now = new Date().getTime();
+    let delay = now - (60 * 5000); // Wait 5 minutes between each request on the db
+
+    if (!last || last < delay) {
+        fetchAlerts();
+    } else {
+        //console.log('updating alerts', this.user_id);
+        // If we have up to date info, show it to the user
+        show_alerts.value = localStorage.getItem('notification-has-alerts-' + props.user_id) === 'true';
+        queueFetch();
+
+        // If the user hasn't opened the menu, don't bother with more details
+        if (!is_loaded.value) {
+            //console.log('hasnt loaded yet');
+            return;
+        }
+        /*let releases = localStorage.getItem('notification-releases-' + this.user_id);
+        if (releases && releases.length != this.releases.releases.length) {
+            console.log('new releases', releases);
+            this.releases.releases = releases;
+            console.log('now', this.releases.releases);
+        }
+        let notifications = localStorage.getItem('notification-notifications-' + this.user_id);;
+        if (notifications && notifications.length != this.notifications.messages.length) {
+            console.log('new notifications', notifications);
+            this.notifications.messages = notifications;
+        }*/
+    }
+}
+const fetchAlerts = () => {
+    //console.log('fetchAlerts');
+    let now = new Date().getTime();
+    localStorage.setItem('last_notification-' + props.user_id, now);
+
+    //console.log('fetch', this.fetch);
+    axios.get(props.fetch)
+        .then(response => {
+        //console.log('responses', response);
+        /*localStorage.setItem('notification-notifications-' + this.user_id, response.data.notifications);
+        localStorage.setItem('notification-releases-' + this.user_id, response.data.releases);*/
+        localStorage.setItem('notification-has-alerts-' + props.user_id, response.data.has_alerts);
+        updateAlerts();
+    });
+}
+const queueFetch = () => {
+    //console.log('queue fetch');
+    setTimeout(function () { updateAlerts() }, props.alert_delta);
+}
+const showInitials = () => {
+    return props.avatar.startsWith('/images/');
+}
+const profilePictureUrl = () => {
+    return 'url(' + props.avatar + ')'
+}
+onMounted(() => {
+  show_alerts.value = props.has_alerts;
+  queueFetch();
+})
 </script>
