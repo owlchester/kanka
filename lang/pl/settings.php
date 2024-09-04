@@ -198,7 +198,6 @@ return [
             'alternatives-2'        => 'Opłać subskrypcję za pomocą :method. To płatność jednorazowa, która nie odnowi się automatycznie na koniec okresu rozliczeniowego.',
             'alternatives_warning'  => 'Jeżeli używasz tej metody, nie możesz zmienić poziomu subskrypcji. Zasubskrybuj ponownie, gdy ta subskrypcja wygaśnie.',
             'alternatives_yearly'   => 'Z powodu ograniczeń cyklu płatniczego, :method jest dostępna tylko dla subskrypcji rocznych.',
-            'currency_blocked'      => 'Nie można zmienić waluty aktywnej subskrypcji Kanki. Napisz do nas na :email, by uzyskać pomoc.',
             'paypal_v3'             => 'Opłać bezpiecznie roczną subskrypcję przy pomocy PayPala.',
             'stripe'                => 'Informacje o płatnościach bezpiecznie przetwarza i przechowuje :stripe.',
         ],

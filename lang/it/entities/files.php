@@ -6,8 +6,7 @@ return [
         'premium'   => 'Caricare molti file richiede una campagna premium.',
     ],
     'create'            => [
-        'success'   => 'File :file aggiunto.',
-        'title'     => 'Nuovo file per :entity',
+        'title' => 'Nuovo file per :entity',
     ],
     'destroy'           => [
         'success'   => 'File :name rimosso.',

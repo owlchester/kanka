@@ -5,8 +5,7 @@ return [
         'error' => 'Esta entidade chegou ao número máximo de ficheiros que pode conter.',
     ],
     'create'            => [
-        'success'   => 'Ficheiro ":file" engadido.',
-        'title'     => 'Novo ficheiro para ":entity"',
+        'title' => 'Novo ficheiro para ":entity"',
     ],
     'destroy'           => [
         'success'   => 'Ficheiro ":file" eliminado.',

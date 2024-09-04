@@ -16,7 +16,6 @@ return [
         'success'       => 'Focus dell\'immagine aggiornato',
         'title'         => 'Focus dell\'immagine per :name',
         'unboosted'     => 'L\'impostazione di un punto focus dell\'immagine è riservata a :boosted-campaigns.',
-        'warning_v2'    => 'Impostare il punto focus per le immagini della galleria può essere fatto direttamente sulla pagina di :gallery.',
     ],
     'replace'           => [
         'breadcrumb'    => 'Sostituzione dell\'immagine',

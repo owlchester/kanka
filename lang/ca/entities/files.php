@@ -2,8 +2,7 @@
 
 return [
     'create'    => [
-        'success'   => 'S\'ha afegit el fitxer :file.',
-        'title'     => 'Nou fitxer per a :entity',
+        'title' => 'Nou fitxer per a :entity',
     ],
     'destroy'   => [
         'success'   => 'S\'ha esborrat el fitxer :file.',

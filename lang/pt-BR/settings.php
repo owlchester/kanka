@@ -198,7 +198,6 @@ return [
             'alternatives-2'        => 'Pague sua assinatura usando :method. Este é um pagamento único que não é renovado automaticamente no final da assinatura.',
             'alternatives_warning'  => 'Não é possível atualizar sua assinatura ao usar este método. Faça uma nova assinatura quando a atual terminar.',
             'alternatives_yearly'   => 'Devido às restrições em torno dos pagamentos recorrentes, :method está disponível apenas para assinaturas anuais',
-            'currency_blocked'      => 'Não é possível alterar a moeda depois de ter uma assinatura Kanka ativa. Entre em contato conosco em :email para obter assistência.',
             'paypal_v3'             => 'Pague com segurança pela sua assinatura anual usando o PayPal.',
             'stripe'                => 'Suas informações de cobrança são processadas e armazenadas com segurança por meio de :stripe.',
         ],

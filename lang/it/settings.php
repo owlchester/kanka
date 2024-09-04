@@ -192,7 +192,6 @@ return [
             'alternatives-2'        => 'Paga il tuo abbonamento usando :method. Si tratta di un pagamento unico che non si rinnova automaticamente alla fine dell\'abbonamento.',
             'alternatives_warning'  => 'Non è possibile aggiornare l\'abbonamento utilizzando questo metodo. Sottoscrivi nuovamente l\'abbonamento al termine di quello attuale.',
             'alternatives_yearly'   => 'Accettiamo abbonamenti annuali solo con :method',
-            'currency_blocked'      => 'Non è possibile cambiare valuta dopo aver sottoscritto un abbonamento attivo a Kanka. Contattaci all\'indirizzo :email per ricevere assistenza.',
             'paypal_v3'             => 'Paga in tutta sicurezza il tuo abbonamento annuale con PayPal.',
             'stripe'                => 'I dati di fatturazione vengono elaborati e conservati in modo sicuro tramite :stripe.',
         ],

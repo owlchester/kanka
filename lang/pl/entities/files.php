@@ -6,8 +6,7 @@ return [
         'premium'   => 'Zamieszczenie kolejnych plików wymaga kampanii premium.',
     ],
     'create'            => [
-        'success'   => 'Dodano plik :file.',
-        'title'     => 'Nowy plik elementu :entity',
+        'title' => 'Nowy plik elementu :entity',
     ],
     'destroy'           => [
         'success'   => 'Usunięto plik :file.',

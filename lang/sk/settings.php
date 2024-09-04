@@ -198,7 +198,6 @@ return [
             'alternatives-2'        => 'Zaplať za tvoje predplatné pomocou :method. Toto je jednorázová platba a nebude automaticky obnovená po skončení tvojho predplatného.',
             'alternatives_warning'  => 'Aktualizácia predplatného týmto spôsobom nie je možná. Prosím, vytvor nové predplatné, keď tvoje súčasné skončí.',
             'alternatives_yearly'   => 'Kvôli obmedzeniam ohľadom opakovaných platieb, :method je dostupný len pre ročné zúčtovanie.',
-            'currency_blocked'      => 'Ak už máš platné predplatné Kanky, nie je možné zmeniť zvolenú menu. Prosím, kontaktuj nás na :email kvôli podpore.',
             'paypal_v3'             => 'Zaplať tvoje ročné predplatné bezpečne PayPalom.',
             'stripe'                => 'Tvoje platobné údaje sú spracované a uložené bezpečne prostredníctvom :stripe.',
         ],

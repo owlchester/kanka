@@ -16,7 +16,6 @@ return [
         'success'       => 'Encuadre de la imagen actualizado.',
         'title'         => 'Encuadre de la imagen de :name',
         'unboosted'     => 'Definir el encuadre de una imagen es una funcionalidad reservada para las :boosted-campaigns.',
-        'warning_v2'    => 'La configuración del punto de enfoque de las imágenes de la galería puede realizarse directamente en la página de la :gallery.',
     ],
     'replace'           => [
         'breadcrumb'    => 'Reemplazar imagen',

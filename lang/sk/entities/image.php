@@ -16,7 +16,6 @@ return [
         'success'       => 'Stredobod záujmu aktualizovaný.',
         'title'         => 'Stredobod záujmu objektu :name',
         'unboosted'     => 'Nastavenie stredobodu záujmu na obrázku je rezervované pre :boosted_campaigns.',
-        'warning_v2'    => 'Nastavenie stredobodu záujmu pre obrázky galérie je možné uskutočniť priamo na stránke :gallery.',
     ],
     'replace'           => [
         'breadcrumb'    => 'Výmena obrázku',

@@ -2,8 +2,7 @@
 
 return [
     'create'    => [
-        'success'   => 'Datoteka :file dodana.',
-        'title'     => 'Nova datoteka za :entity',
+        'title' => 'Nova datoteka za :entity',
     ],
     'destroy'   => [
         'success'   => 'Datoteka :file uklonjena.',

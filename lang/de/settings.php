@@ -198,7 +198,6 @@ return [
             'alternatives-2'        => 'Bezahle dein Abonnement mit der Methode :method. Hierbei handelt es sich um eine einmalige Zahlung, die sich am Ende des Abonnements nicht automatisch verlängert.',
             'alternatives_warning'  => 'Ein Upgrade Ihres Abonnements mit dieser Methode ist nicht möglich. Bitte erstellen Sie ein neues Abonnement, wenn Ihr aktuelles Abonnement endet.',
             'alternatives_yearly'   => 'Aufgrund der Einschränkungen bei wiederkehrenden Zahlungen ist die :method nur für Jahresabonnements verfügbar',
-            'currency_blocked'      => 'Es ist nicht möglich, die Währung zu ändern, sobald du ein aktives Kanka-Abonnement hast. Bitte kontaktiere  uns unter :email für Unterstützung.',
             'paypal_v3'             => 'Bezahle dein Jahresabonnement sicher mit PayPal.',
             'stripe'                => 'Deine Rechnungsinformationen werden von :stripe sicher verarbeitet und gespeichert.',
         ],

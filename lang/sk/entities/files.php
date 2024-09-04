@@ -6,8 +6,7 @@ return [
         'premium'   => 'Nahranie ďalších súborov vyžaduje prémiovú kampaň.',
     ],
     'create'            => [
-        'success'   => 'Súbor :file pridaný.',
-        'title'     => 'Nový súbor pre :entity',
+        'title' => 'Nový súbor pre :entity',
     ],
     'destroy'           => [
         'success'   => 'Súbor :file odstránený.',

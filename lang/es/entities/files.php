@@ -6,8 +6,7 @@ return [
         'premium'   => 'Subir más archivos requiere una campaña premium.',
     ],
     'create'            => [
-        'success'   => 'Archivo :file añadido.',
-        'title'     => 'Nuevo archivo para :entity',
+        'title' => 'Nuevo archivo para :entity',
     ],
     'destroy'           => [
         'success'   => 'Archivo :file eliminado.',

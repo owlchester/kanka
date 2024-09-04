@@ -2,8 +2,7 @@
 
 return [
     'create'    => [
-        'success'   => ':file állományt hozzáadtuk.',
-        'title'     => 'Új állomány :entity részére',
+        'title' => 'Új állomány :entity részére',
     ],
     'destroy'   => [
         'success'   => ':file állományt eltávolítottuk.',

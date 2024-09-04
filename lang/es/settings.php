@@ -197,7 +197,6 @@ return [
             'alternatives-2'        => 'Paga tu suscripción utilizando :method. Este pago es único y no se renueva automáticamente al final de la suscripción.',
             'alternatives_warning'  => 'No se puede mejorar la suscripción usando este método. Por favor, crea una nueva suscripción cuando la actual termine.',
             'alternatives_yearly'   => 'Debido a las restricciones de los pagos recurrentes, :method solo está disponible para las suscripciones anuales.',
-            'currency_blocked'      => 'No es posible cambiar de moneda una vez que se ha tenido una suscripción activa a Kanka. Por favor, ponte en contacto con nosotros en :email para obtener ayuda.',
             'paypal_v3'             => 'Paga tu suscripción anual de forma segura con PayPal.',
             'stripe'                => 'Tu información de facturación se procesa y almacena de forma segura a través de :stripe.',
         ],

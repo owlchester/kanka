@@ -6,8 +6,7 @@ return [
         'premium'   => 'Das Hochladen weiterer Dateien erfordert eine Premium-Kampagne.',
     ],
     'create'            => [
-        'success'   => 'Date :file hinzugefügt',
-        'title'     => 'Neue Datei für :entity',
+        'title' => 'Neue Datei für :entity',
     ],
     'destroy'           => [
         'success'   => 'Datei :file entfernt',
