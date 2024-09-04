@@ -594,7 +594,7 @@ class MapMarker extends Model
         }
 
         // Entity with no image? Add a grey background colour to make the pin visible
-        if ($this->icon == 4 && !$this->entity->hasImage()) {
+        if ($this->icon == 4 && $this->entity && !$this->entity->hasImage()) {
             return '#ccc';
         }
 
