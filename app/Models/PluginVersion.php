@@ -505,13 +505,13 @@ class PluginVersion extends Model
             if (!empty($abi->ability->parent)) {
                 $parent = [
                     'name' => $abi->ability->parent->name,
-                    'slug' => $abi->ability->parent->slug,
+                    'slug' => Str::slug($abi->ability->parent->name),
                 ];
             }
 
             $ability = [
                 'name' => $abi->ability->name,
-                'slug' => $abi->ability->slug,
+                'slug' => Str::slug($abi->ability->name),
                 'type' => $abi->ability->type,
                 'entry' => $abi->ability->parsedEntry(),
                 'charges' => $abi->ability->charges,
