@@ -5,12 +5,10 @@ namespace App\Http\Controllers\Entity\Attributes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAttribute;
 use App\Http\Requests\UpdateAttribute;
-use App\Http\Requests\UpdateEntityAttribute;
 use App\Http\Resources\Attributes\LiveAttributeResource;
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\Attributes\ApiService;
 use App\Traits\GuestAuthTrait;
 
 class LiveApiController extends Controller
