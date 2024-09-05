@@ -3,8 +3,6 @@
 namespace App\Http\Resources\Attributes;
 
 use App\Models\Attribute;
-use App\Traits\CampaignAware;
-use App\Traits\EntityAware;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LiveAttributeResource extends JsonResource

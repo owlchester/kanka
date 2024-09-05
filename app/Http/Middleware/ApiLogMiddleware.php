@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use App\Facades\ApiLog;
-
 use Closure;
 
 class ApiLogMiddleware

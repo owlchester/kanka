@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 //use Faker\Generator as Faker;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Character;
 

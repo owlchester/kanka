@@ -310,7 +310,7 @@ class BulkService
             }
             $entityFields = $filledFields;
 
-            if(isset($entityFields[$parent]) && intval($entityFields[$parent]) == $entity->id) {
+            if (isset($entityFields[$parent]) && intval($entityFields[$parent]) == $entity->id) {
                 unset($entityFields[$parent]);
             }
 

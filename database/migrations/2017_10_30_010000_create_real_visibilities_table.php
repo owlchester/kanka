@@ -13,7 +13,7 @@ class CreateRealVisibilitiesTable extends Migration
      */
     public function up()
     {
-        if(Schema::hasTable('visibilities')) {
+        if (Schema::hasTable('visibilities')) {
             return;
         }
         Schema::create('visibilities', function (Blueprint $table) {

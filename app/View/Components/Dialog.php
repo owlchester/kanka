@@ -18,7 +18,7 @@ class Dialog extends Component
         public array $form = [],
         public bool $full = false,
         public bool $loading = false,
-        public  bool $dismissible = true,
+        public bool $dismissible = true,
     ) {
         if (empty($this->id)) {
             $this->id = uniqid();
