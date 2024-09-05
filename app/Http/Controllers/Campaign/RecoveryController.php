@@ -2,24 +2,26 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Models\Entity;
-use App\Services\Entity\RecoveryService;
-use Carbon\Carbon;
+use App\Services\Entity\RecoveryService as EntityRecoveryService;
+use App\Services\Posts\RecoveryService;
+use App\Services\Entity\RecoverySetupService;
 use Exception;
 use Illuminate\Http\Request;
 
 class RecoveryController extends Controller
 {
-    protected RecoveryService $service;
+    protected RecoveryService $postService;
+    protected EntityRecoveryService $entityService;
+    protected RecoverySetupService $service;
 
-    public function __construct(RecoveryService $service)
+    public function __construct(RecoveryService $postService, EntityRecoveryService $entityService, RecoverySetupService $recoverySetupService)
     {
         $this->middleware('auth');
-
-        $this->service = $service;
+        $this->postService = $postService;
+        $this->entityService = $entityService;
+        $this->service = $recoverySetupService;
     }
 
     /**
@@ -30,34 +32,23 @@ class RecoveryController extends Controller
     {
         $this->authorize('recover', $campaign);
 
-        Datagrid::layout(\App\Renderers\Layouts\Campaign\Recovery::class)
-            ->permissions(false);
+        return view('campaigns.recovery.index', compact('campaign'));
+    }
 
-        $rows = Entity::onlyTrashed()
-            ->with('image')
-            ->sort(request()->only(['o', 'k']), ['deleted_at' => 'DESC'])
-            ->whereDate('deleted_at', '>=', Carbon::today()->subDays(config('entities.hard_delete')))
-            ->paginate();
+    public function setup(Campaign $campaign)
+    {
+        $this->authorize('recover', $campaign);
 
-        // Ajax Datagrid
-        if (request()->ajax()) {
-            $html = view('layouts.datagrid._table')
-                ->with('rows', $rows)
-                ->render();
-            return response()->json([
-                'success' => true,
-                'html' => $html,
-            ]);
-        }
-
-        return view('campaigns.recovery.index', compact('rows', 'campaign'));
+        return response()->json(
+            $this->service
+                ->user(auth()->user())
+                ->campaign($campaign)
+                ->setup()
+        );
     }
 
     public function recover(Request $request, Campaign $campaign)
     {
-        if (request()->ajax()) {
-            return response()->json(['success' => true]);
-        }
         if (!$campaign->boosted()) {
             return redirect()
                 ->route('recovery', $campaign)
@@ -66,10 +57,12 @@ class RecoveryController extends Controller
         }
 
         try {
-            $count = $this->service->recover($request->get('model', []));
-            return redirect()
-                ->route('recovery', $campaign)
-                ->with('success', trans_choice('campaigns/recovery.success', $count, ['count' => $count]));
+            $entities = $this->entityService->recover($request->get('entities', []));
+            $posts = $this->postService->recover($request->get('posts', []));
+
+            $count = count($entities) + count($posts);
+
+            return response()->json(['entities' => $entities, 'posts' => $posts, 'toast' => trans_choice('campaigns/recovery.success_v2', $count, ['count' => $count])]);
         } catch (Exception $e) {
             return redirect()
                 ->route('recovery', $campaign)

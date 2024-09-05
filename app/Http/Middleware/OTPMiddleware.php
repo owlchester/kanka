@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use App\Models\Google2FAAuthentication;
-
 use Closure;
 use App\Facades\Identity;
 

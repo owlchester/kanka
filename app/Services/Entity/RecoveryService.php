@@ -6,46 +6,35 @@ use App\Models\Entity;
 
 class RecoveryService
 {
-    /** Number of total recovered entities */
-    protected int $count = 0;
-
     /**
      */
-    public function recover(array $ids): int
+    public function recover(array $ids): array
     {
-        $this->count = 0;
+        $entities = [];
         foreach ($ids as $id) {
-            if ($this->entity($id)) {
-                $this->count++;
+            $url = $this->entity($id);
+            if ($url) {
+                $entities[$id] = $url;
             }
         }
 
-        return $this->count;
-    }
-
-
-    /**
-     */
-    public function count(): int
-    {
-        return $this->count;
+        return $entities;
     }
 
     /**
      * Restore an entity and it's child
-     * @return bool if the restore worked
      */
-    protected function entity(int $id): bool
+    protected function entity(int $id): mixed
     {
         $entity = Entity::onlyTrashed()->find($id);
         if (!$entity) {
-            return false;
+            return null;
         }
 
         // @phpstan-ignore-next-line
         $child = $entity->child()->onlyTrashed()->first();
         if (!$child) {
-            return false;
+            return null;
         }
 
         $entity->restore();
@@ -53,6 +42,7 @@ class RecoveryService
         // Refresh the child first to not re-trigger the entity creation on save
         $child->refresh();
         $child->restoreQuietly();
-        return true;
+
+        return $entity->url();
     }
 }

@@ -21,7 +21,7 @@ class Cta extends Component
         public bool $superboost = false,
         public bool $premium = false,
         public bool $minimal = false,
-        public  bool $max = false,
+        public bool $max = false,
     ) {
     }
 

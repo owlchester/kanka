@@ -10,7 +10,6 @@ use App\Models\EntityMention;
 use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
-
 use App\Traits\MentionTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
