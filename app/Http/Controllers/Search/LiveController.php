@@ -112,17 +112,17 @@ class LiveController extends Controller
         $term = trim($request->get('q', ''));
 
         $exclude = [];
-        if ($request->has('exclude')) {
+        if ($request->has('exclude-entity')) {
             /** @var Tag $tag */
-            $tag = Tag::findOrFail($request->get('exclude'));
+            $tag = Tag::findOrFail($request->get('exclude-entity'));
             $exclude = $tag->entities->pluck('id')->toArray();
+            $exclude[] = $tag->entity->id;
         }
 
         return response()->json(
             $this->search
                 ->term($term)
                 ->campaign($campaign)
-                ->exclude([config('entities.ids.tag')])
                 ->excludeIds($exclude)
                 ->find()
         );

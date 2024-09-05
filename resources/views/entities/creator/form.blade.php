@@ -49,7 +49,7 @@
             @php $allowNew = false; $dropdownParent = '#primary-dialog';@endphp
             @include('entities.creator.forms.' . $singularType)
 
-            @if (!in_array($type, ['tags', 'posts', 'attribute_templates']))
+            @if (!in_array($type, ['posts', 'attribute_templates']))
                 <div id="quick-creator-tags-field">
                     @include('cruds.fields.tags', ['dropdownParent' => '#quick-creator-tags-field'])
                 </div>

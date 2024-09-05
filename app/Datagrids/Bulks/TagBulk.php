@@ -12,6 +12,7 @@ class TagBulk extends Bulk
         'private_choice',
         'auto_applied_choice',
         'hide_choice',
+        'tags',
         'entity_image',
         'entity_header',
     ];

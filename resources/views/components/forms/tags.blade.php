@@ -10,7 +10,7 @@
 <select multiple="multiple" name="tags[]" id="{{ $id }}"
         class="form-tags"
         style="width: 100%"
-        data-url="{{ route('tags.find', $campaign) }}"
+        data-url="{{ $model instanceof App\Models\Tag ? route('tags.find', [$campaign, 'exclude' => $model->id] ) : route('tags.find', $campaign) }}"
         data-allow-new="{{ $allowNew ? 'true' : 'false' }}"
         data-placeholder="{{ __('crud.placeholders.multiple') }}"
         @if ($allowClear) data-allow-clear="true" @endif
