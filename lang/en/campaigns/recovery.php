@@ -8,7 +8,7 @@ return [
     'error'         => 'An error occurred trying to recover entities.',
     'fields'        => [
         'deleted'    => 'Deleted',
-        'deleted_at' => 'Deleted :date by :user.',
+        'deleted_at' => 'Deleted :date by :user',
     ],
     'name_link'     => ':name was successfully recovered',
     'helper'        => 'Deleted entities of the campaign can be recovered for up to :count days. Entities deleted while the campaign isn\'t upgraded to premium status are still recoverable once the campaign is upgraded.',

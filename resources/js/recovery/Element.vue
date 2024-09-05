@@ -1,16 +1,16 @@
 <template>
     <div v-if="!model.is_hidden && !model.url" :class="modelClass()" @click="click">
-        <div class="flex gap-4 items-center">
-            <div class="flex-none">
+        <div class="flex gap-2 items-center">
+            <div class="flex-none flex items-center">
                 <input v-if="!model.url" type="checkbox" v-model="model.is_selected" @click="startBulking"/>
             </div>
-            <div class="grow font-extrabold" v-html="model.name"></div>
-            <div class="rounded px-2 py-1 text-sm bg-base-200" v-html="trans('model_' + model.type_id)"></div>
+            <div class="grow font-extrabold truncate" v-html="model.name"></div>
+            <div class="rounded-xl px-3 py-1 text-xs bg-base-200" v-html="model.type_name"></div>
         </div>
         <hr />
-        <div class="flex items-center">
+        <div class="flex items-center gap-2 md:gap-4">
             <div class="grow text-neutral-content">
-                <span v-html="trans('deleted_at', [model.date, model.deleted_name])"></span>
+                <span class="text-xs" v-html="trans('deleted_at', [model.date, model.deleted_name])"></span>
             </div>
             <div v-if="!model.url" class="flex-none">
                 <button :class="buttonClass()" @click="restoreElement()" v-html="trans('recover')" ></button>
@@ -23,7 +23,7 @@
             <i class="fa-solid text-green-500 fa-circle-check" aria-hidden="true" />
         </div>
         <div class="grow" v-html="trans('recovery_success', [model.url, model.name])"></div>
-        <div class="rounded px-2 py-1 text-sm bg-base-200" v-html="trans('model_' + model.type_id)"></div>
+        <div class="rounded-xl px-3 py-1 text-xs bg-base-300" v-html="model.type_name"></div>
     </div>
 
 </template>
@@ -46,8 +46,8 @@ const click = () => {
 }
 
 const modelClass = () => {
-    let css = 'rounded shadow bg-base-100 flex flex-col gap-2 p-2 hover:shadow-lg'
-    
+    let css = 'rounded shadow bg-base-100 flex flex-col gap-2 md:gap-4 p-4 hover:shadow-lg'
+
     if (!props.model.url) {
         css = css + ' cursor-pointer'
     }
@@ -56,7 +56,7 @@ const modelClass = () => {
         return css + '  '
     }
 
-    return css + ' bg-base-300'
+    return css + ' bg-base-200'
 }
 
 const trans = (key, replace = []) => {

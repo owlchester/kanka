@@ -44,7 +44,7 @@
         </div>
         <div class="flex flex-col gap-4" v-else>
             <div class="flex gap-2 flex-row">
-                <div class="grid grid-cols-3 gap-2">
+                <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
                     <Element
                         v-for="model in models"
                         :model="model"
@@ -124,17 +124,17 @@ const trans = (key) => {
 }
 
 const selectElements = (model) => {
-        let f = models.value.find(f => f.id === model.id)
-        if (!f.url && !f.is_hidden) {
-            f.is_selected = true
-        }
-        return;
+    let f = models.value.find(f => f.id === model.id)
+    if (!f.url && !f.is_hidden) {
+        f.is_selected = true
+    }
+    return;
 }
 
 const deselectElements = (model) => {
-        let f = models.value.find(f => f.id === model.id)
-        f.is_selected = false
-        return;
+    let f = models.value.find(f => f.id === model.id)
+    f.is_selected = false
+    return;
 }
 
 const recoverElement = (model) => {
@@ -150,11 +150,11 @@ const recoverElement = (model) => {
     if (recovering.value) {
         return
     }
-    
+
     recovering.value = true
     let data = {}
 
-    if (f.type === 'post') {
+    if (f.type_code === 'post') {
         data.posts = [f.id]
         data.entities = []
     } else {
@@ -164,14 +164,14 @@ const recoverElement = (model) => {
 
     axios.post(recoveryApi.value, data).then(res => {
         recovering.value = false
-        
+
         const entities = Object.keys(res.data.entities).map(
             key => res.data.entities[key]
         );
 
         let ids = models.value.filter(f => f.is_recovering && f.type == 'entity')
         let postIds = models.value.filter(f => f.is_recovering && f.type == 'post')
-        
+
         ids.forEach(f => {
             f.is_selected = false
             f.is_recovering = false
@@ -271,7 +271,7 @@ const bulkRecover = () => {
 
         let ids = models.value.filter(f => f.is_selected && f.type == 'entity')
         let postIds = models.value.filter(f => f.is_selected && f.type == 'post')
-        
+
         ids.forEach(f => {
             f.is_selected = false
             if (res.data.entities[f.id]) {
@@ -320,7 +320,9 @@ const showSearchResults = () => {
 
 const orderByNew = () => {
     loading.value = true
-    models.value.sort(function(a, b){return a.position - b.position});
+    models.value.sort(function(a, b){
+        return a.position - b.position
+    });
     loading.value = false
     showFilters.value = false
     filter.value = 'newest'
@@ -328,7 +330,9 @@ const orderByNew = () => {
 
 const orderByOld = () => {
     loading.value = true
-    models.value.sort(function(a, b){return b.position - a.position});
+    models.value.sort(function(a, b){
+        return b.position - a.position
+    });
     loading.value = false
     showFilters.value = false
     filter.value = 'oldest'
@@ -336,14 +340,15 @@ const orderByOld = () => {
 
 const orderByType = () => {
     loading.value = true
-    models.value.sort(function(a, b){return trans(a.type_id).localeCompare(trans(b.type_id))});
+    models.value.sort(function(a, b){
+        return a.type_name.localeCompare(b.type_name)
+    });
     loading.value = false
     showFilters.value = false
     filter.value = 'type'
 }
 
 const openDialog = (dialog) => {
-    console.log(dialog)
     dialog.showModal()
     dialog.addEventListener('click', clickOutside);
 }

@@ -2,10 +2,13 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\Module;
 use App\Services\Gallery\StorageService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class RecoverySetupService
 {
@@ -63,9 +66,10 @@ class RecoverySetupService
     {
         //Query yields array of objects
         $elements = DB::select(
-            'select id, name, deleted_at, deleted_by, type_id, "entity" as type
-                from entities
-                where deleted_at is not null and campaign_id = ' . $this->campaign->id . '
+            'select e.id, e.name, e.deleted_at, e.deleted_by, e.type_id, t.code as type
+                from entities as e
+                left join entity_types as t on t.id = e.type_id
+                where e.deleted_at is not null and e.campaign_id = ' . $this->campaign->id . '
                 union all
                 select p.id, p.name, p.deleted_at, p.deleted_by, 0 as type_id, "post" as type
                 from posts as p
@@ -75,16 +79,30 @@ class RecoverySetupService
         );
 
         //We fill the rest of the data needed into the objects
+        $data = new Collection();
         $users = $this->campaign->users()->pluck('users.name', 'users.id')->toArray();
         foreach ($elements as $key => $element) {
-            $element->deleted_name = $users[$element->deleted_by] ?? 'Unknown';
-            $element->date = \Carbon\Carbon::createFromTimeStamp(strtotime($element->deleted_at))->diffForHumans();
-            $element->position = $key;
-        }
+            // Cast the object to an array for simplicity
+            $row = [
+                'id' => $element->id,
+                'name' => $element->name,
+                'deleted_at' => $element->deleted_at,
+                'type' => $element->type,
+                'type_id' => $element->type_id,
+            ];
+            $row['deleted_name'] = $users[$element->deleted_by] ?? 'Unknown';
+            $row['date'] = \Carbon\Carbon::createFromTimeStamp(strtotime($element->deleted_at))->diffForHumans();
+            $row['position'] = $key;
+            if ($element->type === 'post') {
+                $row['type_name'] = __('entities.post');
+            } else {
+                $row['type'] = 'entity';
+                $row['type_name'] = Module::singular((int) $element->type_id, __('entities.' . $element->type));
+            }
 
-        //We want to send an array of arrays to JS.
-        //So this will cast each object in the array to an array, and the toArray gets you from the collection back to an array.
-        return collect($elements)->map(function ($x) { return (array) $x; })->toArray();
+            $data->add($row);
+        }
+        return $data->toArray();
     }
 
     protected function i18n(): array
