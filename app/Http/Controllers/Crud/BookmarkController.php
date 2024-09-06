@@ -55,9 +55,10 @@ class BookmarkController extends CrudController
     public function index(Request $request, Campaign $campaign)
     {
         // Check that the user has permission to actually be here
-        if (auth()->guest() || !auth()->user()->can('browse', new Bookmark())) {
+        if (!$this->authorize('browse', new Bookmark())) {
             return redirect()->route('dashboard', $campaign);
         }
+
         return $this->campaign($campaign)->crudIndex($request);
     }
 

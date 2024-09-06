@@ -135,3 +135,57 @@ $first = true;
         @endforeach
     @endforeach
 </div>
+
+<div class="grid grid-cols-3 md:grid-cols-4 gap-2">
+    <div class="col-span-3 md:col-span-1">
+        <strong>{{ __('entities.templates') }}</strong>
+    </div>
+    @foreach ($permissionService->templatePermissions() as $entity => $permissions)
+        @foreach ($permissions as $perm)
+            <div class="md:w-40 overflow-hidden">
+                <div class="pretty p-icon p-toggle p-plain" data-title="{{ __('entities.' . $perm['label']) }}" data-toggle="tooltip">
+                    <input type="checkbox" name="permissions[{{ $perm['key'] }}]" value="{{ $entity }}" @if ($perm['enabled']) checked="checked" @endif data-action="{{ $perm['action'] }}" />
+                    <div class="state p-success-o p-on">
+                        <x-icon class="icon {{ $perm['icon'] }}" />
+                        <label class="sm:hidden">
+                            {{ __('entities.' . $perm['label']) }}
+                        </label>
+                    </div>
+                    <div class="state p-off">
+                        <x-icon class="icon {{ $perm['icon'] }}" />
+                        <label class="sm:hidden">
+                            {{ __('entities.' . $perm['label']) }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @endforeach
+</div>
+
+<div class="grid grid-cols-3 md:grid-cols-4 gap-2">
+    <div class="col-span-3 md:col-span-1">
+        <strong>{{ __('entities.bookmarks') }}</strong>
+    </div>
+    @foreach ($permissionService->bookmarkPermissions() as $entity => $permissions)
+        @foreach ($permissions as $perm)
+            <div class="md:w-40 overflow-hidden">
+                <div class="pretty p-icon p-toggle p-plain" data-title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" data-toggle="tooltip">
+                    <input type="checkbox" name="permissions[{{ $perm['key'] }}]" value="{{ $entity }}" @if ($perm['enabled']) checked="checked" @endif data-action="{{ $perm['action'] }}" />
+                    <div class="state p-success-o p-on">
+                        <x-icon class="icon {{ $perm['icon'] }}" />
+                        <label class="sm:hidden">
+                            {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
+                        </label>
+                    </div>
+                    <div class="state p-off">
+                        <x-icon class="icon {{ $perm['icon'] }}" />
+                        <label class="sm:hidden">
+                            {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @endforeach
+</div>

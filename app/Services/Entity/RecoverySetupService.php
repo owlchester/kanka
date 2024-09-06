@@ -8,7 +8,6 @@ use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class RecoverySetupService
 {

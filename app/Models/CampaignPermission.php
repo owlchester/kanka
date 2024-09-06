@@ -50,6 +50,10 @@ class CampaignPermission extends Model
     public const ACTION_GALLERY_BROWSE = 15;
     public const ACTION_GALLERY_UPLOAD = 16;
 
+    public const ACTION_TEMPLATES = 17;
+    public const ACTION_POST_TEMPLATES = 18;
+    public const ACTION_BOOKMARKS = 19;
+
     protected $fillable = [
         'campaign_role_id',
         'campaign_id',
@@ -142,5 +146,22 @@ class CampaignPermission extends Model
             self::ACTION_GALLERY_UPLOAD,
         ];
         return in_array($this->action, $galleryPermissions);
+    }
+
+    public function isTemplate(): bool
+    {
+        $templatePermissions = [
+            self::ACTION_TEMPLATES,
+            self::ACTION_POST_TEMPLATES,
+        ];
+        return in_array($this->action, $templatePermissions);
+    }
+
+    public function isBookmark(): bool
+    {
+        $templatePermissions = [
+            self::ACTION_BOOKMARKS,
+        ];
+        return in_array($this->action, $templatePermissions);
     }
 }

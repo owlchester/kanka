@@ -27,7 +27,7 @@ class TemplateController extends Controller
      */
     public function update(Campaign $campaign, Post $post)
     {
-        $this->authorize('setTemplates', $campaign);
+        $this->authorize('setPostTemplates', $campaign);
         $this->service->post($post)->toggle();
         return redirect()->back()
             ->with(

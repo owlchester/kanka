@@ -197,6 +197,85 @@ class RolePermissionService
         return $permissions;
     }
 
+    public function templatePermissions(): array
+    {
+        $permissions = [];
+
+        $campaignRolePermissions = [];
+        foreach ($this->role->permissions as $perm) {
+            if ($perm->entity_type_id || !$perm->isTemplate()) {
+                continue;
+            }
+            $campaignRolePermissions["campaign_" . $perm->action] = 1;
+        }
+
+        $entityActions = [
+            CampaignPermission::ACTION_TEMPLATES,
+            CampaignPermission::ACTION_POST_TEMPLATES,
+
+        ];
+        $icons = [
+            CampaignPermission::ACTION_TEMPLATES => [
+                'fa-solid fa-cog', 'entities',
+            ],
+            CampaignPermission::ACTION_POST_TEMPLATES => [
+                'fa-solid fa-cog', 'posts',
+            ],
+        ];
+
+        foreach ($entityActions as $action) {
+            if (!isset($permissions['campaign'])) {
+                $permissions['campaign'] = [];
+            }
+            $key = "campaign_{$action}";
+            $permissions['campaign'][] = [
+                'action' => $action,
+                'key' => $key,
+                'icon' => Arr::first($icons[$action]),
+                'label' => Arr::last($icons[$action]),
+                'enabled' => isset($campaignRolePermissions[$key]),
+            ];
+        }
+        return $permissions;
+    }
+
+    public function bookmarkPermissions(): array
+    {
+        $permissions = [];
+
+        $campaignRolePermissions = [];
+        foreach ($this->role->permissions as $perm) {
+            if ($perm->entity_type_id || !$perm->isBookmark()) {
+                continue;
+            }
+            $campaignRolePermissions["campaign_" . $perm->action] = 1;
+        }
+
+        $entityActions = [
+            CampaignPermission::ACTION_BOOKMARKS,
+        ];
+        $icons = [
+            CampaignPermission::ACTION_BOOKMARKS => [
+                'fa-solid fa-cog', 'manage',
+            ],
+        ];
+
+        foreach ($entityActions as $action) {
+            if (!isset($permissions['campaign'])) {
+                $permissions['campaign'] = [];
+            }
+            $key = "campaign_{$action}";
+            $permissions['campaign'][] = [
+                'action' => $action,
+                'key' => $key,
+                'icon' => Arr::first($icons[$action]),
+                'label' => Arr::last($icons[$action]),
+                'enabled' => isset($campaignRolePermissions[$key]),
+            ];
+        }
+        return $permissions;
+    }
+
     public function savePermissions(array $permissions = []): void
     {
         // Load existing

@@ -33,7 +33,7 @@
         {{ __('entities/notes.move.move') }}
     </x-dropdowns.item>
 @endif
-@can('setTemplates', $campaign)
+@can('setPostTemplates', $campaign)
     <x-dropdowns.item :link="route('posts.template', [$campaign, 'post' => $post])" :icon="($post->isTemplate() ? 'fa-regular' : 'fa-solid') . ' fa-star'">
         @if ($post->isTemplate())
             {{ __('entities/actions.templates.unset') }}

@@ -99,6 +99,7 @@ return [
     'relations'             => 'Connections',
     'tag'                   => 'Tag',
     'tags'                  => 'Tags',
+    'templates'             => 'Templates',
     'timeline'              => 'Timeline',
     'timeline_element'      => 'Timeline element',
     'timelines'             => 'Timelines',

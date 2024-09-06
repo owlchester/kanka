@@ -293,6 +293,14 @@ class CampaignPolicy
      */
     public function setTemplates(?User $user, Campaign $campaign): bool
     {
-        return $this->isAdmin($user);
+        return $this->isAdmin($user) || $this->checkPermission(CampaignPermission::ACTION_TEMPLATES, $user, $campaign);
+    }
+
+    /**
+     * Determine if the user can set post templates on the campaign
+     */
+    public function setPostTemplates(?User $user, Campaign $campaign): bool
+    {
+        return $this->isAdmin($user) || $this->checkPermission(CampaignPermission::ACTION_POST_TEMPLATES, $user, $campaign);
     }
 }
