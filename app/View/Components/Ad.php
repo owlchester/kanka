@@ -57,11 +57,11 @@ class Ad extends Component
             return false;
         }
         // Parameter to force ads to be displayed
-        if (request()->has('_showads')) {
-            return true;
-        }
+        return (bool) (request()->has('_showads'))
+
+
         // Temp workaround for venatus to fix their ads
-        return false;
+        ;
         if (isset($this->user)) {
             // Subscribed users don't have ads
             if ($this->user->isSubscriber()) {

@@ -19,6 +19,8 @@
             <input type="checkbox" name="is_hidden" value="1" @if (old('is_hidden', $model->is_hidden ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
+
+    @include('cruds.fields.tags')
     @include('cruds.fields.image')
 
 </x-grid>

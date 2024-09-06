@@ -8,7 +8,7 @@
         name="entities[]"
         id="entities[]"
         :campaign="$campaign"
-        :route="route('search.tag-children', [$campaign, 'exclude-entity' => true])"
+        :route="route('search.tag-children', [$campaign, 'exclude-entity' => $model->id])"
     >
     </x-forms.foreign>
 </x-grid>

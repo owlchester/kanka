@@ -119,6 +119,7 @@ To create a tag, use the following endpoint.
 | `type` | `string` | The tag's type |
 | `colour` | `string` | The tag's colour |
 | `tag_id` | `integer` | The parent tag |
+| `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
 | `is_private` | `boolean` | If the tag is only visible to `admin` members of the campaign |
