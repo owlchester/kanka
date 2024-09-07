@@ -5,12 +5,8 @@ use App\Enums\Widget;
 
 $background = null;
 
-if ($widget->entity) {
-    if (!empty($widget->entity->image_path)) {
-        $background = $widget->entity->thumbnail(600, 600, 'image_path');
-    } elseif (!empty($widget->entity->image)) {
-        $background = Img::crop(600, 600)->url($widget->entity->image->path);
-    }
+if ($widget->entity && $widget->entity->hasImage()) {
+    $background = Avatar::entity($widget->entity)->size(600, 600)->thumbnail();
 }
 if (!empty($widget->conf('entity'))) {
     $entityString = $moduleService->plural($widget->conf('entity'), 'entities.' . Str::plural($widget->conf('entity')));
