@@ -54,13 +54,7 @@ class Head extends Component
                 'wide_sm' => $this->entity->header->getUrl(480, 270),
                 'square' => $this->entity->header->getUrl(800, 800),
             ];
-        } elseif ($this->entity->image) {
-            return [
-                'wide_xl' => Img::crop(800, 450)->url($this->entity->image->path),
-                'wide_sm' => Img::crop(480, 270)->url($this->entity->image->path),
-                'square' => Img::crop(800, 800)->url($this->entity->image->path),
-            ];
-        } elseif ($this->entity->image_path) {
+        } elseif ($this->entity->hasImage()) {
             return [
                 'wide_xl' => Avatar::entity($this->entity)->size(800, 450)->thumbnail(),
                 'wide_sm' => Avatar::entity($this->entity)->size(480, 270)->thumbnail(),
