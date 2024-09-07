@@ -350,9 +350,17 @@ trait HasFilters
     {
         $query->joinEntity();
         if ($value) {
-            $query->whereNotNull('e.image_path');
+            $query->where(function ($sub) {
+                return $sub
+                    ->whereNotNull('e.image_path')
+                    ->orWhereNotNull('e.image_uuid');
+            });
         } else {
-            $query->whereNull('e.image_path');
+            $query->where(function ($sub) {
+                return $sub
+                    ->whereNull('e.image_path')
+                    ->whereNull('e.image_uuid');
+            });
         }
     }
 
