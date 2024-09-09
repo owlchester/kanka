@@ -15,7 +15,7 @@ class AccountEmail implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(Str::contains($value, ['@boxmail.lol', '@fireboxmail.lol'])) {
+        if (Str::contains($value, ['@boxmail.lol', '@fireboxmail.lol'])) {
             $fail('The validation error message.');
         }
     }
