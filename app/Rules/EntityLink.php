@@ -89,10 +89,10 @@ class EntityLink implements ValidationRule
             ->where('access', 1)
             ->where('action', CampaignPermission::ACTION_READ)
             ->first();
-       
+
         // We don't check for the public role have deny as a permission, this is good enough
         if (empty($permission)) {
-            $fail( __('validation.entity_link'));
+            $fail(__('validation.entity_link'));
         }
     }
 }

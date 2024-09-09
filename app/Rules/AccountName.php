@@ -15,7 +15,7 @@ class AccountName implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (Str::contains($value, ['<', '>', 'https', 'http://', 'www.', 'Ђ', ' Illuro']) && Str::length($value) < 31) { 
+        if (Str::contains($value, ['<', '>', 'https', 'http://', 'www.', 'Ђ', ' Illuro']) && Str::length($value) < 31) {
             $fail('Invalid account name.');
         }
     }

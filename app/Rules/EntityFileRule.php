@@ -19,16 +19,16 @@ class EntityFile implements ValidationRule
         if ($value instanceof UploadedFile && !$value->isValid()) {
             $fail(__('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']));
         }
-        
+
         // Block any hacking shenanigans
         if ($this->shouldBlockPhpUpload($value, [])) {
             $fail(__('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']));
         }
-        
+
         if (empty($value->getPath())) {
             $fail(__('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']));
         }
-        
+
         $validExtensions = explode(',', 'jpeg,png,jpg,gif,webp,pdf,xls,xlsx,mp3');
         if (!in_array($value->guessExtension(), $validExtensions)) {
             $fail(__('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']));
