@@ -2,67 +2,46 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class EntityFileRule implements Rule
+class EntityFile implements ValidationRule
 {
     /**
-     * Create a new rule instance.
+     * Run the validation rule.
      *
-     * @return void
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
-    public function __construct()
-    {
-    }
-
-    /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @return bool
-     */
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         // Not a valid file, don't go further
         if ($value instanceof UploadedFile && !$value->isValid()) {
-            return false;
+            $fail(__('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']));
         }
-
+        
         // Block any hacking shenanigans
         if ($this->shouldBlockPhpUpload($value, [])) {
-            return false;
+            $fail(__('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']));
         }
-
+        
         if (empty($value->getPath())) {
-            return false;
+            $fail(__('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']));
         }
-
+        
         $validExtensions = explode(',', 'jpeg,png,jpg,gif,webp,pdf,xls,xlsx,mp3');
-        if (in_array($value->guessExtension(), $validExtensions)) {
-            return true;
+        if (!in_array($value->guessExtension(), $validExtensions)) {
+            $fail(__('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']));
         }
 
         // It wasn't an image, maybe it's an audio file
         if (empty($value->getClientOriginalExtension())) {
-            return false;
+            $fail(__('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']));
         }
 
-        return !(!in_array($value->getClientOriginalExtension(), ['mp3', 'ogg', 'json', 'csv']))
-
-
-
-        ;
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return __('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']);
+        if (in_array($value->getClientOriginalExtension(), ['mp3', 'ogg', 'json', 'csv'])) {
+            $fail(__('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']));
+        }
     }
 
     protected function shouldBlockPhpUpload($value, $parameters)

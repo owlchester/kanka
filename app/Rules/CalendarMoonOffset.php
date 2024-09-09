@@ -2,50 +2,30 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class CalendarMoonOffset implements Rule
+class CalendarMoonOffset implements ValidationRule
 {
     /**
-     * Create a new rule instance.
+     * Run the validation rule.
      *
-     * @return void
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
-    public function __construct()
-    {
-    }
-
-    /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @return bool
-     */
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         // Max value
         $lengths = request()->get('month_length');
         if (!is_array($lengths) || count($lengths) === 0) {
-            return false;
+            $fail(__('calendars.validators.moon_offset'));
         }
         $max = $lengths[0];
         $min = 0 - $max;
 
         foreach ($value as $offset) {
             if ($offset > $max || $offset < $min) {
-                return false;
+                $fail(__('calendars.validators.moon_offset'));
             }
         }
-        return true;
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return __('calendars.validators.moon_offset');
     }
 }

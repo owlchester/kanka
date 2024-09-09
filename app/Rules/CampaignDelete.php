@@ -2,39 +2,21 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Str;
 
-class CampaignDelete implements Rule
+class CampaignDelete implements ValidationRule
 {
     /**
-     * Create a new rule instance.
+     * Run the validation rule.
      *
-     * @return void
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
-    public function __construct()
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-    }
-
-    /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  string  $value
-     * @return bool
-     */
-    public function passes($attribute, $value)
-    {
-        return Str::is(mb_strtolower($value), 'delete');
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return (__('validation.delete_campaign', ['code' => 'delete']));
+        if(!Str::is(mb_strtolower($value), 'delete')) {
+            $fail(__('validation.delete_campaign', ['code' => 'delete']));
+        }
     }
 }

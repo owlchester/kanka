@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\EntityAsset;
-use App\Rules\EntityFileRule;
+use App\Rules\EntityFile;
 use App\Rules\FontAwesomeIcon;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
@@ -37,7 +37,7 @@ class StoreEntityAsset extends FormRequest
                 'required_if:type_id,' . EntityAsset::TYPE_FILE,
                 'file',
                 'max:' . Limit::upload(),
-                new EntityFileRule()
+                new EntityFile()
             ],
             'metadata.url' => 'required_if:type_id,' . EntityAsset::TYPE_LINK . '|string|url',
             'metadata.icon' => ['max:45', new FontAwesomeIcon()],

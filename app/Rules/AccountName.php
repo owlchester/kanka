@@ -2,38 +2,21 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Str;
 
-class AccountName implements Rule
+class AccountName implements ValidationRule
 {
     /**
-     * Create a new rule instance.
+     * Run the validation rule.
      *
-     * @return void
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
-    public function __construct()
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-    }
-
-    /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @return bool
-     */
-    public function passes($attribute, $value)
-    {
-        return !Str::contains($value, ['<', '>', 'https', 'http://', 'www.', 'Ђ', ' Illuro']) && Str::length($value) < 31;
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return 'Invalid account name.';
+        if (Str::contains($value, ['<', '>', 'https', 'http://', 'www.', 'Ђ', ' Illuro']) && Str::length($value) < 31) { 
+            $fail('Invalid account name.');
+        }
     }
 }

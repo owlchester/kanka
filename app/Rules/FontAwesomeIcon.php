@@ -2,38 +2,21 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Str;
 
-class FontAwesomeIcon implements Rule
+class FontAwesomeIcon implements ValidationRule
 {
     /**
-     * Create a new rule instance.
+     * Run the validation rule.
      *
-     * @return void
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
-    public function __construct()
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-    }
-
-    /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @return bool
-     */
-    public function passes($attribute, $value)
-    {
-        return !Str::startsWith($value, '<i ');
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return __('validation.fontawesome', ['example' => '<code>fa-solid fa-skull</code>']);
+        if (Str::startsWith($value, '<i ')) {
+            $fail(__('validation.fontawesome', ['example' => '<code>fa-solid fa-skull</code>']));
+        }
     }
 }

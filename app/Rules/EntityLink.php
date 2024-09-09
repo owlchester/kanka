@@ -5,31 +5,22 @@ namespace App\Rules;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Str;
 
-class EntityLink implements Rule
+class EntityLink implements ValidationRule
 {
     /**
-     * Create a new rule instance.
+     * Run the validation rule.
      *
-     * @return void
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
-    public function __construct()
-    {
-    }
-
-    /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @return bool
-     */
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         // Validate that tue url is for Kanka
         if (!Str::startsWith($value, config('app.url'))) {
-            return false;
+            $fail(__('validation.entity_link'));
         }
 
         // Extract the campaign and entity
@@ -43,17 +34,17 @@ class EntityLink implements Rule
         // 3: character|entities
         // 4: id
         if (count($segments) < 3) {
-            return false;
+            $fail(__('validation.entity_link'));
         }
 
         if ($segments[1] !== 'campaign' || !is_numeric($segments[2])) {
-            return false;
+            $fail(__('validation.entity_link'));
         }
 
         // Check that the campaign is public
         $campaign = Campaign::where('id', $segments[2])->first();
         if (empty($campaign) || !$campaign->isPublic()) {
-            return false;
+            $fail(__('validation.entity_link'));
         }
 
         // Are we targeting an entity or a misc?
@@ -69,7 +60,7 @@ class EntityLink implements Rule
         } else {
             $entityTypeID = config('entities.ids.' . Str::singular($segments[3]));
             if (empty($entityTypeID)) {
-                return false;
+                $fail(__('validation.entity_link'));
             }
             // @phpstan-ignore-next-line
             $entity = Entity::where('entity_id', (int) $segments[4])
@@ -80,13 +71,13 @@ class EntityLink implements Rule
                 ->first();
         }
         if (empty($entity) || $entity->is_private) {
-            return false;
+            $fail(__('validation.entity_link'));
         }
 
         // Figuring out if the entity is visible to the public role is going to be tricky, so let's start doing some magic.
         $publicRole = $campaign->roles()->public()->first();
         if (empty($publicRole)) {
-            return false;
+            $fail(__('validation.entity_link'));
         }
 
         $permission = $publicRole->permissions()
@@ -98,18 +89,10 @@ class EntityLink implements Rule
             ->where('access', 1)
             ->where('action', CampaignPermission::ACTION_READ)
             ->first();
-
+       
         // We don't check for the public role have deny as a permission, this is good enough
-        return !empty($permission);
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return __('validation.entity_link');
+        if (empty($permission)) {
+            $fail( __('validation.entity_link'));
+        }
     }
 }
