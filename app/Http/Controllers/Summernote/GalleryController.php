@@ -92,8 +92,12 @@ class GalleryController extends Controller
             ->campaign($campaign)
             ->user(auth()->user())
             ->store($request);
+        /** @var Image $image */
         $image = Arr::first($images);
 
-        return response()->json(Img::resetCrop()->url($image->path));
+        return response()->json([
+            'url' => $image->url(),
+            'id' => $image->id,
+        ]);
     }
 }

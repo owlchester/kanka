@@ -385,9 +385,10 @@ const uploadImage = ($summernote, file) => {
     formData.append("file[]", file);
     axios.post(summernoteConfig.dataset.galleryUpload, formData)
         .then(res => {
-            //console.log('result', result);
-            $summernote.summernote('insertImage', res.data, function ($image) {
-                $image.attr('src', res.data);
+            //console.log('result', res.data);
+            $summernote.summernote('insertImage', res.data.url, function ($image) {
+                $image.attr('src', res.data.url);
+                $image.attr('data-gallery-id', res.data.id);
             });
         })
         .catch(err => {
