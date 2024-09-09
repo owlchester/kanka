@@ -67,7 +67,7 @@ Optionally, if you want to change some configs, edit the new `.env` file. In mos
 
 ### 3. Installing dependencies
 
-Run the following command to install all the dependencies needed by Kanka. This command will start up a small docker to install everthing through [composer](https://getcomposer.org).
+Run the following command to install all the dependencies needed by Kanka. This command will start up a small docker to install everything through [composer](https://getcomposer.org).
 
 ```bash
 docker run --rm \
@@ -121,7 +121,7 @@ sail artisan setup:meilisearch
 
 ## Next up
 
-Your local development instance of Kanka is now ready to go! Navigate to [localhost:8081](http://localhost:8081) and you should see the Kanka application and be able to create an account.
+Your local development instance of Kanka is now ready to go! Navigate to [localhost:8081](http://localhost:8081), and you should see the Kanka application and be able to create an account.
 
 We recommend making an alias in your `/etc/hosts` file to point `kanka.test` to your localhost, so what (kanka.test:8081)[http://kanka.test:8081] also works.
 
