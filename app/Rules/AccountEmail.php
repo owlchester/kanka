@@ -2,29 +2,21 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Str;
 
-class AccountEmail implements Rule
+class AccountEmail implements ValidationRule
 {
     /**
-     * Determine if the validation rule passes.
+     * Run the validation rule.
      *
-     * @param  string  $attribute
-     * @return bool
+     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return !Str::contains($value, ['@boxmail.lol', '@fireboxmail.lol']);
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return 'The validation error message.';
+        if (Str::contains($value, ['@boxmail.lol', '@fireboxmail.lol'])) {
+            $fail('The validation error message.');
+        }
     }
 }

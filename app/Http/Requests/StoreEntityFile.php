@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
-use App\Rules\EntityFileRule;
+use App\Rules\EntityFile;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreEntityFile extends FormRequest
@@ -30,7 +30,7 @@ class StoreEntityFile extends FormRequest
                 'required',
                 'file',
                 'max:' . Limit::upload(),
-                new EntityFileRule()
+                new EntityFile()
             ],
             'name' => 'nullable|string|max:45',
             'visibility_id' => 'nullable|exists:visibilities,id'
