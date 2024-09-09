@@ -10,7 +10,7 @@
         <i class="fa-solid fa-skull" aria-hidden="true" data-title="{{ __('characters.fields.is_dead') }}"></i>
     @endif
     <br />
-    <i>{{ $model->title }}</i>
+    <span class="italic character-title text-xs">{!! $model->title !!}</span>
     <?php return ?>
 @endif
 
@@ -24,4 +24,4 @@
     <i class="fa-solid fa-skull" aria-hidden="true" data-title="{{ __('characters.fields.is_dead') }}"></i>
 @endif
 <br />
-<i>{{ $model->character->title }}</i>
+<span class="italic character-title text-xs">{!! $model->character->title !!}</span>
