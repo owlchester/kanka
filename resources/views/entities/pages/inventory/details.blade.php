@@ -16,7 +16,7 @@
                     @if ($inventory->item->price)
                         <div class="flex gap-2 items-center">
                             <div class="text-accent text-3xl">
-                                <x-icon class="fa-duotone fa-building-columns" />
+                                <x-icon class="fa-duotone fa-coins" />
                             </div>
                             <div class="flex flex-col gap-0">
                                 <div class="font-extrabold text-xl">
@@ -95,7 +95,7 @@
 
     @if ($inventory->item)
         <div class="flex gap-2 item-entity-tags">
-            @foreach ($inventory->item->entity->tags as $tag)
+            @foreach ($inventory->item->entity->tags()->with('entity')->get() as $tag)
                 @if (!$tag->entity) @continue @endif
                 <x-tags.bubble :tag="$tag" />
             @endforeach

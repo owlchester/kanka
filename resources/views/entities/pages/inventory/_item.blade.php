@@ -1,5 +1,8 @@
 @php /** @var \App\Models\Inventory $item **/ @endphp
-<div class="w-full lg:w-80 h-60 bg-base-100 rounded relative" >
+<div class="w-full lg:w-80 h-60 bg-base-100 rounded relative"
+@if ($item->item) data-object-size="{{ $item->item->size }}" data-object-price="{{ $item->item->price }}" @endif
+data-visibility="{{ $item->visibility_id }}"
+>
 
     <div class="left-2 top-1  text-lg absolute">
         @include('icons.visibility', ['icon' => $item->visibilityIcon()])
@@ -8,7 +11,7 @@
     <div class="flex flex-col m-4 gap-1 items-center overflow-hidden cursor-pointer" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}" data-target="primary-dialog">
         @include('entities.pages.inventory._thumbnail')
 
-        <div class="flex flex-col gap-0  items-center">
+        <div class="flex flex-col gap-0.5 items-center">
             <div class="text-xl text-accent item-amount">
                 +{!! number_format($item->amount) !!}
             </div>
@@ -28,6 +31,21 @@
                     {!! \Illuminate\Support\Str::limit($item->description ?? '', 100) !!}
                 @endif
             </p>
+
+            @if ($item->item)
+                @if (!empty($item->item->price))
+                <div class="object-price text-xs text-neutral-content text-center hidden">
+                    <x-icon class="fa-duotone fa-coins" />
+                    {{ $item->item->price }}
+                </div>
+                @endif
+                @if (!empty($item->item->size))
+                <div class="object-size text-xs text-neutral-content text-center hidden">
+                    <x-icon class="fa-duotone fa-up-right-and-down-left-from-center" />
+                    {{ $item->item->size }}
+                </div>
+                @endif
+            @endif
         </div>
         </div>
 

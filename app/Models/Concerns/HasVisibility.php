@@ -84,7 +84,7 @@ trait HasVisibility
             return __('crud.visibilities.members');
         }
 
-        return 'Unknown';
+        return __('crud.visibilities.all');
     }
 
     /**
