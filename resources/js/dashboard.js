@@ -146,8 +146,8 @@ const initWelcomePulse = () => {
 
 const clickWelcomePulse = (e) => {
     e.preventDefault();
-    let target = document.querySelector(this.dataset.pulse);
-    let content = this.dataset.content;
+    let target = document.querySelector(e.currentTarget.dataset.pulse);
+    let content = e.currentTarget.dataset.content;
 
     window.showTooltip(target, {
         content: content,
