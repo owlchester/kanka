@@ -183,7 +183,7 @@ class MentionsService
         );
 
         // Parse all links and transform them into advanced mentions [] if needed
-        $links = '`<a\s[^>]*>(.*?)<\/a>`i';
+        $links = '`<a\s*[^>]*>(.*?)<\/a\s*>`is';
         $text = preg_replace_callback($links, function ($matches) {
             // Summernote will purify & into &amps, so we need to convert them back. This is done so that mentioning an
             // entity with & in the name doesn't get replaced with an advanced mention when saving and the name didn't

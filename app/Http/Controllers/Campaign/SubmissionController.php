@@ -67,6 +67,10 @@ class SubmissionController extends Controller
                 ->with('error', __('Campaign is full, please boost it.'));
         }
 
+        if ($request->ajax()) {
+            return response()->json();
+        }
+
         $note = $this->service
             ->campaign($campaign)
             ->submission($campaignSubmission)
