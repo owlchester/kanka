@@ -90,11 +90,7 @@ class NewsletterService
 
             $data = [
                 'email' => $email,
-                'fields' => [
-                    'name' => $this->user?->name,
-                    'language' => $this->user?->locale ?? app()->getLocale(),
-                    'country' => $this->guessCountry()
-                ],
+                'fields' => $this->buildFields(),
                 'groups' => $interests
             ];
             if (empty($this->userID)) {
@@ -135,5 +131,22 @@ class NewsletterService
         /** @var ?UserLog $latest */
         $latest = $this->user->logs()->whereNotNull('country')->latest()->first();
         return $latest?->country;
+    }
+
+    protected function buildFields(): array
+    {
+        $fields = [
+            'name' => $this->user?->name,
+            'language' => $this->user?->locale ?? app()->getLocale(),
+            'country' => $this->guessCountry()
+        ];
+        if (!empty($this->user)) {
+            $fields['become_a_customer'] = $this->user->subscribed('kanka') ? $this->user->subscription('kanka')->created_at->format('Y-m-d') : null;
+            $fields['last_login'] = $this->user->last_login_at->format('Y-m-d');
+            // Number of logins over the past month
+            $fields['recent_logins'] = $this->user->logs()->logins()->where('created_at', '>=', now()->subMonth())->count();
+        }
+
+        return $fields;
     }
 }

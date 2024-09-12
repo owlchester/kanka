@@ -89,4 +89,9 @@ class UserLog extends Model
     {
         return static::where('updated_at', '<=', now()->subMonths(6));
     }
+
+    public function scopeLogins(Builder $builder): Builder
+    {
+        return $builder->whereIn('type_id', [self::TYPE_LOGIN, self::TYPE_AUTOLOGIN]);
+    }
 }
