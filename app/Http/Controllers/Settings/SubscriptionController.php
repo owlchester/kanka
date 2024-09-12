@@ -94,6 +94,7 @@ class SubscriptionController extends Controller
         if ($tier->isFree()) {
             dd('Cancel instead');
         }
+        /** @var User $user */
         $user = $request->user();
         $period = $request->get('period') === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
 
@@ -132,8 +133,10 @@ class SubscriptionController extends Controller
             $this->emailValidation->user($user)->requiresEmail();
         }
 
-        $delay = app()->isProduction() ? 30 : 1;
-        AbandonedCart::dispatch(auth()->user(), $tier)->delay(now()->addMinutes($delay));
+        if ($user->hasNewsletter()) {
+            $delay = app()->isProduction() ? 30 : 1;
+            AbandonedCart::dispatch(auth()->user(), $tier)->delay(now()->addMinutes($delay));
+        }
 
         return view('settings.subscription.change', compact(
             'tier',
