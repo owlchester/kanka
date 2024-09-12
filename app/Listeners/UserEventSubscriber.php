@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Models\UserFlag;
 use App\Models\UserLog;
 use App\Services\InviteService;
@@ -61,6 +62,11 @@ class UserEventSubscriber
         UserFlag::where('user_id', $event->user->id)
             ->whereIn('flag', [UserFlag::FLAG_INACTIVE_1, UserFlag::FLAG_INACTIVE_2])
             ->delete();
+
+        // Update mailerlite for the login stuff
+        if ($event->user->hasNewsletter()) {
+            MailSettingsChangeJob::dispatch($event->user);
+        }
 
         // Does the user have a join campaign token?
         if (session()->has('invite_token')) {
