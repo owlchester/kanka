@@ -7,7 +7,7 @@
     @else
         <x-icon class="fa-regular fa-gem text-boost" />
 </div>
-<a href="https://kanka.io/premium" target="_blank">6 {{ __('concept.premium-campaigns') }}</a>
+<a href="https://kanka.io/premium" target="_blank">7 {{ __('concept.premium-campaigns') }}</a>
 @endif
 </div>
 
