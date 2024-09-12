@@ -64,7 +64,7 @@ class UserEventSubscriber
             ->delete();
 
         // Update mailerlite for the login stuff
-        if ($event->user->hasNewsletter()) {
+        if (!session()->has('first_login') && $event->user->hasNewsletter()) {
             MailSettingsChangeJob::dispatch($event->user);
         }
 
