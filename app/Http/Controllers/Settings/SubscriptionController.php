@@ -7,6 +7,7 @@ use App\Exceptions\TranslatableException;
 use App\Facades\DataLayer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserSubscribeStore;
+use App\Jobs\Users\AbandonedCart;
 use App\Models\Tier;
 use App\Services\SubscriptionService;
 use App\Services\SubscriptionUpgradeService;
@@ -130,6 +131,9 @@ class SubscriptionController extends Controller
         if ($user->isFrauding()) {
             $this->emailValidation->user($user)->requiresEmail();
         }
+
+        $delay = app()->isProduction() ? 30 : 1;
+        AbandonedCart::dispatch(auth()->user(), $tier)->delay(now()->addMinutes($delay));
 
         return view('settings.subscription.change', compact(
             'tier',

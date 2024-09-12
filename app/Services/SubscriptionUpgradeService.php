@@ -60,15 +60,20 @@ class SubscriptionUpgradeService
             // Prorated Cost = (New Tier Cost - Old Tier Cost) x (Number of Days Remaining / Number of Days in a Full Year)
             // If going from monthly to yearly, we divide the current sub up on a month
             $duration = $monthly ? 31 : 365;
-            $price = round(($price - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / $duration), 2);
+            $price = round(($price - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now(), true) / $duration), 2);
 
         } elseif ($monthly && $this->period === PricingPeriod::Monthly) {
             // Prorated Cost = (New Tier Cost - Old Tier Cost) x (Number of Days Remaining / Total Days in the Month)
-            $price = round(($price - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / 31), 2);
+//            dump($price);
+//            dump($oldPrice);
+//            dump($endPeriod->format('Y.m.d'));
+//            dump($endPeriod->diffInDays(Carbon::now(), true));
+//            dump($endPeriod->diffInDays(Carbon::now(), true)/ 31);
+            $price = round(($price - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now(), true) / 31), 2);
         } elseif ($this->period === PricingPeriod::Monthly) {
             // Switching from a yearly plan to a monthly plan, this gets interesting
             $remaining = 365;
-            $price = round(($price - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now()) / $remaining), 2);
+            $price = round(($price - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now(), true) / $remaining), 2);
         }
 
         return max(0, $price);

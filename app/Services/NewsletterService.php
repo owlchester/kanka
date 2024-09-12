@@ -20,10 +20,18 @@ class NewsletterService
 
     protected Exception $error;
 
+    protected array $fields;
+
     public function __construct()
     {
         $key = (string) config('mailerlite.api_key');
         $this->mailerlite = new MailerLite(['api_key' => $key]);
+    }
+
+    public function fields(array $fields): self
+    {
+        $this->fields = $fields;
+        return $this;
     }
 
     /**
@@ -146,6 +154,16 @@ class NewsletterService
             $fields['last_login'] = $this->user->last_login_at->format('Y-m-d');
             // Number of logins over the past month
             $fields['recent_logins'] = $this->user->logs()->logins()->where('created_at', '>=', now()->subMonth())->count();
+
+            // Remove abandoned cart data when they sub
+            if ($this->user->isSubscriber()) {
+                $fields['abandoned_cart'] = null;
+                $fields['abandoned_package'] = null;
+            }
+        }
+
+        if (isset($this->fields)) {
+            $fields = array_merge($fields, $this->fields);
         }
 
         return $fields;
