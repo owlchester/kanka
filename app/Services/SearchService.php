@@ -256,7 +256,7 @@ class SearchService
                 continue;
             }
             $img = '';
-            if (!empty($model->image_path)) {
+            if ($model->hasImage()) {
                 $img = '<span class="entity-image cover-background" style="background-image: url(\''
                     . Avatar::entity($model)->size(192)->thumbnail() . '\');"></span> ';
             }
