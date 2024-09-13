@@ -36,8 +36,6 @@
 </head>
 
 <body id="page-top">
-@include('layouts.tracking.fallback')
-
 @vite('resources/sass/front.scss')
 <noscript id="deferred-styles">
 </noscript>
