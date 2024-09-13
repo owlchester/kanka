@@ -1,6 +1,6 @@
 @if (!empty(config('tracking.ga')))
     <!-- Google Analytics -->
-{{--    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('tracking.ga') }}"></script>--}}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('tracking.ga') }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         dataLayer.push({!! \App\Facades\DataLayer::base() !!});
@@ -8,8 +8,10 @@
         gtag('js', new Date());
         gtag('config', '{{ config('tracking.ga') }}');
         gtag('consent', 'default', {
-            'ad_storage': 'granted',
-            'analytics_storage': 'granted'
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied'
         });
     @if (!empty(config('tracking.ga_convo')))
         gtag('config', '{{ config('tracking.ga_convo') }}');

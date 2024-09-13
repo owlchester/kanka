@@ -29,7 +29,6 @@
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
 </head>
 <body class="hold-transition register-page">
-@include('layouts.tracking.fallback')
     <div class="login-box mx-auto">
 
         <!-- Content Header (Page header) -->

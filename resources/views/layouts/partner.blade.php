@@ -20,7 +20,6 @@
     @yield('styles')
 </head>
 <body class="">
-@include('layouts.tracking.fallback')
     <div id="app" class="wrapper h-full relative overflow-x-hidden overflow-y-auto mt-12">
         <!-- Sidebar -->
         @include('layouts.partner.sidebar')

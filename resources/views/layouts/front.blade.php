@@ -85,7 +85,6 @@
 </head>
 
 <body id="page-top" class="">
-@include('layouts.tracking.fallback')
 <noscript id="deferred-styles">
 </noscript>
 

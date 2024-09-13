@@ -82,10 +82,7 @@ const initTracking = () => {
     // console.log('initTracking', field.dataset);
     if (field.dataset.gtag) {
         // console.log('add gtag');
-        const script = document.createElement("script");
-        script.async = true;
-        script.src = "https://www.googletagmanager.com/gtag/js?id=" + field.dataset.gtag;
-        document.body.appendChild(script);
+        allConsentGranted();
     }
     if (field.dataset.gtm) {
         // console.log('add gtm');
@@ -100,6 +97,15 @@ const initGTM = (w,d,s,l,i) => {
     j.async=true;
     j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
     f.parentNode.insertBefore(j,f);
+};
+
+const allConsentGranted = () => {
+    gtag('consent', 'update', {
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'ad_storage': 'granted',
+        'analytics_storage': 'granted'
+    });
 };
 
 initCookieConsent();
