@@ -25,8 +25,7 @@ class PatchCampaignApplication extends FormRequest
     {
         $rules = [
             'role_id' => 'required_if:action,approve:rejection|exists:campaign_roles,id',
-            'rejection' => 'nullable|string|max:191',
-            'message' => 'nullable|string|max:191',
+            'reason' => 'nullable|string|max:191',
             'action' => 'required',
         ];
         return $rules;

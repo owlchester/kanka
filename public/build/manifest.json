@@ -23,8 +23,8 @@
       "__commonjsHelpers-725317a4.js"
     ]
   },
-  "_vue.esm-bundler-35c332fe.js": {
-    "file": "assets/vue.esm-bundler-35c332fe.js"
+  "_vue.esm-bundler-51152e6d.js": {
+    "file": "assets/vue.esm-bundler-51152e6d.js"
   },
   "node_modules/rpg-awesome/fonts/rpgawesome-webfont.eot": {
     "file": "assets/rpgawesome-webfont-1fecbf28.eot",
@@ -51,10 +51,9 @@
     "src": "resources/images/leaflet/icon.png"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-f7438e43.js",
+    "file": "assets/abilities-1bbcfe51.js",
     "imports": [
-      "_vue.esm-bundler-35c332fe.js",
-      "__plugin-vue_export-helper-c27b6911.js"
+      "_vue.esm-bundler-51152e6d.js"
     ],
     "isEntry": true,
     "src": "resources/js/abilities.js"
@@ -67,32 +66,32 @@
     "css": [
       "assets/api-bb386fc3.css"
     ],
-    "file": "assets/api-fe8075db.js",
+    "file": "assets/api-953e743d.js",
     "imports": [
-      "_vue.esm-bundler-35c332fe.js",
+      "_vue.esm-bundler-51152e6d.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
     "isEntry": true,
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-6ed73558.js",
+    "file": "assets/app-f4f70c5e.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_sortable.esm-89cfb839.js",
       "_dialog-4600fe8d.js",
-      "_vue.esm-bundler-35c332fe.js",
-      "__plugin-vue_export-helper-c27b6911.js",
+      "_vue.esm-bundler-51152e6d.js",
       "_v-click-outside.umd-1708c20a.js",
+      "__plugin-vue_export-helper-c27b6911.js",
       "__commonjsHelpers-725317a4.js"
     ],
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-7fb386c8.js",
+    "file": "assets/attributes-manager-acae1efb.js",
     "imports": [
-      "_vue.esm-bundler-35c332fe.js",
+      "_vue.esm-bundler-51152e6d.js",
       "_v-click-outside.umd-1708c20a.js",
       "__commonjsHelpers-725317a4.js"
     ],
@@ -110,9 +109,9 @@
     "src": "resources/js/auth.js"
   },
   "resources/js/billing.js": {
-    "file": "assets/billing-c69845e4.js",
+    "file": "assets/billing-61f032e3.js",
     "imports": [
-      "_vue.esm-bundler-35c332fe.js",
+      "_vue.esm-bundler-51152e6d.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
     "isEntry": true,
@@ -135,9 +134,9 @@
     "src": "resources/js/campaigns/theme-builder.js"
   },
   "resources/js/conversation.js": {
-    "file": "assets/conversation-06f8cb81.js",
+    "file": "assets/conversation-477020e5.js",
     "imports": [
-      "_vue.esm-bundler-35c332fe.js",
+      "_vue.esm-bundler-51152e6d.js",
       "_v-click-outside.umd-1708c20a.js",
       "__plugin-vue_export-helper-c27b6911.js",
       "__commonjsHelpers-725317a4.js"
@@ -164,9 +163,9 @@
     "src": "resources/js/editors/summernote.js"
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-64502f1d.js",
+    "file": "assets/family-tree-vue-91eaf508.js",
     "imports": [
-      "_vue.esm-bundler-35c332fe.js",
+      "_vue.esm-bundler-51152e6d.js",
       "_axios-1779699b.js",
       "__plugin-vue_export-helper-c27b6911.js"
     ],
@@ -201,9 +200,9 @@
     "src": "resources/js/gallery.js"
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-0864ec3f.js",
+    "file": "assets/gallery-41429f69.js",
     "imports": [
-      "_vue.esm-bundler-35c332fe.js",
+      "_vue.esm-bundler-51152e6d.js",
       "__commonjsHelpers-725317a4.js",
       "_v-click-outside.umd-1708c20a.js"
     ],
@@ -224,6 +223,16 @@
     "file": "assets/profile-8b2c5a48.js",
     "isEntry": true,
     "src": "resources/js/profile.js"
+  },
+  "resources/js/recovery/recovery.js": {
+    "file": "assets/recovery-ed3dd140.js",
+    "imports": [
+      "_vue.esm-bundler-51152e6d.js",
+      "_v-click-outside.umd-1708c20a.js",
+      "__commonjsHelpers-725317a4.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/recovery/recovery.js"
   },
   "resources/js/relations.js": {
     "file": "assets/relations-e526f5cd.js",
@@ -254,12 +263,12 @@
     "src": "resources/js/vendor-final.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-aab1493e.css",
+    "file": "assets/app-875ff4d7.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-d6dd2166.css",
+    "file": "assets/auth-f48b98bf.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -284,7 +293,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-f85e7614.css",
+    "file": "assets/front-f1f0c780.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },

@@ -1,4 +1,5 @@
 @php
+/** @var \App\Models\Campaign $campaign */
     use \Illuminate\Support\Arr;
 @endphp
 @extends('layouts.app', [
@@ -25,43 +26,20 @@
                 <x-icon class="question" />
                 {{ __('crud.actions.help') }}
             </button>
-
-            <a href="#" data-url="{{ route('campaign-applications', $campaign) }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-sm">
-                <x-icon class="fa-solid fa-users-gear" />
-                {{ __('campaigns/submissions.actions.applications', ['status' => ($campaign->isOpen() ? __('campaigns/submissions.statuses.open') : __('campaigns/submissions.statuses.closed'))]) }}
-            </a>
         </div>
 
-        @if (!$campaign->isOpen() || !$campaign->isPublic() || $submissions->isEmpty())
-            @if(!$campaign->isOpen())
-                <x-alert type="warning">
-                    <p>{!! __('campaigns/submissions.helpers.not_open') !!}</p>
-                    <p>
-                        <button data-url="{{ route('campaign-applications', $campaign) }}" data-target="submission-dialog" data-toggle="dialog-ajax" class="btn2 btn-outline">
-                            <x-icon class="fa-solid fa-users-gear" />
-                            {{ __('campaigns/submissions.actions.change') }}
-                        </button>
-                    </p>
-                </x-alert>
-            @else
-                @if(!$campaign->isPublic())
-                    <x-alert type="warning">
-                        <p>{{ __('campaigns/submissions.helpers.open_not_public') }}</p>
-                        @if (auth()->user()->can('update', $campaign))
-                        <a href="{{ route('campaigns.edit', [$campaign, '#tab_form-public']) }}" class="btn2">
-                            {{ __('crud.fix-this-issue') }}
-                        </a>
-                        @endif
-                    </x-alert>
-                @elseif ($submissions->isEmpty())
-                    <x-alert type="info">
-                        <p>{!! __('campaigns/submissions.helpers.no_applications', ['button' => '<code><i class="fa-solid fa-door-open" aria-hidden="true"></i> ' . __('dashboard.actions.join') . '</code>']) !!}</p>
-                    </x-alert>
-                @endif
-            @endif
-        @endif
-
+        @include('campaigns.submissions._requirements')
         @includeWhen(!$submissions->isEmpty(), 'campaigns.submissions._list')
+        @if($submissions->isEmpty())
+            <div class="flex flex-col gap-2 justify-center items-center">
+                <div class="text-xl">
+                    {{ __('campaigns/submissions.helpers.no_applications_title') }}
+                </div>
+                <div class="text-sm text-neutral-content text-center max-w-md">
+                    <p>{!! __('campaigns/submissions.helpers.no_applications', ['button' => '<code><i class="fa-solid fa-door-open" aria-hidden="true"></i> ' . __('dashboard.actions.join') . '</code>']) !!}</p>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
 

@@ -35,6 +35,23 @@ class SubmissionController extends Controller
             ->with('campaign', $campaign);
     }
 
+    public function show(Campaign $campaign, CampaignSubmission $campaignSubmission)
+    {
+        $this->authorize('submissions', $campaign);
+
+        if (!$campaign->canHaveMoreMembers()) {
+            return view('cruds.forms.limit')
+                ->with('campaign', $campaign)
+                ->with('key', 'members')
+                ->with('name', 'campaign_roles');
+        }
+
+        return view('campaigns.submissions.show')
+            ->with('application', $campaignSubmission)
+            ->with('campaign', $campaign)
+            ;
+    }
+
     public function edit(Campaign $campaign, CampaignSubmission $campaignSubmission)
     {
         $this->authorize('submissions', $campaign);
@@ -74,7 +91,7 @@ class SubmissionController extends Controller
         $note = $this->service
             ->campaign($campaign)
             ->submission($campaignSubmission)
-            ->process($request->only('role_id', 'rejection', 'action', 'message'));
+            ->process($request->only('role_id', 'rejection', 'action', 'reason'));
 
         return redirect()->route('campaign_submissions.index', $campaign)
             ->with('success', __('campaigns/submissions.update.' . $note));

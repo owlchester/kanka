@@ -63,7 +63,7 @@ class SubmissionService
             $return = 'rejected';
 
             // Notify the user
-            $rejection = $this->purify(Arr::get($data, 'rejection'));
+            $rejection = $this->purify(Arr::get($data, 'reason'));
             if ($rejection == '') {
                 $key = 'campaign.application.rejected_no_message';
             } else {
@@ -78,7 +78,7 @@ class SubmissionService
                     ])
                 );
         } else {
-            $this->approve((int) Arr::get($data, 'role_id'), $this->purify(Arr::get($data, 'message')));
+            $this->approve((int) Arr::get($data, 'role_id'), $this->purify(Arr::get($data, 'reason')));
         }
 
         $this->submission->delete();

@@ -24,9 +24,15 @@ const onMaintenanceFormSubmit = (event) => {
     // ignore that error completely.
     let formData = new FormData(form);
 
+    // If the submit button has an action name, we need to add that (for forms with multiple action buttons)
+    // if (event.submitter && event.submitter.name === 'action' && event.submitter.value) {
+    //     formData.append('action', event.submitter.value);
+    // }
+
     axios.post(form.getAttribute('action'), formData)
         .then(() => {
             // The check succeeded, submit the form for real. By doing .submit, it skips any event listeners on submit
+            // This doesn't include the action of who submitted the form
             form.submit();
         })
         .catch(err => {
