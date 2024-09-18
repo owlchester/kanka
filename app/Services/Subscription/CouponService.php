@@ -2,7 +2,9 @@
 
 namespace App\Services\Subscription;
 
+use App\Enums\PricingPeriod;
 use App\Enums\Tier;
+use App\Models\TierPrice;
 use App\Traits\UserAware;
 use Exception;
 use Stripe\PromotionCode;
@@ -13,7 +15,7 @@ class CouponService
     use UserAware;
 
     protected string $code;
-    protected Tier $tier;
+    protected \App\Models\Tier $tier;
 
     /**
      * @return $this
@@ -27,13 +29,9 @@ class CouponService
     /**
      * @return $this
      */
-    public function tier(string $tier): self
+    public function tier(\App\Models\Tier $tier): self
     {
-        $this->tier = match ($tier) {
-            'Wyvern' => Tier::Wyvern,
-            'Elemental' => Tier::Elemental,
-            default => Tier::Owlbear,
-        };
+        $this->tier = $tier;
         return $this;
     }
 
@@ -91,11 +89,7 @@ class CouponService
 
     protected function price($promo): string
     {
-        $price = match ($this->tier) {
-            Tier::Owlbear => 55,
-            Tier::Wyvern => 110,
-            Tier::Elemental => 275,
-        };
+        $price = $this->tier->price($this->user->currency(), PricingPeriod::Yearly);
 
         $discount = round($price * ($promo->coupon->percent_off / 100), 2);
         $newPrice = $price - $discount;

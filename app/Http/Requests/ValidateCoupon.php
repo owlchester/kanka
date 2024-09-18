@@ -24,7 +24,7 @@ class ValidateCoupon extends FormRequest
     public function rules()
     {
         return [
-            'coupon' => 'required|min:4|max:25'
+            'coupon' => 'required|min:4|max:25',
         ];
     }
 }

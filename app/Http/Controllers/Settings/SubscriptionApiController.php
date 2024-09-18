@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Requests\ValidateCoupon;
+use App\Models\Tier;
 use App\Services\Subscription\CouponService;
 use App\Services\SubscriptionService;
 use App\Models\User;
@@ -128,12 +129,11 @@ class SubscriptionApiController extends Controller
         return response()->json(null, 204);
     }
 
-    public function checkCoupon(ValidateCoupon $request)
+    public function checkCoupon(ValidateCoupon $request, Tier $tier)
     {
         /** @var User $user */
         $user = $request->user();
         $coupon = $request->get('coupon');
-        $tier = $request->get('tier');
 
         return response()->json(
             $this->couponService
