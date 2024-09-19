@@ -34,6 +34,7 @@ class DatalayerService
             'userID' => null,
         ], $this->additional);
 
+
         if (auth()->check()) {
             $data['userType'] = 'registered';
             $data['userTier'] = !empty(auth()->user()->pledge) ? auth()->user()->pledge : null;
@@ -42,6 +43,9 @@ class DatalayerService
 
             if ($this->newCancelledSubcriber) {
                 $data['newCancelled'] = '1';
+            }
+            if ($this->newAccount) {
+                $data['userEmail'] = auth()->user()->email;
             }
         }
         return json_encode($data);
