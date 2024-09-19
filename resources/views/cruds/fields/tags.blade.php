@@ -8,9 +8,8 @@
         <x-forms.tags
             :campaign="$campaign"
             :model="isset($model) ? $model : FormCopy::model()"
-            :enableNew="isset($enableNew) ? $enableNew : auth()->user()->can('create', \App\Models\Tag::class)"
             :dropdownParent="$dropdownParent ?? null"
-            allowNew="true"
+            :allowNew="isset($bulk) ? false : (isset($enableNew) ? $enableNew : auth()->user()->can('create', \App\Models\Tag::class))"
             allowClear="false"
             enableAuto="true"
         ></x-forms.tags>

@@ -76,7 +76,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-6ed73558.js",
+    "file": "assets/app-bf35f012.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_sortable.esm-89cfb839.js",
