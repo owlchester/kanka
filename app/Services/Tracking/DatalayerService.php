@@ -44,7 +44,7 @@ class DatalayerService
             if ($this->newCancelledSubcriber) {
                 $data['newCancelled'] = '1';
             }
-            if ($this->newAccount) {
+            if ($this->newAccount || $this->newSubcriber) {
                 $data['userEmail'] = auth()->user()->email;
             }
         }
