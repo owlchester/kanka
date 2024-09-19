@@ -259,7 +259,7 @@
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-d6dd2166.css",
+    "file": "assets/auth-fb6bb3d9.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
