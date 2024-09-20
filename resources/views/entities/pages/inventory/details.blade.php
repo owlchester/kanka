@@ -1,11 +1,11 @@
 <?php
     /** @var \App\Models\Inventory $inventory */
 ?>
-<x-dialog.header>
-    {!! $inventory->itemName() !!}
-</x-dialog.header>
-<article class="max-w-2xl">
-    <div class="formless">
+<div class="formless">
+    <x-dialog.header>
+        {!! $inventory->itemName() !!}
+    </x-dialog.header>
+    <article class="max-w-2xl">
         <div class="flex flex-col gap-4">
             <div class="flex gap-4">
                 <div class="text-center self-center">
@@ -110,6 +110,5 @@
                 {!! $inventory->description !!}
             @endif
         </p>
-    </div>
-</article>
-
+    </article>
+</div>
