@@ -5,6 +5,7 @@ namespace App\Services\Campaign\Import;
 use App\Enums\CampaignImportStatus;
 use App\Facades\CampaignCache;
 use App\Facades\CharacterCache;
+use App\Facades\TimelineElementCache;
 use App\Models\CampaignImport;
 use App\Notifications\Header;
 use App\Services\Campaign\Import\Mappers\AbilityMapper;
@@ -276,6 +277,7 @@ class ImportService
         // Since modules and custom names are cached, any changes to them need to invalidate any existing cache
         CampaignCache::campaign($this->campaign)->clear();
         CharacterCache::campaign($this->campaign);
+        TimelineElementCache::campaign($this->campaign);
 
         return $this;
     }

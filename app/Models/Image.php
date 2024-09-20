@@ -41,6 +41,7 @@ use Illuminate\Support\Facades\Storage;
  * @property Image[] $images
  * @property Entity[] $entities
  * @property Collection|ImageMention[] $mentions
+ * @property Collection|EntityAsset[] $entityAssets
  * @property MapLayer[] $mapLayers
  * @property Inventory[] $inventories
  * @property Entity[] $headers
@@ -122,7 +123,9 @@ class Image extends Model
     public function entityAssets(): HasMany
     {
         return $this->hasMany(EntityAsset::class, 'image_uuid', 'id')
-            ->with('entity');
+            ->with('entity')
+            ->has('entity')
+        ;
     }
 
     public function headers(): HasMany
