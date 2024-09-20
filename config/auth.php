@@ -117,7 +117,8 @@ return [
     'fast_registration' => env('ACCOUNT_FAST_REGISTRATION', false),
 
     'recaptcha' => [
-        'enabled' => !empty(env('APP_REGISTRATION_RECAPTCHA')),
-        'key' => env('APP_REGISTRATION_RECAPTCHA')
+        'enabled' => !empty(env('RECAPTCHA_KEY')),
+        'key' => env('RECAPTCHA_KEY'),
+        'secret' => env('RECAPTCHA_SECRET'),
     ],
 ];
