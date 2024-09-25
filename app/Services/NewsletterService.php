@@ -6,6 +6,7 @@ use App\Models\UserLog;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Exception;
+use Laravel\Cashier\Subscription;
 use MailerLite\MailerLite;
 
 class NewsletterService
@@ -149,7 +150,13 @@ class NewsletterService
             'country' => $this->guessCountry()
         ];
         if (!empty($this->user)) {
-            $fields['become_a_customer'] = $this->user->subscribed('kanka') ? $this->user->subscription('kanka')->created_at->format('Y-m-d') : null;
+            /** @var ?Subscription $first */
+            $first = $this->user->subscriptions->where('type', 'kanka')->last();
+            /** @var ?Subscription $latest */
+            $latest = $this->user->subscription('kanka');
+            $fields['become_a_customer'] = $first->created_at->format('Y-m-d') ?? null;
+            $fields['last_purchase'] = $latest->created_at->format('Y-m-d') ?? null;
+            $fields['purchases'] = $this->user->subscriptions->where('type', 'kanka')->count();
             $fields['package'] = $this->user->subscribed('kanka') ? $this->user->pledge : null;
             $fields['last_login'] = $this->user->last_login_at->format('Y-m-d');
             // Number of logins over the past month

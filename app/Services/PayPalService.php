@@ -26,7 +26,7 @@ class PayPalService
     public function process(): mixed
     {
         // @phpstan-ignore-next-line
-        if ($this->user->isSubscriber() && !str_contains($this->user->subscriptions()->first()->stripe_price, 'paypal')) {
+        if ($this->user->isSubscriber() && !$this->user->hasPayPal()) {
             return [];
         }
         $oldPrice = '';

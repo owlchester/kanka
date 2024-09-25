@@ -116,7 +116,7 @@ class SubscriptionController extends Controller
         $intent = $user->createSetupIntent();
         $isDowngrading = $this->subscription->downgrading();
         $isYearly = $period->isYearly();
-        $hasPromo = false; //\Carbon\Carbon::create(2023, 11, 28)->isFuture();
+        $hasPromo = true; //\Carbon\Carbon::create(2023, 11, 28)->isFuture();
         $limited = $this->subscription->isLimited();
         if ($user->hasPayPal() || $user->hasManualSubscription()) {
             $limited = true;

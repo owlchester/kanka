@@ -30,6 +30,10 @@ class AttributeMentionService
         }
 
         if (!isset($this->loadedEntity) || $this->loadedEntity->id != $attribute->entity_id) {
+            // Referencing an attribute linked to an entity the user can't access
+            if (empty($attribute->entity)) {
+                return (string) $attribute->$field;
+            }
             $this->loadedEntity = $attribute->entity;
         }
 

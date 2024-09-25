@@ -132,7 +132,8 @@ class Entity extends Model
      */
     public function getChildAttribute()
     {
-        return EntityCache::child($this);
+        // When in console mode (queue), don't cache results as the queue won't re-validate them
+        return app()->runningInConsole() ? $this->child()->first() : EntityCache::child($this);
     }
 
     /**

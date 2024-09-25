@@ -133,8 +133,8 @@
                     @else
 
                     @if ($hasPromo)
-                        <x-alert type="warning alert-coupon">
-                            Sadly we currently don't support promotions on PayPal subscriptions.
+                        <x-alert type="warning alert-coupon" hidden class="paypal-coupon">
+                            Promotional codes aren't available when subscribing through PayPal.
                         </x-alert>
                     @endif
 

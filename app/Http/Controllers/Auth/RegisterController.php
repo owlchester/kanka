@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Rules\AccountEmail;
 use App\Rules\AccountName;
 use App\Models\User;
+use App\Rules\Recaptcha;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -45,6 +46,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255', 'min:2', new AccountName()],
             'email' => ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users', new AccountEmail()],
             'password' => ['required', 'string', 'min:8'],
+            'g-recaptcha-response' => config('auth.recaptcha.enabled') ? ['required', 'string', new Recaptcha()] : null,
         ]);
     }
 

@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -39,6 +40,8 @@ use Illuminate\Support\Facades\Storage;
  * @property Image[] $folders
  * @property Image[] $images
  * @property Entity[] $entities
+ * @property Collection|ImageMention[] $mentions
+ * @property Collection|EntityAsset[] $entityAssets
  * @property MapLayer[] $mapLayers
  * @property Inventory[] $inventories
  * @property Entity[] $headers
@@ -120,7 +123,9 @@ class Image extends Model
     public function entityAssets(): HasMany
     {
         return $this->hasMany(EntityAsset::class, 'image_uuid', 'id')
-            ->with('entity');
+            ->with('entity')
+            ->has('entity')
+        ;
     }
 
     public function headers(): HasMany
@@ -133,6 +138,7 @@ class Image extends Model
         return $this->hasMany(ImageMention::class, 'image_id', 'id')
             ->with('entity')
             ->with('post')
+            ->has('entity')
         ;
     }
 

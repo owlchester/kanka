@@ -2,7 +2,7 @@
     'title' => __('auth.register.title')
 ])
 
-@php 
+@php
     if (app()->isLocal() && config('auth.fast_registration')) {
         $name = 'Kanka' . rand(100, 9999999);
         $email = $name . '@kanka.io';
@@ -32,7 +32,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('register') }}" class="submit-lock w-full">
+    <form method="POST" action="{{ route('register') }}" class="submit-lock w-full" id="registration">
         {{ csrf_field() }}
 
         <div class="mb-3 has-feedback{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -85,7 +85,8 @@
                     <x-icon class="load" />
                 </div>
 
-                <button id="btn-save" type="submit" class="rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all  hover:shadow-xs hover:bg-blue-500 hover:text-white">
+                <button id="btn-save" type="submit" class="@if (config('auth.recaptcha.enabled')) g-recaptcha @endif rounded border border-blue-500 text-blue-500 uppercase px-6 py-2 transition-all  hover:shadow-xs hover:bg-blue-500 hover:text-white"
+                        @if (config('auth.recaptcha.enabled'))data-sitekey="{{ config('auth.recaptcha.key') }}" data-callback="tokenValidated" data-action="submit" @endif>
                     {{ __('auth.register.submit') }}
                 </button>
             </div>
@@ -123,7 +124,16 @@
     <p class="text-sm text-gray-500 dark:text-slate-200">
         {!! __('auth.register.already', ['login' => '<a href="' . route('login') . '" class="text-blue-500" hover:text-blue-800">' . __('auth.register.log-in') . '</a>']) !!}
     </p>
-
-
 </div>
+@endsection
+
+@section('scripts')
+    @if (config('auth.recaptcha.enabled'))
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        function tokenValidated(token) {
+            document.getElementById("registration").requestSubmit();
+        }
+    </script>
+    @endif
 @endsection

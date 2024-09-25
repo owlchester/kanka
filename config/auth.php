@@ -115,4 +115,10 @@ return [
      * If set to true user registration will be prefilled with random data.
      */
     'fast_registration' => env('ACCOUNT_FAST_REGISTRATION', false),
+
+    'recaptcha' => [
+        'enabled' => !empty(env('RECAPTCHA_KEY')),
+        'key' => env('RECAPTCHA_KEY'),
+        'secret' => env('RECAPTCHA_SECRET'),
+    ],
 ];

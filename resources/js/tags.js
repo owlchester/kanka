@@ -9,8 +9,8 @@ window.initTags = function() {
         ele.dataset.loaded = 1;
 
         $(ele).select2({
-            tags: ele.dataset.allowNew,
-            allowClear: ele.dataset.allowClear,
+            tags: ele.dataset.allowNew === 'true',
+            allowClear: ele.dataset.allowClear === 'true',
             dropdownParent: ele.dataset.dropdownParent || '',
             minimumInputLength: 0,
             ajax: {

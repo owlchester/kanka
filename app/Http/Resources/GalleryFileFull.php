@@ -19,7 +19,7 @@ class GalleryFileFull extends JsonResource
         $file = $this->resource;
 
         $mentions = [];
-        foreach ($file->inEntities() as $entity) {
+        foreach($file->inEntities() as $entity) {
             $mentions[] = [
                 'url' => $entity->url(),
                 'name' => $entity->name,
@@ -27,7 +27,7 @@ class GalleryFileFull extends JsonResource
             ];
         }
         foreach ($file->mentions as $mention) {
-            if ($mention->isPost()) {
+            if ($mention->isPost() && $mention->post) {
                 $mentions[] = [
                     'url' => $mention->entity->url() . '?#post-' . $mention->post_id,
                     'name' => $mention->post->name,
