@@ -62,5 +62,6 @@
                 @endforeach
             </ul>
         </section>
+        @include('ads.siderail_left')
     </aside>
 @endif

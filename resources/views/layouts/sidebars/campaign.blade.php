@@ -162,6 +162,5 @@
             @endif
         </ul>
 
-        @include('ads.siderail_left')
     </section>
 </aside>
