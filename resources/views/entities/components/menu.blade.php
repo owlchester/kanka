@@ -26,7 +26,6 @@ $modelMenuItems = \App\Facades\Submenu::campaign($campaign)->model($model)->enti
         </x-menu>
     </x-box>
 @endforeach
-    @includeWhen(!isset($printing), 'ads.siderail_left')
 </div>
 
 @php $firstBlock = true @endphp

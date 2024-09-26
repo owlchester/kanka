@@ -23,7 +23,7 @@ $postCount = 0;
 @if (isset($withEntry) && ($posts->count() === 0 || (!empty($first) && $first->position >= 0)))
     @include('entities.components.entry')
     @php $entryShown = true; @endphp
-    @include('partials.ads.inline')
+    @include('ads.inline')
 @endif
 
 
@@ -43,7 +43,7 @@ $postCount = 0;
         @endif
         @includeWhen($post->layout_id && $campaign->superboosted(), 'entities.components._post_layouts')
         @includeWhen(!$post->layout_id, 'entities.components._post')
-        @includeWhen($postCount > 0 && $postCount % 3 === 0, 'partials.ads.inline')
+        @includeWhen($postCount > 0 && $postCount % 3 === 0, 'ads.inline')
         @php $postCount++; @endphp
     @endforeach
 
@@ -51,7 +51,7 @@ $postCount = 0;
     @if (isset($withEntry) && !$entryShown)
         @include('entities.components.entry')
         @php $entryShown = true @endphp
-        @include('partials.ads.inline')
+        @include('ads.inline')
     @endif
 
     @if ($posts->currentPage() < $posts->lastPage())
