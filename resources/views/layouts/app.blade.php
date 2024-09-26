@@ -135,11 +135,11 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
         </div>
 
 
+        @include('ads.incontent')
+
         @include('layouts.footer')
 
     </div>
-
-    @include('ads.incontent')
 
     <x-dialog id="primary-dialog" :loading="true" />
     <div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
