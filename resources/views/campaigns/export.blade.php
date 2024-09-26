@@ -11,7 +11,7 @@
 
 @section('content')
     <div class="flex gap-5 flex-col">
-        @include('partials.ads.top')
+        @include('ads.top')
         @include('partials.errors')
 
         <div class="flex gap-2 items-center">

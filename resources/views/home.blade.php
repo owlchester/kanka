@@ -29,7 +29,7 @@ use App\Enums\Widget;
             @include('dashboard.widgets._campaign')
         @endif
 
-        @include('partials.ads.top')
+        @include('ads.top')
 
         <div class="dashboard-widgets grid grid-cols-12 gap-4 md:gap-5">
             @if (!$hasCampaignHeader)

@@ -14,11 +14,6 @@ if (empty($entity)) {
 <aside class="entity-sidebar relative grid grid-cols-2 md:flex md:flex-col gap-5 items-stretch md:w-48 flex-none">
 
     @if ($forceShow || $entity->hasPins())
-        <x-ad section="profile" :campaign="isset($campaign) ? $campaign : null">
-            <div class="col-span-2">
-                <div class="vm-placement" data-id="{{ config('tracking.venatus.profile') }}"></div>
-            </div>
-        </x-ad>
         <div class="col-span-2 sidebar-section-box entity-pins overflow-hidden flex flex-col gap-2 {{ $entity->hasPins() ? '' : 'entity-empty-pin' }}">
             <div class="sidebar-section-title cursor-pointer text-lg user-select border-b element-toggle flex items-center gap-2" data-animate="collapse" data-target="#sidebar-pinned-elements">
                 <x-icon class="fa-solid fa-chevron-up icon-show" />
@@ -42,6 +37,7 @@ if (empty($entity)) {
             </div>
         </div>
     @endif
+    @includeWhen(!isset($printing), 'ads.siderail_right')
 
     @includeIf('entities.components.profile.' . $name)
 

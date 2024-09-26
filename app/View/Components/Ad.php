@@ -43,13 +43,16 @@ class Ad extends Component
      */
     protected function hasAd(): bool
     {
-        // If we don't have venatus enabled, then we don't have any ads to show
-        if (!config('tracking.venatus.enabled')) {
+        // If we don't have free enabled, then we don't have any ads to show
+        $provider = config('ads.provider');
+        if (empty($provider)) {
             return false;
         }
 
         // If requesting a section that isn't set up, don't show
-        if (!empty($this->section) && empty(config('tracking.venatus.' . $this->section))) {
+        $key = 'ads.' .$provider . '.tags.' . $this->section;
+        if (!empty($this->section) && empty(config($key))) {
+            //dump("Unknown ad tag " . $key);
             return false;
         }
         if (!AdCache::canHaveAds()) {
@@ -60,8 +63,8 @@ class Ad extends Component
         if (request()->has('_showads')) {
             return true;
         }
+
         // Temp workaround for venatus to fix their ads
-        return false;
         if (isset($this->user)) {
             // Subscribed users don't have ads
             if ($this->user->isSubscriber()) {

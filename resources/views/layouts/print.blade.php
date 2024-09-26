@@ -83,9 +83,6 @@ $specificTheme = null;
 
             <section class="content">
                 @include('partials.success')
-
-                @include('partials.ads.top')
-
                 @yield('entity-header')
                 @yield('content')
             </section>

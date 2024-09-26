@@ -22,7 +22,7 @@
         </div>
         @include('layouts.datagrid.fulltext_search', ['route' => route('search.fulltext', $campaign), 'term' => $term])
 
-        @include('partials.ads.top')
+        @include('ads.top')
 
         @if (!empty($term))
             <p class="text-lg">{!! __('search/fulltext.searching', ['term' => '<span class="italic">' . $term . '</span>']) !!}</p>

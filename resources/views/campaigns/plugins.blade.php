@@ -13,7 +13,7 @@
     <div class="flex gap-5 flex-col campaign-plugins">
 
         @include('partials.errors')
-        @include('partials.ads.top')
+        @include('ads.top')
 
         @if(session('plugin_entities_created'))
             <x-alert type="info" :dismissible="true">
