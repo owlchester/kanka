@@ -132,11 +132,6 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
                     Back to top
                 </a>
             </div>
-
-{{--            <x-ad section="rich" :campaign="isset($campaign) ? $campaign : null">--}}
-{{--                <div class="vm-placement" data-id="{{ config('tracking.venatus.inline') }}"></div>--}}
-{{--                <div class="vm-placement" data-id="{{ config('tracking.venatus.rich') }}" style="display:none"></div>--}}
-{{--            </x-ad>--}}
         </div>
 
 
