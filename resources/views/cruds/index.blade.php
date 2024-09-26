@@ -20,7 +20,7 @@
 @section('content')
     @include('partials.errors')
 
-    @include('partials.ads.top')
+    @include('ads.top')
 
     <div class="flex flex-col gap-5">
     @if (auth()->guest())

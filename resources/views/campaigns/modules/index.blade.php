@@ -13,7 +13,7 @@
     $role = \App\Facades\CampaignCache::adminRole();
 @endphp
 @section('content')
-    @include('partials.ads.top')
+    @include('ads.top')
     @include('partials.errors')
     <div class="grow flex flex-col gap-5" id="campaign-modules">
 

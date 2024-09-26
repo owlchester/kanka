@@ -18,7 +18,7 @@
 
 @section('content')
     @include('partials.errors')
-    @include('partials.ads.top')
+    @include('ads.top')
 
     <div class="flex gap-5 flex-col">
             @can('update', $campaign)

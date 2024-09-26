@@ -34,7 +34,7 @@
         </div>
     @endif
 
-    @include('partials.ads.top')
+    @include('ads.top')
 
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['nested' => true, 'sub' => 'tree'])

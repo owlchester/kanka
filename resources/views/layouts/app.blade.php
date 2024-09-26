@@ -50,6 +50,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
         'resources/sass/app.scss',
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
+    @includeWhen (config('ads.freestar.enabled'), 'ads.freestar.styles')
     @yield('styles')
     @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
         @php $specificTheme = $themeOverride; @endphp
@@ -131,16 +132,18 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
                 </a>
             </div>
 
-            <x-ad section="rich" :campaign="isset($campaign) ? $campaign : null">
-                <div class="vm-placement" data-id="{{ config('tracking.venatus.inline') }}"></div>
-                <div class="vm-placement" data-id="{{ config('tracking.venatus.rich') }}" style="display:none"></div>
-            </x-ad>
+{{--            <x-ad section="rich" :campaign="isset($campaign) ? $campaign : null">--}}
+{{--                <div class="vm-placement" data-id="{{ config('tracking.venatus.inline') }}"></div>--}}
+{{--                <div class="vm-placement" data-id="{{ config('tracking.venatus.rich') }}" style="display:none"></div>--}}
+{{--            </x-ad>--}}
         </div>
 
 
         @include('layouts.footer')
 
     </div>
+
+    @include('ads.incontent')
 
     <x-dialog id="primary-dialog" :loading="true" />
     <div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
