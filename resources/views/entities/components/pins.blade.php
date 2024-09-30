@@ -11,7 +11,7 @@ if (empty($entity)) {
     $entity = $model->entity;
 }
 @endphp
-<aside class="entity-sidebar relative grid grid-cols-2 md:flex md:flex-col gap-5 items-stretch md:w-52 flex-none">
+<aside class="entity-sidebar relative grid grid-cols-2 md:flex md:flex-col gap-5 items-stretch md:w-48 flex-none">
 
     @if ($forceShow || $entity->hasPins())
         <div class="col-span-2 sidebar-section-box entity-pins overflow-hidden flex flex-col gap-2 {{ $entity->hasPins() ? '' : 'entity-empty-pin' }}">
@@ -37,7 +37,6 @@ if (empty($entity)) {
             </div>
         </div>
     @endif
-    @includeWhen(!isset($printing), 'ads.siderail_right')
 
     @includeIf('entities.components.profile.' . $name)
 

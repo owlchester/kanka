@@ -1,8 +1,11 @@
-<x-box :padding="false" >
-    <div class="table-responsive">
-        @include($name . '.datagrid')
-    </div>
-</x-box>
+<div class="flex gap-1 items-start">
+    <x-box :padding="false" >
+        <div class="table-responsive">
+            @include($name . '.datagrid')
+        </div>
+    </x-box>
+    @include('ads.siderail_right')
+</div>
 
 @includeWhen($models->hasPages() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'index'])
 @includeWhen(auth()->check() && $filteredCount > 0 && isset($entityTypeId), 'cruds.datagrids.bulks.actions')
