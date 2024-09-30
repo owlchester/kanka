@@ -1,4 +1,5 @@
 <?php /** @var \App\Models\MiscModel $model */?>
+<div class="flex gap-1 items-start">
 <div class="entities-grid flex flex-wrap gap-3 lg:gap-5">
     @if (!empty($parent))
         <a href="{{ route($route, $parent->parent ? [$campaign, 'parent_id' => $parent->parent->id] : [$campaign]) }}" class="entity w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-sm hover:shadow-md sm">
@@ -38,6 +39,8 @@
 
         </div>
     @endif
+</div>
+    @include('ads.siderail_right')
 </div>
 
 

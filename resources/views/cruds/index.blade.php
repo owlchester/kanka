@@ -47,7 +47,7 @@
             </x-form>
             <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.index', $campaign) }}">
         @else
-                @include('cruds._table')
+            @include('cruds._table')
         @endif
 
 
