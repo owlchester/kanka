@@ -12,6 +12,8 @@ class AdCacheService
 
     protected bool $ads = true;
 
+    protected ?int $currentId;
+
     public function adless(): self
     {
         $this->ads = false;
@@ -26,6 +28,24 @@ class AdCacheService
     public function get(): Ad|null
     {
         return $this->ad;
+    }
+
+    public function newId(bool $reset = false): self
+    {
+        if (!$reset && isset($this->currentId)) {
+            $this->currentId++;
+        } else {
+            $this->currentId = 1;
+        }
+        return $this;
+    }
+
+    public function id(string $key): string
+    {
+        if ($this->currentId === 1) {
+            return $key;
+        }
+        return $key . '_' . $this->currentId;
     }
 
     public function test(int $section, int $id): bool
