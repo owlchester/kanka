@@ -125,7 +125,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * @throws Exception
      */
     public function getLink(string $action = 'show'): string
     {
