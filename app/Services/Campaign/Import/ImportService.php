@@ -5,6 +5,7 @@ namespace App\Services\Campaign\Import;
 use App\Enums\CampaignImportStatus;
 use App\Facades\CampaignCache;
 use App\Facades\CharacterCache;
+use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
 use App\Models\CampaignImport;
 use App\Notifications\Header;
@@ -278,6 +279,7 @@ class ImportService
         CampaignCache::campaign($this->campaign)->clear();
         CharacterCache::campaign($this->campaign);
         TimelineElementCache::campaign($this->campaign);
+        QuestCache::campaign($this->campaign);
 
         return $this;
     }
