@@ -4,13 +4,12 @@
             <button class='btn2 btn-block btn-feedback @if($campaignUser->user->hasCampaignRole($role->id)) btn-error btn-outline @endif'>
                 @if($campaignUser->user->hasCampaignRole($role->id))
                     <x-icon class="trash" />
-                    {{ $role->name }}
+                    {!! $role->name !!}
                 @else
                     <x-icon class="plus" />
-                    {{ $role->name }}
+                    {!! $role->name !!}
                 @endif
             </button>
         </x-form>
     @endforeach
 </x-grid>
-

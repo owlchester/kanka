@@ -177,10 +177,10 @@ TEXT
             'roles'         => 'Roles',
         ],
         'helpers'               => [
-            'switch'    => 'View the campaign as this user',
+            'switch'    => 'View the campaign as this member',
         ],
         'impersonating'         => [
-            'message'   => 'You are viewing the campaign as another user. Some features have been disabled, but the rest acts exactly as the user would see it.',
+            'message'   => 'You are viewing the campaign as another member. Some features have been disabled, but the rest acts exactly as the member would see it.',
             'title'     => 'Impersonating :name',
         ],
         'invite'                => [
@@ -188,7 +188,7 @@ TEXT
             'more'          => 'More roles can be created on the :link page.',
             'title'         => 'Invites',
         ],
-        'manage_roles'          => 'Manage user roles',
+        'manage_roles'          => 'Member roles',
         'removal'               => 'You are removing ":member" from the campaign.',
         'roles'                 => [
             'member'    => 'Member',
@@ -340,7 +340,7 @@ TEXT
             'actions'   => [
                 'add'           => 'Add member',
                 'remove'        => ':user from the :role role',
-                'remove_user'   => 'Remove user from role',
+                'remove_user'   => 'Remove member from role',
             ],
             'create'    => [
                 'success'   => ':user added to the role :role.',
@@ -378,7 +378,7 @@ TEXT
             'bookmarks'         => 'Create bookmarks to entities or filtered lists that appear in the sidebar.',
             'calendars'         => 'A place to define the calendars of the world.',
             'characters'        => 'Create and keep track of the people inhabiting the world with characters.',
-            'conversations'     => 'Fictional conversations between characters or between campaign users.',
+            'conversations'     => 'Fictional conversations between characters or between campaign members.',
             'creatures'         => 'Build your world\'s creatures, animals, and monsters with the creatures module.',
             'dice_rolls'        => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls.',
             'entity_attributes' => 'Keep track of attributes on entities of the campaign, for example HP or SPEED.',
@@ -410,7 +410,7 @@ TEXT
         'menus'     => [
             'configuration'     => 'Configuration',
             'overview'          => 'Overview',
-            'user_management'   => 'User management',
+            'user_management'   => 'Member management',
         ],
         'tabs'      => [
             'achievements'      => 'Achievements',
@@ -435,7 +435,7 @@ TEXT
         'title'     => 'Overview - :name',
     ],
     'themes'                            => [
-        'none'  => 'None (defaults to user settings)',
+        'none'  => 'None (defaults to member settings)',
     ],
     'ui'                                => [
         'collapsed'         => [
@@ -465,7 +465,7 @@ TEXT
             'member-list'       => 'Control who can see who\'s in the campaign.',
             'other'             => 'Other visual options for the campaign.',
             'post_collapsed'    => 'When creating a new post on an entity, select the collapsed field\'s default value.',
-            'theme'             => 'Display the campaign in the user\'s theme, or force it to render in one of the following themes.',
+            'theme'             => 'Display the campaign in the member\'s theme, or force it to render in one of the following themes.',
             'tooltip'           => 'Control which information is visibile when hovering an entity\'s name in their tooltip.',
         ],
         'members'           => [

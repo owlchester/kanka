@@ -17,7 +17,7 @@
         </button>
 
         <a href="{{ route('campaign_invites.create', $campaign) }}" class="btn2 btn-primary btn-sm"
-            data-toggle="dialog-ajax" data-target="new-invite" data-url="{{ route('campaign_invites.create', $campaign) }}">
+            data-toggle="dialog-ajax" data-target="primary-dialog" data-url="{{ route('campaign_invites.create', $campaign) }}">
             <x-icon class="fa-solid fa-user-plus" />
             <span class="hidden lg:inline">{{ __('campaigns.invites.actions.link') }}</span>
         </a>
