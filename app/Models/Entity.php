@@ -191,7 +191,7 @@ class Entity extends Model
             if ($action == 'index') {
                 return route($this->pluralType() . '.index', $campaign);
             } elseif ($action === 'show') {
-                return route('entities.show', [$campaign, $this]);
+                return route('entities.show', [$campaign, $this] + $options);
             }
             $routeOptions = array_merge([$campaign, $this->entity_id], $options);
             return route($this->pluralType() . '.' . $action, $routeOptions);
