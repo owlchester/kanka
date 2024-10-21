@@ -47,8 +47,6 @@ class QuestController extends Controller
             return $this->campaign($campaign)->datagridAjax();
         }
 
-        return $this
-            ->campaign($campaign)
-            ->subview('quests.quests', $quest);
+        return redirect()->to($quest->getLink());
     }
 }

@@ -41,8 +41,6 @@ class EventController extends Controller
             return $this->campaign($campaign)->datagridAjax();
         }
 
-        /*return $this
-            ->campaign($campaign)
-            ->subview('locations.events', $location);*/
+        return redirect()->to($location->getLink());
     }
 }
