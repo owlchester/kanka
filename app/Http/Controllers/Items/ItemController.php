@@ -39,8 +39,6 @@ class ItemController extends Controller
             return $this->campaign($campaign)->datagridAjax();
         }
 
-        return $this
-            ->campaign($campaign)
-            ->subview('items.items', $item);
+        return redirect()->to($item->getLink());
     }
 }

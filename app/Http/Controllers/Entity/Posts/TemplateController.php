@@ -11,23 +11,20 @@ class TemplateController extends Controller
 {
     protected TemplateService $service;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct(TemplateService $templateService)
     {
         $this->middleware('auth');
         $this->service = $templateService;
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function update(Campaign $campaign, Post $post)
     {
         $this->authorize('setPostTemplates', $campaign);
+
+        if (request()->ajax()) {
+            return response()->json();
+        }
+
         $this->service->post($post)->toggle();
         return redirect()->back()
             ->with(

@@ -82,11 +82,13 @@
         });
 
         var marker{{ $model->id }} = {!! $model->editing()->multiplier($map->isReal())->marker() !!}.addTo(map{{ $map->id }});
+        @if (!$model->isCircle())
         window.polygon = marker{{ $model->id }};
         window.polygon.enableEdit();
         window.polygon.on('editable:dragend', markerUpdateHandler);
         window.polygon.on('editable:vertex:dragend', markerUpdateHandler);
         window.polygon.on('editable:vertex:dragend', markerUpdateHandler);
+        @endif
 
         window.map = map{{ $map->id }};
 

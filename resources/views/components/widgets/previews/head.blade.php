@@ -15,7 +15,7 @@
             >
             <picture class="entity-image-wide">
                 <source srcset="{{ $images['wide_xl'] }}" media="(min-width: 768px)" />
-                <img src="{{ $images['wide_sm'] }}" class="w-full" />
+                <img src="{{ $images['wide_sm'] }}" class="w-full entity-picture-wide" alt="{{ $entity->name }}" />
             </picture>
         </a>
     @endif

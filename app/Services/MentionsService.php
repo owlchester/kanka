@@ -26,8 +26,8 @@ class MentionsService
     use CampaignAware;
     use MentionTrait;
 
-    /** @var string The text that is being parsed, usualy an entry field */
-    protected string $text = '';
+    /** The text that is being parsed, usualy an entry field */
+    protected ?string $text = '';
 
     /** @var array|Entity[] List of entities */
     protected array $entities = [];

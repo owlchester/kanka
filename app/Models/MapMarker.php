@@ -226,7 +226,7 @@ class MapMarker extends Model
      */
     public function marker(): string
     {
-        if ($this->shape_id == MapMarker::SHAPE_CIRCLE) {
+        if ($this->isCircle()) {
             return $this->circleMarker();
         } elseif ($this->isLabel()) {
             return $this->labelMarker();
@@ -248,8 +248,8 @@ class MapMarker extends Model
                 smoothFactor: 1,
                 linecap: \'round\',
                 linejoin: \'round\',
-                ' . ($this->editing ? 'draggable: true,' : null) . '
             })' . $this->popup();
+            //' . ($this->editing ? 'draggable: true,' : null) . '
         }
 
         return 'L.marker([' . $this->latitude . ', ' . $this->longitude . '], {

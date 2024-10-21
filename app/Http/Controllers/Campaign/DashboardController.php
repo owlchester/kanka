@@ -29,12 +29,6 @@ class DashboardController extends Controller
         return redirect()->to('home');
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
-     */
     public function create(Campaign $campaign)
     {
         if (!$campaign->boosted()) {
@@ -53,13 +47,12 @@ class DashboardController extends Controller
             ->with('source', $source);
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function store(StoreCampaignDashboard $request, Campaign $campaign)
     {
         $this->authorize('dashboard', $campaign);
+        if ($request->ajax()) {
+            return response()->json();
+        }
 
         $dashboard = $this->service->campaign($campaign)->create($request);
 
@@ -79,6 +72,9 @@ class DashboardController extends Controller
     public function update(Campaign $campaign, CampaignDashboard $campaignDashboard, StoreCampaignDashboard $request)
     {
         $this->authorize('dashboard', $campaign);
+        if ($request->ajax()) {
+            return response()->json();
+        }
 
         $dashboard = $this->service->campaign($campaign)
             ->dashboard($campaignDashboard)
@@ -91,6 +87,9 @@ class DashboardController extends Controller
     public function destroy(Campaign $campaign, CampaignDashboard $campaignDashboard)
     {
         $this->authorize('dashboard', $campaign);
+        if (request()->ajax()) {
+            return response()->json();
+        }
 
         $campaignDashboard->delete();
         CampaignCache::clear();

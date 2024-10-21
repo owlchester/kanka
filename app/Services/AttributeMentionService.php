@@ -61,6 +61,9 @@ class AttributeMentionService
         }
 
         if (!isset($this->loadedEntity) || $this->loadedEntity->id != $attribute->entity_id) {
+            if (empty($attribute->entity)) {
+                return (string) $attribute->$field;
+            }
             $this->loadedEntity = $attribute->entity;
         }
 

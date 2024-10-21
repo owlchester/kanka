@@ -7,6 +7,7 @@ $themeOverride = request()->get('_theme');
 $specificTheme = null;
 $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign);
+$cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" class="scroll-pt-16 overflow-auto">
 <head>
@@ -19,11 +20,11 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <meta property="og:title" content="{!! $seoTitle !!} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 @if (isset($canonical))
-    <link rel="canonical" href="{{ request()->fullUrl() }}" />
+    <link rel="canonical" href="{{ $cleanCanonical }}" />
 @endif
 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
     @if (in_array($localeCode, ['hr', 'he', 'gl', 'hu', 'ca', 'nl']))@continue @endif
-    <link rel="alternate" href="{{ request()->fullUrl() . '?lang=' . $localeCode }}" hreflang="{{ $localeCode }}">
+    <link rel="alternate" href="{{ \Illuminate\Support\Str::before($cleanCanonical, '?') . '?lang=' . $localeCode }}" hreflang="{{ $localeCode }}">
 @endforeach
 
     @yield('og')

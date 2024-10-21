@@ -144,7 +144,7 @@ class Post extends Model
      */
     public function copyTo(Entity $target, bool $sameCampaign): Post
     {
-        $without = ['entity_id', 'created_by', 'updated_by'];
+        $without = ['entity_id', 'created_by', 'updated_by', 'is_template'];
         if (!$sameCampaign) {
             $without[] = 'location_id';
         }

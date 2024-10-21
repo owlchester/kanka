@@ -390,6 +390,11 @@ class CrudController extends Controller
                     $new->entity->child = $new;
                 }
 
+                /** @var CopyService $copyService */
+                $copyService = app()->make(CopyService::class);
+                // First copy stuff like posts, since we might replace attribute mentions next
+                $copyService->entity($new->entity)->request($request)->fromId()->copy();
+
                 if (auth()->user()->can('attributes', $new->entity)) {
                     $this->attributeService
                         ->campaign($this->campaign)
@@ -402,10 +407,6 @@ class CrudController extends Controller
                             ->replaceMentions((int) $request->post('copy_source_id'));
                     }
                 }
-
-                /** @var CopyService $copyService */
-                $copyService = app()->make(CopyService::class);
-                $copyService->entity($new->entity)->request($request)->fromId()->copy();
             }
 
 
