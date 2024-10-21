@@ -2,10 +2,14 @@
 
 namespace App\Services\Tracking;
 
+use App\Facades\AdCache;
+use App\Models\Campaign;
+use Carbon\Carbon;
+
 class DatalayerService
 {
-    /** @var bool|string */
-    protected $group = false;
+    /** Group name: a|b */
+    protected string $group;
 
     /** @var array Extra parameters to pass */
     protected array $additional = [];
@@ -14,10 +18,12 @@ class DatalayerService
     protected bool $newAccount = false;
 
     /** @var bool If the user is newly registered */
-    protected bool $newSubcriber = false;
+    protected bool $newSubscriber = false;
 
     /** @var bool If the user is newly cancelled */
-    protected bool $newCancelledSubcriber = false;
+    protected bool $newCancelledSubscriber = false;
+
+    protected ?Campaign $campaign;
 
     /**
      */
@@ -30,10 +36,9 @@ class DatalayerService
             'userSubbed' => false,
             'route' => $this->route(),
             'newAccount' => $this->newAccount ? '1' : '0',
-            'newSubscriber' => $this->newSubcriber ? '1' : '0',
+            'newSubscriber' => $this->newSubscriber ? '1' : '0',
             'userID' => null,
         ], $this->additional);
-
 
         if (auth()->check()) {
             $data['userType'] = 'registered';
@@ -41,21 +46,43 @@ class DatalayerService
             $data['userSubbed'] = !empty(auth()->user()->pledge) ? 'true' : 'false';
             $data['userID'] = auth()->user()->id;
 
-            if ($this->newCancelledSubcriber) {
+            if ($this->newCancelledSubscriber) {
                 $data['newCancelled'] = '1';
             }
-            if ($this->newAccount || $this->newSubcriber) {
+            if ($this->newAccount || $this->newSubscriber) {
                 $data['userEmail'] = auth()->user()->email;
             }
         }
+
+        $data['showAds'] = $this->showAds();
         return json_encode($data);
+    }
+
+    public function campaign(?Campaign $campaign)
+    {
+        $this->campaign = $campaign;
+        return $this;
+    }
+
+    protected function showAds(): bool
+    {
+        if ($this->campaign && $this->campaign->boosted()) {
+            return false;
+        } elseif (!AdCache::canHaveAds()) {
+            return false;
+        } elseif (auth()->guest()) {
+            return true;
+        } elseif (auth()->user()->isSubscriber()) {
+            return false;
+        }
+        return auth()->user()->created_at->diffInHours(Carbon::now()) > 24;
     }
 
     /**
      */
     public function userGroup(): string
     {
-        if ($this->group !== false) {
+        if (isset($this->group)) {
             return $this->group;
         }
         // Set in session? Use that
@@ -107,7 +134,7 @@ class DatalayerService
      */
     public function newSubscriber(): self
     {
-        $this->newSubcriber = true;
+        $this->newSubscriber = true;
         return $this;
     }
 
@@ -117,7 +144,7 @@ class DatalayerService
      */
     public function newCancelledSubscriber(): self
     {
-        $this->newCancelledSubcriber = true;
+        $this->newCancelledSubscriber = true;
         return $this;
     }
 
