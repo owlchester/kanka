@@ -54,7 +54,10 @@ class DatalayerService
             }
         }
 
-        $data['showAds'] = $this->showAds();
+        // We only track if ads are shown or hidden on page that are set up to actually serve ads
+        if (AdCache::canHaveAds()) {
+            $data['showAds'] = $this->showAds();
+        }
         return json_encode($data);
     }
 
@@ -68,8 +71,8 @@ class DatalayerService
     {
         if ($this->campaign && $this->campaign->boosted()) {
             return false;
-        } elseif (!AdCache::canHaveAds()) {
-            return false;
+//        } elseif (!AdCache::canHaveAds()) {
+//            return false;
         } elseif (auth()->guest()) {
             return true;
         } elseif (auth()->user()->isSubscriber()) {

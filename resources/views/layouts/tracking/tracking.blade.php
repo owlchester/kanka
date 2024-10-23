@@ -22,8 +22,3 @@
     @endif
     <!-- End Google Analytics -->
 @endif
-
-
-@if (\App\Facades\AdCache::canHaveAds())
-
-@endif
