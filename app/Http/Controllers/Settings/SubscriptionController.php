@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Jobs\Users\AbandonedCart;
 use App\Models\Tier;
+use App\Models\TierPrice;
 use App\Services\SubscriptionService;
 use App\Services\SubscriptionUpgradeService;
 use App\Services\Users\CurrencyService;
@@ -59,10 +60,11 @@ class SubscriptionController extends Controller
         $currency = $user->currencySymbol();
         $invoices = !empty($user->stripe_id) ? $user->invoices(true, ['limit' => 3]) : [];
         $tracking = session()->get('sub_tracking');
+        $newSubPricingId = session()->get('sub_id');
         $tiers = Tier::with('prices')->ordered()->get();
         $isPayPal = $user->hasPayPal();
         $hasManual = $user->hasManualSubscription();
-        $gaTrackingEvent = null;
+        $gaTrackingEvent = $gaPurchase = null;
         if (!empty($tracking)) {
             $gaTrackingEvent = 'TJhYCMDErpYDEOaOq7oC';
             if ($tracking === 'subscribed') {
@@ -72,6 +74,19 @@ class SubscriptionController extends Controller
                 DataLayer::newCancelledSubscriber();
             }
         }
+
+        if (!empty($newSubPricingId)) {
+            /** @var TierPrice $pricing */
+            $pricing = TierPrice::find($newSubPricingId);
+            $gaPurchase = [
+                'value' => $pricing->cost,
+                'currency' => $pricing->currency,
+                'coupon' => session()->get('sub_coupon'),
+                'item_id' => $pricing->tier->id,
+                'item_name' => $pricing->tier->name . ($pricing->isYearly() ? ' Yearly' : null),
+            ];
+        }
+
 
         return view('settings.subscription.index', compact(
             'stripeApiToken',
@@ -83,6 +98,7 @@ class SubscriptionController extends Controller
             'invoices',
             'tracking',
             'gaTrackingEvent',
+            'gaPurchase',
             'tiers',
             'isPayPal',
             'hasManual',
@@ -184,7 +200,10 @@ class SubscriptionController extends Controller
                 ->route('settings.subscription', $routeOptions)
                 ->withSuccess(__('settings.subscription.success.' . $flash))
                 ->with('sub_tracking', $flash)
-                ->with('sub_value', $this->subscription->subscriptionValue());
+                ->with('sub_value', $this->subscription->subscriptionValue())
+                ->with('sub_coupon', $request->get('coupon'))
+                ->with('sub_id', $this->subscription->tierPrice()->id)
+            ;
         } catch (IncompletePayment $exception) {
             session()->put('subscription_callback', $request->get('payment_id'));
             return redirect()->route(

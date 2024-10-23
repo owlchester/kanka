@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PricingPeriod;
 use App\Models\Tier;
+use App\Models\TierPrice;
 use Illuminate\Http\Request;
 use App\Services\PayPalService;
 use App\Http\Requests\ValidatePledge;
+use Illuminate\Support\Facades\Log;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PayPalController extends Controller
@@ -62,16 +65,29 @@ class PayPalController extends Controller
 
         if (isset($response['status']) && $response['status'] == 'COMPLETED') {
             $pledge = $response['purchase_units']['0']['reference_id'];
+            Log::info('Paypal', $response);
             $this->service
                 ->user($request->user())
                 ->subscribe($pledge);
             $routeOptions = ['success' => 1];
             $flash = 'subscribed';
 
+            /** @var ?Tier $tier */
+            $tier = Tier::where('name', $pledge)->first();
+            /** @var ?TierPrice $tierPrice */
+            $tierPrice = $tier->prices()
+                ->where('currency', $request->user()->currency())
+                ->where('period', PricingPeriod::Yearly)
+                ->first();
+
+
             return redirect()
                 ->route('settings.subscription', $routeOptions)
                 ->with('success', __('settings.subscription.success.subscribed'))
-                ->with('sub_tracking', $flash);
+                ->with('sub_tracking', $flash)
+                ->with('sub_id', $tierPrice?->id)
+                ->with('sub_value', $response['purchase_units']['0']['payments']['captures'][0]['amount']['value'])
+            ;
         } else {
             return redirect()
                 ->route('settings.subscription')

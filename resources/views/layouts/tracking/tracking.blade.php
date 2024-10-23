@@ -20,5 +20,19 @@
     @if (isset($gaTrackingEvent) && !empty($gaTrackingEvent))
     <script> gtag('event', 'conversion', {'send_to': '{{ config('tracking.ga_convo') }}/{{ $gaTrackingEvent }}'}); </script>
     @endif
+    @if (isset($gaPurchase) && !empty($gaPurchase))
+    <script> gtag('event', 'purchase', {
+        'value': {{ $gaPurchase['value'] }},
+        'currency': '{{ $gaPurchase['currency'] }}',
+        'coupon': {{ $gaPurchase['coupon'] ?? 'null' }},
+        'items': [{
+            'item_id': '{{ $gaPurchase['item_id'] }}',
+            'item_name': '{{ $gaPurchase['item_name'] }}',
+            'price': {{ $gaPurchase['value'] }},
+            'coupon': {{ $gaPurchase['coupon'] ?? 'null' }},
+            'quantity': 1,
+        }]
+    }); </script>
+    @endif
     <!-- End Google Analytics -->
 @endif
