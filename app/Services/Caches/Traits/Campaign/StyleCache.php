@@ -13,12 +13,16 @@ trait StyleCache
     {
         $key = $this->stylesKey();
         if ($this->has($key)) {
-            return (string) $this->get($key);
+            //return (string) $this->get($key);
         }
 
         $css = "/**\n * Campaign Styles for campaign #" . $this->campaign->id . "\n */\n\n";
         foreach ($this->campaign->styles()->enabled()->defaultOrder()->get() as $style) {
             /** @var CampaignStyle $style */
+            if ($style->isTheme()) {
+                $css .= "/** Theme builder #" . $style->id . " */\n@layer theme {\n" . $style->content() . "\n}\n";
+                continue;
+            }
             $css .= "/** Style " . $style->name . "#" . $style->id . " */\n" . $style->content() . "\n";
         }
 

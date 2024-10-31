@@ -4,10 +4,6 @@
         accent-color: hsl(var(--a)/1);
     }
     :root {
-        // Use the light kanka logo in the footer
-        --footer-logo-blue: none;
-        --footer-logo-white: inline;
-
         // General background color
         --base: 240 21% 15%;
         --crust: 240 23% 9%;
@@ -35,9 +31,9 @@
         --suc: var(--text);
         --wac: var(--text);
         --erc: var(--text);
-        --p: var(--subtext1);
-        --pc: var(--subtext0);
-        --pf: var(--subtext1);
+        --p: 287 84% 81%;
+        --pc: 287 78% 1%;
+        --pf: 287 88% 62%;
         --s: 316 70% 50%;
         --sc: var(--text);
         --a: 175 70% 41%;
@@ -54,36 +50,36 @@
         --sif: var(--surface1);
     }
 
-    .btn2 {
-        --b2: var(--surface0);
-        --b3: var(--surface1);
-    }
-    .btn2.btn-primary {
-        --p: var(--surface0);
-        --pf: var(--surface1);
-        --pc: var(--text);
-    }
-    .btn-default {
-        --b2: var(--b3);
-    }
-    .quick-creator-subform {
-        --border-btn: 1px;
-    }
-    a {
-        --p: var(--mauve);
-        --pf: var(--pink);
-    }
-    dialog {
-        --b1: var(--b3);
-    }
-    input {
-        --p: var(--mauve);
-        --pc: var(--b3);
-    }
-    .achievements {
-        --p: var(--surface0);
-        --wac: var(--surface0);
-    }
+    //.btn2 {
+    //    --b2: var(--surface0);
+    //    --b3: var(--surface1);
+    //}
+    //.btn2.btn-primary {
+    //    --p: var(--surface0);
+    //    --pf: var(--surface1);
+    //    --pc: var(--text);
+    //}
+    //.btn-default {
+    //    --b2: var(--b3);
+    //}
+    //.quick-creator-subform {
+    //    --border-btn: 1px;
+    //}
+    //a {
+    //    --p: var(--mauve);
+    //    --pf: var(--pink);
+    //}
+    //dialog {
+    //    --b1: var(--b3);
+    //}
+    //input {
+    //    --p: var(--mauve);
+    //    --pc: var(--b3);
+    //}
+    //.achievements {
+    //    --p: var(--surface0);
+    //    --wac: var(--surface0);
+    //}
 }
 /*.btn2.btn-primary, .btn2.btn-accent, .btn2.btn-error, .btn2.btn-warning {
     --tw-bg-opacity: 0;
@@ -92,7 +88,7 @@
 }*/
 .alert {
     border: 1px solid var(--alert-bg);
-    --alert-bg: hsl(var(--b2)/1);
+    --alert-bg: hsl(var(--b1)/1);
 }
 /*.btn2.btn-outline {
     border: none;

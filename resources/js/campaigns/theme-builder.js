@@ -92,7 +92,9 @@ const updateColour = (colour, target) => {
 
 const change = (variable, value) => {
     theme[variable] = value;
+    //theme['tb-' + variable] = value;
     document.documentElement.style.setProperty('--' + variable, value);
+   //document.documentElement.style.setProperty('--tb-' + variable, value);
 };
 
 const contrast = (hsl, percentage = 0.8) => {

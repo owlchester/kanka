@@ -2,14 +2,6 @@
  * Everything related to the default footer
  */
 footer {
-    img.logo-white {
-        display: var(--footer-logo-white, none);
-    }
-
-    img.logo-blue {
-        display: var(--footer-logo-blue, unset);
-    }
-
     ul {
         li {
             a {
