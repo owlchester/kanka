@@ -175,6 +175,7 @@ class EntityLog extends Model
         // Custom mapping
         $custom = [
             'header_uuid' => 'fields.header-image.title',
+            'image_uuid' => 'crud.fields.image',
             'is_template' => 'entities/actions.templates.toggle',
             'is_attributes_private' => 'entities/attributes.fields.is_private',
         ];
@@ -182,9 +183,9 @@ class EntityLog extends Model
             return __($custom[$name]);
         }
         if (app()->isProduction()) {
-            return '<i>' . __('crud.users.unknown') . '</i>';
+            return '<i data-key="' . $transKey . '" data-attr="' . $name . '">' . __('crud.users.unknown') . '</i>';
         }
-        return '<i>' . $name . '</i>';
+        return '<i data-key="' . $transKey . '" data-attr="' . $name . '">' . $name . '</i>';
     }
 
     /**

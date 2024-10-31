@@ -47,9 +47,9 @@ class PayPalService
                 $oldPrice = $tier->yearly;
             }
             // @phpstan-ignore-next-line
-            $price = (floatval($price) - ($oldPrice)) * ($this->user->subscriptions()->first()->ends_at->diffInDays(Carbon::now()) / 365);
-            $price = number_format($price, 2);
+            $price = round(($price - ($oldPrice)) * ($this->user->subscriptions()->first()->ends_at->diffInDays(Carbon::now(), true) / 365), 2);
         }
+        $price = max(0, $price);
 
         $provider = new PayPal();
         $provider->setApiCredentials(config('paypal'));

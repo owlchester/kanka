@@ -31,7 +31,12 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon-180x180.png" />
 
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppin">
+
+    @if (config('app.asset_url'))
+        <link rel="dns-prefetch" href="{{ config('app.asset_url') }}">
+    @endif
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
 
 </head>
 
@@ -79,7 +84,7 @@
 
 @if ($error === 404)
     <section class="max-w-2xl mx-auto flex flex-col gap-10 lg:gap-10 py-10 lg:py-12 px-4 xl:px-0 text-dark">
-        <img src="/images/errors/lost.jpeg" alt="Lost" class="rounded-2xl" />
+        <img src="/images/errors/lost.jpeg" alt="Lost construction kobolds in a swamp" class="rounded-2xl" />
     </section>
 @endif
 
@@ -91,5 +96,7 @@
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
+
+@includeWhen(config('tracking.consent'), 'partials.cookieconsent')
 </body>
 </html>

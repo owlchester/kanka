@@ -21,7 +21,7 @@
                             <p style="font-family: 'Inter', sans-serif; color: #515856; font-size: 16px; line-height: 165%; margin-top: 0; margin-bottom: 10px;"></p>
                             <p style="font-family: 'Inter', sans-serif; color: #515856; font-size: 16px; line-height: 165%; margin-top: 0; margin-bottom: 10px;">{!! __('emails/welcome/2024.lead_1', ['name' => $user->name]) !!}</p>
                             <p style="font-family: 'Inter', sans-serif; color: #515856; font-size: 16px; line-height: 165%; margin-top: 0; margin-bottom: 10px;"></p>
-                            <p style="font-family: 'Inter', sans-serif; color: #515856; font-size: 16px; line-height: 165%; margin-top: 0; margin-bottom: 10px;">{!! __('emails/welcome/2024.lead_1', ['name' => $user->name]) !!}</p>
+                            <p style="font-family: 'Inter', sans-serif; color: #515856; font-size: 16px; line-height: 165%; margin-top: 0; margin-bottom: 10px;">{!! __('emails/welcome/2024.lead_2', ['name' => $user->name]) !!}</p>
                             <p style="font-family: 'Inter', sans-serif; color: #515856; font-size: 16px; line-height: 165%; margin-top: 0; margin-bottom: 0;"></p>
                         </td>
                     </tr>

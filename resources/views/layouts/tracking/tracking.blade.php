@@ -3,7 +3,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('tracking.ga') }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        dataLayer.push({!! \App\Facades\DataLayer::base() !!});
+        dataLayer.push({!! \App\Facades\DataLayer::campaign($campaign ?? null)->base() !!});
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '{{ config('tracking.ga') }}');
@@ -20,10 +20,19 @@
     @if (isset($gaTrackingEvent) && !empty($gaTrackingEvent))
     <script> gtag('event', 'conversion', {'send_to': '{{ config('tracking.ga_convo') }}/{{ $gaTrackingEvent }}'}); </script>
     @endif
+    @if (isset($gaPurchase) && !empty($gaPurchase))
+    <script> gtag('event', 'purchase', {
+        'value': {{ $gaPurchase['value'] }},
+        'currency': '{{ $gaPurchase['currency'] }}',
+        'coupon': {{ $gaPurchase['coupon'] ?? 'null' }},
+        'items': [{
+            'item_id': '{{ $gaPurchase['item_id'] }}',
+            'item_name': '{{ $gaPurchase['item_name'] }}',
+            'price': {{ $gaPurchase['value'] }},
+            'coupon': {{ $gaPurchase['coupon'] ?? 'null' }},
+            'quantity': 1,
+        }]
+    }); </script>
+    @endif
     <!-- End Google Analytics -->
-@endif
-
-
-@if (\App\Facades\AdCache::canHaveAds())
-
 @endif

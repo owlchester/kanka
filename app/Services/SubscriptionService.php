@@ -392,7 +392,7 @@ class SubscriptionService
         return $this->period === PricingPeriod::Yearly;
     }
 
-    protected function tierPrice(): TierPrice
+    public function tierPrice(): TierPrice
     {
         if (isset($this->tierPrice)) {
             return $this->tierPrice;
