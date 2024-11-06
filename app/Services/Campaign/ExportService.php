@@ -102,7 +102,7 @@ class ExportService
                 ->update([
                     'status' => CampaignExport::STATUS_FAILED,
                 ]);
-            Log::error('Campaign export', ['err' => $e->getMessage()]);
+            Log::error('Campaign export', ['action' => 'export', 'err' => $e->getMessage()]);
             throw $e;
         }
 
@@ -304,13 +304,21 @@ class ExportService
 
         $path = $model->entity->image_path;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
-            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
-            $this->files++;
+            try {
+                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
+                $this->files++;
+            } catch (Exception $e) {
+                Log::warning('Campaign export', ['err' => 'Can\'t get image_path', 'image_path' => $path, 'entity' => $model->entity->id]);
+            }
         }
         $path = $model->entity->header_image;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
-            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
-            $this->files++;
+            try {
+                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
+                $this->files++;
+            } catch (Exception $e) {
+                Log::warning('Campaign export', ['err' => 'Can\'t get header_image', 'header_image' => $path, 'entity' => $model->entity->id]);
+            }
         }
 
         /** @var EntityAsset $file */
@@ -322,7 +330,11 @@ class ExportService
             if (!Storage::exists($path)) {
                 continue;
             }
-            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
+            try {
+                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
+            } catch (Exception $e) {
+                Log::warning('Campaign export', ['err' => 'Can\'t get asset file', 'path' => $path, 'asset' => $file->id]);
+            }
         }
 
         if ($model instanceof Map) {
@@ -331,7 +343,11 @@ class ExportService
                 if (!$path || !Storage::exists($path)) {
                     continue;
                 }
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
+                try {
+                    $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
+                } catch (Exception $e) {
+                    Log::warning('Campaign export', ['err' => 'Can\'t get map layer file', 'path' => $path, 'layer' => $layer->id]);
+                }
             }
         }
 
@@ -363,7 +379,7 @@ class ExportService
             $this->archive->saveTo($saveFolder);
             $this->filesize = (int) floor(filesize($this->path) / pow(1024, 2));
         } catch (Exception $e) {
-            Log::error('Campaign export', ['err' => $e->getMessage()]);
+            Log::error('Campaign export', ['action' => 'finish', 'err' => $e->getMessage()]);
             // The export might fail if the zip is too big.
             $this->files = 0;
             throw new Exception($e->getMessage());
