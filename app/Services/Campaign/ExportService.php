@@ -195,7 +195,6 @@ class ExportService
         }
         $image = $this->campaign->image;
         if (!empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
-            $this->files++;
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image), $image);
                 $this->files++;
@@ -206,7 +205,6 @@ class ExportService
         }
         $image = $this->campaign->header_image;
         if (!empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
-            $this->files++;
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image), $image);
                 $this->files++;
