@@ -16,6 +16,9 @@ return [
         'members'   => 'Członkowie',
     ],
     'helpers'       => [],
+    'hints'         => [
+        'is_extinct'    => 'Ta rasa wymarła.',
+    ],
     'index'         => [],
     'members'       => [
         'create'    => [

@@ -134,6 +134,7 @@ return [
         'copy_links'        => 'Copiar Links',
         'copy_permissions'  => 'Copiar Permissões (isso substituirá os valores definidos na guia de permissões)',
         'copy_posts'        => 'Copiar Posts (isso inclui as permissões dos posts)',
+        'copy_reminders'    => 'Copiar Lembretes',
         'creator'           => 'Criador',
         'date_range'        => 'Intervalo de datas',
         'entity'            => 'Entidade',
@@ -171,6 +172,7 @@ return [
         ],
         'errors'    => [
             'max'       => 'Você atingiu o número máximo (:max) de arquivos para esta entidade.',
+            'max_size'  => 'A campanha atingiu a capacidade máxima de armazenamento de arquivos.',
             'no_files'  => 'Sem arquivos',
         ],
         'files'     => 'Arquivos Carregados',
@@ -336,6 +338,9 @@ return [
     'relations'                 => [],
     'remove'                    => 'Remover',
     'rename'                    => 'Renomear',
+    'reorder'                   => [
+        'empty' => 'Não há elementos para reordenar.',
+    ],
     'save'                      => 'Salvar',
     'save_and_close'            => 'Salvar e Fechar',
     'save_and_copy'             => 'Salvar e Copiar',

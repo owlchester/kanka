@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'fulltext'      => 'Cerca ovunque',
     'lookup'        => [
         'empty'     => 'Nessun risultato',
         'hint'      => 'Scrivi almeno tre lettere per effettuare una ricerca fra le entità di una campagna.',
@@ -11,8 +12,8 @@ return [
     'no_results'    => 'Nessun risultato',
     'placeholder'   => 'CERCA',
     'preview'       => [
-        'links'             => 'Links',
-        'no-connections'    => 'Non ci sono connessioni appuntati da mostrare',
+        'links'             => 'Link',
+        'no-connections'    => 'Non ci sono legami fissati da mostrare',
     ],
     'title'         => 'Cerca',
 ];

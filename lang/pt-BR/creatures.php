@@ -10,6 +10,7 @@ return [
     ],
     'helpers'       => [],
     'hints'         => [
+        'is_dead'       => 'Essa criatura está morta.',
         'is_extinct'    => 'Essa criatura está extinta.',
     ],
     'placeholders'  => [

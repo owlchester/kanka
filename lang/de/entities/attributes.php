@@ -3,24 +3,29 @@
 return [
     'actions'       => [
         'apply_template'    => 'Eine Attributvorlage anwenden',
+        'load'              => 'Laden',
         'manage'            => 'Verwalten',
         'more'              => 'Mehr Optionen',
         'remove_all'        => 'Alles löschen',
         'save_and_edit'     => 'Bestätigen und Bearbeiten',
         'save_and_story'    => 'Bestätigen und Ansehen',
         'show_hidden'       => 'Ausgeblendete Attribute anzeigen',
+        'toggle_privacy'    => 'Privat/öffentlich',
     ],
     'create'        => [],
     'destroy'       => [],
     'edit'          => [],
     'errors'        => [
-        'loop'  => 'Diese Attributberechnung enthält eine Endlosschleife!',
+        'loop'                  => 'Diese Attributberechnung enthält eine Endlosschleife!',
+        'no_attribute_selected' => 'Wähle zunächst ein oder mehrere Eigenschaften aus.',
+        'too_many_v2'           => 'Maximale Felder erreicht (:count/:max). Lösche zuerst einige Eigenschaften, bevor du weitere hinzufügen kannst.',
     ],
     'fields'        => [
         'attribute'             => 'Attribut',
         'community_templates'   => 'Community Vorlagen',
         'is_private'            => 'Private Attribute',
         'is_star'               => 'Angepinnt',
+        'preferences'           => 'Einstellungen',
         'template'              => 'Vorlage',
         'value'                 => 'Wert',
     ],
@@ -68,19 +73,29 @@ return [
     'ranges'        => [
         'text'  => 'Verfügbare Optionen: :options',
     ],
+    'sections'      => [
+        'unorganised'   => 'Unorganisiert',
+    ],
     'show'          => [
         'hidden'    => 'Ausgeblendete Attribute',
         'title'     => ':name Attribut',
     ],
     'template'      => [
+        'load'      => [
+            'success'   => 'Vorlage geladen',
+            'title'     => 'Aus Vorlage laden',
+        ],
         'success'   => 'Attributvorlage :name wird auf :entity angewendet',
         'title'     => 'Wende eine Attributvorlage auf :name an',
     ],
+    'title'         => 'Eigenschaften',
     'toasts'        => [
-        'lock'      => 'Attribut gesperrt',
-        'pin'       => 'Attribut angepinnt',
-        'unlock'    => 'Attribut freigeschaltet',
-        'unpin'     => 'Attribut nicht angepinnt',
+        'bulk_deleted'  => 'Eigenschaften gelöscht',
+        'bulk_privacy'  => 'Eigenschaften Privatsphäre umgeschaltet',
+        'lock'          => 'Attribut gesperrt',
+        'pin'           => 'Attribut angepinnt',
+        'unlock'        => 'Attribut freigeschaltet',
+        'unpin'         => 'Attribut nicht angepinnt',
     ],
     'tutorial'      => 'Attribute sind kleine Informationseinheiten, die einem Objekt zugeordnet sind. Beispielsweise könnte ein Zeichen einen :hp und :str Status haben, während ein Ort einen :pop Status haben könnte. Dies lässt sich leicht anhand von Attributen nachverfolgen.',
     'types'         => [

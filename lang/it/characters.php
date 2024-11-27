@@ -12,6 +12,12 @@ return [
     'destroy'       => [],
     'dice_rolls'    => [],
     'edit'          => [],
+    'families'      => [
+        'reorder'   => [
+            'success'   => 'Famiglie del personaggio aggiornate con successo.',
+        ],
+        'title'     => 'Gestisci le famiglie di :name',
+    ],
     'fields'        => [
         'age'                       => 'Età',
         'is_appearance_pinned'      => 'Aspetto fissato',
@@ -21,18 +27,18 @@ return [
         'life'                      => 'Vita',
         'physical'                  => 'Caratteristiche fisiche',
         'pronouns'                  => 'Pronomi',
-        'sex'                       => 'Sesso',
+        'sex'                       => 'Genere',
         'title'                     => 'Titolo',
         'traits'                    => 'Tratti',
     ],
     'helpers'       => [
-        'age'   => 'Puoi collegare questa entità con un calendario della tua campagna per calcolare automaticamente l\'età.',
+        'age'   => 'Puoi collegare questa entità con un calendario della tua campagna per calcolare automaticamente l\'età. :more',
     ],
     'hints'         => [
         'is_appearance_pinned'      => 'Se selezionati, i tratti fisici del personaggio appariranno sotto la voce principale della pagina.',
         'is_dead'                   => 'Questo personaggio è morto',
         'is_personality_pinned'     => 'Se selezionati, i tratti caratteriali del personaggio appariranno sotto la voce principale della pagina.',
-        'is_personality_visible'    => 'Puoi nascondere l\'intera sezione inerente la personalità per le utenze non "Admin".',
+        'is_personality_visible'    => 'I tratti della personalità sono visibili a tutti, non solo ai membri del ruolo di :admin.',
         'personality_not_visible'   => 'Solo gli amministratori possono vedere i tratti caratteriali di questo personaggio.',
         'personality_visible'       => 'Tutti possono vedere i tratti carattieriali di questo personaggio.',
     ],
@@ -52,7 +58,7 @@ return [
     'maps'          => [],
     'organisations' => [
         'create'    => [
-            'success'   => 'Personaggio aggiunto all\'organizzazione.',
+            'success'   => ':character aggiunto a :organisation.',
             'title'     => 'Nuova organizzazione per :name',
         ],
         'destroy'   => [
@@ -69,10 +75,10 @@ return [
     'placeholders'  => [
         'age'               => 'Età',
         'appearance_entry'  => 'Descrizione',
-        'appearance_name'   => 'Capelli, Occhi, Pelle, Altezza',
+        'appearance_name'   => 'Capelli, Occhi, Carnagione, Altezza',
         'name'              => 'Nome del personaggio',
         'personality_entry' => 'Dettagli',
-        'personality_name'  => 'Obbiettivi, Vezzi, Paure, Vincoli',
+        'personality_name'  => 'Obbiettivi, Vezzi, Paure, Legami',
         'physical'          => 'Caratteristiche Fisiche',
         'pronouns'          => 'Lui, Lei, Loro',
         'sex'               => 'Genere',
@@ -85,6 +91,12 @@ return [
             'quest_giver'   => 'Missioni per cui il personaggio è il committente.',
             'quest_member'  => 'Missioni di cui il personaggio fa parte.',
         ],
+    ],
+    'races'         => [
+        'reorder'   => [
+            'success'   => 'Stirpi del personaggio aggiornate con successo',
+        ],
+        'title'     => 'Gestisci le stirpi di :name',
     ],
     'sections'      => [
         'appearance'    => 'Aspetto',

@@ -14,6 +14,7 @@ return [
         'email'                     => 'Email',
         'hide_subscription'         => 'Nascondi il mio nome dalla :hall_of_fame.',
         'last_login_share'          => 'Condividi con gli altri membri della campagna quando ho effettuato l\'ultimo accesso.',
+        'login_sharing'             => 'Condivisione dell\'ultimo login',
         'name'                      => 'Nome',
         'new_password'              => 'Nuova Password',
         'new_password_confirmation' => 'Conferma della Nuova Password',
@@ -21,6 +22,7 @@ return [
         'password'                  => 'Password attuale',
         'profile-name'              => 'Nome del profilo',
         'settings'                  => 'Impostazioni',
+        'subscription_hiding'       => 'Nascondere l\'abbonamento',
         'theme'                     => 'Tema',
     ],
     'helpers'                       => [

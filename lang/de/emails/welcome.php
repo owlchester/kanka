@@ -1,6 +1,23 @@
 <?php
 
 return [
+    '2023'              => [
+        'basics'    => [
+            'text_1'    => 'Bei einem so umfangreichen Werkzeug wie Kanka kann es schwierig sein, zu wissen, wo man anfangen soll oder was zu tun ist. Unser :kb behandelt die grundlegendsten Fragen, die du haben könntest, und für weitere Hilfe kannst du unser :doc besuchen.',
+            'title'     => 'Die Grundlagen',
+        ],
+        'chat'      => [
+            'text_1'    => 'Wir hören gerne von unseren Nutzern. Am aktivsten sind wir auf :discord, wo du viele unserer engagierten Nutzer, ein Onboarding-Team sowie die Gründer von Kanka findest, die dir alle Fragen beantworten können. Du kannst uns auch eine E-Mail an :email schreiben.',
+            'title'     => 'Möchtest du dich unterhalten?',
+        ],
+        'intro'     => [
+            'header'    => 'Willkommen in der besten Worldbuilding-Community, :name!',
+            'link'      => 'Geh in deine Welt!',
+            'text_1'    => 'Begrüße dein neues Worldbuilding-Zuhause, :name! Die Gemeinschaft liegt in unserer DNA, und wir freuen uns, dass du dich uns anschließt. Kanka ist die Idee leidenschaftlicher Rollenspieler, die an eine vereinfachte und gemeinschaftliche Herangehensweise an den Weltenbau glauben, ohne Kompromisse bei den Funktionen einzugehen.',
+            'text_2'    => 'Wir haben deine erste Kampagne eingerichtet und zwei Beispielcharaktere und -orte beigefügt, um dir den Einstieg zu erleichtern.',
+        ],
+        'preview'   => 'Sei Teil der besten Worldbuilding-Community, :name!',
+    ],
     'header'            => 'Willkommen bei Kanka :name',
     'header_sub'        => 'Herzlichen Glückwunsch, Sie haben den ersten Schritt in der Erschaffung Ihrer Welt getan :kanka!',
     'pricing'           => 'Preisgestaltung',

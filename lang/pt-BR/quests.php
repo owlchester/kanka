@@ -25,7 +25,7 @@ return [
         ],
     ],
     'fields'        => [
-        'copy_elements' => 'Copiar elementos anexados na missão',
+        'copy_elements' => 'Copiar elementos anexados à missão',
         'date'          => 'Data',
         'element_role'  => 'Função',
         'instigator'    => 'Instigador',
@@ -33,7 +33,7 @@ return [
         'role'          => 'Função',
     ],
     'helpers'       => [
-        'is_completed'  => 'Selecione se a missão estiver considerada como concluída.',
+        'is_completed'  => 'A missão é considerada concluída.',
     ],
     'hints'         => [
         'quests'    => 'Uma rede de missões interligadas pode ser construída usando o campo de Missão Primária.',

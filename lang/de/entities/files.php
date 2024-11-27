@@ -6,7 +6,8 @@ return [
         'premium'   => 'Das Hochladen weiterer Dateien erfordert eine Premium-Kampagne.',
     ],
     'create'            => [
-        'title' => 'Neue Datei für :entity',
+        'success_plural'    => '{1} Datei :name hinzugefügt.|[2,*] :count der hinzugefügten Dateien.',
+        'title'             => 'Neue Datei für :entity',
     ],
     'destroy'           => [
         'success'   => 'Datei :file entfernt',
@@ -14,6 +15,9 @@ return [
     'fields'            => [
         'file'  => 'Datei',
         'name'  => 'Dateiname',
+    ],
+    'max'               => [
+        'title' => 'Limit erreicht',
     ],
     'update'            => [
         'success'   => 'Datei :file aktualisiert',

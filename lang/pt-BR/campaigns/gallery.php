@@ -8,6 +8,7 @@ return [
         'image-link'    => 'Link da imagem',
         'reset_focus'   => 'Redefinir ponto de foco',
         'save'          => 'Salvar',
+        'upgrade'       => 'Atualizar espaço de armazenamento',
     ],
     'breadcrumb'    => 'Galeria',
     'bulk'          => [
@@ -28,14 +29,20 @@ return [
     ],
     'fields'        => [
         'created_by'            => 'Carregada por',
+        'details'               => 'Detalhes',
         'ext'                   => 'Sair',
+        'file_type'             => 'Tipo do arquivo',
         'folder'                => 'Pasta',
         'image_mentioned_in'    => '{0} Esta imagem não é mencionada em nenhuma das entidades da campanha.|{1} Mencionada em uma introdução/post.|[2,*] mencionada em :count introduções/posts.',
         'image_used_in'         => '{0} Esta imagem não é usada em nenhuma das entidades da campanha.|{1} Usada como a imagem de uma entidade.|[2,*] Usada como a imagem de :count entidades.',
+        'link'                  => 'Link',
         'name'                  => 'Nome',
         'size'                  => 'Tamanho',
+        'unused'                => 'Não usado em lugar nenhum',
+        'used_in'               => 'Usado em',
     ],
     'focus'         => [
+        'locked'    => 'Uma campanha premium é necessária para definir o ponto focal de uma imagem.',
         'removed'   => 'Foco da imagem removido.',
         'updated'   => 'Foco da imagem atualizado.',
     ],
@@ -46,6 +53,10 @@ return [
     'pitch'         => 'Carregue imagens para a galeria da campanha diretamente do editor de texto.',
     'placeholders'  => [
         'search'    => 'Procurar nome da imagem...',
+    ],
+    'storage'       => [
+        'of'    => 'de',
+        'title' => 'Armazenamento',
     ],
     'title'         => 'Galeria da Campanha :campaign',
     'update'        => [

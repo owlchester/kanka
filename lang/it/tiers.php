@@ -3,33 +3,38 @@
 return [
     'actions'   => [
         'subscribe' => [
-            'monthly'   => ':grado al mese',
-            'yearly'    => ':grado all\'anno',
+            'choose'    => 'Scegli :tier',
+            'monthly'   => ':tier al mese',
+            'yearly'    => ':tier all\'anno',
         ],
     ],
     'current'   => 'Il tuo attuale abbonamento',
     'features'  => [
         'api_requests'      => ':amount richieste APi/minuto',
         'boosters'          => 'Potenziamenti Campagna',
-        'discord'           => 'Ruoli di Discord',
-        'feature_influence' => 'Influenza sulle nuove funzionalità',
+        'discord'           => 'Ruoli e canali :discord unici',
+        'feature_influence' => 'Dai la tua opinione sulle funzioni future',
         'file_size'         => ':size per i caricamenti di files',
         'hall_of_fame'      => 'Hall of Fame',
         'map_size'          => ':size per i caricamenti delle Mappe',
         'nice_image'        => 'Immagini predefinite per le entità',
         'no_ads'            => 'Nessun annuncio.',
         'pagination'        => ':amount risultati per pagina (massimo di entità mostrate per pagina)',
+        'roadmap'           => 'Vota le nuove idee',
     ],
     'periods'   => [
-        'monthly'   => 'al mese',
-        'yearly'    => 'all\'anno',
+        'billed_monthly'    => 'Fatturato mensilmente',
+        'billed_yearly'     => 'Fatturato annualmente',
+        'monthly'           => 'Mensile',
+        'yearly'            => 'Annuale',
     ],
     'pricing'   => ':currency :amount / mese',
     'ribbons'   => [
         'best-value'    => 'Più conveniente',
+        'current'       => 'Abbonamento attuale',
         'popular'       => 'Popolare',
     ],
     'toggle'    => [
-        'yearly'    => 'all\'anno (con un mese gratis!)',
+        'yearly'    => 'Annuale (paghi 10 mesi)',
     ],
 ];

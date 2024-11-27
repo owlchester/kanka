@@ -15,6 +15,7 @@ return [
     'cookie'                => [
         'dismiss'   => 'Capito!',
         'link'      => 'Ulteriori informazioni',
+        'message'   => 'Questo sito web utilizza i cookie per garantirti la migliore esperienza sul nostro sito web.',
     ],
     'faq'                   => [],
     'featured_campaigns'    => [],
@@ -43,7 +44,7 @@ return [
     'help'                  => [],
     'home'                  => [
         'seo'   => [
-            'meta-description'  => 'Sei un game master, un worldbuilder o uno scrittore? Offriamo un gestore di campagne da gioco di ruolo e uno strumento di worldbuilding che rende facile organizzare, pianificare e divertirsi con le campagne dei TTRPG. Siamo guidati dalla comunità e, soprattutto, le nostre funzioni principali sono gratuite!',
+            'meta-description'  => 'Sei un game master, un worldbuilder o uno scrittore? Offriamo un gestore di campagne per giochi di ruolo e uno strumento di worldbuilding che rende facile organizzare, pianificare e divertirsi con le tue campagne GDR. Siamo spinti e ispirati dalla nostra comunità e, soprattutto, le nostre funzioni principali sono gratuite!',
         ],
     ],
     'master'                => [],

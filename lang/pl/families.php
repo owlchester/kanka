@@ -12,7 +12,8 @@ return [
     ],
     'helpers'       => [],
     'hints'         => [
-        'members'   => 'Lista członków rodziny. Aby dodać postać do rodziny, wybierz ją z listy w pozycji "Rodzina" podczas edycji tej postaci.',
+        'is_extinct'    => 'Ta rodzina wymarła.',
+        'members'       => 'Lista członków rodziny. Aby dodać postać do rodziny, wybierz ją z listy w pozycji "Rodzina" podczas edycji tej postaci.',
     ],
     'index'         => [],
     'members'       => [

@@ -155,8 +155,11 @@ return [
         'cancelled'             => 'L\'abbonamento è stato annullato. Puoi rinnovare l\'abbonamento una volta che l\'abbonamento attuale scade dopo la data :date.',
         'change'                => [
             'text'  => [
-                'monthly'   => 'Stai sottoscrivendo l\'abbonamento per il grado :tier, da pagare mensilmente in cifra pari a :amount.',
-                'yearly'    => 'Stai sottoscrivendo l\'abbonamento per il grado :tier, da pagare annualmente in cifra pari a :amount.',
+                'monthly'           => 'Stai sottoscrivendo l\'abbonamento per il grado :tier, da pagare mensilmente in cifra pari a :amount.',
+                'upgrade_monthly'   => 'Passi al livello :tier per :upgrade, poi fatturi mensilmente per :amount.',
+                'upgrade_paypal'    => 'Passi al livello :tier per :upgrade fino a :date.',
+                'upgrade_yearly'    => 'Passi al livello :tier per :upgrade, poi fatturi annualmente per :amount.',
+                'yearly'            => 'Stai sottoscrivendo l\'abbonamento per il grado :tier, da pagare annualmente in cifra pari a :amount.',
             ],
             'title' => 'Cambia Grado di Abbonamento',
         ],
@@ -167,6 +170,7 @@ return [
             'percent_off'   => 'Sconteremo il tuo primo abbonamento annuale del :percent%!',
         ],
         'currencies'            => [
+            'brl'   => 'BRL',
             'eur'   => 'EUR',
             'usd'   => 'USD',
         ],
@@ -186,12 +190,16 @@ return [
             'payment_method'    => 'Metodo di pagamento',
             'plan'              => 'Piano attuale',
             'reason'            => 'Motivazione',
+            'reset'             => 'Ripristina dati di fatturazione',
+            'reset_billing'     => 'Sono consapevole che cambiando valuta perderò la mia cronologia di fatturazione e dovrò inserire nuovamente il mio metodo di pagamento.',
         ],
         'helpers'               => [
             'alternatives'          => 'Paga l\'abbonamento con il metodo :method. Questo metodo di pagamento non si rinnova automaticamente alla fine dell\'abbonamento. :method è disponibile solo in euro.',
             'alternatives-2'        => 'Paga il tuo abbonamento usando :method. Si tratta di un pagamento unico che non si rinnova automaticamente alla fine dell\'abbonamento.',
             'alternatives_warning'  => 'Non è possibile aggiornare l\'abbonamento utilizzando questo metodo. Sottoscrivi nuovamente l\'abbonamento al termine di quello attuale.',
             'alternatives_yearly'   => 'Accettiamo abbonamenti annuali solo con :method',
+            'currency_block'        => 'Non è possibile cambiare la valuta mentre si ha un abbonamento attivo a Kanka; è possibile cambiare la valuta una volta terminato l\'abbonamento attuale.',
+            'currency_reset'        => 'La modifica della valuta scelta cancellerà la cronologia di fatturazione e richiederà di inserire nuovamente un metodo di pagamento.',
             'paypal_v3'             => 'Paga in tutta sicurezza il tuo abbonamento annuale con PayPal.',
             'stripe'                => 'I dati di fatturazione vengono elaborati e conservati in modo sicuro tramite :stripe.',
         ],

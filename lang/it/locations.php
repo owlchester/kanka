@@ -9,11 +9,15 @@ return [
     'edit'          => [],
     'events'        => [],
     'families'      => [],
-    'fields'        => [],
+    'fields'        => [
+        'is_destroyed'  => 'Distrutto',
+    ],
     'helpers'       => [
         'characters'    => 'Visualizza tutti i personaggi in questo luogo e nei luoghi discendenti, o semplicemente quelli che si trovano qui.',
     ],
-    'hints'         => [],
+    'hints'         => [
+        'is_destroyed'  => 'Questo luogo è distrutto.',
+    ],
     'index'         => [],
     'items'         => [],
     'journals'      => [],

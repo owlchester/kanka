@@ -24,7 +24,7 @@ return [
             'title'     => 'Nuova Pagina Principale della Campagna',
         ],
         'custom'        => [
-            'text'  => 'Stai modificando la :name Pagina Principale della campagna.',
+            'text'  => 'Stai modificando la Pagina Principale :name della campagna.',
         ],
         'default'       => [
             'text'  => 'Stai modificando la Pagina Principale predefinita della campagna.',
@@ -41,7 +41,7 @@ return [
         'helpers'       => [
             'copy_widgets'  => 'Duplica i widgets dalla Pagina Principale :name a questa nuova.',
         ],
-        'pitch'         => 'Crea multiple Pagine Principali con permessi personalizzati per ogni ruolo all\'interno della campagna.',
+        'pitch'         => 'Crea multiple Pagine Principali con autorizzazioni personalizzate per ogni ruolo all\'interno della campagna.',
         'placeholders'  => [
             'name'  => 'Nome della Pagina Principale',
         ],
@@ -155,6 +155,9 @@ return [
             'helpers'   => [
                 'name'  => 'Puoi fare riferimento al nome dell\'entità casuale con {name}',
             ],
+            'type'      => [
+                'all'   => 'Tutti',
+            ],
         ],
         'recent'                    => [
             'advanced_filter'   => 'Filtro avanzato',
@@ -173,7 +176,7 @@ return [
             ],
             'show_attributes'   => 'Mostra gli attributi appuntati',
             'show_members'      => 'Mostra membri',
-            'show_relations'    => 'Mostra relazioni appuntate',
+            'show_relations'    => 'Mostra relazioni fissate',
             'singular'          => 'Anteprima',
             'tags'              => 'Filtra la lista di entità con etichette specifiche.',
             'title'             => 'Lista di entità',

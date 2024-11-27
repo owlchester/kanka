@@ -12,6 +12,9 @@ return [
     'destroy'       => [],
     'dice_rolls'    => [],
     'edit'          => [],
+    'families'      => [
+        'title' => 'Gerenciar famílias de :name',
+    ],
     'fields'        => [
         'age'                       => 'Idade',
         'is_appearance_pinned'      => 'Aparência fixada',
@@ -21,7 +24,7 @@ return [
         'life'                      => 'Vida',
         'physical'                  => 'Físico',
         'pronouns'                  => 'Pronomes',
-        'sex'                       => 'Sexo',
+        'sex'                       => 'Gênero',
         'title'                     => 'Título',
         'traits'                    => 'Características',
     ],
@@ -29,12 +32,12 @@ return [
         'age'   => 'Você pode vincular essa entidade a um calendário de sua campanha para calcular automaticamente sua idade. :more.',
     ],
     'hints'         => [
-        'is_appearance_pinned'      => 'Se selecionado, os traços de aparência do personagem aparecerão abaixo da introdução na página de visão geral.',
-        'is_dead'                   => 'Este personagem está morto',
-        'is_personality_pinned'     => 'Se selecionado, os traços de personalidade do personagem aparecerão abaixo da introdução na página de visão geral.',
-        'is_personality_visible'    => 'Desmarque esta opção para ocultar toda a seção de personalidade dos membros fora do cargo de :admin.',
-        'personality_not_visible'   => 'Os traços de personalidade deste personagem estão visíveis apenas para os  usários Administradores.',
-        'personality_visible'       => 'Os traços de personalidade deste personagem estão visíveis para todos.',
+        'is_appearance_pinned'      => 'Exiba os traços de aparência na página de visão geral.',
+        'is_dead'                   => 'Este personagem está morto.',
+        'is_personality_pinned'     => 'Exiba os traços de personalidade na página de visão geral.',
+        'is_personality_visible'    => 'Os traços de personalidade são visíveis para todos, não apenas para os membros do cargo :admin.',
+        'personality_not_visible'   => 'Traços de personalidade deste personagem estão atualmente visíveis apenas para usuários Admin.',
+        'personality_visible'       => 'Traços de personalidade deste personagem estão visíveis para todos.',
     ],
     'index'         => [],
     'items'         => [],
@@ -52,15 +55,15 @@ return [
     'maps'          => [],
     'organisations' => [
         'create'    => [
-            'success'   => 'Personagem adicionado à organização.',
-            'title'     => 'Nova Organização para :name',
+            'success'   => ':character adicionado à :organisation.',
+            'title'     => 'Filiação',
         ],
         'destroy'   => [
-            'success'   => 'Organização do personagem removida.',
+            'success'   => 'Filiação removida.',
         ],
         'edit'      => [
-            'success'   => 'Organização do personagem atualizada.',
-            'title'     => 'Atualizar Organização para :name',
+            'success'   => 'Filiação atualizada.',
+            'title'     => 'Atualizar filiação de :name',
         ],
         'fields'    => [
             'role'  => 'Função',
@@ -75,9 +78,9 @@ return [
         'personality_name'  => 'Objetivos, Maneirismos, Medos, Vínculos',
         'physical'          => 'Físico',
         'pronouns'          => 'Ele/Seu, Ela/Sua, Eles/Seus',
-        'sex'               => 'Sexo',
+        'sex'               => 'Gênero',
         'title'             => 'Título',
-        'traits'            => 'Características',
+        'traits'            => 'Traços',
         'type'              => 'NPC, Personagem de Jogador, Divindade',
     ],
     'quests'        => [
@@ -85,6 +88,12 @@ return [
             'quest_giver'   => 'Missões das quais o personagem delegou.',
             'quest_member'  => 'Missões das quais o personagem é membro.',
         ],
+    ],
+    'races'         => [
+        'reorder'   => [
+            'success'   => 'Raças de personagens atualizadas com sucesso',
+        ],
+        'title'     => 'Gerenciar raças de :name',
     ],
     'sections'      => [
         'appearance'    => 'Aparência',

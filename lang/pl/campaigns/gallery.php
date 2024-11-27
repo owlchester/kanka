@@ -8,6 +8,7 @@ return [
         'image-link'    => 'Link do obrazu',
         'reset_focus'   => 'Usuń punkt centralny',
         'save'          => 'Zapisz',
+        'upgrade'       => 'Powiększ',
     ],
     'breadcrumb'    => 'Galeria',
     'bulk'          => [
@@ -28,14 +29,20 @@ return [
     ],
     'fields'        => [
         'created_by'            => 'Dodane przez',
+        'details'               => 'Szczegóły',
         'ext'                   => 'Typ',
+        'file_type'             => 'Rodzaj pliku',
         'folder'                => 'Katalog',
         'image_mentioned_in'    => '{0} Ten obraz nie jest wzmiankowany przez żaden element kampanii.|{1} Wzmiankowany przez jeden element/wpis.|[2,*] Wzmiankowany przez :count elementy/wpisy.',
         'image_used_in'         => '{1}Użyto jako obrazu jednego elementu.|[2,*]Użyto jako obrazu :count elementów.',
+        'link'                  => 'Odnośnik',
         'name'                  => 'Nazwa',
         'size'                  => 'Rozmiar',
+        'unused'                => 'Nieużywany',
+        'used_in'               => 'Używany w',
     ],
     'focus'         => [
+        'locked'    => 'Punkt centralny można ustawić tylko w kampanii premium',
         'removed'   => 'Usunięto punkt centralny.',
         'updated'   => 'Zmieniono punkt centralny.',
     ],
@@ -46,6 +53,10 @@ return [
     'pitch'         => 'Zamieszczaj ilustracje kampanii bezpośrednio z poziomu edytora tekstu',
     'placeholders'  => [
         'search'    => 'Wyszukaj obraz po nazwie',
+    ],
+    'storage'       => [
+        'of'    => 'z',
+        'title' => 'Miejsce',
     ],
     'title'         => 'Galeria kampanii :campaign',
     'update'        => [

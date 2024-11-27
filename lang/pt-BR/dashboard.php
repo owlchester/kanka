@@ -162,23 +162,23 @@ return [
         'recent'                    => [
             'advanced_filter'   => 'Filtro avançado',
             'advanced_filters'  => [
-                'mentionless'   => 'Sem Mencionar (entidades que não mencionam outras entidades)',
-                'unmentioned'   => 'Sem Menção (entidades que não são mencionadas por outras entidades)',
+                'mentionless'   => 'Sem Menções (entidades que não mencionam outras entidades)',
+                'unmentioned'   => 'Não Mencionadas (entidades que não são mencionadas por outras entidades)',
             ],
             'entity-header'     => 'Use o cabeçalho da entidade como imagem',
             'filters'           => 'Filtros',
-            'help'              => 'Mostre apenas a primeira entidade como uma visualização em vez de uma lista.',
+            'help'              => 'Exiba somente a primeira entidade como uma prévia em vez de uma lista.',
             'helpers'           => [
                 'entity-header'     => 'Se sua entidade tiver um cabeçalho de entidade (recurso de campanha aprimorada), defina este widget para usar essa imagem ao invés da imagem da entidade.',
-                'show_attributes'   => 'Mostra os atributos fixados da entidade abaixo da introdução.',
-                'show_members'      => 'Se a entidade for uma família ou organização, mostra seus membros abaixo da introdução.',
-                'show_relations'    => 'Mostrar as relações fixadas da entidade abaixo da introdução.',
+                'show_attributes'   => 'Exiba os atributos fixados da entidade abaixo da introdução.',
+                'show_members'      => 'Se a entidade for uma família ou organização, exiba seus membros abaixo da introdução.',
+                'show_relations'    => 'Exiba as relações fixadas da entidade abaixo da introdução.',
             ],
-            'show_attributes'   => 'Mostrar atributos fixados',
-            'show_members'      => 'Mostrar membros',
-            'show_relations'    => 'Mostrar relações fixadas',
+            'show_attributes'   => 'Exiba atributos fixados',
+            'show_members'      => 'Exiba membros',
+            'show_relations'    => 'Exiba relações fixadas',
             'singular'          => 'Pré-visualização',
-            'tags'              => 'Filtre a lista de entidades modificadas recentemente em tags específicas.',
+            'tags'              => 'Filtrar a lista de entidades com tags especificadas.',
             'title'             => 'Lista de entidade',
         ],
         'tabs'                      => [
@@ -186,7 +186,7 @@ return [
             'setup'     => 'Configurações',
         ],
         'unmentioned'               => [
-            'title' => 'Entidades sem menções',
+            'title' => 'Entidades não mencionadas',
         ],
         'update'                    => [
             'success'   => 'Widget modificado',

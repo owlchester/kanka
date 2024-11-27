@@ -12,7 +12,8 @@ return [
     ],
     'helpers'       => [],
     'hints'         => [
-        'members'   => 'I membri di una famiglia sono mostrati qui. Un personaggio può essere aggiunto alla famiglia modificando il personaggio, usando il selettore "Famiglia".',
+        'is_extinct'    => 'Questa famiglia è estinta.',
+        'members'       => 'I membri di una famiglia sono mostrati qui. Un personaggio può essere aggiunto alla famiglia modificando il personaggio, usando il selettore "Famiglia".',
     ],
     'index'         => [],
     'members'       => [

@@ -6,7 +6,7 @@ return [
         'add_intercalary'   => 'Aggiungi giorni intercalari',
         'add_month'         => 'Aggiungi un mese',
         'add_moon'          => 'Aggiungi una luna',
-        'add_reminder'      => 'Aggiungi un promemoria',
+        'add_reminder'      => 'Aggiungi un evento',
         'add_season'        => 'Aggiungi una stagione',
         'add_weather'       => 'Imposta il meteo',
         'add_week'          => 'Aggiungi una settimana con un nome',
@@ -41,10 +41,13 @@ return [
             'success'   => 'Evento del calendario aggiornato.',
             'title'     => 'Aggiorna un Evento del Calendario per :name',
         ],
+        'errors'    => [
+            'invalid_entity'    => 'Selezione dell\'entità non valida',
+        ],
         'helpers'   => [
             'add'               => 'Aggiungi un evento esistente a questo calendario',
             'new'               => 'O crea un nuovo evento semplicemente inserendone il nome.',
-            'other_calendar'    => 'Stai modificando un promemoria che si trova sul calendario :calendar',
+            'other_calendar'    => 'Stai modificando un evento che si trova sul calendario :calendar',
         ],
         'modal'     => [
             'title' => 'Aggiungi un evento al calendario',
@@ -52,6 +55,10 @@ return [
         'success'   => 'Evento \':event\' aggiunto al calendario.',
     ],
     'events'        => [
+        'bulks'     => [
+            'delete'    => '{1} Eliminato :count evento.|[2,*] Eliminati :count eventi.',
+            'patch'     => '{1} Aggiorna :count evento.|[2,*] Aggiorna :count eventi.',
+        ],
         'end'       => '(fine)',
         'filters'   => [
             'show_after'    => 'Mostra oggi e dopo',
@@ -69,9 +76,11 @@ return [
         'date'                  => 'Data corrente',
         'day'                   => 'Giorno',
         'default_layout'        => 'Layout predefinito',
+        'format'                => 'Formato',
         'intercalary'           => 'Giorni intercalari',
         'is_incrementing'       => 'Data di Avanzamento',
         'is_recurring'          => 'Ricorrente',
+        'leap_year'             => 'Anni bisestili',
         'leap_year_amount'      => 'Aggiungi Giorni',
         'leap_year_month'       => 'Mese',
         'leap_year_offset'      => 'Ogni',
@@ -86,6 +95,7 @@ return [
         'recurring_until'       => 'Ricorrente fino all\'Anno',
         'reset'                 => 'Ripristino Settimanale',
         'seasons'               => 'Stagioni',
+        'show_birthdays'        => 'Mostra Compleanni',
         'skip_year_zero'        => 'Togli Anno Zero',
         'start_offset'          => 'Inizio ritardo',
         'suffix'                => 'Suffisso',
@@ -95,20 +105,23 @@ return [
     ],
     'helpers'       => [
         'default_layout'    => 'Seleziona il layout che il calendario usa in modo predefinito quando visualizzato.',
+        'format'            => 'Aggiungi la formattazione personalizzata della data per le entità del calendario.',
         'month_type'        => 'I mesi intercalari non utilizzano i giorni della settimana, ma influenzano comunque le fasi lunari e le stagioni.',
         'moon_offset'       => 'Per impostazione predefinita, la prima luna piena appare il primo giorno dell\'anno 0. Cambiando il ritardo si modifica il momento in cui viene visualizzata la prima luna piena. Questo valore può essere negativo (fino alla lunghezza del primo mese) o positivo (fino alla lunghezza del primo mese).',
         'start_offset'      => 'Per impostazione predefinita, il calendario inizia col primo giorno della settimana dell\'anno 0. Cambiare questo campo influenzerà la collocazione del primo giorno del calendario.',
     ],
     'hints'         => [
-        'event_length'      => 'La durata prevista per l\'evento. Un evento può durare oltre due mesi.',
+        'event_length'      => 'La durata prevista per l\'evento. Un evento verrà visualizzato solo nei primi due anni.',
         'intercalary'       => 'Giorni che non rientrano nei normali mesi e settimane. Non influenzano i giorni della settimana, ma influenzano le fasi lunari.',
         'is_incrementing'   => 'I calendari con avanzamento incrementeranno automaticamente la loro data corrente alle 00:00 UTC.',
         'is_recurring'      => 'Un evento può essere impostato come ricorrente. Esso riapparirà ogni anno alla stessa data.',
+        'leap_year'         => 'Imposta gli anni bisestili per il calendario.',
         'months'            => 'Il tuo calendario deve avere almeno 2 mesi.',
         'moons'             => 'Aggiungere lune le farà apparire sul calendario ad ogni luna piena e luna nuova. Se il ciclo di luna piena è maggiore di 10 giorni, saranno mostrate anche la luna calante e la luna crescente.',
-        'parent_calendar'   => 'I calendari includono i promemoria e i tempi meteorologici del calendario sovraordinato.',
+        'parent_calendar'   => 'L\'assegnazione di un calendario genitore farà includere gli eventi e il meteo del calendario genitore.',
         'reset'             => 'Fai sempre coincidere l\'inizio del mese o dell\'anno col primo giorno della settimana.',
         'seasons'           => 'Crea stagioni per il tuo calendario specificando quando ha inizio ciascuna di esse. Kanka si occuperà del resto.',
+        'show_birthdays'    => 'Mostra le date di nascita annuali dei personaggi che hanno un evento di compleanno su questo calendario fino alla loro data di morte.',
         'skip_year_zero'    => 'Per impostazione predefinita, il primo anno del calendario è l\'anno zero. Attiva questa opzione per togliere l\'anno zero.',
         'weekdays'          => 'Imposta i tuoi nomi dei giorni della settimana. Sono necessari almeno 2 giorni della settimana.',
         'weeks'             => 'Definisci alcuni nomi per le settimane più importanti del tuo calendario.',
@@ -134,10 +147,10 @@ return [
         'events'    => [
             'recurring_periodicity' => [
                 'fullmoon'      => 'Luna piena',
-                'fullmoon_name' => ':moon luna piena',
+                'fullmoon_name' => ':moon piena',
                 'month'         => 'Mensile',
                 'newmoon'       => 'Luna nuova',
-                'newmoon_name'  => ':moon luna nuova',
+                'newmoon_name'  => ':moon nuova',
                 'none'          => 'Nessuno',
                 'unnamed_moon'  => 'Luna :number',
                 'year'          => 'Annuale',
@@ -189,7 +202,7 @@ return [
     ],
     'placeholders'  => [
         'colour'            => 'Colore',
-        'comment'           => 'Compleanno, festival, solstizio',
+        'comment'           => 'Compleanno, festa, solstizio',
         'date'              => 'La data corrente',
         'leap_year_amount'  => 'Numero di giorni aggiunti in un anno bisestile',
         'leap_year_month'   => 'Mese al quale i giorni sono aggiunti',
@@ -197,7 +210,7 @@ return [
         'leap_year_start'   => 'Il primo anno bisestile',
         'length'            => 'Durata dell\'Evento in giorni',
         'months'            => 'Numero di mesi in un anno',
-        'recurring_until'   => 'Ultimo anno per la ricorrenza (lascia vuoto per ripetere in eterno)',
+        'recurring_until'   => 'Ultimo anno per la ricorrenza (lascia vuoto per ripetere per sempre)',
         'seasons'           => 'Numero di stagioni',
         'suffix'            => 'Suffisso dell\'Era corrente (AC, DC)',
         'type'              => 'Tipo del calendario',
@@ -205,10 +218,10 @@ return [
     ],
     'show'          => [
         'missing_details'       => 'Questo calendario non può essere visualizzato. I Calendari necessitano almeno di 2 mesi e 2 giorni della settimana per essere visualizzati correttamente.',
-        'moon_1first_quarter'   => ':primo quarto di luna',
-        'moon_full'             => ':luna piena',
-        'moon_last_quarter'     => ':ultimo quarto di luna',
-        'moon_new'              => ':luna nuova',
+        'moon_1first_quarter'   => ':moon crescente',
+        'moon_full'             => ':moon piena',
+        'moon_last_quarter'     => ':moon calante',
+        'moon_new'              => ':moon nuova',
         'tabs'                  => [
             'events'    => 'Eventi del Calendario',
             'weather'   => 'Tempo Atmosferico',
@@ -219,6 +232,10 @@ return [
         'before'=> 'Fino a oggi',
     ],
     'validators'    => [
+        'format'        => 'Il formato della data è invalido.',
         'moon_offset'   => 'Il ritardo della prima luna piena non può essere più lungo del primo mese del calendario.',
+    ],
+    'warnings'      => [
+        'event_length'  => 'Gli eventi che coprono più anni sono visibili solo nei primi due anni. Per saperne di più, consulta la nostra :documentation.',
     ],
 ];

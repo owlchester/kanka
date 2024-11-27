@@ -6,7 +6,8 @@ return [
         'premium'   => 'Fazer upload de mais arquivos requer uma campanha premium.',
     ],
     'create'            => [
-        'title' => 'Novo arquivo para :entity',
+        'success_plural'    => '{1} Arquivo :name adicionado.|[2,*] :count arquivos adicionados.',
+        'title'             => 'Novo arquivo para :entity',
     ],
     'destroy'           => [
         'success'   => 'Arquivo :file removido.',
@@ -14,6 +15,9 @@ return [
     'fields'            => [
         'file'  => 'Arquivo',
         'name'  => 'Nome do arquivo',
+    ],
+    'max'               => [
+        'title' => 'Limite alcançado',
     ],
     'update'            => [
         'success'   => 'Arquivo :file atualizado.',

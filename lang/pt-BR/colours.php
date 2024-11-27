@@ -1,21 +1,21 @@
 <?php
 
 return [
-    'aqua'          => 'Azul Claro',
+    'aqua'          => 'Ciano',
     'black'         => 'Preto',
     'blue'          => 'Azul',
     'brown'         => 'Marrom',
     'green'         => 'Verde',
     'grey'          => 'Cinza',
-    'light-blue'    => 'Azul',
+    'light-blue'    => 'Azul-claro',
     'maroon'        => 'Bordô',
-    'navy'          => 'Azul Marinho',
-    'none'          => 'Nenhum',
+    'navy'          => 'Azul-marinho',
+    'none'          => 'Nenhuma',
     'orange'        => 'Laranja',
     'pink'          => 'Rosa',
     'purple'        => 'Roxo',
     'red'           => 'Vermelho',
-    'teal'          => 'Azul Esverdeado',
+    'teal'          => 'Azul-esverdeado',
     'white'         => 'Branco',
     'yellow'        => 'Amarelo',
 ];

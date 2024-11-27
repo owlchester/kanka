@@ -13,7 +13,9 @@ return [
     'helpers'       => [
         'characters'    => 'Ver todos personagens neste local e em seus locais secundários, ou apenas aqueles localizados diretamente aqui.',
     ],
-    'hints'         => [],
+    'hints'         => [
+        'is_destroyed'  => 'Esse local está destruído.',
+    ],
     'index'         => [],
     'items'         => [],
     'journals'      => [],

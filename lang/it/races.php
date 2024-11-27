@@ -3,12 +3,12 @@
 return [
     'characters'    => [
         'helpers'   => [
-            'all_characters'    => 'Visualizzazione di tutti i personaggi legati a questa razza e alle sue sotto-razze.',
-            'characters'        => 'Visualizzazione di tutti i personaggi legati direttamente a questa razza.',
+            'all_characters'    => 'Visualizzazione di tutti i personaggi legati a questa stirpe e alle sue sotto-stirpi.',
+            'characters'        => 'Visualizzazione di tutti i personaggi legati direttamente a questa stirpe.',
         ],
     ],
     'create'        => [
-        'title' => 'Nuova Razza',
+        'title' => 'Nuova Stirpe',
     ],
     'destroy'       => [],
     'edit'          => [],
@@ -16,6 +16,9 @@ return [
         'members'   => 'Membri',
     ],
     'helpers'       => [],
+    'hints'         => [
+        'is_extinct'    => 'Questa stirpe è estinta.',
+    ],
     'index'         => [],
     'members'       => [
         'create'    => [

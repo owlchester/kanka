@@ -6,7 +6,8 @@ return [
         'premium'   => 'Caricare molti file richiede una campagna premium.',
     ],
     'create'            => [
-        'title' => 'Nuovo file per :entity',
+        'success_plural'    => '{1} File :name aggiunto.|[2,*] :count file aggiunti.',
+        'title'             => 'Nuovo file per :entity',
     ],
     'destroy'           => [
         'success'   => 'File :name rimosso.',
@@ -14,6 +15,9 @@ return [
     'fields'            => [
         'file'  => 'File',
         'name'  => 'Nome del file',
+    ],
+    'max'               => [
+        'title' => 'Limite raggiunto',
     ],
     'update'            => [
         'success'   => 'File :name aggiornato.',

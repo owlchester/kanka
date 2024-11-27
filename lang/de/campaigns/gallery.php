@@ -8,6 +8,7 @@ return [
         'image-link'    => 'Bildlink',
         'reset_focus'   => 'Fokuspunkt zurücksetzen',
         'save'          => 'Speichern',
+        'upgrade'       => 'Speicherplatz erweitern',
     ],
     'breadcrumb'    => 'Gallerie',
     'bulk'          => [
@@ -29,13 +30,18 @@ return [
     'fields'        => [
         'created_by'            => 'hochgeladen von',
         'ext'                   => 'äußerlich',
+        'file_type'             => 'Dateityp',
         'folder'                => 'Ordner',
         'image_mentioned_in'    => '{0} Dieses Bild wird in keinem Objekt der Kampagne erwähnt.|{1} In einem Eintrag/Beitrag erwähnt.|[2,*] erwähnt in :count Einträgen/Beiträgen.',
         'image_used_in'         => '{0} Wird als Bild in keines Object verwendet.|{1} Wird als Bild eines Objekts verwendet.|[2,*] Wird als Bild von :count entities verwendet.',
+        'link'                  => 'Link',
         'name'                  => 'Name',
         'size'                  => 'Größe',
+        'unused'                => 'Nirgendwo verwendet',
+        'used_in'               => 'Verwendet in',
     ],
     'focus'         => [
+        'locked'    => 'Eine Premium-Kampagne ist erforderlich, um den Fokuspunkt eines Bildes zu setzen.',
         'removed'   => 'Bildfokus entfernt.',
         'updated'   => 'Bildfokus aktualisiert.',
     ],
@@ -46,6 +52,10 @@ return [
     'pitch'         => 'Lade Bilder direkt aus dem Texteditor in die Galerie der Kampagne hoch.',
     'placeholders'  => [
         'search'    => 'Bildname suchen ...',
+    ],
+    'storage'       => [
+        'of'    => 'von',
+        'title' => 'Speicher',
     ],
     'title'         => 'Kampagne :campaign Gallerie',
     'update'        => [
