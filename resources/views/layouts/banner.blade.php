@@ -15,17 +15,3 @@
         </p>
     </x-tutorial>
 @endif
-
-@inject('countryService', 'App\Services\CountryService')
-@if (auth()->check() && $countryService->getCountry() === 'BR')
-    <x-tutorial code="brl" type="info">
-        <p>
-            As assinaturas do Kanka agora estão disponíveis em reais e mais baratas do que em dólares!
-        </p>
-        <p>
-            <a href="{{ route('settings.subscription') }}" class="block">
-                {{ __('front/newsletter.actions.learn_more') }}
-            </a>
-        </p>
-    </x-tutorial>
-@endif
