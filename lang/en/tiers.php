@@ -10,7 +10,7 @@ return [
     ],
     'current'   => 'Current subscription',
     'features'  => [
-        'api_requests'      => 'Up to :amount API requests per min',
+        'api_requests'      => 'Up to :amount API requests per minute',
         'boosters'          => 'Campaign Boosters',
         'discord'           => 'Unique :discord role and channel',
         'feature_influence' => 'High impact on future features',

@@ -11,9 +11,9 @@
     <div class="grid grid-cols-2 gap-3 w-fit">
 
         <div class="">{{ __('front.features.patreon.upload_limit') }}</div>
-        <div class="">8 mb</div>
+        <div class="">25 MiB</div>
         <div class="">{{ __('front.features.patreon.upload_limit_map') }}</div>
-        <div class="">10 mb</div>
+        <div class="">50 MiB</div>
         <div class="">{!! __('front.features.patreon.discord', ['discord' => '<a href="' . config('social.discord') . '" target="_blank">Discord</a>']) !!}</div>
         <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
         <div class="">{{ __('front.features.patreon.default_image') }}</div>
