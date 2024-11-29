@@ -56,6 +56,6 @@ class LimitService
             return $size;
         }
         $this->readable = false;
-        return ceil($size / 1024) . 'MB';
+        return ceil($size / 1024) . 'MiB';
     }
 }

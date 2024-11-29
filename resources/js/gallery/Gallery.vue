@@ -805,13 +805,16 @@ const totalSpace = () => {
 }
 
 const human = (kb) => {
-    if (kb > 1000000) {
-        return (kb / (1024 * 1024)).toFixed(2) + ' GB'
+    if (kb == 0) {
+        return '0';
+    }
+    else if (kb > 1000000) {
+        return (kb / (1024 * 1024)).toFixed(2) + ' GiB'
     }
     else if (kb > 1000) {
-        return (kb / (1024)).toFixed(2) + ' MB'
+        return (kb / (1024)).toFixed(2) + ' MiB'
     }
-    return (kb * 1).toFixed(2) + ' KB'
+    return (kb * 1).toFixed(2) + ' KiB'
 }
 
 const usedClasses = () => {

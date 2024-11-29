@@ -201,7 +201,7 @@
     "src": "resources/js/gallery.js"
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-0864ec3f.js",
+    "file": "assets/gallery-d38f0602.js",
     "imports": [
       "_vue.esm-bundler-35c332fe.js",
       "__commonjsHelpers-725317a4.js",

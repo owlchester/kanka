@@ -72,6 +72,7 @@ class UploadService
         $this->image->save();
 
         $file->storePubliclyAs($this->image->folder, $this->image->file);
+        $this->storage->campaign($this->campaign)->clearCache();
 
         return $this->format();
     }
@@ -116,9 +117,16 @@ class UploadService
 
         // Check if file is too big
         $copiedFileSize = ceil(filesize($tempImage) / 1024);
-        if ($copiedFileSize > Limit::upload()) {
+        if ($this->request->has('map')) {
+            Limit::map();
+        }
+        $max = Limit::upload();
+        if ($copiedFileSize > $max) {
             unlink($tempImage);
-            throw ValidationException::withMessages([__('gallery.download.errors.too_big')]);
+            throw ValidationException::withMessages([__('gallery.download.errors.too_big', [
+                'size' => number_format($copiedFileSize / 1024, 2),
+                'max' => number_format($max / 1024, 2)
+            ])]);
         }
         $available = $this->storage->campaign($this->campaign)->available();
         if ($copiedFileSize > $available) {
@@ -157,6 +165,7 @@ class UploadService
             Storage::put($this->image->path, (string)$image->encode(), 'public');
         }
         unlink($tempImage);
+        $this->storage->clearCache();
 
         return $this->format();
     }
