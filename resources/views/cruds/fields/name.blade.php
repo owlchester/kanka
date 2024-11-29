@@ -1,7 +1,6 @@
 <?php
 $required = !isset($bulk);
 ?>
-
 <x-forms.field
     field="name"
     :label="__('crud.fields.name')"
@@ -10,7 +9,7 @@ $required = !isset($bulk);
            data-type="{{ \Illuminate\Support\Str::singular($trans) }}" data-duplicate=".duplicate-warning" data-1p-ignore="true"
            data-id="{{ $model->entity->id ?? null }}"
            @if ($required) required="required" @endif
-    value="{!! htmlspecialchars(old('name', $model->name ?? '')) !!}" />
+    value="{!! htmlspecialchars(old('name', str_replace('&amp;', '&', $model->name ?? ''))) !!}" />
 
     <div class="text-warning-content duplicate-warning flex flex-col gap-1 hidden">
         <span>{{ __('entities.creator.duplicate') }}</span>
