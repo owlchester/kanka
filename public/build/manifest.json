@@ -76,7 +76,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-bf35f012.js",
+    "file": "assets/app-c35e9fb4.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_sortable.esm-89cfb839.js",
@@ -319,7 +319,7 @@
     "src": "resources/sass/themes/dark.scss"
   },
   "resources/sass/themes/midnight.scss": {
-    "file": "assets/midnight-f5290cd4.css",
+    "file": "assets/midnight-2185b68d.css",
     "isEntry": true,
     "src": "resources/sass/themes/midnight.scss"
   },
