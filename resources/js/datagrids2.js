@@ -20,7 +20,7 @@ const initDatagrid = (datagrid) => {
     if (datagrid.dataset.initiated === '1') {
         return;
     }
-    datagrid.dataset.initiayed = '1';
+    datagrid.dataset.initiated = '1';
     registerHeaders(datagrid);
     registerBulk(datagrid);
     if (datagrid.dataset.url) {
