@@ -21,6 +21,11 @@ class CancellationController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
+        if ($user->hasPayPal() || $user->subscription('kanka')?->onGracePeriod()) {
+            return view('settings.subscription.cancellation.grace', compact(
+                'user',
+            ));
+        }
         return view('settings.subscription.cancellation.form', compact(
             'user',
         ));
