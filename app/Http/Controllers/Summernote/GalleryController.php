@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Summernote;
 
-use App\Facades\Img;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Models\Campaign;

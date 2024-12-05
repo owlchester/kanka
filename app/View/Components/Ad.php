@@ -50,7 +50,7 @@ class Ad extends Component
         }
 
         // If requesting a section that isn't set up, don't show
-        $key = 'ads.' .$provider . '.tags.' . $this->section;
+        $key = 'ads.' . $provider . '.tags.' . $this->section;
         if (!empty($this->section) && empty(config($key))) {
             //dump("Unknown ad tag " . $key);
             return false;

@@ -23,14 +23,14 @@ class EntryObserver
         if (!array_key_exists($model->entryFieldName(), $attributes)) {
             return;
         }
-//        dump('Submitted');
-//        dump($model->{$model->entryFieldName()});
-//        dump('Codify');
-//        dump(Mentions::codify($model->{$model->entryFieldName()}));
+        //        dump('Submitted');
+        //        dump($model->{$model->entryFieldName()});
+        //        dump('Codify');
+        //        dump(Mentions::codify($model->{$model->entryFieldName()}));
         // @phpstan-ignore-next-line
         $model->{$model->entryFieldName()} = $this->purify(Mentions::codify($model->{$model->entryFieldName()}));
-//        dump('Becomes');
-//        dd($model->{$model->entryFieldName()});
+        //        dump('Becomes');
+        //        dd($model->{$model->entryFieldName()});
     }
 
     public function saved(Model $model)
