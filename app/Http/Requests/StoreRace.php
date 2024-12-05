@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Race;
+use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -43,7 +44,12 @@ class StoreRace extends FormRequest
         /** @var Race $self */
         $self = request()->route('race');
         if (!empty($self)) {
-            $rules['race_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:races,id';
+            $rules['race_id'] = [
+                'nullable',
+                'integer',
+                'exists:races,id',
+                new Nested(Race::class, $self)
+            ];
         }
 
         return $this->clean($rules);

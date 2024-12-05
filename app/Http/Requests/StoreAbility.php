@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Ability;
+use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -42,7 +43,12 @@ class StoreAbility extends FormRequest
         /** @var Ability $self */
         $self = request()->route('ability');
         if (!empty($self)) {
-            $rules['ability_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:abilities,id';
+            $rules['ability_id'] = [
+                'nullable',
+                'integer',
+                'exists:abilities,id',
+                new Nested(Ability::class, $self)
+            ];
         }
 
         return $this->clean($rules);

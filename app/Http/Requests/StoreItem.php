@@ -4,9 +4,9 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Item;
+use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreItem extends FormRequest
 {
@@ -49,10 +49,8 @@ class StoreItem extends FormRequest
             $rules['item_id'] = [
                 'nullable',
                 'integer',
-                'not_in:' . ((int) $self->id),
-                Rule::exists('items', 'id')->where(function ($query) use ($self) {
-                    return $query->whereNull('item_id')->orWhere('item_id', '!=', $self->id);
-                }),
+                'exists:families,id',
+                new Nested(Item::class, $self)
             ];
         }
         return $this->clean($rules);

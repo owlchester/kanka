@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Map;
+use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -47,7 +48,12 @@ class StoreMap extends FormRequest
         /** @var Map $self */
         $self = request()->route('map');
         if (!empty($self)) {
-            $rules['map_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:maps,id';
+            $rules['map_id'] = [
+                'nullable',
+                'integer',
+                'exists:maps,id',
+                new Nested(Map::class, $self)
+            ];
         }
 
         return $this->clean($rules);

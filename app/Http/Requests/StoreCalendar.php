@@ -6,6 +6,7 @@ use App\Facades\Limit;
 use App\Models\Calendar;
 use App\Rules\CalendarMoonOffset;
 use App\Rules\CalendarFormat;
+use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -71,7 +72,12 @@ class StoreCalendar extends FormRequest
         /** @var Calendar $self */
         $self = request()->route('calendar');
         if (!empty($self)) {
-            $rules['calendar_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:calendars,id';
+            $rules['calendar_id'] = [
+                'nullable',
+                'integer',
+                'exists:calendars,id',
+                new Nested(Calendar::class, $self)
+            ];
         }
 
         return $this->clean($rules);

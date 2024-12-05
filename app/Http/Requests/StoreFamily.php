@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Family;
+use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -42,7 +43,12 @@ class StoreFamily extends FormRequest
         /** @var Family $self */
         $self = request()->route('family');
         if (!empty($self)) {
-            $rules['family_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:families,id';
+            $rules['family_id'] = [
+                'nullable',
+                'integer',
+                'exists:families,id',
+                new Nested(Family::class, $self)
+            ];
         }
 
         return $this->clean($rules);

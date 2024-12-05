@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Organisation;
+use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -43,7 +44,12 @@ class StoreOrganisation extends FormRequest
         /** @var Organisation $self */
         $self = request()->route('organisation');
         if (!empty($self)) {
-            $rules['organisation_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:organisations,id';
+            $rules['organisation_id'] = [
+                'nullable',
+                'integer',
+                'exists:organisations,id',
+                new Nested(Organisation::class, $self)
+            ];
         }
 
         return $this->clean($rules);

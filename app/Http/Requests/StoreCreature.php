@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Creature;
+use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -43,7 +44,12 @@ class StoreCreature extends FormRequest
         /** @var Creature $self */
         $self = request()->route('creature');
         if (!empty($self)) {
-            $rules['creature_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:creatures,id';
+            $rules['creature_id'] = [
+                'nullable',
+                'integer',
+                'exists:creatures,id',
+                new Nested(Creature::class, $self)
+            ];
         }
 
         return $this->clean($rules);

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\AttributeTemplate;
+use App\Rules\Nested;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAttributeTemplate extends FormRequest
@@ -34,7 +35,12 @@ class StoreAttributeTemplate extends FormRequest
         /** @var AttributeTemplate $self */
         $self = request()->route('attribute_template');
         if (!empty($self)) {
-            $rules['attribute_template_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:attribute_templates,id';
+            $rules['attribute_template_id'] = [
+                'nullable',
+                'integer',
+                'exists:attribute_templates,id',
+                new Nested(AttributeTemplate::class, $self)
+            ];
         }
 
         return $rules;

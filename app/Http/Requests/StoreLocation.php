@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Location;
+use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -41,7 +42,12 @@ class StoreLocation extends FormRequest
         /** @var Location $self */
         $self = request()->route('location');
         if (!empty($self)) {
-            $rules['location_id'] = 'nullable|integer|not_in:' . ((int) $self->id) . '|exists:locations,id';
+            $rules['location_id'] = [
+                'nullable',
+                'integer',
+                'exists:locations,id',
+                new Nested(Location::class, $self)
+            ];
         }
 
         return $this->clean($rules);
