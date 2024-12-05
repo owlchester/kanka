@@ -8,7 +8,7 @@ Kanka is a dockerized self-hosted PHP application.
 >
 > This docker setup is meant for developers working on Kanka. **Do not use** this docker setup to host Kanka on the web! It comes with 0 security (no root password and all ports open).
 >
-> This setup works as is for our team running with Docker on Linux and MacOS. We only provide limited support for helping people host Kanka locally on Discord from Monday to Friday 9am-4pm (GMT-5). We currently do not provide any paid support for helping people self-host Kanka.
+> This setup works as is for our team running with Docker on Linux and macOS. We only provide limited support for helping people host Kanka locally on Discord from Monday to Friday 9am-3pm (GMT-5). We currently do not provide any paid support for helping people self-host Kanka or enabling premium features.
 
 ## Differences compared to kanka.io
 
@@ -18,7 +18,7 @@ These developer docker instances are quite different from [kanka.io](https://kan
 * No support for premium campaigns and subscriber bonuses.
 * No advanced caching, meaning that as the data grows, the app will become much slower.
 * No third-party setup like discord, google/meta/x (formerly twitter) logins, stripe, or analytics.
-* No emails and no campaign exports are generated.
+* No emails or notifications.
 * No access to the third party tools Kanka pays for like FontAwesome PRO, meaning some icons in the app won't work.
 * And lastly, **limited support from the Kanka team to debug your local setup**.
 
@@ -30,7 +30,7 @@ Kanka is set up to run with Docker and [Laravel Sail](https://laravel.com/docs/1
 * [Mariadb](https://mariadb.org/) for the database
 * [Redis](https://redis.com/) for the cache
 * [Minio](https://min.io/) for file storage
-* [Thumbor](https://www.thumbor.org/) for thumbnails
+* [Thumbor](https://www.thumbor.org/) for image thumbnails
 
 ### Prerequisite
 
@@ -38,7 +38,7 @@ Kanka has minimal hardware requirements and can run adequately on a €4/month H
 * [Docker](https://www.docker.com/)
 * [Github CLI](https://cli.github.com/)
 
-This Github repository needs to be Cloned (`git clone`) on your local machine. All commands are to be executed in the Kanka folder.
+This GitHub repository needs to be Cloned (`git clone`) on your local machine. All commands are to be executed in the Kanka folder.
 
 When on Linux, Docker needs to run with your user and not with sudo! This is important for file permissions to properly work. To set up docker to run with your user, [follow these instructions](https://docs.docker.com/engine/install/linux-postinstall/).
 
@@ -107,7 +107,7 @@ Next up, create a second bucket called `thumbnails`. Same as before, go back and
 
 ### 6. Run the installer
 
-Now that the bucket is set up, go back to your console run the following commands. The will take care of setting up Kanka's database with all the boilerplate content to make it work.
+Now that the bucket is set up, go back to your console run the following commands. This will take care of setting up Kanka's database with all the boilerplate content to make it work.
 
 ```bash
 sail artisan kanka:install
@@ -142,5 +142,3 @@ sail down
 ### Sharing your local Kanka
 
 Do not make your Kanka instance accessible to the web! To share your Kanka instance with your friends, use the `sail share` command. Follow the [official documentation](https://laravel.com/docs/10.x/sail#sharing-your-site), or set up a reverse proxy in front of it.
-
-
