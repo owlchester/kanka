@@ -3,7 +3,6 @@
 namespace App\View\Components\Widgets\Previews;
 
 use App\Facades\Avatar;
-use App\Facades\Img;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Entity;

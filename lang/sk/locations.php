@@ -9,11 +9,15 @@ return [
     'edit'          => [],
     'events'        => [],
     'families'      => [],
-    'fields'        => [],
+    'fields'        => [
+        'is_destroyed'  => 'Zničené',
+    ],
     'helpers'       => [
         'characters'    => 'Zobraz všetky postavy na tomto mieste a jemu podradených miestach, alebo len tie priamo na tomto mieste.',
     ],
-    'hints'         => [],
+    'hints'         => [
+        'is_destroyed'  => 'Toto miesto je zničené.',
+    ],
     'index'         => [],
     'items'         => [],
     'journals'      => [],

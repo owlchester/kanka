@@ -410,7 +410,7 @@ class DatagridRenderer
                     $icon = $column == 'is_dead' ? 'ra ra-skull' : 'fa-solid fa-check-circle';
                     $content = $model->{$column} ? '<i class="' . $icon . '" aria-hidden="true"></i>' : '';
                 } else {
-                    $content = e($model->{$column});
+                    $content = ($model->{$column});
                 }
                 $class = $this->hidden;
             }

@@ -4,9 +4,9 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Quest;
+use App\Rules\Nested;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreQuest extends FormRequest
 {
@@ -35,7 +35,7 @@ class StoreQuest extends FormRequest
             'type' => 'nullable|string|max:191',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
-            'quest_id' => 'nullable|integer|exists:quests,id',
+            'quest_id' => ['nullable', 'integer', 'exists:quests,id'],
             'character_id' => 'nullable|integer|exists:characters,id',
             'template_id' => 'nullable',
         ];
@@ -56,10 +56,8 @@ class StoreQuest extends FormRequest
             $rules['quest_id'] = [
                 'nullable',
                 'integer',
-                'not_in:' . ((int) $self->id),
-                Rule::exists('quests', 'id')->where(function ($query) use ($self) {
-                    return $query->whereNull('quest_id')->orWhere('quest_id', '!=', $self->id);
-                }),
+                'exists:quests,id',
+                new Nested(Quest::class, $self)
             ];
         }
 

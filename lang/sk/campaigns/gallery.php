@@ -8,6 +8,7 @@ return [
         'image-link'    => 'Link k obrázku',
         'reset_focus'   => 'Resetovať stredobod záujmu',
         'save'          => 'Uložiť',
+        'upgrade'       => 'Navýšiť miesto na úložisku',
     ],
     'breadcrumb'    => 'Galéria',
     'bulk'          => [
@@ -28,14 +29,20 @@ return [
     ],
     'fields'        => [
         'created_by'            => 'Nahrané od',
+        'details'               => 'Detaily',
         'ext'                   => 'Ext',
+        'file_type'             => 'Typ súboru',
         'folder'                => 'Priečinok',
         'image_mentioned_in'    => '{0} Tento obrázok sa nezobrazuje v žiadnom objekte kampane.|{1} Zobrazuje sa v 1 zázname/poznámke.|[2,*] Zobrazuje sa v :count záznamoch/poznámkach.',
         'image_used_in'         => '{1}Použitý ako obrázok jedného objektu.|[2,*]Použitý ako obrázok :count objektov.',
+        'link'                  => 'Link',
         'name'                  => 'Názov',
         'size'                  => 'Veľkosť',
+        'unused'                => 'Nie je nikde použitý',
+        'used_in'               => 'Použitý v',
     ],
     'focus'         => [
+        'locked'    => 'Na nastavenie stredobodu záujmu na obrázku je nutná prémiová kampaň.',
         'removed'   => 'Stredobod záujmu odstránený.',
         'updated'   => 'Stredobod záujmu aktualizovaný.',
     ],
@@ -46,6 +53,10 @@ return [
     'pitch'         => 'Nahraj obrázky do galérie kampane priamo z textového editoru.',
     'placeholders'  => [
         'search'    => 'Hľadať názov obrázku...',
+    ],
+    'storage'       => [
+        'of'    => 'z',
+        'title' => 'úložiska',
     ],
     'title'         => 'Galéria kampane :campaign',
     'update'        => [

@@ -3,8 +3,6 @@
 namespace App\Services\Subscription;
 
 use App\Enums\PricingPeriod;
-use App\Enums\Tier;
-use App\Models\TierPrice;
 use App\Traits\UserAware;
 use Exception;
 use Stripe\PromotionCode;

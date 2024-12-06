@@ -26,20 +26,24 @@ return [
         'title'     => 'Atualizar webhook',
     ],
     'fields'        => [
-        'enabled'   => 'Ativado',
-        'event'     => 'Evento',
-        'events'    => [
+        'enabled'           => 'Ativado',
+        'event'             => 'Evento',
+        'events'            => [
             'deleted'   => 'Entidade removida',
             'edited'    => 'Entidade editada',
             'new'       => 'Nova entidade',
         ],
-        'message'   => 'Mensagem',
-        'type'      => 'Tipo',
-        'types'     => [
+        'message'           => 'Mensagem',
+        'private_entities'  => [
+            'helper'    => 'Não acione o webhook ao atualizar entidades privadas.',
+            'skip'      => 'Pular entidades privadas',
+        ],
+        'type'              => 'Tipo',
+        'types'             => [
             'custom'    => 'Mensagem',
             'payload'   => 'Payload',
         ],
-        'url'       => 'Url',
+        'url'               => 'Url',
     ],
     'helper'        => [
         'active'    => 'Se o webhook estiver ativo no momento',

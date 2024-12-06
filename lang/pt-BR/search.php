@@ -1,15 +1,15 @@
 <?php
 
 return [
-    'fulltext'      => 'Pesquisar em todo lugar',
+    'fulltext'      => 'Pesquise em todos os lugares',
     'lookup'        => [
-        'empty'     => 'Sem resultados',
+        'empty'     => 'Nenhum resultado',
         'hint'      => 'Digite pelo menos 3 letras para pesquisar entidades na campanha.',
         'keyboard'  => 'pressione :k para pesquisar, :esc para descartar',
         'recents'   => 'Recentes',
         'results'   => 'Resultados',
     ],
-    'no_results'    => 'Sem resultados.',
+    'no_results'    => 'Nenhum resultado.',
     'placeholder'   => 'BUSCAR',
     'preview'       => [
         'links'             => 'Vínculos',

@@ -4,9 +4,9 @@ return [
     'actions'   => [
         'edit_profile'  => 'Editar perfil',
     ],
-    'history'   => 'História',
+    'history'   => 'Histórico',
     'show'      => [
         'tab_name'  => 'Perfil',
-        'title'     => 'Perfil :name',
+        'title'     => 'Perfil de :name',
     ],
 ];

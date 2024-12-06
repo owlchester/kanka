@@ -20,6 +20,10 @@ return [
         'export'                => 'Un\'esportazione di una campagna è disponibile. Il link sarà disponibile in :time minuti.',
         'export_error'          => 'Abbiamo riscontrato un errore nell\'esportazione delle entità della campagna. Per favore contattaci se questo problema dovesse persistere.',
         'hidden'                => 'La campagna :campaign è ora nascosta dalla pagina delle campagne pubbliche.',
+        'import'                => [
+            'failed'    => 'L\'importazione della campagna :campaign non è riuscita.',
+            'success'   => 'La campagna :campaign ha terminato l\'importazione.',
+        ],
         'join'                  => ':user si è unito alla campagna :campaign.',
         'leave'                 => ':user ha lasciato la campagna :campaign.',
         'plugin'                => [
@@ -43,6 +47,11 @@ return [
         'action'    => 'Pulisci tutto',
         'success'   => 'Notifiche rimosse.',
         'title'     => 'Pulisci le notifiche',
+    ],
+    'features'          => [
+        'approved'  => 'La tua idea :feature è stata approvata.',
+        'finished'  => 'La tua idea :feature è ora disponibile su Kanka!',
+        'rejected'  => 'La tua idea :feature è stata rifutata, motivo: :reason.',
     ],
     'header'            => 'Hai :count notifiche.',
     'index'             => [

@@ -20,7 +20,7 @@ const initDatagrid = (datagrid) => {
     if (datagrid.dataset.initiated === '1') {
         return;
     }
-    datagrid.dataset.initiayed = '1';
+    datagrid.dataset.initiated = '1';
     registerHeaders(datagrid);
     registerBulk(datagrid);
     if (datagrid.dataset.url) {
@@ -122,25 +122,7 @@ const registerBulk = (datagrid) => {
     // Other bulk actions
     const submits = parent.querySelectorAll('.datagrid-submit');
     submits?.forEach(submit => {
-        submit.addEventListener('click', function (e) {
-            e.preventDefault();
-            form = submit.closest('form');
-
-            const action = form.querySelector('input[name="action"]');
-            action.value = submit.dataset.action;
-
-            if (submit.dataset.action === 'delete') {
-                if (datagrid2DeleteConfirm === false) {
-                    window.openDialog('datagrid-bulk-delete');
-                    return false;
-                }
-            }
-
-            // Disable the whole dropdown and replace it with a spinning wheel
-            datagrid.parentNode.querySelectorAll('.datagrid-bulk-actions .btn2')?.forEach(ele => ele.classList.add('btn-disabled'));
-            datagrid.parentNode.querySelector('.datagrid-bulk-actions .btn2').classList.add('loading');
-            form.submit();
-        });
+        registerBulkSubmit(datagrid, submit);
     });
 
     document.querySelector('#datagrid-action-confirm')?.addEventListener('click', function () {
@@ -149,11 +131,35 @@ const registerBulk = (datagrid) => {
     });
 };
 
+const registerBulkSubmit = (datagrid, submit) => {
+    submit.addEventListener('click', function (e) {
+        e.preventDefault();
+        form = submit.closest('form');
+
+        const action = form.querySelector('input[name="action"]');
+        action.value = submit.dataset.action;
+
+        if (submit.dataset.action === 'delete') {
+            if (datagrid2DeleteConfirm === false) {
+                window.openDialog('datagrid-bulk-delete');
+                return false;
+            }
+        }
+
+        // Disable the whole dropdown and replace it with a spinning wheel
+        datagrid.parentNode.querySelectorAll('.datagrid-bulk-actions .btn2')?.forEach(ele => ele.classList.add('btn-disabled'));
+        datagrid.parentNode.querySelector('.datagrid-bulk-actions .btn2').classList.add('loading');
+        form.submit();
+    });
+};
+
 const registerBulkClick = (datagrid, element) => {
-    if (element.dataset.loaded === '1') {
+    // Don't do this as the button is re-added to the dom by tippy's popdown
+    /*if (element.dataset.loaded === '1') {
         return;
     }
-    element.dataset.loaded = '1';
+    console.log('setup');
+    element.dataset.loaded = '1';*/
     element.addEventListener('click', function (e) {
         e.preventDefault();
         form = datagrid.closest('form');
@@ -163,7 +169,7 @@ const registerBulkClick = (datagrid, element) => {
             form.getAttribute('action') + '?action=edit',
             {model: checkedModels(datagrid)}
         )
-        .done(res => {
+        .then(res => {
             const target = document.getElementById('primary-dialog');
             target.innerHTML = res.data;
             window.openDialog('primary-dialog');

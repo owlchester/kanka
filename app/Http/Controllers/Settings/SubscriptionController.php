@@ -87,7 +87,6 @@ class SubscriptionController extends Controller
             ];
         }
 
-
         return view('settings.subscription.index', compact(
             'stripeApiToken',
             'status',

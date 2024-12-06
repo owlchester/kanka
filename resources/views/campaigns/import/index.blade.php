@@ -46,7 +46,7 @@
                                     <label>{{ __('campaigns/import.fields.file') }}</label>
 
                                     <input type="file" name="file" class="w-full" id="export-files" accept=".zip" />
-                                    <x-helper>{{ __('campaigns/import.limitation', ['size' => '512MB']) }}</x-helper>
+                                    <x-helper>{{ __('campaigns/import.limitation', ['size' => '512 MiB']) }}</x-helper>
                                 </div>
 
                                 <button type="submit" class="btn2 btn-primary">

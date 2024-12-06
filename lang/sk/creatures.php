@@ -10,6 +10,7 @@ return [
     ],
     'helpers'       => [],
     'hints'         => [
+        'is_dead'       => 'Táto bytosť je mŕtva.',
         'is_extinct'    => 'Táto bytosť vyhynula.',
     ],
     'placeholders'  => [

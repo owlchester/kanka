@@ -1,17 +1,15 @@
 <?php /** @var \App\Models\User $user */ ?>
 @php
-    $endDate = $user->subscription('kanka')->upcomingInvoice()?->date();
+    $endDate = $user->subscription('kanka')->upcomingInvoice()?->date()->isoFormat('MMMM D, Y');
 @endphp
 <x-dialog.header>
-    {{ __('settings.subscription.change.title') }}
+    {{ __('settings.subscription.cancel.title') }}
 </x-dialog.header>
 
 <article class="text-center max-w-xl container">
 
     <x-form :action="['settings.subscription.cancel']" id="cancellation-confirm" class="subscription-form text-left">
         <x-grid type="1/1">
-
-            <h4>{!! __('settings.subscription.actions.cancel_sub') !!}</h4>
 
             <x-helper>
                 {!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}

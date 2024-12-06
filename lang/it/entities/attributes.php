@@ -3,21 +3,26 @@
 return [
     'actions'       => [
         'apply_template'    => 'Applica un Modello per gli Attributi',
+        'load'              => 'Carica',
         'manage'            => 'Gestisci',
         'more'              => 'Altro',
         'remove_all'        => 'Elimina tutto',
         'save_and_edit'     => 'Applica e Modifica',
         'save_and_story'    => 'Applica e Visualizza',
         'show_hidden'       => 'Mostra attributi nascosti',
+        'toggle_privacy'    => 'Privato/Pubblico',
     ],
     'errors'        => [
-        'loop'  => 'Il calcolo di questo attributo è un ciclo infinito!',
+        'loop'                  => 'Il calcolo di questo attributo è un ciclo infinito!',
+        'no_attribute_selected' => 'Seleziona prima uno o più attributi.',
+        'too_many_v2'           => 'Campi massimi raggiunti (:count/:max). Elimina alcuni attributi prima di poterne aggiungere altri.',
     ],
     'fields'        => [
         'attribute'             => 'Attributo',
         'community_templates'   => 'Modelli della Comunità',
         'is_private'            => 'Attributi Privati',
-        'is_star'               => 'Appuntato',
+        'is_star'               => 'Fissato',
+        'preferences'           => 'Preferenze',
         'template'              => 'Modello',
         'value'                 => 'Valore',
     ],
@@ -27,7 +32,8 @@ return [
     ],
     'helpers'       => [
         'delete_all'    => 'Sei sicuro di voler cancellare tutti gli attributi di questa entità?',
-        'setup'         => 'Puoi rappresentare elementi come Punti Ferita o l\'intelligenza di un\'entità con degli attributi. È possibile aggiungere manualmente gli attributi facendo clic sul pulsante :manage, oppure applicare automaticamente quelli di un modello di attributo.',
+        'is_private'    => 'Consenti solo ai membri del ruolo :admin-role di vedere gli attributi di questa entità.',
+        'setup'         => 'Puoi rappresentare elementi come Punti Ferita o l\'Intelligenza di un\'entità con degli attributi. È possibile aggiungere manualmente gli attributi facendo clic sul pulsante :manage, oppure applicare automaticamente quelli di un modello di attributo.',
     ],
     'hints'         => [],
     'index'         => [
@@ -64,20 +70,31 @@ return [
     'ranges'        => [
         'text'  => 'Opzioni disponibili :options',
     ],
+    'sections'      => [
+        'unorganised'   => 'Disorganizzato',
+    ],
     'show'          => [
         'hidden'    => 'Attributi Nascosti',
         'title'     => 'Attributi di :name',
     ],
     'template'      => [
+        'load'      => [
+            'success'   => 'Modello caricato',
+            'title'     => 'Carica dal Modello',
+        ],
         'success'   => 'Il Modello di Attributi :name è stato applicato a :entity',
         'title'     => 'Applica un Modello degli Attributi per :name',
     ],
+    'title'         => 'Attributi',
     'toasts'        => [
-        'lock'      => 'Attributo bloccato',
-        'pin'       => 'Attributo fissato',
-        'unlock'    => 'Attributo sbloccato',
-        'unpin'     => 'Attributo non fissato',
+        'bulk_deleted'  => 'Attributi eliminati',
+        'bulk_privacy'  => 'Privacy degli attributi attivata',
+        'lock'          => 'Attributo bloccato',
+        'pin'           => 'Attributo fissato',
+        'unlock'        => 'Attributo sbloccato',
+        'unpin'         => 'Attributo non fissato',
     ],
+    'tutorial'      => 'Gli attributi sono piccole informazioni collegate a un\'entità. Per esempio, un personaggio potrebbe avere una caratteristica :hp e :str, mentre un luogo potrebbe averne una :pop. Questo può essere facilmente tracciato con gli attributi.',
     'types'         => [
         'attribute' => 'Attributo',
         'block'     => 'Blocca',

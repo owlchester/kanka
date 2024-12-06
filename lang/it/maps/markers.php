@@ -51,6 +51,7 @@ return [
             'stroke-opacity'    => 'Opacità del tratto',
             'stroke-width'      => 'Larghezza del tratto',
         ],
+        'popupless'     => 'Popup del Tooltip',
         'size'          => 'Dimensioni',
     ],
     'helpers'       => [
@@ -60,10 +61,14 @@ return [
         'custom_icon_v2'            => 'Usa le icone da :fontawesome, :rpgawesome, o da un\'icona SVG personalizzata. Scopri di più in :docs.',
         'custom_radius'             => 'Seleziona l\'opzione dimensione personalizzata dal menu a tendina per definire una dimensione.',
         'draggable'                 => 'Attivalo per permettere lo spostamento di un indicatore in modalità Esplora.',
+        'is_popupless'              => 'Disabilita la visualizzazione del tooltip dell\'indicatore al passaggio del mouse.',
         'label'                     => 'Un\'etichetta viene visualizzata come un blocco di testo sulla mappa. Il contenuto sarà il nome dell\'indicatore o dell\'entità.',
         'polygon'                   => [
             'edit'  => 'Modifica il poligono trascinando i suoi bordi e i suoi nodi.',
         ],
+    ],
+    'hints'         => [
+        'entry' => 'Modifica l\'icona per scrivere una voce personalizzata.',
     ],
     'icons'         => [
         'custom'        => 'Icona personalizzata',
@@ -80,7 +85,7 @@ return [
     ],
     'placeholders'  => [
         'custom_icon'   => 'Prova :example1 o :example2',
-        'custom_shape'  => '100,100 200,240 340,110',
+        'custom_shape'  => '100, 100 200, 240 340, 110',
         'name'          => 'Richiesto se non è stata selezionata alcuna entità',
     ],
     'presets'       => [

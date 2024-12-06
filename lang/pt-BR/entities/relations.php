@@ -2,11 +2,11 @@
 
 return [
     'actions'           => [
-        'mode-map'      => 'Ferramenta de exploração das relações',
-        'mode-table'    => 'Tabela de relações e conexões',
+        'mode-map'      => 'Ferramenta de exploração das conexões',
+        'mode-table'    => 'Tabela de conexões e elementos relacionados',
     ],
     'bulk'              => [
-        'delete'    => '{1} :count relação removida. |[2,*] :count relações removidas.',
+        'delete'    => '{1} :count conexão removida. |[2,*] :count conexões removidas.',
         'fields'    => [
             'delete_mirrored'   => 'Excluir espelhado',
             'unmirror'          => 'Desvincular espelhado',
@@ -18,65 +18,65 @@ return [
             'update_mirrored'   => 'Atualiza conexões espelhadas.',
         ],
         'success'   => [
-            'editing'           => '{1} :count relação foi atualizada. |[2,*] :count relações foram atualizadas.',
-            'editing_partial'   => '{1} :count/:total relação foi atualizada. |[2,*] :count/:total relações foram atualizadas.',
+            'editing'           => '{1} :count conexão foi atualizada. |[2,*] :count conexões foram atualizadas.',
+            'editing_partial'   => '{1} :count/:total conexão foi atualizada. |[2,*] :count/:total conexões foram atualizadas.',
         ],
     ],
-    'call-to-action'    => 'Explore visualmente as relações dessa entidade e como ela está conectada ao restante da campanha.',
+    'call-to-action'    => 'Explore visualmente as conexões dessa entidade e como ela está conectada ao restante da campanha.',
     'connections'       => [
         'map_point'         => 'Ponto do mapa',
         'mention'           => 'Menção',
-        'quest_element'     => 'Elemento da missão',
-        'timeline_element'  => 'Elemento da linha do tempo',
+        'quest_element'     => 'Elemento de missão',
+        'timeline_element'  => 'Elemento de linha do tempo',
     ],
     'create'            => [
-        'new_title'     => 'Nova relação',
+        'new_title'     => 'Nova conexão',
         'success_bulk'  => '{1} Adicionada :count conexão a :entity.|[2,*] Adicionadas :count conexões a :entity.',
-        'title'         => 'Nova relação para :name',
+        'title'         => 'Nova conexão para :name',
     ],
     'delete_mirrored'   => [
-        'helper'    => 'Essa relação está espelhada na entidade alvo. Selecione essa opção para também remover  a relação espelhada.',
-        'option'    => 'Remover relação espelhada',
+        'helper'    => 'Essa conexão é espelhada na entidade alvo. Selecione essa opção para também remover  a conexão espelhada.',
+        'option'    => 'Remover conexão espelhada',
     ],
     'destroy'           => [
-        'mirrored'  => 'Isso também removerá a relação espelhada e é permanente.',
-        'success'   => 'Relação de :target removida para :entity.',
+        'mirrored'  => 'Isso também removerá a conexão espelhada e é permanente.',
+        'success'   => 'Conexão de :target removida para :entity.',
     ],
     'fields'            => [
         'attitude'          => 'Atitude',
         'connection'        => 'Conexão',
         'is_pinned'         => 'Fixado',
         'owner'             => 'Fonte',
-        'relation'          => 'Relação',
-        'target'            => 'Alvo',
-        'target_relation'   => 'Relação Alvo',
-        'two_way'           => 'Criar relação mútua',
-        'unmirror'          => 'Desespelhe esta relação.',
+        'relation'          => 'Descrição',
+        'target'            => 'Entidade alvo',
+        'target_relation'   => 'Descrição do alvo',
+        'two_way'           => 'Conexão espelhada',
+        'unmirror'          => 'Desespelhe esta conexão.',
     ],
     'filters'           => [
         'connection'    => 'Relação da conexão',
         'name'          => 'Conexão alvo',
     ],
-    'helper'            => 'Estabeleça relações entre entidades com atitudes e visibilidade. Relações também podem ser fixadas no menu da entidade.',
+    'helper'            => 'Estabeleça conexões entre entidades com atitudes e visibilidade. Conexões também podem ser fixadas no menu da entidade.',
     'helpers'           => [
-        'no_relations'  => 'Essa entidade atualmente não tem quaisquer outras relações com outras entidades da campanha.',
-        'popup'         => 'Entidades da campanha podem ser vinculadas umas às outras usando relações. Elas podem ter uma descrição, uma avaliação de atitude, uma visibilidade para controlar quem vê a relação, e muito mais.',
+        'no_relations'  => 'Essa entidade atualmente não tem quaisquer outras conexões com outras entidades da campanha.',
+        'popup'         => 'Entidades da campanha podem ser vinculadas umas às outras usando conexões. Elas podem ter uma descrição, uma avaliação de atitude, uma visibilidade para controlar quem vê a relação, e muito mais.',
     ],
     'hints'             => [
-        'attitude'          => 'Este campo opcional pode ser usado para definir as relações de ordem padrão exibidas em ordem decrescente.',
+        'attitude'          => 'Este campo opcional pode ser usado para definir a ordem padrão em que as conexões aparecem em ordem decrescente.',
         'mirrored'          => [
-            'text'  => 'Esta relação é espelhada com :link',
+            'text'  => 'Esta conexão é espelhada com :link.',
             'title' => 'Espelhada',
         ],
-        'target_relation'   => 'A descrição da relação com o alvo. Deixe em branco para usar o texto desta relação.',
-        'two_way'           => 'Se você selecionar para criar relação mútua, a mesma relação será criada no alvo. Entretanto, se você editar uma, a outra não será atualizada.',
+        'target_relation'   => 'A descrição da conexão no alvo. Deixe em branco para usar o texto desta conexão.',
+        'two_way'           => 'Crie uma conexão no alvo selecionado e espelhe-os. Atualizar uma relação espelhada não atualiza a conexão original.',
     ],
     'index'             => [
-        'title' => 'Relações',
+        'title' => 'Conexões',
     ],
     'options'           => [
         'mentions'          => 'Padrão + relacionados + menções',
-        'only_relations'    => 'Apenas relações diretas',
+        'only_relations'    => 'Apenas conexões diretas',
         'related'           => 'Padrão + relacionados',
         'relations'         => 'Padrão',
         'show'              => 'Mostrar',
@@ -91,14 +91,14 @@ return [
         'target_relation'   => 'Deixe em branco para usar a descrição',
     ],
     'show'              => [
-        'title' => 'Relações de :name',
+        'title' => 'Conexões de :name',
     ],
     'types'             => [
         'family_member'         => 'Membro da família',
         'organisation_member'   => 'Membro da organização',
     ],
     'update'            => [
-        'success'   => 'Relação :target atualizada para :entity.',
-        'title'     => 'Atualizar relações para :name',
+        'success'   => 'Conexão :target atualizada para :entity.',
+        'title'     => 'Atualizar conexões para :name',
     ],
 ];

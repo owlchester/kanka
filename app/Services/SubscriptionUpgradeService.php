@@ -64,11 +64,11 @@ class SubscriptionUpgradeService
 
         } elseif ($monthly && $this->period === PricingPeriod::Monthly) {
             // Prorated Cost = (New Tier Cost - Old Tier Cost) x (Number of Days Remaining / Total Days in the Month)
-//            dump($price);
-//            dump($oldPrice);
-//            dump($endPeriod->format('Y.m.d'));
-//            dump($endPeriod->diffInDays(Carbon::now(), true));
-//            dump($endPeriod->diffInDays(Carbon::now(), true)/ 31);
+            //            dump($price);
+            //            dump($oldPrice);
+            //            dump($endPeriod->format('Y.m.d'));
+            //            dump($endPeriod->diffInDays(Carbon::now(), true));
+            //            dump($endPeriod->diffInDays(Carbon::now(), true)/ 31);
             $price = round(($price - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now(), true) / 31), 2);
         } elseif ($this->period === PricingPeriod::Monthly) {
             // Switching from a yearly plan to a monthly plan, this gets interesting

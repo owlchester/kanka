@@ -73,6 +73,7 @@ class UploadController extends Controller
                 $this->service
                     ->campaign($campaign)
                     ->user($request->user())
+                    ->request($request)
                     ->url($request->get('url'))
             );
         } catch (TranslatableException $e) {

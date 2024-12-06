@@ -134,6 +134,7 @@ return [
         'copy_links'        => 'Kopiere Objekt Links',
         'copy_permissions'  => 'Berechtigungen kopieren (dies überschreibt die auf der Registerkarte Berechtigungen festgelegten Werte)',
         'copy_posts'        => 'Beiträge kopieren (dies umfasst die Berechtigungen für Beiträge)',
+        'copy_reminders'    => 'Erinnerungen kopieren',
         'creator'           => 'Ersteller',
         'date_range'        => 'Datumsbereich',
         'entity'            => 'Objekt',
@@ -171,6 +172,7 @@ return [
         ],
         'errors'    => [
             'max'       => 'Du hast die maximale Anzahl (:max) von Dateien in diesem Objekt erreicht.',
+            'max_size'  => 'Die Kampagne hat die maximale Dateispeicherkapazität erreicht.',
             'no_files'  => 'Keine Dateien.',
         ],
         'files'     => 'Hochgeladene Dateien',
@@ -337,6 +339,9 @@ return [
     'relations'                 => [],
     'remove'                    => 'Löschen',
     'rename'                    => 'Umbenennen',
+    'reorder'                   => [
+        'empty' => 'Keine Elemente zum Neuordnen.',
+    ],
     'save'                      => 'Speichern',
     'save_and_close'            => 'Speichern und schließen',
     'save_and_copy'             => 'Speichern und kopieren',

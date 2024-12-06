@@ -14,6 +14,7 @@ return [
     ],
     'expired'       => 'Link scaduto',
     'helpers'       => [],
+    'progress'      => 'Progresso',
     'size'          => 'Dimensione',
     'status'        => [
         'failed'    => 'Fallito',
@@ -24,6 +25,6 @@ return [
     'success'       => 'L\'esportazione della campagna è in fase di preparazione. Riceverai una notifica su Kanka una volta che è pronta per scaricare.',
     'title'         => 'Esportazione della campagna',
     'type'          => 'Tipo',
-    'type_assets'   => 'Assets',
+    'type_assets'   => 'Risorse',
     'type_entities' => 'Entità',
 ];

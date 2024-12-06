@@ -123,6 +123,8 @@ return [
 
     'fontawesome' => 'The icon must be the CSS class only, not the whole HTML. For example, use :example.',
 
+    'nested_loop' => 'Selecting :parent as the parent would cause a recursive loop. Please select another parent.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

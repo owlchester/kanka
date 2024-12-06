@@ -2,6 +2,7 @@
     field="title"
     :label="__('characters.fields.title')">
 
-    <input type="text" name="title" value="{!! str_replace('&amp;', '&', htmlspecialchars(old('title', $source->title ?? $model->title ?? ''))) !!}"
-           placeholder="{{ __('characters.placeholders.title') }}" maxlength="191" spellcheck="true" />
+    <input type="text" name="title"
+           placeholder="{{ __('characters.placeholders.title') }}" maxlength="191" spellcheck="true"
+           value="{!! htmlspecialchars(old('title', str_replace('&amp;', '&', $source->title ?? $model->title ?? ''))) !!}" />
 </x-forms.field>

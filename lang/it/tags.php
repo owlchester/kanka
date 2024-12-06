@@ -3,7 +3,14 @@
 return [
     'children'      => [
         'actions'   => [
-            'add'   => 'Aggiungi un nuovo tag',
+            'add'           => 'Aggiungi un nuovo tag',
+            'add_entity'    => 'Aggiungi all\'entità',
+        ],
+        'create'    => [
+            'attach_success'        => '{1} Aggiunto :count entità al tag :name.|[2,*] Aggiunte :count entità al tag :name.',
+            'attach_success_entity' => 'Tag aggiornati con successo per :name.',
+            'entity'                => 'Aggiungi tag a :name',
+            'modal_title'           => 'Aggiungi entità a :name',
         ],
     ],
     'create'        => [
@@ -12,7 +19,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'children'          => 'Figli',
+        'children'          => 'Discendenti',
         'is_auto_applied'   => 'Applica automaticamente alle nuove entità',
         'is_hidden'         => 'Nascosto dall\'intestazione e dal tooltip',
     ],
@@ -20,10 +27,10 @@ return [
         'no_children'   => 'Al momento non ci sono entità con questo tag.',
     ],
     'hints'         => [
-        'children'          => 'Questa lista contiene tutte le entità direttamente assegnate a questo tag ed in tuuìtti i tad discendenti.',
+        'children'          => 'Questo elenco contiene tutte le entità assegnate a questo tag o ai suoi discendenti.',
         'is_auto_applied'   => 'Seleziona questa opzione per applicare automaticamente questo tag alle entità appena create.',
         'is_hidden'         => 'Se selezionato, questo tag non sarà visualizzato nell\'intestazione o nel tooltip di un\'entità.',
-        'tag'               => 'Visualizzati sotto vi sono tutti i tag che sono direttamente sotto a questo.',
+        'tag'               => 'Questo elenco contiene tutti i tag discendenti di questo tag o dei suoi tag discendenti.',
     ],
     'index'         => [],
     'placeholders'  => [
@@ -31,7 +38,7 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'children'  => 'Figlio',
+            'children'  => 'Discendente',
         ],
     ],
     'tags'          => [],

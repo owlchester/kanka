@@ -68,7 +68,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
     <div class="gallery-selection col-span-2">
         <gallery-selection
             file="{{ route('gallery.upload.file', [$campaign, $from]) }}"
-            url="{{ route('gallery.upload.url', [$campaign]) }}"
+            url="{{ route('gallery.upload.url', [$campaign, $from]) }}"
             accepts="{{ $inputFileTypes }}"
             uuid="{{ $entity->image_uuid ?? $model->image_uuid ??$source->entity->image_uuid ?? null }}"
             field="{{ $fieldname }}"

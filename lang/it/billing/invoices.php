@@ -12,6 +12,7 @@ return [
         'invoice'   => 'Fattura',
         'status'    => 'Stato',
     ],
+    'paypal'        => 'Si noti che qui sono visibili solo i pagamenti effettuati tramite Stripe e non PayPal.',
     'status'        => [
         'paid'      => 'Pagato',
         'pending'   => 'In attesa',

@@ -1,5 +1,5 @@
 /**
- * Register button handeling for bulk actions
+ * Register button handling for bulk actions
  */
 const registerBulkActions = () => {
     const actions = document.querySelectorAll('[data-bulk-action]');
@@ -28,7 +28,12 @@ const registerBulkDelete = () => {
 
     const checkboxes = document.querySelectorAll("input[name='model[]']");
     checkboxes?.forEach(checkbox => {
+        if (checkbox.dataset.initiated === '1') {
+            return;
+        }
+        checkbox.dataset.initiated = '1';
         checkbox.addEventListener('change', (e) => {
+            console.log('change');
             e.preventDefault();
             toggleCrudMultiDelete();
         });
@@ -144,4 +149,5 @@ treeViewInit();
 
 window.onEvent(function() {
     registerBulkActions();
+    registerBulkDelete();
 });

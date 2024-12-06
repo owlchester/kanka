@@ -12,7 +12,8 @@ return [
     ],
     'helpers'       => [],
     'hints'         => [
-        'members'   => 'Mitglieder einer Familie werden hier gelistet. Ein Charakter kann einer Familie hinzugefügt werden, in dem bei dem gewünschten Charakter das Familiendropdown genutzt wird.',
+        'is_extinct'    => 'Diese Familie ist ausgestorben.',
+        'members'       => 'Mitglieder einer Familie werden hier gelistet. Ein Charakter kann einer Familie hinzugefügt werden, in dem bei dem gewünschten Charakter das Familiendropdown genutzt wird.',
     ],
     'index'         => [],
     'members'       => [

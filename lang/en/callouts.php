@@ -30,7 +30,7 @@ return [
         'unlock'        => 'Unlock premium features for :campaign',
     ],
     'subscribe' => [
-        'pitch-image'   => 'Subscribe to unlock up to :max MB file upload sizes.',
+        'pitch-image'   => 'Subscribe to unlock up to :max MiB file upload sizes.',
         'share-booster' => 'Boost :campaign to increase the file upload size for all members of the campaign.',
         'share-premium' => 'Increase the file upload size for all members of the campaign with a premium campaign.',
     ],

@@ -7,6 +7,16 @@ return [
     ],
     'bulk'              => [
         'delete'    => '{0} Rimossi :count legami|{1} Rimosso :count legame.|[2,*] Rimossi :count legami.',
+        'fields'    => [
+            'delete_mirrored'   => 'Elimina i speculari',
+            'unmirror'          => 'Scollega i speculari',
+            'update_mirrored'   => 'Aggiorna i speculari',
+        ],
+        'helpers'   => [
+            'delete_mirrored'   => 'Elimina anche i legami speculari.',
+            'unmirror'          => 'Scollega i legami speculari.',
+            'update_mirrored'   => 'Aggiorna i legami speculari.',
+        ],
         'success'   => [
             'editing'           => '{0} :count legami sono stati aggiornati|{1} :count legame è stato aggiornato.|[2,*] :count legami sono stati aggiornati.',
             'editing_partial'   => '{0} :count/:total legami sono stati aggiornati|{1} :count/:total legame è stato aggiornato.|[2,*] :count/:total legami sono stati aggiornati.',
@@ -16,12 +26,13 @@ return [
     'connections'       => [
         'map_point'         => 'Punto mappa',
         'mention'           => 'Menzione',
-        'quest_element'     => 'Elemento di missione',
+        'quest_element'     => 'Elemento di Missione',
         'timeline_element'  => 'Elemento di Linea Temporale',
     ],
     'create'            => [
-        'new_title' => 'Nuovo legame',
-        'title'     => 'Nuovo legame per :name',
+        'new_title'     => 'Nuovo legame',
+        'success_bulk'  => '{1} Aggiunto :count legame a :entity.|[2,*] Aggiunti :count legami a :entity.',
+        'title'         => 'Nuovo legame per :name',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Questo legame è speculare nell\'entità bersaglio. Selezionare questa opzione rimuoverà anche il legame speculare.',
@@ -34,12 +45,17 @@ return [
     'fields'            => [
         'attitude'          => 'Attitudine',
         'connection'        => 'Legame',
+        'is_pinned'         => 'Fissato',
         'owner'             => 'Fonte',
         'relation'          => 'Legame',
         'target'            => 'Entità Bersaglio',
         'target_relation'   => 'Descrizione dell\'Entità Bersaglio',
         'two_way'           => 'Crea anche il legame speculare',
         'unmirror'          => 'Togli l\'impostazione speculare di questo legame.',
+    ],
+    'filters'           => [
+        'connection'    => 'Relazione del legame',
+        'name'          => 'Bersaglio del legame',
     ],
     'helper'            => 'Imposta i legami fra due entità con atteggiamento e visibilità. I legami possono anche essere fissati nel menù dell\'entità.',
     'helpers'           => [

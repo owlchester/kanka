@@ -6,6 +6,9 @@ return [
         'reset' => 'Redefinir usos da habilidade',
         'sync'  => 'Adicionar das raças',
     ],
+    'charges'   => [
+        'left'  => ':amount sobrando',
+    ],
     'create'    => [
         'success'           => 'Habilidade :ability adicionada a :entity.',
         'success_multiple'  => 'Habilidades :abilities adicionadas a entidade.',
@@ -14,6 +17,9 @@ return [
     'fields'    => [
         'note'      => 'Nota',
         'position'  => 'Posição',
+    ],
+    'groups'    => [
+        'unorganised'   => 'Desorganizado',
     ],
     'helpers'   => [
         'note'      => 'Você pode fazer referência a entidades usando as menções avançadas (ex :code) e atributos da entidade (ex :attr) nesse campo.',

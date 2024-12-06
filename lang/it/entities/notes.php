@@ -47,6 +47,7 @@ return [
     'move'          => [
         'copy'          => 'Crea una copia sull\'entità di destinazione',
         'copy_success'  => 'Post :name copiato in :entity con successo.',
+        'copy_title'    => 'Conserva una copia',
         'description'   => 'Seleziona un\'entità in cui desideri spostare o creare una copia di questo post.',
         'entity'        => 'Entità di destinazione',
         'move'          => 'Muovi o copia su un\'altra entità',
@@ -56,7 +57,7 @@ return [
         'name'  => 'Nome del post, della nota o del commento.',
     ],
     'show'          => [
-        'advanced'  => 'Permessi Avanzati',
+        'advanced'  => 'Autorizzazioni Avanzate',
         'title'     => 'Post dell\'entità :name per :entity',
     ],
     'states'        => [

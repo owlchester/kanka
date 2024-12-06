@@ -25,7 +25,7 @@ return [
             'gallery_full_free'     => 'The gallery storage space is full. Enable premium features for more storage.',
             'gallery_full_premium'  => 'The gallery storage space is full. Remove unused files first.',
             'invalid_format'        => 'The file isn\'t a valid file format.',
-            'too_big'               => 'The file is too large.',
+            'too_big'               => 'The file is too large (:size MiB vs :max MiB)',
             'unauthorized'          => 'None of your roles have the "upload to gallery" permission.',
         ],
     ],

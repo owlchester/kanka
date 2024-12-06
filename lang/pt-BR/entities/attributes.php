@@ -9,15 +9,19 @@ return [
         'save_and_edit'     => 'Aplicar e Editar',
         'save_and_story'    => 'Aplicar e Visualizar',
         'show_hidden'       => 'Mostrar atributos ocultos',
+        'toggle_privacy'    => 'Privado/Público',
     ],
     'errors'        => [
-        'loop'  => 'Existe um loop infinito no cálculo desse atributo!',
+        'loop'                  => 'Existe um loop infinito no cálculo desse atributo!',
+        'no_attribute_selected' => 'Selecione um ou mais atributos primeiro.',
+        'too_many_v2'           => 'Campos máximos atingidos (:count/:max). Exclua alguns atributos primeiro antes de poder adicionar mais.',
     ],
     'fields'        => [
         'attribute'             => 'Atributo',
         'community_templates'   => 'Modelos da Comunidade',
         'is_private'            => 'Atributos Privados',
-        'is_star'               => 'FIxado',
+        'is_star'               => 'Fixado',
+        'preferences'           => 'Preferências',
         'template'              => 'Modelo',
         'value'                 => 'Valor',
     ],
@@ -47,7 +51,7 @@ return [
     ],
     'placeholders'  => [
         'attribute' => 'Número de conquistas, Nível de Desafio, Iniciativa, População',
-        'block'     => 'Nome do bloco',
+        'block'     => 'Nome do texto multilinhas',
         'checkbox'  => 'Nome da caixa de seleção',
         'icon'      => [
             'class' => 'FontAwesome ou RPG Awesome class: fas fa-users',
@@ -65,31 +69,40 @@ return [
     'ranges'        => [
         'text'  => 'Opções disponíveis :options',
     ],
+    'sections'      => [
+        'unorganised'   => 'Desorganizado',
+    ],
     'show'          => [
         'hidden'    => 'Atributos Ocultos',
         'title'     => ':name Atributos',
     ],
     'template'      => [
+        'load'      => [
+            'success'   => 'Modelo carregado',
+            'title'     => 'Carregar do modelo',
+        ],
         'success'   => 'Modelo de Atributo :name aplicado em :entity',
         'title'     => 'Aplicar um modelo de atributo para :name',
     ],
     'title'         => 'Atributos',
     'toasts'        => [
-        'lock'      => 'Atributo bloqueado',
-        'pin'       => 'Atributo fixado',
-        'unlock'    => 'Atributo desbloqueado',
-        'unpin'     => 'Atributo desafixado',
+        'bulk_deleted'  => 'Atributos removidos',
+        'bulk_privacy'  => 'Privacidade dos atributos alternada',
+        'lock'          => 'Atributo bloqueado',
+        'pin'           => 'Atributo fixado',
+        'unlock'        => 'Atributo desbloqueado',
+        'unpin'         => 'Atributo desafixado',
     ],
     'tutorial'      => 'Atributos são pequenos pedaços de informação anexados a uma entidade. Por exemplo, um personagem pode ter uma estatística :hp e :str, enquanto um local pode ter uma estatística :pop. Isso pode ser facilmente rastreado com atributos.',
     'types'         => [
         'attribute' => 'Atributo',
         'block'     => 'Bloco',
-        'checkbox'  => 'Caixa de seleção',
+        'checkbox'  => 'Caixa de Seleção',
         'icon'      => 'Ícone',
         'number'    => 'Número',
         'random'    => 'Aleatório',
         'section'   => 'Seção',
-        'text'      => 'Texto Multilinha',
+        'text'      => 'Texto Multilinhas',
     ],
     'update'        => [
         'success'   => 'Atributos para :entity atualizados.',

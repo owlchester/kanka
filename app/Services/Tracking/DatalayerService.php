@@ -71,8 +71,8 @@ class DatalayerService
     {
         if ($this->campaign && $this->campaign->boosted()) {
             return false;
-//        } elseif (!AdCache::canHaveAds()) {
-//            return false;
+            //        } elseif (!AdCache::canHaveAds()) {
+            //            return false;
         } elseif (auth()->guest()) {
             return true;
         } elseif (auth()->user()->isSubscriber()) {

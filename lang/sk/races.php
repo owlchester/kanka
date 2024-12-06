@@ -3,12 +3,12 @@
 return [
     'characters'    => [
         'helpers'   => [
-            'all_characters'    => 'Zobrazí všetky postavy tejto rasy a jej podradených rás.',
-            'characters'        => 'Zobrazí všetky postavy iba tejto rasy.',
+            'all_characters'    => 'Zobrazí všetky postavy tohto druhu a jemu podradených druhov.',
+            'characters'        => 'Zobrazí všetky postavy iba tohto druhu.',
         ],
     ],
     'create'        => [
-        'title' => 'Nová rasa',
+        'title' => 'Nový druh',
     ],
     'destroy'       => [],
     'edit'          => [],
@@ -16,6 +16,9 @@ return [
         'members'   => 'Príslušníci',
     ],
     'helpers'       => [],
+    'hints'         => [
+        'is_extinct'    => 'Tento druh vyhynul.',
+    ],
     'index'         => [],
     'members'       => [
         'create'    => [

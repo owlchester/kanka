@@ -12,6 +12,12 @@ return [
     'destroy'       => [],
     'dice_rolls'    => [],
     'edit'          => [],
+    'families'      => [
+        'reorder'   => [
+            'success'   => 'Charakterfamilien erfolgreich aktualisiert.',
+        ],
+        'title'     => 'Verwalten der Familien von :name',
+    ],
     'fields'        => [
         'age'                       => 'Alter',
         'is_appearance_pinned'      => 'Angeheftetes Aussehen',

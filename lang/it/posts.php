@@ -2,7 +2,10 @@
 
 return [
     'create'        => [
-        'title' => 'Nuovo Post',
+        'template'  => [
+            'helper'    => 'Gli amministratori della campagna hanno definito i seguenti post come modelli che possono essere riutilizzati.',
+        ],
+        'title'     => 'Nuovo Post',
     ],
     'fields'        => [
         'name'  => 'Nome',

@@ -4,6 +4,10 @@ return [
     'actions'   => [
         'add'   => 'Aggiungi abilità',
         'reset' => 'Ripristina gli usi dell\'abilità',
+        'sync'  => 'Aggiungi alle stirpi',
+    ],
+    'charges'   => [
+        'left'  => ':amount rimaste',
     ],
     'create'    => [
         'success'           => 'Abilità :ability aggiunta a :entity.',
@@ -14,8 +18,13 @@ return [
         'note'      => 'Nota',
         'position'  => 'Posizione',
     ],
+    'groups'    => [
+        'unorganised'   => 'Disorganizzato',
+    ],
     'helpers'   => [
-        'note'  => 'Puoi citare un\'entità usando la menzione avanzata (ex :code) e gli attributi dell\'entità (ex :attr) in questo campo.',
+        'note'      => 'Puoi citare un\'entità usando la menzione avanzata (ex :code) e gli attributi dell\'entità (ex :attr) in questo campo.',
+        'recharge'  => 'Azzeramento di tutte le cariche delle abilità utilizzate.',
+        'sync'      => 'Importa le abilità definite nelle stirpi del personaggio.',
     ],
     'import'    => [
         'errors'    => [
@@ -23,6 +32,9 @@ return [
             'not_character' => 'Questa entità non è un personaggio.',
         ],
         'success'   => '{1} :count abilità importata.|[2,*] :count abilità importate.',
+    ],
+    'recharge'  => [
+        'success'   => 'Tutte le cariche sono state azzerate.',
     ],
     'reorder'   => [
         'parentless'    => 'Nessun Genitore',
@@ -33,7 +45,11 @@ return [
         'reorder'   => 'Riordina',
         'title'     => 'Abilità di :name',
     ],
+    'types'     => [
+        'unorganised'   => 'Le abilità sono raggruppate in base al loro campo genitore, e si trovano qui.',
+    ],
     'update'    => [
-        'title' => 'Abilità dell\'entità per :name',
+        'success'   => 'Abilità dell\'entità :ability aggiornata.',
+        'title'     => 'Abilità dell\'entità per :name',
     ],
 ];

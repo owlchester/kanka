@@ -24,4 +24,10 @@ return [
             'too_big'               => 'Plik jest zbyt duży.',
         ],
     ],
+    'file'      => [
+        'saved' => 'Zapisano',
+    ],
+    'filters'   => [
+        'only_unused'   => 'Pokaż tylko nieużywane pliki',
+    ],
 ];
