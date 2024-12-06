@@ -49,7 +49,7 @@ class StoreItem extends FormRequest
             $rules['item_id'] = [
                 'nullable',
                 'integer',
-                'exists:families,id',
+                'exists:items,id',
                 new Nested(Item::class, $self)
             ];
         }
