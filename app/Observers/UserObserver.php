@@ -53,21 +53,14 @@ class UserObserver
 
     /**
      */
-    public function saved(User $user)
-    {
-        // Only clear the cache if the name changed
-        if ($user->isDirty('name')) {
-            UserCache::user($user)->clearName();
-        }
-    }
-
-    /**
-     */
     public function updated(User $user)
     {
         // Tell mailchimp about the user's new email
         if (!$user->wasRecentlyCreated && $user->isDirty('email') && $user->hasNewsletter()) {
             UpdateEmail::dispatch($user);
+        }
+        if ($user->isDirty('name')) {
+            UserCache::user($user)->clearName();
         }
     }
 
