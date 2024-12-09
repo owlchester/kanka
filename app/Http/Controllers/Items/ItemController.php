@@ -33,7 +33,7 @@ class ItemController extends Controller
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with(['entity', 'entity.image'])
-            ->paginate(15);
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

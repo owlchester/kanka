@@ -50,7 +50,7 @@ class MemberController extends Controller
             ->has('character.entity')
             ->leftJoin('characters as c', 'c.id', 'organisation_member.character_id')
             ->sort(request()->only(['o', 'k']), ['c.name' => 'asc'])
-            ->paginate(15);
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

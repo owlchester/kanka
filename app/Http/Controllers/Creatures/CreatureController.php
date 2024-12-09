@@ -39,7 +39,7 @@ class CreatureController extends Controller
                 'entity', 'entity.image', 'entity.tags', 'entity.tags.entity',
                 'parent', 'parent.entity',
             ])
-            ->paginate(15);
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

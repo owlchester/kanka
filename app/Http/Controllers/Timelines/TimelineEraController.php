@@ -41,7 +41,7 @@ class TimelineEraController extends Controller
             ->eras()
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
             ->with(['timeline'])
-            ->paginate(15);
+            ->paginate(config('limits.pagination'));
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();
         }

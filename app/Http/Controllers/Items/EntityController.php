@@ -32,7 +32,7 @@ class EntityController extends Controller
             ->entities()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with(['image', 'tags', 'tags.entity'])
-            ->paginate(15);
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

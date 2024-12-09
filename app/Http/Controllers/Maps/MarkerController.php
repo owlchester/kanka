@@ -48,7 +48,7 @@ class MarkerController extends Controller
             ->markers()
             ->sort(request()->only(['o', 'k']), ['id' => 'desc'])
             ->with(['map'])
-            ->paginate(15);
+            ->paginate(config('limits.pagination'));
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();
         }

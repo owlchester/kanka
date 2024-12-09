@@ -36,7 +36,7 @@ class StyleController extends Controller
         $styles = $campaign->styles()
             ->sort(request()->only(['o', 'k']))
             ->take(self::MAX_THEMES)
-            ->paginate(10);
+            ->paginate(config('limits.pagination'));
         Datagrid::layout(\App\Renderers\Layouts\Campaign\Theme::class)->permissions(false);
 
         // Ajax Datagrid

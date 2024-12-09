@@ -40,7 +40,7 @@ class MemberController extends Controller
                 'entity', 'entity.tags', 'entity.image', 'entity.tags.entity'
             ])
             ->has('entity')
-            ->paginate(15);
+            ->paginate(config('limits.pagination'));
 
         return $this->campaign($campaign)->datagridAjax();
     }

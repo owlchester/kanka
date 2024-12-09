@@ -11,7 +11,7 @@ if (empty($entity)) {
 $wrapper = false;
 $entryShown = false;
 if (!isset($posts)) {
-    $pagination = app()->isProduction() ? 15 : 6;
+    $pagination = config('limits.pagination');
     $posts = $entity->posts()->with(['permissions', 'location', 'layout'])->ordered()->paginate($pagination);
     $wrapper = true;
 }

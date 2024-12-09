@@ -41,7 +41,7 @@ class RaceController extends Controller
                 'parent', 'parent.entity',
             ])
             ->filter($filters)
-            ->paginate(15);
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();
