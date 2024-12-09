@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use phpseclib3\Math\BigInteger\Engines\PHP\Reductions\PowerOfTwo;
 
 /**
  * Class EntityLog
@@ -17,12 +19,14 @@ use Illuminate\Support\Str;
  *
  * @property int $entity_id
  * @property int $campaign_id
+ * @property int $created_by
  * @property int $impersonated_by
  * @property int $action
  * @property int $post_id
  * @property null|string|array  $changes
  * @property ?Entity $entity
  * @property User|null $impersonator
+ * @property Post|null $post
  * @property Campaign $campaign
  * @property Carbon $created_at
  */
@@ -50,6 +54,13 @@ class EntityLog extends Model
 
     public $casts = [
         'changes' => 'array'
+    ];
+
+    protected array $custom = [
+        'header_uuid' => 'fields.header-image.title',
+        'image_uuid' => 'crud.fields.image',
+        'is_template' => 'entities/actions.templates.toggle',
+        'is_attributes_private' => 'entities/attributes.fields.is_private',
     ];
 
     protected string $userField = 'created_by';
@@ -113,6 +124,7 @@ class EntityLog extends Model
         }
         return 'fa-question-circle';
     }
+
     public function actionBackground(): string
     {
         if ($this->action == self::ACTION_CREATE || $this->action == self::ACTION_CREATE_POST) {
@@ -145,6 +157,11 @@ class EntityLog extends Model
         return $query->where(['action' => $action]);
     }
 
+    public function isBoolean(string $attribute): bool
+    {
+        return Str::startsWith($attribute, ['has_', 'is_']);
+    }
+
     /**
      * Replace the field edited with it's translated name
      */
@@ -173,15 +190,10 @@ class EntityLog extends Model
         }
 
         // Custom mapping
-        $custom = [
-            'header_uuid' => 'fields.header-image.title',
-            'image_uuid' => 'crud.fields.image',
-            'is_template' => 'entities/actions.templates.toggle',
-            'is_attributes_private' => 'entities/attributes.fields.is_private',
-        ];
-        if (!empty($custom[$name])) {
-            return __($custom[$name]);
+        if (isset($this->custom[$name])) {
+            return __($this->custom[$name]);
         }
+
         if (app()->isProduction()) {
             return '<i data-key="' . $transKey . '" data-attr="' . $name . '">' . __('crud.users.unknown') . '</i>';
         }
@@ -220,24 +232,28 @@ class EntityLog extends Model
             return [self::ACTION_DELETE, self::ACTION_DELETE_POST];
         } elseif ($action == self::ACTION_RESTORE) {
             return [self::ACTION_RESTORE];
+        } elseif ($action == self::ACTION_REORDER_POST) {
+            return [self::ACTION_REORDER_POST];
         }
         return [];
     }
 
     /**
      */
-    public function scopeFilter(Builder $builder, HistoryRequest $request): Builder
+    public function scopeFilter(Builder $builder, array $filters): Builder
     {
-        if ($request->filled('user')) {
-            $builder->where($this->getTable() . '.created_by', (int) $request->get('user'));
+        $user = Arr::get($filters, 'user');
+        if (!empty($user)) {
+            $builder->where($this->getTable() . '.created_by', (int) $user);
         }
-        if ($request->filled('action')) {
-            $actions = $this->actions($request->get('action'));
-            $builder->where(function ($query) use ($actions) {
-                foreach ($actions as $action) {
-                    $query->orWhere($this->getTable() . '.action', (int) $action);
-                }
-            });
+        $action = Arr::get($filters, 'action');
+        if (!empty($action)) {
+            $actions = $this->actions($action);
+            $builder->whereIn($this->getTable() . '.action', $actions);
+        }
+        if (Arr::has($filters, 'q')) {
+            $q = trim(Arr::get($filters, 'q'));
+            $builder->whereLike('changes', '%' . $q . '%');
         }
         return $builder;
     }

@@ -21,7 +21,7 @@ class HistoryController extends Controller
         $models = EntityLog::select(['entity_logs.*'])
             ->with(['user', 'entity' => fn ($q) => $q->withTrashed(), 'impersonator', 'post'])
             ->leftJoin('entities as e', 'e.id', 'entity_logs.entity_id')
-            ->filter($request)
+            ->filter($request->only('action', 'user'))
             ->orderBy('entity_logs.created_at', 'desc')
             ->where('e.campaign_id', '=', $campaign->id)
             ->paginate($pagnation);

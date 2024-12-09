@@ -258,7 +258,7 @@ return [
         'unknown'               => 'Unknown',
         'updated_clean'         => 'Last modified by :name :date',
         'updated_date_clean'    => 'Last modified :date',
-        'view'                  => 'View entity log',
+        'view'                  => 'View changes',
     ],
     'image'                     => [
         'error' => 'We weren\'t able to get the image you requested. It could be that the website doesn\'t allow us to download the image (typically for Squarespace and DeviantArt), or that the link is no longer valid. Please also make sure that the image isn\'t larger than :size.',

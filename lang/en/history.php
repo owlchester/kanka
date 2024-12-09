@@ -17,13 +17,13 @@ return [
     ],
     'log'       => [
         'create'        => ':user created :entity',
-        'create_post'   => ':user created the post ":post" on :entity',
+        'create_post'   => ':user created a post on :entity',
         'delete'        => ':user deleted :entity',
         'delete_post'   => ':user deleted a post on :entity',
         'reorder_post'  => ':user reordered the posts of :entity',
         'restore'       => ':user restored :entity',
         'update'        => ':user updated :entity',
-        'update_post'   => ':user updated the post ":post" on :entity',
+        'update_post'   => ':user updated a post on :entity',
     ],
     'title'     => 'History',
     'unknown'   => [

@@ -59,29 +59,35 @@
                 <div class="p-2 border-solid border-b">
                     <div class="flex justify-center items-center gap-2 {{ $count > 0 && !$superboosted ? 'blur' : null }}">
                         <div class="flex-none rounded-full {{ $log->actionBackground() }} inline-block text-center text-xs p-1 h-6 w-6 ">
-                            <i class="fa-solid {{ $log->actionIcon() }}" aria-hidden="true"></i>
+                            <x-icon class="fa-solid {{ $log->actionIcon() }}" />
                         </div>
                         <div class="grow">
                             @if ($superboosted || $count === 0)
 @php
+$postLink = null;
 if (!$log->entity) {
     $entityLink = '<a href="' . route('recovery', $campaign) . '">' . __('history.unknown.entity') . '</a>';
 } else {
     $entityLink = \Illuminate\Support\Facades\Blade::renderComponent(
-    new \App\View\Components\EntityLink($log->entity, $campaign)
+        new \App\View\Components\EntityLink($log->entity, $campaign)
     );
 }
 @endphp
                                 {!! __('history.log.' . $log->actionCode(), [
                                     'user' => $log->userLink(),
                                     'entity' => $entityLink,
-                                    'post' => $log->post?->name,
                                 ]) !!}
+                                @if ($log->post) -
+                                    @if ($log->entity) <a href="{{ route('entities.show', [$campaign, $log->entity, '#post-' . $log->post->id]) }}">{!! $log->post->name !!}</a>
+                                    @else
+                                        {!! $log->post->name !!}
+                                    @endif
+                               @endif
                                 @if ($log->impersonator)
                                     <span class="ml-5 text-warning">
-                                    <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                                        <x-icon class="fa-solid fa-exclamation-triangle" />
                                     {{ __('entities/logs.impersonated', ['name' => $log->impersonator->name]) }}
-                                        </span>
+                                    </span>
                                 @endif
                             @else
                             {{ \Illuminate\Support\Str::random(30) }} <a href="#" class="cursor-none">changes</a>
@@ -90,8 +96,8 @@ if (!$log->entity) {
                         @if(!empty($log->changes))
                             <div class="flex-end">
                                 <a href="#log-{{ $log->id }}" data-animate="collapse" data-target="#log-{{ $log->id }}">
-                                    <i class="fa-solid fa-eye" aria-hidden="true"></i>
-                                    {{ __('history.actions.show-old') }}
+                                    <x-icon class="fa-solid fa-eye" />
+                                    {{ __('entities/logs.actions.reveal') }}
                                 </a>
                             </div>
                         @endif

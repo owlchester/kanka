@@ -33,6 +33,9 @@ class StoryController extends Controller
     public function save(ReorderStories $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity->child);
+        if ($request->ajax()) {
+            return response()->json();
+        }
 
         $this->service
             ->entity($entity)
