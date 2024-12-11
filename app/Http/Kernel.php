@@ -34,10 +34,11 @@ class Kernel extends HttpKernel
             Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            Middleware\HttpsProtocol::class, // Force https in prod
+            //Middleware\HttpsProtocol::class, // Force https in prod
             Middleware\LocaleChange::class, // Save language changing
             Tracking::class,
             Middleware\CheckIfUserBanned::class,

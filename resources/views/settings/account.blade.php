@@ -35,12 +35,17 @@
         </h3>
         <x-form :action="['settings.account.password']" method="PATCH">
         <x-grid type="1/1">
+            <x-helper>
+                <p>{{ __('profiles.helpers.new-password') }}</p>
+            </x-helper>
+
             <x-forms.field field="new-password" :required="true" :label="__('profiles.fields.new_password')">
                 <input type="password" name="password_new" placeholder="{{ __('profiles.placeholders.new_password') }}" />
             </x-forms.field>
             <x-forms.field field="password-confirm" :required="true" :label="__('profiles.fields.new_password_confirmation')">
                 <input type="password" name="password_new_confirmation" placeholder="{{ __('profiles.placeholders.new_password_confirmation') }}" />
             </x-forms.field>
+
 
             <div class="text-right">
                 <x-buttons.confirm type="primary">

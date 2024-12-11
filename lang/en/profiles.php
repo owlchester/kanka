@@ -26,6 +26,7 @@ return [
     ],
     'helpers'       => [
         'profile-name'  => 'Change the way your name appears on your :profile and the :marketplace. If left blank, your account name will be used instead.',
+        'new-password' => 'Changing your password will log you out from all other devices.',
     ],
     'newsletter'    => [
         'helpers'   => [

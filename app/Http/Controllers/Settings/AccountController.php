@@ -8,8 +8,10 @@ use App\Http\Requests\DeleteSettingsAccount;
 use App\Http\Requests\StoreSettingsAccount;
 use App\Http\Requests\StoreSettingsAccountEmail;
 use App\Http\Requests\StoreSettingsAccountSocial;
+use App\Jobs\Users\NewPassword;
 use App\Models\UserLog;
 use App\Services\Account\DeletionService;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -36,13 +38,16 @@ class AccountController extends Controller
             ->with(compact('user'));
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function password(StoreSettingsAccount $request)
     {
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
         auth()->user()->update($request->only('password_new'));
         auth()->user()->log(UserLog::TYPE_PASSWORD_UPDATE);
+        NewPassword::dispatch(auth()->user());
+
+        Auth::logoutOtherDevices($request->get('password_new'));
 
         return redirect()
             ->route('settings.account')
@@ -50,10 +55,12 @@ class AccountController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function email(StoreSettingsAccountEmail $request)
     {
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
         auth()->user()->update($request->only('email'));
         auth()->user()->log(UserLog::TYPE_EMAIL_UPDATE);
 
