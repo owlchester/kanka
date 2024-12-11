@@ -85,6 +85,7 @@ class AccountController extends Controller
 
         auth()->user()->update($data);
         auth()->user()->log(UserLog::TYPE_SOCIAL_SWITCH);
+        Auth::logoutOtherDevices($request->get('password_new'));
 
         return redirect()
             ->route('settings.account')
