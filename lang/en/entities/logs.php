@@ -13,7 +13,7 @@ return [
         'update_post'   => 'Updated post',
         'view'          => 'View changes',
     ],
-    'call-to-action'    => 'Full change logs for up to :amount day on premium campaigns.',
+    'call-to-action'    => 'Premium campaigns can view the full changes made to this entity for up to :amount day.',
     'fields'            => [
         'action'    => 'Action',
         'date'      => 'Date',
@@ -24,6 +24,6 @@ return [
     'impersonated'      => 'Impersonated by :name',
     'none' => 'None',
     'show'              => [
-        'title' => ':name Logs',
+        'title' => ':name - Changes',
     ],
 ];
