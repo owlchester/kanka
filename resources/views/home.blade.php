@@ -67,17 +67,6 @@ use App\Enums\Widget;
                     {{ __('dashboard.settings.title') }}
                 </a>
             </div>
-
-            @if($widgets->count() === 0)
-                <div class="mt-6"></div>
-                <x-alert type="info">
-                    <p>
-                    {!! __('dashboard.setup.tutorial.text', [
-    'blog' => '<a href="https://blog.kanka.io/2020/09/20/how-to-style-your-kanka-campaign-dashboard/" target="_blank">' . __('dashboard.setup.tutorial.blog') . '</a>',
-    ]) !!}
-                    </p>
-                </x-alert>
-            @endif
         @endcan
     </div>
 @endsection

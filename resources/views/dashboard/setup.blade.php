@@ -9,8 +9,8 @@
 
 @php
 use App\Enums\Widget;
-$widgetClass = 'widget relative rounded text-xl text-center h-40 overflow-hidden shadow-xs hover:shadow-md cursor-pointer bg-box' ;
-$overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-center h-full';
+$widgetClass = 'widget relative rounded text-center h-28 shadow-xs hover:shadow-md cursor-pointer bg-box' ;
+$overlayClass = 'bg-box opacity-80 rounded flex gap-2 flex-col p-2 justify-center items-center h-full';
 @endphp
 
 @section('content')
@@ -34,10 +34,10 @@ $overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-cente
             @if ($dashboard)
                 {!! __('dashboard.dashboards.custom.text', ['name' => $dashboard->name]) !!}
             @else
-                {{ __('dashboard.dashboards.default.text') }}
+                {!! __('dashboard.dashboards.default.text', ['campaign' => $campaign->name]) !!}
             @endif
 
-            @if ($campaign->boosted())
+
                 <div class="flex items-center gap-2">
                     <a class="btn2 btn-primary btn-sm"
                          data-toggle="dialog"
@@ -59,12 +59,12 @@ $overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-cente
                             </button>
                             <div class="dropdown-menu hidden" role="menu">
                                 @if (!empty($dashboard))
-                                    <x-dropdowns.item :link="route('dashboard.setup', $campaign)">
+                                    <x-dropdowns.item :link="route('dashboard.setup', $campaign)" icon="fa-solid fa-home">
                                         {{ __('dashboard.dashboards.default.title')}}
                                     </x-dropdowns.item>
                                 @endif
                                 @foreach ($dashboards as $dash)
-                                    <x-dropdowns.item :link="route('dashboard.setup', [$campaign, 'dashboard' => $dash->id])">
+                                    <x-dropdowns.item :link="route('dashboard.setup', [$campaign, 'dashboard' => $dash->id])" icon="fa-solid fa-chevron-right">
                                         {!! $dash->name !!}
                                     </x-dropdowns.item>
                                 @endforeach
@@ -101,17 +101,24 @@ $overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-cente
                         </div>
                     @endif
                 </div>
-            @endif
             </x-grid>
         </x-box>
 
-    @include('partials.errors')
+        @include('partials.errors')
+
+        <x-tutorial code="dashboard-setup">
+            <p>
+                {!! __('dashboard.setup.tutorial.text', [
+'blog' => '<a href="https://blog.kanka.io/2020/09/20/how-to-style-your-kanka-campaign-dashboard/" target="_blank">' . __('dashboard.setup.tutorial.blog') . '</a>',
+]) !!}
+            </p>
+        </x-tutorial>
 
         <div class="campaign-dashboard-widgets">
             <div class="grid grid-cols-12 gap-2 md:gap-5" id="widgets" data-url="{{ route('dashboard.reorder', $campaign) }}">
                 @if (empty($dashboard))
                 <div class="col-span-12">
-                    <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background h-auto" @if($campaign->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }})" @endif
+                    <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background h-auto p-4" @if($campaign->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }})" @endif
                         data-toggle="dialog"
                          data-target="primary-dialog"
                          data-url="{{ route('campaigns.dashboard-header.edit', $campaign) }}"
@@ -126,10 +133,10 @@ $overlayClass = 'bg-box opacity-80 rounded flex gap-3 p-2 flex-col justify-cente
                     @includeWhen($widget->visible(), '.dashboard._widget')
                 @endforeach
 
-                <div class="col-span-4 {{ $widgetClass }} cursor-pointer shadow-xs hover:shadow-md" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}">
-                    <div class="{{ $overlayClass }} text-2xl">
+                <div class="col-span-4 {{ $widgetClass }}" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}">
+                    <div class="text-lg flex gap-2 items-center justify-center p-2 talign-middle h-full">
                         <x-icon class="plus" />
-                        <span class="block">{{ __('dashboard.setup.actions.add') }}</span>
+                        <span>{{ __('dashboard.setup.actions.add') }}</span>
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@ return [
             'text'  => 'You are currently editing the :name dashboard of the campaign.',
         ],
         'default'       => [
-            'text'  => 'You are currently editing the default dashboard of the campaign.',
+            'text'  => 'You are currently editing the default dashboard of :campaign.',
             'title' => 'Default Dashboard',
         ],
         'delete'        => [
@@ -74,12 +74,13 @@ return [
     ],
     'setup'         => [
         'actions'   => [
-            'add'               => 'Add a widget',
+            'add'               => 'Widget',
             'back_to_dashboard' => 'Back to dashboard',
             'edit'              => 'Edit a widget',
             'new'               => 'New :type widget',
         ],
         'reorder'   => [
+            'helper' => 'Drag me to move me around',
             'success'   => 'Widgets reordered.',
         ],
         'title'     => 'Dashboard Setup',
@@ -117,6 +118,7 @@ return [
             'helper'    => 'This widget displays the campaign header. This widget is always shown on the default dashboard.',
         ],
         'create'                    => [
+            'title' => 'New widget',
             'success'   => 'Widget added to the dashboard.',
         ],
         'delete'                    => [
@@ -160,6 +162,7 @@ return [
             ],
         ],
         'recent'                    => [
+            'all-entities' => 'All entities',
             'advanced_filter'   => 'Advanced filter',
             'advanced_filters'  => [
                 'mentionless'   => 'Mentionless (entities that don\'t mention other entities)',
@@ -169,7 +172,7 @@ return [
             'filters'           => 'Filters',
             'help'              => 'Only show the first entity as a preview instead of a list.',
             'helpers'           => [
-                'entity-header'     => 'If your entity has an entity header (boosted campaign feature), set this widget to use that image instead of the entity\'s image.',
+                'entity-header'     => 'If your entity has an entity header (premium campaign feature), set this widget to use that image instead of the entity\'s image.',
                 'show_attributes'   => 'Show the entity\'s pinned attributes below the entry.',
                 'show_members'      => 'If the entity is a family or organisation, show its members below the entry.',
                 'show_relations'    => 'Show the entity\'s pinned relations below the entry.',

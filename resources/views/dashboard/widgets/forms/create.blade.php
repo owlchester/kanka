@@ -3,7 +3,7 @@
 <x-form :action="['campaign_dashboard_widgets.store', $campaign]">
     @include('partials.forms.form', [
         'dialog' => true,
-        'title' => __('dashboard.setup.actions.add'),
+        'title' => __('dashboard.widgets.create.title'),
         'content' => 'dashboard.widgets.forms._' . $widget,
     ])
 

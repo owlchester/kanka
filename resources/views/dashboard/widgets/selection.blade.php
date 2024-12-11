@@ -1,5 +1,5 @@
 @include('partials.forms.form', [
     'dialog' => true,
-    'title' => __('dashboard.setup.actions.add'),
+    'title' => __('dashboard.widgets.create.title'),
     'content' => 'dashboard.widgets._selection',
 ])

@@ -56,7 +56,7 @@
     @else
         @can('dashboard', $campaign)
             <a href="{{ route('dashboard.setup', $campaign) }}" class="btn2" title="{{ __('dashboard.settings.title') }}">
-                <i class="fa-solid fa-th-large"></i>
+                <x-icon class="fa-solid fa-th-large" />
             </a>
         @endcan
     @endif

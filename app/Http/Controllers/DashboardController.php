@@ -89,7 +89,7 @@ class DashboardController extends Controller
     {
         /** @var CampaignDashboardWidget $widget */
         $widget = CampaignDashboardWidget::findOrFail($id);
-        if ($widget->widget != Widget::UNMENTIONED) {
+        if ($widget->widget != Widget::Unmentioned) {
             return response()->json([
                 'success' => true
             ]);
