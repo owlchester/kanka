@@ -1,12 +1,17 @@
-<? /** @var \App\Models\Post $post */?>
-@can('post', [$model, 'edit', $post])
+<?php /**
+ * @var \App\Models\MiscModel $model
+ * @var \App\Models\Post $post
+ * @var \App\Models\Entity $entity
+ */
+?>
+@can('post', [$model ?? $entity->child, 'edit', $post])
     <x-dropdowns.item :link="route('entities.posts.edit', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])" icon="edit">
         {{ __('crud.edit') }}
     </x-dropdowns.item>
 @endcan
 @if (!isset($more))
     @php
-        $title = '[' . $model->getEntityType() . ':' . $model->entity->id . '|anchor:post-' . $post->id . ']';
+        $title = '[' . $entity->type() . ':' . $entity->id . '|anchor:post-' . $post->id . ']';
         $data = [
             'title' => $title,
             'toggle' => 'tooltip',
@@ -17,7 +22,7 @@
         {{ __('entities/notes.copy_mention.copy') }}
     </x-dropdowns.item>
     @php
-        $title = '[' . $model->getEntityType() . ':' . $model->entity->id . '|anchor:post-' . $post->id . '|' . $post->name . ']';
+        $title = '[' . $entity->type() . ':' . $entity->id . '|anchor:post-' . $post->id . '|' . $post->name . ']';
         $data = [
             'title' => $title,
             'toggle' => 'tooltip',

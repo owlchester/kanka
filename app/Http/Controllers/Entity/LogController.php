@@ -28,7 +28,7 @@ class LogController extends Controller
             ->filter($request->only($fields))
             ->with(['user', 'impersonator', 'post'])
             ->recent()
-            ->paginate();
+            ->paginate(config('limits.pagination'));
 
 
         $transKey = $entity->pluralType();

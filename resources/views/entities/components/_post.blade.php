@@ -1,6 +1,5 @@
 <?php
 /**
-* @var \App\Models\MiscModel $model
 * @var \App\Models\Entity $entity
 * @var \App\Models\Post $post
 */
@@ -51,8 +50,8 @@
 
                 <div class="post-footer entity-note-footer text-right text-muted text-xs ">
 
-                @can('update', $model)
-                <a href="{{ route('entities.posts.logs', [$campaign, $model->entity, $post]) }}" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.posts.logs', [$campaign, $model->entity, $post]) }}" title="{{ __('crud.history.view') }}" class="print-none">
+                @can('update', $model ?? $entity->child)
+                <a href="{{ route('entities.posts.logs', [$campaign, $entity, $post]) }}" title="{{ __('crud.history.view') }}" class="print-none">
                     <x-icon class="fa-solid fa-history" />
                 </a>
                 @endcan

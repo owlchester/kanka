@@ -54,6 +54,8 @@ $postCount = 0;
         @include('ads.inline')
     @endif
 
+    <div id="post-anchor-loader" data-url="{{ route('entities.posts.show', [$campaign, $entity, 'post' => 0]) }}"></div>
+
     @if ($posts->currentPage() < $posts->lastPage())
         <div class="text-center">
             @if (auth()->check())

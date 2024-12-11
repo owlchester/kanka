@@ -82,7 +82,41 @@ const registerTrustDomain = () => {
     });
 };
 
+/**
+ * When loading an entity, a post anchor might be set but not visible due to pagination
+ */
+const registerLoadAnchorPost = () => {
+    let postId = window.location.hash.substring(1); // Remove the '#' character
+    if (!postId) {
+        return;
+    }
+    let selector = document.getElementById(postId);
+    if (selector) {
+        return;
+    }
+
+    // Try loading from the backend
+    let config = document.getElementById('post-anchor-loader');
+    if (!config) {
+        return;
+    }
+
+    let realPostId = postId.match(/\d+$/);
+    let url = config.dataset.url.replace('/0', '/' + realPostId);
+    axios.get(url)
+        .then(res => {
+            config.insertAdjacentHTML('afterbegin', res.data);
+
+            selector = document.getElementById(postId);
+            window.scrollTo({
+                top: selector.offsetTop,
+                behavior: 'smooth'
+            });
+        });
+};
+
 
 registerStoryActions();
 registerStoryLoadMore();
 registerTrustDomain();
+registerLoadAnchorPost();

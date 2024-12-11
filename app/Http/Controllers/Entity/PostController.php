@@ -45,7 +45,15 @@ class PostController extends Controller
     public function show(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authEntityView($entity);
-        return redirect()->to($entity->url());
+        if (!request()->json()) {
+            return redirect()->to($entity->url());
+        }
+
+        return view('entities.pages.posts.show')
+            ->with('campaign', $campaign)
+            ->with('entity', $entity)
+            ->with('post', $post)
+        ;
     }
 
     public function store(StorePost $request, Campaign $campaign, Entity $entity)
