@@ -11,7 +11,7 @@
                 <div class="rounded-full bg-base-300 h-8 w-8"></div>
             @endif
             <div class="grow flex flex-col gap-0.5 overflow-hidden">
-                <p class="truncate">{!! $application->user->name !!} but they have a really long stupid name</p>
+                <p class="truncate">{!! $application->user->name !!}</p>
                 <p class="text-neutral-content">{{ $application->created_at->diffForHumans() }}</p>
             </div>
 
