@@ -3,11 +3,6 @@
 use Illuminate\Support\Str;
 use App\Enums\Widget;
 
-$background = null;
-
-if ($widget->entity && $widget->entity->hasImage()) {
-    $background = Avatar::entity($widget->entity)->size(40)->thumbnail();
-}
 if (!empty($widget->conf('entity'))) {
     $entityString = $moduleService->plural($widget->conf('entity'), 'entities.' . Str::plural($widget->conf('entity')));
 }
@@ -15,7 +10,7 @@ if (!empty($widget->conf('entity'))) {
 
 
 <div class="col-span-{{ $widget->colSize() }}">
-    <div class="{{ $widgetClass }} cursor-pointer widget-{{ $widget->widget->value }} cover-background {{ $widget->widget->isHeader() ? 'h-auto' : null }}"
+    <div class="{{ $widgetClass }} cursor-pointer widget-{{ $widget->widget->value }} cover-background {{ $widget->widget->isHeader() ? 'h-28' : null }}"
     @if($widget->widget == Widget::Campaign)
          data-toggle="dialog"
          data-target="primary-dialog"
@@ -29,37 +24,30 @@ if (!empty($widget->conf('entity'))) {
          style="background-image: url('{{ Img::crop(1200, 400)->url($campaign->header_image) }}')"
     @endif
     >
-        <div class="{{ $overlayClass }}">
-            <div class="handle rounded px-2 py-1 top-1 left-1 text-center absolute w-10 border cursor-move background bg-box" data-toggle="tooltip" data-title="{{ __('dashboard.setup.reorder.helper') }}">
-                <x-icon class="fa-solid fa-arrows" />
-            </div>
-            @if ($widget->widget != Widget::Header)
-                <span class="truncate w-full px-12" >
+        <div class="rounded bg-box flex gap-2 flex-col p-4 h-full">
+            <div class="flex gap-4 items-center w-full ">
+                <div class="grow truncate">
                     <x-icon :class="$widget->widgetIcon()" tooltip title="{{ __('dashboard.setup.widgets.' . $widget->widget->value) }}" />
                     @if (!empty($widget->conf('text')))
                         {{ $widget->conf('text') }} ({{ __('dashboard.setup.widgets.' . $widget->widget->value) }})
                     @else
                         {{ __('dashboard.setup.widgets.' . $widget->widget->value) }}
                     @endif
-                </span>
-            @endif
-
+                </div>
+                <div class="flex-none handle cursor-move text-neutral-content" data-toggle="tooltip" data-title="{{ __('dashboard.setup.reorder.helper') }}">
+                    <x-icon class="fa-solid fa-arrows" />
+                </div>
+            </div>
 
             @if ($widget->entity)
-                <div class="widget-entity flex items-center gap-2 w-full justify-center">
-                    <div class="rounded-full entity-image flex-none" style="background-image: url('{!! $background !!}');"></div>
+                <div class="widget-entity flex items-center gap-2 w-full">
+                    <div class="rounded entity-picture w-9 h-9 flex-none" style="background-image: url('{!! Avatar::entity($widget->entity)->size(40)->fallback()->thumbnail() !!}');"></div>
                     <div class="truncate text-md">
                         <a href="{{ $widget->entity->url() }}">
                             {!! $widget->entity->name !!}
                         </a>
                     </div>
                 </div>
-            @endif
-
-            @if ($widget->widget == Widget::Header)
-                @if (!empty($widget->conf('text')))
-                    <span class="text-lg">{{ $widget->conf('text') }}</span>
-                @endif
             @endif
 
             @if ($widget->widget == Widget::Unmentioned)
@@ -84,8 +72,8 @@ if (!empty($widget->conf('entity'))) {
                 </p>
             @endif
 
-            @if (!empty($widget->tags))
-                <div class="flex flex-wrap gap-1 items-center justify-center tags">
+            @if ($widget->tags->isNotEmpty())
+                <div class="flex flex-wrap gap-1 items-center tags">
                     @foreach ($widget->tags as $tag)
                         @include ('tags._badge')
                     @endforeach

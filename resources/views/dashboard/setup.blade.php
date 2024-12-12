@@ -9,8 +9,8 @@
 
 @php
 use App\Enums\Widget;
-$widgetClass = 'widget relative rounded text-center h-28 shadow-xs hover:shadow-md cursor-pointer bg-box' ;
-$overlayClass = 'bg-box opacity-80 rounded flex gap-2 flex-col p-2 justify-center items-center h-full';
+$widgetClass = 'widget rounded h-28 shadow-xs hover:shadow-md cursor-pointer bg-box' ;
+$overlayClass = 'rounded flex gap-2 flex-col p-2 items-center h-full';
 @endphp
 
 @section('content')
@@ -118,12 +118,12 @@ $overlayClass = 'bg-box opacity-80 rounded flex gap-2 flex-col p-2 justify-cente
             <div class="grid grid-cols-12 gap-2 md:gap-5" id="widgets" data-url="{{ route('dashboard.reorder', $campaign) }}">
                 @if (empty($dashboard))
                 <div class="col-span-12">
-                    <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background h-auto p-4" @if($campaign->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }})" @endif
+                    <div class="{{ $widgetClass }} border-dashboard widget-campaign cover-background h-auto p-4 " @if($campaign->header_image) style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }})" @endif
                         data-toggle="dialog"
                          data-target="primary-dialog"
                          data-url="{{ route('campaigns.dashboard-header.edit', $campaign) }}"
                     >
-                        <div class="{{ $overlayClass }}">
+                        <div class="{{ $overlayClass }} backdrop-blur bg-box opacity-60">
                             <span class="widget-type">{{ __('dashboard.setup.widgets.campaign') }}</span>
                         </div>
                     </div>
@@ -133,10 +133,10 @@ $overlayClass = 'bg-box opacity-80 rounded flex gap-2 flex-col p-2 justify-cente
                     @includeWhen($widget->visible(), '.dashboard._widget')
                 @endforeach
 
-                <div class="col-span-4 {{ $widgetClass }}" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}">
-                    <div class="text-lg flex gap-2 items-center justify-center p-2 talign-middle h-full">
+                <div class="col-span-4 widget rounded h-28 hover:border-primary text-primary transition-all duration-150 cursor-pointer border-dashed border-2 py-6" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}">
+                    <div class="text-lg flex gap-2 items-center justify-center p-2 align-middle h-full">
                         <x-icon class="plus" />
-                        <span>{{ __('dashboard.setup.actions.add') }}</span>
+                        <span class="uppercase">{{ __('crud.add') }}</span>
                     </div>
                 </div>
             </div>

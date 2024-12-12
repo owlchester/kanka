@@ -153,6 +153,10 @@
     --tw-bg-opacity: 1;
     border-color: hsl(var(--p)/var(--tw-border-opacity));
 }
+.hover\:border-primary:hover {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--p)/var(--tw-border-opacity));
+}
 .border-primary-content {
     --tw-bg-opacity: 1;
     border-color: hsl(var(--pc)/var(--tw-border-opacity));

@@ -91,7 +91,7 @@ return [
         'widgets'   => [
             'calendar'      => 'Calendar',
             'campaign'      => 'Campaign header',
-            'header'        => 'Text header',
+            'header'        => 'Title',
             'preview'       => 'Entity preview',
             'random'        => 'Random entity',
             'recent'        => 'Entity list',
