@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Rules\SocialLogin;
 use App\Services\UserAuthenticatedService;
 use App\Models\User;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class LoginController extends Controller
 {
@@ -73,5 +76,20 @@ class LoginController extends Controller
     protected function redirectTo(Request $request): string
     {
         return route('home');
+    }
+
+    /**
+     * Make sure a social login can't log in with a password
+     */
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => [
+                'required',
+                'string',
+                new SocialLogin()
+            ],
+            'password' => 'required|string',
+        ]);
     }
 }

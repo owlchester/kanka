@@ -32,7 +32,6 @@ class Character extends Layout
             ],
             'location' => [
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
-                'with' => 'character',
                 'render' => Standard::LOCATION,
             ],
             'families' => [
