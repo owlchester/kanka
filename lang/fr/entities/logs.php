@@ -8,6 +8,7 @@ return [
         'delete_post'   => 'Supprimé un article',
         'reorder_post'  => 'Articles réordonnés',
         'restore'       => 'Restoré',
+        'reveal'        => 'Afficher les détails',
         'update'        => 'Mis à jour',
         'update_post'   => 'Modifié l\'article ":post"',
         'view'          => 'Voir les changements',
@@ -17,7 +18,11 @@ return [
         'action'    => 'Action',
         'date'      => 'Date',
     ],
+    'filters'           => [
+        'keywords'  => 'Mot cléf',
+    ],
     'impersonated'      => 'Imité par :name',
+    'none'              => 'Aucun',
     'show'              => [
         'title' => 'Journaux de l\'entité :name',
     ],

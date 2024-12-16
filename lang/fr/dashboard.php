@@ -80,6 +80,7 @@ return [
             'new'               => 'Nouveau widget :type',
         ],
         'reorder'   => [
+            'helper'    => 'Fais-moi glisser pour me déplacer',
             'success'   => 'Widgets réordonnés.',
         ],
         'title'     => 'Configuration du tableau de bord de campagne',
@@ -119,6 +120,7 @@ return [
         ],
         'create'                    => [
             'success'   => 'Widget ajouté au tableau de bord.',
+            'title'     => 'Nouveau widget',
         ],
         'delete'                    => [
             'success'   => 'Widget retiré du tableau de bord.',
@@ -166,6 +168,7 @@ return [
                 'mentionless'   => 'Sans mention (entités qui ne mentionnent pas d\'autres entités)',
                 'unmentioned'   => 'Non mentionné (entités qui ne sont pas mentionnées par d\'autres entités)',
             ],
+            'all-entities'      => 'Toutes les entités',
             'entity-header'     => 'Utiliser l\'image d\'en-tête de l\'entité',
             'filters'           => 'Filtres',
             'help'              => 'Afficher seulement la dernière entité modifiée avec un aperçu de celle-ci.',

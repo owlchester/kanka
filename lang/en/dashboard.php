@@ -80,7 +80,7 @@ return [
             'new'               => 'New :type widget',
         ],
         'reorder'   => [
-            'helper' => 'Drag me to move me around',
+            'helper'    => 'Drag me to move me around',
             'success'   => 'Widgets reordered.',
         ],
         'title'     => 'Dashboard Setup',
@@ -118,8 +118,8 @@ return [
             'helper'    => 'This widget displays the campaign header. This widget is always shown on the default dashboard.',
         ],
         'create'                    => [
-            'title' => 'New widget',
             'success'   => 'Widget added to the dashboard.',
+            'title'     => 'New widget',
         ],
         'delete'                    => [
             'success'   => 'Widget removed from the dashboard.',
@@ -162,12 +162,12 @@ return [
             ],
         ],
         'recent'                    => [
-            'all-entities' => 'All entities',
             'advanced_filter'   => 'Advanced filter',
             'advanced_filters'  => [
                 'mentionless'   => 'Mentionless (entities that don\'t mention other entities)',
                 'unmentioned'   => 'Unmentioned (entities that aren\'t mentioned by other entities)',
             ],
+            'all-entities'      => 'All entities',
             'entity-header'     => 'Use entity header as image',
             'filters'           => 'Filters',
             'help'              => 'Only show the first entity as a preview instead of a list.',

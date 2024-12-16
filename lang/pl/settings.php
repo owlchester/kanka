@@ -193,6 +193,7 @@ return [
             'plan'              => 'Obecny plan',
             'reason'            => 'Powód',
             'reset'             => 'Reset informacji o płatnościach',
+            'reset_billing'     => 'Rozumiem, że zmiana waluty powoduje usunięcie historii płatności i konieczność ponownego wprowadzenia metody płatności.',
         ],
         'helpers'               => [
             'alternatives'          => 'Opłać subskrypcję używając :method. Ten sposób płatności nie odnawia się automatycznie na koniec cyklu. :method jest dostępna tylko w Euro.',

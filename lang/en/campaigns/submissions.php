@@ -2,8 +2,8 @@
 
 return [
     'actions'       => [
-        'accept'        => 'Accept',
-        'reject'        => 'Deny',
+        'accept'    => 'Accept',
+        'reject'    => 'Deny',
     ],
     'apply'         => [
         'apply'         => 'Apply',
@@ -18,22 +18,32 @@ return [
     ],
     'fields'        => [
         'application'   => 'Application',
-        'reason' => 'Approval / Rejection reason',
+        'reason'        => 'Approval / Rejection reason',
     ],
     'helpers'       => [
-        'modal'             => 'A campaign which is open to applications and public can have users apply to join the campaign.',
+        'modal'                 => 'A campaign which is open to applications and public can have users apply to join the campaign.',
+        'no_applications'       => 'There are currently no pending applications to join the campaign. Users can apply to join the campaign by visiting it\'s dashboard and clicking on the :button button.',
         'no_applications_title' => 'No applications found',
-        'no_applications'   => 'There are currently no pending applications to join the campaign. Users can apply to join the campaign by visiting it\'s dashboard and clicking on the :button button.',
-        'reason' => 'If provided, the applicant will be notified with this reason.',
-        'role' => 'If approving, the role the applicant gets added to.',
+        'reason'                => 'If provided, the applicant will be notified with this reason.',
+        'role'                  => 'If approving, the role the applicant gets added to.',
+    ],
+    'open'          => [
+        'closed'    => 'Campaign is closed',
+        'open'      => 'Campaign is open',
+        'title'     => 'Open campaign',
     ],
     'placeholders'  => [
-        'note'  => 'Write down your application to join the campaign',
-        'reason' => 'Your reason',
+        'note'      => 'Write down your application to join the campaign',
+        'reason'    => 'Your reason',
+    ],
+    'public'        => [
+        'private'   => 'Campaign is private',
+        'public'    => 'Campaign is public',
+        'title'     => 'Public campaign',
     ],
     'toggle'        => [
-        'label'     => 'Status',
         'closed'    => 'Closed to applications',
+        'label'     => 'Status',
         'open'      => 'Open to applications',
         'success'   => 'Campaign application status updated.',
         'title'     => 'Application status',
@@ -43,15 +53,5 @@ return [
         'approved'  => 'Application approved.',
         'reject'    => 'Write an optional message to the user as to why you are rejecting their application.',
         'rejected'  => 'Application rejected',
-    ],
-    'open' => [
-        'title' => 'Open campaign',
-        'open' => 'Campaign is open',
-        'closed' => 'Campaign is closed',
-    ],
-    'public' => [
-        'title' => 'Public campaign',
-        'public' => 'Campaign is public',
-        'private' => 'Campaign is private',
     ],
 ];

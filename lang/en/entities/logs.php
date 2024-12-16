@@ -18,11 +18,11 @@ return [
         'action'    => 'Action',
         'date'      => 'Date',
     ],
-    'filters' => [
-        'keywords' => 'Keywords',
+    'filters'           => [
+        'keywords'  => 'Keywords',
     ],
     'impersonated'      => 'Impersonated by :name',
-    'none' => 'None',
+    'none'              => 'None',
     'show'              => [
         'title' => ':name - Changes',
     ],

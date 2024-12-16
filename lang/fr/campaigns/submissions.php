@@ -2,10 +2,8 @@
 
 return [
     'actions'       => [
-        'accept'        => 'Accepter',
-        'applications'  => 'Candidatures: :status',
-        'change'        => 'Modifier',
-        'reject'        => 'Décliner',
+        'accept'    => 'Accepter',
+        'reject'    => 'Décliner',
     ],
     'apply'         => [
         'apply'         => 'Appliquer',
@@ -18,28 +16,33 @@ return [
         ],
         'title'         => 'Rejoindre :name',
     ],
-    'errors'        => [
-        'not_open'  => 'La campagne n\'est pas ouverte à de nouveaux membres. Modifier la configuration de la campagne pour permettre aux utilisateurs de postuler.',
-    ],
+    'errors'        => [],
     'fields'        => [
         'application'   => 'Application',
-        'approval'      => 'Raison d\'approbation',
-        'rejection'     => 'Raison du rejet',
+        'reason'        => 'Motif d\'approbation / de rejet',
     ],
     'helpers'       => [
-        'filter-helper'     => 'Cette campagne est ouverte aux candidatures!',
-        'modal'             => 'Une campagne qui est ouverte aux candidatures et qui est publique peut avoir des utilisateurs demander de joindre la campagne.',
-        'no_applications'   => 'Il n\'y a actuellement aucune candidature en attente pour rejoindre la campagne. Les utilisateurs peuvent demander à rejoindre la campagne en visitant son tableau de bord et en cliquant sur le bouton :bouton.',
-        'not_open'          => 'La campagne n\'accepte pas les candidatures pour le moment.',
-        'open_not_public'   => 'La campagne est ouverte aux candidatures, mais pas publique, ce qui signifie que personne ne peut postuler pour la rejoindre. Cela peut être modifié en modifiant les paramètres de la campagne.',
+        'modal'                 => 'Une campagne qui est ouverte aux candidatures et qui est publique peut avoir des utilisateurs demander de joindre la campagne.',
+        'no_applications'       => 'Il n\'y a actuellement aucune candidature en attente pour rejoindre la campagne. Les utilisateurs peuvent demander à rejoindre la campagne en visitant son tableau de bord et en cliquant sur le bouton :bouton.',
+        'no_applications_title' => 'Aucune application trouvée',
+        'reason'                => 'Si une raison est fournie, le/la demandeur en sera informé.',
+        'role'                  => 'En cas d\'approbation, le rôle auquel le candidat est ajouté.',
+    ],
+    'open'          => [
+        'closed'    => 'La campagne est fermée',
+        'open'      => 'La campagne est ouverte',
+        'title'     => 'Campagne ouverte',
     ],
     'placeholders'  => [
-        'note'  => 'Ecris ta candidature pour rejoindre la campagne.',
+        'note'      => 'Ecris ta candidature pour rejoindre la campagne.',
+        'reason'    => 'Ta raison',
     ],
-    'statuses'      => [
-        'closed'    => 'Fermé',
-        'open'      => 'Ouvert',
+    'public'        => [
+        'private'   => 'La campagne est privée',
+        'public'    => 'La campagne est publique',
+        'title'     => 'Campaign publique',
     ],
+    'statuses'      => [],
     'toggle'        => [
         'closed'    => 'Fermé aux candidatures',
         'label'     => 'Status',

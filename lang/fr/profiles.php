@@ -28,6 +28,7 @@ return [
         'theme'                     => 'Thème',
     ],
     'helpers'                       => [
+        'new-password'  => 'La modification de ton mot de passe te déconnectera de tous les autres appareils.',
         'profile-name'  => 'Changer ton nom sur ton :profile et le :marketplace. Si vide, le nom du compte sera utilisé.',
     ],
     'newsletter'                    => [
