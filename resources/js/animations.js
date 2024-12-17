@@ -11,7 +11,9 @@ const initAnimations = () => {
 };
 
 function toggle(e) {
-    e.preventDefault();
+    if (e.target.type !== 'checkbox') {
+        e.preventDefault();
+    }
 
     let selector = this.dataset.target;
     if (!selector) {
