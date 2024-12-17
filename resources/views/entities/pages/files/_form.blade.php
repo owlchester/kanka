@@ -7,7 +7,7 @@
         field="files[]"
         css="col-span-2"
         :required="true"
-        :label="__('entities/files.fields.file')">
+        :label="__('entities/files.fields.files')">
         <input type="file" multiple accept="image/*, .pdf, .gif, .webp, .pdf, .xls, .xlsx, .csv, .mp3, .ogg, .json" name="files[]" class="image w-full" id="file_{{ rand() }}" />
 
         <p class="text-neutral-content m-0">
