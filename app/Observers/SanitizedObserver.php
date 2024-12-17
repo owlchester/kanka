@@ -39,7 +39,7 @@ class SanitizedObserver
     {
         $text = trim(Purify::clean(strip_tags($text)));
         // Users still want to use < and > so let's not break it for them
-        $text = Str::replace(['&lt;', '&gt;', '&amp;&amp;'], ['<', '>', '&&'], $text);
+        //$text = Str::replace(['&lt;', '&gt;', '&amp;&amp;'], ['<', '>', '&&'], $text);
         // If it's really empty, zap it
         if ($text == "\r\n\r\n" || empty($text)) {
             return null;
