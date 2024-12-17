@@ -5,6 +5,7 @@ namespace App\Services\Campaign\Import;
 use App\Enums\CampaignImportStatus;
 use App\Facades\CampaignCache;
 use App\Facades\CharacterCache;
+use App\Facades\MapMarkerCache;
 use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
 use App\Models\CampaignImport;
@@ -280,6 +281,7 @@ class ImportService
         CharacterCache::campaign($this->campaign);
         TimelineElementCache::campaign($this->campaign);
         QuestCache::campaign($this->campaign);
+        MapMarkerCache::campaign($this->campaign);
 
         return $this;
     }
