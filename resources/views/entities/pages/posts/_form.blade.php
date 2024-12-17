@@ -62,7 +62,9 @@ $layoutOptions = $layoutDefault + $layoutOptions
         <div class="tab-pane pane-entry active" id="form-entry">
             <x-grid>
                 <x-forms.field field="name" :required="true">
-                    <input type="text" name="name"  placeholder="{{ __('entities/notes.placeholders.name') }}" value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" maxlength="191" data-bragi-name="{{ $bragiName }}" data-live-disabled="1" />
+                    <input type="text" name="name"  placeholder="{{ __('entities/notes.placeholders.name') }}"
+                           value="{!! htmlspecialchars(old('name', str_replace('&amp;', '&', $model->name ?? ''))) !!}"
+                           maxlength="191" data-bragi-name="{{ $bragiName }}" data-live-disabled="1" />
                 </x-forms.field>
 
                 <x-forms.field field="layout" :hidden="isset($layoutHelper)">

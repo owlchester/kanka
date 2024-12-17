@@ -10,7 +10,7 @@
             <x-icon class="fa-solid fa-chevron-up icon-show" />
             <x-icon class="fa-solid fa-chevron-down icon-hide" />
             <h3 class="post-title grow {{ $post->collapsed() ? "collapsed" : null }}"  >
-                {{ $post->name  }}
+                {!! $post->name !!}
                 @if (app()->isLocal())
                     <sup class="text-xs">({{ $post->position }})</sup>
                 @endif
