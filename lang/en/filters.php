@@ -4,6 +4,7 @@ return [
     'bookmark' => [
         'success' => 'Bookmark created.',
         'premium' => 'Adding more bookmarks requires enabling premium campaign features.',
+        'name' => ':module (filtered)'
     ],
     'actions' => [
         'bookmark' => 'Bookmark',

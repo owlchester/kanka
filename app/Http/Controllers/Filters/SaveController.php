@@ -37,7 +37,7 @@ class SaveController extends Controller
 
         $bookmark = new Bookmark();
         $bookmark->campaign_id = $campaign->id;
-        $bookmark->name = $entityType->name() . ' (filtered)';
+        $bookmark->name = __('filters.bookmark.name', ['module' => $entityType->plural()]);
         $bookmark->type = $entityType->code;
         $bookmark->filters = $filters;
         $bookmark->parent = $entityType->pluralCode();

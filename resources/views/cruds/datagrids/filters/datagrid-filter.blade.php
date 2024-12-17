@@ -18,7 +18,7 @@ $activeFilters = $filterService->activeFiltersCount();
     </div>
 
     @if ($activeFilters > 0)
-        @if (empty($bookmark))
+        @if (empty($bookmark) && $model->entityTypeId())
         @can('create', \App\Models\Bookmark::class)
             <a href="{{ route('save-filters', [$campaign, $model->entityTypeId(), 'm' => $mode]) }}" class="btn2 btn-sm btn-primary">
                 <x-icon class="fa-solid fa-bookmark" /> {{ __('filters.actions.bookmark') }}
