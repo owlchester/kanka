@@ -39,6 +39,30 @@
         @selected="selectImage"
         @closed="closedGallery"
     ></Browser>
+
+    <dialog ref="cta" class="dialog rounded-2xl text-center" v-if="!loading">
+        <header class="bg-base-200 sm:rounded-t">
+            <h4 v-html="trans.cta_title"></h4>
+            <button type="button" class="text-base-content" @click="closeDialog(cta)" title="Close">
+                <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
+                <span class="sr-only">Close</span>
+            </button>
+        </header>
+        <article class="max-w-4xl flex flex-col gap-2 text-left">
+            <div class="flex flex-col gap-1 w-full">
+                <p v-html="storageFull"></p>
+                <p v-html="trans.cta_helper" v-if="!hasPremium"></p>
+            </div>
+        </article>
+        <footer class="bg-base-200 p-2" v-if="!hasPremium">
+            <menu class="">
+                <a v-bind:href="props.cta" class="btn2 btn-primary">
+                    <i class="fa-solid fa-gem" aria-hidden="true" />
+                    <span v-html="trans.cta_action"></span>
+                </a>
+            </menu>
+        </footer>
+    </dialog>
 </template>
 
 <script setup lang="ts">
@@ -55,6 +79,8 @@ const props = defineProps<{
     field: string,
     old: string, // Using the old system
     i18n: undefined,
+    cta: string,
+    premium: string
 }>()
 
 
@@ -72,8 +98,11 @@ const imagePreview = ref(null)
 let lastImageUrl
 const cancelTokenSource = ref(null)
 const hasOld = ref(false)
+const hasPremium = ref(false)
 const removedOld = ref(false)
 const trans = ref(null)
+const cta = ref()
+const storageFull = ref()
 
 onMounted(() => {
     loading.value = false
@@ -81,6 +110,9 @@ onMounted(() => {
     currentUuid.value = props.uuid
     if (props.old === 'true') {
         hasOld.value = true
+    }
+    if (props.premium === 'true') {
+        hasPremium.value = true
     }
 
     trans.value = JSON.parse(props.i18n)
@@ -238,6 +270,11 @@ const showErrors = (err) => {
 
     const errorKeys = Object.keys(err.response.data.errors)
     errorKeys.forEach(i => {
+        if (err.response.data.errors[i][0].includes('(storage_full)')) {
+            storageFull.value = err.response.data.errors[i][0].replace('(storage_full)', '')
+            openDialog(cta.value);
+            return;
+        }
         window.showToast(err.response.data.errors[i][0], 'error')
     })
 }
@@ -259,6 +296,25 @@ const handleEscape = (event) => {
 
 const cancelUpload = (event) => {
     cancelTokenSource.value.cancel('Upload canceled by user.')
+}
+
+const openDialog = (dialog) => {
+    dialog.showModal()
+    dialog.addEventListener('click', clickOutside);
+}
+
+const closeDialog = (modal) => {
+    modal.removeEventListener('click', clickOutside)
+    modal.close()
+}
+
+const clickOutside = (event) => {
+    let rect = event.target.getBoundingClientRect()
+    let isInDialog = (rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX && event.clientX <= rect.left + rect.width)
+    if (!isInDialog && event.target.tagName === 'DIALOG') {
+        closeModal(event.target)
+    }
 }
 
 </script>

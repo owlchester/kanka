@@ -25,11 +25,11 @@ class GallerySize implements ValidationRule
             $size = (int)floor($value->getSize() / 1024);
             if ($size > $available) {
                 $available = $this->human($available);
-                $fail(__('campaigns/gallery.errors.storage', ['available' => $available]));
+                $fail(__('campaigns/gallery.errors.storage', ['available' => $available]) . ' (storage_full)');
             }
         } catch (Exception $e) {
             $available = $this->human($available);
-            $fail(__('campaigns/gallery.errors.storage', ['available' => $available]));
+            $fail(__('campaigns/gallery.errors.storage', ['available' => $available]) . ' (storage_full)');
         }
     }
 
