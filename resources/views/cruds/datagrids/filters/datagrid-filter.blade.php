@@ -18,7 +18,14 @@ $activeFilters = $filterService->activeFiltersCount();
     </div>
 
     @if ($activeFilters > 0)
-        <a href="{{ route($route, [$campaign, 'reset-filter' => 'true']) }}" class="p-1.5">
+        @if (empty($bookmark))
+        @can('create', \App\Models\Bookmark::class)
+            <a href="{{ route('save-filters', [$campaign, $model->entityTypeId(), 'm' => $mode]) }}" class="btn2 btn-sm btn-primary">
+                <x-icon class="fa-solid fa-bookmark" /> {{ __('filters.actions.bookmark') }}
+            </a>
+        @endcan
+        @endif
+        <a href="{{ route($route, [$campaign, 'reset-filter' => 'true']) }}" class="btn2 btn-ghost btn-sm">
             <x-icon class="fa-solid fa-eraser" /> {{ __('crud.filters.clear') }}
         </a>
     @endif

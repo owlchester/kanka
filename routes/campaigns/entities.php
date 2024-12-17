@@ -217,6 +217,9 @@ Route::get('/w/{campaign}/entities/{entity}/profile', 'Entity\ProfileController@
 Route::get('/w/{campaign}/entity_types/{entity_type}/filter-form', [App\Http\Controllers\Filters\FormController::class, 'index'])->name('filters.form');
 Route::get('/w/{campaign}/connection/filter-form', [App\Http\Controllers\Filters\FormController::class, 'connection'])->name('filters.form-connection');
 
+Route::get('/w/{campaign}/filters/{entity_type}/save', [\App\Http\Controllers\Filters\SaveController::class, 'save'])->name('save-filters');
+
+
 //Route::get('/w/{campaign}/my-campaigns', 'CampaignController@index')->name('campaign');
 Route::resources([
     '/w/{campaign}/abilities' => 'Crud\AbilityController',

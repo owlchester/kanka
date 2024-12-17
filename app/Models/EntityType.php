@@ -30,7 +30,7 @@ class EntityType extends Model
 
     /**
      */
-    public function scopeEnabled(Builder $query)
+    public function scopeEnabled(Builder $query): Builder
     {
         return $query
             ->where(['is_enabled' => true])
