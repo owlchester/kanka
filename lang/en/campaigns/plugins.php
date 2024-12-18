@@ -3,23 +3,22 @@
 return [
     'actions'       => [
         'bulks'             => [
-            'disable'   => 'Disable plugins',
-            'enable'    => 'Enable plugins',
+            'disable'   => 'Disable themes',
+            'enable'    => 'Enable themes',
             'update'    => 'Update plugins',
         ],
         'changelog'         => 'Changelog',
-        'disable'           => 'Disable plugin',
-        'enable'            => 'Enable plugin',
+        'disable'           => 'Disable theme',
+        'enable'            => 'Enable theme',
         'go_to_marketplace' => 'Go to the Marketplace',
         'import'            => 'Import',
-        'remove'            => 'Remove plugin',
         'update'            => 'Update plugin',
         'update_available'  => 'Update available!',
     ],
     'bulks'         => [
         'delete'    => '{1} Removed :count plugin.|[2,*] Removed :count plugins.',
-        'disable'   => '{1} Disabled :count plugin.|[2,*] Disabled :count plugins.',
-        'enable'    => '{1} Enabled :count plugin.|[2,*] Enabled :count plugins.',
+        'disable'   => '{1} Disabled :count theme.|[2,*] Disabled :count themes.',
+        'enable'    => '{1} Enabled :count themes.|[2,*] Enabled :count themes.',
         'update'    => '{1} Updated :count plugin.|[2,*] Updated :count plugins.',
     ],
     'destroy'       => [
@@ -62,6 +61,7 @@ return [
     'status'        => [
         'disabled'  => 'Disabled',
         'enabled'   => 'Enabled',
+        'always'   => 'This plugin type is always active unless removed.',
     ],
     'templates'     => [
         'name'  => ':name by :user',
