@@ -80,6 +80,10 @@ class AccountController extends Controller
                 ->with('error', __('settings.account.social.error'));
         }
 
+        if ($request->ajax()) {
+            return response()->json();
+        }
+
         $data['provider'] = null;
         $data['provider_id'] = null;
 
