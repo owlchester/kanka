@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
+use App\Facades\Mentions;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
@@ -515,6 +516,8 @@ class PluginVersion extends Model
                 'type' => $abi->ability->type,
                 'entry' => $abi->ability->parsedEntry(),
                 'charges' => $abi->ability->charges,
+                'note' => Mentions::mapAny($abi, 'note'),
+                'note_raw' => $abi->note,
                 'used_charges' => $abi->charges,
                 'thumb' => '<img src="' . Avatar::entity($abi->ability->entity)->child($abi->ability)->size(40)->thumbnail() . '" class="ability-thumb"></i>',
                 'link' => '<a href="' . $abi->ability->getLink() . '" class="ability-link">' . $abi->ability->name . '</a>',
