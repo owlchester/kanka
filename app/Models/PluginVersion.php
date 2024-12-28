@@ -511,6 +511,8 @@ class PluginVersion extends Model
             }
 
             $ability = [
+                'id' => $abi->id,
+                'ability_id' => $abi->ability_id,
                 'name' => $abi->ability->name,
                 'slug' => Str::slug($abi->ability->name),
                 'type' => $abi->ability->type,
