@@ -63,7 +63,9 @@ class Plugin extends Layout
                 'label' => 'campaigns/plugins.fields.status',
                 'render' => function ($model) {
                     if (!$model->isTheme()) {
-                        return '';
+                        return '<i class="fa-solid fa-infinity" data-title="' .
+                            __('campaigns/plugins.status.always') .
+                            '" data-toggle="tooltip"></i>';
                     }
                     if ($model->pivot->is_active) {
                         return

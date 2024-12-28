@@ -70,7 +70,7 @@ return [
     |
     */
 
-    'connection' => null,
+    'connection' => env('SESSION_CONNECTION'),
 
     /*
     |--------------------------------------------------------------------------
@@ -96,7 +96,7 @@ return [
     |
     */
 
-    'store' => null,
+    'store' => env('SESSION_STORE'),
 
     /*
     |--------------------------------------------------------------------------
@@ -151,7 +151,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', null),
+    'domain' => env('SESSION_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
@@ -164,7 +164,7 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', null),
+    'secure' => env('SESSION_SECURE_COOKIE'),
 
     /*
     |--------------------------------------------------------------------------
@@ -188,10 +188,10 @@ return [
     | take place, and can be used to mitigate CSRF attacks. By default, we
     | do not enable this as other CSRF protection services are in place.
     |
-    | Supported: "lax", "strict"
+    | Supported: "lax", "strict", "none", null
     |
     */
 
-    'same_site' => env('SESSION_SAME_SITE', 'strict'),
+    'same_site' => env('SESSION_SAME_SITE', 'lax'),
 
 ];

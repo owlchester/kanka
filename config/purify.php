@@ -104,8 +104,8 @@ return [
                 . 'thead[class|style|id],'
                 . 'tfoot[class|style|id],'
                 . 'tr[class|style|id],'
-                . 'td[class|style|abbr|colspan|rowspan|title],'
-                . 'th[class|style|abbr|colspan|rowspan|title],'
+                . 'td[class|style|abbr|colspan|rowspan|title|align],'
+                . 'th[class|style|abbr|colspan|rowspan|title|align],'
             ,
 
             /*

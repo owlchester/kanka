@@ -25,7 +25,7 @@ class RelationService
         $data['campaign_id'] = $this->campaign->id;
 
         if ($request->has('targets')) {
-            $this->entities = $request->get('targets');
+            $this->entities = is_array($request->get('targets')) ? $request->get('targets') : [$request->get('targets')];
         } else {
             $this->entities = [$request->get('target_id')];
         }

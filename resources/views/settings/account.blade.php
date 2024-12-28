@@ -16,7 +16,7 @@
     <x-form :action="['settings.account.email']" method="PATCH">
         <x-grid type="1/1">
             <x-forms.field field="email" :required="true" :label="__('profiles.fields.email')">
-                <input type="email" name="email" value="{{ old('email', $user->email) }}" placeholder="{{ __('profiles.placeholders.email') }}" />
+                <input type="email" name="email" value="{{ old('email', $user->email) }}" placeholder="{{ __('profiles.placeholders.email') }}" autocomplete="email" />
             </x-forms.field>
 
             <div class="text-right">
@@ -40,10 +40,10 @@
             </x-helper>
 
             <x-forms.field field="new-password" :required="true" :label="__('profiles.fields.new_password')">
-                <input type="password" name="password_new" placeholder="{{ __('profiles.placeholders.new_password') }}" />
+                <input type="password" name="password_new" placeholder="{{ __('profiles.placeholders.new_password') }}" autocomplete="new-password" />
             </x-forms.field>
             <x-forms.field field="password-confirm" :required="true" :label="__('profiles.fields.new_password_confirmation')">
-                <input type="password" name="password_new_confirmation" placeholder="{{ __('profiles.placeholders.new_password_confirmation') }}" />
+                <input type="password" name="password_new_confirmation" placeholder="{{ __('profiles.placeholders.new_password_confirmation') }}" autocomplete="new-password" />
             </x-forms.field>
 
 
