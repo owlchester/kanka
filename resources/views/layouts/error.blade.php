@@ -57,6 +57,10 @@
             <p class="lg:max-w-2xl mx-auto text-center">{{ __('errors.' . $error . '.body') }}</p>
         @endif
 
+        @guest
+            <p class="lg:max-w-2xl mx-auto text-center">{{ __('errors.log-in') }}</p>
+        @endguest
+
         <p class="lg:max-w-2xl mx-auto text-center">
             {!! __('errors.footer', [
     'discord' => '<a href="' . config('social.discord') . '" class="link-light">Discord</a>',
