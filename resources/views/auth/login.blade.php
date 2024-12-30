@@ -37,7 +37,7 @@
     @else
         <form method="POST" action="{{ route('login') }}" class="w-full flex flex-col gap-3">
             {{ csrf_field() }}
-            <div class="mb-3 {{ $errors->has('email') ? ' has-error' : '' }}">
+            <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
                 <input id="email" type="email" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="email" value="{{ old('email') }}" placeholder="{{ __('auth.login.fields.email') }}" required autofocus>
 
                 @if ($errors->has('email'))
@@ -47,7 +47,7 @@
                 @endif
             </div>
 
-            <div class="mb-3 {{ $errors->has('password') ? ' has-error' : '' }}">
+            <div class="{{ $errors->has('password') ? ' has-error' : '' }}">
                 <div class="flex items-stretch w-full">
                     <input id="password" type="password" class="border rounded w-full p-2 dark:bg-slate-800 dark:border-slate-500" name="password" required placeholder="{{ __('auth.login.fields.password') }}">
                     <a href="#" id="toggle-password" class="input-group-addon p-2" title="{{ __('auth.helpers.password') }}">

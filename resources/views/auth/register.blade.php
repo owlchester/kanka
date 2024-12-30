@@ -97,14 +97,14 @@
 
         <div class="flex flex-col gap-2">
             @if(config('services.facebook.client_id'))
-                <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="rounded border border-blue-300 text-blue-300 hover:text-white hover:bg-blue-300 px-6 py-2 transition-all duration-150 flex gap-3 items-center" title="{{ __('auth.continue.facebook') }}">
+                <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="rounded border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 px-6 py-2 transition-all duration-150 flex gap-3 items-center" title="{{ __('auth.continue.facebook') }}">
                     <x-icon class="fa-brands fa-facebook-f" />
                     {{ __('auth.continue.facebook') }}
                 </a>
             @endif
 
             @if(config('services.google.client_id'))
-                <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="rounded border border-blue-300 text-blue-300 hover:text-white hover:bg-blue-300 px-6 py-2 transition-all duration-150 flex gap-3 items-center" title="{{ __('auth.continue.google') }}">
+                <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="rounded border border-red-400 text-red-400 hover:text-white hover:bg-red-400 px-6 py-2 transition-all duration-150 flex gap-3 items-center" title="{{ __('auth.continue.google') }}">
                     <x-icon class="fa-brands fa-google" />
                     {{ __('auth.continue.google') }}
                 </a>
