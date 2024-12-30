@@ -33,10 +33,8 @@ return [
             'email'     => 'Email',
             'password'  => 'Password',
         ],
-        'login_with_facebook'   => 'Login with Facebook',
-        'login_with_google'     => 'Login with Google',
-        'login_with_x'          => 'Login with X (formerly Twitter)',
-        'new_account'           => 'Register a new account',
+        'no-account'           => 'Don\' have an account?',
+        'sign-up'               => 'Sign up',
         'or'                    => 'OR',
         'password_forgotten'    => 'Forgot your password?',
         'remember_me'           => 'Remember me',
@@ -53,12 +51,8 @@ return [
             'email'     => 'Email',
             'name'      => 'Username',
             'password'  => 'Password',
-            'tos_clean' => 'I agree to the :privacy',
         ],
         'log-in'                    => 'Log in',
-        'register_with_facebook'    => 'Register with Facebook',
-        'register_with_google'      => 'Register with Google',
-        'register_with_x'           => 'Register with X (formerly Twitter)',
         'submit'                    => 'Register',
         'title'                     => 'Register',
         'tos'                       => 'By registering an account, you agree to our :terms and :privacy.',
@@ -79,4 +73,11 @@ return [
     ],
     'throttle'  => 'Too many login attempts. Please try again in :seconds seconds.',
     'x-twitter' => 'X formerly known as Twitter',
+
+
+    'continue' => [
+        'facebook'   => 'Continue with Facebook',
+        'google'     => 'Continue with Google',
+        'x'          => 'Continue with X'
+    ],
 ];
