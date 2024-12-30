@@ -160,6 +160,24 @@
                 </ul>
             </li>
             @endif
+
+            @can('roles', $campaign)
+                <li class="px-2 section-management">
+                    <x-sidebar.element
+                        icon="fa-duotone fa-bolt"
+                        :text="__('campaigns.show.tabs.danger')"
+                    ></x-sidebar.element>
+                    <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
+                        <li class="px-2 section-overview {{ $sidebar->activeCampaign('campaign-deletion') }}">
+                            <x-sidebar.element
+                                :url="route('campaign.delete', [$campaign])"
+                                icon="fa-duotone fa-trash"
+                                :text="__('campaigns.show.tabs.deletion')"
+                            ></x-sidebar.element>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
         </ul>
 
     </section>

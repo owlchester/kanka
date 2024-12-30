@@ -25,7 +25,7 @@ class DeleteCampaign extends FormRequest
     public function rules()
     {
         $rules = [
-            'delete' => ['string', new CampaignDelete()],
+            'delete' => ['required', 'string', new CampaignDelete()],
         ];
         return $rules;
     }

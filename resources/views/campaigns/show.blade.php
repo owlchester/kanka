@@ -44,12 +44,6 @@
                             {{ __('campaigns.show.actions.leave') }}
                         </button>
                     @endif
-                    @if (auth()->check() && auth()->user()->can('roles', $campaign))
-                        <button type="button" class="btn2 btn-error btn-sm" data-toggle="dialog" data-target="campaign-delete-confirm" data-focus="#campaign-delete-form">
-                            <x-icon class="trash" />
-                            {{ __('campaigns.destroy.action') }}
-                        </button>
-                    @endif
 
                     @can('update', $campaign)
                         <a href="{{ route('campaigns.edit', $campaign) }}" class="btn2 btn-primary btn-sm" title="{{ __('campaigns.show.actions.edit') }}">
@@ -59,7 +53,7 @@
                     @endcan
                 </div>
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col gap-2">
                 <x-box>
                     @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry))
                         <a href="{{ route('campaigns.edit', $campaign) }}">
@@ -93,35 +87,5 @@
 
     <x-dialog id="leave-confirm" :loading="true" />
 
-    @if (auth()->check() && auth()->user()->can('roles', $campaign))
-        <x-dialog id="campaign-delete-confirm" :title="__('campaigns.destroy.title')">
-            @if (auth()->user()->can('delete', $campaign))
-                <x-form method="DELETE" :action="['campaigns.destroy', $campaign]">
-                    <x-grid type="1/1">
-                        <p class="">{!! __('campaigns.destroy.confirm', ['campaign' => '<strong>' . $campaign->name . '</strong>']) !!}
-                        <p class="text-neutral-content"> {!! __('campaigns.destroy.hint', ['code' => '<code>delete</code>']) !!} </p>
 
-                        <div class="required field">
-                            <input type="text" name="delete" value="" maxlength="10" required id="campaign-delete-form" class="w-full" />
-                        </div>
-
-                        <div class="grid grid-cols-2 gap-2">
-                            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
-                                {{ __('crud.cancel') }}
-                            </x-buttons.confirm>
-                            <x-buttons.confirm type="danger" outline="true" full="true">
-                                <x-icon class="fa-solid fa-sign-out-alt" />
-                                {{ __('campaigns.destroy.confirm-button') }}
-                            </x-buttons.confirm>
-                        </div>
-                    </x-grid>
-                </x-form>
-            @else
-                <p class="">{{ __('campaigns.destroy.helper-v2') }}</p>
-                <a href="{{ route('campaign_users.index', $campaign) }}" class="btn2 btn-sm">
-                    {{ __('campaigns.leave.fix') }}
-                </a>
-            @endif
-        </x-dialog>
-    @endif
 @endsection

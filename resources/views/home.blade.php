@@ -31,7 +31,7 @@ use App\Enums\Widget;
 
         @include('ads.top')
 
-        <div class="dashboard-widgets grid grid-cols-12 gap-4 md:gap-5">
+        <div class="dashboard-widgets grid grid-cols-12 gap-4 md:gap-5 ">
             @if (!$hasCampaignHeader)
                 <div class="col-span-12 flex gap-5 justify-end">
                     @include('dashboard.widgets._actions')
@@ -58,16 +58,18 @@ use App\Enums\Widget;
                         @include('dashboard.widgets._' . $widget->widget->value)
                     </div>
             @endforeach
+
         </div>
 
         @can('dashboard', $campaign)
-            <div class="text-center mt-6">
-                <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 btn-lg btn-primary" title="{{ __('dashboard.settings.title') }}">
+            <div class="my-5 text-center">
+                <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 btn-primary flex gap-1" title="{{ __('dashboard.settings.title') }}">
                     <x-icon class="cog" />
-                    {{ __('dashboard.settings.title') }}
+                    {{ __('dashboard.actions.customise') }}
                 </a>
             </div>
         @endcan
+
     </div>
 @endsection
 

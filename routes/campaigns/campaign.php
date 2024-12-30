@@ -97,7 +97,6 @@ Route::post('/w/{campaign}/leave-for-real', 'Campaign\LeaveController@process')-
 // Campaign CRUD
 Route::get('/w/{campaign}/edit', [App\Http\Controllers\Crud\CampaignController::class, 'edit'])->name('campaigns.edit');
 Route::patch('/w/{campaign}/update', [App\Http\Controllers\Crud\CampaignController::class, 'update'])->name('campaigns.update');
-Route::delete('/w/{campaign}/destroy', [App\Http\Controllers\Crud\CampaignController::class, 'destroy'])->name('campaigns.destroy');
 
 
 Route::post('/w/{campaign}/campaign_styles/bulk', 'Campaign\StyleController@bulk')->name('campaign_styles.bulk');
@@ -193,3 +192,6 @@ Route::get('/w/{campaign}/attributes/api/type/{entity_type}', [App\Http\Controll
 Route::get('/w/{campaign}/attributes/api/entity/{entity}', [App\Http\Controllers\Attributes\ApiController::class, 'entity'])->name('attributes.api-entity');
 
 Route::get('/w/{campaign}/templates/load', [App\Http\Controllers\Templates\LoadController::class, 'index'])->name('templates.load-attributes');
+
+Route::get('/w/{campaign}/deletion', [\App\Http\Controllers\Campaign\DeleteController::class, 'show'])->name('campaign.delete');
+Route::delete('/w/{campaign}/destroy', [App\Http\Controllers\Campaign\DeleteController::class, 'destroy'])->name('campaigns.destroy');

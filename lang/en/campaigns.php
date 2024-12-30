@@ -16,15 +16,6 @@ TEXT
         'success_first_time'    => 'Your campaign has been created! Since it\'s your first campaign, we\'ve created a few things to help you get started and hopefully provide a bit of inspiration on what you can do.',
         'title'                 => 'New Campaign',
     ],
-    'destroy'                           => [
-        'action'            => 'Delete',
-        'confirm'           => 'Are you sure you want to delete :campaign? This action is permanent and can\'t be recovered.',
-        'confirm-button'    => 'Permanently delete the campaign',
-        'helper-v2'         => 'This campaign can\'t be deleted while there are other members in it. Remove the other members first and try again.',
-        'hint'              => 'If so, please write :code on the box below.',
-        'success'           => 'Campaign deleted.',
-        'title'             => 'Delete a campaign',
-    ],
     'edit'                              => [
         'success'   => 'Campaign updated.',
         'title'     => 'Edit Campaign :campaign',
@@ -404,7 +395,7 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'edit'  => 'Edit',
+            'edit'  => 'Edit campaign',
             'leave' => 'Leave',
         ],
         'menus'     => [
@@ -417,8 +408,10 @@ TEXT
             'applications'      => 'Applications',
             'campaign'          => 'Campaign',
             'customisation'     => 'Customisation',
+            'danger'            => 'Danger',
             'data'              => 'Data',
             'default-images'    => 'Default thumbnails',
+            'deletion'          => 'Deletion',
             'export'            => 'Export',
             'import'            => 'Import',
             'information'       => 'Information',

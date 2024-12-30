@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Crud;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DeleteCampaign;
 use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\UpdateCampaign;
 use App\Models\Campaign;
-use App\Services\Campaign\DeletionService;
 use App\Services\MultiEditingService;
 use Exception;
 use Illuminate\Support\Arr;
@@ -17,17 +15,9 @@ class CampaignController extends Controller
 {
     protected string $view = 'campaigns';
 
-    protected DeletionService $deletionService;
-
-    /**
-     * Create a new controller instance.
-     *
-     * CampaignController constructor.
-     */
-    public function __construct(DeletionService $deletionService)
+    public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show', 'css']]);
-        $this->deletionService = $deletionService;
     }
 
     public function show(Campaign $campaign)
@@ -160,20 +150,5 @@ class CampaignController extends Controller
 
         return redirect()->route('overview', $campaign)
             ->with('success', __($this->view . '.edit.success'));
-    }
-
-    public function destroy(DeleteCampaign $request, Campaign $campaign)
-    {
-        $this->authorize('delete', $campaign);
-        if ($request->ajax()) {
-            return response()->json();
-        }
-
-        $this->deletionService
-            ->campaign($campaign)
-            ->user(auth()->user())
-            ->delete();
-
-        return redirect()->route('home');
     }
 }

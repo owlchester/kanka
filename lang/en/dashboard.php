@@ -5,6 +5,7 @@ return [
         'follow'    => 'Follow',
         'join'      => 'Join',
         'unfollow'  => 'Stop following',
+        'customise' => 'Customise dashboard',
     ],
     'campaigns'     => [
         'tabs'  => [
