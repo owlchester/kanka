@@ -75,7 +75,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-81ba96c2.js",
+    "file": "assets/app-60481ff5.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_sortable.esm-89cfb839.js",
@@ -150,7 +150,7 @@
     "src": "resources/js/cookieconsent.js"
   },
   "resources/js/dashboard.js": {
-    "file": "assets/dashboard-4f8d9b43.js",
+    "file": "assets/dashboard-778ee86f.js",
     "imports": [
       "_sortable.esm-89cfb839.js"
     ],
@@ -263,12 +263,12 @@
     "src": "resources/js/vendor-final.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-1d3db63c.css",
+    "file": "assets/app-356411b1.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-74bed53a.css",
+    "file": "assets/auth-03874d7d.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -293,7 +293,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-f4614536.css",
+    "file": "assets/front-3cabf049.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
