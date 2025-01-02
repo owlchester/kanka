@@ -19,17 +19,7 @@ $translations = json_encode([
                 {{ __('conversations.fields.participants') }} {{ $model->participants->count() }}
             </a>
             @include('entities.headers.toggle')
-            @can('update', $model)
-                <a href="{{ $model->getLink('edit') }}" class="btn2 btn-primary btn-sm ">
-                    <x-icon class="pencil" /> {{ __('crud.edit') }}
-                </a>
-            @endcan
-            @can('post', [$model, 'add'])
-                <a href="{{ route('entities.posts.create', [$campaign, $model->entity]) }}" class="btn2 btn-sm btn-new-post"
-                   data-entity-type="post" data-toggle="tooltip" data-title="{{ __('crud.tooltips.new_post') }}">
-                    <x-icon class="plus" /> {{ __('crud.actions.new_post') }}
-                </a>
-            @endcan
+            @include('entities.headers.actions')
         </div>
     @endcan
 @endsection

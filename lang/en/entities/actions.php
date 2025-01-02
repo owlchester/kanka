@@ -10,4 +10,5 @@ return [
         'toggle'    => 'Toggled template status.',
         'unset'     => 'Remove as template',
     ],
+    'new-action-button' => 'I have been moved to here!',
 ];

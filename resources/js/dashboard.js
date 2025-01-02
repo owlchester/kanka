@@ -138,28 +138,6 @@ const renderCalendar = (id, html) => {
     initDashboardCalendars();
 };
 
-const initWelcomePulse = () => {
-    document.querySelectorAll('[data-pulse]').forEach((el) => {
-        el.addEventListener('click', clickWelcomePulse);
-    });
-};
-
-const clickWelcomePulse = (e) => {
-    e.preventDefault();
-    let target = document.querySelector(e.currentTarget.dataset.pulse);
-    let content = e.currentTarget.dataset.content;
-
-    window.showTooltip(target, {
-        content: content,
-        theme: 'kanka',
-        placement: 'bottom',
-        allowHTML: true,
-        arrow: true,
-        interactive: true,
-        trigger: 'manual',
-    });
-};
-
 const initPreviewExpander = () => {
     document.querySelectorAll('.preview-switch').forEach(preview => {
         preview.addEventListener('click', function (e) {
@@ -181,7 +159,6 @@ const initPreviewExpander = () => {
 
 initDashboardCalendars();
 initFollow();
-initWelcomePulse();
 initPreviewExpander();
 initDashboardAdminUI();
 

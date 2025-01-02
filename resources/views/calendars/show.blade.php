@@ -17,19 +17,7 @@ if (!empty($redirect)) {
 @section('entity-header-actions-override')
     <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
         @include('entities.headers.toggle')
-        @can('update', $model)
-            <a href="{{ route('calendars.edit', $options) }}" class="btn2 btn-primary btn-sm ">
-                <x-icon class="pencil" />
-                <span class="hidden xl:inline">{{ __('crud.edit') }}</span>
-            </a>
-        @endcan
-        @can('post', [$model, 'add'])
-            <a href="{{ route('entities.posts.create', [$campaign, $model->entity]) }}" class="btn2 btn-sm btn-new-post"
-               data-entity-type="post" data-toggle="tooltip" data-title="{{ __('crud.tooltips.new_post') }}">
-                <x-icon class="plus" />
-                <span class="hidden xl:inline">{{ __('crud.actions.new_post') }}</span>
-            </a>
-        @endcan
+        @include('entities.headers.actions')
     </div>
 @endsection
 

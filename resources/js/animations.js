@@ -8,6 +8,27 @@ const initAnimations = () => {
     revelers.forEach((e) => {
         e.addEventListener('change', change);
     });
+
+    const pulses = document.querySelectorAll('[data-pulse]');
+    pulses.forEach((e) => {
+        e.addEventListener('click', clickWelcomePulse);
+    });
+};
+
+const clickWelcomePulse = (e) => {
+    e.preventDefault();
+    let target = document.querySelector(e.currentTarget.dataset.pulse);
+    let content = e.currentTarget.dataset.content;
+
+    window.showTooltip(target, {
+        content: content,
+        theme: 'kanka',
+        placement: e.currentTarget.dataset.placement ?? 'bottom',
+        allowHTML: true,
+        arrow: true,
+        interactive: true,
+        trigger: 'manual',
+    });
 };
 
 function toggle(e) {
