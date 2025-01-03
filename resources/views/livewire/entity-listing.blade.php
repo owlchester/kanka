@@ -16,7 +16,7 @@
                 :campaign="$campaign" />
 
             @if ($entity->is_private)
-                <i class="fa-solid fa-lock" title="{{ __('crud.is_private') }}" aria-hidden="true"></i>
+                <x-icon class="lock" tooltip title="{{ __('crud.is_private') }}" />
             @endif
         </div>
 

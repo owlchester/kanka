@@ -53,6 +53,7 @@ class Icon extends Component
             'copy' => 'fa-solid fa-copy',
             'edit' => 'fa-solid fa-edit',
             'premium' => 'fa-solid fa-gem',
+            'lock' => 'fa-solid fa-lock',
             'filter' => 'fa-solid fa-filter',
             'load' => 'fa-solid fa-spinner fa-spin',
             default => $class,
