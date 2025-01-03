@@ -1,5 +1,5 @@
 @if (auth()->check() && auth()->user()->created_at->isBefore(\Carbon\Carbon::create(2024, 12, 25)))
-    <x-tutorial code="s25" type="info" :auth="true">
+    <x-tutorial code="banner_s25" type="info" :auth="true">
         <p>
             We thrive on your feedback! Take a moment to fill out our <a href="https://docs.google.com/forms/d/e/1FAIpQLSepB1v1Es2NV-7axGc8vGeyEHrIehvIHTwV-pU5frZMzKQC7w/viewform?usp=dialog" target="_blank" style="text-decoration: underline"><x-icon class="fa-solid fa-external-link" />2025 Satisfaction Survey</a> and help us improve Kanka.
         </p>
