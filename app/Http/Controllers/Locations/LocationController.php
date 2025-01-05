@@ -24,7 +24,7 @@ class LocationController extends Controller
 
         $options = ['campaign' => $campaign, 'location' => $location];
         $filters = [];
-        if (request()->has('parent_id')) {
+        if ($this->filterToDirect()) {
             $options['parent_id'] = $location->id;
             $filters['location_id'] = $location->id;
         }
@@ -49,6 +49,7 @@ class LocationController extends Controller
 
         return $this
             ->campaign($campaign)
-            ->subview('locations.locations', $location);
+            ->subview('locations.locations', $location)
+        ;
     }
 }

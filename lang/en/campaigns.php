@@ -435,6 +435,10 @@ TEXT
             'collapsed' => 'Collapsed',
             'default'   => 'Default',
         ],
+        'descendants'         => [
+            'direct' => 'Show direct descendants by default',
+            'all'   => 'Show all descendants by default',
+        ],
         'connections'       => [
             'explorer'  => 'Relations explorer (if available, for premium campaigns)',
             'list'      => 'List interface',
@@ -448,6 +452,7 @@ TEXT
             'connections_mode'  => 'Default relations explorer mode',
             'entity_history'    => 'Entity\'s history logs',
             'entity_image'      => 'Entity\'s image',
+            'descendants'       => 'Descendants filtering',
             'member_list'       => 'Campaign\'s member list',
             'post_collapsed'    => 'New post default collapsed value',
         ],
@@ -456,6 +461,7 @@ TEXT
             'connections_mode'  => 'When viewing the relation explorer of an entity, define the default mode that is selected.',
             'entity-history'    => 'Control who can see recent changes made to individual entities of the campaign.',
             'member-list'       => 'Control who can see who\'s in the campaign.',
+            'descendants'       => 'Control the default filtering when loading a sublist. For example a location\'s characters.',
             'other'             => 'Other visual options for the campaign.',
             'post_collapsed'    => 'When creating a new post on an entity, select the collapsed field\'s default value.',
             'theme'             => 'Display the campaign in the member\'s theme, or force it to render in one of the following themes.',

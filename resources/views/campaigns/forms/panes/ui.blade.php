@@ -107,7 +107,7 @@ if (!isset($model) || !$model->boosted()) {
         <h4>{{ __('campaigns.ui.other') }}</h4>
         <x-helper :text="__('campaigns.ui.helpers.other')" />
 
-        <x-grid type="3/3">
+        <x-grid>
             <x-forms.field
                 field="connections"
                 :label="__('campaigns.ui.fields.connections')"
@@ -130,6 +130,14 @@ if (!isset($model) || !$model->boosted()) {
                 :helper="__('campaigns.ui.helpers.post_collapsed')"
                 tooltip>
                 <x-forms.select name="ui_settings[post_collapsed]" :options="[0 => __('campaigns.ui.collapsed.default'), 1 => __('campaigns.ui.collapsed.collapsed')]" :selected="$campaign->ui_settings['post_collapsed'] ?? null"  />
+            </x-forms.field>
+
+            <x-forms.field
+                field="descendants"
+                :label="__('campaigns.ui.fields.descendants')"
+                :helper="__('campaigns.ui.helpers.descendants')"
+                tooltip>
+                <x-forms.select name="ui_settings[descendants]" :options="[0 => __('campaigns.ui.descendants.direct'), 1 => __('campaigns.ui.descendants.all')]" :selected="$campaign->ui_settings['descendants'] ?? null"  />
             </x-forms.field>
         </x-grid>
     </x-grid>
