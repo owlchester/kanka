@@ -346,13 +346,8 @@ class Campaign extends Model
      */
     public function maxEntityFiles(): int
     {
-        if ($this->premium()) {
-            return config('limits.campaigns.files.premium');
-        } elseif ($this->superboosted()) {
-            return config('limits.campaigns.files.superboosted');
-        }
         if ($this->boosted()) {
-            return config('limits.campaigns.files.boosted');
+            return config('limits.campaigns.files.premium');
         }
         return config('limits.campaigns.files.standard');
     }

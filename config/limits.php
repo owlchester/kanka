@@ -14,9 +14,7 @@ return [
          */
         'files' => [
             'standard' => 3,
-            'boosted' => 5,
-            'superboosted' => 10,
-            'premium' => 10,
+            'premium' => 20,
         ]
     ],
 
