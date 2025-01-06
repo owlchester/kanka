@@ -20,7 +20,7 @@
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('organisations.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.organisation')] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Organisation::class"
     :selected="$preset"
     :helper="$helper ?? null"

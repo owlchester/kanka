@@ -24,7 +24,7 @@ class TimelineFilter extends DatagridFilter
                 'field' => 'timeline_id',
                 'label' => Module::singular(config('entities.ids.timeline'), __('entities.timeline')),
                 'type' => 'select2',
-                'route' => route('timelines.find', $this->campaign),
+                'route' => route('search-list', [$this->campaign, config('entities.ids.timeline')]),
                 'placeholder' =>  $placeholder,
                 'model' => Timeline::class,
             ])

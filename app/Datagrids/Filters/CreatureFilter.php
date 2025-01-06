@@ -18,7 +18,7 @@ class CreatureFilter extends DatagridFilter
                 'field' => 'creature_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
-                'route' => route('creatures.find', $this->campaign),
+                'route' => route('search-list', [$this->campaign, config('entities.ids.creature')]),
                 'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Creature::class,
             ])

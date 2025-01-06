@@ -19,7 +19,7 @@ if (isset($model) && $model->parent) {
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('creatures.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.creature')] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Creature::class"
     :selected="$preset"
     :helper="$helper ?? null"

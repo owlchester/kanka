@@ -23,7 +23,7 @@ elseif(!empty($model)) {
 ?>
 <label>{{ \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations')) }}</label>
 
-<select multiple="multiple" name="organisations[]" class=" select2" data-tags="true" style="width: 100%" data-url="{{ route('organisations.find', $campaign) }}" data-allow-clear="true" data-allow-new="false" data-placeholder="">
+<select multiple="multiple" name="organisations[]" class=" select2" data-tags="true" style="width: 100%" data-url="{{ route('search-list', [$campaign, config('entities.ids.organisation')]) }}" data-allow-clear="true" data-allow-new="false" data-placeholder="">
     @foreach ($selectedOption as $key => $val)
         <option value="{{ $key }}" selected="selected">{{ $val }}</option>
     @endforeach

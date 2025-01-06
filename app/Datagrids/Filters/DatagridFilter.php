@@ -60,7 +60,7 @@ abstract class DatagridFilter
             'field' => 'location_id',
             'label' => Module::singular(config('entities.ids.location'), __('entities.location')),
             'type' => 'select2',
-            'route' => route('locations.find', $this->campaign),
+            'route' => route('search-list', [$this->campaign, config('entities.ids.location')]),
             'placeholder' =>  $placeholder,
             'model' => Location::class,
             'withChildren' => true,
@@ -83,7 +83,7 @@ abstract class DatagridFilter
             'field' => $field,
             'label' => Module::singular(config('entities.ids.character'), __('entities.character')),
             'type' => 'select2',
-            'route' => route('characters.find', $this->campaign),
+            'route' => route('search-list', [$this->campaign, config('entities.ids.character')]),
             'placeholder' =>  $placeholder,
             'model' => Character::class,
         ];
@@ -105,7 +105,7 @@ abstract class DatagridFilter
             'field' => 'journal_id',
             'label' => Module::singular(config('entities.ids.journal'), __('entities.journal')),
             'type' => 'select2',
-            'route' => route('journals.find', $this->campaign),
+            'route' => route('search-list', [$this->campaign, config('entities.ids.journal')]),
             'placeholder' =>  $placeholder,
             'model' => Journal::class,
         ];
@@ -127,7 +127,7 @@ abstract class DatagridFilter
             'field' => 'tags',
             'label' => Module::singular(config('entities.ids.tag'), __('entities.tag')),
             'type' => 'tag',
-            'route' => route('tags.find', $this->campaign),
+            'route' => route('search-list', [$this->campaign, config('entities.ids.tag')]),
             'placeholder' =>  $placeholder,
             'model' => Tag::class,
         ];

@@ -20,7 +20,7 @@
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('locations.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.location')] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Location::class"
     :selected="$preset"
     :dropdownParent="$dropdownParent ?? null"

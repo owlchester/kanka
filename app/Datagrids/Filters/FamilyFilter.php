@@ -18,7 +18,7 @@ class FamilyFilter extends DatagridFilter
                 'field' => 'family_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
-                'route' => route('families.find', $this->campaign),
+                'route' => route('search-list', [$this->campaign, config('entities.ids.family')]),
                 'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Family::class,
             ])

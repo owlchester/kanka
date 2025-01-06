@@ -19,7 +19,7 @@ if (isset($model) && $model->parent) {
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('maps.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.map')] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Map::class"
     :selected="$preset"
     :dropdownParent="$dropdownParent ?? null"

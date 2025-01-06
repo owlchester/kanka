@@ -19,7 +19,7 @@ class EventFilter extends DatagridFilter
                 'field' => 'event_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
-                'route' => route('events.find', $this->campaign),
+                'route' => route('search-list', [$this->campaign, config('entities.ids.event')]),
                 'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Event::class,
             ])

@@ -23,7 +23,7 @@
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
     :placeholder="isset($multiple) && $multiple ? __('crud.placeholders.multiple') : null"
-    :route="route('items.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.item')] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Item::class"
     :selected="$preset"
     :helper="$helper ?? null"

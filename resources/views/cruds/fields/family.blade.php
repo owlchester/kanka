@@ -18,7 +18,7 @@
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('families.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.family')] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Family::class"
     :selected="$preset"
     :dropdownParent="$dropdownParent ?? null"

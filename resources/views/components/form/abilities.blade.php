@@ -14,7 +14,7 @@ if (!is_array($filterOptions)) {
     $filterOptions = [$filterOptions];
 }
 // From source to exclude duplicates
-$searchParams = [$campaign];
+$searchParams = [$campaign, config('entities.id.ability')];
 if (Arr::has($options, 'exclude', false)) {
     $searchParams['exclude'] = Arr::get($options, 'exclude');
 } elseif (Arr::has($options, 'exclude-entity', false)) {
@@ -54,7 +54,7 @@ elseif(!empty($model) && !empty($model->entity)) {
     id="{{ Arr::get($options, 'id', 'abilities[]') }}"
     class="w-full form-tags form-abilities"
     style="width: 100%"
-    data-url="{{ route('abilities.find', $searchParams) }}"
+    data-url="{{ route('search-list', $searchParams) }}"
     data-allow-new="{{ $enableNew ? 'true' : 'false' }}"
     data-allow-clear="{{ Arr::get($options, 'allowClear', 'true') }}"
     data-new-tag="{{ __('abilities.new_ability') }}"

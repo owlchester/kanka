@@ -19,7 +19,7 @@ if (isset($model) && $model->parent) {
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('quests.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.quest')] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Quest::class"
     :selected="$preset"
     :helper="$helper ?? null"

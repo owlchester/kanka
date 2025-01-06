@@ -19,7 +19,7 @@ if (isset($model) && $model->parent) {
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('notes.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.note')] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Note::class"
     :selected="$preset"
     :helper="$helper ?? null"
