@@ -195,3 +195,6 @@ Route::get('/w/{campaign}/templates/load', [App\Http\Controllers\Templates\LoadC
 
 Route::get('/w/{campaign}/deletion', [App\Http\Controllers\Campaign\DeleteController::class, 'show'])->name('campaign.delete');
 Route::delete('/w/{campaign}/destroy', [App\Http\Controllers\Campaign\DeleteController::class, 'destroy'])->name('campaigns.destroy');
+
+Route::get('/w/{campaign}/sidebar/image', [\App\Http\Controllers\Campaign\ImageController::class, 'index'])->name('campaign.sidebar.image');
+Route::post('/w/{campaign}/sidebar/image', [\App\Http\Controllers\Campaign\ImageController::class, 'save'])->name('campaign.sidebar.image-save');
