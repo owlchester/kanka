@@ -28,8 +28,7 @@ class FamilyController extends Controller
             $filters['parent'] = $family->id;
         }
         Datagrid::layout(\App\Renderers\Layouts\Family\Family::class)
-            ->route('families.families', $options)
-        ;
+            ->route('families.families', $options);
 
         $this->rows = $family
             ->descendants()
