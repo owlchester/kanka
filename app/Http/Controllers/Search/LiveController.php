@@ -37,7 +37,7 @@ class LiveController extends Controller
             }
             $type = (int) $type;
         }
-        $exclude = mb_trim($request->get('exclude'));
+        $exclude = mb_trim($request->get('exclude', ''));
         if ($exclude === 'undefined') {
             $exclude = null;
         }

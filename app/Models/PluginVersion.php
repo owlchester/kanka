@@ -159,7 +159,8 @@ class PluginVersion extends Model
 
         // Blacklisted commands
         $html = str_replace([
-            '@php', '@dd', '@inject', '@yield', '@section', '@auth', '@guest', '@env', '@once', '@push', '@csrf',
+            '@php', '@dd', '@inject', '@yield', '@section', '@session', '@env', '@once', '@push', '@csrf',
+            '@use',
             '@include', '\Illuminate\\'
         ], [
             '', '', '', '', '', '', '', '', '', '', '', '', ''
