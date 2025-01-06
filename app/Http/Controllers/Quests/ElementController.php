@@ -29,6 +29,7 @@ class ElementController extends Controller
         $datagridSorter->request(request()->all());
 
         $model = $quest;
+        $entity = $model->entity;
         $elements = $quest
             ->elements()
             ->with('entity')
@@ -38,6 +39,7 @@ class ElementController extends Controller
         return view('quests.elements.index', compact(
             'campaign',
             'model',
+            'entity',
             'elements',
             'datagridSorter'
         ));

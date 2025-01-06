@@ -19,6 +19,7 @@
                 <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>({{ $model->children()->count() }})
             </a>
         @endif
+        @include('entities.headers.actions', ['edit' => false])
     </div>
 @endsection
 

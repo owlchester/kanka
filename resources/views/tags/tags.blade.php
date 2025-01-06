@@ -26,6 +26,7 @@
                 ({{ $model->children()->count() }})
             </a>
         @endif
+        @include('entities.headers.actions', ['edit' => false])
     </div>
 @endsection
 

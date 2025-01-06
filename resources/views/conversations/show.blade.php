@@ -12,15 +12,15 @@ $translations = json_encode([
 
 @section('entity-header-actions-override')
     @can('update', $model)
-        <div class="header-buttons inline-block  flex gap-2 items-center justify-end">
+        <div class="header-buttons flex gap-2 items-center justify-end">
             <a class="btn2 btn-sm" data-toggle="dialog-ajax" data-target="primary-dialog"
                     data-url="{{ route('conversations.conversation_participants.index', [$campaign, $model]) }}">
                 <x-icon class="fa-solid fa-users" />
                 {{ __('conversations.fields.participants') }} {{ $model->participants->count() }}
             </a>
             @include('entities.headers.toggle')
-            @include('entities.headers.actions')
         </div>
+        @include('entities.headers.actions')
     @endcan
 @endsection
 

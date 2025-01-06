@@ -9,7 +9,7 @@
 ])
 
 @section('entity-header-actions')
-    <div class="header-buttons inline-block ml-auto">
+    <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
         @if ($mode === \App\Enums\Descendants::Direct)
             <a href="{{ route('abilities.abilities', [$campaign, $model, 'm' => \App\Enums\Descendants::All]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
@@ -23,6 +23,7 @@
                 ({{ $model->children()->count() }})
             </a>
         @endif
+        @include('entities.headers.actions', ['edit' => false])
     </div>
 @endsection
 

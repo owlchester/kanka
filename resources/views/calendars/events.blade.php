@@ -23,6 +23,7 @@
                 {{ __('calendars.events.filters.show_all') }}
             </a>
         @endif
+        @include('entities.headers.actions', ['edit' => false])
     </div>
 @endsection
 
