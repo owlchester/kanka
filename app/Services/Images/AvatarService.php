@@ -138,13 +138,13 @@ class AvatarService
             $url = Img::crop($this->width, $this->height)
                 ->url(CampaignCache::defaultImages()[$this->entity->type()]);
             return $this->return($url);
-        } elseif (auth()->check() && auth()->user()->isGoblin()) {
+        } elseif ($this->campaign->boosted() || (auth()->check() && auth()->user()->isGoblin())) {
             // Goblins and above have nicer icons
             return $this->return($cloudfront . '/images/defaults/subscribers/' . $this->entity->pluralType() . '.jpeg');
         }
 
         // Default fallback
-        return $this->return($cloudfront . '/images/defaults/' . $this->entity->pluralType() . '_thumb.jpg');
+        return $this->return($cloudfront . '/images/defaults/thumbnail.jpg');
     }
 
     protected function return(string $url): string
