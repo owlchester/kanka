@@ -14,7 +14,7 @@ class EntityLink implements ValidationRule
     /**
      * Run the validation rule.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param  Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
@@ -25,7 +25,7 @@ class EntityLink implements ValidationRule
 
         // Extract the campaign and entity
         $value = Str::after($value, config('app.url'));
-        $value = trim($value, '/');
+        $value = mb_trim($value, '/');
 
         $segments = explode('/', $value);
         // 0: lang

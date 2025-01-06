@@ -76,7 +76,7 @@ class EntityService
      */
     public function singular(string $entity): string
     {
-        $singular = rtrim($entity, 's');
+        $singular = mb_rtrim($entity, 's');
         if ($entity == 'families') {
             $singular = 'family';
         } elseif ($entity == 'abilities') {

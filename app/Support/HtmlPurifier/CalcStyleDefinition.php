@@ -30,7 +30,7 @@ class CalcStyleDefinition extends HTMLPurifier_AttrDef
      */
     public function validate($string, $config, $context)
     {
-        $string = trim($string);
+        $string = mb_trim($string);
         if (!$this->caseSensitive) {
             // we may want to do full case-insensitive libraries
             $string = ctype_lower($string) ? $string : mb_strtolower($string);

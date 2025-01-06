@@ -22,7 +22,7 @@ trait ApiRequest
             }
 
             // Remove any required| rule, and remove any alone |
-            $rules[$field] = trim(
+            $rules[$field] = mb_trim(
                 str_replace('required|', '', $rule),
                 '|'
             );

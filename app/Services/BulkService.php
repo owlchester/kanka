@@ -219,7 +219,7 @@ class BulkService
             if (is_array($value) && !empty($value)) {
                 $filledFields[$field] = $value;
             } elseif (!empty($value)) {
-                $filledFields[$field] = trim($value);
+                $filledFields[$field] = mb_trim($value);
             }
         }
 

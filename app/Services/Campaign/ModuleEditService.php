@@ -27,13 +27,13 @@ class ModuleEditService
 
         $singular = $plural = $icon = null;
         if ($request->filled('singular')) {
-            $singular = $this->purify(trim($request->get('singular')));
+            $singular = $this->purify(mb_trim($request->get('singular')));
         }
         if ($request->filled('plural')) {
-            $plural = $this->purify(trim($request->get('plural')));
+            $plural = $this->purify(mb_trim($request->get('plural')));
         }
         if ($request->filled('icon')) {
-            $icon = $this->purify(trim($request->get('icon')));
+            $icon = $this->purify(mb_trim($request->get('icon')));
         }
 
         if (!empty($singular)) {

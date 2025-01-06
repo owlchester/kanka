@@ -179,7 +179,7 @@ class Quest extends MiscModel
         if ($operator === 'not like') {
             return $query
                 ->whereRaw('(select count(*) from quest_elements as qe where qe.quest_id =' . $this->getTable() . '.id and qe.role = \''
-                    . ltrim($value, '!') . '\') = 0');
+                    . mb_ltrim($value, '!') . '\') = 0');
         }
         return $query
             ->select($this->getTable() . '.*')

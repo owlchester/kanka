@@ -62,7 +62,7 @@ trait HasVisibility
             $icon['key'] = __('visibilities.helpers.members');
         }
 
-        $icon['class'] = rtrim($icon['class'] . ' ' . $extra);
+        $icon['class'] = mb_rtrim($icon['class'] . ' ' . $extra);
 
         return $icon;
     }

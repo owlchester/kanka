@@ -185,8 +185,8 @@ class CalendarSanitizer extends MiscSanitizer
     {
         // Calculate date
         $year = $this->request->post('current_year', '1');
-        $month = ltrim($this->request->post('current_month', '1'), '0');
-        $day = ltrim($this->request->post('current_day', '1'), '0');
+        $month = mb_ltrim($this->request->post('current_month', '1'), '0');
+        $day = mb_ltrim($this->request->post('current_day', '1'), '0');
         $monthLengths = $this->request->post('month_length', []);
 
         // Empty values and skipping year 0
