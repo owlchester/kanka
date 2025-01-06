@@ -65,7 +65,7 @@ class LiveSearchService
                 // @phpstan-ignore-next-line
                 $format['colour'] = $model->colourClass();
             }
-            if (method_exists($model, 'thumbnail')) {
+            if (method_exists($model->entity, 'thumbnail')) {
                 $format['image'] = Avatar::entity($model->entity)->fallback()->size(40)->thumbnail();
             }
 
