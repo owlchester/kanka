@@ -16,7 +16,6 @@ return [
         'pitches'       => [
             'element-class' => 'Give this element a custom CSS class with a :boosted-campaign.',
             'icon'          => 'Unlock millions of custom icons from FontAwesome with a :boosted-campaign.',
-            'link-parent'   => 'Place a bookmark exactly where you want it in the sidebar with a :boosted-campaign.',
         ],
         'titles'        => [
             'boosted'       => 'Boosted feature',
