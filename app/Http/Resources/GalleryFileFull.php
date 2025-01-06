@@ -19,7 +19,7 @@ class GalleryFileFull extends JsonResource
         $file = $this->resource;
 
         $mentions = [];
-        foreach($file->inEntities() as $entity) {
+        foreach ($file->inEntities() as $entity) {
             $mentions[] = [
                 'url' => $entity->url(),
                 'name' => $entity->name,

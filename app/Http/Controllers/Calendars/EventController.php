@@ -81,7 +81,7 @@ class EventController extends Controller
         $date = request()->get('date', '1-1-1');
         list($year, $month, $day) = explode('-', $date);
         if (Str::startsWith($date, '-')) {
-            list($year, $month, $day) = explode('-', trim($date, '-'));
+            list($year, $month, $day) = explode('-', mb_trim($date, '-'));
             $year = "-{$year}";
         }
 

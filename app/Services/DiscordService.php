@@ -270,7 +270,7 @@ class DiscordService
             ];
         }
 
-        $url = $this->url . ltrim($api, '/');
+        $url = $this->url . mb_ltrim($api, '/');
         $response = $client->post($url, ['form_params' => $body, 'headers' => $headers]);
 
         return json_decode($response->getBody());
@@ -288,7 +288,7 @@ class DiscordService
             ];
         }
 
-        $url = $this->url . ltrim($api, '/');
+        $url = $this->url . mb_ltrim($api, '/');
 
         if ($action === 'put') {
             $response = $client->{$action}($url, ['json' => $body, 'headers' => $headers]);

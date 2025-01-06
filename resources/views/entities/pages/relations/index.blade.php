@@ -25,6 +25,7 @@
             </a>
         @endif
         @include('entities.pages.relations._buttons')
+        @include('entities.headers.actions', ['edit' => false])
     </div>
 @endsection
 

@@ -22,15 +22,13 @@ class FamilyController extends Controller
     {
         $this->campaign($campaign)->authEntityView($family->entity);
 
-        $options = ['campaign' => $campaign, 'family' => $family];
+        $options = ['campaign' => $campaign, 'family' => $family, 'm' => $this->descendantsMode()];
         $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $family->id;
+        if ($this->filterToDirect()) {
             $filters['parent'] = $family->id;
         }
         Datagrid::layout(\App\Renderers\Layouts\Family\Family::class)
-            ->route('families.families', $options)
-        ;
+            ->route('families.families', $options);
 
         $this->rows = $family
             ->descendants()

@@ -620,7 +620,7 @@ class CrudController extends Controller
             }
             return response()->redirectTo($route);
         } catch (LogicException $exception) {
-            $error =  str_replace(' ', '_', mb_strtolower(rtrim($exception->getMessage(), '.')));
+            $error =  str_replace(' ', '_', mb_strtolower(mb_rtrim($exception->getMessage(), '.')));
             return redirect()->back()->withInput()->with('error', __('crud.errors.' . $error));
         }
     }

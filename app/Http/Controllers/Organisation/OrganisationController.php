@@ -22,10 +22,9 @@ class OrganisationController extends Controller
     {
         $this->campaign($campaign)->authEntityView($organisation->entity);
 
-        $options = ['campaign' => $campaign, 'organisation' => $organisation];
+        $options = ['campaign' => $campaign, 'organisation' => $organisation, 'm' => $this->descendantsMode()];
         $filters = [];
-        if (request()->has('parent_id')) {
-            $options['organisation_id'] = $organisation->id;
+        if ($this->filterToDirect()) {
             $filters['organisation_id'] = $organisation->id;
         }
 

@@ -31,7 +31,7 @@ class SearchApiController extends ApiController
     {
         $this->authorize('access', $campaign);
 
-        $term = trim($search);
+        $term = mb_trim($search);
         $enabledEntities = $this->entity->campaign($campaign)->getEnabledEntitiesID();
         $models = Entity::whereIn('type_id', $enabledEntities)->where('name', 'like', "%{$term}%")->limit(10)->get();
 

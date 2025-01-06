@@ -22,10 +22,9 @@ class TagController extends Controller
     {
         $this->campaign($campaign)->authEntityView($tag->entity);
 
-        $options = ['campaign' => $campaign, 'tag' => $tag];
+        $options = ['campaign' => $campaign, 'tag' => $tag, 'm' => $this->descendantsMode()];
         $filters = [];
-        if (request()->has('tag_id')) {
-            $options['tag_id'] = $tag->id;
+        if ($this->filterToDirect()) {
             $filters['tag_id'] = $tag->id;
         }
 

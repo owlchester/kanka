@@ -23,10 +23,9 @@ class MemberController extends Controller
     {
         $this->campaign($campaign)->authEntityView($family->entity);
 
-        $options = ['campaign' => $campaign, 'family' => $family];
+        $options = ['campaign' => $campaign, 'family' => $family, 'm' => $this->descendantsMode()];
         $relation = 'allMembers';
-        if (request()->has('family_id')) {
-            $options['family_id'] = $family->id;
+        if ($this->filterToDirect()) {
             $relation = 'members';
         }
         Datagrid::layout(\App\Renderers\Layouts\Family\Character::class)

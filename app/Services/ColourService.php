@@ -11,7 +11,7 @@ class ColourService
      */
     public function contrastBW(string $colour): string
     {
-        $hexColour = trim($colour, '#');
+        $hexColour = mb_trim($colour, '#');
         // Don't re-check already calculated values
         if (isset($this->calculated[$hexColour])) {
             return $this->calculated[$hexColour];

@@ -2,14 +2,23 @@
  * @var \App\Models\Entity $entity
  * @var \App\Models\MiscModel $model
  * @var \App\Models\Campaign $campaign
- * */?>
+ * */
+if (!isset($model)) {
+    $model = $entity->child;
+}
+if (!isset($entity)) {
+    $entity = $model->entity;
+}
+?>
 
+@if (!isset($edit) || $edit !== false)
 @can('update', $model)
     <a href="{{ $model->getLink('edit') }}" class="btn2 btn-sm ">
         <x-icon class="pencil" />
         {{ __('crud.edit') }}
     </a>
 @endcan
+@endif
 
 
 <div class="dropdown entity-actions-dropdown flex items-center">

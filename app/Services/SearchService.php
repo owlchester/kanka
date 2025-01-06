@@ -174,7 +174,7 @@ class SearchService
             $availableEntityTypes = array_diff($availableEntityTypes, $this->excludedTypes);
         }
 
-        $cleanTerm = ltrim(str_replace('_', ' ', $this->term), '=');
+        $cleanTerm = mb_ltrim(str_replace('_', ' ', $this->term), '=');
         $query = Entity::inTypes($availableEntityTypes);
         if (empty($this->term)) {
             $query->orderBy('updated_at', 'DESC');
@@ -205,7 +205,7 @@ class SearchService
                     });
             } else {
                 if (Str::startsWith($this->term, '=')) {
-                    $query->where('name', ltrim($this->term, '='));
+                    $query->where('name', mb_ltrim($this->term, '='));
                 } else {
                     $query->where('name', 'like', '%' . $this->term . '%');
                 }

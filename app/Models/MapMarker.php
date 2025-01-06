@@ -638,7 +638,7 @@ class MapMarker extends Model
     public function hasEntry(): bool
     {
         // If all that's in the entry is two \n, then there is no real content
-        $stripped = trim(preg_replace('/\s\s+/', ' ', $this->entry));
+        $stripped = mb_trim(preg_replace('/\s\s+/', ' ', $this->entry));
         return !empty($stripped);
     }
 

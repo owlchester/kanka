@@ -28,9 +28,6 @@ class AccountController extends Controller
         $this->deletionService = $deletionService;
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index()
     {
         $user = auth()->user();
@@ -54,8 +51,6 @@ class AccountController extends Controller
             ->with('success', __('settings.account.password_success'));
     }
 
-    /**
-     */
     public function email(StoreSettingsAccountEmail $request)
     {
         if ($request->ajax()) {
@@ -69,9 +64,6 @@ class AccountController extends Controller
             ->with('success', __('settings.account.email_success'));
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function social(StoreSettingsAccountSocial $request)
     {
         if (empty(auth()->user()->provider)) {
@@ -96,8 +88,6 @@ class AccountController extends Controller
             ->with('success', __('settings.account.social.success'));
     }
 
-    /**
-     */
     public function destroy(DeleteSettingsAccount $request)
     {
         if ($request->ajax()) {

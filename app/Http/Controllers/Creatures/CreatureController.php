@@ -22,10 +22,9 @@ class CreatureController extends Controller
     {
         $this->campaign($campaign)->authEntityView($creature->entity);
 
-        $options = ['campaign' => $campaign, 'creature' => $creature];
+        $options = ['campaign' => $campaign, 'creature' => $creature, 'm' => $this->descendantsMode()];
         $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $creature->id;
+        if ($this->filterToDirect()) {
             $filters['creature_id'] = $creature->id;
         }
         Datagrid::layout(\App\Renderers\Layouts\Creature\Creature::class)

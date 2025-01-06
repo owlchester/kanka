@@ -30,7 +30,7 @@ class CalendarWeatherController extends Controller
         $date = request()->get('date');
         list($year, $month, $day) = explode('-', $date);
         if (str_starts_with($date, '-')) {
-            list($year, $month, $day) = explode('-', trim($date, '-'));
+            list($year, $month, $day) = explode('-', mb_trim($date, '-'));
             $year = '-' . $year;
         }
 

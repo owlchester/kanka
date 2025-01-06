@@ -193,5 +193,5 @@ Route::get('/w/{campaign}/attributes/api/entity/{entity}', [App\Http\Controllers
 
 Route::get('/w/{campaign}/templates/load', [App\Http\Controllers\Templates\LoadController::class, 'index'])->name('templates.load-attributes');
 
-Route::get('/w/{campaign}/deletion', [\App\Http\Controllers\Campaign\DeleteController::class, 'show'])->name('campaign.delete');
+Route::get('/w/{campaign}/deletion', [App\Http\Controllers\Campaign\DeleteController::class, 'show'])->name('campaign.delete');
 Route::delete('/w/{campaign}/destroy', [App\Http\Controllers\Campaign\DeleteController::class, 'destroy'])->name('campaigns.destroy');

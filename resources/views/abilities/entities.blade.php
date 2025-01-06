@@ -7,14 +7,15 @@
 ])
 
 @section('entity-header-actions')
-    @can('update', $model)
-        <div class="header-buttons inline-block ml-auto">
+    <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
+        @can('update', $model)
             <a href="{{ route('abilities.entity-add', [$campaign, $model]) }}" class="btn2 btn-sm"
                data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('abilities.entity-add', [$campaign, $model]) }}">
                 <x-icon class="plus" /> <span class="hidden md:inline">{{ __('abilities.children.actions.attach') }}</span>
             </a>
-        </div>
-    @endcan
+        @endcan
+        @include('entities.headers.actions', ['edit' => false])
+    </div>
 @endsection
 
 

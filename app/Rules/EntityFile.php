@@ -11,7 +11,7 @@ class EntityFile implements ValidationRule
     /**
      * Run the validation rule.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param  Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
@@ -55,7 +55,7 @@ class EntityFile implements ValidationRule
         ];
 
         return ($value instanceof UploadedFile)
-            ? in_array(trim(mb_strtolower($value->getClientOriginalExtension())), $phpExtensions)
-            : in_array(trim(mb_strtolower($value->getExtension())), $phpExtensions);
+            ? in_array(mb_trim(mb_strtolower($value->getClientOriginalExtension())), $phpExtensions)
+            : in_array(mb_trim(mb_strtolower($value->getExtension())), $phpExtensions);
     }
 }

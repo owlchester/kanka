@@ -29,7 +29,7 @@ class MiscController extends Controller
      */
     public function locations(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Location::class, $exclude);
     }
@@ -41,7 +41,7 @@ class MiscController extends Controller
         if ($request->has('with_family')) {
             return $this->familyCharacters($request, $campaign);
         }
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         return $this->buildSearchResults($term, Character::class);
     }
 
@@ -49,7 +49,7 @@ class MiscController extends Controller
      */
     protected function familyCharacters(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
 
         /** @var Builder|Character $modelClass */
         $modelClass = new Character();
@@ -84,7 +84,7 @@ class MiscController extends Controller
      */
     public function families(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Family::class, $exclude);
     }
@@ -93,7 +93,7 @@ class MiscController extends Controller
      */
     public function items(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         return $this->buildSearchResults($term, \App\Models\Item::class);
     }
 
@@ -101,7 +101,7 @@ class MiscController extends Controller
      */
     public function organisations(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Organisation::class, $exclude);
     }
@@ -110,7 +110,7 @@ class MiscController extends Controller
      */
     public function events(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Event::class, $exclude);
     }
@@ -119,7 +119,7 @@ class MiscController extends Controller
      */
     public function quests(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Quest::class, $exclude);
     }
@@ -128,7 +128,7 @@ class MiscController extends Controller
      */
     public function calendars(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Calendar::class, $exclude);
     }
@@ -137,7 +137,7 @@ class MiscController extends Controller
      */
     public function timelines(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Timeline::class, $exclude);
     }
@@ -146,7 +146,7 @@ class MiscController extends Controller
      */
     public function tags(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, Tag::class, $exclude);
     }
@@ -155,7 +155,7 @@ class MiscController extends Controller
      */
     public function diceRolls(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         return $this->buildSearchResults($term, \App\Models\DiceRoll::class);
     }
 
@@ -163,7 +163,7 @@ class MiscController extends Controller
      */
     public function conversations(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         return $this->buildSearchResults($term, \App\Models\Conversation::class);
     }
 
@@ -171,7 +171,7 @@ class MiscController extends Controller
      */
     public function races(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Race::class, $exclude);
     }
@@ -180,7 +180,7 @@ class MiscController extends Controller
      */
     public function creatures(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Creature::class, $exclude);
     }
@@ -189,7 +189,7 @@ class MiscController extends Controller
      */
     public function maps(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Map::class, $exclude);
     }
@@ -198,7 +198,7 @@ class MiscController extends Controller
      */
     public function markers(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         //parent map_id allowed for the marker (limits search to the markers of the map only)
         $include = $request->has('include') ? [$request->get('include')] : [];
 
@@ -208,7 +208,7 @@ class MiscController extends Controller
         //Search text
         if (!empty($term)) {
             if (Str::startsWith($term, '=')) {
-                $modelClass->where('name', ltrim($term, '='));
+                $modelClass->where('name', mb_ltrim($term, '='));
             } else {
                 $modelClass->where('name', 'like', "%{$term}%");
             }
@@ -239,7 +239,7 @@ class MiscController extends Controller
      */
     public function notes(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Note::class, $exclude);
     }
@@ -248,7 +248,7 @@ class MiscController extends Controller
      */
     public function journals(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\Journal::class, $exclude);
     }
@@ -257,7 +257,7 @@ class MiscController extends Controller
      */
     public function abilities(Request $request, Campaign $campaign)
     {
-        $term = trim($request->get('q', null));
+        $term = mb_trim($request->get('q', null));
         $exclude = [];
         if ($request->has('exclude-entity')) {
             /** @var Entity $entity */
@@ -273,7 +273,7 @@ class MiscController extends Controller
      */
     public function attributeTemplates(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
         $exclude = $request->has('exclude') ? [$request->get('exclude')] : [];
         return $this->buildSearchResults($term, \App\Models\AttributeTemplate::class, $exclude);
     }
@@ -300,7 +300,7 @@ class MiscController extends Controller
                 ->whereNotIn('id', $excludes);
             // Exact match
             if (Str::startsWith($term, '=')) {
-                $models->where('name', ltrim($term, '='));
+                $models->where('name', mb_ltrim($term, '='));
             } else {
                 $models->where('name', 'like', "%{$term}%");
             }

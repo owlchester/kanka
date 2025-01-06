@@ -9,8 +9,8 @@
 
 
 @section('entity-header-actions')
-    @can('update', $model)
-        <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
+    <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
+        @can('update', $model)
             <a href="https://docs.kanka.io/en/latest/entities/maps/layers.html" class="btn2 btn-sm" target="_blank">
                 <x-icon class="question" />
                 <span class="hidden xl:inline">{{ __('crud.actions.help') }}</span>
@@ -27,8 +27,9 @@
                 <x-icon class="plus" />
                 <span class="hidden xl:inline">{{ __('maps/layers.actions.add') }}</span>
             </a>
-        </div>
-    @endcan
+        @endcan
+        @include('entities.headers.actions', ['edit' => false])
+    </div>
 @endsection
 
 @section('content')

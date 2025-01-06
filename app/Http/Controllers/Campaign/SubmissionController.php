@@ -49,7 +49,7 @@ class SubmissionController extends Controller
         return view('campaigns.submissions.show')
             ->with('application', $campaignSubmission)
             ->with('campaign', $campaign)
-            ;
+        ;
     }
 
     public function edit(Campaign $campaign, CampaignSubmission $campaignSubmission)

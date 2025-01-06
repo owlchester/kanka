@@ -3,7 +3,7 @@
 namespace App\Traits\Controllers;
 
 use App\Facades\Datagrid;
-use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 trait HasDatagrid
 {
