@@ -13,7 +13,7 @@ $visibilities = [
     <x-grid type="1/1">
         <x-helper :text="__('campaigns.helpers.permissions_tab')" />
 
-        <x-grid type="3/3">
+        <x-grid>
             <x-forms.field
                 field="privacy"
                 :label="__('campaigns.fields.entity_privacy')"

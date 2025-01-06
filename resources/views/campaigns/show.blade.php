@@ -46,7 +46,7 @@
                     @endif
 
                     @can('update', $campaign)
-                        <a href="{{ route('campaigns.edit', $campaign) }}" class="btn2 btn-primary btn-sm" title="{{ __('campaigns.show.actions.edit') }}">
+                        <a href="{{ route('campaigns.edit', $campaign) }}" class="btn2 btn-sm" title="{{ __('campaigns.show.actions.edit') }}">
                             <x-icon class="edit" />
                             {{ __('campaigns.show.actions.edit') }}
                         </a>
