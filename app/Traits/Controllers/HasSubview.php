@@ -27,6 +27,11 @@ trait HasSubview
         return $this->descendantsMode() === Descendants::Direct;
     }
 
+    protected function filterToAll(): bool
+    {
+        return $this->descendantsMode() === Descendants::All;
+    }
+
     protected function descendantsMode(): Descendants
     {
         if (isset($this->descendantsMode)) {
@@ -35,8 +40,7 @@ trait HasSubview
         if (request()->has('m')) {
             if (request()->get('m') == Descendants::All->value) {
                 return $this->descendantsMode = Descendants::All;
-            }
-             elseif (request()->get('m') == Descendants::Direct->value) {
+            } elseif (request()->get('m') == Descendants::Direct->value) {
                 return $this->descendantsMode = Descendants::Direct;
             }
         }

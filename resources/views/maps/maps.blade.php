@@ -12,16 +12,16 @@
 
 @section('entity-header-actions')
     <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
-        @if (request()->has('map_id'))
-            <a href="{{ route('maps.maps', [$campaign, $model, '#map-maps']) }}" class="btn2 btn-sm">
+        @if ($mode === \App\Enums\Descendants::Direct)
+            <a href="{{ route('maps.maps', [$campaign, $model, 'm' => \App\Enums\Descendants::All]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span>
+                <span class="hidden lg:inline">{{ __('crud.filters.all') }}</span>
                 ({{ $model->descendants->count() }})
             </a>
         @else
-            <a href="{{ route('maps.maps', [$campaign, $model, 'map_id' => $model->id, '#map-maps']) }}" class="btn2 btn-sm">
+            <a href="{{ route('maps.maps', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct, '#map-maps']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>
+                <span class="hidden lg:inline">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->children->count() }})
             </a>
         @endif

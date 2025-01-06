@@ -35,7 +35,7 @@ TEXT
     'fields'                            => [
         'boosted'                           => 'Boosted by',
         'character_personality_visibility'  => 'Default character personality visibility',
-        'connections'                       => 'Show an entity\'s connection table by default (instead of relation explorer for premium campaigns)',
+        'connections'                       => 'Show an entity\'s connection table by default (instead of connections map for premium campaigns)',
         'css'                               => 'CSS',
         'description'                       => 'Description',
         'entity_count'                      => 'Entity Count',
@@ -86,7 +86,7 @@ TEXT
         'premium'                           => 'Some features require premium features te be unlocked. Find out more about :settings.',
         'public_campaign_filters'           => 'Help others find the campaign among other public campaigns by providing the following information.',
         'public_no_visibility'              => 'Heads up! The campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
-        'related_visibility'                => 'Default Visibility value when creating a new element with this field (posts, relations, abilities, etc)',
+        'related_visibility'                => 'Default Visibility value when creating a new element with this field (posts, connections, abilities, etc)',
         'system'                            => 'If your campaign is publicly visible, the system is shown in the :link page.',
         'systems'                           => 'To avoid cluttering users with options, some features of Kanka are only available with specific RPG systems (ie the D&D 5e monster stat block). Adding supported systems here will enable those features.',
         'theme'                             => 'Force the theme for the campaign, overriding a user\'s preference.',
@@ -440,7 +440,7 @@ TEXT
             'all'   => 'Show all descendants by default',
         ],
         'connections'       => [
-            'explorer'  => 'Relations explorer (if available, for premium campaigns)',
+            'explorer'  => 'Connections map (if available, for premium campaigns)',
             'list'      => 'List interface',
         ],
         'entity_history'    => [
@@ -449,7 +449,7 @@ TEXT
         ],
         'fields'            => [
             'connections'       => 'Default entity\'s connections interface',
-            'connections_mode'  => 'Default relations explorer mode',
+            'connections_mode'  => 'Default connections map mode',
             'entity_history'    => 'Entity\'s history logs',
             'entity_image'      => 'Entity\'s image',
             'descendants'       => 'Descendants filtering',
@@ -458,7 +458,7 @@ TEXT
         ],
         'helpers'           => [
             'connections'       => 'When clicking on the connections subpage of an entity, select the default interface showed.',
-            'connections_mode'  => 'When viewing the relation explorer of an entity, define the default mode that is selected.',
+            'connections_mode'  => 'When viewing the connections map of an entity, define the default mode that is selected.',
             'entity-history'    => 'Control who can see recent changes made to individual entities of the campaign.',
             'member-list'       => 'Control who can see who\'s in the campaign.',
             'descendants'       => 'Control the default filtering when loading a sublist. For example a location\'s characters.',

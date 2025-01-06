@@ -22,10 +22,9 @@ class AbilityController extends Controller
     {
         $this->campaign($campaign)->authEntityView($ability->entity);
 
-        $options = ['campaign' => $campaign, 'ability' => $ability];
+        $options = ['campaign' => $campaign, 'ability' => $ability, 'm' => $this->descendantsMode()];
         $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $ability->id;
+        if ($this->filterToDirect()) {
             $filters['ability_id'] = $ability->id;
         }
         Datagrid::layout(\App\Renderers\Layouts\Ability\Ability::class)

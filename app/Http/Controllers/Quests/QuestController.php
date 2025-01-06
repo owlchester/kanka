@@ -22,10 +22,9 @@ class QuestController extends Controller
     {
         $this->campaign($campaign)->authEntityView($quest->entity);
 
-        $options = ['campaign' => $campaign, 'quest' => $quest];
+        $options = ['campaign' => $campaign, 'quest' => $quest, 'm' => $this->descendantsMode()];
         $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $quest->id;
+        if ($this->filterToDirect()) {
             $filters['quest_id'] = $quest->id;
         }
 

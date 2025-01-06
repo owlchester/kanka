@@ -1,7 +1,7 @@
 <?php
 /** @var \App\Models\Ability $model */
 // Only get the data by AJAX if this is included with a 'onload' param
-$allChildren = request()->has('parent_id');
+$allChildren = (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->has('m') && $campaign->defaultDescendantsMode() === \App\Enums\Descendants::All));
 $datagridOptions = [];
 
 if (!empty($onload)) {
@@ -11,7 +11,7 @@ if (!empty($onload)) {
         'init' => 1,
     ];
     if ($allChildren) {
-        $routeOptions['parent_id'] = $model->id;
+        $routeOptions['m'] = \App\Enums\Descendants::All;
     }
     $routeOptions = Datagrid::initOptions($routeOptions);
     $datagridOptions =
@@ -30,7 +30,7 @@ if (!empty($onload)) {
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">
         @if (!$allChildren)
-            <a href="{{ route('entities.show', [$campaign, $entity, 'parent_id' => $model->id, '#abilities-abilities']) }}" class="btn2 btn-sm">
+            <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::All, '#abilities-abilities']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">
                     {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
@@ -40,7 +40,7 @@ if (!empty($onload)) {
                 </span>
             </a>
         @else
-            <a href="{{ $entity->url() }}" class="btn2 btn-sm">
+            <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::Direct, '#abilities-abilities']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
 
                 <span class="hidden xl:inline">

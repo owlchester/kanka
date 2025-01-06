@@ -13,14 +13,14 @@
         <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
             <x-icon class="question" /> {{ __('crud.actions.help') }}
         </a>
-        @if (request()->has('tag_id'))
-            <a href="{{ route('tags.tags', [$campaign, $model, '#tag-tags']) }}" class="btn2 btn-sm">
+        @if ($mode === \App\Enums\Descendants::Direct)
+            <a href="{{ route('tags.tags', [$campaign, $model, 'm' => \App\Enums\Descendants::All, '#tag-tags']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden md:inline">{{ __('crud.filters.all') }}</span>
                 ({{ $model->descendants()->count() }})
             </a>
         @else
-            <a href="{{ route('tags.tags', [$campaign, $model, 'tag_id' => $model->id, '#tag-tags']) }}" class="btn2 btn-sm">
+            <a href="{{ route('tags.tags', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct, '#tag-tags']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden md:inline">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->children()->count() }})

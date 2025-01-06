@@ -4,14 +4,14 @@
  * @var \App\Models\Character $character
  */
 
-$allMembers = true;
+$allMembers = false;
 $datagridOptions = [
     $campaign,
     $model,
     'init' => 1
 ];
-if (request()->has('race_id')) {
-    $datagridOptions['race_id'] = (int) $model->id;
+if (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->has('m') && $campaign->defaultDescendantsMode() === \App\Enums\Descendants::All)) {
+    $datagridOptions['m'] = \App\Enums\Descendants::All;
     $allMembers = true;
 }
 $datagridOptions = Datagrid::initOptions($datagridOptions);
@@ -22,14 +22,14 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         {!! \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')) !!}
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">
-        @if (request()->has('race_id'))
-            <a href="{{ $entity->url() }}" class="btn2 btn-sm">
+        @if (!$allMembers)
+            <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::All]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span>
                 ({{ $model->allCharacters()->count() }})
             </a>
         @else
-            <a href="{{ route('entities.show', [$campaign, $entity, 'race_id' => $model->id]) }}" class="btn2 btn-sm">
+            <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::Direct]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>
                 ({{ $model->characters()->count() }})

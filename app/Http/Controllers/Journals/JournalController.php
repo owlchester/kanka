@@ -22,10 +22,9 @@ class JournalController extends Controller
     {
         $this->campaign($campaign)->authEntityView($journal->entity);
 
-        $options = ['campaign' => $campaign, 'journal' => $journal];
+        $options = ['campaign' => $campaign, 'journal' => $journal, 'm' => $this->descendantsMode()];
         $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $journal->id;
+        if ($this->filterToDirect()) {
             $filters['journal_id'] = $journal->id;
         }
         Datagrid::layout(\App\Renderers\Layouts\Journal\Journal::class)

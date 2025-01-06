@@ -22,10 +22,9 @@ class TimelineController extends Controller
     {
         $this->campaign($campaign)->authEntityView($timeline->entity);
 
-        $options = ['campaign' => $campaign, 'timeline' => $timeline];
+        $options = ['campaign' => $campaign, 'timeline' => $timeline, 'm' => $this->descendantsMode()];
         $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $timeline->id;
+        if ($this->filterToDirect()) {
             $filters['timeline_id'] = $timeline->id;
         }
 

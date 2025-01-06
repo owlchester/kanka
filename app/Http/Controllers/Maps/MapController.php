@@ -22,10 +22,9 @@ class MapController extends Controller
     {
         $this->campaign($campaign)->authEntityView($map->entity);
 
-        $options = ['campaign' => $campaign, 'map' => $map];
+        $options = ['campaign' => $campaign, 'map' => $map, 'm' => $this->descendantsMode()];
         $base = 'descendants';
-        if (request()->has('map_id')) {
-            $options['map_id'] = $map->id;
+        if ($this->filterToDirect()) {
             $base = 'children';
         }
 
