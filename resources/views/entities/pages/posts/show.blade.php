@@ -1,2 +1,2 @@
-@includeWhen($post->layout_id && $campaign->superboosted(), 'entities.components._post_layouts')
-@includeWhen(!$post->layout_id, 'entities.components._post')
+@includeWhen($post->layout_id && $campaign->superboosted(), 'entities.components.posts.custom')
+@includeWhen(!$post->layout_id, 'entities.components.posts.standard')

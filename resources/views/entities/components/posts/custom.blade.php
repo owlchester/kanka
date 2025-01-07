@@ -9,7 +9,7 @@
     <div class="flex gap-2 items-center">
         <h3 class="grow" >
             {{ $post->name  }}
-            @if (app()->environment('local'))
+            @if (app()->isLocal())
                 <sup class="text-xs">({{ $post->position }})</sup>
             @endif
         </h3>
@@ -80,8 +80,14 @@
             Datagrid::layout(\App\Renderers\Layouts\Location\Character::class)
                 ->route('locations.characters', $options);
 
+            $filters = [];
+            if ($campaign->defaultDescendantsMode() === \App\Enums\Descendants::Direct) {
+                $filters['location_id'] = $entity->child->id;
+            }
+
             $rows = $entity->child
                 ->allCharacters()
+                ->filter($filters)
                 ->filteredCharacters()
                 ->paginate();
             $rows->withPath(route('locations.characters', $options));
@@ -95,8 +101,14 @@
             Datagrid::layout(\App\Renderers\Layouts\Location\Event::class)
                 ->route('locations.events', $options);
 
+            $filters = [];
+            if ($campaign->defaultDescendantsMode() === \App\Enums\Descendants::Direct) {
+                $filters['location_id'] = $entity->child->id;
+            }
+
             $rows = $entity->child
                 ->allEvents()
+                ->filter($filters)
                 ->filteredEvents()
                 ->paginate();
             $rows->withPath(route('locations.events', $options));

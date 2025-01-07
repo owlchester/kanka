@@ -41,8 +41,7 @@ $postCount = 0;
         @if ($post->layout_id && !$campaign->superboosted())
             @continue
         @endif
-        @includeWhen($post->layout_id && $campaign->superboosted(), 'entities.components._post_layouts')
-        @includeWhen(!$post->layout_id, 'entities.components._post')
+        @include('entities.pages.posts.show')
         @includeWhen($postCount > 0 && $postCount % 3 === 0, 'ads.inline')
         @php $postCount++; @endphp
     @endforeach
