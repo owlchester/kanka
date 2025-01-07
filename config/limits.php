@@ -22,7 +22,8 @@ return [
      * Default file upload size for standard user, in MB
      */
     'filesize' => [
-        'image' => env('APP_IMAGE_SIZE_MB', 1),
+        'image' => env('APP_IMAGE_SIZE_MB', 3),
+        'map' => env('APP_MAP_SIZE_MB', 5),
     ],
 
     'gallery' => [

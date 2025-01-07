@@ -32,7 +32,7 @@ class LimitService
         if (!$this->user->isSubscriber() && (!isset($this->campaign) || !$this->campaign->boosted())) {
             $min = config('limits.filesize.image');
             if ($this->map) {
-                $min = 3;
+                $min = config('limits.filesize.map');
             }
             $size = ($min * 1024);
         } elseif ($this->user->isElemental()) {
