@@ -6,7 +6,7 @@ return [
     'created'           => '{0} No :plural created|{1} One :singular created|[2,*] :amount :plural created',
     'dead'              => '{0} No murder mysteries|{1} One muder mystery|[2,*] :amount murder mysteries',
     'goal'              => 'Goal :number',
-    'goal_reached'      => 'The campaign has unlocked the following achievement:',
+    'goal_reached'      => 'Unlocked achievement',
     'level'             => 'level :number',
     'markers'           => '{0} No map markers created|{1} One map marker created|[2,*] :amount map markers created',
     'painter'           => '{0} No themes created|{1} One theme created|[2,*] :amount themes created',
