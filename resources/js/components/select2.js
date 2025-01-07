@@ -37,8 +37,9 @@ window.initForeignSelect = function () {
         }
 
         // Check it isn't the select2-icon
+        console.log('select2', field, field.dataset.allowNew === 'true');
         $(field).select2({
-            tags: false,
+            tags: field.dataset.allowNew === 'true',
             placeholder: placeholder,
             allowClear: allowClear || true,
             language: field.dataset.language,
@@ -73,7 +74,17 @@ window.initForeignSelect = function () {
             templateResult: formatResultList,
             templateSelection: formatResult,
             createTag: function (data) {
-                return null;
+                let term = data.term?.trim();
+
+                if (term === '') {
+                    return null;
+                }
+
+                return {
+                    id: term,
+                    text: term + ' (' + field.dataset.newTag + ')',
+                    newTag: true // add additional parameters
+                };
             }
         });
     });

@@ -18,6 +18,7 @@
     key="location"
     entityType="locations"
     :allowNew="$allowNew ?? true"
+    :dynamicNew="$dynamicNew ?? false"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
     :route="route('search-list', [$campaign, config('entities.ids.location')] + (isset($model) ? ['exclude' => $model->id] : []))"

@@ -12,71 +12,37 @@ use Illuminate\View\Component;
 
 class Foreign extends Component
 {
-    public Campaign $campaign;
-    public string $name;
-    public string $id;
-    public ?string $key;
-    public mixed $route;
-    /** @var mixed|Entity|null */
-    public mixed $selected;
-    public bool $parent;
-    public bool $allowNew;
-    public bool $allowClear;
-    public bool $required;
-    public bool $multiple;
-    public ?string $entityType;
-    public ?string $label;
-    public ?string $placeholder;
-    public ?string $helper;
     //public mixed $model;
     public array $options = [];
-    public ?string $dropdownParent;
     public ?string $className;
-    public ?int $entityTypeID;
 
     /**
      * Create a new component instance.
      */
     public function __construct(
-        Campaign $campaign,
-        string $name,
-        string $id = null,
-        mixed $selected = null,
-        mixed $route = null,
-        bool $allowNew = false,
-        bool $allowClear = false,
-        bool $required = false,
-        bool $parent = false,
-        bool $multiple = false,
-        string $entityType = null,
-        string $key = null,
-        string $label = null,
-        string $placeholder = null,
-        string $helper = null,
-        string $dropdownParent = null,
-        int $entityTypeID = null,
-        //mixed $model = null,
+        public Campaign $campaign,
+        public string $name,
+        public string $id = '',
+        public mixed $selected = null,
+        public mixed $route = null,
+        public bool $allowNew = false,
+        public bool $dynamicNew = false,
+        public bool $allowClear = false,
+        public bool $required = false,
+        public bool $parent = false,
+        public bool $multiple = false,
+        public string $entityType = '',
+        public string $key = '',
+        public string $label = '',
+        public string $placeholder = '',
+        public string $helper = '',
+        public ?string $dropdownParent = '',
+        public ?int $entityTypeID = null,
         mixed $class = null,
     ) {
-        $this->name = $name;
-        $this->selected = $selected;
-        $this->route = $route;
-        $this->allowNew = $allowNew;
-        $this->entityType = $entityType;
-        $this->allowClear = $allowClear;
-        $this->key = $key;
-        $this->parent = $parent;
-        $this->label = $label;
-        $this->placeholder = $placeholder;
-        $this->required = $required;
-        //$this->model = $model;
-        $this->helper = $helper;
-        $this->dropdownParent = $dropdownParent;
         $this->id = $id ?? $name . '_' . uniqid();
         $this->className = $class;
-        $this->entityTypeID = $entityTypeID;
-        $this->campaign = $campaign;
-        $this->multiple = $multiple;
+
     }
 
     /**

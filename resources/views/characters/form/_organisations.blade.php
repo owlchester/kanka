@@ -27,7 +27,7 @@ $statuses = [
             <div class="flex flex-wrap md:flex-nowrap items-center gap-2 md:gap-2 member-row">
                 <div class="field">
                     <select name="organisations[{{ $organisation->id }}]" class="w-full select2" style="width: 100%"
-                        data-url="{{ route('search-list', [$this->campaign, config('entities.ids.organisation')] }}"
+                        data-url="{{ route('search-list', [$campaign, config('entities.ids.organisation')]) }}"
                         data-placeholder="{{ __('crud.placeholders.organisation') }}"
                         data-language="{{ LaravelLocalization::getCurrentLocale() }}"
                         data-allow-clear="false"
@@ -78,7 +78,7 @@ $statuses = [
         <div class="flex flex-wrap md:flex-nowrap items-center gap-2 md:gap-2 member-row">
             <div class="field">
                 <select name="organisations[]" class="w-full tmp-org" style="width: 100%"
-                        data-url="{{ route('search-list', [$this->campaign, config('entities.ids.organisation')]) }}"
+                        data-url="{{ route('search-list', [$campaign, config('entities.ids.organisation')]) }}"
                         data-placeholder="{{ __('crud.placeholders.organisation') }}"
                         data-language="{{ LaravelLocalization::getCurrentLocale() }}"
                 >
