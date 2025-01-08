@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\CampaignStyle $style */?>
 @extends('layouts.app', [
-    'title' => __('campaigns/sidebar.title', ['campaign' => $campaign->name]),
+    'title' => __('campaigns.show.tabs.sidebar') . ' - ' . $campaign->name,
     'breadcrumbs' => [
         __('campaigns.show.tabs.sidebar')
     ],

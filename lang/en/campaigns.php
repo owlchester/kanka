@@ -422,6 +422,7 @@ TEXT
             'recovery'          => 'Recovery',
             'roles'             => 'Roles',
             'sidebar'           => 'Sidebar',
+            'stats'             => 'Stats',
             'styles'            => 'Theming',
             'webhooks'          => 'Webhooks',
         ],
@@ -478,4 +479,9 @@ TEXT
         'public'    => 'Public campaign',
         'review'    => 'Awaiting Review',
     ],
+    'status' => [
+        'title' => 'Premium features',
+        'free' => 'Premium features disabled.',
+        'premium' => 'Premium features unlocked by :name.',
+    ]
 ];

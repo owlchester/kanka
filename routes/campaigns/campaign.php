@@ -58,7 +58,7 @@ Route::post('/w/{campaign}/recovery', 'Campaign\RecoveryController@recover')->na
 Route::get('/w/{campaign}/recovery-setup', 'Campaign\RecoveryController@setup')->name('recovery.setup');
 
 // Stats
-Route::get('/w/{campaign}/achievements', 'Campaign\AchievementController@index')->name('stats');
+Route::get('/w/{campaign}/achievements', 'Campaign\AchievementController@index')->name('campaign.achievements');
 
 // User search
 Route::get('/w/{campaign}/users/search', 'Campaign\UserController@search')->name('users.find');
@@ -198,3 +198,5 @@ Route::delete('/w/{campaign}/destroy', [App\Http\Controllers\Campaign\DeleteCont
 
 Route::get('/w/{campaign}/sidebar/image', [App\Http\Controllers\Campaign\ImageController::class, 'index'])->name('campaign.sidebar.image');
 Route::post('/w/{campaign}/sidebar/image', [App\Http\Controllers\Campaign\ImageController::class, 'save'])->name('campaign.sidebar.image-save');
+
+Route::get('/w/{campaign}/stats', [App\Http\Controllers\Campaign\StatController::class, 'index'])->name('campaign.stats');

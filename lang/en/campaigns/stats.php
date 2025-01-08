@@ -22,7 +22,7 @@ return [
         'locations' => 'Create :target locations',
         'races'     => 'Create :target races',
     ],
-    'title'         => 'Campaign :campaign Achievements',
+    'title2'         => 'Statistics',
     'titles'        => [
         'calendars' => 'Time Keeper level :level',
         'characters'=> 'Name Giver level :level',
@@ -32,4 +32,10 @@ return [
         'quests'    => 'Mastermind level :level',
         'races'     => 'Breeder level :level',
     ],
+    'fields' => [
+        'created' => 'Created on',
+        'creator' => 'Created by',
+        'general' => 'General',
+    ],
+    'cached' => 'These statistics are recalculated every :amount hours.',
 ];

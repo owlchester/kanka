@@ -513,6 +513,9 @@ class Campaign extends Model
      */
     public function follower(): int
     {
+        if (app()->isLocal() && request()->has('_followers')) {
+            return request()->get('_followers');
+        }
         return (int) $this->follower;
     }
 
