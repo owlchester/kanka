@@ -412,7 +412,8 @@ class SearchService
         // Fill data with hardcoded pages and roles
         $this
             ->addCampaignPage('crud.tabs.overview', 'overview')
-            ->addCampaignPage('campaigns.show.tabs.achievements', 'stats')
+            ->addCampaignPage('campaigns.show.tabs.achievements', 'campaign.achievements')
+            ->addCampaignPage('campaigns.show.tabs.stats', 'campaign.stats')
             ->addCampaignPage('campaigns.show.tabs.members', 'campaign_users.index', 'members')
             ->addCampaignPage('campaigns.show.tabs.roles', 'campaign_roles.index', 'roles')
             ->addCampaignPage('campaigns.show.tabs.applications', 'campaign_submissions.index', 'submissions')
