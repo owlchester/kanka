@@ -77,6 +77,10 @@ class PasswordConfirm
      */
     protected function shouldConfirmPassword($request)
     {
+        if (app()->isLocal()) {
+            return false;
+        }
+
         $confirmedAt = time() - $request->session()->get('auth.password_confirmed_at', 0);
 
         return $confirmedAt > $this->passwordTimeout;

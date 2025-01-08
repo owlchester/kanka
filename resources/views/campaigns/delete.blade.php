@@ -45,7 +45,7 @@
                         </p>
 
                         <div class="required field flex gap-2 flex-wrap">
-                            <input type="text" name="delete" value="" autofocus maxlength="10" required id="campaign-delete-form" class="w-full" />
+                            <input type="text" name="delete" @if (app()->isLocal()) value="delete" @endif autofocus maxlength="10" required id="campaign-delete-form" class="w-full" />
 
                             <x-buttons.confirm type="danger" full="true">
                                 <x-icon class="trash" />
