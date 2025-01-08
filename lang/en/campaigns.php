@@ -433,7 +433,7 @@ TEXT
         'title'     => 'Overview - :name',
     ],
     'themes'                            => [
-        'none'  => 'None (defaults to member settings)',
+        'none'  => 'None (defaults to user\'s preference)',
     ],
     'ui'                                => [
         'collapsed'         => [

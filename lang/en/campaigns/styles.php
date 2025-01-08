@@ -46,12 +46,12 @@ return [
         'title'     => 'Reorder styles',
     ],
     'theme'         => [
-        'success'   => 'Campaign theme updated.',
-        'title'     => 'Update the campaign theme',
+        'success'   => 'Theme override updated.',
+        'title'     => 'Update the theme override',
         'none' => 'Use user\'s preference',
-        'override' => 'Campaign theme override'
+        'override' => 'Theme override'
     ],
-    'title'         => 'Campaign Theming',
+    'title'         => 'Theming',
     'update'        => [
         'success'   => 'Style :name updated.',
         'title'     => 'Update style',

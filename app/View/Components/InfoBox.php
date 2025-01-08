@@ -18,10 +18,12 @@ class InfoBox extends Component
         public ?string $url,
         public ?string $subtitle,
         public ?string $color,
+        public ?string $urlTooltip,
         public ?Campaign $campaign,
         public string $target = 'primary-dialog',
         public string $background = 'bg-neutral',
         public string $subtitleColour = 'text-neutral-content',
+        public string $urlIcon = 'fa-solid fa-angle-right',
         public bool $ajax = false,
         public bool $premium = false,
     )

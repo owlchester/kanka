@@ -10,12 +10,12 @@
     </div>
     @if ($url)
         @if ($ajax)
-            <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" data-target="{{ $target }}" data-url="{{ $url }}" data-toggle="dialog-ajax">
-                <x-icon class="fa-solid fa-angle-right" />
+            <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" data-target="{{ $target }}" data-url="{{ $url }}" data-toggle="dialog-ajax" @if ($urlTooltip) data-tooltip data-title="{{ $urlTooltip }}" @endif>
+                <x-icon class="{{ $urlIcon }}"/>
             </div>
         @else
-            <a class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" href="{{ $route }}" >
-                <x-icon class="fa-solid fa-angle-right" />
+            <a class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" href="{{ $route }}" @if ($urlTooltip) data-tooltip data-title="{{ $urlTooltip }}" @endif >
+                <x-icon class="{{ $urlIcon }}" />
             </a>
         @endif
     @elseif ($premium && !$campaign->boosted())

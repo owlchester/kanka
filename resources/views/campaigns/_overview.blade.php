@@ -34,87 +34,53 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
         </div>
         @if (!$campaign->boosted() && auth()->check())
             @if (auth()->user()->hasBoosterNomenclature()) {
-                <a class="rounded border h-12 gap-2 flex items-center justify-center cursor-pointer" href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}">
+                <a class="rounded border h-12 gap-2 flex items-center justify-center cursor-pointer neutral-link" href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}">
                     <x-icon class="fa-solid fa-angle-right" />
                     {{ __('crud.actions.enable') }}
                 </a>
             @else
-                <a class="rounded-full border h-12 w-12 flex gap-2 items-center justify-center cursor-pointer" href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" data-tooltip data-title="{{ __('campaigns/overview.premium.enable') }}">
+                <a class="rounded-full border h-12 w-12 flex gap-2 items-center justify-center cursor-pointer neutral-link" href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" data-tooltip data-title="{{ __('campaigns/overview.premium.enable') }}">
                     <x-icon class="fa-solid fa-angle-right" />
                 </a>
             @endif
         @elseif (auth()->check())
-            <a class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" href="{{ route('settings.premium') }}" >
+            <a class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer neutral-link" href="{{ route('settings.premium') }}" >
                 <x-icon class="fa-solid fa-angle-right" />
             </a>
         @endif
     </x-box>
 
-    <x-box css="flex items-center gap-5">
-        <div class="rounded {{ $campaign->isPublic() ? 'bg-green-200' : 'bg-neutral' }} w-12 h-12 flex items-center justify-center">
-            <x-icon class="fa-solid {{ $campaign->isPublic() ? 'fa-check text-green-600' : 'fa-lock text-neutral-content' }}" />
-        </div>
-        <div class="flex flex-col gap-0 grow">
-            <span>{!! __('crud.fields.visibility') !!}</span>
-            @if ($campaign->isPublic())
-                <span class="text-green-600">{!! __('campaigns/submissions.public.public') !!}</span>
-            @else
-                <span class="text-neutral-content">{!! __('campaigns/submissions.public.private') !!}</span>
-            @endif
-        </div>
-        @can('update', $campaign)
-        <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" data-url="{{ route('campaign-visibility', [$campaign, 'from' => 'overview']) }}" data-target="primary-dialog" data-toggle="dialog-ajax">
-            <x-icon class="fa-solid fa-angle-right" />
-        </div>
-        @endcan
-    </x-box>
+
+    <x-infoBox
+        title="{{ __('crud.fields.visibility') }}"
+        icon="{{ $campaign->isPublic() ? 'fa-solid fa-check text-green-600' : 'fa-solid fa-lock text-neutral-content' }}"
+        subtitle="{{ $campaign->isPublic() ? __('campaigns/submissions.public.public') : __('campaigns/submissions.public.private') }}"
+        background="{{ $campaign->isPublic() ? 'bg-green-200' : 'bg-neutral' }}"
+        subtitleColour="{{ $campaign->isPublic() ? 'text-green-600' : 'text-neutral-content' }}"
+        :campaign="$campaign"
+        :url="auth()->check() && auth()->user()->can('update', $campaign) ? route('campaign-visibility', [$campaign, 'from' => 'overview']) : null"
+        :urlTooltip="__('campaigns/public.title')"
+        ajax
+    ></x-infoBox>
 
     @if (auth()->check() && $campaign->userIsMember())
-        <x-box css="flex items-center gap-5">
-            <div class="rounded bg-neutral w-12 h-12 flex items-center justify-center">
-                <x-icon class="fa-solid fa-clock text-neutral-content" />
-            </div>
-            <div class="flex flex-col gap-0 grow">
-                <span>{!! __('campaigns/overview.member.title') !!}</span>
-                <span class="text-neutral-content">{!! __('users/profile.fields.member_since', ['date' => $campaign->members()->where('user_id', auth()->user()->id)->first()?->created_at->isoFormat('MMMM D, Y')]) !!}</span>
-            </div>
-            <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" data-target="leave-confirm" data-url="{{ route('campaign.leave', $campaign) }}" data-toggle="dialog-ajax">
-                <x-icon class="fa-solid fa-angle-right" />
-            </div>
-        </x-box>
+        <x-infoBox
+            title="{{ __('campaigns/overview.member.title') }}"
+            icon="fa-solid fa-clock text-neutral-content"
+            subtitle="{{ __('users/profile.fields.member_since', ['date' => $campaign->members()->where('user_id', auth()->user()->id)->first()?->created_at->isoFormat('MMMM D, Y')]) }}"
+            :campaign="$campaign"
+            :url="route('campaign.leave', $campaign)"
+            :urlTooltip="__('campaigns.leave.title')"
+            ajax
+        ></x-infoBox>
     @endif
 
     @if ($campaign->isPublic())
-    <x-box css="flex items-center gap-5">
-        <div class="rounded w-12 h-12 flex bg-neutral items-center justify-center">
-            <x-icon class="fa-solid fa-users text-neutral-content" />
-        </div>
-        <div class="flex flex-col gap-0 grow">
-            <span>{!! __('campaigns/overview.followers.title') !!}</span>
-            <span class="text-neutral-content">
-                {{ trans_choice('campaigns.overview.follower-count', $campaign->follower(), ['amount' => number_format($campaign->follower())]) }}
-            </span>
-        </div>
-    </x-box>
+        <x-infoBox
+            :title="__('campaigns/overview.followers.title')"
+            icon="fa-solid fa-users text-neutral-content"
+            :subtitle="trans_choice('campaigns.overview.follower-count', $campaign->follower(), ['amount' => number_format($campaign->follower())])"
+        ></x-infoBox>
     @endif
 </div>
 
-{{--<div class="flex flex-wrap gap-5">--}}
-
-{{--    <a href="#" class="{{ $boxClass }}" data-toggle="dialog"--}}
-{{--         data-target="entity-count">--}}
-{{--        <i class="fa-solid fa-globe fa-2x" aria-hidden="true"></i>--}}
-{{--        <div class="">--}}
-{{--            {{ trans_choice('campaigns.overview.entity-count', \App\Facades\CampaignCache::entityCount(), ['amount' => number_format(\App\Facades\CampaignCache::entityCount())]) }}--}}
-{{--        </div>--}}
-{{--    </a>--}}
-{{--</div>--}}
-
-@section('modals')
-    @parent
-    <x-dialog id="entity-count" :title="__('campaigns.fields.entity_count')">
-        <p>
-            {{ __('campaigns.helpers.entity_count_v3', ['amount' => 6]) }}
-        </p>
-    </x-dialog>
-@endsection

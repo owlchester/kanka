@@ -26,7 +26,7 @@
         <x-grid>
             <x-infoBox
                 title="{{ __('campaigns/members.overview.title') }}"
-                icon="{{ $campaign->boosted() ? 'fa-solid fa-infinity text-green-500' : 'fa-solid fa-warning text-red-500' }}"
+                icon="{{ $campaign->boosted() ? 'fa-solid fa-infinity text-green-600' : 'fa-solid fa-warning text-red-500' }}"
                 subtitle="{{  __('campaigns/members.overview.' . ($campaign->boosted() ? 'unlimited' : 'limited'), ['total' => $campaign->memberLimit(), 'amount' => $rows->total()]) }}"
                 background="{{ $campaign->boosted() ? 'bg-green-200' : 'bg-red-200' }}"
                 :campaign="$campaign"
