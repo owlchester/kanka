@@ -1,6 +1,6 @@
 <div class="flex gap-2 items-center">
     <h3 class="inline-block grow">
-        {{ __('campaigns.show.tabs.roles') }} <span class="text-sm">({{ $roles->total() }} / @if ($limit = $campaign->roleLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</span>
+        {{ __('campaigns.show.tabs.roles') }}
     </h3>
     <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
             data-target="roles-help">
@@ -17,6 +17,17 @@
         </a>
     @endif
 </div>
+
+<x-grid>
+    <x-infoBox
+        title="{{ __('campaigns/roles.overview.title') }}"
+        icon="{{ $campaign->boosted() ? 'fa-solid fa-infinity text-green-500' : 'fa-solid fa-warning text-red-500' }}"
+        subtitle="{{  __('campaigns/roles.overview.' . ($campaign->boosted() ? 'unlimited' : 'limited'), ['total' => $campaign->roleLimit(), 'amount' => $roles->total()]) }}"
+        background="{{ $campaign->boosted() ? 'bg-green-200' : 'bg-red-200' }}"
+        :campaign="$campaign"
+        premium
+    ></x-infoBox>
+</x-grid>
 
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\CampaignRole $plugin

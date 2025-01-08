@@ -129,6 +129,10 @@ TEXT
             'type'      => 'Type',
             'usage'     => 'Expires after',
         ],
+        'helpers' => [
+            'usage' => 'How many times the invite link can be used before it becomes inactive.',
+            'role' => 'Users need to join before they can be promoted to the admin role.'
+        ],
         'unlimited_validity'    => 'Unlimited',
         'usages'                => [
             'five'      => '5 uses',
