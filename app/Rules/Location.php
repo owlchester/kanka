@@ -2,7 +2,6 @@
 
 namespace App\Rules;
 
-use App\Facades\Module;
 use App\Models\EntityType;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
@@ -12,7 +11,7 @@ class Location implements ValidationRule
     /**
      * Run the validation rule.
      *
-     * @param  \Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param  Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
@@ -26,7 +25,7 @@ class Location implements ValidationRule
             $fail(__('crud.dynamic.unknown', ['module' => $module->name()]));
         }
 
-        if (empty(trim($value))) {
+        if (empty(mb_trim($value))) {
             return;
         }
 

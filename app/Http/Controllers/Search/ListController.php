@@ -21,10 +21,10 @@ class ListController extends Controller
     {
         return response()->json(
             $this->service
-            ->campaign($campaign)
-            ->request($request)
-            ->entityType($entityType)
-            ->search()
+                ->campaign($campaign)
+                ->request($request)
+                ->entityType($entityType)
+                ->search()
         );
     }
 }

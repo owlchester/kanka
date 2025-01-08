@@ -4,7 +4,6 @@ namespace App\View\Components\Forms;
 
 use App\Facades\Module;
 use App\Models\Campaign;
-use App\Models\Entity;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
