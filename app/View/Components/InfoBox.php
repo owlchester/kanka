@@ -26,9 +26,8 @@ class InfoBox extends Component
         public string $urlIcon = 'fa-solid fa-angle-right',
         public bool $ajax = false,
         public bool $premium = false,
-    )
-    {
-        //
+    ) {
+
     }
 
     /**
