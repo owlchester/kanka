@@ -47,6 +47,8 @@ return [
         'title'     => 'Réordonner les styles',
     ],
     'theme'         => [
+        'none'      => 'Utiliser les préférences de l\'utilisateur',
+        'override'  => 'Forçage de thème',
         'success'   => 'Thème de la campagne modifié.',
         'title'     => 'Modifier le thème de la campagne.',
     ],

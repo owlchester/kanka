@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'templates' => [
+    'new-action-button' => 'J\'ai été déplacé ici!',
+    'templates'         => [
         'set'       => 'Définir comme modèle',
         'success'   => [
             'set'   => 'L\'entité :name définie comme modèle.',

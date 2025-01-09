@@ -2,10 +2,10 @@
 
 return [
     'actions'       => [
+        'customise' => 'Customise dashboard',
         'follow'    => 'Follow',
         'join'      => 'Join',
         'unfollow'  => 'Stop following',
-        'customise' => 'Customise dashboard',
     ],
     'campaigns'     => [
         'tabs'  => [

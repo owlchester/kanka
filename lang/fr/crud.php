@@ -114,6 +114,10 @@ return [
     'destroy_many'              => [
         'success'   => ':count élément supprimé.|:count éléments supprimés.',
     ],
+    'dynamic'                   => [
+        'permission'    => 'Tu n\'as pas les permissions nécessaires pour créer une entité du module :module.',
+        'unknown'       => 'Entité non valide du module :module.',
+    ],
     'edit'                      => 'Modifier',
     'errors'                    => [
         'boosted'                       => 'Cette fonctionnalité n\'est accessible qu\'aux campagnes boostées..',

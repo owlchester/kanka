@@ -23,6 +23,11 @@ return [
         'helper'    => 'Prière de confirmer le mot de passe avant de pouvoir continuer.',
         'title'     => 'Confirmation du mot de passe.',
     ],
+    'continue'  => [
+        'facebook'  => 'Continuer avec Facebook',
+        'google'    => 'Continuer avec Google',
+        'x'         => 'Continuer avec X',
+    ],
     'failed'    => 'Ces informations ne correspondent pas avec nos entrées.',
     'helpers'   => [
         'password'  => 'Afficher / Cacher le mot de passe',
@@ -37,9 +42,11 @@ return [
         'login_with_google'     => 'Se connecter avec Google',
         'login_with_x'          => 'Se connecter avec X (anciennement Twitter)',
         'new_account'           => 'S\'enregistrer avec un nouveau compte',
+        'no-account'            => 'Sans compte?',
         'or'                    => 'OU',
         'password_forgotten'    => 'Mot de passe oublié?',
         'remember_me'           => 'Se souvenir de moi',
+        'sign-up'               => 'S\'inscrire',
         'submit'                => 'Se connecter',
         'title'                 => 'Login',
     ],

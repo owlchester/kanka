@@ -11,6 +11,12 @@ return [
             'title' => 'Meurtier/Meurtrière',
         ],
     ],
+    'cached'        => 'Ces statistiques sont recalculées toutes les :amount heures.',
+    'fields'        => [
+        'created'   => 'Créé le',
+        'creator'   => 'Créé par',
+        'general'   => 'Général',
+    ],
     'helper'        => 'Suis la progression pour débloquer divers succès pour la campagne. Ces chiffres sont mis à jour une fois toutes les 24 heures.',
     'pitch'         => 'Suis ton progrès dans le worldbuilding de ton monde en débloquant des succès.',
     'placeholder'   => ':amount de :target',
@@ -23,6 +29,7 @@ return [
         'races'     => 'Créer :target races',
     ],
     'title'         => 'Accomplissements de la campagne :campaign',
+    'title2'        => 'Statistiques',
     'titles'        => [
         'calendars' => 'Chronométreur/euse niveau :level',
         'characters'=> 'Donneur/euse de nom niveau :level',

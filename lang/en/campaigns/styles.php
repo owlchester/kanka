@@ -32,9 +32,9 @@ return [
         'order'         => 'Order',
     ],
     'helpers'       => [
-        'here'      => 'on our blog',
-        'is_enabled'=> 'Enable this theme on every page.',
-        'main'      => 'You can create custom CSS styling for your premium campaign. These styles are loaded after any themes from the marketplace that are enabled for the campaign. You can learn more about styling your campaign :here.',
+        'here'          => 'on our blog',
+        'is_enabled'    => 'Enable this theme on every page.',
+        'main'          => 'You can create custom CSS styling for your premium campaign. These styles are loaded after any themes from the marketplace that are enabled for the campaign. You can learn more about styling your campaign :here.',
     ],
     'pitch'         => 'Create custom CSS styling to fully customise the look and feel of the campaign.',
     'placeholders'  => [
@@ -46,10 +46,10 @@ return [
         'title'     => 'Reorder styles',
     ],
     'theme'         => [
+        'none'      => 'Use user\'s preference',
+        'override'  => 'Theme override',
         'success'   => 'Theme override updated.',
         'title'     => 'Update the theme override',
-        'none' => 'Use user\'s preference',
-        'override' => 'Theme override'
     ],
     'title'         => 'Theming',
     'update'        => [

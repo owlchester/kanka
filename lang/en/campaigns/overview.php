@@ -1,16 +1,16 @@
 <?php
 
 return [
-    'status' => [
-        'title' => 'Visibility',
-    ],
     'followers' => [
         'title' => 'Followers',
     ],
-    'member' => [
+    'member'    => [
         'title' => 'Membership',
     ],
-    'premium' => [
-        'enable' => 'Enable premium features',
-    ]
+    'premium'   => [
+        'enable'    => 'Enable premium features',
+    ],
+    'status'    => [
+        'title' => 'Visibility',
+    ],
 ];

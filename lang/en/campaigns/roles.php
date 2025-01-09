@@ -4,6 +4,11 @@ return [
     'actions'   => [
         'status'    => 'Status: :status',
     ],
+    'overview'  => [
+        'limited'   => ':amount of :total roles created.',
+        'title'     => 'Available roles',
+        'unlimited' => ':amount of unlimited roles created.',
+    ],
     'public'    => [
         'campaign'      => [
             'private'   => 'The campaign is currently private.',
@@ -22,9 +27,4 @@ return [
     'warnings'  => [
         'adding-to-admin'   => 'Members of the :name role have access to everything in the campaign, and cannot be removed by other members of the role. After :amount minutes, only they can remove themselves from the role.',
     ],
-    'overview' => [
-        'title' => 'Available roles',
-        'unlimited' => ':amount of unlimited roles created.',
-        'limited' => ':amount of :total roles created.',
-    ]
 ];

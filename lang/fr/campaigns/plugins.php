@@ -60,6 +60,7 @@ return [
     ],
     'pitch'         => 'Installes et gères les plugins du :marketplace.',
     'status'        => [
+        'always'    => 'Ce type de plugin est toujours actif, sauf s\'il est supprimé.',
         'disabled'  => 'Désactivé',
         'enabled'   => 'Activé',
     ],

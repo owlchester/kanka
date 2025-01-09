@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'customise' => 'Personnaliser le tableau de bord',
         'follow'    => 'Suivre',
         'join'      => 'Joindre',
         'unfollow'  => 'Ne plus suivre',

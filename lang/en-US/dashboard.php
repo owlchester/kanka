@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions' => [
+    'actions'   => [
         'customise' => 'Customize dashboard',
     ],
 ];

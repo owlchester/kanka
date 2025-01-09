@@ -114,10 +114,14 @@ return [
     'destroy_many'              => [
         'success'   => 'Deleted :count entity.|Deleted :count entities.',
     ],
+    'dynamic'                   => [
+        'permission'    => 'You don\'t have the right permissions to create an entity of the :module module.',
+        'unknown'       => 'Invalid entity of the :module module.',
+    ],
     'edit'                      => 'Edit',
     'errors'                    => [
-        'boosted_campaigns'             => 'This feature is only available for :boosted.',
-        'unavailable_feature'           => 'Unavailable feature',
+        'boosted_campaigns'     => 'This feature is only available for :boosted.',
+        'unavailable_feature'   => 'Unavailable feature',
     ],
     'fields'                    => [
         'calendar_date'     => 'Calendar Date',
@@ -379,8 +383,4 @@ return [
         'members'       => 'Members of the campaign',
         'self'          => 'Only me',
     ],
-    'dynamic' => [
-        'unknown' => 'Invalid entity of the :module module.',
-        'permission' => 'You don\'t have the right permissions to create an entity of the :module module.',
-    ]
 ];

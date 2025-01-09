@@ -4,6 +4,11 @@ return [
     'actions'   => [
         'status'    => 'Status: :status',
     ],
+    'overview'  => [
+        'limited'   => ':amount de :total rôles créés.',
+        'title'     => 'Rôles disponibles',
+        'unlimited' => ':amount de rôles illimités créés.',
+    ],
     'public'    => [
         'campaign'      => [
             'private'   => 'La campagne est actuellement privée.',

@@ -129,9 +129,9 @@ TEXT
             'type'      => 'Type',
             'usage'     => 'Expires after',
         ],
-        'helpers' => [
+        'helpers'               => [
+            'role'  => 'Users need to join before they can be promoted to the admin role.',
             'usage' => 'How many times the invite link can be used before it becomes inactive.',
-            'role' => 'Users need to join before they can be promoted to the admin role.'
         ],
         'unlimited_validity'    => 'Unlimited',
         'usages'                => [
@@ -432,6 +432,11 @@ TEXT
         ],
         'title'     => 'Overview - :name',
     ],
+    'status'                            => [
+        'free'      => 'Premium features disabled.',
+        'premium'   => 'Premium features unlocked by :name.',
+        'title'     => 'Premium features',
+    ],
     'themes'                            => [
         'none'  => 'None (defaults to user\'s preference)',
     ],
@@ -440,13 +445,13 @@ TEXT
             'collapsed' => 'Collapsed',
             'default'   => 'Default',
         ],
-        'descendants'         => [
-            'direct' => 'Show direct descendants by default',
-            'all'   => 'Show all descendants by default',
-        ],
         'connections'       => [
             'explorer'  => 'Connections map (if available, for premium campaigns)',
             'list'      => 'List interface',
+        ],
+        'descendants'       => [
+            'all'       => 'Show all descendants by default',
+            'direct'    => 'Show direct descendants by default',
         ],
         'entity_history'    => [
             'hidden'    => 'Only visible to campaign admins',
@@ -455,18 +460,18 @@ TEXT
         'fields'            => [
             'connections'       => 'Default entity\'s connections interface',
             'connections_mode'  => 'Default connections map mode',
+            'descendants'       => 'Descendants filtering',
             'entity_history'    => 'Entity\'s history logs',
             'entity_image'      => 'Entity\'s image',
-            'descendants'       => 'Descendants filtering',
             'member_list'       => 'Campaign\'s member list',
             'post_collapsed'    => 'New post default collapsed value',
         ],
         'helpers'           => [
             'connections'       => 'When clicking on the connections subpage of an entity, select the default interface showed.',
             'connections_mode'  => 'When viewing the connections map of an entity, define the default mode that is selected.',
+            'descendants'       => 'Control the default filtering when loading a sublist. For example a location\'s characters.',
             'entity-history'    => 'Control who can see recent changes made to individual entities of the campaign.',
             'member-list'       => 'Control who can see who\'s in the campaign.',
-            'descendants'       => 'Control the default filtering when loading a sublist. For example a location\'s characters.',
             'other'             => 'Other visual options for the campaign.',
             'post_collapsed'    => 'When creating a new post on an entity, select the collapsed field\'s default value.',
             'theme'             => 'Display the campaign in the member\'s theme, or force it to render in one of the following themes.',
@@ -483,9 +488,4 @@ TEXT
         'public'    => 'Public campaign',
         'review'    => 'Awaiting Review',
     ],
-    'status' => [
-        'title' => 'Premium features',
-        'free' => 'Premium features disabled.',
-        'premium' => 'Premium features unlocked by :name.',
-    ]
 ];
