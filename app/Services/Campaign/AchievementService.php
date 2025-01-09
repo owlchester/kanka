@@ -45,6 +45,8 @@ class AchievementService
         // @phpstan-ignore-next-line
         $families = $this->campaign->families()->withInvisible()->count() + $this->random();
         // @phpstan-ignore-next-line
+        $organisations = $this->campaign->organisations()->withInvisible()->count() + $this->random();
+        // @phpstan-ignore-next-line
         $dead = $this->campaign->characters()->withInvisible()->where('is_dead', true)->count() + $this->random(10, 30);
         // @phpstan-ignore-next-line
         $calendars = $this->campaign->calendars()->withInvisible()->count() + $this->random(5, 15);
@@ -84,6 +86,13 @@ class AchievementService
                 'target' => $this->target($families, 2),
                 'level' => $this->level($families, 2),
                 'module' => $this->moduleName('family', 'families'),
+            ],
+            'organisations' => [
+                'icon' => config('entities.icons.organisation'),
+                'amount' => $organisations,
+                'target' => $this->target($organisations, 2),
+                'level' => $this->level($families, 2),
+                'module' => $this->moduleName('organisation', 'organisations'),
             ],
             'calendars' => [
                 'icon' => config('entities.icons.calendar'),
