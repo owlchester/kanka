@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 
 class Select extends Component
 {
+    protected string $autoId;
     /**
      * Create a new component instance.
      */
@@ -19,6 +20,7 @@ class Select extends Component
         public string $id = '',
         public bool $required = false,
         public bool $multiple = false,
+        public bool $radio = false,
         public string $class = '',
         public string $label = '',
         public string $placeholder = '',
@@ -45,7 +47,10 @@ class Select extends Component
 
     public function fieldId(): string
     {
-        return !empty($this->id) ? $this->id : uniqid($this->name);
+        if (!empty($this->id)) {
+            return $this->id;
+        }
+        return $this->autoId ?? $this->autoId = uniqid($this->name);
     }
 
     public function isSelected(mixed $value): bool

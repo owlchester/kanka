@@ -19,12 +19,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
         <x-form :action="['settings.appearance.update']" method="PATCH">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <div class="{{ $boxClass }} {{ $highlight === 'dark' ? $highlightClass : '' }}">
-                    <div class="flex gap-2">
-                        <h2 class="text-base grow">
+                    <div class="flex gap-2 justify-between">
+                        <h2 class="text-base">
                             <x-icon class="fa-regular fa-moon-over-sun" />
                             {{ __('settings/appearance.fields.theme') }}
                         </h2>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#theme" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
+                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#theme" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
                             <x-icon class="question" />
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
@@ -39,16 +39,17 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                             '' => __('profiles.theme.themes.default'),
                             'dark' => __('profiles.theme.themes.dark'),
                             'midnight' => __('profiles.theme.themes.midnight'),]"
+                        radio
                         :selected="auth()->user()->theme" class="self-end w-full border rounded p-2" />
                 </div>
 
                 <div class="{{ $boxClass }} {{ $highlight === 'pagination' ? $highlightClass : '' }}">
-                    <div class="flex gap-2">
-                        <h2 class="text-base grow">
+                    <div class="flex gap-2 justify-between">
+                        <h2 class="text-base">
                             <x-icon class="fa-solid fa-list" />
                             {{ __('settings/appearance.fields.pagination') }}
                         </h2>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#results-per-page" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
+                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#results-per-page" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
                             <x-icon class="question" />
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
@@ -61,12 +62,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
 
 
                 <div class="{{ $boxClass }}">
-                    <div class="flex gap-2">
-                        <h2 class="text-base grow">
+                    <div class="flex gap-2 justify-between">
+                        <h2 class="text-base">
                             <x-icon class="fa-solid fa-calendar" />
                             {{ __('settings/appearance.fields.date-format') }}
                         </h2>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#date-formatting" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
+                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#date-formatting" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
                             <x-icon class="question" />
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
@@ -86,12 +87,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 </div>
 
                 <div class="{{ $boxClass }} {{ $highlight === 'campaign-switcher' ? $highlightClass : '' }}">
-                    <div class="flex gap-2">
-                        <h2 class="text-base grow">
+                    <div class="flex gap-2 justify-between">
+                        <h2 class="text-base">
                             <x-icon class="fa-solid fa-arrow-down-a-z" />
                             {{ __('settings/appearance.fields.campaign-order') }}
                         </h2>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#campaign-order" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
+                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#campaign-order" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
                             <x-icon class="question" />
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
@@ -113,12 +114,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
 
                 @if ($textEditorSelect)
                     <div class="{{ $boxClass }}">
-                        <div class="flex gap-2">
-                            <h2 class="text-base grow">
+                        <div class="flex gap-2 justify-between">
+                            <h2 class="text-base ">
                                 <x-icon class="pencil" />
                                 {{ __('settings/appearance.fields.editor') }}
                             </h2>
-                            <a href="https://docs.kanka.io/en/latest/account/appearance.html#text-editor" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
+                            <a href="https://docs.kanka.io/en/latest/account/appearance.html#text-editor" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
                                 <x-icon class="question" />
                                 <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                             </a>
@@ -132,12 +133,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 @endif
 
                 <div class="{{ $boxClass }} {{ $highlight === 'explore' ? $highlightClass : '' }}">
-                    <div class="flex gap-2">
-                        <h2 class="text-base grow">
+                    <div class="flex gap-2 justify-between">
+                        <h2 class="text-base">
                             <x-icon class="fa-solid fa-grid" />
                             {{ __('settings/appearance.fields.entity-explore') }}
                         </h2>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#entity-explore" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
+                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#entity-explore" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
                             <x-icon class="question" />
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
@@ -146,19 +147,19 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                         {{ __('settings/appearance.helpers.entity-explore') }}
                     </p>
 
-                    <x-forms.select name="entity_explore" :options="[
-                            0 => __('settings/appearance.explore.grid'),
-                            1 => __('settings/appearance.explore.table'),
+                    <x-forms.select name="entity_explore" radio :options="[
+                            0 => '<i class=\'fa-solid fa-grid\' aria-hidden=\'true\'></i> ' . __('settings/appearance.explore.grid'),
+                            1 => '<i class=\'fa-solid fa-list-ul\' aria-hidden=\'true\'></i> ' . __('settings/appearance.explore.table'),
                         ]" :selected="auth()->user()->entity_explore" class="self-end w-full border rounded p-2" />
                 </div>
 
                 <div class="{{ $boxClass }}">
-                    <div class="flex gap-2">
-                        <h2 class="text-base grow">
+                    <div class="flex gap-2 justify-between">
+                        <h2 class="text-base">
                             <x-icon class="fa-solid fa-at" />
                             {{ __('settings/appearance.fields.mentions') }}
                         </h2>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#mentions" target="_blank" class="flex-0" title="{{ __('settings/appearance.actions.learn-more') }}">
+                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#mentions" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
                             <x-icon class="question" />
                             <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
                         </a>
@@ -166,10 +167,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                     <p class="text-sm grow">
                         {!! __('settings/appearance.helpers.advanced-mentions') !!}
                     </p>
-                    <x-forms.select name="advanced_mentions" :options="[
-                            0 => __('settings/appearance.mentions.default'),
-                            1 => __('settings/appearance.mentions.advanced', ['code' => '[entity:123]']),
+                    <div class="note-editing-area">
+                    <x-forms.select name="advanced_mentions" radio :options="[
+                            0 => __('settings/appearance.mentions.default', ['mention' => '<span class=\'mention\'>Entity</span>']),
+                            1 => __('settings/appearance.mentions.advanced', ['code' => '<code>[entity:123]</code>']),
                         ]" :selected="auth()->user()->alwaysAdvancedMentions()" class="self-end w-full border rounded p-2"/>
+                    </div>
                 </div>
 
                 <x-buttons.confirm type="primary" full="true">
