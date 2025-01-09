@@ -1,5 +1,5 @@
 <x-tutorial code="events" doc="https://docs.kanka.io/en/latest/features/reminders.html">
-    <p>{{ __('entities/events.helpers.no_events_v2') }}</p>
+    <p>{!! __('entities/events.helpers.reminders', ['name' => $entity->name]) !!}</p>
 </x-tutorial>
 
 @if ($rows->count() > 0)

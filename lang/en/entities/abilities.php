@@ -41,7 +41,7 @@ return [
         'success'       => 'Abilities successfully reordered',
     ],
     'show'      => [
-        'helper'    => 'Attach abilities to this entity. You can always edit the visibility or remove an ability. Abilities belonging to the same parent ability will display as filter boxes.',
+        'helper'    => 'Attach abilities to :name to represent what powers they possess.',
         'reorder'   => 'Reorder',
         'title'     => ':name Abilities',
     ],
