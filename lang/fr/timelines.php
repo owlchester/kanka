@@ -32,7 +32,7 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'reorder'   => 'Réordonner',
+            'reorder-elements'  => 'Réordonner les éléments',
         ],
     ],
     'timelines'     => [],

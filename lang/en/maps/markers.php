@@ -28,8 +28,8 @@ return [
     'delete'        => [
         'success'   => 'Marker :name deleted.',
     ],
-    'details' => [
-        'from-entity' => 'From entity'
+    'details'       => [
+        'from-entity'   => 'From entity',
     ],
     'edit'          => [
         'success'   => 'Marker :name updated.',
