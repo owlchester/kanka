@@ -45,6 +45,22 @@
                             </div>
                         @endif
 
+                        @if ($inventory->item->weight)
+                            <div class="flex gap-2 items-center">
+                                <div class="text-accent text-3xl">
+                                    <x-icon class="fa-duotone fa-weight-hanging" />
+                                </div>
+                                <div class="flex flex-col gap-0">
+                                    <div class="font-extrabold text-xl">
+                                        {{ $inventory->item->weight }}
+                                    </div>
+                                    <div class="text-neutral-content">
+                                        {{ __('items.fields.weight') }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                         @if ($inventory->item->location)
                             <div class="flex gap-2 items-center">
                                 <div class="text-accent text-3xl">

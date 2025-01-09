@@ -16,6 +16,7 @@ class ItemFilter extends DatagridFilter
             ->add('type')
             ->add('price')
             ->add('size')
+            ->add('weight')
             ->add('is_equipped')
             ->add([
                 'field' => 'item_id',

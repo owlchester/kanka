@@ -35,6 +35,10 @@ class Item extends Layout
                 'key' => 'size',
                 'label' => 'items.fields.size',
             ],
+            'weight' => [
+                'key' => 'weight',
+                'label' => 'items.fields.weight',
+            ],
         ];
 
         return $columns;

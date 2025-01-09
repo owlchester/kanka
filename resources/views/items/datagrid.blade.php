@@ -25,6 +25,13 @@
             }
         ],
         [
+            'label' => '<i class="fa-solid fa-weight-hanging" aria-hidden="true" title="' . __('items.fields.weight') . '"></i> <span class="sr-only">' . __('items.fields.weight') . '</span>',
+            'field' => 'weight',
+            'render' => function($model) {
+                return $model->weight;
+            }
+        ],
+        [
             'type' => 'location',
             'visible' => $campaign->enabled('locations'),
         ],

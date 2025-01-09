@@ -1,6 +1,6 @@
 @php /** @var \App\Models\Inventory $item **/ @endphp
 <div class="w-full lg:w-80 h-60 bg-base-100 rounded relative"
-@if ($item->item) data-object-size="{{ $item->item->size }}" data-object-price="{{ $item->item->price }}" @endif
+@if ($item->item) data-object-size="{{ $item->item->size }}" data-object-price="{{ $item->item->price }}" data-object-weight="{{ $item->item->weight }}" @endif
 data-visibility="{{ $item->visibility_id }}"
 >
 
@@ -43,6 +43,12 @@ data-visibility="{{ $item->visibility_id }}"
                 <div class="object-size text-xs text-neutral-content text-center hidden">
                     <x-icon class="fa-duotone fa-up-right-and-down-left-from-center" />
                     {{ $item->item->size }}
+                </div>
+                @endif
+                @if (!empty($item->item->weight))
+                <div class="object-weight text-xs text-neutral-content text-center hidden">
+                    <x-icon class="fa-duotone fa-weight-hanging" />
+                    {{ $item->item->weight }}
                 </div>
                 @endif
             @endif

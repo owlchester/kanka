@@ -41,6 +41,7 @@ class StoreItem extends FormRequest
             'template_id' => 'nullable',
             'price' => 'nullable|string|max:191',
             'size' => 'nullable|string|max:191',
+            'weight' => 'nullable|string|max:191',
         ];
 
         /** @var Item $self */
