@@ -91,7 +91,7 @@ class AchievementService
                 'icon' => config('entities.icons.organisation'),
                 'amount' => $organisations,
                 'target' => $this->target($organisations, 2),
-                'level' => $this->level($families, 2),
+                'level' => $this->level($organisations, 2),
                 'module' => $this->moduleName('organisation', 'organisations'),
             ],
             'calendars' => [
