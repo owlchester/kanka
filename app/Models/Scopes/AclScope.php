@@ -64,7 +64,7 @@ class AclScope implements Scope
     {
         // No permission engine on console for the time being. In the future, we might want
         // to build a system to limit exposing private stuff on a campaign export.
-        if (app()->runningInConsole() && !app()->environment('testing')) {
+        if (app()->runningInConsole() && (!app()->environment('testing') || config('app.skip_permissions') === true)) {
             return $query;
         }
 

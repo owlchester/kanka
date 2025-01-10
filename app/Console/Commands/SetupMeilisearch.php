@@ -88,7 +88,7 @@ class SetupMeilisearch extends Command
             $object = new $model();
             $this->info('Importing ' . number_format($object->count()) . ' [' . $model . '] at ' . date('H:i:s'));
             $object::makeAllSearchable($this->option('chunk'));
-            $this->info('- Done in ' . $time->diffInMinutes() . ' min');
+            $this->info('- Done in ' . round($time->diffInMinutes(), 4) . ' min');
             Log::info('Meilisearch', ['model' => $model]);
         }
         $this->info('Ended at ' . date('H:i:s') . ' after ' . $start->diffInMinutes() . ' min');
