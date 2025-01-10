@@ -11,7 +11,7 @@ return new class () extends Migration {
     public function up(): void
     {
         Schema::table('items', function (Blueprint $table) {
-            $table->text('weight')->nullable();
+            $table->string('weight')->nullable();
         });
     }
 
