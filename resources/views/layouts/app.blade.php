@@ -78,7 +78,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @livewireStyles
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
-<body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses($entity ?? null) }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember() ? 1 : 0 }}" @endif>
+<body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses($entity ?? null) }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif antialiased" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember() ? 1 : 0 }}" @endif>
 
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute mx-2 top-0 btn2 btn-primary btn-sm rounded-t-none" tabindex="1">
     {{ __('crud.navigation.skip_to_content') }}
@@ -107,23 +107,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
             @yield('content-header')
 
             <section class="content p-4 flex flex-col gap-2 lg:flex-gap-5 @if (isset($centered) && $centered) max-w-7xl mx-auto  @endif" role="main">
-                @if (auth()->check() && \App\Facades\Identity::isImpersonating())
-                    <div class=" alert p-4 rounded alert-warning border-0 shadow-xs flex flex-col lg:flex-row items-center gap-2 lg:gap-5">
-                        <div class="grow">
-                            <div class="m-0 p-0 text-lg">
-                                <i class="icon fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
-                                {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
-                            </div>
-                            <p class="text-justify">
-                                {{ __('campaigns.members.impersonating.message') }}
-                            </p>
-                        </div>
-                        <a href="{{ route('identity.back', $campaign) }}" class="btn2 btn-sm switch-back">
-                            <x-icon class="fa-solid fa-sign-out-alt" />
-                            {{ __('campaigns.members.actions.switch-back') }}
-                        </a>
-                    </div>
-                @endif
+                @includeWhen (auth()->check() && \App\Facades\Identity::isImpersonating(), 'partials.impersonate')
                 @include('partials.success')
 
                 @yield('entity-header')
@@ -138,11 +122,8 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
             </div>
         </div>
 
-
         @include('ads.incontent')
-
         @include('layouts.footer')
-
     </div>
 
     <x-dialog id="primary-dialog" :loading="true" />
@@ -150,7 +131,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
 
     @yield('modals')
 
-    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full flex flex-col gap-2"></div>
+    <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full flex flex-col gap-2 z-[1001]"></div>
 
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>

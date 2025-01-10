@@ -175,7 +175,7 @@ TEXT
             'switch'    => 'View the campaign as this member',
         ],
         'impersonating'         => [
-            'message'   => 'You are viewing the campaign as another member. Some features have been disabled, but the rest acts exactly as the member would see it.',
+            'message'   => 'You are viewing and interacting with the campaign as :name. Some features have been disabled, but the rest acts exactly as they would see it.',
             'title'     => 'Impersonating :name',
         ],
         'invite'                => [

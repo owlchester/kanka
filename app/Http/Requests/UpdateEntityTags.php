@@ -25,6 +25,7 @@ class UpdateEntityTags extends FormRequest
     {
         return [
             'tags' => 'array',
+            'tags.*' => 'exists:tags,id',
         ];
     }
 }
