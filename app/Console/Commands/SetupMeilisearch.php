@@ -98,7 +98,7 @@ class SetupMeilisearch extends Command
             $this->info('- Done in ' . round($time->diffInMinutes(), 4) . ' min');
             Log::info('Meilisearch', ['model' => $model]);
         }
-        $this->info('Ended at ' . date('H:i:s') . ' after ' . $start->diffInMinutes() . ' min');
+        $this->info('Ended at ' . date('H:i:s') . ' after ' . round($start->diffInMinutes(), 3) . ' min');
 
 
         if (config('scout.queue')) {
