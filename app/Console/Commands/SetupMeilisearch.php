@@ -51,6 +51,12 @@ class SetupMeilisearch extends Command
      */
     public function handle()
     {
+        if (config('app.lazy')) {
+            $this->error('Config error:');
+            $this->error('Temporarily remove APP_LAZY=true from your .env file.');
+            return;
+        }
+
         //Update Non Separator Tokens for entity mentions
         $start = Carbon::now();
         $this->info('Meilisearch import started at ' . date('H:i:s'));
@@ -60,6 +66,7 @@ class SetupMeilisearch extends Command
         $client->index('entities')->resetSeparatorTokens();
         $client->index('entities')->updateNonSeparatorTokens([':']);
         $client->index('entities')->updateFilterableAttributes(['campaign_id']);
+
 
         $models = [
             Attribute::class,
@@ -92,5 +99,12 @@ class SetupMeilisearch extends Command
             Log::info('Meilisearch', ['model' => $model]);
         }
         $this->info('Ended at ' . date('H:i:s') . ' after ' . $start->diffInMinutes() . ' min');
+
+
+        if (config('scout.queue')) {
+            $this->newLine();
+            $this->warn('Meilisearch seeding has been queued.');
+            $this->warn('Now run `sail artisan queue:work` to finish importing.');
+        }
     }
 }
