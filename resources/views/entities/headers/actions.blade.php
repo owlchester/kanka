@@ -63,7 +63,7 @@ if (!isset($entity)) {
                     @endif
                 @endcan
 
-                <x-dropdowns.item link="#" :data="['title' => $model->getEntityType() . ':' . $model->entity->id, 'toggle' => 'tooltip', 'clipboard' => '[' . $model->getEntityType() . ':' . $model->entity->id .']', 'toast' => __('crud.alerts.copy_mention')]">
+                <x-dropdowns.item link="#" :data="['title' => $entity->entityType->code . ':' . $entity->id, 'toggle' => 'tooltip', 'clipboard' => '[' . $entity->entityType->code . ':' . $entity->id .']', 'toast' => __('crud.alerts.copy_mention')]">
                     <x-icon class="fa-solid fa-link" />
                     {{ __('crud.actions.copy_mention') }}
                 </x-dropdowns.item>

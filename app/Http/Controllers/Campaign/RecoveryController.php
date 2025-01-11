@@ -12,22 +12,14 @@ use Illuminate\Http\Request;
 
 class RecoveryController extends Controller
 {
-    protected RecoveryService $postService;
-    protected EntityRecoveryService $entityService;
-    protected RecoverySetupService $service;
-
-    public function __construct(RecoveryService $postService, EntityRecoveryService $entityService, RecoverySetupService $recoverySetupService)
-    {
+    public function __construct(
+        protected RecoveryService $postService,
+        protected EntityRecoveryService $entityService,
+        protected RecoverySetupService $recoverySetupService
+    ) {
         $this->middleware('auth');
-        $this->postService = $postService;
-        $this->entityService = $entityService;
-        $this->service = $recoverySetupService;
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign)
     {
         $this->authorize('recover', $campaign);
@@ -40,7 +32,7 @@ class RecoveryController extends Controller
         $this->authorize('recover', $campaign);
 
         return response()->json(
-            $this->service
+            $this->recoverySetupService
                 ->user(auth()->user())
                 ->campaign($campaign)
                 ->setup()

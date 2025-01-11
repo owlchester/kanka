@@ -59,13 +59,13 @@ class Item extends MiscModel
         'is_private',
     ];
 
-    protected array $sortable = [
-        'name',
-        'type',
-        'price',
-        'size',
-        'parent.name',
-    ];
+//    protected array $sortable = [
+//        'name',
+//        'type',
+//        'price',
+//        'size',
+//        'parent.name',
+//    ];
 
     /**
      * Entity type

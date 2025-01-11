@@ -3,6 +3,7 @@
 namespace App\Services\Caches;
 
 use App\Models\Entity;
+use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
@@ -22,14 +23,14 @@ class EntityCacheService extends BaseCache
 
     /**
      */
-    public function typeSuggestion(MiscModel $model): array
+    public function typeSuggestion(EntityType $entityType): array
     {
-        $key = $this->typeSuggestionKey($model->getEntityType());
+        $key = $this->typeSuggestionKey($entityType->code);
         if (Cache::has($key)) {
             return Cache::get($key);
         }
 
-        $data = $model->entityTypeSuggestion();
+        $data = $entityType->getClass()->entityTypeSuggestion();
 
 
         Cache::put($key, $data, 24 * 3600);
@@ -39,11 +40,11 @@ class EntityCacheService extends BaseCache
     /**
      * @return $this
      */
-    public function clearSuggestion(MiscModel $model): self
+    public function clearSuggestion(EntityType $entityType): self
     {
         $this->forget(
             $this->typeSuggestionKey(
-                $model->getEntityType()
+                $entityType->code
             )
         );
         return $this;

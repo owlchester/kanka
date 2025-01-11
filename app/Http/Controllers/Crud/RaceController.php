@@ -6,6 +6,7 @@ use App\Datagrids\Filters\RaceFilter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreRace;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Race;
 
 class RaceController extends CrudController
@@ -52,5 +53,10 @@ class RaceController extends CrudController
     public function destroy(Campaign $campaign, Race $race)
     {
         return $this->campaign($campaign)->crudDestroy($race);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.race'))->first();
     }
 }

@@ -17,7 +17,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     }
     if ($datagridActions->hasBulkPermissions()) {
         $dropdownActions[] = [
-             'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.permissions', [$campaign, 'entity_type' => $entityTypeId])],
+             'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.permissions', [$campaign, 'entity_type' => $entityType->id])],
             'class' => 'bulk-permissions',
             'icon' => 'fa-solid fa-lock',
             'text' => __('crud.bulk.actions.permissions')
@@ -29,7 +29,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     }
     if ($datagridActions->hasBulkTemplate() && $campaign->enabled('entity_attributes')) {
         $dropdownActions[] = [
-             'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.templates', [$campaign, 'entity_type' => $entityTypeId])],
+             'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.templates', [$campaign, 'entity_type' => $entityType->id])],
             'class' => 'bulk-templates',
             'icon' => 'fa-solid fa-th-list',
             'text' => __('crud.bulk.actions.templates')
@@ -37,7 +37,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     }
     if ($datagridActions->hasBulkTransform()) {
         $dropdownActions[] = [
-             'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.transform', [$campaign, 'entity_type' => $entityTypeId])],
+             'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.transform', [$campaign, 'entity_type' => $entityType->id])],
             'class' => 'bulk-transform',
             'icon' => 'fa-solid fa-exchange-alt',
             'text' => __('crud.actions.transform')
@@ -45,7 +45,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
     }
     if ($datagridActions->hasBulkCopy()) {
         $dropdownActions[] = [
-            'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.copy-to-campaign', [$campaign, 'entity_type' => $entityTypeId])],
+            'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.copy-to-campaign', [$campaign, 'entity_type' => $entityType->id])],
             'class' => 'bulk-copy-campaign',
             'icon' => 'fa-regular fa-clone',
             'text' => __('crud.actions.copy_to_campaign')
@@ -79,7 +79,7 @@ if (auth()->check() && auth()->user()->can('delete', $model)) {
         ];
     } else {
         $dropdownActions[] = [
-            'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.delete', [$campaign, 'entity_type' => $entityTypeId])],
+            'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.delete', [$campaign, 'entity_type' => $entityType->id])],
             'class' => 'text-error hover:bg-error hover:text-error-content',
             'icon' => 'trash',
             'text' => __('crud.remove')

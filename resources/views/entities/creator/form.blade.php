@@ -1,6 +1,9 @@
 <?php $enableNew = true; ?>
-
-<form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', [$campaign, 'type' => $type]) }}" autocomplete="off" class="entity-creator-form-{{ $type }} w-full">
+@if (isset($entityType))
+<form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', [$campaign, 'entity_type' => $entityType]) }}" autocomplete="off" class="entity-creator-form-{{ $entityType->code }} w-full">
+@else
+        <form method="post" id="entity-creator-form" action="{{ route('entity-creator.post', [$campaign]) }}" autocomplete="off" class="entity-creator-form-post w-full">
+@endif
     @csrf
 
 @if (isset($origin))
@@ -10,7 +13,7 @@
     <article>
 @endif
 
-<div class="entity-creator-body-{{ $type }} flex flex-col gap-5 w-full">
+<div class="entity-creator-body-{{ $entityType->code ?? 'post' }} flex flex-col gap-5 w-full">
     @if (!isset($origin))
         @include('entities.creator.header.header')
     @endif
@@ -29,11 +32,11 @@
                           id="qq-name-field"
                           rows="4"
                           data-live="{{ route('search.live', $campaign) }}"
-                          data-type="{{ $singularType }}"
+                          data-type="{{ $entityType->code ?? 'post' }}"
                           placeholder="{{ __('entities.creator.bulk_names') }}"></textarea>
             @else
 
-                <input type="text" name="name" placeholder="{{ $type === 'posts' ? __('posts.placeholders.name') : __('crud.placeholders.name') }}" autocomplete="off" value="{!! old('name') !!}" maxlength="191" required data-live="{{ route('search.live', $campaign) }}" data-type="{{ $singularType }}" data-bulk="true" id="{{ $type === 'posts' ? 'qq-post-name-field' : 'qq-name-field' }}" data-1p-ignore="true" />
+                <input type="text" name="name" placeholder="{{ !isset($entityType) ? __('posts.placeholders.name') : __('crud.placeholders.name') }}" autocomplete="off" value="{!! old('name') !!}" maxlength="191" required data-live="{{ route('search.live', $campaign) }}" data-type="{{ $entityType->code ?? 'post' }}" data-bulk="true" id="{{ !isset($entityType) ? 'qq-post-name-field' : 'qq-name-field' }}" data-1p-ignore="true" />
             @endif
             <x-alert type="warning" class=" my-1 duplicate-entity-warning" :hidden="true">
                 {{ __('entities.creator.duplicate') }}<br />
@@ -41,21 +44,21 @@
             </x-alert>
         </x-forms.field>
 
-        <a href="#" class="qq-action-more text-uppercase cursor-pointer text-sm {{ $singularType === 'post' ? 'hidden' : null }}">
+        <a href="#" class="qq-action-more text-uppercase cursor-pointer text-sm {{ !isset($entityType) ? 'hidden' : null }}">
             <x-icon class="fa-solid fa-caret-down" />
             {{ __('entities.creator.actions.more') }}
         </a>
-        <div class="qq-more-fields flex flex-col gap-5 {{ $singularType !== 'post' ? 'hidden' : null }}">
+        <div class="qq-more-fields flex flex-col gap-5 {{ isset($entityType) ? 'hidden' : null }}">
             @php $allowNew = false; $dropdownParent = '#primary-dialog';@endphp
-            @include('entities.creator.forms.' . $singularType)
+            @include('entities.creator.forms.' . ($entityType->code ?? 'post'))
 
-            @if (!in_array($type, ['posts', 'attribute_templates']))
+            @if (!isset($entityType) || !in_array($entityType->id, [config('entities.ids.attribute_template')]))
                 <div id="quick-creator-tags-field">
                     @include('cruds.fields.tags', ['dropdownParent' => '#quick-creator-tags-field'])
                 </div>
             @endif
 
-            @if ($type !== 'posts' && auth()->user()->isAdmin())
+            @if (isset($entityType) && auth()->user()->isAdmin())
                 @include('cruds.fields.privacy_callout')
             @endif
         </div>
@@ -64,12 +67,12 @@
     <div class="quick-creator-footer">
 
             <div class="join mr-4">
-                <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" data-entity-type="{{ $singularType }}" title="{{ __('entities.creator.tooltips.create') }}" name="next">
+                <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" data-entity-type="{{ $entityType->code ?? 'post'}}" title="{{ __('entities.creator.tooltips.create') }}" name="next">
                     <span>
-                        {!! __('entities.creator.actions.create', ['type' => $singular ?? $entityType]) !!}
+                        {!! __('entities.creator.actions.create', ['type' => isset($entityType) ? $entityType->name() : $singular]) !!}
                     </span>
                 </button>
-                <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" name="next" data-entity-type="{{ $singularType }}" value="more" title="{{ __('entities.creator.tooltips.create_more') }}">
+                <button type="submit" class="join-item btn2 btn-primary btn-sm quick-creator-submit" name="next" data-entity-type="{{ $entityType->code ?? 'post' }}" value="more" title="{{ __('entities.creator.tooltips.create_more') }}">
                     <span>
                         <x-icon class="fa-solid fa-plus-square" />
                     </span>
@@ -77,7 +80,7 @@
             </div>
 
             @if ($mode !== 'bulk')
-                <button type="submit" class="btn2 btn-sm quick-creator-submit" data-entity-type="{{ $singularType }}" title="{{ __('entities.creator.tooltips.edit') }}" name="next" value="edit">
+                <button type="submit" class="btn2 btn-sm quick-creator-submit" data-entity-type="{{ $entityType->code ?? 'post' }}" title="{{ __('entities.creator.tooltips.edit') }}" name="next" value="edit">
                     <span>
                         {{ __('crud.edit') }}
                     </span>
@@ -97,14 +100,13 @@
 @if (isset($origin))
     </article>
     <footer class="bg-base-200 flex flex-wrap gap-3 justify-center items-center p-3">
-        <button class="btn2 btn-primary quick-creator-submit" data-entity-type="{{ $singularType }}">
+        <button class="btn2 btn-primary quick-creator-submit" data-entity-type="{{ $entityType->code }}">
             <span>
-                <x-icon class="plus" /> {{ __('entities.creator.actions.create', ['type' => $entityType]) }}
+                <x-icon class="plus" /> {{ __('entities.creator.actions.create', ['type' => $entityType->name()]) }}
             </span>
         </button>
     </footer>
 @endif
-    <input type="hidden" name="entity" value="{{ $type }}" />
 @if (!empty($target))
     <input type="hidden" name="_target" value="{{ $target }}" />
 @endif

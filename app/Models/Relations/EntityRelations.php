@@ -14,6 +14,7 @@ use App\Models\EntityAsset;
 use App\Models\EntityEvent;
 use App\Models\EntityEventType;
 use App\Models\EntityTag;
+use App\Models\EntityType;
 use App\Models\EntityUser;
 use App\Models\Image;
 use App\Models\Inventory;
@@ -28,6 +29,7 @@ use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -36,6 +38,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * Trait EntityRelations
  * @package App\Models\Relations
  *
+ * @property EntityType $entityType
  * @property Conversation $conversation
  * @property Character $character
  * @property Creature $creature
@@ -75,6 +78,11 @@ trait EntityRelations
 {
     /** @var Collection List of tags attached to the entity */
     protected Collection $tagsWithEntity;
+
+    public function entityType(): BelongsTo
+    {
+        return $this->belongsTo(EntityType::class, 'type_id');
+    }
 
     public function attributes(): HasMany
     {

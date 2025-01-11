@@ -45,9 +45,9 @@ foreach ($attributes as $attribute) {
         @if (!empty($model))
             <attributes-manager api="{{ route('attributes.api-entity', [$campaign, $entity]) }}" />
         @elseif (!empty($source))
-            <attributes-manager api="{{ route('attributes.api', [$campaign, 'entity_type' => $entityTypeId, 'source' => $source->entity->id]) }}" />
+            <attributes-manager api="{{ route('attributes.api', [$campaign, 'entity_type' => $entityType->id, 'source' => $source->entity->id]) }}" />
         @else
-            <attributes-manager api="{{ route('attributes.api', [$campaign, 'entity_type' => $entityTypeId]) }}" />
+            <attributes-manager api="{{ route('attributes.api', [$campaign, 'entity_type' => $entityType->id]) }}" />
         @endif
     </div>
 </x-grid>

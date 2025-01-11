@@ -6,6 +6,7 @@ use App\Datagrids\Filters\EventFilter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreEvent;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Event;
 
 class EventController extends CrudController
@@ -41,5 +42,10 @@ class EventController extends CrudController
     public function destroy(Campaign $campaign, Event $event)
     {
         return $this->campaign($campaign)->crudDestroy($event);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.event'))->first();
     }
 }

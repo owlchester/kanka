@@ -6,6 +6,7 @@ use App\Datagrids\Filters\JournalFilter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreJournal;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Journal;
 
 class JournalController extends CrudController
@@ -56,5 +57,10 @@ class JournalController extends CrudController
     public function destroy(Campaign $campaign, Journal $journal)
     {
         return $this->campaign($campaign)->crudDestroy($journal);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.journal'))->first();
     }
 }

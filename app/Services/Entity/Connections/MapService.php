@@ -164,7 +164,7 @@ class MapService
         }
         $this->entities[$entity->id] = [
             'id' => $entity->id,
-            'name' => $entity->name . "\n(" . $entity->entityType() . ')',
+            'name' => $entity->name . "\n(" . $entity->entityType->name() . ')',
             'image' => $img,
             'link' => route('entities.relations.index', $params),
             //'tooltip' => route('entities.tooltip', $entity->id)

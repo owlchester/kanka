@@ -6,6 +6,7 @@ use App\Datagrids\Filters\TimelineFilter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTimeline;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Timeline;
 
 class TimelineController extends CrudController
@@ -56,5 +57,10 @@ class TimelineController extends CrudController
     public function destroy(Campaign $campaign, Timeline $timeline)
     {
         return $this->campaign($campaign)->crudDestroy($timeline);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.timeline'))->first();
     }
 }

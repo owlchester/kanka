@@ -7,6 +7,7 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreAttributeTemplate;
 use App\Models\AttributeTemplate;
 use App\Models\Campaign;
+use App\Models\EntityType;
 
 class AttributeTemplateController extends CrudController
 {
@@ -67,5 +68,10 @@ class AttributeTemplateController extends CrudController
     public function destroy(Campaign $campaign, AttributeTemplate $attributeTemplate)
     {
         return $this->campaign($campaign)->crudDestroy($attributeTemplate);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.attribute_template'))->first();
     }
 }

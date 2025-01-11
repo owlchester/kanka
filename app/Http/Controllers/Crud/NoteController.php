@@ -6,6 +6,7 @@ use App\Datagrids\Filters\NoteFilter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreNote;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Note;
 
 class NoteController extends CrudController
@@ -52,5 +53,10 @@ class NoteController extends CrudController
     public function destroy(Campaign $campaign, Note $note)
     {
         return $this->campaign($campaign)->crudDestroy($note);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.note'))->first();
     }
 }

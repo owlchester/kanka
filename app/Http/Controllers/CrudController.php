@@ -12,6 +12,7 @@ use App\Facades\Permissions;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Bookmark;
+use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
@@ -223,8 +224,7 @@ class CrudController extends Controller
 
         $this->setNavActions();
         $actions = $this->navActions;
-        $entityTypeId = $model->entityTypeId();
-        $singular = Module::singular($entityTypeId, __('entities.' . \Illuminate\Support\Str::singular($route)));
+
 
         $data = compact(
             'campaign',
@@ -243,16 +243,20 @@ class CrudController extends Controller
             'mode',
             'parent',
             'forceMode',
-            'entityTypeId',
-            'singular',
         );
+        if (method_exists($this, 'getEntityType')) {
+            $data['entityType'] = $this->getEntityType();
+        } else {
+            $data['singular'] = __('entities.' . \Illuminate\Support\Str::singular($route));
+        }
+
         if (method_exists($this, 'titleKey')) {
             $data['titleKey'] = $this->titleKey();
         } elseif ($this->campaign->boosted()) {
             // Custom sidebar link, with fallback on custom module plural name
             $data['titleKey'] = Arr::get($campaign->ui_settings, 'sidebar.labels.' . $langKey);
-            if (empty($data['titleKey'])) {
-                $data['titleKey'] = Module::plural($entityTypeId, __('entities.' . $langKey));
+            if (empty($data['titleKey']) && isset($data['entityType'])) {
+                $data['titleKey'] = $data['entityType']->plural();
             }
             // If its a bookmark, override everything else
             if ($request->has('bookmark')) {
@@ -327,7 +331,9 @@ class CrudController extends Controller
         $params['tabAttributes'] = $this->tabAttributes && $this->campaign->enabled('entity_attributes');
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted;
-        $params['entityType'] = $model->hasEntityType() ? $model->getEntityType() : null;
+        if (method_exists($this, 'getEntityType')) {
+            $params['entityType'] = $this->getEntityType();
+        }
         $params['title'] = __($this->view . '.create.title');
 
         // Custom module names shenanigans
@@ -515,9 +521,7 @@ class CrudController extends Controller
             'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity) && $this->campaign->enabled('entity_attributes'),
             'tabBoosted' => $this->tabBoosted,
             'tabCopy' => $this->tabCopy,
-            'entityType' => $model->hasEntityType() ? $model->getEntityType() : null,
             'editingUsers' => $editingUsers,
-            'entityTypeId' => $model->entityTypeId()
         ];
         if ($model->entity) {
             $params['entity'] = $model->entity;

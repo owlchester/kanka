@@ -7,6 +7,7 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreCalendar;
 use App\Models\Calendar;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Sanitizers\CalendarSanitizer;
 
 class CalendarController extends CrudController
@@ -92,5 +93,10 @@ class CalendarController extends CrudController
 
         return redirect()->back()
             ->with('success', __('calendars.edit.today'));
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.calendar'))->first();
     }
 }

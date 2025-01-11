@@ -6,6 +6,7 @@ use App\Datagrids\Filters\LocationFilter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreLocation;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Location;
 
 class LocationController extends CrudController
@@ -56,5 +57,10 @@ class LocationController extends CrudController
     public function destroy(Campaign $campaign, Location $location)
     {
         return $this->campaign($campaign)->crudDestroy($location);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.location'))->first();
     }
 }

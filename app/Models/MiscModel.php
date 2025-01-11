@@ -244,7 +244,7 @@ abstract class MiscModel extends Model
     {
         $classes = [
             'kanka-entity-' . $this->entity->id,
-            'kanka-entity-' . $this->getEntityType(),
+            'kanka-entity-' . $this->entity->entityType->code,
         ];
 
         if (!empty($this->type)) {

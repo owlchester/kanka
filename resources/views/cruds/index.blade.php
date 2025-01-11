@@ -40,8 +40,8 @@
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['route' => $route . '.index'])
     @else
-        @if (isset($entityTypeId))
-            <x-form class="flex flex-col gap-5" :action="['bulk.print', [$campaign, 'entity_type' => $entityTypeId]]" direct>
+        @if (isset($entityType))
+            <x-form class="flex flex-col gap-5" :action="['bulk.print', [$campaign, 'entity_type' => $entityType->id]]" direct>
                 @include('cruds._table')
                 <input type="hidden" name="page" value="{{ request()->get('page') }}" />
             </x-form>

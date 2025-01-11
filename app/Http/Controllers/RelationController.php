@@ -64,7 +64,6 @@ class RelationController extends CrudController
 
         $params['campaign'] = $campaign;
         $params['entityAttributeTemplates'] = [];
-        $params['entityType'] = $model->getEntityType();
         $params['source'] = null;
         $params['langKey'] = $this->langKey;
 
@@ -146,7 +145,6 @@ class RelationController extends CrudController
             'relation' => $relation,
             'name' => $this->view,
             'source' => null,
-            'entityType' => $relation->getEntityType(),
             'langKey' => $this->langKey,
         ];
 

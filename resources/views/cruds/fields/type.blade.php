@@ -11,7 +11,7 @@ $entityTypeListModel = new $base();
            value="{!! htmlspecialchars(str_replace('&amp;', '&', old('type', $source->type ?? $model->type ?? ''))) !!}"/>
     <div class="hidden">
         <datalist id="entity-type-list-<?=$trans?>">
-            @foreach (\App\Facades\EntityCache::typeSuggestion($entityTypeListModel) as $name)
+            @foreach (\App\Facades\EntityCache::typeSuggestion($entityType ?? $entity->entityType) as $name)
                 <option value="{{ $name }}">{!! $name !!}</option>
             @endforeach
         </datalist>

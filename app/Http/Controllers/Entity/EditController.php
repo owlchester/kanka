@@ -41,7 +41,7 @@ class EditController extends Controller
             'tabAttributes' => $hasTabs && auth()->user()->can('attributes', $entity) && $this->campaign->enabled('entity_attributes'),
             'tabBoosted' => $hasTabs,
             'tabCopy' => $hasTabs,
-            'entityType' => $entity->child->getEntityType(),
+            'entityType' => $entity->entityType,
             'editingUsers' => $editingUsers,
             'entityTypeId' => $entity->type_id,
         ];

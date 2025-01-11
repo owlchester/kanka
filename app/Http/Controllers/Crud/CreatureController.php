@@ -7,6 +7,7 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreCreature;
 use App\Models\Campaign;
 use App\Models\Creature;
+use App\Models\EntityType;
 
 class CreatureController extends CrudController
 {
@@ -52,5 +53,10 @@ class CreatureController extends CrudController
     public function destroy(Campaign $campaign, Creature $creature)
     {
         return $this->campaign($campaign)->crudDestroy($creature);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.creature'))->first();
     }
 }

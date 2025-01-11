@@ -6,6 +6,7 @@ use App\Datagrids\Filters\TagFilter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreTag;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Tag;
 
 class TagController extends CrudController
@@ -56,5 +57,10 @@ class TagController extends CrudController
     public function destroy(Campaign $campaign, Tag $tag)
     {
         return $this->campaign($campaign)->crudDestroy($tag);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.tag'))->first();
     }
 }

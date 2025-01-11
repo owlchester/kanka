@@ -50,7 +50,7 @@ class EntityType extends Model
     /**
      * Get the class model of the entity type
      */
-    public function getClass(): MiscModel
+    public function getClass(): Model
     {
         $className = 'App\Models\\' . Str::studly($this->code);
         return app()->make($className);
@@ -70,6 +70,14 @@ class EntityType extends Model
     public function plural(): string
     {
         return Module::plural($this->id, __('entities.' . $this->pluralCode()));
+    }
+
+    /**
+     * Get the translated name of the entity
+     */
+    public function icon(): string
+    {
+        return Module::duoIcon($this->code);
     }
 
     /**

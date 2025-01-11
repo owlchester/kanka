@@ -2,19 +2,22 @@
 
 namespace App\Services\Entity;
 
+use App\Models\EntityType;
+use Illuminate\Database\Eloquent\Collection;
+
 class PopularService
 {
     /** @var array|string[] Popular entity types */
     protected array $popularEntityTypes = [
-        'characters',
-        'locations',
-        'races',
-        'items',
-        'organisations',
+        'character',
+        'location',
+        'race',
+        'item',
+        'organisation',
     ];
 
-    public function get(): array
+    public function get(): Collection
     {
-        return $this->popularEntityTypes;
+        return EntityType::whereIn('code', $this->popularEntityTypes)->get();
     }
 }

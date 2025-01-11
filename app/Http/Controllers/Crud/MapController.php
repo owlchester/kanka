@@ -6,6 +6,7 @@ use App\Datagrids\Filters\MapFilter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreMap;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Map;
 
 class MapController extends CrudController
@@ -63,5 +64,10 @@ class MapController extends CrudController
     public function destroy(Campaign $campaign, Map $map)
     {
         return $this->campaign($campaign)->crudDestroy($map);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.map'))->first();
     }
 }

@@ -219,11 +219,6 @@ class Entity extends Model
         return $this->type_id;
     }
 
-    public function entityType(): string
-    {
-        return __('entities.' . $this->type());
-    }
-
     /**
      */
     public function isType(array|int $types): bool

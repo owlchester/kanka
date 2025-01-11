@@ -5,7 +5,7 @@
         @foreach ($bulk->fields() as $field)
             @php
                 $trimmed = \Illuminate\Support\Str::before($field, '_id');
-                $isParent = $model->hasEntityType() ? \Illuminate\Support\Str::contains($trimmed, $model->getEntityType()) : false;
+                $isParent = isset($entityType) ? \Illuminate\Support\Str::contains($trimmed, $entityType->code) : false;
             @endphp
 
             {!! $fieldCount % 2 === 0 ? '' : null !!}

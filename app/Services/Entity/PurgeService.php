@@ -82,7 +82,7 @@ class PurgeService
                 $subChild->$parentField = null;
                 $subChild->timestamps = false;
                 $subChild->saveQuietly();
-                dump('#' . $entity->id . ' child ' . $child->getEntityType() . ' #' . $child->id . ' untreed');
+                dump('#' . $entity->id . ' child ' . $entity->entityType->code . ' #' . $child->id . ' untreed');
             }
 
             // Clean up the parent and tree to avoid the nested plugin to delete every child
@@ -94,7 +94,7 @@ class PurgeService
         }
 
 
-        $this->childIds[$child->getEntityType()][] = $child->id;
+        $this->childIds[$entity->entityType->code][] = $child->id;
 
         // Cleanup any images attached to the child.
         Images::cleanup($child);

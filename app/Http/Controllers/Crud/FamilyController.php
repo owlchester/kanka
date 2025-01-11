@@ -6,6 +6,7 @@ use App\Datagrids\Filters\FamilyFilter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreFamily;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Family;
 
 class FamilyController extends CrudController
@@ -41,5 +42,10 @@ class FamilyController extends CrudController
     public function destroy(Campaign $campaign, Family $family)
     {
         return $this->campaign($campaign)->crudDestroy($family);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.family'))->first();
     }
 }

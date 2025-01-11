@@ -47,7 +47,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Character extends MiscModel
 {
-    use Acl;
+    //use Acl;
     use ExportableTrait;
     use HasCampaign;
     use HasEntry;

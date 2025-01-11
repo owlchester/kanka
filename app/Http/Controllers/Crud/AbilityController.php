@@ -7,6 +7,7 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreAbility;
 use App\Models\Ability;
 use App\Models\Campaign;
+use App\Models\EntityType;
 
 class AbilityController extends CrudController
 {
@@ -53,5 +54,10 @@ class AbilityController extends CrudController
     public function destroy(Campaign $campaign, Ability $ability)
     {
         return $this->campaign($campaign)->crudDestroy($ability);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.ability'))->first();
     }
 }

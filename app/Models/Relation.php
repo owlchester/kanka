@@ -194,11 +194,6 @@ class Relation extends Model
         return '#' . $this->attributes['colour'];
     }
 
-    public function getEntityType(): string|null
-    {
-        return 'relation';
-    }
-
     /**
      * Faker event
      */

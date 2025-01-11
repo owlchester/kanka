@@ -9,6 +9,7 @@ use App\Http\Requests\StoreDiceRoll;
 use App\Models\Campaign;
 use App\Models\DiceRoll;
 use App\Models\DiceRollResult;
+use App\Models\EntityType;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
@@ -123,5 +124,10 @@ class DiceRollController extends CrudController
 
         return redirect()->to($diceRoll->getLink())
             ->with('success', trans('dice_rolls.destroy.dice_roll'));
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.dice_roll'))->first();
     }
 }

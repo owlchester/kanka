@@ -59,7 +59,15 @@ trait SubEntityScopes
     protected function exploreGridWith(): array
     {
         $with = [
-            'entity', 'entity.image',
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
+            },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
+            },
         ];
         if (method_exists($this, 'getParentKeyName')) {
             $with[] = 'children';

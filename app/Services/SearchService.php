@@ -238,7 +238,7 @@ class SearchService
         }
 
         $query
-            ->with('image')
+            ->with(['image', 'entityType'])
             ->limit($this->limit);
 
         $searchResults = $foundEntityIds = [];
@@ -272,7 +272,7 @@ class SearchService
             if (!$this->full) {
                 $searchResults[] = [
                     'id' => $model->id,
-                    'text' => $parsedName . ' (' . Module::singular($model->type_id, $model->entityType()) . ')'
+                    'text' => $parsedName . ' (' . $model->entityType->name() . ')'
                 ];
                 continue;
             }
@@ -282,7 +282,7 @@ class SearchService
                 'fullname' => $parsedNameAlias,
                 'image' => $img,
                 'name' => $parsedName,
-                'type' => Module::singular($model->type_id, $model->entityType()),
+                'type' => $model->entityType->name(),
                 'model_type' => $model->type(),
                 'url' => $model->url(),
                 'alias_id' => $model->alias_id, // @phpstan-ignore-line

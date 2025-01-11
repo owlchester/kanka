@@ -6,6 +6,7 @@ use App\Datagrids\Filters\ItemFilter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreItem;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Item;
 
 class ItemController extends CrudController
@@ -56,5 +57,10 @@ class ItemController extends CrudController
     public function destroy(Campaign $campaign, Item $item)
     {
         return $this->campaign($campaign)->crudDestroy($item);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.item'))->first();
     }
 }

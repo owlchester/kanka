@@ -51,7 +51,7 @@
                         @endif
                     </td>
                     <td>
-                        {{ $connection->entityType() }}
+                        {{ $connection->entityType->name() }}
                     </td>
                     <td>
                         {{ $connectionService->connectionsText($connection->id) }}

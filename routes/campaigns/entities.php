@@ -323,5 +323,7 @@ Route::get('/w/{campaign}/entities/{entity}/preview', 'Entity\PreviewController@
 
 // Entity quick creator
 Route::get('/w/{campaign}/entity-creator', [App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');
-Route::get('/w/{campaign}/entity-creator/{type}', [App\Http\Controllers\EntityCreatorController::class, 'form'])->name('entity-creator.form');
-Route::post('/w/{campaign}/entity-creator/{type}', [App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
+Route::get('/w/{campaign}/entity-creator/{entity_type}', [App\Http\Controllers\EntityCreatorController::class, 'form'])->name('entity-creator.form');
+Route::get('/w/{campaign}/entity-creator-post', [App\Http\Controllers\EntityCreatorController::class, 'post'])->name('entity-creator.post');
+Route::post('/w/{campaign}/entity-creator/{entity_type}', [App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
+Route::post('/w/{campaign}/entity-creator-post', [App\Http\Controllers\EntityCreatorController::class, 'storePost'])->name('entity-creator.store-post');

@@ -169,7 +169,7 @@ class ImporterService
             $entity->save();
 
             $this->miscIds[$pluginEntity->id] = $model->id;
-            $this->entityTypes[$pluginEntity->id] = $model->getEntityType();
+            $this->entityTypes[$pluginEntity->id] = $model->entity->entityType->code;
             $this->entityIds[$pluginEntity->id] = $model->entity->id;
 
             $this->created[] = '<a href="' . $entity->url() . '">' . $entity->name . '</a>';

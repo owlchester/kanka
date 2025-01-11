@@ -175,6 +175,9 @@ class Map extends MiscModel
             'entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
+            },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
