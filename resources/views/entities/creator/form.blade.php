@@ -50,7 +50,15 @@
         </a>
         <div class="qq-more-fields flex flex-col gap-5 {{ isset($entityType) ? 'hidden' : null }}">
             @php $allowNew = false; $dropdownParent = '#primary-dialog';@endphp
-            @include('entities.creator.forms.' . ($entityType->code ?? 'post'))
+            @if (isset($entityType))
+                @if ($entityType->isSpecial())
+{{--                    @include('entities.creator.forms.custom')--}}
+                @else
+                    @include('entities.creator.forms.' . $entityType->code)
+                @endif
+            @else
+                @include('entities.creator.forms.post')
+            @endif
 
             @if (!isset($entityType) || !in_array($entityType->id, [config('entities.ids.attribute_template')]))
                 <div id="quick-creator-tags-field">

@@ -32,7 +32,6 @@ class EntityCacheService extends BaseCache
 
         $data = $entityType->getClass()->entityTypeSuggestion();
 
-
         Cache::put($key, $data, 24 * 3600);
         return $data;
     }

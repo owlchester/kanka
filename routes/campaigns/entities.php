@@ -219,6 +219,9 @@ Route::get('/w/{campaign}/connection/filter-form', [App\Http\Controllers\Filters
 
 Route::get('/w/{campaign}/filters/{entity_type}/save', [App\Http\Controllers\Filters\SaveController::class, 'save'])->name('save-filters');
 
+Route::get('/w/{campaign}/filters/{entity_type}/create', [App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
+Route::post('/w/{campaign}/filters/{entity_type}/store', [App\Http\Controllers\Entities\CreateController::class, 'store'])->name('entities.store');
+
 
 //Route::get('/w/{campaign}/my-campaigns', 'CampaignController@index')->name('campaign');
 Route::resources([

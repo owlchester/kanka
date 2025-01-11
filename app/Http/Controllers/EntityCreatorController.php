@@ -69,12 +69,10 @@ class EntityCreatorController extends Controller
         // Make sure the user is allowed to create this kind of entity
         $class = null;
         $this->campaign = $campaign;
-//        if ($type == 'posts') {
-//            $this->authorize('recover', $this->campaign);
-//        } else {
+        if (!$entityType->isSpecial()) {
             $class = $entityType->getClass();
             $this->authorize('create', $class);
-//        }
+        }
 
         $this->request = $request;
 
@@ -94,6 +92,9 @@ class EntityCreatorController extends Controller
 
         // Prepare the validator
         $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::camel($entityType->code));
+        if ($entityType->isSpecial()) {
+            $requestValidator = '\App\Http\Requests\StoreCustomEntity';
+        }
         /** @var StoreCharacter $validator */
         $validator = new $requestValidator();
 
@@ -114,9 +115,17 @@ class EntityCreatorController extends Controller
             }
 
             $values['name'] = $name;
-//            if ($type != 'posts') {
-                $this->validateEntity($values, $validator->rules());
+            $this->validateEntity($values, $validator->rules());
 
+            if ($entityType->isSpecial()) {
+                /** @var Entity $new */
+                $new = new Entity($values);
+                $new->campaign_id = $this->campaign->id;
+                $new->type_id = $entityType->id;
+                $new->save();
+                $createdEntities[] = $new;
+                $links[] = '<a href="' . $new->url() . '">' . $new->name . '</a>';
+            } else {
                 /** @var MiscModel $new */
                 $new = new $class($values);
                 $new->campaign_id = $this->campaign->id;
@@ -125,22 +134,9 @@ class EntityCreatorController extends Controller
                 if ($new->entity) {
                     $new->entity->crudSaved();
                 }
-//            } else {
-//                //If position = 0 the post's position is last, else the post's position is first.
-//                $rules = $validator->rules();
-//                $rules['entity_id'] = 'required|integer|exists:entities,id';
-//                $this->validateEntity($values, $rules);
-//                if ($values['position'] == 0) {
-//                    $new = Post::create($values);
-//                } else {
-//                    $entity = Entity::find($values['entity_id']);
-//                    $entity->posts()->increment('position');
-//                    $values['position'] = 1;
-//                    $new = Post::create($values);
-//                }
-//            }
-            $createdEntities[] = $new;
-            $links[] = '<a href="' . $new->entity->url() . '">' . $new->name . '</a>';
+                $createdEntities[] = $new;
+                $links[] = '<a href="' . $new->entity->url() . '">' . $new->name . '</a>';
+            }
         }
 
         // If no entity was created, we throw the standard error
@@ -320,9 +316,11 @@ class EntityCreatorController extends Controller
         $model = null;
         if (!isset($entityType)) {
             $this->authorize('recover', $campaign);
-        } else {
+        } elseif (!$entityType->isSpecial()) {
             $model = $entityType->getClass();
             $this->authorize('create', $model);
+        } else {
+            // Todo: support custom modules
         }
 
         $origin = $request->get('origin');
@@ -346,6 +344,9 @@ class EntityCreatorController extends Controller
         if (isset($entityType)) {
             $newLabel = __($entityType->pluralCode() . '.create.title');
             $singular = Module::singular($entityType->id);
+            if ($entityType->isSpecial()) {
+                $singular = $entityType->name();
+            }
             if (!empty($singular)) {
                 $newLabel = __('crud.titles.new', ['module' => $singular]);
             }
@@ -379,8 +380,13 @@ class EntityCreatorController extends Controller
     {
         $orderedTypes = [];
         /** @var EntityType $entityType */
-        foreach (EntityType::whereNotIn('code', ['bookmark'])->get() as $entityType) {
+        foreach (EntityType::inCampaign($this->campaign)->enabled()->exclude([config('entities.ids.bookmark')])->get() as $entityType) {
             // If the user can create, and the module is available
+            if ($entityType->isSpecial()) {
+                // Custom permission
+                $orderedTypes[$entityType->plural()] = $entityType;
+                continue;
+            }
             if (!$this->campaign->enabled($entityType->pluralCode())) {
                 continue;
             }

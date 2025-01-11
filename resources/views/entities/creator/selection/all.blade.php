@@ -1,5 +1,5 @@
 @php
-$half = floor((count($entityTypes) + 1) / 2);
+$half = floor(count($entityTypes)  / 2);
 $i = 0;
 @endphp
 <div class="text-uppercase text-sm font-bold mb-4">
