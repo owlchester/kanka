@@ -96,7 +96,7 @@ class MapService
      */
     public function map(): array
     {
-        $entityHook = 'init' . ucfirst($this->entity->type());
+        $entityHook = 'init' . ucfirst($this->entity->entityType->code);
         if (method_exists($this, $entityHook)) {
             $this->$entityHook();
         } else {

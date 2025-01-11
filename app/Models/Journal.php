@@ -124,6 +124,9 @@ class Journal extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
+            },
             'entity.calendarDate',
             'entity.calendarDate.calendar',
             'entity.calendarDate.calendar.entity',

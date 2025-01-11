@@ -34,7 +34,7 @@ class Recovery extends Layout
                 'key' => 'type_id',
                 'label' => 'crud.fields.entity_type',
                 'render' => function ($entity) {
-                    return Module::singular($entity->typeID(), __('entities.' . $entity->type()));
+                    return $entity->entityType->singular();
                 },
             ],
             'deleted' => [

@@ -124,6 +124,9 @@ class Quest extends MiscModel
         return $query->with([
             'entity',
             'entity.image',
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
+            },
             'entity.calendarDate',
             'entity.calendarDate.calendar',
             'entity.calendarDate.calendar.entity',

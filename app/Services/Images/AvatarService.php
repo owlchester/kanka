@@ -134,9 +134,9 @@ class AvatarService
         }
 
         $cloudfront = config('filesystems.disks.cloudfront.url');
-        if ($this->campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->entity->type())) {
+        if ($this->campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->entity->entityType->code)) {
             $url = Img::crop($this->width, $this->height)
-                ->url(CampaignCache::defaultImages()[$this->entity->type()]);
+                ->url(CampaignCache::defaultImages()[$this->entity->entityType->code]);
             return $this->return($url);
         } elseif ($this->campaign->premium() || (auth()->check() && auth()->user()->isGoblin())) {
             // Goblins and above have nicer icons

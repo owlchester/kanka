@@ -29,7 +29,7 @@ class Mention extends Layout
                     }
                     $base = __('crud.hidden');
                     if ($model->entity) {
-                        $base = __('entities.' . $model->entity->type());
+                        $base = $model->entity->entityType->name();
                     }
 
                     if ($model->isTimelineElement()) {

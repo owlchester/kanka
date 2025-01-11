@@ -327,7 +327,7 @@ class DatagridRenderer
 
         $html = '<tr data-id="' . $model->id . '" '
             . (!empty($model->type) ? 'data-type="' . Str::slug($model->type) . '" ' : null)
-            . ($useEntity ? 'data-entity-id="' . $model->entity->id . '" data-entity-type="' . $model->entity->type() . '"' : null);
+            . ($useEntity ? 'data-entity-id="' . $model->entity->id . '" data-entity-type="' . $model->entity->entityType->code . '"' : null);
         /*if (!empty($this->options['row']) && !empty($this->options['row']['data'])) {
             foreach ($this->options['row']['data'] as $name => $data) {
                 $html .= ' ' . $name . '="' . $data($model) . '"';

@@ -140,7 +140,7 @@ class ImporterService
         if ($entity) {
             $this->entityIds[$pluginEntity->id] = $entity->id;
             $this->miscIds[$pluginEntity->id] = $entity->entity_id;
-            $this->entityTypes[$pluginEntity->id] = $entity->type();
+            $this->entityTypes[$pluginEntity->id] = $entity->entityType->code;
             //dump('existing ' . $pluginEntity->uuid);
             $model = $entity->child;
 

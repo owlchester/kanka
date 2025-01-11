@@ -115,6 +115,9 @@ class Organisation extends MiscModel
             ->with([
                 'entity',
                 'entity.image',
+                'entity.entityType' => function ($sub) {
+                    $sub->select('id', 'code');
+                },
                 'locations' => function ($sub) {
                     $sub->select('id', 'name');
                 },

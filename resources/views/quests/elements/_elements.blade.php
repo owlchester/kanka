@@ -8,7 +8,7 @@
             @continue
         @endif
         @php $count++; @endphp
-            <div class="rounded flex flex-col bg-box widget-user-2 box-quest-element" id="quest-element-{{ $element->id }}" @if ($element->entity)data-entity-id="{{ $element->entity->id }}" data-entity-type="{{ $element->entity->type() }}"@endif>
+            <div class="rounded flex flex-col bg-box widget-user-2 box-quest-element" id="quest-element-{{ $element->id }}" @if ($element->entity)data-entity-id="{{ $element->entity->id }}" data-entity-type="{{ $element->entity->entityType->code }}"@endif>
                 <div class="flex p-4 gap-2 items-center border-b h-20 {{ $element->colourClass() }}">
                     @if ($element->entity && $element->entity->hasImage($campaign->boosted()))
                         <div class="widget-user-image">

@@ -129,6 +129,9 @@ class Family extends MiscModel
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
             },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
+            },
             'location' => function ($sub) {
                 $sub->select('id', 'name');
             },

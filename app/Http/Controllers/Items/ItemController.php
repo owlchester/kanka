@@ -32,7 +32,7 @@ class ItemController extends Controller
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
-            ->with(['entity', 'entity.image'])
+            ->with(['entity', 'entity.image', 'entity.entityType'])
             ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {

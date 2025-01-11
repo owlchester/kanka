@@ -420,7 +420,7 @@ class MentionsService
                 $replace = '<a href="' . $url . '"'
                     . ' class="' . implode(' ', $cssClasses) . '"'
                     . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
-                    . ' data-entity-type="' . $entity->type() . '"'
+                    . ' data-entity-type="' . $entity->entityType->code . '"'
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'
                     . ' data-url="' . $dataUrl . '"'
@@ -641,7 +641,7 @@ class MentionsService
 
         // Directly get with the mentioned entity types (provided they are valid)
         // @phpstan-ignore-next-line
-        $entities = Entity::whereIn('id', $ids)->with('tags:id,name,slug')->get();
+        $entities = Entity::whereIn('id', $ids)->with(['tags:id,name,slug', 'entityType:id,code'])->get();
         //dump(count($ids));
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $entity;

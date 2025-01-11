@@ -26,7 +26,7 @@ trait SubEntityScopes
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
-            'entity', 'entity.image',
+            'entity', 'entity.image', 'entity.entityType'
         ])->has('entity');
     }
 

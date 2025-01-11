@@ -28,7 +28,7 @@
     @else
         @include('cruds.overview')
     @endif
-    @includeIf('entities.pages.profile._' . $entity->type())
+    @includeIf('entities.pages.profile._' . $entity->entityType->code)
     @includeIf($name . '._print')
     @includeWhen($entity->abilities->count() > 0, 'entities.pages.print._abilities')
     @includeWhen($entity->inventories->count() > 0, 'entities.pages.print._inventory')

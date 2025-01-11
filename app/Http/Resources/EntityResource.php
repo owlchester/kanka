@@ -53,7 +53,7 @@ class EntityResource extends JsonResource
         $data = [
             'id' => $entity->id,
             'name' => $entity->name,
-            'type' => $entity->type(),
+            'type' => $entity->entityType->code,
             'type_id' => $entity->type_id,
             'child_id' => $entity->entity_id,
             'tags' => $entity->tags->pluck('id')->toArray(),
@@ -106,7 +106,7 @@ class EntityResource extends JsonResource
 
         // Get the actual model
         if ($this->withMisc) {
-            $className = 'App\Http\Resources\\' . ucfirst($entity->type()) . 'Resource';
+            $className = 'App\Http\Resources\\' . ucfirst($entity->entityType->code) . 'Resource';
             if (class_exists($className)) {
                 $obj = new $className($entity->child);
                 $data['child'] = $obj;

@@ -11,7 +11,7 @@
 @endcan
 @if (!isset($more))
     @php
-        $title = '[' . $entity->type() . ':' . $entity->id . '|anchor:post-' . $post->id . ']';
+        $title = '[' . $entity->entityType->code . ':' . $entity->id . '|anchor:post-' . $post->id . ']';
         $data = [
             'title' => $title,
             'toggle' => 'tooltip',
@@ -22,7 +22,7 @@
         {{ __('entities/notes.copy_mention.copy') }}
     </x-dropdowns.item>
     @php
-        $title = '[' . $entity->type() . ':' . $entity->id . '|anchor:post-' . $post->id . '|' . $post->name . ']';
+        $title = '[' . $entity->entityType->code . ':' . $entity->id . '|anchor:post-' . $post->id . '|' . $post->name . ']';
         $data = [
             'title' => $title,
             'toggle' => 'tooltip',
