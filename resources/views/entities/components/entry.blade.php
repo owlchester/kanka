@@ -1,4 +1,4 @@
-@if (!$entity->entityType->isSpecial() && $entity->child->hasEntry())
+@if (($entity->entityType->isSpecial() && $entity->hasEntry()) || (!$entity->entityType->isSpecial() && $entity->child->hasEntry()))
     <article class="bg-box rounded box-entity-entry">
     <div class="p-4 entity-content  overflow-x-auto">
         @if (auth()->check())
@@ -11,7 +11,7 @@
                 </div>
             @endcan
         @endif
-        {!! $entity->child->parsedEntry() !!}
+        {!! $entity->entityType->isSpecial() ? $entity->parsedEntry() : $entity->child->parsedEntry() !!}
     </div>
 </article>
 @endif

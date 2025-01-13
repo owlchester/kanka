@@ -11,6 +11,7 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\EntityLogs;
 use App\Models\Concerns\EntityType;
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasMentions;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
@@ -67,6 +68,7 @@ class Entity extends Model
     use HasCampaign;
     use HasMentions;
     use HasTooltip;
+    use HasEntry;
     use LastSync;
     use Paginatable;
     use Searchable;
@@ -85,6 +87,8 @@ class Entity extends Model
         'image_uuid',
         'header_uuid',
         'is_template',
+        'type',
+        'entry',
     ];
 
     /** @var array Searchable fields */
@@ -174,7 +178,10 @@ class Entity extends Model
             }
         }
         if ($this->entityType->isSpecial()) {
-            return 'todo: entry on entity';
+            if (!$this->hasEntry()) {
+                return '';
+            }
+            return Str::limit(strip_tags($this->parsedEntry()), 500);
         }
         if (!$this->child->hasEntry()) {
             return '';
@@ -511,5 +518,14 @@ class Entity extends Model
         }
 
         return (string) implode(' ', $classes);
+    }
+
+    /**
+     * Determine if the model has an entry text field
+     */
+    public function hasEntry(): bool
+    {
+        // If all that's in the entry is two \n, then there is no real content
+        return mb_strlen($this->entry) > 2;
     }
 }

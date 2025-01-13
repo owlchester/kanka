@@ -35,7 +35,11 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
         </div>
     @endif
 
-    @includeIf('entities.components.profile.' . $name)
+    @if ($entity->entityType->isSpecial())
+            @includeIf('entities.components.profile.custom')
+    @else
+        @includeIf('entities.components.profile.' . $name)
+    @endif
 
     @includeWhen(!isset($printing) && $campaign->boosted() && $entity->hasLinks(), 'entities.components.links')
 

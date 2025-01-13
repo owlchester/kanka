@@ -36,7 +36,7 @@ class RecentService
 
         $orderedIds = implode(',', $recentIds);
         $entities = Entity::whereIn('id', $recentIds)
-            ->with('image')
+            ->with(['image', 'entityType'])
             ->orderByRaw("FIELD(id, {$orderedIds})")
             ->get();
         $recent = [];
@@ -61,7 +61,7 @@ class RecentService
             'is_private' => $entity->is_private,
             'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
             'link' => $entity->url(),
-            'type' => Module::singular($entity->typeId(), __('entities.' . $entity->entityType->code)),
+            'type' => $entity->entityType->name(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
         ];
     }

@@ -35,10 +35,10 @@ trait HasTooltip
         }
 
         /** @var MiscModel $child */
-        if ($this->entityType->isSpecial()) {
-            return 'todo: entry on entity';
+        $child = $this;
+        if (!$this->entityType->isSpecial()) {
+            $child = $this->child;
         }
-        $child = $this->child;
         if (!method_exists($child, 'parsedEntry')) {
             return '';
         }

@@ -21,7 +21,7 @@
                           id="entry"
                           class="html-editor"
                           rows="3"
-                >{!! $entity->child->entryForEdition !!}</textarea>
+                >{!! $entity->entityType->isSpecial() ? $entity->entryForEdition : $entity->child->entryForEdition !!}</textarea>
             </x-forms.field>
 
             <div class="flex gap-2 items-center">

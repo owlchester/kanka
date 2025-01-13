@@ -1,7 +1,3 @@
-<?php
-/** @var \App\Models\MiscModel $entityTypeListModel */
-$entityTypeListModel = new $base();
-?>
 <x-forms.field
     field="type"
     label="{{ __('crud.fields.type') }}">

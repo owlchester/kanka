@@ -53,10 +53,16 @@ class PreviewService
      */
     protected function profile(): array
     {
-        /** @var MiscModel|Character $child */
-        $child = $this->entity->child;
-        if (!empty($child->type)) {
-            $this->addProfile('crud.fields.type', 'type', $child->type);
+        if ($this->entity->entityType->isSpecial()) {
+            if (!empty($this->entity->type)) {
+                $this->addProfile('crud.fields.type', 'type', $this->entity->type);
+            }
+        } else {
+            /** @var MiscModel|Character $child */
+            $child = $this->entity->child;
+            if (!empty($child->type)) {
+                $this->addProfile('crud.fields.type', 'type', $child->type);
+            }
         }
 
         // Entity-specific content?
@@ -64,7 +70,6 @@ class PreviewService
             /** @var Character $child */
             $this->characterProfile($child);
         }
-
 
         return $this->profile;
     }
@@ -118,6 +123,9 @@ class PreviewService
     }
     protected function location(): mixed
     {
+        if ($this->entity->entityType->isSpecial()) {
+            return null;
+        }
         /** @var ?Location $loc */
         $loc = null;
         if (method_exists($this->entity->child, 'location') && !empty($this->entity->child->location)) {

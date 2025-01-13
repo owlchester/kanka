@@ -7,6 +7,7 @@ use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class EntityCacheService
@@ -30,7 +31,18 @@ class EntityCacheService extends BaseCache
             return Cache::get($key);
         }
 
-        $data = $entityType->getClass()->entityTypeSuggestion();
+        if ($entityType->isSpecial()) {
+            $data = Entity::select(DB::raw('type, MAX(created_at) as cmat'))
+                ->groupBy('type')
+                ->whereNotNull('type')
+                ->where('type_id', $entityType->id)
+                ->orderBy('cmat', 'DESC')
+                ->take(20)
+                ->pluck('type')
+                ->all();
+        } else {
+            $data = $entityType->getClass()->entityTypeSuggestion();
+        }
 
         Cache::put($key, $data, 24 * 3600);
         return $data;

@@ -246,9 +246,11 @@ class SearchService
         foreach ($query->get() as $model) {
             /** @var ?MiscModel $child */
             // Force having a child for "ghost" entities.
-            $child = $model->child;
-            if ($child === null || in_array($model->id, $foundEntityIds)) {
-                continue;
+            if (!$model->entityType->isSpecial()) {
+                $child = $model->child;
+                if ($child === null || in_array($model->id, $foundEntityIds)) {
+                    continue;
+                }
             }
 
             if ($this->v2) {

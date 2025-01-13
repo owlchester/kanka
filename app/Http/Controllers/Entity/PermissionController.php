@@ -19,14 +19,14 @@ class PermissionController extends Controller
 
     public function view(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('permission', $entity->child);
+        $this->authorize('permissions', $entity);
 
         return view('cruds.permissions', compact('entity', 'campaign'));
     }
 
     public function store(StorePermission $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('permission', $entity->child);
+        $this->authorize('permissions', $entity);
 
         $this->permissionService
             ->saveEntity($request->only('role', 'user'), $entity);

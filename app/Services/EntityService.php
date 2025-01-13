@@ -146,6 +146,11 @@ class EntityService
             $ids[] = config('entities.ids.' . $type);
         }
 
+        // Add campaign custom modules
+        foreach ($this->campaign->entityTypes()->enabled()->get() as $entityType) {
+            $ids[] = $entityType->id;
+        }
+
         return $ids;
     }
 }
