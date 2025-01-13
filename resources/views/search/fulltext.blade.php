@@ -23,9 +23,6 @@
         @include('layouts.datagrid.fulltext_search', ['route' => route('search.fulltext', $campaign), 'term' => $term])
 
         @include('ads.top')
-        <x-alert type="warning">
-            <p>Full text search is currently offline and will be back in a bit.</p>
-        </x-alert>
 
         @if (!empty($term))
             <p class="text-lg">{!! __('search/fulltext.searching', ['term' => '<span class="italic">' . $term . '</span>']) !!}</p>
