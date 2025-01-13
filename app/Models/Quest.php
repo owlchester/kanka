@@ -293,7 +293,7 @@ class Quest extends MiscModel
     {
         return !empty($this->type) || !empty($this->instigator) ||
             !empty($this->date) || !empty($this->calendarReminder()) || !empty($this->location);
-            ;
+        ;
     }
 
     /**
