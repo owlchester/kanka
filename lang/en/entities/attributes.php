@@ -93,10 +93,10 @@ return [
         'unlock'        => 'Attribute unlocked',
         'unpin'         => 'Attribute unpinned',
     ],
-    'tutorials' => [
-        'general' => 'Attributes are little bits of information attached to :name.',
+    'tutorials'     => [
         'character' => 'For example, they might have an :hp and :str property.',
-        'location' => 'For example, they might have a :pop. property.',
+        'general'   => 'Attributes are little bits of information attached to :name.',
+        'location'  => 'For example, they might have a :pop. property.',
     ],
     'types'         => [
         'attribute' => 'Attribute',
