@@ -221,7 +221,7 @@ class Map extends MiscModel
     public function markers(): HasMany
     {
         return $this->hasMany('App\Models\MapMarker', 'map_id', 'id')
-            ->with(['entity', 'group', 'map', 'entity.image']);
+            ->with(['entity', 'entity.entityType', 'group', 'map', 'entity.image']);
     }
 
     public function center_marker(): HasOne

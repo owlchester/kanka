@@ -1,5 +1,5 @@
-<?php /** @var \App\Models\Character $model */
-$appearances = $model->appearances;
+<?php /** @var \App\Models\Entity $entity */
+$appearances = $entity->child->appearances;
 ?>
 
 @if (count($appearances) > 0)

@@ -1,8 +1,8 @@
-<?php /** @var \App\Models\Character $model */
-$traits = $model->personality;
+<?php /** @var \App\Models\Entity $entity */
+$traits = $entity->child->personality;
 ?>
 
-@if (((auth()->check() && auth()->user()->can('personality', $model)) || $model->is_personality_visible) && count($traits) > 0)
+@if (((auth()->check() && auth()->user()->can('personality', $entity->child)) || $entity->child->is_personality_visible) && count($traits) > 0)
 
     <div class="flex flex-col gap-3 post-block character-personalities">
         <div class="post-header flex gap-1 md:gap-2 items-center">
@@ -13,9 +13,9 @@ $traits = $model->personality;
                     {{ __('characters.sections.personality') }}
                 </h3>
             </div>
-            @if(auth()->check() && auth()->user()->can('personality', $model))
+            @if(auth()->check() && auth()->user()->can('personality', $entity->child))
                 <div class="flex-none w-6">
-                    @if (!$model->is_personality_visible)
+                    @if (!$entity->child->is_personality_visible)
                         <x-icon class="fa-solid fa-lock" tooltip title="{{ __('characters.hints.personality_not_visible') }}" />
                     @else
                         <x-icon class="fa-solid fa-lock-open" tooltip title="{{ __('characters.hints.personality_visible') }}" />
