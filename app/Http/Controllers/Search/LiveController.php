@@ -29,7 +29,7 @@ class LiveController extends Controller
     public function index(Request $request, Campaign $campaign)
     {
         $term = mb_trim($request->get('q') ?? '');
-        $type = $request->get('type', null);
+        $type = $request->get('type');
         if (!empty($type)) {
             $type = mb_trim($type);
             if (!is_numeric($type)) {
