@@ -138,4 +138,12 @@ class EntityType extends Model
     {
         return $this->is_enabled;
     }
+
+    public function createRoute(Campaign $campaign, array $params = []): string
+    {
+        if ($this->isSpecial()) {
+            return route('entities.create', [$campaign, $this] + $params);
+        }
+        return route($this->pluralCode() . '.create', [$campaign] + $params);
+    }
 }

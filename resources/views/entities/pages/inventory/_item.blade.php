@@ -55,7 +55,7 @@ data-visibility="{{ $item->visibility_id }}"
         </div>
     @endif
 
-    @can('inventory', $entity->child)
+    @can('inventory', $entity)
     <div class="right-2 bottom-1 absolute  text-lg">
         <a href="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
            class="link link-accent"

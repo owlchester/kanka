@@ -1,6 +1,12 @@
-<?php /** @var \App\Models\Organisation $model */?>
+<?php
+/**
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\Organisation $model
+ */
+$child = $entity->child;
+?>
 
-@if (!$entity->child->showProfileInfo())
+@if (!$child->showProfileInfo())
     @php return @endphp
 @endif
 

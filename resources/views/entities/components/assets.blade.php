@@ -1,6 +1,5 @@
 <?php
 /**
- * @var \App\Models\MiscModel $model
  * @var \App\Models\EntityAsset $asset
  */
 ?>

@@ -9,8 +9,8 @@
     </div>
     <div class="sidebar-elements overflow-hidden" id="sidebar-link-elements">
         <div class="flex flex-col gap-2">
-            @foreach ($model->entity->assets->where('type_id', \App\Models\EntityAsset::TYPE_LINK) as $asset)
-                <a href="{{ route('entities.entity_assets.go', [$campaign, 'entity' => $model->entity->id, 'entity_asset' => $asset]) }}"
+            @foreach ($entity->assets->where('type_id', \App\Models\EntityAsset::TYPE_LINK) as $asset)
+                <a href="{{ route('entities.entity_assets.go', [$campaign, 'entity' => $entity, 'entity_asset' => $asset]) }}"
                     title="{!! $asset->name !!}"
                     target="_blank" rel="noreferrer nofollow"
                     data-target="{{ $asset->id }}"

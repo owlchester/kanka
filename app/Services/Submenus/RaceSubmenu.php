@@ -11,7 +11,7 @@ class RaceSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
         /** @var Race $model */
-        $model = $this->model;
+        $model = $this->entity->child;
         $count = $model->descendants()->count();
         if ($count > 0) {
             $items['second']['races'] = [

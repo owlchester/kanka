@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\MiscModel;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\AttributeService;
 use App\Services\MultiEditingService;
@@ -40,22 +41,20 @@ class EditController extends Controller
             }
         }
 
-        dd('heint');
-        $hasTabs = $this->hasTabs($entity->type_id);
-
         $params = [
             'campaign' => $this->campaign,
             'entity' => $entity,
             'name' => $entity->entityType->pluralCode(),
-            'tabPermissions' => $hasTabs && auth()->user()->can('permission', $entity),
-            'tabAttributes' => $hasTabs && auth()->user()->can('attributes', $entity) && $this->campaign->enabled('entity_attributes'),
-            'tabBoosted' => $hasTabs,
-            'tabCopy' => $hasTabs,
+            'tabPermissions' => auth()->user()->can('permission', $entity),
+            'tabAttributes' => auth()->user()->can('attributes', $entity) && $this->campaign->enabled('entity_attributes'),
             'entityType' => $entity->entityType,
             'editingUsers' => $editingUsers,
         ];
+        if (!$entity->entityType->isSpecial()) {
+            $params['model'] = $entity->child;
+        }
 
-        return view('cruds.forms.edit', $params);
+        return view('entities.forms.edit', $params);
     }
 
     public function save(Request $request, Campaign $campaign, Entity $entity)
@@ -67,9 +66,9 @@ class EditController extends Controller
 
         try {
             // Sanitize the data
-            $sanitizerClassName = 'App\Sanitizers\\' . Str::kebab($entity->entityType->code) . 'Sanitizer';
-            $sanitizer = app()->make($sanitizerClassName);
-            if ($sanitizer) {
+            $sanitizerClassName = 'App\Sanitizers\\' . Str::studly($entity->entityType->code) . 'Sanitizer';
+            if (class_exists($sanitizerClassName)) {
+                $sanitizer = app()->make($sanitizerClassName);
                 $request->merge($sanitizer->request($request)->sanitize());
             }
 
@@ -80,33 +79,38 @@ class EditController extends Controller
 
                 // Fire an event for the Entity Observer
                 $entity->child->crudSaved();
+
+                $entity->name = $entity->child->name;
+                $entity->is_private = $entity->child->is_private;
+                $entity->crudSaved();
+
+                // If the child was changed but nothing changed on the entity, we still want to trigger an update
+                if ($entity->child->wasChanged() && !$entity->wasChanged()) {
+                    $entity->touch();
+                }
+            } else {
+                $entity->update($request);
+                $entity->crudSaved();
             }
 
-            $entity->name = $model->name;
-            $entity->is_private = $model->is_private;
-            $entity->crudSaved();
-            // If the child was changed but nothing changed on the entity, we still want to trigger an update
-            if ($entity->child->wasChanged() && !$entity->wasChanged()) {
-                $entity->touch();
-            }
 
             if (auth()->user()->can('attributes', $entity)) {
                 $this->attributeService
-                    ->campaign($this->campaign)
+                    ->campaign($campaign)
                     ->entity($entity)
                     ->save($request->get('attribute', []));
             }
 
             $link = '<a href="' . route(
                     'entities.show',
-                    [$this->campaign, $entity]
+                    [$campaign, $entity]
                 )
                 . '">' . $entity->name . '</a>';
             $success = __('general.success.updated', [
                 'name' => $link
             ]);
 
-            $this->multiEditingService->model($model->entity)
+            $this->multiEditingService->model($entity)
                 ->user($request->user())
                 ->finish();
 
@@ -121,16 +125,16 @@ class EditController extends Controller
                 }
             }
 
-            $route = route('entities.show', $options + [$this->campaign, $entity]);
+            $route = route('entities.show', $options + [$campaign, $entity]);
 
             if ($request->has('submit-new')) {
-                $route = route('entities.create', [$campaign, $entity->entityType);
+                $route = route('entities.create', [$campaign, $entity->entityType]);
             } elseif ($request->has('submit-update')) {
                 $route = route('entities.edit', [$campaign, $entity]);
             } elseif ($request->has('submit-close')) {
                 $route = route('entities.index', [$campaign, $entity->entityType]);
             } elseif ($request->has('submit-copy')) {
-                $route = route('entities.index', [$this->campaign, $entity->entityType, 'copy' => $entity]);
+                $route = route('entities.index', [$campaign, $entity->entityType, 'copy' => $entity]);
                 return response()->redirectTo($route);
             }
             return response()->redirectTo($route);
@@ -140,11 +144,17 @@ class EditController extends Controller
         }
     }
 
-    protected function hasTabs(int $type): bool
+    /**
+     * @return array
+     */
+    protected function prepareData(Request $request, MiscModel $model)
     {
-        return !in_array($type, [
-            config('entities.ids.bookmark'),
-            config('entities.ids.relation')
-        ]);
+        $data = $request->all();
+        foreach ($model->nullableForeignKeys as $field) {
+            if (!request()->has($field) && !isset($data[$field])) {
+                $data[$field] = null;
+            }
+        }
+        return $data;
     }
 }

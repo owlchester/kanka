@@ -157,7 +157,9 @@ class Relation extends Model
         return $query
             ->with([
                 'owner',
+                'owner.entityType',
                 'target',
+                'target.entityType',
             ])
             ->has('owner')
             ->has('target')

@@ -1,6 +1,5 @@
-<?php /** @var \App\Models\Character $model */?>
 @php $existingRaces = []; @endphp
-@foreach ($entity->child->characterRaces as $race)
+@foreach ($child->characterRaces as $race)
     @if(!empty($existingRaces[$race->race_id]))
         @continue
     @endif

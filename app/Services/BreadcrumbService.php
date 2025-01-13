@@ -15,15 +15,25 @@ class BreadcrumbService
 
     /**
      */
-    public function index(): string
+    public function index(string $name = null): string
     {
         // Determine the "mode" for logged-in users who prefer the old table view
         $params = [];
         $params['campaign'] = $this->campaign;
-        $params['entityType'] = $this->entityType ?? $this->entity->entityType;
 
         // If the user activated nested views by default, go back to it.
-        $entityIndexRoute = route('entities.index', $params);
+        if (isset($this->entityType)) {
+            if ($this->entityType->isSpecial()) {
+                $params['entityType'] = $this->entity->entityType;
+                $entityIndexRoute = route('entities.index', $params);
+            } else {
+                $entityIndexRoute = route($this->entityType->pluralCode() . '.index', $params);
+            }
+        } elseif (isset($this->entity)) {
+            $entityIndexRoute = route($this->entity->entityType->pluralCode() . '.index', $params);
+        } else {
+            $entityIndexRoute = route($name . '.index', $params);
+        }
 
         return $entityIndexRoute;
     }

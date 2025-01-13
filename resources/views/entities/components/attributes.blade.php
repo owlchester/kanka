@@ -1,9 +1,8 @@
 <?php
 /**
- * @var \App\Models\MiscModel $model
  * @var \App\Models\Attribute $attribute
  */
-$attributes = isset($entity) ? $entity->starredAttributes() : $model->entity->starredAttributes();
+$attributes = $entity->starredAttributes();
 ?>
 @if (count($attributes) > 0)
     @foreach ($attributes as $attribute)

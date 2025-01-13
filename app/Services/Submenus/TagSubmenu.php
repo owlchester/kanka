@@ -12,7 +12,7 @@ class TagSubmenu extends BaseSubmenu implements EntitySubmenu
         $items = [];
 
         /** @var Tag $model */
-        $model = $this->model;
+        $model = $this->entity->child;
         $count = $model->descendants->count();
         if ($count > 0) {
             $items['second']['tags'] = [

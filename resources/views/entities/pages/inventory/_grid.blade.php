@@ -16,7 +16,7 @@
                     <a href="#" class="rounded hidden link link-accent bg-box">
                         <x-icon class="fa-solid fa-copy" />
                     </a>
-                    @can('inventory', $entity->child)
+                    @can('inventory', $entity)
                         <a href="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $position]) }}"
                            class="btn2 btn-default btn-sm"
                            data-toggle="dialog" data-target="primary-dialog"

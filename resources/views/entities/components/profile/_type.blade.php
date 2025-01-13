@@ -1,9 +1,9 @@
-@if (!empty($entity->child->type))
+@if (!empty($child->type))
     <div class="element profile-type">
         <div class="title text-uppercase text-xs">{{ __('crud.fields.type') }}</div>
         @php
         $defaultOptions = [$campaign, $entity->entityType];
         @endphp
-        <a href="{{ route('entities.index', $defaultOptions + ['_clean' => true, 'type' => $entity->child->type]) }}">{!! $entity->child->type !!}</a>
+        <a href="{{ route('entities.index', $defaultOptions + ['_clean' => true, 'type' => $child->type]) }}">{!! $child->type !!}</a>
     </div>
 @endif

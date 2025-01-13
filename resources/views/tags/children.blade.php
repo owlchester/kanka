@@ -1,8 +1,8 @@
 @extends('layouts.app', [
-    'title' => __('tags.children.title', ['name' => $model->name]),
+    'title' => __('tags.children.title', ['name' => $entity->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
+    'miscModel' => $entity,
 ])
 
 @section('content')
@@ -10,6 +10,5 @@
         'active' => 'entities',
         'breadcrumb' => __('tags.show.tabs.children'),
         'view' => 'tags.panels.children',
-        'entity' => $model->entity,
     ])
 @endsection

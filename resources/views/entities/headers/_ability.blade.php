@@ -1,5 +1,1 @@
-<?php /**
- * @var \App\Models\Ability $model
- */
-?>
-@includeWhen($model->parent, 'entities.headers.__parent', ['module' => 'ability'])
+@includeWhen($entity->child->parent, 'entities.headers.__parent', ['module' => 'ability'])

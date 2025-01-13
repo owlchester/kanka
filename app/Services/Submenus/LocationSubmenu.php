@@ -11,7 +11,7 @@ class LocationSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
         /** @var Location $location */
-        $location = $this->model;
+        $location = $this->entity->child;
 
         $count = $location->descendants()->has('parent')->count();
         if ($count > 0) {

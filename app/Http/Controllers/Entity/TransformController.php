@@ -30,7 +30,7 @@ class TransformController extends Controller
     public function index(Campaign $campaign, Entity $entity)
     {
         // Policies will always fail if they can't resolve the user.
-        $this->authorize('move', $entity->child);
+        $this->authorize('move', $entity);
 
         $entities = $this->typeService
             ->campaign($campaign)
@@ -49,7 +49,7 @@ class TransformController extends Controller
 
     public function transform(TransformEntityRequest $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('move', $entity->child);
+        $this->authorize('move', $entity);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }

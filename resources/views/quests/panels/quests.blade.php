@@ -1,7 +1,7 @@
 <?php
 $datagridOptions = [
     $campaign,
-    $model,
+    $entity->child,
     'init' => 1
 ];
 if (request()->has('parent_id')) {
@@ -9,8 +9,8 @@ if (request()->has('parent_id')) {
 }
 $datagridOptions = Datagrid::initOptions($datagridOptions);
 
-$direct = $model->children()->has('parent')->count();
-$all = $model->descendants()->has('parent')->count();
+$direct = $entity->child->children()->has('parent')->count();
+$all = $entity->child->descendants()->has('parent')->count();
 ?>
 <div class="flex gap-2 items-center">
     <h3 class="grow">
@@ -31,7 +31,7 @@ $all = $model->descendants()->has('parent')->count();
                 </span>
             </a>
         @else
-            <a href="{{ route('entities.show', [$campaign, $entity, 'parent_id' => $model->id]) }}" class="btn2 btn-sm">
+            <a href="{{ route('entities.show', [$campaign, $entity, 'parent_id' => $entity->child->id]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">
                     {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}

@@ -29,17 +29,17 @@
             </x-dropdowns.item>
         @endcan
         @can('create', [$entity->entityType, $campaign])
-            <x-dropdowns.item :link="route('entities.create', [$campaign, $entity->entityType])">
+            <x-dropdowns.item :link="$entity->entityType->createRoute($campaign)">
                 <x-icon class="fa-regular fa-plus" />
                 {{ __('crud.actions.new') }}
             </x-dropdowns.item>
             @if (!$entity->entityType->isSpecial() && method_exists($entity->child, 'getParentKeyName'))
-                <x-dropdowns.item :link="route('entities.create', [$campaign, $entity->entityType, 'parent_id' => $entity->child->id])">
+                <x-dropdowns.item :link="$entity->entityType->createRoute($campaign, ['parent_id' => $entity->child->id])">
                     <x-icon class="fa-regular fa-plus" />
                     {{ __('crud.actions.new_child') }}
                 </x-dropdowns.item>
             @endif
-            <x-dropdowns.item link="{{ route('entities.create', [$campaign, $entity->entityType, 'copy' => $entity->id]) }}">
+            <x-dropdowns.item link="{{ $entity->entityType->createRoute($campaign, ['copy' => $entity->child->id]) }}">
                 <x-icon class="fa-regular fa-copy" />
                 {{ __('crud.actions.copy') }}
             </x-dropdowns.item>

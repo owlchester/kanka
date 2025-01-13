@@ -11,7 +11,7 @@ class JournalSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
         /** @var Journal $journal */
-        $journal = $this->model;
+        $journal = $this->entity->child;
         $items['second']['journals'] = [
             'name' => Module::plural($journal->entityTypeId(), 'entities.journals'),
             'route' => 'journals.journals',

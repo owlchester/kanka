@@ -1,15 +1,12 @@
 <?php
-/**
- * @var \App\Models\Tag $model
- */
 $allMembers = false;
-$addEntityUrl = route('tags.entity-add', [$campaign, $model]);
+$addEntityUrl = route('tags.entity-add', [$campaign, $entity->child]);
 $datagridOptions = [];
 
 if (!empty($onload)) {
     $routeOptions = [
         $campaign,
-        $model,
+        $entity->child,
         'init' => 1,
     ];
     if (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->has('m') && $campaign->defaultDescendantsMode() === \App\Enums\Descendants::All)) {
@@ -22,15 +19,15 @@ if (!empty($onload)) {
     ;
 }
 
-$all = $model->allChildren()->count();
-$direct = $model->entities()->count();
+$all = $entity->child->allChildren()->count();
+$direct = $entity->child->entities()->count();
 ?>
 <div class="flex flex-col xl:flex-row gap-2 items-center">
     <h3 class="grow">
         {{ __('tags.show.tabs.children') }}
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">
-        <button data-url="{{ route('tags.transfer', [$campaign, $model->id]) }}" data-toggle="dialog" data-target="primary-dialog" class="btn2 btn-sm">
+        <button data-url="{{ route('tags.transfer', [$campaign, $entity->child]) }}" data-toggle="dialog" data-target="primary-dialog" class="btn2 btn-sm">
             <x-icon class="fa-solid fa-arrow-right"/>
             <span class="hidden xl:inline">{{ __('tags.transfer.transfer') }}</span>
         </button>
@@ -58,7 +55,7 @@ $direct = $model->entities()->count();
         @endif
 
         @if ($all > 0)
-            @can('update', $model)
+            @can('update', $entity)
                 <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
                    data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">
                     <x-icon class="plus" />
@@ -72,7 +69,7 @@ $direct = $model->entities()->count();
 <div class="" id="tag-children">
     <x-box>
         <x-helper :text="__('tags.helpers.no_children')" />
-        @can('update', $model)
+        @can('update', $entity)
             <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
                 data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">
                 <x-icon class="plus" />

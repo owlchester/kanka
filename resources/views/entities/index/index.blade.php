@@ -1,18 +1,20 @@
 @extends('layouts.app', [
-    'title' => $titleKey ?? __('entities.' . $langKey),
-    'seoTitle' => $titleKey ?? __('entities.' . $langKey) . ' - ' . $campaign->name,
+    'title' => $entityType->plural(),
+    'seoTitle' => $entityType->plural() . ' - ' . $campaign->name,
     'breadcrumbs' => false,
     'canonical' => true,
-    'bodyClass' => 'kanka-' . $name,
+    'bodyClass' => 'kanka-' . $entityType->code,
 ])
 
 @section('entity-header')
     <div class="flex gap-2 items-center mb-5">
-        <h1 class="grow text-4xl category-title truncate">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
+        <h1 class="grow text-4xl category-title truncate">{!! $entityType->plural() !!}</h1>
         <div class="flex flex-wrap gap-2 justify-end">
-            @includeWhen(isset($route) && $route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])
-            @includeWhen(isset($actions), 'cruds.lists._actions')
-            @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
+            @include('layouts.datagrid._togglers', ['route' => 'index'])
+            @includeWhen(isset($actions), 'entities.index._actions')
+            @can('create', [$entityType, $campaign])
+                @include('entities.index._create')
+            @endcan
         </div>
     </div>
 @endsection
@@ -40,17 +42,11 @@
     @if (!isset($mode) || $mode === 'grid')
         @include('cruds.datagrids.explore', ['route' => $route . '.index'])
     @else
-        @if (isset($entityType))
-            <x-form class="flex flex-col gap-5" :action="['bulk.print', [$campaign, 'entity_type' => $entityType->id]]" direct>
-                @include('cruds._table')
-                <input type="hidden" name="page" value="{{ request()->get('page') }}" />
-            </x-form>
-            <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.index', $campaign) }}">
-        @else
+        <x-form class="flex flex-col gap-5" :action="['bulk.print', [$campaign, 'entity_type' => $entityType]]" direct>
             @include('cruds._table')
-        @endif
-
-
+            <input type="hidden" name="page" value="{{ request()->get('page') }}" />
+        </x-form>
+        <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.index', $campaign) }}">
     @endif
     </div>
 @endsection

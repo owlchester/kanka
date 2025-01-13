@@ -11,7 +11,7 @@ class FamilySubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
         /** @var Family $family */
-        $family = $this->model;
+        $family = $this->entity->child;
         $items['second']['families'] = [
             'name' => Module::plural($family->entityTypeId(), 'entities.families'),
             'route' => 'families.families',

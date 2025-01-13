@@ -29,8 +29,7 @@ class StoreCustomEntity extends FormRequest
             'name' => 'required|max:191',
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
-            'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'image_url' => 'nullable|url|active_url',
+            'image_uuid' => 'nullable|integer|exists:images,id',
         ];
 
         return $this->clean($rules);

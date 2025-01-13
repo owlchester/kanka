@@ -10,7 +10,7 @@ class ItemSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
         /** @var Item $item */
-        $item = $this->model;
+        $item = $this->entity->child;
         $inventoryCount = $item->inventories()->with('item')->has('entity')->count();
         if ($inventoryCount > 0) {
             $items['second']['inventories'] = [

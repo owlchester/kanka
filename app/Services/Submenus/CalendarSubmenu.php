@@ -9,7 +9,7 @@ class CalendarSubmenu extends BaseSubmenu implements EntitySubmenu
     public function extra(): array
     {
         /** @var Calendar $calendar */
-        $calendar = $this->model;
+        $calendar = $this->entity->child;
         $count = $calendar->calendarEvents()->has('entity')->count();
         $items = [];
         if ($count > 0) {

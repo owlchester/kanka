@@ -8,7 +8,6 @@
         __('entities/image.replace.breadcrumb')
     ],
     'mainTitle' => false,
-    'miscModel' => $model,
     'bodyClass' => 'entity-image-replace'
 ])
 

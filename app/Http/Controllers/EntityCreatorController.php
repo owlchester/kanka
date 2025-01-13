@@ -69,10 +69,7 @@ class EntityCreatorController extends Controller
         // Make sure the user is allowed to create this kind of entity
         $class = null;
         $this->campaign = $campaign;
-        if (!$entityType->isSpecial()) {
-            $class = $entityType->getClass();
-            $this->authorize('create', $class);
-        }
+        $this->authorize('create', [$entityType, $campaign]);
 
         $this->request = $request;
 
@@ -316,11 +313,8 @@ class EntityCreatorController extends Controller
         $model = null;
         if (!isset($entityType)) {
             $this->authorize('recover', $campaign);
-        } elseif (!$entityType->isSpecial()) {
-            $model = $entityType->getClass();
-            $this->authorize('create', $model);
         } else {
-            // Todo: support custom modules
+            $this->authorize('create', [$entityType, $campaign]);
         }
 
         $origin = $request->get('origin');
@@ -390,7 +384,7 @@ class EntityCreatorController extends Controller
             if (!$this->campaign->enabled($entityType->pluralCode())) {
                 continue;
             }
-            if (!auth()->user()->can('create', $entityType->getClass())) {
+            if (!auth()->user()->can('create', [$entityType, $this->campaign])) {
                 continue;
             }
             $orderedTypes[$entityType->plural()] = $entityType;

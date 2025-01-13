@@ -54,4 +54,19 @@ class EntityPolicy
     {
         return ($user && UserCache::user($user)->admin()) || !($campaign->boosted() && $campaign->hide_history);
     }
+
+    public function move(User $user, Entity $entity): bool
+    {
+        return $this->update($user, $entity);
+    }
+
+    public function inventory(User $user, Entity $entity): bool
+    {
+        return $this->update($user, $entity);
+    }
+
+    public function relation(User $user, Entity $entity, string $subAction = 'browse'): bool
+    {
+        return $this->update($user, $entity);
+    }
 }

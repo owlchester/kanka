@@ -5,6 +5,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/w/{campaign}/entities/{entity}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show')->where(['entity' => '[0-9]+']);
 
 Route::get('/w/{campaign}/entities/{entity}-{slug}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show-slug');
+
+Route::get('/w/{campaign}/t/{entityType}', [\App\Http\Controllers\Entities\IndexController::class, 'index'])->name('entities.index');
+Route::get('/w/{campaign}/t/{entityType}/create', [\App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
+
+
+// New entity
+Route::get('/w/{campaign}/create/{entity_type}', [App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
+Route::put('/w/{campaign}/create/{entity_type}', [App\Http\Controllers\Entities\CreateController::class, 'store'])->name('entities.store');
+
 Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entity\EditController::class, 'index'])->name('entities.edit');
 Route::patch('/w/{campaign}/entities/{entity}/save', [App\Http\Controllers\Entity\EditController::class, 'save'])->name('entities.update');
 
@@ -221,9 +230,6 @@ Route::get('/w/{campaign}/connection/filter-form', [App\Http\Controllers\Filters
 
 Route::get('/w/{campaign}/filters/{entity_type}/save', [App\Http\Controllers\Filters\SaveController::class, 'save'])->name('save-filters');
 
-Route::get('/w/{campaign}/filters/{entity_type}/create', [App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
-Route::post('/w/{campaign}/filters/{entity_type}/store', [App\Http\Controllers\Entities\CreateController::class, 'store'])->name('entities.store');
-
 
 //Route::get('/w/{campaign}/my-campaigns', 'CampaignController@index')->name('campaign');
 Route::resources([
@@ -274,11 +280,6 @@ Route::resources([
 ]);
 
 Route::get('/w/{campaign}/redirect', 'RedirectController@index')->name('redirect');
-
-// Crud
-Route::get('/w/{campaign}/t/{entityType}', [\App\Http\Controllers\Entities\IndexController::class, 'index'])->name('entities.index');
-Route::get('/w/{campaign}/t/{entityType}/create', [\App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
-
 
 // Move
 Route::get('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');

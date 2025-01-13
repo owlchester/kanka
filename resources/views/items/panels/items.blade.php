@@ -1,7 +1,7 @@
 <?php
 $datagridOptions = [
     $campaign,
-    $model,
+    $entity->child,
     'init' => 1
 ];
 $datagridOptions = Datagrid::initOptions($datagridOptions);

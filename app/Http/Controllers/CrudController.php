@@ -225,7 +225,6 @@ class CrudController extends Controller
         $this->setNavActions();
         $actions = $this->navActions;
 
-
         $data = compact(
             'campaign',
             'models',
@@ -287,6 +286,10 @@ class CrudController extends Controller
 
         $data['datagrid'] = $this->datagrid;
         $data['filterService'] = $this->filterService;
+
+        if (isset($data['entityType'])) {
+            return view('entities.index.index', $data);
+        }
         return view('cruds.index', $data);
     }
 
@@ -466,29 +469,7 @@ class CrudController extends Controller
      */
     public function crudShow(Model|MiscModel $model)
     {
-        /** @var MiscModel $model */
-        $this->authView($model);
-        $name = $this->view;
-        $campaign = $this->campaign;
-        $entity_type_id = $model->entityTypeId();
-
-        // Fix for models without an entity
-        if (empty($model->entity) && !($model instanceof Bookmark)) {
-            if (auth()->guest()) {
-                abort(404);
-            }
-            if (Permissions::user(auth()->user())->campaign($this->campaign)->isAdmin()) {
-                dd('CCS16 - Error');
-            } else {
-                abort(404);
-            }
-        }
-        $entity = $model->entity;
-
-        return view(
-            'cruds.show',
-            compact('campaign', 'model', 'name', 'entity_type_id', 'entity')
-        );
+        return redirect()->route('entities.show', [$this->campaign, $model->entity]);
     }
 
     /**

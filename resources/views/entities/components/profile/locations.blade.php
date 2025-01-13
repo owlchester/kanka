@@ -1,6 +1,12 @@
-<?php /** @var \App\Models\Location $model */?>
+<?php
+/**
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\Location $model
+ */
+$child = $entity->child;
+?>
 
-@if (!$entity->child->showProfileInfo())
+@if (!$child->showProfileInfo())
     @php return @endphp
 @endif
 
@@ -8,12 +14,12 @@
     @include('entities.components.profile._type')
     @include('entities.components.profile._events')
 
-    @if (!$entity->child->maps->isEmpty())
+    @if (!$child->maps->isEmpty())
         <div class="profile-maps">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.map'), __('entities.map')) !!}
             </div>
-            @foreach ($entity->child->maps as $map)
+            @foreach ($child->maps as $map)
                 <x-entity-link
                     :entity="$map->entity"
                     :campaign="$campaign" />

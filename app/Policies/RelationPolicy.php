@@ -44,7 +44,7 @@ class RelationPolicy
         if (empty($relation->owner) || empty($relation->owner->child)) {
             return false;
         }
-        return $user->can('relation', $relation->owner->child);
+        return $user->can('relation', $relation->owner);
     }
 
     /**
@@ -62,6 +62,6 @@ class RelationPolicy
         if (empty($relation->owner) || empty($relation->owner->child)) {
             return false;
         }
-        return $user->can('relation', $relation->owner->child);
+        return $user->can('relation', $relation->owner);
     }
 }

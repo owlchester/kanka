@@ -83,11 +83,6 @@ class MiscPolicy
         }
     }
 
-    public function relation(User $user, $entity, string $subAction = 'browse'): bool
-    {
-        return $this->relatedElement($user, $entity, $subAction);
-    }
-
     public function post(User $user, $entity, string $action = null, ?Post $post = null): bool
     {
         return Auth::check() && (
@@ -112,21 +107,7 @@ class MiscPolicy
 
     /**
      */
-    public function move(User $user, $entity): bool
-    {
-        return $this->update($user, $entity);
-    }
-
-    /**
-     */
     public function events(User $user, $entity): bool
-    {
-        return $this->update($user, $entity);
-    }
-
-    /**
-     */
-    public function inventory(User $user, $entity): bool
     {
         return $this->update($user, $entity);
     }

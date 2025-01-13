@@ -1,5 +1,1 @@
-<?php /**
- * @var \App\Models\Timeline $model
- */
-?>
-@includeWhen($model->parent, 'entities.headers.__parent', ['module' => 'timeline'])
+@includeWhen($entity->child->parent, 'entities.headers.__parent', ['module' => 'timeline'])

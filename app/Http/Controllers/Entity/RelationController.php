@@ -220,7 +220,7 @@ class RelationController extends Controller
         $deletedMirror = false;
         if (request()->get('remove_mirrored') === '1' && $relation->isMirrored()) {
             $mirror = $relation->mirror;
-            if (!empty($mirror) && auth()->user()->can('relation', [$relation->target->child, 'delete'])) {
+            if (!empty($mirror) && auth()->user()->can('relation', [$relation->target, 'delete'])) {
                 $mirror->delete();
                 $deletedMirror = true;
             }

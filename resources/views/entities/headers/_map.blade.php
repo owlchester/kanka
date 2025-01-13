@@ -1,8 +1,4 @@
-<?php /**
- * @var \App\Models\Map $model
- */
-?>
-@includeWhen($model->parent, 'entities.headers.__parent', ['module' => 'map'])
-@includeWhen($model->location, 'entities.headers.__location')
+@includeWhen($entity->child->parent, 'entities.headers.__parent', ['module' => 'map'])
+@includeWhen($entity->child->location, 'entities.headers.__location')
 
 

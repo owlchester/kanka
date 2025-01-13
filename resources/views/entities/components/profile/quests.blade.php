@@ -1,23 +1,29 @@
-<?php /** @var \App\Models\Quest $model */?>
+<?php
+/**
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\Quest $model
+ */
+$child = $entity->child;
+?>
 
-@if (!$entity->child->showProfileInfo())
+@if (!$child->showProfileInfo())
     @php return @endphp
 @endif
 
 <x-sidebar.profile>
-    @if (!empty($entity->child->instigator))
+    @if (!empty($child->instigator))
         <div class="element profile-instigator">
             <div class="title text-uppercase text-xs">{{ __('quests.fields.instigator') }}</div>
             <x-entity-link
-                :entity="$model->instigator"
+                :entity="$child->instigator"
                 :campaign="$campaign" />
         </div>
     @endif
 
-    @if ($entity->child->date)
+    @if ($child->date)
         <div class="element profile-date">
             <div class="title text-uppercase text-xs">{{ __('journals.fields.date') }}</div>
-            {{ \App\Facades\UserDate::format($entity->child->date) }}
+            {{ \App\Facades\UserDate::format($child->date) }}
         </div>
     @endif
     @include('entities.components.profile._reminder')

@@ -69,7 +69,7 @@
                 <td>
                     @include('icons.visibility', ['icon' => $item->visibilityIcon()])
                 </td>
-                @can('inventory', $entity->child)
+                @can('inventory', $entity)
                     <td class="text-right">
                         <a href="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
                            class="btn2 btn-outline btn-xs"

@@ -1,6 +1,5 @@
 <?php /**
  * @var \App\Models\Entity $entity
- * @var \App\Models\MiscModel $model
  * @var \App\Models\Campaign $campaign
  * */?>
 @if (auth()->guest() || auth()->user()->created_at->isAfter(\Carbon\Carbon::create('2025-01-01')))
