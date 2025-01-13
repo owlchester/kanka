@@ -7,6 +7,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -25,8 +26,10 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @package App\Models
  * @property ?int $quest_id
  * @property ?int $instigator_id
+ * @property ?int $location_id
  * @property bool|int $is_completed
  * @property string $date
+ * @property ?Location $location
  * @property ?Entity $instigator
  * @property QuestElement[]|Collection $elements
  */
@@ -39,6 +42,7 @@ class Quest extends MiscModel
     use HasEntry;
     use HasFactory;
     use HasFilters;
+    use HasLocation;
     use HasRecursiveRelationships;
     use Nested;
     use Sanitizable;
@@ -53,6 +57,7 @@ class Quest extends MiscModel
         'entry',
         'is_private',
         'instigator_id',
+        'location_id',
         'is_completed',
         'date',
     ];
@@ -84,6 +89,7 @@ class Quest extends MiscModel
         'instigator.name',
         'is_completed',
         'calendar_date',
+        'location.name',
     ];
 
     /**
@@ -92,6 +98,7 @@ class Quest extends MiscModel
      */
     public array $nullableForeignKeys = [
         'instigator_id',
+        'location_id',
         'quest_id',
     ];
 
@@ -110,6 +117,7 @@ class Quest extends MiscModel
     protected array $exportFields = [
         'base',
         'instigator_id',
+        'location_id',
         'is_completed',
         'date',
     ];
@@ -132,6 +140,12 @@ class Quest extends MiscModel
             'parent' => function ($sub) {
                 $sub->select('id', 'name');
             },
+            'location' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'location.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
@@ -139,6 +153,21 @@ class Quest extends MiscModel
                 $sub->select('id', 'quest_id');
             }
         ]);
+    }
+
+    /**
+     */
+    public function scopeFilteredQuests(Builder $query): Builder
+    {
+        // @phpstan-ignore-next-line
+        return $query
+            ->select(['id', 'name', 'type','location_id', 'is_completed', 'is_private'])
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+            ->with([
+                'location', 'location.entity',
+                'elements',
+                'entity', 'entity.tags', 'entity.tags.entity', 'entity.image'])
+            ->has('entity');
     }
 
     /**
@@ -194,7 +223,7 @@ class Quest extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['quest_id', 'instigator_id', 'is_completed', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
+        return ['quest_id', 'instigator_id', 'location_id', 'is_completed', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
     }
 
     /**
@@ -219,6 +248,14 @@ class Quest extends MiscModel
     public function instigator(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
+    }
+
+    /**
+     * The Starting location
+     */
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class);
     }
 
     /**
@@ -255,7 +292,8 @@ class Quest extends MiscModel
     public function showProfileInfo(): bool
     {
         return !empty($this->type) || !empty($this->instigator) ||
-            !empty($this->date) || !empty($this->calendarReminder());
+            !empty($this->date) || !empty($this->calendarReminder()) || !empty($this->location);
+            ;
     }
 
     /**
@@ -270,6 +308,7 @@ class Quest extends MiscModel
             'instigator_id',
             'is_completed',
             'date_start',
+            'location_id',
             'date_end',
             'quest_element_id',
             'element_role',

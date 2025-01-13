@@ -28,6 +28,7 @@ return [
         'element_role'  => 'Role',
         'instigator'    => 'Instigator',
         'is_completed'  => 'Completed',
+        'location'      => 'Starting location',
         'role'          => 'Role',
     ],
     'helpers'       => [
@@ -41,6 +42,7 @@ return [
         'entity'    => 'Name of an element from the quest',
         'role'      => 'This entity\'s role in the quest',
         'type'      => 'Character Arc, Sidequest, Main',
+        'location'  => 'The quest\'s starting location',
     ],
     'show'          => [
         'actions'   => [

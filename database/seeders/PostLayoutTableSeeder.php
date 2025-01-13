@@ -13,14 +13,14 @@ class PostLayoutTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $layouts = ['abilities', 'assets', 'attributes', 'connection_map', 'inventory', 'character_orgs', 'quest_elements', 'location_characters', 'location_events', 'reminders'];
+        $layouts = ['abilities', 'assets', 'attributes', 'connection_map', 'inventory', 'character_orgs', 'quest_elements', 'location_characters', 'location_events', 'reminders', 'location_quests'];
         foreach ($layouts as $code) {
             $entity_type = null;
             if ($code == 'character_orgs') {
                 $entity_type = config('entities.ids.character');
             } elseif ($code == 'quest_elements') {
                 $entity_type = config('entities.ids.quest');
-            } elseif (in_array($code, ['location_characters', 'location_events'])) {
+            } elseif (in_array($code, ['location_characters', 'location_events', 'location_quests'])) {
                 $entity_type = config('entities.ids.location');
             }
 
