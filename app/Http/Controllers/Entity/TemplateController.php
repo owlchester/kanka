@@ -19,7 +19,7 @@ class TemplateController extends Controller
 
     public function update(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $this->authorize('setTemplates', $campaign);
 
         if (request()->ajax()) {

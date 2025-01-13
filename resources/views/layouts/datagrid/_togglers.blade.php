@@ -1,4 +1,4 @@
-@if ($mode === 'grid' && auth()->check())
+@if ($mode === 'grid' && auth()->check() && !$entityType->isSpecial())
     <div class="dropdown">
         <a role="button" tabindex="0" class="btn2" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="toggler-submenu" aria-label="Order by">
             <i class="fa-solid fa-arrow-down-a-z" aria-hidden="true" data-tree="escape"></i>

@@ -39,15 +39,8 @@
         @endif
     @endif
 
-    @if (!isset($mode) || $mode === 'grid')
-        @include('cruds.datagrids.explore', ['route' => $route . '.index'])
-    @else
-        <x-form class="flex flex-col gap-5" :action="['bulk.print', [$campaign, 'entity_type' => $entityType]]" direct>
-            @include('cruds._table')
-            <input type="hidden" name="page" value="{{ request()->get('page') }}" />
-        </x-form>
-        <input type="hidden" class="list-treeview" value="1" data-url="{{ route($route . '.index', $campaign) }}">
-    @endif
+        @include('cruds.datagrids.explore', ['route' => 'entities.index'])
+
     </div>
 @endsection
 
