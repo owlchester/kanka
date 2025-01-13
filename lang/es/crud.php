@@ -115,11 +115,8 @@ return [
     ],
     'edit'                      => 'Editar',
     'errors'                    => [
-        'boosted'                       => 'Esta función solo está disponible para las campañas mejoradas.',
-        'boosted_campaigns'             => 'Esta funcionalidad solo está disponible para las :boosted.',
-        'invalid_node'                  => 'El padre seleccionado no es válido. Esto puede solucionarse dando al padre seleccionado un padre propio y eliminándolo.',
-        'node_must_not_be_a_descendant' => 'Nodo inválido (etiqueta, localización superior): sería un descendiente de sí mismo.',
-        'unavailable_feature'           => 'Funcionalidad no disponible',
+        'boosted_campaigns'     => 'Esta funcionalidad solo está disponible para las :boosted.',
+        'unavailable_feature'   => 'Funcionalidad no disponible',
     ],
     'events'                    => [],
     'fields'                    => [

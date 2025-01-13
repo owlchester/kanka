@@ -18,7 +18,7 @@ class LiveSearchService
 
     public function search(): array
     {
-        $term = mb_trim($this->request->get('q', ''));
+        $term = mb_trim($this->request->get('q') ?? '');
         $excludes = $this->request->has('exclude') ? [$this->request->get('exclude')] : [];
 
         /** @var Builder|Tag $modelClass */

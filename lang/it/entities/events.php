@@ -7,7 +7,6 @@ return [
     'helpers'   => [
         'characters'    => 'Impostando il tipo come data di nascita o di morte di questo personaggio, si calcolerà automaticamente la sua età. :more.',
         'founding'      => 'Impostando il tipo come :type si calcolerà automaticamente l\'età dell\'entità dalla fondazione.',
-        'no_events_v2'  => 'Questa entità può essere legata ai calendari della campagna tramite eventi, che sono visualizzati qui.',
     ],
     'show'      => [
         'actions'   => [

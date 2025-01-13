@@ -94,7 +94,6 @@ return [
         'unlock'        => 'Atribút odomknutý',
         'unpin'         => 'Atribút odopnutý',
     ],
-    'tutorial'      => 'Atribúty sú malé informácie pripnuté k objektu. Napr. postava môže mať vlastnosti ako :hp alebo :str, miesto zasa :pop. Tieto je možné zapísať pomocou atribútov.',
     'types'         => [
         'attribute' => 'Atribút',
         'block'     => 'Blok',

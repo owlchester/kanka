@@ -30,10 +30,6 @@ return [
         'success'   => 'Časová os úspešne preskupená.',
         'title'     => 'Preskupiť časovú os',
     ],
-    'show'          => [
-        'tabs'  => [
-            'reorder'   => 'Preskupenie časovej osi',
-        ],
-    ],
+    'show'          => [],
     'timelines'     => [],
 ];

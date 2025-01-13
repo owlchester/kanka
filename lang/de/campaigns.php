@@ -17,15 +17,7 @@ TEXT
         'success_first_time'    => 'Deine Kampagne wurde erstellt! Da es deine erste Kampagne ist, haben wir ein paar Dinge für dich erstellt, die dir helfen sollen, loszulegen und hoffentlich ein bisschen Inspiration liefern, was du alles machen kannst.',
         'title'                 => 'Neue Kampagne erstellen',
     ],
-    'destroy'                           => [
-        'action'            => 'Kampagne löschen',
-        'confirm'           => 'Möchtest du :campaign wirklich löschen? Diese Aktion ist dauerhaft und kann nicht wiederhergestellt werden.',
-        'confirm-button'    => 'Lösche die Kampagne endgültig',
-        'helper-v2'         => 'Diese Kampagne kann nicht gelöscht werden, solange andere Mitglieder darin sind. Entferne zuerst die anderen Mitglieder und versuche es erneut.',
-        'hint'              => 'Wenn ja, schreibe bitte :code in das Feld unten.',
-        'success'           => 'Kampagne gelöscht',
-        'title'             => 'Lösche Kampagne',
-    ],
+    'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Kampagne aktualisiert',
         'title'     => 'Kampagne :campaign bearbeiten',

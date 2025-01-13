@@ -21,7 +21,7 @@ class CalendarController extends Controller
 
     public function index(Request $request, Campaign $campaign)
     {
-        $term = mb_trim($request->get('q'));
+        $term = mb_trim($request->get('q') ?? '');
 
         return response()->json(
             $this->search
@@ -37,7 +37,7 @@ class CalendarController extends Controller
      */
     public function months(Request $request, Campaign $campaign)
     {
-        $term = mb_trim($request->get('q'));
+        $term = mb_trim($request->get('q') ?? '');
 
         return response()->json(
             $this->search

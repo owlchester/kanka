@@ -17,15 +17,7 @@ TEXT
         'success_first_time'    => 'La première campagne a été créée! Quelques éléments ont été créés pour aider à bien démarrer.',
         'title'                 => 'Nouvelle Campagne',
     ],
-    'destroy'                           => [
-        'action'            => 'Supprimer la campagne',
-        'confirm'           => 'Es-tu sûr de vouloir supprimer la campagne :campaign? Cette action est permanente.',
-        'confirm-button'    => 'Suppression permanente de la campagne',
-        'helper-v2'         => 'Cette campaign ne peut pas être supprimée tant qu\'elle a d\'autre membre. Retires les autres membres en premier et ressayes.',
-        'hint'              => 'Si tu es sûr, saisis :code dans le champ suivant.',
-        'success'           => 'Campagne supprimée.',
-        'title'             => 'Supprimer une campagne',
-    ],
+    'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Campagne modifiée.',
         'title'     => 'Modifier la campagne :campaign',

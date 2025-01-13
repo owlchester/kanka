@@ -32,10 +32,9 @@ return [
         'order'         => 'Poradie',
     ],
     'helpers'       => [
-        'css_moved' => 'CSS pole bolo presunuté na nové flexibilné rozhranie, ktoré je možné nájsť v menu kampane :link.',
-        'here'      => 'na našom blogu',
-        'is_enabled'=> 'Aktivovať túto tému na každej stránke.',
-        'main'      => 'Tvojej boostnutej kampani môžeš pridať vlastné CSS štýlovanie. Tieto štýly sú nahrávané po tom, ako je nahraná téma z trhoviska, ktorú máš aktivovanú pre danú kampaň. Viac o štýloch pre tvoju kampaň nájdeš :here.',
+        'here'          => 'na našom blogu',
+        'is_enabled'    => 'Aktivovať túto tému na každej stránke.',
+        'main'          => 'Tvojej boostnutej kampani môžeš pridať vlastné CSS štýlovanie. Tieto štýly sú nahrávané po tom, ako je nahraná téma z trhoviska, ktorú máš aktivovanú pre danú kampaň. Viac o štýloch pre tvoju kampaň nájdeš :here.',
     ],
     'pitch'         => 'Vytvor vlastný CSS štýl, ktorým si nastavíš vlastný vizuál kampane.',
     'placeholders'  => [

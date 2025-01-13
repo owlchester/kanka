@@ -143,6 +143,10 @@ return [
             'saved'     => 'Zapisz metodę płatności',
         ],
         'cancel'                => [
+            'grace'     => [
+                'text'  => 'Twoja subskrypcja zostanie anulowania :date, kiedy to kampanie premium zmienią się w zwykłe i utracisz dostęp do funkcji dostępnych dla wspierających Kankę.',
+                'title' => 'Okres karencji',
+            ],
             'options'   => [
                 'competitor'        => 'Wybieram produkt konkurencji',
                 'financial'         => 'Moja sytuacja finansowa się zmieniła',
@@ -153,6 +157,7 @@ return [
                 'other'             => 'Inne',
             ],
             'text'      => 'Szkoda, że rezygnujesz! Po zaniechaniu subskrypcji konto pozostanie aktywne do końca okresu rozliczeniowego. Potem stracisz doładowania i inne korzyści wynikające ze wspierania Kanki. Wypełniając poniższy formularz nasz nam znać, co możemy poprawić i dlaczego rezygnujesz.',
+            'title'     => 'Anulowane subskrybcji',
         ],
         'cancelled'             => 'Anulowano subskrypcję. Możesz ją odnowić, gdy tylko ta wygaśnie.',
         'change'                => [

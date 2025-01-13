@@ -97,7 +97,6 @@ return [
         'unlock'        => 'Attribut freigeschaltet',
         'unpin'         => 'Attribut nicht angepinnt',
     ],
-    'tutorial'      => 'Attribute sind kleine Informationseinheiten, die einem Objekt zugeordnet sind. Beispielsweise könnte ein Zeichen einen :hp und :str Status haben, während ein Ort einen :pop Status haben könnte. Dies lässt sich leicht anhand von Attributen nachverfolgen.',
     'types'         => [
         'attribute' => 'Attribute',
         'block'     => 'Block',

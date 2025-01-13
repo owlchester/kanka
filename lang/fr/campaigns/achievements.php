@@ -25,6 +25,7 @@ return [
         'families'      => 'Planification familiale',
         'locations'     => 'Constructeur',
         'markers'       => 'Cartographe',
+        'organisations' => 'Fusions et acquisitions',
         'plugins'       => 'Connaisseur en plugins',
         'quests'        => 'Mastermind',
         'tags'          => 'Sous contrôle',

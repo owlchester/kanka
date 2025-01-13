@@ -16,10 +16,7 @@ TEXT
         'success_first_time'    => 'Tvoja kampanja je kreirana! Budući da je tvoja prva kampanja, kreirali smo nekoliko stvari da ti pomognemo započeti i, po mogućnosti, pružimo malo inspiracije za što sve možeš napraviti.',
         'title'                 => 'Nova kampanja',
     ],
-    'destroy'                           => [
-        'action'    => 'Obriši kampanju',
-        'success'   => 'Kampanja uklonjena.',
-    ],
+    'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Kampanja ažurirana.',
         'title'     => 'Uredi kampanju :campaign',

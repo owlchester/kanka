@@ -2,10 +2,8 @@
 
 return [
     'actions'       => [
-        'accept'        => 'Schváliť',
-        'applications'  => 'Prihlášky: :status',
-        'change'        => 'Zmeniť',
-        'reject'        => 'Odmietnuť',
+        'accept'    => 'Schváliť',
+        'reject'    => 'Odmietnuť',
     ],
     'apply'         => [
         'apply'         => 'Použiť',
@@ -18,28 +16,18 @@ return [
         ],
         'title'         => 'Prihlásiť sa do :name',
     ],
-    'errors'        => [
-        'not_open'  => 'Kampaň nie je otvorená pre nových členov. Uprav nastavenia kampane, ak chceš, aby sa do nej užívatelia mohli prihlásiť.',
-    ],
+    'errors'        => [],
     'fields'        => [
         'application'   => 'Prihláška',
-        'approval'      => 'Dôvod schválenia',
-        'rejection'     => 'Dôvod odmietnutia',
     ],
     'helpers'       => [
-        'filter-helper'     => 'Kampaň prijíma prihlášky!',
         'modal'             => 'Do kampane, ktorá je verejná a prijíma prihlášky, si môžu podať prihlášku noví užívatelia.',
         'no_applications'   => 'Aktuálne neevidujeme žiadne prihlášky do tvojej kampane. Užívatelia si môžu podať prihlášku navštívením nástenky a kliknutím na tlačidlo :button.',
-        'not_open'          => 'Kampaň aktuálne neprijíma prihlášky.',
-        'open_not_public'   => 'Kampaň prijíma prihlášky, ale nie je verejná, takže si nikto nevie prihlášku podať. Toto vieš zmeniť úpravou nastavení kampane.',
     ],
     'placeholders'  => [
         'note'  => 'Spíš tvoju prihlášku na vstup do kampane',
     ],
-    'statuses'      => [
-        'closed'    => 'Neprijíma',
-        'open'      => 'Prijíma',
-    ],
+    'statuses'      => [],
     'toggle'        => [
         'closed'    => 'Neprijímať prihlášky',
         'label'     => 'Stav',

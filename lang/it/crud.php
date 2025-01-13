@@ -116,11 +116,8 @@ return [
     ],
     'edit'                      => 'Modifica',
     'errors'                    => [
-        'boosted'                       => 'Questa funzione è disponibile solo per campagne potenziate.',
-        'boosted_campaigns'             => 'Questa funzione è disponibile solo per :boosted.',
-        'invalid_node'                  => 'Il genitore selezionato non è valido. Di solito è possibile risolvere il problema assegnando al genitore selezionato un genitore proprio e poi rimuovendolo.',
-        'node_must_not_be_a_descendant' => 'Il genitore selezionato non è valido. Sarebbe un discendente di se stesso.',
-        'unavailable_feature'           => 'Funzione non disponibile',
+        'boosted_campaigns'     => 'Questa funzione è disponibile solo per :boosted.',
+        'unavailable_feature'   => 'Funzione non disponibile',
     ],
     'events'                    => [],
     'fields'                    => [

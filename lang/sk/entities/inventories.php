@@ -49,7 +49,6 @@ return [
     'tooltips'          => [
         'equipped'  => 'Predmet je vo vybavení.',
     ],
-    'tutorial'          => 'Zapamätaj si vybavenie objektu tým, že mu pridáš predmety do inventára.',
     'update'            => [
         'success'   => 'Predmet :item pre :entity upravený.',
         'title'     => 'Uprav Predmet :name',

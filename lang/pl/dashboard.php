@@ -80,6 +80,7 @@ return [
             'new'               => 'Nowy widżet :type',
         ],
         'reorder'   => [
+            'helper'    => 'Przeciągnij, by mnie przesunąć',
             'success'   => 'Zmieniono kolejność widżetów',
         ],
         'title'     => 'Konfiguracja pulpitu kampanii',
@@ -118,6 +119,7 @@ return [
         ],
         'create'                    => [
             'success'   => 'Dodano widżet do pulpitu.',
+            'title'     => 'Nowy widżet',
         ],
         'delete'                    => [
             'success'   => 'Usunięto widżet z pulpitu.',
@@ -165,6 +167,7 @@ return [
                 'mentionless'   => 'Niewzmiankujące (elementy, które nie wzmiankują żadnych innych elementów)',
                 'unmentioned'   => 'Niewzmiankowane (elementy, których nie wzmiankuje żadnej inny element)',
             ],
+            'all-entities'      => 'Wszystkie elementy',
             'entity-header'     => 'Używaj nagłówka elementu jako obrazu widżetu',
             'filters'           => 'Filtry',
             'help'              => 'Pokazuj tylko ostatni zmodyfikowany element, ale publikuj cały skrót',

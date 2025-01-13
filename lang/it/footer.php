@@ -26,7 +26,6 @@ return [
     'resources'         => 'Risorse',
     'roadmap'           => 'Roadmap',
     'security'          => 'Sicurezza',
-    'server_time'       => 'Ora del Server :time',
     'status'            => 'Stato del servizio',
     'terms'             => 'Termini',
     'translator_call'   => 'Kanka è tradotto in altre lingue grazie alla nostra fantastica comunità. Se vuoi aiutare a tradurre Kanka nella tua lingua, contattaci sul nostro :discord!',

@@ -6,7 +6,6 @@ return [
         'enable'            => 'Omogući dodatak',
         'go_to_marketplace' => 'Idi na Tržnicu',
         'import'            => 'Uvoz',
-        'remove'            => 'Ukloni dodatak',
         'update'            => 'Ažuriraj dodatak',
         'update_available'  => 'Ažuriranje dostupno!',
     ],

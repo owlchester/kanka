@@ -419,7 +419,9 @@ class EntityCreatorController extends Controller
         $canCreate = auth()->user()->can('create', Location::class);
 
         $location = $this->request->get('location_id');
-        if (!is_numeric($location) && !empty(mb_trim($location)) && $canCreate) {
+        if (is_numeric($location)) {
+            $location = (int) $location;
+        } elseif (!is_numeric($location) && !empty(mb_trim($location)) && $canCreate) {
             $model = Location::create(['name' => $location, 'campaign_id' => $this->campaign->id]);
             $location = (int) $model->id;
         } else {

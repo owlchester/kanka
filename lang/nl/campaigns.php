@@ -16,10 +16,7 @@ TEXT
         'success_first_time'    => 'Je campaign is gemaakt! Aangezien het je eerste campaign is, hebben we een paar dingen bedacht om je op weg te helpen en hopelijk een beetje inspiratie te bieden voor wat je kunt doen.',
         'title'                 => 'Nieuwe Campaign',
     ],
-    'destroy'                           => [
-        'action'    => 'Verwijder campaign',
-        'success'   => 'Campaign verwijderd.',
-    ],
+    'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Campaign bijgewerkt.',
         'title'     => 'Wijzig Campaign :campaign',

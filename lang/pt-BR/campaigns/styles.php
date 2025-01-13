@@ -32,10 +32,9 @@ return [
         'order'         => 'Ordem',
     ],
     'helpers'       => [
-        'css_moved' => 'O campo CSS foi movido para a uma nova interface flexível que pode ser encontrada no menu da campanha :link.',
-        'here'      => 'no nosso blog',
-        'is_enabled'=> 'Habilite este tema em todas as páginas.',
-        'main'      => 'Você pode criar um estilo CSS personalizado para sua campanha impulsionada. Esses estilos são carregados após quaisquer temas do mercado que estiverem habilitados para a campanha. Você pode aprender mais sobre como estilizar sua campanha :here.',
+        'here'          => 'no nosso blog',
+        'is_enabled'    => 'Habilite este tema em todas as páginas.',
+        'main'          => 'Você pode criar um estilo CSS personalizado para sua campanha impulsionada. Esses estilos são carregados após quaisquer temas do mercado que estiverem habilitados para a campanha. Você pode aprender mais sobre como estilizar sua campanha :here.',
     ],
     'pitch'         => 'Crie um estilo CSS personalizado para personalizar totalmente a aparência da campanha.',
     'placeholders'  => [

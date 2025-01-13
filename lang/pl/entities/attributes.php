@@ -94,7 +94,6 @@ return [
         'unlock'        => 'Odblokowano',
         'unpin'         => 'Odpięto',
     ],
-    'tutorial'      => 'Cechy to drobne informacje na temat elementu. Na przykład: postać może mieć współczynnik :hp i :str, a miejsce cechę :pop. Ta funkcjonalność pozwala je łatwo śledzić.',
     'types'         => [
         'attribute' => 'Cecha',
         'block'     => 'Blok',

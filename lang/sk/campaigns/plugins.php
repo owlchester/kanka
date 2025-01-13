@@ -12,7 +12,6 @@ return [
         'enable'            => 'Aktivovať plugin',
         'go_to_marketplace' => 'Prejsť do Trhoviska',
         'import'            => 'Importovať',
-        'remove'            => 'Odstrániť plugin',
         'update'            => 'Aktualizovať plugin',
         'update_available'  => 'Dostupná aktualizácia!',
     ],

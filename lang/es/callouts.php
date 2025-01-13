@@ -16,7 +16,6 @@ return [
         'pitches'       => [
             'element-class' => 'Dale una clase CSS personalizada a este elemento con una :boosted-campaign.',
             'icon'          => 'Desbloquea millones de iconos personalizados de FontAwesome con una :boosted-campaign.',
-            'link-parent'   => 'Coloca un enlace rápido exactamente donde lo desees en la barra lateral con una :boosted-campaign.',
         ],
         'titles'        => [
             'boosted'       => 'Función de mejora',

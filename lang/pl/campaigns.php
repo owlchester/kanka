@@ -17,15 +17,7 @@ TEXT
         'success_first_time'    => 'Twoja kampania została utworzona! Ponieważ to twój pierwszy raz, dodaliśmy od razu kilka elementów, które pomogą ci zacząć i być może podsuną pomysły, co robić dalej.',
         'title'                 => 'Nowa kampania',
     ],
-    'destroy'                           => [
-        'action'            => 'Usuń kampanię',
-        'confirm'           => 'Czy na pewno chcesz usunąć :campaign? Tego działania nie można będzie cofnąć',
-        'confirm-button'    => 'Usuń kampanię na dobre',
-        'helper-v2'         => 'Kampanii nie można usunąć, ponieważ posiada uczestników. Usuń wszystkich uczestników i spróbuj ponownie',
-        'hint'              => 'W takim razie wpisz :code w oknie poniżej',
-        'success'           => 'Kampania usunięta.',
-        'title'             => 'Usuwanie kampanii',
-    ],
+    'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Zmieniono kampanię.',
         'title'     => 'Edycja kampanii :name',

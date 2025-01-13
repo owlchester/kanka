@@ -91,10 +91,8 @@ return [
     ],
     'edit'                      => 'Wijzig',
     'errors'                    => [
-        'boosted'                       => 'Deze functie is alleen beschikbaar voor boosted campaigns.',
-        'boosted_campaigns'             => 'Deze functie is alleen beschikbaar voor :boosted.',
-        'node_must_not_be_a_descendant' => 'Ongeldig knooppunt (tag, bovenliggende locatie): het zou een afstammeling van zichzelf zijn.',
-        'unavailable_feature'           => 'Functie niet beschikbaar',
+        'boosted_campaigns'     => 'Deze functie is alleen beschikbaar voor :boosted.',
+        'unavailable_feature'   => 'Functie niet beschikbaar',
     ],
     'events'                    => [],
     'fields'                    => [
