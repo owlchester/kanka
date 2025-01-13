@@ -6,14 +6,18 @@ return [
         'url'       => 'Pobierz obraz z odnośnika',
     ],
     'browse'    => [
-        'layouts'   => [
+        'layouts'       => [
             'large' => 'Duże miniatury',
             'small' => 'Małe miniatury',
         ],
-        'search'    => [
+        'search'        => [
             'placeholder'   => 'Wyszukaj obraz w galerii',
         ],
-        'title'     => 'Galeria',
+        'title'         => 'Galeria',
+        'unauthorized'  => 'Żadna z twoich ról nie posiada uprawień do "przeglądania galerii".',
+    ],
+    'delete'    => [
+        'success'   => '[0] Usunięto 0 elementów|[1] Usunięto jeden element|{2,4} Usunięto :count elementy|{5,*} Usunięto :count elementów',
     ],
     'download'  => [
         'errors'    => [
@@ -22,6 +26,7 @@ return [
             'gallery_full_premium'  => 'Galeria jest pełna. Najpierw usuń nieużywane pliki.',
             'invalid_format'        => 'Niewłaściwy rodzaj pliku.',
             'too_big'               => 'Plik jest zbyt duży.',
+            'unauthorized'          => 'Żadna z twoich ról nie posiada uprawień do "przesyłania obrazów".',
         ],
     ],
     'file'      => [
@@ -29,5 +34,12 @@ return [
     ],
     'filters'   => [
         'only_unused'   => 'Pokaż tylko nieużywane pliki',
+    ],
+    'move'      => [
+        'success'   => '[0] Przeniesiono 0 elementów|[1] Przeniesiono jeden element|{2,4} Przeniesiono :count elementy|{5,*} Przeniesiono :count elementów',
+    ],
+    'update'    => [
+        'home'      => 'Folder domowy',
+        'success'   => '[0] Zmieniono 0 elementów|[1] Zmieniono jeden element|{2,4} Zmieniono :count elementy|{5,*} Zmieniono :count elementów',
     ],
 ];
