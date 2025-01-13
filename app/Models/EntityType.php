@@ -146,4 +146,9 @@ class EntityType extends Model
         }
         return route($this->pluralCode() . '.create', [$campaign] + $params);
     }
+
+    public function isDeprecated(): bool
+    {
+        return in_array($this->id, [config('entities.ids.conversation'), config('entities.ids.dice_roll')]);
+    }
 }

@@ -7,9 +7,11 @@ use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
-use App\Models\EntityType;
+use App\Models\MiscModel;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class EntityPolicy
 {
@@ -68,5 +70,19 @@ class EntityPolicy
     public function relation(User $user, Entity $entity, string $subAction = 'browse'): bool
     {
         return $this->update($user, $entity);
+    }
+
+    public function permissions(User $user, Entity $entity): bool
+    {
+        return EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_PERMS, $user, $entity);
+    }
+
+    public function post(User $user, Entity $entity, string $action = null, ?Post $post = null): bool
+    {
+        return (
+                $this->update($user, $entity) ||
+                EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_POSTS, $user, $entity) ||
+                ($action == 'edit' ? $this->checkPostPermission($user, $post) : false)
+            ) ;
     }
 }

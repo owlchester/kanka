@@ -1,10 +1,9 @@
 <?php /**
- * @var \App\Models\MiscModel $model
  * @var \App\Models\Post $post
  * @var \App\Models\Entity $entity
  */
 ?>
-@can('post', [$model ?? $entity->child, 'edit', $post])
+@can('post', [$entity, 'edit', $post])
     <x-dropdowns.item :link="route('entities.posts.edit', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])" icon="edit">
         {{ __('crud.edit') }}
     </x-dropdowns.item>

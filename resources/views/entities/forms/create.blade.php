@@ -32,8 +32,6 @@
                     <ul class="nav-tabs flex items-stretch w-full" role="tablist">
                         <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
 
-                        @includeIf($entityType->pluralCode() . '.form._tabs')
-
                         @if (config('services.stripe.enabled'))
                             <x-tab.tab target="premium" icon="premium" :title="auth()->check() && auth()->user()->hasBoosterNomenclature() ? __('crud.tabs.boost') : __('crud.tabs.premium')"></x-tab.tab>
                         @endif
@@ -53,10 +51,9 @@
             <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
                 <div class="tab-pane pane-entry {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
                     <x-grid type="1/1">
-                        @includeIf($entityType->pluralCode() . '.form._entry')
+                        @include('entities.forms.entry')
                     </x-grid>
                 </div>
-                @includeIf($entityType->pluralCode() . '.form._panes')
 
                 @if (config('services.stripe.enabled'))
                     <div class="tab-pane pane-premium {{ (request()->get('tab') == 'premium' ? ' active' : '') }}" id="form-premium">

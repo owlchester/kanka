@@ -330,7 +330,7 @@ class CrudController extends Controller
         $model = new $this->model();
 
         $params['campaign'] = $this->campaign;
-        $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permission', $model);
+        $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permissions', $model);
         $params['tabAttributes'] = $this->tabAttributes && $this->campaign->enabled('entity_attributes');
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted;
@@ -498,7 +498,7 @@ class CrudController extends Controller
             'campaign' => $this->campaign,
             'model' => $model,
             'name' => $this->view,
-            'tabPermissions' => $this->tabPermissions && auth()->user()->can('permission', $model),
+            'tabPermissions' => $this->tabPermissions && auth()->user()->can('permissions', $model),
             'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity) && $this->campaign->enabled('entity_attributes'),
             'tabBoosted' => $this->tabBoosted,
             'tabCopy' => $this->tabCopy,

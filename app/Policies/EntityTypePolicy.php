@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Facades\EntityPermission;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
+use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\User;
 
@@ -17,5 +18,15 @@ class EntityTypePolicy
         }
 
         return EntityPermission::hasPermission($entityType->id, CampaignPermission::ACTION_ADD, $user, null, $campaign);
+    }
+
+    public function update(User $user, EntityType $entityType, Campaign $campaign)
+    {
+        return $entityType->campaign_id === $campaign->id;
+    }
+
+    public function permissions(User $user, EntityType $entityType): bool
+    {
+        return EntityPermission::hasPermission($entityType->id, CampaignPermission::ACTION_PERMS, $user, null);
     }
 }

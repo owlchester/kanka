@@ -20,12 +20,11 @@ class ImageController extends Controller
      */
     public function focus(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return view('entities.pages.image.focus')
             ->with('campaign', $campaign)
-            ->with('entity', $entity)
-            ->with('model', $entity->child);
+            ->with('entity', $entity);
     }
 
     /**
@@ -34,7 +33,7 @@ class ImageController extends Controller
      */
     public function saveFocus(StoreImageFocus $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         // Gallery image?
         $source = empty($entity->image_path) && $entity->image ? $entity->image : $entity;
@@ -53,17 +52,16 @@ class ImageController extends Controller
      */
     public function replace(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return view('entities.pages.image.replace')
             ->with('campaign', $campaign)
-            ->with('entity', $entity)
-            ->with('model', $entity->child);
+            ->with('entity', $entity);
     }
 
     public function update(UpdateEntityImage $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }

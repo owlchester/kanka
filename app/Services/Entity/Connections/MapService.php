@@ -189,7 +189,7 @@ class MapService
         /** @var Relation[] $relations */
         $relations = $entity->relationships()
             ->select('relations.*')
-            ->with(['target', 'mirror', 'target.image'])
+            ->with(['target', 'target.entityType', 'mirror', 'target.image'])
             ->has('target')
             ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
             ->get();

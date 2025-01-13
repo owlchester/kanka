@@ -12,7 +12,7 @@ Route::get('/w/{campaign}/t/{entityType}/create', [\App\Http\Controllers\Entitie
 
 // New entity
 Route::get('/w/{campaign}/create/{entity_type}', [App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
-Route::put('/w/{campaign}/create/{entity_type}', [App\Http\Controllers\Entities\CreateController::class, 'store'])->name('entities.store');
+Route::post('/w/{campaign}/create/{entity_type}', [App\Http\Controllers\Entities\CreateController::class, 'store'])->name('entities.store');
 
 Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entity\EditController::class, 'index'])->name('entities.edit');
 Route::patch('/w/{campaign}/entities/{entity}/save', [App\Http\Controllers\Entity\EditController::class, 'save'])->name('entities.update');

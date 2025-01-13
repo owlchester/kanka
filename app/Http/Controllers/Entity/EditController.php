@@ -45,7 +45,7 @@ class EditController extends Controller
             'campaign' => $this->campaign,
             'entity' => $entity,
             'name' => $entity->entityType->pluralCode(),
-            'tabPermissions' => auth()->user()->can('permission', $entity),
+            'tabPermissions' => auth()->user()->can('permissions', $entity),
             'tabAttributes' => auth()->user()->can('attributes', $entity) && $this->campaign->enabled('entity_attributes'),
             'entityType' => $entity->entityType,
             'editingUsers' => $editingUsers,
@@ -89,7 +89,7 @@ class EditController extends Controller
                     $entity->touch();
                 }
             } else {
-                $entity->update($request);
+                $entity->update($request->all());
                 $entity->crudSaved();
             }
 

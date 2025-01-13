@@ -482,7 +482,7 @@ class Entity extends Model
             'kanka-entity-' . $this->entityType->code,
         ];
 
-        if (!empty($this->child->type)) {
+        if (!$this->entityType->isSpecial() && !empty($this->child->type)) {
             $classes[] = 'kanka-type-' . Str::slug($this->child->type);
         }
 

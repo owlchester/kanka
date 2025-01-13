@@ -115,7 +115,7 @@ class SubmenuService
         }
 
         // Permissions for the admin?
-        if (auth()->check() && auth()->user()->can('permission', $this->entity)) {
+        if (auth()->check() && auth()->user()->can('permissions', $this->entity)) {
             $this->items['fourth']['permissions'] = [
                 'name' => 'crud.tabs.permissions',
                 'route' => 'entities.permissions',

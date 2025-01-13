@@ -78,7 +78,9 @@ class PostObserver
         // When adding or changing a post to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
         $post->entity->touchSilently();
-        $post->entity->child->touchSilently();
+        if (!$post->entity->entityType->isSpecial()) {
+            $post->entity->child->touchSilently();
+        }
     }
 
     /**
@@ -92,7 +94,9 @@ class PostObserver
         // entering a non-ending loop.
         if ($post->entity) {
             $post->entity->touchSilently();
-            $post->entity->child->touchSilently();
+            if (!$post->entity->entityType->isSpecial()) {
+                $post->entity->child->touchSilently();
+            }
         }
     }
     /**
@@ -116,7 +120,7 @@ class PostObserver
      */
     public function savePermissions(Post $post): bool
     {
-        if (!request()->has('permissions') || !auth()->user()->can('permission', $post->entity->child)) {
+        if (!request()->has('permissions') || !auth()->user()->can('permissions', $post->entity)) {
             return false;
         }
 

@@ -34,12 +34,12 @@
                 {{ __('crud.actions.new') }}
             </x-dropdowns.item>
             @if (!$entity->entityType->isSpecial() && method_exists($entity->child, 'getParentKeyName'))
-                <x-dropdowns.item :link="$entity->entityType->createRoute($campaign, ['parent_id' => $entity->child->id])">
+                <x-dropdowns.item :link="$entity->entityType->createRoute($campaign, ['parent_id' => $entity->entityType->isSpecial() ? $entity->id : $entity->child->id])">
                     <x-icon class="fa-regular fa-plus" />
                     {{ __('crud.actions.new_child') }}
                 </x-dropdowns.item>
             @endif
-            <x-dropdowns.item link="{{ $entity->entityType->createRoute($campaign, ['copy' => $entity->child->id]) }}">
+            <x-dropdowns.item link="{{ $entity->entityType->createRoute($campaign, ['copy' => $entity->entityType->isSpecial() ? $entity->id : $entity->child->id]) }}">
                 <x-icon class="fa-regular fa-copy" />
                 {{ __('crud.actions.copy') }}
             </x-dropdowns.item>

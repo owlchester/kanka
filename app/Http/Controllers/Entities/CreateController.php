@@ -43,7 +43,9 @@ class CreateController extends Controller
 
         try {
             /** @var Entity $entity */
-            $entity = Entity::create($data);
+            $entity = new Entity($data);
+            $entity->type_id = $entityType->id;
+            $entity->save();
             $entity->crudSaved();
 
             // First copy stuff like posts, since we might replace attribute mentions next

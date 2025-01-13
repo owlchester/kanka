@@ -22,13 +22,16 @@ class BreadcrumbService
         $params['campaign'] = $this->campaign;
 
         // If the user activated nested views by default, go back to it.
+        if (
+            (isset($this->entityType) && $this->entityType->isSpecial())
+                ||
+                (isset($this->entity) && $this->entity->entityType->isSpecial())
+            ) {
+            $params['entityType'] = $this->entityType ?? $this->entity->entityType;
+            return route('entities.index', $params);
+        }
         if (isset($this->entityType)) {
-            if ($this->entityType->isSpecial()) {
-                $params['entityType'] = $this->entity->entityType;
-                $entityIndexRoute = route('entities.index', $params);
-            } else {
-                $entityIndexRoute = route($this->entityType->pluralCode() . '.index', $params);
-            }
+            $entityIndexRoute = route($this->entityType->pluralCode() . '.index', $params);
         } elseif (isset($this->entity)) {
             $entityIndexRoute = route($this->entity->entityType->pluralCode() . '.index', $params);
         } else {

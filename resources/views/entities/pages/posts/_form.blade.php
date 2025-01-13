@@ -48,7 +48,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
         <div class="grow overflow-x-auto">
             <ul class="nav-tabs flex items-stretch w-full" role="tablist">
                 <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
-                @can('permission', $entity->child)
+                @can('permissions', $entity)
                     <x-tab.tab target="permissions" :title="__('entities/notes.show.advanced')"></x-tab.tab>
                 @endcan
                 @if (auth()->user()->can('useTemplates', $campaign) && !empty($templates))
@@ -110,7 +110,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 </x-forms.field>
             </x-grid>
         </div>
-        @includeWhen(auth()->user()->can('permission', $entity->child), 'entities.pages.posts._permissions')
+        @includeWhen(auth()->user()->can('permissions', $entity), 'entities.pages.posts._permissions')
         @includeWhen(auth()->user()->can('useTemplates', $campaign) && !empty($templates), 'entities.pages.posts._templates')
     </div>
 </div>

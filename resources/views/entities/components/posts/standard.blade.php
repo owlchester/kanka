@@ -17,7 +17,7 @@
             </h3>
         </div>
         <div class="flex-none flex gap-1 items-center">
-            @if (auth()->check() && auth()->user()->can('post', [$entity->child, 'edit', $post]))
+            @if (auth()->check() && auth()->user()->can('post', [$entity, 'edit', $post]))
             <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
                 @include('icons.visibility', ['icon' => $post->visibilityIcon()])
             </span>
@@ -50,7 +50,7 @@
 
                 <div class="post-footer entity-note-footer text-right text-muted text-xs ">
 
-                @can('update', $model ?? $entity->child)
+                @can('update', $entity)
                 <a href="{{ route('entities.posts.logs', [$campaign, $entity, $post]) }}" title="{{ __('crud.history.view') }}" class="print-none">
                     <x-icon class="fa-solid fa-history" />
                 </a>
