@@ -18,6 +18,13 @@
         </div>
     @endif
 
+    @if ($model->weight)
+        <div class="element profile-weight">
+            <div class="title text-uppercase text-xs">{{ __('items.fields.weight') }}</div>
+            {!! $model->weight !!}
+        </div>
+    @endif
+
     @include('entities.components.profile._location')
 
     @if ($model->character)
