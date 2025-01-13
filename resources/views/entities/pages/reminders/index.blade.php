@@ -6,7 +6,7 @@
     'title' => __('entities/events.show.title', ['name' => $entity->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $entity->child,
+    'miscModel' => $entity->entityType->isSpecial() ? $entity : $entity->child,
     'bodyClass' => 'entity-reminders'
 ])
 
@@ -14,7 +14,7 @@
 
 @section('entity-header-actions')
     <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
-        @can('events', $entity->child)
+        @can('events', $entity)
             <a href="https://docs.kanka.io/en/latest/features/reminders.html" target="_blank" class="btn2 btn-ghost btn-sm">
                 <x-icon class="question" /> {{ __('crud.actions.help') }}
             </a>
@@ -35,7 +35,6 @@
         'breadcrumb' => __('crud.tabs.reminders'),
         'view' => 'entities.pages.reminders._list',
         'entity' => $entity,
-        'model' => $entity->child,
     ])
 @endsection
 

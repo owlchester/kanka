@@ -1,11 +1,11 @@
 <?php /** @var \App\Models\AttributeTemplate $model */?>
 
-@if (!$model->showProfileInfo())
+@if (!$entity->child->showProfileInfo())
     @php return @endphp
 @endif
 
 <x-sidebar.profile>
-    @if (!empty($model->attributeTemplate))
+    @if (!empty($entity->child->attributeTemplate))
         <div class="element profile-attribute-template">
             <div class="title text-uppercase text-xs">{{ __('crud.fields.parent') }}</div>
             <x-entity-link
@@ -14,10 +14,10 @@
         </div>
     @endif
 
-    @if (!empty($model->entityType))
+    @if (!empty($entity->child->entityType))
         <div class="element profile-entity-type">
             <div class="title text-uppercase text-xs">{{ __('attribute_templates.fields.auto_apply') }}</div>
-            {!! $model->entityType->name() !!}
+            {!! $entity->child->entityType->name() !!}
         </div>
     @endif
 </x-sidebar.profile>

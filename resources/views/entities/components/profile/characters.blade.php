@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Character $model */?>
 
-@if (!$model->showProfileInfo())
+@if (!$entity->child->showProfileInfo())
     @php return @endphp
 @endif
 
@@ -11,19 +11,19 @@
 @endphp
 
 <x-sidebar.profile>
-    @if ($campaign->enabled('families') && !$model->characterFamilies->isEmpty())
+    @if ($campaign->enabled('families') && !$entity->child->characterFamilies->isEmpty())
         <div class="element profile-family">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!}
-                @if (auth()->check() && auth()->user()->can('familyManagement', $model))
-                    <span role="button" tabindex="0" class="entity-families-icon" data-toggle="dialog" data-url="{{ route('characters.families.management', [$campaign, $model]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                @if (auth()->check() && auth()->user()->can('familyManagement', $entity->child))
+                    <span role="button" tabindex="0" class="entity-families-icon" data-toggle="dialog" data-url="{{ route('characters.families.management', [$campaign, $entity->child]) }}" data-target="primary-dialog" aria-haspopup="dialog">
                         <i class="fa-solid fa-pencil" data-title="{{ __('characters.families.title') }}" aria-hidden="true"></i>
                     </span>
                 @endif
             </div>
             <div class="comma-separated">
             @php $existingFamilies = []; @endphp
-            @foreach ($model->characterFamilies as $family)
+            @foreach ($entity->child->characterFamilies as $family)
                 @if(!empty($existingFamilies[$family->family_id]))
                     @continue
                 @endif
@@ -39,14 +39,14 @@
         </div>
     @endif
 
-    @if (!$model->characterRaces->isEmpty() || $model->hasAge())
-        @if (!$model->characterRaces->isEmpty() && !$model->hasAge())
+    @if (!$entity->child->characterRaces->isEmpty() || $entity->child->hasAge())
+        @if (!$entity->child->characterRaces->isEmpty() && !$entity->child->hasAge())
         <div class="element profile-race">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
-                @if (auth()->check() && auth()->user()->can('raceManagement', $model))
-                    <span role="button" tabindex="0" class="entity-races-icon" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $model]) }}" data-target="primary-dialog" aria-haspopup="dialog">
-                        <x-icon class="fa-solid fa-pencil" title="{{ __('characters.races.title', ['name' => $model->name]) }}" tooltip />
+                @if (auth()->check() && auth()->user()->can('raceManagement', $entity->child))
+                    <span role="button" tabindex="0" class="entity-races-icon" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $entity->child]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                        <x-icon class="fa-solid fa-pencil" title="{{ __('characters.races.title', ['name' => $entity->name]) }}" tooltip />
                     </span>
                 @endif
             </div>
@@ -54,10 +54,10 @@
                 @include('entities.components.profile.character_races')
             </div>
         </div>
-        @elseif ($model->characterRaces->isEmpty() && $model->hasAge())
+        @elseif ($entity->child->characterRaces->isEmpty() && $entity->child->hasAge())
         <div class="element profile-age">
             <div class="title text-uppercase text-xs">{{ __('characters.fields.age') }}</div>
-            <span>{{ $model->age }}</span>
+            <span>{{ $entity->child->age }}</span>
         </div>
         @else
         <div class="element profile-race-age">

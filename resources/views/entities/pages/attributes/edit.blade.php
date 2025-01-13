@@ -37,7 +37,7 @@ $isAdmin = auth()->user()->isAdmin();
             </div>
 
             @include('cruds.forms.attributes._blocks', ['existing' => $r->count()])
-            @include('cruds.forms.attributes._buttons', ['model' => $entity->child, 'existing' => $r->count()])
+            @include('cruds.forms.attributes._buttons', ['entity' => $entity, 'existing' => $r->count()])
 
             <div class="flex gap-2 items-center">
                 <a href="{{ url()->previous() }}" class="btn2 btn-ghost">

@@ -21,7 +21,7 @@
                 <x-forms.select name="campaign" :options="$campaigns" class="w-full" />
             </x-forms.field>
 
-            @can('update', $entity->child)
+            @can('update', $entity)
                 <x-forms.field field="copy" css="form-check" :label="__('entities/move.fields.copy')">
                     <x-checkbox :text="__('entities/move.helpers.copy')">
                         <input type="checkbox" name="copy" value="1" @if (old('copy', true)) checked="checked" @endif />
@@ -37,7 +37,7 @@
         <x-dialog.footer>
             <button class="btn2 btn-primary">
                 <i class="fa-solid fa-copy" aria-hidden="true"></i>
-                @can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan
+                @can('update', $entity) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan
             </button>
         </x-dialog.footer>
     </x-box>

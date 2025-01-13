@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Map $model */?>
 
-@if (!$model->showProfileInfo())
+@if (!$entity->child->showProfileInfo())
     @php return @endphp
 @endif
 

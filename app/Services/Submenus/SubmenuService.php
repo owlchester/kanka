@@ -15,15 +15,8 @@ class SubmenuService
     use CampaignAware;
     use EntityAware;
 
-    protected Model|MiscModel $model;
     protected array $items = [];
     protected array $ordered;
-
-    public function model(Model|MiscModel $model): self
-    {
-        $this->model = $model;
-        return $this;
-    }
 
     public function items(): array
     {
@@ -38,8 +31,8 @@ class SubmenuService
             'name' => 'crud.tabs.story',
             'route' => 'entities.show',
             'entity' => true,
-            'button' => auth()->check() && auth()->user()->can('update', $this->model) ? [
-                'url' => route('entities.story.reorder', [$this->campaign, $this->entity->id]),
+            'button' => auth()->check() && auth()->user()->can('update', $this->entity) ? [
+                'url' => route('entities.story.reorder', [$this->campaign, $this->entity]),
                 'icon' => 'fa-solid fa-arrow-up-arrow-down',
                 'tooltip' => __('entities/story.reorder.icon_tooltip'),
             ] : null,
@@ -47,7 +40,7 @@ class SubmenuService
 
 
         // Each entity can have relations
-        if (!isset($this->model->hasRelations) || $this->model->hasRelations === true) {
+//        if (!isset($this->model->hasRelations) || $this->model->hasRelations === true) {
             $this->items['first']['relations'] = [
                 'name' => 'crud.tabs.connections',
                 'route' => 'entities.relations.index',
@@ -55,11 +48,11 @@ class SubmenuService
                 'entity' => true,
                 'icon' => 'fa-solid fa-users',
             ];
-        }
+//        }
 
         // Each entity can have abilities
         // @phpstan-ignore-next-line
-        if ($this->campaign->enabled('abilities') && $this->model->entityTypeId() != config('entities.ids.ability')) {
+        if ($this->campaign->enabled('abilities') && !$this->entity->isAbility()) {
             $this->items['third']['abilities'] = [
                 'name' => Module::plural(config('entities.ids.ability'), 'crud.tabs.abilities'),
                 'route' => 'entities.entity_abilities.index',
@@ -125,7 +118,7 @@ class SubmenuService
         }
 
         // Permissions for the admin?
-        if (auth()->check() && auth()->user()->can('permission', $this->model)) {
+        if (auth()->check() && auth()->user()->can('permission', $this->entity)) {
             $this->items['fourth']['permissions'] = [
                 'name' => 'crud.tabs.permissions',
                 'route' => 'entities.permissions',
@@ -141,13 +134,13 @@ class SubmenuService
     protected function custom(): self
     {
         // Get the custom one based on the model name?
-        $className = Str::afterLast(get_class($this->model), '\\');
+        $className = ucfirst($this->entity->entityType->code);
         $submenuName = 'App\Services\Submenus\\' . $className . 'Submenu';
         try {
             /** @var CharacterSubmenu $object */
             $object = app()->make($submenuName);
             // @phpstan-ignore-next-line
-            $this->items += $object->model($this->model)->campaign($this->campaign)->extra();
+            $this->items += $object->entity($this->entity)->campaign($this->campaign)->extra();
         } catch (\Exception $e) {
             // Some modules like convos have no submenu
         }

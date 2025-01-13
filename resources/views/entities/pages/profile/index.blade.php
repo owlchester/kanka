@@ -29,6 +29,5 @@
         'breadcrumb' => __('crud.tabs.profile'),
         'view' => 'entities.pages.profile._' . $entity->entityType->code,
         'entity' => $entity,
-        'model' => $entity->child,
     ])
 @endsection

@@ -4,9 +4,9 @@
  * @var \App\Models\EntityEvent $birth
  * @var \App\Models\EntityEvent $death
  * @var \App\Models\EntityEvent[] $elapsed
- * @var \App\Models\MiscModel $model
+ * @var \App\Models\Entity $entity
  */
-$elapsed = $model->entity->elapsedEvents;
+$elapsed = $entity->elapsedEvents;
 
 // Prepare birth and death events
 $distinctCalendars = [];

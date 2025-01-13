@@ -2,15 +2,28 @@
 
 namespace App\Policies;
 
+use App\Facades\EntityPermission;
 use App\Facades\UserCache;
 use App\Models\Campaign;
+use App\Models\CampaignPermission;
 use App\Models\Entity;
+use App\Models\EntityType;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class EntityPolicy
 {
     use HandlesAuthorization;
+
+    public function view(?User $user, Entity $entity): bool
+    {
+        return EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_READ, $user, $entity);
+    }
+    public function update(?User $user, Entity $entity): bool
+    {
+        return EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_EDIT, $user, $entity);
+    }
+
 
     public function attributes(?User $user, Entity $entity): bool
     {

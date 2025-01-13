@@ -1,13 +1,9 @@
 @php
 /**
- * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
  * @var \App\Models\Post $post
  * @var \Illuminate\Database\Eloquent\Collection $posts
  */
-if (empty($entity)) {
-    $entity = $model->entity;
-}
 $wrapper = false;
 $entryShown = false;
 if (!isset($posts)) {
@@ -77,7 +73,7 @@ $postCount = 0;
 @endif
 
 @if (!request()->ajax() && $entity && !$entity->isType([config('entities.ids.map'), config('entities.ids.timeline'), config('entities.ids.calendar')]))
-@can('post', [$model, 'add'])
+@can('post', [$entity, 'add'])
     <div class="text-center row-add-note-button">
         <a href="{{ route('entities.posts.create', [$campaign, $entity]) }}" class="btn2 btn-sm btn-new-post  btn-block"
            data-entity-type="post" data-toggle="tooltip" data-title="{{ __('crud.tooltips.new_post') }}">

@@ -1,15 +1,13 @@
 <?php
-/** @var \App\Models\MiscModel $model */
+/** @var \App\Models\Entity $entity */
 ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('crud.titles.editing', ['name' => $model->name])  . ' - ' . __('entities.' . $name),
-    'breadcrumbs' => (isset($entity) ? [
-        Breadcrumb::entity($entity ?? $model->entity)->list(),
+    'title' => __('crud.titles.editing', ['name' => $entity->name])  . ' - ' . __('entities.' . $name),
+    'breadcrumbs' => [
+        Breadcrumb::entity($entity)->list(),
         Breadcrumb::show(),
         __('crud.edit'),
-    ] : [
-        __('crud.edit'),
-    ]),
+    ],
     'mainTitle' => false,
     'centered' => true,
 ])
@@ -17,7 +15,7 @@
 @section('content')
     <x-form
         method="PATCH"
-        :action="[$name . '.update', $campaign, $model->id]"
+        :action="['entities.update', $campaign, $entity]"
         files
         unsaved
         class="entity-form"
@@ -32,7 +30,7 @@
                     <ul class="nav-tabs flex items-stretch w-full" role="tablist">
                         <x-tab.tab target="entry" :default="true" :title="__('crud.fields.entry')"></x-tab.tab>
 
-                        @includeIf($name . '.form._tabs', ['source' => null])
+                        @includeIf($entity->entityType->pluralCode() . '.form._tabs', ['source' => null])
                         @if ($tabBoosted && config('services.stripe.enabled'))
                             <x-tab.tab target="premium" icon="premium" :title="auth()->check() && auth()->user()->hasBoosterNomenclature() ? __('crud.tabs.boost') : __('crud.tabs.premium')"></x-tab.tab>
                         @endif
@@ -53,7 +51,11 @@
             <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
                 <div class="tab-pane flex flex-col gap-5 {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
                     {{ csrf_field() }}
-                    @include($name . '.form._entry', ['source' => null])
+                    @if ($entity->entityType->isSpecial())
+                        @include('entities.forms.entry', ['source' => null, 'model' => $entity])
+                    @else
+                        @include($entity->entityType->pluralCode() . '.form._entry', ['source' => null])
+                    @endif
                 </div>
                 @includeIf($name . '.form._panes', ['source' => null])
                 @if ($tabBoosted && config('services.stripe.enabled'))
@@ -75,8 +77,8 @@
         </div>
     </x-grid>
 
-    @if(!empty($model->entity) && $campaign->hasEditingWarning())
-        <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', [$campaign, $model->entity->id]) }}" />
+    @if($entity && $campaign->hasEditingWarning())
+        <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', [$campaign, $entity->id]) }}" />
     @endif
     </x-form>
 @endsection
@@ -85,5 +87,5 @@
 
 @section('modals')
     @parent
-    @includeWhen(!empty($editingUsers) && !empty($model->entity), 'cruds.forms.edit_warning', ['model' => $model])
+    @includeWhen(!empty($editingUsers), 'cruds.forms.edit_warning', ['model' => $entity])
 @endsection

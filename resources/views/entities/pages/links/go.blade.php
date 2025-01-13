@@ -8,7 +8,7 @@
         __('crud.tabs.links')
     ],
     'mainTitle' => false,
-    'miscModel' => $entity->child,
+    'miscModel' => $entity->entityType->isSpecial() ? $entity : $entity->child,
     'centered' => true,
 ])
 

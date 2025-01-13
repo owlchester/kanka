@@ -1,23 +1,23 @@
 <?php /** @var \App\Models\DiceRoll $model */?>
 
-@if (!$model->showProfileInfo())
+@if (!$entity->child->showProfileInfo())
     @php return @endphp
 @endif
 
 <x-sidebar.profile>
-    @if ($model->parameters)
+    @if ($entity->child->parameters)
         <div class="element profile-parameters">
             <div class="title text-uppercase text-xs">{{ __('dice_rolls.fields.parameters') }}</div>
-            {{ $model->parameters }}
+            {{ $entity->child->parameters }}
         </div>
     @endif
-    @if ($model->character)
+    @if ($entity->child->character)
         <div class="element profile-parameters">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.character'), __('entities.character')) !!}
             </div>
             <x-entity-link
-                :entity="$model->character->entity"
+                :entity="$entity->child->character->entity"
                 :campaign="$campaign" />
         </div>
     @endif

@@ -24,7 +24,7 @@
         </x-grid>
 
         <x-dialog.footer>
-            <button class="btn2 btn-primary">@can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>
+            <button class="btn2 btn-primary">@can('update', $entity) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>
         </x-dialog.footer>
     </x-box>
 

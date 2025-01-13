@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . __('abilities.show.tabs.entities'),
+    'title' => $entity->name . ' - ' . __('abilities.show.tabs.entities'),
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
+    'miscModel' => $model ?? $entity,
 ])
 
 @section('entity-header-actions')

@@ -9,7 +9,7 @@
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $entity->child,
+    'miscModel' => $entity->entityType->isSpecial() ? $entity : $entity->child,
     'bodyClass' => 'entity-story-reorder'
 ])
 

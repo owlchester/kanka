@@ -18,7 +18,6 @@ if (($widget->conf('singular'))) {
             ?>
             @include('dashboard.widgets._preview', [
     'entity' => $entity,
-    'model' => $entity->child,
 ])
             <?php
             return;

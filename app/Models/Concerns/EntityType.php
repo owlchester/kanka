@@ -7,6 +7,10 @@ namespace App\Models\Concerns;
  */
 trait EntityType
 {
+    public function isAbility(): bool
+    {
+        return $this->type_id === config('entities.ids.ability');
+    }
     public function isCharacter(): bool
     {
         return $this->type_id === config('entities.ids.character');
@@ -32,9 +36,24 @@ trait EntityType
         return $this->type_id === config('entities.ids.quest');
     }
 
+    public function isOrganisation(): bool
+    {
+        return $this->type_id === config('entities.ids.organisation');
+    }
+
+    public function isRace(): bool
+    {
+        return $this->type_id === config('entities.ids.race');
+    }
+
     public function isTimeline(): bool
     {
         return $this->type_id === config('entities.ids.timeline');
+    }
+
+    public function isCreature(): bool
+    {
+        return $this->type_id === config('entities.ids.creature');
     }
 
     public function isDiceRoll(): bool

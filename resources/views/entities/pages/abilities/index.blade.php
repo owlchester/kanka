@@ -4,7 +4,7 @@
     'title' => __('entities/abilities.show.title', ['name' => $entity->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $entity->child,
+    'miscModel' => $entity->entityType->isSpecial() ? $entity : $entity->child,
     'bodyClass' => 'entity-abilities'
 ])
 
@@ -12,7 +12,7 @@
 
 @section('entity-header-actions')
     <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
-        @can('update', $entity->child)
+        @can('update', $entity)
             <a href="https://docs.kanka.io/en/latest/entities/abilities.html#entity-abilities" target="_blank" class="btn2 btn-ghost btn-sm">
                 <x-icon class="question" /> {{ __('crud.actions.help') }}
             </a>
@@ -28,7 +28,6 @@
         'breadcrumb' => __('entities.abilities'),
         'view' => 'entities.pages.abilities.render',
         'entity' => $entity,
-        'model' => $entity->child,
     ])
 @endsection
 

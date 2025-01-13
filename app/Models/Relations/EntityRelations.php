@@ -21,6 +21,7 @@ use App\Models\Inventory;
 use App\Models\Journal;
 use App\Models\Map;
 use App\Models\MiscModel;
+use App\Models\Organisation;
 use App\Models\Post;
 use App\Models\Quest;
 use App\Models\Race;
@@ -57,6 +58,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Race $race
  * @property Timeline $timeline
  * @property Quest $quest
+ * @property Organisation $organisation
  * @property Attribute[]|Collection $allAttributes
  * @property Attribute[]|Collection $starredAttributes
  * @property Relation[]|Collection $pinnedRelations

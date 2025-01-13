@@ -14,7 +14,7 @@ trait HasTooltip
      */
     public function ajaxTooltip(): string
     {
-        if (empty($this->child)) {
+        if ($this->isMissingChild()) {
             return '';
         }
 
@@ -35,6 +35,9 @@ trait HasTooltip
         }
 
         /** @var MiscModel $child */
+        if ($this->entityType->isSpecial()) {
+            return 'todo: entry on entity';
+        }
         $child = $this->child;
         if (!method_exists($child, 'parsedEntry')) {
             return '';

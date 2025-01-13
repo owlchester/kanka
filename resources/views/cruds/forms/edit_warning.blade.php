@@ -13,7 +13,7 @@ if ($model instanceof \App\Models\Post) {
     $modelId = $model->id;
 } else {
     $modelName = 'Entity';
-    $modelId = $model->entity->id;
+    $modelId = $model->id;
 }
 ?>
 <x-dialog id="edit-warning" :loading="true" :dismissible="false"></x-dialog>

@@ -6,9 +6,9 @@ $headerImage = true;
 @endphp
 
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => $model->name . ' - ' . \App\Facades\Module::plural($model->entityTypeId(), __('entities.' . $name)),
+    'title' => $entity->name . ' - ' . $entity->entityType->plural(),
     'breadcrumbs' => false,
-    'miscModel' => $model,
+    'miscModel' => $entity->entityType->isSpecial() ? $entity : $entity->child,
     'canonical' => true,
     'mainTitle' => false,
     'bodyClass' => 'entity-story',

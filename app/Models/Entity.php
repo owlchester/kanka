@@ -162,7 +162,7 @@ class Entity extends Model
      */
     public function mappedPreview(): string
     {
-        if (empty($this->child)) {
+        if ($this->isMissingChild()) {
             return '';
         }
         $campaign = CampaignLocalization::getCampaign();
@@ -172,6 +172,9 @@ class Entity extends Model
                 $text = Mentions::mapEntity($this);
                 return (string)strip_tags($text);
             }
+        }
+        if ($this->entityType->isSpecial()) {
+            return 'todo: entry on entity';
         }
         if (!$this->child->hasEntry()) {
             return '';
@@ -189,12 +192,14 @@ class Entity extends Model
         $campaign = CampaignLocalization::getCampaign();
         try {
             if ($action == 'index') {
-                return route($this->pluralType() . '.index', $campaign);
+                return route($this->entityType->code . '.index', [$campaign, $this->entityType]);
             } elseif ($action === 'show') {
                 return route('entities.show', [$campaign, $this] + $options);
+            } elseif ($action === 'edit') {
+                return route('entities.edit', [$campaign, $this] + $options);
             }
             $routeOptions = array_merge([$campaign, $this->entity_id], $options);
-            return route($this->pluralType() . '.' . $action, $routeOptions);
+            return route($this->entityType->code . '.' . $action, $routeOptions);
         } catch (Exception $e) {
             return route('dashboard', $campaign);
         }
@@ -460,5 +465,10 @@ class Entity extends Model
         }
 
         return new Collection($ordered);
+    }
+
+    public function isMissingChild(): bool
+    {
+        return !$this->entityType->isSpecial() && empty($this->child);
     }
 }

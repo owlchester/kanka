@@ -1,14 +1,14 @@
 <?php /** @var \App\Models\Tag $model */?>
 
-@if (!$model->showProfileInfo())
+@if (!$entity->child->showProfileInfo())
     @php return @endphp
 @endif
 
 <x-sidebar.profile>
-    @if (!empty($model->colour))
+    @if (!empty($entity->child->colour))
         <div class="element profile-colour">
             <div class="title text-uppercase text-xs">{{ __('crud.fields.colour') }}</div>
-            {{ $model->colour }}
+            {{ $entity->child->colour }}
         </div>
     @endif
 

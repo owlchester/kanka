@@ -5,7 +5,7 @@
     'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,
-    'miscModel' => $entity->child,
+    'miscModel' => $entity->entityType->isSpecial() ? $entity : $entity->child,
     'bodyClass' => 'entity-relations'
 ])
 
@@ -38,7 +38,6 @@
         'breadcrumb' => __('crud.tabs.connections'),
         'view' => 'entities.pages.relations.render',
         'entity' => $entity,
-        'model' => $entity->child,
     ])
 @endsection
 

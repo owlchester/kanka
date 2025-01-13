@@ -9,7 +9,7 @@
             <div class="url">{{ $asset->metadata['url'] }}</div>
 
             <div class="text-lg">
-            @if(auth()->check() && auth()->user()->can('update', $entity->child))
+            @if(auth()->check() && auth()->user()->can('update', $entity))
                 <a href="#" data-toggle="dialog-ajax" data-target="asset-update-dialog" data-url="{{ route('entities.entity_assets.edit', [$campaign, $entity, $asset]) }}">
                     <i class="fa-solid fa-pencil" aria-hidden="true" aria-label="{{ __('crud.edit') }}"></i>
                 </a>

@@ -12,7 +12,7 @@
         <div class="flex flex-wrap gap-2 justify-end">
             @includeWhen(isset($route) && $route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])
             @includeWhen(isset($actions), 'cruds.lists._actions')
-            @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
+            @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', [$entityType, $campaign]), 'cruds.lists._create')
         </div>
     </div>
 @endsection

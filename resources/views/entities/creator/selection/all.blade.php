@@ -14,7 +14,7 @@ $i = 0;
                 @include('entities.creator.selection._main')
                 @include('entities.creator.selection._full')
             @else
-                <a href="#" class="quick-creator-selection flex gap-2 overflow-hidden items-center" data-toggle="entity-creator" data-url="{{ route('entity-creator.post', [$campaign]) }}" data-entity-type="post}">
+                <a href="#" class="quick-creator-selection flex gap-2 overflow-hidden items-center" data-toggle="entity-creator" data-url="{{ route('entity-creator.post', [$campaign]) }}" data-entity-type="post">
                     <x-icon class="w-4 text-center fa-duotone fa-pen" />
                     <span class="overflow-hidden">{!! __('entities.post') !!}</span>
                 </a>

@@ -24,13 +24,13 @@ trait GuestAuthTrait
         if (empty($entity)) {
             abort(403);
         }
-        if (!$entity->child) {
+        if (!$entity->entityType->isSpecial() && !$entity->child) {
             abort(404);
         }
         if (auth()->check()) {
-            $this->authorize('view', $entity->child);
+            $this->authorize('view', $entity);
         } else {
-            $this->authorizeEntityForGuest(CampaignPermission::ACTION_READ, $entity->child);
+            $this->authorizeEntityForGuest(CampaignPermission::ACTION_READ, $entity);
         }
     }
 

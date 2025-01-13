@@ -30,7 +30,7 @@ class LiveSearchService
 
         if (empty($term)) {
             $models = $modelClass
-                ->with(['entity', 'entity.image'])
+                ->with(['entity', 'entity.image', 'entity.entityType'])
                 ->has('entity')
                 ->whereNotIn('id', $excludes)
                 ->limit(10)
@@ -38,7 +38,7 @@ class LiveSearchService
                 ->get();
         } else {
             $models = $modelClass
-                ->with(['entity', 'entity.image'])
+                ->with(['entity', 'entity.image', 'entity.entityType'])
                 ->has('entity')
                 ->whereNotIn('id', $excludes);
             // Exact match

@@ -41,7 +41,6 @@ class AttributeController extends Controller
 
         $template = null;
         $marketplaceTemplate = null;
-        $model = $entity->child;
 
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
         if (!empty($layout)) {
@@ -52,7 +51,6 @@ class AttributeController extends Controller
 
         return view('entities.pages.attributes.index', compact(
             'entity',
-            'model',
             'marketplaceTemplate',
             'template',
             'campaign'

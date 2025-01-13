@@ -1,14 +1,14 @@
 <?php /** @var \App\Models\Ability $model */?>
 
-@if (!$model->showProfileInfo())
+@if (!$entity->child->showProfileInfo())
     @php return @endphp
 @endif
 
 <x-sidebar.profile>
-    @if (!empty($model->charges))
+    @if (!empty($entity->child->charges))
         <div class="element profile-charges">
             <div class="title text-uppercase text-xs">{{ __('abilities.fields.charges') }}</div>
-            {{ $model->charges }}
+            {{ $entity->child->charges }}
         </div>
     @endif
     @include('entities.components.profile._type')

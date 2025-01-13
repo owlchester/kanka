@@ -2,10 +2,10 @@
 $plural = \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations'));
 @endphp
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . $plural,
+    'title' => $entity->name . ' - ' . $plural,
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
+    'miscModel' => $model ?? $entity,
 ])
 
 

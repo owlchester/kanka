@@ -1,5 +1,4 @@
 <?php /**
- * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
  */?>
 
@@ -8,9 +7,9 @@
 @endphp
 
 @extends('layouts.print', [
-    'title' => $model->name . ' - ' . __('entities.' . $name),
+    'title' => $entity->name . ' - ' . $entity->entityType->plural(),
     'breadcrumbs' => false,
-    'miscModel' => $model,
+    'miscModel' => $entity->entityType->isSpecial() ? $entity : $entity->child,
     'canonical' => true,
     'mainTitle' => false,
     'bodyClass' => 'entity-story'

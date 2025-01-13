@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/w/{campaign}/entities/{entity}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show')->where(['entity' => '[0-9]+']);
+
 Route::get('/w/{campaign}/entities/{entity}-{slug}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show-slug');
 Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entity\EditController::class, 'index'])->name('entities.edit');
+Route::patch('/w/{campaign}/entities/{entity}/save', [App\Http\Controllers\Entity\EditController::class, 'save'])->name('entities.update');
 
 // Abilities
 Route::get('/w/{campaign}/abilities/{ability}/abilities', 'Abilities\AbilityController@index')->name('abilities.abilities');
@@ -272,6 +274,11 @@ Route::resources([
 ]);
 
 Route::get('/w/{campaign}/redirect', 'RedirectController@index')->name('redirect');
+
+// Crud
+Route::get('/w/{campaign}/t/{entityType}', [\App\Http\Controllers\Entities\IndexController::class, 'index'])->name('entities.index');
+Route::get('/w/{campaign}/t/{entityType}/create', [\App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
+
 
 // Move
 Route::get('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');

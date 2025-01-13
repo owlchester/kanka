@@ -1,5 +1,10 @@
-<?php use \Illuminate\Support\Arr;
-$modelMenuItems = \App\Facades\Submenu::campaign($campaign)->model($model)->entity($entity)->items();
+<?php
+/**
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\Campaign $campaign
+ */
+use \Illuminate\Support\Arr;
+$modelMenuItems = \App\Facades\Submenu::campaign($campaign)->entity($entity)->items();
 ?>
 <div class="hidden md:flex flex-col gap-5">
 @foreach ($modelMenuItems as $section => $menuItems)
@@ -7,16 +12,16 @@ $modelMenuItems = \App\Facades\Submenu::campaign($campaign)->model($model)->enti
         <x-menu>
             @foreach ($menuItems as $key => $menuItem)
                 @if (Arr::has($menuItem, 'perm'))
-                    @cannot($menuItem['perm'], [$model->entity, $campaign])
+                    @cannot($menuItem['perm'], [$entity, $campaign])
                         @continue
                     @endcannot
                 @endif
                 <x-menu.element
                     :active="!empty($active) && $active == $key"
-                    :route="route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $model : $model->entity)])"
+                    :route="route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $entity->child : $entity)])"
                     :badge="$menuItem['count'] ?? 0"
                     :button="$menuItem['button'] ?? null"
-                    :ajax="Arr::get($menuItem, 'ajax') ? route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $model : $model->entity)]) : null"
+                    :ajax="Arr::get($menuItem, 'ajax') ? route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $entity->child : $entity)]) : null"
                     :id="$menuItem['id'] ?? null"
                 >
                     {!! __($menuItem['name']) !!}
@@ -38,9 +43,9 @@ $modelMenuItems = \App\Facades\Submenu::campaign($campaign)->model($model)->enti
             @foreach ($menuItems as $key => $menuItem)
                 <option
                         name="{{ $key }}"
-                        data-route="{{ route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $model : $model->entity)]) }}"
+                        data-route="{{ route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $entity->child : $entity)]) }}"
                         @if($key == $active) selected="selected" @endif
-                        @if(Arr::get($menuItem, 'ajax')) data-toggle="dialog" data-target="primary-dialog" data-url="{{ route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $model : $model->entity)]) }}" @endif
+                        @if(Arr::get($menuItem, 'ajax')) data-toggle="dialog" data-target="primary-dialog" data-url="{{ route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $entity->child : $entity)]) }}" @endif
                 >
                     {{ __($menuItem['name']) }}
                     @if (!empty($menuItem['count']))

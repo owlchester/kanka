@@ -1,9 +1,9 @@
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . __('crud.tabs.reminders'),
+    'title' => $entity->name . ' - ' . __('crud.tabs.reminders'),
     'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,
-    'miscModel' => $model,
+    'miscModel' => $model ?? $entity,
 ])
 
 @section('entity-header-actions')
