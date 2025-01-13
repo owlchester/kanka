@@ -180,7 +180,7 @@ class Relation extends Model
      */
     public function setColourAttribute($colour)
     {
-        $this->attributes['colour'] = mb_ltrim($colour, '#');
+        $this->attributes['colour'] = ltrim($colour ?? '', '#');
     }
 
     /**
