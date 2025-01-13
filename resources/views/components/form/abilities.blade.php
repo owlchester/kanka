@@ -14,7 +14,7 @@ if (!is_array($filterOptions)) {
     $filterOptions = [$filterOptions];
 }
 // From source to exclude duplicates
-$searchParams = [$campaign, config('entities.id.ability')];
+$searchParams = [$campaign, config('entities.ids.ability')];
 if (Arr::has($options, 'exclude', false)) {
     $searchParams['exclude'] = Arr::get($options, 'exclude');
 } elseif (Arr::has($options, 'exclude-entity', false)) {
