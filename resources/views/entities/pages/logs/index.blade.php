@@ -5,7 +5,6 @@
     'title' => __('entities/logs.show.title', ['name' => $entity->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $entity->entityType->isSpecial() ? $entity : $entity->child,
     'bodyClass' => 'entity-logs'
 ])
 @include('entities.components.og')

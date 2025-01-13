@@ -3,7 +3,6 @@
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model ?? $entity,
 ])
 
 @section('entity-header-actions')
@@ -24,6 +23,5 @@
         'active' => 'entities',
         'breadcrumb' => __('abilities.show.tabs.entities'),
         'view' => 'abilities.panels.entities',
-        'entity' => $model->entity,
     ])
 @endsection

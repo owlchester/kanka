@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\Models\Campaign $campaign
- * @var \App\Models\MiscModel $miscModel
+ * @var \App\Models\Entity $entity
  */
 $themeOverride = request()->get('_theme', 'base');
 $specificTheme = null;
@@ -60,7 +60,7 @@ $specificTheme = null;
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
 </head>
 
-<body class="@if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses() }}@endif  @if(isset($bodyClass)){{ $bodyClass }}@endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
+<body class="{{ $entity->bodyClasses() }}  @if(isset($bodyClass)){{ $bodyClass }}@endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
     <div id="app" class="wrapper">
 
         <div class="content-wrapper" @if(isset($contentId)) id="{{ $contentId }}" @endif>

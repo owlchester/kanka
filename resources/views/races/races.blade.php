@@ -1,8 +1,7 @@
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')),
+    'title' => $entity->name . ' - ' . \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 
@@ -33,6 +32,5 @@
         'active' => 'races',
         'breadcrumb' => $plural,
         'view' => 'races.panels.races',
-        'entity' => $model->entity,
     ])
 @endsection

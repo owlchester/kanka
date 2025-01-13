@@ -1,8 +1,7 @@
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . __('items.show.tabs.inventories'),
+    'title' => $entity->name . ' - ' . __('items.show.tabs.inventories'),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 @section('content')
@@ -10,6 +9,5 @@
         'active' => 'inventories',
         'breadcrumb' => __('items.show.tabs.inventories'),
         'view' => 'items.panels.entities',
-        'entity' => $model->entity,
     ])
 @endsection

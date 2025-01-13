@@ -4,7 +4,6 @@
     'title' => __('timelines.reorder.title', ['name' => $timeline->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $timeline,
     'bodyClass' => 'timeline-eras-reorder'
 ])
 

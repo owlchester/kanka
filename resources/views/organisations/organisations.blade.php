@@ -5,7 +5,6 @@
     'title' =>  $model->name . ' - ' . $plural,
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 
@@ -33,6 +32,5 @@
         'active' => 'organisations',
         'breadcrumb' => $plural,
         'view' => 'organisations.panels.organisations',
-        'entity' => $model->entity,
     ])
 @endsection

@@ -3,7 +3,6 @@
     'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,
-    'miscModel' => $model ?? $entity,
 ])
 
 @section('entity-header-actions')
@@ -32,6 +31,5 @@
         'active' => 'events',
         'breadcrumb' => __('entities.entities'),
         'view' => 'calendars.panels.events',
-        'entity' => $model->entity,
     ])
 @endsection

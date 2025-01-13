@@ -9,7 +9,6 @@
 @extends('layouts.print', [
     'title' => $entity->name . ' - ' . $entity->entityType->plural(),
     'breadcrumbs' => false,
-    'miscModel' => $entity->entityType->isSpecial() ? $entity : $entity->child,
     'canonical' => true,
     'mainTitle' => false,
     'bodyClass' => 'entity-story'

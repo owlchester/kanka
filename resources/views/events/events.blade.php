@@ -2,10 +2,9 @@
     $plural = \App\Facades\Module::plural(config('entities.ids.event'), __('entities.events'));
 @endphp
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . $plural,
+    'title' => $entity->name . ' - ' . $plural,
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 
@@ -33,7 +32,6 @@
         'active' => 'events',
         'breadcrumb' => $plural,
         'view' => 'events.panels.events',
-        'entity' => $model->entity,
     ])
 @endsection
 

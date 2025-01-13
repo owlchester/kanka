@@ -2,7 +2,6 @@
     'title' => __('tags.children.title', ['name' => $entity->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $entity,
 ])
 
 @section('content')

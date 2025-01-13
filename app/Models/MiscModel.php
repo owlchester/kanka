@@ -238,54 +238,6 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Generate the entity's body css classes
-     */
-    public function bodyClasses(?Entity $entity = null): string
-    {
-        $classes = [
-            'kanka-entity-' . $this->entity->id,
-            'kanka-entity-' . $this->entity->entityType->code,
-        ];
-
-        if (!empty($this->type)) {
-            $classes[] = 'kanka-type-' . Str::slug($this->type);
-        }
-
-        if (empty($entity)) {
-            $entity = $this->entity;
-        }
-        foreach ($entity->tagsWithEntity(true) as $tag) {
-            $classes[] = 'kanka-tag-' . $tag->id;
-            $classes[] = 'kanka-tag-' . $tag->slug;
-
-            if ($tag->tag_id) {
-                $classes[] = 'kanka-tag-' . $tag->tag_id;
-            }
-        }
-
-        // Specific entity flags
-        if ($this instanceof Character && $this->is_dead) {
-            $classes[] = 'character-dead';
-        } elseif ($this instanceof Quest && $this->is_completed) {
-            $classes[] = 'quest-completed';
-        }
-
-        if ($this->is_private) {
-            $classes[] = 'kanka-entity-private';
-        }
-
-        // Entity header?
-        $campaign = CampaignLocalization::getCampaign();
-        $superboosted = $campaign->superboosted();
-
-        if ($campaign->boosted() && $entity->hasHeaderImage()) {
-            $classes[] = 'entity-with-banner';
-        }
-
-        return (string) implode(' ', $classes);
-    }
-
-    /**
      * To be overwritten by the model instance
      */
     public function showProfileInfo(): bool

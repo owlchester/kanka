@@ -471,4 +471,45 @@ class Entity extends Model
     {
         return !$this->entityType->isSpecial() && empty($this->child);
     }
+
+    /**
+     * Generate the entity's body css classes
+     */
+    public function bodyClasses(): string
+    {
+        $classes = [
+            'kanka-entity-' . $this->id,
+            'kanka-entity-' . $this->entityType->code,
+        ];
+
+        if (!empty($this->child->type)) {
+            $classes[] = 'kanka-type-' . Str::slug($this->child->type);
+        }
+
+        foreach ($this->tagsWithEntity(true) as $tag) {
+            $classes[] = 'kanka-tag-' . $tag->id;
+            $classes[] = 'kanka-tag-' . $tag->slug;
+
+            if ($tag->tag_id) {
+                $classes[] = 'kanka-tag-' . $tag->tag_id;
+            }
+        }
+
+        // Specific entity flags
+        if ($this->isCharacter() && $this->child->is_dead) {
+            $classes[] = 'character-dead';
+        } elseif ($this->isQuest() && $this->child->is_completed) {
+            $classes[] = 'quest-completed';
+        }
+
+        if ($this->is_private) {
+            $classes[] = 'kanka-entity-private';
+        }
+
+        if ($this->hasHeaderImage()) {
+            $classes[] = 'entity-with-banner';
+        }
+
+        return (string) implode(' ', $classes);
+    }
 }

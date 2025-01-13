@@ -5,7 +5,6 @@
     'title' => __('entities/assets.show.title', ['name' => $entity->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $entity->entityType->isSpecial() ? $entity : $entity->child,
     'bodyClass' => 'entity-assets'
 ])
 @include('entities.components.og')

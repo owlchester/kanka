@@ -5,7 +5,6 @@
     'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,
-    'miscModel' => $model,
     'bodyClass' => 'entity-profile'
 ])
 

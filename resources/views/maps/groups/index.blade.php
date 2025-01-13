@@ -3,7 +3,6 @@
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 
@@ -38,6 +37,5 @@
         'active' => 'groups',
         'breadcrumb' => __('maps.panels.groups'),
         'view' => 'maps.panels.groups',
-        'entity' => $model->entity,
     ])
 @endsection

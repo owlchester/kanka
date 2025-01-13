@@ -4,7 +4,6 @@
     'title' => __('entities/abilities.show.title', ['name' => $entity->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $entity->entityType->isSpecial() ? $entity : $entity->child,
     'bodyClass' => 'entity-abilities'
 ])
 

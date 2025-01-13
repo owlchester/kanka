@@ -8,7 +8,6 @@ $headerImage = true;
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => $entity->name . ' - ' . $entity->entityType->plural(),
     'breadcrumbs' => false,
-    'miscModel' => $entity->entityType->isSpecial() ? $entity : $entity->child,
     'canonical' => true,
     'mainTitle' => false,
     'bodyClass' => 'entity-story',

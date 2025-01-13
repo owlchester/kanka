@@ -5,7 +5,6 @@ $plural = \App\Facades\Module::plural(config('entities.ids.organisation'), __('e
     'title' => $entity->name . ' - ' . $plural,
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model ?? $entity,
 ])
 
 
@@ -18,6 +17,5 @@ $plural = \App\Facades\Module::plural(config('entities.ids.organisation'), __('e
         'active' => 'organisations',
         'breadcrumb' => $plural,
         'view' => 'organisations.panels.organisations',
-        'entity' => $model->entity,
     ])
 @endsection

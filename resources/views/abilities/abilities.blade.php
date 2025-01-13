@@ -5,7 +5,6 @@
     'title' => $entity->name . ' - ' . $plural,
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model ?? $entity,
 ])
 
 @section('entity-header-actions')
@@ -33,6 +32,5 @@
         'active' => 'abilities',
         'breadcrumb' => $plural,
         'view' => 'abilities.panels.abilities',
-        'entity' => $model->entity,
     ])
 @endsection

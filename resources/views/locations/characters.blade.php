@@ -1,8 +1,7 @@
 @extends('layouts.app', [
-    'title' => $model->name . ' ' . \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
+    'title' => $entity->name . ' ' . \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 
@@ -35,6 +34,5 @@
         'active' => 'characters',
         'breadcrumb' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
         'view' => 'locations.panels.characters',
-        'entity' => $model->entity,
     ])
 @endsection

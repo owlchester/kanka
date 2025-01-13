@@ -2,7 +2,6 @@
     'title' => __('families/trees.title', ['name' => $family->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $family,
 ])
 
 @section('content')
