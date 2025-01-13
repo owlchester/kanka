@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Descendants;
 use App\Enums\Visibility;
 use App\Facades\CampaignCache;
 use App\Facades\Mentions;
@@ -299,7 +300,14 @@ class Campaign extends Model
      */
     public function defaultToNested(): bool
     {
-        return (bool) Arr::get($this->ui_settings, 'nested', false);
+        return (bool) Arr::get($this->ui_settings, 'nested', false) == 'all';
+    }
+
+    /**
+     */
+    public function defaultDescendantsMode(): Descendants
+    {
+        return Descendants::from(Arr::get($this->ui_settings, 'descendants', 0));
     }
 
     /**
@@ -346,13 +354,8 @@ class Campaign extends Model
      */
     public function maxEntityFiles(): int
     {
-        if ($this->premium()) {
-            return config('limits.campaigns.files.premium');
-        } elseif ($this->superboosted()) {
-            return config('limits.campaigns.files.superboosted');
-        }
         if ($this->boosted()) {
-            return config('limits.campaigns.files.boosted');
+            return config('limits.campaigns.files.premium');
         }
         return config('limits.campaigns.files.standard');
     }
@@ -510,6 +513,9 @@ class Campaign extends Model
      */
     public function follower(): int
     {
+        if (app()->isLocal() && request()->has('_followers')) {
+            return request()->get('_followers');
+        }
         return (int) $this->follower;
     }
 

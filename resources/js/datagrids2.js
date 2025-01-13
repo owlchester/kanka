@@ -17,12 +17,12 @@ const initDatagrids = () => {
 };
 
 const initDatagrid = (datagrid) => {
+    registerBulk(datagrid);
     if (datagrid.dataset.initiated === '1') {
         return;
     }
     datagrid.dataset.initiated = '1';
     registerHeaders(datagrid);
-    registerBulk(datagrid);
     if (datagrid.dataset.url) {
         loadDatagrid(datagrid, datagrid);
     }
@@ -132,6 +132,14 @@ const registerBulk = (datagrid) => {
 };
 
 const registerBulkSubmit = (datagrid, submit) => {
+    if (submit.parentNode.classList.contains('hidden')) {
+        return;
+    }
+    if (submit.dataset.loaded === '1') {
+        return;
+    }
+    submit.dataset.loaded = '1';
+    console.log('register bulk submit', submit, submit.parentNode);
     submit.addEventListener('click', function (e) {
         e.preventDefault();
         form = submit.closest('form');
@@ -154,12 +162,15 @@ const registerBulkSubmit = (datagrid, submit) => {
 };
 
 const registerBulkClick = (datagrid, element) => {
-    // Don't do this as the button is re-added to the dom by tippy's popdown
-    /*if (element.dataset.loaded === '1') {
+    // Don't add events on the hidden div, trippy creates a new one on each click
+    if (element.parentNode.classList.contains('hidden')) {
         return;
     }
-    console.log('setup');
-    element.dataset.loaded = '1';*/
+    if (element.dataset.loaded === '1') {
+        return;
+    }
+    element.dataset.loaded = '1';
+
     element.addEventListener('click', function (e) {
         e.preventDefault();
         form = datagrid.closest('form');

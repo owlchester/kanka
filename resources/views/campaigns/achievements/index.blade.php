@@ -2,7 +2,7 @@
 use \Illuminate\Support\Arr;
 @endphp
 @extends('layouts.app', [
-    'title' => __('campaigns/stats.title', ['campaign' => $campaign->name]),
+    'title' => __('campaigns.show.tabs.achievements') . ' - ' . $campaign->name,
     'breadcrumbs' => [
         __('campaigns.show.tabs.achievements')
     ],

@@ -15,7 +15,7 @@
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? true"
     :selected="$preset"
-    :route="route('attribute_templates.find', $campaign)"
+    :route="route('search-list', [$campaign, config('entities.ids.attribute_template')])"
     :class="\App\Models\AttributeTemplate::class"
     :dropdownParent="$dropdownParent ?? null"
     :helper="__('attribute_templates.hints.parent_attribute_template')">

@@ -30,7 +30,7 @@ class MemberController extends Controller
 
         $options = ['campaign' => $campaign, 'organisation' => $organisation];
         $base = 'members';
-        if (request()->has('all')) {
+        if ($this->filterToAll()) {
             $options['all'] = true;
             $base = 'allMembers';
         }

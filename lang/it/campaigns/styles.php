@@ -32,10 +32,9 @@ return [
         'order'         => 'Ordine',
     ],
     'helpers'       => [
-        'css_moved' => 'Il campo CSS è stato spostato in una nuova interfaccia flessibile che si può trovare nel menù della campagna :link.',
-        'here'      => 'sul nostro blog',
-        'is_enabled'=> 'Attiva questo tema in ogni pagina.',
-        'main'      => 'Puoi creare il tuo stile CSS per la tua campagna potenziata. Questi stili vengono caricati dopo i temi del Mercato che sono stati abilitati per la campagna. Puoi saperne di più :here',
+        'here'          => 'sul nostro blog',
+        'is_enabled'    => 'Attiva questo tema in ogni pagina.',
+        'main'          => 'Puoi creare il tuo stile CSS per la tua campagna potenziata. Questi stili vengono caricati dopo i temi del Mercato che sono stati abilitati per la campagna. Puoi saperne di più :here',
     ],
     'pitch'         => 'Crea uno stile CSS personalizzato per modificare l\'aspetto e l\'ambientazione della campagna',
     'placeholders'  => [

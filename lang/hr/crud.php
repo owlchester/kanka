@@ -94,10 +94,8 @@ return [
     ],
     'edit'                      => 'Uredi',
     'errors'                    => [
-        'boosted'                       => 'Ova je funkcionalnost dostupna samo za pojačane kampanje.',
-        'boosted_campaigns'             => 'Ova funkcionalnost je dostupna samo za :boosted.',
-        'node_must_not_be_a_descendant' => 'Nevažeći čvor (oznaka, roditeljska lokacija): bio bi potomak sam sebi.',
-        'unavailable_feature'           => 'Nedostupna funkcionalnost',
+        'boosted_campaigns'     => 'Ova funkcionalnost je dostupna samo za :boosted.',
+        'unavailable_feature'   => 'Nedostupna funkcionalnost',
     ],
     'events'                    => [],
     'fields'                    => [

@@ -18,7 +18,7 @@
             {{ __('settings.menu.premium') }}
         </h1>
 
-        @if (app()->environment('local'))
+        @if (app()->isLocal())
             <a href="{{ route('settings.switch-back') }}" class="btn2 btn-primary">
                 Switch to legacy
             </a>

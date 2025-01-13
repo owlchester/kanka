@@ -49,7 +49,11 @@ return [
     'tooltips'          => [
         'equipped'  => 'Cet objet est équipé',
     ],
-    'tutorial'          => 'Garder la trace de ce qu\'une entité possède en ajoutant des objets à son inventaire.',
+    'tutorials'         => [
+        'character' => 'Garder la trace de ce que :name possède ou a à vendre en ajoutant des objets à l\'inventaire.',
+        'location'  => 'Garder la trace de ce que :name a à vendre ou à piller en ajoutant des objets à l\'inventaire.',
+        'other'     => 'Garder la trace de ce que :name possède en ajoutant des objets à l\'inventaire.',
+    ],
     'update'            => [
         'success'   => 'Objet :item modifié pour :entity.',
         'title'     => 'Modifier un objet sur :name',

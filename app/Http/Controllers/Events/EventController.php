@@ -22,10 +22,9 @@ class EventController extends Controller
     {
         $this->campaign($campaign)->authEntityView($event->entity);
 
-        $options = ['campaign' => $campaign, 'event' => $event];
+        $options = ['campaign' => $campaign, 'event' => $event, 'm' => $this->descendantsMode()];
         $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $event->id;
+        if ($this->filterToDirect()) {
             $filters['event_id'] = $event->id;
         }
         Datagrid::layout(\App\Renderers\Layouts\Event\Event::class)

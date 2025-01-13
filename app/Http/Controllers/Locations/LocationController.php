@@ -22,10 +22,9 @@ class LocationController extends Controller
     {
         $this->campaign($campaign)->authEntityView($location->entity);
 
-        $options = ['campaign' => $campaign, 'location' => $location];
+        $options = ['campaign' => $campaign, 'location' => $location, 'm' => $this->descendantsMode()];
         $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $location->id;
+        if ($this->filterToDirect()) {
             $filters['location_id'] = $location->id;
         }
         Datagrid::layout(\App\Renderers\Layouts\Location\Location::class)
@@ -49,6 +48,7 @@ class LocationController extends Controller
 
         return $this
             ->campaign($campaign)
-            ->subview('locations.locations', $location);
+            ->subview('locations.locations', $location)
+        ;
     }
 }

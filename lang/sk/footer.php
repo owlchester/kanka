@@ -26,7 +26,6 @@ return [
     'resources'         => 'Zdroje',
     'roadmap'           => 'Plán',
     'security'          => 'Bezpečnosť',
-    'server_time'       => 'Serverový čas: :time',
     'status'            => 'Stav služby',
     'terms'             => 'Všeobecné podmienky',
     'translator_call'   => 'Kanka je prekladaná do iných jazykov vďaka našej úžasnej komunite. Ak chceš pomôcť s prekladom Kanky do tvojho jazyka, ozvi sa nám na :discord!',

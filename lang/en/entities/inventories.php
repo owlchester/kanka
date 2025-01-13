@@ -49,7 +49,11 @@ return [
     'tooltips'          => [
         'equipped'  => 'This item is equipped',
     ],
-    'tutorial'          => 'Keep track of what an entity possesses with by adding items to its inventory.',
+    'tutorials'         => [
+        'character' => 'Keep track of what :name possesses or has for sale by adding items to their inventory.',
+        'location'  => 'Keep track of what :name has for sale or to loot by adding items to its inventory.',
+        'other'     => 'Keep track of what :name possesses by adding items to its inventory.',
+    ],
     'update'            => [
         'success'   => 'Item :item updated for :entity.',
         'title'     => 'Update an item on :name',

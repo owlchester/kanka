@@ -22,7 +22,6 @@ return [
         'locations' => 'Criar :target locais',
         'races'     => 'Criar :target raças',
     ],
-    'title'         => 'Conquistas da Campanha :campaign',
     'titles'        => [
         'calendars' => 'Nível :level de Guardião do Tempo',
         'characters'=> 'Nível :level de Nomeador',

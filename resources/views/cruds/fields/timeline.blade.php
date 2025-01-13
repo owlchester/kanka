@@ -17,7 +17,7 @@
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('timelines.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.timeline')] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Timeline::class"
     :selected="$preset"
     :helper="$helper ?? null"

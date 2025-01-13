@@ -32,10 +32,9 @@ return [
         'order'         => 'Ordre',
     ],
     'helpers'       => [
-        'css_moved' => 'Le champ CSS a été déplacé dans la nouvelle interface plus flexible :link dans le menu de campagne.',
-        'here'      => 'sur notre blog',
-        'is_enabled'=> 'Activer ce style sur chaque page.',
-        'main'      => 'Tu peux créer des règles CSS personnalisées pour ta campagne premium. Ces styles sont chargés après les thèmes du marketplace activés pour la campagne. Tu peux en savoir plus sur comment personnalisé ta campagne :here.',
+        'here'          => 'sur notre blog',
+        'is_enabled'    => 'Activer ce style sur chaque page.',
+        'main'          => 'Tu peux créer des règles CSS personnalisées pour ta campagne premium. Ces styles sont chargés après les thèmes du marketplace activés pour la campagne. Tu peux en savoir plus sur comment personnalisé ta campagne :here.',
     ],
     'pitch'         => 'Définis du CSS pour complètement personnalisé le look de la campagne.',
     'placeholders'  => [
@@ -47,6 +46,8 @@ return [
         'title'     => 'Réordonner les styles',
     ],
     'theme'         => [
+        'none'      => 'Utiliser les préférences de l\'utilisateur',
+        'override'  => 'Forçage de thème',
         'success'   => 'Thème de la campagne modifié.',
         'title'     => 'Modifier le thème de la campagne.',
     ],

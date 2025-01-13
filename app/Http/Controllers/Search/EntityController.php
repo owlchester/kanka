@@ -24,7 +24,7 @@ class EntityController extends Controller
      */
     public function calendars(Request $request, Campaign $campaign)
     {
-        $term = trim($request->q);
+        $term = mb_trim($request->q);
 
         return response()->json(
             $this->search

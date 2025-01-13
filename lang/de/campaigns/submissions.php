@@ -2,10 +2,8 @@
 
 return [
     'actions'       => [
-        'accept'        => 'akzeptieren',
-        'applications'  => 'Bewerbungen: :status',
-        'change'        => 'Änderung',
-        'reject'        => 'ablehnen',
+        'accept'    => 'akzeptieren',
+        'reject'    => 'ablehnen',
     ],
     'apply'         => [
         'apply'         => 'anwenden',
@@ -18,28 +16,18 @@ return [
         ],
         'title'         => 'beitreten :name',
     ],
-    'errors'        => [
-        'not_open'  => 'Die Kampagne ist nicht öffentlich für neue Mitglieder. Bearbeiten Sie die Einstellungen der Kampagne, wenn Sie zulassen möchten, dass Benutzer sich für die Kampagne bewerben.',
-    ],
+    'errors'        => [],
     'fields'        => [
         'application'   => 'Bewerbung',
-        'approval'      => 'Genehmigungsgrund',
-        'rejection'     => 'Ablehnungsgrund',
     ],
     'helpers'       => [
-        'filter-helper'     => 'Diese Kampagne ist offen für Bewerbungen!',
         'modal'             => 'Bei einer Kampagne, die für Bewerbungen offen und öffentlich ist, können sich Benutzer für die Teilnahme an der Kampagne bewerben.',
         'no_applications'   => 'Derzeit gibt es keine ausstehenden Bewerbungen zur Teilnahme an Ihrer Kampagne. Benutzer können sich für die Teilnahme an Ihrer Kampagne bewerben, indem sie das Dashboard besuchen und auf die Schaltfläche :button klicken.',
-        'not_open'          => 'Die Kampagne nimmt derzeit keine Bewerbungen an.',
-        'open_not_public'   => 'Die Kampagne ist offen für Bewerbungen, aber nicht öffentlich, was bedeutet, dass sich niemand bewerben kann, um daran teilzunehmen. Dies kann geändert werden, indem du die Einstellungen der Kampagne bearbeitest.',
     ],
     'placeholders'  => [
         'note'  => 'Notieren Sie Ihre Bewerbung für die Teilnahme an der Kampagne',
     ],
-    'statuses'      => [
-        'closed'    => 'geschlossen',
-        'open'      => 'offen',
-    ],
+    'statuses'      => [],
     'toggle'        => [
         'closed'    => 'Anwendung geschlossen',
         'label'     => 'Status',

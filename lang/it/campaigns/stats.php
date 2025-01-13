@@ -22,7 +22,6 @@ return [
         'locations' => 'Crea :target luoghi',
         'races'     => 'Crea :target razze',
     ],
-    'title'         => 'Obiettivi raggiunti della Campagna :campaign',
     'titles'        => [
         'calendars' => 'Livello :level Custode del Tempo',
         'characters'=> 'Livello :level Maestro dei Nomi',

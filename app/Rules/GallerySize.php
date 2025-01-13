@@ -13,7 +13,7 @@ class GallerySize implements ValidationRule
     /**
      * Run the validation rule.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param  Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
@@ -25,11 +25,11 @@ class GallerySize implements ValidationRule
             $size = (int)floor($value->getSize() / 1024);
             if ($size > $available) {
                 $available = $this->human($available);
-                $fail(__('campaigns/gallery.errors.storage', ['available' => $available]));
+                $fail(__('campaigns/gallery.errors.storage', ['available' => $available]) . ' (storage_full)');
             }
         } catch (Exception $e) {
             $available = $this->human($available);
-            $fail(__('campaigns/gallery.errors.storage', ['available' => $available]));
+            $fail(__('campaigns/gallery.errors.storage', ['available' => $available]) . ' (storage_full)');
         }
     }
 

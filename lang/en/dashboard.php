@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'customise' => 'Customise dashboard',
         'follow'    => 'Follow',
         'join'      => 'Join',
         'unfollow'  => 'Stop following',

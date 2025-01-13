@@ -13,8 +13,8 @@
 @include('entities.components.og')
 
 @section('entity-header-actions')
-    @can('events', $entity->child)
-        <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
+    <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
+        @can('events', $entity->child)
             <a href="https://docs.kanka.io/en/latest/features/reminders.html" target="_blank" class="btn2 btn-ghost btn-sm">
                 <x-icon class="question" /> {{ __('crud.actions.help') }}
             </a>
@@ -23,8 +23,9 @@
                data-url="{{ route('entities.entity_events.create', [$campaign, $entity, 'next' => 'entity.events']) }}">
                 <x-icon class="plus" /> {{ __('entities/events.show.actions.add') }}
             </a>
-        </div>
-    @endcan
+        @endcan
+        @include('entities.headers.actions', ['edit' => false])
+    </div>
 @endsection
 
 

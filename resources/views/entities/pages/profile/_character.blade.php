@@ -8,14 +8,14 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             @if ($model->title)
                 <p class="entity-character-title">
                     <b>{{ __('characters.fields.title') }}</b><br />
-                    {{ $model->title }}
+                    {!! $model->title !!}
                 </p>
             @endif
 
             @if ($model->type)
                 <p class="entity-type">
                     <b>{{ __('crud.fields.type') }}</b><br />
-                    {{ $model->type }}
+                    {!! $model->type !!}
                 </p>
             @endif
 
@@ -61,14 +61,14 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
             @if ($model->sex)
                 <p class="entity-gender">
                     <b>{{ __('characters.fields.sex') }}</b><br />
-                    {{ $model->sex }}
+                    {!! $model->sex !!}
                 </p>
             @endif
 
             @if ($model->pronouns)
                 <p class="entity-pronouns">
                     <b>{{ __('characters.fields.pronouns') }}</b><br />
-                    {{ $model->pronouns }}
+                    {!! $model->pronouns !!}
                 </p>
             @endif
         </x-box>

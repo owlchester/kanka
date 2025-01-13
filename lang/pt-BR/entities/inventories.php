@@ -49,7 +49,6 @@ return [
     'tooltips'          => [
         'equipped'  => 'Este item está equipado',
     ],
-    'tutorial'          => 'Acompanhe o que uma entidade processa adicionando itens ao seu inventário.',
     'update'            => [
         'success'   => 'Item :item de :entity atualizado.',
         'title'     => 'Atualizar o item de :name',

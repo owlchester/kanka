@@ -137,7 +137,7 @@ class PluginVersion extends Model
         // Get all the referenced attributes in the character sheet so that they are set to null if an entity
         // doesn't have the attribute
         $html = preg_replace_callback('`\{\{(.*?[^(\!])\}\}`i', function ($matches) {
-            $attribute = trim((string) $matches[1]);
+            $attribute = mb_trim((string) $matches[1]);
             // If it's a comment, we can safely ignore it
             if (Str::startsWith($attribute, '--') && Str::endsWith($attribute, '--')) {
                 return '{{' . $attribute . '}}';
@@ -149,7 +149,7 @@ class PluginVersion extends Model
         }, $html);
 
         $html = preg_replace_callback('`\{\!\!(.*?[^(\!])\!\!\}`i', function ($matches) {
-            $attribute = trim((string) $matches[1]);
+            $attribute = mb_trim((string) $matches[1]);
             $name = Str::after($attribute, '$');
             // Flag this as an attribute that is referenced
             $this->templateAttributes[$name] = null;
@@ -159,7 +159,8 @@ class PluginVersion extends Model
 
         // Blacklisted commands
         $html = str_replace([
-            '@php', '@dd', '@inject', '@yield', '@section', '@auth', '@guest', '@env', '@once', '@push', '@csrf',
+            '@php', '@dd', '@inject', '@yield', '@section', '@session', '@env', '@once', '@push', '@csrf',
+            '@use',
             '@include', '\Illuminate\\'
         ], [
             '', '', '', '', '', '', '', '', '', '', '', '', ''
@@ -188,7 +189,7 @@ class PluginVersion extends Model
         list($data, $ids, $checkboxes) = $this->prepareBladeData($entity);
 
         $html = preg_replace_callback('`\@liveAttribute\(\'(.*?[^)])\'\)`i', function ($matches) use ($data, $ids, $checkboxes) {
-            $attr = trim((string) $matches[1]);
+            $attr = mb_trim((string) $matches[1]);
             if (!isset($data[$attr])) {
                 return $matches[0];
             }
@@ -288,13 +289,13 @@ class PluginVersion extends Model
     protected function ifElseBlock(array $matches)
     {
         // Test on a missing attribute always returns false
-        $trimmed = trim($matches[1]);
+        $trimmed = mb_trim($matches[1]);
         if (Str::contains($trimmed, '<i class="missing-attribute">')) {
             return $matches[3];
         }
 
         // Strip tags to remove html brs on multilines
-        $condition = strip_tags(trim($matches[1]));
+        $condition = strip_tags(mb_trim($matches[1]));
         if (Str::contains($condition, ['=', '>', '<'])) {
             if ($this->evaluateCondition($condition)) {
                 return $matches[2];
@@ -319,13 +320,13 @@ class PluginVersion extends Model
             return $matches[0];
         }
         // Test on a missing attribute always returns false
-        $trimmed = trim($matches[1]);
+        $trimmed = mb_trim($matches[1]);
         if (Str::contains($trimmed, '<i class="missing-attribute">')) {
             return null;
         }
 
         // Strip tags to remove html brs on multilines
-        $condition = strip_tags(trim($matches[1]));
+        $condition = strip_tags(mb_trim($matches[1]));
         if (Str::contains($condition, ['=', '>', '<', '&lt;', '&gt;'])) {
             if ($this->evaluateCondition($condition)) {
                 return $matches[2];
@@ -346,26 +347,26 @@ class PluginVersion extends Model
         // >=
         if (Str::contains($condition, '&gt;=')) {
             $segments = explode('&gt;=', $condition);
-            return (int) trim($segments[0]) >= (int) trim($segments[1]);
+            return (int) mb_trim($segments[0]) >= (int) mb_trim($segments[1]);
         } elseif (Str::contains($condition, '&lt;=')) {
             $segments = explode('&lt;=', $condition);
-            return (int) trim($segments[0]) <= (int) trim($segments[1]);
+            return (int) mb_trim($segments[0]) <= (int) mb_trim($segments[1]);
         } elseif (Str::contains($condition, '&gt;')) {
             $segments = explode('&gt;', $condition);
-            return (int) trim($segments[0]) > (int) trim($segments[1]);
+            return (int) mb_trim($segments[0]) > (int) mb_trim($segments[1]);
         } elseif (Str::contains($condition, '&lt;')) {
             $segments = explode('&lt;', $condition);
-            return (int) trim($segments[0]) < (int) trim($segments[1]);
+            return (int) mb_trim($segments[0]) < (int) mb_trim($segments[1]);
         } elseif (Str::contains($condition, '=')) {
             $segments = explode('=', $condition);
-            return trim($segments[0]) == trim($segments[1]);
+            return mb_trim($segments[0]) == mb_trim($segments[1]);
         }
         return false;
     }
 
     protected function emptyBlock(array $matches)
     {
-        $condition = trim($matches[1]);
+        $condition = mb_trim($matches[1]);
         if (Str::contains($condition, '<i class="missing">')) {
             return false;
         }

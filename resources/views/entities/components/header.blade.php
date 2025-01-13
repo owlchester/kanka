@@ -127,49 +127,49 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                 {!! $model->name !!}
             </h1>
             @if ($model instanceof \App\Models\Character && $model->isDead())
-                <span class="entity-name-icon entity-char-dead cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_dead') }}">
+                <span class="entity-name-icon entity-char-dead text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_dead') }}">
                     <x-icon class="ra ra-skull entity-icons" />
                     <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
                 </span>
             @endif
             @if ($model instanceof \App\Models\Quest && $model->isCompleted())
-                <span class="entity-name-icon entity-quest-complete cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('quests.fields.is_completed') }}">
+                <span class="entity-name-icon entity-quest-complete text-2xl" data-toggle="tooltip" data-title="{{ __('quests.fields.is_completed') }}">
                     <x-icon class="fa-solid fa-check-circle entity-icons" />
                     <span class="sr-only">{{ __('quests.fields.is_completed') }}</span>
                 </span>
             @endif
             @if ($model instanceof \App\Models\Organisation && $model->isDefunct())
-                <span class="entity-name-icon entity-org-defunct cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('organisations.hints.is_defunct') }}">
+                <span class="entity-name-icon entity-org-defunct text-2xl" data-toggle="tooltip" data-title="{{ __('organisations.hints.is_defunct') }}">
                     <x-icon class="fa-solid fa-shop-slash entity-icons " />
                     <span class="sr-only">{{ __('organisations.hints.is_defunct') }}</span>
                 </span>
             @endif
             @if ($model instanceof \App\Models\Location && $model->isDestroyed())
-                <span class="entity-name-icon entity-loc-destroyed cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('locations.hints.is_destroyed') }}">
+                <span class="entity-name-icon entity-loc-destroyed text-2xl" data-toggle="tooltip" data-title="{{ __('locations.hints.is_destroyed') }}">
                     <x-icon class="fa-solid fa-building-circle-xmark " />
                     <span class="sr-only">{{ __('locations.hints.is_destroyed') }}</span>
                 </span>
             @endif
             @if ($model instanceof \App\Models\Race && $model->isExtinct())
-                <span class="entity-name-icon entity-rac-extinct cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('races.hints.is_extinct') }}">
+                <span class="entity-name-icon entity-rac-extinct text-2xl" data-toggle="tooltip" data-title="{{ __('races.hints.is_extinct') }}">
                     <x-icon class="fa-solid fa-skull-cow entity-icons " />
                     <span class="sr-only">{{ __('races.hints.is_extinct') }}</span>
                 </span>
             @endif
             @if ($model instanceof \App\Models\Creature && $model->isExtinct())
-                <span class="entity-name-icon entity-cre-extinct cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_extinct') }}">
+                <span class="entity-name-icon entity-cre-extinct text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_extinct') }}">
                     <x-icon class="fa-solid fa-skull-cow entity-icons " />
                     <span class="sr-only">{{ __('creatures.hints.is_extinct') }}</span>
                 </span>
             @endif
             @if ($model instanceof \App\Models\Creature && $model->isDead())
-                <span class="entity-name-icon entity-cre-dead cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_dead') }}">
+                <span class="entity-name-icon entity-cre-dead text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_dead') }}">
                     <x-icon class="ra ra-skull entity-icons " />
                     <span class="sr-only">{{ __('creatures.hints.is_dead') }}</span>
                 </span>
             @endif
             @if ($model instanceof \App\Models\Family && $model->isExtinct())
-                <span class="entity-name-icon entity-fam-extinct cursor-pointer text-2xl" data-toggle="tooltip" data-title="{{ __('families.hints.is_extinct') }}">
+                <span class="entity-name-icon entity-fam-extinct text-2xl" data-toggle="tooltip" data-title="{{ __('families.hints.is_extinct') }}">
                     <x-icon class="ra ra-skull entity-icons " />
                     <span class="sr-only">{{ __('families.hints.is_extinct') }}</span>
                 </span>
@@ -181,116 +181,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                     </span>
             @endif
-            <div class="dropdown entity-actions flex items-center">
-                <div role="button" tabindex="0" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu" class="cursor-pointer">
-                    <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
-                    <div class="entity-icons transition-all hover:rotate-45 h-7 w-7 fill-current">
-                        @include('icons.svg.cog')
-                    </div>
-
-                </div>
-                <div class="dropdown-menu hidden" role="menu" id="entity-submenu">
-                    @can('update', $model)
-                        <x-dropdowns.item :link="route($entity->pluralType() . '.edit', [$campaign, $model->id])" keyboard="edit">
-                            <x-icon class="pencil" />
-                            <span class="grow">{{ __('crud.edit') }}</span>
-
-                            <span class="keyboard-shortcut"  title="{!! __('crud.keyboard-shortcut', ['code' => '[E]']) !!}" data-html="true">E</span>
-                        </x-dropdowns.item>
-                    @endcan
-                    @can('create', $model)
-                        <x-dropdowns.item :link="route($entity->pluralType() . '.create', $campaign)">
-                            <x-icon class="fa-regular fa-plus" />
-                            {{ __('crud.actions.new') }}
-                        </x-dropdowns.item>
-                        @if (method_exists($model, 'getParentKeyName'))
-                            <x-dropdowns.item :link="route($entity->pluralType() . '.create', [$campaign, $model->entity, 'parent_id' => $model->id])">
-                                <x-icon class="fa-regular fa-plus" />
-                                {{ __('crud.actions.new_child') }}
-                            </x-dropdowns.item>
-                        @endif
-                        <x-dropdowns.item link="{{ route($entity->pluralType() . '.create', [$campaign, 'copy' => $model->id]) }}">
-                            <x-icon class="fa-regular fa-copy" />
-                            {{ __('crud.actions.copy') }}
-                        </x-dropdowns.item>
-                    @endcan
-
-                    @if ($model->entity)
-                        @if(auth()->check())
-                            @can('update', $model)
-                                <x-dropdowns.item :link="route('entities.story.reorder', [$campaign, $model->entity->id])">
-                                    <x-icon class="fa-solid fa-list-ol" />
-                                    {{ __('entities/story.reorder.icon_tooltip') }}
-                                </x-dropdowns.item>
-                            @endcan
-                                <x-dropdowns.item link="#" :data="['title' => $model->getEntityType() . ':' . $model->entity->id, 'toggle' => 'tooltip', 'clipboard' => '[' . $model->getEntityType() . ':' . $model->entity->id .']', 'toast' => __('crud.alerts.copy_mention')]">
-                                    <x-icon class="fa-solid fa-link" />
-                                    {{ __('crud.actions.copy_mention') }}
-                                </x-dropdowns.item>
-                                @can('setTemplates', $campaign)
-                                    <x-dropdowns.item :link="route('entities.template', [$campaign, $entity])">
-                                        @if($entity->isTemplate())
-                                            <x-icon class="fa-regular fa-star" />
-                                            {{ __('entities/actions.templates.unset') }}
-                                        @else
-                                            <x-icon class="fa-solid fa-star" />
-                                            {{ __('entities/actions.templates.set') }}
-                                        @endif
-                                    </x-dropdowns.item>
-                                @endcan
-                            <hr class="m-0" />
-                                @can('update', $model)
-                                    <x-dropdowns.item link="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}" :dialog="route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table'])">
-                                        <x-icon class="fa-solid fa-people-arrows" />
-                                        {{ __('entities/relations.create.new_title') }}
-                                    </x-dropdowns.item>
-                                    <hr class="m-0" />
-                                @endcan
-                        @endif
-                        <x-dropdowns.item link="{{ route('entities.html-export', [$campaign, $entity]) }}">
-                            <x-icon class="fa-solid fa-print" />
-                            {{ __('crud.actions.print') }}
-                        </x-dropdowns.item>
-                        <x-dropdowns.item link="{{ route('entities.json.export', [$campaign, $entity]) }}">
-                            <x-icon class="fa-solid fa-download" />
-                            {{ __('crud.actions.json-export') }}
-                        </x-dropdowns.item>
-                        <x-dropdowns.item link="{{ route('entities.markdown.export', [$campaign, $entity]) }}">
-                            <x-icon class="fa-solid fa-download" />
-                            {{ __('crud.actions.markdown-export') }}
-                        </x-dropdowns.item>
-                    @endif
-                    @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($model->campaign_id))
-                        <hr class="m-0" />
-                        <x-dropdowns.item link="{{ route('entities.move', [$campaign, $entity->id]) }}">
-                            <x-icon class="fa-regular fa-clone" />
-                            @can('update', $model)
-                                {{ __('crud.actions.move') }}
-                            @else
-                                {{ __('crud.actions.copy') }}
-                            @endcan
-                        </x-dropdowns.item>
-                    @endif
-
-                    @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $model))
-                        <x-dropdowns.item link="{{ route('entities.transform', [$campaign, $entity->id]) }}">
-                            <x-icon class="fa-solid fa-exchange-alt" />
-                            {{ __('crud.actions.transform') }}
-                        </x-dropdowns.item>
-                    @endif
-
-                    @can('delete', $model)
-                        @php
-                            $url = route('confirm-delete', [$campaign, 'route' => route($entity->pluralType() . '.destroy', [$campaign, $model->id]), 'name' => $entity->name]);
-                        @endphp
-                        <hr class="m-0" />
-                        <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]">
-                            <x-icon class="trash" />
-                            {{ __('crud.remove') }}
-                        </x-dropdowns.item>
-                    @endcan
-                </div>
-            </div>
+            @include('entities.headers.cog')
         </div>
 
         @if ($model instanceof \App\Models\Character && !empty($model->title))

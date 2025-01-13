@@ -49,7 +49,6 @@ return [
     'tooltips'          => [
         'equipped'  => 'Dieser Artikel ist ausgestattet mit',
     ],
-    'tutorial'          => 'Verfolge, wie sich ein Objekt entwickelt, indem du Artikel zu seinem Inventar hinzufügst.',
     'update'            => [
         'success'   => 'Gegenstand \':name\' für :entity aktualisiert',
         'title'     => 'Aktualisiere Gegenstand von :name',

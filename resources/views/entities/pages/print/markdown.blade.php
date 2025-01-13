@@ -47,7 +47,7 @@
 |:-|:-|
 @if(!$entity->pinnedFiles->isEmpty())
 @foreach ($model->entity->pinnedFiles as $asset)
-| {{ $asset->name }} | {!! Storage::url($asset->metadata['path']) !!} |
+| {{ $asset->name }} | {!! $asset->url() !!} |
 @endforeach
 @endif
 @if(!$entity->pinnedAliases->isEmpty())

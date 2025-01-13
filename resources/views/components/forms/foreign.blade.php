@@ -6,7 +6,7 @@
     :helper="$helper"
     tooltip>
 
-    @if ($canNew)
+    @if ($canNew && !$dynamicNew)
         <div class="join w-full">
     @endif
 
@@ -18,17 +18,18 @@
             style="width: 100%"
             data-url="{{ $route }}"
             data-placeholder="{!! $placeholder ?? __('crud.placeholders.parent') !!}"
-            data-allow-new="{{ $allowNew ? 'true' : 'false' }}"
+            data-allow-new="{{ $dynamicNew ? 'true' : 'false' }}"
             data-language="{{ LaravelLocalization::getCurrentLocale() }}"
             data-allow-clear="{{ $allowClear ? 'true' : 'false' }}"
             @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
+            @if ($dynamicNew) data-new-tag="{{ __('crud.actions.new') }}" @endif
     >
         @foreach ($options as $key => $value)
             <option value="{{ $key }}" selected="selected">{!! $value !!}</option>
         @endforeach
     </select>
 
-    @if ($canNew)
+    @if ($canNew && !$dynamicNew)
             <a class="quick-creator-subform btn2 join-item btn-sm" data-url="{{ route('entity-creator.form', [$campaign, 'type' => $entityType, 'origin' => 'entity-form', 'target' => $id]) }}">
                 <x-icon class="plus" />
                 <span class="sr-only">{{ __('crud.create') }}</span>

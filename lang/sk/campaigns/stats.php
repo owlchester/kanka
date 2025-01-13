@@ -22,7 +22,6 @@ return [
         'locations' => 'Vytvoriť :target miest',
         'races'     => 'Vytvoriť :target rás',
     ],
-    'title'         => 'Úspechy kampane :campaign',
     'titles'        => [
         'calendars' => 'Záznamník času úrovne :level',
         'characters'=> 'Zadávateľ mien úrovne :level',

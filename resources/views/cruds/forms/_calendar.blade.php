@@ -41,7 +41,7 @@ if (!empty($oldCalendarID)) {
                         key="calendar"
                         entityType="calendars"
                         :allowClear="true"
-                        :route="route('calendars.find', $campaign)"
+                        :route="route('search-list', [$campaign, config('entities.ids.calendar')])"
                         :selected="isset($model) && $model->calendarReminder() && $model->calendarReminder()->calendar ? $model->calendarReminder()->calendar : FormCopy::field('calendar')->select()"
                         :dropdownParent="$dropdownParent ?? null"
                         :entityTypeID="config('entities.ids.calendar')">

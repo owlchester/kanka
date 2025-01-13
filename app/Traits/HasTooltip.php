@@ -25,7 +25,7 @@ trait HasTooltip
             // If the campaign is boosted, entities can have a custom tooltip. This allows them to use some
             // html syntax, and thus a lot more control on what is displayed.
             $boostedTooltip = strip_tags($this->tooltip);
-            if (!empty(trim($boostedTooltip))) {
+            if (!empty(mb_trim($boostedTooltip))) {
                 $text = Mentions::mapEntity($this);
                 $text = strip_tags($text, $this->allowedTooltipTags());
                 if (!empty($text)) {

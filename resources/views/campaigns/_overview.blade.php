@@ -1,102 +1,86 @@
 <?php /** @var \App\Models\Campaign $campaign */
 $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-center gap-3 flex-col w-40 break-words';
 ?>
-<div class="flex flex-wrap gap-5">
 
-    @can ('update', $campaign)
-        <a href="#" role="button" class="{{ $boxClass }}" data-url="{{ route('campaign-visibility', [$campaign, 'from' => 'overview']) }}" data-target="campaign-visibility" data-toggle="dialog-ajax">
-    @else
-        <div class="{{ $boxClass }}">
-    @endcan
-        @if ($campaign->isPublic())
-            <i class="fa-solid fa-eye fa-2x" aria-hidden="true"></i>
-            <div class="">
-                {{ __('campaigns.visibilities.public') }}
-            </div>
-        @else
-            <i class="fa-solid fa-lock fa-2x" aria-hidden="true"></i>
-            <div class="">
-                {{ __('campaigns.visibilities.private') }}
-            </div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <x-box css="flex items-center gap-5">
+        @if ($campaign->boosted())
+            @php
+                $booster = $campaign->boosts()->first();
+                if ($booster) {
+                    $link = '<a href="' . route('users.profile', [$booster->user]) . '">' . $booster->user->name . '</a>';
+                } else {
+                    $link = __('crud.unknown');
+                }
+            @endphp
         @endif
-    @can ('update', $campaign)
-        </a>
-    @else
+        <div class="rounded {{ $campaign->boosted() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center">
+            <x-icon class="fa-solid {{ $campaign->boosted() ? 'fa-gem text-green-600' : 'fa-times text-red-500' }}" />
         </div>
-    @endcan
-
-    <a href="#" class="{{ $boxClass }}" data-toggle="dialog"
-         data-target="entity-count">
-        <i class="fa-solid fa-globe fa-2x" aria-hidden="true"></i>
-        <div class="">
-            {{ trans_choice('campaigns.overview.entity-count', \App\Facades\CampaignCache::entityCount(), ['amount' => number_format(\App\Facades\CampaignCache::entityCount())]) }}
-        </div>
-    </a>
-
-    @if ($campaign->isPublic())
-        <div class="{{ $boxClass }}">
-            <i class="fa-solid fa-users fa-2x" aria-hidden="true"></i>
-            <div class="">
-                {{ trans_choice('campaigns.overview.follower-count', $campaign->follower(), ['amount' => number_format($campaign->follower())]) }}
-            </div>
-        </div>
-    @endif
-
-    @if ($campaign->boosted())
-        @php
-        $booster = $campaign->boosts()->first();
-        if ($booster) {
-            $link = '<a href="' . route('users.profile', [$booster->user]) . '">' . $booster->user->name . '</a>';
-        } else {
-            $link = __('crud.unknown');
-        }
-        @endphp
-        <div class="{{ $boxClass }}">
-            <i class="fa-solid fa-gem fa-2x" aria-hidden="true"></i>
-            <div class="">
-                @if ($campaign->premium())
-                    {!! __('campaigns.fields.premium', ['name' => $link]) !!}
-                @else
+        <div class="flex flex-col gap-0 grow">
+            <span>{!! __('campaigns.status.title') !!}</span>
+            @if ($campaign->premium())
+                <span class="text-green-600">
+                    {!! __('campaigns.status.premium', ['name' => $link]) !!}
+                </span>
+            @elseif ($campaign->boosted())
+                <span class="text-green-600">
                     {{ __('campaigns.fields.' . ($campaign->superboosted() ? 'superboosted' : 'boosted')) }}
                     {!! $link !!}
-                @endif
-            </div>
+                </span>
+            @else
+                <span class="text-neutral-content">{!! __('campaigns.status.free') !!}</span>
+            @endif
         </div>
+        @if (!$campaign->boosted() && auth()->check())
+            @if (auth()->user()->hasBoosterNomenclature()) {
+                <a class="rounded border h-12 gap-2 flex items-center justify-center cursor-pointer neutral-link" href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}">
+                    <x-icon class="fa-solid fa-angle-right" />
+                    {{ __('crud.actions.enable') }}
+                </a>
+            @else
+                <a class="rounded-full border h-12 w-12 flex gap-2 items-center justify-center cursor-pointer neutral-link" href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" data-tooltip data-title="{{ __('campaigns/overview.premium.enable') }}">
+                    <x-icon class="fa-solid fa-angle-right" />
+                </a>
+            @endif
+        @elseif (auth()->check())
+            <a class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer neutral-link" href="{{ route('settings.premium') }}" >
+                <x-icon class="fa-solid fa-angle-right" />
+            </a>
+        @endif
+    </x-box>
+
+
+    <x-infoBox
+        title="{{ __('crud.fields.visibility') }}"
+        icon="{{ $campaign->isPublic() ? 'fa-solid fa-check text-green-600' : 'fa-solid fa-lock text-neutral-content' }}"
+        subtitle="{{ $campaign->isPublic() ? __('campaigns/submissions.public.public') : __('campaigns/submissions.public.private') }}"
+        background="{{ $campaign->isPublic() ? 'bg-green-200' : 'bg-neutral' }}"
+        subtitleColour="{{ $campaign->isPublic() ? 'text-green-600' : 'text-neutral-content' }}"
+        :campaign="$campaign"
+        :url="auth()->check() && auth()->user()->can('update', $campaign) ? route('campaign-visibility', [$campaign, 'from' => 'overview']) : null"
+        :urlTooltip="__('campaigns/public.title')"
+        ajax
+    ></x-infoBox>
+
+    @if (auth()->check() && $campaign->userIsMember())
+        <x-infoBox
+            title="{{ __('campaigns/overview.member.title') }}"
+            icon="fa-solid fa-clock text-neutral-content"
+            subtitle="{{ __('users/profile.fields.member_since', ['date' => $campaign->members()->where('user_id', auth()->user()->id)->first()?->created_at->isoFormat('MMMM D, Y')]) }}"
+            :campaign="$campaign"
+            :url="route('campaign.leave', $campaign)"
+            :urlTooltip="__('campaigns.leave.title')"
+            ajax
+        ></x-infoBox>
     @endif
 
-    @if (!empty($campaign->locale))
-        <div class="{{ $boxClass }}">
-            <i class="fa-solid fa-language fa-2x" aria-hidden="true"></i>
-            <div class="">
-                {{ __('languages.codes.' . $campaign->locale) }}
-            </div>
-        </div>
-    @endif
-    @if (!$campaign->boosted())
-        @if (auth()->check() && auth()->user()->hasBoosterNomenclature()) {
-        <a href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}" class="btn2 bg-boost text-white">
-            <div class="flex flex-col gap-3">
-            <x-icon class="premium" size="fa-2x" />
-            {{ __('callouts.booster.actions.boost', ['campaign' => $campaign->name]) }}
-            </div>
-        </a>
-        @else
-        <a href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" class="btn2 bg-boost text-white">
-            <div class="flex flex-col gap-3">
-            <x-icon class="premium" size="fa-2x" />
-            {{  __('settings/premium.actions.unlock') }}
-            </div>
-        </a>
-        @endif
+    @if ($campaign->isPublic())
+        <x-infoBox
+            :title="__('campaigns/overview.followers.title')"
+            icon="fa-solid fa-users text-neutral-content"
+            :subtitle="trans_choice('campaigns.overview.follower-count', $campaign->follower(), ['amount' => number_format($campaign->follower())])"
+        ></x-infoBox>
     @endif
 </div>
 
-@section('modals')
-    @parent
-    <x-dialog id="entity-count" :title="__('campaigns.fields.entity_count')">
-        <p>
-            {{ __('campaigns.helpers.entity_count_v3', ['amount' => 6]) }}
-        </p>
-    </x-dialog>
-    <x-dialog id="campaign-visibility" :title="__('Loading')" :loading="true"></x-dialog>
-@endsection

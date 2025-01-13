@@ -24,7 +24,7 @@ class TimelineSubmenu extends BaseSubmenu implements EntitySubmenu
                 'count' => $model->eras->count()
             ];
             $items['second']['reorder'] = [
-                'name' => 'timelines.show.tabs.reorder',
+                'name' => 'crud.actions.reorder',
                 'route' => 'timelines.reorder',
             ];
         }

@@ -174,7 +174,7 @@ class SearchService
             $availableEntityTypes = array_diff($availableEntityTypes, $this->excludedTypes);
         }
 
-        $cleanTerm = ltrim(str_replace('_', ' ', $this->term), '=');
+        $cleanTerm = mb_ltrim(str_replace('_', ' ', $this->term), '=');
         $query = Entity::inTypes($availableEntityTypes);
         if (empty($this->term)) {
             $query->orderBy('updated_at', 'DESC');
@@ -205,7 +205,7 @@ class SearchService
                     });
             } else {
                 if (Str::startsWith($this->term, '=')) {
-                    $query->where('name', ltrim($this->term, '='));
+                    $query->where('name', mb_ltrim($this->term, '='));
                 } else {
                     $query->where('name', 'like', '%' . $this->term . '%');
                 }
@@ -412,7 +412,8 @@ class SearchService
         // Fill data with hardcoded pages and roles
         $this
             ->addCampaignPage('crud.tabs.overview', 'overview')
-            ->addCampaignPage('campaigns.show.tabs.achievements', 'stats')
+            ->addCampaignPage('campaigns.show.tabs.achievements', 'campaign.achievements')
+            ->addCampaignPage('campaigns.show.tabs.stats', 'campaign.stats')
             ->addCampaignPage('campaigns.show.tabs.members', 'campaign_users.index', 'members')
             ->addCampaignPage('campaigns.show.tabs.roles', 'campaign_roles.index', 'roles')
             ->addCampaignPage('campaigns.show.tabs.applications', 'campaign_submissions.index', 'submissions')

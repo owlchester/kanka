@@ -67,7 +67,7 @@ class NewService
     public function create(string $name): MiscModel
     {
         $name = Str::replace(['&lt;', '&gt;'], ['<', '>'], $name);
-        $this->model->name = $this->purify(trim(strip_tags($name)));
+        $this->model->name = $this->purify(mb_trim(strip_tags($name)));
         $this->model->is_private = $this->private();
         $this->model->campaign_id = $this->campaign->id;
 

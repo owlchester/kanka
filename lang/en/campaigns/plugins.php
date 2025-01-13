@@ -59,9 +59,9 @@ return [
     ],
     'pitch'         => 'Install and manage plugins from the :marketplace.',
     'status'        => [
+        'always'    => 'This plugin type is always active unless removed.',
         'disabled'  => 'Disabled',
         'enabled'   => 'Enabled',
-        'always'   => 'This plugin type is always active unless removed.',
     ],
     'templates'     => [
         'name'  => ':name by :user',

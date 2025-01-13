@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Facades\Module;
 use App\Http\Requests\StoreCharacter;
 use App\Models\Campaign;
+use App\Models\Location;
 use App\Models\MiscModel;
 use App\Models\Entity;
 use App\Models\Tag;
@@ -20,6 +21,10 @@ class EntityCreatorController extends Controller
     protected EntityService $entityService;
     protected Campaign $campaign;
     protected PopularService $popularService;
+
+    protected Request $request;
+
+    protected array $inputFields;
 
     public function __construct(EntityService $entityService, PopularService $popularService)
     {
@@ -67,8 +72,10 @@ class EntityCreatorController extends Controller
             $this->authorize('create', $class);
         }
 
-        $names = explode(PHP_EOL, str_replace("\r", '', $request->get('name')));
-        $values = $request->all();
+        $this->request = $request;
+
+        $names = explode(PHP_EOL, str_replace("\r", '', $this->request->get('name')));
+        $values = $this->request->all();
 
         // Prepare the data
         unset($values['names'], $values['_multi'], $values['_target']);
@@ -89,33 +96,13 @@ class EntityCreatorController extends Controller
         // Now loop on each name and create entities
         $createdEntities = $links = [];
 
-        //Prepare tags
-        if (request()->has('tags') && request()->has('save-tags')) {
-            $canCreateTags = auth()->user()->can('create', Tag::class);
 
-            /** @var TagService $tagService */
-            $tagService = app()->make(TagService::class);
-            $tagService
-                ->user(auth()->user())
-                ->campaign($campaign);
+        // Handle dynamic elements
+        $this->inputFields = $values;
+        $this->dynamicTags()
+            ->dynamicLocation();
+        $values = $this->inputFields;
 
-            // Exclude existing tags to avoid adding a tag several times
-            $tags = $values['tags'];
-            foreach ($tags as $number => $id) {
-                /** @var ?Tag $tag */
-                $tag = Tag::find($id);
-                // Create the tag if the user has permission to do so
-                if (empty($tag) && $tagService->isAllowed()) {
-                    $tag = $tagService->create($id);
-                    $tags[$number] = (int) $tag->id;
-                } elseif (empty($tag) && !$canCreateTags) {
-                    unset($tags[$number]);
-                }
-            }
-            $request->merge([
-                'tags' => $tags,
-            ]);
-        }
 
         foreach ($names as $name) {
             if (empty($name)) {
@@ -159,18 +146,18 @@ class EntityCreatorController extends Controller
         }
 
         // Have a target? Return json for the js to handle it instead
-        if ($request->has('_target')) {
+        if ($this->request->has('_target')) {
             $first = $createdEntities[0];
             return response()->json([
-                '_target' => $request->get('_target'),
+                '_target' => $this->request->get('_target'),
                 '_id' => $first->id,
                 '_name' => $first->name,
-                '_multi' => $request->get('_multi'),
+                '_multi' => $this->request->get('_multi'),
             ]);
         }
 
         // Redirect the user to the edit form
-        if ($request->get('action') === 'edit' && isset($new)) {
+        if ($this->request->get('action') === 'edit' && isset($new)) {
             if ($new instanceof Post) {
                 $editUrl = route('entities.posts.edit', [$this->campaign, $new->entity_id, $new->id]);
             } else {
@@ -190,7 +177,7 @@ class EntityCreatorController extends Controller
 
 
         // Continue creating more of the same kind
-        if ($request->get('action') === 'more') {
+        if ($this->request->get('action') === 'more') {
             return $this->renderForm(new Request(), $campaign, $type, $success);
         }
         // Content for the selector
@@ -336,5 +323,54 @@ class EntityCreatorController extends Controller
         $collator->asort($orderedTypes);
 
         return $orderedTypes;
+    }
+
+    protected function dynamicLocation(): self
+    {
+        if (!request()->has('location_id')) {
+            return $this;
+        }
+        $canCreate = auth()->user()->can('create', Location::class);
+
+        $location = $this->request->get('location_id');
+        if (!is_numeric($location) && !empty(mb_trim($location)) && $canCreate) {
+            $model = Location::create(['name' => $location, 'campaign_id' => $this->campaign->id]);
+            $location = (int) $model->id;
+        } else {
+            $location = null;
+        }
+
+        $this->inputFields['location_id'] = $location;
+        return $this;
+    }
+
+    protected function dynamicTags(): self
+    {
+        if (!$this->request->has('tags') && !$this->request->has('save-tags')) {
+            return $this;
+        }
+        $canCreateTags = auth()->user()->can('create', Tag::class);
+
+        /** @var TagService $tagService */
+        $tagService = app()->make(TagService::class);
+        $tagService
+            ->user(auth()->user())
+            ->campaign($this->campaign);
+
+        // Exclude existing tags to avoid adding a tag several times
+        $tags = $this->request->get('tags', []);
+        foreach ($tags as $number => $id) {
+            /** @var ?Tag $tag */
+            $tag = Tag::find($id);
+            // Create the tag if the user has permission to do so
+            if (empty($tag) && $tagService->isAllowed()) {
+                $tag = $tagService->create($id);
+                $tags[$number] = (int) $tag->id;
+            } elseif (empty($tag) && !$canCreateTags) {
+                unset($tags[$number]);
+            }
+        }
+        $this->inputFields['tags'] = $tags;
+        return $this;
     }
 }

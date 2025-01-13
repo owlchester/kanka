@@ -12,7 +12,6 @@ return [
         'enable'            => 'Activar plugin',
         'go_to_marketplace' => 'Ir a la tienda',
         'import'            => 'Importar',
-        'remove'            => 'Eliminar plugin',
         'update'            => 'Actualizar plugin',
         'update_available'  => '¡Actualización disponible!',
     ],

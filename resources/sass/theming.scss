@@ -28,6 +28,14 @@ a, .text-link {
         color: var(--link-focus, hsl(var(--pf)/var(--tw-text-opacity)));
     }
 }
+a.neutral-link {
+    --tw-text-opacity: 1;
+    color: hsl(var(--nc)/var(--tw-text-opacity));
+    &:hover, &:focus {
+        --tw-text-opacity: 1;
+        color: hsl(var(--nc)/var(--tw-text-opacity));
+    }
+}
 
 h1, h2, h3, h4, h5, h6, h1 > small, .panel-title {
     --tw-text-opacity: 1;

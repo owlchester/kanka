@@ -10,7 +10,7 @@ $onlyOneCalendar = count($calendars) == 1;
                 key="calendar"
                 :allowNew="false"
                 :allowClear="true"
-                :route="route('calendars.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+                :route="route('search-list', [$campaign, config('entities.ids.calendar')] + (isset($model) ? ['exclude' => $model->id] : []))"
                 :selected="$onlyOneCalendar ? $calendars->first() : null"
                 :dropdownParent="$dropdownParent ?? (request()->ajax() ? '#primary-dialog' : null)"
                 :entityTypeID="config('entities.ids.calendar')">

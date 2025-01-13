@@ -25,27 +25,8 @@ class SidebarService
             null,
             'dashboard',
         ],
-        'settings' => [
-            'campaign',
-            'overview',
-            'campaigns',
-            'campaign_users',
-            'campaign_submissions',
-            'campaign-export',
-            'stats',
-            'campaign_roles',
-            'campaign_invites',
-            'recovery',
-            'default-images',
-            'plugins',
-            'modules',
-            'campaign_styles',
-            'theme-builder',
-            'sidebar-setup',
-        ],
         'characters' => [
             'characters',
-            'character_relation',
         ],
         'conversations' => [
             'conversations',
@@ -56,7 +37,6 @@ class SidebarService
         ],
         'families' => [
             'families',
-            'family_relation',
         ],
         'items' => [
             'items',

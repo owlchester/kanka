@@ -35,7 +35,7 @@ return [
         'theme'                 => 'Theme preference',
     ],
     'helpers'           => [
-        'advanced-mentions'     => 'When editing texts, control if mentions are rendered as the entity\'s name, or as the advanced mention.',
+        'advanced-mentions'     => 'When writing texts, control how @mentions are displayed.',
         'campaign-order'        => 'Change the order in which campaigns are listed in the campaign switcher.',
         'date-format'           => 'When available, control the format in which to display real world dates.',
         'editor'                => 'Using the legacy text editor (TinyMCE) doesn\'t support mentions on mobile devices, campaign galleries or other advanced features.',
@@ -46,8 +46,8 @@ return [
         'theme'                 => 'Choose how Kanka looks to you.',
     ],
     'mentions'          => [
-        'advanced'  => 'Display advanced mentions :code',
-        'default'   => 'Mentions as the entity name',
+        'advanced'  => 'Advanced mentions :code',
+        'default'   => 'Standard mentions :mention',
     ],
     'success'           => 'Appearance options saved.',
     'values'            => [

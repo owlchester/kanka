@@ -16,15 +16,6 @@ TEXT
         'success_first_time'    => 'Your campaign has been created! Since it\'s your first campaign, we\'ve created a few things to help you get started and hopefully provide a bit of inspiration on what you can do.',
         'title'                 => 'New Campaign',
     ],
-    'destroy'                           => [
-        'action'            => 'Delete',
-        'confirm'           => 'Are you sure you want to delete :campaign? This action is permanent and can\'t be recovered.',
-        'confirm-button'    => 'Permanently delete the campaign',
-        'helper-v2'         => 'This campaign can\'t be deleted while there are other members in it. Remove the other members first and try again.',
-        'hint'              => 'If so, please write :code on the box below.',
-        'success'           => 'Campaign deleted.',
-        'title'             => 'Delete a campaign',
-    ],
     'edit'                              => [
         'success'   => 'Campaign updated.',
         'title'     => 'Edit Campaign :campaign',
@@ -44,7 +35,7 @@ TEXT
     'fields'                            => [
         'boosted'                           => 'Boosted by',
         'character_personality_visibility'  => 'Default character personality visibility',
-        'connections'                       => 'Show an entity\'s connection table by default (instead of relation explorer for premium campaigns)',
+        'connections'                       => 'Show an entity\'s connection table by default (instead of connections map for premium campaigns)',
         'css'                               => 'CSS',
         'description'                       => 'Description',
         'entity_count'                      => 'Entity Count',
@@ -95,7 +86,7 @@ TEXT
         'premium'                           => 'Some features require premium features te be unlocked. Find out more about :settings.',
         'public_campaign_filters'           => 'Help others find the campaign among other public campaigns by providing the following information.',
         'public_no_visibility'              => 'Heads up! The campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
-        'related_visibility'                => 'Default Visibility value when creating a new element with this field (posts, relations, abilities, etc)',
+        'related_visibility'                => 'Default Visibility value when creating a new element with this field (posts, connections, abilities, etc)',
         'system'                            => 'If your campaign is publicly visible, the system is shown in the :link page.',
         'systems'                           => 'To avoid cluttering users with options, some features of Kanka are only available with specific RPG systems (ie the D&D 5e monster stat block). Adding supported systems here will enable those features.',
         'theme'                             => 'Force the theme for the campaign, overriding a user\'s preference.',
@@ -137,6 +128,10 @@ TEXT
             'token'     => 'Token',
             'type'      => 'Type',
             'usage'     => 'Expires after',
+        ],
+        'helpers'               => [
+            'role'  => 'Users need to join before they can be promoted to the admin role.',
+            'usage' => 'How many times the invite link can be used before it becomes inactive.',
         ],
         'unlimited_validity'    => 'Unlimited',
         'usages'                => [
@@ -180,7 +175,7 @@ TEXT
             'switch'    => 'View the campaign as this member',
         ],
         'impersonating'         => [
-            'message'   => 'You are viewing the campaign as another member. Some features have been disabled, but the rest acts exactly as the member would see it.',
+            'message'   => 'You are viewing and interacting with the campaign as :name. Some features have been disabled, but the rest acts exactly as they would see it.',
             'title'     => 'Impersonating :name',
         ],
         'invite'                => [
@@ -404,7 +399,7 @@ TEXT
     ],
     'show'                              => [
         'actions'   => [
-            'edit'  => 'Edit',
+            'edit'  => 'Edit campaign',
             'leave' => 'Leave',
         ],
         'menus'     => [
@@ -417,8 +412,10 @@ TEXT
             'applications'      => 'Applications',
             'campaign'          => 'Campaign',
             'customisation'     => 'Customisation',
+            'danger'            => 'Danger',
             'data'              => 'Data',
             'default-images'    => 'Default thumbnails',
+            'deletion'          => 'Deletion',
             'export'            => 'Export',
             'import'            => 'Import',
             'information'       => 'Information',
@@ -429,13 +426,19 @@ TEXT
             'recovery'          => 'Recovery',
             'roles'             => 'Roles',
             'sidebar'           => 'Sidebar',
+            'stats'             => 'Stats',
             'styles'            => 'Theming',
             'webhooks'          => 'Webhooks',
         ],
         'title'     => 'Overview - :name',
     ],
+    'status'                            => [
+        'free'      => 'Premium features disabled.',
+        'premium'   => 'Premium features unlocked by :name.',
+        'title'     => 'Premium features',
+    ],
     'themes'                            => [
-        'none'  => 'None (defaults to member settings)',
+        'none'  => 'None (defaults to user\'s preference)',
     ],
     'ui'                                => [
         'collapsed'         => [
@@ -443,8 +446,12 @@ TEXT
             'default'   => 'Default',
         ],
         'connections'       => [
-            'explorer'  => 'Relations explorer (if available, for premium campaigns)',
+            'explorer'  => 'Connections map (if available, for premium campaigns)',
             'list'      => 'List interface',
+        ],
+        'descendants'       => [
+            'all'       => 'Show all descendants by default',
+            'direct'    => 'Show direct descendants by default',
         ],
         'entity_history'    => [
             'hidden'    => 'Only visible to campaign admins',
@@ -452,7 +459,8 @@ TEXT
         ],
         'fields'            => [
             'connections'       => 'Default entity\'s connections interface',
-            'connections_mode'  => 'Default relations explorer mode',
+            'connections_mode'  => 'Default connections map mode',
+            'descendants'       => 'Descendants filtering',
             'entity_history'    => 'Entity\'s history logs',
             'entity_image'      => 'Entity\'s image',
             'member_list'       => 'Campaign\'s member list',
@@ -460,7 +468,8 @@ TEXT
         ],
         'helpers'           => [
             'connections'       => 'When clicking on the connections subpage of an entity, select the default interface showed.',
-            'connections_mode'  => 'When viewing the relation explorer of an entity, define the default mode that is selected.',
+            'connections_mode'  => 'When viewing the connections map of an entity, define the default mode that is selected.',
+            'descendants'       => 'Control the default filtering when loading a sublist. For example a location\'s characters.',
             'entity-history'    => 'Control who can see recent changes made to individual entities of the campaign.',
             'member-list'       => 'Control who can see who\'s in the campaign.',
             'other'             => 'Other visual options for the campaign.',

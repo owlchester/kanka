@@ -183,10 +183,10 @@ trait HasFilters
                 $filterValue = null;
             } elseif (Str::startsWith($value, '!')) {
                 $operator = 'not like';
-                $filterValue = ltrim($value, '!');
+                $filterValue = mb_ltrim($value, '!');
             } elseif (Str::endsWith($value, '!')) {
                 $operator = '=';
-                $filterValue = rtrim($value, '!');
+                $filterValue = mb_rtrim($value, '!');
             } elseif (Str::endsWith($key, '_id')) {
                 $operator = '=';
             }

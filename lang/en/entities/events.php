@@ -7,7 +7,7 @@ return [
     'helpers'   => [
         'characters'    => 'Setting the type as either the date of birth or of death for this character will automatically calculate their age. :more.',
         'founding'      => 'Setting the type as :type will automatically calculate the entity\'s age since founding.',
-        'no_events_v2'  => 'This entity can be linked to the campaign\'s calendars through reminders, which are displayed here.',
+        'reminders'     => 'Reminders linked to :name will be displayed here.',
     ],
     'show'      => [
         'actions'   => [

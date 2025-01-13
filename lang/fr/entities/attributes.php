@@ -94,7 +94,11 @@ return [
         'unlock'        => 'Attribut déverouillé',
         'unpin'         => 'Attribut non-épinglé',
     ],
-    'tutorial'      => 'Les attributs sont des petits bouts d\'information attachés à une entité. Par exemple, un personnage peut avoir une stat :hp et :str, tandis qu\'un lieu peut avoir une stat :pop. Ces informations peuvent être facilement suivies grâce aux attributs.',
+    'tutorials'     => [
+        'character' => 'Par exemple, un personnage peut avoir une stat :hp et :str.',
+        'general'   => 'Les attributs sont des petits bouts d\'information attachés à :name.',
+        'location'  => 'Par exemple, ils peuvent avoir une stat :pop.',
+    ],
     'types'         => [
         'attribute' => 'Attribut',
         'block'     => 'Bloc',

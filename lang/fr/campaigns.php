@@ -17,15 +17,7 @@ TEXT
         'success_first_time'    => 'La première campagne a été créée! Quelques éléments ont été créés pour aider à bien démarrer.',
         'title'                 => 'Nouvelle Campagne',
     ],
-    'destroy'                           => [
-        'action'            => 'Supprimer la campagne',
-        'confirm'           => 'Es-tu sûr de vouloir supprimer la campagne :campaign? Cette action est permanente.',
-        'confirm-button'    => 'Suppression permanente de la campagne',
-        'helper-v2'         => 'Cette campaign ne peut pas être supprimée tant qu\'elle a d\'autre membre. Retires les autres membres en premier et ressayes.',
-        'hint'              => 'Si tu es sûr, saisis :code dans le champ suivant.',
-        'success'           => 'Campagne supprimée.',
-        'title'             => 'Supprimer une campagne',
-    ],
+    'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Campagne modifiée.',
         'title'     => 'Modifier la campagne :campaign',
@@ -139,6 +131,10 @@ TEXT
             'token'     => 'Jeton',
             'type'      => 'Type',
             'usage'     => 'Nombre max d\'utilisation',
+        ],
+        'helpers'               => [
+            'role'  => 'Les utilisateurs doivent rejoindre avant de pouvoir être promus au rôle d\'administrateur.',
+            'usage' => 'Nombre de fois où le lien d\'invitation peut être utilisé avant qu\'il ne devienne inactif.',
         ],
         'unlimited_validity'    => 'Illimité',
         'usages'                => [
@@ -421,8 +417,10 @@ TEXT
             'applications'      => 'Applications',
             'campaign'          => 'Campagne',
             'customisation'     => 'Personnalisation',
+            'danger'            => 'Danger',
             'data'              => 'Données',
             'default-images'    => 'Images par défaut',
+            'deletion'          => 'Suppression',
             'export'            => 'Export',
             'import'            => 'Import',
             'information'       => 'Information',
@@ -433,10 +431,16 @@ TEXT
             'recovery'          => 'Récupération',
             'roles'             => 'Rôles',
             'sidebar'           => 'Navigation',
+            'stats'             => 'Statistiques',
             'styles'            => 'Thèmes',
             'webhooks'          => 'Webhooks',
         ],
         'title'     => 'Campagne :name',
+    ],
+    'status'                            => [
+        'free'      => 'Fonctionnalités Premium désactivées.',
+        'premium'   => 'Fonctionnalités Premium activées par :name.',
+        'title'     => 'Fonctionnalités Premium',
     ],
     'superboosted'                      => [],
     'themes'                            => [
@@ -451,6 +455,10 @@ TEXT
             'explorer'  => 'Explorer de relations (si disponible, pour les campagnes boostées)',
             'list'      => 'Interface de liste',
         ],
+        'descendants'       => [
+            'all'       => 'Afficher tous les descendants par défaut',
+            'direct'    => 'Afficher les descendants directs par défaut',
+        ],
         'entity_history'    => [
             'hidden'    => 'Seulement visible aux admins de la campagne',
             'visible'   => 'Visible aux membres',
@@ -458,6 +466,7 @@ TEXT
         'fields'            => [
             'connections'       => 'Interface de connection d\'une entité',
             'connections_mode'  => 'Mode par défaut d\'outil de visualisation de relation',
+            'descendants'       => 'Filtrage des descendants',
             'entity_history'    => 'Historique d\'une entité',
             'entity_image'      => 'Image d\'une entité',
             'member_list'       => 'Liste des membres de la campagne',
@@ -466,6 +475,7 @@ TEXT
         'helpers'           => [
             'connections'       => 'Interface qui s\'affiche par défaut en cliquant sur la page connexions d\'une page.',
             'connections_mode'  => 'Modifier le mode affiché par défaut lorsque l\'outil de visualisation de relation d\'une entité est ouvert.',
+            'descendants'       => 'Contrôler le filtrage par défaut lors du chargement d\'une sous-liste. Par exemple, les caractères d\'un lieu.',
             'entity-history'    => 'Contrôler qui peut voir les changements récents fait aux entités de la campagne.',
             'member-list'       => 'Contrôler qui peut voir les membres de la campagne.',
             'other'             => 'Autres options visuelles de la campagne.',

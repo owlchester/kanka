@@ -20,7 +20,7 @@ if (isset($model) && $model->parent) {
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('tags.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.tag')] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Tag::class"
     :selected="$preset"
     :helper="$helper ?? null"

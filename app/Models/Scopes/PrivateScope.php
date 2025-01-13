@@ -8,6 +8,28 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PrivateScope implements Scope
 {
+    protected $extensions = ['WithPrivate'];
+
+    public function extend(Builder $builder)
+    {
+        foreach ($this->extensions as $extension) {
+            $this->{"add{$extension}"}($builder);
+        }
+    }
+
+    protected function addWithPrivate(Builder $builder)
+    {
+        $builder->macro('withPrivate', function (Builder $builder, $withInvisible = true) {
+            if (!$withInvisible) {
+                // Sends the default scope
+                return $builder;
+            }
+
+            // @phpstan-ignore-next-link
+            return $builder->withoutGlobalScope($this);
+        });
+    }
+
     /**
      * Apply the scope to a given Eloquent query builder.
      *

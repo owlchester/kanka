@@ -12,13 +12,14 @@
 @include('entities.components.og')
 
 @section('entity-header-actions')
-    @can('update', $model)
-        <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
+    <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
+        @can('update', $model)
             <a href="{{ $model->getLink('edit') }}" class="btn2 btn-sm">
                 {{ __('entities/profile.actions.edit_profile') }}
             </a>
-        </div>
-    @endcan
+        @endcan
+        @include('entities.headers.actions', ['edit' => false])
+    </div>
 @endsection
 
 

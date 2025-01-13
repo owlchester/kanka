@@ -1,4 +1,4 @@
-<div class="print-box-inventory p-4">
+<div class="print-box-inventory">
 
     <h2>{{ __('crud.tabs.inventory') }}</h2>
     @include('entities.pages.inventory._inventory', [

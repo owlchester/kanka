@@ -2,7 +2,7 @@
 
 return [
     'actions'           => [
-        'mode-map'      => 'Connection exploration tool',
+        'mode-map'      => 'Connections map',
         'mode-table'    => 'Table of connections and related elements',
     ],
     'bulk'              => [

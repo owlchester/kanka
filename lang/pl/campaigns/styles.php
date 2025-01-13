@@ -32,10 +32,9 @@ return [
         'order'         => 'Kolejność',
     ],
     'helpers'       => [
-        'css_moved' => 'Pola CSS znajdują się teraz w nowym, bardziej poręcznym miejscu w menu kampanii: :link.',
-        'here'      => 'z naszego bloga',
-        'is_enabled'=> 'Użyj tego motywu na każdej stronie',
-        'main'      => 'Możesz tworzyć własne style CSS w doładowanych kampaniach. Będą ładowane po załadowaniu stylów pobranych z targowiska. Więcej o tworzeniu stylów dowiesz się :here.',
+        'here'          => 'z naszego bloga',
+        'is_enabled'    => 'Użyj tego motywu na każdej stronie',
+        'main'          => 'Możesz tworzyć własne style CSS w doładowanych kampaniach. Będą ładowane po załadowaniu stylów pobranych z targowiska. Więcej o tworzeniu stylów dowiesz się :here.',
     ],
     'pitch'         => 'Twórz własne style CSS by nadać kampanii indywidualny charakter.',
     'placeholders'  => [

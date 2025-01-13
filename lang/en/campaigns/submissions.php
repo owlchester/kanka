@@ -37,8 +37,8 @@ return [
         'reason'    => 'Your reason',
     ],
     'public'        => [
-        'private'   => 'Campaign is private',
-        'public'    => 'Campaign is public',
+        'private'   => 'Campaign is private.',
+        'public'    => 'Campaign is public.',
         'title'     => 'Public campaign',
     ],
     'toggle'        => [

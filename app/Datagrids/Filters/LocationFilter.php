@@ -18,7 +18,7 @@ class LocationFilter extends DatagridFilter
                 'field' => 'location_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
-                'route' => route('locations.find', $this->campaign),
+                'route' => route('search-list', [$this->campaign, config('entities.ids.location')]),
                 'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Location::class,
             ])

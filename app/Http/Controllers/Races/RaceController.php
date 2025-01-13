@@ -22,11 +22,10 @@ class RaceController extends Controller
     {
         $this->campaign($campaign)->authEntityView($race->entity);
 
-        $options = ['campaign' => $campaign, 'race' => $race];
+        $options = ['campaign' => $campaign, 'race' => $race, 'm' => $this->descendantsMode()];
         $filters = [];
-        if (request()->has('parent_id')) {
-            $options['parent_id'] = $race->id;
-            $filters['parent_id'] = $race->id;
+        if ($this->filterToDirect()) {
+            $filters['parent'] = $race->id;
         }
 
         Datagrid::layout(\App\Renderers\Layouts\Race\Race::class)

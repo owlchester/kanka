@@ -22,7 +22,6 @@ return [
         'locations' => 'Stwórz miejsca: :target',
         'races'     => 'Stwórz rasy: :target',
     ],
-    'title'         => 'Osiągnięcia kampanii :campaign',
     'titles'        => [
         'calendars' => 'Strażnik Czasu poziom :level',
         'characters'=> 'Dawca Imion poziom :level',

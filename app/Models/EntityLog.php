@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Http\Requests\HistoryRequest;
 use App\Models\Concerns\HasUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -11,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use phpseclib3\Math\BigInteger\Engines\PHP\Reductions\PowerOfTwo;
 
 /**
  * Class EntityLog
@@ -252,7 +250,7 @@ class EntityLog extends Model
             $builder->whereIn($this->getTable() . '.action', $actions);
         }
         if (Arr::has($filters, 'q')) {
-            $q = trim(Arr::get($filters, 'q'));
+            $q = mb_trim(Arr::get($filters, 'q'));
             $builder->whereLike('changes', '%' . $q . '%');
         }
         return $builder;

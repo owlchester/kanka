@@ -8,6 +8,7 @@ return [
         'delete_post'   => 'Usunięto komentarz',
         'reorder_post'  => 'Zmieniono kolejność komentarzy',
         'restore'       => 'Przywrócono',
+        'reveal'        => 'Pokaż szczegóły',
         'update'        => 'Zmieniono',
         'update_post'   => 'Zmieniono komentarz "post"',
         'view'          => 'Zobacz zmiany',
@@ -17,7 +18,11 @@ return [
         'action'    => 'Działanie',
         'date'      => 'Data',
     ],
+    'filters'           => [
+        'keywords'  => 'Słowa kluczowe',
+    ],
     'impersonated'      => 'Na konto zalogowano :name',
+    'none'              => 'Brak',
     'show'              => [
         'title' => 'Rejestr Elementu :name',
     ],

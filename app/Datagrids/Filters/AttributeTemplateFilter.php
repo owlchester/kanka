@@ -17,7 +17,7 @@ class AttributeTemplateFilter extends DatagridFilter
                 'field' => 'attribute_template_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
-                'route' => route('attribute_templates.find', $this->campaign),
+                'route' => route('search-list', [$this->campaign, config('entities.ids.attribute_template')]),
                 'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => AttributeTemplate::class,
             ])

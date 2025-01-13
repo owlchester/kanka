@@ -11,6 +11,12 @@ return [
             'title' => 'Murderer',
         ],
     ],
+    'cached'        => 'These statistics are recalculated every :amount hours.',
+    'fields'        => [
+        'created'   => 'Created on',
+        'creator'   => 'Created by',
+        'general'   => 'General',
+    ],
     'helper'        => 'Track your progress to unlocking various achievements for your campaign. These numbers are updated once every 24 hours.',
     'pitch'         => 'Track your worldbuilding progress against our campaign achievements.',
     'placeholder'   => ':amount of :target',
@@ -22,7 +28,7 @@ return [
         'locations' => 'Create :target locations',
         'races'     => 'Create :target races',
     ],
-    'title'         => 'Campaign :campaign Achievements',
+    'title2'        => 'Statistics',
     'titles'        => [
         'calendars' => 'Time Keeper level :level',
         'characters'=> 'Name Giver level :level',

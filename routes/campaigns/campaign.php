@@ -58,7 +58,7 @@ Route::post('/w/{campaign}/recovery', 'Campaign\RecoveryController@recover')->na
 Route::get('/w/{campaign}/recovery-setup', 'Campaign\RecoveryController@setup')->name('recovery.setup');
 
 // Stats
-Route::get('/w/{campaign}/achievements', 'Campaign\AchievementController@index')->name('stats');
+Route::get('/w/{campaign}/achievements', 'Campaign\AchievementController@index')->name('campaign.achievements');
 
 // User search
 Route::get('/w/{campaign}/users/search', 'Campaign\UserController@search')->name('users.find');
@@ -97,7 +97,6 @@ Route::post('/w/{campaign}/leave-for-real', 'Campaign\LeaveController@process')-
 // Campaign CRUD
 Route::get('/w/{campaign}/edit', [App\Http\Controllers\Crud\CampaignController::class, 'edit'])->name('campaigns.edit');
 Route::patch('/w/{campaign}/update', [App\Http\Controllers\Crud\CampaignController::class, 'update'])->name('campaigns.update');
-Route::delete('/w/{campaign}/destroy', [App\Http\Controllers\Crud\CampaignController::class, 'destroy'])->name('campaigns.destroy');
 
 
 Route::post('/w/{campaign}/campaign_styles/bulk', 'Campaign\StyleController@bulk')->name('campaign_styles.bulk');
@@ -193,3 +192,11 @@ Route::get('/w/{campaign}/attributes/api/type/{entity_type}', [App\Http\Controll
 Route::get('/w/{campaign}/attributes/api/entity/{entity}', [App\Http\Controllers\Attributes\ApiController::class, 'entity'])->name('attributes.api-entity');
 
 Route::get('/w/{campaign}/templates/load', [App\Http\Controllers\Templates\LoadController::class, 'index'])->name('templates.load-attributes');
+
+Route::get('/w/{campaign}/deletion', [App\Http\Controllers\Campaign\DeleteController::class, 'show'])->name('campaign.delete');
+Route::delete('/w/{campaign}/destroy', [App\Http\Controllers\Campaign\DeleteController::class, 'destroy'])->name('campaigns.destroy');
+
+Route::get('/w/{campaign}/sidebar/image', [App\Http\Controllers\Campaign\ImageController::class, 'index'])->name('campaign.sidebar.image');
+Route::post('/w/{campaign}/sidebar/image', [App\Http\Controllers\Campaign\ImageController::class, 'save'])->name('campaign.sidebar.image-save');
+
+Route::get('/w/{campaign}/stats', [App\Http\Controllers\Campaign\StatController::class, 'index'])->name('campaign.stats');

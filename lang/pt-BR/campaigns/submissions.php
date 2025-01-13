@@ -2,10 +2,8 @@
 
 return [
     'actions'       => [
-        'accept'        => 'Aceitar',
-        'applications'  => 'Solicitações: :status',
-        'change'        => 'Alterar',
-        'reject'        => 'Rejeitar',
+        'accept'    => 'Aceitar',
+        'reject'    => 'Rejeitar',
     ],
     'apply'         => [
         'apply'         => 'Aplicar',
@@ -18,28 +16,18 @@ return [
         ],
         'title'         => 'Inscreva-se em :name',
     ],
-    'errors'        => [
-        'not_open'  => 'A campanha não é aberta a novos membros. Edite as configurações da campanha se você quiser permitir usuários de enviar solicitações para se inscrever nela.',
-    ],
+    'errors'        => [],
     'fields'        => [
         'application'   => 'Solicitação',
-        'approval'      => 'Motivo da aprovação',
-        'rejection'     => 'Motivo da rejeição',
     ],
     'helpers'       => [
-        'filter-helper'     => 'Essa campanha é aberta a inscrições!',
         'modal'             => 'Uma campanha aberta a solicitações e ao público pode fazer com que os usuários se inscrevam para participar da campanha.',
         'no_applications'   => 'No momento, não há solicitações pendentes para participar de sua campanha. Os usuários podem solicitar para participar de sua campanha visitando seu painel e clicando no botão :button.',
-        'not_open'          => 'A campanha atualmente não está aceitando inscrições.',
-        'open_not_public'   => 'A campanha está aberta a inscrições, mas não é pública, o que significa que ninguém pode se inscrever para participar. Isso pode ser alterado editando as configurações da campanha.',
     ],
     'placeholders'  => [
         'note'  => 'Escreva a sua solicitação para se inscrever na campanha.',
     ],
-    'statuses'      => [
-        'closed'    => 'Fechado',
-        'open'      => 'Aberto',
-    ],
+    'statuses'      => [],
     'toggle'        => [
         'closed'    => 'Fechada a inscrições',
         'label'     => 'Status',

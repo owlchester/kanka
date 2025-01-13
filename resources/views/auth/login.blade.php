@@ -35,9 +35,9 @@
             </button>
         </form>
     @else
-        <form method="POST" action="{{ route('login') }}" class="w-full">
+        <form method="POST" action="{{ route('login') }}" class="w-full flex flex-col gap-3">
             {{ csrf_field() }}
-            <div class="mb-3 {{ $errors->has('email') ? ' has-error' : '' }}">
+            <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
                 <input id="email" type="email" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="email" value="{{ old('email') }}" placeholder="{{ __('auth.login.fields.email') }}" required autofocus>
 
                 @if ($errors->has('email'))
@@ -47,7 +47,7 @@
                 @endif
             </div>
 
-            <div class="mb-3 {{ $errors->has('password') ? ' has-error' : '' }}">
+            <div class="{{ $errors->has('password') ? ' has-error' : '' }}">
                 <div class="flex items-stretch w-full">
                     <input id="password" type="password" class="border rounded w-full p-2 dark:bg-slate-800 dark:border-slate-500" name="password" required placeholder="{{ __('auth.login.fields.password') }}">
                     <a href="#" id="toggle-password" class="input-group-addon p-2" title="{{ __('auth.helpers.password') }}">
@@ -71,29 +71,38 @@
         </form>
     @endif
 
+    @if(config('auth.register_enabled'))
+        <p class="text-center my-2 text-sm">
+            {{ __('auth.login.no-account') }}
+            <a class="text-blue-500 hover:text-blue-800 transition-all duration-150" href="{{ route('register') }}">
+                {{ __('auth.login.sign-up') }}
+            </a>
+        </p>
+    @endif
+
 @if(config('auth.register_enabled'))
     <div class="social-auth-links text-center mb-3">
         <p class="mb-2 text-gray-500 dark:text-slate-200 m-3">- {{ __('auth.login.or') }} -</p>
 
         <div class="flex flex-col gap-2">
             @if(config('services.facebook.client_id'))
-            <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="rounded border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.login.login_with_facebook') }}">
+            <a href="{{ route('auth.provider', ['provider' => 'facebook']) }}" class="rounded border border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 px-6 py-2 transition-all duration-150 flex gap-3 items-center" title="{{ __('auth.continue.facebook') }}">
                 <x-icon class="fa-brands fa-facebook-f" />
-                Facebook
+                {{ __('auth.continue.facebook') }}
             </a>
             @endif
 
             @if(config('services.google.client_id'))
-            <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="rounded border border-red-400 text-red-400 hover:text-white hover:bg-red-400 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.login.login_with_google') }}">
+            <a href="{{ route('auth.provider', ['provider' => 'google']) }}" class="rounded border border-red-400 text-red-400 hover:text-white hover:bg-red-400 px-6 py-2 transition-all duration-150 flex gap-3 items-center" title="{{ __('auth.continue.google') }}">
                 <x-icon class="fa-brands fa-google" />
-                Google
+                {{ __('auth.continue.google') }}
             </a>
             @endif
 
             @if(config('services.twitter.client_id'))
-            <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="rounded border border-blue-300 text-blue-300 hover:text-white hover:bg-blue-300 px-6 py-2 uppercase transition-all duration-150" title="{{ __('auth.login.login_with_x') }}">
+            <a href="{{ route('auth.provider', ['provider' => 'twitter']) }}" class="rounded border border-blue-300 text-blue-300 hover:text-white hover:bg-blue-300 px-6 py-2 transition-all duration-150 flex gap-3 items-center" title="{{ __('auth.continue.x') }}">
                 <x-icon class="fa-brands fa-x-twitter" />
-                X
+                {{ __('auth.continue.x') }}
             </a>
             @endif
         </div>
@@ -103,10 +112,5 @@
         <a class="text-blue-500 hover:text-blue-800 transition-all duration-150" href="{{ route('password.request') }}">
             {{ __('auth.login.password_forgotten') }}
         </a>
-        @if(config('auth.register_enabled'))
-            <a class="text-blue-500 hover:text-blue-800 transition-all duration-150" href="{{ route('register') }}">
-                {{ __('auth.login.new_account') }}
-            </a>
-        @endif
     </div>
 @endsection

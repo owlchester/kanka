@@ -530,7 +530,7 @@ class DatagridRenderer
         }
         $trans = $this->getOption('trans');
         if (!empty($trans)) {
-            return  __(rtrim($trans, '.') . '.' . $field);
+            return  __(mb_rtrim($trans, '.') . '.' . $field);
         }
         // No idea what to do!
         return $field;

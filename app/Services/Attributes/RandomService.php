@@ -50,7 +50,7 @@ class RandomService
         $values = explode(',', $this->value);
         $validValues = [];
         foreach ($values as $val) {
-            $val = trim($val);
+            $val = mb_trim($val);
             if (!empty($val)) {
                 $validValues[] = $val;
             }
@@ -76,8 +76,8 @@ class RandomService
             return [$this->type, $this->value];
         }
 
-        $min = (int) trim($values[0]);
-        $max = (int) trim($values[1]);
+        $min = (int) mb_trim($values[0]);
+        $max = (int) mb_trim($values[1]);
 
         return [$this->type, mt_rand($min, $max)];
     }

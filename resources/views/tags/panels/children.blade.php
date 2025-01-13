@@ -2,7 +2,7 @@
 /**
  * @var \App\Models\Tag $model
  */
-$allMembers = true;
+$allMembers = false;
 $addEntityUrl = route('tags.entity-add', [$campaign, $model]);
 $datagridOptions = [];
 
@@ -12,8 +12,8 @@ if (!empty($onload)) {
         $model,
         'init' => 1,
     ];
-    if (request()->has('tag_id')) {
-        $routeOptions['tag_id'] = (int) $model->id;
+    if (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->has('m') && $campaign->defaultDescendantsMode() === \App\Enums\Descendants::All)) {
+        $routeOptions['m'] = \App\Enums\Descendants::All;
         $allMembers = true;
     }
     $routeOptions = Datagrid::initOptions($routeOptions);
@@ -35,8 +35,8 @@ $direct = $model->entities()->count();
             <span class="hidden xl:inline">{{ __('tags.transfer.transfer') }}</span>
         </button>
 
-        @if (request()->has('tag_id'))
-            <a href="{{ $entity->url() }}" class="btn2 btn-sm">
+        @if (!$allMembers)
+            <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::All, '#tag-children']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">
                     {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
@@ -46,7 +46,7 @@ $direct = $model->entities()->count();
                 </span>
             </a>
         @else
-            <a href="{{ route('entities.show', [$campaign, $entity, 'tag_id' => $model->id, '#tag-children']) }}" class="btn2 btn-sm">
+            <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::Direct, '#tag-children']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">
                     {{ __('crud.filters.lists.desktop.filtered', ['count' => $direct]) }}

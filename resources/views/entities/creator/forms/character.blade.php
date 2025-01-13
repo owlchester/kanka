@@ -7,7 +7,7 @@
 
     @include('cruds.fields.races')
 
-    @include('cruds.fields.location')
+    @include('cruds.fields.location', ['allowNew' => true, 'dynamicNew' => true])
 
     @include('cruds.fields.sex', ['base' => \App\Models\Character::class, 'trans' => 'characters'])
 

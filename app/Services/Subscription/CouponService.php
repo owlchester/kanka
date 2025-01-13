@@ -20,7 +20,7 @@ class CouponService
      */
     public function code(string $code): self
     {
-        $this->code = strip_tags(trim($code, ' '));
+        $this->code = strip_tags(mb_trim($code, ' '));
         return $this;
     }
 

@@ -15,6 +15,14 @@ class ModuleService
 
     protected array $cache = [];
 
+    protected bool $fallback = false;
+
+    public function fallback(): self
+    {
+        $this->fallback = true;
+        return $this;
+    }
+
     public function singular(string|int $key, ?string $fallback = null): string|null
     {
         $id = $this->id($key);
@@ -29,6 +37,9 @@ class ModuleService
         $id = $this->id($key);
         if ($this->campaign->hasModuleName($id, true)) {
             return $this->campaign->moduleName($id, true);
+        }
+        if (empty($fallback) && $this->fallback) {
+            return $this->pluralFallback($id);
         }
         return $fallback;
     }
@@ -79,5 +90,11 @@ class ModuleService
             throw new Exception('Invalid entity type id key ' . $key);
         }
         return $this->cache[$key] = (int) $id;
+    }
+
+    protected function pluralFallback(int $key)
+    {
+        $flipped = array_flip(config('entities.ids'));
+        return __('entities.' . Str::plural($flipped[$key]));
     }
 }

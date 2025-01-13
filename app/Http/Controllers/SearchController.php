@@ -17,7 +17,7 @@ class SearchController extends Controller
         if (empty($term) || !is_string($term)) {
             return redirect()->route('search.fulltext', [$campaign]);
         }
-        $term = trim($term);
-        return redirect()->route('search.fulltext', [$campaign, 'term' => trim($term)]);
+        $term = mb_trim($term);
+        return redirect()->route('search.fulltext', [$campaign, 'term' => mb_trim($term)]);
     }
 }

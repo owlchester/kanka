@@ -16,6 +16,11 @@ return [
         'title'         => 'Galerie',
         'unauthorized'  => 'Aucun de tes rôles n\'a l\'autorisation de "parcourir la galerie".',
     ],
+    'cta'       => [
+        'action'    => 'Débloquer plus d\'espace de stockage',
+        'helper'    => 'Débloquer jusqu\'à :taille GiB d\'espace de stockage avec une :premium-campaign.',
+        'title'     => 'Stockage plein',
+    ],
     'delete'    => [
         'success'   => '[0] Aucun élément supprimé|[1] Un élément supprimé|{2,*} :count éléments supprimés',
     ],

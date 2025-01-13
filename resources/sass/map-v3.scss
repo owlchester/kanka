@@ -137,35 +137,15 @@ $mapSidebarWidth: 380px;
         z-index: 1050;
     }
 
-    .marker-header {
-        .marker-top {
-            float: right;
-        }
-    }
-
     .marker-header.with-image {
         aspect-ratio: var(--map-hero-ratio);
         --tw-bg-opacity: 1;
         background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity))) 100%);
 
-        .marker-header-lower {
-            .marker-name {
-                padding: 2.0rem 0.5rem 0.8rem 0.5rem;
-            }
-        }
-
         .marker-header-fade {
             --tw-bg-opacity: 1;
             background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity))) 100%);
         }
-    }
-
-    .marker-actions {
-        margin: 20px 0;
-    }
-
-    .marker-entry {
-        padding: 0 0.75rem;
     }
 }
 

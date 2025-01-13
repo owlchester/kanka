@@ -12,7 +12,6 @@ return [
         'enable'            => 'Activer le plugin',
         'go_to_marketplace' => 'Aller au marketplace',
         'import'            => 'Importer',
-        'remove'            => 'Retirer le plugin',
         'update'            => 'Mettre à jour le plugin',
         'update_available'  => 'Mise à jour disponible!',
     ],
@@ -60,6 +59,7 @@ return [
     ],
     'pitch'         => 'Installes et gères les plugins du :marketplace.',
     'status'        => [
+        'always'    => 'Ce type de plugin est toujours actif, sauf s\'il est supprimé.',
         'disabled'  => 'Désactivé',
         'enabled'   => 'Activé',
     ],

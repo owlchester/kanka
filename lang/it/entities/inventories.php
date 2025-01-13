@@ -49,7 +49,6 @@ return [
     'tooltips'          => [
         'equipped'  => 'Questo oggetto è equipaggiato',
     ],
-    'tutorial'          => 'Tieni traccia di ciò che un\'entità possiede aggiungendo oggetti al suo inventario.',
     'update'            => [
         'success'   => 'L\'oggetto :item è stato aggiornato per :entity.',
         'title'     => 'Aggiorna un oggetto per :name',

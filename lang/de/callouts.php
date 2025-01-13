@@ -16,7 +16,6 @@ return [
         'pitches'       => [
             'element-class' => 'Gib diesem Element eine benutzerdefinierte CSS-Klasse mit einer :boosted-campaign.',
             'icon'          => 'Schalte mit einer :boosted-campaign Millionen von benutzerdefinierten Symbolen von FontAwesome frei.',
-            'link-parent'   => 'Platziere mit einer :boosted-campaign einen Quicklink genau an der gewünschten Stelle in der Seitenleiste.',
         ],
         'titles'        => [
             'boosted'       => 'geboostete Funktion',

@@ -21,7 +21,7 @@ if (isset($model) && $model->ability) {
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('abilities.find', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.ability')] + (isset($model) ? ['exclude' => $model->id] : []))"
     :class="\App\Models\Ability::class"
     :selected="$preset"
     :helper="$helper ?? null"

@@ -399,7 +399,7 @@ class Calendar extends MiscModel
             return $this->cachedCurrentDate;
         }
 
-        $date = ltrim($this->date, '-');
+        $date = mb_ltrim($this->date, '-');
         $this->cachedCurrentDate = explode('-', $date);
 
         if (str_starts_with($this->date, '-')) {
@@ -419,7 +419,7 @@ class Calendar extends MiscModel
         }
 
         $isNegativeYear = Str::startsWith($date, '-');
-        $date = explode('-', ltrim($date, '-'));
+        $date = explode('-', mb_ltrim($date, '-'));
 
         if (count($date) !== 3) {
             return [1, 1, 1];

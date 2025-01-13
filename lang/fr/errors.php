@@ -29,5 +29,6 @@ return [
     ],
     '503-form'      => [],
     'footer'        => 'Si tu as besoin d\'aide, contacte-nous a hello@kanka.io ou sur le :discord.',
+    'log-in'        => 'La connexion à ton compte pourrait te permettre de trouver ce que tu cherches.',
     'post_layout'   => 'Mise en page de post invalide.',
 ];

@@ -31,9 +31,16 @@
                     @endcan
                     <li class="px-2 section-overview {{ $sidebar->activeCampaign('achievements') }}">
                         <x-sidebar.element
-                            :url="route('stats', [$campaign])"
+                            :url="route('campaign.achievements', [$campaign])"
                             icon="fa-duotone fa-bars-progress"
                             :text="__('campaigns.show.tabs.achievements')"
+                        ></x-sidebar.element>
+                    </li>
+                    <li class="px-2 section-overview {{ $sidebar->activeCampaign('stats') }}">
+                        <x-sidebar.element
+                            :url="route('campaign.stats', [$campaign])"
+                            icon="fa-duotone fa-bars"
+                            :text="__('campaigns.show.tabs.stats')"
                         ></x-sidebar.element>
                     </li>
                 </ul>
@@ -160,6 +167,24 @@
                 </ul>
             </li>
             @endif
+
+            @can('roles', $campaign)
+                <li class="px-2 section-management">
+                    <x-sidebar.element
+                        icon="fa-duotone fa-radiation"
+                        :text="__('campaigns.show.tabs.danger')"
+                    ></x-sidebar.element>
+                    <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
+                        <li class="px-2 section-overview {{ $sidebar->activeCampaign('deletion') }}">
+                            <x-sidebar.element
+                                :url="route('campaign.delete', [$campaign])"
+                                icon="fa-duotone fa-trash"
+                                :text="__('campaigns.show.tabs.deletion')"
+                            ></x-sidebar.element>
+                        </li>
+                    </ul>
+                </li>
+            @endcan
         </ul>
 
     </section>

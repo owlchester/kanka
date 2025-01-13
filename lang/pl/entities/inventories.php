@@ -49,7 +49,6 @@ return [
     'tooltips'          => [
         'equipped'  => 'Przedmiot jest w użyciu.',
     ],
-    'tutorial'          => 'Kontroluj stan posiadania elementu, dodając przedmioty do jego wyposażenia.',
     'update'            => [
         'success'   => 'Zaktualizowano przedmiot :item elementu :entity',
         'title'     => 'Zaktualizowano przedmiot u :name',

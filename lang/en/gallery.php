@@ -16,6 +16,11 @@ return [
         'title'         => 'Gallery',
         'unauthorized'  => 'None of your roles have the "browse gallery" permission.',
     ],
+    'cta'       => [
+        'action'    => 'Unlock more storage space',
+        'helper'    => 'Unlock up to :size GiB storage space with a :premium-campaign.',
+        'title'     => 'Storage full',
+    ],
     'delete'    => [
         'success'   => '[0] Deleted 0 elements|[1] Deleted one element|{2,*} Deleted :count elements',
     ],

@@ -98,6 +98,7 @@ return [
     'races'                 => 'Races',
     'relation'              => 'Connection',
     'relations'             => 'Connections',
+    'reminders'             => 'Reminders',
     'tag'                   => 'Tag',
     'tags'                  => 'Tags',
     'templates'             => 'Templates',

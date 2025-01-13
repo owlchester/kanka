@@ -15,7 +15,7 @@ return [
         'other' => 'Other languages',
         'title' => 'Select your language',
     ],
-    'made' => 'Made with ❤️ in Geneva, Switzerland',
+    'made'              => 'Made with ❤️ in Geneva, Switzerland',
     'marketplace'       => 'Marketplace',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Platform',
@@ -30,7 +30,7 @@ return [
     'server-time'       => 'This is our server (:server)\'s time',
     'status'            => 'Service status',
     'terms'             => 'Terms',
-    'thanks' => 'Only possible thanks to our subscribers.',
+    'thanks'            => 'Only possible thanks to our subscribers.',
     'translator_call'   => 'Kanka is translated in other languages thanks to our amazing community. If you want to help translate Kanka into your language, contact us over on our :discord!',
     'whats-new'         => 'What\'s new',
 ];

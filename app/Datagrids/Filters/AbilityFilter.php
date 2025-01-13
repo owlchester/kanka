@@ -18,7 +18,7 @@ class AbilityFilter extends DatagridFilter
                 'field' => 'ability_id',
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
-                'route' => route('abilities.find', $this->campaign),
+                'route' => route('search-list', [$this->campaign, config('entities.ids.ability')]),
                 'placeholder' =>  __('crud.placeholders.parent'),
                 'model' => Ability::class,
             ])

@@ -21,7 +21,6 @@ return [
         'locations' => '{1}Kreiraj :target lokaciju|[2,4]Kreiraj :target lokacije|[5, *]Kreiraj :target lokacija',
         'races'     => '{1}Kreiraj :target rasu|[2,4]Kreiraj :target rase|[5, *]Kreiraj :target rasa',
     ],
-    'title'         => 'Postignuća kampanje :campaign',
     'titles'        => [
         'calendars' => 'Čuvar Vremena razina :level',
         'characters'=> 'Davatelj Imena razina :level',

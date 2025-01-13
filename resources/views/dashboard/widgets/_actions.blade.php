@@ -48,14 +48,14 @@
                     <hr class="m-0">
 
                     <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}">
-                        {{ __('dashboard.settings.title') }}
+                        {{ __('dashboard.actions.customise') }}
                     </a>
                 @endcan
             </div>
         </div>
     @else
         @can('dashboard', $campaign)
-            <a href="{{ route('dashboard.setup', $campaign) }}" class="btn2" title="{{ __('dashboard.settings.title') }}">
+            <a href="{{ route('dashboard.setup', $campaign) }}" class="btn2" title="{{ __('dashboard.actions.customise') }}">
                 <x-icon class="fa-solid fa-th-large" />
             </a>
         @endcan
@@ -83,7 +83,7 @@
                 </x-dropdowns.item>
             @endforeach
             <x-dropdowns.item :link="route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign])" icon="cog">
-                {{ __('dashboard.settings.title') }}
+                {{ __('dashboard.actions.customise') }}
             </x-dropdowns.item>
             <hr class="m-0" />
 

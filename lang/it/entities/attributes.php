@@ -94,7 +94,6 @@ return [
         'unlock'        => 'Attributo sbloccato',
         'unpin'         => 'Attributo non fissato',
     ],
-    'tutorial'      => 'Gli attributi sono piccole informazioni collegate a un\'entità. Per esempio, un personaggio potrebbe avere una caratteristica :hp e :str, mentre un luogo potrebbe averne una :pop. Questo può essere facilmente tracciato con gli attributi.',
     'types'         => [
         'attribute' => 'Attributo',
         'block'     => 'Blocca',

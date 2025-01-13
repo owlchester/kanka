@@ -52,6 +52,12 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
             ],
             'unauthorized' => __('gallery.browse.unauthorized'),
         ],
+        'cta_title' => __('gallery.cta.title'),
+        'cta_action' => __('gallery.cta.action'),
+        'cta_helper' => __('gallery.cta.helper', [
+            'premium-campaign' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaign') . '</a>',
+            'size' => number_format(config('limits.gallery.premium') / (1024 * 1024), 2)
+            ]),
     ]);
 @endphp
 
@@ -76,6 +82,8 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
             browse="{{ route('gallery.browse', [$campaign]) }}"
             old="{{ $old ? 'true' : 'false' }}"
             i18n="{{ $translations }}"
+            premium="{{ $campaign->boosted() ? 'true' : 'false' }}"
+            cta="{{ route('settings.premium', ['campaign' => $campaign->id, $from]) }}"
         >
             <x-icon class="load" />
         </gallery-selection>

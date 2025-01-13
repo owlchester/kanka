@@ -23,10 +23,9 @@ class ChildController extends Controller
     {
         $this->campaign($campaign)->authEntityView($tag->entity);
 
-        $options = ['campaign' => $campaign, 'tag' => $tag];
+        $options = ['campaign' => $campaign, 'tag' => $tag, 'm' => $this->descendantsMode()];
         $base = 'allChildren';
-        if (request()->has('tag_id')) {
-            $options['tag_id'] = $tag->id;
+        if ($this->filterToDirect()) {
             $base = 'entities';
         }
         Datagrid::layout(\App\Renderers\Layouts\Tag\Entity::class)

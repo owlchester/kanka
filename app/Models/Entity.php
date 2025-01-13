@@ -168,7 +168,7 @@ class Entity extends Model
         $campaign = CampaignLocalization::getCampaign();
         if ($campaign->boosted()) {
             $boostedTooltip = strip_tags($this->tooltip);
-            if (!empty(trim($boostedTooltip))) {
+            if (!empty(mb_trim($boostedTooltip))) {
                 $text = Mentions::mapEntity($this);
                 return (string)strip_tags($text);
             }

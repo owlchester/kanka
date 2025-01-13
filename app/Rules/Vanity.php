@@ -11,11 +11,11 @@ class Vanity implements ValidationRule
     /**
      * Run the validation rule.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param  Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $value = trim($value);
+        $value = mb_trim($value);
         if (Str::contains($value, '/')) {
             $fail(__('campaigns/vanity.rule2', ['field' => $attribute]));
         }

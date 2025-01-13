@@ -29,7 +29,7 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'reorder'   => 'Reorder',
+            'reorder-elements'  => 'Reorder elements',
         ],
     ],
 ];

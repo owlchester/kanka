@@ -49,27 +49,15 @@ $premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campa
     </x-forms.field>
 
     <x-forms.field
-            field="position"
-            :label="__('bookmarks.fields.position')"
-            tooltip
-            :helper="__('entities/links.helpers.parent')">
-        @if ($campaign->boosted())
-            <x-forms.select name="parent" :options="$sidebar->campaign($campaign)->availableParents()" :selected="$model->parent ?? 'bookmarks'" />
+        field="position"
+        :label="__('bookmarks.fields.position')"
+        tooltip
+        :helper="__('entities/links.helpers.parent')">
+        <x-forms.select name="parent" :options="$sidebar->campaign($campaign)->availableParents()" :selected="$model->parent ?? 'bookmarks'" />
 
-            <p class="text-neutral-content md:hidden">
-                {!! __('entities/links.helpers.parent') !!}
-            </p>
-        @else
-            @if (auth()->user()->hasBoosters())
-                <x-helper>
-                    {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => $settingsLink]) !!}
-                </x-helper>
-            @else
-                <x-helper>
-                    {!! __('callouts.booster.pitches.link-parent', ['boosted-campaign' => $premiumLink]) !!}
-                </x-helper>
-            @endif
-        @endif
+        <p class="text-neutral-content md:hidden">
+            {!! __('entities/links.helpers.parent') !!}
+        </p>
     </x-forms.field>
 
     <x-forms.field

@@ -16,12 +16,9 @@ return [
         ],
         'title'         => 'Join :name',
     ],
-    'errors'        => [
-        'not_open'  => 'De campaign staat niet open voor nieuwe leden. Bewerk de instellingen van de campaign als je wilt dat gebruikers kunnen aanvragen.',
-    ],
+    'errors'        => [],
     'fields'        => [
         'application'   => 'Aanvraging',
-        'rejection'     => 'Reden van afwijzing',
     ],
     'helpers'       => [],
     'placeholders'  => [

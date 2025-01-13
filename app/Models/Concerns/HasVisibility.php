@@ -47,22 +47,22 @@ trait HasVisibility
                 return $icon;
             }
             $icon['class'] = 'fa-solid fa-eye';
-            $icon['key'] = __('crud.visibilities.all');
+            $icon['key'] = __('visibilities.helpers.all');
         } elseif ($this->visibility_id === Visibility::Admin) {
             $icon['class'] = 'fa-solid fa-lock';
-            $icon['key'] = __('crud.visibilities.admin');
+            $icon['key'] = __('visibilities.helpers.admin');
         } elseif ($this->visibility_id === Visibility::Self) {
             $icon['class'] = 'fa-solid fa-user-secret';
-            $icon['key'] = __('crud.visibilities.self');
+            $icon['key'] = __('visibilities.helpers.self');
         } elseif ($this->visibility_id === Visibility::AdminSelf) {
             $icon['class'] = 'fa-solid fa-user-lock';
-            $icon['key'] = __('crud.visibilities.admin-self');
+            $icon['key'] = __('visibilities.helpers.admin-self');
         } elseif ($this->visibility_id === Visibility::Member) {
             $icon['class'] = 'fa-solid fa-users';
-            $icon['key'] = __('crud.visibilities.members');
+            $icon['key'] = __('visibilities.helpers.members');
         }
 
-        $icon['class'] = rtrim($icon['class'] . ' ' . $extra);
+        $icon['class'] = mb_rtrim($icon['class'] . ' ' . $extra);
 
         return $icon;
     }

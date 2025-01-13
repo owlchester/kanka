@@ -35,23 +35,6 @@ class CampaignCacheService extends BaseCache
     use UserAware;
 
     /**
-     * Count the number of entities in a campaign, skipping the permission engine.
-     */
-    public function entityCount(): int
-    {
-        $key = 'campaign_' . $this->campaign->id . '_entity_count';
-        if ($this->has($key)) {
-            return $this->get($key);
-        }
-
-        // @phpstan-ignore-next-line
-        $data = $this->campaign->entities()->withInvisible()->count();
-
-        $this->put($key, $data, 6 * 3600);
-        return $data;
-    }
-
-    /**
      * Get the public campaign systems and cache them for a day
      */
     public function systems(): array

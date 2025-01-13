@@ -14,9 +14,7 @@ return [
          */
         'files' => [
             'standard' => 3,
-            'boosted' => 5,
-            'superboosted' => 10,
-            'premium' => 10,
+            'premium' => 20,
         ]
     ],
 
@@ -24,12 +22,13 @@ return [
      * Default file upload size for standard user, in MB
      */
     'filesize' => [
-        'image' => env('APP_IMAGE_SIZE_MB', 1),
+        'image' => env('APP_IMAGE_SIZE_MB', 3),
+        'map' => env('APP_MAP_SIZE_MB', 5),
     ],
 
     'gallery' => [
-        'standard' => env('APP_GALLERY_STANDARD', 100 * 1024),
-        'premium' => env('APP_GALLERY_PREMIUM', 2 * 1024 * 1024),
+        'standard' => env('APP_GALLERY_STANDARD', 150 * 1024),
+        'premium' => env('APP_GALLERY_PREMIUM', 3 * 1024 * 1024),
         //'premium' => 20 * 1024,
     ],
 

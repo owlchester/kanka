@@ -27,7 +27,7 @@ return [
     ],
     'helpers'           => [
         'active'            => 'Les favoris inactifs ne s\'affichent pas dans la navigation.',
-        'dashboard'         => 'Mettre en place le favori pour aller à un tableau de bord de la campagne.',
+        'dashboard'         => 'Mettre en place le favori pour aller à un tableau de bord.',
         'default_dashboard' => 'Favori vers le tableau de bord par défaut de la campagne. Un tableau de bord personnalisé doit encore être sélectionné.',
         'entity'            => 'Mettre en place le favori pour aller directement sur une entité. Le champ :tab contrôle quel onglet est ouvert. Le champ :menu contrôle quel sous-menu est affiché.',
         'position'          => 'Ce champ contrôle dans quel ordre les favoris apparaissent.',

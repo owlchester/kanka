@@ -114,13 +114,14 @@ return [
     'destroy_many'              => [
         'success'   => 'Deleted :count entity.|Deleted :count entities.',
     ],
+    'dynamic'                   => [
+        'permission'    => 'You don\'t have the right permissions to create an entity of the :module module.',
+        'unknown'       => 'Invalid entity of the :module module.',
+    ],
     'edit'                      => 'Edit',
     'errors'                    => [
-        'boosted'                       => 'This feature is only available to boosted campaigns.',
-        'boosted_campaigns'             => 'This feature is only available for :boosted.',
-        'invalid_node'                  => 'The selected parent is invalid. This can usually be fixed by giving the selected parent a parent of its own, then removing it.',
-        'node_must_not_be_a_descendant' => 'The selected parent is invalid. It would be a descendant of itself.',
-        'unavailable_feature'           => 'Unavailable feature',
+        'boosted_campaigns'     => 'This feature is only available for :boosted.',
+        'unavailable_feature'   => 'Unavailable feature',
     ],
     'fields'                    => [
         'calendar_date'     => 'Calendar Date',

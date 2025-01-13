@@ -1028,7 +1028,7 @@ class CalendarRenderer
      */
     protected function splitDate(string $date): array
     {
-        $segments = explode('-', ltrim($date, '-'));
+        $segments = explode('-', mb_ltrim($date, '-'));
         if (str_starts_with($date, '-')) {
             $segments[0] = '-' . $segments[0];
         }
