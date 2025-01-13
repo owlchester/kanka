@@ -33,7 +33,6 @@ return [
         'title'     => 'Inventario de :name',
         'unsorted'  => 'Sin clasificar',
     ],
-    'tutorial'      => 'Lleva la cuenta de lo que posee una entidad añadiendo elementos a su inventario.',
     'update'        => [
         'success'   => 'Objeto :item actualizado en :entity.',
         'title'     => 'Actualizar un objeto de :name',

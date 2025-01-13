@@ -16,7 +16,6 @@ return [
         'pitches'       => [
             'element-class' => 'Присвойте этому элементу уникальный CSS класс с помощью :boosted-campaign.',
             'icon'          => 'Откройте доступ к миллионам иконок от FontAwesome с помощью :boosted-campaign.',
-            'link-parent'   => 'Вставьте закладку где угодно на боковой панели с помощью :boosted-campaign.',
         ],
         'titles'        => [
             'boosted'       => 'Функция усиления',

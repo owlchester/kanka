@@ -30,10 +30,6 @@ return [
         'success'   => 'Zmieniono kolejność historii',
         'title'     => 'Zmień kolejność historii',
     ],
-    'show'          => [
-        'tabs'  => [
-            'reorder'   => 'Kolejność historii',
-        ],
-    ],
+    'show'          => [],
     'timelines'     => [],
 ];

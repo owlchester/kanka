@@ -16,12 +16,9 @@ return [
         ],
         'title'         => 'Pridruži se :name',
     ],
-    'errors'        => [
-        'not_open'  => 'Kampanja nije otvorena za nove članove. Uredi postavke kampanje ako želiš omogućiti korisnicima koji se na nju prijavljuju.',
-    ],
+    'errors'        => [],
     'fields'        => [
         'application'   => 'Prijava',
-        'rejection'     => 'Razlog odbijanja',
     ],
     'helpers'       => [],
     'placeholders'  => [

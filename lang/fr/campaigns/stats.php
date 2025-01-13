@@ -28,7 +28,6 @@ return [
         'locations' => 'Créer :target lieux',
         'races'     => 'Créer :target races',
     ],
-    'title'         => 'Accomplissements de la campagne :campaign',
     'title2'        => 'Statistiques',
     'titles'        => [
         'calendars' => 'Chronométreur/euse niveau :level',

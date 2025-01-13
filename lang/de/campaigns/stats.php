@@ -22,7 +22,6 @@ return [
         'locations' => 'Erstelle :target Ort',
         'races'     => 'Erstelle :target Spezies',
     ],
-    'title'         => 'Kampagne :campaign Erfolge',
     'titles'        => [
         'calendars' => 'Zeitnehmer  level :level',
         'characters'=> 'Namensgeber  level :level',

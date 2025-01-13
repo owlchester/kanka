@@ -116,11 +116,8 @@ return [
     ],
     'edit'                      => 'Upraviť',
     'errors'                    => [
-        'boosted'                       => 'Táto funkcionalita je dostupná iba pre boostnuté kampane.',
-        'boosted_campaigns'             => 'Funkcionalita je dostupná iba pre :boosted.',
-        'invalid_node'                  => 'Zvolený rodič nie je platný. Toto je možné vyriešiť pridaním rodiča danému rodičovi a následne jeho odstránením.',
-        'node_must_not_be_a_descendant' => 'Zvolený rodič je neplatný. Bol by potomok samého seba.',
-        'unavailable_feature'           => 'Funkcionalita nedostupná',
+        'boosted_campaigns'     => 'Funkcionalita je dostupná iba pre :boosted.',
+        'unavailable_feature'   => 'Funkcionalita nedostupná',
     ],
     'events'                    => [],
     'fields'                    => [

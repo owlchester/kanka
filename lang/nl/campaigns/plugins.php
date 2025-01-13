@@ -5,7 +5,6 @@ return [
         'disable'           => 'Schakel plugin uit',
         'enable'            => 'Schakel plugin in',
         'go_to_marketplace' => 'Ga naar de Marktplaats',
-        'remove'            => 'Verwijder plugin',
         'update'            => 'Werk plugin bij',
         'update_available'  => 'Update beschikbaar!',
     ],

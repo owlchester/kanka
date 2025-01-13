@@ -17,15 +17,7 @@ TEXT
         'success_first_time'    => 'La tua campagna è stata creata! Siccome si tratta della tua prima campagna abbiamo provveduto a creare alcune cose per aiutarti ad iniziare e speriamo che ti possa dare un po\' di ispirazione per quello che potrai fare.',
         'title'                 => 'Nuova campagna',
     ],
-    'destroy'                           => [
-        'action'            => 'Elimina campagna',
-        'confirm'           => 'Sei sicuro di eliminare :campaign? Questa azione è permanente e non può essere recuperata.',
-        'confirm-button'    => 'Elimina permanentemente la campagna.',
-        'helper-v2'         => 'Questa campagna non può essere eliminata mentre ci sono altri membri all\'interno. Rimuovi prima gli altri membri e prova di nuovo.',
-        'hint'              => 'Per favore, scrivi :code nella casella sottostante.',
-        'success'           => 'Campagna eliminata.',
-        'title'             => 'Elimina la campagna',
-    ],
+    'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Campagna aggiornata.',
         'title'     => 'Modifica la Campagna :campaign',

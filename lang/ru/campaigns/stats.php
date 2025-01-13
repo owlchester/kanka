@@ -22,7 +22,6 @@ return [
         'locations' => 'Создать :target локаций',
         'races'     => 'Создать :target рас',
     ],
-    'title'         => 'Достижения - :campaign',
     'titles'        => [
         'calendars' => 'Хранитель Времени уровень :level',
         'characters'=> 'Дающий Имена уровень :level',

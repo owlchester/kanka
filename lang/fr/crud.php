@@ -120,11 +120,8 @@ return [
     ],
     'edit'                      => 'Modifier',
     'errors'                    => [
-        'boosted'                       => 'Cette fonctionnalité n\'est accessible qu\'aux campagnes boostées..',
-        'boosted_campaigns'             => 'Cette fonctionnalité n\'est que disponible que pour les :boosted.',
-        'invalid_node'                  => 'Le parent sélectionné n\'est pas valide. Cela peut généralement être résolu en donnant au parent sélectionné un parent, puis en le retirant.',
-        'node_must_not_be_a_descendant' => 'Node invalide (étiquette, lieu parent): l\'entité serait un descendant de lui-même.',
-        'unavailable_feature'           => 'Fonctionnalité indisponible',
+        'boosted_campaigns'     => 'Cette fonctionnalité n\'est que disponible que pour les :boosted.',
+        'unavailable_feature'   => 'Fonctionnalité indisponible',
     ],
     'events'                    => [],
     'fields'                    => [

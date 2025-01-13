@@ -17,15 +17,7 @@ TEXT
         'success_first_time'    => 'Tvoja kampaň bola vytvorená! Keďže je to tvoja prvá kampaň, vytvorili sme v nej pár vecí, ktoré ti pomôžu začať a dúfame, že ti poskytnú inšpiráciu, čo všetko je možné.',
         'title'                 => 'Vytvoriť novú kampaň',
     ],
-    'destroy'                           => [
-        'action'            => 'Odstrániť kampaň',
-        'confirm'           => 'Naozaj chceš zmazať :campaign? Táto akcia je natrvalo a nemôže byť vrátená späť.',
-        'confirm-button'    => 'Natrvalo zmazať kampaň',
-        'helper-v2'         => 'Táto kampaň nemôže byť zmazaná, ak sú v nej ešte iní členovia alebo členky. Odstráň ich najprv a skús to potom opäť.',
-        'hint'              => 'Ak je to tak, prepíš :code do políčka nižšie.',
-        'success'           => 'Kampaň odstránená.',
-        'title'             => 'Zmazať kampaň',
-    ],
+    'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Kampaň upravená.',
         'title'     => 'Upraviť kampaň :campaign',

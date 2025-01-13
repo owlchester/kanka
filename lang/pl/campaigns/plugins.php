@@ -12,7 +12,6 @@ return [
         'enable'            => 'Aktywuj dodatek',
         'go_to_marketplace' => 'Idź na Targowisko',
         'import'            => 'Importuj',
-        'remove'            => 'Usuń dodatek',
         'update'            => 'Aktualizuj dodatek',
         'update_available'  => 'Dostępna aktualizacja!',
     ],

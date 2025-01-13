@@ -80,7 +80,6 @@ return [
         'unlock'    => 'Atributo desbloqueado',
         'unpin'     => 'Atributo no fijado',
     ],
-    'tutorial'      => 'Los atributos son pequeños fragmentos de información vinculados a una entidad. Por ejemplo, un personaje puede tener estadísticas :hp y :str, mientras que una localización puede tener una estadística :pop. Todo esto puede rastrearse fácilmente con atributos.',
     'types'         => [
         'attribute' => 'Atributo',
         'block'     => 'Bloque',

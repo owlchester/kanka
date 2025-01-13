@@ -9,6 +9,5 @@ return [
         'deleted'   => 'Eliminadas',
     ],
     'helper'    => 'Las entidades eliminadas se pueden recuperar hasta :count días después mediante esta interfaz.',
-    'success'   => 'Se ha recuperado {1} :count entidad.|Se han recuperado [2,*] :count entidades.',
     'title'     => 'Recuperación de entidades de :campaign',
 ];

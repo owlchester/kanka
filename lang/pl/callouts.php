@@ -16,7 +16,6 @@ return [
         'pitches'       => [
             'element-class' => 'Nadawaj elementom własne klasy CSS po :boosted-campaign.',
             'icon'          => 'W :boosted-campaigh używać możesz milionów ikon z FontAwesome.',
-            'link-parent'   => 'Rozmieszaj skróty w dowolnym miejscu menu bocznego po :boosted-campaign.',
         ],
         'titles'        => [
             'boosted'       => 'Po doładowaniu',

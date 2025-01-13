@@ -2,10 +2,8 @@
 
 return [
     'actions'       => [
-        'accept'        => 'Aceptar',
-        'applications'  => 'Aplicaciones: :status',
-        'change'        => 'Cambiar',
-        'reject'        => 'Rechazar',
+        'accept'    => 'Aceptar',
+        'reject'    => 'Rechazar',
     ],
     'apply'         => [
         'apply'         => 'Solicitar',
@@ -18,28 +16,18 @@ return [
         ],
         'title'         => 'Unirse a :name',
     ],
-    'errors'        => [
-        'not_open'  => 'Esta campaña no está abierta a nuevos miembros. Configura la campaña si quieres permitir que otros usuarios soliciten unirse a ella.',
-    ],
+    'errors'        => [],
     'fields'        => [
         'application'   => 'Solicitud',
-        'approval'      => 'Motivo de la aprobación',
-        'rejection'     => 'Motivo del rechazo',
     ],
     'helpers'       => [
-        'filter-helper'     => '¡Esta campaña está abierta a solicitudes!',
         'modal'             => 'Una campaña que está abierta a solicitudes y al público permite que los usuarios soliciten unirse a la campaña.',
         'no_applications'   => 'Actualmente no hay solicitudes pendientes para unirse a la campaña. Los usuarios pueden solicitar unirse a la campaña visitando su panel de control y haciendo clic en el botón :button.',
-        'not_open'          => 'La campaña no acepta actualmente solicitudes.',
-        'open_not_public'   => 'La campaña está abierta a solicitudes, pero no es pública, lo que significa que nadie puede solicitar unirse a ella. Esto puede cambiarse editando los ajustes de la campaña.',
     ],
     'placeholders'  => [
         'note'  => 'Escribe tu solicitud para unirte a la campaña',
     ],
-    'statuses'      => [
-        'closed'    => 'Cerrado',
-        'open'      => 'Abierto',
-    ],
+    'statuses'      => [],
     'toggle'        => [
         'closed'    => 'Cerrada a solicitudes',
         'label'     => 'Estado',

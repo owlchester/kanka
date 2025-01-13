@@ -26,7 +26,6 @@ return [
     'resources'         => 'Zasoby',
     'roadmap'           => 'W przygotowaniu',
     'security'          => 'Bezpieczeństwo',
-    'server_time'       => 'Czas serwera: :time',
     'status'            => 'Status usługi',
     'terms'             => 'Warunki',
     'translator_call'   => 'Kanka jest tłumaczona na inne języki dzięki zaangażowaniu naszej społeczności. Jeżeli chcesz pomóc w przekładzie na swój język, daj nam znać na naszym serwerze :discord.',

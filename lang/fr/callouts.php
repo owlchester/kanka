@@ -16,7 +16,6 @@ return [
         'pitches'       => [
             'element-class' => 'Cette élément peut être personnalisé avec une classe CSS dans une :boosted-campaign.',
             'icon'          => 'Débloques des milliers d\'icônes de FontAwesome avec une :boosted-campaign.',
-            'link-parent'   => 'L\'emplacement d\'un menu rapide dans la navigation peut être personnalisé avec une :boosted-campaign.',
         ],
         'titles'        => [
             'boosted'       => 'Fonctionnalité boostée',

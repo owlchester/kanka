@@ -16,7 +16,6 @@ return [
         'pitches'       => [
             'element-class' => 'Pridaj tomuto prvku vlastnú CSS triedu, ak máš :boosted-campaign.',
             'icon'          => 'Odomkni milióny ikoniek z FontAwesome, ak máš :boosted-campaign.',
-            'link-parent'   => 'Nastav pozíciu rýchleho linku presne podľa seba, ak máš :boosted-campaign.',
         ],
         'titles'        => [
             'boosted'       => 'Boostnutá funkcia',

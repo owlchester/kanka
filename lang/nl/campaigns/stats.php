@@ -21,7 +21,6 @@ return [
         'locations' => 'Maak :target locaties',
         'races'     => 'Maak :target rassen',
     ],
-    'title'         => 'Campaign :campaign Achievements',
     'titles'        => [
         'calendars' => 'Tijdsbewaarder level :level',
         'characters'=> 'Naam Gever level :level',
