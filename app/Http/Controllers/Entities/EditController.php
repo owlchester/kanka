@@ -102,9 +102,9 @@ class EditController extends Controller
             }
 
             $link = '<a href="' . route(
-                    'entities.show',
-                    [$campaign, $entity]
-                )
+                'entities.show',
+                [$campaign, $entity]
+            )
                 . '">' . $entity->name . '</a>';
             $success = __('general.success.updated', [
                 'name' => $link

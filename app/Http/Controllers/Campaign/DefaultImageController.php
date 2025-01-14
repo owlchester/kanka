@@ -8,7 +8,6 @@ use App\Http\Requests\Campaigns\DefaultImageStore;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\Campaign\DefaultImageService;
-use App\Services\Entity\TypeService;
 use App\Services\EntityTypeService;
 
 class DefaultImageController extends Controller
@@ -16,8 +15,7 @@ class DefaultImageController extends Controller
     public function __construct(
         protected EntityTypeService $entityTypeService,
         protected DefaultImageService $service
-    )
-    {
+    ) {
     }
 
     /**

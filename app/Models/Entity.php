@@ -66,9 +66,9 @@ class Entity extends Model
     use EntityScopes;
     use EntityType;
     use HasCampaign;
+    use HasEntry;
     use HasMentions;
     use HasTooltip;
-    use HasEntry;
     use LastSync;
     use Paginatable;
     use Searchable;

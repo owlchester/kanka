@@ -12,8 +12,8 @@ use Illuminate\Support\Collection;
 
 class IndexController extends Controller
 {
-
-    public function __construct(protected FilterService $filterService) {
+    public function __construct(protected FilterService $filterService)
+    {
 
     }
     public function index(Request $request, Campaign $campaign, EntityType $entityType)

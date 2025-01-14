@@ -16,7 +16,6 @@ use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as Scout;
 
 /**

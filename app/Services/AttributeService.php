@@ -308,8 +308,7 @@ class AttributeService
         if ($this->entity->hasChild() && $this->entity->child->hasEntry()) {
             $entry = Str::replace($searchAttributes, $replaceAttributes, $this->entity->child->entry);
             $this->entity->child->update(['entry' => $entry]);
-        }
-        elseif ($this->entity->entityType->isSpecial() && $this->entity->hasEntry()) {
+        } elseif ($this->entity->entityType->isSpecial() && $this->entity->hasEntry()) {
             $entry = Str::replace($searchAttributes, $replaceAttributes, $this->entity->entry);
             $this->entity->update(['entry' => $entry]);
         }

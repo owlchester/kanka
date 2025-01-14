@@ -21,8 +21,8 @@ class MoveController extends Controller
 
     public function __construct(
         protected MoveService $service,
-        protected EntityTypeService $entityTypeService)
-    {
+        protected EntityTypeService $entityTypeService
+    ) {
     }
 
     /**

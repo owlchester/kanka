@@ -11,8 +11,7 @@ class StatController extends Controller
 {
     public function __construct(
         protected StatService $statService
-    )
-    {
+    ) {
     }
 
     public function index(Campaign $campaign)
@@ -28,6 +27,6 @@ class StatController extends Controller
             ->with('campaign', $campaign)
             ->with('stats', $stats)
             ->with('entityTypes', $entityTypes)
-            ;
+        ;
     }
 }

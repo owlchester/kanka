@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands\Migrations;
 
-use App\Models\Bookmark;
 use App\Models\EntityType;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;

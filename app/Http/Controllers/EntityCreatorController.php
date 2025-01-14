@@ -50,7 +50,6 @@ class EntityCreatorController extends Controller
     }
 
     /**
-     * @param string $type
      */
     public function form(Request $request, Campaign $campaign, EntityType $entityType)
     {
@@ -161,7 +160,7 @@ class EntityCreatorController extends Controller
             ]);
         }
 
-//        $successKey = $type !== 'posts' ? 'entities.creator.success_multiple' : 'entities.creator.success_multiple_posts';
+        //        $successKey = $type !== 'posts' ? 'entities.creator.success_multiple' : 'entities.creator.success_multiple_posts';
         $successKey = 'entities.creator.success_multiple';
         $success = trans_choice(
             $successKey,
@@ -222,7 +221,7 @@ class EntityCreatorController extends Controller
             }
 
             $values['name'] = $name;
-             //If position = 0 the post's position is last, else the post's position is first.
+            //If position = 0 the post's position is last, else the post's position is first.
             $rules = $validator->rules();
             $rules['entity_id'] = 'required|integer|exists:entities,id';
             $this->validateEntity($values, $rules);
@@ -389,11 +388,11 @@ class EntityCreatorController extends Controller
             }
             $orderedTypes[$entityType->plural()] = $entityType;
         }
-//        $types = config('entities.ids');
-//        foreach ($types as $singular => $id) {
-//            $plural = Str::plural($singular);
-//            $orderedTypes[$plural] = $this->campaign->hasModuleName($id) ? $this->campaign->moduleName($id) : __('entities.' . $singular);
-//        }
+        //        $types = config('entities.ids');
+        //        foreach ($types as $singular => $id) {
+        //            $plural = Str::plural($singular);
+        //            $orderedTypes[$plural] = $this->campaign->hasModuleName($id) ? $this->campaign->moduleName($id) : __('entities.' . $singular);
+        //        }
 
         if (auth()->user()->can('recover', $this->campaign)) {
             $orderedTypes['posts'] = __('entities.posts');

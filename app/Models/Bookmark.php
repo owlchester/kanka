@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 
 /**
  * Class Bookmark

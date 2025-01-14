@@ -22,8 +22,8 @@ class TransformController extends Controller
         protected EntityService $service,
         protected EntityTypeService $entityTypeService,
         protected TransformService $transformService,
-        protected TypeService $typeService)
-    {
+        protected TypeService $typeService
+    ) {
     }
 
     public function index(Campaign $campaign, Entity $entity)

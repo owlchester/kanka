@@ -3,7 +3,6 @@
 namespace App\Renderers\Layouts\Campaign;
 
 use App\Facades\Avatar;
-use App\Facades\Module;
 use App\Renderers\Layouts\Layout;
 
 class Recovery extends Layout
