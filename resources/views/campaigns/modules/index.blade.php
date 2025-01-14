@@ -51,9 +51,11 @@
                 </div>
             @endforeach
 
+            @if (config('entities.custom'))
                 <div class="cell col-span-1 flex">
                     @include('campaigns.entity-types.box.new')
                 </div>
+            @endif
         </div>
 
         <h3 id="features">{{ __('campaigns/modules.sections.features')}}</h3>
