@@ -16,7 +16,7 @@
         ></x-sidebar.element>
     </li>
 @elseif ($bookmark->entityType)
-    <li class="p-0 m-0 subsection sidebar-bookmark sidebar-bookmark-{{ $bookmark->position }} {{ $sidebar->activeBookmark($bookmark) }} {{ $bookmark->customClass($campaign) }}">
+    <li class="p-0 m-0 subsection sidebar-bookmark sidebar-bookmark-{{ $bookmark->position }} {{ $sidebar->activeBookmark($bookmark) }} {{ $bookmark->customClass($campaign) }} {{ $bookmark->activeModule($campaign, $entityType ?? $entity ?? null) }}">
         <x-sidebar.element
                 :url="$bookmark->getRoute()"
                 :icon="$bookmark->iconClass()"

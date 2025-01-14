@@ -416,4 +416,21 @@ class Bookmark extends Model
 
         ;
     }
+
+    public function activeModule(Campaign $campaign, Entity|EntityType|null $current = null): ?string
+    {
+        if (empty($current) || empty($this->parent) || request()->has('bookmark')) {
+            return null;
+        }
+        if ($current instanceof EntityType) {
+            if (!$current->isSpecial() || $current->id != $this->entity_type_id) {
+                return null;
+            }
+            return 'active';
+        }
+        if ($current instanceof Entity && (!$current->entityType->isSpecial() || $current->type_id != $this->entity_type_id)) {
+            return null;
+        }
+        return 'active';
+    }
 }
