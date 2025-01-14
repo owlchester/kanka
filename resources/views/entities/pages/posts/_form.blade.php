@@ -88,6 +88,13 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 <x-forms.field field="location" id="field-location" :hidden="isset($layoutHelper)">
                     @include('cruds.fields.location', ['from' => null])
                 </x-forms.field>
+                <x-forms.field field="tags">
+                    <input type="hidden" name="save_tags" value="1" />
+                    <x-forms.tags
+                        :campaign="$campaign"
+                        :model="$model ?? null">
+                    </x-forms.tags>
+                </x-forms.field>
 
                 @include('cruds.fields.visibility_id')
 

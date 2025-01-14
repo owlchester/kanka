@@ -419,6 +419,7 @@ class Entity extends Model
                 if ($relation === 'inventories' && empty($model->item)) {
                     continue;
                 }
+                //here
                 if (method_exists($model, 'exportFields')) {
                     $export = [];
                     foreach ($model->exportFields() as $field) {

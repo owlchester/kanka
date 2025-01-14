@@ -17,6 +17,7 @@ class EntityLink extends Component
         public Entity|null $entity,
         public Campaign $campaign,
         public ?string $name = null,
+        public ?string $post = null,
         public bool $bottom = false,
     ) {
 
@@ -39,5 +40,13 @@ class EntityLink extends Component
             return $this->name;
         }
         return $this->entity->name;
+    }
+
+    public function post(): string
+    {
+        if (!empty($this->post)) {
+            return '#post-' . $this->post;
+        }
+        return '';
     }
 }

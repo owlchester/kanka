@@ -23,6 +23,7 @@ return [
     ],
     'helpers'       => [
         'no_children'   => 'There are currently no entities tagged with this tag.',
+        'no_posts'      => 'There are currently no posts tagged with this tag.',
     ],
     'hints'         => [
         'children'          => 'This list contains all the entities that are assigned to this tag or the tag\'s children.',
@@ -36,6 +37,7 @@ return [
     'show'          => [
         'tabs'  => [
             'children'  => 'Children',
+            'posts'     => 'Tagged posts'
         ],
     ],
     'transfer'      => [

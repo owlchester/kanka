@@ -48,13 +48,13 @@ class Tags extends Component
     protected function prepareOptions(): void
     {
         $this->tags = [];
-        if (!empty($this->model) && !empty($this->model->entity)) {
+        if (!empty($this->model) && !empty($this->model->entity) && !($this->model instanceof \App\Models\Post)) {
             foreach ($this->model->entity->tags()->with('entity')->get() as $tag) {
                 if ($tag->entity) {
                     $this->tags[$tag->id] = $tag;
                 }
             }
-        } elseif (!empty($this->model) && ($this->model instanceof \App\Models\CampaignDashboardWidget || $this->model instanceof \App\Models\Bookmark || $this->model instanceof \App\Models\Webhook)) {
+        } elseif (!empty($this->model) && ($this->model instanceof \App\Models\CampaignDashboardWidget || $this->model instanceof \App\Models\Post || $this->model instanceof \App\Models\Bookmark || $this->model instanceof \App\Models\Webhook)) {
             foreach ($this->model->tags()->get() as $tag) {
                 $this->tags[$tag->id] = $tag;
             }

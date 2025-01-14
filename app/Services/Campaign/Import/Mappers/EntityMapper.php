@@ -15,6 +15,7 @@ use App\Models\EntityTag;
 use App\Models\Image;
 use App\Models\Inventory;
 use App\Models\Post;
+use App\Models\PostTag;
 use App\Models\Relation;
 use App\Services\EntityMappingService;
 use Illuminate\Support\Arr;
@@ -233,6 +234,19 @@ trait EntityMapper
             $post->entry = $this->mentions($post->entry);
             $post->created_by = $this->user->id;
             $post->save();
+
+            if (array_key_exists('postTags', $data)) {
+                foreach ($data['postTags'] as $oldTag) {
+                    if (!ImportIdMapper::has('tags', $oldTag['tag_id'])) {
+                        continue;
+                    }
+                    $tagID = ImportIdMapper::get('tags', $oldTag['tag_id']);
+                    $postTag = new PostTag();
+                    $postTag->post_id = $post->id;
+                    $postTag->tag_id = $tagID;
+                    $postTag->save();
+                }
+            }
 
             ImportIdMapper::putPost($data['id'], $post->id);
             $this->mapImageMentions($post);

@@ -15,4 +15,12 @@ class TagService
             $entity->tags()->attach($newTag->id);
         }
     }
+
+    public function transferPosts(Tag $tag, Tag $newTag): void
+    {
+        foreach ($tag->posts as $post) {
+            $post->tags()->detach($tag->id);
+            $post->tags()->attach($newTag->id);
+        }
+    }
 }

@@ -204,6 +204,23 @@ class Tag extends MiscModel
         return $this->hasMany(EntityTag::class);
     }
 
+    public function posts(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            'App\Models\Post',
+            'post_tag',
+            'tag_id',
+            'post_id',
+            'id',
+            'id'
+        );
+    }
+
+    public function postTags(): HasMany
+    {
+        return $this->hasMany(PostTag::class);
+    }
+
     /**
      * Get the entity_type id from the entity_types table
      */
