@@ -4,7 +4,8 @@
         Breadcrumb::entity($entity)->list(),
         Breadcrumb::show(),
         __('crud.actions.move'),
-    ]
+    ],
+    'entity' => null,
 ])
 
 @section('content')

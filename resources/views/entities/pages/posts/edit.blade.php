@@ -7,6 +7,7 @@
         __('crud.update'),
     ],
     'centered' => true,
+    'entity' => null,
 ])
 
 @section('content')

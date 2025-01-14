@@ -6,6 +6,7 @@
         __('crud.actions.transform'),
     ],
     'centered' => true,
+    'entity' => null,
 ])
 
 @section('content')
