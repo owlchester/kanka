@@ -36,7 +36,9 @@ class LiveController extends Controller
         ]);
         // Track that the entity was updated
         $entity->touch();
-        $entity->child->touchSilently();
+        if ($entity->hasChild()) {
+            $entity->child->touchSilently();
+        }
 
         if (!request()->ajax()) {
             return redirect()->route('entities.attributes', [$campaign, $entity]);

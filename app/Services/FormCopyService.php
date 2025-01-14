@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Character;
+use App\Models\Entity;
 use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -201,10 +202,7 @@ class FormCopyService
      */
     private function valid(): bool
     {
-        if (empty($this->source)) {
-            return false;
-        }
-        return method_exists($this->source, 'isCopiableObject') && $this->source->isCopiableObject();
+        return !empty($this->source);
     }
 
     /**
@@ -217,8 +215,10 @@ class FormCopyService
 
         if ($this->entity === true) {
             $this->entity = false;
-            // @phpstan-ignore-next-line
-            return $this->source->entity->getAttributeValue($this->field);
+            if (!$this->source instanceof Entity) {
+                // @phpstan-ignore-next-line
+                return $this->source->entity->getAttributeValue($this->field);
+            }
         }
         return $this->source->getAttributeValue($this->field);
     }

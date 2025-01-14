@@ -33,7 +33,7 @@ class TagController extends Controller
 
         return view('entities.components.tags.create', [
             'campaign' => $campaign,
-            'model' => $entity->child,
+            'entity' => $entity,
             'formOptions' => $formOptions
         ]);
     }

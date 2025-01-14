@@ -30,17 +30,24 @@ class SaveController extends Controller
             return redirect()->back()->withErrors(__('filters.bookmark.premium'));
         }
 
-        $this->filterService
-            ->model($entityType->getClass())
-            ->make($entityType->pluralCode());
+        if ($entityType->isSpecial()) {
+            $this->filterService
+                ->entityType($entityType)
+                ->build();
+        } else {
+            $this->filterService
+                ->model($entityType->getClass())
+                ->make($entityType->pluralCode());
+        }
+
         $filters = 'm=' . request()->get('m') . '&' . $this->filterService->clipboardFilters();
 
         $bookmark = new Bookmark();
         $bookmark->campaign_id = $campaign->id;
         $bookmark->name = __('filters.bookmark.name', ['module' => $entityType->plural()]);
-        $bookmark->type = $entityType->code;
+        $bookmark->entity_type_id = $entityType->id;
         $bookmark->filters = $filters;
-        $bookmark->parent = $entityType->pluralCode();
+        $bookmark->parent = $entityType->isSpecial() ? null : $entityType->pluralCode();
         $bookmark->save();
 
         return redirect()->to($bookmark->getRoute())->withSuccess(__('filters.bookmark.success'));

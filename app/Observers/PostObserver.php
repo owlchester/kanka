@@ -78,7 +78,7 @@ class PostObserver
         // When adding or changing a post to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
         $post->entity->touchSilently();
-        if (!$post->entity->entityType->isSpecial()) {
+        if (!$post->entity->hasChild()) {
             $post->entity->child->touchSilently();
         }
     }
@@ -94,7 +94,7 @@ class PostObserver
         // entering a non-ending loop.
         if ($post->entity) {
             $post->entity->touchSilently();
-            if (!$post->entity->entityType->isSpecial()) {
+            if (!$post->entity->hasChild()) {
                 $post->entity->child->touchSilently();
             }
         }

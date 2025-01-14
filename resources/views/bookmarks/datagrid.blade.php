@@ -33,7 +33,7 @@
                     }
                     return '<a href="' . $model->getRoute() . '">' . $model->target->name . '</a>';
                 } elseif ($model->isList()) {
-                    return __('entities.' . $model->type);
+                    return $model->entityType->plural();
                 } elseif ($model->isRandom()) {
                     return $model->random_entity_type == 'any' ? __('bookmarks.random_types.any') : __('entities.' . $model->random_entity_type);
                 }

@@ -285,9 +285,6 @@ class CrudController extends Controller
         $data['datagrid'] = $this->datagrid;
         $data['filterService'] = $this->filterService;
 
-        if (isset($data['entityType'])) {
-            return view('entities.index.index', $data);
-        }
         return view('cruds.index', $data);
     }
 

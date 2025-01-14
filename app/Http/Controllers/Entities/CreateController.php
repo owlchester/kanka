@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entities;
 
+use App\Facades\FormCopy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCustomEntity;
 use App\Models\Campaign;
@@ -9,6 +10,7 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\AttributeService;
 use App\Services\Entity\CopyService;
+use Illuminate\Http\Request;
 use LogicException;
 
 class CreateController extends Controller
@@ -19,13 +21,25 @@ class CreateController extends Controller
     ) {
 
     }
-    public function index(Campaign $campaign, EntityType $entityType)
+    public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
         $this->authorize('create', [$entityType, $campaign]);
+
+        $tabCopy = false;
+        $source = null;
+        if ($request->filled('copy')) {
+            $source = Entity::inTypes([$entityType->id])->find($request->get('copy'));
+            if ($source) {
+                FormCopy::source($source);
+                $tabCopy = true;
+            }
+        }
 
         return view('entities.forms.create')
             ->with('campaign', $campaign)
             ->with('entityType', $entityType)
+            ->with('tabCopy', $tabCopy)
+            ->with('source', $source)
         ;
     }
 

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Location;
 use App\Models\MiscModel;
+use App\Traits\EntityTypeAware;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -11,6 +12,8 @@ use Illuminate\Support\Str;
 
 class FilterService
 {
+    use EntityTypeAware;
+
     /** @var array The filters as saved in the session */
     protected array $filters = [];
 
@@ -68,6 +71,29 @@ class FilterService
         return $this;
     }
 
+    public function build()
+    {
+        $this->crud = $this->entityType->code;
+
+        $this->prepareFilters([
+            'name',
+            'type',
+            'is_private',
+            'template',
+            'tag_id',
+            'tags',
+            'has_image',
+            'has_posts',
+            'has_entity_files',
+            'has_attributes',
+            'created_by',
+            'updated_by',
+            'attribute_name',
+            'attribute_value'
+        ]) // @phpstan-ignore-line
+            ->prepareOrder(['name', 'type', 'is_private']) // @phpstan-ignore-line
+            ->prepareSearch();
+    }
 
     /**
      */

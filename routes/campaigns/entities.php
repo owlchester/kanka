@@ -14,8 +14,9 @@ Route::get('/w/{campaign}/t/{entityType}/create', [\App\Http\Controllers\Entitie
 Route::get('/w/{campaign}/create/{entity_type}', [App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
 Route::post('/w/{campaign}/create/{entity_type}', [App\Http\Controllers\Entities\CreateController::class, 'store'])->name('entities.store');
 
-Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entity\EditController::class, 'index'])->name('entities.edit');
-Route::patch('/w/{campaign}/entities/{entity}/save', [App\Http\Controllers\Entity\EditController::class, 'save'])->name('entities.update');
+Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entities\EditController::class, 'index'])->name('entities.edit');
+Route::patch('/w/{campaign}/entities/{entity}/save', [App\Http\Controllers\Entities\EditController::class, 'save'])->name('entities.update');
+Route::delete('/w/{campaign}/entities/{entity}/delete', [App\Http\Controllers\Entities\DeleteController::class, 'index'])->name('entities.destroy');
 
 // Abilities
 Route::get('/w/{campaign}/abilities/{ability}/abilities', 'Abilities\AbilityController@index')->name('abilities.abilities');

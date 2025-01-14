@@ -13,8 +13,6 @@ class EntityAbilityObserver
         }
     }
 
-    /**
-     */
     public function saved(EntityAbility $entityAbility)
     {
         // Position isn't empty, move the rest
@@ -47,18 +45,19 @@ class EntityAbilityObserver
 
         // When adding or changing an entity ability to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
-        $entityAbility->entity->child->touchQuietly();
+        if ($entityAbility->entity->hasChild()) {
+            $entityAbility->entity->child->touchQuietly();
+        }
     }
 
-    /**
-     */
     public function deleted(EntityAbility $entityAbility)
     {
         // When deleting an entity ability, we want to update the entity's last update
         // for the dashboard. Careful of this when deleting an entity, we could be
         // entering a non-ending loop.
-        if ($entityAbility->entity) {
-            $entityAbility->entity->child->touch();
+        if ($entityAbility->entity && $entityAbility->entity->hasChild()) {
+            $entityAbility->entity->child->touchQuietly();
+
         }
     }
 }

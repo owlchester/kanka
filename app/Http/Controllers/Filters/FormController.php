@@ -16,12 +16,9 @@ class FormController extends Controller
 {
     use CampaignAware;
 
-    protected FilterService $filterService;
-
-    public function __construct(FilterService $filterService)
+    public function __construct(protected FilterService $filterService)
     {
         $this->middleware(['auth']);
-        $this->filterService = $filterService;
     }
 
     public function index(Campaign $campaign, EntityType $entityType)
@@ -29,6 +26,14 @@ class FormController extends Controller
         $plural = Str::plural(Str::remove('-', $entityType->code));
         $route = $plural . '.index';
 
+        if ($entityType->isSpecial()) {
+            $this->filterService->entityType($entityType)->build();
+            return view('entities.index.filters')
+                ->with('campaign', $campaign)
+                ->with('entityType', $entityType)
+                ->with('filterService', $this->filterService)
+            ;
+        }
         $model = $entityType->getClass();
 
         try {

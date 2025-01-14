@@ -15,6 +15,11 @@ use Illuminate\Support\Str;
  * @method static self|Builder inTypes(mixed $types)
  * @method static self|Builder templates(string $entityType)
  * @method static self|Builder apiFilter(array $requests)
+ * @method static self|Builder order(array $config)
+ * @method static self|Builder filter(array $filter)
+ * @method static self|Builder filterHasFiles(bool $filter)
+ * @method static self|Builder filterHasPost(bool $filter)
+ * @method static self|Builder filterTags(array $tags, string $option)
  */
 trait EntityScopes
 {
@@ -153,5 +158,112 @@ trait EntityScopes
         }
 
         return $query->whereIn($this->getTable() . '.type_id', $types);
+    }
+
+    public function scopeOrder(Builder $query, array $config = []): Builder
+    {
+        return $query;
+    }
+
+    public function scopeFilter(Builder $query, array $filters = []): Builder
+    {
+        foreach ($filters as $name => $values) {
+            if (!is_array($values) && $values === null) {
+                continue;
+            } elseif (in_array($name, ['name', 'type', 'is_private'])) {
+                $query->where($name, $values);
+                continue;
+            } elseif (in_array($name, ['has_image', 'template'])) {
+                if ($name === 'has_image') {
+                    $property = 'image_uuid';
+                } elseif ($name === 'template') {
+                    $property = 'is_template';
+                }
+
+                if ($values) {
+                    $query->whereNotNull($property);
+                } else {
+                    $query->whereNull($property);
+                }
+            } elseif ($name === 'has_entity_files') {
+                $query->filterHasFiles($values);
+            } elseif ($name === 'has_posts') {
+                $query->filterHasPosts($values);
+            }
+        }
+
+        if (Arr::hasAny($filters, ['tags', 'tags_option'])) {
+            $query->filterTags(Arr::get($filters, 'tags', []), Arr::get($filters, 'tags_option'));
+        }
+        return $query;
+    }
+
+    /**
+     * Filter on entities with files
+     */
+    protected function scopeFilterHasFiles(Builder $query, bool $value = true): void
+    {
+        $query
+            ->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'entities.id')
+            ->where('entity_assets.type_id', \App\Models\EntityAsset::TYPE_FILE);
+
+        if ($value) {
+            $query->whereNotNull('entity_assets.id');
+        } else {
+            $query->whereNull('entity_assets.id');
+        }
+    }
+
+
+    /**
+     * Filter on entities with posts
+     */
+    protected function scopeFilterHasPosts(Builder $query, bool $value = true): void
+    {
+        $query
+            ->leftJoin('posts', 'posts.entity_id', 'entities.id');
+
+        if ($value) {
+            $query->whereNotNull('posts.id');
+        } else {
+            $query->whereNull('posts.id');
+        }
+    }
+
+    /**
+     * Filter on entities with specific tags
+     */
+    protected function scopeFilterTags(Builder $query, array $tags = [], ?string $type): void
+    {
+        // Gets handled differently for some reason?
+        if ($type === 'none') {
+            $query
+                ->leftJoin('entity_tags as no_tags', 'no_tags.entity_id', 'entities.id')
+                ->whereNull('no_tags.tag_id');
+            return;
+        } elseif ($type === 'exclude') {
+            $tagIds = [];
+            foreach ($tags as $v) {
+                $tagIds[] = (int) $v;
+            }
+            //$query->leftJoin('entity_tags as et_tags', "et_tags.entity_id", 'e.id')
+            $query->whereRaw('(
+                select count(*) from entity_tags as et
+                where et.entity_id = entities.id and et.tag_id in (' . implode(', ', $tagIds) . ')
+            ) = 0');
+
+            return;
+        }
+
+        foreach ($tags as $v) {
+            if (!is_numeric($v)) {
+                continue;
+            }
+            $v = (int) $v;
+            $query
+                ->leftJoin('entity_tags as et' . $v, "et{$v}.entity_id", 'entities.id')
+                ->where("et{$v}.tag_id", $v)
+            ;
+        }
     }
 }

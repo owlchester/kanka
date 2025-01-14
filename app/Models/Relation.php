@@ -260,11 +260,6 @@ class Relation extends Model
         return false;
     }
 
-    public function hasEntityType(): bool
-    {
-        return false;
-    }
-
     public function exportFields(): array
     {
         return [

@@ -474,6 +474,11 @@ class Entity extends Model
         return new Collection($ordered);
     }
 
+    public function hasChild(): bool
+    {
+        return !$this->entityType->isSpecial();
+    }
+
     public function isMissingChild(): bool
     {
         return !$this->entityType->isSpecial() && empty($this->child);

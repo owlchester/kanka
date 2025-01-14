@@ -721,7 +721,7 @@ class SidebarService
         }
         $bookmarks = $this->campaign->bookmarks()->active()->ordered()->with(['target' => function ($sub) {
             return $sub->select('id', 'type_id', 'entity_id');
-        }])->get();
+        }, 'entityType'])->get();
         foreach ($bookmarks as $bookmark) {
             $parent = 'bookmarks';
             if (!empty($bookmark->parent) && $this->campaign->boosted()) {

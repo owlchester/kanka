@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Entity;
+namespace App\Http\Controllers\Entities;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Entity\LogicException;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MiscModel;
-use App\Sanitizers\MiscSanitizer;
 use App\Services\AttributeService;
 use App\Services\MultiEditingService;
 use App\Traits\CampaignAware;

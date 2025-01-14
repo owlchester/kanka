@@ -85,4 +85,9 @@ class EntityPolicy
                 ($action == 'edit' ? $this->checkPostPermission($user, $post) : false)
             ) ;
     }
+
+    public function delete(User $user, Entity $entity): bool
+    {
+        return  EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_DELETE, $user, $entity);
+    }
 }

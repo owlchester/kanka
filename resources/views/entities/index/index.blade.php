@@ -31,12 +31,10 @@
             {{ __('filters.helpers.guest') }}
         </div>
     @else
-        @if (isset($route))
-            <div class="flex flex-stretch gap-2 items-center">
-                    @includeWhen(isset($model) && $model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => [$route . '.index', $campaign]])
-                    @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index', $campaign])
-            </div>
-        @endif
+        <div class="flex flex-stretch gap-2 items-center">
+            @include('layouts.datagrid.search', ['route' => ['entities.index', $campaign, $entityType]])
+            @include('cruds.datagrids.filters.datagrid-filter', ['route' => ['entities.index', $campaign, $entityType]])
+        </div>
     @endif
 
         @include('cruds.datagrids.explore', ['route' => 'entities.index'])

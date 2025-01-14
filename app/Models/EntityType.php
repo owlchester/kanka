@@ -23,6 +23,7 @@ use App\Facades\Module;
  * @property AttributeTemplates[]|Collection $attributeTemplates
  *
  * @method static self|Builder enabled()
+ * @method static self|Builder default()
  * @method static self|Builder exclude(array $ids)
  * @method static self|Builder inCampaign(Campaign $campaign)
  */
@@ -43,6 +44,11 @@ class EntityType extends Model
         return $query->where(function ($sub) use ($campaign) {
             return $sub->where('campaign_id', $campaign->id)->orWhereNull('campaign_id');
         });
+    }
+
+    public function scopeDefault(Builder $query): Builder
+    {
+        return $query->whereNull('campaign_id');
     }
 
     /**

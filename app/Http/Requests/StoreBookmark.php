@@ -29,10 +29,10 @@ class StoreBookmark extends FormRequest
     {
         return $this->clean([
             'name' => 'required|max:191',
-            'entity_id' => 'required_without_all:type,random_entity_type,dashboard_id|exists:entities,id',
-            'type' => 'required_without_all:entity_id,random_entity_type,dashboard_id',
-            'random_entity_type' => 'required_without_all:entity_id,type,dashboard_id',
-            'dashboard_id' => 'required_without_all:entity_id,type,random_entity_type',
+            'entity_id' => 'required_without_all:entity_type_id,random_entity_type,dashboard_id|exists:entities,id',
+            'entity_type_id' => 'required_without_all:entity_id,random_entity_type,dashboard_id|exists:entity_types,id',
+            'random_entity_type' => 'required_without_all:entity_id,entity_type_id,dashboard_id',
+            'dashboard_id' => 'required_without_all:entity_id,entity_type_id,random_entity_type',
             'icon' => ['nullable', new FontAwesomeIcon()],
             'tab' => 'nullable',
             'parent' => 'nullable|string|max:25',

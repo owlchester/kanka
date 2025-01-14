@@ -27,6 +27,7 @@ class ModuleController extends Controller
         $entityTypes = $this->entityTypeService
             ->campaign($campaign)
             ->exclude(config('entities.ids.attribute_template'))
+            ->withDisabled()
             ->ordered();
 
         return view('campaigns.modules.index')
@@ -103,7 +104,7 @@ class ModuleController extends Controller
         $this->authorize('setting', $campaign);
 
         try {
-            $status = $this->moduleService
+            $status = $this->moduleEditService
                 ->campaign($campaign)
                 ->toggle($module);
 

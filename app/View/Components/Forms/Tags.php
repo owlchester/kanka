@@ -3,6 +3,7 @@
 namespace App\View\Components\Forms;
 
 use App\Models\Campaign;
+use App\Models\Entity;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -48,7 +49,14 @@ class Tags extends Component
     protected function prepareOptions(): void
     {
         $this->tags = [];
-        if (!empty($this->model) && !empty($this->model->entity)) {
+        if (!empty($this->model) && $this->model instanceof Entity) {
+            foreach ($this->model->tags()->with('entity')->get() as $tag) {
+                if ($tag->entity) {
+                    $this->tags[$tag->id] = $tag;
+                }
+            }
+        }
+        elseif (!empty($this->model) && !empty($this->model->entity)) {
             foreach ($this->model->entity->tags()->with('entity')->get() as $tag) {
                 if ($tag->entity) {
                     $this->tags[$tag->id] = $tag;

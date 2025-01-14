@@ -14,6 +14,8 @@ class EntityTypeService
     use EntityTypeAware;
 
     protected array $exclude = [];
+    protected array $append;
+    protected bool $withDisabled = false;
 
     public function exclude(mixed $ids): self
     {
@@ -21,11 +23,27 @@ class EntityTypeService
         return $this;
     }
 
+    public function withDisabled(): self
+    {
+        $this->withDisabled = true;
+        return $this;
+    }
+
+    public function append(array $append): self
+    {
+        $this->append = $append;
+        return $this;
+    }
+
     public function ordered(): array
     {
         $types = [];
 
-        foreach (EntityType::inCampaign($this->campaign)->exclude($this->exclude)->get() as $entityType) {
+        $search = EntityType::inCampaign($this->campaign)->exclude($this->exclude);
+        if (!$this->withDisabled) {
+            $search->enabled();
+        }
+        foreach ($search->get() as $entityType) {
             $types[$entityType->name()] = $entityType;
         }
 
@@ -35,6 +53,20 @@ class EntityTypeService
         });
 
         return $types;
+    }
+
+    public function toSelect(): array
+    {
+        $options = $this->ordered();
+        $values = [];
+        foreach ($options as $entityType) {
+            $values[$entityType->id] = $entityType->plural();
+        }
+
+        if (!isset($this->prepend)) {
+            return $values;
+        }
+        return $this->prepend + $values;
     }
 
     public function save(array $data): void

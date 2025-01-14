@@ -3,9 +3,11 @@
 namespace App\Services\Entity;
 
 use App\Facades\Module;
+use App\Models\EntityType;
 use App\Services\Gallery\StorageService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -63,6 +65,11 @@ class RecoverySetupService
 
     protected function elements(): array
     {
+        // Pre-load all entity types of the campaign for custom module names
+        $moduleNames = [];
+        foreach (EntityType::inCampaign($this->campaign)->get() as $entityType) {
+            $moduleNames[$entityType->id] = $entityType->name();
+        }
         //Query yields array of objects
         $elements = DB::select(
             'select e.id, e.name, e.deleted_at, e.deleted_by, e.type_id, t.code as type
@@ -96,7 +103,7 @@ class RecoverySetupService
                 $row['type_name'] = __('entities.post');
             } else {
                 $row['type'] = 'entity';
-                $row['type_name'] = Module::singular((int) $element->type_id, __('entities.' . $element->type));
+                $row['type_name'] = Arr::get($moduleNames, (int) $element->type_id, __('crud.history.unknown'));
             }
 
             $data->add($row);

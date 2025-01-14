@@ -38,8 +38,10 @@ use Illuminate\Support\Str;
  * @property int $position
  * @property ?int $dashboard_id
  * @property ?int $entity_id
+ * @property ?int $entity_type_id
  * @property array $options
  * @property ?CampaignDashboard $dashboard
+ * @property ?EntityType $entityType
  * @property ?Entity $target
  * @property bool|int $is_private
  * @property bool|int $is_active
@@ -64,6 +66,7 @@ class Bookmark extends Model
     protected $fillable = [
         'campaign_id',
         'entity_id',
+        'entity_type_id',
         'name',
         'icon',
         'tab',
@@ -144,6 +147,7 @@ class Bookmark extends Model
     {
         return $query->with([
             'entity',
+            'entityType',
             'target',
             'dashboard',
         ]);
@@ -187,12 +191,9 @@ class Bookmark extends Model
         return $this->belongsTo('App\Models\CampaignDashboard', 'dashboard_id');
     }
 
-    /**
-     * Need this because we're using the Crud Controllers instead of doing our own for bookmarks
-     */
-    public function hasEntityType(): bool
+    public function entityType(): BelongsTo
     {
-        return false;
+        return $this->belongsTo(EntityType::class);
     }
 
     /**
@@ -281,13 +282,17 @@ class Bookmark extends Model
     protected function getIndexRoute(): string
     {
         $filters = $this->filters . '&_clean=true&_from=bookmark&bookmark=' . $this->id;
-        $routeName = Str::plural($this->type) . '.index';
         if (!empty($this->options['is_nested']) && $this->options['is_nested'] == '1') {
             $filters .= '&n=1';
         }
         try {
             $campaign = CampaignLocalization::getCampaign();
-            return route($routeName, [$campaign, $filters]);
+
+            if ($this->entityType->isSpecial()) {
+                return route('entities.index', [$campaign, $this->entityType, $filters]);
+            } else {
+                return route($this->entityType->pluralCode() . '.index', [$campaign, $filters]);
+            }
         } catch (Exception $e) {
             return '/invalid';
         }
@@ -327,7 +332,7 @@ class Bookmark extends Model
 
     public function isList(): bool
     {
-        return !empty($this->type);
+        return !empty($this->entity_type_id);
     }
 
     /**

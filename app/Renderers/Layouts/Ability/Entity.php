@@ -26,7 +26,7 @@ class Entity extends Layout
                 'key' => 'type_id',
                 'label' => 'crud.fields.entity_type',
                 'render' => function ($model) {
-                    return __('entities.' . $model->pluralType());
+                    return $model->entityType->name();
                 }
             ],
             'visibility' => [

@@ -2,6 +2,9 @@
 if (!isset($entity) && isset($model) && !empty($model->entity)) {
     $entity = $model->entity;
 }
+elseif (!isset($entity) && isset($source)) {
+    $entity = $source instanceof \App\Models\Entity ? $source : $source->child;
+}
 $formats = 'PNG, JPG, GIF, WebP';
 $inputFileTypes = '.jpg, .jpeg, .png, .gif, .webp';
 $max = 25;
