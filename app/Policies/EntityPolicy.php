@@ -88,4 +88,17 @@ class EntityPolicy
     {
         return  EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_DELETE, $user, $entity);
     }
+
+
+    /**
+     */
+    protected function checkPostPermission(User $user, Post $post): bool
+    {
+        $roleIds = UserCache::roles()->pluck('id')->toArray();
+        $perms = $post->permissions->where('permission', 1);
+        return $perms->where('user_id', $user->id)->count() == 1
+            ||
+            $perms->whereIn('role_id', $roleIds)->count() == 1
+            ;
+    }
 }

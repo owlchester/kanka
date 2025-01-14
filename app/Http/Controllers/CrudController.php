@@ -458,10 +458,6 @@ class CrudController extends Controller
         }
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function crudShow(Model|MiscModel $model)
     {
         return redirect()->route('entities.show', [$this->campaign, $model->entity]);

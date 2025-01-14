@@ -23,6 +23,7 @@ class CharacterSubmenu extends BaseSubmenu implements EntitySubmenu
             ] : null,
         ];
 
+        // @phpstan-ignore-next-line
         $count = $this->entity->child->organisationMemberships()->has('organisation')->count();
         if ($this->campaign->enabled('organisations') && ($count > 0 || $canEdit)) {
             $items['second']['organisations'] = [

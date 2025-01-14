@@ -85,8 +85,8 @@ class EntityTypeService
         if (!isset($this->entityType)) {
             $this->entityType = new EntityType();
             $this->entityType->campaign_id = $this->campaign->id;
-            $this->entityType->is_special = 1;
-            $this->entityType->is_enabled = 1;
+            $this->entityType->is_special = true;
+            $this->entityType->is_enabled = true;
             $this->entityType->code = Str::slug(Arr::get($data, 'singular'));
         }
 

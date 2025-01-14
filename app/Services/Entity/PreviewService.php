@@ -66,8 +66,9 @@ class PreviewService
         }
 
         // Entity-specific content?
-        if ($this->entity->isCharacter()) {
+        if ($this->entity->isCharacter() && !$this->entity->isMissingChild()) {
             /** @var Character $child */
+            // @phpstan-ignore-next-line
             $this->characterProfile($child);
         }
 

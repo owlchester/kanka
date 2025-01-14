@@ -90,8 +90,8 @@ class FilterService
             'updated_by',
             'attribute_name',
             'attribute_value'
-        ]) // @phpstan-ignore-line
-            ->prepareOrder(['name', 'type', 'is_private']) // @phpstan-ignore-line
+        ])
+            ->prepareOrder(['name', 'type', 'is_private'])
             ->prepareSearch();
     }
 

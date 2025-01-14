@@ -213,8 +213,10 @@ class MoveService
             $this->entity->saveQuietly();
 
             // Update child second. We do this otherwise we'll have an old entity and a new one
-            $child->campaign_id = $this->to->id;
-            $child->saveQuietly();
+            if ($this->entity->hasChild()) {
+                $child->campaign_id = $this->to->id;
+                $child->saveQuietly();
+            }
 
             DB::commit();
             $success = true;

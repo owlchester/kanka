@@ -36,7 +36,7 @@ use Illuminate\Support\Str;
  * @property int $id
  * @property int $entity_id
  * @property string $name
- * @property string $type
+ * @property ?string $type
  * @property int $type_id
  * @property int $created_by
  * @property int $updated_by
@@ -509,8 +509,10 @@ class Entity extends Model
         }
 
         // Specific entity flags
+        // @phpstan-ignore-next-line
         if ($this->isCharacter() && $this->child->is_dead) {
             $classes[] = 'character-dead';
+            // @phpstan-ignore-next-line
         } elseif ($this->isQuest() && $this->child->is_completed) {
             $classes[] = 'quest-completed';
         }

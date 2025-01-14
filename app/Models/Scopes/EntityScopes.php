@@ -174,10 +174,9 @@ trait EntityScopes
                 $query->where($name, $values);
                 continue;
             } elseif (in_array($name, ['has_image', 'template'])) {
+                $property = 'is_template';
                 if ($name === 'has_image') {
                     $property = 'image_uuid';
-                } elseif ($name === 'template') {
-                    $property = 'is_template';
                 }
 
                 if ($values) {
@@ -186,13 +185,16 @@ trait EntityScopes
                     $query->whereNull($property);
                 }
             } elseif ($name === 'has_entity_files') {
+                // @phpstan-ignore-next-line
                 $query->filterHasFiles($values);
             } elseif ($name === 'has_posts') {
+                // @phpstan-ignore-next-line
                 $query->filterHasPosts($values);
             }
         }
 
         if (Arr::hasAny($filters, ['tags', 'tags_option'])) {
+            // @phpstan-ignore-next-line
             $query->filterTags(Arr::get($filters, 'tags', []), Arr::get($filters, 'tags_option'));
         }
         return $query;

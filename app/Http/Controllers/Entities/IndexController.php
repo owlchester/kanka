@@ -31,7 +31,6 @@ class IndexController extends Controller
         $unfilteredCount = 0;
         if ($this->filterService->hasFilters()) {
             $unfilteredCount = $base->count();
-            // @phpstan-ignore-next-line
             $base = $base->filter($this->filterService->filters());
         }
         $models = $base->paginate();

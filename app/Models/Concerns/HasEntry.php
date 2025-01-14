@@ -7,7 +7,7 @@ use App\Observers\EntryObserver;
 
 /**
  *
- * @property string $entry
+ * @property ?string $entry
  */
 trait HasEntry
 {

@@ -70,7 +70,7 @@ class ModuleController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $this->moduleService
+        $this->moduleEditService
             ->campaign($campaign)
             ->update($request, $entityType);
 
@@ -82,7 +82,7 @@ class ModuleController extends Controller
     {
         $this->authorize('setting', $campaign);
 
-        $this->moduleService
+        $this->moduleEditService
             ->campaign($campaign)
             ->reset();
 

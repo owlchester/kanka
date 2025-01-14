@@ -15,11 +15,11 @@ use App\Facades\Module;
  * @property string $code
  * @property int $campaign_id
  * @property Campaign $campaign
- * @property string $singular
- * @property string $plural
- * @property string $icon
- * @property bool $is_special
- * @property bool $is_enabled
+ * @property ?string $singular
+ * @property ?string $plural
+ * @property ?string $icon
+ * @property bool|int $is_special
+ * @property bool|int $is_enabled
  * @property AttributeTemplates[]|Collection $attributeTemplates
  *
  * @method static self|Builder enabled()

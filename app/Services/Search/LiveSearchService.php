@@ -3,6 +3,7 @@
 namespace App\Services\Search;
 
 use App\Facades\Avatar;
+use App\Models\Character;
 use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
@@ -21,7 +22,7 @@ class LiveSearchService
         $term = mb_trim($this->request->get('q') ?? '');
         $excludes = $this->request->has('exclude') ? [$this->request->get('exclude')] : [];
 
-        /** @var Builder|Tag $modelClass */
+        /** @var Builder|Character|Tag $modelClass */
         $modelClass = $this->entityType->getClass();
 
         if ($this->request->filled('with-family')) {
@@ -69,6 +70,7 @@ class LiveSearchService
             }
 
             if ($this->request->filled('with-family')) {
+                // @phpstan-ignore-next-line
                 $families = $model->families->pluck('name')->toarray();
                 if (empty($families)) {
                     continue;

@@ -48,7 +48,6 @@ class SubmenuService
         //        }
 
         // Each entity can have abilities
-        // @phpstan-ignore-next-line
         if ($this->campaign->enabled('abilities') && !$this->entity->isAbility()) {
             $this->items['third']['abilities'] = [
                 'name' => Module::plural(config('entities.ids.ability'), 'crud.tabs.abilities'),

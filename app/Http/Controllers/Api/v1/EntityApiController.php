@@ -76,6 +76,7 @@ class EntityApiController extends ApiController
             $class = $entityTypes[$entity['module']]->getClass();
             $this->authorize('create', $class);
 
+            // @phpstan-ignore-next-line
             $model = $this->bulkEntityCreatorService->class($class)->saveEntity($entity);
 
             array_push($models, $model->entity);

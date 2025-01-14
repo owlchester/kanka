@@ -72,8 +72,7 @@ class EditController extends Controller
                 $request->merge($sanitizer->request($request)->sanitize());
             }
 
-            if (!$entity->entityType->isSpecial()) {
-                /** @var MiscModel $model */
+            if ($entity->hasChild()) {
                 $data = $this->prepareData($request, $entity->child);
                 $entity->child->update($data);
 
@@ -138,7 +137,7 @@ class EditController extends Controller
                 return response()->redirectTo($route);
             }
             return response()->redirectTo($route);
-        } catch (LogicException $exception) {
+        } catch (\LogicException $exception) {
             $error =  str_replace(' ', '_', mb_strtolower(mb_rtrim($exception->getMessage(), '.')));
             return redirect()->back()->withInput()->with('error', __('crud.errors.' . $error));
         }

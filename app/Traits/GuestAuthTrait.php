@@ -24,8 +24,8 @@ trait GuestAuthTrait
         if (empty($entity)) {
             abort(403);
         }
-        if (!$entity->entityType->isSpecial() && !$entity->child) {
-            abort(404);
+        if (!$entity->entityType->isSpecial() && $entity->isMissingChild()) {
+            abort(403);
         }
         if (auth()->check()) {
             $this->authorize('view', $entity);
@@ -66,18 +66,18 @@ trait GuestAuthTrait
      * Secondary Authentication for Guest users
      * @return void
      */
-    protected function authorizeEntityForGuest(int $action, ?MiscModel $model = null)
+    protected function authorizeEntityForGuest(int $action, ?Entity $entity)
     {
         // If the misc model is null ($entity->child), the user has no valid access
-        if ($model === null) {
+        if ($entity === null) {
             abort(403);
         }
 
         $campaign = CampaignLocalization::getCampaign();
-        $permission = EntityPermission::hasPermission($model->entityTypeId(), $action, null, $model, $campaign);
+        $permission = EntityPermission::hasPermission($entity->entityType->id, $action, null, $entity, $campaign);
 
         // @phpstan-ignore-next-line
-        if ($campaign->id != $model->campaign_id || !$permission) {
+        if ($campaign->id != $entity->campaign_id || !$permission) {
             // Raise an error
             abort(403);
         }
