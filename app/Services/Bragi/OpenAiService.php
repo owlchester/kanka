@@ -115,7 +115,7 @@ class OpenAiService
         $return = '';
         $texts = explode("\n", $this->output["choices"][0]["message"]["content"]);
         foreach ($texts as $text) {
-            $striped = mb_trim(htmlentities($text) ?? '');
+            $striped = mb_trim(htmlentities($text));
             if (empty($striped) || $striped == '.') {
                 continue;
             }

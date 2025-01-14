@@ -12,6 +12,7 @@ use App\Models\OrganisationMember;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Exception;
 
@@ -22,7 +23,7 @@ class TransformService
     use EntityTypeAware;
 
     protected MiscModel $child;
-    protected MiscModel|Model|Entity $new;
+    protected MiscModel|Entity $new;
     protected array $fillable;
 
     public function child(MiscModel $child): self
@@ -52,11 +53,7 @@ class TransformService
             $this->child = $this->entity->child;
         }
 
-        if ($this->entityType->isSpecial()) {
-            $this->new = new Entity();
-        } else {
-            $this->new = $this->entityType->getClass();
-        }
+        $this->new = $this->entityType->getClass();
 
         $this
             ->attributes()
