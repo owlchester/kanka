@@ -49,22 +49,21 @@
             <div class="grid grid-cols-2 sm:grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
 
                 @foreach ($campaign->defaultImages() as $image)
+                    @if (!\Illuminate\Support\Arr::has($entityTypes, $image['type']))
+                        @continue
+                    @endif
                     <div class="rounded overflow-hidden border flex gap-2 items-center bg-box">
                         <div class="flex-initial w-24 h-24 cover-background" style="background-image: url('{{ Img::crop(96, 96)->url($image['path']) }}')">
                         </div>
                         <div class="grow">
-                            @if (\Illuminate\Support\Arr::has($entityTypes, $image['type']))
-                                {!! $entityTypes[$image['type']]->plural() !!}
-                            @else
-                                Unknown module
-                            @endif
+                            {!! $entityTypes[$image['type']]->plural() !!}
                         </div>
                         @can('recover', $campaign)
                         <div class="mr-2">
                         <x-button.delete-confirm size="sm" target="#delete-thumb-{{ $image['uuid'] }}" />
                         </div>
                         <x-form method="DELETE" :action="['campaign.default-images.delete', $campaign]" class="hidden" id="delete-thumb-{{ $image['uuid'] }}" >
-                            <input type="hidden" name="entity_type" value="{{ $image['type'] }}" />
+                            <input type="hidden" name="entity_type" value="{{ $entityTypes[$image['type']]->id }}" />
                         </x-form>
                         @endcan
                     </div>
