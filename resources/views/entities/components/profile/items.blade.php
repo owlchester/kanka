@@ -23,10 +23,10 @@ $child = $entity->child;
         </div>
     @endif
 
-    @if ($model->weight)
+    @if ($child->weight)
         <div class="element profile-weight">
             <div class="title text-uppercase text-xs">{{ __('items.fields.weight') }}</div>
-            {!! $model->weight !!}
+            {!! $child->weight !!}
         </div>
     @endif
 

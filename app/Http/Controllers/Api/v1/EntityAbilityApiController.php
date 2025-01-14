@@ -19,7 +19,7 @@ class EntityAbilityApiController extends ApiController
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         return Resource::collection($entity->abilities()->paginate());
     }
 
@@ -29,7 +29,7 @@ class EntityAbilityApiController extends ApiController
     public function show(Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         return new Resource($entityAbility);
     }
 

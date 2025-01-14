@@ -50,7 +50,7 @@ class EntityApiController extends ApiController
             DB::enableQueryLog();
         }
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         $resource = new Resource($entity);
         return $resource->withMisc();
     }

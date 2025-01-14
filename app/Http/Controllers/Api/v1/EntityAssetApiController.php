@@ -18,7 +18,7 @@ class EntityAssetApiController extends ApiController
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         return Resource::collection($entity->assets()->with(['entity', 'image'])->paginate());
     }
 
@@ -28,7 +28,7 @@ class EntityAssetApiController extends ApiController
     public function show(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         return new Resource($entityAsset);
     }
 

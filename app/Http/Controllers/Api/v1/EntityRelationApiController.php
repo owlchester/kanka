@@ -26,7 +26,7 @@ class EntityRelationApiController extends ApiController
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         return Resource::collection($entity->relationships()->has('target')->paginate());
     }
 
@@ -36,7 +36,7 @@ class EntityRelationApiController extends ApiController
     public function show(Campaign $campaign, Entity $entity, Relation $relation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         return new Resource($relation);
     }
 

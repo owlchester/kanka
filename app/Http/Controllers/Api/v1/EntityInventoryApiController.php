@@ -17,7 +17,7 @@ class EntityInventoryApiController extends ApiController
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         return Resource::collection($entity->inventories()->paginate());
     }
 
@@ -27,7 +27,7 @@ class EntityInventoryApiController extends ApiController
     public function show(Campaign $campaign, Entity $entity, Inventory $inventory)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         return new Resource($inventory);
     }
 
