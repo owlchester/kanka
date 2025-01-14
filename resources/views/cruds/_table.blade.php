@@ -8,7 +8,7 @@
 </div>
 
 @includeWhen($models->hasPages() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'index'])
-@includeWhen(auth()->check() && $filteredCount > 0 && isset($entityType), 'cruds.datagrids.bulks.actions')
+@includeWhen(auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')
 
 @if ($unfilteredCount != $filteredCount)
     <x-helper>

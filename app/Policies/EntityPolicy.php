@@ -67,7 +67,7 @@ class EntityPolicy
         return $this->update($user, $entity);
     }
 
-    public function relation(User $user, Entity $entity, string $subAction = 'browse'): bool
+    public function relation(User $user, Entity $entity): bool
     {
         return $this->update($user, $entity);
     }

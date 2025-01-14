@@ -11,6 +11,7 @@
         __('crud.edit'),
     ]),
     'mainTitle' => false,
+    'entity' => null,
     'centered' => true,
 ])
 

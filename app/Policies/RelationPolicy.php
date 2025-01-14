@@ -59,7 +59,7 @@ class RelationPolicy
             $campaign = CampaignLocalization::getCampaign();
             return $user->can('relations', $campaign);
         }
-        if (empty($relation->owner) || empty($relation->owner->isMissingChild())) {
+        if (empty($relation->owner) || $relation->owner->isMissingChild()) {
             return false;
         }
         return $user->can('relation', $relation->owner);

@@ -10,6 +10,7 @@
     ],
     'mainTitle' => false,
     'centered' => true,
+    'entity' => null,
 ])
 
 @section('content')
