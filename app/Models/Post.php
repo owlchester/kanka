@@ -63,8 +63,8 @@ class Post extends Model
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
-    use Templatable;
     use Taggable;
+    use Templatable;
 
     /** @var Collection List of tags attached to the entity */
     protected Collection $tagsWithEntity;
@@ -183,9 +183,8 @@ class Post extends Model
     public function export(): array
     {
         $post = $this->toArray();
-        if (array_key_exists('post_tags', $post)) { 
-            foreach ($post['post_tags'] as $postTag)
-            {
+        if (array_key_exists('post_tags', $post)) {
+            foreach ($post['post_tags'] as $postTag) {
                 $post['postTags'][] = ['tag_id' => $postTag['tag_id']];
             }
             unset($post['post_tags']);
