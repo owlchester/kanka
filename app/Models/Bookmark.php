@@ -372,6 +372,9 @@ class Bookmark extends Model
         } elseif ($this->isRandom()) {
             return 'fa-solid fa-question';
         }
+        if (!empty($this->entityType->icon)) {
+            return $this->entityType->icon;
+        }
         return 'fa-solid fa-th-list';
     }
 

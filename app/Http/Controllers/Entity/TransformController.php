@@ -7,24 +7,23 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TransformEntityRequest;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\EntityType;
 use App\Services\Entity\TransformService;
 use App\Services\Entity\TypeService;
 use App\Services\EntityService;
+use App\Services\EntityTypeService;
 use App\Traits\GuestAuthTrait;
 
 class TransformController extends Controller
 {
     use GuestAuthTrait;
 
-    protected EntityService $service;
-    protected TransformService $transformService;
-    protected TypeService $typeService;
-
-    public function __construct(EntityService $service, TransformService $transformService, TypeService $typeService)
+    public function __construct(
+        protected EntityService $service,
+        protected EntityTypeService $entityTypeService,
+        protected TransformService $transformService,
+        protected TypeService $typeService)
     {
-        $this->service = $service;
-        $this->transformService = $transformService;
-        $this->typeService = $typeService;
     }
 
     public function index(Campaign $campaign, Entity $entity)
@@ -32,12 +31,11 @@ class TransformController extends Controller
         // Policies will always fail if they can't resolve the user.
         $this->authorize('move', $entity);
 
-        $entities = $this->typeService
+        $entities = $this->entityTypeService
             ->campaign($campaign)
-            ->exclude([$entity->entityType->code, 'bookmark', 'relation'])
-            ->add(['' => __('entities/transform.fields.select_one')])
-            ->get();
-
+            ->exclude([$entity->entityType->id, config('entities.ids.bookmark')])
+            ->prepend(['' => __('entities/transform.fields.select_one')])
+            ->toSelect();
 
         return view('entities.pages.transform.index', compact(
             'campaign',
@@ -55,9 +53,12 @@ class TransformController extends Controller
         }
 
         try {
+            $entityType = EntityType::inCampaign($campaign)->find($request->get('target'));
             $this->transformService
+                ->campaign($campaign)
                 ->entity($entity)
-                ->transform($request->get('target'));
+                ->entityType($entityType)
+                ->transform();
 
             return redirect()
                 ->to($entity->url())

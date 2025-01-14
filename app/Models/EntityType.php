@@ -137,12 +137,12 @@ class EntityType extends Model
 
     public function isSpecial(): bool
     {
-        return $this->is_special;
+        return (bool) $this->is_special;
     }
 
     public function isEnabled(): bool
     {
-        return $this->is_enabled;
+        return (bool) $this->is_enabled;
     }
 
     public function createRoute(Campaign $campaign, array $params = []): string

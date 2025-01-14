@@ -6,20 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class TransformEntityRequest extends FormRequest
 {
-    protected string $entities;
-
-    public function __construct()
-    {
-        parent::__construct();
-
-        $entities = [];
-        foreach (config('entities.classes') as $entity => $class) {
-            $entities[] = $entity;
-        }
-
-        $this->entities = implode(',', $entities);
-    }
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -38,7 +24,7 @@ class TransformEntityRequest extends FormRequest
     public function rules()
     {
         return [
-            'target' => 'required|in:' . $this->entities,
+            'target' => 'required|exists:entity_types,id',
         ];
     }
 }

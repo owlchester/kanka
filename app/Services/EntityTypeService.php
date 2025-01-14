@@ -14,7 +14,7 @@ class EntityTypeService
     use EntityTypeAware;
 
     protected array $exclude = [];
-    protected array $append;
+    protected array $prepend;
     protected bool $withDisabled = false;
 
     public function exclude(mixed $ids): self
@@ -29,11 +29,12 @@ class EntityTypeService
         return $this;
     }
 
-    public function append(array $append): self
+    public function prepend(array $prepend): self
     {
-        $this->append = $append;
+        $this->prepend = $prepend;
         return $this;
     }
+
 
     public function ordered(): array
     {

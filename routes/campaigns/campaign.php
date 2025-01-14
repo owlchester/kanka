@@ -149,7 +149,7 @@ Route::get('/w/{campaign}/entity_types/create', 'Campaign\EntityTypeController@c
 Route::post('/w/{campaign}/entity_types/create', 'Campaign\EntityTypeController@store')->name('campaign.entity_types.store');
 
 Route::get('/w/{campaign}/entity_types/{entity_type}/edit', 'Campaign\EntityTypeController@edit')->name('campaign.entity_types.edit');
-Route::patch('/w/{campaign}/entity_types/{entity_type}/edit', 'Campaign\EntityTypeController@update')->name('campaign.entity_types.edit');
+Route::patch('/w/{campaign}/entity_types/{entity_type}/update', 'Campaign\EntityTypeController@update')->name('campaign.entity_types.update');
 Route::post('/w/{campaign}/entity_types/{entity_type}/toggle', 'Campaign\EntityTypeController@toggle')->name('campaign.entity_types.toggle');
 
 Route::get('/w/{campaign}/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-theme');

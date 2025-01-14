@@ -41,7 +41,7 @@ class MentionController extends Controller
                     $sub->select('id', 'type_id', 'entity_id', 'name', 'is_private');
                 },
                 'entity.entityType' => function ($sub) {
-                    $sub->select('id', 'code');
+                    $sub->select('id', 'code', 'singular', 'plural');
                 },
                 'questElement' => function ($sub) {
                     $sub->select('id', 'name', 'quest_id', 'entity_id', 'visibility_id');

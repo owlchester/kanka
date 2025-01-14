@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
+use App\Models\EntityType;
 use App\Models\Relation;
 use App\Observers\Concerns\SaveLocations;
 use App\Services\Entity\MoveService;
@@ -12,6 +13,7 @@ use App\Services\Entity\TagService;
 use App\Services\Entity\TransformService;
 use App\Services\Permissions\BulkPermissionService;
 use App\Traits\CampaignAware;
+use App\Traits\EntityTypeAware;
 use Illuminate\Support\Arr;
 use App\Models\MiscModel;
 use Exception;
@@ -21,6 +23,7 @@ use Stevebauman\Purify\Facades\Purify;
 class BulkService
 {
     use CampaignAware;
+    use EntityTypeAware;
     use SaveLocations;
 
     protected EntityService $entityService;
@@ -176,27 +179,17 @@ class BulkService
     /**
      * @throws TranslatableException
      */
-    public function transform(string $type = null): int
+    public function transform(EntityType $entityType): int
     {
-        if (empty($type)) {
-            throw new TranslatableException('entities/transform.bulk.errors.unknown_type');
-        }
-
-        // Validate the type
-        $validTypes = config('entities.classes');
-        unset($validTypes['bookmark'], $validTypes['relation']);
-
-        if (!isset($validTypes[$type])) {
-            throw new TranslatableException('entities/transform.bulk.errors.unknown_type');
-        }
-
         $model = $this->getEntity();
         foreach ($this->ids as $id) {
             $entity = $model->findOrFail($id);
             if (auth()->user()->can('update', $entity)) {
                 $this->transformService
                     ->child($entity)
-                    ->transform($type);
+                    ->entityType($entityType)
+                    ->campaign($this->campaign)
+                    ->transform();
                 $this->count++;
             }
         }
@@ -415,21 +408,12 @@ class BulkService
      */
     protected function getEntity()
     {
+        if (isset($this->entityType)) {
+            return $this->entityType->getClass();
+        }
         if ($this->entityName === 'relations') {
             return new Relation();
         }
-        $classes = config('entities.classes');
-        if (!isset($classes[$this->entityName])) {
-            throw new Exception("Unknown entity name {$this->entityName}.");
-        }
-
-        /** @var ?MiscModel $model */
-        $model = new $classes[$this->entityName]();
-        if (empty($model)) {
-            throw new Exception("Couldn't create a class from {$this->entityName}.");
-        }
-
-        return $model;
     }
 
     /**

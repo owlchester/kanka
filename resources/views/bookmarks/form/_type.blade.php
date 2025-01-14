@@ -2,7 +2,7 @@
 @inject('entityTypeService', 'App\Services\EntityTypeService')
 @php
 /** @var \App\Services\EntityTypeService $entityTypeService */
-$entityTypes = $entityTypeService->campaign($campaign)->exclude([config('entities.ids.bookmark')])->append(['' => ''])->toSelect();
+$entityTypes = $entityTypeService->campaign($campaign)->exclude([config('entities.ids.bookmark')])->prepend(['' => ''])->toSelect();
 @endphp
 <x-grid type="1/1">
 
