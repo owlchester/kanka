@@ -43,7 +43,10 @@ return [
     'transfer'      => [
         'description'   => 'Move this tag\'s entities to another tag.',
         'fail'          => 'Failed to transfer entities from :tag to :newTag',
+        'fail_post'     => 'Failed to transfer posts from :tag to :newTag',
+        'post_description'   => 'Move this tag\'s posts to another tag.',
         'success'       => 'Successfully transferred entities from :tag to :newTag',
+        'success_post'  => 'Successfully transferred posts from :tag to :newTag',
         'title'         => 'Transfer :name',
         'transfer'      => 'Transfer',
     ],

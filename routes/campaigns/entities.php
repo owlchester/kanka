@@ -91,7 +91,9 @@ Route::get('/w/{campaign}/timelines/{timeline}/timelines', 'Timelines\TimelineCo
 // Tag menus
 Route::get('/w/{campaign}/tags/{tag}/tags', 'Tags\TagController@index')->name('tags.tags');
 Route::get('/w/{campaign}/tags/{tag}/transfer', 'Tags\TransferController@index')->name('tags.transfer');
+Route::get('/w/{campaign}/tags/{tag}/transfer-posts', 'Tags\TransferController@postIndex')->name('tags.transfer.posts');
 Route::post('/w/{campaign}/tags/{tag}/transfer', 'Tags\TransferController@process')->name('tags.transfer');
+Route::post('/w/{campaign}/tags/{tag}/transfer-posts', 'Tags\TransferController@processPosts')->name('tags.transfer.posts');
 
 // Tags Quick Add
 Route::get('/w/{campaign}/tags/{tag}/children', 'Tags\ChildController@index')->name('tags.children');
