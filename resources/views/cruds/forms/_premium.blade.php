@@ -1,4 +1,4 @@
-<?php /** @var \App\Models\MiscModel $model */?>
+<?php /** @var \App\Models\Entity $entity */?>
 
 @php
     $translations = json_encode([
@@ -28,7 +28,7 @@
                 {{ __('fields.tooltip.description') }}
             </p>
 
-            <textarea name="entity_tooltip" class="" id="tooltip" rows="3" placeholder="{{ __('fields.tooltip.description') }}">{!! FormCopy::entity()->field('tooltip')->string() ?: old('entity_tooltip', $model->entity->tooltip ?? null) !!}</textarea>
+            <textarea name="entity_tooltip" class="" id="tooltip" rows="3" placeholder="{{ __('fields.tooltip.description') }}">{!! FormCopy::entity()->field('tooltip')->string() ?: old('entity_tooltip', $entity->tooltip ?? null) !!}</textarea>
 
             <p class="text-neutral-content">
                 @php
@@ -56,16 +56,16 @@
                 $headerUrlPreset = Storage::url($source->entity->header_image);
             } elseif (!empty($source) && $source->entity && $source->entity->header) {
                 $headerUrlPreset = $source->entity->header->getUrl(192, 144);
-            } elseif (isset($model) && $model->entity && $model->entity->header) {
-                $headerUrlPreset = $model->entity->header->getUrl(192, 144);
+            } elseif (isset($entity) && $entity->header) {
+                $headerUrlPreset = $entity->header->getUrl(192, 144);
             }
             @endphp
             <p class="text-neutral-content">{{ __('fields.header-image.description') }}</p>
 
-            @if (isset($model) && $model->entity->header_image)
+            @if (isset($entity) && $entity->header_image)
                 <input type="hidden" name="remove-header_image" />
                 <div class="flex flex-row gap-2">
-                    <div class="flex flex-col gap-2 @if ((!empty($model->entity) && !empty($model->entity->header_image))) col-span-3 @else col-span-4 @endif">
+                    <div class="flex flex-col gap-2 @if (!empty($headerUrlPreset)) col-span-3 @else col-span-4 @endif">
                         <x-forms.field field="header-file">
                             <input type="file" name="header_image" class="image w-full" id="header_image_{{ rand() }}" accept=".jpg, .jpeg, .png, .gif, .webp" />
                         </x-forms.field>
@@ -79,12 +79,12 @@
                         </x-forms.field>
                     </div>
 
-                    @if (!empty($model->entity) && !empty($model->entity->header_image))
+                    @if (!isset($entity) && !empty($entity->entity->header_image))
 
                         <div class="preview w-32">
                         @include('cruds.fields._image_preview', [
-                            'image' => $model->entity->thumbnail(120),
-                            'title' => $model->name,
+                            'image' => $entity->thumbnail(120),
+                            'title' => $entity->name,
                             'target' => 'remove-header_image',
                         ])
                         </div>
@@ -97,7 +97,7 @@
                         file="{{ route('gallery.upload.file', [$campaign]) }}"
                         url="{{ route('gallery.upload.url', [$campaign]) }}"
                         accepts=".jpg, .jpeg, .png, .gif, .webp"
-                        uuid="{{ $source->entity->header_uuid ?? $model->entity->header_uuid ?? null }}"
+                        uuid="{{ $source->entity->header_uuid ?? $entity->header_uuid ?? null }}"
                         field="entity_header_uuid"
                         thumbnail="{{ $headerUrlPreset }}"
                         browse="{{ route('gallery.browse', [$campaign]) }}"

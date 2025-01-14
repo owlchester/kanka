@@ -213,7 +213,7 @@ class FormCopyService
             return null;
         }
 
-        if ($this->entity === true) {
+        if ($this->entity) {
             $this->entity = false;
             if (!$this->source instanceof Entity) {
                 // @phpstan-ignore-next-line
