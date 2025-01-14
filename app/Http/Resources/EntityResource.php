@@ -48,7 +48,11 @@ class EntityResource extends JsonResource
         /** @var \App\Models\Entity $entity */
         $entity = $this->resource;
         $url = $entity->url();
-        $apiViewUrl = 'campaigns.' . $entity->pluralType() . '.show';
+        if ($entity->entityType->isSpecial()) {
+            $apiViewUrl = 'campaigns.entities.show';
+        } else {
+            $apiViewUrl = 'campaigns.' . $entity->entityType->pluralCode() . '.show';
+        }
 
         $data = [
             'id' => $entity->id,
@@ -75,6 +79,12 @@ class EntityResource extends JsonResource
                 'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$entity->campaign_id, $entity->entity_id]) : null,
             ]
         ];
+
+        if ($entity->entityType->isSpecial()) {
+            $data['type'] = $entity->type;
+            $data['entry'] = $entity->entry;
+            $data['entry_parsed'] = Mentions::mapEntity($entity, 'entry');
+        }
 
         if (request()->get('related', false)) {
             $data['attributes'] = AttributeResource::collection($entity->attributes);

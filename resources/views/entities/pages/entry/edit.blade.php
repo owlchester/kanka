@@ -1,6 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities/story.update.title', ['entity' => $entity->name]),
-    'description' => '',
     'breadcrumbs' => [
         Breadcrumb::entity($entity)->list(),
         Breadcrumb::show(),
@@ -8,6 +7,7 @@
         __('crud.edit')
     ],
     'mainTitle' => false,
+    'entity' => null
 ])
 
 

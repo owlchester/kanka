@@ -35,7 +35,7 @@
 {{ $entity->child->title }}
 @endif
 
-@if (!empty($entity->child->type))
+@if ($entity->hasChild() && !empty($entity->child->type))
 {{ $entity->child->type }}
 @endif
 
@@ -54,7 +54,7 @@
 @foreach ($entity->pinnedRelations as $relation)
 | {{ $relation->relation }} | {{ $relation->target->name }} |
 @endforeach
-@if(method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty())
+@if($entity->hasChild() && method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty())
 @foreach ($entity->child->pinnedMembers as $member)
 @if ($member instanceof \App\Models\Character)
 | {{ $member->organisation->name }} | {{ $member->role }} |
@@ -68,10 +68,14 @@
 ## {{ __('crud.tabs.profile') }}
 | Name | Content |
 |:-|:-|
-@includeIf('entities.pages.print.profile.' . $entity->entityType->pluralCode(), ['model' => $entity->child])
+@if ($entity->hasChild())
+    @includeIf('entities.pages.print.profile.' . $entity->entityType->pluralCode(), ['model' => $entity->child])
 
-@if($entity->child->hasEntry())
-{!! $converter->convert((string) $entity->child->entry) !!}
+    @if($entity->child->hasEntry())
+    {!! $converter->convert((string) $entity->child->entry) !!}
+    @endif
+@elseif($entity->hasEntry())
+    {!! $converter->convert((string) $entity->entry) !!}
 @endif
 
 @foreach ($entity->posts as $post)

@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Http\Resources\EntityResource;
 use App\Models\Entity;
 use Illuminate\Support\Str;
 
@@ -30,6 +31,8 @@ class ExportService
         if (class_exists($className)) {
             $resource = new $className($this->entity->child);
             return $resource->withRelated();
+        } elseif ($this->entity->entityType->isSpecial()) {
+            return new EntityResource($this->entity);
         } else {
             return ['error' => 'unknown resource ' . $className];
         }
