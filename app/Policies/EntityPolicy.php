@@ -99,6 +99,6 @@ class EntityPolicy
         return $perms->where('user_id', $user->id)->count() == 1
             ||
             $perms->whereIn('role_id', $roleIds)->count() == 1
-            ;
+        ;
     }
 }

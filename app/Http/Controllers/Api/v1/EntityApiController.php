@@ -7,7 +7,6 @@ use App\Models\Entity;
 use App\Models\EntityType;
 use App\Http\Requests\API\StoreEntities;
 use App\Http\Resources\EntityResource as Resource;
-use App\Models\MiscModel;
 use App\Services\Api\BulkEntityCreatorService;
 use Illuminate\Support\Facades\DB;
 

@@ -8,7 +8,6 @@ use App\Http\Requests\Campaigns\DestroyDefaultThumbnail;
 use App\Http\Resources\EntityDefaultThumbnailResource as Resource;
 use App\Models\EntityType;
 use App\Services\Campaign\DefaultImageService;
-use Illuminate\Support\Str;
 
 class DefaultThumbnailApiController extends ApiController
 {
