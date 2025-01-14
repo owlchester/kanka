@@ -3,4 +3,4 @@
    data-id="{{ $entity->id }}"
    data-url="{{ route('entities.tooltip', [$campaign, $entity->id]) }}"
 @if ($bottom) data-placement="bottom" @endif
-   href="{{ $entity->url() }}">{!! $name() !!}</a>
+   href="{{ $entity->url('show') }}{{ $post() }}">{!! $name() !!}</a>

@@ -12,6 +12,8 @@
         <div class="entity-main-block grow flex flex-col gap-5 min-w-0">
             @include('entities.components.posts', ['withEntry' => true])
             @include('tags.panels.children', ['onload' => true])
+            @include('tags.panels.post_children', ['onload' => true])
+
         </div>
 
         @include('entities.components.pins')

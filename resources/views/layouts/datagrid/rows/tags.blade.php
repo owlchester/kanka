@@ -6,7 +6,7 @@
         @if (!$tag->entity) @continue @endif
         <x-tags.bubble :tag="$tag" />
     @endforeach
-@elseif ($model instanceof \App\Models\Entity)
+@elseif ($model instanceof \App\Models\Entity || $model instanceof \App\Models\Post)
     @foreach ($model->tags as $tag)
         @if (!$tag->entity) @continue @endif
         <x-tags.bubble :tag="$tag" />

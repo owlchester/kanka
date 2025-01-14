@@ -64,7 +64,7 @@ class CopyService
         if (!$this->force && !$this->check('copy_posts')) {
             return $this;
         }
-        foreach ($this->source->posts as $post) {
+        foreach ($this->source->posts()->with('postTags')->get() as $post) {
             $post->copyTo($this->entity, $this->isSameCampaign());
         }
         return $this;

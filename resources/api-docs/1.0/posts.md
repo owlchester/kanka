@@ -41,6 +41,7 @@ You can get a list of all the posts of an entity by using the following endpoint
             "updated_by": null,
             "permissions": [],
             "layout_id": 3,
+            "tags": [],
         }
     ]
 }
@@ -74,6 +75,7 @@ To get the details of a single post, use the following endpoint.
         "updated_by": null,
         "permissions": [],
         "layout_id": 3,
+        "tags": [],
     }
 }
 ```
@@ -99,6 +101,9 @@ To create a post, use the following endpoint.
 | `position` | `int|null` (optional) | Position for ordering pinned posts |
 | `settings` | `object` (optional) | `collapsed:1` if the pinned post should be collapsed on page load |
 | `layout_id` | `integer` (optional) | The type of [Post Layout](/api-docs/{{version}}/post-layout) the post will render (Only for Premium campaigns) |
+| `tags` | `array` | Array of tag ids |
+| `save_tags` | `boolean` | Required to save tags |
+
 
 ### Results
 

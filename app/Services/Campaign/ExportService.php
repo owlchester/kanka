@@ -223,7 +223,7 @@ class ExportService
         $entityWith = [
             'entity',
             'entity.entityTags', 'entity.relationships',
-            'entity.posts', 'entity.abilities', 'entity.abilities.ability',
+            'entity.posts', 'entity.posts.postTags', 'entity.abilities', 'entity.abilities.ability',
             'entity.events',
             'entity.image',
             'entity.header',

@@ -62,7 +62,7 @@ class Tags extends Component
                     $this->tags[$tag->id] = $tag;
                 }
             }
-        } elseif (!empty($this->model) && ($this->model instanceof \App\Models\CampaignDashboardWidget || $this->model instanceof \App\Models\Bookmark || $this->model instanceof \App\Models\Webhook)) {
+        } elseif (!empty($this->model) && ($this->model instanceof \App\Models\CampaignDashboardWidget || $this->model instanceof \App\Models\Post || $this->model instanceof \App\Models\Bookmark || $this->model instanceof \App\Models\Webhook)) {
             foreach ($this->model->tags()->get() as $tag) {
                 $this->tags[$tag->id] = $tag;
             }
