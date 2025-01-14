@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityType;
+use App\Models\Entity;
+use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\EntityTypeService;
 use Exception;
+use Illuminate\Http\Request;
 
 class EntityTypeController extends Controller
 {
@@ -21,7 +24,7 @@ class EntityTypeController extends Controller
         $this->authorize('setting', $campaign);
 
         if (!$campaign->premium()) {
-            return view('campaigns.modules.not-premium')
+            return view('campaigns.entity-types.not-premium')
                 ->with('campaign', $campaign);
         }
 
@@ -35,7 +38,7 @@ class EntityTypeController extends Controller
     {
         $this->authorize('setting', $campaign);
 
-        if (!$campaign->boosted()) {
+        if (!$campaign->premium()) {
             return view('campaign.modules')
                 ->with('errors', __('This feature is only available on premium campaigns'));
         }
@@ -57,10 +60,9 @@ class EntityTypeController extends Controller
         $this->authorize('update', [$entityType, $campaign]);
 
         if (!$campaign->premium()) {
-            return view('campaigns.modules.not-premium')
+            return view('campaigns.entity-types.not-premium')
                 ->with('campaign', $campaign);
         }
-
 
         return view('campaigns.entity-types.edit')
             ->with('campaign', $campaign)
@@ -114,5 +116,20 @@ class EntityTypeController extends Controller
                 'success' => false
             ]);
         }
+    }
+
+    public function delete(Request $request, Campaign $campaign, EntityType $entityType)
+    {
+        $this->authorize('setting', $campaign);
+        $this->authorize('delete', [$entityType, $campaign]);
+
+        // Hard delete everything, there will be no traces left
+        Bookmark::where('entity_type_id', $entityType->id)->delete();
+        Entity::inTypes([$entityType->id])->delete();
+        $entityType->delete();
+
+
+        return redirect()->route('campaign.modules', $campaign)
+            ->with('success', __('campaigns/modules.delete.success', ['name' => $entityType->name()]));
     }
 }

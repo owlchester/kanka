@@ -151,6 +151,7 @@ Route::post('/w/{campaign}/entity_types/create', 'Campaign\EntityTypeController@
 Route::get('/w/{campaign}/entity_types/{entity_type}/edit', 'Campaign\EntityTypeController@edit')->name('campaign.entity_types.edit');
 Route::patch('/w/{campaign}/entity_types/{entity_type}/update', 'Campaign\EntityTypeController@update')->name('campaign.entity_types.update');
 Route::post('/w/{campaign}/entity_types/{entity_type}/toggle', 'Campaign\EntityTypeController@toggle')->name('campaign.entity_types.toggle');
+Route::delete('/w/{campaign}/entity_types/{entity_type}/delete', 'Campaign\EntityTypeController@delete')->name('campaign.entity_types.destroy');
 
 Route::get('/w/{campaign}/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-theme');
 Route::post('/w/{campaign}/campaign-theme', 'Campaign\StyleController@themeSave')->name('campaign-theme.save');

@@ -25,6 +25,11 @@ class EntityTypePolicy
         return $entityType->campaign_id === $campaign->id;
     }
 
+    public function delete(User $user, EntityType $entityType, Campaign $campaign)
+    {
+        return $entityType->campaign_id === $campaign->id && $entityType->isSpecial();
+    }
+
     public function permissions(User $user, EntityType $entityType): bool
     {
         return EntityPermission::hasPermission($entityType->id, CampaignPermission::ACTION_PERMS, $user, null);
