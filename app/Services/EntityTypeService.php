@@ -14,12 +14,19 @@ class EntityTypeService
     use EntityTypeAware;
 
     protected array $exclude = [];
+    protected array $skip = [];
     protected array $prepend;
     protected bool $withDisabled = false;
 
     public function exclude(mixed $ids): self
     {
         $this->exclude = is_array($ids) ? $ids : [$ids];
+        return $this;
+    }
+
+    public function skip(mixed $skip): self
+    {
+        $this->skip = is_array($skip) ? $skip : [$skip];
         return $this;
     }
 
@@ -45,6 +52,9 @@ class EntityTypeService
             $search->enabled();
         }
         foreach ($search->get() as $entityType) {
+            if (in_array($entityType->pluralCode(), $this->skip)) {
+                continue;
+            }
             $types[$entityType->name()] = $entityType;
         }
 

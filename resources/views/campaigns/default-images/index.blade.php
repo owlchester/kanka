@@ -53,7 +53,11 @@
                         <div class="flex-initial w-24 h-24 cover-background" style="background-image: url('{{ Img::crop(96, 96)->url($image['path']) }}')">
                         </div>
                         <div class="grow">
-                            {!! \App\Facades\Module::singular($image['type'], __('entities.' . $image['type'])) !!}
+                            @if (\Illuminate\Support\Arr::has($entityTypes, $image['type']))
+                                {!! $entityTypes[$image['type']]->plural() !!}
+                            @else
+                                Unknown module
+                            @endif
                         </div>
                         @can('recover', $campaign)
                         <div class="mr-2">
