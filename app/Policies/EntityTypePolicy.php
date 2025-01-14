@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\Facades\EntityPermission;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
-use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\User;
 

@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Facades\Limit;
-use App\Rules\Location;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 

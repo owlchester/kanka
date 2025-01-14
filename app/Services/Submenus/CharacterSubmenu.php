@@ -3,7 +3,6 @@
 namespace App\Services\Submenus;
 
 use App\Facades\Module;
-use App\Models\Character;
 
 class CharacterSubmenu extends BaseSubmenu implements EntitySubmenu
 {

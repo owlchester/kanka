@@ -6,8 +6,8 @@ Route::get('/w/{campaign}/entities/{entity}', [App\Http\Controllers\Entity\ShowC
 
 Route::get('/w/{campaign}/entities/{entity}-{slug}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show-slug');
 
-Route::get('/w/{campaign}/t/{entityType}', [\App\Http\Controllers\Entities\IndexController::class, 'index'])->name('entities.index');
-Route::get('/w/{campaign}/t/{entityType}/create', [\App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
+Route::get('/w/{campaign}/t/{entityType}', [App\Http\Controllers\Entities\IndexController::class, 'index'])->name('entities.index');
+Route::get('/w/{campaign}/t/{entityType}/create', [App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
 
 
 // New entity

@@ -37,15 +37,15 @@ class SubmenuService
 
 
         // Each entity can have relations
-//        if (!isset($this->model->hasRelations) || $this->model->hasRelations === true) {
-            $this->items['first']['relations'] = [
-                'name' => 'crud.tabs.connections',
-                'route' => 'entities.relations.index',
-                'count' => $this->entity->relationships()->has('target')->count(),
-                'entity' => true,
-                'icon' => 'fa-solid fa-users',
-            ];
-//        }
+        //        if (!isset($this->model->hasRelations) || $this->model->hasRelations === true) {
+        $this->items['first']['relations'] = [
+            'name' => 'crud.tabs.connections',
+            'route' => 'entities.relations.index',
+            'count' => $this->entity->relationships()->has('target')->count(),
+            'entity' => true,
+            'icon' => 'fa-solid fa-users',
+        ];
+        //        }
 
         // Each entity can have abilities
         // @phpstan-ignore-next-line

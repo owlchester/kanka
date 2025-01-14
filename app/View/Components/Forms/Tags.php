@@ -55,8 +55,7 @@ class Tags extends Component
                     $this->tags[$tag->id] = $tag;
                 }
             }
-        }
-        elseif (!empty($this->model) && !empty($this->model->entity)) {
+        } elseif (!empty($this->model) && !empty($this->model->entity)) {
             foreach ($this->model->entity->tags()->with('entity')->get() as $tag) {
                 if ($tag->entity) {
                     $this->tags[$tag->id] = $tag;

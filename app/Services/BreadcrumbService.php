@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Facades\Module;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
@@ -26,7 +25,7 @@ class BreadcrumbService
             (isset($this->entityType) && $this->entityType->isSpecial())
                 ||
                 (isset($this->entity) && $this->entity->entityType->isSpecial())
-            ) {
+        ) {
             $params['entityType'] = $this->entityType ?? $this->entity->entityType;
             return route('entities.index', $params);
         }
