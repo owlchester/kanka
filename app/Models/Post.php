@@ -10,6 +10,7 @@ use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Models\Concerns\Taggable;
 use App\Models\Concerns\Templatable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -44,6 +45,7 @@ use Laravel\Scout\Searchable;
  * @property EntityMention[]|Collection $mentions
  * @property PostPermission[]|Collection $permissions
  * @property ImageMention[]|Collection $imageMentions
+ * @property PostTag[] $postTags
  * @property Carbon $deleted_at
  *
  * @method static Builder|self pinned()
@@ -61,7 +63,11 @@ class Post extends Model
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
+    use Taggable;
     use Templatable;
+
+    /** @var Collection List of tags attached to the entity */
+    protected Collection $tagsWithEntity;
 
     protected $fillable = [
         'entity_id',
@@ -161,7 +167,29 @@ class Post extends Model
             $newPerm->post_id = $new->id;
             $newPerm->save();
         }
+        foreach ($this->postTags as $tag) {
+            $newTag = $tag->replicate(['post_id']);
+            $newTag->post_id = $new->id;
+            $newTag->save();
+        }
         return $new;
+    }
+
+    public function postTags(): HasMany
+    {
+        return $this->hasMany(PostTag::class, 'post_id', 'id');
+    }
+
+    public function export(): array
+    {
+        $post = $this->toArray();
+        if (array_key_exists('post_tags', $post)) {
+            foreach ($post['post_tags'] as $postTag) {
+                $post['postTags'][] = ['tag_id' => $postTag['tag_id']];
+            }
+            unset($post['post_tags']);
+        }
+        return $post;
     }
 
     /**
@@ -213,6 +241,23 @@ class Post extends Model
             ->leftJoin('entities', $this->getTable() . '.entity_id', '=', 'entities.id')
             ->has('entity')
             ->with('entity');
+    }
+
+    /**
+     * @return Collection|Tag[]
+     */
+    public function tagsWithEntity(bool $excludeHidden = false): Collection
+    {
+        if (!isset($this->tagsWithEntity)) {
+            $this->tagsWithEntity = $this->tags()
+                ->with('entity')
+                ->has('entity')
+                ->get();
+        }
+        if (!$excludeHidden) {
+            return $this->tagsWithEntity->where('is_hidden', '=', '0');
+        }
+        return $this->tagsWithEntity;
     }
 
     public function toSearchableArray()

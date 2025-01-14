@@ -47,6 +47,31 @@ class ChildController extends Controller
             ->subview('tags.children', $tag);
     }
 
+    public function postIndex(Campaign $campaign, Tag $tag)
+    {
+        $this->campaign($campaign)->authEntityView($tag->entity);
+
+        $options = ['campaign' => $campaign, 'tag' => $tag];
+
+        Datagrid::layout(\App\Renderers\Layouts\Tag\Post::class)
+            ->route('tags.children.posts', $options);
+
+        $this->rows = $tag
+            ->posts()
+            ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
+            ->with(['entity', 'entity.image', 'tags', 'tags.entity'])
+            ->paginate(config('limits.pagination'));
+
+        // Ajax Datagrid
+        if (request()->ajax()) {
+            return $this->campaign($campaign)->datagridAjax();
+        }
+
+        return $this
+            ->campaign($campaign)
+            ->subview('tags.children.posts', $tag);
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException

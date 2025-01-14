@@ -4,8 +4,10 @@
 * @var \App\Models\Entity $entity
 * @var \App\Models\Post $post
 */
+/** @var \App\Models\Tag[] $entityTags */
+$entityTags = $post->tagsWithEntity();
 ?>
-<div class="flex flex-col gap-2 post-block post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
+<div class="flex flex-col gap-2 post-block post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
     <div class="flex gap-2 items-center">
         <h3 class="grow" >
             {{ $post->name  }}
@@ -13,6 +15,17 @@
                 <sup class="text-xs">({{ $post->position }})</sup>
             @endif
         </h3>
+        @if($entityTags->count() > 0)
+            @foreach ($entityTags as $tag)
+                @if (!$tag->entity) @continue @endif
+                <a href="{{ route('tags.show', [$campaign, $tag]) }}" data-toggle="tooltip-ajax"
+                    data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity->id]) }}"
+                    data-tag-slug="{{ $tag->slug }}"
+                >
+                    @include ('tags._badge')
+                </a>
+            @endforeach
+        @endif
         <div class="post-buttons flex items-center gap-2 flex-wrap justify-end">
             @if (auth()->check())
                 @include('icons.visibility', ['icon' => $post->visibilityIcon('')])

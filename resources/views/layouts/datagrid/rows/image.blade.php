@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\MiscModel|\App\Models\Entity $model */?>
 @if ($model instanceof \App\Models\Entity)
     <x-entities.thumbnail :entity="$model" :title="$model->name"></x-entities.thumbnail>
-@elseif ($model instanceof \App\Models\MiscModel)
+@elseif ($model instanceof \App\Models\MiscModel || $model instanceof \App\Models\Post)
     <x-entities.thumbnail :entity="$model->entity" :title="$model->name"></x-entities.thumbnail>
 @elseif ($model instanceof \App\Models\MapLayer && $model->hasImage())
     <a class="entity-image cover-background"

@@ -21,6 +21,15 @@
             :entity="$model->{$with}->entity"
             :campaign="$campaign" />
     @endif
+@elseif($model instanceof \App\Models\Post)
+    @if ($model->entity->is_private)
+        <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')" tooltip />
+    @endif
+    <x-entity-link
+        :name="$model->name . ' (' . $model->entity->name . ')'"
+        :post="$model->id"
+        :entity="$model->entity"
+        :campaign="$campaign" />
 @elseif($model->entity)
     @if ($model->entity->is_private)
         <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')" tooltip />
