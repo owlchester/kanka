@@ -25,6 +25,7 @@ class QuestFilter extends DatagridFilter
                 'placeholder' =>  __('crud.placeholders.entity'),
                 'model' => Entity::class,
             ])
+            ->location()
             ->add([
                 'field' => 'quest_id',
                 'label' => __('crud.fields.parent'),

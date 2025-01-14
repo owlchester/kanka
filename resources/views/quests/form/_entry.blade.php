@@ -4,6 +4,7 @@
 
     @include('cruds.fields.quest', ['isParent' => true])
     @include('cruds.fields.instigator')
+    @include('cruds.fields.location')
 
     @include('cruds.fields.date')
     <x-forms.field field="completed" :label="__('quests.fields.is_completed')">

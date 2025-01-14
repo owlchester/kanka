@@ -115,6 +115,28 @@
 
         @endphp
         @include('locations.panels.events')
+    @elseif ($post->layout?->code == 'location_quests')
+        @php
+            $options = [$campaign, 'location' => $entity->child];
+
+            Datagrid::layout(\App\Renderers\Layouts\Location\Quest::class)
+                ->route('locations.quests', $options);
+
+            $filters = [];
+            if ($campaign->defaultDescendantsMode() === \App\Enums\Descendants::Direct) {
+                $filters['location_id'] = $entity->child->id;
+            }
+
+            $rows = $entity->child
+                ->allQuests()
+                ->filter($filters)
+                ->filteredQuests()
+                ->paginate();
+            $rows->withPath(route('locations.quests', $options));
+
+        @endphp
+        @include('locations.panels.quests')
+
     @elseif ($post->layout?->code == 'reminders')
         @php
         Datagrid::layout(\App\Renderers\Layouts\Entity\Reminder::class)

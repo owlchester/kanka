@@ -53,6 +53,7 @@ class Item extends MiscModel
         'entry',
         'price',
         'size',
+        'weight',
         'item_id',
         'character_id',
         'location_id',
@@ -78,6 +79,7 @@ class Item extends MiscModel
     protected array $sortableColumns = [
         'price',
         'size',
+        'weight',
         'location.name',
         'character.name',
     ];
@@ -86,6 +88,7 @@ class Item extends MiscModel
         'name',
         'type',
         'size',
+        'weight',
         'price',
     ];
 
@@ -120,6 +123,7 @@ class Item extends MiscModel
         'item_id',
         'price',
         'size',
+        'weight',
         'location_id',
         'character_id'
     ];
@@ -135,6 +139,9 @@ class Item extends MiscModel
         }
         if (!empty($this->size)) {
             $extra[] = __('items.fields.size') . ': ' . e($this->size);
+        }
+        if (!empty($this->weight)) {
+            $extra[] = __('items.fields.weight') . ': ' . e($this->weight);
         }
         if (empty($extra)) {
             return '';
@@ -193,7 +200,7 @@ class Item extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['character_id', 'location_id', 'price', 'size', 'item_id'];
+        return ['character_id', 'location_id', 'price', 'size', 'item_id', 'weight'];
     }
     public function character(): BelongsTo
     {
@@ -230,7 +237,7 @@ class Item extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if (!empty($this->type) || !empty($this->price) || !empty($this->size)) {
+        if (!empty($this->type) || !empty($this->price) || !empty($this->size) || !empty($this->weight)) {
             return true;
         }
 
@@ -248,6 +255,7 @@ class Item extends MiscModel
             'character_id',
             'price',
             'size',
+            'weight',
             'item_id',
             'is_equipped',
         ];
@@ -263,6 +271,7 @@ class Item extends MiscModel
             'type' => __('crud.fields.type'),
             'price' => __('items.fields.price'),
             'size' => __('items.fields.size'),
+            'weight' => __('items.fields.weight'),
         ];
 
         if (auth()->check() && auth()->user()->isAdmin()) {

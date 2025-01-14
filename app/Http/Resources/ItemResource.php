@@ -20,6 +20,7 @@ class ItemResource extends EntityResource
             'type' => $model->type,
             'price' => $model->price,
             'size' => $model->size,
+            'weight' => $model->weight,
             'item_id' => $model->item_id,
         ]);
     }

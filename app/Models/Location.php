@@ -213,6 +213,22 @@ class Location extends MiscModel
             ->has('entity');
     }
 
+    /**
+     * Get all quests in the location and descendants
+     */
+    public function allQuests(): Builder|Quest
+    {
+        $locationIds = [$this->id];
+        foreach ($this->descendants as $descendant) {
+            $locationIds[] = $descendant->id;
+        };
+
+        $table = new Quest();
+        return Quest::whereIn($table->getTable() . '.location_id', $locationIds)
+            ->with('location')
+            ->has('entity');
+    }
+
     public function families(): HasMany
     {
         return $this->hasMany('App\Models\Family', 'location_id', 'id');

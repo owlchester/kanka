@@ -5,6 +5,9 @@
 @if ($model->size)
 | {{ __('items.fields.size') }} | {{ $model->size }} |
 @endif
+@if ($model->weight)
+| {{ __('items.fields.weight') }} | {{ $model->weight }} |
+@endif
 @include('entities.components.profile._location')
 @if ($model->character)
 | {{ __('items.fields.character') }} | {!! $model->character->name !!} |

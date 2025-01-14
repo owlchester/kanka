@@ -27,6 +27,7 @@ $child = $entity->child;
         </div>
     @endif
     @include('entities.components.profile._reminder')
+    @include('entities.components.profile._location')
 
     @include('entities.components.profile._type')
 </x-sidebar.profile>

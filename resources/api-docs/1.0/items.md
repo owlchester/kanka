@@ -48,7 +48,8 @@ The list of returned entities can be filtered. The available filters are [availa
             "character_id": 2,
             "type": "Weapon",
             "price": "25 gp",
-            "size": "1 lb.",
+            "size": "40 in.",
+            "weight": "1 lb.",
             "item_id": 2
         }
     ]
@@ -86,7 +87,8 @@ To get the details of a single item, use the following endpoint.
         "character_id": 2,
         "type": "Weapon",
         "price": "25 gp",
-        "size": "1 lb.",
+        "size": "30 in.",
+        "weight": "1 lb.",
         "item_id": 2
     }
 
@@ -114,6 +116,7 @@ To create a item, use the following endpoint.
 | `character_id` | `integer` | The item's owner |
 | `price` | `string` | The item's price |
 | `size` | `string` | The item's size |
+| `weight` | `string` | The item's weight |
 | `tags` | `array` | Array of tag ids |
 | `is_private` | `boolean` | If the item is only visible to `admin` members of the campaign |
 | `item_id` | `integer` | The ID of the item's parent item, if it has one |
