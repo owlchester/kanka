@@ -9,6 +9,7 @@ class QuestBulk extends Bulk
         'type',
         'quest_id',
         'instigator_id',
+        'location_id',
         'completed_choice',
         'tags',
         'private_choice',

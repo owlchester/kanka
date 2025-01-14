@@ -49,6 +49,7 @@ Route::delete('/w/{campaign}/dice_rolls/{dice_roll}/roll/{dice_roll_result}/dest
 Route::get('/w/{campaign}/locations/{location}/characters', 'Locations\CharacterController@index')->name('locations.characters');
 Route::get('/w/{campaign}/locations/{location}/locations', 'Locations\LocationController@index')->name('locations.locations');
 Route::get('/w/{campaign}/locations/{location}/events', 'Locations\EventController@index')->name('locations.events');
+Route::get('/w/{campaign}/locations/{location}/quests', 'Locations\QuestController@index')->name('locations.quests');
 
 // Organisation menu
 Route::get('/w/{campaign}/organisations/{organisation}/members', 'Organisation\MemberController@index')->name('organisations.members');

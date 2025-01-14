@@ -22,6 +22,7 @@ class QuestResource extends EntityResource
             'is_completed' => $model->isCompleted(),
             'quest_id' => $model->quest_id,
             'instigator_id' => $model->instigator_id,
+            'location_id' => $model->location_id,
             'calendar_id' => $model->entity->calendarDate?->calendar_id,
             'calendar_year' => $model->entity->calendarDate?->year,
             'calendar_month' => $model->entity->calendarDate?->month,

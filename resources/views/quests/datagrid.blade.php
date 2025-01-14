@@ -25,6 +25,10 @@
             },
         ],
         [
+            'type' => 'location',
+            'visible' => $campaign->enabled('locations'),
+        ],
+        [
             'label' => __('quests.show.tabs.elements'),
             'render' => function($model) {
                 return $model->elements()->has('entity')->count();

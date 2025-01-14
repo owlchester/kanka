@@ -37,6 +37,7 @@ class StoreQuest extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'quest_id' => ['nullable', 'integer', 'exists:quests,id'],
             'character_id' => 'nullable|integer|exists:characters,id',
+            'location_id' => 'nullable|integer|exists:locations,id',
             'template_id' => 'nullable',
         ];
 

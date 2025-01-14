@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Renderers\Layouts\Quest;
+namespace App\Renderers\Layouts\Location;
 
 use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
@@ -43,8 +43,12 @@ class Quest extends Layout
                 },
             ],
             'location' => [
-                'key' => 'location',
-                'label' => 'quests.fields.location',
+                'key' => 'location.name',
+                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
+                'render' => Standard::LOCATION,
+                'visible' => function () {
+                    return !request()->has('location_id');
+                }
             ],
             'tags' => [
                 'render' => Standard::TAGS
