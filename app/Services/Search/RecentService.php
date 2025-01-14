@@ -4,13 +4,11 @@ namespace App\Services\Search;
 
 use App\Facades\Avatar;
 use App\Facades\Breadcrumb;
-use App\Facades\Module;
 use App\Models\Entity;
 use App\Models\Bookmark;
-use App\Services\Entity\TypeService;
+use App\Services\EntityTypeService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Illuminate\Support\Str;
 
 /**
  * Builds a list of recent entities for the search + the list of bookmarks and entity types
@@ -20,11 +18,10 @@ class RecentService
     use CampaignAware;
     use UserAware;
 
-    protected TypeService $typeService;
 
-    public function __construct(TypeService $typeService)
-    {
-        $this->typeService = $typeService;
+    public function __construct(
+        protected EntityTypeService $entityTypeService
+    ) {
     }
 
     public function recent(): array
@@ -100,7 +97,7 @@ class RecentService
     public function bookmarks(): array
     {
         $bookmarks = [];
-        $links = Bookmark::active()->with(['entity', 'dashboard', 'target'])->ordered()->get();
+        $links = Bookmark::active()->with(['entity', 'dashboard', 'target', 'entityType'])->ordered()->get();
         /** @var Bookmark $link */
         foreach ($links as $link) {
             if (!$link->valid($this->campaign)) {
@@ -128,13 +125,11 @@ class RecentService
     {
         $types = $this->orderedTypes();
         $indexes = [];
-        foreach ($types as $singular => $name) {
-            $icon = Module::duoIcon($singular);
-            $plural = Str::plural($singular);
+        foreach ($types as $entityType) {
             $indexes[] = [
-                'name' => $name,
-                'icon' => $icon,
-                'url' => Breadcrumb::index($plural),
+                'name' => $entityType->plural(),
+                'icon' => $entityType->icon(),
+                'url' => Breadcrumb::entityType($entityType)->index(),
             ];
         }
 
@@ -143,10 +138,9 @@ class RecentService
 
     protected function orderedTypes(): array
     {
-        return $this->typeService
+        return $this->entityTypeService
             ->campaign($this->campaign)
-            ->permissionless()
-            ->exclude(['bookmark'])
-            ->get();
+            ->exclude(config('entities.ids.bookmark'))
+            ->ordered();
     }
 }

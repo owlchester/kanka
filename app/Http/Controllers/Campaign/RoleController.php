@@ -133,7 +133,7 @@ class RoleController extends Controller
             'role' => $campaignRole,
             'campaign' => $campaign,
             'members' => $members,
-            'permissionService' => $this->service->role($campaignRole)
+            'permissionService' => $this->service->campaign($campaign)->role($campaignRole)
         ]);
     }
 

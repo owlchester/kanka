@@ -150,7 +150,7 @@ class EntityObserver
         }
 
         // Refresh the model because adding permissions to the child means we have a new relation
-        if (Permissions::granted()) {
+        if (Permissions::granted() && $entity->hasChild()) {
             $entity->unsetRelation('child');
             $entity->reloadChild();
         }

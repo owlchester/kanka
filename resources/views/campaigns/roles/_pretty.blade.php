@@ -29,7 +29,7 @@ $first = true;
         <div class="font-extrabold truncate inline">
             {!! $permissions['entityType']->plural() !!}
         </div>
-        @if (!$campaign->enabled($permissions['entityType']->pluralCode()))
+        @if (($permissions['entityType']->isSpecial() && !$permissions['entityType']->isEnabled()) || (!$permissions['entityType']->isSpecial() && !$campaign->enabled($permissions['entityType']->pluralCode())))
             <div class="inline" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
                 <x-icon class="fa-solid fa-exclamation-triangle" />
                 <span class="inline sm:hidden text-sm">{{ __('campaigns.modules.permission-disabled') }}</span>
