@@ -8,6 +8,7 @@ use App\Http\Requests\MoveEntityRequest;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\MoveService;
+use App\Services\EntityTypeService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,11 +19,10 @@ class MoveController extends Controller
      */
     use GuestAuthTrait;
 
-    protected MoveService $service;
-
-    public function __construct(MoveService $service)
+    public function __construct(
+        protected MoveService $service,
+        protected EntityTypeService $entityTypeService)
     {
-        $this->service = $service;
     }
 
     /**
@@ -31,7 +31,7 @@ class MoveController extends Controller
      */
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
 
         $campaigns = auth()->user()->moveCampaignList($campaign);
         $campaigns[0] = __('entities/move.fields.select_one');
@@ -39,7 +39,7 @@ class MoveController extends Controller
         return view('entities.pages.move.index', compact(
             'campaign',
             'entity',
-            'campaigns'
+            'campaigns',
         ));
     }
 
@@ -48,7 +48,7 @@ class MoveController extends Controller
      */
     public function move(MoveEntityRequest $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -66,8 +66,8 @@ class MoveController extends Controller
             ;
 
             return redirect()
-                ->route($entity->pluralType() . '.index', $campaign)
-                ->with('success_raw', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name, 'campaign' => $this->service->target()->name]));
+                ->route($entity->entityType->isSpecial() ? 'entities.index' : $entity->entityType->pluralCode() . '.index', [$campaign, $entity->entityType])
+                ->with('success_raw', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name, 'campaign' => '<a href=\'' . route('dashboard', $this->service->target()) . '\'>' . $this->service->target()->name . '</a>']));
         } catch (TranslatableException $ex) {
             return redirect()
                 ->to($entity->url())

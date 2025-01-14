@@ -6,6 +6,7 @@ use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\MiscModel;
+use App\Models\Note;
 use App\Services\Gallery\StorageService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
@@ -88,13 +89,13 @@ class MoveService
 
         // Can the user create an entity of that type on the new campaign?
         //UserCache::campaign($campaign);
-        if (!$this->user->can('create', [get_class($this->entity->child), null, $campaign])) {
+        if (!$this->user->can('create', [$this->entity->entityType, $campaign])) {
             throw new TranslatableException('entities/move.errors.permission');
         }
 
         //UserCache::campaign($this->entity->campaign);
         // Trying to move (not copy) but can't update the original entity
-        if (!$this->copy && !$this->user->can('update', $this->entity->child)) {
+        if (!$this->copy && !$this->user->can('update', $this->entity)) {
             throw new TranslatableException('entities/move.errors.permission_update');
         }
 
@@ -107,13 +108,23 @@ class MoveService
 
         DB::beginTransaction();
         try {
-            $newModel = $this->entity->child->replicate(['campaign_id']);
-            // Remove any foreign keys that wouldn't make any sense in the new campaign
-            foreach ($newModel->getAttributes() as $attribute => $value) {
-                if (str_contains($attribute, '_id')) {
-                    $newModel->$attribute = null;
+            if ($this->entity->hasChild()) {
+                $newModel = $this->entity->child->replicate(['campaign_id']);
+                // Remove any foreign keys that wouldn't make any sense in the new campaign
+                foreach ($newModel->getAttributes() as $attribute => $value) {
+                    if (str_contains($attribute, '_id')) {
+                        $newModel->$attribute = null;
+                    }
                 }
+            } else {
+                $newModel = new Note();
+                $newModel->name = $this->entity->name;
+                $newModel->is_private = $this->entity->is_private;
+                $newModel->entry = $this->entity->entry;
+                $this->entity->entry = null;
+                $this->entity->type = null;
             }
+
             $newModel->campaign_id = $this->to->id;
             $image = $this->entity->image; // Load the image before switching campaigns
 
@@ -122,26 +133,6 @@ class MoveService
             // The model is ready to be saved.
             $newModel->saveQuietly();
             $newModel->createEntity();
-
-            // Copy the image to avoid issues when deleting/replacing one image
-            //            if (!empty($this->entity->image_path)) {
-            //                $uniqid = uniqid();
-            //                // If the image is in the w folder, just copy the image to the new world folder
-            //                if (Str::contains('w/' . $this->entity->campaign_id, $this->entity->image_path)) {
-            //                    $newPath = Str::replace(
-            //                        'w/' . $this->entity->campaign_id,
-            //                        'w/' . $this->to->id,
-            //                        $this->entity->image_path
-            //                    );
-            //                } else {
-            //                    $newPath = Str::replace('.', $uniqid . '.', $this->entity->image_path);
-            //                }
-            //                $newModel->entity->image_path = $newPath;
-            //                $newModel->entity->saveQuietly();
-            //                if (!Storage::exists($newPath)) {
-            //                    Storage::copy($this->entity->image_path, $newPath);
-            //                }
-            //            }
 
             // Copy the gallery image over
             if (!empty($image)) {
@@ -197,11 +188,15 @@ class MoveService
             // Get the child of the entity (the actual Location, Character etc) and remove the permissions, since they
             // won't make sense on the new campaign either.
             /* @var MiscModel $child */
-            $child = $this->entity->child;
+            if ($this->entity->hasChild()) {
+                $child = $this->entity->child;
+            }
             $this->entity->permissions()->delete();
 
             // Detach is a custom function on a child to remove itself from where it is parent to other entities.
-            $this->cleanupChild($child);
+            if ($this->entity->hasChild()) {
+                $this->cleanupChild($child);
+            }
 
             // Update Entity first, as there are no hooks on the Entity model.
             CampaignLocalization::forceCampaign($this->to);
