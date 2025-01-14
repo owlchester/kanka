@@ -28,7 +28,7 @@ class TagController extends Controller
      */
     public function create(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $formOptions = ['entity.tags-add.save', $campaign, 'entity' => $entity];
 
         return view('entities.components.tags.create', [
@@ -43,7 +43,7 @@ class TagController extends Controller
      */
     public function store(UpdateEntityTags $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $ids = request()->post('tags', []);
         if (empty($ids)) {

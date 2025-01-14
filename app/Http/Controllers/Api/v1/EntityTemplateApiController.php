@@ -42,7 +42,7 @@ class EntityTemplateApiController extends ApiController
     public function switch(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $this->service->entity($entity)->toggle();
 

@@ -38,7 +38,7 @@ class PostApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $data = $request->all();
         $data['entity_id'] = $entity->id;
         $model = Post::create($data);
@@ -52,7 +52,7 @@ class PostApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $post->update($request->all());
 
         return new Resource($post);
@@ -70,7 +70,7 @@ class PostApiController extends ApiController
         Post $post
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $post->delete();
 
         return response()->json(null, 204);

@@ -54,7 +54,7 @@ class InventoryController extends Controller
      */
     public function create(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $positionPreset = request()->get('position');
         $positionOptions = ['' => ''];
         $positions = Inventory::positionList($campaign)->pluck('position')->all();
@@ -73,7 +73,7 @@ class InventoryController extends Controller
      */
     public function store(StoreInventory $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         if ($request->ajax()) {
             return response()->json(['success' => true]);
@@ -112,7 +112,7 @@ class InventoryController extends Controller
      */
     public function show(Campaign $campaign, Entity $entity, Inventory $inventory)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         return redirect()->route('entities.inventory', [$campaign, $entity]);
     }
 
@@ -120,7 +120,7 @@ class InventoryController extends Controller
      */
     public function edit(Campaign $campaign, Entity $entity, Inventory $inventory)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $positionOptions = ['' => ''];
         $positions = Inventory::positionList($campaign)->pluck('position')->all();
         foreach ($positions as $position) {
@@ -139,7 +139,7 @@ class InventoryController extends Controller
      */
     public function update(UpdateInventory $request, Campaign $campaign, Entity $entity, Inventory $inventory)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $data = $request->only($this->fillable);
 
@@ -158,7 +158,7 @@ class InventoryController extends Controller
      */
     public function destroy(Campaign $campaign, Entity $entity, Inventory $inventory)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $inventory->delete();
 

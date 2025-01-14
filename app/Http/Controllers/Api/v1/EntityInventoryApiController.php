@@ -38,7 +38,7 @@ class EntityInventoryApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $data = $request->all();
         $data['entity_id'] = $entity->id;
         $model = Inventory::create($data);
@@ -51,7 +51,7 @@ class EntityInventoryApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Entity $entity, Inventory $inventory)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $inventory->update($request->all());
 
         return new Resource($inventory);
@@ -69,7 +69,7 @@ class EntityInventoryApiController extends ApiController
         Inventory $inventory
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $inventory->delete();
 
         return response()->json(null, 204);

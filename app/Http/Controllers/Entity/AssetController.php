@@ -47,7 +47,7 @@ class AssetController extends Controller
 
     public function create(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $typeID = (int) request()->get('type');
         if ($typeID == EntityAsset::TYPE_FILE) {
@@ -62,7 +62,7 @@ class AssetController extends Controller
 
     public function store(StoreEntityAssets $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -123,7 +123,7 @@ class AssetController extends Controller
 
     public function edit(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $file = 'files';
         if ($entityAsset->isLink()) {
@@ -140,7 +140,7 @@ class AssetController extends Controller
 
     public function update(StoreEntityAsset $request, Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -172,7 +172,7 @@ class AssetController extends Controller
 
     public function destroy(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         if (!$entityAsset->delete()) {
             abort(500);

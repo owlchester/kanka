@@ -47,7 +47,7 @@ class EntityRelationApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $this->relationService->campaign($campaign)->createRelations($request);
 
@@ -60,7 +60,7 @@ class EntityRelationApiController extends ApiController
     public function update(UpdateRequest $request, Campaign $campaign, Entity $entity, Relation $relation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $relation->update($request->all());
 
         return new Resource($relation);
@@ -78,7 +78,7 @@ class EntityRelationApiController extends ApiController
         Relation $relation
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $relation->delete();
 
         return response()->json(null, 204);

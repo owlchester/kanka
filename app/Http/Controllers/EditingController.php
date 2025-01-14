@@ -83,7 +83,7 @@ class EditingController extends Controller
 
     public function confirm(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return $this->confirmHandle($entity);
     }
@@ -118,7 +118,7 @@ class EditingController extends Controller
 
     public function keepAlive(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return $this->keepAliveHandle($entity);
     }

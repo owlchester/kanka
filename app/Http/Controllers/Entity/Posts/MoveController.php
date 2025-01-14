@@ -23,7 +23,7 @@ class MoveController extends Controller
      */
     public function index(Campaign $campaign, Entity $entity, Post $post)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return view('entities.pages.posts.move.index', compact(
             'entity',
@@ -36,7 +36,7 @@ class MoveController extends Controller
      */
     public function move(MovePostRequest $request, Campaign $campaign, Entity $entity, Post $post)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }

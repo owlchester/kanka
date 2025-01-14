@@ -27,7 +27,7 @@ class EntityTransformApiController extends ApiController
         $count = 0;
         foreach ($request->entities as $id) {
             $entity = Entity::find($id);
-            if ($this->authorize('update', $entity->child)) {
+            if ($this->authorize('update', $entity)) {
                 $this->service
                     ->child($entity->child)
                     ->transform($request->entity_type);

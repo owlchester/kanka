@@ -30,7 +30,7 @@ class EntityMoveApiController extends ApiController
         try {
             foreach ($request->entities as $id) {
                 $entity = Entity::find($id);
-                if ($this->authorize('update', $entity->child)) {
+                if ($this->authorize('update', $entity)) {
                     $this->service
                         ->entity($entity)
                         ->campaign($campaign)

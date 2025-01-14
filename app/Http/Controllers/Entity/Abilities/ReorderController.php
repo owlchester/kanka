@@ -22,7 +22,7 @@ class ReorderController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $abilities = $entity->abilities()
             ->select('entity_abilities.*')
@@ -58,7 +58,7 @@ class ReorderController extends Controller
 
     public function save(Campaign $campaign, Entity $entity, ReorderAbility $request)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $this->reorderService
             ->entity($entity)

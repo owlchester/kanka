@@ -138,7 +138,7 @@ class AttributeController extends Controller
 
     public function liveEdit(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $id = request()->get('id');
         $uid = request()->get('uid');

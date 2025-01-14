@@ -19,7 +19,7 @@ class ImportController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         try {
             $count = $this->service

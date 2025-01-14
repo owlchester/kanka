@@ -14,7 +14,7 @@ class EntityImageApiController extends Controller
     public function put(UploadEntityImage $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         // Let the service handle everything
         throw new \Exception('API hasnt been migrated');
@@ -35,7 +35,7 @@ class EntityImageApiController extends Controller
     public function destroy(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         // Let the service handle everything
         Images::cleanup($entity);

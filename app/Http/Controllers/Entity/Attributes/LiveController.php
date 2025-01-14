@@ -13,7 +13,7 @@ class LiveController extends Controller
 {
     public function index(Campaign $campaign, Entity $entity, Attribute $attribute)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return view('entities.pages.attributes.live.edit')
             ->with('campaign', $campaign)
@@ -25,7 +25,7 @@ class LiveController extends Controller
 
     public function save(UpdateEntityAttribute $request, Campaign $campaign, Entity $entity, Attribute $attribute)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         if ($attribute->entity_id !== $entity->id) {
             abort(404);

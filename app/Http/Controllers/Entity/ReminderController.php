@@ -86,7 +86,7 @@ class ReminderController extends Controller
      */
     public function create(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $name = $this->view;
         $route = $this->route;
@@ -110,7 +110,7 @@ class ReminderController extends Controller
      */
     public function store(AddCalendarEvent $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         if (request()->ajax()) {
             return response()->json(['success' => true]);

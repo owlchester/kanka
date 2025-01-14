@@ -12,7 +12,7 @@ class LogController extends Controller
 {
     public function index(HistoryRequest $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $this->authorize('history', [$entity, $campaign]);
 
         $fields = ['action'];

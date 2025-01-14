@@ -39,7 +39,7 @@ class EntityAbilityApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $data = $request->all();
         $data['entity_id'] = $entity->id;
         if (isset($data['abilities']) && is_array($data['abilities'])) {
@@ -65,7 +65,7 @@ class EntityAbilityApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $entityAbility->update($request->all());
 
         return new Resource($entityAbility);
@@ -83,7 +83,7 @@ class EntityAbilityApiController extends ApiController
         EntityAbility $entityAbility
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $entityAbility->delete();
 
         return response()->json(null, 204);
