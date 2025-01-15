@@ -135,7 +135,8 @@ trait EntityScopes
                 'inventories', 'inventories.entity',
                 'relationships', 'abilities',
                 'tags', 'image', 'assets',
-            ] : ['tags', 'image'])
+                'entityType'
+            ] : ['tags', 'image', 'entityType'])
         ;
     }
 
