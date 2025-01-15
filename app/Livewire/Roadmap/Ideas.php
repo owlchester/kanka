@@ -24,8 +24,14 @@ class Ideas extends Component
         if (auth()->check()) {
             $ideas->with('uservote');
         }
+
+        if (isset($this->search) && $this->search != '') {
+            $ideasQuery = $ideas->search($this->search)->paginate(15, ['*'], 'page', 1);
+        } else {
+            $ideasQuery = $ideas->paginate(15);
+        }
         return view('livewire.roadmap.ideas', [
-            'ideas' => $ideas->search($this->search ?? '')->paginate(15)
+            'ideas' => $ideasQuery
         ]);
     }
 }

@@ -24,6 +24,11 @@ class FeatureCategory extends Model
             ]);
     }
 
+    public function done(): HasMany
+    {
+        return $this->features()->where('status_id', \App\Enums\FeatureStatus::Done)->orderBy('updated_at', 'DESC');
+    }
+
     public function now(): HasMany
     {
         return $this->features()->where('status_id', \App\Enums\FeatureStatus::Now);
@@ -42,5 +47,10 @@ class FeatureCategory extends Model
     public function nothingPlanned(): bool
     {
         return $this->now->count() + $this->later->count() + $this->next->count() === 0;
+    }
+
+    public function nothingDone(): bool
+    {
+        return $this->done->count() === 0;
     }
 }
