@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Facades\EntityCache;
 use App\Models\Entity;
-use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Model;
 
 class SuggestionObserver

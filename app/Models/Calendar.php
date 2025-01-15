@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
 use App\Models\Relations\CalendarRelations;

@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;

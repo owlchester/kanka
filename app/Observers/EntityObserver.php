@@ -13,7 +13,6 @@ use App\Models\Entity;
 use App\Services\Entity\TagService;
 use App\Services\PermissionService;
 use App\Facades\Domain;
-use Illuminate\Support\Arr;
 
 class EntityObserver
 {

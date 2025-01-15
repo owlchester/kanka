@@ -72,15 +72,15 @@ class Entity extends Model
     use HasCampaign;
     use HasEntry;
     use HasMentions;
-    use HasTooltip;
     use HasSuggestions;
+    use HasTooltip;
     use LastSync;
     use Paginatable;
+    use Sanitizable;
     use Scout;
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
-    use Sanitizable;
     use Templatable;
 
     protected $fillable = [

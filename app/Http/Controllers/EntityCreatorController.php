@@ -16,7 +16,6 @@ use App\Services\Entity\PopularService;
 use App\Services\Entity\TagService;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class EntityCreatorController extends Controller
