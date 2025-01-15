@@ -6,7 +6,6 @@ use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
-use App\Models\MiscModel;
 
 trait GuestAuthTrait
 {
