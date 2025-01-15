@@ -118,11 +118,7 @@ class EntityMappingService
         }
         $images = [];
         if ($this->model instanceof Entity) {
-            if ($this->model->entityType->isSpecial()) {
-                $images = $this->extractImages($this->entity()->entry);
-            } else {
-                $images = $this->extractImages($this->entity()->child->entry);
-            }
+            $images = $this->extractImages($this->entity()->entry);
         } elseif ($this->model instanceof Post) {
             $images = $this->extractImages($this->post()->entry);
         }
@@ -191,11 +187,7 @@ class EntityMappingService
         $existingMappings = 0;
 
         if ($this->model instanceof Entity) {
-            if ($this->model->entityType->isSpecial()) {
-                $mentions = $this->extract($this->model->entry);
-            } else {
-                $mentions = $this->extract($this->entity()->child->entry);
-            }
+            $mentions = $this->extract($this->model->entry);
         } else {
             // @phpstan-ignore-next-line
             $mentions = $this->extract($this->model->{$this->model->entryFieldName()});

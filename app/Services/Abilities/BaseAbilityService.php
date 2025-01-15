@@ -39,7 +39,7 @@ abstract class BaseAbilityService
      */
     protected function parseEntry(Ability $ability)
     {
-        $entry = $ability->parsedEntry();
+        $entry = $ability->entity->parsedEntry();
         try {
             return $this->mapAttributes($entry, false);
         } catch (Exception $e) {

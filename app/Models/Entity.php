@@ -161,7 +161,7 @@ class Entity extends Model
         } elseif ($this->isDiceRoll()) {
             return $this->load('diceRoll');
         }
-        return $this->load($this->type());
+        return $this->load($this->entityType->code);
     }
 
     /**

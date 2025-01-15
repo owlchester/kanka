@@ -33,8 +33,9 @@ class Entity extends EntityChild
             'image_thumb' => Avatar::entity($model)->size(40)->thumbnail(),
             'has_custom_image' => !empty($model->image_path) && !empty($model->image),
 
-            'type' => $model->type(),
+            'type' => $model->type,
             'type_id' => $model->type_id,
+            'entity_type' => $model->entityType->code,
             'tooltip' => $model->tooltip,
             'url' => $model->url(),
             'is_attributes_private' => $model->is_attributes_private,

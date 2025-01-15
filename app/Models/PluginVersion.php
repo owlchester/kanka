@@ -517,7 +517,7 @@ class PluginVersion extends Model
                 'name' => $abi->ability->name,
                 'slug' => Str::slug($abi->ability->name),
                 'type' => $abi->ability->type,
-                'entry' => $abi->ability->parsedEntry(),
+                'entry' => $abi->ability->entity->parsedEntry(),
                 'charges' => $abi->ability->charges,
                 'note' => Mentions::mapAny($abi, 'note'),
                 'note_raw' => $abi->note,
