@@ -285,7 +285,7 @@ class SearchService
                 'image' => $img,
                 'name' => $parsedName,
                 'type' => $model->entityType->name(),
-                'model_type' => $model->type(),
+                'model_type' => $model->entityType->code,
                 'url' => $model->url(),
                 'alias_id' => $model->alias_id, // @phpstan-ignore-line
                 'advanced_mention' => Mentions::advancedMentionHelper($model->name),
@@ -302,7 +302,7 @@ class SearchService
                     'image' => $img,
                     'name' => $parsedName,
                     'type' => __('maps.actions.explore'),
-                    'model_type' => $model->type(),
+                    'model_type' => $model->entityType->code,
                     'url' => $model->url('explore'),
                     'alias_id' => $model->alias_id, // @phpstan-ignore-line
                     'advanced_mention' => Mentions::advancedMentionHelper($model->name),

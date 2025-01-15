@@ -35,8 +35,8 @@
 {{ $entity->child->title }}
 @endif
 
-@if ($entity->hasChild() && !empty($entity->child->type))
-{{ $entity->child->type }}
+@if (!empty($entity->type))
+{{ $entity->type }}
 @endif
 
 @if ($entity->hasPins())
@@ -70,11 +70,8 @@
 |:-|:-|
 @if ($entity->hasChild())
     @includeIf('entities.pages.print.profile.' . $entity->entityType->pluralCode(), ['model' => $entity->child])
-
-    @if($entity->child->hasEntry())
-    {!! $converter->convert((string) $entity->child->entry) !!}
-    @endif
-@elseif($entity->hasEntry())
+@endif
+@if($entity->hasEntry())
     {!! $converter->convert((string) $entity->entry) !!}
 @endif
 

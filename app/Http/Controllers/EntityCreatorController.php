@@ -16,6 +16,7 @@ use App\Services\Entity\PopularService;
 use App\Services\Entity\TagService;
 use App\Services\EntityService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class EntityCreatorController extends Controller
@@ -66,7 +67,6 @@ class EntityCreatorController extends Controller
     public function store(Request $request, Campaign $campaign, EntityType $entityType)
     {
         // Make sure the user is allowed to create this kind of entity
-        $class = null;
         $this->campaign = $campaign;
         $this->authorize('create', [$entityType, $campaign]);
 
@@ -123,7 +123,8 @@ class EntityCreatorController extends Controller
                 $links[] = '<a href="' . $new->url() . '">' . $new->name . '</a>';
             } else {
                 /** @var MiscModel $new */
-                $new = new $class($values);
+                $new = $entityType->getClass();
+                $new->fill($values);
                 $new->campaign_id = $this->campaign->id;
                 $new->save();
                 $new->crudSaved();

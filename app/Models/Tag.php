@@ -38,7 +38,6 @@ class Tag extends MiscModel
     use Acl;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
@@ -59,7 +58,6 @@ class Tag extends MiscModel
     protected array $sortable = [
         'name',
         'parent.name',
-        'type',
         'colour',
         'is_auto_applied',
         'is_hidden',
@@ -77,9 +75,7 @@ class Tag extends MiscModel
     protected $fillable = [
         'name',
         'slug',
-        'type',
         'colour',
-        'entry',
         'tag_id',
         'campaign_id',
         'is_private',
@@ -89,7 +85,6 @@ class Tag extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
         'colour',
     ];
 
@@ -119,7 +114,7 @@ class Tag extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');

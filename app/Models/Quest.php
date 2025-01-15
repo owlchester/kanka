@@ -39,7 +39,6 @@ class Quest extends MiscModel
     use CalendarDateTrait;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasLocation;
@@ -53,8 +52,6 @@ class Quest extends MiscModel
         'campaign_id',
         'quest_id',
         'name',
-        'type',
-        'entry',
         'is_private',
         'instigator_id',
         'location_id',
@@ -64,7 +61,6 @@ class Quest extends MiscModel
 
     protected array $sortable = [
         'name',
-        'type',
         'date',
         'is_completed',
         'parent.name',
@@ -72,7 +68,6 @@ class Quest extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
         'date',
     ];
 

@@ -35,7 +35,6 @@ class Conversation extends MiscModel
 
     protected $fillable = [
         'name',
-        'type',
         'campaign_id',
         'target_id',
         'is_private',
@@ -65,7 +64,6 @@ class Conversation extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
     ];
 
     /**

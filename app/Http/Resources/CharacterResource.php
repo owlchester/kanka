@@ -29,7 +29,6 @@ class CharacterResource extends EntityResource
             'pronouns' => $model->pronouns,
             'races' => $raceIDs,
             'private_races' => $privateRaceIDs,
-            'type' => $model->type,
 
             'families' => $familyIDs,
             'private_families' => $privateFamilyIDs,

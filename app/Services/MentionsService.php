@@ -370,13 +370,13 @@ class MentionsService
                     if ($field == 'calendar_date' && $child->calendar_id) {
                         $data['text'] = $child->calendarReminder()->readableDate();
                     }
-                    if ($field === 'entry' && method_exists($entity->child, 'parsedEntry')) {
+                    if ($field === 'entry' && method_exists($entity, 'parsedEntry')) {
                         if ($this->enableEntryField) {
                             $this->lockEntryRendering();
-                            $parsedTargetEntry = $entity->child->parsedEntry();
+                            $parsedTargetEntry = $entity->parsedEntry();
                             $this->unlockEntryRendering();
                         } else {
-                            $parsedTargetEntry = $entity->child->entry;
+                            $parsedTargetEntry = $entity->entry;
                         }
                         $cssClasses[] = 'mention-field-entry block';
                         $entityName = '<a href="' . $url . '"'

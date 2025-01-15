@@ -15,6 +15,7 @@ use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasMentions;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Templatable;
@@ -75,6 +76,7 @@ class Entity extends Model
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
+    use Sanitizable;
     use Templatable;
 
     protected $fillable = [
@@ -90,6 +92,10 @@ class Entity extends Model
         'is_template',
         'type',
         'entry',
+    ];
+
+    protected array $sanitizable = [
+        'type',
     ];
 
     /** @var array Searchable fields */
@@ -178,17 +184,10 @@ class Entity extends Model
                 return (string)strip_tags($text);
             }
         }
-        if ($this->entityType->isSpecial()) {
-            if (!$this->hasEntry()) {
-                return '';
-            }
-            return Str::limit(strip_tags($this->parsedEntry()), 500);
-        }
-        if (!$this->child->hasEntry()) {
+        if (!$this->hasEntry()) {
             return '';
         }
-        // @phpstan-ignore-next-line
-        return Str::limit(strip_tags($this->child->parsedEntry()), 500);
+        return Str::limit(strip_tags($this->parsedEntry()), 500);
     }
 
 
@@ -505,14 +504,5 @@ class Entity extends Model
         }
 
         return (string) implode(' ', $classes);
-    }
-
-    /**
-     * Determine if the model has an entry text field
-     */
-    public function hasEntry(): bool
-    {
-        // If all that's in the entry is two \n, then there is no real content
-        return mb_strlen($this->entry) > 2;
     }
 }

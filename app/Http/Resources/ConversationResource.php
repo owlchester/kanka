@@ -17,7 +17,6 @@ class ConversationResource extends EntityResource
         $model = $this->resource;
 
         return $this->entity([
-            'type' => $model->type,
             'target' => $model->forCharacters() ? 'characters' : 'members',
             'target_id' => $model->target_id,
             'is_closed' => $model->is_closed,

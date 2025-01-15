@@ -140,6 +140,8 @@ trait HasFilters
                     $this->filterHasImage($query, $value);
                 } elseif ($key == 'template') {
                     $this->filterTemplate($query, $value);
+                } elseif ($key == 'type') {
+                    $this->filterType($query, $value);
                 } elseif ($key == 'has_posts') {
                     $this->filterHasPosts($query, $value);
                 } elseif ($key == 'is_equipped') {
@@ -378,6 +380,33 @@ trait HasFilters
                 $sub->whereNull('e.is_template')
                     ->orWhere('e.is_template', '<>', 1);
             });
+        }
+    }
+
+    /**
+     * Filter on entities's type
+     */
+    protected function filterType(Builder $query, ?string $value = null): void
+    {
+        $query->joinEntity();
+
+        $searchTerms = explode(';', $this->filterValue);
+        $firstTerm = true;
+        foreach ($searchTerms as $searchTerm) {
+            if (empty($searchTerm) && $searchTerm != '0') {
+                continue;
+            }
+            // If it isn't the first term, we need to re-extract the search operators
+            if (!$firstTerm) {
+                $this->extractSearchOperator($searchTerm, 'type');
+                $searchTerm = $this->filterValue;
+            }
+            $query->where(
+                'e.type',
+                $this->filterOperator,
+                ($this->filterOperator == '=' ? $this->filterValue : "%{$searchTerm}%")
+            );
+            $firstTerm = false;
         }
     }
 

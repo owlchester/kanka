@@ -7,9 +7,9 @@
             {!! \App\Facades\Mentions::mapAny($marker) !!}
         </div>
     @endif
-    @if ($marker->entity && $marker->entity->child->hasEntry())
+    @if ($marker->entity && $marker->entity->hasEntry())
         <div class="marker-entry entity-content">
-            {!! $marker->entity->child->parsedEntry() !!}
+            {!! $marker->entity->parsedEntry() !!}
         </div>
     @endif
     <x-dialog.footer :dialog="true">

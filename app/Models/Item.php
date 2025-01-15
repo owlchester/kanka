@@ -36,7 +36,6 @@ class Item extends MiscModel
     use Acl;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasLocation;
@@ -49,8 +48,6 @@ class Item extends MiscModel
     protected $fillable = [
         'name',
         'campaign_id',
-        'type',
-        'entry',
         'price',
         'size',
         'weight',
@@ -59,14 +56,6 @@ class Item extends MiscModel
         'location_id',
         'is_private',
     ];
-
-    //    protected array $sortable = [
-    //        'name',
-    //        'type',
-    //        'price',
-    //        'size',
-    //        'parent.name',
-    //    ];
 
     /**
      * Entity type
@@ -86,7 +75,6 @@ class Item extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
         'size',
         'weight',
         'price',
@@ -163,7 +151,7 @@ class Item extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');

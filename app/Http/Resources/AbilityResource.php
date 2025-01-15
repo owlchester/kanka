@@ -18,7 +18,6 @@ class AbilityResource extends EntityResource
         $ability = $this->resource;
 
         return $this->entity([
-            'type' => $ability->type,
             'ability_id' => $ability->ability_id,
             'charges' => $ability->charges,
             'abilities' => $ability->descendants()->pluck('id')->toArray()

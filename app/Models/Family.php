@@ -36,7 +36,6 @@ class Family extends MiscModel
     use Acl;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasLocation;
@@ -53,7 +52,6 @@ class Family extends MiscModel
         'location_id',
         'family_id',
         'is_private',
-        'type',
         'is_extinct',
     ];
 
@@ -67,7 +65,6 @@ class Family extends MiscModel
 
     protected array $sortable = [
         'name',
-        'type',
         'location.name',
         'parent.name',
         'is_extinct',
@@ -100,7 +97,6 @@ class Family extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
     ];
 
     /**
@@ -124,7 +120,7 @@ class Family extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');

@@ -49,7 +49,6 @@ class Map extends MiscModel
     use Acl;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasLocation;
@@ -73,8 +72,6 @@ class Map extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'type',
-        'entry',
         'map_id',
         'location_id',
         'grid',
@@ -98,7 +95,6 @@ class Map extends MiscModel
 
     protected array $sortable = [
         'name',
-        'type',
         'parent.name',
     ];
 
@@ -140,7 +136,6 @@ class Map extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
     ];
 
     /**
@@ -173,7 +168,7 @@ class Map extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.entityType' => function ($sub) {
                 $sub->select('id', 'code');

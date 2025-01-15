@@ -60,8 +60,8 @@ class PreviewService
         } else {
             /** @var MiscModel|Character $child */
             $child = $this->entity->child;
-            if (!empty($child->type)) {
-                $this->addProfile('crud.fields.type', 'type', $child->type);
+            if (!empty($this->entity->type)) {
+                $this->addProfile('crud.fields.type', 'type', $this->entity->type);
             }
         }
 

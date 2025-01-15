@@ -199,7 +199,7 @@ class ImporterService
         $this->importImage($pluginEntity);
 
         // Mentions
-        $this->model->entry = preg_replace_callback('`\[entity:(.*?)\]`i', function ($matches) {
+        $this->model->entity->entry = preg_replace_callback('`\[entity:(.*?)\]`i', function ($matches) {
             $id = (int) $matches[1];
             if (empty($id) || !isset($this->entityIds[$id])) {
                 return 'wat';
@@ -207,6 +207,7 @@ class ImporterService
 
             return '[' . $this->entityTypes[$id] . ':' . $this->entityIds[$id] . ']';
         }, $pluginEntity->entry);
+
 
         $this->model->save();
         $this->model->entity->save();
@@ -235,6 +236,8 @@ class ImporterService
             $this->importTags($value);
         } elseif ($field == 'tooltip') {
             $this->importEntityTooltip($value);
+        } elseif ($field == 'type') {
+            $this->importEntityType($value);
         } elseif ($field == 'is_private' && $this->forcePrivate) {
             // Skip
         } else {
@@ -258,7 +261,10 @@ class ImporterService
     protected function importEntityTooltip(mixed $value): void
     {
         $this->model->entity->tooltip = $value;
-        $this->model->entity->saveQuietly();
+    }
+    protected function importEntityType(mixed $value): void
+    {
+        $this->model->entity->type = $value;
     }
 
     protected function importCharacterRace(mixed $value): void

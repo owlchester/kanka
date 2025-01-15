@@ -25,9 +25,7 @@ use Laravel\Scout\Searchable as Scout;
  *
  * @property int $id
  * @property int $campaign_id
- * @property string $entry
  * @property string $name
- * @property string $type
  * @property ?Entity $entity
  * @property string $image
  * @property string $tooltip
@@ -109,16 +107,11 @@ abstract class MiscModel extends Model
         return method_exists($this, 'entityTypeID');
     }
 
-    /**
-     * @return string|null (menu links)
-     */
     public function getEntityType(): string|null
     {
         return $this->entityType;
     }
 
-    /**
-     */
     public function getLink(string $action = 'show'): string
     {
         if (empty($this->entity)) {
@@ -136,20 +129,7 @@ abstract class MiscModel extends Model
     }
 
     /**
-     * Determine if the model has an entry text field
-     */
-    public function hasEntry(): bool
-    {
-        if (!method_exists($this, 'parsedEntry')) {
-            return false;
-        }
-        // If all that's in the entry is two \n, then there is no real content
-        return mb_strlen($this->entry) > 2;
-    }
-
-    /**
      * List of types as suggestions for the type field
-     * @param int $take = 20
      */
     public function entityTypeSuggestion(int $take = 20): array
     {
@@ -235,7 +215,7 @@ abstract class MiscModel extends Model
      */
     public function showProfileInfo(): bool
     {
-        return !empty($this->type);
+        return !empty($this->entity->type);
     }
 
     /**

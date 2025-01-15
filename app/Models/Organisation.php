@@ -34,7 +34,6 @@ class Organisation extends MiscModel
     use Acl;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasLocations;
@@ -47,16 +46,13 @@ class Organisation extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'entry',
         'organisation_id',
-        'type',
         'is_private',
         'is_defunct',
     ];
 
     protected array $sortable = [
         'name',
-        'type',
         'parent.name',
         'is_defunct',
     ];
@@ -101,7 +97,6 @@ class Organisation extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
     ];
 
     protected array $organisationAndDescendantIds;

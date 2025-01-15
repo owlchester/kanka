@@ -1,8 +1,8 @@
 {!! $slot !!}
 
-@if ($model->hasEntry())
+@if ($entity->hasEntry())
 <div class="entity-content">
-    {!! $model->parsedEntry() !!}
+    {!! $entity->parsedEntry() !!}
 </div>
 @endif
 

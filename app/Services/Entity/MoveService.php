@@ -120,9 +120,6 @@ class MoveService
                 $newModel = new Note();
                 $newModel->name = $this->entity->name;
                 $newModel->is_private = $this->entity->is_private;
-                $newModel->entry = $this->entity->entry;
-                $this->entity->entry = null;
-                $this->entity->type = null;
             }
 
             $newModel->campaign_id = $this->to->id;

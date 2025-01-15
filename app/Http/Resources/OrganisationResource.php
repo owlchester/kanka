@@ -18,7 +18,6 @@ class OrganisationResource extends EntityResource
         $model = $this->resource;
         $locationIDs = $model->locations()->pluck('locations.id');
         return $this->entity([
-            'type' => $model->type,
             'organisation_id' => $model->organisation_id,
             'is_defunct' => $model->isDefunct(),
             'members' => OrganisationMemberResource::collection($model->members()->has('character')->with('character')->get()),

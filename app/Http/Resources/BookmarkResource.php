@@ -26,7 +26,7 @@ class BookmarkResource extends EntityResource
             'is_active' => $model->is_active,
             'menu' => $model->menu,
             'random_entity_type' => $model->random_entity_type,
-            'type' => $model->type,
+            'entity_type_id' => $model->entity_type_id,
             'tab' => $model->tab,
             'target' => $model->target,
             'dashboard_id' => $model->dashboard_id,

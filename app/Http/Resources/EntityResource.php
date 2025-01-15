@@ -148,9 +148,10 @@ class EntityResource extends JsonResource
         $merged = [
             'id' => $misc->id,
             'name' => $misc->name,
-            'entry' => $misc->hasEntry() ? $misc->entry : null,
-            'entry_parsed' => $misc->hasEntry() ? Mentions::map($misc) : null,
+            'entry' => $misc->entity->hasEntry() ? $misc->entity->entry : null,
+            'entry_parsed' => $misc->entity->hasEntry() ? Mentions::mapAny($misc->entity) : null,
             'tooltip' => $misc->entity->tooltip ?: null,
+            'type' => $misc->entity->type ?: null,
             'image' => $misc->entity->image_path,
             'focus_x' => $misc->entity->focus_x,
             'focus_y' => $misc->entity->focus_y,

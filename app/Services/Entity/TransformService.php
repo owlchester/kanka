@@ -286,13 +286,8 @@ class TransformService
         $this->new = $this->entityType->getClass();
         $this->new->name = $this->entity->name;
         $this->new->is_private = $this->entity->is_private;
-        $this->new->entry = $this->entity->entry;
-        $this->new->type = $this->entity->type;
         $this->new->campaign_id = $this->campaign->id;
         $this->new->save();
-
-        $this->entity->entry = null;
-        $this->entity->type = null;
 
         $this->finish();
 
@@ -303,9 +298,6 @@ class TransformService
     protected function miscToSpecial(): Entity
     {
         $this->child = $this->entity->child;
-
-        $this->entity->entry = $this->child->entry;
-        $this->entity->type = $this->child->type;
 
         $this->finish();
 

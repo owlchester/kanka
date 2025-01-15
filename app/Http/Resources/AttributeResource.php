@@ -21,7 +21,6 @@ class AttributeResource extends EntityChild
             'name' => $attribute->name,
             'value' => $attribute->value,
             'parsed' => $attribute->mappedValue(),
-            'type' => mb_strtolower($attribute->type_id->name),
             'default_order' => $attribute->default_order,
             'is_star' => (bool) $attribute->isPinned(),
             'is_pinned' => (bool) $attribute->isPinned(),

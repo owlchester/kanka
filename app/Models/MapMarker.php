@@ -631,17 +631,6 @@ class MapMarker extends Model
         return (int) ($this->size_id * 20) * ($this->size_id * $this->sizeMultiplier);
     }
 
-
-    /**
-     * Determine if the marker has a filled out entry
-     */
-    public function hasEntry(): bool
-    {
-        // If all that's in the entry is two \n, then there is no real content
-        $stripped = mb_trim(preg_replace('/\s\s+/', ' ', $this->entry));
-        return !empty($stripped);
-    }
-
     /**
      * For legacy tinymce editor
      */

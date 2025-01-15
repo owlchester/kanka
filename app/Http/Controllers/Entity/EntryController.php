@@ -35,14 +35,10 @@ class EntryController extends Controller
         }
 
         $fields = $request->only('entry');
-        if ($entity->entityType->isSpecial()) {
-            $entity->update($fields);
-        } else {
-            $entity->child->update($fields);
-            if ($entity->child->wasChanged()) {
-                EntityLogger::entity($entity);
-                $entity->touch();
-            }
+        $entity->update($fields);
+        if ($entity->wasChanged()) {
+            EntityLogger::entity($entity);
+            $entity->touch();
         }
 
         return redirect()->to($entity->url());

@@ -27,7 +27,7 @@ class PostResource extends EntityChild
             'permissions' => PostPermissionResource::collection($model->permissions),
             'layout_id' => $model->layout_id,
             'is_template' => $model->isTemplate(),
-            'tags' => $model->tags()->pluck('id')->toArray(),
+            'tags' => $model->tags()->pluck('tags.id')->toArray(),
         ]);
     }
 }
