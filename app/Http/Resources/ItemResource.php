@@ -17,7 +17,6 @@ class ItemResource extends EntityResource
         /** @var Item $model */
         $model = $this->resource;
         return $this->entity([
-            'type' => $model->type,
             'price' => $model->price,
             'size' => $model->size,
             'weight' => $model->weight,

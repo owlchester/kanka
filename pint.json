@@ -21,6 +21,10 @@
         "method_chaining_indentation": true,
         "modernize_strpos": true,
         "new_with_braces": true,
+        "new_with_parentheses": {
+            "anonymous_class": true,
+            "named_class": true
+        },
         "no_empty_comment": true,
         "no_superfluous_phpdoc_tags": true,
         "no_unused_imports": true,

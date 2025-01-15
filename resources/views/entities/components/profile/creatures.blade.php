@@ -1,6 +1,12 @@
-<?php /** @var \App\Models\Map $model */?>
+<?php
+/**
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\Creature $model
+ */
+$child = $entity->child;
+?>
 
-@if (!$model->showProfileInfo())
+@if (!$child->showProfileInfo())
     @php return @endphp
 @endif
 

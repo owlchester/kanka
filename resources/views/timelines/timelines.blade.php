@@ -2,10 +2,9 @@
     $plural = \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines'));
 @endphp
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . $plural,
+    'title' => $entity->name . ' - ' . $plural,
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 
@@ -33,6 +32,5 @@
         'active' => 'timelines',
         'breadcrumb' => $plural,
         'view' => 'timelines.panels.timelines',
-        'entity' => $model->entity,
     ])
 @endsection

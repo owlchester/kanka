@@ -47,7 +47,7 @@ class AbilityController extends Controller
 
     public function create(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return view('entities.pages.abilities.create', compact(
             'campaign',
@@ -57,7 +57,7 @@ class AbilityController extends Controller
 
     public function store(StoreEntityAbility $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -109,7 +109,7 @@ class AbilityController extends Controller
 
     public function edit(Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $ability = $entityAbility;
         if (empty($ability->ability)) {
             abort(403);
@@ -124,7 +124,7 @@ class AbilityController extends Controller
 
     public function update(UpdateEntityAbility $request, Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -146,7 +146,7 @@ class AbilityController extends Controller
 
     public function destroy(Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         if (!$entityAbility->delete()) {
             abort(500);

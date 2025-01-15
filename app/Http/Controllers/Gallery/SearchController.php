@@ -21,7 +21,7 @@ class SearchController extends Controller
     {
         $this->authorize('gallery', $campaign);
 
-        $term = mb_trim($request->get('term'));
+        $term = mb_trim($request->get('term') ?? '');
 
         return response()->json(
             $this->service

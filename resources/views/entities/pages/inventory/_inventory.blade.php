@@ -56,7 +56,7 @@
                 @endif<br />
                 <span class="text-sm text-muted">
                     @if ($item->item && $item->copy_item_entry)
-                        {!! $item->item->parsedEntry() !!}
+                        {!! $item->item->entity->parsedEntry() !!}
                     @else
                     {{ $item->description }}
                     @endif
@@ -69,7 +69,7 @@
                 <td>
                     @include('icons.visibility', ['icon' => $item->visibilityIcon()])
                 </td>
-                @can('inventory', $entity->child)
+                @can('inventory', $entity)
                     <td class="text-right">
                         <a href="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
                            class="btn2 btn-outline btn-xs"

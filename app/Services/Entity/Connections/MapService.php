@@ -96,7 +96,7 @@ class MapService
      */
     public function map(): array
     {
-        $entityHook = 'init' . ucfirst($this->entity->type());
+        $entityHook = 'init' . ucfirst($this->entity->entityType->code);
         if (method_exists($this, $entityHook)) {
             $this->$entityHook();
         } else {
@@ -107,12 +107,14 @@ class MapService
             $this->loadRelations();
 
             if ($this->withRelated()) {
-                $this->addParent()
-                    ->addLocation()
-                    ->addQuests()
-                    ->addAuthorJournals()
-                    ->addMapMarkers()
-                    ->addLocations();
+                if (!$this->entity->entityType->isSpecial()) {
+                    $this->addParent()
+                        ->addLocation()
+                        ->addQuests()
+                        ->addAuthorJournals()
+                        ->addLocations();
+                }
+                $this->addMapMarkers();
             }
         }
 
@@ -149,7 +151,7 @@ class MapService
             return $this;
         }
         // Make sure the child is accessible in case there is a permission mis-match
-        if (empty($entity->child)) {
+        if ($entity->isMissingChild()) {
             return $this;
         }
 
@@ -164,7 +166,7 @@ class MapService
         }
         $this->entities[$entity->id] = [
             'id' => $entity->id,
-            'name' => $entity->name . "\n(" . $entity->entityType() . ')',
+            'name' => $entity->name . "\n(" . $entity->entityType->name() . ')',
             'image' => $img,
             'link' => route('entities.relations.index', $params),
             //'tooltip' => route('entities.tooltip', $entity->id)
@@ -187,7 +189,7 @@ class MapService
         /** @var Relation[] $relations */
         $relations = $entity->relationships()
             ->select('relations.*')
-            ->with(['target', 'mirror', 'target.image'])
+            ->with(['target', 'target.entityType', 'mirror', 'target.image'])
             ->has('target')
             ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
             ->get();
@@ -277,7 +279,7 @@ class MapService
         $character = $this->entity->child;
         $organisations = $character->organisationMemberships()
             ->has('organisation')
-            ->with(['organisation', 'organisation.entity', 'organisation.entity.image'])
+            ->with(['organisation', 'organisation.entity', 'organisation.entity.image', 'organisation.entity.entityType'])
             ->get();
         foreach ($organisations as $org) {
             if ($org->organisation !== null && $org->organisation->entity !== null) {
@@ -298,7 +300,7 @@ class MapService
         $this->organisation()->addEntity($organisation->entity);
 
         /** @var OrganisationMember $member */
-        foreach ($organisation->members()->with(['character.entity', 'character.entity.image'])->has('character.entity')->get() as $member) {
+        foreach ($organisation->members()->with(['character.entity', 'character.entity.image', 'character.entity.entityType'])->has('character.entity')->get() as $member) {
             if (empty($member->character->entity)) {
                 return;
             }
@@ -452,7 +454,7 @@ class MapService
     protected function addFamilyMembers(Family $family): self
     {
         /** @var Character $member */
-        foreach ($family->members()->with(['entity', 'entity.image'])->has('entity')->get() as $member) {
+        foreach ($family->members()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $member) {
             $this
                 ->addEntity($member->entity, Avatar::entity($member->entity)->fallback()->size(192)->thumbnail())
                 ->addRelations($member->entity);
@@ -479,7 +481,7 @@ class MapService
         /** @var Location $family */
         $family = $this->entity->child;
 
-        foreach ($family->families()->with(['entity', 'entity.image'])->has('entity')->get() as $subfamily) {
+        foreach ($family->families()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $subfamily) {
             $this->addEntity($subfamily->entity);
             $this->addRelations($subfamily->entity);
 
@@ -502,7 +504,7 @@ class MapService
         $organisation = $entity->child;
 
         /** @var OrganisationMember[] $members */
-        $members = $organisation->members()->with(['character', 'character.entity', 'character.entity.image'])->has('character')->get();
+        $members = $organisation->members()->with(['character', 'character.entity', 'character.entity.image', 'character.entity.entityType'])->has('character')->get();
         foreach ($members as $member) {
             $this
                 ->addEntity($member->character->entity, Avatar::entity($member->character->entity)->fallback()->size(192)->thumbnail())
@@ -529,7 +531,7 @@ class MapService
         /** @var Location $child */
         $child = $this->entity->child;
 
-        foreach ($child->organisations()->with(['entity', 'entity.image'])->has('entity')->get() as $sub) {
+        foreach ($child->organisations()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $sub) {
             $this->addEntity($sub->entity);
             $this->addRelations($sub->entity);
 
@@ -553,7 +555,7 @@ class MapService
         /** @var Location $related */
         $related = $this->entity->child;
 
-        foreach ($related->characters()->with(['entity', 'entity.image'])->has('entity')->get() as $sub) {
+        foreach ($related->characters()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $sub) {
             $this->addEntity($sub->entity);
             //$this->addRelations($sub->entity);
 
@@ -577,7 +579,7 @@ class MapService
         /** @var Character|Location $parent */
         $parent = $this->entity->child;
         /** @var Item $item */
-        foreach ($parent->items()->with(['entity', 'entity.image'])->has('entity')->get() as $item) {
+        foreach ($parent->items()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $item) {
             $this->addEntity($item->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -599,7 +601,7 @@ class MapService
         /** @var Location $parent */
         $parent = $this->entity->child;
         /** @var Journal $journal */
-        foreach ($parent->journals()->with(['entity', 'entity.image'])->has('entity')->get() as $journal) {
+        foreach ($parent->journals()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $journal) {
             $this->addEntity($journal->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -616,7 +618,7 @@ class MapService
 
     protected function addAuthorJournals(): self
     {
-        $elements = $this->entity->authoredJournals()->with(['entity', 'entity.image'])->has('entity')->get();
+        $elements = $this->entity->authoredJournals()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get();
         foreach ($elements as $journal) {
             $this->addEntity($journal->entity);
             $this->relations[] = [
@@ -703,7 +705,7 @@ class MapService
 
         /** @var Location $child */
         $child = $this->entity->child;
-        foreach ($child->children()->with(['entity', 'entity.image'])->has('entity')->get() as $related) {
+        foreach ($child->children()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'target' => $this->entity->id,
@@ -725,7 +727,7 @@ class MapService
         /** @var Character $parent */
         $parent = $this->entity->child;
         /** @var DiceRoll $related */
-        foreach ($parent->diceRolls()->with(['entity', 'entity.image'])->has('entity')->get() as $related) {
+        foreach ($parent->diceRolls()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -747,7 +749,7 @@ class MapService
         /** @var Character $parent */
         $parent = $this->entity->child;
         /** @var Conversation $related */
-        foreach ($parent->conversations()->with(['entity', 'entity.image'])->has('entity')->get() as $related) {
+        foreach ($parent->conversations()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -789,7 +791,7 @@ class MapService
         /** @var Location $parent */
         $parent = $this->entity->child;
         /** @var Map $related */
-        foreach ($parent->maps()->with(['entity', 'entity.image'])->has('entity')->get() as $related) {
+        foreach ($parent->maps()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $related) {
             $this->addEntity($related->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -809,7 +811,7 @@ class MapService
     protected function addQuests(): self
     {
         /** @var QuestElement $related */
-        foreach ($this->entity->quests()->with(['quest', 'quest.entity', 'quest.entity.image'])->has('quest')->get() as $related) {
+        foreach ($this->entity->quests()->with(['quest', 'quest.entity', 'quest.entity.image', 'quest.entity.entityType'])->has('quest')->get() as $related) {
             $this->addEntity($related->quest->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -832,7 +834,7 @@ class MapService
         /** @var Character $race */
         $race = $this->entity->child;
 
-        foreach ($race->races()->with(['entity', 'entity.image'])->has('entity')->get() as $subrace) {
+        foreach ($race->races()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $subrace) {
             $this->addEntity($subrace->entity);
             $this->addRelations($subrace->entity);
 
@@ -857,7 +859,7 @@ class MapService
         /** @var Location $location */
         $location = $this->entity->child;
 
-        foreach ($location->creatures()->with(['entity', 'entity.image'])->has('entity')->get() as $loc) {
+        foreach ($location->creatures()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $loc) {
             $this->addEntity($loc->entity);
             $this->addRelations($loc->entity);
 
@@ -884,7 +886,7 @@ class MapService
             return $this;
         }
 
-        foreach ($child->locations()->with(['entity', 'entity.image'])->has('entity')->get() as $subrace) {
+        foreach ($child->locations()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $subrace) {
             $this->addEntity($subrace->entity);
             $this->addRelations($subrace->entity);
 
@@ -931,7 +933,7 @@ class MapService
         }
 
         /** @var EntityMention[] $mentions */
-        $mentions = $this->entity->targetMentions()->with(['entity', 'entity.image'])
+        $mentions = $this->entity->targetMentions()->with(['entity', 'entity.image', 'entity.entityType'])
             ->has('entity')
             ->whereNotNull('entity_id')
             ->get();

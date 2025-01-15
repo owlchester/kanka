@@ -361,7 +361,7 @@ class MentionsService
                     /** @var Character $child */
                     $child = $entity->child;
                     if ($field == 'family' && !$child->families->isEmpty()) {
-                        $data['text'] = $child->families()->reorder('name')->first()->name;
+                        $data['text'] = $child->characterFamilies()->first()->family->name;
                     }
                     if ($field == 'race' && !$child->characterRaces->isEmpty()) {
                         $data['text'] = $child->characterRaces->first()->race->name;
@@ -370,13 +370,13 @@ class MentionsService
                     if ($field == 'calendar_date' && $child->calendar_id) {
                         $data['text'] = $child->calendarReminder()->readableDate();
                     }
-                    if ($field === 'entry' && method_exists($entity->child, 'parsedEntry')) {
+                    if ($field === 'entry' && method_exists($entity, 'parsedEntry')) {
                         if ($this->enableEntryField) {
                             $this->lockEntryRendering();
-                            $parsedTargetEntry = $entity->child->parsedEntry();
+                            $parsedTargetEntry = $entity->parsedEntry();
                             $this->unlockEntryRendering();
                         } else {
-                            $parsedTargetEntry = $entity->child->entry;
+                            $parsedTargetEntry = $entity->entry;
                         }
                         $cssClasses[] = 'mention-field-entry block';
                         $entityName = '<a href="' . $url . '"'
@@ -420,7 +420,7 @@ class MentionsService
                 $replace = '<a href="' . $url . '"'
                     . ' class="' . implode(' ', $cssClasses) . '"'
                     . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
-                    . ' data-entity-type="' . $entity->type() . '"'
+                    . ' data-entity-type="' . $entity->entityType->code . '"'
                     . ' data-toggle="tooltip-ajax"'
                     . ' data-id="' . $entity->id . '"'
                     . ' data-url="' . $dataUrl . '"'
@@ -641,7 +641,7 @@ class MentionsService
 
         // Directly get with the mentioned entity types (provided they are valid)
         // @phpstan-ignore-next-line
-        $entities = Entity::whereIn('id', $ids)->with('tags:id,name,slug')->get();
+        $entities = Entity::whereIn('id', $ids)->with(['tags:id,name,slug', 'entityType:id,code'])->get();
         //dump(count($ids));
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $entity;

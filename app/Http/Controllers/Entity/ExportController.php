@@ -41,7 +41,7 @@ class ExportController extends Controller
         $converter->getConfig()->setOption('strip_tags', true);
         $converter->getEnvironment()->addConverter(new TableConverter());
 
-        return response()->view('entities.pages.print.markdown', ['entity' => $entity, 'model' => $entity->child, 'converter' => $converter, 'campaign' => $campaign])
+        return response()->view('entities.pages.print.markdown', ['entity' => $entity, 'converter' => $converter, 'campaign' => $campaign])
             ->header('Content-Type', 'application/md')
             ->header('Content-disposition', 'attachment; filename="' . Str::slug($entity->name) . '.md"');
     }
@@ -53,8 +53,7 @@ class ExportController extends Controller
         return view('entities.pages.print.print')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
-            ->with('model', $entity->child)
-            ->with('name', $entity->pluralType())
+            ->with('name', $entity->entityType->pluralCode())
             ->with('printing', true)
         ;
     }

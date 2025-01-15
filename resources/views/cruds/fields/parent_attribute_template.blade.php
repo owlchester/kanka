@@ -18,5 +18,6 @@
     :route="route('search-list', [$campaign, config('entities.ids.attribute_template')])"
     :class="\App\Models\AttributeTemplate::class"
     :dropdownParent="$dropdownParent ?? null"
+    :entityTypeID="config('entities.ids.attribute_template')"
     :helper="__('attribute_templates.hints.parent_attribute_template')">
 </x-forms.foreign>

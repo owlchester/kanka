@@ -91,7 +91,7 @@ class AclScope implements Scope
         if ($model instanceof Entity) {
             return $this->applyToEntity($query, $model);
         } elseif ($model instanceof MiscModel) {
-            return $this->applyToMisc($query, $model);
+            //return $this->applyToMisc($query, $model);
         }
 
         return $query;

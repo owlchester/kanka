@@ -22,7 +22,7 @@ class StoryController extends Controller
 
     public function edit(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return view('entities.pages.story.reorder', compact(
             'campaign',
@@ -32,7 +32,7 @@ class StoryController extends Controller
 
     public function save(ReorderStories $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         if ($request->ajax()) {
             return response()->json();
         }

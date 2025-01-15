@@ -18,7 +18,8 @@
         @include('cruds.datagrids._grid', ['model' => $parent, 'isParent' => true])
     @endif
     @forelse ($models as $model)
-        @include('cruds.datagrids._grid')
+        @includeWhen(!isset($entityType) || $entityType->isSpecial(), 'entities.index._entity')
+        @includeWhen(isset($entityType) && !$entityType->isSpecial(), 'cruds.datagrids._grid')
     @empty
         <p class="italic">
             {{ __('search.no_results') }}

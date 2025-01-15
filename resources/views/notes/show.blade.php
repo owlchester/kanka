@@ -1,10 +1,7 @@
-<?php /** @var \App\Models\Note $model */?>
-
 <div class="entity-grid flex flex-col gap-5">
     @include('entities.components.header', [
-        'model' => $model,
         'breadcrumb' => [
-            Breadcrumb::entity($model->entity)->list(),
+            Breadcrumb::entity($entity)->list(),
             null
         ]
     ])
@@ -15,7 +12,7 @@
         <div class="entity-main-block grow flex flex-col gap-5 min-w-0">
             @include('entities.components.posts', ['withEntry' => true])
 
-            @includeWhen(!$model->children->isEmpty(), 'notes._subnotes')
+            @includeWhen(!$entity->child->children->isEmpty(), 'notes._subnotes')
         </div>
 
         @include('entities.components.pins')

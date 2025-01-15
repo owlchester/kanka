@@ -17,7 +17,6 @@ class TagResource extends EntityResource
         /** @var Tag $model */
         $model = $this->resource;
         return $this->entity([
-            'type' => $model->type,
             'tag_id' => $model->tag_id,
             'colour' => $model->colour,
             'entities' => $model->entities()->distinct()->pluck('entities.id')->toArray(),

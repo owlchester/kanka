@@ -95,7 +95,7 @@ class NewsletterService
                 }
             }
 
-            $email = $this->user?->email ?? $this->email;
+            $email = $this->user->email ?? $this->email;
 
             $data = [
                 'email' => $email,
@@ -145,8 +145,8 @@ class NewsletterService
     protected function buildFields(): array
     {
         $fields = [
-            'name' => $this->user?->name,
-            'language' => $this->user?->locale ?? app()->getLocale(),
+            'name' => $this->user->name,
+            'language' => $this->user->locale ?? app()->getLocale(),
             'country' => $this->guessCountry()
         ];
         if (!empty($this->user)) {

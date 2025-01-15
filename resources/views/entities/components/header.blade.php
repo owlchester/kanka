@@ -1,14 +1,9 @@
 <?php
 /**
  * @var \App\Models\Campaign $campaign
- * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
  * @var \App\Models\Tag $tag
  */
-
-if (!isset($entity)) {
-    $entity = $model->entity;
-}
 
 $imageUrl = $imagePath = $headerImageUrl = $imagePathXL = $imagePathMobile = null;
 $imageUrl = Avatar::entity($entity)->original();
@@ -25,10 +20,10 @@ $adminRole = \App\Facades\CampaignCache::adminRole();
 $entityTags = $entity->tagsWithEntity();
 
 $buttonsClass = 1;
-if ($model instanceof \App\Models\Character && $model->is_dead) {
+if ($entity->isCharacter() && $entity->child->is_dead) {
     $buttonsClass++;
 }
-if ($model instanceof \App\Models\Quest && $model->is_completed) {
+if ($entity->isQuest() && $entity->child->is_completed) {
     $buttonsClass++;
 }
 if (auth()->check() && auth()->user()->isAdmin()) {
@@ -48,14 +43,14 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
     @if ($imageUrl)
     <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto">
 
-        @can('update', $model)
+        @can('update', $entity)
             @if(isset($printing) && $printing)
-                <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $model->name }}"/>
+                <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $entity->name }}"/>
             @endif
 
             @if (!isset($printing))
             <a class="cursor-pointer relative cover-background sm:hidden" href="{{ $imageUrl }}" target="_blank" aria-label="Open original image">
-                <img src="{{ $imagePathMobile }}" lazy alt="{{ $model->name }}" class="w-28" />
+                <img src="{{ $imagePathMobile }}" lazy alt="{{ $entity->name }}" class="w-28" />
             </a>
             @endif
             <div class="dropdown">
@@ -67,7 +62,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                     @endif
                     <picture>
                         <source media="(min-width:766px)" srcset="{{ $imagePathXL }}">
-                        <img src="{{ $imagePath }}" alt="{{ $model->name }}" style="width:auto;">
+                        <img src="{{ $imagePath }}" alt="{{ $entity->name }}" style="width:auto;">
                     </picture>
                 </div>
 
@@ -80,14 +75,14 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                     </x-dropdowns.item>
                     <hr class="m-0" />
                     <x-dropdowns.item
-                        :link="route('entities.image.replace', [$campaign, $model->entity])"
-                        :dialog="route('entities.image.replace', [$campaign, $model->entity])">
+                        :link="route('entities.image.replace', [$campaign, $entity])"
+                        :dialog="route('entities.image.replace', [$campaign, $entity])">
                         {{ __('entities/image.actions.replace_image') }}
                     </x-dropdowns.item>
 
                     @if ($campaign->boosted())
                         <x-dropdowns.item
-                            :link="route('entities.image.focus', [$campaign, $model->entity])">
+                            :link="route('entities.image.focus', [$campaign, $entity])">
                             {{ __('entities/image.actions.change_focus') }}</x-dropdowns.item>
                     @else
                         <x-dropdowns.item
@@ -99,7 +94,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
             </div>
         @else
             @if(isset($printing) && $printing)
-                <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $model->name }}"/>
+                <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $entity->name }}"/>
             @else
             <a class="entity-image cover-background block rounded-none" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
             @endif
@@ -124,58 +119,58 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         @endif
         <div class="entity-name-header flex gap-3 items-center">
             <h1 class="entity-name text-lg md:text-4xl break-all">
-                {!! $model->name !!}
+                {!! $entity->name !!}
             </h1>
-            @if ($model instanceof \App\Models\Character && $model->isDead())
+            @if ($entity->isCharacter() && $entity->child->isDead())
                 <span class="entity-name-icon entity-char-dead text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_dead') }}">
                     <x-icon class="ra ra-skull entity-icons" />
                     <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
                 </span>
             @endif
-            @if ($model instanceof \App\Models\Quest && $model->isCompleted())
+            @if ($entity->isQuest() && $entity->child->isCompleted())
                 <span class="entity-name-icon entity-quest-complete text-2xl" data-toggle="tooltip" data-title="{{ __('quests.fields.is_completed') }}">
                     <x-icon class="fa-solid fa-check-circle entity-icons" />
                     <span class="sr-only">{{ __('quests.fields.is_completed') }}</span>
                 </span>
             @endif
-            @if ($model instanceof \App\Models\Organisation && $model->isDefunct())
+            @if ($entity->isOrganisation() && $entity->child->isDefunct())
                 <span class="entity-name-icon entity-org-defunct text-2xl" data-toggle="tooltip" data-title="{{ __('organisations.hints.is_defunct') }}">
                     <x-icon class="fa-solid fa-shop-slash entity-icons " />
                     <span class="sr-only">{{ __('organisations.hints.is_defunct') }}</span>
                 </span>
             @endif
-            @if ($model instanceof \App\Models\Location && $model->isDestroyed())
+            @if ($entity->isLocation() && $entity->child->isDestroyed())
                 <span class="entity-name-icon entity-loc-destroyed text-2xl" data-toggle="tooltip" data-title="{{ __('locations.hints.is_destroyed') }}">
                     <x-icon class="fa-solid fa-building-circle-xmark " />
                     <span class="sr-only">{{ __('locations.hints.is_destroyed') }}</span>
                 </span>
             @endif
-            @if ($model instanceof \App\Models\Race && $model->isExtinct())
+            @if ($entity->isRace() && $entity->child->isExtinct())
                 <span class="entity-name-icon entity-rac-extinct text-2xl" data-toggle="tooltip" data-title="{{ __('races.hints.is_extinct') }}">
                     <x-icon class="fa-solid fa-skull-cow entity-icons " />
                     <span class="sr-only">{{ __('races.hints.is_extinct') }}</span>
                 </span>
             @endif
-            @if ($model instanceof \App\Models\Creature && $model->isExtinct())
+            @if ($entity->isCreature() && $entity->child->isExtinct())
                 <span class="entity-name-icon entity-cre-extinct text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_extinct') }}">
                     <x-icon class="fa-solid fa-skull-cow entity-icons " />
                     <span class="sr-only">{{ __('creatures.hints.is_extinct') }}</span>
                 </span>
             @endif
-            @if ($model instanceof \App\Models\Creature && $model->isDead())
+            @if ($entity->isCreature() && $entity->child->isDead())
                 <span class="entity-name-icon entity-cre-dead text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_dead') }}">
                     <x-icon class="ra ra-skull entity-icons " />
                     <span class="sr-only">{{ __('creatures.hints.is_dead') }}</span>
                 </span>
             @endif
-            @if ($model instanceof \App\Models\Family && $model->isExtinct())
+            @if ($entity->isFamily() && $entity->child->isExtinct())
                 <span class="entity-name-icon entity-fam-extinct text-2xl" data-toggle="tooltip" data-title="{{ __('families.hints.is_extinct') }}">
                     <x-icon class="ra ra-skull entity-icons " />
                     <span class="sr-only">{{ __('families.hints.is_extinct') }}</span>
                 </span>
             @endif
             @if (auth()->check() && auth()->user()->isAdmin())
-                <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $model->entity]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $entity]) }}" data-target="primary-dialog" aria-haspopup="dialog">
                         <i class="fa-solid fa-lock entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <i class="fa-solid fa-lock-open entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
@@ -184,15 +179,15 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
             @include('entities.headers.cog')
         </div>
 
-        @if ($model instanceof \App\Models\Character && !empty($model->title))
+        @if ($entity->isCharacter()&& !empty($entity->child->title))
             <div class="entity-title entity-header-line">
-                {!! $model->title !!}
+                {!! $entity->child->title !!}
             </div>
         @endif
 
-        @if (!empty($model->type))
+        @if (!$entity->entityType->isSpecial() && !empty($entity->child->type))
             <div class="entity-type entity-header-line">
-                {{ $model->type }}
+                {{ $entity->child->type }}
             </div>
         @endif
 
@@ -209,7 +204,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                 </a>
             @endforeach
         @endif
-            @can('update', $model)
+            @can('update', $entity)
                 <span role="button" tabindex="0" class="entity-tag-icon text-xl" data-toggle="dialog" data-url="{{ $addTagsUrl }}" data-target="primary-dialog" aria-haspopup="dialog">
                     <x-icon class="fa-solid fa-tag" tooltip="1" :title="__('Add or remove tags')" />
                 </span>
@@ -218,7 +213,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         </div>
 
         <div class="entity-header-sub flex gap-4 items-center flex-wrap">
-        @includeIf('entities.headers._' . $model->getEntityType())
+        @includeIf('entities.headers._' . $entity->entityType->code)
         </div>
 
         @yield($entityHeaderActions ?? 'entity-header-actions')

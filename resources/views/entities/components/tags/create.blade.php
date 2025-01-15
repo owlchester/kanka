@@ -1,10 +1,10 @@
-<?php /** @var \App\Models\MiscModel $model */ ?>
+<?php /** @var \App\Models\Entity $entity */ ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('tags.children.create.entity', ['name' => $model->name]),
+    'title' => __('tags.children.create.entity', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        Breadcrumb::entity($model->entity)->list(),
-        Breadcrumb::show($model),
+        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::show($entity),
     ],
     'centered' => true,
 ])
@@ -12,11 +12,11 @@
 @section('content')
     <x-form :action="$formOptions">
         @include('partials.forms.form', [
-            'title' => __('tags.children.create.entity', ['name' => $model->name]),
+            'title' => __('tags.children.create.entity', ['name' => $entity->name]),
             'content' => 'entities.components.tags._form',
             'submit' =>  __('tags.children.actions.add_entity'),
             'dialog' => true,
         ])
-        <input type="hidden" name="entity_id" value="{{ $model->entity->id }}" />
+        <input type="hidden" name="entity_id" value="{{ $entity->id }}" />
     </x-form>
 @endsection

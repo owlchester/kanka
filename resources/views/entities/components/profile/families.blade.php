@@ -1,17 +1,23 @@
-<?php /** @var \App\Models\Family $model */?>
+<?php
+/**
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\Family $model
+ */
+$child = $entity->child;
+?>
 
-@if (!$model->showProfileInfo())
+@if (!$child->showProfileInfo())
     @php return @endphp
 @endif
 
 <x-sidebar.profile>
-        @if (!empty($model->parent))
+        @if (!empty($child->parent))
         <div class="element profile-family">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.family')) !!}
             </div>
             <x-entity-link
-                :entity="$model->parent->entity"
+                :entity="$child->parent->entity"
                 :campaign="$campaign" />
         </div>
     @endif

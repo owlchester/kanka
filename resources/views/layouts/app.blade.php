@@ -1,13 +1,14 @@
 <?php
 /**
  * @var \App\Models\Campaign $campaign
- * @var \App\Models\MiscModel $miscModel
+ * @var \App\Models\Entity $entity
  */
 $themeOverride = request()->get('_theme');
 $specificTheme = null;
 $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign);
 $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
+
 ?><!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" class="scroll-pt-16 overflow-auto">
 <head>
@@ -78,7 +79,9 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @livewireStyles
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
-<body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if(isset($miscModel) && !empty($miscModel->entity)){{ $miscModel->bodyClasses($entity ?? null) }}@endif @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif antialiased" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember() ? 1 : 0 }}" @endif>
+<body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif
+@if(isset($entity)){{ $entity->bodyClasses() }}@endif
+@if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif antialiased" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember() ? 1 : 0 }}" @endif>
 
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute mx-2 top-0 btn2 btn-primary btn-sm rounded-t-none" tabindex="1">
     {{ __('crud.navigation.skip_to_content') }}

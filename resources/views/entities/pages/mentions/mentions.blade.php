@@ -5,7 +5,6 @@
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $entity->child,
     'bodyClass' => 'entity-mentions'
 ])
 
@@ -27,7 +26,6 @@
         'breadcrumb' => __('crud.tabs.mentions'),
         'view' => 'entities.pages.mentions.render',
         'entity' => $entity,
-        'model' => $entity->child,
     ])
 @endsection
 

@@ -11,7 +11,7 @@
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::entity($entity)->list(),
-        Breadcrumb::show($entity->child),
+        Breadcrumb::show($entity),
         __('crud.edit'),
     ]
 ])

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
 use App\Models\Relations\CalendarRelations;
@@ -44,7 +43,6 @@ class Calendar extends MiscModel
     use CalendarRelations;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
@@ -54,8 +52,6 @@ class Calendar extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'type',
-        'entry',
         'start_offset',
         'is_private',
         'parameters',
@@ -118,10 +114,13 @@ class Calendar extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
+            },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
             },
             'children' => function ($sub) {
                 $sub->select('id', 'calendar_id');

@@ -48,13 +48,18 @@ class EntityResource extends JsonResource
         /** @var \App\Models\Entity $entity */
         $entity = $this->resource;
         $url = $entity->url();
-        $apiViewUrl = 'campaigns.' . $entity->pluralType() . '.show';
+        if ($entity->entityType->isSpecial()) {
+            $apiViewUrl = 'campaigns.entities.show';
+        } else {
+            $apiViewUrl = 'campaigns.' . $entity->entityType->pluralCode() . '.show';
+        }
 
         $data = [
             'id' => $entity->id,
             'name' => $entity->name,
-            'type' => $entity->type(),
+            'type' => $entity->type,
             'type_id' => $entity->type_id,
+            'entity_type' => $entity->entityType->code,
             'child_id' => $entity->entity_id,
             'tags' => $entity->tags->pluck('id')->toArray(),
             'is_private' => (bool) $entity->is_private,
@@ -63,6 +68,7 @@ class EntityResource extends JsonResource
             'is_attributes_private' => (bool) $entity->is_attributes_private,
             'tooltip' => $entity->tooltip,
             'header_image' => $entity->header_image,
+            'header_uuid' => $entity->header_uuid,
             'image_uuid' => $entity->image_uuid,
 
             'created_at' => $entity->created_at,
@@ -75,6 +81,12 @@ class EntityResource extends JsonResource
                 'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$entity->campaign_id, $entity->entity_id]) : null,
             ]
         ];
+
+        if ($entity->entityType->isSpecial()) {
+            $data['type'] = $entity->type;
+            $data['entry'] = $entity->entry;
+            $data['entry_parsed'] = Mentions::mapEntity($entity, 'entry');
+        }
 
         if (request()->get('related', false)) {
             $data['attributes'] = AttributeResource::collection($entity->attributes);
@@ -96,17 +108,12 @@ class EntityResource extends JsonResource
                     'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : Avatar::entity($entity)->size(40)->thumbnail(),
                     'has_custom_image' => $image || !empty($entity->image_path),
                 ];
-
-                /*if (request()->get('entry')) {
-                    $data['child']['entry'] = $entity->child->hasEntry() ? $entity->child->entry : null;
-                    $data['child']['entry_parsed'] = $entity->child->hasEntry() ? Mentions::map($entity->child->entry) : null;
-                }*/
             }
         }
 
         // Get the actual model
         if ($this->withMisc) {
-            $className = 'App\Http\Resources\\' . ucfirst($entity->type()) . 'Resource';
+            $className = 'App\Http\Resources\\' . ucfirst($entity->entityType->code) . 'Resource';
             if (class_exists($className)) {
                 $obj = new $className($entity->child);
                 $data['child'] = $obj;
@@ -133,14 +140,15 @@ class EntityResource extends JsonResource
 
         $galleryImage = $misc->entity->image;
         $url = $misc->getLink();
-        $apiViewUrl = 'campaigns.' . $misc->entity->pluralType() . '.show';
+        $apiViewUrl = 'campaigns.' . $misc->entity->entityType->pluralCode() . '.show';
 
         $merged = [
             'id' => $misc->id,
             'name' => $misc->name,
-            'entry' => $misc->hasEntry() ? $misc->entry : null,
-            'entry_parsed' => $misc->hasEntry() ? Mentions::map($misc) : null,
+            'entry' => $misc->entity->hasEntry() ? $misc->entity->entry : null,
+            'entry_parsed' => $misc->entity->hasEntry() ? Mentions::mapAny($misc->entity) : null,
             'tooltip' => $misc->entity->tooltip ?: null,
+            'type' => $misc->entity->type ?: null,
             'image' => $misc->entity->image_path,
             'focus_x' => $misc->entity->focus_x,
             'focus_y' => $misc->entity->focus_y,

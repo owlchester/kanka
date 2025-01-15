@@ -2,15 +2,28 @@
 
 namespace App\Policies;
 
+use App\Facades\EntityPermission;
 use App\Facades\UserCache;
 use App\Models\Campaign;
+use App\Models\CampaignPermission;
 use App\Models\Entity;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class EntityPolicy
 {
     use HandlesAuthorization;
+
+    public function view(?User $user, Entity $entity): bool
+    {
+        return EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_READ, $user, $entity);
+    }
+    public function update(?User $user, Entity $entity): bool
+    {
+        return EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_EDIT, $user, $entity);
+    }
+
 
     public function attributes(?User $user, Entity $entity): bool
     {
@@ -40,5 +53,52 @@ class EntityPolicy
     public function history(?User $user, Entity $entity, Campaign $campaign): bool
     {
         return ($user && UserCache::user($user)->admin()) || !($campaign->boosted() && $campaign->hide_history);
+    }
+
+    public function move(User $user, Entity $entity): bool
+    {
+        return $this->update($user, $entity);
+    }
+
+    public function inventory(User $user, Entity $entity): bool
+    {
+        return $this->update($user, $entity);
+    }
+
+    public function relation(User $user, Entity $entity): bool
+    {
+        return $this->update($user, $entity);
+    }
+
+    public function permissions(User $user, Entity $entity): bool
+    {
+        return EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_PERMS, $user, $entity);
+    }
+
+    public function post(User $user, Entity $entity, string $action = null, ?Post $post = null): bool
+    {
+        return (
+            $this->update($user, $entity) ||
+            EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_POSTS, $user, $entity) ||
+            ($action == 'edit' ? $this->checkPostPermission($user, $post) : false)
+        ) ;
+    }
+
+    public function delete(User $user, Entity $entity): bool
+    {
+        return  EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_DELETE, $user, $entity);
+    }
+
+
+    /**
+     */
+    protected function checkPostPermission(User $user, Post $post): bool
+    {
+        $roleIds = UserCache::roles()->pluck('id')->toArray();
+        $perms = $post->permissions->where('permission', 1);
+        return $perms->where('user_id', $user->id)->count() == 1
+            ||
+            $perms->whereIn('role_id', $roleIds)->count() == 1
+        ;
     }
 }

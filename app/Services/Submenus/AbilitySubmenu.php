@@ -11,7 +11,7 @@ class AbilitySubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
         /** @var Ability $ability */
-        $ability = $this->model;
+        $ability = $this->entity->child;
         $items['second']['abilities'] = [
             'name' => Module::plural($ability->entityTypeId(), 'entities.abilities'),
             'route' => 'abilities.abilities',

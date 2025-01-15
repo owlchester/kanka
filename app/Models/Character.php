@@ -6,7 +6,6 @@ use App\Enums\FilterOption;
 use App\Facades\CharacterCache;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Sanitizable;
@@ -50,7 +49,6 @@ class Character extends MiscModel
     use Acl;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasLocation;
@@ -68,7 +66,6 @@ class Character extends MiscModel
         'sex',
         'pronouns',
         'is_private',
-        'type',
         'is_dead',
         'is_personality_visible',
         'is_appearance_pinned',
@@ -88,7 +85,6 @@ class Character extends MiscModel
 
     protected array $sortable = [
         'name',
-        'type',
         'location.name',
         'is_dead',
     ];
@@ -161,10 +157,13 @@ class Character extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
+            },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
             },
             'location' => function ($sub) {
                 $sub->select('id', 'name');
@@ -492,7 +491,7 @@ class Character extends MiscModel
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'name', 'title', 'type','location_id', 'is_dead', 'is_private'])
+            ->select(['id', 'name', 'title','location_id', 'is_dead', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'location', 'location.entity',

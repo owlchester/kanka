@@ -25,7 +25,7 @@ class PrivateScope implements Scope
                 return $builder;
             }
 
-            // @phpstan-ignore-next-link
+            // @phpstan-ignore-next-line
             return $builder->withoutGlobalScope($this);
         });
     }

@@ -11,7 +11,7 @@ class OrganisationSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
         /** @var Organisation $model */
-        $model = $this->model;
+        $model = $this->entity->child;
         $count = $model->descendants()->count();
         if ($count > 0) {
             $items['second']['organisations'] = [

@@ -31,7 +31,7 @@ class EntityPermissionApiController extends ApiController
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         return Resource::collection($entity->permissions);
     }
 
@@ -41,7 +41,7 @@ class EntityPermissionApiController extends ApiController
     public function show(Campaign $campaign, Entity $entity, CampaignPermission $permission)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         return new Resource($permission);
     }
 
@@ -52,7 +52,7 @@ class EntityPermissionApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $model = $this->apiPermissionService->saveEntity($request, $entity);
         return Resource::collection($model);
@@ -64,7 +64,7 @@ class EntityPermissionApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Entity $entity, CampaignPermission $permission)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $permission->update($request->only('access', 'action'));
 
         return new Resource($permission);
@@ -77,7 +77,7 @@ class EntityPermissionApiController extends ApiController
     public function destroy(Campaign $campaign, Entity $entity, CampaignPermission $permission)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $permission->delete();
 
         return response()->json(null, 204);

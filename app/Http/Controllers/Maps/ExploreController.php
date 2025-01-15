@@ -58,7 +58,7 @@ class ExploreController extends Controller
      */
     public function ticker(Campaign $campaign, Map $map)
     {
-        $this->campaign($campaign)->authView($map);
+        $this->campaign($campaign)->authEntityView($map->entity);
 
         $timestamp = request()->get('ts', time());
         /** @var MapMarker[] $markers */

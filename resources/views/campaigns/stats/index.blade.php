@@ -42,8 +42,11 @@
                         </div>
                         <hr class="col-span-2" />
                         @foreach ($stats['types'] as $type => $count)
+                            @if (!\Illuminate\Support\Arr::has($entityTypes, $type))
+                                @continue
+                            @endif
                             <div class="entity-type" data-type="{{ $type }}">
-                                {{ \App\Facades\Module::fallback()->plural($type) }}
+                                {{ $entityTypes[$type]->plural() }}
                             </div>
                             <div class="entity-count">
                                 {!! number_format($count) !!}

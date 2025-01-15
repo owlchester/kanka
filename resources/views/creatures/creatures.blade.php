@@ -2,10 +2,9 @@
     $plural = \App\Facades\Module::plural(config('entities.ids.creature'), __('entities.creatures'));
 @endphp
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . $plural,
+    'title' => $entity->name . ' - ' . $plural,
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 
@@ -33,6 +32,5 @@
         'active' => 'creatures',
         'breadcrumb' => $plural,
         'view' => 'creatures.panels.creatures',
-        'entity' => $model->entity,
     ])
 @endsection

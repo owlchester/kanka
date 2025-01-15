@@ -7,6 +7,7 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreBookmark;
 use App\Models\Campaign;
 use App\Models\Bookmark;
+use App\Models\EntityType;
 use Illuminate\Http\Request;
 
 class BookmarkController extends CrudController
@@ -147,5 +148,10 @@ class BookmarkController extends CrudController
     protected function limitCheckReached(): bool
     {
         return !$this->campaign->canHaveMoreBookmarks();
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.bookmark'))->first();
     }
 }

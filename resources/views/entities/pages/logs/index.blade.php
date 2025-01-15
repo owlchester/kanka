@@ -5,7 +5,6 @@
     'title' => __('entities/logs.show.title', ['name' => $entity->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $entity->child,
     'bodyClass' => 'entity-logs'
 ])
 @include('entities.components.og')
@@ -16,7 +15,6 @@
         'active' => 'logs',
         'view' => 'entities.pages.logs._logs',
         'entity' => $entity,
-        'model' => $entity->child,
     ])
 
 

@@ -28,11 +28,12 @@ class ItemController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Item\Item::class)
             ->route('items.items', $options);
 
+        //@phpstan-ignore-next-line
         $this->rows = $item
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
-            ->with(['entity', 'entity.image'])
+            ->with(['entity', 'entity.image', 'entity.entityType'])
             ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {

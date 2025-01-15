@@ -27,4 +27,7 @@ return [
     'success'       => 'Entity :name moved to the :campaign campaign.',
     'success_copy'  => 'Entity :name copied to the :campaign campaign.',
     'title'         => 'Move :name',
+    'warnings' => [
+        'custom' => 'This entity is not a standard Kanka entity, but of a custom ":module" entity type. It will be created as a Note entity in the target campaign.',
+    ],
 ];

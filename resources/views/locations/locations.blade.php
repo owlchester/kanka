@@ -1,9 +1,8 @@
 @extends('layouts.app', [
-    'title' => $model->name . ' ' . \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')),
+    'title' => $entity->name . ' ' . \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')),
     'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 @section('entity-header-actions')
@@ -33,6 +32,5 @@
         'active' => 'locations',
         'breadcrumb' => $plural,
         'view' => 'locations.panels.locations',
-        'entity' => $model->entity,
     ])
 @endsection

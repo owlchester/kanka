@@ -26,7 +26,7 @@ class Reminder extends Layout
                 'key' => 'type_id',
                 'label' => 'crud.fields.entity_type',
                 'render' => function ($model) {
-                    return __('entities.' . $model->entity->pluralType());
+                    return $model->entity->entityType->name();
                 }
             ],
             'date' => [

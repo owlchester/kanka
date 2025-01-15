@@ -2,7 +2,7 @@
     <abilities
             id="{{ $entity->id }}"
             api="{{ route('entities.entity_abilities.api', [$campaign, $entity]) }}"
-            permission="{{ auth()->check() && auth()->user()->can('update', $entity->child) }}"
+            permission="{{ auth()->check() && auth()->user()->can('update', $entity) }}"
     ></abilities>
 </div>
 

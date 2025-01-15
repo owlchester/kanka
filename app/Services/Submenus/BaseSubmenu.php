@@ -2,22 +2,15 @@
 
 namespace App\Services\Submenus;
 
-use App\Models\MiscModel;
 use App\Traits\CampaignAware;
-use Illuminate\Database\Eloquent\Model;
+use App\Traits\EntityAware;
 
 class BaseSubmenu
 {
     use CampaignAware;
+    use EntityAware;
 
     protected array $items;
-    protected Model|MiscModel $model;
-
-    public function model(Model|MiscModel $model): self
-    {
-        $this->model = $model;
-        return $this;
-    }
 
     public function items(array $items): self
     {

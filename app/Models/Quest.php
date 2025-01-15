@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
@@ -39,7 +38,6 @@ class Quest extends MiscModel
     use CalendarDateTrait;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasLocation;
@@ -53,8 +51,6 @@ class Quest extends MiscModel
         'campaign_id',
         'quest_id',
         'name',
-        'type',
-        'entry',
         'is_private',
         'instigator_id',
         'location_id',
@@ -64,7 +60,6 @@ class Quest extends MiscModel
 
     protected array $sortable = [
         'name',
-        'type',
         'date',
         'is_completed',
         'parent.name',
@@ -72,7 +67,6 @@ class Quest extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
         'date',
     ];
 
@@ -132,6 +126,9 @@ class Quest extends MiscModel
         return $query->with([
             'entity',
             'entity.image',
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
+            },
             'entity.calendarDate',
             'entity.calendarDate.calendar',
             'entity.calendarDate.calendar.entity',

@@ -16,12 +16,9 @@ class FormController extends Controller
 {
     use CampaignAware;
 
-    protected FilterService $filterService;
-
-    public function __construct(FilterService $filterService)
+    public function __construct(protected FilterService $filterService)
     {
         $this->middleware(['auth']);
-        $this->filterService = $filterService;
     }
 
     public function index(Campaign $campaign, EntityType $entityType)
@@ -29,10 +26,18 @@ class FormController extends Controller
         $plural = Str::plural(Str::remove('-', $entityType->code));
         $route = $plural . '.index';
 
+        if ($entityType->isSpecial()) {
+            $this->filterService->entityType($entityType)->build();
+            return view('entities.index.filters')
+                ->with('campaign', $campaign)
+                ->with('entityType', $entityType)
+                ->with('filterService', $this->filterService)
+            ;
+        }
         $model = $entityType->getClass();
 
         try {
-            return $this->campaign($campaign)->render($model, $plural, $route);
+            return $this->campaign($campaign)->render($model, $plural, $route, $entityType);
         } catch (Exception $e) {
             return redirect()->route('dashboard', $campaign);
         }
@@ -45,13 +50,13 @@ class FormController extends Controller
         $plural = 'relations';
 
         try {
-            return $this->campaign($campaign)->render($model, $plural, $route, 'entities/relations');
+            return $this->campaign($campaign)->render($model, $plural, $route, null, 'entities/relations');
         } catch (Exception $e) {
             return redirect()->route('dashboard', $campaign);
         }
     }
 
-    protected function render(mixed $model, string $plural, string $route, ?string $langKey = null)
+    protected function render(mixed $model, string $plural, string $route, ?EntityType $entityType = null, ?string $langKey = null)
     {
         $this->filterService
             ->model($model)
@@ -71,6 +76,7 @@ class FormController extends Controller
             ->with('filterService', $this->filterService)
             ->with('route', $route)
             ->with('entityModel', $model)
+            ->with('entityType', $entityType)
             ->with('count', 0)
             ->with('langKey', $langKey ?? $plural)
             ->with('hasAttributeFilters', false)

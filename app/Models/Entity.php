@@ -11,9 +11,12 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\EntityLogs;
 use App\Models\Concerns\EntityType;
 use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasMentions;
+use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Templatable;
@@ -27,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable as Scout;
 
 /**
  * Class Entity
@@ -35,7 +39,8 @@ use Illuminate\Support\Str;
  * @property int $id
  * @property int $entity_id
  * @property string $name
- * @property string $type
+ * @property ?string $type
+ * @property ?string $entry
  * @property int $type_id
  * @property int $created_by
  * @property int $updated_by
@@ -65,10 +70,14 @@ class Entity extends Model
     use EntityScopes;
     use EntityType;
     use HasCampaign;
+    use HasEntry;
     use HasMentions;
+    use HasSuggestions;
     use HasTooltip;
     use LastSync;
     use Paginatable;
+    use Sanitizable;
+    use Scout;
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
@@ -85,6 +94,12 @@ class Entity extends Model
         'image_uuid',
         'header_uuid',
         'is_template',
+        'type',
+        'entry',
+    ];
+
+    protected array $sanitizable = [
+        'type',
     ];
 
     /** @var array Searchable fields */
@@ -123,7 +138,7 @@ class Entity extends Model
         } elseif ($this->isDiceRoll()) {
             return $this->diceRoll();
         }
-        return $this->{$this->type()}();
+        return $this->{$this->entityType->code}();
     }
 
     /**
@@ -146,7 +161,7 @@ class Entity extends Model
         } elseif ($this->isDiceRoll()) {
             return $this->load('diceRoll');
         }
-        return $this->load($this->type());
+        return $this->load($this->entityType->code);
     }
 
     /**
@@ -162,7 +177,7 @@ class Entity extends Model
      */
     public function mappedPreview(): string
     {
-        if (empty($this->child)) {
+        if ($this->isMissingChild()) {
             return '';
         }
         $campaign = CampaignLocalization::getCampaign();
@@ -173,11 +188,10 @@ class Entity extends Model
                 return (string)strip_tags($text);
             }
         }
-        if (!$this->child->hasEntry()) {
+        if (!$this->hasEntry()) {
             return '';
         }
-        // @phpstan-ignore-next-line
-        return Str::limit(strip_tags($this->child->parsedEntry()), 500);
+        return Str::limit(strip_tags($this->parsedEntry()), 500);
     }
 
 
@@ -189,26 +203,17 @@ class Entity extends Model
         $campaign = CampaignLocalization::getCampaign();
         try {
             if ($action == 'index') {
-                return route($this->pluralType() . '.index', $campaign);
+                return route($this->entityType->code . '.index', [$campaign, $this->entityType]);
             } elseif ($action === 'show') {
                 return route('entities.show', [$campaign, $this] + $options);
+            } elseif ($action === 'edit') {
+                return route('entities.edit', [$campaign, $this] + $options);
             }
             $routeOptions = array_merge([$campaign, $this->entity_id], $options);
-            return route($this->pluralType() . '.' . $action, $routeOptions);
+            return route($this->entityType->code . '.' . $action, $routeOptions);
         } catch (Exception $e) {
             return route('dashboard', $campaign);
         }
-    }
-
-    /**
-     * Get the plural name of the entity for routes
-     */
-    public function pluralType(): string
-    {
-        if (isset($this->cachedPluralName)) {
-            return $this->cachedPluralName;
-        }
-        return $this->cachedPluralName = Str::plural($this->type());
     }
 
     /**
@@ -217,11 +222,6 @@ class Entity extends Model
     public function typeId()
     {
         return $this->type_id;
-    }
-
-    public function entityType(): string
-    {
-        return __('entities.' . $this->type());
     }
 
     /**
@@ -233,17 +233,6 @@ class Entity extends Model
         }
 
         return in_array($this->type_id, $types);
-    }
-
-    /**
-     */
-    public function type(): string
-    {
-        if (isset($this->cachedType)) {
-            return $this->cachedType;
-        }
-        $type = array_search($this->type_id, config('entities.ids'));
-        return $this->cachedType = $type;
     }
 
     public function cleanCache(): self
@@ -386,6 +375,8 @@ class Entity extends Model
             'entity_id',
             'type_id',
             'name',
+            'type',
+            'entry',
             'is_private',
             'tooltip',
             'is_template',
@@ -409,7 +400,8 @@ class Entity extends Model
 
         // Entity relations
         $relations = [
-            'entityTags', 'relationships', 'posts', 'abilities', 'events', 'entityAttributes', 'assets', 'mentions', 'inventories'
+            'entityTags', 'relationships', 'posts', 'abilities', 'events',
+            'entityAttributes', 'assets', 'mentions', 'inventories'
         ];
         foreach ($relations as $relation) {
             foreach ($this->$relation as $model) {
@@ -466,5 +458,85 @@ class Entity extends Model
         }
 
         return new Collection($ordered);
+    }
+
+    public function hasChild(): bool
+    {
+        return !$this->entityType->isSpecial();
+    }
+
+    public function isMissingChild(): bool
+    {
+        return !$this->entityType->isSpecial() && empty($this->child);
+    }
+
+    /**
+     * Generate the entity's body css classes
+     */
+    public function bodyClasses(): string
+    {
+        $classes = [
+            'kanka-entity-' . $this->id,
+            'kanka-entity-' . $this->entityType->code,
+        ];
+
+        $classes[] = 'kanka-type-' . Str::slug($this->type);
+
+
+        foreach ($this->tagsWithEntity(true) as $tag) {
+            $classes[] = 'kanka-tag-' . $tag->id;
+            $classes[] = 'kanka-tag-' . $tag->slug;
+
+            if ($tag->tag_id) {
+                $classes[] = 'kanka-tag-' . $tag->tag_id;
+            }
+        }
+
+        // Specific entity flags
+        // @phpstan-ignore-next-line
+        if ($this->isCharacter() && $this->child->is_dead) {
+            $classes[] = 'character-dead';
+            // @phpstan-ignore-next-line
+        } elseif ($this->isQuest() && $this->child->is_completed) {
+            $classes[] = 'quest-completed';
+        }
+
+        if ($this->is_private) {
+            $classes[] = 'kanka-entity-private';
+        }
+
+        if ($this->hasHeaderImage()) {
+            $classes[] = 'entity-with-banner';
+        }
+
+        return (string) implode(' ', $classes);
+    }
+
+    /**
+     * Get the value used to index the model.
+     *
+     */
+    public function getScoutKey()
+    {
+        return $this->getTable() . '_' . $this->id;
+    }
+
+    /**
+     * Get the name of the index associated with the model.
+     */
+    public function searchableAs(): string
+    {
+        return 'entities';
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'campaign_id' => $this->campaign_id,
+            'entity_id' => $this->id,
+            'name' => $this->name,
+            'type'  => $this->type,
+            'entry'  => strip_tags($this->entry),
+        ];
     }
 }

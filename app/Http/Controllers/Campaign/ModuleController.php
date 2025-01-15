@@ -7,24 +7,32 @@ use App\Http\Requests\UpdateModuleName;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\Campaign\ModuleEditService;
+use App\Services\EntityTypeService;
 use App\Services\SidebarService;
 use Exception;
 
 class ModuleController extends Controller
 {
-    protected SidebarService $sidebarService;
-    protected ModuleEditService $moduleService;
-
-    public function __construct(SidebarService $sidebarService, ModuleEditService $moduleEditService)
-    {
-        $this->sidebarService = $sidebarService;
-        $this->moduleService = $moduleEditService;
+    public function __construct(
+        protected SidebarService $sidebarService,
+        protected ModuleEditService $moduleEditService,
+        protected EntityTypeService $entityTypeService
+    ) {
     }
 
     public function index(Campaign $campaign)
     {
+        $this->authorize('setting', $campaign);
+
+        $entityTypes = $this->entityTypeService
+            ->campaign($campaign)
+            ->exclude(config('entities.ids.attribute_template'))
+            ->withDisabled()
+            ->ordered();
+
         return view('campaigns.modules.index')
             ->with('campaign', $campaign)
+            ->with('entityTypes', $entityTypes)
             ->with('canReset', true);
     }
 
@@ -62,7 +70,7 @@ class ModuleController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $this->moduleService
+        $this->moduleEditService
             ->campaign($campaign)
             ->update($request, $entityType);
 
@@ -74,7 +82,7 @@ class ModuleController extends Controller
     {
         $this->authorize('setting', $campaign);
 
-        $this->moduleService
+        $this->moduleEditService
             ->campaign($campaign)
             ->reset();
 
@@ -96,7 +104,7 @@ class ModuleController extends Controller
         $this->authorize('setting', $campaign);
 
         try {
-            $status = $this->moduleService
+            $status = $this->moduleEditService
                 ->campaign($campaign)
                 ->toggle($module);
 

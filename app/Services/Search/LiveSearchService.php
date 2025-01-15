@@ -3,11 +3,12 @@
 namespace App\Services\Search;
 
 use App\Facades\Avatar;
+use App\Models\Character;
+use App\Models\MiscModel;
 use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class LiveSearchService
@@ -18,10 +19,10 @@ class LiveSearchService
 
     public function search(): array
     {
-        $term = mb_trim($this->request->get('q', ''));
+        $term = mb_trim($this->request->get('q') ?? '');
         $excludes = $this->request->has('exclude') ? [$this->request->get('exclude')] : [];
 
-        /** @var Builder|Tag $modelClass */
+        /** @var MiscModel|Character|Tag $modelClass */
         $modelClass = $this->entityType->getClass();
 
         if ($this->request->filled('with-family')) {
@@ -30,7 +31,7 @@ class LiveSearchService
 
         if (empty($term)) {
             $models = $modelClass
-                ->with(['entity', 'entity.image'])
+                ->with(['entity', 'entity.image', 'entity.entityType'])
                 ->has('entity')
                 ->whereNotIn('id', $excludes)
                 ->limit(10)
@@ -38,7 +39,7 @@ class LiveSearchService
                 ->get();
         } else {
             $models = $modelClass
-                ->with(['entity', 'entity.image'])
+                ->with(['entity', 'entity.image', 'entity.entityType'])
                 ->has('entity')
                 ->whereNotIn('id', $excludes);
             // Exact match
@@ -53,7 +54,7 @@ class LiveSearchService
         }
 
         $list = [];
-        /** @var \App\Models\MiscModel $model */
+        /** @var MiscModel $model */
         foreach ($models as $model) {
             $format = [
                 'id' => $model->id,
@@ -69,6 +70,7 @@ class LiveSearchService
             }
 
             if ($this->request->filled('with-family')) {
+                // @phpstan-ignore-next-line
                 $families = $model->families->pluck('name')->toarray();
                 if (empty($families)) {
                     continue;

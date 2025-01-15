@@ -1,15 +1,7 @@
 @php
-$entityTypeKey = 'entities.ids.' . $trans;
-$id = config('entities.ids.' . \Illuminate\Support\Str::singular($dropType));
-if (!empty($id)) {
-    if ($campaign->hasModuleName($id)) {
-        $trans = $campaign->moduleName($id);
-    }
-}
-
 @endphp
 
-@if ($dropType == $type)
+@if ($dropdownEntityType == $entityType)
     <x-dropdowns.item
         css="disabled"
         link="#"
@@ -19,7 +11,7 @@ if (!empty($id)) {
 @else
     @php $data = [
          'toggle' => 'entity-creator',
-         'url' => route('entity-creator.form', [$campaign, 'type' => $dropType, 'mode' => $mode ?? null]),
+         'url' => route('entity-creator.form', [$campaign, 'entity_type' => $dropdownEntityType, 'mode' => $mode ?? null]),
          'entity-type' => 'entity',
          'type' => 'inline',
     ]; @endphp
@@ -27,6 +19,10 @@ if (!empty($id)) {
         link="#"
         :data="$data"
         icon="fa-solid">
-    {!! $trans !!}
+        @if ($dropdownEntityType instanceof \App\Models\EntityType)
+        {!! $dropdownEntityType->name() !!}
+        @else
+        {{ __('entities.post') }}
+        @endif
     </x-dropdowns.item>
 @endif

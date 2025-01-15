@@ -18,20 +18,9 @@ $entityTags = $post->tagsWithEntity();
                     <sup class="text-xs">({{ $post->position }})</sup>
                 @endif
             </h3>
-            @if($entityTags->count() > 0)
-                @foreach ($entityTags as $tag)
-                    @if (!$tag->entity) @continue @endif
-                    <a href="{{ route('tags.show', [$campaign, $tag]) }}" data-toggle="tooltip-ajax"
-                        data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity->id]) }}"
-                        data-tag-slug="{{ $tag->slug }}"
-                    >
-                        @include ('tags._badge')
-                    </a>
-                @endforeach
-            @endif
         </div>
         <div class="flex-none flex gap-1 items-center">
-            @if (auth()->check() && auth()->user()->can('post', [$entity->child, 'edit', $post]))
+            @if (auth()->check() && auth()->user()->can('post', [$entity, 'edit', $post]))
             <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
                 @include('icons.visibility', ['icon' => $post->visibilityIcon()])
             </span>
@@ -50,6 +39,20 @@ $entityTags = $post->tagsWithEntity();
     <div class="bg-box rounded post entity-note">
         <div class="entity-content overflow-hidden @if ($post->collapsed()) hidden @endif" id="post-body-{{ $post->id }}">
             <div class="flex flex-col gap-2 p-4">
+                @if($entityTags->count() > 0)
+                    <div class="post-tags flex gap-1 items-center flex-wrap">
+                    @foreach ($entityTags as $tag)
+                        @if (!$tag->entity) @continue @endif
+                        <a href="{{ route('tags.show', [$campaign, $tag]) }}" data-toggle="tooltip-ajax"
+                           data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity->id]) }}"
+                           data-tag-slug="{{ $tag->slug }}"
+                        >
+                            <x-tags.bubble :tag="$tag" />
+                        </a>
+                    @endforeach
+                    </div>
+                @endif
+
                 <div class="post-details entity-note-details">
                     @if ($post->location)
                     <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
@@ -64,7 +67,7 @@ $entityTags = $post->tagsWithEntity();
 
                 <div class="post-footer entity-note-footer text-right text-muted text-xs ">
 
-                @can('update', $model ?? $entity->child)
+                @can('update', $entity)
                 <a href="{{ route('entities.posts.logs', [$campaign, $entity, $post]) }}" title="{{ __('crud.history.view') }}" class="print-none">
                     <x-icon class="fa-solid fa-history" />
                 </a>

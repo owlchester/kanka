@@ -7,6 +7,7 @@
         __('entities/notes.actions.add')
     ],
     'centered' => true,
+    'entity' => null,
 ])
 
 @section('content')

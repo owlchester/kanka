@@ -68,7 +68,7 @@ class CleanupTrashed extends Command
                 ->chunkById(1000, function ($entities): void {
                     $this->info('Chunk deleting ' . count($entities) . ' entities.');
                     foreach ($entities as $entity) {
-                        //dump($entity->name . ' (' . $entity->type() . ')');
+                        //dump($entity->name . ' (' . $entity->entityType->code . ')');
                         $this->service->trash($entity);
                     }
                 });

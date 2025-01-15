@@ -1,5 +1,6 @@
 <?php
 /** @var \App\Renderers\CalendarRenderer $renderer
+ * @var \App\Models\Entity $entity
  * @var \App\Models\Calendar $model
  */
 if ($model->missingDetails()): ?>
@@ -12,11 +13,12 @@ $weekNumber = 1;
 ?>
 @inject('renderer', 'App\Renderers\CalendarRenderer')
 @inject('colours', 'App\Services\ColourService')
-<?php $canEdit = auth()->check() && auth()->user()->can('update', $model) ?>
+<?php $canEdit = auth()->check() && auth()->user()->can('update', $entity) ?>
 {{ $renderer->campaign($campaign)->setCalendar($model) }}
+
 <div class="calendar-toolbar flex gap-2 items-center">
     <a
-        href="{{ route('entities.show', [$campaign, 'entity' => $model->entity, 'month' => $renderer->currentMonthId(), 'year' => $renderer->currentYear()]) }}"
+        href="{{ route('entities.show', [$campaign, 'entity' => $entity, 'month' => $renderer->currentMonthId(), 'year' => $renderer->currentYear()]) }}"
         class="btn2 btn-sm @if ($renderer->todayButtonIsDisabled()) btn-disabled" disabled="disabled @endif"
     >
         {{ __('calendars.actions.today') }}

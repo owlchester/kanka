@@ -11,26 +11,25 @@ $translations = json_encode([
 @endphp
 
 @section('entity-header-actions-override')
-    @can('update', $model)
-        <div class="header-buttons flex gap-2 items-center justify-end">
+    <div class="header-buttons flex gap-2 items-center justify-end">
+    @can('update', $entity)
             <a class="btn2 btn-sm" data-toggle="dialog-ajax" data-target="primary-dialog"
-                    data-url="{{ route('conversations.conversation_participants.index', [$campaign, $model]) }}">
+                    data-url="{{ route('conversations.conversation_participants.index', [$campaign, $entity->child]) }}">
                 <x-icon class="fa-solid fa-users" />
-                {{ __('conversations.fields.participants') }} {{ $model->participants->count() }}
+                {{ __('conversations.fields.participants') }} {{ $entity->child->participants->count() }}
             </a>
             @include('entities.headers.toggle')
-        </div>
         @include('entities.headers.actions')
     @endcan
+    </div>
 @endsection
 
 
 <div class="entity-grid flex flex-col gap-5">
 
     @include('entities.components.header', [
-        'model' => $model,
         'breadcrumb' => [
-            Breadcrumb::entity($model->entity)->list(),
+            Breadcrumb::entity($entity)->list(),
         ],
         'entityHeaderActions' => 'entity-header-actions-override',
     ])
@@ -41,12 +40,12 @@ $translations = json_encode([
         <div class="entity-main-block grow flex flex-col gap-5 min-w-0">
             <div class="box-conversation" id="conversation">
                 <conversation
-                        id="{{ $model->id }}"
-                        api="{{ route('conversations.conversation_messages.index', [$campaign, $model]) }}"
-                        target="{{ $model->forCharacters() ? 'character' : 'user'}}"
-                        :targets="{{ $model->jsonParticipants() }}"
-                        :disabled="{{ ($model->is_closed ? 'true' : 'false') }}"
-                        send="{{ route('conversations.conversation_messages.store', [$campaign, $model]) }}"
+                        id="{{ $entity->child->id }}"
+                        api="{{ route('conversations.conversation_messages.index', [$campaign, $entity->child]) }}"
+                        target="{{ $entity->child->forCharacters() ? 'character' : 'user'}}"
+                        :targets="{{ $entity->child->jsonParticipants() }}"
+                        :disabled="{{ ($entity->child->is_closed ? 'true' : 'false') }}"
+                        send="{{ route('conversations.conversation_messages.store', [$campaign, $entity->child]) }}"
                         trans="{{ $translations }}"
                 >
                 </conversation>

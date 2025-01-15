@@ -99,7 +99,7 @@ class BulkPermissionService
                 if ($action == 'allow') {
                     if (empty($this->permissions['user'][$userId][$perm])) {
                         CampaignPermission::create([
-                            //'key' => $this->entity->type() . '_' . $perm . '_' . $this->entity->child->id,
+                            //'key' => $this->entity->entityType->code . '_' . $perm . '_' . $this->entity->child->id,
                             'user_id' => $userId,
                             'campaign_id' => $this->entity->campaign_id,
                             'entity_id' => $this->entity->id,
@@ -120,12 +120,10 @@ class BulkPermissionService
                 } elseif ($action === 'deny') {
                     if (empty($this->permissions['user'][$userId][$perm])) {
                         CampaignPermission::create([
-                            //'key' => $this->entity->type() . '_' . $perm . '_' . $this->entity->child->id,
+                            //'key' => $this->entity->entityType->code . '_' . $perm . '_' . $this->entity->child->id,
                             'user_id' => $userId,
                             'campaign_id' => $this->entity->campaign_id,
-                            //'table_name' => $this->entity->pluralType(),
                             'entity_id' => $this->entity->id,
-                            //'entity_type_id' => $this->entity->type_id,
                             'misc_id' => $this->entity->child->id,
                             'action' => $perm,
                             'access' => false

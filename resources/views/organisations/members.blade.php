@@ -2,7 +2,6 @@
     'title' => __('organisations.organisations.title', ['name' => $model->name]),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 
@@ -11,7 +10,6 @@
         'active' => '',
         'breadcrumb' => '',
         'view' => 'organisations.panels.members',
-        'entity' => $model->entity,
     ])
 @endsection
 

@@ -4,7 +4,8 @@
         Breadcrumb::entity($entity)->list(),
         Breadcrumb::show(),
         __('crud.actions.move'),
-    ]
+    ],
+    'entity' => null,
 ])
 
 @section('content')
@@ -13,7 +14,7 @@
     <x-box>
         <x-grid type="1/1">
             <x-forms.field field="entity" :label="__('entities/notes.move.entity')">
-                <select name="entity" class=" select2" data-tags="true" data-url="{{ route('search.entities-with-relations', $campaign) }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
+                <select name="entity" class=" select2" data-url="{{ route('search.entities-with-relations', $campaign) }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>
             </x-forms.field>
 
             <x-forms.field field="copy" css="form-check" :label="__('entities/notes.move.copy_title')">
@@ -24,7 +25,7 @@
         </x-grid>
 
         <x-dialog.footer>
-            <button class="btn2 btn-primary">@can('update', $entity->child) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>
+            <button class="btn2 btn-primary">@can('update', $entity) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan</button>
         </x-dialog.footer>
     </x-box>
 

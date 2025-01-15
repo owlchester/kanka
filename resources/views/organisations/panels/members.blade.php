@@ -1,13 +1,12 @@
 <?php
 /**
- * @var \App\Models\Organisation $model
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\Entity $entity
  */
 $allMembers = false;
 $datagridOptions = [
     $campaign,
-    $model,
+    $entity->child->id,
     'init' => 1,
 ];
 if (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->has('m') && $campaign->defaultDescendantsMode() === \App\Enums\Descendants::All)) {
@@ -20,8 +19,8 @@ $datagridCall = ['datagridUrl' => route('organisations.members', $datagridOption
 if (!empty($rows)) {
     $datagridCall = [];
 }
-$direct = $model->members()->has('character')->count();
-$all = $model->allMembers()->has('character')->count();
+$direct = $entity->child->members()->has('character')->count();
+$all = $entity->child->allMembers()->has('character')->count();
 ?>
 <div class="flex gap-2 items-center">
     <h3 class="grow">
@@ -51,9 +50,9 @@ $all = $model->allMembers()->has('character')->count();
             </a>
         @endif
 
-        @can('member', $model)
-            <a href="{{ route('organisations.organisation_members.create', [$campaign, 'organisation' => $model->id]) }}" class="btn2 btn-primary btn-sm"
-               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('organisations.organisation_members.create', [$campaign, $model->id]) }}">
+        @can('member', $entity->child)
+            <a href="{{ route('organisations.organisation_members.create', [$campaign, 'organisation' => $entity->child->id]) }}" class="btn2 btn-primary btn-sm"
+               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('organisations.organisation_members.create', [$campaign, $entity->child->id]) }}">
                 <x-icon class="plus" />
                 <span class="hidden lg:inline">
                     {{ __('organisations.members.actions.add') }}

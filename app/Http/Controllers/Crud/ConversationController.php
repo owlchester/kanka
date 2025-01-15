@@ -8,6 +8,7 @@ use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreConversation;
 use App\Models\Campaign;
 use App\Models\Conversation;
+use App\Models\EntityType;
 
 class ConversationController extends CrudController
 {
@@ -67,5 +68,10 @@ class ConversationController extends CrudController
     public function destroy(Campaign $campaign, Conversation $conversation)
     {
         return $this->campaign($campaign)->crudDestroy($conversation);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.conversation'))->first();
     }
 }

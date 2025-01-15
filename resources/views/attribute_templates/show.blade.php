@@ -1,9 +1,7 @@
 <div class="entity-grid flex flex-col gap-5">
     @include('entities.components.header', [
-        'model' => $model,
         'breadcrumb' => [
-            Breadcrumb::entity($model->entity)->list(),
-            null
+            Breadcrumb::entity($entity)->list(),
         ]
     ])
 
@@ -12,16 +10,16 @@
 
         <div class="entity-main-block grow flex flex-col gap-5 min-w-0">
             <x-box>
-                @can('attribute', [$model, 'add'])
+                @can('attribute', [$entity->child, 'add'])
                     <p class="text-right">
-                        <a href="{{ route('entities.attributes.edit', [$campaign, 'entity' => $model->entity]) }}" class="btn2 btn-sm">
+                        <a href="{{ route('entities.attributes.edit', [$campaign, 'entity' => $entity]) }}" class="btn2 btn-sm">
                             <x-icon class="fa-solid fa-list" />
                             <span class="hidden md:inline">{{ __('entities/attributes.actions.manage') }}</span>
                         </a>
                     </p>
                 @endcan
 
-                @include('entities.pages.attributes.render', ['entity' => $model->entity])
+                @include('entities.pages.attributes.render', ['entity' => $entity])
             </x-box>
             @include('entities.components.posts')
         </div>

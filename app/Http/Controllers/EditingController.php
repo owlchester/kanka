@@ -83,7 +83,7 @@ class EditingController extends Controller
 
     public function confirm(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return $this->confirmHandle($entity);
     }
@@ -97,7 +97,7 @@ class EditingController extends Controller
 
     public function confirmPost(Campaign $campaign, Entity $entity, Post $post)
     {
-        $this->authorize('post', [$entity->child, 'edit', $post]);
+        $this->authorize('post', [$entity, 'edit', $post]);
 
         return $this->confirmHandle($post);
     }
@@ -118,7 +118,7 @@ class EditingController extends Controller
 
     public function keepAlive(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return $this->keepAliveHandle($entity);
     }
@@ -132,7 +132,7 @@ class EditingController extends Controller
 
     public function keepAlivePost(Campaign $campaign, Entity $entity, Post $post)
     {
-        $this->authorize('post', [$entity->child, 'edit', $post]);
+        $this->authorize('post', [$entity, 'edit', $post]);
 
         return $this->keepAliveHandle($post);
     }

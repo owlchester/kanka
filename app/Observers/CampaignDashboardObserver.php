@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\CampaignDashboard;
+use App\Models\CampaignDashboardWidget;
 
 class CampaignDashboardObserver
 {
@@ -17,6 +18,7 @@ class CampaignDashboardObserver
             if (empty($source)) {
                 return;
             }
+            /** @var CampaignDashboardWidget $widget */
             foreach ($source->widgets()->with('dashboardWidgetTags')->get() as $widget) {
                 $widget->copyTo($model);
             }

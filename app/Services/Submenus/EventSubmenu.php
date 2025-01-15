@@ -11,7 +11,7 @@ class EventSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
         /** @var Event $event */
-        $event = $this->model;
+        $event = $this->entity->child;
         $items['second']['events'] = [
             'name' => Module::plural($event->entityTypeId(), 'entities.events'),
             'route' => 'events.events',

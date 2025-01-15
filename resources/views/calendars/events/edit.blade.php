@@ -1,7 +1,7 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('calendars.event.edit.title', ['name' => $entity->name]),
     'breadcrumbs' => isset($next) && $next == 'entity.events' ? [
-        __('entities.' . $entity->pluralType()),
+        $entity->entityType->plural(),
         ['url' => $entity->url(), 'label' => $entity->name],
         __('crud.tabs.reminders'),
         __('crud.update'),

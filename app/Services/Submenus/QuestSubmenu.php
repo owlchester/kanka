@@ -10,7 +10,7 @@ class QuestSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
         /** @var Quest $model */
-        $model = $this->model;
+        $model = $this->entity->child;
         $count = $model->elements()->with('entity')->has('entity')->count();
         $items['second']['elements'] = [
             'name' => 'quests.show.tabs.elements',

@@ -19,7 +19,6 @@ class JournalResource extends EntityResource
         return $this->entity([
             'journal_id' => $model->journal_id,
             'date' => $model->date,
-            'type' => $model->type,
             'author' => $model->author,
             'author_id' => $model->author_id,
             'calendar_id' => $model->entity->calendarDate?->calendar_id,

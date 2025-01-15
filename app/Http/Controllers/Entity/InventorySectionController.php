@@ -16,7 +16,7 @@ class InventorySectionController extends Controller
      */
     public function delete(Campaign $campaign, Entity $entity, Inventory $inventory)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         if ($inventory->position) {
             Inventory::where('entity_id', $entity->id)->where('position', $inventory->position)->delete();
         } else {

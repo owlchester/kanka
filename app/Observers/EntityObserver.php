@@ -38,6 +38,13 @@ class EntityObserver
      */
     public function crudSaved(Entity $entity)
     {
+        if (request()->has('type')) {
+            $entity->type = request()->get('type');
+        }
+        if (request()->has('entry')) {
+            $entity->entry = request()->get('entry');
+        }
+
         if (request()->post('remove-image') == '1') {
             Images::cleanup($entity, 'image');
         }
@@ -93,7 +100,7 @@ class EntityObserver
      */
     public function savePermissions(Entity $entity)
     {
-        if (!auth()->user()->can('permission', $entity->child)) {
+        if (!auth()->user()->can('permissions', $entity)) {
             return;
         } elseif (request()->has('copy_permissions') && request()->filled('copy_permissions')) {
             return;
@@ -124,7 +131,7 @@ class EntityObserver
     {
         // If the user has created a new entity but doesn't have the permission to read or edit it,
         // automatically creates said permission.
-        if (!auth()->user()->can('view', $entity->child)) {
+        if (!auth()->user()->can('view', $entity)) {
             $permission = new CampaignPermission();
             $permission->entity_id = $entity->id;
             $permission->misc_id = $entity->entity_id;
@@ -136,7 +143,7 @@ class EntityObserver
             $permission->save();
             Permissions::grant($entity);
         }
-        if (!auth()->user()->can('update', $entity->child)) {
+        if (!auth()->user()->can('update', $entity)) {
             $permission = new CampaignPermission();
             $permission->entity_id = $entity->id;
             $permission->misc_id = $entity->entity_id;
@@ -150,7 +157,7 @@ class EntityObserver
         }
 
         // Refresh the model because adding permissions to the child means we have a new relation
-        if (Permissions::granted()) {
+        if (Permissions::granted() && $entity->hasChild()) {
             $entity->unsetRelation('child');
             $entity->reloadChild();
         }
@@ -167,7 +174,7 @@ class EntityObserver
         EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
 
         // Sometimes we just touch the entity, which should also touch the child
-        if ($entity->child && $entity->updated_at->greaterThan($entity->child->updated_at)) {
+        if (!$entity->entityType->isSpecial() && $entity->child && $entity->updated_at->greaterThan($entity->child->updated_at)) {
             $entity->child->touchSilently();
         }
     }
@@ -187,8 +194,8 @@ class EntityObserver
             return;
         }
 
-        if (request()->has('entity_tooltip')) {
-            $entity->tooltip = $this->purify(request()->get('entity_tooltip'));
+        if (request()->has('tooltip')) {
+            $entity->tooltip = $this->purify(request()->get('tooltip'));
         }
 
         // Superboosted image gallery selection

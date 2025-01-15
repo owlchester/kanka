@@ -41,10 +41,10 @@ class RelationPolicy
      */
     public function update(User $user, Relation $relation)
     {
-        if (empty($relation->owner) || empty($relation->owner->child)) {
+        if (empty($relation->owner) || $relation->owner->isMissingChild()) {
             return false;
         }
-        return $user->can('relation', $relation->owner->child);
+        return $user->can('relation', $relation->owner);
     }
 
     /**
@@ -59,9 +59,9 @@ class RelationPolicy
             $campaign = CampaignLocalization::getCampaign();
             return $user->can('relations', $campaign);
         }
-        if (empty($relation->owner) || empty($relation->owner->child)) {
+        if (empty($relation->owner) || $relation->owner->isMissingChild()) {
             return false;
         }
-        return $user->can('relation', $relation->owner->child);
+        return $user->can('relation', $relation->owner);
     }
 }

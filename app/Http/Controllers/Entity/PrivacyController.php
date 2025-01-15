@@ -34,7 +34,6 @@ class PrivacyController extends Controller
             ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('visibility', $visibility)
-            ->with('model', $entity->child)
         ;
     }
 
@@ -45,14 +44,18 @@ class PrivacyController extends Controller
     {
         $this->authorize('privacy', $entity);
 
-        $misc = $entity->child;
-        $misc->is_private = !$misc->is_private;
-        $misc->update(['is_private' => $misc->is_private]);
-        $entity->update(['is_private' => $misc->is_private]);
+        if ($entity->entityType->isSpecial()) {
+            $entity->update(['is_private' => !$entity->is_private]);
+        } else {
+            $misc = $entity->child;
+            $misc->is_private = !$misc->is_private;
+            $misc->update(['is_private' => $misc->is_private]);
+            $entity->update(['is_private' => $misc->is_private]);
+        }
 
         return response()->json([
-            'toast' => __('entities/permissions.quick.success.' . ($misc->is_private ? 'private' : 'public'), [
-                'entity' => $misc->name
+            'toast' => __('entities/permissions.quick.success.' . ($entity->is_private ? 'private' : 'public'), [
+                'entity' => $entity->name
             ]),
             'success' => true,
             'status' => $entity->is_private

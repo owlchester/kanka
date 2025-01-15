@@ -1,4 +1,5 @@
 <?php /** @var \App\Models\Calendar $model */
+$model = $entity->child;
 $options = [$campaign, $model];
 $redirect = [];
 if (request()->get('layout') === 'year') {
@@ -23,9 +24,8 @@ if (!empty($redirect)) {
 
 <div class="entity-grid flex flex-col gap-5">
     @include('entities.components.header', [
-        'model' => $model,
         'breadcrumb' => [
-            Breadcrumb::entity($model->entity)->list(),
+            Breadcrumb::entity($entity)->list(),
         ],
         'entityHeaderActions' => 'entity-header-actions-override',
     ])
@@ -36,7 +36,7 @@ if (!empty($redirect)) {
         <div class="entity-main-block grow flex flex-col gap-5 min-w-0">
             @include('entities.components.entry')
             @include('calendars._calendar')
-            @includeWhen($model->entity->posts()->count() > 0, 'entities.components.posts')
+            @includeWhen($entity->posts()->count() > 0, 'entities.components.posts')
 
             @include('entities.pages.logs.history')
         </div>

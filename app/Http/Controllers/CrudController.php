@@ -8,7 +8,6 @@ use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\Breadcrumb;
 use App\Facades\FormCopy;
 use App\Facades\Module;
-use App\Facades\Permissions;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Bookmark;
@@ -223,8 +222,6 @@ class CrudController extends Controller
 
         $this->setNavActions();
         $actions = $this->navActions;
-        $entityTypeId = $model->entityTypeId();
-        $singular = Module::singular($entityTypeId, __('entities.' . \Illuminate\Support\Str::singular($route)));
 
         $data = compact(
             'campaign',
@@ -243,16 +240,20 @@ class CrudController extends Controller
             'mode',
             'parent',
             'forceMode',
-            'entityTypeId',
-            'singular',
         );
+        if (method_exists($this, 'getEntityType')) {
+            $data['entityType'] = $this->getEntityType();
+        } else {
+            $data['singular'] = __('entities.' . \Illuminate\Support\Str::singular($route));
+        }
+
         if (method_exists($this, 'titleKey')) {
             $data['titleKey'] = $this->titleKey();
         } elseif ($this->campaign->boosted()) {
             // Custom sidebar link, with fallback on custom module plural name
             $data['titleKey'] = Arr::get($campaign->ui_settings, 'sidebar.labels.' . $langKey);
-            if (empty($data['titleKey'])) {
-                $data['titleKey'] = Module::plural($entityTypeId, __('entities.' . $langKey));
+            if (empty($data['titleKey']) && isset($data['entityType'])) {
+                $data['titleKey'] = $data['entityType']->plural();
             }
             // If its a bookmark, override everything else
             if ($request->has('bookmark')) {
@@ -283,6 +284,7 @@ class CrudController extends Controller
 
         $data['datagrid'] = $this->datagrid;
         $data['filterService'] = $this->filterService;
+
         return view('cruds.index', $data);
     }
 
@@ -323,11 +325,13 @@ class CrudController extends Controller
         $model = new $this->model();
 
         $params['campaign'] = $this->campaign;
-        $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permission', $model);
+        $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permissions', $model);
         $params['tabAttributes'] = $this->tabAttributes && $this->campaign->enabled('entity_attributes');
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted;
-        $params['entityType'] = $model->hasEntityType() ? $model->getEntityType() : null;
+        if (method_exists($this, 'getEntityType')) {
+            $params['entityType'] = $this->getEntityType();
+        }
         $params['title'] = __($this->view . '.create.title');
 
         // Custom module names shenanigans
@@ -454,35 +458,10 @@ class CrudController extends Controller
         }
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function crudShow(Model|MiscModel $model)
     {
-        /** @var MiscModel $model */
-        $this->authView($model);
-        $name = $this->view;
-        $campaign = $this->campaign;
-        $entity_type_id = $model->entityTypeId();
-
-        // Fix for models without an entity
-        if (empty($model->entity) && !($model instanceof Bookmark)) {
-            if (auth()->guest()) {
-                abort(404);
-            }
-            if (Permissions::user(auth()->user())->campaign($this->campaign)->isAdmin()) {
-                dd('CCS16 - Error');
-            } else {
-                abort(404);
-            }
-        }
-        $entity = $model->entity;
-
-        return view(
-            'cruds.show',
-            compact('campaign', 'model', 'name', 'entity_type_id', 'entity')
-        );
+        //@phpstan-ignore-next-line
+        return redirect()->route('entities.show', [$this->campaign, $model->entity]);
     }
 
     /**
@@ -511,13 +490,11 @@ class CrudController extends Controller
             'campaign' => $this->campaign,
             'model' => $model,
             'name' => $this->view,
-            'tabPermissions' => $this->tabPermissions && auth()->user()->can('permission', $model),
+            'tabPermissions' => $this->tabPermissions && auth()->user()->can('permissions', $model),
             'tabAttributes' => $this->tabAttributes && auth()->user()->can('attributes', $model->entity) && $this->campaign->enabled('entity_attributes'),
             'tabBoosted' => $this->tabBoosted,
             'tabCopy' => $this->tabCopy,
-            'entityType' => $model->hasEntityType() ? $model->getEntityType() : null,
             'editingUsers' => $editingUsers,
-            'entityTypeId' => $model->entityTypeId()
         ];
         if ($model->entity) {
             $params['entity'] = $model->entity;
@@ -669,19 +646,6 @@ class CrudController extends Controller
         $this->datagridSorter = new $datagridSorter();
         $this->datagridSorter->request(request()->all());
         return $this;
-    }
-
-    /**
-     * @param MiscModel $model
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    protected function authCheck($model)
-    {
-        if ($this->alreadyAuthChecked) {
-            return;
-        }
-        $this->authView($model);
-        $this->alreadyAuthChecked = true;
     }
 
     /**

@@ -2,7 +2,10 @@
     {{ __('entities.creator.titles.quick-access') }}
 </div>
 <div class="selection flex flex-col gap-4">
-    @foreach ($popular as $key)
-        @includeWhen(isset($entities[$key]), 'entities.creator.selection._' . $key)
+    @foreach ($popular as $entityType)
+        <div class="option flex gap-2">
+            @include('entities.creator.selection._main')
+            @include('entities.creator.selection._full')
+        </div>
     @endforeach
 </div>

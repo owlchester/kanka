@@ -7,7 +7,7 @@ $datagridOptions = [];
 if (!empty($onload)) {
     $routeOptions = [
         $campaign,
-        $model,
+        $entity->child,
         'init' => 1,
     ];
     if ($allChildren) {
@@ -21,8 +21,8 @@ if (!empty($onload)) {
 ?>
 @if (!empty($onload))
     @php
-    $direct = $model->descendants()->count();
-    $all = $model->children()->count();
+    $direct = $entity->child->descendants()->count();
+    $all = $entity->child->children()->count();
     @endphp
 <div class="flex gap-2 items-center">
     <h3 class="grow">

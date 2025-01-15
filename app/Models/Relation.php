@@ -157,7 +157,9 @@ class Relation extends Model
         return $query
             ->with([
                 'owner',
+                'owner.entityType',
                 'target',
+                'target.entityType',
             ])
             ->has('owner')
             ->has('target')
@@ -180,7 +182,7 @@ class Relation extends Model
      */
     public function setColourAttribute($colour)
     {
-        $this->attributes['colour'] = mb_ltrim($colour, '#');
+        $this->attributes['colour'] = mb_ltrim($colour ?? '', '#');
     }
 
     /**
@@ -192,11 +194,6 @@ class Relation extends Model
             return '';
         }
         return '#' . $this->attributes['colour'];
-    }
-
-    public function getEntityType(): string|null
-    {
-        return 'relation';
     }
 
     /**
@@ -259,11 +256,6 @@ class Relation extends Model
     }
 
     public function hasSearchableFields(): bool
-    {
-        return false;
-    }
-
-    public function hasEntityType(): bool
     {
         return false;
     }

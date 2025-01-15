@@ -3,7 +3,6 @@
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 
@@ -25,6 +24,5 @@
         'active' => 'eras',
         'breadcrumb' => __('timelines.fields.eras'),
         'view' => 'timelines.panels.eras',
-        'entity' => $model->entity,
     ])
 @endsection

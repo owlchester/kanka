@@ -17,14 +17,14 @@ class PostController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('browse', [$entity->child]);
+        $this->authorize('browse', [$entity]);
         return redirect()->to($entity->url());
     }
 
     public function create(Campaign $campaign, Entity $entity, Post $post)
     {
-        $this->authorize('post', [$entity->child, 'add']);
-        $parentRoute = $entity->pluralType();
+        $this->authorize('post', [$entity, 'add']);
+        $parentRoute = $entity->entityType->pluralCode();
         $templates = Post::postTemplates($campaign)->orderBy('name')->pluck('name', 'id')->all();
 
         $template = request()->input('template');
@@ -58,7 +58,7 @@ class PostController extends Controller
 
     public function store(StorePost $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('post', [$entity->child, 'add']);
+        $this->authorize('post', [$entity, 'add']);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -80,13 +80,13 @@ class PostController extends Controller
         return redirect()
             ->to($entity->url())
             ->with('success', __('entities/notes.create.success', [
-                'name' => $post->name, 'entity' => $entity->child->name
+                'name' => $post->name, 'entity' => $entity->name
             ]));
     }
 
     public function edit(Campaign $campaign, Entity $entity, Post $post)
     {
-        $this->authorize('post', [$entity->child, 'edit', $post]);
+        $this->authorize('post', [$entity, 'edit', $post]);
         $editingUsers = null;
 
         /** @var MiscModel $model */
@@ -102,7 +102,7 @@ class PostController extends Controller
             }
         }
 
-        $parentRoute = $entity->pluralType();
+        $parentRoute = $entity->entityType->pluralCode();
         $from = request()->get('from');
 
         return view('entities.pages.posts.edit', compact(
@@ -117,7 +117,7 @@ class PostController extends Controller
 
     public function update(StorePost $request, Campaign $campaign, Entity $entity, Post $post)
     {
-        $this->authorize('post', [$entity->child, 'edit', $post]);
+        $this->authorize('post', [$entity, 'edit', $post]);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -154,7 +154,7 @@ class PostController extends Controller
 
     public function destroy(Campaign $campaign, Entity $entity, Post $post)
     {
-        $this->authorize('post', [$entity->child, 'delete']);
+        $this->authorize('post', [$entity, 'delete']);
 
         $post->delete();
 

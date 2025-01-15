@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Item;
 
-use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -27,11 +26,7 @@ class Entity extends Layout
                 'key' => 'type_id',
                 'label' => 'crud.fields.entity_type',
                 'render' => function ($model) {
-                    $singular = Module::singular($model->typeId());
-                    if (!empty($singular)) {
-                        return $singular;
-                    }
-                    return __('entities.' . $model->pluralType());
+                    return $model->entityType->name();
                 }
             ],
             'tags' => [

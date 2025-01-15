@@ -31,11 +31,12 @@ class OrganisationController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Organisation\Organisation::class)
             ->route('organisations.organisations', $options);
 
+        //@phpstan-ignore-next-line
         $this->rows = $organisation
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
-                'entity', 'entity.image', 'entity.tags', 'entity.tags.entity',
+                'entity', 'entity.image', 'entity.entityType', 'entity.tags', 'entity.tags.entity',
                 'parent', 'parent.entity',
             ])
             ->filter($filters)

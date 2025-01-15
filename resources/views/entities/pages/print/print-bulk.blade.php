@@ -24,15 +24,15 @@
     </button>
 
     @foreach ($entities as $model)
-        @php $entity = $model->entity; $name = $entity->pluralType() @endphp
+        @php $entity = $model->entity; $name = $entity->entityType->pluralCode() @endphp
 
-        @if(view()->exists($entity->pluralType() . '.show'))
-            @include($entity->pluralType() . '.show')
+        @if(view()->exists($entity->entityType->pluralCode() . '.show'))
+            @include($entity->entityType->pluralCode() . '.show')
         @else
             @include('cruds.overview')
         @endif
-        @includeIf('entities.pages.profile._' . $entity->type())
-        @includeIf($entity->pluralType() . '._print')
+        @includeIf('entities.pages.profile._' . $entity->entityType->code)
+        @includeIf($entity->entityType->pluralCode() . '._print')
         @includeWhen($entity->abilities->count() > 0, 'entities.pages.print._abilities')
         @includeWhen($entity->inventories->count() > 0, 'entities.pages.print._inventory')
         @includeWhen($entity->relationships->count() > 0, 'entities.pages.print._relations')

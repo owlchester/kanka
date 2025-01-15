@@ -5,23 +5,14 @@ namespace App\Services\Campaign;
 use App\Facades\CampaignCache;
 use App\Models\Image;
 use App\Traits\CampaignAware;
+use App\Traits\EntityTypeAware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
 class DefaultImageService
 {
     use CampaignAware;
-
-    protected string $type;
-
-    /**
-     * @return $this
-     */
-    public function type(string $type): self
-    {
-        $this->type = $type;
-        return $this;
-    }
+    use EntityTypeAware;
 
     /**
      */
@@ -32,7 +23,7 @@ class DefaultImageService
         if ($images === null) {
             $images = [];
         }
-        if (Arr::has($images, $this->type)) {
+        if (Arr::has($images, $this->entityType->pluralCode())) {
             return false;
         }
         /** @var \Illuminate\Http\UploadedFile $source */
@@ -52,7 +43,7 @@ class DefaultImageService
                 $image->file
             );
 
-        $images[$this->type] = $image->id;
+        $images[$this->entityType->pluralCode()] = $image->id;
         $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
 
@@ -71,17 +62,17 @@ class DefaultImageService
             $images = [];
         }
 
-        if (!isset($images[$this->type])) {
+        if (!isset($images[$this->entityType->pluralCode()])) {
             return false;
         }
         /** @var ?Image $image */
-        $image = Image::find($images[$this->type]);
+        $image = Image::find($images[$this->entityType->pluralCode()]);
         if (empty($image)) {
             return false;
         }
         $image->delete();
 
-        unset($images[$this->type]);
+        unset($images[$this->entityType->pluralCode()]);
         $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
 

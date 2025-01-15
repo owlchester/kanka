@@ -7,6 +7,7 @@ use App\Models\Calendar;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignFollower;
+use App\Models\EntityType;
 use App\Models\Genre;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
@@ -79,6 +80,7 @@ use Illuminate\Support\Collection;
  * @property Collection|GameSystem[] $systems
  * @property Collection|CampaignExport[] $campaignExports
  * @property Collection|CampaignExport[] $queuedCampaignExports
+ * @property Collection|EntityType[] $entityTypes
  */
 trait CampaignRelations
 {
@@ -349,5 +351,10 @@ trait CampaignRelations
     public function systems(): BelongsToMany
     {
         return $this->belongsToMany(GameSystem::class, 'campaign_system', 'campaign_id', 'system_id');
+    }
+
+    public function entityTypes(): HasMany
+    {
+        return $this->hasMany(EntityType::class);
     }
 }

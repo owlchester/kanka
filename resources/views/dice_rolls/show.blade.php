@@ -2,10 +2,8 @@
 <div class="entity-grid flex flex-col gap-5">
 
     @include('entities.components.header', [
-        'model' => $model,
         'breadcrumb' => [
-            Breadcrumb::entity($model->entity)->list(),
-            null
+            Breadcrumb::entity($entity)->list(),
         ]
     ])
 

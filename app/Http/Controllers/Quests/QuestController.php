@@ -31,11 +31,13 @@ class QuestController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Quest\Quest::class)
             ->route('quests.quests', $options);
 
+        //@phpstan-ignore-next-line
         $this->rows = $quest
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
-                'entity', 'entity.image', 'entity.tags', 'entity.tags.entity',
+                'entity', 'entity.image', 'entity.entityType',
+                'entity.tags', 'entity.tags.entity',
                 'parent', 'parent.entity',
             ])
             ->has('entity')

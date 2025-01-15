@@ -91,4 +91,9 @@ class DiceRollResultController extends CrudController
     {
         return redirect()->to($diceRollResult->diceRoll->getLink());
     }
+
+    public function titleKey(): string
+    {
+        return __('dice_roll_results.index.title');
+    }
 }

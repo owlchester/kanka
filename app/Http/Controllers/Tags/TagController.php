@@ -31,12 +31,13 @@ class TagController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Tag\Tag::class)
             ->route('tags.tags', $options);
 
+        //@phpstan-ignore-next-line
         $this->rows = $tag
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with([
-                'entity', 'entity.image',
+                'entity', 'entity.image', 'entity.entityType',
                 'parent', 'parent.entity',
             ])
             ->paginate();

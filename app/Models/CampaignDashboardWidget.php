@@ -119,7 +119,7 @@ class CampaignDashboardWidget extends Model
     public function scopePositioned(Builder $query): Builder
     {
         return $query->with([
-            'entity', 'entity.image',
+            'entity', 'entity.image', 'entity.entityType',
             'tags',
             'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug'
         ])
@@ -290,7 +290,7 @@ class CampaignDashboardWidget extends Model
         return $base
             ->inTags($this->tags->pluck('id')->toArray())
             ->inTypes($entityTypeID)
-            ->with(['image:campaign_id,id,ext,focus_x,focus_y', 'mentions', 'mentions.target', 'mentions.target.tags'])
+            ->with(['image:campaign_id,id,ext,focus_x,focus_y', 'entityType:id,code', 'mentions', 'mentions.target', 'mentions.target.tags'])
             ->paginate(10, ['*'], 'page', $page)
         ;
     }
@@ -340,7 +340,7 @@ class CampaignDashboardWidget extends Model
             ->whereNotIn('type_id', [config('entities.ids.attribute_template'), config('entities.ids.conversation'), config('entities.ids.tag')])
             ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
             ->inTypes($entityTypeID)
-            ->with(['image'])
+            ->with(['image', 'entityType'])
             ->inRandomOrder()
             ->first();
     }

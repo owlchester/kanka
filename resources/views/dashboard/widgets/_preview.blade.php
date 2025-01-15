@@ -10,7 +10,7 @@ if (empty($model)) {
     return;
 }
 
-$specificPreview = 'dashboard.widgets.previews.' . $entity->type();
+$specificPreview = 'dashboard.widgets.previews.' . $entity->entityType->code;
 $customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name, $widget->conf('text')) : null;
 
 \App\Facades\Dashboard::add($entity);

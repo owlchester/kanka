@@ -6,6 +6,7 @@ use App\Datagrids\Filters\QuestFilter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreQuest;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Quest;
 
 class QuestController extends CrudController
@@ -51,5 +52,10 @@ class QuestController extends CrudController
     public function destroy(Campaign $campaign, Quest $quest)
     {
         return $this->campaign($campaign)->crudDestroy($quest);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.quest'))->first();
     }
 }

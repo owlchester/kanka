@@ -44,7 +44,7 @@ if (!isset($entity)) {
             is_private: {{ $entity->is_private ? 'true' : 'false' }},
             type: {
                 id: {{ $entity->type_id }},
-                code: "{{ $entity->type() }}",
+                code: "{{ $entity->entityType->code }}",
                 custom: `{!! \App\Facades\Module::singular($entity->type_id) !!}`,
             },
             attributes: {

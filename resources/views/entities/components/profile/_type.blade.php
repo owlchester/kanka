@@ -1,9 +1,10 @@
-@if (!empty($model->type))
+@if (!empty($entity->type))
     <div class="element profile-type">
         <div class="title text-uppercase text-xs">{{ __('crud.fields.type') }}</div>
-        @php
-        $defaultOptions = [$campaign];
-        @endphp
-        <a href="{{ route($entity->pluralType() . '.index', $defaultOptions + ['_clean' => true, 'type' => $model->type]) }}">{!! $model->type !!}</a>
+        @if ($entity->entityType->isSpecial())
+            <a href="{{ route('entities.index', [$campaign, $entity->entityType] + ['_clean' => true, 'type' => $entity->type]) }}">{!! $entity->type !!}</a>
+        @else
+            <a href="{{ route($entity->entityType->pluralCode() . '.index', [$campaign] + ['_clean' => true, 'type' => $entity->type]) }}">{!! $entity->type !!}</a>
+        @endif
     </div>
 @endif

@@ -43,7 +43,6 @@ class EntityMention extends Model
 
     protected array $sortable = [
         'name',
-        'type',
     ];
 
     /**

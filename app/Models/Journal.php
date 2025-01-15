@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
@@ -37,7 +36,6 @@ class Journal extends MiscModel
     use CalendarDateTrait;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasLocation;
@@ -50,8 +48,6 @@ class Journal extends MiscModel
     protected $fillable = [
         'name',
         'campaign_id',
-        'type',
-        'entry',
         'date',
         'character_id',
         'location_id',
@@ -119,10 +115,13 @@ class Journal extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
+            },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
             },
             'entity.calendarDate',
             'entity.calendarDate.calendar',

@@ -7,7 +7,7 @@
 <x-box css="box-entity-relations box-entity-relations-table" id="entity-relations-table" :padding="$rows->count() === 0">
     @if ($rows->count() === 0)
         <x-helper :text="__('entities/relations.helpers.no_relations')" />
-        @can('relation', [$entity->child, 'add'])
+        @can('relation', $entity)
             <a href="{{ route('entities.relations.create', [$campaign, $entity, 'mode' => $mode]) }}" class="btn2 btn-sm" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.relations.create', [$campaign, $entity, 'mode' => $mode]) }}">
                 <x-icon class="plus" />
                 <span class="hidden md:inline">

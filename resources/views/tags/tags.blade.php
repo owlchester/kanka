@@ -2,10 +2,9 @@
     $plural = \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags'));
 @endphp
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . $plural,
+    'title' => $entity->name . ' - ' . $plural,
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 @section('entity-header-actions')
@@ -14,16 +13,16 @@
             <x-icon class="question" /> {{ __('crud.actions.help') }}
         </a>
         @if ($mode === \App\Enums\Descendants::Direct)
-            <a href="{{ route('tags.tags', [$campaign, $model, 'm' => \App\Enums\Descendants::All, '#tag-tags']) }}" class="btn2 btn-sm">
+            <a href="{{ route('tags.tags', [$campaign, $entity->child, 'm' => \App\Enums\Descendants::All, '#tag-tags']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden md:inline">{{ __('crud.filters.all') }}</span>
-                ({{ $model->descendants()->count() }})
+                ({{ $entity->child->descendants()->count() }})
             </a>
         @else
-            <a href="{{ route('tags.tags', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct, '#tag-tags']) }}" class="btn2 btn-sm">
+            <a href="{{ route('tags.tags', [$campaign, $entity->child, 'm' => \App\Enums\Descendants::Direct, '#tag-tags']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden md:inline">{{ __('crud.filters.direct') }}</span>
-                ({{ $model->children()->count() }})
+                ({{ $entity->child->children()->count() }})
             </a>
         @endif
         @include('entities.headers.actions', ['edit' => false])
@@ -35,6 +34,5 @@
         'active' => 'tags',
         'breadcrumb' => $plural,
         'view' => 'tags.panels.tags',
-        'entity' => $model->entity,
     ])
 @endsection

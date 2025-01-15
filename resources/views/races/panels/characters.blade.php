@@ -7,7 +7,7 @@
 $allMembers = false;
 $datagridOptions = [
     $campaign,
-    $model,
+    $entity->child,
     'init' => 1
 ];
 if (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->has('m') && $campaign->defaultDescendantsMode() === \App\Enums\Descendants::All)) {
@@ -26,18 +26,18 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
             <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::All]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span>
-                ({{ $model->allCharacters()->count() }})
+                ({{ $entity->child->allCharacters()->count() }})
             </a>
         @else
             <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::Direct]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>
-                ({{ $model->characters()->count() }})
+                ({{ $entity->child->characters()->count() }})
             </a>
         @endif
-        @can('update', $model)
-            <a href="{{ route('races.members.create', [$campaign, $model]) }}" class="btn2 btn-primary btn-sm"
-               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('races.members.create', [$campaign, $model]) }}">
+        @can('update', $entity)
+            <a href="{{ route('races.members.create', [$campaign, $entity->child]) }}" class="btn2 btn-primary btn-sm"
+               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('races.members.create', [$campaign, $entity->child]) }}">
                 <x-icon class="plus" />
                 <span class="hidden xl:inline">{{ __('crud.add') }}</span>
             </a>

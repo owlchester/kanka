@@ -11,7 +11,7 @@ class TimelineSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
         /** @var Timeline $model */
-        $model = $this->model;
+        $model = $this->entity->child;
         $items['second']['timelines'] = [
             'name' => Module::plural($model->entityTypeId(), 'entities.timelines'),
             'route' => 'timelines.timelines',

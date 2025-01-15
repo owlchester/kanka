@@ -1,24 +1,22 @@
-<?php /**
- * @var \App\Models\MiscModel $model
- */
-if (!$campaign->enabled('locations') || !$model->location || !$model->location->entity) {
+<?php
+if (!$campaign->enabled('locations') || !$entity->child->location || !$entity->child->location->entity) {
     return;
 }
 ?>
 <div class="entity-header-sub-element">
     <x-icon :class="\App\Facades\Module::duoIcon('location')" :title="__('crud.fields.parent')" />
-    @if ($model->location->parent && $model->location->parent->entity)
+    @if ($entity->child->location->parent && $entity->child->location->parent->entity)
         {!! __('crud.fields.locations', [
             'first' => \Illuminate\Support\Facades\Blade::renderComponent(
-                new \App\View\Components\EntityLink($model->location->entity, $campaign)
+                new \App\View\Components\EntityLink($entity->child->location->entity, $campaign)
                 ),
             'second' => \Illuminate\Support\Facades\Blade::renderComponent(
-                new \App\View\Components\EntityLink($model->location->parent->entity, $campaign)
+                new \App\View\Components\EntityLink($entity->child->location->parent->entity, $campaign)
                 ),
         ]) !!}
     @else
         <x-entity-link
-            :entity="$model->location->entity"
+            :entity="$entity->child->location->entity"
             :campaign="$campaign" />
     @endif
 </div>

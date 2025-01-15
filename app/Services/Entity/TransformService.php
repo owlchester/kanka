@@ -9,16 +9,21 @@ use App\Models\Entity;
 use App\Models\Post;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
+use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use App\Traits\EntityTypeAware;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Exception;
 
 class TransformService
 {
+    use CampaignAware;
     use EntityAware;
+    use EntityTypeAware;
 
     protected MiscModel $child;
-    protected MiscModel $new;
+    protected MiscModel|Entity $new;
     protected array $fillable;
 
     public function child(MiscModel $child): self
@@ -28,17 +33,31 @@ class TransformService
         return $this;
     }
 
-    public function transform(string $target): Entity
+    public function transform(): Entity
     {
-        if (empty($this->child)) {
+        // Custom to custom, just update the type_id
+        if ($this->entity->entityType->isSpecial() && $this->entityType->isSpecial()) {
+            $this->entity->type_id = $this->entityType->id;
+            $this->entity->save();
+            return $this->entity;
+        }
+
+        // Custom to child
+        if ($this->entity->entityType->isSpecial() && !$this->entityType->isSpecial()) {
+            return $this->specialToMisc();
+        } elseif (!$this->entity->entityType->isSpecial() && $this->entityType->isSpecial()) {
+            return $this->miscToSpecial();
+        }
+
+        if (empty($this->child) && $this->entity->hasChild()) {
             $this->child = $this->entity->child;
         }
-        $this->new = $this->new($target);
+
+        $this->new = $this->entityType->getClass();
 
         $this
             ->attributes()
             ->location()
-            ->removeTags()
             ->removePosts()
         ;
 
@@ -70,9 +89,10 @@ class TransformService
 
         $raceID = config('entities.ids.race');
         $creatureID = config('entities.ids.creature');
+        $organisationID = config('entities.ids.organisation');
 
         // @phpstan-ignore-next-line
-        if (in_array($this->child->entityTypeId(), [$raceID, $creatureID]) && !in_array($this->new->entityTypeId(), [$raceID, $creatureID]) && !empty($this->child->locations()->first())) {
+        if (in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) && !in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID]) && !empty($this->child->locations()->first())) {
             if (in_array('location_id', $this->fillable)) {
                 // @phpstan-ignore-next-line
                 $this->new->location_id = $this->child->locations()->first()->id;
@@ -151,19 +171,6 @@ class TransformService
         return $this;
     }
 
-    /**
-     * Remove tags if converting to tag, since tags can't have tags.
-     * @return $this
-     */
-    protected function removeTags(): self
-    {
-        if ($this->new->entityTypeId() != config('entities.ids.tag')) {
-            return $this;
-        }
-        $this->entity->tags()->detach();
-        return $this;
-    }
-
     protected function removePosts(): self
     {
         //Delete non compatible posts.
@@ -237,11 +244,14 @@ class TransformService
 
     protected function finish(): self
     {
-        $type = $this->entity->entityType();
+        $type = $this->entity->entityType->name();
         // Update entity to its new type. We don't use a new entity to keep all mentions, attributes and
         // other related elements attached.
-        $this->entity->type_id = $this->new->entityTypeID();
-        $this->entity->entity_id = $this->new->id;
+        $this->entity->type_id = $this->entityType->id;
+        // If attached to a misc model, save the entity_id
+        if (isset($this->new)) {
+            $this->entity->entity_id = $this->new->id;
+        }
         $this->entity->cleanCache()->saveQuietly();
 
         EntityLogger::entity($this->entity)->dirty('entity_type', $type)->update();
@@ -249,16 +259,48 @@ class TransformService
         // Delete old, this will take care of pictures and stuff. We detach the
         // entity to avoid the softDelete affecting it and causing duplicate
         // entities in the db. ForceDelete the MiscModel for img cleanup.
-        $this->child->entity = null;
+        if (isset($this->child)) {
+            $this->child->entity = null;
 
-        // Change the permission's misc_id to be the new one
-        CampaignPermission::where('entity_id', $this->entity->id)
-            ->where('misc_id', $this->child->id)
-            ->update(['misc_id' => $this->new->id]);
+            // Change the permission's misc_id to be the new one
+            if (isset($this->new)) {
+                CampaignPermission::where('entity_id', $this->entity->id)
+                    ->where('misc_id', $this->child->id)
+                    ->update(['misc_id' => $this->new->id]);
+            } else {
+                CampaignPermission::where('entity_id', $this->entity->id)
+                    ->where('misc_id', $this->child->id)
+                    ->update(['misc_id' => null]);
+            }
 
-        // Force delete the old entity to avoid it creating weird issues in the db by being soft deleted.
-        $this->child->forceDelete();
+            // Force delete the old entity to avoid it creating weird issues in the db by being soft deleted.
+            $this->child->forceDelete();
+        }
 
         return $this;
+    }
+
+    protected function specialToMisc(): Entity
+    {
+        // Create misc
+        $this->new = $this->entityType->getClass();
+        $this->new->name = $this->entity->name;
+        $this->new->is_private = $this->entity->is_private;
+        $this->new->campaign_id = $this->campaign->id;
+        $this->new->save();
+
+        $this->finish();
+
+
+        return $this->entity;
+    }
+
+    protected function miscToSpecial(): Entity
+    {
+        $this->child = $this->entity->child;
+
+        $this->finish();
+
+        return $this->entity;
     }
 }

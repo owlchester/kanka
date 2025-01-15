@@ -1,9 +1,9 @@
 <?php
 /**
- * @var \App\Models\MiscModel $model
+ * @var \App\Models\Entity $entity
  * @var \App\Models\OrganisationMember $member
  */
-$models = $model->pinnedMembers;
+$models = $entity->child->pinnedMembers;
 $previousRelation = null;
 ?>
 @foreach ($models as $member)
@@ -27,7 +27,7 @@ $previousRelation = null;
             {{ $member->role }}
         </strong>
         <div class="grow text-right">
-            @if ($model instanceof \App\Models\Character)
+            @if ($entity->isCharacter())
                 <x-entity-link
                     :entity="$member->organisation->entity"
                     :campaign="$campaign" />

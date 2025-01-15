@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Enums\FilterOption;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocations;
 use App\Models\Concerns\Nested;
@@ -34,7 +33,6 @@ class Organisation extends MiscModel
     use Acl;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasLocations;
@@ -47,16 +45,13 @@ class Organisation extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'entry',
         'organisation_id',
-        'type',
         'is_private',
         'is_defunct',
     ];
 
     protected array $sortable = [
         'name',
-        'type',
         'parent.name',
         'is_defunct',
     ];
@@ -101,7 +96,6 @@ class Organisation extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
     ];
 
     protected array $organisationAndDescendantIds;
@@ -115,6 +109,9 @@ class Organisation extends MiscModel
             ->with([
                 'entity',
                 'entity.image',
+                'entity.entityType' => function ($sub) {
+                    $sub->select('id', 'code');
+                },
                 'locations' => function ($sub) {
                     $sub->select('id', 'name');
                 },

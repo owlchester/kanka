@@ -1,5 +1,4 @@
 <?php /**
- * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
  */?>
 
@@ -8,9 +7,8 @@
 @endphp
 
 @extends('layouts.print', [
-    'title' => $model->name . ' - ' . __('entities.' . $name),
+    'title' => $entity->name . ' - ' . $entity->entityType->plural(),
     'breadcrumbs' => false,
-    'miscModel' => $model,
     'canonical' => true,
     'mainTitle' => false,
     'bodyClass' => 'entity-story'
@@ -28,7 +26,7 @@
     @else
         @include('cruds.overview')
     @endif
-    @includeIf('entities.pages.profile._' . $entity->type())
+    @includeIf('entities.pages.profile._' . $entity->entityType->code)
     @includeIf($name . '._print')
     @includeWhen($entity->abilities->count() > 0, 'entities.pages.print._abilities')
     @includeWhen($entity->inventories->count() > 0, 'entities.pages.print._inventory')

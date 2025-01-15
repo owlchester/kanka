@@ -1,8 +1,8 @@
 <div class="preview overflow-hidden relative max-h-52" id="widget-preview-body-{{ $widget->id }}">
     {!! $slot !!}
-    @if ($model->hasEntry())
+    @if ($entity->hasEntry())
     <div class="entity-content">
-        {!! $model->parsedEntry() !!}
+        {!! $entity->parsedEntry() !!}
     </div>
     @endif
 

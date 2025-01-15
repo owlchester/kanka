@@ -20,7 +20,7 @@ class ChargeController extends Controller
 
     public function use(Request $request, Campaign $campaign, Entity $entity, EntityAbility $entityAbility)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return response()->json([
             'success' => $this->service
@@ -32,7 +32,7 @@ class ChargeController extends Controller
 
     public function reset(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $this->service
             ->entity($entity)

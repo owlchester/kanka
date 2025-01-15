@@ -107,6 +107,9 @@ class MapMapper extends MiscMapper
                 Storage::writeStream($destination, Storage::disk('local')->readStream($this->path . $el->$imageField));
                 $el->image_path = $destination;
             } else {
+                if (empty($el->image_uuid) || !ImportIdMapper::hasGallery($el->image_uuid)) {
+                    continue;
+                }
                 $el->image_uuid = ImportIdMapper::getGallery($el->image_uuid);
             }
             $el->save();

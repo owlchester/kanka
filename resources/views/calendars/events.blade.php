@@ -1,9 +1,8 @@
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . __('crud.tabs.reminders'),
+    'title' => $entity->name . ' - ' . __('crud.tabs.reminders'),
     'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 @section('entity-header-actions')
@@ -32,6 +31,5 @@
         'active' => 'events',
         'breadcrumb' => __('entities.entities'),
         'view' => 'calendars.panels.events',
-        'entity' => $model->entity,
     ])
 @endsection

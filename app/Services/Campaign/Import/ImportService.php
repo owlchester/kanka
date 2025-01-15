@@ -5,6 +5,7 @@ namespace App\Services\Campaign\Import;
 use App\Enums\CampaignImportStatus;
 use App\Facades\CampaignCache;
 use App\Facades\CharacterCache;
+use App\Facades\EntityCache;
 use App\Facades\MapMarkerCache;
 use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
@@ -278,6 +279,7 @@ class ImportService
 
         // Since modules and custom names are cached, any changes to them need to invalidate any existing cache
         CampaignCache::campaign($this->campaign)->clear();
+        EntityCache::campaign($this->campaign);
         CharacterCache::campaign($this->campaign);
         TimelineElementCache::campaign($this->campaign);
         QuestCache::campaign($this->campaign);

@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Tag;
 
-use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -27,11 +26,7 @@ class Post extends Layout
                 'key' => 'type_id',
                 'label' => 'crud.fields.entity_type',
                 'render' => function ($model) {
-                    $singular = Module::singular($model->entity->typeId());
-                    if (!empty($singular)) {
-                        return $singular;
-                    }
-                    return __('entities.' . $model->entity->pluralType());
+                    return $model->entity->entityType->name();
                 }
             ],
             'tags' => [

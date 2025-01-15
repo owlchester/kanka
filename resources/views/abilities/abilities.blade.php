@@ -2,10 +2,9 @@
     $plural = \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities'));
 @endphp
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . $plural,
+    'title' => $entity->name . ' - ' . $plural,
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 @section('entity-header-actions')
@@ -33,6 +32,5 @@
         'active' => 'abilities',
         'breadcrumb' => $plural,
         'view' => 'abilities.panels.abilities',
-        'entity' => $model->entity,
     ])
 @endsection

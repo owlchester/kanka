@@ -1,5 +1,4 @@
 <?php /**
- * @var \App\Models\MiscModel $model
  * @var \App\Models\Entity $entity
  */?>
 @php
@@ -7,37 +6,37 @@
 @endphp
 # {!! $entity->name !!}
 
-@if ($model instanceof \App\Models\Character && $model->isDead())
+@if ($entity->isCharacter() && $entity->child->isDead())
 {{ __('characters.hints.is_dead') }}
 @endif
-@if ($model instanceof \App\Models\Quest && $model->isCompleted())
+@if ($entity->isQuest() && $entity->child->isCompleted())
 {{ __('quests.fields.is_completed') }}
 @endif
-@if ($model instanceof \App\Models\Organisation && $model->isDefunct())
+@if ($entity->isOrganisation() && $entity->child->isDefunct())
 {{ __('organisations.hints.is_defunct') }}
 @endif
-@if ($model instanceof \App\Models\Location && $model->isDestroyed())
+@if ($entity->isLocation() && $entity->child->isDestroyed())
 {{ __('locations.hints.is_destroyed') }}
 @endif
-@if ($model instanceof \App\Models\Creature && $model->isExtinct())
+@if ($entity->isCreature() && $entity->child->isExtinct())
 {{ __('creatures.hints.is_extinct') }}
 @endif
-@if ($model instanceof \App\Models\Race && $model->isExtinct())
+@if ($entity->isRace() && $entity->child->isExtinct())
 {{ __('races.hints.is_extinct') }}
 @endif
-@if ($model instanceof \App\Models\Creature && $model->isDead())
+@if ($entity->isCreature() && $entity->child->isDead())
 {{ __('creatures.hints.is_dead') }}
 @endif
-@if ($model instanceof \App\Models\Family && $model->isExtinct())
+@if ($entity->isFamily() && $entity->child->isExtinct())
 {{ __('families.hints.is_extinct') }}
 @endif
 
-@if ($model instanceof \App\Models\Character && !empty($model->title))
-{{ $model->title }}
+@if ($entity->isCharacter() && !empty($entity->child->title))
+{{ $entity->child->title }}
 @endif
 
-@if (!empty($model->type))
-{{ $model->type }}
+@if (!empty($entity->type))
+{{ $entity->type }}
 @endif
 
 @if ($entity->hasPins())
@@ -46,18 +45,18 @@
 | Name | Content |
 |:-|:-|
 @if(!$entity->pinnedFiles->isEmpty())
-@foreach ($model->entity->pinnedFiles as $asset)
+@foreach ($entity->pinnedFiles as $asset)
 | {{ $asset->name }} | {!! $asset->url() !!} |
 @endforeach
 @endif
 @if(!$entity->pinnedAliases->isEmpty())
-| {{ __('entities/assets.actions.alias') }} | @foreach ($model->entity->pinnedAliases as $asset) {{ $asset->name }}@if ($counter < $model->entity->pinnedAliases->count() - 1)@php $counter++; @endphp, @endif @endforeach |@endif
+| {{ __('entities/assets.actions.alias') }} | @foreach ($entity->pinnedAliases as $asset) {{ $asset->name }}@if ($counter < $entity->pinnedAliases->count() - 1)@php $counter++; @endphp, @endif @endforeach |@endif
 @foreach ($entity->pinnedRelations as $relation)
 | {{ $relation->relation }} | {{ $relation->target->name }} |
 @endforeach
-@if(method_exists($model, 'pinnedMembers') && !$model->pinnedMembers->isEmpty())
-@foreach ($model->pinnedMembers as $member)
-@if ($model instanceof \App\Models\Character)
+@if($entity->hasChild() && method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty())
+@foreach ($entity->child->pinnedMembers as $member)
+@if ($member instanceof \App\Models\Character)
 | {{ $member->organisation->name }} | {{ $member->role }} |
 @else
 | {{ $member->character->name }} | {{ $member->role }} |
@@ -69,10 +68,11 @@
 ## {{ __('crud.tabs.profile') }}
 | Name | Content |
 |:-|:-|
-@includeIf('entities.pages.print.profile.' . $model->getTable())
-
-@if($model->hasEntry())
-{!! $converter->convert((string) $model->entry) !!}
+@if ($entity->hasChild())
+    @includeIf('entities.pages.print.profile.' . $entity->entityType->pluralCode(), ['model' => $entity->child])
+@endif
+@if($entity->hasEntry())
+    {!! $converter->convert((string) $entity->entry) !!}
 @endif
 
 @foreach ($entity->posts as $post)

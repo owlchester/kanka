@@ -75,14 +75,17 @@ trait EntityMapper
     protected function entity(): void
     {
         $mapping = ['name', 'is_private', 'campaign_id'];
-        $entityMapping = ['tooltip', 'is_template', 'is_attributes_private', 'focus_x', 'focus_y'];
+        $entityMapping = ['tooltip', 'is_template', 'is_attributes_private', 'focus_x', 'focus_y', 'entry', 'type', 'type_id'];
         $this->entity = new Entity();
         $this->entity->entity_id = $this->model->id;
-        $this->entity->type_id = $this->model->entityTypeId();
         $this->entity->created_by = $this->user->id;
         $this->entity->updated_by = $this->user->id;
         foreach ($mapping as $field) {
             $this->entity->$field = $this->model->$field;
+        }
+        // Old exports might not have this info so we call back on the model hardcoded ids
+        if (empty($this->entity->type_id)) {
+            $this->entity->type_id = $this->model->entityTypeId();
         }
         foreach ($entityMapping as $field) {
             $this->entity->$field = $this->data['entity'][$field];
@@ -115,6 +118,7 @@ trait EntityMapper
         $this->entity = $this->model->entity;
 
         $this->entity->tooltip = $this->mentions($this->entity->tooltip);
+        $this->entity->entry = $this->mentions($this->entity->entry);
         $this->entity->save();
 
         $this->posts()
@@ -355,6 +359,9 @@ trait EntityMapper
             return $this;
         }
         if ($model === 'entities') {
+            if (!ImportIdMapper::hasEntity($this->data[$field])) {
+                return $this;
+            }
             $foreignID = ImportIdMapper::getEntity($this->data[$field]);
         } else {
             if (!ImportIdMapper::has($model, $this->data[$field])) {
@@ -391,7 +398,6 @@ trait EntityMapper
 
     protected function saveModel(): self
     {
-        $this->model->entry = $this->mentions($this->model->entry);
         $this->model->save();
         $this->mapImageMentions($this->model);
         return $this;

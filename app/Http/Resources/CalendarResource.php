@@ -18,7 +18,6 @@ class CalendarResource extends EntityResource
         $calendar = $this->resource;
 
         return $this->entity([
-            'type' => $calendar->type,
             'date' => $calendar->date,
             'parameters' => $calendar->parameters,
             'months' => json_decode($calendar->months),

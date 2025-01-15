@@ -85,9 +85,9 @@
             <div class="timeline-item-body entity-content overflow-hidden @if ($element->collapsed()) hidden @endif" id="timeline-element-body-{{ $element->id }}">
                 {!! \App\Facades\Mentions::mapAny($element) !!}
 
-                @if ($element->use_entity_entry && $element->entity && $element->entity->child->hasEntry())
+                @if ($element->use_entity_entry && $element->entity && $element->entity->hasEntry())
                     <div class="timeline-entity-content">
-                        {!! $element->entity->child->parsedEntry() !!}
+                        {!! $element->entity->parsedEntry() !!}
                     </div>
                 @endif
             </div>

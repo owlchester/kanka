@@ -27,6 +27,7 @@ class StatService
 
         $this->stats = [];
 
+        // @phpstan-ignore-next-line
         $this->stats['entities'] = $this->campaign->entities()->withInvisible()->count();
         $this->permissions()
             ->types()
@@ -39,6 +40,7 @@ class StatService
     protected function types(): self
     {
         $stats = [];
+        // @phpstan-ignore-next-line
         $res = $this->campaign
             ->entities()
             ->withInvisible()
@@ -67,11 +69,17 @@ class StatService
     protected function modules(): self
     {
         $this->stats['modules'] = [];
+        // @phpstan-ignore-next-line
         $this->stats['modules']['entity_attributes'] = Attribute::withPrivate()->leftJoin('entities', 'entities.id', 'attributes.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
+        // @phpstan-ignore-next-line
         $this->stats['modules']['posts'] = Post::withInvisible()->leftJoin('entities', 'entities.id', 'posts.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
+        // @phpstan-ignore-next-line
         $this->stats['modules']['abilities'] = EntityAbility::withPrivate()->leftJoin('entities', 'entities.id', 'entity_abilities.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
+        // @phpstan-ignore-next-line
         $this->stats['modules']['reminders'] = EntityEvent::withPrivate()->leftJoin('entities', 'entities.id', 'entity_events.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
+        // @phpstan-ignore-next-line
         $this->stats['modules']['inventories'] = Inventory::withPrivate()->leftJoin('entities', 'entities.id', 'inventories.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
+        // @phpstan-ignore-next-line
         $this->stats['modules']['bookmarks'] = Bookmark::withPrivate()->where('campaign_id', $this->campaign->id)->count();
         arsort($this->stats['modules']);
 

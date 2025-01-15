@@ -4,7 +4,7 @@
         :required="true"
         :label="__('crud.fields.entity_type')">
 
-        <x-forms.select name="entity_type" :options="$entities" class="w-full" />
+        <x-forms.select name="entity_type" :options="$entityTypes" class="w-full" />
     </x-forms.field>
 
     <x-forms.field

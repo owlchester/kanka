@@ -11,7 +11,7 @@ class MapSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
         /** @var Map $map */
-        $map = $this->model;
+        $map = $this->entity->child;
         $items['second']['maps'] = [
             'name' => Module::plural($map->entityTypeId(), 'entities.maps'),
             'route' => 'maps.maps',

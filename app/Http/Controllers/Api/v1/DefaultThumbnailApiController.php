@@ -6,16 +6,13 @@ use App\Models\Campaign;
 use App\Http\Requests\Campaigns\StoreDefaultThumbnail;
 use App\Http\Requests\Campaigns\DestroyDefaultThumbnail;
 use App\Http\Resources\EntityDefaultThumbnailResource as Resource;
+use App\Models\EntityType;
 use App\Services\Campaign\DefaultImageService;
-use Illuminate\Support\Str;
 
 class DefaultThumbnailApiController extends ApiController
 {
-    protected DefaultImageService $service;
-
-    public function __construct(DefaultImageService $defaultImageService)
+    public function __construct(protected DefaultImageService $defaultImageService)
     {
-        $this->service = $defaultImageService;
         $this->middleware('campaign.boosted')->except('index');
     }
 
@@ -38,8 +35,8 @@ class DefaultThumbnailApiController extends ApiController
     {
         $this->authorize('access', $campaign);
 
-        $type = Str::plural(array_search($request->post('entity_type_id'), config('entities.ids')));
-        if ($this->service->campaign($campaign)->type($type)->save($request)) {
+        $entityType = EntityType::inCampaign($campaign)->find($request->post('entity_type_id'));
+        if ($this->defaultImageService->campaign($campaign)->entityType($entityType)->save($request)) {
             return response()->json([
                 'data' => 'Default thumbnail successfully uploaded'
             ]);
@@ -55,8 +52,8 @@ class DefaultThumbnailApiController extends ApiController
     {
         $this->authorize('recover', $campaign);
 
-        $type = Str::plural(array_search($request->post('entity_type_id'), config('entities.ids')));
-        $result = $this->service->campaign($campaign)->type($type)->destroy();
+        $entityType = EntityType::inCampaign($campaign)->find($request->post('entity_type_id'));
+        $result = $this->defaultImageService->campaign($campaign)->entityType($entityType)->destroy();
 
         if ($result) {
             return response()->json([

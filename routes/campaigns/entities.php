@@ -3,8 +3,20 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/w/{campaign}/entities/{entity}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show')->where(['entity' => '[0-9]+']);
+
 Route::get('/w/{campaign}/entities/{entity}-{slug}', [App\Http\Controllers\Entity\ShowController::class, 'index'])->name('entities.show-slug');
-Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entity\EditController::class, 'index'])->name('entities.edit');
+
+Route::get('/w/{campaign}/t/{entityType}', [App\Http\Controllers\Entities\IndexController::class, 'index'])->name('entities.index');
+Route::get('/w/{campaign}/t/{entityType}/create', [App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
+
+
+// New entity
+Route::get('/w/{campaign}/create/{entity_type}', [App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
+Route::post('/w/{campaign}/create/{entity_type}', [App\Http\Controllers\Entities\CreateController::class, 'store'])->name('entities.store');
+
+Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entities\EditController::class, 'index'])->name('entities.edit');
+Route::patch('/w/{campaign}/entities/{entity}/save', [App\Http\Controllers\Entities\EditController::class, 'save'])->name('entities.update');
+Route::delete('/w/{campaign}/entities/{entity}/delete', [App\Http\Controllers\Entities\DeleteController::class, 'index'])->name('entities.destroy');
 
 // Abilities
 Route::get('/w/{campaign}/abilities/{ability}/abilities', 'Abilities\AbilityController@index')->name('abilities.abilities');
@@ -327,5 +339,7 @@ Route::get('/w/{campaign}/entities/{entity}/preview', 'Entity\PreviewController@
 
 // Entity quick creator
 Route::get('/w/{campaign}/entity-creator', [App\Http\Controllers\EntityCreatorController::class, 'selection'])->name('entity-creator.selection');
-Route::get('/w/{campaign}/entity-creator/{type}', [App\Http\Controllers\EntityCreatorController::class, 'form'])->name('entity-creator.form');
-Route::post('/w/{campaign}/entity-creator/{type}', [App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
+Route::get('/w/{campaign}/entity-creator/{entity_type}', [App\Http\Controllers\EntityCreatorController::class, 'form'])->name('entity-creator.form');
+Route::get('/w/{campaign}/entity-creator-post', [App\Http\Controllers\EntityCreatorController::class, 'post'])->name('entity-creator.post');
+Route::post('/w/{campaign}/entity-creator/{entity_type}', [App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
+Route::post('/w/{campaign}/entity-creator-post', [App\Http\Controllers\EntityCreatorController::class, 'storePost'])->name('entity-creator.store-post');

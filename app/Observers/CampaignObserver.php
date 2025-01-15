@@ -99,7 +99,7 @@ class CampaignObserver
 
         CampaignRoleUser::create([
             'campaign_role_id' => $role->id,
-            'user_id' => Auth::user()->id
+            'user_id' => Auth::user()->id,
         ]);
 
         // Settings
@@ -126,6 +126,7 @@ class CampaignObserver
         $this->saveSystems($campaign);
         $campaign->saveQuietly();
 
+        /** @var CampaignUser $member */
         foreach ($campaign->members()->with('user')->get() as $member) {
             UserCache::user($member->user)->clear();
         }
@@ -178,7 +179,7 @@ class CampaignObserver
                     'trash',
                     'yellow',
                     [
-                        'campaign' => $campaign->name
+                        'campaign' => $campaign->name,
                     ]
                 ));
             }

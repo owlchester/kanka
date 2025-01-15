@@ -118,7 +118,7 @@ if (!$log->entity) {
                             @if (is_array($value)) @continue @endif
                             <div class="flex">
                                 <div class="flex-initial w-32 font-bold" data-attribute="{{ $attribute }}">
-                                    {!! $log->attributeKey($log->entity->pluralType(), $attribute) !!}
+                                    {!! $log->attributeKey($log->entity->entityType->pluralCode(), $attribute) !!}
                                 </div>
                                 <div class="flex-1 break-all">
                                     @if (\Illuminate\Support\Str::contains($attribute, ['has_', 'is_']))

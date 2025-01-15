@@ -5,12 +5,13 @@
  * @var \App\Models\CampaignUser $member
  * @var \App\Models\CampaignRole $role
  * @var \App\Models\Campaign $campaign
+ * @var \App\Models\EntityType $entityType
  */
 $permissions = isset($model) ? $permissionService->entityPermissions($model->entity) : [];
 if (isset($model)) {
     $permissionService->type($model->entity->type_id);
 } else {
-    $permissionService->type(config('entities.ids.' . $entityType));
+    $permissionService->type($entityType->id);
 }
 $actions = [
     'allow' => __('crud.permissions.actions.bulk_entity.allow'),

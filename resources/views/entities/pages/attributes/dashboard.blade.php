@@ -5,7 +5,6 @@
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $entity->child,
     'bodyClass' => 'entity-attributes'
 ])
 

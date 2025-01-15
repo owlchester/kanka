@@ -1,9 +1,8 @@
-<?php /** @var \App\Models\Family $model */?>
+<?php /** @var \App\Models\Entity $entity */?>
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')),
+    'title' => $entity->name . ' - ' . \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')),
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 @section('entity-header-actions')
@@ -31,6 +30,5 @@
         'active' => 'families',
         'breadcrumb' => $plural,
         'view' => 'families.panels.families',
-        'entity' => $model->entity,
     ])
 @endsection

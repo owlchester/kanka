@@ -1,14 +1,11 @@
 @php
-/** @var \App\Models\MiscModel $model */
+/** @var \App\Models\Entity $entity */
 $forceShow = false;
-if (method_exists($model, 'pinnedMembers') && !$model->pinnedMembers->isEmpty()) {
+if (!$entity->entityType->isSpecial() && method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty()) {
     $forceShow = true;
 }
-if (auth()->check() && auth()->user()->can('update', $model)) {
+if (auth()->check() && auth()->user()->can('update', $entity)) {
     $forceShow = true;
-}
-if (empty($entity)) {
-    $entity = $model->entity;
 }
 @endphp
 <aside class="entity-sidebar relative grid grid-cols-2 md:flex md:flex-col gap-5 items-stretch md:w-48 flex-none">
@@ -29,7 +26,7 @@ if (empty($entity)) {
                 <div class="pins flex flex-col gap-2">
                     @includeWhen(!$entity->pinnedFiles->isEmpty() || !$entity->pinnedAliases->isEmpty(), 'entities.components.assets')
                     @include('entities.components.relations')
-                    @includeWhen(method_exists($model, 'pinnedMembers') && !$model->pinnedMembers->isEmpty(), 'entities.components.members')
+                    @includeWhen(!$entity->entityType->isSpecial() && method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty(), 'entities.components.members')
                     @can('view-attributes', [$entity, $campaign])
                         @include('entities.components.attributes')
                     @endcan
@@ -38,7 +35,11 @@ if (empty($entity)) {
         </div>
     @endif
 
-    @includeIf('entities.components.profile.' . $name)
+    @if ($entity->entityType->isSpecial())
+            @includeIf('entities.components.profile.custom')
+    @else
+        @includeIf('entities.components.profile.' . $entity->entityType->pluralCode())
+    @endif
 
     @includeWhen(!isset($printing) && $campaign->boosted() && $entity->hasLinks(), 'entities.components.links')
 

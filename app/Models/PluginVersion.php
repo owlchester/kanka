@@ -426,8 +426,8 @@ class PluginVersion extends Model
         // Share some attributes to plugin developers
         $data['_locale'] = app()->getLocale();
         $data['_entity_name'] = $entity->name;
-        $data['_entity_type'] = $entity->child->type;
-        $data['_entity_type_name'] = $entity->type();
+        $data['_entity_type'] = $entity->type;
+        $data['_entity_type_name'] = $entity->entityType->code;
 
         if ($entity->isCharacter()) {
             /** @var Character $character */
@@ -517,7 +517,7 @@ class PluginVersion extends Model
                 'name' => $abi->ability->name,
                 'slug' => Str::slug($abi->ability->name),
                 'type' => $abi->ability->type,
-                'entry' => $abi->ability->parsedEntry(),
+                'entry' => $abi->ability->entity->parsedEntry(),
                 'charges' => $abi->ability->charges,
                 'note' => Mentions::mapAny($abi, 'note'),
                 'note_raw' => $abi->note,

@@ -37,7 +37,6 @@ return [
     'show'          => [
         'tabs'  => [
             'children'  => 'Children',
-            'posts'     => 'Tagged posts'
         ],
     ],
     'transfer'      => [

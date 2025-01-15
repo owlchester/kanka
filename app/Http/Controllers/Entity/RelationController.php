@@ -96,7 +96,7 @@ class RelationController extends Controller
      */
     public function create(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $mode = $this->getModeOption();
 
@@ -109,7 +109,7 @@ class RelationController extends Controller
 
     public function store(StoreRelation $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -140,7 +140,7 @@ class RelationController extends Controller
      */
     public function edit(Campaign $campaign, Entity $entity, Relation $relation)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $from = (int) request()->get('from', 0);
         $mode = $this->getModeOption();
@@ -158,7 +158,7 @@ class RelationController extends Controller
      */
     public function update(StoreRelation $request, Campaign $campaign, Entity $entity, Relation $relation)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $data = $request->only(['target_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id']);
 
         if ($request->unmirror && $relation->mirror) {
@@ -209,7 +209,7 @@ class RelationController extends Controller
      */
     public function destroy(Campaign $campaign, Entity $entity, Relation $relation)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         if (request()->has('mode')) {
             $mode = request()->get('mode');
@@ -220,7 +220,7 @@ class RelationController extends Controller
         $deletedMirror = false;
         if (request()->get('remove_mirrored') === '1' && $relation->isMirrored()) {
             $mirror = $relation->mirror;
-            if (!empty($mirror) && auth()->user()->can('relation', [$relation->target->child, 'delete'])) {
+            if (!empty($mirror) && auth()->user()->can('relation', [$relation->target, 'delete'])) {
                 $mirror->delete();
                 $deletedMirror = true;
             }

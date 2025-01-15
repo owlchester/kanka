@@ -4,12 +4,14 @@ namespace App\Services\Permissions;
 
 use App\Models\CampaignPermission;
 use App\Models\EntityType;
+use App\Traits\CampaignAware;
 use App\Traits\RoleAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class RolePermissionService
 {
+    use CampaignAware;
     use RoleAware;
 
     protected int $type;
@@ -70,10 +72,7 @@ class RolePermissionService
             $entityActions = [CampaignPermission::ACTION_READ];
         }
 
-        foreach (EntityType::get() as $entityType) {
-            if (in_array($entityType->code, ['bookmark'])) {
-                continue;
-            }
+        foreach (EntityType::exclude([config('entities.ids.bookmark')])->inCampaign($this->campaign)->get() as $entityType) {
             foreach ($entityActions as $action) {
                 if (!isset($permissions[$entityType->plural()])) {
                     $permissions[$entityType->plural()] = [

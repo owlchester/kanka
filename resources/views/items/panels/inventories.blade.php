@@ -9,7 +9,7 @@
         </tr>
         @foreach ($r as $inventory)
             @if ($inventory->entity->child)
-            <tr data-entity-id="{{ $inventory->entity->id }}" data-entity-type="{{ $inventory->entity->type() }}" class="@if($inventory->entity->is_private) entity-private @endif">
+            <tr data-entity-id="{{ $inventory->entity->id }}" data-entity-type="{{ $inventory->entity->entityType->code }}" class="@if($inventory->entity->is_private) entity-private @endif">
                 <td>
                     <x-entities.thumbnail :entity="$inventory->entity" :title="$inventory->entity->name"></x-entities.thumbnail>
                 </td>

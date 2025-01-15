@@ -4,7 +4,6 @@
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 
@@ -37,6 +36,5 @@
         'active' => 'layers',
         'breadcrumb' => __('maps.panels.layers'),
         'view' => 'maps.panels.layers',
-        'entity' => $model->entity,
     ])
 @endsection

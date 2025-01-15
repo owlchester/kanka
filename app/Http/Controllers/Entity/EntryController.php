@@ -16,7 +16,7 @@ class EntryController extends Controller
      */
     public function edit(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return view('entities.pages.entry.edit')
             ->with('campaign', $campaign)
@@ -28,16 +28,16 @@ class EntryController extends Controller
      */
     public function update(UpdateEntityEntry $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
 
         $fields = $request->only('entry');
-        $entity->child->update($fields);
-        if ($entity->child->wasChanged()) {
-            EntityLogger::model($entity->child);
+        $entity->update($fields);
+        if ($entity->wasChanged()) {
+            EntityLogger::entity($entity);
             $entity->touch();
         }
 

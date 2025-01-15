@@ -39,7 +39,7 @@ class Foreign extends Component
         public ?int $entityTypeID = null,
         mixed $class = null,
     ) {
-        $this->id = $id ?? $name . '_' . uniqid();
+        $this->id = !empty($id) ? $id : $name . '_' . uniqid();
         $this->className = $class;
 
     }

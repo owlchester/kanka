@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocations;
 use App\Models\Concerns\Nested;
@@ -33,7 +32,6 @@ class Creature extends MiscModel
     use Acl;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasLocations;
@@ -46,8 +44,6 @@ class Creature extends MiscModel
     protected $fillable = [
         'name',
         'campaign_id',
-        'type',
-        'entry',
         'is_private',
         'creature_id',
         'is_extinct',
@@ -69,7 +65,6 @@ class Creature extends MiscModel
 
     protected array $sortable = [
         'name',
-        'type',
         'parent.name',
         'is_extinct',
         'is_dead',
@@ -118,10 +113,13 @@ class Creature extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
+            },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
             },
             'parent' => function ($sub) {
                 $sub->select('id', 'name');

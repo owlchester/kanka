@@ -238,7 +238,7 @@ class SearchService
         }
 
         $query
-            ->with('image')
+            ->with(['image', 'entityType'])
             ->limit($this->limit);
 
         $searchResults = $foundEntityIds = [];
@@ -246,9 +246,11 @@ class SearchService
         foreach ($query->get() as $model) {
             /** @var ?MiscModel $child */
             // Force having a child for "ghost" entities.
-            $child = $model->child;
-            if ($child === null || in_array($model->id, $foundEntityIds)) {
-                continue;
+            if (!$model->entityType->isSpecial()) {
+                $child = $model->child;
+                if ($child === null || in_array($model->id, $foundEntityIds)) {
+                    continue;
+                }
             }
 
             if ($this->v2) {
@@ -272,7 +274,7 @@ class SearchService
             if (!$this->full) {
                 $searchResults[] = [
                     'id' => $model->id,
-                    'text' => $parsedName . ' (' . Module::singular($model->type_id, $model->entityType()) . ')'
+                    'text' => $parsedName . ' (' . $model->entityType->name() . ')'
                 ];
                 continue;
             }
@@ -282,8 +284,8 @@ class SearchService
                 'fullname' => $parsedNameAlias,
                 'image' => $img,
                 'name' => $parsedName,
-                'type' => Module::singular($model->type_id, $model->entityType()),
-                'model_type' => $model->type(),
+                'type' => $model->entityType->name(),
+                'model_type' => $model->entityType->code,
                 'url' => $model->url(),
                 'alias_id' => $model->alias_id, // @phpstan-ignore-line
                 'advanced_mention' => Mentions::advancedMentionHelper($model->name),
@@ -300,7 +302,7 @@ class SearchService
                     'image' => $img,
                     'name' => $parsedName,
                     'type' => __('maps.actions.explore'),
-                    'model_type' => $model->type(),
+                    'model_type' => $model->entityType->code,
                     'url' => $model->url('explore'),
                     'alias_id' => $model->alias_id, // @phpstan-ignore-line
                     'advanced_mention' => Mentions::advancedMentionHelper($model->name),
@@ -398,7 +400,7 @@ class SearchService
             'is_private' => $entity->is_private,
             'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
             'link' => $entity->url(),
-            'type' => Module::singular($entity->typeId(), __('entities.' . $entity->type())),
+            'type' => $entity->entityType->name(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),
         ];
     }

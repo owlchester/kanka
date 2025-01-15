@@ -88,14 +88,14 @@ if ($hasImage) {
             {!! \App\Facades\Mentions::mapAny($marker) !!}
         </div>
     @endif
-    @if ($marker->entity && $marker->entity->child->hasEntry())
+    @if ($marker->entity && $marker->entity->hasEntry())
         @if ($marker->hasEntry())
         <span class="marker-entity-entry text-xl">
             {{ __('maps/markers.details.from-entity') }}
         </span>
         @endif
         <div class="marker-entry entity-content marker-entity-entry">
-            {!! $marker->entity->child->parsedEntry() !!}
+            {!! $marker->entity->parsedEntry() !!}
         </div>
     @endif
 

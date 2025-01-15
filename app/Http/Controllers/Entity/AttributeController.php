@@ -41,7 +41,6 @@ class AttributeController extends Controller
 
         $template = null;
         $marketplaceTemplate = null;
-        $model = $entity->child;
 
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
         if (!empty($layout)) {
@@ -52,7 +51,6 @@ class AttributeController extends Controller
 
         return view('entities.pages.attributes.index', compact(
             'entity',
-            'model',
             'marketplaceTemplate',
             'template',
             'campaign'
@@ -74,7 +72,6 @@ class AttributeController extends Controller
 
         $template = null;
         $marketplaceTemplate = null;
-        $model = $entity->child;
         $fromDashboard = true;
 
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
@@ -85,7 +82,6 @@ class AttributeController extends Controller
 
         return view('entities.pages.attributes.dashboard', compact(
             'entity',
-            'model',
             'marketplaceTemplate',
             'template',
             'campaign',
@@ -103,27 +99,22 @@ class AttributeController extends Controller
                 ])
             );
         }
-        if (empty($entity->child)) {
+        if ($entity->isMissingChild()) {
             abort(404);
         }
-        $this->authorize('attribute', [$entity->child, 'edit']);
         $this->authorize('attributes', $entity);
-
-        $parentRoute = $entity->pluralType();
 
         return view('entities.pages.attributes.edit', compact(
             'campaign',
             'entity',
-            'parentRoute'
         ));
     }
 
     public function save(Campaign $campaign, Entity $entity)
     {
-        if (empty($entity->child)) {
+        if ($entity->isMissingChild()) {
             abort(404);
         }
-        $this->authorize('attribute', [$entity->child, 'edit']);
         $this->authorize('attributes', $entity);
 
         $attributes = request()->get('attribute', []);
@@ -140,7 +131,7 @@ class AttributeController extends Controller
 
     public function liveEdit(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         $id = request()->get('id');
         $uid = request()->get('uid');

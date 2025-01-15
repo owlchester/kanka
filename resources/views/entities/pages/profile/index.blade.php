@@ -5,7 +5,6 @@
     'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,
-    'miscModel' => $model,
     'bodyClass' => 'entity-profile'
 ])
 
@@ -27,8 +26,7 @@
     @include('entities.pages.subpage', [
         'active' => 'profile',
         'breadcrumb' => __('crud.tabs.profile'),
-        'view' => 'entities.pages.profile._' . $model->getEntityType(),
+        'view' => 'entities.pages.profile._' . $entity->entityType->code,
         'entity' => $entity,
-        'model' => $entity->child,
     ])
 @endsection

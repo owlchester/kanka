@@ -15,7 +15,7 @@ class EntityMentionApiController extends ApiController
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
         return Resource::collection($entity->mentions()->paginate());
     }
 }

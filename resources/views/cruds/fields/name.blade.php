@@ -7,7 +7,7 @@ $required = !isset($bulk);
     :required="$required">
     <input type="text" name="name" placeholder="{{ __('crud.placeholders.name') }}" maxlength="191" data-live="{{ route('search.live', $campaign) }}"
            data-type="{{ \Illuminate\Support\Str::singular($trans) }}" data-duplicate=".duplicate-warning" data-1p-ignore="true"
-           data-id="{{ $model->entity->id ?? null }}"
+           data-id="{{ $model->id ?? null }}"
            @if ($required) required="required" @endif
     value="{!! htmlspecialchars(old('name', str_replace('&amp;', '&', $model->name ?? ''))) !!}" />
 

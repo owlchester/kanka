@@ -43,8 +43,14 @@ class MemberController extends Controller
             ->select('organisation_member.*')
             ->with([
                 'organisation', 'organisation.entity',
+                'organisation.entity.entityType' => function ($sub) {
+                    $sub->select('id', 'code');
+                },
                 'parent', 'parent.character', 'parent.character.entity',
                 'character', 'character.entity', 'character.entity.image',
+                'character.entity.entityType' => function ($sub) {
+                    $sub->select('id', 'code');
+                },
                 'character.location', 'character.location.entity'])
             ->has('character')
             ->has('character.entity')

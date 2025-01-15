@@ -29,6 +29,9 @@ class OrganisationController extends Controller
             ->organisationMemberships()
             ->with([
                 'organisation.entity', 'organisation.entity.image',
+                'organisation.entity.entityType' => function ($sub) {
+                    $sub->select('id', 'code');
+                },
                 'organisation.entity.tags', 'organisation.entity.tags.entity',
             ])
             ->rows()

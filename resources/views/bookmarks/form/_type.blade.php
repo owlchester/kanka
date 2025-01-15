@@ -1,6 +1,8 @@
 @inject('typeService', 'App\Services\Entity\TypeService')
+@inject('entityTypeService', 'App\Services\EntityTypeService')
 @php
-$entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->exclude(['bookmark'])->singularKey()->add(['' => ''])->get();
+/** @var \App\Services\EntityTypeService $entityTypeService */
+$entityTypes = $entityTypeService->campaign($campaign)->exclude([config('entities.ids.bookmark')])->prepend(['' => ''])->toSelect();
 @endphp
 <x-grid type="1/1">
 
@@ -12,8 +14,8 @@ $entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->ex
     </x-helper>
 
     <x-grid>
-        <x-forms.field field="type" :label="__('crud.fields.type')">
-            <x-forms.select name="type" :options="$entityTypes" :selected="$source->type ?? $model->type ?? null" />
+        <x-forms.field field="entity_type_id" :label="__('crud.fields.type')">
+            <x-forms.select name="entity_type_id" :options="$entityTypes" :selected="$source->entity_type_id ?? $model->entity_type_id ?? null" />
         </x-forms.field>
 
         <x-forms.field field="filters" :label="__('bookmarks.fields.filters')">

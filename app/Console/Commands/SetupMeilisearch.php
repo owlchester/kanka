@@ -2,25 +2,10 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Ability;
 use App\Models\Attribute;
-use App\Models\Calendar;
-use App\Models\Character;
-use App\Models\Creature;
-use App\Models\Event;
-use App\Models\Family;
-use App\Models\Item;
-use App\Models\Journal;
-use App\Models\Location;
-use App\Models\Map;
-use App\Models\Note;
-use App\Models\Organisation;
+use App\Models\Entity;
 use App\Models\Post;
-use App\Models\Quest;
 use App\Models\QuestElement;
-use App\Models\Race;
-use App\Models\Tag;
-use App\Models\Timeline;
 use App\Models\TimelineElement;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -70,22 +55,7 @@ class SetupMeilisearch extends Command
 
         $models = [
             Attribute::class,
-            Ability::class,
-            Calendar::class,
-            Character::class,
-            Creature::class,
-            Event::class,
-            Family::class,
-            Item::class,
-            Journal::class,
-            Location::class,
-            Map::class,
-            Note::class,
-            Organisation::class,
-            Quest::class,
-            Race::class,
-            Timeline::class,
-            Tag::class,
+            Entity::class,
             Post::class,
             QuestElement::class,
             TimelineElement::class,

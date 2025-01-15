@@ -6,20 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\DefaultImageDestroy;
 use App\Http\Requests\Campaigns\DefaultImageStore;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Services\Campaign\DefaultImageService;
-use App\Services\Entity\TypeService;
+use App\Services\EntityTypeService;
 
 class DefaultImageController extends Controller
 {
-    protected DefaultImageService $service;
-
-    protected TypeService $typeService;
-
-    public function __construct(TypeService $typeService, DefaultImageService $service)
-    {
-
-        $this->service = $service;
-        $this->typeService = $typeService;
+    public function __construct(
+        protected EntityTypeService $entityTypeService,
+        protected DefaultImageService $service
+    ) {
     }
 
     /**
@@ -28,7 +24,13 @@ class DefaultImageController extends Controller
      */
     public function index(Campaign $campaign)
     {
-        return view('campaigns.default-images.index', compact('campaign'));
+        $entityTypes = [];
+        foreach (EntityType::inCampaign($campaign)->get() as $entityType) {
+            $entityTypes[$entityType->pluralCode()] = $entityType;
+        }
+        return view('campaigns.default-images.index')
+            ->with('campaign', $campaign)
+            ->with('entityTypes', $entityTypes);
     }
 
     /**
@@ -40,17 +42,17 @@ class DefaultImageController extends Controller
         $this->authorize('recover', $campaign);
 
         $ignore = $campaign->existingDefaultImages();
-        $ignore = array_merge($ignore, ['bookmarks']);
-        $entities = $this->typeService
+
+        $entityTypes = $this->entityTypeService
             ->campaign($campaign)
-            ->exclude($ignore)
-            ->plural()
-            ->get()
+            ->exclude(config('entities.ids.bookmark'))
+            ->skip($ignore)
+            ->toSelect()
         ;
 
         return view('campaigns.default-images.create', compact(
             'campaign',
-            'entities'
+            'entityTypes'
         ));
     }
 
@@ -63,11 +65,13 @@ class DefaultImageController extends Controller
             return response()->json(['success' => true]);
         }
 
-        if ($this->service->campaign($campaign)->type($request->post('entity_type'))->save($request)) {
+        $entityType = EntityType::inCampaign($campaign)->find($request->post('entity_type'));
+
+        if ($this->service->campaign($campaign)->entityType($entityType)->save($request)) {
             return redirect()->route('campaign.default-images', $campaign)
                 ->with(
                     'success',
-                    __('campaigns/default-images.create.success', ['type' => __('entities.' . $request->post('entity_type'))])
+                    __('campaigns/default-images.create.success', ['type' => $entityType->plural()])
                 );
         }
         return redirect()->route('campaign.default-images', $campaign)
@@ -84,15 +88,18 @@ class DefaultImageController extends Controller
     public function destroy(DefaultImageDestroy $request, Campaign $campaign)
     {
         $this->authorize('recover', $campaign);
+
+        /** @var EntityType $entityType */
+        $entityType = EntityType::inCampaign($campaign)->findOrFail($request->post('entity_type'));
         $this->service
             ->campaign($campaign)
-            ->type($request->post('entity_type'))
+            ->entityType($entityType)
             ->destroy();
 
         return redirect()->route('campaign.default-images', $campaign)
             ->with(
                 'success',
-                __('campaigns/default-images.destroy.success', ['type' => __('entities.' . $request->post('entity_type'))])
+                __('campaigns/default-images.destroy.success', ['type' => $entityType->plural()])
             );
     }
 }

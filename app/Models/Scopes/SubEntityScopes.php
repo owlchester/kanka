@@ -2,7 +2,6 @@
 
 namespace App\Models\Scopes;
 
-use App\Facades\CampaignLocalization;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -26,7 +25,7 @@ trait SubEntityScopes
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query->with([
-            'entity', 'entity.image',
+            'entity', 'entity.image', 'entity.entityType'
         ])->has('entity');
     }
 
@@ -59,7 +58,15 @@ trait SubEntityScopes
     protected function exploreGridWith(): array
     {
         $with = [
-            'entity', 'entity.image',
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
+            },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
+            },
         ];
         if (method_exists($this, 'getParentKeyName')) {
             $with[] = 'children';
@@ -109,6 +116,7 @@ trait SubEntityScopes
             'entity',
             'entity.image',
             'entity.header',
+            'entity.entityType',
             'entity.tags',
             'entity.posts', 'entity.posts.permissions',
             'entity.events',
@@ -124,12 +132,6 @@ trait SubEntityScopes
         $with = !empty($this->apiWith) ? $this->apiWith : [];
         foreach ($with as $relation) {
             $relations[] = $relation;
-        }
-
-        $campaign = CampaignLocalization::getCampaign();
-        if ($campaign && $campaign->superboosted()) {
-            $relations[] = 'entity.header';
-            $relations[] = 'entity.image';
         }
 
         return $query

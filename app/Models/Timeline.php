@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
@@ -22,6 +21,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * Class Timeline
  * @property TimelineEra[]|Collection $eras
  * @property ?int $timeline_id
+ * @property int|bool $revert_order
  * @property Timeline[]|Collection $descendants
  */
 class Timeline extends MiscModel
@@ -29,7 +29,6 @@ class Timeline extends MiscModel
     use Acl;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasRecursiveRelationships;
@@ -41,16 +40,13 @@ class Timeline extends MiscModel
     public $fillable = [
         'campaign_id',
         'name',
-        'type',
         'calendar_id',
-        'entry',
         'is_private',
         'timeline_id',
     ];
 
     protected array $sortable = [
         'name',
-        'type',
         'parent.name',
     ];
 
@@ -78,7 +74,6 @@ class Timeline extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
     ];
 
     /**
@@ -98,10 +93,13 @@ class Timeline extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
+            },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
             },
             'parent' => function ($sub) {
                 $sub->select('id', 'name');

@@ -47,7 +47,7 @@ class RelatedService
         $this->prepareIds();
 
         return Entity::whereIn('id', $this->ids)
-            ->with('image')
+            ->with(['image', 'entityType'])
             ->orderBy($this->order)
             ->paginate();
     }
@@ -55,7 +55,7 @@ class RelatedService
     protected function prepareIds()
     {
         // Do stuff
-        $entityHook = 'init' . $this->entity->entityType();
+        $entityHook = 'init' . ucfirst($this->entity->entityType->code);
         if (method_exists($this, $entityHook)) {
             $this->$entityHook();
         } else {

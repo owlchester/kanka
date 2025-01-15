@@ -14,7 +14,7 @@ class LogController extends Controller
     public function index(HistoryRequest $request, Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('history', [$entity, $campaign]);
-        $this->authorize('post', [$entity->child, 'edit', $post]);
+        $this->authorize('post', [$entity, 'edit', $post]);
 
         $fields = ['action'];
         $expanded = false;
@@ -33,7 +33,7 @@ class LogController extends Controller
             ->recent()
             ->paginate(config('limits.pagination'));
 
-        $transKey = $entity->pluralType();
+        $transKey = $entity->entityType->pluralCode();
 
         $q = request()->get('q');
         $action = request()->get('action');

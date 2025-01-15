@@ -11,7 +11,7 @@ class CreatureSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         $items = [];
         /** @var Creature $creature */
-        $creature = $this->model;
+        $creature = $this->entity->child;
         $count = $creature->descendants()->count();
         if ($count > 0) {
             $items['second']['creatures'] = [

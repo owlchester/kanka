@@ -1,19 +1,12 @@
 <?php /**
  * @var \App\Models\Entity $entity
- * @var \App\Models\MiscModel $model
  * @var \App\Models\Campaign $campaign
  * */
-if (!isset($model)) {
-    $model = $entity->child;
-}
-if (!isset($entity)) {
-    $entity = $model->entity;
-}
 ?>
 
 @if (!isset($edit) || $edit !== false)
-@can('update', $model)
-    <a href="{{ $model->getLink('edit') }}" class="btn2 btn-sm ">
+@can('update', $entity)
+    <a href="{{ $entity->url('edit') }}" class="btn2 btn-sm ">
         <x-icon class="pencil" />
         {{ __('crud.edit') }}
     </a>
@@ -27,43 +20,43 @@ if (!isset($entity)) {
         <x-icon class="fa-solid fa-ellipsis-h" />
     </div>
     <div class="dropdown-menu hidden" role="menu" id="entity-submenu">
-        @can('update', $model)
-            <x-dropdowns.item :link="route($entity->pluralType() . '.edit', [$campaign, $model->id])" keyboard="edit">
+        @can('update', $entity)
+            <x-dropdowns.item :link="route('entities.edit', [$campaign, $entity])" keyboard="edit">
                 <x-icon class="pencil" />
                 <span class="grow">{{ __('crud.edit') }}</span>
 
                 <span class="keyboard-shortcut"  title="{!! __('crud.keyboard-shortcut', ['code' => '[E]']) !!}" data-html="true">E</span>
             </x-dropdowns.item>
         @endcan
-        @can('create', $model)
-            <x-dropdowns.item :link="route($entity->pluralType() . '.create', $campaign)">
+        @can('create', [$entity->entityType, $campaign])
+            <x-dropdowns.item :link="$entity->entityType->createRoute($campaign)">
                 <x-icon class="fa-regular fa-plus" />
                 {{ __('crud.actions.new') }}
             </x-dropdowns.item>
-            @if (method_exists($model, 'getParentKeyName'))
-                <x-dropdowns.item :link="route($entity->pluralType() . '.create', [$campaign, $model->entity, 'parent_id' => $model->id])">
+            @if (!$entity->entityType->isSpecial() && method_exists($entity->child, 'getParentKeyName'))
+                <x-dropdowns.item :link="$entity->entityType->createRoute($campaign, ['parent_id' => $entity->entityType->isSpecial() ? $entity->id : $entity->child->id])">
                     <x-icon class="fa-regular fa-plus" />
                     {{ __('crud.actions.new_child') }}
                 </x-dropdowns.item>
             @endif
-            <x-dropdowns.item link="{{ route($entity->pluralType() . '.create', [$campaign, 'copy' => $model->id]) }}">
+            <x-dropdowns.item link="{{ $entity->entityType->createRoute($campaign, ['copy' => $entity->entityType->isSpecial() ? $entity->id : $entity->child->id]) }}">
                 <x-icon class="fa-regular fa-copy" />
                 {{ __('crud.actions.copy') }}
             </x-dropdowns.item>
         @endcan
 
-        @if ($model->entity)
+        @if ($entity)
             @if(auth()->check())
-                @can('update', $model)
-                    @if ($model instanceof \App\Models\Timeline)
-                        <x-dropdowns.item :link="route('timelines.reorder', [$campaign, $model])">
+                @can('update', $entity)
+                    @if ($entity->isTimeline())
+                        <x-dropdowns.item :link="route('timelines.reorder', [$campaign, $entity->child])">
                             <x-icon class="fa-solid fa-list-ol" />
                             {{ __('timelines.show.tabs.reorder-elements') }}
                         </x-dropdowns.item>
                     @endif
                 @endcan
 
-                <x-dropdowns.item link="#" :data="['title' => $model->getEntityType() . ':' . $model->entity->id, 'toggle' => 'tooltip', 'clipboard' => '[' . $model->getEntityType() . ':' . $model->entity->id .']', 'toast' => __('crud.alerts.copy_mention')]">
+                <x-dropdowns.item link="#" :data="['title' => $entity->entityType->code . ':' . $entity->id, 'toggle' => 'tooltip', 'clipboard' => '[' . $entity->entityType->code . ':' . $entity->id .']', 'toast' => __('crud.alerts.copy_mention')]">
                     <x-icon class="fa-solid fa-link" />
                     {{ __('crud.actions.copy_mention') }}
                 </x-dropdowns.item>
@@ -80,31 +73,31 @@ if (!isset($entity)) {
                 @endcan
                 <hr class="m-0" />
 
-                @can('post', [$model, 'add'])
-                    <x-dropdowns.item :link="route('entities.posts.create', [$campaign, $model->entity])">
+                @can('post', [$entity])
+                    <x-dropdowns.item :link="route('entities.posts.create', [$campaign, $entity])">
                         <x-icon class="plus" />
                         {{ __('crud.actions.new_post') }}
                     </x-dropdowns.item>
                 @endcan
-                @can('update', $model)
+                @can('update', $entity)
 
-                    <x-dropdowns.item :link="route('entities.story.reorder', [$campaign, $model->entity->id])">
+                    <x-dropdowns.item :link="route('entities.story.reorder', [$campaign, $entity])">
                         <x-icon class="fa-solid fa-list-ol" />
                         {{ __('entities/story.reorder.icon_tooltip') }}
                     </x-dropdowns.item>
 
-                    <x-dropdowns.item link="{{ route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table']) }}" :dialog="route('entities.relations.create', [$campaign, 'entity' => $model->entity, 'mode' => 'table'])">
+                    <x-dropdowns.item link="{{ route('entities.relations.create', [$campaign, 'entity' => $entity, 'mode' => 'table']) }}" :dialog="route('entities.relations.create', [$campaign, 'entity' => $entity, 'mode' => 'table'])">
                         <x-icon class="fa-solid fa-people-arrows" />
                         {{ __('entities/relations.create.new_title') }}
                     </x-dropdowns.item>
                 @endcan
             @endif
         @endif
-        @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($model->campaign_id))
+        @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($entity->campaign_id))
             <hr class="m-0" />
-            <x-dropdowns.item link="{{ route('entities.move', [$campaign, $entity->id]) }}">
+            <x-dropdowns.item link="{{ route('entities.move', [$campaign, $entity]) }}">
                 <x-icon class="fa-regular fa-clone" />
-                @can('update', $model)
+                @can('update', $entity)
                     {{ __('crud.actions.move') }}
                 @else
                     {{ __('crud.actions.copy') }}
@@ -112,14 +105,14 @@ if (!isset($entity)) {
             </x-dropdowns.item>
         @endif
 
-        @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $model))
-            <x-dropdowns.item link="{{ route('entities.transform', [$campaign, $entity->id]) }}">
+        @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $entity))
+            <x-dropdowns.item link="{{ route('entities.transform', [$campaign, $entity]) }}">
                 <x-icon class="fa-solid fa-exchange-alt" />
                 {{ __('crud.actions.transform') }}
             </x-dropdowns.item>
         @endif
 
-        @if ($model->entity)
+        @if ($entity)
                 <hr class="m-0" />
             <x-dropdowns.item link="{{ route('entities.html-export', [$campaign, $entity]) }}">
                 <x-icon class="fa-solid fa-print" />
@@ -135,9 +128,9 @@ if (!isset($entity)) {
             </x-dropdowns.item>
         @endif
 
-        @can('delete', $model)
+        @can('delete', $entity)
             @php
-                $url = route('confirm-delete', [$campaign, 'route' => route($entity->pluralType() . '.destroy', [$campaign, $model->id]), 'name' => $entity->name]);
+                $url = route('confirm-delete', [$campaign, 'route' => route('entities.destroy', [$campaign, $entity]), 'name' => $entity->name]);
             @endphp
             <hr class="m-0" />
             <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]">

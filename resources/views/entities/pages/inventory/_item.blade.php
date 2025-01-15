@@ -26,7 +26,7 @@ data-visibility="{{ $item->visibility_id }}"
 
             <p class="text-xs text-neutral-content text-center mx-4 overflow-hidden cursor-pointer item-description" data-toggle="dialog" data-url="{{ route('entities.inventory.details', [$campaign, $entity, $item]) }}" data-target="primary-dialog">
                 @if ($item->item && $item->copy_item_entry)
-                    {!! \Illuminate\Support\Str::limit(strip_tags($item->item->parsedEntry()) ?? '', 100) !!}
+                    {!! \Illuminate\Support\Str::limit(strip_tags($item->item->entity->parsedEntry()) ?? '', 100) !!}
                 @else
                     {!! \Illuminate\Support\Str::limit($item->description ?? '', 100) !!}
                 @endif
@@ -61,7 +61,7 @@ data-visibility="{{ $item->visibility_id }}"
         </div>
     @endif
 
-    @can('inventory', $entity->child)
+    @can('inventory', $entity)
     <div class="right-2 bottom-1 absolute  text-lg">
         <a href="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
            class="link link-accent"

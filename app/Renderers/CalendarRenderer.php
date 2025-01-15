@@ -793,7 +793,7 @@ class CalendarRenderer
     {
         return $calendar->calendarEvents()
             ->has('entity')
-            ->with(['entity', 'entity.tags', 'entity.image', 'death'])
+            ->with(['entity', 'entity.tags', 'entity.image', 'death', 'entity.entityType'])
             ->where(function ($query) {
                 $query
                     // Where it's the current year , or current year and current month
@@ -880,7 +880,7 @@ class CalendarRenderer
             }
 
             // Make sure the user can actually see the requested event
-            if (empty($event->entity) || empty($event->entity->child)) {
+            if (empty($event->entity) || $event->entity->isMissingChild()) {
                 continue;
             }
             // If the event reoccurs each month, let's add it everywhere

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
@@ -36,7 +35,6 @@ class Item extends MiscModel
     use Acl;
     use ExportableTrait;
     use HasCampaign;
-    use HasEntry;
     use HasFactory;
     use HasFilters;
     use HasLocation;
@@ -49,8 +47,6 @@ class Item extends MiscModel
     protected $fillable = [
         'name',
         'campaign_id',
-        'type',
-        'entry',
         'price',
         'size',
         'weight',
@@ -58,15 +54,6 @@ class Item extends MiscModel
         'character_id',
         'location_id',
         'is_private',
-    ];
-
-    protected array $sortable = [
-        'name',
-        'type',
-        'price',
-        'size',
-        'weight',
-        'parent.name',
     ];
 
     /**
@@ -87,7 +74,6 @@ class Item extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
         'size',
         'weight',
         'price',
@@ -164,10 +150,13 @@ class Item extends MiscModel
     {
         return $query->with([
             'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
             },
             'entity.image' => function ($sub) {
                 $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
+            },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
             },
             'location' => function ($sub) {
                 $sub->select('id', 'name');

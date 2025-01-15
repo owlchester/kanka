@@ -35,9 +35,9 @@ class FullTextController extends Controller
         }
 
         /** @var ?Entity $entity */
-        $entity = Entity::where('name', $term)->first();
+        $entity = Entity::with('entityType')->where('name', $term)->first();
         if ($entity) {
-            $term2 = $entity->type() . ':' . $entity->id;
+            $term2 = $entity->entityType->code . ':' . $entity->id;
         }
 
         // Get entity ids from meilisearch

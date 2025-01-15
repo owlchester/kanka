@@ -1,9 +1,8 @@
 @extends('layouts.app', [
-    'title' => $model->name . ' - ' . __('abilities.show.tabs.entities'),
+    'title' => $entity->name . ' - ' . __('abilities.show.tabs.entities'),
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
-    'miscModel' => $model,
 ])
 
 @section('entity-header-actions')
@@ -24,6 +23,5 @@
         'active' => 'entities',
         'breadcrumb' => __('abilities.show.tabs.entities'),
         'view' => 'abilities.panels.entities',
-        'entity' => $model->entity,
     ])
 @endsection

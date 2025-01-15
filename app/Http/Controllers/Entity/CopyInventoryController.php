@@ -18,7 +18,7 @@ class CopyInventoryController extends Controller
      */
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         return view('entities.pages.inventory.copy', compact(
             'campaign',
@@ -30,7 +30,7 @@ class CopyInventoryController extends Controller
      */
     public function store(CopyInventory $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
 
         if ($request->ajax()) {
             return response()->json(['success' => true]);

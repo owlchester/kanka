@@ -18,7 +18,6 @@ class MapResource extends EntityResource
         $model = $this->resource;
 
         return $this->entity([
-            'type' => $model->type,
             'height' => $model->height,
             'width' => $model->width,
             'map_id' => $model->map_id,

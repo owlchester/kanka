@@ -32,7 +32,7 @@ class AttributeTemplateController extends Controller
                 ])
             );
         }
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         $this->authorize('attributes', $entity);
 
         $templates = $this->service->campaign($campaign)->templateList();
@@ -47,7 +47,7 @@ class AttributeTemplateController extends Controller
 
     public function process(ApplyAttributeTemplate $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity->child);
+        $this->authorize('update', $entity);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }

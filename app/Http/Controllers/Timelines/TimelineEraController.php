@@ -50,6 +50,7 @@ class TimelineEraController extends Controller
             ->with('rows', $this->rows)
             ->with('campaign', $campaign)
             ->with('model', $timeline)
+            ->with('entity', $timeline->entity)
         ;
     }
     public function show(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)

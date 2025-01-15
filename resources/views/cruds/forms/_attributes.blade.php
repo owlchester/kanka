@@ -8,7 +8,13 @@ if (isset($model)) {
     $attributes = $model->entity->attributes()->ordered()->get();
     $entity = $model->entity;
 } elseif (isset($source)) {
-    if (auth()->user()->can('view-attributes', [$source->entity, $campaign])) {
+    if ($source instanceof \App\Models\Entity) {
+        if (auth()->user()->can('attributes', [$source])) {
+            $attributes = $source->attributes()->ordered()->get();
+            $entity = $source;
+        }
+    }
+    elseif (auth()->user()->can('view-attributes', [$source->entity, $campaign])) {
         $attributes = $source->entity->attributes()->ordered()->get();
         $entity = $source->entity;
     }
@@ -20,34 +26,13 @@ foreach ($attributes as $attribute) {
 }
 ?>
 <x-grid type="1/1">
-
-{{--<div id="entity-attributes-all">--}}
-{{--    <div class="flex flex-col gap-2 entity-attributes sortable-elements" data-handle=".sortable-handler" id="add_attribute_target">--}}
-{{--        @foreach ($attributes as $attribute)--}}
-{{--            @if (!$attribute->is_hidden)--}}
-{{--                @include('cruds.forms.attributes._attribute')--}}
-{{--            @endif--}}
-{{--        @endforeach--}}
-{{--        @if (isset($entityAttributeTemplates))--}}
-{{--            @foreach ($entityAttributeTemplates as $attributeTemplate)--}}
-{{--                @include('cruds.forms.attributes._template')--}}
-{{--            @endforeach--}}
-{{--        @endif--}}
-{{--    </div>--}}
-{{--</div>--}}
-{{--<input type="hidden" name="save-attributes" value="1" />--}}
-
-{{--@include('cruds.forms.attributes._blocks', ['existing' => count($attributes)])--}}
-{{--@include('cruds.forms.attributes._buttons', ['model' => isset($entity) ? $entity->child : null, 'existing' => count($attributes)])--}}
-
-
     <div id="attributes-manager">
         @if (!empty($model))
             <attributes-manager api="{{ route('attributes.api-entity', [$campaign, $entity]) }}" />
         @elseif (!empty($source))
-            <attributes-manager api="{{ route('attributes.api', [$campaign, 'entity_type' => $entityTypeId, 'source' => $source->entity->id]) }}" />
+            <attributes-manager api="{{ route('attributes.api', [$campaign, 'entity_type' => $entityType->id, 'source' => $entity->id]) }}" />
         @else
-            <attributes-manager api="{{ route('attributes.api', [$campaign, 'entity_type' => $entityTypeId]) }}" />
+            <attributes-manager api="{{ route('attributes.api', [$campaign, 'entity_type' => $entityType->id]) }}" />
         @endif
     </div>
 </x-grid>

@@ -35,7 +35,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command(CalendarAdvancer::class)->dailyAt('00:00');
         $schedule->command(VisibileEntityCountCommand::class)->dailyAt('01:00');
-        $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
+        //$schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
         $schedule->command(EndSubscriptions::class)->dailyAt('00:05');
         $schedule->command(RegenerateDiscordToken::class)->dailyAt('00:15');
         $schedule->command(ExpiringCardCommand::class)->monthlyOn(1, '02:00');

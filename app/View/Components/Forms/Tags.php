@@ -3,6 +3,8 @@
 namespace App\View\Components\Forms;
 
 use App\Models\Campaign;
+use App\Models\Entity;
+use App\Models\Post;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -48,14 +50,20 @@ class Tags extends Component
     protected function prepareOptions(): void
     {
         $this->tags = [];
-        if (!empty($this->model) && !empty($this->model->entity) && !($this->model instanceof \App\Models\Post)) {
+        if (!empty($this->model) && $this->model instanceof Entity) {
+            foreach ($this->model->tags()->with('entity')->get() as $tag) {
+                if ($tag->entity) {
+                    $this->tags[$tag->id] = $tag;
+                }
+            }
+        } elseif (!empty($this->model) && !empty($this->model->entity) && !$this->model instanceof Post) {
             foreach ($this->model->entity->tags()->with('entity')->get() as $tag) {
                 if ($tag->entity) {
                     $this->tags[$tag->id] = $tag;
                 }
             }
-        } elseif (!empty($this->model) && ($this->model instanceof \App\Models\CampaignDashboardWidget || $this->model instanceof \App\Models\Post || $this->model instanceof \App\Models\Bookmark || $this->model instanceof \App\Models\Webhook)) {
-            foreach ($this->model->tags()->get() as $tag) {
+        } elseif (!empty($this->model) && ($this->model instanceof \App\Models\CampaignDashboardWidget || $this->model instanceof Post || $this->model instanceof \App\Models\Bookmark || $this->model instanceof \App\Models\Webhook)) {
+            foreach ($this->model->tags()->with('entity')->get() as $tag) {
                 $this->tags[$tag->id] = $tag;
             }
         } elseif (!empty($this->options) && is_array($this->options)) {

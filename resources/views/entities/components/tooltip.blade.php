@@ -14,9 +14,9 @@
         @endif
         <div class="grow entity-names">
             <a href="{{ $entity->url() }}" class="entity-name text-xl block">
-                {!! $entity->child->name !!}
+                {!! $entity->name !!}
             </a>
-            @if (method_exists($entity->child, 'tooltipSubtitle'))
+            @if (!$entity->entityType->isSpecial() && method_exists($entity->child, 'tooltipSubtitle'))
                 <span class="entity-subtitle text-base block">{!! $entity->child->tooltipSubtitle() !!}</span>
             @endif
         </div>

@@ -1,10 +1,8 @@
-<?php /**
- * @var \App\Models\Character $model
- */
+<?php
 ?>
 
 
-@if (!$campaign->enabled('locations') || empty($model->location))
+@if (!$campaign->enabled('locations') || empty($entity->child->location))
     <?php return ?>
 @endif
 

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use App\Facades\Module;
@@ -12,9 +13,19 @@ use App\Facades\Module;
 /**
  * @property int $id
  * @property string $code
+ * @property int $campaign_id
+ * @property Campaign $campaign
+ * @property ?string $singular
+ * @property ?string $plural
+ * @property ?string $icon
+ * @property bool|int $is_special
+ * @property bool|int $is_enabled
  * @property AttributeTemplates[]|Collection $attributeTemplates
  *
+ * @method static self|Builder enabled()
+ * @method static self|Builder default()
  * @method static self|Builder exclude(array $ids)
+ * @method static self|Builder inCampaign(Campaign $campaign)
  */
 class EntityType extends Model
 {
@@ -27,6 +38,18 @@ class EntityType extends Model
         'is_enabled',
         'is_special',
     ];
+
+    public function scopeInCampaign(Builder $query, Campaign $campaign): Builder
+    {
+        return $query->where(function ($sub) use ($campaign) {
+            return $sub->where('campaign_id', $campaign->id)->orWhereNull('campaign_id');
+        });
+    }
+
+    public function scopeDefault(Builder $query): Builder
+    {
+        return $query->whereNull('campaign_id');
+    }
 
     /**
      */
@@ -61,6 +84,9 @@ class EntityType extends Model
      */
     public function name(): string
     {
+        if (!empty($this->singular)) {
+            return $this->singular;
+        }
         return Module::singular($this->id, __('entities.' . $this->code));
     }
 
@@ -69,7 +95,21 @@ class EntityType extends Model
      */
     public function plural(): string
     {
+        if (!empty($this->plural)) {
+            return $this->plural;
+        }
         return Module::plural($this->id, __('entities.' . $this->pluralCode()));
+    }
+
+    /**
+     * Get the translated name of the entity
+     */
+    public function icon(): string
+    {
+        if (!empty($this->icon)) {
+            return $this->icon;
+        }
+        return Module::duoIcon($this->code);
     }
 
     /**
@@ -88,5 +128,33 @@ class EntityType extends Model
     public function getNameAttribute(): string
     {
         return $this->name();
+    }
+
+    public function campaign(): BelongsTo
+    {
+        return $this->belongsTo(Campaign::class);
+    }
+
+    public function isSpecial(): bool
+    {
+        return (bool) $this->is_special;
+    }
+
+    public function isEnabled(): bool
+    {
+        return (bool) $this->is_enabled;
+    }
+
+    public function createRoute(Campaign $campaign, array $params = []): string
+    {
+        if ($this->isSpecial()) {
+            return route('entities.create', [$campaign, $this] + $params);
+        }
+        return route($this->pluralCode() . '.create', [$campaign] + $params);
+    }
+
+    public function isDeprecated(): bool
+    {
+        return in_array($this->id, [config('entities.ids.conversation'), config('entities.ids.dice_roll')]);
     }
 }

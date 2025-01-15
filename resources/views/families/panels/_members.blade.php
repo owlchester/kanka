@@ -1,12 +1,12 @@
 <?php
 /**
- * @var \App\Models\Family $model
+ * @var \App\Models\Entity $entity
  * @var \App\Models\Character $member
  */
 $allMembers = false;
 $datagridOptions = [
     $campaign,
-    $model,
+    $entity->child,
     'init' => 1
 ];
 if (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->has('m') && $campaign->defaultDescendantsMode() === \App\Enums\Descendants::All)) {
@@ -23,17 +23,17 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         @if (!$allMembers)
             <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::All]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span> ({{ $model->allMembers()->count() }})
+                <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span> ({{ $entity->child->allMembers()->count() }})
             </a>
         @else
             <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::Direct]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span> ({{ $model->members()->count() }})
+                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span> ({{ $entity->child->members()->count() }})
             </a>
         @endif
-        @can('update', $model)
-            <a href="{{ route('families.members.create', [$campaign, 'family' => $model->id]) }}" class="btn2 btn-primary btn-sm"
-               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('families.members.create', [$campaign, $model->id]) }}">
+        @can('update', $entity)
+            <a href="{{ route('families.members.create', [$campaign, 'family' => $entity->child]) }}" class="btn2 btn-primary btn-sm"
+               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('families.members.create', [$campaign, $entity->child]) }}">
                 <x-icon class="plus" />
                 <span class="hidden xl:inline">{{ __('organisations.members.actions.add') }}</span>
             </a>

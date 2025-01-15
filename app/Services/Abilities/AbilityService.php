@@ -94,7 +94,7 @@ class AbilityService extends BaseAbilityService
                     'type' => $type,
                     'image' => Avatar::entity($parent->entity)->size(192)->thumbnail(),
                     'has_image' => $parent->entity->hasImage(),
-                    'entry' => $parent->parsedEntry(),
+                    'entry' => $parent->entity->parsedEntry(),
                     'url' => $parent->getLink(),
                     'abilities' => [],
                 ];

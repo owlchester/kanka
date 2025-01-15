@@ -1,37 +1,42 @@
-<?php /** @var \App\Models\Item $model */?>
-
-@if (!$model->showProfileInfo())
+<?php
+/**
+ * @var \App\Models\Entity $entity
+ * @var \App\Models\Item $model
+ */
+$child = $entity->child;
+?>
+@if (!$child->showProfileInfo())
     @php return @endphp
 @endif
 
 <x-sidebar.profile>
-    @if ($model->price)
+    @if ($child->price)
         <div class="element profile-price">
             <div class="title text-uppercase text-xs">{{ __('items.fields.price') }}</div>
-            {!! $model->price !!}
+            {!! $child->price !!}
         </div>
     @endif
-    @if ($model->size)
+    @if ($child->size)
         <div class="element profile-size">
             <div class="title text-uppercase text-xs">{{ __('items.fields.size') }}</div>
-            {!! $model->size !!}
+            {!! $child->size !!}
         </div>
     @endif
 
-    @if ($model->weight)
+    @if ($child->weight)
         <div class="element profile-weight">
             <div class="title text-uppercase text-xs">{{ __('items.fields.weight') }}</div>
-            {!! $model->weight !!}
+            {!! $child->weight !!}
         </div>
     @endif
 
     @include('entities.components.profile._location')
 
-    @if ($model->character)
+    @if ($child->character)
         <div class="element profile-character">
             <div class="title text-uppercase text-xs">{{ __('items.fields.character') }}</div>
             <x-entity-link
-                :entity="$model->character->entity"
+                :entity="$child->character->entity"
                 :campaign="$campaign" />
         </div>
     @endif

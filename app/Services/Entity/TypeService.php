@@ -3,6 +3,7 @@
 namespace App\Services\Entity;
 
 use App\Facades\Module;
+use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Str;
@@ -53,6 +54,19 @@ class TypeService
     public function get(): array
     {
         $labels = [];
+
+        /** @var EntityType[] $entityTypes */
+        $entityTypes = EntityType::inCampaign($this->campaign)->enabled()->get();
+        foreach ($entityTypes as $entityType) {
+            if ($this->withPermission && !auth()->user()->can('create', [$entityType, $this->campaign])) {
+                continue;
+            }
+            if (!$entityType->isSpecial() && !$this->campaign->enabled($entityType->pluralCode())) {
+                continue;
+            }
+
+
+        }
 
         $entities = config('entities.classes');
         foreach ($entities as $entity => $class) {

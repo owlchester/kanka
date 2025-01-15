@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Facades\Module;
 use App\Http\Requests\StoreCharacter;
+use App\Http\Requests\StorePost;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Models\Entity;
@@ -39,38 +41,33 @@ class EntityCreatorController extends Controller
     public function selection(Campaign $campaign)
     {
         $this->campaign = $campaign;
-        $entities = $this->creatableEntities();
         $orderedEntityTypes = $this->orderedEntityTypes();
         return view('entities.creator.selection', [
             'campaign' => $campaign,
-            'entities' => $entities,
-            'types' => $orderedEntityTypes,
+            'entityTypes' => $orderedEntityTypes,
             'popular' => $this->popularService->get(),
         ]);
     }
 
     /**
-     * @param string $type
      */
-    public function form(Request $request, Campaign $campaign, $type)
+    public function form(Request $request, Campaign $campaign, EntityType $entityType)
     {
-        return $this->renderForm($request, $campaign, $type);
+        return $this->renderForm($request, $campaign, $entityType);
+    }
+    public function post(Request $request, Campaign $campaign)
+    {
+        return $this->renderForm($request, $campaign);
     }
 
     /**
      *
      */
-    public function store(Request $request, Campaign $campaign, $type)
+    public function store(Request $request, Campaign $campaign, EntityType $entityType)
     {
         // Make sure the user is allowed to create this kind of entity
-        $class = null;
         $this->campaign = $campaign;
-        if ($type == 'posts') {
-            $this->authorize('recover', $this->campaign);
-        } else {
-            $class = $this->entityService->getClass($type);
-            $this->authorize('create', $class);
-        }
+        $this->authorize('create', [$entityType, $campaign]);
 
         $this->request = $request;
 
@@ -84,12 +81,15 @@ class EntityCreatorController extends Controller
 
         if (!empty($values['entry'])) {
             $values['entry'] = nl2br($values['entry']);
-        } elseif ($values['entity'] == 'notes') {
+        } elseif ($entityType->id == config('entities.ids.note')) {
             $values['entry'] = '';
         }
 
         // Prepare the validator
-        $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::camel(Str::singular($type)));
+        $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::camel($entityType->code));
+        if ($entityType->isSpecial()) {
+            $requestValidator = '\App\Http\Requests\StoreCustomEntity';
+        }
         /** @var StoreCharacter $validator */
         $validator = new $requestValidator();
 
@@ -110,30 +110,128 @@ class EntityCreatorController extends Controller
             }
 
             $values['name'] = $name;
-            if ($type != 'posts') {
-                $this->validateEntity($values, $validator->rules());
+            $this->validateEntity($values, $validator->rules());
 
+            if ($entityType->isSpecial()) {
+                /** @var Entity $new */
+                $new = new Entity($values);
+                $new->campaign_id = $this->campaign->id;
+                $new->type_id = $entityType->id;
+                $new->save();
+                $createdEntities[] = $new;
+                $links[] = '<a href="' . $new->url() . '">' . $new->name . '</a>';
+            } else {
                 /** @var MiscModel $new */
-                $new = new $class($values);
+                $new = $entityType->getClass();
+                $new->fill($values);
                 $new->campaign_id = $this->campaign->id;
                 $new->save();
                 $new->crudSaved();
                 if ($new->entity) {
                     $new->entity->crudSaved();
                 }
+                $createdEntities[] = $new;
+                $links[] = '<a href="' . $new->entity->url() . '">' . $new->name . '</a>';
+            }
+        }
+
+        // If no entity was created, we throw the standard error
+        if (empty($createdEntities)) {
+            $rules = $validator->rules();
+            $this->validateEntity($values, $rules);
+        }
+
+        // Have a target? Return json for the js to handle it instead
+        if ($this->request->has('_target')) {
+            $first = $createdEntities[0];
+            return response()->json([
+                '_target' => $this->request->get('_target'),
+                '_id' => $first->id,
+                '_name' => $first->name,
+                '_multi' => $this->request->get('_multi'),
+            ]);
+        }
+
+        // Redirect the user to the edit form
+        if ($this->request->get('action') === 'edit' && isset($new)) {
+            $editUrl = $createdEntities[0]->getLink('edit');
+            return response()->json([
+                'redirect' => $editUrl,
+            ]);
+        }
+
+        //        $successKey = $type !== 'posts' ? 'entities.creator.success_multiple' : 'entities.creator.success_multiple_posts';
+        $successKey = 'entities.creator.success_multiple';
+        $success = trans_choice(
+            $successKey,
+            count($links),
+            ['link' => implode(', ', $links)]
+        );
+
+
+        // Continue creating more of the same kind
+        if ($this->request->get('action') === 'more') {
+            return $this->renderForm(new Request(), $campaign, $entityType, $success);
+        }
+        // Content for the selector
+        $orderedEntityTypes = $this->orderedEntityTypes();
+
+        return view('entities.creator.selection', [
+            'campaign' => $this->campaign,
+            'entityTypes' => $orderedEntityTypes,
+            'new' => $success,
+            'popular' => [], //$this->popularService->get(),
+        ]);
+    }
+
+    public function storePost(Request $request, Campaign $campaign)
+    {
+        // Make sure the user is allowed to create this kind of entity
+        $class = null;
+        $this->campaign = $campaign;
+        $this->authorize('recover', $this->campaign);
+
+        $this->request = $request;
+
+        $names = explode(PHP_EOL, str_replace("\r", '', $this->request->get('name')));
+        $values = $this->request->all();
+
+        // Prepare the data
+        unset($values['names'], $values['_multi'], $values['_target']);
+
+        // Remove target as we need that for something else
+
+        if (!empty($values['entry'])) {
+            $values['entry'] = nl2br($values['entry']);
+        }
+
+        // Prepare the validator
+        $validator = new StorePost();
+
+        // Now loop on each name and create entities
+        $createdEntities = $links = [];
+
+        // Handle dynamic elements
+        $this->inputFields = $values;
+        $values = $this->inputFields;
+
+        foreach ($names as $name) {
+            if (empty($name)) {
+                continue;
+            }
+
+            $values['name'] = $name;
+            //If position = 0 the post's position is last, else the post's position is first.
+            $rules = $validator->rules();
+            $rules['entity_id'] = 'required|integer|exists:entities,id';
+            $this->validateEntity($values, $rules);
+            if ($values['position'] == 0) {
+                $new = Post::create($values);
             } else {
-                //If position = 0 the post's position is last, else the post's position is first.
-                $rules = $validator->rules();
-                $rules['entity_id'] = 'required|integer|exists:entities,id';
-                $this->validateEntity($values, $rules);
-                if ($values['position'] == 0) {
-                    $new = Post::create($values);
-                } else {
-                    $entity = Entity::find($values['entity_id']);
-                    $entity->posts()->increment('position');
-                    $values['position'] = 1;
-                    $new = Post::create($values);
-                }
+                $entity = Entity::find($values['entity_id']);
+                $entity->posts()->increment('position');
+                $values['position'] = 1;
+                $new = Post::create($values);
             }
             $createdEntities[] = $new;
             $links[] = '<a href="' . $new->entity->url() . '">' . $new->name . '</a>';
@@ -158,17 +256,14 @@ class EntityCreatorController extends Controller
 
         // Redirect the user to the edit form
         if ($this->request->get('action') === 'edit' && isset($new)) {
-            if ($new instanceof Post) {
-                $editUrl = route('entities.posts.edit', [$this->campaign, $new->entity_id, $new->id]);
-            } else {
-                $editUrl = $createdEntities[0]->getLink('edit');
-            }
+            $editUrl = route('entities.posts.edit', [$this->campaign, $new->entity_id, $new->id]);
+
             return response()->json([
-                'redirect' => $editUrl
+                'redirect' => $editUrl,
             ]);
         }
 
-        $successKey = $type !== 'posts' ? 'entities.creator.success_multiple' : 'entities.creator.success_multiple_posts';
+        $successKey = 'entities.creator.success_multiple_posts';
         $success = trans_choice(
             $successKey,
             count($links),
@@ -178,45 +273,17 @@ class EntityCreatorController extends Controller
 
         // Continue creating more of the same kind
         if ($this->request->get('action') === 'more') {
-            return $this->renderForm(new Request(), $campaign, $type, $success);
+            return $this->renderForm(new Request(), $campaign, null, $success);
         }
         // Content for the selector
-        $entities = $this->creatableEntities();
         $orderedEntityTypes = $this->orderedEntityTypes();
 
         return view('entities.creator.selection', [
             'campaign' => $this->campaign,
-            'entities' => $entities,
-            'types' => $orderedEntityTypes,
+            'entityTypes' => $orderedEntityTypes,
             'new' => $success,
-            'popular' => $this->popularService->get(),
+            'popular' => [], //$this->popularService->get(),
         ]);
-    }
-
-    /**
-     * Build a list of entities the user has permission to create
-     */
-    protected function creatableEntities(): array
-    {
-        $entities = [];
-
-        // Loop through the entities, check those enabled in the campaign, and where the user has create access.
-        $ignoredTypes = [
-            'bookmarks'
-        ];
-        foreach ($this->entityService->exclude($ignoredTypes)->entities() as $name => $class) {
-            if ($this->campaign->enabled($name)) {
-                if (auth()->user()->can('create', $class)) {
-                    $entities[$name] = $class;
-                }
-            }
-        }
-
-        if (auth()->user()->can('recover', $this->campaign)) {
-            $entities['posts'] = 'App\Models\Post';
-        }
-
-        return $entities;
     }
 
     /**
@@ -238,54 +305,52 @@ class EntityCreatorController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    protected function renderForm(Request $request, Campaign $campaign, string $type, ?string $success = null)
+    protected function renderForm(Request $request, Campaign $campaign, ?EntityType $entityType = null, ?string $success = null)
     {
         $this->campaign = $campaign;
         // Make sure the user is allowed to create this kind of entity
         $model = null;
-        if ($type == 'posts') {
+        if (!isset($entityType)) {
             $this->authorize('recover', $campaign);
         } else {
-            $model = $this->entityService->getClass($type);
-            $this->authorize('create', $model);
+            $this->authorize('create', [$entityType, $campaign]);
         }
 
         $origin = $request->get('origin');
         $target = $request->get('target');
         $multi = $request->get('multi');
         $mode = $request->get('mode');
-        $singularType = Str::singular($type);
         $source = $templates = null;
         $view = 'form';
 
-        if ($mode === 'templates' && $type !== 'posts') {
+        if ($mode === 'templates' && isset($entityType)) {
             /** @var MiscModel $modelClass */
-            $modelClass = new $model();
+            $modelClass = $entityType->getClass();
             $templates = Entity::select('id', 'name', 'entity_id')
                 ->templates($modelClass->entityTypeID())
                 ->get();
             $view = 'templates';
         }
 
-        $entityType = __('entities.' . $singularType);
-        $entities = $this->creatableEntities();
-
         $orderedEntityTypes = $this->orderedEntityTypes();
 
-        $newLabel = __($type . '.create.title');
-        if ($type !== 'posts') {
-            $singular = Module::singular($type);
+        if (isset($entityType)) {
+            $newLabel = __($entityType->pluralCode() . '.create.title');
+            $singular = Module::singular($entityType->id);
+            if ($entityType->isSpecial()) {
+                $singular = $entityType->name();
+            }
             if (!empty($singular)) {
                 $newLabel = __('crud.titles.new', ['module' => $singular]);
             }
         } else {
+            $newLabel = __('posts.create.title');
             $singular = __('entities.post');
         }
 
         return view('entities.creator.' . $view, compact(
             'campaign',
-            'type',
-            'singularType',
+            'entityType',
             'entityType',
             'origin',
             'target',
@@ -293,8 +358,6 @@ class EntityCreatorController extends Controller
             'mode',
             'source',
             'templates',
-            'entities',
-            //'entityTypes',
             'orderedEntityTypes',
             'success',
             'newLabel',
@@ -309,11 +372,27 @@ class EntityCreatorController extends Controller
     protected function orderedEntityTypes(): array
     {
         $orderedTypes = [];
-        $types = config('entities.ids');
-        foreach ($types as $singular => $id) {
-            $plural = Str::plural($singular);
-            $orderedTypes[$plural] = $this->campaign->hasModuleName($id) ? $this->campaign->moduleName($id) : __('entities.' . $singular);
+        /** @var EntityType $entityType */
+        foreach (EntityType::inCampaign($this->campaign)->enabled()->exclude([config('entities.ids.bookmark')])->get() as $entityType) {
+            // If the user can create, and the module is available
+            if ($entityType->isSpecial()) {
+                // Custom permission
+                $orderedTypes[$entityType->plural()] = $entityType;
+                continue;
+            }
+            if (!$this->campaign->enabled($entityType->pluralCode())) {
+                continue;
+            }
+            if (!auth()->user()->can('create', [$entityType, $this->campaign])) {
+                continue;
+            }
+            $orderedTypes[$entityType->plural()] = $entityType;
         }
+        //        $types = config('entities.ids');
+        //        foreach ($types as $singular => $id) {
+        //            $plural = Str::plural($singular);
+        //            $orderedTypes[$plural] = $this->campaign->hasModuleName($id) ? $this->campaign->moduleName($id) : __('entities.' . $singular);
+        //        }
 
         if (auth()->user()->can('recover', $this->campaign)) {
             $orderedTypes['posts'] = __('entities.posts');
@@ -333,7 +412,9 @@ class EntityCreatorController extends Controller
         $canCreate = auth()->user()->can('create', Location::class);
 
         $location = $this->request->get('location_id');
-        if (!is_numeric($location) && !empty(mb_trim($location)) && $canCreate) {
+        if (is_numeric($location)) {
+            $location = (int) $location;
+        } elseif (!is_numeric($location) && !empty(mb_trim($location)) && $canCreate) {
             $model = Location::create(['name' => $location, 'campaign_id' => $this->campaign->id]);
             $location = (int) $model->id;
         } else {

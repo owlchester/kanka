@@ -1,7 +1,9 @@
 <?php
 /**
+ * @var \App\Models\Entity $entity
  * @var \App\Models\Tag $model
  */
+$model = $entity->child;
 $datagridOptions = [];
 
 if (!empty($onload)) {
@@ -9,7 +11,7 @@ if (!empty($onload)) {
         $campaign,
         $model,
         'init' => 1,
-    ];    
+    ];
     $routeOptions = Datagrid::initOptions($routeOptions);
     $datagridOptions =
         ['datagridUrl' => route('tags.children.posts', $routeOptions)]
@@ -20,7 +22,7 @@ $all = $model->posts()->count();
 ?>
 <div class="flex flex-col xl:flex-row gap-2 items-center">
     <h3 class="grow">
-        {{ __('tags.show.tabs.posts') }}
+        {{ __('entities.posts') }}
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">
         <button data-url="{{ route('tags.transfer.posts', [$campaign, $model->id]) }}" data-toggle="dialog" data-target="primary-dialog" class="btn2 btn-sm">

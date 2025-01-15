@@ -25,7 +25,7 @@ class DefaultImageStore extends FormRequest
     public function rules()
     {
         $rules = [
-            'entity_type' => 'required',
+            'entity_type' => 'required|integer|exists:entity_types,id',
             'default_entity_image' => 'required|mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
         ];
         return $rules;

@@ -99,7 +99,9 @@ class AttributeService
             return $this;
         }
         $this->entity->touch();
-        $this->entity->child->touchSilently();
+        if ($this->entity->hasChild()) {
+            $this->entity->child->touchSilently();
+        }
         return $this;
     }
 
@@ -303,9 +305,9 @@ class AttributeService
             $searchAttributes[] = '{attribute:' . $sourceAttributes[$slug] . '}';
             $replaceAttributes[] = '{attribute:' . $attribute->id . '}';
         }
-        if ($this->entity->child->hasEntry()) {
-            $entry = Str::replace($searchAttributes, $replaceAttributes, $this->entity->child->entry);
-            $this->entity->child->update(['entry' => $entry]);
+        if ($this->entity->hasEntry()) {
+            $entry = Str::replace($searchAttributes, $replaceAttributes, $this->entity->entry);
+            $this->entity->update(['entry' => $entry]);
         }
         foreach ($this->entity->posts as $post) {
             $post->entry = Str::replace($searchAttributes, $replaceAttributes, $post->entry);

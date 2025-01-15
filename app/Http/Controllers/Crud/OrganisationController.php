@@ -6,6 +6,7 @@ use App\Datagrids\Filters\OrganisationFilter;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreOrganisation;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Organisation;
 
 class OrganisationController extends CrudController
@@ -56,5 +57,10 @@ class OrganisationController extends CrudController
     public function destroy(Campaign $campaign, Organisation $organisation)
     {
         return $this->campaign($campaign)->crudDestroy($organisation);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.organisation'))->first();
     }
 }
