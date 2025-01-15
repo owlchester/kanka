@@ -123,9 +123,7 @@ class BulkPermissionService
                             //'key' => $this->entity->entityType->code . '_' . $perm . '_' . $this->entity->child->id,
                             'user_id' => $userId,
                             'campaign_id' => $this->entity->campaign_id,
-                            //'table_name' => $this->entity->pluralType(),
                             'entity_id' => $this->entity->id,
-                            //'entity_type_id' => $this->entity->type_id,
                             'misc_id' => $this->entity->child->id,
                             'action' => $perm,
                             'access' => false

@@ -37,6 +37,7 @@ use Illuminate\Support\Str;
  * @property int $entity_id
  * @property string $name
  * @property ?string $type
+ * @property ?string $entry
  * @property int $type_id
  * @property int $created_by
  * @property int $updated_by
@@ -127,7 +128,7 @@ class Entity extends Model
         } elseif ($this->isDiceRoll()) {
             return $this->diceRoll();
         }
-        return $this->{$this->type()}();
+        return $this->{$this->entityType->code}();
     }
 
     /**
@@ -213,17 +214,6 @@ class Entity extends Model
     }
 
     /**
-     * Get the plural name of the entity for routes
-     */
-    public function pluralType(): string
-    {
-        if (isset($this->cachedPluralName)) {
-            return $this->cachedPluralName;
-        }
-        return $this->cachedPluralName = Str::plural($this->type());
-    }
-
-    /**
      * Get the entity's type id
      */
     public function typeId()
@@ -240,17 +230,6 @@ class Entity extends Model
         }
 
         return in_array($this->type_id, $types);
-    }
-
-    /**
-     */
-    public function type(): string
-    {
-        if (isset($this->cachedType)) {
-            return $this->cachedType;
-        }
-        $type = array_search($this->type_id, config('entities.ids'));
-        return $this->cachedType = $type;
     }
 
     public function cleanCache(): self

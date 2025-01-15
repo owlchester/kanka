@@ -24,7 +24,7 @@ class PostController extends Controller
     public function create(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity, 'add']);
-        $parentRoute = $entity->pluralType();
+        $parentRoute = $entity->entityType->pluralCode();
         $templates = Post::postTemplates($campaign)->orderBy('name')->pluck('name', 'id')->all();
 
         $template = request()->input('template');
@@ -102,7 +102,7 @@ class PostController extends Controller
             }
         }
 
-        $parentRoute = $entity->pluralType();
+        $parentRoute = $entity->entityType->pluralCode();
         $from = request()->get('from');
 
         return view('entities.pages.posts.edit', compact(

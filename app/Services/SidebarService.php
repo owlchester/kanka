@@ -369,7 +369,7 @@ class SidebarService
         /** @var ?Entity $entity */
         $entity = request()->route('entity');
         if ($entity) {
-            if ($entity->pluralType() == $menu) {
+            if ($entity->entityType->pluralCode() == $menu) {
                 return " {$class}";
             }
         }

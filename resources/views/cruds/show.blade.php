@@ -27,8 +27,8 @@ $headerImage = true;
 @section('content')
 
     @include('ads.top')
-    @if(view()->exists($name . '.show'))
-        @include($name . '.show')
+    @if(view()->exists($entity->entityType->pluralCode() . '.show'))
+        @include($entity->entityType->pluralCode() . '.show')
     @else
         @include('cruds.overview')
     @endif

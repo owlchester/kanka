@@ -242,14 +242,14 @@ class Bookmark extends Model
     protected function getEntityRoute(): string
     {
         $campaign = CampaignLocalization::getCampaign();
-        $plural = $this->target->pluralType();
+        $plural = $this->target->entityType->pluralCode();
         if (empty($plural)) {
             return '';
         }
         $route = 'entities.show';
         $entity = true;
         if (!empty($this->menu)) {
-            $menuRoute = $this->target->pluralType() . '.' . $this->menu;
+            $menuRoute = $this->target->entityType->pluralCode() . '.' . $this->menu;
             $entity = false;
 
             // Inventories use a different url buildup

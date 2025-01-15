@@ -129,7 +129,7 @@ abstract class MiscModel extends Model
             if (in_array($action, ['show', 'update'])) {
                 return route('entities.' . $action, [$campaign, $this->entity]);
             }
-            return route($this->entity->pluralType() . '.' . $action, [$campaign, $this->id]);
+            return route($this->entity->entityType->pluralCode() . '.' . $action, [$campaign, $this->id]);
         } catch (Exception $e) {
             return '#';
         }

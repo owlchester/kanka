@@ -143,7 +143,7 @@ class EntityResource extends JsonResource
 
         $galleryImage = $misc->entity->image;
         $url = $misc->getLink();
-        $apiViewUrl = 'campaigns.' . $misc->entity->pluralType() . '.show';
+        $apiViewUrl = 'campaigns.' . $misc->entity->entityType->pluralCode() . '.show';
 
         $merged = [
             'id' => $misc->id,

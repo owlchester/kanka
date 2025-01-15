@@ -23,7 +23,7 @@ class Entity extends EntityChild
         }
 
         $url = $model->url();
-        $apiViewUrl = 'campaigns.' . $model->pluralType() . '.show';
+        $apiViewUrl = 'campaigns.' . $model->entityType->pluralCode() . '.show';
 
         return [
             'id' => $model->child->id,

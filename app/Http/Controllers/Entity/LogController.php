@@ -31,7 +31,7 @@ class LogController extends Controller
             ->paginate(config('limits.pagination'));
 
 
-        $transKey = $entity->pluralType();
+        $transKey = $entity->entityType->pluralCode();
 
         $q = request()->get('q');
         $action = request()->get('action');

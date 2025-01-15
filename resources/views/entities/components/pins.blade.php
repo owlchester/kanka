@@ -38,7 +38,7 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
     @if ($entity->entityType->isSpecial())
             @includeIf('entities.components.profile.custom')
     @else
-        @includeIf('entities.components.profile.' . $name)
+        @includeIf('entities.components.profile.' . $entity->entityType->pluralCode())
     @endif
 
     @includeWhen(!isset($printing) && $campaign->boosted() && $entity->hasLinks(), 'entities.components.links')

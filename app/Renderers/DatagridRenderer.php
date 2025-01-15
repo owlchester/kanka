@@ -404,6 +404,8 @@ class DatagridRenderer
             // Just for name, a link to the view
             if ($column == 'name') {
                 $content = $this->entityLink($model);
+            } elseif ($column === 'type') {
+                $content = $model instanceof Entity ? $model->type : $model->entity->type;
             } else {
                 // Handle boolean values (has, is)
                 if ($this->isBoolean($column)) {

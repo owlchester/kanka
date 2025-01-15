@@ -25,8 +25,6 @@ class ShowController extends Controller
         return view('cruds.show')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
-            ->with('name', $entity->pluralType())
-            // name?
         ;
     }
 }
