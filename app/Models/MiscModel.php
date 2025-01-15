@@ -13,6 +13,7 @@ use App\Models\Concerns\Copiable;
 use App\Models\Scopes\SubEntityScopes;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
@@ -37,6 +38,8 @@ use Laravel\Scout\Searchable as Scout;
  * @property Carbon $updated_at
  * @property int $created_by
  * @property int $updated_by
+ *
+ * @method static self|Builder sort(array $filters, array $defaultOrder = [])
  */
 abstract class MiscModel extends Model
 {

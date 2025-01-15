@@ -274,6 +274,7 @@ class ExportService
     {
         foreach ($this->campaign->images()->with('imageFolder')->get() as $image) {
             try {
+                /** @var Image $image */
                 $this->processImage($image);
             } catch (Exception $e) {
                 $saveFolder = storage_path($this->exportPath);

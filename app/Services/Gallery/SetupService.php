@@ -201,6 +201,7 @@ class SetupService
             ->select(['id', 'name'])
             ->folders()
             ->get();
+        /** @var Image $folder */
         foreach ($query as $folder) {
             $folders[$folder->id] = $folder->name;
         }
