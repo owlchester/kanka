@@ -31,18 +31,15 @@ class EntityCacheService extends BaseCache
             return Cache::get($key);
         }
 
-        if ($entityType->isSpecial()) {
-            $data = Entity::select(DB::raw('type, MAX(created_at) as cmat'))
-                ->groupBy('type')
-                ->whereNotNull('type')
-                ->where('type_id', $entityType->id)
-                ->orderBy('cmat', 'DESC')
-                ->take(20)
-                ->pluck('type')
-                ->all();
-        } else {
-            $data = $entityType->getClass()->entityTypeSuggestion();
-        }
+        $data = Entity::select(DB::raw('type, MAX(created_at) as cmat'))
+            ->groupBy('type')
+            ->whereNotNull('type')
+            ->where('type_id', $entityType->id)
+            ->orderBy('cmat', 'DESC')
+            ->take(20)
+            ->pluck('type')
+            ->all();
+
 
         Cache::put($key, $data, 24 * 3600);
         return $data;

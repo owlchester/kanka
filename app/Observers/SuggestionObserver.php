@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Facades\EntityCache;
+use App\Models\Entity;
 use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,8 +22,8 @@ class SuggestionObserver
     protected function clearSuggestions(Model $model): void
     {
         // Clear the cache suggestion for the entity type
-        if ($model instanceof MiscModel && isset($model->entity, $model->entity->entityType)) {
-            EntityCache::clearSuggestion($model->entity->entityType);
+        if ($model instanceof Entity) {
+            EntityCache::clearSuggestion($model->entityType);
         }
         // @phpstan-ignore-next-line
         foreach ($model->getSuggestions() as $class => $call) {

@@ -13,6 +13,7 @@ use App\Models\Concerns\EntityType;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasMentions;
+use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
@@ -29,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Laravel\Scout\Searchable as Scout;
 
 /**
  * Class Entity
@@ -71,8 +73,10 @@ class Entity extends Model
     use HasEntry;
     use HasMentions;
     use HasTooltip;
+    use HasSuggestions;
     use LastSync;
     use Paginatable;
+    use Scout;
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
@@ -504,5 +508,32 @@ class Entity extends Model
         }
 
         return (string) implode(' ', $classes);
+    }
+
+    /**
+     * Get the value used to index the model.
+     *
+     */
+    public function getScoutKey()
+    {
+        return $this->getTable() . '_' . $this->id;
+    }
+
+    /**
+     * Get the name of the index associated with the model.
+     */
+    public function searchableAs(): string
+    {
+        return 'entities';
+    }
+    public function toSearchableArray()
+    {
+        return [
+            'campaign_id' => $this->campaign_id,
+            'entity_id' => $this->id,
+            'name' => $this->name,
+            'type'  => $this->type,
+            'entry'  => strip_tags($this->entry),
+        ];
     }
 }
