@@ -9,6 +9,8 @@ $dropdownParent = Arr::get($options, 'dropdownParent');
 ?>
 <select name="user"
         id="user"
+        @if (isset($multiple) && $multiple) multiple @endif
+        data-allow-clear="false"
         class=" select2 form-role w-100" data-url="{{ route('users.find', $campaign) }}"
         @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif data-placeholder="{{ __('crud.placeholders.user') }}">
 </select>

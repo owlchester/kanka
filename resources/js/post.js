@@ -20,38 +20,39 @@ const registerAdvancedPermissions = () => {
         btn.addEventListener('click', function (ev) {
             ev.preventDefault();
             let type = this.dataset.type;
-            let selected = document.querySelector('select[name="' + type + '"]');
+            let selectElement = document.querySelector('select[name="' + type + '"]');
 
-            if (!selected || !selected.value) {
+            if (!selectElement || !selectElement.selectedOptions) {
                 return false;
             }
-
-            let selectedName = selected.textContent;
-            //console.log('selected name for ', type, selectedName);
-
-            // Add a block
-            let selector = '#post-perm-' + type + '-template';
             let template = document.getElementById('post-perm-' + type + '-template');
-            const clone = template.cloneNode(true);
-            clone.classList.remove('hidden');
-            clone.removeAttribute('id');
-            //let body = $('#post-perm-' + type + '-template').clone().removeClass('hidden').removeAttr('id');
-            clone.innerHTML = clone.innerHTML
-                .replace(/\$SELECTEDID\$/g, selected.value)
-                .replace(/\$SELECTEDNAME\$/g, selectedName);
-            //body.html(html).insertBefore($('#post-perm-target'));
 
-            const target = document.getElementById('post-perm-target');
-            target.insertAdjacentElement('afterend', clone);
+            // Support for tag (multiple) select elements (you're welcome Spitfire)
+            for (const option of selectElement.selectedOptions) {
+                // Add a block
+                const clone = template.cloneNode(true);
+                clone.classList.remove('hidden');
+                clone.removeAttribute('id');
+                clone.innerHTML = clone.innerHTML
+                    .replace(/\$SELECTEDID\$/g, option.value)
+                    .replace(/\$SELECTEDNAME\$/g, option.text);
+
+                const target = document.getElementById('post-perm-target');
+                target.insertAdjacentElement('beforebegin', clone);
+            }
+
 
             let dialog = document.getElementById('post-new-' + type);
             dialog.close();
 
             registerPermissionDeleteEvents();
 
-            // Reset the value
-            selected.value = '';
-            selected.dispatchEvent(new Event('change'));
+            // Reset all options to unselected
+            for (const option of selectElement.options) {
+                option.selected = false;
+            }
+            selectElement.value = null;
+            selectElement.dispatchEvent(new Event('change'));
             return false;
         });
     });
@@ -62,14 +63,21 @@ const registerAdvancedPermissions = () => {
  */
 const registerPermissionDeleteEvents = () => {
     const deletes = document.querySelectorAll('.post-delete-perm');
-    console.log(deletes);
+    //console.log(deletes);
     deletes.forEach((btn) => {
+        if (btn.closest('.hidden')) {
+            return;
+        }
+        if (btn.dataset.init === '1') {
+            return;
+        }
+        btn.dataset.init = '1';
         btn.addEventListener('click', function (e) {
             //console.log('clicking');
             btn.closest('.perm-row').remove();
             e.preventDefault();
 
-            btn.removeEventListener('click', arguments.callee);
+            //btn.removeEventListener('click', arguments.callee);
         });
     });
 };

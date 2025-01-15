@@ -37,7 +37,7 @@ window.initForeignSelect = function () {
         }
 
         // Check it isn't the select2-icon
-        console.log('select2', field, field.dataset.allowNew === 'true');
+        //console.log('select2', field, field.dataset.allowNew === 'true');
         $(field).select2({
             tags: field.dataset.allowNew === 'true',
             placeholder: placeholder,
