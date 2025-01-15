@@ -4,8 +4,6 @@ namespace App\Traits;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Mentions;
-use App\Models\Entity;
-use App\Models\MiscModel;
 use Illuminate\Support\Str;
 
 trait HasTooltip

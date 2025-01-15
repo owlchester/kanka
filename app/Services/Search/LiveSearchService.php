@@ -9,7 +9,6 @@ use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class LiveSearchService
@@ -55,7 +54,7 @@ class LiveSearchService
         }
 
         $list = [];
-        /** @var \App\Models\MiscModel $model */
+        /** @var MiscModel $model */
         foreach ($models as $model) {
             $format = [
                 'id' => $model->id,
