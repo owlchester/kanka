@@ -2,7 +2,6 @@
 
 namespace App\Models\Scopes;
 
-use App\Facades\CampaignLocalization;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
