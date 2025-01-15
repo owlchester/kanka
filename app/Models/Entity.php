@@ -375,6 +375,8 @@ class Entity extends Model
             'entity_id',
             'type_id',
             'name',
+            'type',
+            'entry',
             'is_private',
             'tooltip',
             'is_template',
@@ -398,7 +400,8 @@ class Entity extends Model
 
         // Entity relations
         $relations = [
-            'entityTags', 'relationships', 'posts', 'abilities', 'events', 'entityAttributes', 'assets', 'mentions', 'inventories'
+            'entityTags', 'relationships', 'posts', 'abilities', 'events',
+            'entityAttributes', 'assets', 'mentions', 'inventories'
         ];
         foreach ($relations as $relation) {
             foreach ($this->$relation as $model) {
@@ -477,9 +480,8 @@ class Entity extends Model
             'kanka-entity-' . $this->entityType->code,
         ];
 
-        if (!$this->entityType->isSpecial() && !empty($this->child->type)) {
-            $classes[] = 'kanka-type-' . Str::slug($this->child->type);
-        }
+        $classes[] = 'kanka-type-' . Str::slug($this->type);
+
 
         foreach ($this->tagsWithEntity(true) as $tag) {
             $classes[] = 'kanka-tag-' . $tag->id;
@@ -526,6 +528,7 @@ class Entity extends Model
     {
         return 'entities';
     }
+
     public function toSearchableArray()
     {
         return [

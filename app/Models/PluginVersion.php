@@ -426,7 +426,7 @@ class PluginVersion extends Model
         // Share some attributes to plugin developers
         $data['_locale'] = app()->getLocale();
         $data['_entity_name'] = $entity->name;
-        $data['_entity_type'] = $entity->child->type;
+        $data['_entity_type'] = $entity->type;
         $data['_entity_type_name'] = $entity->entityType->code;
 
         if ($entity->isCharacter()) {

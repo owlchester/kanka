@@ -31,8 +31,6 @@ trait ExportableTrait
         $baseFields = [
             'id',
             'name',
-            'type',
-            'entry',
             'created_at',
             'updated_at',
             'is_private',
