@@ -35,14 +35,10 @@ trait HasTooltip
             }
         }
 
-        $child = $this;
-        if ($this->hasChild()) {
-            $child = $this->child;
-        }
-        if (!method_exists($child, 'parsedEntry')) {
+        if (!method_exists($this, 'parsedEntry')) {
             return '';
         }
-        $text = $child->parsedEntry();
+        $text = $this->parsedEntry();
         $text = strip_tags($text, $this->allowedTooltipTags());
         $text = Str::limit($text, 500);
         return $text;
