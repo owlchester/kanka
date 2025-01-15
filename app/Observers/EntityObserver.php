@@ -194,8 +194,8 @@ class EntityObserver
             return;
         }
 
-        if (request()->has('entity_tooltip')) {
-            $entity->tooltip = $this->purify(request()->get('entity_tooltip'));
+        if (request()->has('tooltip')) {
+            $entity->tooltip = $this->purify(request()->get('tooltip'));
         }
 
         // Superboosted image gallery selection

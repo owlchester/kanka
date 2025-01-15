@@ -32,25 +32,27 @@ Some common entities include:
 
 Most entities have the following attributes.
 
-| Attribute | Type | Description                                                                                                                                                                           
-| :- | :- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `id` | `integer` | The id identifying the object against all other objects of the same type.                                                                                                             |
-| `name` | `string` | The name representing the object.                                                                                                                                                     |
-| `type` | `string` | The type of entity as a string. (deprecated)                                                                                                                                          |
-| `type_id` | `integer` | The type of entity as an integer.                                                                                                                                                     |
-| `child_id` | `integer` | The id identifying the entity against all other entities of the same type (ie unique character id).                                                                                   |
-| `image` | `string` | The local path to the picture of the object.                                                                                                                                          |
-| `image_full` | `string` | The url to the picture of the object.                                                                                                                                                 |
-| `image_thumb` | `string` | The url to the thumbnail of the object.                                                                                                                                               |
-| `image_uuid` | `uuid` | The image gallery uuid of the entity                                                                                                                                                  |
-| `is_private` | `boolean` | Determines if the object is only visible by `admin` members of the campaign.<br /> If the user requesting the API isn't a member of the `admin` role, such objects won't be returned. |
-| `is_template` | `boolean` | Determines if the object is a template.                                                                                                                                               |
+| Attribute               | Type | Description                                                                                                                                                                           
+|:------------------------| :- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `id`                    | `integer` | The id identifying the object against all other objects of the same type.                                                                                                             |
+| `name`                  | `string` | The name representing the object.                                                                                                                                                     |
+| `type`                  | `string` | The entity's type field.                                                                                                                                                              |
+| `type_id`               | `integer` | The type of entity as an integer.                                                                                                                                                     |
+| `entity_type_code`      | `integer` | The type of entity as a code (character, map).                                                                                                                                        |
+| `child_id`              | `integer` | The id identifying the entity against all other entities of the same type (ie unique character id).                                                                                   |
+| `image`                 | `string` | The local path to the picture of the object.                                                                                                                                          |
+| `image_full`            | `string` | The url to the picture of the object.                                                                                                                                                 |
+| `image_thumb`           | `string` | The url to the thumbnail of the object.                                                                                                                                               |
+| `image_uuid`            | `uuid` | The image gallery uuid of the entity                                                                                                                                                  |
+| `header_uuid`           | `uuid` | The image gallery uuid of the entity header                                                                                                                                           |
+| `is_private`            | `boolean` | Determines if the object is only visible by `admin` members of the campaign.<br /> If the user requesting the API isn't a member of the `admin` role, such objects won't be returned. |
+| `is_template`           | `boolean` | Determines if the object is a template.                                                                                                                                               |
 | `is_attributes_private` | `boolean` | Determines if the entity's attributes are only visible to members of the campaign's admin role.                                                                                       |
-| `tags` | `array` | An array of tags that the object is related to.                                                                                                                                       |
-| `created_at` | `object` | An object representing when the object was created (server time)                                                                                                                      |
-| `created_by` | `integer` | The `users`.`id` who created the object.                                                                                                                                              
-| `updated_at` | `object` | An object representing when the object was updated (server time)                                                                                                                      |
-| `updated_by` | `integer` | The `users`.`id` who last updated the object.                                                                                                                                         
+| `tags`                  | `array` | An array of tags that the object is related to.                                                                                                                                       |
+| `created_at`            | `object` | An object representing when the object was created (server time)                                                                                                                      |
+| `created_by`            | `integer` | The `users`.`id` who created the object.                                                                                                                                              
+| `updated_at`            | `object` | An object representing when the object was updated (server time)                                                                                                                      |
+| `updated_by`            | `integer` | The `users`.`id` who last updated the object.                                                                                                                                         
 
 
 <a name="entity-types"></a>
@@ -74,7 +76,9 @@ To get the details of a single entity, use the following endpoint.
     "data": {
         "id": 95,
         "name": "Redkeep",
-        "type": "location",
+        "type": "A castle in the sky",
+        "type_id": 2,
+        "entity_type": "location",
         "child_id": 95,
         "tags": [],
         "is_private": false,
@@ -82,6 +86,7 @@ To get the details of a single entity, use the following endpoint.
         "is_attributes_private": false,
         "tooltip": null,
         "header_image": null,
+        "header_uuid": null,
         "image_uuid": null,
         "created_at": "2017-12-07T14:23:57.000000Z",
         "created_by": null,

@@ -117,6 +117,7 @@ trait SubEntityScopes
             'entity',
             'entity.image',
             'entity.header',
+            'entity.entityType',
             'entity.tags',
             'entity.posts', 'entity.posts.permissions',
             'entity.events',
@@ -132,12 +133,6 @@ trait SubEntityScopes
         $with = !empty($this->apiWith) ? $this->apiWith : [];
         foreach ($with as $relation) {
             $relations[] = $relation;
-        }
-
-        $campaign = CampaignLocalization::getCampaign();
-        if ($campaign && $campaign->superboosted()) {
-            $relations[] = 'entity.header';
-            $relations[] = 'entity.image';
         }
 
         return $query
