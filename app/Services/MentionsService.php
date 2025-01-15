@@ -361,7 +361,7 @@ class MentionsService
                     /** @var Character $child */
                     $child = $entity->child;
                     if ($field == 'family' && !$child->families->isEmpty()) {
-                        $data['text'] = $child->families()->reorder('name')->first()->name;
+                        $data['text'] = $child->characterFamilies()->first()->family->name;
                     }
                     if ($field == 'race' && !$child->characterRaces->isEmpty()) {
                         $data['text'] = $child->characterRaces->first()->race->name;

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
@@ -147,6 +148,7 @@ class EntityService
         }
 
         // Add campaign custom modules
+        /** @var EntityType $entityType */
         foreach ($this->campaign->entityTypes()->enabled()->get() as $entityType) {
             $ids[] = $entityType->id;
         }

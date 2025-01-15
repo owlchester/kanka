@@ -206,6 +206,7 @@ class EntityPermission
         //dump('user');
         if (!empty($user)) {
             $userPermissions = $user->permissions()->where('campaign_id', $campaign->id)->get();
+            /** @var CampaignPermission $permission */
             foreach ($userPermissions as $permission) {
                 $this->cached[$permission->key()] = $permission->access;
                 //dump($permission->id . ' - ' . $permission->key());

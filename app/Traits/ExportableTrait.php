@@ -47,6 +47,7 @@ trait ExportableTrait
                 $this->exportData[$baseField] = $this->$baseField;
             }
         }
+        //@phpstan-ignore-next-line
         if (method_exists($this, 'getParentKeyName')) {
             $this->exportData[$this->getParentKeyName()] = $this->getAttribute($this->getParentKeyName());
         }

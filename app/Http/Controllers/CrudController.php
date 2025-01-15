@@ -649,19 +649,6 @@ class CrudController extends Controller
     }
 
     /**
-     * @param MiscModel $model
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    protected function authCheck($model)
-    {
-        if ($this->alreadyAuthChecked) {
-            return;
-        }
-        $this->authView($model);
-        $this->alreadyAuthChecked = true;
-    }
-
-    /**
      * Detect if a module is enabled
      */
     protected function moduleEnabled(): bool

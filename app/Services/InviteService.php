@@ -69,6 +69,7 @@ class InviteService
         if (empty($token)) {
             $token = Session::get('invite_token');
         }
+        /** @var CampaignInvite $invite */
         $invite = CampaignInvite::where('token', $token)
             ->first();
 

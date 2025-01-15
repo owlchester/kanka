@@ -4,6 +4,7 @@ namespace App\Services\Search;
 
 use App\Facades\Avatar;
 use App\Models\Character;
+use App\Models\MiscModel;
 use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
@@ -22,7 +23,7 @@ class LiveSearchService
         $term = mb_trim($this->request->get('q') ?? '');
         $excludes = $this->request->has('exclude') ? [$this->request->get('exclude')] : [];
 
-        /** @var Builder|Character|Tag $modelClass */
+        /** @var MiscModel|Character|Tag $modelClass */
         $modelClass = $this->entityType->getClass();
 
         if ($this->request->filled('with-family')) {

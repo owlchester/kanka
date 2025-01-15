@@ -30,6 +30,7 @@ class LocationController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Location\Location::class)
             ->route('locations.locations', $options);
 
+        //@phpstan-ignore-next-line
         $this->rows = $location
             ->descendants()
             ->select(['id', 'name', 'type', 'location_id', 'is_private'])

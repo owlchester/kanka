@@ -20,22 +20,6 @@ class DetailController extends Controller
         if (!empty($mapMarker->entity_id)) {
             $this->authEntityView($mapMarker->entity);
         }
-        /*if (auth()->check()) {
-            $this->authorize('view', $map);
-            if ($mapMarker->entity_id) {
-                // No access to the child? 404
-                if (empty($mapMarker->entity->child)) {
-                    abort(404);
-                }
-                $this->authorize('view', $mapMarker->entity->child);
-            }
-        } else {
-            $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $map);
-            dd($map);
-            if ($mapMarker->entity_id) {
-                $this->authorizeForGuest(\App\Models\CampaignPermission::ACTION_READ, $mapMarker->entity->child, $mapMarker->entity->typeId());
-            }
-        }*/
 
         $name = $mapMarker->name;
         if ($mapMarker->entity) {

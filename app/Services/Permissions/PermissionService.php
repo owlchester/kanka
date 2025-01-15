@@ -305,6 +305,7 @@ class PermissionService
      */
     protected function loadPublicRole(): void
     {
+        /** @var CampaignRole $publicRole */
         $publicRole = $this->campaign
             ->roles()
             ->where('is_public', true)

@@ -30,6 +30,7 @@ class FamilyController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Family\Family::class)
             ->route('families.families', $options);
 
+        //@phpstan-ignore-next-line
         $this->rows = $family
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
