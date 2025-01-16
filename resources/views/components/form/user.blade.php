@@ -5,7 +5,7 @@ use Illuminate\Support\Arr;
  */
 $selectedOption = [];
 $dropdownParent = Arr::get($options, 'dropdownParent');
-
+$multiple = Arr::get($options, 'multiple');
 ?>
 <select name="user"
         id="user"
