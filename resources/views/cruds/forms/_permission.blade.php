@@ -7,9 +7,17 @@
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\EntityType $entityType
  */
-$permissions = isset($model) ? $permissionService->entityPermissions($model->entity) : [];
+if (isset($source)) {
+    $permissionService->entityPermissions($source);
+}
 if (isset($model)) {
-    $permissionService->type($model->entity->type_id);
+    if ($model instanceof \App\Models\Entity) {
+        $permissionService->entityPermissions($model);
+        $permissionService->type($model->type_id);
+    } else {
+        $permissionService->entityPermissions($model->entity);
+        $permissionService->type($model->entity->type_id);
+    }
 } else {
     $permissionService->type($entityType->id);
 }

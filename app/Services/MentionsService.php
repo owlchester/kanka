@@ -359,16 +359,18 @@ class MentionsService
                     }
 
                     /** @var Character $child */
-                    $child = $entity->child;
-                    if ($field == 'family' && !$child->families->isEmpty()) {
-                        $data['text'] = $child->characterFamilies()->first()->family->name;
-                    }
-                    if ($field == 'race' && !$child->characterRaces->isEmpty()) {
-                        $data['text'] = $child->characterRaces->first()->race->name;
-                    }
-                    /** @var Quest $child */
-                    if ($field == 'calendar_date' && $child->calendar_id) {
-                        $data['text'] = $child->calendarReminder()->readableDate();
+                    if (!$entity->isMissingChild()) {
+                        $child = $entity->child;
+                        if ($field == 'family' && !$child->families->isEmpty()) {
+                            $data['text'] = $child->characterFamilies()->first()->family->name;
+                        }
+                        if ($field == 'race' && !$child->characterRaces->isEmpty()) {
+                            $data['text'] = $child->characterRaces->first()->race->name;
+                        }
+                        /** @var Quest $child */
+                        if ($field == 'calendar_date' && $child->calendar_id) {
+                            $data['text'] = $child->calendarReminder()->readableDate();
+                        }
                     }
                     if ($field === 'entry' && method_exists($entity, 'parsedEntry')) {
                         if ($this->enableEntryField) {
@@ -395,7 +397,7 @@ class MentionsService
                             . $parsedTargetEntry
                             . '</div>'
                             . '</span>';
-                    } elseif (isset($entity->child->$field)) {
+                    } elseif (!$entity->isMissingChild() && isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {
                             if (isset($foreign->name) && !empty($foreign->name)) {
@@ -407,7 +409,7 @@ class MentionsService
                         if ($field == 'date' && $entity->child instanceof \App\Models\Calendar) {
                             $data['text'] = $entity->child->niceDate();
                         }
-                    } elseif ($field !== 'type' && isset($entity->$field) && is_string($entity->$field)) {
+                    } elseif (isset($entity->$field) && is_string($entity->$field)) {
                         $data['text'] = $entity->$field;
                     }
 
@@ -481,7 +483,7 @@ class MentionsService
             if ($hasCustom || auth()->user()->alwaysAdvancedMentions()) {
                 // Still need to show the target's name in the advanced mention
                 $entity = $this->entity($data['id']);
-                if (empty($entity) || empty($entity->child)) {
+                if (empty($entity) || $entity->isMissingChild()) {
                     return $matches[0];
                 }
 
@@ -510,7 +512,7 @@ class MentionsService
             $entity = $this->entity($data['id']);
 
             // No entity found, the user might not be allowed to see it
-            if (empty($entity) || empty($entity->child)) {
+            if (empty($entity) || $entity->isMissingChild()) {
                 $name = __('crud.history.unknown');
                 $dataName = $name;
             } else {
@@ -641,7 +643,7 @@ class MentionsService
 
         // Directly get with the mentioned entity types (provided they are valid)
         // @phpstan-ignore-next-line
-        $entities = Entity::whereIn('id', $ids)->with(['tags:id,name,slug', 'entityType:id,code'])->get();
+        $entities = Entity::whereIn('id', $ids)->with(['tags:id,name,slug', 'entityType:id,code,is_special'])->get();
         //dump(count($ids));
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $entity;

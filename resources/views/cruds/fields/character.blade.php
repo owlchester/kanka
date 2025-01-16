@@ -8,7 +8,7 @@
     if (isset($model) && $model->character) {
         $preset = $model->character;
     } else {
-        $preset = FormCopy::field('character')->select();
+        $preset = FormCopy::field('character')->child()->select();
     }
     @endphp
 @endif

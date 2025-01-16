@@ -171,7 +171,10 @@ class Ability extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        return (bool) ($this->type || $this->charges);
+        if (!empty($this->charges)) {
+            return true;
+        }
+        return parent::showProfileInfo();
     }
 
     /**

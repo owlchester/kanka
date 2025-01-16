@@ -4,7 +4,7 @@
         if (isset($model) && $model->{$relation ?? 'entity'}) {
             $preset = $model->{$relation ?? 'entity'};
         } elseif (!isset($bulk)) {
-            $preset = FormCopy::field($relation ?? 'entity')->select($isParent ?? false, \App\Models\Entity::class);
+            $preset = FormCopy::field($relation ?? 'entity')->child()->select($isParent ?? false, \App\Models\Entity::class);
         }
     @endphp
 @endif

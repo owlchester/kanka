@@ -9,7 +9,7 @@
     <div class="header p-2 bg-neutral text-neutral-content flex items-center gap-2 transition-all duration-300">
         <i class="flex-0 text-lg {{ $entityType->icon() }}" aria-hidden="true"></i>
         <span class="text-lg grow break-all">
-            {!! $entityType->name() !!}
+            {!! $entityType->plural() !!}
         </span>
         @can('update', $campaign)
             <button

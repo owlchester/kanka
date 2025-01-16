@@ -20,19 +20,14 @@ use Exception;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
 
+/**
+ *
+ */
 class BulkService
 {
     use CampaignAware;
     use EntityTypeAware;
     use SaveLocations;
-
-    protected EntityService $entityService;
-
-    protected BulkPermissionService $permissionService;
-
-    protected TransformService $transformService;
-
-    protected MoveService $moveService;
 
     /** Entity name */
     protected string $entityName;
@@ -47,15 +42,11 @@ class BulkService
     protected int $count = 0;
 
     public function __construct(
-        EntityService $entityService,
-        BulkPermissionService $permissionService,
-        TransformService $transformService,
-        MoveService $moveService
+        protected EntityService $entityService,
+        protected BulkPermissionService $permissionService,
+        protected TransformService $transformService,
+        protected MoveService $moveService
     ) {
-        $this->entityService = $entityService;
-        $this->permissionService = $permissionService;
-        $this->transformService = $transformService;
-        $this->moveService = $moveService;
     }
 
     /**
@@ -94,7 +85,6 @@ class BulkService
         foreach ($this->ids as $id) {
             $entity = $model->find($id);
             if (auth()->user()->can('delete', $entity)) {
-                //dd($entity->descendants);
                 if (request()->delete_mirrored && $entity->mirror) {
                     $entity->mirror->delete();
                     $this->count++;

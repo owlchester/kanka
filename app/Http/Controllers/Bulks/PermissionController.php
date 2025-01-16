@@ -9,13 +9,9 @@ use App\Services\BulkService;
 
 class PermissionController extends Controller
 {
-    protected BulkService $bulkService;
-
     public function __construct(
-        BulkService $bulkService,
+        protected BulkService $bulkService,
     ) {
-        $this->bulkService = $bulkService;
-
         $this->middleware('auth');
     }
 
@@ -34,7 +30,7 @@ class PermissionController extends Controller
 
         $count = $this
             ->bulkService
-            ->entity($entityType->code)
+            ->entityType($entityType)
             ->entities($models)
             ->permissions(
                 request()->only('user', 'role'),

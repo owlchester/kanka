@@ -295,7 +295,10 @@ class Family extends MiscModel
         if (!empty($this->parent)) {
             return true;
         }
-        return (bool) (!$this->entity->elapsedEvents->isEmpty());
+        if ($this->entity->elapsedEvents->isNotEmpty()) {
+            return true;
+        }
+        return parent::showProfileInfo();
     }
 
     /**

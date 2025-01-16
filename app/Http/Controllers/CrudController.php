@@ -315,8 +315,12 @@ class CrudController extends Controller
         if (!isset($params['source'])) {
             $copyId = request()->input('copy');
             if (!empty($copyId)) {
-                $model = new $this->model();
-                $params['source'] = $model->findOrFail($copyId);
+                /** @var ?Entity $model */
+                $model = Entity::find(request()->get('copy'));
+                if (!$model || $model->isMissingChild()) {
+                    abort(404);
+                }
+                $params['source'] = $model;
                 FormCopy::source($params['source']);
             } else {
                 $params['source'] = null;
@@ -325,12 +329,13 @@ class CrudController extends Controller
         $model = new $this->model();
 
         $params['campaign'] = $this->campaign;
-        $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permissions', $model);
         $params['tabAttributes'] = $this->tabAttributes && $this->campaign->enabled('entity_attributes');
+        $params['tabPermissions'] = $this->tabPermissions;
         $params['tabCopy'] = $this->tabCopy;
         $params['tabBoosted'] = $this->tabBoosted;
         if (method_exists($this, 'getEntityType')) {
             $params['entityType'] = $this->getEntityType();
+            $params['tabPermissions'] = $this->tabPermissions && auth()->user()->can('permissions', $params['entityType']);
         }
         $params['title'] = __($this->view . '.create.title');
 

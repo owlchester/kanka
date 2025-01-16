@@ -13,7 +13,7 @@
             @if (auth()->user()->can('useTemplates', $campaign) && $templates->isNotEmpty())
                 @foreach ($templates as $entityTemplate)
                     <x-dropdowns.item
-                        :link="$entityType->createRoute($campaign, ['copy' => $entityTemplate->entity_id, 'template' => true])"
+                        :link="$entityType->createRoute($campaign, ['copy' => $entityTemplate->id, 'template' => true])"
                         css="new-entity-from-template" icon="fa-solid fa-star">
                         {{ $entityTemplate->name  }}
                     </x-dropdowns.item>

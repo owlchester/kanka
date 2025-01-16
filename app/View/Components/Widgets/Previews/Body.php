@@ -15,7 +15,6 @@ class Body extends Component
     public Campaign $campaign;
     public CampaignDashboardWidget $widget;
     public Entity $entity;
-    public MiscModel $model;
 
     /**
      * Create a new component instance.
@@ -24,12 +23,10 @@ class Body extends Component
         Campaign $campaign,
         CampaignDashboardWidget $widget,
         Entity $entity,
-        MiscModel $model,
     ) {
         $this->campaign = $campaign;
         $this->widget = $widget;
         $this->entity = $entity;
-        $this->model = $model;
     }
 
     /**

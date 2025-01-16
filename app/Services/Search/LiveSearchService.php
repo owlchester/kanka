@@ -25,13 +25,14 @@ class LiveSearchService
         /** @var MiscModel|Character|Tag $modelClass */
         $modelClass = $this->entityType->getClass();
 
+        $with = ['entity', 'entity.image', 'entity.entityType'];
         if ($this->request->filled('with-family')) {
-            $modelClass->with('families');
+            $with[] = 'families';
         }
 
         if (empty($term)) {
             $models = $modelClass
-                ->with(['entity', 'entity.image', 'entity.entityType'])
+                ->with($with)
                 ->has('entity')
                 ->whereNotIn('id', $excludes)
                 ->limit(10)
@@ -39,7 +40,7 @@ class LiveSearchService
                 ->get();
         } else {
             $models = $modelClass
-                ->with(['entity', 'entity.image', 'entity.entityType'])
+                ->with($with)
                 ->has('entity')
                 ->whereNotIn('id', $excludes);
             // Exact match
@@ -72,10 +73,9 @@ class LiveSearchService
             if ($this->request->filled('with-family')) {
                 // @phpstan-ignore-next-line
                 $families = $model->families->pluck('name')->toarray();
-                if (empty($families)) {
-                    continue;
+                if (!empty($families)) {
+                    $format['text'] .= ' (' . implode(', ', $families) . ')';
                 }
-                $format['text'] .= ' (' . implode(', ', $families) . ')';
             }
 
             $list[] = $format;

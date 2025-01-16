@@ -8,7 +8,7 @@
     if (isset($model) && $model->$field) {
         $preset = $model->$field;
     } elseif (!isset($bulk)) {
-        $preset = FormCopy::field($field)->select($isParent ?? false, \App\Models\Organisation::class);
+        $preset = FormCopy::field($field)->child()->select($isParent ?? false, \App\Models\Organisation::class);
     }
 @endphp
 <x-forms.foreign

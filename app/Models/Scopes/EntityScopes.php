@@ -236,7 +236,7 @@ trait EntityScopes
     /**
      * Filter on entities with specific tags
      */
-    protected function scopeFilterTags(Builder $query, ?string $type, array $tags = []): void
+    protected function scopeFilterTags(Builder $query, array $tags = [], ?string $type = null): void
     {
         // Gets handled differently for some reason?
         if ($type === 'none') {

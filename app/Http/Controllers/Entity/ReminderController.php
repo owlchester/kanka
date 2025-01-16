@@ -86,7 +86,7 @@ class ReminderController extends Controller
      */
     public function create(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity);
+        $this->authorize('reminders', $entity);
 
         $name = $this->view;
         $route = $this->route;
@@ -110,7 +110,7 @@ class ReminderController extends Controller
      */
     public function store(AddCalendarEvent $request, Campaign $campaign, Entity $entity)
     {
-        $this->authorize('update', $entity);
+        $this->authorize('reminders', $entity);
 
         if (request()->ajax()) {
             return response()->json(['success' => true]);
@@ -136,7 +136,7 @@ class ReminderController extends Controller
      */
     public function edit(Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
-        $this->authorize('update', $entityEvent->calendar);
+        $this->authorize('reminders', $entityEvent->entity);
 
         $name = $this->view;
         $route = $this->route;
@@ -167,7 +167,7 @@ class ReminderController extends Controller
      */
     public function update(UpdateCalendarEvent $request, Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
-        $this->authorize('update', $entityEvent->calendar);
+        $this->authorize('reminders', $entityEvent->entity);
 
         if (request()->ajax()) {
             return response()->json(['success' => true]);
@@ -176,7 +176,7 @@ class ReminderController extends Controller
         if (request()->has('entity_id') && request()->get('entity_id') != $entity->id) {
             $newEntity = Entity::findOrFail(request()->get('entity_id'));
 
-            $this->authorize('update', $newEntity->child);
+            $this->authorize('reminders', $newEntity);
             $request->merge(['type_id' => null]);
         }
         $routeOptions = ['campaign' => $campaign, 'calendar' => $entityEvent->calendar->id, 'year' => request()->post('year')];
@@ -211,7 +211,7 @@ class ReminderController extends Controller
      */
     public function destroy(Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
-        $this->authorize('attribute', $entity->child);
+        $this->authorize('reminders', $entity);
         $entityEvent->delete();
         $success = __('calendars.event.destroy', ['name' => $entityEvent->calendar->name]);
 

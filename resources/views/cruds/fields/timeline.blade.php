@@ -6,7 +6,7 @@
     if (isset($model) && $model->parent) {
         $preset = $model->parent;
     } elseif (!isset($bulk)) {
-        $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Timeline::class);
+        $preset = FormCopy::field('parent')->child()->select($isParent ?? false, \App\Models\Timeline::class);
     }
 @endphp
 <x-forms.foreign

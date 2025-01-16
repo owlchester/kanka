@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\EntityType;
 use App\Models\Image;
 use App\Models\ImageMention;
 use App\Models\EntityMention;
@@ -13,6 +14,7 @@ use App\Models\TimelineElement;
 use App\Traits\MentionTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 class EntityMappingService
 {
@@ -24,6 +26,8 @@ class EntityMappingService
     protected int $createdImages = 0;
     protected int $updatedImages = 0;
     protected int $deletedImages = 0;
+
+    protected array $entityTypes;
 
     /**
      * If exceptions should be thrown. Probably not.
@@ -209,14 +213,17 @@ class EntityMappingService
             if ($singularType == 'campaign') {
                 continue;
             }
-            $singularType = config('entities.ids.' . $singularType);
+            $entityType = $this->getEntityTypeID($singularType);
+            if (!$entityType) {
+                continue;
+            }
 
             // Determine the real campaign id from the model.
             $campaignId = $this->campaignID();
 
             /** @var ?Entity $target */
             $target = Entity::where([
-                'type_id' => $singularType,
+                'type_id' => $entityType,
                 'id' => $id,
                 'campaign_id' => $campaignId
             ])->first();
@@ -303,5 +310,22 @@ class EntityMappingService
     {
         // @phpstan-ignore-next-line
         return $this->model;
+    }
+
+    protected function getEntityTypeID(string $code): ?int
+    {
+        $this->loadEntityTypes();
+        return Arr::get($this->entityTypes, $code);
+    }
+
+    protected function loadEntityTypes(): void
+    {
+        if (isset($this->entityTypes)) {
+            return;
+        }
+        $this->entityTypes = [];
+        foreach (EntityType::inCampaign($this->campaignID())->get() as $entityType) {
+            $this->entityTypes[$entityType->code] = $entityType->id;
+        }
     }
 }

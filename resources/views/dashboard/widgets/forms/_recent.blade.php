@@ -1,4 +1,4 @@
-@inject('typeService', 'App\Services\Entity\TypeService')
+@inject('entityTypeService', 'App\Services\EntityTypeService')
 @php
     $advancedFilters = [
         '' => '',
@@ -7,7 +7,11 @@
     ];
     $boosted = $campaign->boosted();
 
-    $entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->exclude(['bookmark'])->singularKey()->add(['' => __('dashboard.widgets.random.type.all')])->get();
+    $entityTypes = $entityTypeService
+        ->campaign($campaign)
+        ->exclude([config('entities.ids.bookmark')])
+        ->prepend(['' => __('dashboard.widgets.random.type.all')])
+        ->toSelect();
 @endphp
 
 <div class="nav-tabs-custom">
@@ -28,7 +32,7 @@
         <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
                 <x-forms.field field="entity-type" :required="true" :label="__('crud.fields.entity_type')">
-                    <x-forms.select name="config[entity]" :options="$entityTypes" :selected="$model?->conf('entity') ?? null" class="w-full recent-entity-type" :extra="['data-animate' => 'reveal', 'data-target' => '.field-recent-filters']" />
+                    <x-forms.select name="entity_type_id" :options="$entityTypes" :selected="$model->entityType->id ?? null" class="w-full recent-entity-type" :extra="['data-animate' => 'reveal', 'data-target' => '.field-recent-filters']" />
                 </x-forms.field>
 
                 <x-forms.field
@@ -37,7 +41,7 @@
                     link="https://docs.kanka.io/en/latest/guides/dashboard.html"
                     tooltip
                     :helper="__('dashboard.widgets.helpers.filters')"
-                    :hidden="empty($model) || empty($model->conf('entity'))">
+                    :hidden="empty($model) || empty($model->entityType)">
                     <input type="text" name="config[filters]" value="{{ old('config[filters]', $model->config['filters'] ?? null) }}" maxlength="191" class="w-full" id="config[filters]" placeholder="" />
                 </x-forms.field>
 

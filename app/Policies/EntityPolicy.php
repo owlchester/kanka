@@ -89,6 +89,11 @@ class EntityPolicy
         return  EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_DELETE, $user, $entity);
     }
 
+    public function reminders(User $user, Entity $entity): bool
+    {
+        return $this->update($user, $entity);
+    }
+
 
     /**
      */

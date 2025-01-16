@@ -10,16 +10,10 @@ use App\Services\BulkService;
 
 class TemplateController extends Controller
 {
-    protected BulkService $bulkService;
-    protected AttributeService $attributeService;
-
     public function __construct(
-        BulkService $bulkService,
-        AttributeService $attributeService,
+        protected BulkService $bulkService,
+        protected AttributeService $attributeService,
     ) {
-        $this->bulkService = $bulkService;
-        $this->attributeService = $attributeService;
-
         $this->middleware('auth');
     }
 
@@ -42,7 +36,7 @@ class TemplateController extends Controller
         $target = request()->get('template_id');
 
         $count = $this->bulkService
-            ->entity($entityType->code)
+            ->entityType($entityType)
             ->entities($models)
             ->templates($target);
 

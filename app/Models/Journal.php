@@ -199,14 +199,17 @@ class Journal extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if (!empty($this->type) || !empty($this->date)) {
+        if (!empty($this->date)) {
             return true;
         }
 
         if (!empty($this->author) || !empty($this->location)) {
             return true;
         }
-        return (bool) (!empty($this->calendarReminder()));
+        if (!empty($this->calendarReminder())) {
+            return true;
+        }
+        return parent::showProfileInfo();
     }
 
     /**

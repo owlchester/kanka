@@ -10,19 +10,15 @@ use App\Services\BulkService;
 
 class DeleteController extends Controller
 {
-    protected BulkService $bulkService;
-
     public function __construct(
-        BulkService $bulkService,
+        protected BulkService $bulkService,
     ) {
-        $this->bulkService = $bulkService;
         $this->middleware('auth');
     }
 
-    public function index(Campaign $campaign, mixed $type)
+    public function index(Campaign $campaign, EntityType $entityType)
     {
         $datagrid = null;
-        $entityType = EntityType::findOrFail((int) $type);
         if ($entityType->id === config('entities.ids.bookmark')) {
             $datagrid = new BookmarkDatagridActions();
         }
@@ -39,7 +35,7 @@ class DeleteController extends Controller
         $models = explode(',', request()->get('models'));
 
         $count = $this->bulkService
-            ->entity($entityType->code)
+            ->entityType($entityType)
             ->entities($models)
             ->campaign($campaign)
             ->delete();

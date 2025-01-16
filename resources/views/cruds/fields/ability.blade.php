@@ -9,7 +9,7 @@ if (isset($model) && $model->ability) {
 } elseif (isset($model) && $model->parent) {
     $preset = $model->parent;
 } elseif (!isset($bulk)) {
-    $preset = FormCopy::field('parent')->select($isParent ?? false, \App\Models\Ability::class);
+    $preset = FormCopy::field('parent')->child()->select($isParent ?? false, \App\Models\Ability::class);
 }
 @endphp
 

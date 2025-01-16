@@ -8,14 +8,17 @@ use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\Entity;
 use App\Models\EntityEvent;
+use App\Models\EntityType;
 use App\Models\Event;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Stevebauman\Purify\Facades\Purify;
 
 class CalendarService
 {
     use CampaignAware;
+    use UserAware;
 
     protected Calendar $calendar;
 
@@ -105,6 +108,10 @@ class CalendarService
     protected function entity(array $data = []): Entity
     {
         if (empty($data['entity_id']) && !empty($data['name'])) {
+            $entityType = EntityType::find(config('entities.ids.event'));
+            if (!$this->user->can('create', [$entityType, $this->campaign])) {
+                throw new TranslatableException(__('calendars.event.errors.missing_permissions'));
+            }
             // Create an event
             $event = new Event();
             $event->name = $data['name'];

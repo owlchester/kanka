@@ -1,9 +1,14 @@
-@inject('typeService', 'App\Services\Entity\TypeService')
+@inject('entityTypeService', 'App\Services\EntityTypeService')
 
 
 @php
     $boosted = $campaign->boosted();
-    $entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->exclude(['bookmark'])->singularKey()->add(['' => __('dashboard.widgets.random.type.all')])->get();
+
+    $entityTypes = $entityTypeService
+        ->campaign($campaign)
+        ->exclude([config('entities.ids.bookmark')])
+        ->prepend(['' => __('dashboard.widgets.random.type.all')])
+        ->toSelect();
 @endphp
 
 <div class="nav-tabs-custom">
@@ -24,11 +29,11 @@
         <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
                 <x-forms.field field="random-type" :required="true" :label="__('bookmarks.fields.random_type')">
-                    <x-forms.select name="config[entity]" :options="$entityTypes" :selected="$model?->conf('entity') ?? null" class="w-full recent-entity-type" />
+                    <x-forms.select name="entity_type_id" :options="$entityTypes" :selected="$model->entityType->id ?? null" class="w-full recent-entity-type" />
                 </x-forms.field>
 
                 <x-forms.field field="recent-filters"
-                    :hidden="empty($model) || empty($model->conf('entity'))"
+                    :hidden="empty($model) || empty($model->entityType)"
                     :label="__('dashboard.widgets.recent.filters')"
                     tooltip
                     link="https://docs.kanka.io/en/latest/guides/dashboard.html"

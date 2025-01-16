@@ -9,13 +9,9 @@ use App\Services\BulkService;
 
 class CopyController extends Controller
 {
-    protected BulkService $bulkService;
-
     public function __construct(
-        BulkService $bulkService,
+        protected BulkService $bulkService,
     ) {
-        $this->bulkService = $bulkService;
-
         $this->middleware('auth');
     }
 
@@ -38,7 +34,7 @@ class CopyController extends Controller
 
         $count = $this
             ->bulkService
-            ->entity($entityType->code)
+            ->entityType($entityType)
             ->campaign($campaign)
             ->entities($models)
             ->copyToCampaign($campaignId);

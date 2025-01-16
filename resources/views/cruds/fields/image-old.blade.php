@@ -50,7 +50,7 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
                 if (isset($model) && $model->entity && $model->entity->image_uuid) {
                     $preset = $model->entity->image;
                 } else {
-                    $preset = FormCopy::field('image')->entity()->select();
+                    $preset = FormCopy::field('image')->select();
                 }
             @endphp
             @if (isset($campaign) && (!isset($campaignImage) || !$campaignImage) && !isset($gallery))

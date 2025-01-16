@@ -30,6 +30,7 @@ class StoreCampaignDashboardWidget extends FormRequest
             'entity_id' => 'nullable|exists:entities,id',
             'dashboard_id' => 'nullable|exists:campaign_dashboards,id',
             'config.order' => 'nullable|in:name_asc,name_desc,oldest',
+            'entity_type_id' => 'nullable|exists:entity_types,id',
         ];
     }
 }

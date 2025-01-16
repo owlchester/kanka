@@ -38,6 +38,7 @@ class BulkController extends Controller
      */
     public function index(BulkRequest $request, Campaign $campaign)
     {
+        dd('what');
         $this->request = $request;
         $this->entity = $request->get('entity');
         $models = $request->get('model', []);

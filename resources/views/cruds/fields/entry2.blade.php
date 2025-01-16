@@ -13,5 +13,5 @@ $old = old('entry');
         </a>
     </div>
 
-    <textarea id="entry" name="entry" class="w-full html-editor" rows="3">{!! FormCopy::field('entryForEdition')->entity()->string() ?: old('entry', $entity->entryForEdition ?? $model->entryForEdition ?? null) !!}</textarea>
+    <textarea id="entry" name="entry" class="w-full html-editor" rows="3">{!! FormCopy::field('entryForEdition')->string() ?: old('entry', $entity->entryForEdition ?? $model->entryForEdition ?? null) !!}</textarea>
 </div>

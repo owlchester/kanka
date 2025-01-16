@@ -111,6 +111,7 @@ class EventController extends Controller
         // We need to handle negative year dates (start with -)
         try {
             $link = $this->service
+                ->user($request->user())
                 ->campaign($campaign)
                 ->calendar($calendar)
                 ->addEvent($request->all());

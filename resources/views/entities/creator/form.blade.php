@@ -52,7 +52,7 @@
             @php $allowNew = false; $dropdownParent = '#primary-dialog';@endphp
             @if (isset($entityType))
                 @if ($entityType->isSpecial())
-{{--                    @include('entities.creator.forms.custom')--}}
+                    @include('entities.creator.forms.custom')
                 @else
                     @include('entities.creator.forms.' . $entityType->code)
                 @endif

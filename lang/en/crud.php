@@ -324,6 +324,7 @@ return [
         'map'           => 'Choose a map',
         'multiple'      => 'Choose one or several',
         'name'          => 'Name of the entity',
+        'type'          => 'Type of the entity',
         'note'          => 'Choose a note',
         'organisation'  => 'Choose an organisation',
         'parent'        => 'Choose a parent',

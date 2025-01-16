@@ -14,7 +14,7 @@ if (($widget->conf('singular'))) {
 
     if ($entities->count() > 0) {
         $entity = $entities[0];
-        if ($entity->child) {
+        if (!$entity->isMissingChild()) {
             ?>
             @include('dashboard.widgets._preview', [
     'entity' => $entity,

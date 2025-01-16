@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Sanitizable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -25,10 +26,14 @@ use App\Facades\Module;
  * @method static self|Builder enabled()
  * @method static self|Builder default()
  * @method static self|Builder exclude(array $ids)
- * @method static self|Builder inCampaign(Campaign $campaign)
+ * @method static self|Builder inCampaign(Campaign|int $campaign)
  */
 class EntityType extends Model
 {
+    use Sanitizable;
+
+    protected array $sanitizable = ['singular', 'plural'];
+
     protected string $cachedPluralCode;
 
     public $fillable = [
@@ -39,10 +44,13 @@ class EntityType extends Model
         'is_special',
     ];
 
-    public function scopeInCampaign(Builder $query, Campaign $campaign): Builder
+    public function scopeInCampaign(Builder $query, Campaign|int $campaign): Builder
     {
+        if ($campaign instanceof Campaign) {
+            $campaign = $campaign->id;
+        }
         return $query->where(function ($sub) use ($campaign) {
-            return $sub->where('campaign_id', $campaign->id)->orWhereNull('campaign_id');
+            return $sub->where('campaign_id', $campaign)->orWhereNull('campaign_id');
         });
     }
 
@@ -73,7 +81,7 @@ class EntityType extends Model
     /**
      * Get the class model of the entity type
      */
-    public function getClass(): MiscModel
+    public function getClass(): MiscModel|Model
     {
         $className = 'App\Models\\' . Str::studly($this->code);
         return app()->make($className);

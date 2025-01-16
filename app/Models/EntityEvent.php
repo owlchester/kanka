@@ -32,9 +32,10 @@ use Illuminate\Support\Str;
  * @property int $type_id
  * @property ?int $elapsed
  *
- * @property Calendar|null $calendar
- * @property EntityEvent|null $death
- * @property EntityEventType|null $type
+ * @property ?Entity $entity *
+ * @property ?Calendar $calendar
+ * @property ?EntityEvent $death
+ * @property ?EntityEventType $type
  */
 class EntityEvent extends Model
 {

@@ -14,10 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FormCopyService
 {
-    /**
-     * @var MiscModel|Model|Character|null
-     */
-    protected $source;
+    protected Entity $source;
 
     /**
      * The requested field
@@ -25,15 +22,18 @@ class FormCopyService
      */
     protected $field;
 
-    /**
-     * If the field comes from the entity
-     */
-    protected bool $entity = false;
+    protected bool $fromChild = false;
+
+    public function child(): self
+    {
+        $this->fromChild = true;
+        return $this;
+    }
 
     /**
      * @param Model|MiscModel|Character|null $source
      */
-    public function source(mixed $source = null): self
+    public function source(Entity $source = null): self
     {
         $this->source = $source;
         return $this;
@@ -44,15 +44,6 @@ class FormCopyService
     public function field(string $field): self
     {
         $this->field = $field;
-        return $this;
-    }
-
-    /**
-     * Set the request to be on the entity
-     */
-    public function entity(): self
-    {
-        $this->entity = true;
         return $this;
     }
 
@@ -100,42 +91,45 @@ class FormCopyService
      * Character traits
      * @return array|Collection
      */
-    public function characterPersonality()
+    public function characterPersonality(): Collection
     {
         if ($this->valid()) {
+            $this->fromChild = false;
             // @phpstan-ignore-next-line
-            return $this->source->characterTraits()->personality()->get();
+            return $this->source->child->characterTraits()->personality()->get();
         }
-        return [];
+        return new Collection();
     }
 
     /**
      * Character traits
      * @return array|Collection
      */
-    public function characterAppearance()
+    public function characterAppearance(): Collection
     {
         if ($this->valid()) {
+            $this->fromChild = false;
             // @phpstan-ignore-next-line
-            return $this->source->characterTraits()->appearance()->get();
+            return $this->source->child->characterTraits()->appearance()->get();
         }
-        return [];
+        return new Collection();
     }
 
     /**
      * Character organisations
      * @return array|Collection
      */
-    public function characterOrganisation()
+    public function characterOrganisation(): Collection
     {
         if ($this->valid()) {
+            $this->fromChild = false;
             // @phpstan-ignore-next-line
-            return $this->source->organisationMemberships()
+            return $this->source->child->organisationMemberships()
                 ->with('organisation')
                 ->has('organisation')
                 ->get();
         }
-        return [];
+        return new Collection();
     }
 
     /**
@@ -153,11 +147,11 @@ class FormCopyService
     /**
      * Prefill model for custom blade directives
      */
-    public function model()
+    public function model(): ?MiscModel
     {
         // Only copy on MiscModel (entity) models
         if ($this->valid()) {
-            return $this->source;
+            return $this->source->child;
         }
         return null;
     }
@@ -213,14 +207,15 @@ class FormCopyService
             return null;
         }
 
-        if ($this->entity) {
-            $this->entity = false;
-            if (!$this->source instanceof Entity) {
-                // @phpstan-ignore-next-line
-                return $this->source->entity->getAttributeValue($this->field);
-            }
+        if (!$this->fromChild) {
+            return $this->source->getAttributeValue($this->field);
         }
-        return $this->source->getAttributeValue($this->field);
+        $this->fromChild = false;
+        if ($this->source->isMissingChild()) {
+            return null;
+        }
+        // @phpstan-ignore-next-line
+        return $this->source->child->getAttributeValue($this->field);
     }
 
     /**
@@ -231,12 +226,14 @@ class FormCopyService
             return null;
         }
 
-        if ($this->entity === true) {
-            $this->entity = false;
-            // @phpstan-ignore-next-line
-            return $this->source->entity->{$this->field};
+        if (!$this->fromChild) {
+            return $this->source->{$this->field};
         }
-
-        return $this->source->{$this->field};
+        $this->fromChild = false;
+        if ($this->source->isMissingChild()) {
+            return null;
+        }
+        // @phpstan-ignore-next-line
+        return $this->source->child->{$this->field};
     }
 }

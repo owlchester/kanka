@@ -28,7 +28,7 @@
                 {{ __('fields.tooltip.description') }}
             </p>
 
-            <textarea name="tooltip" class="" id="tooltip" rows="3" placeholder="{{ __('fields.tooltip.description') }}">{!! FormCopy::entity()->field('tooltip')->string() ?: old('tooltip', $entity->tooltip ?? null) !!}</textarea>
+            <textarea name="tooltip" class="" id="tooltip" rows="3" placeholder="{{ __('fields.tooltip.description') }}">{!! old('tooltip', FormCopy::field('tooltip')->string() ?: $entity->tooltip ?? null) !!}</textarea>
 
             <p class="text-neutral-content">
                 @php
@@ -52,10 +52,10 @@
         @if ($campaign->boosted())
             @php
             $headerUrlPreset = null;
-            if (!empty($source) && $source->entity && $source->entity->header_image) {
-                $headerUrlPreset = Storage::url($source->entity->header_image);
-            } elseif (!empty($source) && $source->entity && $source->entity->header) {
-                $headerUrlPreset = $source->entity->header->getUrl(192, 144);
+            if (!empty($source) && $source->header_image) {
+                $headerUrlPreset = Storage::url($source->header_image);
+            } elseif (!empty($source) && $source->header) {
+                $headerUrlPreset = $source->header->getUrl(192, 144);
             } elseif (isset($entity) && $entity->header) {
                 $headerUrlPreset = $entity->header->getUrl(192, 144);
             }
@@ -97,7 +97,7 @@
                         file="{{ route('gallery.upload.file', [$campaign]) }}"
                         url="{{ route('gallery.upload.url', [$campaign]) }}"
                         accepts=".jpg, .jpeg, .png, .gif, .webp"
-                        uuid="{{ $source->entity->header_uuid ?? $entity->header_uuid ?? null }}"
+                        uuid="{{ $source->header_uuid ?? $entity->header_uuid ?? null }}"
                         field="entity_header_uuid"
                         thumbnail="{{ $headerUrlPreset }}"
                         browse="{{ route('gallery.browse', [$campaign]) }}"

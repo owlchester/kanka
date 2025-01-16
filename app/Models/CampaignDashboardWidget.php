@@ -24,6 +24,7 @@ use Illuminate\Support\Str;
  * @property int $id
  * @property int $entity_id
  * @property int $dashboard_id
+ * @property ?int $entity_type_id
  * @property Widget $widget
  * @property array $config
  * @property int $width
@@ -31,6 +32,7 @@ use Illuminate\Support\Str;
  * @property Entity $entity
  * @property CampaignDashboard $dashboard
  * @property CampaignDashboardWidgetTag[] $dashboardWidgetTags
+ * @property EntityType $entityType
  *
  * @method static self|Builder positioned()
  * @method static self|Builder onDashboard(?CampaignDashboard $dashboard = null)
@@ -50,6 +52,7 @@ class CampaignDashboardWidget extends Model
         'position',
         'width',
         'dashboard_id',
+        'entity_type_id',
     ];
 
     protected $casts = [
@@ -60,6 +63,11 @@ class CampaignDashboardWidget extends Model
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
+    }
+
+    public function entityType(): BelongsTo
+    {
+        return $this->belongsTo(EntityType::class);
     }
 
     public function dashboard(): BelongsTo
@@ -119,9 +127,11 @@ class CampaignDashboardWidget extends Model
     public function scopePositioned(Builder $query): Builder
     {
         return $query->with([
-            'entity', 'entity.image', 'entity.entityType',
+            'entity', 'entity.image', 'entity.entityType', 'entity.header',
             'tags',
-            'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug'
+            'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug',
+            'entity.pinnedRelations', 'entity.entityAttributes',
+            'entityType',
         ])
             ->orderBy('position', 'asc');
     }
@@ -261,11 +271,9 @@ class CampaignDashboardWidget extends Model
 
         // If an entity type is provided, we can combine that with filters. We need to get the list of the misc
         // ids first to pass on to the entity query.
-        $entityType = $this->conf('entity');
-        if (!empty($entityType) && !empty($this->config['filters'])) {
-            $className = 'App\Models\\' . Str::studly($entityType);
+        if ($this->entityType && !empty($this->config['filters']) && !$this->entityType->isSpecial()) {
             /** @var Character|mixed $model */
-            $model = new $className();
+            $model = $this->entityType->getClass();
 
             /** @var FilterService $filterService */
             $filterService = app()->make('App\Services\FilterService');
@@ -273,7 +281,8 @@ class CampaignDashboardWidget extends Model
                 ->session(false)
                 ->options($this->filterOptions())
                 ->model($model)
-                ->make($entityType);
+                ->entityType($this->entityType)
+                ->make('dashboard');
 
             $models = $model
                 ->select($model->getTable() . '.id')
@@ -286,11 +295,10 @@ class CampaignDashboardWidget extends Model
             $base = $base->whereIn('entities.entity_id', $entityIds);
         }
 
-        $entityTypeID = (int) config('entities.ids.' . $entityType);
         return $base
             ->inTags($this->tags->pluck('id')->toArray())
-            ->inTypes($entityTypeID)
-            ->with(['image:campaign_id,id,ext,focus_x,focus_y', 'entityType:id,code', 'mentions', 'mentions.target', 'mentions.target.tags'])
+            ->inTypes($this->entityType?->id)
+            ->with(['image:campaign_id,id,ext,focus_x,focus_y', 'entityType:id,code,is_special', 'mentions', 'mentions.target', 'mentions.target.tags'])
             ->paginate(10, ['*'], 'page', $page)
         ;
     }
@@ -310,18 +318,17 @@ class CampaignDashboardWidget extends Model
 
         $base = new Entity();
 
-        if (!empty($entityType) && !empty($this->config['filters'])) {
-            $className = 'App\Models\\' . Str::studly($entityType);
-            /** @var MiscModel $model */
-            $model = new $className();
+        if ($this->entityType && !$this->entityType->isSpecial()) {
+            $model = $this->entityType->getClass();
 
             /** @var FilterService $filterService */
             $filterService = app()->make('App\Services\FilterService');
             $filterService
                 ->session(false)
                 ->options($this->filterOptions())
+                ->entityType($entityType)
                 ->model($model)
-                ->make($entityType);
+                ->make('dashboard');
 
             // @phpstan-ignore-next-line
             $models = $model
@@ -339,8 +346,8 @@ class CampaignDashboardWidget extends Model
             ->inTags($this->tags->pluck('id')->toArray())
             ->whereNotIn('type_id', [config('entities.ids.attribute_template'), config('entities.ids.conversation'), config('entities.ids.tag')])
             ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
-            ->inTypes($entityTypeID)
-            ->with(['image', 'entityType'])
+            ->inTypes($this->entityType?->id)
+            ->with(['image', 'entityType', 'header'])
             ->inRandomOrder()
             ->first();
     }

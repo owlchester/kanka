@@ -10,7 +10,7 @@
     class="widget-header"
 >
     @if (!empty($images['wide_xl']))
-        <a href="{{ $entity->child->getLink() }}"
+        <a href="{{ $entity->url() }}"
             class="widget-image cover-background bg-center aspect-video rounded-t "
             >
             <picture class="entity-image-wide">
@@ -19,7 +19,7 @@
             </picture>
         </a>
     @endif
-    <a href="{{ $entity->child->getLink() }}" class="flex gap-1 text-xl p-4 pb-0">
+    <a href="{{ $entity->url() }}" class="flex gap-1 text-xl p-4 pb-0">
         @if ($entity->is_private)
             <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')" tooltip />
         @endif

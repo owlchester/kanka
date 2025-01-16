@@ -39,7 +39,7 @@
                     {{ __('crud.actions.new_child') }}
                 </x-dropdowns.item>
             @endif
-            <x-dropdowns.item link="{{ $entity->entityType->createRoute($campaign, ['copy' => $entity->entityType->isSpecial() ? $entity->id : $entity->child->id]) }}">
+            <x-dropdowns.item link="{{ $entity->entityType->createRoute($campaign, ['copy' => $entity->id]) }}">
                 <x-icon class="fa-regular fa-copy" />
                 {{ __('crud.actions.copy') }}
             </x-dropdowns.item>

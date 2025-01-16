@@ -259,7 +259,10 @@ class Organisation extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        return !empty($this->type) || !$this->entity->elapsedEvents->isEmpty() || $this->locations->isNotEmpty();
+        if ($this->entity->elapsedEvents->isNotEmpty() || $this->locations->isNotEmpty()) {
+            return true;
+        }
+        return parent::showProfileInfo();
     }
 
     /**

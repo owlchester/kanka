@@ -18,19 +18,13 @@ class EntityObserver
 {
     use PurifiableTrait;
 
-    protected PermissionService $permissionService;
-
-    protected TagService $tagService;
-
     /**
      * PermissionController constructor.
      */
     public function __construct(
-        PermissionService $permissionService,
-        TagService $tagService
+        protected PermissionService $permissionService,
+        protected TagService $tagService
     ) {
-        $this->permissionService = $permissionService;
-        $this->tagService = $tagService;
     }
 
     /**

@@ -165,7 +165,10 @@ class Event extends MiscModel
             return true;
         }
 
-        return (bool) ($this->location || !empty($this->calendarReminder()));
+        if ($this->location || !empty($this->calendarReminder())) {
+            return true;
+        }
+        return parent::showProfileInfo();
     }
 
     /**

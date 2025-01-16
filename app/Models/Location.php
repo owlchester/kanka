@@ -291,7 +291,10 @@ class Location extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        return  !empty($this->type) || !$this->maps->isEmpty() || !$this->entity->elapsedEvents->isEmpty();
+        if ($this->maps->isNotEmpty() || $this->entity->elapsedEvents->isNotEmpty()) {
+            return true;
+        }
+        return parent::showProfileInfo();
     }
 
     /**

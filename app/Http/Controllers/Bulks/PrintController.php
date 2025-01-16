@@ -9,13 +9,9 @@ use App\Services\BulkService;
 
 class PrintController extends Controller
 {
-    protected BulkService $bulkService;
-
     public function __construct(
-        BulkService $bulkService
+        protected BulkService $bulkService
     ) {
-        $this->bulkService = $bulkService;
-
         $this->middleware('auth');
     }
 
@@ -23,7 +19,7 @@ class PrintController extends Controller
     {
         $entities = $this->bulkService
             ->campaign($campaign)
-            ->entity($entityType->code)
+            ->entityType($entityType)
             ->entities(request()->get('model'))
             ->export();
 

@@ -106,13 +106,6 @@ class MiscPolicy
     }
 
     /**
-     */
-    public function events(User $user, $entity): bool
-    {
-        return $this->update($user, $entity);
-    }
-
-    /**
      * @param Entity|MiscModel|null $entity
      */
     protected function checkPermission(int $action, User $user, mixed $entity = null, ?Campaign $campaign = null): bool

@@ -12,7 +12,7 @@
             <ul>
                 @foreach ($templates as $template)
                     <li>
-                        <a href="{{ route($type . '.create', [$campaign, 'copy' => $template->entity_id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $type }}">
+                        <a href="{{ route($type . '.create', [$campaign, 'copy' => $template->id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $type }}">
                             {{ $template->name  }}
                         </a>
                     </li>

@@ -224,11 +224,13 @@ class Item extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if (!empty($this->type) || !empty($this->price) || !empty($this->size) || !empty($this->weight)) {
+        if (!empty($this->price) || !empty($this->size) || !empty($this->weight)) {
             return true;
         }
-
-        return (bool) ($this->character || $this->location);
+        if ($this->character || $this->location) {
+            return true;
+        }
+        return parent::showProfileInfo();
     }
 
     /**

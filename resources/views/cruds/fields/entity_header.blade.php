@@ -13,7 +13,7 @@ $preset = null;
 if (isset($model) && $model->entity && $model->entity->header_uuid) {
     $preset = $model->entity->header;
 } else {
-    $preset = FormCopy::field('header')->entity()->select();
+    $preset = FormCopy::field('header')->select();
 }
 @endphp
 

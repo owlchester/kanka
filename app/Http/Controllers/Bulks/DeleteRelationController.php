@@ -8,12 +8,9 @@ use App\Services\BulkService;
 
 class DeleteRelationController extends Controller
 {
-    protected BulkService $bulkService;
-
     public function __construct(
-        BulkService $bulkService,
+        protected BulkService $bulkService,
     ) {
-        $this->bulkService = $bulkService;
         $this->middleware('auth');
     }
     public function index(Campaign $campaign)

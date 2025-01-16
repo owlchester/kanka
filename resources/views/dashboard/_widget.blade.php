@@ -1,11 +1,5 @@
-@inject('moduleService', 'App\Services\Campaign\ModuleService')
 <?php /** @var \App\Models\CampaignDashboardWidget $widget */
-use Illuminate\Support\Str;
 use App\Enums\Widget;
-
-if (!empty($widget->conf('entity'))) {
-    $entityString = $moduleService->plural($widget->conf('entity'), 'entities.' . Str::plural($widget->conf('entity')));
-}
 ?>
 
 
@@ -49,18 +43,11 @@ if (!empty($widget->conf('entity'))) {
                     </div>
                 </div>
             @endif
-
-            @if ($widget->widget == Widget::Unmentioned)
-                @if (!empty($widget->conf('entity')))
-                    <span class="text-sm">{{ __('entities.' . $widget->conf('entity')) }}</span>
-                @endif
-            @endif
-
-            @if ($widget->widget == Widget::Recent)
+            @if (in_array($widget->widget, [Widget::Recent, Widget::Random]))
                 <p class="text-neutral-content text-sm">
                     <x-icon class="fa-solid fa-search" />
-                @if (!empty($widget->conf('entity')))
-                    {{ __($entityString) }}
+                @if ($widget->entityType)
+                    {!! __($widget->entityType->plural()) !!}
                 @elseif (!empty($widget->conf('singular')))
                     {{ __('dashboard.widgets.recent.singular') }}
                 @else

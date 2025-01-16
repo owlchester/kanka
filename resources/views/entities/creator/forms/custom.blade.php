@@ -1,1 +1,2 @@
-ability.blade.php
+@include('cruds.fields.type', ['trans' => 'crud'])
+

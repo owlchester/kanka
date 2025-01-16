@@ -1,17 +1,16 @@
 <?php
 /**
  * @var \App\Models\CampaignDashboardWidget $widget
- * @var \App\Models\MiscModel $model
+ * @var \App\Models\Entity $entity
  */
-$model = $model ?? $widget->entity->child;
 $entity = $entity ?? $widget->entity;
 
-if (empty($model)) {
+if (empty($entity) && $entity->isMissingChild()) {
     return;
 }
 
 $specificPreview = 'dashboard.widgets.previews.' . $entity->entityType->code;
-$customName = !empty($widget->conf('text')) ? str_replace('{name}', $model->name, $widget->conf('text')) : null;
+$customName = !empty($widget->conf('text')) ? str_replace('{name}', $entity->name, $widget->conf('text')) : null;
 
 \App\Facades\Dashboard::add($entity);
 foreach ($entity->mentions as $mention) {
@@ -26,6 +25,6 @@ foreach ($entity->mentions as $mention) {
     @include($specificPreview, ['entity' => $entity])
 @else
         <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity" />
-        <x-widgets.previews.body :widget="$widget" :campaign="$campaign" :entity="$entity" :model="$model" />
+        <x-widgets.previews.body :widget="$widget" :campaign="$campaign" :entity="$entity" />
 @endif
 </x-box>

@@ -403,16 +403,17 @@ class Character extends MiscModel
     public function showProfileInfo(): bool
     {
         // Test text fields first
-        if (
-            !empty($this->type) || !empty($this->age) || !empty($this->sex)
-            || !empty($this->pronouns)
-        ) {
+        if (!empty($this->age) || !empty($this->sex) || !empty($this->pronouns)) {
             return true;
         }
-        if (!$this->characterRaces->isEmpty() || !$this->characterFamilies->isEmpty()) {
+        if ($this->characterRaces->isNotEmpty() || $this->characterFamilies->isNotEmpty()) {
             return true;
         }
-        return (bool) (!$this->entity->elapsedEvents->isEmpty());
+        if ($this->entity->elapsedEvents->isNotEmpty()) {
+            return true;
+        }
+
+        return parent::showProfileInfo();
     }
 
     /**

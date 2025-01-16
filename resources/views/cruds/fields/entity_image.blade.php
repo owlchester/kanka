@@ -9,7 +9,7 @@ if (isset($bulk)) {
 if (isset($model) && $model->entity && $model->entity->image_uuid) {
     $preset = $model->entity->image;
 } else {
-    $preset = FormCopy::field('image')->entity()->select();
+    $preset = FormCopy::field('image')->select();
 }
 @endphp
 @if(!isset($bulk))
