@@ -105,12 +105,11 @@ class AttributeService
         return $this;
     }
 
-    protected function saveAttribute(string $attributeJson): self
+    protected function saveAttribute(array $attributeJson): self
     {
         try {
             /** @var Attribute $attr */
-            $attr = json_decode($attributeJson);
-
+            $attr = json_decode(json_encode($attributeJson));
             if (empty($attr->name)) {
                 return $this;
             }
