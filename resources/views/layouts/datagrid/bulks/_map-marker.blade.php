@@ -19,12 +19,6 @@ $sizeOptions = [
     6 => __('maps/markers.circle_sizes.custom'),
 ];
 
-$typeOptions = [
-    '' => null,
-    0 => __('general.no'),
-    1 => __('general.yes'),
-];
-
 $groups = $model->groupOptions();
 $groups[-1] = __('crud.filters.options.none');
 ?>
@@ -49,9 +43,7 @@ $groups[-1] = __('crud.filters.options.none');
     @endif
     @include('maps.markers.fields.font_colour', ['dropdownParent' => '#primary-dialog'])
 
-    <x-forms.field field="is-draggable" :label="__('maps/markers.fields.is_draggable')">
-        <x-forms.select name="is_draggable" :leaveEmpty="true" :options="$typeOptions" class="w-full" />
-    </x-forms.field>
+    @include('cruds.fields.draggable_choice')
 
     <x-forms.field field="opacity" :label="__('maps/markers.fields.opacity')">
         <input type="number" name="opacity" class="w-full" value="{{ $source->opacity ?? old('opacity', $model->opacity ?? null) }}" min="0" step="10" max="100" id="opacity" maxlength="3" />
