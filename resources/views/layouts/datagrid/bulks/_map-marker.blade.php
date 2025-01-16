@@ -50,7 +50,7 @@ $groups[-1] = __('crud.filters.options.none');
     @include('maps.markers.fields.font_colour', ['dropdownParent' => '#primary-dialog'])
 
     <x-forms.field field="is-draggable" :label="__('maps/markers.fields.is_draggable')">
-        <x-forms.select name="is_draggable" :options="$typeOptions" class="w-full" />
+        <x-forms.select name="is_draggable" :leaveEmpty="true" :options="$typeOptions" class="w-full" />
     </x-forms.field>
 
     <x-forms.field field="opacity" :label="__('maps/markers.fields.opacity')">

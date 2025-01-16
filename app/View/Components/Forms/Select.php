@@ -25,6 +25,7 @@ class Select extends Component
         public string $label = '',
         public string $placeholder = '',
         public mixed $selected = null,
+        public bool $leaveEmpty = false,
         public array $extra = [],
     ) {
     }
@@ -56,7 +57,9 @@ class Select extends Component
     public function isSelected(mixed $value): bool
     {
         if (empty($this->selected)) {
-            return empty($value);
+            if (!$this->leaveEmpty) {
+                return empty($value);
+            }
         }
         if (is_array($this->selected)) {
             return in_array($value, $this->selected);
