@@ -44,10 +44,10 @@
     </div>
     <div class="join">
         <a href="#" class="join-item btn2 btn-ghost" data-toggle="dialog" data-target="post-new-user">
-            <i class="fa-solid fa-user" aria-hidden="true"></i> {{ __('entities/notes.actions.add_user') }}
+            <i class="fa-solid fa-user" aria-hidden="true"></i> {{ __('campaigns.roles.fields.users') }}
         </a>
         <a href="#" class="join-item btn2 btn-ghost" data-toggle="dialog" data-target="post-new-role">
-            <i class="fa-solid fa-users" aria-hidden="true"></i> {{ __('entities/notes.actions.add_role') }}
+            <i class="fa-solid fa-users" aria-hidden="true"></i> {{ __('campaigns.members.fields.roles') }}
         </a>
     </div>
     <input type="hidden" name="permissions" value="1" />
@@ -58,7 +58,10 @@
     <x-dialog id="post-new-user" :title="__('entities/notes.show.advanced')" footer="entities.pages.posts.dialogs._user-footer">
         <x-grid type="1/1">
             <x-forms.field field="user" :label="__('crud.permissions.fields.member')">
-                @include('components.form.user', ['options' => ['dropdownParent' => '#post-new-user']])
+                @include('components.form.user', ['options' => [
+                    'dropdownParent' => '#post-new-user', 
+                    'multiple' => true
+                ]])
             </x-forms.field>
         </x-grid>
     </x-dialog>
@@ -66,7 +69,8 @@
         <x-grid type="1/1">
             <x-forms.field field="user" :label="__('crud.permissions.fields.role')">
                 @include('components.form.role', ['options' => [
-                    'dropdownParent' => '#post-new-role'
+                    'dropdownParent' => '#post-new-role',
+                    'multiple' => true,
                 ]])
             </x-forms.field>
         </x-grid>
