@@ -33,7 +33,6 @@ function registerEntityNameCheck() {
         }
         const url = this.dataset.live +
             '?q=' + encodeURIComponent(this.value) +
-            '&type=' + this.dataset.type +
             '&exclude=' + this.dataset.id;
         entityCreatorDuplicateWarning.classList.add('hidden');
         const duplicates = entityCreatorDuplicateWarning.querySelector('.duplicates');

@@ -61,7 +61,8 @@ window.initTags = function() {
                     const span = document.createElement('span');
                     span.classList.add('new-tag');
                     span.title = ele.dataset.newTag;
-                    span.innerHTML = state.text + ' <i class="fa-solid fa-plus-circle" aria-hidden="true"></i>';
+                    span.innerHTML = state.text + ' <i class="fa-solid fa-flag" aria-hidden="true"></i>';
+                    return span;
                 }
 
                 let el = state.element;

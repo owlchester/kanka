@@ -26,15 +26,8 @@ class SearchService
     /** The search term */
     protected string $term;
 
-    /** The search entity type */
-    protected string $type;
-
     /** Amount of results (sql limit) */
     protected int $limit = 10;
-
-    protected EntityService $entityService;
-
-    protected NewService $newService;
 
     /** List of excluded entity types */
     protected array $excludedTypes = [];
@@ -60,10 +53,10 @@ class SearchService
 
     protected Collection $pages;
 
-    public function __construct(EntityService $entityService, NewService $newService)
-    {
-        $this->entityService = $entityService;
-        $this->newService = $newService;
+    public function __construct(
+        protected EntityTypeService $entityTypeService,
+        protected NewService $newService
+    ) {
     }
 
     /**
@@ -161,9 +154,11 @@ class SearchService
     public function find()
     {
         // Figure out what kind of entities we want.
-        $availableEntityTypes = $this->entityService
+        $availableEntityTypes = $this->entityTypeService
             ->campaign($this->campaign)
-            ->getEnabledEntitiesID();
+            ->available()
+            ->pluck('id')
+            ->toArray();
 
         // If a list of types are provided, use those
         if (!empty($this->onlyTypes)) {

@@ -31,12 +31,16 @@
                           class="w-full"
                           id="qq-name-field"
                           rows="4"
-                          data-live="{{ route('search.live', $campaign) }}"
-                          data-type="{{ $entityType->code ?? 'post' }}"
+                          @if (isset($entityType))
+                          data-live="{{ route('search-list', [$campaign, $entityType]) }}"
+                          @endif
                           placeholder="{{ __('entities.creator.bulk_names') }}"></textarea>
             @else
 
-                <input type="text" name="name" placeholder="{{ !isset($entityType) ? __('posts.placeholders.name') : __('crud.placeholders.name') }}" autocomplete="off" value="{!! old('name') !!}" maxlength="191" required data-live="{{ route('search.live', $campaign) }}" data-type="{{ $entityType->code ?? 'post' }}" data-bulk="true" id="{{ !isset($entityType) ? 'qq-post-name-field' : 'qq-name-field' }}" data-1p-ignore="true" />
+                <input type="text" name="name" placeholder="{{ !isset($entityType) ? __('posts.placeholders.name') : __('crud.placeholders.name') }}" autocomplete="off" value="{!! old('name') !!}" maxlength="191" required
+                       @if (isset($entityType))
+                           data-live="{{ route('search-list', [$campaign, $entityType]) }}"
+                       @endif data-bulk="true" id="{{ !isset($entityType) ? 'qq-post-name-field' : 'qq-name-field' }}" data-1p-ignore="true" />
             @endif
             <x-alert type="warning" class=" my-1 duplicate-entity-warning" :hidden="true">
                 {{ __('entities.creator.duplicate') }}<br />

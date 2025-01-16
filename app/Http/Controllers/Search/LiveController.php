@@ -13,30 +13,13 @@ use Illuminate\Http\Request;
 
 class LiveController extends Controller
 {
-    protected SearchService $search;
-
-    /**
-     * LiveController constructor.
-     */
-    public function __construct(SearchService $searchService)
+    public function __construct(protected SearchService $searchService)
     {
-        $this->search = $searchService;
     }
 
-    /**
-     * Live Search
-     */
     public function index(Request $request, Campaign $campaign)
     {
         $term = mb_trim($request->get('q') ?? '');
-        $type = $request->get('type');
-        if (!empty($type)) {
-            $type = mb_trim($type);
-            if (!is_numeric($type)) {
-                $type = config('entities.ids.' . $type);
-            }
-            $type = (int) $type;
-        }
         $exclude = mb_trim($request->get('exclude') ?? '');
         if ($exclude === 'undefined') {
             $exclude = null;
@@ -44,19 +27,18 @@ class LiveController extends Controller
         $new = request()->has('new');
 
         if ($request->get('v2') === "true") {
-            $this->search->v2();
+            $this->searchService->v2();
         }
 
-        $this->search
+        $this->searchService
             ->term($term)
-            ->type($type)
             ->campaign($campaign)
             ->new($new)
             ->full()
             ->excludeIds($exclude);
 
         return response()->json(
-            $this->search->find()
+            $this->searchService->find()
         );
     }
 
@@ -68,7 +50,7 @@ class LiveController extends Controller
         $term = mb_trim($request->get('q') ?? '');
 
         return response()->json(
-            $this->search
+            $this->searchService
                 ->term($term)
                 ->campaign($campaign)
                 ->exclude([
@@ -94,7 +76,7 @@ class LiveController extends Controller
         }
 
         return response()->json(
-            $this->search
+            $this->searchService
                 ->term($term)
                 ->campaign($campaign)
                 ->exclude([config('entities.ids.bookmark')])
@@ -120,7 +102,7 @@ class LiveController extends Controller
         }
 
         return response()->json(
-            $this->search
+            $this->searchService
                 ->term($term)
                 ->campaign($campaign)
                 ->excludeIds($exclude)
@@ -143,7 +125,7 @@ class LiveController extends Controller
         }
 
         return response()->json(
-            $this->search
+            $this->searchService
                 ->term($term)
                 ->campaign($campaign)
                 ->exclude([config('entities.ids.tag')])
@@ -160,7 +142,7 @@ class LiveController extends Controller
         $term = mb_trim($request->get('q') ?? '');
 
         return response()->json(
-            $this->search
+            $this->searchService
                 ->term($term)
                 ->campaign($campaign)
                 ->only([config('entities.ids.calendar')])

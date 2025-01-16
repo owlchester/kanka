@@ -10,11 +10,8 @@ use Illuminate\Http\Request;
 
 class ListController extends Controller
 {
-    protected LiveSearchService $service;
-
-    public function __construct(LiveSearchService $service)
+    public function __construct(protected LiveSearchService $service)
     {
-        $this->service = $service;
     }
 
     public function index(Request $request, Campaign $campaign, EntityType $entityType)

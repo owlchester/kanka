@@ -9,7 +9,7 @@ use App\Models\EntityType;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
-use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class EntityTypeService
@@ -47,28 +47,40 @@ class EntityTypeService
         return $this;
     }
 
-
-    public function ordered(): array
+    public function available(): Collection
     {
-        $types = [];
+        $types = new Collection();
 
         $search = EntityType::inCampaign($this->campaign)->exclude($this->exclude);
         if (!$this->withDisabled) {
             $search->enabled();
         }
+        /** @var EntityType $entityType */
         foreach ($search->get() as $entityType) {
             if (in_array($entityType->pluralCode(), $this->skip)) {
                 continue;
             }
-            $types[$entityType->name()] = $entityType;
+            // Skip disabled standard modules
+            if (!$this->withDisabled && !$entityType->isSpecial() && +$this->campaign->enabled($entityType->code)) {
+                continue;
+            }
+            $types->add($entityType);
         }
 
-        $collator = new \Collator(app()->getLocale());
-        usort($types, function ($a, $b) use ($collator) {
-            return $collator->compare($a->name(), $b->name());
-        });
-
         return $types;
+    }
+
+
+    public function ordered(): Collection
+    {
+       return $this->available()->sortBy(fn (EntityType $a) => $a->name());
+//
+//        $collator = new \Collator(app()->getLocale());
+//        usort($types, function ($a, $b) use ($collator) {
+//            return $collator->compare($a->name(), $b->name());
+//        });
+//
+//        return $types;
     }
 
     public function toSelect(): array
