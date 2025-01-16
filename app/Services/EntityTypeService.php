@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Bookmark;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
+use App\Models\Entity;
 use App\Models\EntityType;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
@@ -97,7 +98,7 @@ class EntityTypeService
         return $this->prepend + $values;
     }
 
-    public function save(): void
+    public function save(): EntityType
     {
         if (!isset($this->entityType)) {
             $this->entityType = new EntityType();
@@ -115,6 +116,8 @@ class EntityTypeService
         if ($this->entityType->wasRecentlyCreated) {
             $this->permissions()->bookmark();
         }
+
+        return $this->entityType;
     }
 
     public function toggle(): void
@@ -154,5 +157,13 @@ class EntityTypeService
             $perm->save();
         }
         return $this;
+    }
+
+    public function delete()
+    {
+        $this->entityType->bookmarks()->delete();
+        $this->entityType->entities()->delete();
+        $this->entityType->attributeTemplates()->delete();
+        $this->entityType->entities()->delete();
     }
 }

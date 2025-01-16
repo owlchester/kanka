@@ -16,6 +16,13 @@ class EntityTypePolicy
             return false;
         }
 
+        if (!$entityType->isEnabled()) {
+            return false;
+        }
+        if ($entityType->isSpecial() && !$campaign->premium()) {
+            return false;
+        }
+
         return EntityPermission::hasPermission($entityType->id, CampaignPermission::ACTION_ADD, $user, null, $campaign);
     }
 

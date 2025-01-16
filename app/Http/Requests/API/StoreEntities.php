@@ -25,7 +25,6 @@ class StoreEntities extends FormRequest
     {
         return [
             'entities' => 'array|max:20',
-            'entities.*.module' => 'required|integer|exists:entity_types,id',
             'entities.*.name' => 'required|string|max:191',
             'entities.*.entry' => 'nullable|string',
             'entities.*.type' => 'nullable|string|max:191',

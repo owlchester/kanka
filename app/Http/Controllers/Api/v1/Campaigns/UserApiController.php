@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\Campaign;
+namespace App\Http\Controllers\Api\v1\Campaigns;
 
 use App\Http\Controllers\Api\v1\ApiController;
 use App\Http\Requests\API\UpdateUserRole;

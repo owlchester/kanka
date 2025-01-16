@@ -55,6 +55,7 @@ Route::apiResources([
     'campaigns.entities.entity_abilities' => 'EntityAbilityApiController',
     'campaigns.entities.entity_assets' => 'EntityAssetApiController',
     'campaigns.entities.entity_permissions' => 'EntityPermissionApiController',
+    'campaigns.entity_types' => 'EntityTypeApiController',
 
     'campaigns.campaign_dashboard_widgets' => 'CampaignDashboardWidgetApiController',
     'campaigns.campaign_styles' => 'CampaignStyleApiController',
@@ -74,19 +75,21 @@ Route::post('campaigns/{campaign}/entities/templates/{entity}/switch', [App\Http
 
 Route::get('campaigns/{campaign}/entities', [App\Http\Controllers\Api\v1\EntityApiController::class, 'index']);
 Route::get('campaigns/{campaign}/entities/recent', [App\Http\Controllers\Api\v1\RecentEntityApiController::class, 'index']);
-Route::post('campaigns/{campaign}/entities', [App\Http\Controllers\Api\v1\EntityApiController::class, 'put']);
+Route::post('campaigns/{campaign}/entities/{entity_type}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'put']);
 Route::get('campaigns/{campaign}/entities/{entity}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'show']);
+Route::put('campaigns/{campaign}/entities/{entity}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'edit']);
+Route::delete('campaigns/{campaign}/entities/{entity}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'destroy']);
 Route::get('campaigns/{campaign}/entities/{entity}/mentions', [App\Http\Controllers\Api\v1\EntityMentionApiController::class, 'index']);
 
-Route::get('campaigns/{campaign}/users', 'Campaign\UserApiController@index');
-Route::get('campaigns/{campaign}/users/{user}', 'Campaign\UserApiController@show');
-Route::post('campaigns/{campaign}/users', 'Campaign\UserApiController@add');
-Route::delete('campaigns/{campaign}/users', 'Campaign\UserApiController@remove');
+Route::get('campaigns/{campaign}/users', 'Campaigns\UserApiController@index');
+Route::get('campaigns/{campaign}/users/{user}', 'Campaigns\UserApiController@show');
+Route::post('campaigns/{campaign}/users', 'Campaigns\UserApiController@add');
+Route::delete('campaigns/{campaign}/users', 'Campaigns\UserApiController@remove');
 
-Route::get('campaigns/{campaign}/users', [App\Http\Controllers\Api\v1\Campaign\UserApiController::class, 'index']);
-Route::get('campaigns/{campaign}/users/{user}', [App\Http\Controllers\Api\v1\Campaign\UserApiController::class, 'show']);
-Route::post('campaigns/{campaign}/users', [App\Http\Controllers\Api\v1\Campaign\UserApiController::class, 'add']);
-Route::delete('campaigns/{campaign}/users', [App\Http\Controllers\Api\v1\Campaign\UserApiController::class, 'remove']);
+Route::get('campaigns/{campaign}/users', [App\Http\Controllers\Api\v1\Campaigns\UserApiController::class, 'index']);
+Route::get('campaigns/{campaign}/users/{user}', [App\Http\Controllers\Api\v1\Campaigns\UserApiController::class, 'show']);
+Route::post('campaigns/{campaign}/users', [App\Http\Controllers\Api\v1\Campaigns\UserApiController::class, 'add']);
+Route::delete('campaigns/{campaign}/users', [App\Http\Controllers\Api\v1\Campaigns\UserApiController::class, 'remove']);
 
 Route::post('campaigns/{campaign}/permissions/test', [App\Http\Controllers\Api\v1\EntityPermissionApiController::class, 'test']);
 

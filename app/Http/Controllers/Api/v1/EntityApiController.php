@@ -8,26 +8,17 @@ use App\Models\EntityType;
 use App\Http\Requests\API\StoreEntities;
 use App\Http\Resources\EntityResource as Resource;
 use App\Services\Api\BulkEntityCreatorService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class EntityApiController extends ApiController
 {
-    protected BulkEntityCreatorService $bulkEntityCreatorService;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(BulkEntityCreatorService $bulkEntityCreatorService)
+    public function __construct(
+        protected BulkEntityCreatorService $bulkEntityCreatorService
+    )
     {
-        $this->bulkEntityCreatorService = $bulkEntityCreatorService;
     }
 
-    /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign)
     {
         if (config('app.debug')) {
@@ -41,9 +32,6 @@ class EntityApiController extends ApiController
             ->appends(request()->except(['page', 'lastSync'])));
     }
 
-    /**
-     * @return Resource
-     */
     public function show(Campaign $campaign, Entity $entity)
     {
         if (config('app.debug')) {
@@ -55,31 +43,49 @@ class EntityApiController extends ApiController
         return $resource->withMisc();
     }
 
-    public function put(StoreEntities $request, Campaign $campaign, Entity $entity)
+    public function put(StoreEntities $request, Campaign $campaign, EntityType $entityType)
     {
         $this->authorize('access', $campaign);
+        $this->authorize('create', [$campaign, $entityType]);
 
-        $entityTypes = [];
-        $models = [];
+        $entities = [];
 
-        $this->bulkEntityCreatorService->campaign($campaign);
+        $this->bulkEntityCreatorService
+            ->campaign($campaign)
+            ->entityType($entityType)
+            ->user($request->user());
 
-        foreach ($request->entities as $entity) {
-
-            if (!array_key_exists($entity['module'], $entityTypes)) {
-                $entityTypes[$entity['module']] = EntityType::where('id', $entity['module'])
-                    ->whereNotIn('code', ['bookmark', 'dice_roll', 'conversation'])->first();
-            }
-            if (!isset($entityTypes[$entity['module']])) {
-                continue;
-            }
-            $class = $entityTypes[$entity['module']]->getClass();
-            $this->authorize('create', $class);
-
-            $model = $this->bulkEntityCreatorService->class($class)->saveEntity($entity);
-
-            array_push($models, $model->entity);
+        foreach ($request->get('entities', []) as $entity) {
+            $entities[] = $this->bulkEntityCreatorService->data($entity)->create();
         }
-        return Resource::collection($models);
+        return Resource::collection($entities);
+    }
+
+    public function edit(Request $request, Campaign $campaign, Entity $entity)
+    {
+        $this->authorize('access', $campaign);
+        $this->authorize('update', $entity);
+
+        if (!$entity->entityType->isSpecial()) {
+            return response()->json(['error' => 'Only entities of custom modules can be deleted here'], 401);
+        }
+
+        $entity->update($request->all());
+
+        return new Resource($entity);;
+    }
+
+    public function destroy(Request $request, Campaign $campaign, Entity $entity)
+    {
+        $this->authorize('access', $campaign);
+        $this->authorize('delete', $entity);
+
+        if (!$entity->entityType->isSpecial()) {
+            return response()->json(['error' => 'Only entities of custom modules can be deleted here'], 401);
+        }
+
+        $entity->delete();
+
+        return response()->json(['success'], 204);
     }
 }

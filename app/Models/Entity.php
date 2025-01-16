@@ -87,7 +87,6 @@ class Entity extends Model
         'campaign_id',
         'entity_id',
         'name',
-        'type_id',
         'is_private',
         'is_attributes_private',
         'header_image',

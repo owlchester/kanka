@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityType;
-use App\Models\Entity;
-use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\EntityTypeService;
@@ -76,7 +74,7 @@ class EntityTypeController extends Controller
         $this->authorize('setting', $campaign);
         $this->authorize('update', [$entityType, $campaign]);
 
-        if (!$campaign->boosted()) {
+        if (!$campaign->premium()) {
             return view('campaign.modules')
                 ->with('errors', __('This feature is only available on premium campaigns'));
         }
@@ -125,10 +123,10 @@ class EntityTypeController extends Controller
         $this->authorize('setting', $campaign);
         $this->authorize('delete', [$entityType, $campaign]);
 
-        // Hard delete everything, there will be no traces left
-        Bookmark::where('entity_type_id', $entityType->id)->delete();
-        Entity::inTypes([$entityType->id])->delete();
-        $entityType->delete();
+        $this->entityTypeService
+            ->campaign($campaign)
+            ->entityType($entityType)
+            ->delete();
 
 
         return redirect()->route('campaign.modules', $campaign)
