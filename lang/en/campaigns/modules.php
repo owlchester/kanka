@@ -26,6 +26,7 @@ return [
         'singular' => 'The singular name for an entity of the new module. For example, potion',
         'plural' => 'The plural name for entities of the new module. For example, potions',
         'icon' => 'The :fontawesome icon, for example :example.',
+        'roles' => 'Select roles that should have permission to view entities of this new module. This can later be changed in the role permissions.',
     ],
     'pitch'     => 'Rename and change the icon associated with this module for the whole campaign.',
     'pitch-custom'     => 'Create custom modules to store unique entities.',

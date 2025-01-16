@@ -2,9 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\Bookmark;
+use App\Models\CampaignPermission;
+use App\Models\CampaignRole;
 use App\Models\EntityType;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
+use App\Traits\RequestAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -12,6 +16,7 @@ class EntityTypeService
 {
     use CampaignAware;
     use EntityTypeAware;
+    use RequestAware;
 
     protected array $exclude = [];
     protected array $skip = [];
@@ -80,25 +85,62 @@ class EntityTypeService
         return $this->prepend + $values;
     }
 
-    public function save(array $data): void
+    public function save(): void
     {
         if (!isset($this->entityType)) {
             $this->entityType = new EntityType();
             $this->entityType->campaign_id = $this->campaign->id;
             $this->entityType->is_special = true;
             $this->entityType->is_enabled = true;
-            $this->entityType->code = Str::slug(Arr::get($data, 'singular'));
+            $this->entityType->code = Str::slug($this->request->get('singular'));
         }
 
-        $this->entityType->singular = Arr::get($data, 'singular');
-        $this->entityType->plural = Arr::get($data, 'plural');
-        $this->entityType->icon = Arr::get($data, 'icon');
+        $this->entityType->singular = $this->request->get('singular');
+        $this->entityType->plural = $this->request->get('plural');
+        $this->entityType->icon = $this->request->get('icon');
         $this->entityType->save();
+
+        if ($this->entityType->wasRecentlyCreated) {
+            $this->permissions()->bookmark();
+        }
     }
 
     public function toggle(): void
     {
         $this->entityType->is_enabled = !$this->entityType->is_enabled;
         $this->entityType->save();
+    }
+
+    protected function bookmark(): self
+    {
+        $bookmark = new Bookmark();
+        $bookmark->campaign_id = $this->campaign->id;
+        $bookmark->entity_type_id = $this->entityType->id;
+        $bookmark->name = $this->entityType->singular;
+        $bookmark->save();
+        return $this;
+    }
+
+    protected function permissions(): self
+    {
+        if (!$this->request->has('role')) {
+            return $this;
+        }
+
+        foreach ($this->request->get('role') as $roleID) {
+            /** @var CampaignRole $campaignRole */
+            $campaignRole = $this->campaign->roles->where('id', $roleID)->get();
+            if (!$campaignRole || $campaignRole->isAdmin()) {
+                continue;
+            }
+
+            $perm = new CampaignPermission();
+            $perm->entity_type_id = $this->entityType->id;
+            $perm->campaign_id = $this->campaign;
+            $perm->campaign_role_id = $campaignRole->id;
+            $perm->access = 1;
+            $perm->save();
+        }
+        return $this;
     }
 }

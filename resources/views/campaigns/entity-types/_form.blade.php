@@ -30,4 +30,22 @@
     >
         <input type="text" name="icon" value="{{ old('icon', $entityType->icon ?? '') }}" maxlength="40" placeholder="fa-solid fa-car" class="w-full" autocomplete="off" data-paste="fontawesome" />
     </x-forms.field>
+
+    @if (!isset($entityType))
+        <hr />
+
+
+        <x-forms.field
+            field="roles"
+            :label="__('campaigns.members.fields.roles')"
+            :helper="__('campaigns/modules.helpers.roles')"
+        >
+            @include('components.form.role', ['options' => [
+                'dropdownParent' => '#primary-dialog',
+                'multiple' => true,
+            ]])
+        </x-forms.field>
+
+    @endif
+
 </x-grid>

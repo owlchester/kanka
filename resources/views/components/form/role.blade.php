@@ -7,8 +7,8 @@ $selectedOption = [];
 $dropdownParent = Arr::get($options, 'dropdownParent');
 $multiple = Arr::get($options, 'multiple');
 ?>
-<select name="role" id="role"
-    class=" select2 form-role w-100"
+<select name="{{ $multiple ? 'roles[]' : 'role'}}" id="{{ $multiple ? 'roles' : 'role'}}"
+    class="select2 form-role w-100"
     @if (isset($multiple) && $multiple) multiple @endif
     data-url="{{ route('roles.find', $campaign) }}"
     @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif>

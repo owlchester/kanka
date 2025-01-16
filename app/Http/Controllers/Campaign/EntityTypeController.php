@@ -48,7 +48,8 @@ class EntityTypeController extends Controller
 
         $this->entityTypeService
             ->campaign($campaign)
-            ->save($request->only(['singular', 'plural', 'icon']));
+            ->request($request)
+            ->save();
 
         return redirect()->route('campaign.modules', $campaign)
             ->with('success', __('campaigns/modules.create.success'));
@@ -86,7 +87,8 @@ class EntityTypeController extends Controller
         $this->entityTypeService
             ->campaign($campaign)
             ->entityType($entityType)
-            ->save($request->only(['singular', 'plural', 'icon']));
+            ->request($request)
+            ->save();
 
         return redirect()->route('campaign.modules', $campaign)
             ->with('success', __('campaigns/modules.rename.success'));

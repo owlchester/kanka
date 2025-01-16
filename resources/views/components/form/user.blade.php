@@ -7,8 +7,8 @@ $selectedOption = [];
 $dropdownParent = Arr::get($options, 'dropdownParent');
 $multiple = Arr::get($options, 'multiple');
 ?>
-<select name="user"
-        id="user"
+<select name="{{ $multiple ? 'users[]' : 'user' }}"
+        id="{{ $multiple ? 'users' : 'user' }}"
         @if (isset($multiple) && $multiple) multiple @endif
         data-allow-clear="false"
         class=" select2 form-role w-100" data-url="{{ route('users.find', $campaign) }}"

@@ -25,7 +25,7 @@ const registerAdvancedPermissions = () => {
             if (!selectElement || !selectElement.selectedOptions) {
                 return false;
             }
-            let template = document.getElementById('post-perm-' + type + '-template');
+            let template = document.getElementById(this.dataset.template);
 
             // Support for tag (multiple) select elements (you're welcome Spitfire)
             for (const option of selectElement.selectedOptions) {
@@ -42,7 +42,7 @@ const registerAdvancedPermissions = () => {
             }
 
 
-            let dialog = document.getElementById('post-new-' + type);
+            let dialog = document.getElementById(this.dataset.dialog);
             dialog.close();
 
             registerPermissionDeleteEvents();
