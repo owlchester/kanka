@@ -65,11 +65,12 @@ class Roadmap extends Component
 
     public function render()
     {
-        $with = ['features', 'next', 'now', 'later'];
+        $with = ['features', 'next', 'now', 'later', 'done'];
         if (auth()->check()) {
             $with[] = 'next.uservote';
             $with[] = 'now.uservote';
             $with[] = 'later.uservote';
+            $with[] = 'done.uservote';
         }
         $categories = FeatureCategory::with($with)->get();
         return view('livewire.roadmap', ['categories' => $categories]);
