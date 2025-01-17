@@ -42,7 +42,7 @@ $map = $entity->child;
             @if(!$marker->visible())
                 @continue
             @endif
-            var marker{{ $marker->id }} = {!! $marker->multiplier($model->is_real)->marker() !!};
+            var marker{{ $marker->id }} = {!! $marker->multiplier($map->is_real)->marker() !!};
             markers.push('marker' + {{ $marker->id }});
         @endforeach
     </script>
