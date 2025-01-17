@@ -4,7 +4,7 @@
         {{ __('partials.errors.description') }}<br>
         <ul class="list-disc">
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li>{!! $error !!}</li>
             @endforeach
         </ul>
     </x-alert>

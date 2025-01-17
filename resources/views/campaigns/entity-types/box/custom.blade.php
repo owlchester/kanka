@@ -15,7 +15,7 @@
             <button
                 class="hover:shadow-sm text-xl transition-all hover:rotate-45 flex items-center"
                 data-toggle="dialog-ajax"
-                data-url="{{ route('campaign.entity_types.edit', [$campaign, $entityType]) }}"
+                data-url="{{ route('entity_types.edit', [$campaign, $entityType]) }}"
                 data-target="rename-dialog"
                 title="{{ __('campaigns/modules.actions.customise') }}">
                     <span class="fill-current h-6 w-6 inline-block">
@@ -36,7 +36,7 @@
         @can('update', $campaign)
         <div class="footer text-center my-4">
             <label class="toggle">
-                <input type="checkbox" id="toggle_{{ $entityType->code }}" name="enabled" data-url="{{ route('campaign.entity_types.toggle', [$campaign, $entityType]) }}" @if ($entityType->isEnabled()) checked="checked" @endif>
+                <input type="checkbox" id="toggle_{{ $entityType->code }}" name="enabled" data-url="{{ route('entity_types.toggle', [$campaign, $entityType]) }}" @if ($entityType->isEnabled()) checked="checked" @endif>
                 <span class="slider module-enabled"></span>
                 <span class="sr-only">Check to enable the {{ $entityType->name() }} module</span>
             </label>

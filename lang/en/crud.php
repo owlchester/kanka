@@ -107,7 +107,7 @@ return [
         'confirm'           => 'Confirm removal',
         'delete'            => 'Remove',
         'description_v2'    => 'You are removing ":tag".',
-        'permanent'         => 'This action is permanent.',
+        'permanent'         => 'This action is permanent and cannot be undone.',
         'recoverable'       => 'Entities can be recovered for up to :day days with a :boosted-campaign.',
         'title'             => 'Removal confirmation',
     ],

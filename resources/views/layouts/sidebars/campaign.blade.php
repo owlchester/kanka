@@ -91,7 +91,7 @@
                 ></x-sidebar.element>
                 <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
 
-                    <li class="px-2 section-modules {{ $sidebar->activeCampaign('modules') }}">
+                    <li class="px-2 section-modules {{ $sidebar->activeCampaign(['modules', 'entity_types']) }}">
                         <x-sidebar.element
                             :url="route('campaign.modules', [$campaign])"
                             icon="fa-duotone fa-floppy-disks"

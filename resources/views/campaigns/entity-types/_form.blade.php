@@ -1,8 +1,6 @@
 <x-grid type="1/1">
-    @if (isset($entityType))
-    <p class="m-0 text-justify">{{ __('campaigns/modules.rename.helper') }}</p>
-    @else
-        <p class="m-0 text-justify">{{ __('campaigns/modules.create.helper') }}</p>
+    @if (!isset($entityType))
+        <x-helper>{{ __('campaigns/modules.create.helper') }}</x-helper>
     @endif
 
     <x-forms.field

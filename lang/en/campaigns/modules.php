@@ -11,9 +11,10 @@ return [
         'success' => 'New module created.',
     ],
     'delete'   => [
-        'title' => 'New module',
-        'helper' => 'Create a new custom module to store entities that don\'t fit in the other modules.',
+        'title' => 'Module deletion',
+        'helper' => 'Are you sure you want to remove the :name custom module? This will also permanently delete all entities, bookmarks and widgets linked to this module.',
         'success' => 'Module :name deleted.',
+        'confirm' => 'Write :code if you are sure you want to permanently delete the :name custom module.',
     ],
     'fields'    => [
         'icon'      => 'Module icon',

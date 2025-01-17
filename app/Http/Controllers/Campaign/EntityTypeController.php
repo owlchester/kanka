@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DeleteEntityType;
 use App\Http\Requests\StoreEntityType;
 use App\Models\Campaign;
 use App\Models\EntityType;
@@ -117,11 +118,27 @@ class EntityTypeController extends Controller
             ]);
         }
     }
-
-    public function delete(Request $request, Campaign $campaign, EntityType $entityType)
+    public function confirm(Campaign $campaign, EntityType $entityType)
     {
         $this->authorize('setting', $campaign);
         $this->authorize('delete', [$entityType, $campaign]);
+
+
+
+        return view('campaigns.entity-types.confirm')
+            ->with('campaign', $campaign)
+            ->with('entityType', $entityType)
+            ;
+    }
+
+    public function destroy(DeleteEntityType $request, Campaign $campaign, EntityType $entityType)
+    {
+        $this->authorize('setting', $campaign);
+        $this->authorize('delete', [$entityType, $campaign]);
+
+        if (request()->ajax()) {
+            return response()->json();
+        }
 
         $this->entityTypeService
             ->campaign($campaign)

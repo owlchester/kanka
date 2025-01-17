@@ -389,9 +389,12 @@ class SidebarService
         return 'active';
     }
 
-    public function activeCampaign(string $menu): string|null
+    public function activeCampaign(mixed $options): string|null
     {
-        if (request()->segment(3) == $menu) {
+        if (!is_array($options)) {
+            $options = [$options];
+        }
+        if (in_array(request()->segment(3), $options)) {
             return " active";
         }
         return null;
