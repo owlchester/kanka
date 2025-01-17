@@ -15,12 +15,10 @@ if (isset($model) && $model->parent) {
     :campaign="$campaign"
     name="map_id"
     key="map"
-    entityType="maps"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
     :route="route('search-list', [$campaign, config('entities.ids.map')] + (isset($model) ? ['exclude' => $model->id] : []))"
-    :class="\App\Models\Map::class"
     :selected="$preset"
     :dropdownParent="$dropdownParent ?? null"
     :entityTypeID="config('entities.ids.map')">

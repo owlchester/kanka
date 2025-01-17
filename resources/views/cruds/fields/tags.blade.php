@@ -7,7 +7,7 @@
 
         <x-forms.tags
             :campaign="$campaign"
-            :model="isset($model) ? $model : FormCopy::model()"
+            :model="$model ?? $source ?? null"
             :dropdownParent="$dropdownParent ?? null"
             :allowNew="isset($bulk) ? false : (isset($enableNew) ? $enableNew : auth()->user()->can('create', \App\Models\Tag::class))"
             allowClear="false"

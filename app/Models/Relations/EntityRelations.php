@@ -9,6 +9,7 @@ use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\Conversation;
 use App\Models\Creature;
+use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
 use App\Models\EntityEvent;
@@ -75,6 +76,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property CampaignPermission[]|Collection $permissions
  * @property EntityAlias[]|Collection $aliases
  * @property EntityAsset[]|Collection $assets
+ * @property Entity $parent
  */
 trait EntityRelations
 {

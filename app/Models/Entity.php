@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable as Scout;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Entity
@@ -52,6 +53,7 @@ use Laravel\Scout\Searchable as Scout;
  * @property ?string $image_uuid
  * @property ?string $header_uuid
  * @property ?string $marketplace_uuid
+ * @property ?int $parent_id
  * @property ?int $focus_x
  * @property ?int $focus_y
  * @property ?string $image_path
@@ -82,6 +84,7 @@ class Entity extends Model
     use SoftDeletes;
     use SortableTrait;
     use Templatable;
+    use HasRecursiveRelationships;
 
     protected $fillable = [
         'campaign_id',
@@ -95,6 +98,7 @@ class Entity extends Model
         'is_template',
         'type',
         'entry',
+        'parent_id',
     ];
 
     protected array $sanitizable = [

@@ -33,7 +33,7 @@
                 <x-icon class="fa-regular fa-plus" />
                 {{ __('crud.actions.new') }}
             </x-dropdowns.item>
-            @if (!$entity->entityType->isSpecial() && method_exists($entity->child, 'getParentKeyName'))
+            @if ($entity->entityType->isSpecial() || (!$entity->entityType->isSpecial() && method_exists($entity->child, 'getParentKeyName')))
                 <x-dropdowns.item :link="$entity->entityType->createRoute($campaign, ['parent_id' => $entity->entityType->isSpecial() ? $entity->id : $entity->child->id])">
                     <x-icon class="fa-regular fa-plus" />
                     {{ __('crud.actions.new_child') }}

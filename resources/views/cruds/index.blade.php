@@ -10,7 +10,7 @@
     <div class="flex gap-2 items-center mb-5">
         <h1 class="grow text-4xl category-title truncate">{!! $titleKey ?? __('entities.' . $langKey) !!}</h1>
         <div class="flex flex-wrap gap-2 justify-end">
-            @includeWhen(isset($route) && $route !== 'relations', 'layouts.datagrid._togglers', ['route' => 'index'])
+            @includeWhen(isset($route) && $route !== 'relations', 'layouts.datagrid._togglers', ['route' => $name . '.index'])
             @includeWhen(isset($actions), 'cruds.lists._actions')
             @includeWhen(isset($model) && auth()->check() && auth()->user()->can('create', $model), 'cruds.lists._create')
         </div>

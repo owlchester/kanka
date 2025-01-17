@@ -9,6 +9,7 @@ use App\Models\Bookmark;
 use App\Services\EntityTypeService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Collection;
 
 /**
  * Builds a list of recent entities for the search + the list of bookmarks and entity types
@@ -136,7 +137,7 @@ class RecentService
         return $indexes;
     }
 
-    protected function orderedTypes(): array
+    protected function orderedTypes(): Collection
     {
         return $this->entityTypeService
             ->campaign($this->campaign)

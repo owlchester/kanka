@@ -10,7 +10,7 @@
     <div class="flex gap-2 items-center mb-5">
         <h1 class="grow text-4xl category-title truncate">{!! $entityType->plural() !!}</h1>
         <div class="flex flex-wrap gap-2 justify-end">
-            @include('layouts.datagrid._togglers', ['route' => 'index'])
+            @include('layouts.datagrid._togglers', ['route' => 'entities.index'])
             @includeWhen(isset($actions), 'entities.index._actions')
             @can('create', [$entityType, $campaign])
                 @include('entities.index._create')

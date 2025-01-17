@@ -85,6 +85,7 @@ class EntityResource extends JsonResource
             $data['type'] = $entity->type;
             $data['entry'] = $entity->entry;
             $data['entry_parsed'] = Mentions::mapEntity($entity, 'entry');
+            $data['parent_id'] = $entity->parent_id;
         } else {
             $data['child_id'] = $entity->entity_id;
         }
