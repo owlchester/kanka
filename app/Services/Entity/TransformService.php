@@ -6,13 +6,12 @@ use App\Facades\EntityLogger;
 use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\Entity;
-use App\Models\Post;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
+use App\Models\Post;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Exception;
 
@@ -37,7 +36,9 @@ class TransformService
     {
         // Custom to custom, just update the type_id
         if ($this->entity->entityType->isSpecial() && $this->entityType->isSpecial()) {
+            $this->orphanChildren();
             $this->entity->type_id = $this->entityType->id;
+            $this->entity->parent_id = null;
             $this->entity->save();
             return $this->entity;
         }
@@ -248,6 +249,8 @@ class TransformService
         // Update entity to its new type. We don't use a new entity to keep all mentions, attributes and
         // other related elements attached.
         $this->entity->type_id = $this->entityType->id;
+        // Clean up the parent
+        $this->entity->parent_id = null;
         // If attached to a misc model, save the entity_id
         if (isset($this->new)) {
             $this->entity->entity_id = $this->new->id;
@@ -282,6 +285,8 @@ class TransformService
 
     protected function specialToMisc(): Entity
     {
+        $this->orphanChildren();
+
         // Create misc
         $this->new = $this->entityType->getClass();
         $this->new->name = $this->entity->name;
@@ -302,5 +307,14 @@ class TransformService
         $this->finish();
 
         return $this->entity;
+    }
+
+    protected function orphanChildren(): void
+    {
+        /** @var Entity $child */
+        foreach ($this->entity->children as $child) {
+            $child->parent_id = null;
+            $child->saveQuietly();
+        }
     }
 }
