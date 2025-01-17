@@ -2,19 +2,17 @@
 
 namespace App\Services\TOC;
 
-use Cocur\Slugify\Slugify;
-use Cocur\Slugify\SlugifyInterface;
+use Symfony\Component\String\Slugger\AsciiSlugger;
+use Symfony\Component\String\Slugger\SluggerInterface as SymfonyStringSluggerInterface;
+use TOC\SluggerInterface;
 
 /**
  * This is a direct copy-paste of TOC\UniqueSlugify, because the MarkupFixer doesn't want to re-use the same slugifier
  * twice, while this is exactly what we want to not repeat heading ids between entities, posts, quest elements, etc.
  */
-class TocSlugify implements SlugifyInterface
+class TocSlugify implements SluggerInterface
 {
-    /**
-     * @var SlugifyInterface
-     */
-    private $slugify;
+    private SymfonyStringSluggerInterface $slugger;
 
     /**
      * @var array
@@ -25,19 +23,19 @@ class TocSlugify implements SlugifyInterface
      * Constructor
      *
      */
-    public function __construct(?SlugifyInterface $slugify = null)
+    public function __construct(?SymfonyStringSluggerInterface $slugger = null)
     {
         $this->used = [];
-        $this->slugify = $slugify ?: new Slugify();
+        $this->slugger = $slugger ?: new AsciiSlugger();
     }
 
     /**
      * Slugify
      *
      */
-    public function slugify(string $string, array|string|null $options = null): string
+    public function makeSlug(string $string): string
     {
-        $slugged = $this->slugify->slugify($string, $options);
+        $slugged = $this->slugger->slug($string)->lower()->toString();
 
         $count = 1;
         $orig = $slugged;
@@ -48,5 +46,10 @@ class TocSlugify implements SlugifyInterface
 
         $this->used[] = $slugged;
         return $slugged;
+    }
+
+    public function reset(): void
+    {
+        $this->used = [];
     }
 }
