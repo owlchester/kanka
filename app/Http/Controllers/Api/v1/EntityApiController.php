@@ -15,8 +15,7 @@ class EntityApiController extends ApiController
 {
     public function __construct(
         protected BulkEntityCreatorService $bulkEntityCreatorService
-    )
-    {
+    ) {
     }
 
     public function index(Campaign $campaign)
@@ -72,7 +71,8 @@ class EntityApiController extends ApiController
 
         $entity->update($request->all());
 
-        return new Resource($entity);;
+        return new Resource($entity);
+        ;
     }
 
     public function destroy(Request $request, Campaign $campaign, Entity $entity)

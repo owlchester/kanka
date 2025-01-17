@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Models\Bookmark;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
-use App\Models\Entity;
 use App\Models\EntityType;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
@@ -74,14 +73,14 @@ class EntityTypeService
 
     public function ordered(): Collection
     {
-       return $this->available()->sortBy(fn (EntityType $a) => $a->name());
-//
-//        $collator = new \Collator(app()->getLocale());
-//        usort($types, function ($a, $b) use ($collator) {
-//            return $collator->compare($a->name(), $b->name());
-//        });
-//
-//        return $types;
+        return $this->available()->sortBy(fn (EntityType $a) => $a->name());
+        //
+        //        $collator = new \Collator(app()->getLocale());
+        //        usort($types, function ($a, $b) use ($collator) {
+        //            return $collator->compare($a->name(), $b->name());
+        //        });
+        //
+        //        return $types;
     }
 
     public function toSelect(): array

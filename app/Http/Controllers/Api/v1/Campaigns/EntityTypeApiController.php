@@ -14,8 +14,7 @@ class EntityTypeApiController extends ApiController
 {
     public function __construct(
         protected EntityTypeService $entityTypeService
-    )
-    {
+    ) {
 
     }
     /**

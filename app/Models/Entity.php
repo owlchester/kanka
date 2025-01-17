@@ -74,6 +74,7 @@ class Entity extends Model
     use HasCampaign;
     use HasEntry;
     use HasMentions;
+    use HasRecursiveRelationships;
     use HasSuggestions;
     use HasTooltip;
     use LastSync;
@@ -84,7 +85,6 @@ class Entity extends Model
     use SoftDeletes;
     use SortableTrait;
     use Templatable;
-    use HasRecursiveRelationships;
 
     protected $fillable = [
         'campaign_id',

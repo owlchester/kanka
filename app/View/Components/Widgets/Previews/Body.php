@@ -5,7 +5,6 @@ namespace App\View\Components\Widgets\Previews;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use App\Models\Entity;
-use App\Models\MiscModel;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;

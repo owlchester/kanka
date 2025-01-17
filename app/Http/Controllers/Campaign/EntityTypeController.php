@@ -9,7 +9,6 @@ use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\EntityTypeService;
 use Exception;
-use Illuminate\Http\Request;
 
 class EntityTypeController extends Controller
 {
@@ -128,7 +127,7 @@ class EntityTypeController extends Controller
         return view('campaigns.entity-types.confirm')
             ->with('campaign', $campaign)
             ->with('entityType', $entityType)
-            ;
+        ;
     }
 
     public function destroy(DeleteEntityType $request, Campaign $campaign, EntityType $entityType)

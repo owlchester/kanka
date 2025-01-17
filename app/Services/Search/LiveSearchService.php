@@ -3,10 +3,7 @@
 namespace App\Services\Search;
 
 use App\Facades\Avatar;
-use App\Models\Character;
 use App\Models\Entity;
-use App\Models\MiscModel;
-use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;

@@ -4,7 +4,6 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Http\Requests\UpdateModuleName;
-use App\Models\EntityType;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
