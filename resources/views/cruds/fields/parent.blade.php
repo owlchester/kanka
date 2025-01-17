@@ -3,7 +3,7 @@
     if (isset($model) && $model->parent) {
         $preset = $model->parent;
     } elseif (!isset($bulk)) {
-        $preset = FormCopy::field('parent')->select(false);
+        $preset = FormCopy::field('parent')->select(true, \App\Models\Entity::class);
     }
 @endphp
 <x-forms.foreign
