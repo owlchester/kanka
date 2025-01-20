@@ -63,7 +63,7 @@ class EditController extends Controller
             'attribute' => [
                 new UniqueAttributeNames()
             ],
-         ]);
+        ]);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
