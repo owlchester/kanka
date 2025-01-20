@@ -2,7 +2,7 @@
     field="name"
     required
     :label="__('campaigns/styles.fields.name')">
-    <input type="text" name="name" placeholder="{{ __('campaigns/styles.placeholders.name') }}" maxlength="191" required value="{!! htmlspecialchars(old('name', $style->name ?? null)) !!}" />
+    <input type="text" name="name" placeholder="{{ __('campaigns/styles.placeholders.name') }}" maxlength="191" required value="{!! htmlspecialchars(old('name', $style->name ?? null)) !!}" data-1p-ignore="true" />
 </x-forms.field>
 
 <x-forms.field

@@ -3,7 +3,7 @@
         field="name"
         :label="__('entities/links.fields.name')"
         required>
-        <input type="text" name="name" value="{!! htmlspecialchars(old('name', $entityAsset->name ?? null)) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/links.placeholders.name') }}" />
+        <input type="text" name="name" value="{!! htmlspecialchars(old('name', $entityAsset->name ?? null)) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/links.placeholders.name') }}" data-1p-ignore="true" />
     </x-forms.field>
 
     <x-forms.field

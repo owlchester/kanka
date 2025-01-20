@@ -17,7 +17,7 @@
             <x-grid css="max-w-3xl">
                 <div class="field flex flex-col gap-1 field-name">
                     <label>{!! __('crud.fields.name') !!}</label>
-                    <input type="text" class="w-full entity-list-filter" name="name" value="{{ $filterService->single('name') }}" />
+                    <input type="text" class="w-full entity-list-filter" name="name" value="{{ $filterService->single('name') }}" data-1p-ignore="true" />
                 </div>
                 <div class="field flex flex-col gap-1 field-type">
                     <label>{!! __('crud.fields.type') !!}</label>

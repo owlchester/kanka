@@ -54,7 +54,7 @@
                     @elseif ($field === 'template')
                         @include('cruds.datagrids.filters._template')
                     @else
-                        <input type="text" class="w-full entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" />
+                        <input type="text" class="w-full entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" data-1p-ignore="true" />
                     @endif
                 @endif
             </div>

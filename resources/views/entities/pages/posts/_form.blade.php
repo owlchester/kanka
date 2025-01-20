@@ -64,7 +64,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 <x-forms.field field="name" required>
                     <input type="text" name="name"  placeholder="{{ __('entities/notes.placeholders.name') }}"
                            value="{!! htmlspecialchars(old('name', str_replace('&amp;', '&', $model->name ?? ''))) !!}"
-                           maxlength="191" data-bragi-name="{{ $bragiName }}" data-live-disabled="1" />
+                           maxlength="191" data-bragi-name="{{ $bragiName }}" data-live-disabled="1" data-1p-ignore="true" />
                 </x-forms.field>
 
                 <x-forms.field field="layout" :hidden="isset($layoutHelper)">
