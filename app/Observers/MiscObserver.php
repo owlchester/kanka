@@ -13,7 +13,7 @@ abstract class MiscObserver
     public function created(MiscModel $model)
     {
         // Created a new sub entity? Create the parent entity.
-        $entity = $model->createEntity();
+        $model->createEntity();
     }
 
     /**

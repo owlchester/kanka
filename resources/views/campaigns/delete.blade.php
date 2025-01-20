@@ -14,16 +14,15 @@
         @include('ads.top')
         @include('partials.errors')
 
-        <div class="flex gap-2 items-center">
-            <h3 class="grow">
-                {{ __('campaigns/delete.title') }}
-            </h3>
+        <h1 class="grow">
+            {{ __('campaigns/delete.title') }}
+        </h1>
 
-        </div>
-
-        <p class="">{!! __('campaigns/delete.helper', [
+        <p class="">
+            {!! __('campaigns/delete.helper', [
     'backup' => '<a href="' . route('campaign.export', $campaign) . '">'. __('campaigns/delete.backup'). ' </a>'
-]) !!}</p>
+]) !!}
+        </p>
 
         <x-box>
             @cannot('delete', $campaign)
@@ -39,20 +38,21 @@
                     <x-grid type="1/1">
                         <p class="">
                             {!! __('campaigns/delete.confirm', [
-                                'campaign' => '<strong>' . $campaign->name . '</strong>',
+                                'name' => '<strong>' . $campaign->name . '</strong>',
                                 'code' => '<code>delete</code>'
                             ]) !!}
                         </p>
 
                         <div class="required field flex gap-2 flex-wrap">
-                            <input type="text" name="delete" @if (app()->isLocal()) value="delete" @endif autofocus maxlength="10" required id="campaign-delete-form" class="w-full" />
-
-                            <x-buttons.confirm type="danger" full="true">
-                                <x-icon class="trash" />
-                                {!! __('campaigns/delete.confirm-button', [
-                                    'name' => $campaign->name]) !!}
-                            </x-buttons.confirm>
+                            <input type="text" name="delete" vlaue="{{ old('delete', app()->isLocal() ? 'delete' : null) }}" autofocus maxlength="10" required id="campaign-delete-form" class="w-full" />
                         </div>
+
+
+                        <x-buttons.confirm type="danger" full="true">
+                            <x-icon class="trash" />
+                            {!! __('campaigns/delete.confirm-button', [
+                                'name' => $campaign->name]) !!}
+                        </x-buttons.confirm>
 
                     </x-grid>
                 </x-form>

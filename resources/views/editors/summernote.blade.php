@@ -1,29 +1,26 @@
 @section('scripts')
     @parent
-    <script src="/vendor/summernote/summernote.min.js?v={{ config('app.version') }}" defer></script>
+    <script src="{{ config('app.asset_url') }}/vendor/summernote/0.9.1/summernote.min.js" defer></script>
 
     @vite('resources/js/editors/summernote.js')
-    <script src="/vendor/summernote/plugin/embed/summernote-embed-plugin.js" defer></script>
-    <script src="/vendor/summernote/plugin/summernote-table-headers/summernote-table-headers.js" defer></script>
-    <script src="/vendor/summernote/plugin/kanka/summernote-gallery.min.js" defer></script>
-    <script src="/vendor/summernote/plugin/summernote-toc-kanka/summernote-toc.js" defer></script>
-    <script src="/vendor/summernote/plugin/summernote-aroba-kanka/summernote-aroba.js" defer></script>
-    <script src="/vendor/summernote/plugin/summernote-table-ext.js" defer></script>
-    <script src="/vendor/summernote/plugin/summernote-image-attribute.js" defer></script>
-    <script src="/vendor/summernote/plugin/kanka/summernote-bragi.min.js" defer></script>
-    <script src="/vendor/summernote/plugin/kanka/summernote-prettify-kanka.min.js" defer></script>
-{{--    <script src="/vendor/summernote/plugin/rtl/summernote-ext-rtl.js" defer></script>--}}
+    <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/embed/summernote-embed-plugin.js" defer></script>
+    <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-table-headers/summernote-table-headers.js" defer></script>
+    <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/kanka/summernote-gallery.min.js" defer></script>
+    <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-toc-kanka/summernote-toc.js" defer></script>
+    <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-aroba-kanka/summernote-aroba.js" defer></script>
+    <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-table-ext.js" defer></script>
+    <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/summernote-image-attribute.js" defer></script>
+    <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/kanka/summernote-bragi.min.js" defer></script>
+    <script src="{{ config('app.asset_url') }}/vendor/summernote/plugin/kanka/summernote-prettify-kanka.min.js" defer></script>
 
-    @if (app()->getLocale() == 'ca')
-        <script src="/vendor/summernote/lang/summernote-ca-ES.js" defer></script>
-    @elseif (!in_array(app()->getLocale(), ['en-US', 'en']))
-        <script src="/vendor/summernote/lang/summernote-{{ app()->getLocale() }}-{{ strtoupper(app()->getLocale()) }}.js" defer></script>
+    @if (!in_array(app()->getLocale(), ['en-US', 'en']))
+        <script src="{{ config('app.asset_url') }}/vendor/summernote/0.9.1/lang/summernote-{{ app()->getLocale() }}-{{ strtoupper(app()->getLocale()) }}.js" defer></script>
     @endif
 @endsection
 
 @section('styles')
 @parent
-<link href="/vendor/summernote/summernote.min.css" rel="stylesheet">
+<link href="{{ config('app.asset_url') }}/vendor/summernote/0.9.1/summernote.min.css" rel="stylesheet">
 
 @if (config('app.asset_url'))
     <link href="{{ config('app.asset_url') }}/vendor/bootstrap/bootstrap-summernote.css?v={{ config('app.version') }}" rel="stylesheet">

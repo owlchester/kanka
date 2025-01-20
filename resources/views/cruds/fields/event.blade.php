@@ -15,12 +15,10 @@ if (isset($model) && $model->parent) {
     :campaign="$campaign"
     name="event_id"
     key="event"
-    entityType="events"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
     :route="route('search-list', [$campaign, config('entities.ids.event')] + (isset($model) ? ['exclude' => $model->id] : []))"
-    :class="\App\Models\Event::class"
     :selected="$preset"
     :dropdownParent="$dropdownParent ?? null"
     :entityTypeID="config('entities.ids.event')">

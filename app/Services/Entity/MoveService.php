@@ -104,8 +104,6 @@ class MoveService
 
     protected function copyEntity(): bool
     {
-        $success = false;
-
         DB::beginTransaction();
         try {
             if ($this->entity->hasChild()) {
@@ -198,6 +196,7 @@ class MoveService
             // Update Entity first, as there are no hooks on the Entity model.
             CampaignLocalization::forceCampaign($this->to);
             $this->entity->campaign_id = $this->to->id;
+            $this->entity->parent_id = null;
             if (!empty($this->entity->image_path)) {
                 $oldImagePath = $this->entity->image_path;
                 $this->entity->image_path = Str::replace(

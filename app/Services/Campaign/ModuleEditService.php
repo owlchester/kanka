@@ -4,9 +4,9 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Http\Requests\UpdateModuleName;
-use App\Models\EntityType;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
+use App\Traits\EntityTypeAware;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Exception;
@@ -14,16 +14,15 @@ use Exception;
 class ModuleEditService
 {
     use CampaignAware;
+    use EntityTypeAware;
     use PurifiableTrait;
 
-    public function update(UpdateModuleName $request, EntityType $entityType): self
+    public function update(UpdateModuleName $request): self
     {
         $settings = $this->campaign->settings;
 
-        $key = $entityType->id;
+        $key = $this->entityType->id;
         unset($settings['modules'][$key]['s'], $settings['modules'][$key]['p'], $settings['modules'][$key]['i']);
-
-
 
         $singular = $plural = $icon = null;
         if ($request->filled('singular')) {
@@ -50,7 +49,6 @@ class ModuleEditService
         $this->campaign->updateQuietly();
 
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
-        //$this->campaign->touchQuietly();
 
         return $this;
     }
@@ -77,7 +75,22 @@ class ModuleEditService
         return $this;
     }
 
-    public function toggle(string $module): bool
+    public function toggle(): bool
+    {
+        // Validate module
+        $fillable = $this->campaign->setting->getFillable();
+        if (!in_array($this->entityType->pluralCode(), $fillable)) {
+            throw new Exception();
+        }
+
+        $this->campaign->setting->{$this->entityType->pluralCode()} = !$this->campaign->setting->{$this->entityType->pluralCode()};
+        $this->campaign->setting->saveQuietly();
+        CampaignCache::clear();
+        Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
+        return (bool) $this->campaign->setting->{$this->entityType->pluralCode()};
+    }
+
+    public function toggleFeature(string $module): bool
     {
         // Validate module
         $fillable = $this->campaign->setting->getFillable();

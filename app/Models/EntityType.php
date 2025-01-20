@@ -22,6 +22,9 @@ use App\Facades\Module;
  * @property bool|int $is_special
  * @property bool|int $is_enabled
  * @property AttributeTemplates[]|Collection $attributeTemplates
+ * @property Bookmark[]|Collection $bookmarks
+ * @property Entity[]|Collection $entities
+ * @property CampaignDashboardWidget[]|Collection $widgets
  *
  * @method static self|Builder enabled()
  * @method static self|Builder default()
@@ -73,9 +76,24 @@ class EntityType extends Model
         return $query->whereNotIn('id', $exclude);
     }
 
+    public function entities(): HasMany
+    {
+        return $this->hasMany(Entity::class, 'type_id');
+    }
+
     public function attributeTemplates(): HasMany
     {
         return $this->hasMany(AttributeTemplate::class, 'entity_type_id');
+    }
+
+    public function bookmarks(): HasMany
+    {
+        return $this->hasMany(Bookmark::class, 'entity_type_id');
+    }
+
+    public function widgets(): HasMany
+    {
+        return $this->hasMany(CampaignDashboardWidget::class, 'entity_type_id');
     }
 
     /**

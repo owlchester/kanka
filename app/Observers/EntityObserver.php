@@ -128,7 +128,9 @@ class EntityObserver
         if (!auth()->user()->can('view', $entity)) {
             $permission = new CampaignPermission();
             $permission->entity_id = $entity->id;
-            $permission->misc_id = $entity->entity_id;
+            if (!$entity->entityType->isSpecial()) {
+                $permission->misc_id = $entity->entity_id;
+            }
             $permission->entity_type_id = $entity->type_id;
             $permission->campaign_id = $entity->campaign_id;
             $permission->user_id = auth()->user()->id;
@@ -140,7 +142,9 @@ class EntityObserver
         if (!auth()->user()->can('update', $entity)) {
             $permission = new CampaignPermission();
             $permission->entity_id = $entity->id;
-            $permission->misc_id = $entity->entity_id;
+            if (!$entity->entityType->isSpecial()) {
+                $permission->misc_id = $entity->entity_id;
+            }
             $permission->entity_type_id = $entity->type_id;
             $permission->campaign_id = $entity->campaign_id;
             $permission->user_id = auth()->user()->id;

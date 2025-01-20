@@ -2,52 +2,75 @@
 
 namespace App\Services\Api;
 
+use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Services\Entity\TagService;
+use App\Traits\EntityTypeAware;
+use App\Traits\UserAware;
+use Illuminate\Support\Arr;
 
 class BulkEntityCreatorService
 {
     use CampaignAware;
+    use EntityTypeAware;
+    use UserAware;
 
-    protected MiscModel $class;
     protected MiscModel $new;
+    protected Entity $entity;
+
+    protected array $data;
+
+    public function data(array $data): self
+    {
+        $this->data = $data;
+        return $this;
+    }
 
     /**
      */
-    public function saveEntity(array $entity): MiscModel
+    public function create(): Entity
     {
-        // Prepare the data
-        unset($entity['module']);
+        if ($this->entityType->isSpecial()) {
+            return $this->createEntity();
+        }
 
-        $this->new = new $this->class($entity);
+        $this->new = $this->entityType->getClass();
+        $this->new->fill($this->data);
         $this->new->campaign_id = $this->campaign->id;
         $this->new->save();
         $this->new->crudSaved();
-        if (isset($entity['tags'])) {
-            $this->saveTags($entity['tags']);
-        }
         $this->new->entity->crudSaved();
+        $this->entity = $this->new->entity;
+        $this->saveTags();
 
-        return $this->new;
+        return $this->new->entity;
     }
 
-    public function class(MiscModel $class): self
+    protected function createEntity(): Entity
     {
-        $this->class = $class;
-        return $this;
+        $this->entity = new Entity($this->data);
+        $this->entity->type_id = $this->entityType->id;
+        $this->entity->campaign_id = $this->campaign->id;
+        $this->entity->save();
+        $this->entity->crudSaved();
+        $this->saveTags();
+        return $this->entity;
     }
 
     /**
      * Save the tags
      */
-    protected function saveTags(array $ids): void
+    protected function saveTags(): void
     {
+        if (!Arr::has($this->data, 'tags')) {
+            return;
+        }
         /** @var TagService $tagService */
         $tagService = app()->make(TagService::class);
-        $tagService->user(auth()->user())
-            ->entity($this->new->entity)
-            ->sync($ids)
+        $tagService->user($this->user)
+            ->entity($this->entity)
+            ->sync($this->data['tags'])
         ;
     }
 }

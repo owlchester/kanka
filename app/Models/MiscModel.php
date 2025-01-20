@@ -128,13 +128,14 @@ abstract class MiscModel extends Model
      */
     public function createEntity(): Entity
     {
-        $entity = Entity::create([
-            'entity_id' => $this->id,
-            'campaign_id' => $this->campaign_id,
-            'is_private' => $this->isPrivate(),
-            'name' => $this->name,
-            'type_id' => $this->entityTypeId(),
-        ]);
+        $entity = new Entity();
+        $entity->entity_id = $this->id;
+        $entity->name = $this->name;
+        $entity->campaign_id = $this->campaign_id;
+        $entity->type_id = $this->entityTypeId();
+        $entity->is_private = $this->isPrivate();
+        $entity->save();
+        $this->setRelation('entity', $entity);
 
         return $entity;
     }

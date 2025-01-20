@@ -73,14 +73,14 @@ class EntityTypeService
 
     public function ordered(): Collection
     {
-       return $this->available()->sortBy(fn (EntityType $a) => $a->name());
-//
-//        $collator = new \Collator(app()->getLocale());
-//        usort($types, function ($a, $b) use ($collator) {
-//            return $collator->compare($a->name(), $b->name());
-//        });
-//
-//        return $types;
+        return $this->available()->sortBy(fn (EntityType $a) => $a->name());
+        //
+        //        $collator = new \Collator(app()->getLocale());
+        //        usort($types, function ($a, $b) use ($collator) {
+        //            return $collator->compare($a->name(), $b->name());
+        //        });
+        //
+        //        return $types;
     }
 
     public function toSelect(): array
@@ -97,7 +97,7 @@ class EntityTypeService
         return $this->prepend + $values;
     }
 
-    public function save(): void
+    public function save(): EntityType
     {
         if (!isset($this->entityType)) {
             $this->entityType = new EntityType();
@@ -115,6 +115,8 @@ class EntityTypeService
         if ($this->entityType->wasRecentlyCreated) {
             $this->permissions()->bookmark();
         }
+
+        return $this->entityType;
     }
 
     public function toggle(): void
@@ -154,5 +156,13 @@ class EntityTypeService
             $perm->save();
         }
         return $this;
+    }
+
+    public function delete()
+    {
+        $this->entityType->bookmarks()->delete();
+        $this->entityType->entities()->delete();
+        $this->entityType->attributeTemplates()->delete();
+        $this->entityType->entities()->delete();
     }
 }

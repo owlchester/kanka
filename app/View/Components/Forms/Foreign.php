@@ -4,6 +4,7 @@ namespace App\View\Components\Forms;
 
 use App\Facades\Module;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,6 @@ class Foreign extends Component
 {
     //public mixed $model;
     public array $options = [];
-    public ?string $className;
 
     /**
      * Create a new component instance.
@@ -30,18 +30,15 @@ class Foreign extends Component
         public bool $required = false,
         public bool $parent = false,
         public bool $multiple = false,
-        public string $entityType = '',
+        public ?EntityType $entityType = null,
         public string $key = '',
         public ?string $label = null,
         public ?string $placeholder = null,
         public ?string $helper = null,
         public ?string $dropdownParent = null,
         public ?int $entityTypeID = null,
-        mixed $class = null,
     ) {
         $this->id = !empty($id) ? $id : $name . '_' . uniqid();
-        $this->className = $class;
-
     }
 
     /**
@@ -49,10 +46,7 @@ class Foreign extends Component
      */
     public function render(): View|Closure|string
     {
-        $canNew = false;
-        if ($this->allowNew && auth()->check() && !empty($this->className)) {
-            $canNew = auth()->user()->can('create', new $this->className());
-        }
+        $canNew = $this->createPermission();
 
         if (!empty($this->selected)) {
             if (is_array($this->selected)) {
@@ -92,5 +86,19 @@ class Foreign extends Component
         }
         return view('components.forms.foreign')
             ->with('canNew', $canNew);
+    }
+
+    protected function createPermission(): bool
+    {
+        if (!$this->allowNew || auth()->guest()) {
+            return false;
+        }
+
+        if (!empty($this->entityType)) {
+            return auth()->user()->can('create', [$this->entityType, $this->campaign]);
+        }
+
+        $this->entityType = $this->campaign->entityTypes->where('id', $this->entityTypeID)->first();
+        return auth()->user()->can('create', [$this->entityType, $this->campaign]);
     }
 }

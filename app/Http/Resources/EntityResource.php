@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Facades\Avatar;
-use App\Facades\Img;
 use App\Facades\Mentions;
 use App\Models\Item;
 use App\Models\MiscModel;
@@ -60,7 +59,6 @@ class EntityResource extends JsonResource
             'type' => $entity->type,
             'type_id' => $entity->type_id,
             'entity_type' => $entity->entityType->code,
-            'child_id' => $entity->entity_id,
             'tags' => $entity->tags->pluck('id')->toArray(),
             'is_private' => (bool) $entity->is_private,
             'is_template' => $entity->isTemplate(),
@@ -86,6 +84,9 @@ class EntityResource extends JsonResource
             $data['type'] = $entity->type;
             $data['entry'] = $entity->entry;
             $data['entry_parsed'] = Mentions::mapEntity($entity, 'entry');
+            $data['parent_id'] = $entity->parent_id;
+        } else {
+            $data['child_id'] = $entity->entity_id;
         }
 
         if (request()->get('related', false)) {
@@ -98,14 +99,14 @@ class EntityResource extends JsonResource
         }
 
         if (request()->get('related', false) || request()->get('image', false)) {
-            if (empty($entity->child)) {
-                $data['child'] = 'Invalid child, please contact Jay on Discord with the following: EntityResource for #' . $entity->id;
+            if ($entity->isMissingChild()) {
+                $data['child'] = 'Invalid child, please contact us on Discord with the following: EntityResource for #' . $entity->id;
             } else {
                 $image = !empty($entity->image);
                 $data['child'] = [
                     'image' => $image ? $entity->image->path : $entity->image_path,
-                    'image_full' => $image ? Img::resetCrop()->url($entity->image->path) : Avatar::entity($entity)->original(),
-                    'image_thumb' => $image ? Img::crop(40, 40)->url($entity->image->path) : Avatar::entity($entity)->size(40)->thumbnail(),
+                    'image_full' => Avatar::entity($entity)->original(),
+                    'image_thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
                     'has_custom_image' => $image || !empty($entity->image_path),
                 ];
             }

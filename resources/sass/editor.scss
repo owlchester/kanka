@@ -255,3 +255,7 @@ img.note-float-left {
         color:hsl(var(--pc)/var(--tw-text-opacity));
     }
 }
+.modal-content .modal-header .close {
+    float: right;
+    font-size: 1.2rem;
+}

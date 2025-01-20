@@ -72,7 +72,8 @@ class ModuleController extends Controller
 
         $this->moduleEditService
             ->campaign($campaign)
-            ->update($request, $entityType);
+            ->entityType($entityType)
+            ->update($request);
 
         return redirect()->route('campaign.modules', $campaign)
             ->with('success', __('campaigns/modules.rename.success'));
@@ -95,18 +96,42 @@ class ModuleController extends Controller
             ->with('success', __('campaigns/modules.reset.success'));
     }
 
-
     /**
      * Toggle a module in the campaign's settings
      */
-    public function toggle(Campaign $campaign, string $module)
+    public function toggle(Campaign $campaign, EntityType $entityType)
     {
         $this->authorize('setting', $campaign);
 
         try {
             $status = $this->moduleEditService
                 ->campaign($campaign)
-                ->toggle($module);
+                ->entityType($entityType)
+                ->toggle();
+
+            return response()->json([
+                'success' => true,
+                'status' => $campaign->setting->{$entityType},
+                'toast' => __('campaigns.settings.' . ($status ? 'enabled' : 'disabled'), ['module' => $entityType->plural()])
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false
+            ]);
+        }
+    }
+
+    /**
+     * Toggle a module in the campaign's settings
+     */
+    public function toggleFeature(Campaign $campaign, string $module)
+    {
+        $this->authorize('setting', $campaign);
+
+        try {
+            $status = $this->moduleEditService
+                ->campaign($campaign)
+                ->toggleFeature($module);
 
             return response()->json([
                 'success' => true,

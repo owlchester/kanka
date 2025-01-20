@@ -3,10 +3,7 @@
 namespace App\Services\Search;
 
 use App\Facades\Avatar;
-use App\Models\Character;
 use App\Models\Entity;
-use App\Models\MiscModel;
-use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
@@ -32,8 +29,8 @@ class LiveSearchService
         if (!empty($excludes)) {
             $query->whereNotIn('id', [$excludes]);
         }
-        if ($this->entityType->id === config('entities.ids.tag')) {
-            $with[] = 'tag';
+        if (!$this->entityType->isSpecial()) {
+            $with[] = $this->entityType->code;
         }
         $query->with($with);
 
@@ -55,7 +52,8 @@ class LiveSearchService
         /** @var Entity $entity */
         foreach ($entities as $entity) {
             $format = [
-                'id' => $entity->id,
+                'id' => $this->entityType->isSpecial() ? $entity->id : $entity->{$this->entityType->code}->id,
+                'entity_id' => $entity->id,
                 'name' => $entity->name,
                 'text' => $entity->name,
             ];

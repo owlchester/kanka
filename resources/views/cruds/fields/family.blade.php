@@ -14,12 +14,10 @@
     :campaign="$campaign"
     name="family_id"
     key="family"
-    entityType="families"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
     :route="route('search-list', [$campaign, config('entities.ids.family')] + (isset($model) ? ['exclude' => $model->id] : []))"
-    :class="\App\Models\Family::class"
     :selected="$preset"
     :dropdownParent="$dropdownParent ?? null"
     :entityTypeID="config('entities.ids.family')">

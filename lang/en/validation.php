@@ -117,6 +117,7 @@ return [
     'uuid' => 'The :attribute must be a valid UUID.',
     'goodbye' => 'You must write :code to confirm the deletion of your account',
     'delete_campaign' => 'You must write ":code" to confirm the deletion of the campaign',
+    'confirmation' => 'You must write ":code" to confirm this action.',
 
     'forbidden_letter' => 'The :attribute cannot contain the letter ":letter."',
     //'entity_file' => 'Allowed extensions: :formats',
