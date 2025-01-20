@@ -195,6 +195,12 @@ class SubscriptionService
         return $this;
     }
 
+    public function renew(): void
+    {
+        $this->user->subscription('kanka')->resume();
+    }
+
+
     /**
      * Setup the user's pledge, role, discord
      * @return $this

@@ -47,8 +47,8 @@ class SubscriptionEndJob implements ShouldQueue
     {
         /** @var ?User $user */
         $user = User::find($this->userId);
-        if (empty($user) || $this->userId == 27078) {
-            // User deleted their account already.
+        if (empty($user) || $this->userId == 27078 || $user->subscribed('kanka')) {
+            // User deleted their account already or renewed their subscription.
             return;
         }
 
