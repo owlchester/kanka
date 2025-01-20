@@ -1,9 +1,9 @@
 <?php /** @var \App\Models\EntityAsset $asset */?>
 <div class="">
     <div class="entity-asset asset-file flex justify-center items-center overflow-hidden mb-4">
-        <a href="{{ $asset->url() }}" target="_blank" class="w-1/2 block h-20 cover-background icon rounded flex items-center align-center justify-center bg-black/10 " @if($asset->isImage()) style="background-image: url({{ $asset->imageUrl() }})"@endif>
+        <a href="{{ $asset->url() }}" target="_blank" class="w-1/2 h-20 cover-background icon rounded flex items-center align-center justify-center bg-black/10 text-3xl " @if($asset->isImage()) style="background-image: url({{ $asset->imageUrl() }})"@endif>
             @if (!$asset->isImage())
-            <i class="text-3xl fa-regular fa-file" aria-hidden="true"></i>
+                <x-icon :class="$asset->previewIcon()" />
             @endif
         </a>
         <div class="w-1/2 text truncate p-2">

@@ -131,6 +131,21 @@ class EntityAsset extends Model
         return (string) $this->metadata['icon'];
     }
 
+    public function previewIcon(): string
+    {
+        if (!$this->image) {
+            return 'fa-regular fa-file';
+        }
+        return match ($this->image->ext) {
+            'pdf' => 'fa-regular fa-file-pdf',
+            'json' => 'fa-regular fa-brackets-curly',
+            'mp3', 'mp4', 'ogg' => 'fa-regular fa-file-music',
+            'xls', 'xlsx' => 'fa-regular fa-file-xls',
+            'csv' => 'fa-regular fa-file-csv',
+            default => 'fa-regular fa-file',
+        };
+    }
+
     public function getIconAttribute(): mixed
     {
         return Arr::get($this->metadata, 'icon');
