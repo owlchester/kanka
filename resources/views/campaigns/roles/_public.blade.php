@@ -1,9 +1,9 @@
 <?php
 /**
  * @var \App\Services\PermissionService $permissionService
- * @var \App\Services\EntityService $entity
  * @var \App\Models\CampaignRole $role
  * @var \App\Models\Campaign $campaign
+ * @var \App\Models\EntityType $entityType
  */
 ?>
 <div class="flex flex-col gap-5">
@@ -42,11 +42,11 @@
     </x-tutorial>
 
     <div class="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        @foreach (\App\Models\EntityType::whereNot('id', config('entities.ids.bookmark'))->get() as $entityType)
-            <div class="public-permission flex flex-col gap-2 rounded items-center text-center justify-center break-all overflow-x-hidden cursor-pointer text-lg px-2 py-5 select-none {{ $permissionService->type($entityType->id)->can() ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$campaign, $role, 'entity' => $entityType->id, 'action' => \App\Enums\Permission::View->value]) }}">
+        @foreach ($modules as $entityType)
+            <div class="public-permission flex flex-col gap-2 rounded items-center text-center justify-center break-all overflow-x-hidden cursor-pointer text-lg px-2 py-5 select-none {{ $permissionService->type($entityType->id)->can(\App\Enums\Permission::View) ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$campaign, $role, 'entity' => $entityType->id, 'action' => \App\Enums\Permission::View->value]) }}">
                 <div class="block text-2xl">
                     <div class="module-icon">
-                        <x-icon class="{{ \App\Facades\Module::duoIcon($entityType->code) }}" />
+                        <x-icon class="{{ $entityType->icon() }}" />
                     </div>
                     <div class="loading-animation hidden">
                         <x-icon class="fa-solid fa-spinner fa-spin" />
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="">{!! $entityType->plural() !!}</div>
-                @if (!$campaign->enabled($entityType->pluralCode()))
+                @if ((!$entityType->isSpecial() && !$campaign->enabled($entityType->pluralCode())) || ($entityType->isSpecial() && !$entityType->isEnabled()))
                     <div class="rounded bg-warning text-warning-content" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
                         <i class="fa-solid fa-exclamation-triangle"  aria-hidden="true"></i>
                         <span class="md:hidden text-sm inline">{{ __('campaigns.modules.permission-disabled') }}</span>

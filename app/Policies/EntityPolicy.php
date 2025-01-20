@@ -19,7 +19,7 @@ class EntityPolicy
     {
         return EntityPermission::entity($entity)->user($user)->can(Permission::View);
     }
-    public function update(?User $user, Entity $entity): bool
+    public function update(User $user, Entity $entity): bool
     {
         return EntityPermission::entity($entity)->user($user)->can(Permission::Update);
     }
@@ -50,7 +50,7 @@ class EntityPolicy
         return UserCache::user($user)->admin();
     }
 
-    public function history(?User $user, Entity $entity, Campaign $campaign): bool
+    public function history(User $user, Entity $entity, Campaign $campaign): bool
     {
         return ($user && UserCache::user($user)->admin()) || !($campaign->boosted() && $campaign->hide_history);
     }

@@ -18,7 +18,7 @@ class DetailController extends Controller
     {
         $this->campaign($campaign)->authEntityView($map->entity);
         if (!empty($mapMarker->entity_id)) {
-            $this->authEntityView($mapMarker->entity);
+            $this->campaign($campaign)->authEntityView($mapMarker->entity);
         }
 
         $name = $mapMarker->name;

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignRole;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
+use App\Services\EntityTypeService;
 use App\Services\Permissions\RolePermissionService;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,7 @@ class RoleController extends Controller
      * Create a new controller instance.
      * @return void
      */
-    public function __construct(RolePermissionService $rolePermissionService)
+    public function __construct(RolePermissionService $rolePermissionService, protected EntityTypeService $entityTypeService)
     {
         $this->middleware('auth');
         $this->service = $rolePermissionService;
@@ -128,11 +129,17 @@ class RoleController extends Controller
             ->with('user')
             ->paginate();
 
+        $modules = $this->entityTypeService
+            ->campaign($campaign)
+            ->exclude([config('entities.ids.bookmark')])
+            ->ordered();
+
         return view($this->view . '.show', [
             'model' => $campaign,
             'role' => $campaignRole,
             'campaign' => $campaign,
             'members' => $members,
+            'modules' => $modules,
             'permissionService' => $this->service->campaign($campaign)->role($campaignRole)
         ]);
     }

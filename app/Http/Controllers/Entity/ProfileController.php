@@ -15,7 +15,7 @@ class ProfileController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
 
         if (!view()->exists('entities.pages.profile._' . $entity->entityType->code)) {
             return redirect()->to($entity->url());

@@ -1,4 +1,3 @@
-@inject('typeService', 'App\Services\Entity\TypeService')
 @inject('entityTypeService', 'App\Services\EntityTypeService')
 @php
 /** @var \App\Services\EntityTypeService $entityTypeService */

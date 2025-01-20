@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Attributes\TemplateService;
 use App\Services\AttributeService;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
 /**
@@ -15,6 +16,7 @@ use App\Traits\GuestAuthTrait;
  */
 class AttributeController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
 
     protected AttributeService $service;
@@ -37,7 +39,7 @@ class AttributeController extends Controller
             );
         }
 
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
         $this->authorize('view-attributes', [$entity, $campaign]);
 
         $template = null;
@@ -68,7 +70,7 @@ class AttributeController extends Controller
                 ])
             );
         }
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
         $this->authorize('view-attributes', [$entity, $campaign]);
 
         $template = null;

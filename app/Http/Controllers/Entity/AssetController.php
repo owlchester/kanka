@@ -10,6 +10,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Services\EntityFileService;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Exception;
 use Illuminate\Support\Facades\Cookie;
@@ -17,11 +18,12 @@ use Illuminate\Support\Str;
 
 class AssetController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
         if (!$campaign->enabled('assets')) {
             return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',
@@ -253,7 +255,7 @@ class AssetController extends Controller
      */
     public function go(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
 
         if ($entityAsset->entity_id !== $entity->id || !$entityAsset->isLink()) {
             abort(404);

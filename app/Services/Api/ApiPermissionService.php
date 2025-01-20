@@ -87,7 +87,7 @@ class ApiPermissionService
                 $entityId = $entity->id;
             }
 
-            $permission = EntityPermission::hasPermission($entityTypeId, $test['action'], $user, $entity, $campaign);
+            $permission = EntityPermission::campaign($campaign)->user($user)->hasPermission($entityTypeId, $test['action'], $entity);
 
             $permissionTest[] = ([
                 'entity_type_id' => $entityTypeId,

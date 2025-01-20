@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\Connections\MapService;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
 class MapController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
 
     protected MapService $service;
@@ -21,7 +23,7 @@ class MapController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
 
         $map = $this->service
             ->campaign($campaign)
