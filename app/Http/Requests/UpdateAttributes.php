@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -28,25 +29,7 @@ class UpdateAttributes extends FormRequest
     {
 
         return $this->clean([
-            'attribute' => 'array',
-            'attribute.*.name' => 'required|distinct|max:191',
-
-            //'attribute.*.name' => 'json',
-            //'attribute.name' => 'distinct|required|string|max:191',
-
+            'attribute' => ['array', new UniqueAttributeNames()],
         ]);
     }
-
-    protected function prepareForValidation()
-    {
-        $attributes = [];
-        foreach ($this->attribute as $att) {
-            $attributes[] = json_decode($att, true);
-        }
-
-        $this->merge([
-            'attribute' => $attributes
-        ]);
-    }
-
 }
