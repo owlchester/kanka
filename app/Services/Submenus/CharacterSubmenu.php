@@ -19,12 +19,12 @@ class CharacterSubmenu extends BaseSubmenu implements EntitySubmenu
             'button' => $canEdit ? [
                 'url' => $this->entity->url('edit'),
                 'icon' => 'fa-solid fa-pencil',
-                'tooltip' => __('crud.edit'),
+                'tooltip' => __('entities/profile.actions.edit_profile'),
             ] : null,
         ];
 
         // @phpstan-ignore-next-line
-        $count = $this->entity->child->organisationMemberships()->has('organisation')->count();
+        $count = $this->entity->child->organisationMemberships()->has('organisation')->has('organisation.entity')->count();
         if ($this->campaign->enabled('organisations') && ($count > 0 || $canEdit)) {
             $items['second']['organisations'] = [
                 'name' => Module::plural(config('entities.ids.organisation'), 'entities.organisations'),

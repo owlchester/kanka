@@ -79,7 +79,7 @@ class AbilityService extends BaseAbilityService
         $groupKey = $parent->id ?? 'unorganised';
 
         if (empty($this->groups[$groupKey])) {
-            if (empty($parent)) {
+            if (empty($parent) || empty($parent->entity)) {
                 $this->groups[$groupKey] = [
                     'id' => 0,
                     'name' => __('entities/abilities.groups.unorganised'),

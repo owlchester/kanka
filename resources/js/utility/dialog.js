@@ -30,7 +30,10 @@ function openingDialog(e) {
 const openDialog = (target, url, focus) => {
     target = document.getElementById(target);
     target.removeAttribute('open');
+    target.setAttribute('aria-hidden', false);
     target.show();
+    target.focus();
+    document.addEventListener('keydown', handleKeydown);
 
     backdrop.classList.remove('hidden');
     if (target.dataset.dismissible !== 'false') {
@@ -49,7 +52,10 @@ const openDialog = (target, url, focus) => {
     });
     target.addEventListener('close', function (event) {
         backdrop.classList.add('hidden');
+        target.setAttribute('aria-hidden', true);
+        document.removeEventListener('keydown', handleKeydown);
     });
+    //document.addEventListener('keydown', handleEscape);
 
     if (url) {
         loadDialogContent(url, target);
@@ -59,6 +65,22 @@ const openDialog = (target, url, focus) => {
             return;
         }
         focusEle.focus();
+    }
+};
+
+const handleKeydown = (event) => {
+    if (event.key === 'Escape') {
+        const activeElement = document.activeElement;
+        const focusableTags = ['INPUT', 'SELECT', 'TEXTAREA'];
+        if (focusableTags.includes(activeElement.tagName)) {
+            document.activeElement.blur();
+            return;
+        }
+        const openDialog = document.querySelector('dialog[aria-hidden="false"]');
+        if (!openDialog) {
+            document.removeEventListener('keydown', handleKeydown);
+        }
+        openDialog.close();
     }
 };
 

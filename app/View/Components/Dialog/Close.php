@@ -13,6 +13,7 @@ class Close extends Component
      */
     public function __construct(
         public string $dismiss = 'modal',
+        public ?string $id = null,
         public bool $modal = false,
     ) {
     }

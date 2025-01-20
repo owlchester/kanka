@@ -21,7 +21,7 @@ $child = $entity->child;
         <div class="element profile-family">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!}
-                @if (auth()->check() && auth()->user()->can('familyManagement', $entity->child))
+                @if (auth()->check() && auth()->user()->can('update', $entity))
                     <span role="button" tabindex="0" class="entity-families-icon" data-toggle="dialog" data-url="{{ route('characters.families.management', [$campaign, $entity->child]) }}" data-target="primary-dialog" aria-haspopup="dialog">
                         <i class="fa-solid fa-pencil" data-title="{{ __('characters.families.title') }}" aria-hidden="true"></i>
                     </span>
@@ -50,7 +50,7 @@ $child = $entity->child;
         <div class="element profile-race">
             <div class="title text-uppercase text-xs">
                 {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
-                @if (auth()->check() && auth()->user()->can('raceManagement', $entity->child))
+                @if (auth()->check() && auth()->user()->can('update', $entity))
                     <span role="button" tabindex="0" class="entity-races-icon" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $entity->child]) }}" data-target="primary-dialog" aria-haspopup="dialog">
                         <x-icon class="fa-solid fa-pencil" title="{{ __('characters.races.title', ['name' => $entity->name]) }}" tooltip />
                     </span>

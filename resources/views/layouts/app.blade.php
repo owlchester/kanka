@@ -83,7 +83,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
 @if(isset($entity)){{ $entity->bodyClasses() }}@endif
 @if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif antialiased" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember() ? 1 : 0 }}" @endif>
 
-<a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute mx-2 top-0 btn2 btn-primary btn-sm rounded-t-none" tabindex="1">
+<a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute mx-2 top-0 btn2 btn-primary btn-sm rounded-t-none" tabindex="0">
     {{ __('crud.navigation.skip_to_content') }}
 </a>
     <div id="app" class="wrapper h-full min-h-screen relative mt-12">
@@ -132,6 +132,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     <x-dialog id="primary-dialog" :loading="true" />
     <div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
 
+    @include('layouts.dialogs.languages')
     @yield('modals')
 
     <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full flex flex-col gap-2 z-[1001]"></div>

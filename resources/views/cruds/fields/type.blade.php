@@ -1,7 +1,12 @@
+@php
+    $fieldID = uniqid('type_');
+@endphp
 <x-forms.field
     field="type"
-    label="{{ __('crud.fields.type') }}">
-    <input type="text" name="type"
+    label="{{ __('crud.fields.type') }}"
+    :id="$fieldID">
+
+    <input id="{{ $fieldID }}" type="text" name="type"
            placeholder="{{ __($trans . '.placeholders.type') }}" maxlength="45" list="entity-type-list-{{ $trans }}"
            spellcheck="true" autocomplete="off"
            value="{!! htmlspecialchars(str_replace('&amp;', '&', old('type', $source->type ?? $entity->type ?? ''))) !!}"/>

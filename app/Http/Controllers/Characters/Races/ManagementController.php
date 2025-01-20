@@ -21,7 +21,7 @@ class ManagementController extends Controller
 
     public function index(Campaign $campaign, Character $character)
     {
-        $this->authorize('raceManagement', $character);
+        $this->authorize('update', $character->entity);
 
         $this->campaign($campaign)->authEntityView($character->entity);
 
@@ -42,7 +42,7 @@ class ManagementController extends Controller
      */
     public function save(Campaign $campaign, Character $character, ManageRaces $request)
     {
-        $this->authorize('raceManagement', $character);
+        $this->authorize('update', $character->entity);
 
         $races = $character->races()->pluck('races.id')->toArray();
         $privates = $request->get('race_privates');

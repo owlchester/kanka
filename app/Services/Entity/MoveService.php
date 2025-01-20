@@ -90,7 +90,10 @@ class MoveService
         // Can the user create an entity of that type on the new campaign?
         //UserCache::campaign($campaign);
         if (!$this->user->can('create', [$this->entity->entityType, $campaign])) {
-            throw new TranslatableException('entities/move.errors.permission');
+            throw (new TranslatableException('entities/move.errors.permission'))->setOptions([
+                'type' => $this->entity->entityType->name(),
+                'target' => '<a href="' . route('dashboard', $campaign) . '">' . $campaign->name . '</a>',
+            ]);
         }
 
         //UserCache::campaign($this->entity->campaign);

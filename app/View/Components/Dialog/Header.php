@@ -14,6 +14,7 @@ class Header extends Component
     public function __construct(
         public ?string $id = null,
         public ?string $title = null,
+        public ?string $class = null,
         public bool $dismissible = true,
     ) {
     }

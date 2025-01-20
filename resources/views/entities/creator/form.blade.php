@@ -20,11 +20,14 @@
     <div class="quick-creator-body flex flex-col gap-5">
 
         @includeWhen(!empty($success), 'entities.creator._created')
-
+        <?php
+        $fieldID = $mode === 'bulk' ? 'qq-name-field' : (!isset($entityType) ? 'qq-post-name-field' : 'qq-name-field');
+        ?>
         <x-forms.field
             field="name"
             required
-            :label="__('crud.fields.name')">
+            :label="__('crud.fields.name')"
+            :id="$fieldID">
             @if ($mode === 'bulk')
                 <textarea name="name"
                           autocomplete="off"

@@ -38,7 +38,7 @@ class CharacterOrganisationController extends Controller
      */
     public function create(Campaign $campaign, Character $character)
     {
-        $this->authorize('organisation', [$character, 'add']);
+        $this->authorize('update', $character->entity);
 
         return view($this->view . '.create', ['model' => $character, 'campaign' => $campaign]);
     }
@@ -48,7 +48,7 @@ class CharacterOrganisationController extends Controller
      */
     public function store(StoreOrganisationMember $request, Campaign $campaign, Character $character)
     {
-        $this->authorize('organisation', [$character, 'add']);
+        $this->authorize('update', $character->entity);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -67,7 +67,7 @@ class CharacterOrganisationController extends Controller
      */
     public function show(Campaign $campaign, Character $character, OrganisationMember $organisationMember)
     {
-        $this->authorize('organisation', [$character, 'read']);
+        $this->authorize('update', $character->entity);
         abort(404);
     }
 
@@ -77,7 +77,7 @@ class CharacterOrganisationController extends Controller
      */
     public function edit(Campaign $campaign, Character $character, CharacterOrganisation $characterOrganisation)
     {
-        $this->authorize('organisation', [$character, 'edit']);
+        $this->authorize('update', $character->entity);
 
         return view($this->view . '.edit', [
             'model' => $character,
@@ -92,7 +92,7 @@ class CharacterOrganisationController extends Controller
         Character $character,
         CharacterOrganisation $characterOrganisation
     ) {
-        $this->authorize('organisation', [$character, 'edit']);
+        $this->authorize('update', $character->entity);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -115,7 +115,7 @@ class CharacterOrganisationController extends Controller
      */
     public function destroy(Campaign $campaign, Character $character, CharacterOrganisation $characterOrganisation)
     {
-        $this->authorize('organisation', [$character, 'delete']);
+        $this->authorize('update', $character->entity);
 
         $characterOrganisation->delete();
 

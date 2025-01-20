@@ -6,7 +6,7 @@
         css="disabled"
         link="#"
         icon="check">
-        {!! $trans !!}
+        {!! $entityType->name() !!}
     </x-dropdowns.item>
 @else
     @php $data = [

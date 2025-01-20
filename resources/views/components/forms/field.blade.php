@@ -3,7 +3,7 @@
     @if ($hidden) hidden @endif"
 >
     @if (isset($label) && !empty($label))
-        <label class="">
+        <label class="" @if (isset($id)) for="{{ $id }}" @endif>
             {!! $label !!}
             @if ($tooltip && isset($helper))
                 @if (isset($link))
@@ -15,6 +15,7 @@
                 @endif
             @endif
         </label>
+    @else
     @endif
     {!! $slot !!}
     @if (isset($helper) && !empty($helper))

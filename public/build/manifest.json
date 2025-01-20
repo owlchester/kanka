@@ -8,8 +8,8 @@
   "_axios-1779699b.js": {
     "file": "assets/axios-1779699b.js"
   },
-  "_dialog-4600fe8d.js": {
-    "file": "assets/dialog-4600fe8d.js"
+  "_dialog-d7ca7e30.js": {
+    "file": "assets/dialog-d7ca7e30.js"
   },
   "_sortable.esm-89cfb839.js": {
     "file": "assets/sortable.esm-89cfb839.js"
@@ -51,7 +51,7 @@
     "src": "resources/images/leaflet/icon.png"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-1bbcfe51.js",
+    "file": "assets/abilities-ccce2fe7.js",
     "imports": [
       "_vue.esm-bundler-51152e6d.js"
     ],
@@ -75,11 +75,11 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-31c7920b.js",
+    "file": "assets/app-04d36724.js",
     "imports": [
       "_tippy.esm-24ef6cb2.js",
       "_sortable.esm-89cfb839.js",
-      "_dialog-4600fe8d.js",
+      "_dialog-d7ca7e30.js",
       "_vue.esm-bundler-51152e6d.js",
       "_v-click-outside.umd-1708c20a.js",
       "__plugin-vue_export-helper-c27b6911.js",
@@ -183,10 +183,10 @@
     "src": "resources/js/forms/character.js"
   },
   "resources/js/front.js": {
-    "file": "assets/front-052c86c3.js",
+    "file": "assets/front-1d779ff1.js",
     "imports": [
       "_axios-1779699b.js",
-      "_dialog-4600fe8d.js"
+      "_dialog-d7ca7e30.js"
     ],
     "isEntry": true,
     "src": "resources/js/front.js"

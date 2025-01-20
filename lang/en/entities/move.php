@@ -6,9 +6,9 @@ return [
         'move'  => 'Move',
     ],
     'errors'        => [
-        'permission'        => 'You aren\'t allowed to create entities of that type in the target campaign.',
+        'permission'        => 'You aren\'t allowed to create :type entities in :target.',
         'permission_update' => 'You aren\'t allowed to move this entity.',
-        'same_campaign'     => 'You need to select another campaign to move the entity to.',
+        'same_campaign'     => 'Select another campaign to move the entity to.',
         'unknown_campaign'  => 'Unknown campaign.',
     ],
     'fields'        => [

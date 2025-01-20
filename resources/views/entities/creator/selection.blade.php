@@ -1,6 +1,6 @@
 @if (!isset($new))
 <x-dialog.header>
-
+    <span class="sr-only" id="dialog-label-primary-dialog">{{ __('Quick creator dialog') }}</span>
 </x-dialog.header>
 @endif
 <article id="qq-modal-loading" class="!hidden">

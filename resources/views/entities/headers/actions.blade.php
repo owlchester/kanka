@@ -16,7 +16,7 @@
 
 <div class="dropdown entity-actions-dropdown flex items-center">
     <div role="button" tabindex="0" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu" class="btn2 btn-sm entity-actions-button">
-        <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
+        <span class="sr-only">{{ __('Open action menu') }}</span>
         <x-icon class="fa-solid fa-ellipsis-h" />
     </div>
     <div class="dropdown-menu hidden" role="menu" id="entity-submenu">

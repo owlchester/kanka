@@ -71,7 +71,7 @@ class MoveController extends Controller
         } catch (TranslatableException $ex) {
             return redirect()
                 ->to($entity->url())
-                ->with('error', __($ex->getMessage(), ['name' => $entity->name]));
+                ->with('error_raw', $ex->getTranslatedMessage());
         }
     }
 }

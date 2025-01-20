@@ -28,6 +28,7 @@ class Field extends Component
         string $helper = null,
         string $link = null,
         string $css = null,
+        public ?string $id = null,
     ) {
         $this->field = $field;
         $this->label = $label;

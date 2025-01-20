@@ -21,7 +21,7 @@
         @if (auth()->check() && !empty($campaign) && $campaign->userIsMember() && (!isset($qq) || $qq))
         <div class="flex-none">
             <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="dialog" data-target="primary-dialog" class="quick-creator-button btn2 btn-primary btn-sm"
-            tabindex="4">
+            tabindex="0">
                 <x-icon class="flex-none fa-solid fa-plus ml-1" />
                 <span class="grow hidden sm:inline-block">
                     {{ __('crud.create') }}

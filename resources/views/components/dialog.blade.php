@@ -1,4 +1,4 @@
-<dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="{{ $id }}" aria-modal="true" aria-labelledby="dialogLabel{{ $id }}" @if (!$dismissible) data-dismissible="false" @endif>
+<dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="{{ $id }}" aria-modal="true" aria-hidden="true" aria-labelledby="dialog-label-{{ $id }}" @if (!$dismissible) data-dismissible="false" @endif>
     <x-dialog.header :id="$id">
         @if ($loading)
             {{ __('Loading') }}
