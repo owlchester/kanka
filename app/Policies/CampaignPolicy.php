@@ -51,7 +51,7 @@ class CampaignPolicy
     {
         return
             $campaign->userIsMember($user) && (
-                UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_MANAGE, $user)
+                UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_MANAGE, $user, $campaign)
             );
     }
 
