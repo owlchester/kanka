@@ -2,7 +2,7 @@
 <x-grid type="1/1">
 <x-forms.field
     field="action"
-    :required="true"
+    required
     :label="__('campaigns/webhooks.fields.event')"
     >
     @php
@@ -16,7 +16,7 @@
 
 <x-forms.field
     field="url"
-    :required="true"
+    required
     :label="__('campaigns/webhooks.fields.url')"
     >
     <input type="text" name="url" value="{{ old('url', $webhook->url ?? null) }}" maxlength="191" required class="w-full" placeholder="{{ __('campaigns/webhooks.placeholders.url') }}"/>
@@ -37,7 +37,7 @@
 <div class="webhook-subform @if(isset($webhook) && $webhook->type == 2)) hidden @endif" id="webhook-custom">
     <x-forms.field
         field="message"
-        :required="true"
+        required
         :label="__('campaigns/webhooks.fields.message')"
         tooltip
         :helper="__('campaigns/webhooks.helper.message')"

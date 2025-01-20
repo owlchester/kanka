@@ -2,7 +2,7 @@
 <x-grid type="1/1">
     <x-forms.foreign
         field="entities"
-        :required="true"
+        required
         label="abilities.show.tabs.entities"
         :multiple="true"
         name="entities[]"

@@ -1,13 +1,13 @@
 <x-forms.field
     field="name"
-    :required="true"
+    required
     :label="__('campaigns/styles.fields.name')">
     <input type="text" name="name" placeholder="{{ __('campaigns/styles.placeholders.name') }}" maxlength="191" required value="{!! htmlspecialchars(old('name', $style->name ?? null)) !!}" />
 </x-forms.field>
 
 <x-forms.field
     field="content"
-    :required="true"
+    required
     :label="__('campaigns/styles.fields.content')"
     :helper="__('campaigns.helpers.css')">
     <textarea name="content" id="css" class="codemirror" spellcheck="false">{!! old('content', $style->content ?? null) !!}</textarea>

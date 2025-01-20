@@ -1,6 +1,6 @@
 {{ csrf_field() }}
 <x-grid type="1/1">
-<x-forms.field field="user" :required="true" :label="__('campaigns.members.fields.name')">
+<x-forms.field field="user" required :label="__('campaigns.members.fields.name')">
 
     <x-forms.select name="user_id" :options="$campaign->membersList($role->users->pluck('user_id')->toArray())" class="w-full select2" />
 </x-forms.field>

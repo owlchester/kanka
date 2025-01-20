@@ -20,7 +20,7 @@
     :dynamicNew="$dynamicNew ?? false"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('search-list', [$campaign, config('entities.ids.location')] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.location')] + (isset($entity) ? ['exclude' => $entity->id] : []))"
     :selected="$preset"
     :dropdownParent="$dropdownParent ?? null"
     :entityTypeID="config('entities.ids.location')">

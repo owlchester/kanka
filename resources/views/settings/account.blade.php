@@ -15,7 +15,7 @@
     </h1>
     <x-form :action="['settings.account.email']" method="PATCH">
         <x-grid type="1/1">
-            <x-forms.field field="email" :required="true" :label="__('profiles.fields.email')">
+            <x-forms.field field="email" required :label="__('profiles.fields.email')">
                 <input type="email" name="email" value="{{ old('email', $user->email) }}" placeholder="{{ __('profiles.placeholders.email') }}" autocomplete="email" />
             </x-forms.field>
 
@@ -39,10 +39,10 @@
                 <p>{{ __('profiles.helpers.new-password') }}</p>
             </x-helper>
 
-            <x-forms.field field="new-password" :required="true" :label="__('profiles.fields.new_password')">
+            <x-forms.field field="new-password" required :label="__('profiles.fields.new_password')">
                 <input type="password" name="password_new" placeholder="{{ __('profiles.placeholders.new_password') }}" autocomplete="new-password" />
             </x-forms.field>
-            <x-forms.field field="password-confirm" :required="true" :label="__('profiles.fields.new_password_confirmation')">
+            <x-forms.field field="password-confirm" required :label="__('profiles.fields.new_password_confirmation')">
                 <input type="password" name="password_new_confirmation" placeholder="{{ __('profiles.placeholders.new_password_confirmation') }}" autocomplete="new-password" />
             </x-forms.field>
 
@@ -125,7 +125,7 @@
                 <p>
                     {!! __('profiles.sections.delete.goodbye', ['code' => '<code>goodbye</code>']) !!}
                 </p>
-                <x-forms.field field="goodbye" :required="true">
+                <x-forms.field field="goodbye" required>
                     <input type="text" name="goodbye" @if (app()->isLocal()) value="goodbye" @endif required  />
                 </x-forms.field>
                 <x-buttons.confirm type="danger" outline="true" full="true">

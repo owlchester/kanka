@@ -15,7 +15,7 @@
                 <x-forms.field
                     field="role"
                     :label="__('campaigns.members.fields.role')"
-                    :required="true">
+                    required>
                     <x-forms.select name="role_id" :options="$campaign->roles()->where('is_public', false)->orderBy('is_admin')->pluck('name', 'id')" class="w-full" />
                 </x-forms.field>
 

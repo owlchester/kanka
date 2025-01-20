@@ -8,7 +8,7 @@
 @endif
 
 <x-grid>
-    <x-forms.field field="name" :required="true" css="col-span-2" :label="__('entities/links.fields.name')">
+    <x-forms.field field="name" required css="col-span-2" :label="__('entities/links.fields.name')">
         <input type="text" name="name" value="{!! htmlspecialchars(old('name', $entityAsset->name ?? null)) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/aliases.placeholders.name') }}" />
     </x-forms.field>
 

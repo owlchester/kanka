@@ -2,7 +2,7 @@
 
 <x-grid>
     <x-grid type="1/1">
-        <x-forms.field field="weeks" :required="true" :label="__('calendars.fields.weekdays')" :helper="__('calendars.hints.weekdays')">
+        <x-forms.field field="weeks" required :label="__('calendars.fields.weekdays')" :helper="__('calendars.hints.weekdays')">
             <input type="hidden" name="weekday" />
         </x-forms.field>
 

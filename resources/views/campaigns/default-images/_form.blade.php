@@ -1,7 +1,7 @@
 <x-grid type="1/1">
     <x-forms.field
         field="entity-type"
-        :required="true"
+        required
         :label="__('crud.fields.entity_type')">
 
         <x-forms.select name="entity_type" :options="$entityTypes" class="w-full" />
@@ -9,7 +9,7 @@
 
     <x-forms.field
         field="file"
-        :required="true"
+        required
         :label="__('entities/files.fields.file')">
         <input type="file" name="default_entity_image" class="image w-full" accept=".jpg, .jpeg, .png, .gif, .webp" />
     </x-forms.field>

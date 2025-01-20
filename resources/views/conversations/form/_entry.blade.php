@@ -12,7 +12,7 @@ $targets = [
 
     <x-forms.field
         field="participants"
-        :required="true"
+        required
         :label="__('conversations.fields.participants')">
         <x-forms.select name="target_id" :options="$targets" :selected="$source->target_id ?? $model->target_id ?? null" />
     </x-forms.field>

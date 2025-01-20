@@ -1,5 +1,5 @@
 <x-grid>
-    <x-forms.field field="name" :required="true" :label="__('crud.fields.name')">
+    <x-forms.field field="name" required :label="__('crud.fields.name')">
         <input type="text" name="name"  placeholder="{{ __('timelines/eras.placeholders.name') }}" value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" maxlength="191" required />
     </x-forms.field>
 

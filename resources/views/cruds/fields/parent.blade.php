@@ -16,5 +16,6 @@
     :selected="$preset"
     :route="route('search-list', [$campaign, $entityType])"
     :dropdownParent="$dropdownParent ?? null"
-    :helper="__('crud.helpers.parent')">
+    :helper="__('crud.helpers.parent')"
+    :entityTypeID="$entityType->id">
 </x-forms.foreign>

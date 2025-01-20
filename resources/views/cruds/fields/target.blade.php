@@ -5,7 +5,7 @@ $preset = $target ?? null;
 @if(empty($relation) && $required)
     <x-forms.foreign
         field="targets"
-        :required="true"
+        required
         label="entities/relations.fields.target"
         :multiple="true"
         name="targets[]"

@@ -44,7 +44,7 @@
                         <x-forms.select name="currency" :options="$currencies" :selected="auth()->user()->currency()" />
                     </x-forms.field>
                     @if (auth()->user()->subscription('kanka')?->ended())
-                        <x-forms.field field="reset_billing" :required="true" :label=" __('settings.subscription.fields.reset')">
+                        <x-forms.field field="reset_billing" required :label=" __('settings.subscription.fields.reset')">
                             <input type="hidden" name="reset_billing" value="0" />
                             <x-checkbox :text="__('settings.subscription.fields.reset_billing')">
                                 <input type="checkbox" name="reset_billing" value="1" required/>

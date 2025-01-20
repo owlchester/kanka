@@ -9,7 +9,7 @@ $typeOptions = [
 <x-grid>
     <x-forms.field
         field="name"
-        :required="true"
+        required
         :label="__('crud.fields.name')">
         <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/layers.placeholders.name') }}" required value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" />
     </x-forms.field>

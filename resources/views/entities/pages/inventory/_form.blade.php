@@ -15,7 +15,7 @@ if (isset($inventory)) {
 
     <x-forms.field
         field="name"
-        :required="true"
+        required
         :helper="__('entities/inventories.helpers.name')"
         :label="__('entities/inventories.fields.name')">
         <input type="text" name="name" value="{!! htmlspecialchars(old('name', $inventory->name ?? null)) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/inventories.placeholders.name') }}" />
@@ -57,7 +57,7 @@ if (isset($inventory)) {
 
     <x-forms.field
         field="amount"
-        :required="true"
+        required
         :label="__('entities/inventories.fields.amount')"
         :helper="__('entities/inventories.helpers.amount')">
 

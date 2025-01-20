@@ -2,7 +2,7 @@
     <x-forms.field
         field="template"
         :label="__('entities/attributes.fields.template')"
-        :required="true"
+        required
     :helper="__('attributes/templates.pitch', [
     'boosted-campaign' => '<a href=\'https://kanka.io/premium\'>' . __('concept.premium-campaigns') . '</a>',
     'marketplace' => '<a href=\'' . config('marketplace.url') . '/attribute-templates\' target=\'_blank\'>' . __('footer.marketplace') . '</a>'

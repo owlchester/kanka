@@ -2,7 +2,7 @@
     <x-forms.field
         field="weather"
         css="col-span-2"
-        :required="true"
+        required
         :label="__('calendars/weather.fields.weather')">
         <x-forms.select name="weather" :options="__('calendars/weather.options.weather')" :selected="$model->weather ?? null" />
     </x-forms.field>

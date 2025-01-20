@@ -2,7 +2,7 @@
 @if(empty($relation))
     <x-forms.foreign
         field="targets"
-        :required="true"
+        required
         label="entities/relations.fields.target"
         :multiple="true"
         name="targets[]"
@@ -22,7 +22,7 @@
         'allowClear' => false,
     ])
 @endif
-    <x-forms.field field="relation" :required="true" :label="__('entities/relations.fields.relation')">
+    <x-forms.field field="relation" required :label="__('entities/relations.fields.relation')">
         <input type="text" name="relation" value="{!! htmlspecialchars(old('relation', $relation->relation ?? null)) !!}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.relation') }}" placeholder="{{ __('entities/relations.placeholders.relation') }}" />
     </x-forms.field>
 

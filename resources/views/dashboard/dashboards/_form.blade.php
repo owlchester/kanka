@@ -8,7 +8,7 @@
 
     <x-forms.field
         field="name"
-        :required="true"
+        required
         :label="__('dashboard.dashboards.fields.name')">
 
         <input type="text" name="name" placeholder="{{ __('dashboard.dashboards.placeholders.name') }}" maxlength="45" required value="{!! htmlspecialchars(old('name', $dashboard->name ?? null)) !!}" />

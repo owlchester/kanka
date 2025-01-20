@@ -23,7 +23,7 @@
 
         <x-forms.field
             field="name"
-            :required="true"
+            required
             :label="__('crud.fields.name')">
             @if ($mode === 'bulk')
                 <textarea name="name"

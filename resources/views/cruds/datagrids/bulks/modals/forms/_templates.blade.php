@@ -1,7 +1,7 @@
 <x-grid type="1/1">
     <x-forms.field
         field="template"
-        :required="true"
+        required
         :label="__('entities/attributes.fields.template')"
         :helper="__('attributes/templates.pitch', [
             'boosted-campaign' => '<a href=\'https://kanka.io/premium\'>' . __('concept.premium-campaigns') . '</a>',

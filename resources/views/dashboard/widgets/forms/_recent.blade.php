@@ -31,7 +31,7 @@
     <div class="tab-content p-4">
         <div id="setup-{{ $mode }}" class="tab-pane fade in active">
             <x-grid>
-                <x-forms.field field="entity-type" :required="true" :label="__('crud.fields.entity_type')">
+                <x-forms.field field="entity-type" required :label="__('crud.fields.entity_type')">
                     <x-forms.select name="entity_type_id" :options="$entityTypes" :selected="$model->entityType->id ?? null" class="w-full recent-entity-type" :extra="['data-animate' => 'reveal', 'data-target' => '.field-recent-filters']" />
                 </x-forms.field>
 

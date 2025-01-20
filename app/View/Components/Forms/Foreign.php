@@ -15,6 +15,8 @@ class Foreign extends Component
     //public mixed $model;
     public array $options = [];
 
+    protected EntityType $entityType;
+
     /**
      * Create a new component instance.
      */
@@ -30,7 +32,6 @@ class Foreign extends Component
         public bool $required = false,
         public bool $parent = false,
         public bool $multiple = false,
-        public ?EntityType $entityType = null,
         public string $key = '',
         public ?string $label = null,
         public ?string $placeholder = null,
@@ -98,7 +99,7 @@ class Foreign extends Component
             return auth()->user()->can('create', [$this->entityType, $this->campaign]);
         }
 
-        $this->entityType = $this->campaign->entityTypes->where('id', $this->entityTypeID)->first();
+        $this->entityType = $this->campaign->getEntityTypes()->where('id', $this->entityTypeID)->first();
         return auth()->user()->can('create', [$this->entityType, $this->campaign]);
     }
 }

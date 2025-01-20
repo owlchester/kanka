@@ -61,7 +61,7 @@ $layoutOptions = $layoutDefault + $layoutOptions
     <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
         <div class="tab-pane pane-entry active" id="form-entry">
             <x-grid>
-                <x-forms.field field="name" :required="true">
+                <x-forms.field field="name" required>
                     <input type="text" name="name"  placeholder="{{ __('entities/notes.placeholders.name') }}"
                            value="{!! htmlspecialchars(old('name', str_replace('&amp;', '&', $model->name ?? ''))) !!}"
                            maxlength="191" data-bragi-name="{{ $bragiName }}" data-live-disabled="1" />

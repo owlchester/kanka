@@ -68,7 +68,7 @@
             </div>
 
             @can('edit', [$image, $campaign])
-            <x-forms.field field="name" :label="__('crud.fields.name')" :required="true">
+            <x-forms.field field="name" :label="__('crud.fields.name')" required>
                 <input type="text" name="name" maxlength="45" required value="{!! htmlspecialchars(old('name', $image->name ?? null)) !!}" />
             </x-forms.field>
 

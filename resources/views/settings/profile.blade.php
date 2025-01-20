@@ -16,7 +16,7 @@
         <x-form :action="['settings.profile']" method="PATCH" files>
             <div class="flex flex-col md:flex-row gap-5">
                 <div class="grow flex flex-col gap-5">
-                    <x-forms.field field="name" :label="__('profiles.fields.name')" :required="true">
+                    <x-forms.field field="name" :label="__('profiles.fields.name')" required>
                         <input type="text" name="name" maxlength="191" placeholder="{{ __('profiles.placeholders.name') }}" class="rounded border p-2 w-full" value="{!! old('name', $user->name ?? null) !!}" />
                     </x-forms.field>
 

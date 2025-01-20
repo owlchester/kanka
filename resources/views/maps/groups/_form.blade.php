@@ -1,6 +1,6 @@
     <x-grid>
     <x-forms.field
-        :required="true"
+        required
         :label="__('crud.fields.name')"
         field="name"
         css="col-span-2">

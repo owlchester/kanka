@@ -3,7 +3,7 @@
     <x-grid type="1/1">
         <x-forms.field
             field="name"
-            :required="true"
+            required
             :label="__('campaigns.fields.name')"
             :helper="__('campaigns.helpers.name')">
             <input type="text" name="name" placeholder="{{ __('campaigns.placeholders.name') }}" data-live-disabled="1" maxlength="191" required value="{!! old('name', $model->name ?? null) !!}" />

@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Calendar $model */?>
 <x-grid type="1/1">
 
-    <x-forms.field field="months" :required="true" :label="__('calendars.fields.months')" :helper="__('calendars.hints.months')">
+    <x-forms.field field="months" required :label="__('calendars.fields.months')" :helper="__('calendars.hints.months')">
         <input type="hidden" name="month_name" />
     </x-forms.field>
 

@@ -33,11 +33,11 @@
                 <x-grid type="1/1">
                     <p>{{ __('settings.account.2fa.activation_helper') }}</p>
 
-                    <x-forms.field field="qr-code" :required="true" :label="__('settings.account.2fa.fields.qrcode')">
+                    <x-forms.field field="qr-code" required :label="__('settings.account.2fa.fields.qrcode')">
                         {!! $user->passwordSecurity->getGoogleQR() !!}
                     </x-forms.field>
 
-                    <x-forms.field field="otp" :required="true" :label="__('settings.account.2fa.fields.otp')">
+                    <x-forms.field field="otp" required :label="__('settings.account.2fa.fields.otp')">
                         <input type="password" name="otp" maxlength="12" />
                     </x-forms.field>
 
