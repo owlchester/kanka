@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -33,6 +34,7 @@ class StoreConversation extends FormRequest
             'target_id' => 'required|numeric',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
+            'attribute' => ['array', new UniqueAttributeNames()],
         ];
 
         return $this->clean($rules);

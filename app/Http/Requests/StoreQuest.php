@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Facades\Limit;
 use App\Models\Quest;
 use App\Rules\Nested;
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -39,6 +40,7 @@ class StoreQuest extends FormRequest
             'character_id' => 'nullable|integer|exists:characters,id',
             'location_id' => 'nullable|integer|exists:locations,id',
             'template_id' => 'nullable',
+            'attribute' => ['array', new UniqueAttributeNames()],
         ];
 
         // If the calendar is present and not null, but we aren't "skipping" it (editing but without permission)

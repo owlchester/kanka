@@ -6,7 +6,7 @@ use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAttributes extends FormRequest
+class SaveAttributes extends FormRequest
 {
     use ApiRequest;
 

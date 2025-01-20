@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Rules\Location;
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -43,7 +44,8 @@ class StoreCharacter extends FormRequest
             'families' => 'array',
             'families.*' => 'distinct|exists:families,id',
             'races' => 'array',
-            'races.*' => 'distinct|exists:races,id'
+            'races.*' => 'distinct|exists:races,id',
+            'attribute' => ['array', new UniqueAttributeNames()],
         ];
 
         return $this->clean($rules);

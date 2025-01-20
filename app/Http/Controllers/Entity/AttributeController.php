@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateAttributes;
+use App\Http\Requests\SaveAttributes;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Attributes\TemplateService;
@@ -111,7 +111,7 @@ class AttributeController extends Controller
         ));
     }
 
-    public function save(UpdateAttributes $request, Campaign $campaign, Entity $entity)
+    public function save(SaveAttributes $request, Campaign $campaign, Entity $entity)
     {
         if ($entity->isMissingChild()) {
             abort(404);

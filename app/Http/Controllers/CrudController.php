@@ -13,7 +13,6 @@ use App\Models\Entity;
 use App\Models\Bookmark;
 use App\Models\MiscModel;
 use App\Renderers\DatagridRenderer;
-use App\Rules\UniqueAttributeNames;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\AttributeService;
 use App\Services\Entity\CopyService;
@@ -359,11 +358,6 @@ class CrudController extends Controller
     {
         $this->authorize('create', $this->model);
 
-        $request->validate([
-            'attribute' => [
-                new UniqueAttributeNames()
-            ],
-        ]);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -525,12 +519,6 @@ class CrudController extends Controller
     public function crudUpdate(Request $request, Model|MiscModel $model)
     {
         $this->authorize('update', $model);
-
-        $request->validate([
-            'attribute' => [
-                new UniqueAttributeNames()
-            ],
-        ]);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {

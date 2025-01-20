@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MiscModel;
-use App\Rules\UniqueAttributeNames;
 use App\Services\AttributeService;
 use App\Services\MultiEditingService;
 use App\Traits\CampaignAware;
@@ -59,12 +58,6 @@ class EditController extends Controller
 
     public function save(Request $request, Campaign $campaign, Entity $entity)
     {
-        $request->validate([
-            'attribute' => [
-                new UniqueAttributeNames()
-            ],
-        ]);
-
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
             return response()->json(['success' => true]);

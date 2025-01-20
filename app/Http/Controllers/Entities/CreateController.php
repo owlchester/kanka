@@ -8,7 +8,6 @@ use App\Http\Requests\StoreCustomEntity;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
-use App\Rules\UniqueAttributeNames;
 use App\Services\AttributeService;
 use App\Services\Entity\CopyService;
 use Illuminate\Http\Request;
@@ -47,12 +46,6 @@ class CreateController extends Controller
     public function store(StoreCustomEntity $request, Campaign $campaign, EntityType $entityType)
     {
         $this->authorize('create', [$entityType, $campaign]);
-
-        $request->validate([
-            'attribute' => [
-                new UniqueAttributeNames()
-            ],
-        ]);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
