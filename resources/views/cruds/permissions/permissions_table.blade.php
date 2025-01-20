@@ -175,7 +175,7 @@ $permissionService->campaign($campaign);
                         @endif
                     </div>
                     <div class="truncate">
-                        {{ $member->user->name }}
+                        {!! $member->user->name !!}
                     </div>
                 @if (isset($entity))
                     @can('switch', $member)

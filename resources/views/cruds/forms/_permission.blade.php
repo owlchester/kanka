@@ -18,6 +18,9 @@ if (isset($model)) {
         $permissionService->entityPermissions($model->entity);
         $permissionService->type($model->entity->type_id);
     }
+} elseif (isset($entity)) {
+    $permissionService->entityPermissions($entity);
+    $permissionService->type($entity->type_id);
 } else {
     $permissionService->type($entityType->id);
 }

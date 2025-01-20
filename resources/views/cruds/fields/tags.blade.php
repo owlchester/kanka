@@ -9,9 +9,10 @@
             :campaign="$campaign"
             :model="$model ?? $source ?? null"
             :dropdownParent="$dropdownParent ?? null"
-            :allowNew="isset($bulk) ? false : (isset($enableNew) ? $enableNew : auth()->user()->can('create', \App\Models\Tag::class))"
+            :allowNew="isset($bulk) ? false : $enableNew  ?? false"
             allowClear="false"
             enableAuto="true"
+            :entityTypeID="config('entities.ids.tag')"
         ></x-forms.tags>
     </x-forms.field>
 
