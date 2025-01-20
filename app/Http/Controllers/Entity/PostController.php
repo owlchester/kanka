@@ -8,11 +8,13 @@ use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Services\MultiEditingService;
 use App\Models\Post;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use App\Models\Entity;
 
 class PostController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
 
     public function index(Campaign $campaign, Entity $entity)
@@ -44,7 +46,7 @@ class PostController extends Controller
 
     public function show(Campaign $campaign, Entity $entity, Post $post)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
         if (!request()->json()) {
             return redirect()->to($entity->url());
         }

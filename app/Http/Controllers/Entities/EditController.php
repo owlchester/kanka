@@ -91,7 +91,6 @@ class EditController extends Controller
                 $entity->crudSaved();
             }
 
-
             if (auth()->user()->can('attributes', $entity)) {
                 $this->attributeService
                     ->campaign($campaign)

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Facades\Limit;
 use App\Models\Tag;
 use App\Rules\Nested;
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -42,7 +43,8 @@ class StoreTag extends FormRequest
             'colour' => [
                 'nullable',
                 Rule::in($colours)
-            ]
+            ],
+            'attribute' => ['array', new UniqueAttributeNames()],
         ];
 
         /** @var Tag $self */

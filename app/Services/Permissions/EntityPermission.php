@@ -51,7 +51,7 @@ class EntityPermission
 
     public function can(Permission $permission): bool
     {
-        $this->loadAllPermissions($this->user, $this->campaign);
+        $this->loadAllPermissions();
         if ($this->userIsAdmin) {
             return true;
         }
@@ -89,11 +89,9 @@ class EntityPermission
     public function hasPermission(
         int $entityType,
         int $action,
-        User $user = null,
         $entity = null,
-        Campaign $campaign = null
     ): bool {
-        $this->loadAllPermissions($user, $campaign);
+        $this->loadAllPermissions();
 
         if ($this->userIsAdmin) {
             return true;
@@ -108,10 +106,11 @@ class EntityPermission
         }
         $key = $entityType . '_' . $action;
 
-        //        if ($action === 1) {
-        //            dump($key = $entityType . '_' . $action);
-        //            dump($this->cached);
-        //        }
+
+//        if ($action === Permission::Bookmarks->value) {
+//            dump($key = $entityType . '_' . $action);
+//            dump($this->cached);
+//        }
 
         $perm = false;
         if (isset($this->cached[$key]) && $this->cached[$key]) {
@@ -125,7 +124,6 @@ class EntityPermission
 
             //Check if $entity is an entity type.
             if (isset($entity->type_id)) {
-                dump('entity object');
                 $entityKey = '_' . $action . '_' . $entity->entity_id;
             } else {
                 //dump('misc object');
@@ -144,7 +142,7 @@ class EntityPermission
     /**
      * Check the roles of the user. If the user is an admin, always return true
      */
-    protected function getRoleIds(Campaign $campaign, ?User $user = null): array|bool
+    protected function getRoleIds(): array|bool
     {
         // If we haven't built a list of roles yet, build it.
         if (isset($this->roleIds)) {
@@ -153,14 +151,14 @@ class EntityPermission
 
         $this->roles = false;
         // If we have a user, get the user's role for this campaign
-        if ($user) {
-            $this->roles = UserCache::user($user)->campaign($campaign)->roles();
+        if (isset($this->user)) {
+            $this->roles = UserCache::user($this->user)->campaign($this->campaign)->roles();
         }
 
         // If we don't have a user, or our user has no specified role yet, use the public role.
         if ($this->roles === false || $this->roles->count() == 0) {
             // Use the campaign's public role
-            $this->roles = $campaign->roles()->where('is_public', true)->get();
+            $this->roles = $this->campaign->roles()->where('is_public', true)->get();
         }
 
         // Save all the role ids. If one of them is an admin, stop there.
@@ -178,9 +176,9 @@ class EntityPermission
     /**
      * Determine if a user is part of a role that can do an action on all entities of a campaign
      */
-    public function canRole(string $action, string $modelName, ?User $user = null, ?Campaign $campaign = null): bool
+    public function canRole(string $action, string $modelName): bool
     {
-        $this->loadAllPermissions($user, $campaign);
+        $this->loadAllPermissions();
         $key = $modelName . '_' . $action;
 
         // We check if the role was set for global entity permissions
@@ -195,36 +193,29 @@ class EntityPermission
      * It's way easier to just load all permissions of the user once and "cache" them, rather than try and be
      * optional on each query.
      */
-    protected function loadAllPermissions(?User $user = null, ?Campaign $campaign = null): void
+    protected function loadAllPermissions(): void
     {
         // If no campaign was provided, get the one in the url. One is provided when moving entities between campaigns
-        if (empty($campaign)) {
-            $campaign = \App\Facades\CampaignLocalization::getCampaign();
-
-            // Our Campaign middleware takes care of this, but the laravel binding is going to get the model first,
-            // so we have to add this abort here to handle calling the permission engine on campaigns which
-            // no longer exist.
-            if (empty($campaign)) {
-                // Before we do that, we need to check if we're in a factory for unit tests
-                if (app()->environment('testing')) {
-                    $this->userIsAdmin = true;
-                    return;
-                } else {
-                    abort(404);
-                }
+        if (!isset($this->campaign)) {
+            // Before we do that, we need to check if we're in a factory for unit tests
+            if (app()->environment('testing')) {
+                $this->userIsAdmin = true;
+                return;
+            } else {
+                abort(404);
             }
         }
 
-        if ($this->loadedAll === true && $campaign->id == $this->loadedCampaignId) {
+        if ($this->loadedAll === true && $this->campaign->id == $this->loadedCampaignId) {
             return;
         }
 
         $this->resetPermissions();
-        $this->loadedCampaignId = $campaign->id;
+        $this->loadedCampaignId = $this->campaign->id;
 
         // Loop through the roles to build a list of ids, and check if one of our roles is an admin
         unset($this->roleIds);
-        $roleIds = $this->getRoleIds($campaign, $user);
+        $roleIds = $this->getRoleIds();
         if ($roleIds === true) {
             // If the role ids is simply true, it means the user is an admin
             $this->userIsAdmin = true;
@@ -251,8 +242,8 @@ class EntityPermission
 
         // If a user is provided, get their permissions too
         //dump('user');
-        if (!empty($user)) {
-            $userPermissions = $user->permissions()->where('campaign_id', $campaign->id)->get();
+        if (isset($this->user)) {
+            $userPermissions = $this->user->permissions()->where('campaign_id', $this->campaign->id)->get();
             /** @var CampaignPermission $permission */
             foreach ($userPermissions as $permission) {
                 $this->cached[$permission->key()] = $permission->access;

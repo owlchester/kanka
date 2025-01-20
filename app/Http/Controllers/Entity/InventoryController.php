@@ -8,10 +8,12 @@ use App\Http\Requests\UpdateInventory;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Inventory;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
 class InventoryController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
 
     protected array $fillable = [
@@ -29,7 +31,7 @@ class InventoryController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
         if (!$campaign->enabled('inventories')) {
             return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',

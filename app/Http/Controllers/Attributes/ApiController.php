@@ -7,10 +7,12 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\Attributes\ApiService;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
 class ApiController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
 
     protected ApiService $apiService;
@@ -40,7 +42,7 @@ class ApiController extends Controller
 
     public function entity(Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
 
         // When copying an entity, the source might have private attributes, which blocks the attributes
         if (auth()->check() && auth()->user()->can('view-attributes', [$entity, $campaign])) {

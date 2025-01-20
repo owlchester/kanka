@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Facades\Limit;
 use App\Models\Location;
 use App\Rules\Nested;
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -37,6 +38,7 @@ class StoreLocation extends FormRequest
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
+            'attribute' => ['array', new UniqueAttributeNames()],
         ];
 
         /** @var Location $self */

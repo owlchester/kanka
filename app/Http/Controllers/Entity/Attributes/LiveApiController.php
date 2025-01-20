@@ -9,15 +9,17 @@ use App\Http\Resources\Attributes\LiveAttributeResource;
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
 class LiveApiController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
         $this->authorize('view-attributes', [$entity, $campaign]);
 
         return LiveAttributeResource::collection($entity->attributes()->with(['entity', 'entity.campaign', 'entity.attributes'])->get());
@@ -25,7 +27,7 @@ class LiveApiController extends Controller
 
     public function store(StoreAttribute $request, Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
         $this->authorize('attributes', [$entity, $campaign]);
 
         $data = $request->all();
@@ -37,7 +39,7 @@ class LiveApiController extends Controller
 
     public function update(UpdateAttribute $request, Campaign $campaign, Entity $entity, Attribute $attribute)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
         $this->authorize('attributes', [$entity, $campaign]);
 
         $attribute->update($request->all());
@@ -47,7 +49,7 @@ class LiveApiController extends Controller
 
     public function destroy(Campaign $campaign, Entity $entity, Attribute $attribute)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
         $this->authorize('attributes', [$entity, $campaign]);
 
         $attribute->delete();

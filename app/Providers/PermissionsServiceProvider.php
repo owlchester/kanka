@@ -28,7 +28,6 @@ class PermissionsServiceProvider extends ServiceProvider
     {
         /*
         App\Providers\EntityPermissionServiceProvider::class,
-        App\Providers\RolePermissionServiceProvider::class,
         */
         $this
             ->registerMain()

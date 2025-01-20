@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Facades\Limit;
 use App\Models\Race;
 use App\Rules\Nested;
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -39,6 +40,7 @@ class StoreRace extends FormRequest
             'template_id' => 'nullable',
             'locations' => 'array',
             'locations.*' => 'distinct|exists:locations,id',
+            'attribute' => ['array', new UniqueAttributeNames()],
         ];
 
         /** @var Race $self */

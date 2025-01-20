@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
 class TooltipController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
 
     /**
@@ -16,7 +18,7 @@ class TooltipController extends Controller
      */
     public function show(Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
 
         $tags = $entity->tagsWithEntity();
         $tagClasses = [];

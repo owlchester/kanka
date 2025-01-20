@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Facades\Limit;
 use App\Models\Note;
 use App\Rules\Nested;
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -37,6 +38,7 @@ class StoreNote extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
             'note_id' => 'nullable|integer|exists:notes,id',
+            'attribute' => ['array', new UniqueAttributeNames()],
         ];
 
         /** @var Note $self */

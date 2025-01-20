@@ -18,7 +18,7 @@ class TableController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
 
         Datagrid::layout(\App\Renderers\Layouts\Entity\Relation::class)
             ->route('entities.relations_table', ['campaign' => $campaign, 'entity' => $entity, 'mode' => 'table']);

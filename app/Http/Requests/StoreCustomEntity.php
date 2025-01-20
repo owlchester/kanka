@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\UniqueAttributeNames;
 
 class StoreCustomEntity extends FormRequest
 {
@@ -28,6 +29,7 @@ class StoreCustomEntity extends FormRequest
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'image_uuid' => 'nullable|integer|exists:images,id',
+            'attribute' => ['array', new UniqueAttributeNames()],
         ];
 
         return $this->clean($rules);

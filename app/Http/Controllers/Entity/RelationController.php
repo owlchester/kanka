@@ -10,10 +10,12 @@ use App\Models\Entity;
 use App\Models\Relation;
 use App\Services\Entity\Connections\RelatedService;
 use App\Services\Entity\RelationService;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
 class RelationController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
 
     protected RelatedService $connectionService;
@@ -27,7 +29,7 @@ class RelationController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
 
         $mode = request()->get('mode', null);
         if (!in_array($mode, ['map', 'table'])) {

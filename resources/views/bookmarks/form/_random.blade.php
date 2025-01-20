@@ -1,7 +1,7 @@
-@inject('typeService', 'App\Services\Entity\TypeService')
+@inject('entityTypeService', 'App\Services\EntityTypeService')
 @php
 $entityTypes = ['' => '', 'any' => __('bookmarks.random_types.any')];
-$entityTypes = $typeService->campaign($campaign)->plural()->permissionless()->exclude(['bookmark'])->singularKey()->add($entityTypes)->get();
+$entityTypes = $entityTypeService->campaign($campaign)->exclude(['bookmark'])->prepend($entityTypes)->toSelect();
 @endphp
 
 

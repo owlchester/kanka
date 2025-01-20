@@ -35,11 +35,10 @@ trait GuestAuthTrait
             abort(403);
         }
 
-        $campaign = CampaignLocalization::getCampaign();
-        $permission = EntityPermission::hasPermission($entity->entityType->id, $permission->value, null, $entity, $campaign);
+        $permission = EntityPermission::entity($entity)->campaign($this->campaign)->can($permission);
 
         // @phpstan-ignore-next-line
-        if ($campaign->id != $entity->campaign_id || !$permission) {
+        if ($this->campaign->id != $entity->campaign_id || !$permission) {
             // Raise an error
             abort(403);
         }

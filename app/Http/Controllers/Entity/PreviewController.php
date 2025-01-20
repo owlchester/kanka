@@ -7,10 +7,12 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\PreviewService;
 use App\Services\Search\RecentService;
+use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
 class PreviewController extends Controller
 {
+    use CampaignAware;
     use GuestAuthTrait;
 
     protected PreviewService $service;
@@ -24,7 +26,7 @@ class PreviewController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
 
         if (auth()->check()) {
             $this->recentService

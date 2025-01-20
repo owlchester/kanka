@@ -25,7 +25,7 @@ class ReorderController extends Controller
     {
         $this->authorize('create', Bookmark::class);
 
-        $links = Bookmark::ordered()->with('target')->get();
+        $links = Bookmark::ordered()->with(['target', 'entityType'])->get();
 
         return view('bookmarks.reorder', compact(
             'links',

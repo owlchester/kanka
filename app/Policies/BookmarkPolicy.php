@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Enums\Permission;
 use App\Facades\UserCache;
+use App\Models\Bookmark;
 use App\Models\User;
 use App\Facades\EntityPermission;
 use App\Models\Campaign;
@@ -13,33 +14,33 @@ class BookmarkPolicy
 {
     use HandlesAuthorization;
 
-    public function browse(User $user): bool
+    public function browse(?User $user, Bookmark $bookmark): bool
     {
         return UserCache::user($user)->admin() || $this->checkPermission(Permission::Bookmarks->value, $user);
     }
 
-    public function view(User $user): bool
+    public function view(User $user, Bookmark $bookmark): bool
     {
         return UserCache::user($user)->admin() || $this->checkPermission(Permission::Bookmarks->value, $user);
     }
 
     public function create(User $user): bool
     {
-        return UserCache::user($user)->admin() || $this->checkPermission(Permission::Bookmarks->value, $user);
+        return UserCache::user($user)->admin() || EntityPermission::user($user)->hasPermission(0, Permission::Bookmarks->value);
     }
 
-    public function update(User $user): bool
+    public function update(User $user, Bookmark $bookmark): bool
     {
-        return UserCache::user($user)->admin() || $this->checkPermission(Permission::Bookmarks->value, $user);
+        return $this->view($user, $bookmark);
     }
 
-    public function delete(User $user): bool
+    public function delete(User $user, Bookmark $bookmark): bool
     {
-        return UserCache::user($user)->admin() || $this->checkPermission(Permission::Bookmarks->value, $user);
+        return $this->view($user, $bookmark);
     }
 
-    protected function checkPermission(int $action, User $user, ?Campaign $campaign = null): bool
+    protected function checkPermission(int $action, User $user): bool
     {
-        return EntityPermission::hasPermission(0, $action, $user, null, $campaign);
+        return EntityPermission::user($user)->hasPermission(0, $action);
     }
 }

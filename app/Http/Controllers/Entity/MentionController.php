@@ -18,7 +18,7 @@ class MentionController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        $this->authEntityView($entity);
+        $this->campaign($campaign)->authEntityView($entity);
 
         $options = ['campaign' => $campaign, 'entity' => $entity];
 

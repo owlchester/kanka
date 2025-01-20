@@ -2,6 +2,7 @@
 
 namespace App\Services\Permissions;
 
+use App\Enums\Permission;
 use App\Models\CampaignPermission;
 use App\Models\EntityType;
 use App\Traits\CampaignAware;
@@ -340,12 +341,13 @@ class RolePermissionService
      * Determine if the loaded role has the permission to do a specific action on the
      * specified entity type (->type())
      */
-    public function can(int $action = CampaignPermission::ACTION_READ): bool
+    public function can(Permission $permission): bool
+    //int $action = CampaignPermission::ACTION_READ): bool
     {
         return $this->role->permissions
             ->where('entity_type_id', $this->type)
             ->whereNull('entity_id')
-            ->where('action', $action)
+            ->where('action', $permission->value)
             ->where('access', true)
             ->count() === 1;
     }

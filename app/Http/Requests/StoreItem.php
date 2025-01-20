@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Facades\Limit;
 use App\Models\Item;
 use App\Rules\Nested;
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -42,6 +43,7 @@ class StoreItem extends FormRequest
             'price' => 'nullable|string|max:191',
             'size' => 'nullable|string|max:191',
             'weight' => 'nullable|string|max:191',
+            'attribute' => ['array', new UniqueAttributeNames()],
         ];
 
         /** @var Item $self */

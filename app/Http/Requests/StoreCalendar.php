@@ -7,6 +7,7 @@ use App\Models\Calendar;
 use App\Rules\CalendarMoonOffset;
 use App\Rules\CalendarFormat;
 use App\Rules\Nested;
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -48,6 +49,7 @@ class StoreCalendar extends FormRequest
             'season_name' => 'nullable|array',
             'show_birthdays' => 'boolean',
             'template_id' => 'nullable',
+            'attribute' => ['array', new UniqueAttributeNames()],
             'format'      => ['nullable', new CalendarFormat(), 'string', 'max:20'],
             //            'moon_offset' => [
             //                '*' => new CalendarMoonOffset()
