@@ -7,7 +7,6 @@ use App\Http\Requests\TransformEntityRequest;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\BulkService;
-use App\Services\Entity\TypeService;
 use App\Services\EntityTypeService;
 
 class TransformController extends Controller
@@ -15,7 +14,6 @@ class TransformController extends Controller
     public function __construct(
         protected BulkService $bulkService,
         protected EntityTypeService $entityTypeService,
-        protected TypeService $typeService,
     ) {
         $this->middleware('auth');
     }

@@ -63,7 +63,7 @@ if ($attribute->isSection()) {
            data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
         ></i>
         @endif
-        @if (!isset($model) || auth()->user()->can('attribute', [$model, 'delete']))
+        @if (!isset($model) || auth()->user()->can('update', $model))
             <a class="text-error attribute_delete" title="{{ __('crud.remove') }}">
                 <x-icon class="trash" size="fa-2x" />
                 <span class="sr-only">{{ __('crud.remove') }}</span>
@@ -71,5 +71,6 @@ if ($attribute->isSection()) {
         @endcan
     </div>
 
+    @dd('who is calling this')
     <input type="hidden" name="attr_type[{{ $id }}]" value="{{ $attribute->type_id }}" />
 </div>

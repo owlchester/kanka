@@ -30,7 +30,7 @@ class JournalApiController extends ApiController
     public function show(Campaign $campaign, Journal $journal)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $journal);
+        $this->authorize('view', $journal->entity);
         return new Resource($journal);
     }
 
@@ -56,7 +56,7 @@ class JournalApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Journal $journal)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $journal);
+        $this->authorize('update', $journal->entity);
         $journal->update($request->all());
         $this->crudSave($journal);
 
@@ -70,7 +70,7 @@ class JournalApiController extends ApiController
     public function destroy(Campaign $campaign, Journal $journal)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $journal);
+        $this->authorize('delete', $journal->entity);
         $journal->delete();
 
         return response()->json(null, 204);

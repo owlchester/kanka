@@ -17,7 +17,7 @@ class MapLayerApiController extends ApiController
     public function index(Campaign $campaign, Map $map)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $map);
+        $this->authorize('view', $map->entity);
         return Resource::collection($map->layers()->paginate());
     }
 
@@ -27,7 +27,7 @@ class MapLayerApiController extends ApiController
     public function show(Campaign $campaign, Map $map, MapLayer $mapLayer)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $map);
+        $this->authorize('view', $map->entity);
         return new Resource($mapLayer);
     }
 
@@ -38,7 +38,7 @@ class MapLayerApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Map $map)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         $model = MapLayer::create($request->all());
         $model->refresh();
         return new Resource($model);
@@ -55,7 +55,7 @@ class MapLayerApiController extends ApiController
         MapLayer $mapLayer
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         $mapLayer->update($request->all());
 
         return new Resource($mapLayer);
@@ -72,7 +72,7 @@ class MapLayerApiController extends ApiController
         MapLayer $mapLayer
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         $mapLayer->delete();
 
         return response()->json(null, 204);

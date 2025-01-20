@@ -118,7 +118,7 @@ class DiceRollController extends CrudController
      */
     public function destroyRoll(Campaign $campaign, DiceRoll $diceRoll, DiceRollResult $diceRollResult)
     {
-        $this->authorize('delete', $diceRoll);
+        $this->authorize('delete', $diceRoll->entity);
 
         $diceRollResult->delete();
 

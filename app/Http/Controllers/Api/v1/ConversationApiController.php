@@ -30,7 +30,7 @@ class ConversationApiController extends ApiController
     public function show(Campaign $campaign, Conversation $conversation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $conversation);
+        $this->authorize('view', $conversation->entity);
         return new Resource($conversation);
     }
 
@@ -57,7 +57,7 @@ class ConversationApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Conversation $conversation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $conversation);
+        $this->authorize('update', $conversation->entity);
         $conversation->update($request->all());
         $this->crudSave($conversation);
 
@@ -71,7 +71,7 @@ class ConversationApiController extends ApiController
     public function destroy(Campaign $campaign, Conversation $conversation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $conversation);
+        $this->authorize('delete', $conversation->entity);
         $conversation->delete();
 
         return response()->json(null, 204);

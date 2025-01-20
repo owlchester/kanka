@@ -24,7 +24,7 @@ class FamilyTreeApiController extends ApiController
     public function show(Campaign $campaign, Family $family)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $family);
+        $this->authorize('view', $family->entity);
 
         return new Resource($family->familyTree);
     }
@@ -36,7 +36,7 @@ class FamilyTreeApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Family $family)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $family);
+        $this->authorize('update', $family->entity);
 
         $data = $request->input('tree');
 
@@ -52,7 +52,7 @@ class FamilyTreeApiController extends ApiController
     public function destroy(Campaign $campaign, Family $family)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $family);
+        $this->authorize('delete', $family->entity);
 
         if ($family->familyTree) {
             $family->familyTree->delete();

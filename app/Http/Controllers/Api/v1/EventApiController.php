@@ -30,7 +30,7 @@ class EventApiController extends ApiController
     public function show(Campaign $campaign, Event $event)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $event);
+        $this->authorize('view', $event->entity);
         return new Resource($event);
     }
 
@@ -56,7 +56,7 @@ class EventApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Event $event)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $event);
+        $this->authorize('update', $event->entity);
         $event->update($request->all());
         $this->crudSave($event);
 
@@ -70,7 +70,7 @@ class EventApiController extends ApiController
     public function destroy(Campaign $campaign, Event $event)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $event);
+        $this->authorize('delete', $event->entity);
         $event->delete();
 
         return response()->json(null, 204);

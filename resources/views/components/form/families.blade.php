@@ -24,7 +24,7 @@ elseif(!empty($model)) {
 }
 
 if ($quickCreator) {
-    $quickCreator = auth()->user()->can('create', new \App\Models\Family());
+    $quickCreator = auth()->user()->can('create', [$campaign->getEntityTypes()->where('id', config('entities.ids.family'))->first(), $campaign]);
 }
 ?>
 

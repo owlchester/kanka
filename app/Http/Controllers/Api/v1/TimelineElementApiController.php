@@ -17,7 +17,7 @@ class TimelineElementApiController extends ApiController
     public function index(Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $timeline);
+        $this->authorize('view', $timeline->entity);
         return Resource::collection($timeline->elements()->paginate());
     }
 
@@ -27,7 +27,7 @@ class TimelineElementApiController extends ApiController
     public function show(Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $timeline);
+        $this->authorize('view', $timeline->entity);
         return new Resource($timelineElement);
     }
 
@@ -38,7 +38,7 @@ class TimelineElementApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
         $data = $request->all();
         $data['timeline_id'] = $timeline->id;
         $model = TimelineElement::create($data);
@@ -56,7 +56,7 @@ class TimelineElementApiController extends ApiController
         TimelineElement $timelineElement
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
         $timelineElement->update($request->all());
 
         return new Resource($timelineElement);
@@ -73,7 +73,7 @@ class TimelineElementApiController extends ApiController
         TimelineElement $timelineElement
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
         $timelineElement->delete();
 
         return response()->json(null, 204);

@@ -133,7 +133,7 @@ class EventController extends Controller
      */
     public function eventLength(Campaign $campaign, Calendar $calendar, ValidateReminderLength $request)
     {
-        $this->authorize('view', $calendar);
+        $this->authorize('view', $calendar->entity);
         return response()->json($this->lengthValidatorService->validateLength($calendar, $request));
     }
 }

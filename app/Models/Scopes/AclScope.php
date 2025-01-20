@@ -2,6 +2,7 @@
 
 namespace App\Models\Scopes;
 
+use App\Enums\Permission;
 use App\Facades\CampaignLocalization;
 use App\Facades\Permissions;
 use App\Models\CampaignPermission;
@@ -75,7 +76,7 @@ class AclScope implements Scope
 
         // Campaign admins doesn't have any restrictions on base
         Permissions::campaign(CampaignLocalization::getCampaign())
-            ->action(CampaignPermission::ACTION_READ);
+            ->action(Permission::View);
         if (auth()->check()) {
             Permissions::user(auth()->user());
         }

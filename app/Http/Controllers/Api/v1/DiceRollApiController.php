@@ -30,7 +30,7 @@ class DiceRollApiController extends ApiController
     public function show(Campaign $campaign, DiceRoll $diceRoll)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $diceRoll);
+        $this->authorize('view', $diceRoll->entity);
         return new Resource($diceRoll);
     }
 
@@ -56,7 +56,7 @@ class DiceRollApiController extends ApiController
     public function update(Request $request, Campaign $campaign, DiceRoll $diceRoll)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $diceRoll);
+        $this->authorize('update', $diceRoll->entity);
         $diceRoll->update($request->all());
         $this->crudSave($diceRoll);
 
@@ -70,7 +70,7 @@ class DiceRollApiController extends ApiController
     public function destroy(Campaign $campaign, DiceRoll $diceRoll)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $diceRoll);
+        $this->authorize('delete', $diceRoll->entity);
         $diceRoll->delete();
 
         return response()->json(null, 204);

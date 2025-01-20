@@ -32,7 +32,6 @@ class DiceRollResultController extends CrudController
      */
     public function index(Request $request, Campaign $campaign)
     {
-        //$this->authorize('browse', $this->model);
         $this->campaign($campaign);
 
         $model = new $this->model();

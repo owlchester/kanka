@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Enums\Permission;
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Models\CampaignPermission;
@@ -20,7 +21,7 @@ trait GuestAuthTrait
         if (auth()->check()) {
             $this->authorize('view', $entity);
         } else {
-            $this->authorizeEntityForGuest(CampaignPermission::ACTION_READ, $entity);
+            $this->authorizeEntityForGuest(Permission::View, $entity);
         }
     }
 
@@ -28,7 +29,7 @@ trait GuestAuthTrait
      * Secondary Authentication for Guest users
      * @return void
      */
-    protected function authorizeEntityForGuest(int $action, ?Entity $entity)
+    protected function authorizeEntityForGuest(Permission $permission, ?Entity $entity)
     {
         // If the misc model is null ($entity->child), the user has no valid access
         if ($entity === null) {
@@ -36,7 +37,7 @@ trait GuestAuthTrait
         }
 
         $campaign = CampaignLocalization::getCampaign();
-        $permission = EntityPermission::hasPermission($entity->entityType->id, $action, null, $entity, $campaign);
+        $permission = EntityPermission::hasPermission($entity->entityType->id, $permission->value, null, $entity, $campaign);
 
         // @phpstan-ignore-next-line
         if ($campaign->id != $entity->campaign_id || !$permission) {

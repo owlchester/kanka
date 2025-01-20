@@ -9,7 +9,6 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\Entity\TransformService;
-use App\Services\Entity\TypeService;
 use App\Services\EntityService;
 use App\Services\EntityTypeService;
 use App\Traits\GuestAuthTrait;
@@ -21,8 +20,7 @@ class TransformController extends Controller
     public function __construct(
         protected EntityService $service,
         protected EntityTypeService $entityTypeService,
-        protected TransformService $transformService,
-        protected TypeService $typeService
+        protected TransformService $transformService
     ) {
     }
 

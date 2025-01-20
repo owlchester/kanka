@@ -30,7 +30,7 @@ class NoteApiController extends ApiController
     public function show(Campaign $campaign, Note $note)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $note);
+        $this->authorize('view', $note->entity);
         return new Resource($note);
     }
 
@@ -56,7 +56,7 @@ class NoteApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Note $note)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $note);
+        $this->authorize('update', $note->entity);
         $note->update($request->all());
         $this->crudSave($note);
 
@@ -70,7 +70,7 @@ class NoteApiController extends ApiController
     public function destroy(Campaign $campaign, Note $note)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $note);
+        $this->authorize('delete', $note->entity);
         $note->delete();
 
         return response()->json(null, 204);

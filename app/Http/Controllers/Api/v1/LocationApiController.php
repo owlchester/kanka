@@ -30,7 +30,7 @@ class LocationApiController extends ApiController
     public function show(Campaign $campaign, Location $location)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $location);
+        $this->authorize('view', $location->entity);
 
         return new Resource($location);
     }
@@ -58,7 +58,7 @@ class LocationApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Location $location)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $location);
+        $this->authorize('update', $location->entity);
         $location->update($request->all());
         $this->crudSave($location);
 
@@ -72,7 +72,7 @@ class LocationApiController extends ApiController
     public function destroy(Campaign $campaign, Location $location)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $location);
+        $this->authorize('delete', $location->entity);
         $location->delete();
 
         return response()->json(null, 204);

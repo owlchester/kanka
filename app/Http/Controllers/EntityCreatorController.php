@@ -409,7 +409,7 @@ class EntityCreatorController extends Controller
         if (!request()->has('location_id')) {
             return $this;
         }
-        $canCreate = auth()->user()->can('create', Location::class);
+        $canCreate = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $this->campaign]);
 
         $location = $this->request->get('location_id');
         if (is_numeric($location)) {
@@ -430,7 +430,7 @@ class EntityCreatorController extends Controller
         if (!$this->request->has('tags') && !$this->request->has('save-tags')) {
             return $this;
         }
-        $canCreateTags = auth()->user()->can('create', Tag::class);
+        $canCreateTags = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.tag'))->first(), $this->campaign]);
 
         /** @var TagService $tagService */
         $tagService = app()->make(TagService::class);

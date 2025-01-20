@@ -28,7 +28,7 @@ class ConversationMessageController extends Controller
      */
     public function store(StoreConversationMessage $request, Campaign $campaign, Conversation $conversation)
     {
-        $this->authorize('update', $conversation);
+        $this->authorize('update', $conversation->entity);
 
         $participant = new ConversationMessage();
         $data = $request->only('message', 'character_id');
@@ -46,7 +46,7 @@ class ConversationMessageController extends Controller
 
     public function update(StoreConversationMessage $request, Campaign $campaign, Conversation $conversation, ConversationMessage $conversationMessage)
     {
-        $this->authorize('update', $conversation);
+        $this->authorize('update', $conversation->entity);
         $this->authorize('edit', $conversationMessage);
 
         $conversationMessage->update($request->only('message'));
@@ -62,7 +62,7 @@ class ConversationMessageController extends Controller
      */
     public function destroy(Campaign $campaign, Conversation $conversation, ConversationMessage $conversationMessage)
     {
-        $this->authorize('update', $conversation);
+        $this->authorize('update', $conversation->entity);
         $this->authorize('delete', $conversationMessage);
 
         if (!$conversationMessage->delete()) {

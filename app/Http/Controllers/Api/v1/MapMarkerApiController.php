@@ -17,7 +17,7 @@ class MapMarkerApiController extends ApiController
     public function index(Campaign $campaign, Map $map)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $map);
+        $this->authorize('view', $map->entity);
         return Resource::collection($map->markers()->paginate());
     }
 
@@ -27,7 +27,7 @@ class MapMarkerApiController extends ApiController
     public function show(Campaign $campaign, Map $map, MapMarker $mapMarker)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $map);
+        $this->authorize('view', $map->entity);
         return new Resource($mapMarker);
     }
 
@@ -38,7 +38,7 @@ class MapMarkerApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Map $map)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         $data = $request->all();
         $data['map_id'] = $map->id;
         $model = MapMarker::create($data);
@@ -56,7 +56,7 @@ class MapMarkerApiController extends ApiController
         MapMarker $mapMarker
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         $mapMarker->update($request->all());
 
         return new Resource($mapMarker);
@@ -73,7 +73,7 @@ class MapMarkerApiController extends ApiController
         MapMarker $mapMarker
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         $mapMarker->delete();
 
         return response()->json(null, 204);

@@ -30,7 +30,7 @@ class AbilityApiController extends ApiController
     public function show(Campaign $campaign, Ability $ability)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $ability);
+        $this->authorize('view', $ability->entity);
         return new Resource($ability);
     }
 
@@ -57,7 +57,7 @@ class AbilityApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Ability $ability)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $ability);
+        $this->authorize('update', $ability->entity);
         $ability->update($request->all());
         $this->crudSave($ability);
 
@@ -71,7 +71,7 @@ class AbilityApiController extends ApiController
     public function destroy(Campaign $campaign, Ability $ability)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $ability);
+        $this->authorize('delete', $ability->entity);
         $ability->delete();
 
         return response()->json(null, 204);

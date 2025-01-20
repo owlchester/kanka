@@ -6,7 +6,6 @@ use App\Exceptions\TranslatableException;
 use App\Http\Requests\BulkRequest;
 use App\Models\Campaign;
 use App\Services\BulkService;
-use App\Services\Entity\TypeService;
 use App\Traits\BulkControllerTrait;
 use App\Traits\CampaignAware;
 use Exception;
@@ -17,10 +16,6 @@ class BulkController extends Controller
     use BulkControllerTrait;
     use CampaignAware;
 
-    protected BulkService $bulkService;
-
-    protected TypeService $typeService;
-
     protected BulkRequest $request;
 
     protected array $routeParams = [];
@@ -28,10 +23,8 @@ class BulkController extends Controller
     /**  */
     protected null|string $entity = null;
 
-    public function __construct(BulkService $bulkService, TypeService $typeService)
+    public function __construct(protected BulkService $bulkService)
     {
-        $this->bulkService = $bulkService;
-        $this->typeService = $typeService;
     }
 
     /**

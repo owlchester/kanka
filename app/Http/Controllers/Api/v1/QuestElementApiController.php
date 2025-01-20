@@ -17,7 +17,7 @@ class QuestElementApiController extends ApiController
     public function index(Campaign $campaign, Quest $quest)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $quest);
+        $this->authorize('view', $quest->entity);
         return Resource::collection($quest->elements()->paginate());
     }
 
@@ -27,7 +27,7 @@ class QuestElementApiController extends ApiController
     public function show(Campaign $campaign, Quest $quest, QuestElement $questElement)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $quest);
+        $this->authorize('view', $quest->entity);
         return new Resource($questElement);
     }
 
@@ -38,7 +38,7 @@ class QuestElementApiController extends ApiController
     public function store(RequestElement $requestElement, Campaign $campaign, Quest $quest)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $quest);
+        $this->authorize('update', $quest->entity);
         $data = $requestElement->all();
         $data['quest_id'] = $quest->id;
         $model = QuestElement::create($data);
@@ -56,7 +56,7 @@ class QuestElementApiController extends ApiController
         QuestElement $questElement
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $quest);
+        $this->authorize('update', $quest->entity);
         $questElement->update($requestElement->all());
 
         return new Resource($questElement);
@@ -73,7 +73,7 @@ class QuestElementApiController extends ApiController
         QuestElement $questElement
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $quest);
+        $this->authorize('update', $quest->entity);
         $questElement->delete();
 
         return response()->json(null, 204);

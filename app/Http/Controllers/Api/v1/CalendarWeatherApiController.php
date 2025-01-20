@@ -29,7 +29,7 @@ class CalendarWeatherApiController extends ApiController
     public function show(Campaign $campaign, Calendar $calendar, CalendarWeather $calendarWeather)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $calendar);
+        $this->authorize('view', $calendar->entity);
         return new Resource($calendarWeather);
     }
 
@@ -40,7 +40,7 @@ class CalendarWeatherApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
         $data = $request->all();
         $data['calendar_id'] = $calendar->id;
         $model = CalendarWeather::create($data);
@@ -54,7 +54,7 @@ class CalendarWeatherApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Calendar $calendar, CalendarWeather $calendarWeather)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
         $calendarWeather->update($request->all());
 
         return new Resource($calendarWeather);
@@ -67,7 +67,7 @@ class CalendarWeatherApiController extends ApiController
     public function destroy(Campaign $campaign, Calendar $calendar, CalendarWeather $calendarWeather)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
         $calendarWeather->delete();
 
         return response()->json(null, 204);

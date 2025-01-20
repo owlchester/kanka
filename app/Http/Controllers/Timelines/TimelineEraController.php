@@ -185,7 +185,7 @@ class TimelineEraController extends Controller
 
     public function positionList(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
-        $this->authorize('view', $timeline);
+        $this->authorize('view', $timeline->entity);
 
         if ($timeline->id != $timelineEra->timeline_id) {
             abort(404);

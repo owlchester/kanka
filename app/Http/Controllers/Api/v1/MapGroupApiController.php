@@ -17,7 +17,7 @@ class MapGroupApiController extends ApiController
     public function index(Campaign $campaign, Map $map)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $map);
+        $this->authorize('view', $map->entity);
         return Resource::collection($map->groups()->paginate());
     }
 
@@ -27,7 +27,7 @@ class MapGroupApiController extends ApiController
     public function show(Campaign $campaign, Map $map, MapGroup $mapGroup)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $map);
+        $this->authorize('view', $map->entity);
         return new Resource($mapGroup);
     }
 
@@ -38,7 +38,7 @@ class MapGroupApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Map $map)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         $model = MapGroup::create($request->all());
         return new Resource($model);
     }
@@ -54,7 +54,7 @@ class MapGroupApiController extends ApiController
         MapGroup $mapGroup
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         $mapGroup->update($request->all());
 
         return new Resource($mapGroup);
@@ -71,7 +71,7 @@ class MapGroupApiController extends ApiController
         MapGroup $mapGroup
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         $mapGroup->delete();
 
         return response()->json(null, 204);

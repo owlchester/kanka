@@ -30,7 +30,7 @@ class TimelineApiController extends ApiController
     public function show(Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $timeline);
+        $this->authorize('view', $timeline->entity);
         return new Resource($timeline);
     }
 
@@ -70,7 +70,7 @@ class TimelineApiController extends ApiController
     public function destroy(Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $timeline);
+        $this->authorize('delete', $timeline->entity);
         $timeline->delete();
 
         return response()->json(null, 204);

@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Enums\Permission;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
@@ -33,13 +34,13 @@ class PrivacyService
             }
             // General role permission
             $perm = $role->permissions
-                ->where('action', CampaignPermission::ACTION_READ)
+                ->where('action', Permission::View->value)
                 ->whereNull('entity_id')
                 ->where('entity_type_id', $this->entity->type_id);
             if ($perm->count() > 0) {
                 // Add unless it's on the entity denied
                 $subPerm = $role->permissions
-                    ->where('action', CampaignPermission::ACTION_READ)
+                    ->where('action', Permission::View->value)
                     ->where('entity_id', $this->entity->id)
                     ->where('access', 0);
                 if ($subPerm->count() === 0) {
@@ -49,7 +50,7 @@ class PrivacyService
             }
             // Specific entity
             $perm = $role->permissions
-                ->where('action', CampaignPermission::ACTION_READ)
+                ->where('action', Permission::View->value)
                 ->where('entity_id', $this->entity->id)
                 ->where('access', 1);
             if ($perm->count() > 0) {
@@ -76,7 +77,7 @@ class PrivacyService
             // Specific entity
             $perm = $user->permissions
                 ->where('campaign_id', $this->entity->campaign_id)
-                ->where('action', CampaignPermission::ACTION_READ)
+                ->where('action', Permission::View->value)
                 ->where('entity_id', $this->entity->id)
                 ->where('access', 1);
             if ($perm->count() > 0) {

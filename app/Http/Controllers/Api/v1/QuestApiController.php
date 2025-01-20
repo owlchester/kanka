@@ -30,7 +30,7 @@ class QuestApiController extends ApiController
     public function show(Campaign $campaign, Quest $quest)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $quest);
+        $this->authorize('view', $quest->entity);
         return new Resource($quest);
     }
 
@@ -57,7 +57,7 @@ class QuestApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Quest $quest)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $quest);
+        $this->authorize('update', $quest->entity);
         $quest->update($request->all());
         $this->crudSave($quest);
 
@@ -71,7 +71,7 @@ class QuestApiController extends ApiController
     public function destroy(Campaign $campaign, Quest $quest)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $quest);
+        $this->authorize('delete', $quest->entity);
         $quest->delete();
 
         return response()->json(null, 204);

@@ -25,7 +25,7 @@ elseif(!empty($model)) {
 }
 
 if ($quickCreator) {
-    $quickCreator = auth()->user()->can('create', new \App\Models\Location());
+    $quickCreator = auth()->user()->can('create', [$campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $campaign]);
 }
 ?>
 <label>

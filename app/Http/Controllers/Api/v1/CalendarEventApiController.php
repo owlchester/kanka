@@ -15,7 +15,7 @@ class CalendarEventApiController extends ApiController
     public function index(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $calendar);
+        $this->authorize('view', $calendar->entity);
         return Resource::collection($calendar
             ->calendarEvents()
             ->paginate());

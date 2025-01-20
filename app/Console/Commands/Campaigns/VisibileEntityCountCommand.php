@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Campaigns;
 
+use App\Enums\Permission;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
@@ -78,7 +79,7 @@ class VisibileEntityCountCommand extends Command
         $types = $ids = [];
         /** @var CampaignPermission $permission */
         foreach ($public->permissions as $permission) {
-            if ($permission->isAction(CampaignPermission::ACTION_READ)) {
+            if ($permission->isAction(Permission::View->value)) {
                 if (!empty($permission->entity_id)) {
                     $ids[] = $permission->entity_id;
                 } else {

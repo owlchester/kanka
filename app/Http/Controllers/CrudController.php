@@ -11,6 +11,7 @@ use App\Facades\Module;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Bookmark;
+use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
@@ -140,7 +141,6 @@ class CrudController extends Controller
         $route = $this->route;
         $bulk = $this->bulkModel();
         $datagridActions = new $this->datagridActions();
-        $templates = $this->loadTemplates($model);
 
         // Switch between the new explore/grid mode and the old table
         $mode = $this->mode();
@@ -236,7 +236,6 @@ class CrudController extends Controller
             'unfilteredCount',
             'route',
             'bulk',
-            'templates',
             'datagridActions',
             'mode',
             'parent',
@@ -244,6 +243,7 @@ class CrudController extends Controller
         );
         if (method_exists($this, 'getEntityType')) {
             $data['entityType'] = $this->getEntityType();
+            $data['templates'] = $this->loadTemplates($data['entityType']);
         } else {
             $data['singular'] = __('entities.' . \Illuminate\Support\Str::singular($route));
         }
@@ -300,7 +300,7 @@ class CrudController extends Controller
     }
     public function crudCreate($params = [])
     {
-        $this->authorize('create', $this->model);
+        $this->authorize('create', [$this->getEntityType(), $this->campaign]);
 
         if ($this->hasLimitCheck) {
             // @phpstan-ignore-next-line
@@ -357,7 +357,7 @@ class CrudController extends Controller
      */
     public function crudStore(Request $request, bool $redirectToCreated = false)
     {
-        $this->authorize('create', $this->model);
+        $this->authorize('create', [$this->getEntityType(), $this->campaign]);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -477,7 +477,7 @@ class CrudController extends Controller
      */
     public function crudEdit(Model|MiscModel $model)
     {
-        $this->authorize('update', $model);
+        $this->authorize('update', $model->entity);
 
         /** @var MiscModel $model */
         $editingUsers = null;
@@ -518,7 +518,7 @@ class CrudController extends Controller
      */
     public function crudUpdate(Request $request, Model|MiscModel $model)
     {
-        $this->authorize('update', $model);
+        $this->authorize('update', $model->entity);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -614,7 +614,7 @@ class CrudController extends Controller
     public function crudDestroy(Model|MiscModel $model)
     {
         /** @var MiscModel $model */
-        $this->authorize('delete', $model);
+        $this->authorize('delete', $model->entity);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -697,16 +697,16 @@ class CrudController extends Controller
      * Load a list of templates the user can create new entities from
      * @param MiscModel $model
      */
-    protected function loadTemplates($model): Collection
+    protected function loadTemplates(EntityType $entityType): Collection
     {
         // No valid user, or invalid entity type (ie relations)
-        if (auth()->guest() || empty($model->entityTypeID())) {
+        if (auth()->guest()) {
             return new Collection();
-        } elseif (!auth()->user()->can('create', $model)) {
+        } elseif (!auth()->user()->can('create', [$entityType, $this->campaign])) {
             return new Collection();
         }
         return Entity::select('id', 'name', 'entity_id')
-            ->templates($model->entityTypeID())
+            ->templates($entityType->id)
             ->orderBy('name')
             ->get();
     }

@@ -51,7 +51,7 @@ class StoryController extends Controller
      */
     public function more(Campaign $campaign, Entity $entity)
     {
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
 
         $pagination = app()->isProduction() ? 15 : 6;
         $posts = $entity->posts()->with(['permissions', 'location', 'layout'])->ordered()->paginate($pagination);

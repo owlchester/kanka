@@ -10,7 +10,7 @@
 
         <div class="entity-main-block grow flex flex-col gap-5 min-w-0">
             <x-box>
-                @can('attribute', [$entity->child, 'add'])
+                @can('update', $entity)
                     <p class="text-right">
                         <a href="{{ route('entities.attributes.edit', [$campaign, 'entity' => $entity]) }}" class="btn2 btn-sm">
                             <x-icon class="fa-solid fa-list" />

@@ -31,7 +31,7 @@ class CharacterApiController extends ApiController
     public function show(Campaign $campaign, Character $character)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $character);
+        $this->authorize('view', $character->entity);
         return new CharacterResource($character);
     }
 
@@ -60,7 +60,7 @@ class CharacterApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Character $character)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $character);
+        $this->authorize('update', $character->entity);
         $character->update($request->all());
         $this->crudSave($character);
 
@@ -74,7 +74,7 @@ class CharacterApiController extends ApiController
     public function destroy(Campaign $campaign, Character $character)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $character);
+        $this->authorize('delete', $character->entity);
         $character->delete();
 
         return response()->json(null, 204);

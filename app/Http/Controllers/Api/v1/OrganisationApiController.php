@@ -30,7 +30,7 @@ class OrganisationApiController extends ApiController
     public function show(Campaign $campaign, Organisation $organisation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $organisation);
+        $this->authorize('view', $organisation->entity);
         return new Resource($organisation);
     }
 
@@ -57,7 +57,7 @@ class OrganisationApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Organisation $organisation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $organisation);
+        $this->authorize('update', $organisation->entity);
         $organisation->update($request->all());
         $this->crudSave($organisation);
 
@@ -71,7 +71,7 @@ class OrganisationApiController extends ApiController
     public function destroy(Campaign $campaign, Organisation $organisation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $organisation);
+        $this->authorize('delete', $organisation->entity);
         $organisation->delete();
 
         return response()->json(null, 204);

@@ -2,8 +2,8 @@
 
 namespace App\Rules;
 
+use App\Enums\Permission;
 use App\Models\Campaign;
-use App\Models\CampaignPermission;
 use App\Models\Entity;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
@@ -87,7 +87,7 @@ class EntityLink implements ValidationRule
                     ->orWhere('entity_type_id', $entity->typeId());
             })
             ->where('access', 1)
-            ->where('action', CampaignPermission::ACTION_READ)
+            ->where('action', Permission::View->value)
             ->first();
 
         // We don't check for the public role have deny as a permission, this is good enough

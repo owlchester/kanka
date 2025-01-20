@@ -17,7 +17,7 @@ class TimelineEraApiController extends ApiController
     public function index(Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $timeline);
+        $this->authorize('view', $timeline->entity);
         return Resource::collection($timeline->eras()->paginate());
     }
 
@@ -27,7 +27,7 @@ class TimelineEraApiController extends ApiController
     public function show(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $timeline);
+        $this->authorize('view', $timeline->entity);
         return new Resource($timelineEra);
     }
 
@@ -38,7 +38,7 @@ class TimelineEraApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
         $data = $request->all();
         $data['timeline_id'] = $timeline->id;
         $model = TimelineEra::create($data);
@@ -57,7 +57,7 @@ class TimelineEraApiController extends ApiController
         TimelineEra $timelineEra
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
         $timelineEra->update($request->all());
 
         return new Resource($timelineEra);
@@ -74,7 +74,7 @@ class TimelineEraApiController extends ApiController
         TimelineEra $timelineEra
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
         $timelineEra->delete();
 
         return response()->json(null, 204);

@@ -31,7 +31,7 @@ class ItemApiController extends ApiController
     public function show(Campaign $campaign, Item $item)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $item);
+        $this->authorize('view', $item->entity);
         return new Resource($item);
     }
 
@@ -58,7 +58,7 @@ class ItemApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Item $item)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $item);
+        $this->authorize('update', $item->entity);
         $item->update($request->all());
         $this->crudSave($item);
 
@@ -72,7 +72,7 @@ class ItemApiController extends ApiController
     public function destroy(Campaign $campaign, Item $item)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $item);
+        $this->authorize('delete', $item->entity);
         $item->delete();
 
         return response()->json(null, 204);

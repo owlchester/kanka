@@ -64,9 +64,9 @@ $permissionService->campaign($campaign);
                 <label class="inline md:hidden">{{ __('crud.permissions.actions.read') }}</label>
                 <div class="join w-full field">
                     <x-forms.select
-                        name="role[{{ $role->id }}][{{ CampaignPermission::ACTION_READ }}]"
+                        name="role[{{ $role->id }}][{{ \App\Enums\Permission::View->value }}]"
                         :options="$actions"
-                        :selected="$permissionService->action(CampaignPermission::ACTION_READ)->selected('role')"
+                        :selected="$permissionService->action(\App\Enums\Permission::View)->selected('role')"
                         class="join-item"
                         label="__('crud.permissions.actions.read')" />
                 @if ($permissionService->inherited())
@@ -81,9 +81,9 @@ $permissionService->campaign($campaign);
                     <label class="inline md:hidden">{{ __('crud.permissions.actions.edit') }}</label>
                     <div class="join w-full field">
                         <x-forms.select
-                            name="role[{{ $role->id }}][{{ CampaignPermission::ACTION_EDIT }}]"
+                            name="role[{{ $role->id }}][{{ \App\Enums\Permission::Update->value }}]"
                             :options="$actions"
-                            :selected="$permissionService->action(CampaignPermission::ACTION_EDIT)->selected('role')"
+                            :selected="$permissionService->action(\App\Enums\Permission::Update)->selected('role')"
                             class="join-item"
                             label="__('crud.permissions.actions.edit')" />
                         @if ($permissionService->inherited())
@@ -97,9 +97,9 @@ $permissionService->campaign($campaign);
                     <label class="inline md:hidden">{{ __('crud.permissions.actions.delete') }}</label>
                     <div class="join w-full field">
                         <x-forms.select
-                            name="role[{{ $role->id }}][{{ CampaignPermission::ACTION_DELETE }}]"
+                            name="role[{{ $role->id }}][{{ \App\Enums\Permission::Delete->value }}]"
                             :options="$actions"
-                            :selected="$permissionService->action(CampaignPermission::ACTION_DELETE)->selected('role')"
+                            :selected="$permissionService->action(\App\Enums\Permission::Delete)->selected('role')"
                             class="join-item"
                             label="__('crud.permissions.actions.delete')" />
                         @if ($permissionService->inherited())
@@ -113,9 +113,9 @@ $permissionService->campaign($campaign);
                     <label class="inline md:hidden">{{ __('entities.posts') }}</label>
                     <div class="join w-full field">
                         <x-forms.select
-                            name="role[{{ $role->id }}][{{ CampaignPermission::ACTION_POSTS }}]"
+                            name="role[{{ $role->id }}][{{ \App\Enums\Permission::Posts->value }}]"
                             :options="$actions"
-                            :selected="$permissionService->action(CampaignPermission::ACTION_POSTS)->selected('role')"
+                            :selected="$permissionService->action(\App\Enums\Permission::Posts)->selected('role')"
                             class="join-item"
                             label="__('entities.po')" />
                         @if ($permissionService->inherited())
@@ -192,9 +192,9 @@ $permissionService->campaign($campaign);
                     <label class="inline md:hidden">{{ __('crud.permissions.actions.read') }}</label>
                     <div class="join w-full field">
                         <x-forms.select
-                            name="user[{{ $member->user_id }}][{{ CampaignPermission::ACTION_READ }}]"
+                            name="user[{{ $member->user_id }}][{{ \App\Enums\Permission::View->value }}]"
                             :options="$actions"
-                            :selected="$permissionService->action(CampaignPermission::ACTION_READ)->selected('user')"
+                            :selected="$permissionService->action(\App\Enums\Permission::View)->selected('user')"
                             class="join-item"
                             label="__('crud.permissions.actions.read')" />
                         @if ($permissionService->inherited())
@@ -210,9 +210,9 @@ $permissionService->campaign($campaign);
                     <label class="inline md:hidden">{{ __('crud.permissions.actions.edit') }}</label>
                     <div class="join w-full field">
                         <x-forms.select
-                            name="user[{{ $member->user_id }}][{{ CampaignPermission::ACTION_EDIT }}]"
+                            name="user[{{ $member->user_id }}][{{ \App\Enums\Permission::Update->value }}]"
                             :options="$actions"
-                            :selected="$permissionService->action(CampaignPermission::ACTION_EDIT)->selected('user')"
+                            :selected="$permissionService->action(\App\Enums\Permission::Update)->selected('user')"
                             class="join-item"
                             label="__('crud.permissions.actions.edit')" />
                         @if ($permissionService->inherited())
@@ -228,9 +228,9 @@ $permissionService->campaign($campaign);
                     <label class="inline md:hidden">{{ __('crud.permissions.actions.delete') }}</label>
                     <div class="join w-full field">
                         <x-forms.select
-                            name="user[{{ $member->user_id }}][{{ CampaignPermission::ACTION_DELETE }}]"
+                            name="user[{{ $member->user_id }}][{{ \App\Enums\Permission::Delete->value }}]"
                             :options="$actions"
-                            :selected="$permissionService->action(CampaignPermission::ACTION_DELETE)->selected('user')"
+                            :selected="$permissionService->action(\App\Enums\Permission::Delete)->selected('user')"
                             class="join-item"
                             label="__('crud.permissions.actions.delete')" />
                         @if ($permissionService->inherited())
@@ -246,9 +246,9 @@ $permissionService->campaign($campaign);
                     <label class="inline md:hidden">{{ __('entities.posts') }}</label>
                     <div class="join w-full field">
                         <x-forms.select
-                            name="user[{{ $member->user_id }}][{{ CampaignPermission::ACTION_POSTS }}]"
+                            name="user[{{ $member->user_id }}][{{ \App\Enums\Permission::Posts->value }}]"
                             :options="$actions"
-                            :selected="$permissionService->action(CampaignPermission::ACTION_POSTS)->selected('user')"
+                            :selected="$permissionService->action(\App\Enums\Permission::Posts)->selected('user')"
                             class="join-item"
                             label="__('entities.posts')" />
                         @if ($permissionService->inherited())

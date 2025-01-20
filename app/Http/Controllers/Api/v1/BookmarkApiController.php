@@ -68,7 +68,7 @@ class BookmarkApiController extends ApiController
     public function destroy(Campaign $campaign, Bookmark $bookmark)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $bookmark);
+        $this->authorize('delete', $bookmark->entity);
         $bookmark->delete();
 
         return response()->json(null, 204);

@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Facades\CampaignLocalization;
 use App\Models\EntityType;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
@@ -29,7 +30,8 @@ class Location implements ValidationRule
             return;
         }
 
-        if (!auth()->user()->can('create', \App\Models\Location::class)) {
+        $campaign = CampaignLocalization::getCampaign();
+        if (!auth()->user()->can('create', [$module, $campaign])) {
             $fail(__('crud.dynamic.permission', ['module' => $module->name()]));
         }
     }

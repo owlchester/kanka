@@ -31,7 +31,7 @@ class CreatureApiController extends ApiController
     public function show(Campaign $campaign, Creature $creature)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $creature);
+        $this->authorize('view', $creature->entity);
         return new Resource($creature);
     }
 
@@ -58,7 +58,7 @@ class CreatureApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Creature $creature)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $creature);
+        $this->authorize('update', $creature->entity);
         $creature->update($request->all());
         $this->crudSave($creature);
 
@@ -72,7 +72,7 @@ class CreatureApiController extends ApiController
     public function destroy(Campaign $campaign, Creature $creature)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $creature);
+        $this->authorize('delete', $creature->entity);
         $creature->delete();
 
         return response()->json(null, 204);

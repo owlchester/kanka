@@ -38,7 +38,7 @@ class CalendarApiController extends ApiController
     public function show(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $calendar);
+        $this->authorize('view', $calendar->entity);
         return new Resource($calendar);
     }
 
@@ -82,7 +82,7 @@ class CalendarApiController extends ApiController
     public function destroy(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $calendar);
+        $this->authorize('delete', $calendar->entity);
         $calendar->delete();
 
         return response()->json(null, 204);

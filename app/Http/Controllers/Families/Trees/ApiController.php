@@ -48,7 +48,7 @@ class ApiController extends Controller
         if (empty($entity->child)) {
             abort(404);
         }
-        $this->authorize('view', $entity->child);
+        $this->authorize('view', $entity);
 
         return response()->json(
             $this

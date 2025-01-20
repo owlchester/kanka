@@ -20,7 +20,7 @@ class ConversationParticipantController extends Controller
      */
     public function store(StoreConversationParticipant $request, Campaign $campaign, Conversation $conversation)
     {
-        $this->authorize('update', $conversation);
+        $this->authorize('update', $conversation->entity);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -41,7 +41,7 @@ class ConversationParticipantController extends Controller
      */
     public function edit(Campaign $campaign, Conversation $conversation, ConversationParticipant $conversationParticipant)
     {
-        $this->authorize('update', $conversation);
+        $this->authorize('update', $conversation->entity);
 
         dd('CPC 055');
     }
@@ -54,7 +54,7 @@ class ConversationParticipantController extends Controller
         Conversation $conversation,
         ConversationParticipant $conversationParticipant
     ) {
-        $this->authorize('update', $conversation);
+        $this->authorize('update', $conversation->entity);
 
         $conversationParticipant->update($request->all());
 
@@ -69,7 +69,7 @@ class ConversationParticipantController extends Controller
      */
     public function destroy(Campaign $campaign, Conversation $conversation, ConversationParticipant $conversationParticipant)
     {
-        $this->authorize('update', $conversation);
+        $this->authorize('update', $conversation->entity);
 
         if (!$conversationParticipant->delete()) {
             abort(500);

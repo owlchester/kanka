@@ -30,7 +30,7 @@ class TagApiController extends ApiController
     public function show(Campaign $campaign, Tag $tag)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $tag);
+        $this->authorize('view', $tag->entity);
         return new Resource($tag);
     }
 
@@ -56,7 +56,7 @@ class TagApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Tag $tag)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $tag);
+        $this->authorize('update', $tag->entity);
         $tag->update($request->all());
         $this->crudSave($tag);
 
@@ -70,7 +70,7 @@ class TagApiController extends ApiController
     public function destroy(Campaign $campaign, Tag $tag)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $tag);
+        $this->authorize('delete', $tag->entity);
         $tag->delete();
 
         return response()->json(null, 204);

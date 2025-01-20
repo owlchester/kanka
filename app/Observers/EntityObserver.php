@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Enums\Permission;
 use App\Facades\EntityLogger;
 use App\Facades\Permissions;
 use App\Facades\Images;
@@ -108,11 +109,11 @@ class EntityObserver
         // still have them even if not checked in the UI.
         if (Permissions::granted() && !empty($data['user'])) {
             $user = auth()->user()->id;
-            if (!in_array(CampaignPermission::ACTION_EDIT, $data['user'][$user])) {
-                $data['user'][$user][CampaignPermission::ACTION_EDIT] = 'allow';
+            if (!in_array(Permission::Update->value, $data['user'][$user])) {
+                $data['user'][$user][Permission::Update->value] = 'allow';
             }
-            if (!in_array(CampaignPermission::ACTION_READ, $data['user'][$user])) {
-                $data['user'][$user][CampaignPermission::ACTION_READ] = 'allow';
+            if (!in_array(Permission::View->value, $data['user'][$user])) {
+                $data['user'][$user][Permission::View->value] = 'allow';
             }
         }
 
@@ -126,10 +127,10 @@ class EntityObserver
         // If the user has created a new entity but doesn't have the permission to read or edit it,
         // automatically create said permission.
         if (!auth()->user()->can('view', $entity)) {
-            $this->grant($entity, CampaignPermission::ACTION_READ);
+            $this->grant($entity, Permission::View->value);
         }
         if (!auth()->user()->can('update', $entity)) {
-            $this->grant($entity, CampaignPermission::ACTION_EDIT);
+            $this->grant($entity, Permission::Update->value);
         }
         // Refresh the model because adding permissions to the child means we have a new relation
         if (Permissions::granted() && $entity->hasChild()) {

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Descendants;
+use App\Enums\Permission;
 use App\Enums\Visibility;
 use App\Facades\CampaignCache;
 use App\Facades\Mentions;
@@ -472,7 +473,7 @@ class Campaign extends Model
         /** @var CampaignRole $publicRole */
         $publicRole = $this->roles()->public()->first();
         $permissionCount = $publicRole->permissions()
-            ->where('action', CampaignPermission::ACTION_READ)
+            ->where('action', Permission::View->value)
             ->where('access', 1)
             ->count();
         return $permissionCount == 0;

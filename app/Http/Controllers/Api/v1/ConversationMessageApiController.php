@@ -17,7 +17,7 @@ class ConversationMessageApiController extends ApiController
     public function index(Campaign $campaign, Conversation $conversation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $conversation);
+        $this->authorize('view', $conversation->entity);
         return Resource::collection(
             $conversation
                 ->messages()
@@ -35,7 +35,7 @@ class ConversationMessageApiController extends ApiController
         ConversationMessage $conversationMessage
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $conversation);
+        $this->authorize('view', $conversation->entity);
         return new Resource($conversationMessage);
     }
 
@@ -46,7 +46,7 @@ class ConversationMessageApiController extends ApiController
     public function store(RequestMessage $requestMessage, Campaign $campaign, Conversation $conversation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $conversation);
+        $this->authorize('update', $conversation->entity);
         $model = ConversationMessage::create($requestMessage->all());
         return new Resource($model);
     }
@@ -61,7 +61,7 @@ class ConversationMessageApiController extends ApiController
         ConversationMessage $conversationMessage
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $conversation);
+        $this->authorize('update', $conversation->entity);
         $conversationMessage->update($requestMessage->all());
 
         return new Resource($conversationMessage);
@@ -78,7 +78,7 @@ class ConversationMessageApiController extends ApiController
         ConversationMessage $conversationMessage
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $conversation);
+        $this->authorize('update', $conversation->entity);
         $conversationMessage->delete();
 
         return response()->json(null, 204);

@@ -30,7 +30,7 @@ class FamilyApiController extends ApiController
     public function show(Campaign $campaign, Family $family)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $family);
+        $this->authorize('view', $family->entity);
         return new Resource($family);
     }
 
@@ -56,7 +56,7 @@ class FamilyApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Family $family)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $family);
+        $this->authorize('update', $family->entity);
         $family->update($request->all());
         $this->crudSave($family);
 
@@ -70,7 +70,7 @@ class FamilyApiController extends ApiController
     public function destroy(Campaign $campaign, Family $family)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $family);
+        $this->authorize('delete', $family->entity);
         $family->delete();
 
         return response()->json(null, 204);

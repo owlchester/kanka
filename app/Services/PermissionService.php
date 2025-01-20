@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\Permission;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
@@ -42,9 +43,9 @@ class PermissionService
         return $this;
     }
 
-    public function action(int $action): self
+    public function action(Permission $action): self
     {
-        $this->action = $action;
+        $this->action = $action->value;
         return $this;
     }
 

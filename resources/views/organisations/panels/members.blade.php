@@ -50,7 +50,7 @@ $all = $entity->child->allMembers()->has('character')->count();
             </a>
         @endif
 
-        @can('member', $entity->child)
+        @can('update', $entity)
             <a href="{{ route('organisations.organisation_members.create', [$campaign, 'organisation' => $entity->child->id]) }}" class="btn2 btn-primary btn-sm"
                data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('organisations.organisation_members.create', [$campaign, $entity->child->id]) }}">
                 <x-icon class="plus" />

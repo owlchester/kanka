@@ -31,7 +31,7 @@ class RaceApiController extends ApiController
     public function show(Campaign $campaign, Race $race)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $race);
+        $this->authorize('view', $race->entity);
         return new Resource($race);
     }
 
@@ -57,7 +57,7 @@ class RaceApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Race $race)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $race);
+        $this->authorize('update', $race->entity);
         $race->update($request->all());
         $this->crudSave($race);
 
@@ -71,7 +71,7 @@ class RaceApiController extends ApiController
     public function destroy(Campaign $campaign, Race $race)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $race);
+        $this->authorize('delete', $race->entity);
         $race->delete();
 
         return response()->json(null, 204);

@@ -30,7 +30,7 @@ class MapApiController extends ApiController
     public function show(Campaign $campaign, Map $map)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('view', $map);
+        $this->authorize('view', $map->entity);
         return new Resource($map);
     }
 
@@ -56,7 +56,7 @@ class MapApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Map $map)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         $map->update($request->all());
         $this->crudSave($map);
 
@@ -70,7 +70,7 @@ class MapApiController extends ApiController
     public function destroy(Campaign $campaign, Map $map)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('delete', $map);
+        $this->authorize('delete', $map->entity);
         $map->delete();
 
         return response()->json(null, 204);
