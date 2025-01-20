@@ -68,7 +68,7 @@ class SidebarService
             'calendars',
         ],
         'releases' => [
-            'releases'
+            'releases',
         ],
         'team' => [
             'team',
@@ -77,14 +77,14 @@ class SidebarService
             'attribute_templates',
         ],
         'tags' => [
-            'tags'
+            'tags',
         ],
         'timelines' => [
-            'timelines'
+            'timelines',
         ],
         'dice_rolls' => [
             'dice_rolls',
-            'dice_roll_results'
+            'dice_roll_results',
         ],
         'bookmarks' => [
             'bookmarks',
@@ -179,55 +179,55 @@ class SidebarService
                 'icon' => config('entities.icons.character'),
                 'label' => 'entities.characters',
                 'mode' => true,
-                'type_id' => config('entities.ids.character')
+                'type_id' => config('entities.ids.character'),
             ],
             'locations' => [
                 'icon' => config('entities.icons.location'),
                 'label' => 'entities.locations',
                 'mode' => true,
-                'type_id' => config('entities.ids.location')
+                'type_id' => config('entities.ids.location'),
             ],
             'maps' => [
                 'icon' => config('entities.icons.map'),
                 'label' => 'entities.maps',
                 'mode' => true,
-                'type_id' => config('entities.ids.map')
+                'type_id' => config('entities.ids.map'),
             ],
             'organisations' => [
                 'icon' => config('entities.icons.organisation'),
                 'label' => 'entities.organisations',
                 'mode' => true,
-                'type_id' => config('entities.ids.organisation')
+                'type_id' => config('entities.ids.organisation'),
             ],
             'families' => [
                 'icon' => config('entities.icons.family'),
                 'label' => 'entities.families',
                 'mode' => true,
-                'type_id' => config('entities.ids.family')
+                'type_id' => config('entities.ids.family'),
             ],
             'calendars' => [
                 'icon' => config('entities.icons.calendar'),
                 'label' => 'entities.calendars',
                 'mode' => true,
-                'type_id' => config('entities.ids.calendar')
+                'type_id' => config('entities.ids.calendar'),
             ],
             'timelines' => [
                 'icon' => config('entities.icons.timeline'),
                 'label' => 'entities.timelines',
                 'mode' => true,
-                'type_id' => config('entities.ids.timeline')
+                'type_id' => config('entities.ids.timeline'),
             ],
             'races' => [
                 'icon' => config('entities.icons.race'),
                 'label' => 'entities.races',
                 'mode' => true,
-                'type_id' => config('entities.ids.race')
+                'type_id' => config('entities.ids.race'),
             ],
             'creatures' => [
                 'icon' => config('entities.icons.creature'),
                 'label' => 'entities.creatures',
                 'mode' => true,
-                'type_id' => config('entities.ids.creature')
+                'type_id' => config('entities.ids.creature'),
             ],
             'game' => [
                 'icon' => 'fa-duotone fa-book',
@@ -239,37 +239,37 @@ class SidebarService
                 'icon' => config('entities.icons.quest'),
                 'label' => 'entities.quests',
                 'mode' => true,
-                'type_id' => config('entities.ids.quest')
+                'type_id' => config('entities.ids.quest'),
             ],
             'journals' => [
                 'icon' => config('entities.icons.journal'),
                 'label' => 'entities.journals',
                 'mode' => true,
-                'type_id' => config('entities.ids.journal')
+                'type_id' => config('entities.ids.journal'),
             ],
             'items' => [
                 'icon' => config('entities.icons.item'),
                 'label' => 'entities.items',
                 'mode' => true,
-                'type_id' => config('entities.ids.item')
+                'type_id' => config('entities.ids.item'),
             ],
             'events' => [
                 'icon' => config('entities.icons.event'),
                 'label' => 'entities.events',
                 'mode' => true,
-                'type_id' => config('entities.ids.event')
+                'type_id' => config('entities.ids.event'),
             ],
             'abilities' => [
                 'icon' => config('entities.icons.ability'),
                 'label' => 'entities.abilities',
                 'mode' => true,
-                'type_id' => config('entities.ids.ability')
+                'type_id' => config('entities.ids.ability'),
             ],
             'notes' => [
                 'icon' => config('entities.icons.note'),
                 'label' => 'entities.notes',
                 'mode' => true,
-                'type_id' => config('entities.ids.note')
+                'type_id' => config('entities.ids.note'),
             ],
             'other' => [
                 'icon' => 'fa-duotone fa-database',
@@ -289,7 +289,7 @@ class SidebarService
                 'icon' => config('entities.icons.tag'),
                 'label' => 'entities.tags',
                 'mode' => true,
-                'type_id' => config('entities.ids.tag')
+                'type_id' => config('entities.ids.tag'),
             ],
             'conversations' => [
                 'icon' => config('entities.icons.conversation'),
@@ -725,9 +725,13 @@ class SidebarService
         $bookmarks = $this->campaign->bookmarks()->active()->ordered()->with(['target' => function ($sub) {
             return $sub->select('id', 'type_id', 'entity_id');
         }, 'entityType'])->get();
+        /** @var Bookmark $bookmark */
         foreach ($bookmarks as $bookmark) {
+            if ($bookmark->entityType && $bookmark->entityType->isSpecial() && !$bookmark->entityType->isEnabled()) {
+                continue;
+            }
             $parent = 'bookmarks';
-            if (!empty($bookmark->parent) && $this->campaign->boosted()) {
+            if (!empty($bookmark->parent)) {
                 $parent = $bookmark->parent;
             }
             $this->bookmarks[$parent][] = $bookmark;

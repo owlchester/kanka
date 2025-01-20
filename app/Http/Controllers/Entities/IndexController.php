@@ -25,6 +25,17 @@ class IndexController extends Controller
     }
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
+
+        if (!$entityType->isEnabled()) {
+            return redirect()->route('dashboard', $campaign)->with(
+                'error_raw',
+                __('campaigns/modules.errors.disabled', [
+                    'name' => $entityType->plural(),
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#' . $entityType->code]) . '">' . __('crud.fix-this-issue') . '</a>',
+                ])
+            );
+        }
+
         $this->entityType = $entityType;
         $this->request = $request;
 

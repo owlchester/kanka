@@ -199,9 +199,6 @@ TEXT
             'removed'   => 'Role :role removed from :user.',
         ],
     ],
-    'modules'                           => [
-        'permission-disabled'   => 'This module is disabled.',
-    ],
     'overview'                          => [
         'entity-count'      => '{0} No entities|{1} :amount entity|[2,*] :amount entities',
         'follower-count'    => '{0} No followers|{1} :amount follower|[2,*] :amount followers',

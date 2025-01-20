@@ -109,8 +109,9 @@ class CrudController extends Controller
         if (!$this->moduleEnabled()) {
             return redirect()->route('dashboard', $this->campaign)->with(
                 'error_raw',
-                __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$this->campaign, '#' . $this->module]) . '">' . __('crud.fix-this-issue') . '</a>',
+                __('campaigns/modules.errors.disabled', [
+                    'name' => $this->getEntityType()->plural(),
+                    'fix' => '<a href="' . route('campaign.modules', [$this->campaign, '#' . $this->getEntityType()->code]) . '">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }

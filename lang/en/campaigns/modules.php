@@ -16,6 +16,9 @@ return [
         'success' => 'Module :name deleted.',
         'confirm' => 'Write :code if you are sure you want to permanently delete the :name custom module.',
     ],
+    'errors' => [
+        'disabled' => 'The :name module is disabled. :fix',
+    ],
     'fields'    => [
         'icon'      => 'Module icon',
         'plural'    => 'Module plural name',
