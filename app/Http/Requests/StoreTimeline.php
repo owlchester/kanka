@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -37,6 +38,7 @@ class StoreTimeline extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
             'revert_order' => 'nullable',
+            'attribute' => ['array', new UniqueAttributeNames()],
         ];
 
         return $this->clean($rules);

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Facades\Limit;
 use App\Models\Map;
 use App\Rules\Nested;
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -43,6 +44,7 @@ class StoreMap extends FormRequest
             'max_zoom' => 'nullable|numeric|min:1|max:' . Map::MAX_ZOOM,
             'min_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
             'initial_zoom' => 'nullable|numeric|min:' . Map::MIN_ZOOM . '|max:' . Map::MAX_ZOOM_REAL,
+            'attribute' => ['array', new UniqueAttributeNames()],
         ];
 
         /** @var Map $self */

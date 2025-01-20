@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SaveAttributes;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Attributes\TemplateService;
@@ -110,15 +111,14 @@ class AttributeController extends Controller
         ));
     }
 
-    public function save(Campaign $campaign, Entity $entity)
+    public function save(SaveAttributes $request, Campaign $campaign, Entity $entity)
     {
         if ($entity->isMissingChild()) {
             abort(404);
         }
         $this->authorize('attributes', $entity);
 
-        $attributes = request()->get('attribute', []);
-
+        $attributes = $request->get('attribute', []);
         $this->service
             ->entity($entity)
             ->updateVisibility(request()->get('is_attributes_private') === '1')

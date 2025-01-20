@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Facades\Limit;
 use App\Models\Journal;
 use App\Rules\Nested;
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -39,6 +40,7 @@ class StoreJournal extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
             'journal_id' => 'nullable|integer|exists:journals,id',
+            'attribute' => ['array', new UniqueAttributeNames()],
         ];
 
         if (request()->has('calendar_id') && request()->post('calendar_id') !== null && !request()->has('calendar_skip')) {

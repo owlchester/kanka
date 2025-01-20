@@ -359,6 +359,7 @@ class CrudController extends Controller
     {
         $this->authorize('create', [$this->getEntityType(), $this->campaign]);
 
+
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
             return response()->json(['success' => true]);
