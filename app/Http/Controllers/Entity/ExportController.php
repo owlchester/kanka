@@ -18,8 +18,8 @@ use Illuminate\Support\Str;
  */
 class ExportController extends Controller
 {
-    use GuestAuthTrait;
     use CampaignAware;
+    use GuestAuthTrait;
 
     protected ExportService $service;
 

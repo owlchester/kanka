@@ -3,7 +3,6 @@
 namespace App\Traits;
 
 use App\Enums\Permission;
-use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
 use App\Models\Entity;
 

@@ -107,10 +107,10 @@ class EntityPermission
         $key = $entityType . '_' . $action;
 
 
-//        if ($action === Permission::Bookmarks->value) {
-//            dump($key = $entityType . '_' . $action);
-//            dump($this->cached);
-//        }
+        //        if ($action === Permission::Bookmarks->value) {
+        //            dump($key = $entityType . '_' . $action);
+        //            dump($this->cached);
+        //        }
 
         $perm = false;
         if (isset($this->cached[$key]) && $this->cached[$key]) {
