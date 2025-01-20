@@ -117,7 +117,7 @@
                         <div class="self-bottom">
                             @if ($user->subscription('kanka')?->onGracePeriod())
                                 <a class="btn2 btn-block btn-sm btn-primary " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.change', [$tier]) }}">
-                                    {{ __('settings.subscription.subscription.actions.renew') }}
+                                    {{ __('subscriptions/renew.actions.renew') }}
                                 </a>
                             @else
                                 <a class="btn2 btn-block btn-sm btn-error " data-toggle="dialog" data-target="subscribe-confirm" data-url="{{ route('settings.subscription.unsubscribe') }}">

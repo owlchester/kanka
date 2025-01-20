@@ -143,7 +143,6 @@ return [
         'cancel'                => [
             'grace'     => [
                 'text'  => 'Your subscription is already set to end on :date, after which your premium campaigns will revert to standard campaigns and other benefits related to supporting Kanka will be disabled.',
-                'renew'  => 'However, you can choose to renew your subscription to enjoy the benefits without interruptions.',
                 'title' => 'Grace period',
             ],
             'options'   => [
@@ -245,7 +244,6 @@ return [
             'actions'   => [
                 'cancel'            => 'Cancel subscription',
                 'downgrading'       => 'Please contact us for downgrading',
-                'renew'             => 'Renew subscription',
                 'rollback'          => 'Change to Kobold',
                 'subscribe'         => 'Change to :tier monthly',
                 'subscribe_annual'  => 'Change to :tier yearly',

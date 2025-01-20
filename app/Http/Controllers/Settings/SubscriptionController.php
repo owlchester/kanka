@@ -176,19 +176,20 @@ class SubscriptionController extends Controller
 
     public function renew(Request $request)
     {
+        if ($request->ajax()) {
+            return response()->json([]);
+        }
         try {
-            $this->subscription->user($request->user())
+            $this->subscription
+                ->user($request->user())
                 ->renew();
             $request->user()->log(UserLog::TYPE_SUB_RENEW);
 
-            $flash = 'subscribed';
-            $routeOptions = ['success' => 1];
+            $routeOptions = [];
 
             return redirect()
                 ->route('settings.subscription', $routeOptions)
-                ->withSuccess(__('settings.subscription.success.' . $flash))
-                ->with('sub_tracking', $flash)
-                ->with('sub_value', $this->subscription->subscriptionValue())
+                ->withSuccess(__('subscriptions.renew.success'))
             ;
         } catch (IncompletePayment $exception) {
             session()->put('subscription_callback', $request->get('payment_id'));
