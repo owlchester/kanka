@@ -18,10 +18,10 @@ use Illuminate\Support\Collection;
 
 class EntityPermission
 {
-    use UserAware;
+    use CampaignAware;
     use EntityAware;
     use EntityTypeAware;
-    use CampaignAware;
+    use UserAware;
 
     protected array $cached = [];
 
@@ -64,18 +64,18 @@ class EntityPermission
             $perm = $this->cached[$key];
         }
 
-//        dump('module permission');
-//        dump($key);
-//        dump($this->cached);
+        //        dump('module permission');
+        //        dump($key);
+        //        dump($this->cached);
         if (!isset($this->entity)) {
-//            dd('no entity');
+            //            dd('no entity');
             return $perm;
         }
 
         // Search for entity
         $entityKey = '_' . $permission->value . '_' . $this->entity->id;
-//        dump('check entity');
-//        dd($entityKey);
+        //        dump('check entity');
+        //        dd($entityKey);
         if (isset($this->cached[$entityKey])) {
             return $this->cached[$entityKey];
         }
@@ -108,10 +108,10 @@ class EntityPermission
         }
         $key = $entityType . '_' . $action;
 
-//        if ($action === 1) {
-//            dump($key = $entityType . '_' . $action);
-//            dump($this->cached);
-//        }
+        //        if ($action === 1) {
+        //            dump($key = $entityType . '_' . $action);
+        //            dump($this->cached);
+        //        }
 
         $perm = false;
         if (isset($this->cached[$key]) && $this->cached[$key]) {
@@ -120,8 +120,8 @@ class EntityPermission
 
         // Check if we have permission to do this action for exactly this entity
         if (!empty($entity)) {
-//            dump('i have an entity?');
-//            dump($entity);
+            //            dump('i have an entity?');
+            //            dump($entity);
 
             //Check if $entity is an entity type.
             if (isset($entity->type_id)) {
@@ -131,7 +131,7 @@ class EntityPermission
                 //dump('misc object');
                 $entityKey = '_' . $action . '_' . $entity->id;
             }
-//            dump('entity key ' . $entityKey);
+            //            dump('entity key ' . $entityKey);
             if (isset($this->cached[$entityKey])) {
                 $perm = $this->cached[$entityKey];
             }

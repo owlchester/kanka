@@ -24,4 +24,3 @@ enum Permission: int
     case PostTemplates = 18;
     case Bookmarks = 19;
 }
-

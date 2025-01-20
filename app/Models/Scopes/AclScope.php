@@ -5,7 +5,6 @@ namespace App\Models\Scopes;
 use App\Enums\Permission;
 use App\Facades\CampaignLocalization;
 use App\Facades\Permissions;
-use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\Post;
 use App\Models\MiscModel;

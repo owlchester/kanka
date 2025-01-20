@@ -179,17 +179,17 @@ class SubscriptionController extends Controller
         try {
             $this->subscription->user($request->user())
                 ->renew();
-                $request->user()->log(UserLog::TYPE_SUB_RENEW);
+            $request->user()->log(UserLog::TYPE_SUB_RENEW);
 
-                $flash = 'subscribed';
-                $routeOptions = ['success' => 1];
+            $flash = 'subscribed';
+            $routeOptions = ['success' => 1];
 
-                return redirect()
-                    ->route('settings.subscription', $routeOptions)
-                    ->withSuccess(__('settings.subscription.success.' . $flash))
-                    ->with('sub_tracking', $flash)
-                    ->with('sub_value', $this->subscription->subscriptionValue())
-                ;
+            return redirect()
+                ->route('settings.subscription', $routeOptions)
+                ->withSuccess(__('settings.subscription.success.' . $flash))
+                ->with('sub_tracking', $flash)
+                ->with('sub_value', $this->subscription->subscriptionValue())
+            ;
         } catch (IncompletePayment $exception) {
             session()->put('subscription_callback', $request->get('payment_id'));
             return redirect()->route(

@@ -143,8 +143,8 @@ Route::get('/w/{campaign}/dashboard/widgets/{campaignDashboardWidget}/render', [
 // The campaign management subpages
 Route::get('/w/{campaign}/overview', 'Crud\CampaignController@show')->name('overview');
 Route::get('/w/{campaign}/modules', 'Campaign\ModuleController@index')->name('campaign.modules');
-Route::post('/w/{campaign}/modules/toggle/{entity_type}', [\App\Http\Controllers\Campaign\ModuleController::class, 'toggle'])->name('campaign.modules.toggle');
-Route::post('/w/{campaign}/features/toggle/{module}', [\App\Http\Controllers\Campaign\ModuleController::class, 'toggleFeature'])->name('campaign.features.toggle');
+Route::post('/w/{campaign}/modules/toggle/{entity_type}', [App\Http\Controllers\Campaign\ModuleController::class, 'toggle'])->name('campaign.modules.toggle');
+Route::post('/w/{campaign}/features/toggle/{module}', [App\Http\Controllers\Campaign\ModuleController::class, 'toggleFeature'])->name('campaign.features.toggle');
 
 
 //Route::get('/w/{campaign}/entity_types/create', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'create'])->name('campaign.entity_types.create');
@@ -152,9 +152,9 @@ Route::post('/w/{campaign}/features/toggle/{module}', [\App\Http\Controllers\Cam
 //
 //Route::get('/w/{campaign}/entity_types/{entity_type}/edit', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'edit'])->name('campaign.entity_types.edit');
 //Route::patch('/w/{campaign}/entity_types/{entity_type}/update', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'update'])->name('campaign.entity_types.update');
-Route::post('/w/{campaign}/entity_types/{entity_type}/toggle', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'toggle'])->name('entity_types.toggle');
+Route::post('/w/{campaign}/entity_types/{entity_type}/toggle', [App\Http\Controllers\Campaign\EntityTypeController::class, 'toggle'])->name('entity_types.toggle');
 //Route::delete('/w/{campaign}/entity_types/{entity_type}/delete', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'delete'])->name('campaign.entity_types.destroy');
-Route::get('/w/{campaign}/entity_types/{entity_type}/confirm', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'confirm'])->name('entity_types.confirm');
+Route::get('/w/{campaign}/entity_types/{entity_type}/confirm', [App\Http\Controllers\Campaign\EntityTypeController::class, 'confirm'])->name('entity_types.confirm');
 
 Route::get('/w/{campaign}/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-theme');
 Route::post('/w/{campaign}/campaign-theme', 'Campaign\StyleController@themeSave')->name('campaign-theme.save');

@@ -3,7 +3,6 @@
 namespace App\Services\Entity;
 
 use App\Enums\Permission;
-use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\User;
