@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
+use App\Enums\Permission;
 use App\Facades\EntityPermission;
 use App\Facades\UserCache;
 use App\Models\Campaign;
-use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Models\Post;
 use App\Models\User;
@@ -17,11 +17,11 @@ class EntityPolicy
 
     public function view(?User $user, Entity $entity): bool
     {
-        return EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_READ, $user, $entity);
+        return EntityPermission::entity($entity)->user($user)->can(Permission::View);
     }
     public function update(?User $user, Entity $entity): bool
     {
-        return EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_EDIT, $user, $entity);
+        return EntityPermission::entity($entity)->user($user)->can(Permission::Update);
     }
 
 
@@ -72,21 +72,21 @@ class EntityPolicy
 
     public function permissions(User $user, Entity $entity): bool
     {
-        return EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_PERMS, $user, $entity);
+        return EntityPermission::entity($entity)->user($user)->can(Permission::Permissions);
     }
 
     public function post(User $user, Entity $entity, string $action = null, ?Post $post = null): bool
     {
         return (
             $this->update($user, $entity) ||
-            EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_POSTS, $user, $entity) ||
+            EntityPermission::entity($entity)->user($user)->can(Permission::Posts) ||
             ($action == 'edit' ? $this->checkPostPermission($user, $post) : false)
         ) ;
     }
 
     public function delete(User $user, Entity $entity): bool
     {
-        return  EntityPermission::hasPermission($entity->entityType->id, CampaignPermission::ACTION_DELETE, $user, $entity);
+        return  EntityPermission::entity($entity)->user($user)->can(Permission::Delete);
     }
 
     public function reminders(User $user, Entity $entity): bool

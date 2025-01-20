@@ -124,36 +124,13 @@ class EntityObserver
     public function created(Entity $entity)
     {
         // If the user has created a new entity but doesn't have the permission to read or edit it,
-        // automatically creates said permission.
+        // automatically create said permission.
         if (!auth()->user()->can('view', $entity)) {
-            $permission = new CampaignPermission();
-            $permission->entity_id = $entity->id;
-            if (!$entity->entityType->isSpecial()) {
-                $permission->misc_id = $entity->entity_id;
-            }
-            $permission->entity_type_id = $entity->type_id;
-            $permission->campaign_id = $entity->campaign_id;
-            $permission->user_id = auth()->user()->id;
-            $permission->action = CampaignPermission::ACTION_READ;
-            $permission->access = true;
-            $permission->save();
-            Permissions::grant($entity);
+            $this->grant($entity, CampaignPermission::ACTION_READ);
         }
         if (!auth()->user()->can('update', $entity)) {
-            $permission = new CampaignPermission();
-            $permission->entity_id = $entity->id;
-            if (!$entity->entityType->isSpecial()) {
-                $permission->misc_id = $entity->entity_id;
-            }
-            $permission->entity_type_id = $entity->type_id;
-            $permission->campaign_id = $entity->campaign_id;
-            $permission->user_id = auth()->user()->id;
-            $permission->action = CampaignPermission::ACTION_EDIT;
-            $permission->access = true;
-            $permission->save();
-            Permissions::grant($entity);
+            $this->grant($entity, CampaignPermission::ACTION_EDIT);
         }
-
         // Refresh the model because adding permissions to the child means we have a new relation
         if (Permissions::granted() && $entity->hasChild()) {
             $entity->unsetRelation('child');
@@ -161,6 +138,23 @@ class EntityObserver
         }
 
         EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::CREATED->value);
+    }
+
+    protected function grant(Entity $entity, int $action): CampaignPermission
+    {
+        $permission = new CampaignPermission();
+        $permission->entity_id = $entity->id;
+        if (!$entity->entityType->isSpecial()) {
+            $permission->misc_id = $entity->entity_id;
+        }
+        $permission->entity_type_id = $entity->type_id;
+        $permission->campaign_id = $entity->campaign_id;
+        $permission->user_id = auth()->user()->id;
+        $permission->action = $action;
+        $permission->access = true;
+        $permission->save();
+        Permissions::grant($entity);
+        return $permission;
     }
 
     /**

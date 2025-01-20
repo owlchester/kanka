@@ -267,8 +267,6 @@ class PermissionService
     public function reset(): self
     {
         unset($this->user, $this->role, $this->action);
-
-
         return $this;
     }
 }

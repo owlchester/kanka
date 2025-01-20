@@ -100,7 +100,7 @@ class AclScope implements Scope
     /**
      * Permission scope on an Entity model
      */
-    protected function applyToEntity(Builder $query, Model $model): Builder
+    protected function applyToEntity(Builder $query, Entity $model): Builder
     {
         Permissions::createTemporaryTable();
         // @phpstan-ignore-next-line
@@ -110,15 +110,9 @@ class AclScope implements Scope
             ->where(function ($subquery) {
                 return $subquery
                     ->where(function ($sub) {
-                        if (!request()->filled('_perm_v1')) {
-                            return $sub
-                                ->whereRaw(DB::raw('EXISTS (SELECT * FROM tmp_permissions as perm WHERE perm.id = entities.id)'))
-                                ->orWhereIn('entities.type_id', Permissions::allowedEntityTypes());
-                        } else {
-                            return $sub
-                                ->whereIn('entities.id', Permissions::allowedEntities())
-                                ->orWhereIn('entities.type_id', Permissions::allowedEntityTypes());
-                        }
+                        return $sub
+                            ->whereRaw(DB::raw('EXISTS (SELECT * FROM tmp_permissions as perm WHERE perm.id = entities.id)'))
+                            ->orWhereIn('entities.type_id', Permissions::allowedEntityTypes());
                     })
                     ->whereNotIn('entities.id', Permissions::deniedEntities())
                 ;

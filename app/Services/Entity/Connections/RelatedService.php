@@ -338,6 +338,9 @@ class RelatedService
      */
     protected function loadLocation(): self
     {
+        if ($this->entity->entityType->isSpecial()) {
+            return $this;
+        }
         if (
             !isset($this->entity->child->location) ||
             empty($this->entity->child->location) ||

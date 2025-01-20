@@ -2,6 +2,7 @@
 
 namespace App\Services\Permissions;
 
+use App\Enums\Permission;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
@@ -9,10 +10,19 @@ use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\User;
+use App\Traits\CampaignAware;
+use App\Traits\EntityAware;
+use App\Traits\EntityTypeAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Collection;
 
 class EntityPermission
 {
+    use UserAware;
+    use EntityAware;
+    use EntityTypeAware;
+    use CampaignAware;
+
     protected array $cached = [];
 
     protected array|bool $roleIds;
@@ -39,6 +49,39 @@ class EntityPermission
      */
     protected int $loadedCampaignId = 0;
 
+    public function can(Permission $permission): bool
+    {
+        $this->loadAllPermissions($this->user, $this->campaign);
+        if ($this->userIsAdmin) {
+            return true;
+        }
+
+        // Check general module permissions
+        $module = isset($this->entityType) ? $this->entityType->id : $this->entity->type_id;
+        $key = '' . $module . '_' . $permission->value;
+        $perm = false;
+        if (isset($this->cached[$key]) && $this->cached[$key]) {
+            $perm = $this->cached[$key];
+        }
+
+//        dump('module permission');
+//        dump($key);
+//        dump($this->cached);
+        if (!isset($this->entity)) {
+//            dd('no entity');
+            return $perm;
+        }
+
+        // Search for entity
+        $entityKey = '_' . $permission->value . '_' . $this->entity->id;
+//        dump('check entity');
+//        dd($entityKey);
+        if (isset($this->cached[$entityKey])) {
+            return $this->cached[$entityKey];
+        }
+        return $perm;
+    }
+
     /**
      * Determine the permission for a user to interact with an entity
      * @param MiscModel|Entity|null $entity
@@ -64,8 +107,11 @@ class EntityPermission
             $entityType = 'campaign';
         }
         $key = $entityType . '_' . $action;
-        //dump('key: ' . $key);
-        //dump($this->cached);
+
+//        if ($action === 1) {
+//            dump($key = $entityType . '_' . $action);
+//            dump($this->cached);
+//        }
 
         $perm = false;
         if (isset($this->cached[$key]) && $this->cached[$key]) {
@@ -74,17 +120,18 @@ class EntityPermission
 
         // Check if we have permission to do this action for exactly this entity
         if (!empty($entity)) {
-            //dump('i have an entity?');
-            //dump($entity);
+//            dump('i have an entity?');
+//            dump($entity);
+
             //Check if $entity is an entity type.
             if (isset($entity->type_id)) {
-                //dump('entity object');
+                dump('entity object');
                 $entityKey = '_' . $action . '_' . $entity->entity_id;
             } else {
                 //dump('misc object');
                 $entityKey = '_' . $action . '_' . $entity->id;
             }
-            //dump('entity key ' . $entityKey);
+//            dump('entity key ' . $entityKey);
             if (isset($this->cached[$entityKey])) {
                 $perm = $this->cached[$entityKey];
             }
@@ -197,7 +244,7 @@ class EntityPermission
                 //dump($permission->id . ' - ' . $permission->key());
                 $this->cached[$permission->key()] = $permission->access;
                 if (!empty($permission->entity_id)) {
-                    $this->cachedEntityIds[$permission->entity_type_id][$permission->misc_id][$permission->action] = (bool) $permission->access;
+                    $this->cachedEntityIds[$permission->entity_type_id][$permission->entity_id][$permission->action] = (bool) $permission->access;
                 }
             }
         }
@@ -211,7 +258,7 @@ class EntityPermission
                 $this->cached[$permission->key()] = $permission->access;
                 //dump($permission->id . ' - ' . $permission->key());
                 if (!empty($permission->entity_id)) {
-                    $this->cachedEntityIds[$permission->entity_type_id][$permission->misc_id][$permission->action] = (bool) $permission->access;
+                    $this->cachedEntityIds[$permission->entity_type_id][$permission->entity_id][$permission->action] = (bool) $permission->access;
                 }
             }
             unset($userPermissions);

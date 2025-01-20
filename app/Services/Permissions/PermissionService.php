@@ -365,11 +365,15 @@ class PermissionService
             // This permission targets an entity directly
             $this->entityIds[] = $permission->entity_id;
 
-            $this->allowedModels[] = $permission->misc_id;
+            if (!empty($permission->misc_id)) {
+                $this->allowedModels[] = $permission->misc_id;
+            }
         } elseif (!$permission->access && !in_array($permission->entity_id, $this->deniedIds)) {
             // This permission targets an entity directly
             $this->deniedIds[] = $permission->entity_id;
-            $this->deniedModels[] = $permission->misc_id;
+            if (!empty($permission->misc_id)) {
+                $this->deniedModels[] = $permission->misc_id;
+            }
         }
     }
 
@@ -405,13 +409,17 @@ class PermissionService
         if ($permission->access) {
             if (!in_array($permission->entity_id, $this->entityIds)) {
                 $this->entityIds[] = $permission->entity_id;
-                $this->allowedModels[] = $permission->misc_id;
+                if (!empty($permission->misc_id)) {
+                    $this->allowedModels[] = $permission->misc_id;
+                }
             }
             // If the user was denied through a role but has access through a direct permissions, still allow them
             if (($key = array_search($permission->entity_id, $this->deniedIds)) !== false) {
                 unset($this->deniedIds[$key]);
-                if (($key = array_search($permission->misc_id, $this->deniedModels)) !== false) {
-                    unset($this->deniedModels[$key]);
+                if (!empty($permission->misc_id)) {
+                    if (($key = array_search($permission->misc_id, $this->deniedModels)) !== false) {
+                        unset($this->deniedModels[$key]);
+                    }
                 }
             }
             return;
@@ -419,7 +427,9 @@ class PermissionService
 
         if (!in_array($permission->entity_id, $this->deniedIds)) {
             $this->deniedIds[] = $permission->entity_id;
-            $this->deniedModels[] = $permission->misc_id;
+            if (!empty($permission->misc_id)) {
+                $this->deniedModels[] = $permission->misc_id;
+            }
         }
     }
 }

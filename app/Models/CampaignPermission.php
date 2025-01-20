@@ -58,9 +58,7 @@ class CampaignPermission extends Model
         'campaign_role_id',
         'campaign_id',
         'user_id',
-        //'key',
         'action',
-        //'table_name',
         'entity_id',
         'entity_type_id',
         'misc_id',
@@ -127,7 +125,7 @@ class CampaignPermission extends Model
         }
 
         // If there is no entity attached, just go entity type + action
-        if (!$this->misc_id) {
+        if (!$this->entity_id) {
             return $this->entity_type_id . '_' . $this->action;
         }
         // Jul 2022: Found out a bug that if the entity_type_id isn't set even on user perms, denying misc_id 2 would
@@ -135,7 +133,7 @@ class CampaignPermission extends Model
         /*if ($this->entity_type_id) {
             return '_' . $this->action . '_' . $this->entity_type_id . '_' . $this->misc_id;
         }*/
-        return '_' . $this->action . '_' . $this->misc_id;
+        return '_' . $this->action . '_' . $this->entity_id;
     }
 
     public function isGallery(): bool

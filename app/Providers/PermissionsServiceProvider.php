@@ -60,7 +60,12 @@ class PermissionsServiceProvider extends ServiceProvider
     protected function registerEntity(): self
     {
         $this->app->singleton(EntityPermission::class, function () {
-            return new EntityPermission();
+            /** @var EntityPermission $service */
+            $service = new EntityPermission();
+            if (CampaignLocalization::hasCampaign()) {
+                $service->campaign(CampaignLocalization::getCampaign());
+            }
+            return $service;
         });
 
         $this->app->alias(EntityPermission::class, 'entitypermission');
