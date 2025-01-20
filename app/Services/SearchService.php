@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Facades\Avatar;
 use App\Facades\Mentions;
-use App\Facades\Module;
 use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\EntityAsset;
@@ -12,7 +11,6 @@ use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Services\Entity\NewService;
 use App\Traits\CampaignAware;
-use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;

@@ -15,6 +15,7 @@ use App\Services\SubscriptionUpgradeService;
 use App\Services\Users\CurrencyService;
 use App\Services\Users\EmailValidationService;
 use App\Models\User;
+use App\Models\UserLog;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -115,6 +116,10 @@ class SubscriptionController extends Controller
 
         // If the user has a cancelled sub still ending
         if ($user->subscribed('kanka') && $user->subscription('kanka')->onGracePeriod() && !$user->hasPayPal()) {
+            if ($tier->isCurrent($user)) {
+                return view('settings.subscription.renew')
+                    ->with('user', $user);
+            }
             return view('settings.subscription.change_blocked')
                 ->with('user', $user);
         }
@@ -167,6 +172,44 @@ class SubscriptionController extends Controller
             'limited',
             'isYearly',
         ));
+    }
+
+    public function renew(Request $request)
+    {
+        if ($request->ajax()) {
+            return response()->json([]);
+        }
+        try {
+            $this->subscription
+                ->user($request->user())
+                ->renew();
+            $request->user()->log(UserLog::TYPE_SUB_RENEW);
+
+            $routeOptions = [];
+
+            return redirect()
+                ->route('settings.subscription', $routeOptions)
+                ->withSuccess(__('subscriptions.renew.success'))
+            ;
+        } catch (IncompletePayment $exception) {
+            session()->put('subscription_callback', $request->get('payment_id'));
+            return redirect()->route(
+                'cashier.payment',
+                // @phpstan-ignore-next-line
+                [$exception->payment->id, 'redirect' => route('settings.subscription.callback')]
+            );
+        } catch (TranslatableException $e) {
+            return redirect()
+                ->route('settings.subscription')
+                ->with('error_raw', $e->getTranslatedMessage())
+            ;
+        } catch (Exception $e) {
+            // Error? json
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 
     /**

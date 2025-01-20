@@ -696,7 +696,6 @@ class CrudController extends Controller
 
     /**
      * Load a list of templates the user can create new entities from
-     * @param MiscModel $model
      */
     protected function loadTemplates(EntityType $entityType): Collection
     {

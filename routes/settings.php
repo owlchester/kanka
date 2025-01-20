@@ -62,6 +62,7 @@ Route::patch('/newsletter', [NewsletterController::class, 'update'])->name('sett
 
 Route::get('/subscription', [SubscriptionController::class, 'index'])->name('settings.subscription');
 Route::get('/subscription/change/{tier}', [SubscriptionController::class, 'change'])->name('settings.subscription.change');
+Route::post('/subscription/renew', [SubscriptionController::class, 'renew'])->name('settings.subscription.renew');
 Route::get('/subscription/callback', [SubscriptionController::class, 'callback'])->name('settings.subscription.callback');
 Route::post('/subscription/change/{tier}', [SubscriptionController::class, 'subscribe'])->name('settings.subscription.subscribe');
 Route::get('/subscription/unsubscribe', [CancellationController::class, 'index'])->name('settings.subscription.unsubscribe');
