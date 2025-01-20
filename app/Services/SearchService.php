@@ -8,9 +8,11 @@ use App\Facades\Module;
 use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\EntityAsset;
+use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Services\Entity\NewService;
 use App\Traits\CampaignAware;
+use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -269,7 +271,7 @@ class SearchService
             if (!$this->full) {
                 $searchResults[] = [
                     'id' => $model->id,
-                    'text' => $parsedName . ' (' . $model->entityType->name() . ')'
+                    'text' => $parsedName . ' (' . $model->entityType->name() . ')',
                 ];
                 continue;
             }
@@ -309,7 +311,7 @@ class SearchService
             if ($this->v2) {
                 return [
                     'entities' => $searchResults,
-                    'pages' => $this->pages()
+                    'pages' => $this->pages(),
                 ];
             }
             return $searchResults;
@@ -360,21 +362,18 @@ class SearchService
         $options = [];
         $term = str_replace('_', ' ', $this->term);
         $available = $this->newService->campaign($this->campaign)->available();
-        foreach ($available as $type => $class) {
+
+        // Re-order alphabetically and in groups of custom vs default
+
+        $available = $available->sortBy(fn (EntityType $a) => !$a->isSpecial() . '.' . $a->name());
+
+        foreach ($available as $entityType) {
             /** @var MiscModel $misc */
-            $misc = new $class();
-            $label = __('entities.new.' . $type);
-            if (!empty($misc->entityTypeId())) {
-                $singular = Module::singular($misc->entityTypeId());
-                if ($singular) {
-                    $label = __('crud.titles.new', ['module' => $singular]);
-                }
-            }
             $options[] = [
                 'new' => true,
-                'inject' => '[new:' . $type . '|' . $term . ']',
+                'inject' => '[new:' . $entityType->code . '|' . $term . ']',
                 'fullname' => $term,
-                'type' => $label,
+                'type' => __('crud.titles.new', ['module' => $entityType->name()]),
                 'text' => $term,
                 'name' => $term,
             ];

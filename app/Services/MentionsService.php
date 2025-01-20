@@ -8,6 +8,7 @@ use App\Models\Attribute;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAsset;
+use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Models\Quest;
 use App\Services\Entity\NewService;
@@ -65,9 +66,13 @@ class MentionsService
     /** @var bool When true, names of entities will be rendered, instead of a tooltip link */
     protected bool $onlyName = false;
 
-    protected MarkupFixer $markupFixer;
 
-    protected NewService $newService;
+    public function __construct(
+        protected MarkupFixer $markupFixer,
+        protected NewService $newService,
+    ) {
+
+    }
 
     /**
      * Map the mentions in an entity
@@ -771,13 +776,11 @@ class MentionsService
             return $name;
         }
 
-        if (!isset($this->newService)) {
-            $this->newService = app()->make(NewService::class);
-        }
         $types = $this->newService->campaign($this->campaign)->available();
 
-        // Invalid type
-        if (!isset($types[$type])) {
+        /** @var ?EntityType $entityType */
+        $entityType = $types->where('code', $type)->first();
+        if (!$entityType) {
             return $name;
         }
 
@@ -787,19 +790,16 @@ class MentionsService
             return "[{$type}:" . $this->newEntityMentions[$key] . ']';
         }
 
-        // Create the new misc  model
-        /** @var MiscModel $newMisc */
-        $newMisc = new $types[$type]();
-
-        $new = $this->newService
+        // Create the new model
+        $newEntity = $this->newService
             ->campaign($this->campaign)
             ->user(auth()->user())
-            ->model($newMisc)
+            ->entityType($entityType)
             ->create($name);
-        $this->newEntityMentions[$key] = $new->entity->id;
+        $this->newEntityMentions[$key] = $newEntity->id;
         $this->createdNewEntities = true;
 
-        return '[' . $type . ':' . $new->entity->id . ']';
+        return '[' . $type . ':' . $newEntity->id . ']';
     }
 
     /**

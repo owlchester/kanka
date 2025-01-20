@@ -355,7 +355,6 @@ trait CampaignRelations
 
     public function entityTypes(): HasMany
     {
-        return $this->hasMany(EntityType::class)
-            ->inCampaign($this);
+        return $this->hasMany(EntityType::class);
     }
 }

@@ -53,7 +53,8 @@ class EntityType extends Model
             $campaign = $campaign->id;
         }
         return $query->where(function ($sub) use ($campaign) {
-            return $sub->where('campaign_id', $campaign)->orWhereNull('campaign_id');
+            return $sub->where('campaign_id', $campaign)
+                ->orWhereNull('campaign_id');
         });
     }
 

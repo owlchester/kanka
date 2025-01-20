@@ -125,6 +125,9 @@ class Campaign extends Model
         'header_image',
     ];
 
+    /** @var Collection|EntityType[] */
+    protected Collection|array $cachedEntityTypes;
+
     public function getRouteKeyName()
     {
         return 'slug';
@@ -565,5 +568,18 @@ class Campaign extends Model
     public function imageStoragePath(): string
     {
         return 'w/' . $this->id;
+    }
+
+    /**
+     * @return Collection|EntityType[]
+     */
+    public function getEntityTypes(): Collection|array
+    {
+        if (isset($this->cachedEntityTypes)) {
+            return $this->cachedEntityTypes;
+        }
+
+        $this->cachedEntityTypes = EntityType::inCampaign($this)->enabled()->get();
+        return $this->cachedEntityTypes;
     }
 }
