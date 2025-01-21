@@ -78,7 +78,7 @@ class ChildController extends Controller
      */
     public function create(Campaign $campaign, Tag $tag)
     {
-        $this->authorize('update', $tag);
+        $this->authorize('update', $tag->entity);
         $formOptions = ['tags.entity-add.save', $campaign, 'tag' => $tag];
         if (request()->has('from-children')) {
             $formOptions['from-children'] = true;
@@ -96,7 +96,7 @@ class ChildController extends Controller
      */
     public function store(StoreTagEntity $request, Campaign $campaign, Tag $tag)
     {
-        $this->authorize('update', $tag);
+        $this->authorize('update', $tag->entity);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }

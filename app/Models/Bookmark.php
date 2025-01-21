@@ -411,14 +411,12 @@ class Bookmark extends Model
         } elseif ($this->type) {
             return true;
         } return (bool) ($this->isRandom())
-
-
         ;
     }
 
     public function activeModule(Campaign $campaign, Entity|EntityType|null $current = null): ?string
     {
-        if (empty($current) || empty($this->parent) || request()->has('bookmark')) {
+        if (empty($current) || request()->has('bookmark')) {
             return null;
         }
         if ($current instanceof EntityType) {

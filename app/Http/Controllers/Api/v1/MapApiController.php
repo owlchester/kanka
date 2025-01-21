@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Map;
 use App\Http\Requests\StoreMap as Request;
 use App\Http\Resources\MapResource as Resource;
@@ -41,7 +42,7 @@ class MapApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Map::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.map')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

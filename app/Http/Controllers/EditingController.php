@@ -104,14 +104,14 @@ class EditingController extends Controller
 
     public function confirmQuestElement(Campaign $campaign, QuestElement $questElement)
     {
-        $this->authorize('update', $questElement->quest()->first());
+        $this->authorize('update', $questElement->quest()->first()->entity);
 
         return $this->confirmHandle($questElement);
     }
 
     public function confirmTimelineElement(Campaign $campaign, TimelineElement $timelineElement)
     {
-        $this->authorize('update', $timelineElement->timeline()->first());
+        $this->authorize('update', $timelineElement->timeline()->first()->entity);
 
         return $this->confirmHandle($timelineElement);
     }
@@ -139,14 +139,14 @@ class EditingController extends Controller
 
     public function keepAliveTimelineElement(Campaign $campaign, TimelineElement $timelineElement)
     {
-        $this->authorize('update', $timelineElement->timeline()->first());
+        $this->authorize('update', $timelineElement->timeline()->first()->entity);
 
         return $this->keepAliveHandle($timelineElement);
     }
 
     public function keepAliveQuestElement(Campaign $campaign, QuestElement $questElement)
     {
-        $this->authorize('update', $questElement->quest()->first());
+        $this->authorize('update', $questElement->quest()->first()->entity);
 
         return $this->keepAliveHandle($questElement);
     }

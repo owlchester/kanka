@@ -21,7 +21,7 @@ class LayerController extends Controller
 
     public function index(Campaign $campaign, Map $map)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         $options = ['campaign' => $campaign, 'map' => $map->id];
 
@@ -55,7 +55,7 @@ class LayerController extends Controller
      */
     public function create(Campaign $campaign, Map $map)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         if ($map->layers->count() >= $campaign->maxMapLayers()) {
             return view('maps.form._layers_max')
@@ -75,7 +75,7 @@ class LayerController extends Controller
      */
     public function store(Campaign $campaign, Map $map, StoreMapLayer $request)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -123,7 +123,7 @@ class LayerController extends Controller
      */
     public function edit(Campaign $campaign, Map $map, MapLayer $mapLayer)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         // Migrate to gallery
         //        if (!empty($mapLayer->image_path)) {
@@ -147,7 +147,7 @@ class LayerController extends Controller
      */
     public function update(StoreMapLayer $request, Campaign $campaign, Map $map, MapLayer $mapLayer)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -179,7 +179,7 @@ class LayerController extends Controller
      */
     public function destroy(Campaign $campaign, Map $map, MapLayer $mapLayer)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         $mapLayer->delete();
 

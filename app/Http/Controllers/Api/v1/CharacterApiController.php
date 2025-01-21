@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacter as Request;
 use App\Http\Resources\CharacterResource;
+use App\Models\EntityType;
 
 class CharacterApiController extends ApiController
 {
@@ -42,7 +43,7 @@ class CharacterApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Character::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.character')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

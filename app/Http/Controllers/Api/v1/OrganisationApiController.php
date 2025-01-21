@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Organisation;
 use App\Http\Requests\StoreOrganisation as Request;
 use App\Http\Resources\OrganisationResource as Resource;
@@ -41,7 +42,7 @@ class OrganisationApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Organisation::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.organisation')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

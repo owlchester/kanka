@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Event;
 use App\Http\Requests\StoreEvent as Request;
 use App\Http\Resources\EventResource as Resource;
@@ -41,7 +42,7 @@ class EventApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Event::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.event')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

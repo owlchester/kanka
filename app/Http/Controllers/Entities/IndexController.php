@@ -59,7 +59,6 @@ class IndexController extends Controller
             }
         }
         if (empty($parent) && $nested && $this->filterService->activeFiltersCount() === 0) {
-            // @phpstan-ignore-next-line
             $base->whereNull('entities.parent_id');
         }
 

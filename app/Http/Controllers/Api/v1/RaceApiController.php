@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Race;
 use App\Http\Requests\StoreRace as Request;
 use App\Http\Resources\RaceResource as Resource;
@@ -42,7 +43,7 @@ class RaceApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Race::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.race')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

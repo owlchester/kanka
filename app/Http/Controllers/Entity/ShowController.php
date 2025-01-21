@@ -16,7 +16,6 @@ class ShowController extends Controller
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authEntityView($entity);
-        ;
         /*if ($entity->slug !== $slug) {
             return redirect()->route('entities.show', [$campaign, $entity, $entity->slug]);
         }*/
@@ -25,6 +24,7 @@ class ShowController extends Controller
         return view('cruds.show')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
+            ->with('entityType', $entity->entityType)
         ;
     }
 }

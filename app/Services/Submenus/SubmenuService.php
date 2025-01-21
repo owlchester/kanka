@@ -139,7 +139,8 @@ class SubmenuService
         try {
             /** @var CharacterSubmenu $object */
             $object = app()->make($submenuName);
-            // @phpstan-ignore-next-line
+            //@phpstan-ignore-next-line
+            $this->items += $object->entity($this->entity)->campaign($this->campaign)->extra();
         } catch (\Exception $e) {
             // Some modules like convos have no submenu
         }
@@ -151,6 +152,7 @@ class SubmenuService
     {
         /** @var CustomSubmenu $service */
         $service = app()->make(CustomSubmenu::class);
+        //@phpstan-ignore-next-line
         $this->items += $service->entity($this->entity)->campaign($this->campaign)->extra();
 
         return $this;

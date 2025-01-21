@@ -73,16 +73,17 @@ class BulkService
     {
         $model = $this->getEntity();
         if (isset($this->entityType)) {
-            $entities = $model->with('entity')->has('entity')->whereIn('id', $this->ids)->get();
+            if ($this->entityType->hasEntity()) {
+                $entities = $model->with('entity')->has('entity')->whereIn('id', $this->ids)->get();
+            } else {
+                $entities = $model->whereIn('id', $this->ids)->get();
+            }
         } else {
             $entities = $model->with('mirror')->whereIn('id', $this->ids)->get();
         }
         /** @var Entity|Relation $entity */
         foreach ($entities as $entity) {
-            if (!isset($this->entityType) && !auth()->user()->can('delete', $entity)) {
-                continue;
-            }
-            elseif (isset($this->entityType) && !auth()->user()->can('delete', $entity->entity)) {
+            if (!$this->can('delete', $entity)) {
                 continue;
             }
             if (request()->delete_mirrored && $entity->mirror) {
@@ -117,15 +118,16 @@ class BulkService
     {
         $model = $this->getEntity();
 
-        foreach ($this->ids as $id) {
-            $entity = $model->with('entity')->findOrFail($id);
-            if (auth()->user()->can('update', $entity->entity)) {
-                $this->permissionService
-                    ->entity($entity->entity)
-                    ->override($override)
-                    ->change($permissions);
-                $this->count++;
+        $entities = $model->with('entity')->whereIn('id', $this->ids)->get();
+        foreach ($entities as $entity) {
+            if (!$this->can('update', $entity)) {
+                continue;
             }
+            $this->permissionService
+                ->entity($entity->entity)
+                ->override($override)
+                ->change($permissions);
+            $this->count++;
         }
 
         return $this->count;
@@ -152,7 +154,7 @@ class BulkService
 
         $entities = $model->with('entity')->whereIn('id', $this->ids)->get();
         foreach ($entities as $entity) {
-            if (!auth()->user()->can('update', $entity->entity)) {
+            if (!$this->can('update', $entity)) {
                 continue;
             }
             if (empty($entity->entity)) {
@@ -174,14 +176,15 @@ class BulkService
         $model = $this->getEntity();
         foreach ($this->ids as $id) {
             $entity = $model->with('entity')->findOrFail($id);
-            if (auth()->user()->can('update', $entity->entity)) {
-                $this->transformService
-                    ->child($entity)
-                    ->entityType($entityType)
-                    ->campaign($this->campaign)
-                    ->transform();
-                $this->count++;
+            if (!$this->can('update', $entity)) {
+                continue;
             }
+            $this->transformService
+                ->child($entity)
+                ->entityType($entityType)
+                ->campaign($this->campaign)
+                ->transform();
+            $this->count++;
         }
 
         return $this->count;
@@ -290,9 +293,7 @@ class BulkService
             /** @var MiscModel $entity */
             $entity = $model->with('entity', 'entity.tags')->findOrFail($id);
             $this->total++;
-            if (!auth()->user()->can('update', isset($this->entityType) ? $entity->entity : $entity)) {
-                // Can't update this? Technically not possible since bulk editing is only available
-                // for admins, but better safe than sorry
+            if (!$this->can('update', $entity)) {
                 continue;
             }
             $entityFields = $filledFields;
@@ -391,10 +392,12 @@ class BulkService
         $entities = $model->with(['entity', 'entity.campaign'])->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
-            if (auth()->user()->can('update', $entity->entity)) {
-                $service->apply($entity->entity, $template);
-                $this->count++;
+            if (!$this->can('update', $entity)) {
+                continue;
             }
+            $service->apply($entity->entity, $template);
+            $this->count++;
+
         }
 
         return $this->count;
@@ -454,5 +457,13 @@ class BulkService
             $this->count++;
         }
         return $this->count;
+    }
+
+    protected function can(string $action, $entity): bool
+    {
+        if (!isset($this->entityType) || !$this->entityType->hasEntity()) {
+            return auth()->user()->can($action, $entity);
+        }
+        return auth()->user()->can($action, $entity->entity);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Character;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Collection;
@@ -14,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FormCopyService
 {
-    protected Entity $source;
+    protected Entity|Model $source;
 
     /**
      * The requested field
@@ -30,10 +29,7 @@ class FormCopyService
         return $this;
     }
 
-    /**
-     * @param Model|MiscModel|Character|null $source
-     */
-    public function source(Entity $source = null): self
+    public function source(Entity|Model $source = null): self
     {
         $this->source = $source;
         return $this;
@@ -89,7 +85,6 @@ class FormCopyService
 
     /**
      * Character traits
-     * @return array|Collection
      */
     public function characterPersonality(): Collection
     {
@@ -103,7 +98,6 @@ class FormCopyService
 
     /**
      * Character traits
-     * @return array|Collection
      */
     public function characterAppearance(): Collection
     {
@@ -117,7 +111,6 @@ class FormCopyService
 
     /**
      * Character organisations
-     * @return array|Collection
      */
     public function characterOrganisation(): Collection
     {
@@ -151,6 +144,7 @@ class FormCopyService
     {
         // Only copy on MiscModel (entity) models
         if ($this->valid()) {
+            //@phpstan-ignore-next-line
             return $this->source->child;
         }
         return null;
@@ -207,14 +201,13 @@ class FormCopyService
             return null;
         }
 
-        if (!$this->fromChild) {
+        if (!$this->source instanceof Entity || !$this->fromChild) {
             return $this->source->getAttributeValue($this->field);
         }
         $this->fromChild = false;
         if ($this->source->isMissingChild()) {
             return null;
         }
-        // @phpstan-ignore-next-line
         return $this->source->child->getAttributeValue($this->field);
     }
 
@@ -226,14 +219,13 @@ class FormCopyService
             return null;
         }
 
-        if (!$this->fromChild) {
+        if (!$this->source instanceof Entity || !$this->fromChild) {
             return $this->source->{$this->field};
         }
         $this->fromChild = false;
         if ($this->source->isMissingChild()) {
             return null;
         }
-        // @phpstan-ignore-next-line
         return $this->source->child->{$this->field};
     }
 }

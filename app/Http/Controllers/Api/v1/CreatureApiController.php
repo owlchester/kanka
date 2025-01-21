@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\Creature;
 use App\Http\Requests\StoreCreature as Request;
 use App\Http\Resources\CreatureResource as Resource;
+use App\Models\EntityType;
 
 class CreatureApiController extends ApiController
 {
@@ -42,7 +43,7 @@ class CreatureApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Creature::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.creature')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

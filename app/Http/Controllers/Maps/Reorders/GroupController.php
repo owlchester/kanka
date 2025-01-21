@@ -12,7 +12,7 @@ class GroupController extends Controller
 {
     public function index(ReorderGroups $request, Campaign $campaign, Map $map)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         $order = 1;
         $ids = $request->get('group');

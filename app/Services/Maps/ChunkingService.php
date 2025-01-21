@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Exception;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class ChunkingService
 {
@@ -33,6 +35,8 @@ class ChunkingService
 
     protected string $tileFormat = 'png';
     protected int $tileOverlap = 1;
+
+    protected ImageManager $manager;
 
     public function map(Map $map): self
     {
@@ -62,6 +66,10 @@ class ChunkingService
         $folder = 'maps/' . $this->map->id . '/chunks';
         Storage::deleteDirectory($folder);
         Storage::makeDirectory($folder);
+
+
+        // create new manager instance with desired driver
+        $this->manager = new ImageManager(Driver::class);
 
         for ($level = $this->minZoom; $level <= $this->maxZoom; $level++) {
             $this->log('creating chunks for level ' . $level);
@@ -137,8 +145,7 @@ class ChunkingService
      */
     protected function createTile(int $width, int $height, int $level, string $levelFolder): void
     {
-        $image = $this->generate($width, $height);
-        $image->backup();
+        $original = $this->generate($width, $height);
 
         /*Storage::put(
             $levelFolder . '/base.png',
@@ -168,6 +175,7 @@ class ChunkingService
                     'public'
                 );*/
 
+                $image = clone($original);
                 $image->crop($bounds['width'], $bounds['height'], $bounds['x'], $bounds['y']);
 
                 /*Storage::put(
@@ -178,21 +186,21 @@ class ChunkingService
 
                 // Create a 256x256 blank transparent canvas on which we'll insert the crop. This is to make sure each
                 // image create is a square tile (and avoid distortion in leafletjs)
-                $png = Image::canvas($this->tileSize, $this->tileSize);
-                $png->insert($image);
+                $png = $this->manager->create($this->tileSize, $this->tileSize);
+                $png->place($image);
 
                 Storage::put(
                     $levelFolder . '/' . $file,
-                    (string)$png->encode($this->tileFormat, 85),
+                    (string)$png->toPng(),
                     'public'
                 );
                 //unset($tile);
                 unset($png);
-                $image->reset();
+                unset($image);
             }
         }
 
-        unset($image);
+        unset($original);
     }
 
     /**
@@ -247,9 +255,9 @@ class ChunkingService
         return $this;
     }
 
-    protected function generate(int $width, int $height): \Intervention\Image\Image
+    protected function generate(int $width, int $height)
     {
-        $image = Image::make($this->path);
+        $image = $this->manager->read($this->path);
         return $image->resize($width, $height);
     }
 
@@ -268,7 +276,7 @@ class ChunkingService
             $s3
         );
 
-        $original = Image::make($this->path);
+        $original = $this->manager->read($this->path);
 
         $this->width = $original->width();
         $this->height = $original->height();

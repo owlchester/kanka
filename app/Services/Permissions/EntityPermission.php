@@ -37,7 +37,7 @@ class EntityPermission
     /**
      * @var bool is admin
      */
-    protected $userIsAdmin = null;
+    protected bool $userIsAdmin;
 
     /**
      * Permissions were loaded
@@ -268,6 +268,6 @@ class EntityPermission
         $this->loadedAll = true;
         $this->cached = [];
         unset($this->roleIds);
-        $this->userIsAdmin = false;
+        unset($this->userIsAdmin);
     }
 }

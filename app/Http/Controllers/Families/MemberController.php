@@ -54,7 +54,7 @@ class MemberController extends Controller
 
     public function create(Campaign $campaign, Family $family)
     {
-        $this->authorize('update', $family);
+        $this->authorize('update', $family->entity);
 
         return view('families.members.create', [
             'campaign' => $campaign,
@@ -64,7 +64,7 @@ class MemberController extends Controller
 
     public function store(StoreCharacterFamily $request, Campaign $campaign, Family $family)
     {
-        $this->authorize('update', $family);
+        $this->authorize('update', $family->entity);
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }

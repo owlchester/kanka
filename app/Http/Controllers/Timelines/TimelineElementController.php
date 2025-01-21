@@ -55,7 +55,7 @@ class TimelineElementController extends Controller
      */
     public function create(Request $request, Campaign $campaign, Timeline $timeline)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
 
         $eraId = $request->get('era_id');
         $position = $request->get('position', 1);
@@ -72,7 +72,7 @@ class TimelineElementController extends Controller
      */
     public function store(Campaign $campaign, Timeline $timeline, StoreTimelineElement $request)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -96,7 +96,7 @@ class TimelineElementController extends Controller
      */
     public function edit(Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
 
         $editingUsers = null;
         $model = $timelineElement;
@@ -122,7 +122,7 @@ class TimelineElementController extends Controller
      */
     public function update(StoreTimelineElement $request, Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
 
         /** @var MultiEditingService $editingService */
         $editingService = app()->make(MultiEditingService::class);
@@ -159,7 +159,7 @@ class TimelineElementController extends Controller
      */
     public function destroy(Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
 
         $timelineElement->delete();
         $this->service->reorderElements($timelineElement, true);

@@ -38,7 +38,7 @@ class MarkerController extends Controller
 
     public function index(Campaign $campaign, Map $map)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         $options = ['campaign' => $campaign, 'map' => $map->id];
 
@@ -70,7 +70,7 @@ class MarkerController extends Controller
      */
     public function create(Campaign $campaign, Map $map)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         $source = null;
         if (request()->has('source')) {
@@ -94,7 +94,7 @@ class MarkerController extends Controller
      */
     public function store(Campaign $campaign, Map $map, StoreMapMarker $request)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -130,7 +130,7 @@ class MarkerController extends Controller
      */
     public function edit(Campaign $campaign, Map $map, MapMarker $mapMarker, string $from = '')
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         if ($mapMarker->map_id !== $map->id) {
             abort(503);
         }
@@ -151,7 +151,7 @@ class MarkerController extends Controller
      */
     public function update(StoreMapMarker $request, Campaign $campaign, Map $map, MapMarker $mapMarker)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         if ($mapMarker->map_id !== $map->id) {
             abort(503);
         }
@@ -190,7 +190,7 @@ class MarkerController extends Controller
      */
     public function destroy(Campaign $campaign, Map $map, MapMarker $mapMarker)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         if ($mapMarker->map_id !== $map->id) {
             abort(503);
         }

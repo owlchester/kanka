@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Family;
 use App\Http\Requests\StoreFamily as Request;
 use App\Http\Resources\FamilyResource as Resource;
@@ -41,7 +42,7 @@ class FamilyApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Family::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.family')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

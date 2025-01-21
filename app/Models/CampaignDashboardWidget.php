@@ -32,7 +32,7 @@ use Illuminate\Support\Str;
  * @property Entity $entity
  * @property CampaignDashboard $dashboard
  * @property CampaignDashboardWidgetTag[] $dashboardWidgetTags
- * @property EntityType $entityType
+ * @property ?EntityType $entityType
  *
  * @method static self|Builder positioned()
  * @method static self|Builder onDashboard(?CampaignDashboard $dashboard = null)

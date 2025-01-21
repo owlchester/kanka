@@ -17,7 +17,7 @@ class EntityEventController extends Controller
 
     public function index(Request $request, Campaign $campaign, Calendar $calendar)
     {
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
         $action = $request->get('action');
         $models = $request->get('model');
         if (!in_array($action, $this->validBulkActions()) || empty($models)) {

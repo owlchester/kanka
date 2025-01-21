@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\Ability;
 use App\Http\Requests\StoreAbility as Request;
 use App\Http\Resources\AbilityResource as Resource;
+use App\Models\EntityType;
 
 class AbilityApiController extends ApiController
 {
@@ -41,7 +42,7 @@ class AbilityApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Ability::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.ability')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

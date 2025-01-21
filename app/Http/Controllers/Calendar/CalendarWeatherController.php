@@ -25,7 +25,7 @@ class CalendarWeatherController extends Controller
 
     public function create(Campaign $campaign, Calendar $calendar)
     {
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
 
         $date = request()->get('date');
         list($year, $month, $day) = explode('-', $date);
@@ -50,7 +50,7 @@ class CalendarWeatherController extends Controller
 
     public function store(AddCalendarWeather $request, Campaign $campaign, Calendar $calendar)
     {
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -69,7 +69,7 @@ class CalendarWeatherController extends Controller
 
     public function update(AddCalendarWeather $request, Campaign $campaign, Calendar $calendar, CalendarWeather $calendarWeather)
     {
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -89,7 +89,7 @@ class CalendarWeatherController extends Controller
 
     public function destroy(Campaign $campaign, Calendar $calendar, CalendarWeather $calendarWeather)
     {
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
         $calendarWeather->delete();
 
         $routeOptions = [$campaign, $calendar->entity];

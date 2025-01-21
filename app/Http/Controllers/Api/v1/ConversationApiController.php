@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\Conversation;
 use App\Http\Requests\StoreConversation as Request;
 use App\Http\Resources\ConversationResource as Resource;
+use App\Models\EntityType;
 
 class ConversationApiController extends ApiController
 {
@@ -41,7 +42,7 @@ class ConversationApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Conversation::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.conversation')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

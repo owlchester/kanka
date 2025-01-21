@@ -20,21 +20,21 @@ class TransferController extends Controller
 
     public function index(Campaign $campaign, Tag $tag)
     {
-        $this->authorize('update', $tag);
+        $this->authorize('update', $tag->entity);
 
         return view('tags.transfer', compact('campaign', 'tag'));
     }
 
     public function postIndex(Campaign $campaign, Tag $tag)
     {
-        $this->authorize('update', $tag);
+        $this->authorize('update', $tag->entity);
 
         return view('tags.transfer_posts', compact('campaign', 'tag'));
     }
 
     public function process(TransferTag $request, Campaign $campaign, Tag $tag)
     {
-        $this->authorize('update', $tag);
+        $this->authorize('update', $tag->entity);
         $newTag = Tag::where('id', $request->tag_id)->first();
         try {
             $this->service->transfer($tag, $newTag);
@@ -50,7 +50,7 @@ class TransferController extends Controller
 
     public function processPosts(TransferTag $request, Campaign $campaign, Tag $tag)
     {
-        $this->authorize('update', $tag);
+        $this->authorize('update', $tag->entity);
         $newTag = Tag::where('id', $request->tag_id)->first();
         try {
             $this->service->transferPosts($tag, $newTag);

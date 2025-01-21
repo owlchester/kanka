@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\Calendar;
 use App\Http\Requests\StoreCalendar as Request;
 use App\Http\Resources\CalendarResource as Resource;
+use App\Models\EntityType;
 use App\Sanitizers\CalendarSanitizer;
 
 class CalendarApiController extends ApiController
@@ -49,7 +50,7 @@ class CalendarApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Calendar::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.calendar')));
 
         $request->merge($this->sanitizer->request($request)->sanitize());
         $data = $request->all();

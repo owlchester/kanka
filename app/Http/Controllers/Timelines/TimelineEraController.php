@@ -31,7 +31,7 @@ class TimelineEraController extends Controller
 
     public function index(Campaign $campaign, Timeline $timeline)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
 
         $options = ['campaign' => $campaign, 'timeline' => $timeline->id];
 
@@ -64,7 +64,7 @@ class TimelineEraController extends Controller
      */
     public function create(Campaign $campaign, Timeline $timeline)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
         $from = request()->get('from') == 'view' ? 'view' : null;
 
         return view(
@@ -78,7 +78,7 @@ class TimelineEraController extends Controller
      */
     public function store(Campaign $campaign, Timeline $timeline, StoreTimelineEra $request)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -106,7 +106,7 @@ class TimelineEraController extends Controller
      */
     public function edit(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
 
         $model = $timelineEra;
         $from = request()->get('from') == 'view' ? 'view' : null;
@@ -121,7 +121,7 @@ class TimelineEraController extends Controller
      */
     public function update(StoreTimelineEra $request, Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -143,7 +143,7 @@ class TimelineEraController extends Controller
 
     public function destroy(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
 
         $timelineEra->delete();
 
@@ -161,7 +161,7 @@ class TimelineEraController extends Controller
 
     public function bulk(Request $request, Campaign $campaign, Timeline $timeline)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
         $action = $request->get('action');
         $models = $request->get('model');
         if (!in_array($action, $this->validBulkActions()) || empty($models)) {

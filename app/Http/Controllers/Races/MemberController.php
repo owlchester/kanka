@@ -48,7 +48,7 @@ class MemberController extends Controller
      */
     public function create(Campaign $campaign, Race $race)
     {
-        $this->authorize('update', $race);
+        $this->authorize('update', $race->entity);
 
         return view('races.members.create', [
             'campaign' => $campaign,
@@ -61,7 +61,7 @@ class MemberController extends Controller
      */
     public function store(StoreCharacterRace $request, Campaign $campaign, Race $race)
     {
-        $this->authorize('update', $race);
+        $this->authorize('update', $race->entity);
 
         $newMembers = $race->characters()->syncWithoutDetaching($request->members);
 

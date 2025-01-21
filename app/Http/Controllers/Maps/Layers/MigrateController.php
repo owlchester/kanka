@@ -23,7 +23,7 @@ class MigrateController extends Controller
 
     public function index(Campaign $campaign, Map $map, MapLayer $mapLayer)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {

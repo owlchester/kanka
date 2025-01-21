@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Item;
 use App\Http\Requests\StoreItem as Request;
 use App\Http\Resources\ItemResource as Resource;
@@ -42,7 +43,7 @@ class ItemApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Item::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.item')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

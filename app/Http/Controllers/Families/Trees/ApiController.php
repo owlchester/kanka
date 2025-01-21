@@ -62,7 +62,7 @@ class ApiController extends Controller
      */
     public function save(Request $request, Campaign $campaign, Family $family): JsonResponse
     {
-        $this->authorize('update', $family);
+        $this->authorize('update', $family->entity);
 
         return response()->json(
             $this

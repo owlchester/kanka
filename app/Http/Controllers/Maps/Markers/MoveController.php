@@ -12,7 +12,7 @@ class MoveController extends Controller
 {
     public function index(Request $request, Campaign $campaign, Map $map, MapMarker $mapMarker)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         $mapMarker->update($request->only('latitude', 'longitude'));
 

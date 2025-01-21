@@ -334,7 +334,6 @@ class DatagridRenderer
             }
         }*/
         if (!empty($this->nestedFilter) && method_exists($model, 'children')) {
-            // @phpstan-ignore-next-line
             $html .= ' data-children="' . $model->children->count() . '"';
         }
         $html .= '>';

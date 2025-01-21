@@ -14,6 +14,6 @@ class OrganisationPolicy extends MiscPolicy
 
     public function member(User $user, Organisation $organisation)
     {
-        return $this->relatedElement($user, $organisation, '');
+        return $user->can('update', $organisation->entity);
     }
 }

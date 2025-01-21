@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Enums\Permission;
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityPermission;
+use App\Models\Campaign;
 use App\Models\Entity;
 
 trait GuestAuthTrait
@@ -35,6 +36,7 @@ trait GuestAuthTrait
             abort(403);
         }
 
+        // @phpstan-ignore-next-line
         $permission = EntityPermission::entity($entity)->campaign($this->campaign)->can($permission);
 
         // @phpstan-ignore-next-line

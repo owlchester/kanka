@@ -23,7 +23,7 @@ class TimelineReorderController extends Controller
      */
     public function index(Campaign $campaign, Timeline $timeline)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
 
         $eras = $timeline
             ->eras()
@@ -52,7 +52,7 @@ class TimelineReorderController extends Controller
      */
     public function save(Campaign $campaign, Timeline $timeline, ReorderTimeline $request)
     {
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
 
         $this->service
             ->timeline($timeline)

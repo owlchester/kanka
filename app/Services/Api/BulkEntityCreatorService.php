@@ -8,6 +8,7 @@ use App\Traits\CampaignAware;
 use App\Services\Entity\TagService;
 use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 class BulkEntityCreatorService
@@ -34,8 +35,7 @@ class BulkEntityCreatorService
         if ($this->entityType->isSpecial()) {
             return $this->createEntity();
         }
-
-        $this->new = $this->entityType->getClass();
+        $this->new = $this->entityType->getMiscClass();
         $this->new->fill($this->data);
         $this->new->campaign_id = $this->campaign->id;
         $this->new->save();

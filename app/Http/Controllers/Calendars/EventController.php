@@ -76,7 +76,7 @@ class EventController extends Controller
 
     public function create(Campaign $campaign, Calendar $calendar)
     {
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
 
         $date = request()->get('date', '1-1-1');
         list($year, $month, $day) = explode('-', $date);

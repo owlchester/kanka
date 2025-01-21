@@ -52,7 +52,7 @@ class EntityPolicy
 
     public function history(User $user, Entity $entity, Campaign $campaign): bool
     {
-        return ($user && UserCache::user($user)->admin()) || !($campaign->boosted() && $campaign->hide_history);
+        return UserCache::user($user)->admin() || !($campaign->boosted() && $campaign->hide_history);
     }
 
     public function move(User $user, Entity $entity): bool

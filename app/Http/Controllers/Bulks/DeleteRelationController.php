@@ -28,7 +28,6 @@ class DeleteRelationController extends Controller
         $models = explode(',', request()->get('models'));
 
         $count = $this->bulkService
-            ->entity('relations')
             ->entities($models)
             ->campaign($campaign)
             ->delete();

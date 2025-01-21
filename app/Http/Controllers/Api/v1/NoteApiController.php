@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Note;
 use App\Http\Requests\StoreNote as Request;
 use App\Http\Resources\NoteResource as Resource;
@@ -41,7 +42,7 @@ class NoteApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Note::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.note')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

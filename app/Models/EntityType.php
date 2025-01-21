@@ -107,6 +107,15 @@ class EntityType extends Model
     }
 
     /**
+     * Freaking hate PHPStan
+     */
+    public function getMiscClass(): MiscModel
+    {
+        $className = 'App\Models\\' . Str::studly($this->code);
+        return app()->make($className);
+    }
+
+    /**
      * Get the translated name of the entity
      */
     public function name(): string
@@ -183,5 +192,13 @@ class EntityType extends Model
     public function isDeprecated(): bool
     {
         return in_array($this->id, [config('entities.ids.conversation'), config('entities.ids.dice_roll')]);
+    }
+
+    /**
+     * For some weird reason, bookmarks are an entity type, despite bookmarks not being entities
+     */
+    public function hasEntity(): bool
+    {
+        return $this->code !== 'bookmark';
     }
 }

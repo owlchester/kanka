@@ -15,7 +15,7 @@ class LayerController extends Controller
      */
     public function index(ReorderLayers $request, Campaign $campaign, Map $map)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         $order = 1;
         $ids = $request->get('layer');

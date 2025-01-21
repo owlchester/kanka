@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Models\Map;
 use App\Models\MiscModel;
 use App\Sanitizers\SvgAllowedAttributes;
 use App\Traits\CampaignAware;
@@ -12,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image as InterventionImage;
-use App\Models\Image;
 use enshrined\svgSanitize\Sanitizer;
 use Exception;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 /**
  */
@@ -103,8 +102,11 @@ class ImagesService
                         // GD can't handle svgs, so we need to move them directly
                         Storage::put($path, $cleanSVG, 'public');
                     } else {
-                        $image = InterventionImage::make($file);
-                        Storage::put($path, (string)$image->encode(), 'public');
+                        $manager = new ImageManager(
+                            new Driver()
+                        );
+                        $image = $manager->read($file);
+                        Storage::put($path, (string)$image->toJpeg(), 'public');
                     }
                 } else {
                     $path = request()->file($field)->storePublicly($folder);

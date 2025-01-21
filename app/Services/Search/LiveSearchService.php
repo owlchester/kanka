@@ -57,16 +57,13 @@ class LiveSearchService
                 'name' => $entity->name,
                 'text' => $entity->name,
             ];
-            // @phpstan-ignore-next-line
             if ($entity->isTag() && $entity->tag->hasColour()) {
-                // @phpstan-ignore-next-line
                 $format['colour'] = $entity->tag->colourClass();
             }
             $format['image'] = Avatar::entity($entity)->fallback()->size(40)->thumbnail();
             $format['url'] = $entity->url();
 
             if ($this->request->filled('with-family')) {
-                // @phpstan-ignore-next-line
                 $families = $entity->character->families->pluck('name')->toarray();
                 if (!empty($families)) {
                     $format['text'] .= ' (' . implode(', ', $families) . ')';

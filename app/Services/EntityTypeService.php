@@ -143,14 +143,14 @@ class EntityTypeService
 
         foreach ($this->request->get('role') as $roleID) {
             /** @var CampaignRole $campaignRole */
-            $campaignRole = $this->campaign->roles->where('id', $roleID)->get();
+            $campaignRole = $this->campaign->roles->where('id', $roleID)->first();
             if (!$campaignRole || $campaignRole->isAdmin()) {
                 continue;
             }
 
             $perm = new CampaignPermission();
             $perm->entity_type_id = $this->entityType->id;
-            $perm->campaign_id = $this->campaign;
+            $perm->campaign_id = $this->campaign->id;
             $perm->campaign_role_id = $campaignRole->id;
             $perm->access = 1;
             $perm->save();

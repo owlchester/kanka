@@ -17,7 +17,7 @@ class LayerController extends Controller
 
     public function index(Request $request, Campaign $campaign, Map $map)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         $this->campaign = $campaign;
         $action = $request->get('action');

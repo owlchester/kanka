@@ -17,7 +17,7 @@ class GroupController extends Controller
 
     public function index(Request $request, Campaign $campaign, Map $map)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         $action = $request->get('action');
         $models = $request->get('model');

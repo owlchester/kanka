@@ -17,9 +17,7 @@ class EntityTypeResource extends JsonResource
     {
         /** @var EntityType $this */
         return [
-            // @phpstan-ignore-next-line
             'id' => $this->id,
-            // @phpstan-ignore-next-line
             'code' => $this->code,
             'singular' => $this->singular,
             'plural' => $this->plural,

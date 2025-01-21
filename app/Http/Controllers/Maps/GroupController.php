@@ -24,7 +24,7 @@ class GroupController extends Controller
      */
     public function index(Campaign $campaign, Map $map)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         $options = ['map' => $map->id];
 
@@ -53,7 +53,7 @@ class GroupController extends Controller
      */
     public function create(Campaign $campaign, Map $map)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         if ($map->groups->count() >= $campaign->maxMapLayers()) {
             return view('maps.form._groups_max')
@@ -72,7 +72,7 @@ class GroupController extends Controller
      */
     public function store(Campaign $campaign, Map $map, StoreMapGroup $request)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -116,7 +116,7 @@ class GroupController extends Controller
      */
     public function edit(Campaign $campaign, Map $map, MapGroup $mapGroup)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
         $model = $mapGroup;
 
         return view(
@@ -129,7 +129,7 @@ class GroupController extends Controller
      */
     public function update(StoreMapGroup $request, Campaign $campaign, Map $map, MapGroup $mapGroup)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -161,7 +161,7 @@ class GroupController extends Controller
      */
     public function destroy(Campaign $campaign, Map $map, MapGroup $mapGroup)
     {
-        $this->authorize('update', $map);
+        $this->authorize('update', $map->entity);
 
         $mapGroup->delete();
 

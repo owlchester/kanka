@@ -13,6 +13,6 @@ class DiceRollPolicy extends MiscPolicy
 
     public function roll(User $user, $entity)
     {
-        return $this->view($user, $entity);
+        return $user->can($entity);
     }
 }

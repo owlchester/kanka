@@ -44,7 +44,7 @@ class EntityController extends Controller
 
     public function create(Campaign $campaign, Ability $ability)
     {
-        $this->authorize('update', $ability);
+        $this->authorize('update', $ability->entity);
         $formOptions = ['abilities.entity-add.save', $campaign, 'ability' => $ability];
         if (request()->has('from-children')) {
             $formOptions['from-children'] = true;
@@ -59,7 +59,7 @@ class EntityController extends Controller
 
     public function store(StoreAbilityEntity $request, Campaign $campaign, Ability $ability)
     {
-        $this->authorize('update', $ability);
+        $this->authorize('update', $ability->entity);
         $redirectUrlOptions = ['ability' => $ability->id];
         if (request()->has('from-children')) {
             $redirectUrlOptions['ability_id'] = $ability->id;

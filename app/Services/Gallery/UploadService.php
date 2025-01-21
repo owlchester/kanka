@@ -14,6 +14,8 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class UploadService
 {
@@ -161,8 +163,11 @@ class UploadService
             // GD can't handle svgs, so we need to move them directly
             Storage::put($this->image->path, $this->sanitizedSvg($file), 'public');
         } else {
-            $image = \Intervention\Image\Facades\Image::make($file);
-            Storage::put($this->image->path, (string)$image->encode(), 'public');
+            $manager = new ImageManager(
+                new Driver()
+            );
+            $image = $manager->read($file);
+            Storage::put($this->image->path, (string)$image->toJpeg(), 'public');
         }
         unlink($tempImage);
         $this->storage->clearCache();

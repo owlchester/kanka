@@ -12,11 +12,11 @@ class MapMarkerPolicy
 
     public function update(?User $user, MapMarker $mapMarker)
     {
-        return $user && $user->can('update', $mapMarker->map);
+        return $user && $user->can('update', $mapMarker->map->entity);
     }
 
     public function delete(?User $user, MapMarker $mapMarker)
     {
-        return $user && $user->can('update', $mapMarker->map);
+        return $user && $user->can('update', $mapMarker->map->entity);
     }
 }

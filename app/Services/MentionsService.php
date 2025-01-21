@@ -363,8 +363,8 @@ class MentionsService
                         $field = 'sex';
                     }
 
-                    /** @var Character $child */
                     if (!$entity->isMissingChild()) {
+                        /** @var Character $child */
                         $child = $entity->child;
                         if ($field == 'family' && !$child->families->isEmpty()) {
                             $data['text'] = $child->characterFamilies()->first()->family->name;

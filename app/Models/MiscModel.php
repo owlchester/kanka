@@ -176,8 +176,7 @@ abstract class MiscModel extends Model
             }
         }
 
-
-        if (auth()->check() && auth()->user()->can('update', $this)) {
+        if (auth()->check() && auth()->user()->can('update', $this->entity)) {
             if (!empty($actions)) {
                 $actions[] = null;
             }

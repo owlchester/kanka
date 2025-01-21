@@ -12,6 +12,7 @@ use App\Models\Post;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Exception;
 
@@ -54,7 +55,7 @@ class TransformService
             $this->child = $this->entity->child;
         }
 
-        $this->new = $this->entityType->getClass();
+        $this->new = $this->entityType->getMiscClass();
 
         $this
             ->attributes()
@@ -288,7 +289,7 @@ class TransformService
         $this->orphanChildren();
 
         // Create misc
-        $this->new = $this->entityType->getClass();
+        $this->new = $this->entityType->getMiscClass();
         $this->new->name = $this->entity->name;
         $this->new->is_private = $this->entity->is_private;
         $this->new->campaign_id = $this->campaign->id;

@@ -617,7 +617,7 @@ class MapMarker extends Model
         if (!empty($this->group_id) && !$this->group) {
             return false;
         }
-        return empty($this->entity_id) || (!empty($this->entity) && !empty($this->entity->child));
+        return empty($this->entity_id) || (!empty($this->entity) && !$this->entity->isMissingChild());
     }
 
     /**

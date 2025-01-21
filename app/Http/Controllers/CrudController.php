@@ -478,7 +478,7 @@ class CrudController extends Controller
      */
     public function crudEdit(Model|MiscModel $model)
     {
-        $this->authorize('update', $model->entity);
+        $this->authorize('update', $model instanceof MiscModel ? $model->entity : $model);
 
         /** @var MiscModel $model */
         $editingUsers = null;
@@ -519,7 +519,7 @@ class CrudController extends Controller
      */
     public function crudUpdate(Request $request, Model|MiscModel $model)
     {
-        $this->authorize('update', $model->entity);
+        $this->authorize('update', $model instanceof MiscModel ? $model->entity : $model);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
@@ -615,7 +615,7 @@ class CrudController extends Controller
     public function crudDestroy(Model|MiscModel $model)
     {
         /** @var MiscModel $model */
-        $this->authorize('delete', $model->entity);
+        $this->authorize('delete', $model instanceof MiscModel ? $model->entity : $model);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -786,5 +786,10 @@ class CrudController extends Controller
         }
         // Else use the user's preferred stacking for this entity type
         return Arr::get(auth()->user()->settings, $key, true);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::find(1);
     }
 }

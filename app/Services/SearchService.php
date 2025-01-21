@@ -366,7 +366,6 @@ class SearchService
         $available = $available->sortBy(fn (EntityType $a) => !$a->isSpecial() . '.' . $a->name());
 
         foreach ($available as $entityType) {
-            /** @var MiscModel $misc */
             $options[] = [
                 'new' => true,
                 'inject' => '[new:' . $entityType->code . '|' . $term . ']',

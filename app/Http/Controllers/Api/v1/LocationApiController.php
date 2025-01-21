@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Location;
 use App\Http\Requests\StoreLocation as Request;
 use App\Http\Resources\LocationResource as Resource;
@@ -42,7 +43,7 @@ class LocationApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Location::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.location')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

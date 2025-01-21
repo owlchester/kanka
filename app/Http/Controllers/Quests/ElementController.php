@@ -47,7 +47,7 @@ class ElementController extends Controller
 
     public function create(Campaign $campaign, Quest $quest)
     {
-        $this->authorize('update', $quest);
+        $this->authorize('update', $quest->entity);
 
         return view('quests.elements.create', compact(
             'campaign',
@@ -57,7 +57,7 @@ class ElementController extends Controller
 
     public function store(StoreQuestElement $request, Campaign $campaign, Quest $quest)
     {
-        $this->authorize('update', $quest);
+        $this->authorize('update', $quest->entity);
 
         if ($request->ajax()) {
             return response()->json(['success' => true]);
@@ -98,7 +98,7 @@ class ElementController extends Controller
 
     public function edit(Campaign $campaign, Quest $quest, QuestElement $questElement)
     {
-        $this->authorize('update', $quest);
+        $this->authorize('update', $quest->entity);
         $model = $questElement;
 
         $editingUsers = null;
@@ -123,7 +123,7 @@ class ElementController extends Controller
 
     public function update(StoreQuestElement $request, Campaign $campaign, Quest $quest, QuestElement $questElement)
     {
-        $this->authorize('update', $quest);
+        $this->authorize('update', $quest->entity);
 
         if ($request->ajax()) {
             return response()->json(['success' => true]);
@@ -163,7 +163,7 @@ class ElementController extends Controller
 
     public function destroy(Campaign $campaign, Quest $quest, QuestElement $questElement)
     {
-        $this->authorize('update', $quest);
+        $this->authorize('update', $quest->entity);
 
         $questElement->delete();
 

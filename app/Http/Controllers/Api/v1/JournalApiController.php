@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\Journal;
 use App\Http\Requests\StoreJournal as Request;
 use App\Http\Resources\JournalResource as Resource;
@@ -41,7 +42,7 @@ class JournalApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', Journal::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.journal')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

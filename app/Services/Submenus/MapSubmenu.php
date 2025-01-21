@@ -17,7 +17,7 @@ class MapSubmenu extends BaseSubmenu implements EntitySubmenu
             'route' => 'maps.maps',
             'count' => $map->children()->count()
         ];
-        if (auth()->check() && auth()->user()->can('update', $map)) {
+        if (auth()->check() && auth()->user()->can('update', $this->entity)) {
             $items['second']['layers'] = [
                 'name' => 'maps.panels.layers',
                 'route' => 'maps.map_layers.index',

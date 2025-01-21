@@ -6,6 +6,7 @@ use App\Models\Campaign;
 use App\Models\DiceRoll;
 use App\Http\Requests\StoreDiceRoll as Request;
 use App\Http\Resources\DiceRollResource as Resource;
+use App\Models\EntityType;
 
 class DiceRollApiController extends ApiController
 {
@@ -41,7 +42,7 @@ class DiceRollApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', DiceRoll::class);
+        $this->authorize('create', EntityType::find(config('entities.ids.dice_roll')));
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

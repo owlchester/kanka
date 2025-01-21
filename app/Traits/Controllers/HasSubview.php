@@ -3,6 +3,7 @@
 namespace App\Traits\Controllers;
 
 use App\Enums\Descendants;
+use App\Models\Entity;
 
 trait HasSubview
 {
