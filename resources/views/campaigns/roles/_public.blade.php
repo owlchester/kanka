@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="">{!! $entityType->plural() !!}</div>
-                @if ((!$entityType->isSpecial() && !$campaign->enabled($entityType->pluralCode())) || ($entityType->isSpecial() && !$entityType->isEnabled()))
+                @if ((!$entityType->isSpecial() && !$campaign->enabled($entityType)) || ($entityType->isSpecial() && !$entityType->isEnabled()))
                     <div class="rounded bg-warning text-warning-content" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
                         <i class="fa-solid fa-exclamation-triangle"  aria-hidden="true"></i>
                         <span class="md:hidden text-sm inline">{{ __('campaigns.modules.permission-disabled') }}</span>

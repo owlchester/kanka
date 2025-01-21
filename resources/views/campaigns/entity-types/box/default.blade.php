@@ -3,7 +3,7 @@
  * @var \App\Models\EntityType $entityType
  * @var \App\Models\Campaign $campaign
  */
-$enabled = $campaign->enabled($entityType->pluralCode());
+$enabled = $campaign->enabled($entityType);
 @endphp
 
 <x-box css="box-module overflow-hidden flex flex-wrap flex-col select-none {{ $enabled ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} " id="{{ $entityType->code }}" :padding="false">

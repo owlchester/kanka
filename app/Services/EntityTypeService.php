@@ -61,7 +61,7 @@ class EntityTypeService
                 continue;
             }
             // Skip disabled standard modules
-            if (!$this->withDisabled && !$entityType->isSpecial() && +$this->campaign->enabled($entityType->code)) {
+            if (!$this->withDisabled && !$entityType->isSpecial() && !$this->campaign->enabled($entityType)) {
                 continue;
             }
             $types->add($entityType);

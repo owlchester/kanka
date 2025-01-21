@@ -380,7 +380,7 @@ class EntityCreatorController extends Controller
                 $orderedTypes[$entityType->plural()] = $entityType;
                 continue;
             }
-            if (!$this->campaign->enabled($entityType->pluralCode())) {
+            if (!$this->campaign->enabled($entityType)) {
                 continue;
             }
             if (!auth()->user()->can('create', [$entityType, $this->campaign])) {

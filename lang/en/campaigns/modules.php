@@ -18,6 +18,7 @@ return [
     ],
     'errors' => [
         'disabled' => 'The :name module is disabled. :fix',
+        'limit' => 'Campaigns are currently limited to only :max custom modules while we iron out this new feature.',
     ],
     'fields'    => [
         'icon'      => 'Module icon',
@@ -25,7 +26,7 @@ return [
         'singular'  => 'Module singular name',
     ],
     'helpers'   => [
-        'custom' => 'This is a custom module found only here.',
+        'custom' => 'This is a custom module.',
         'info'  => 'A campaign is split into several modules that interact with each other. Enable or disable those you don\'t need. Deactivating a module doesn\'t delete any of its data, it only hides it.',
         'singular' => 'The singular name for an entity of the new module. For example, potion',
         'plural' => 'The plural name for entities of the new module. For example, potions',
@@ -43,13 +44,15 @@ return [
         'success'   => 'The campaign modules have been reset.',
         'title'     => 'Reset module custom names and icons',
         'warning'   => 'Are you sure you want to reset the campaign modules to their original names and icons?',
+        'default' => 'This will only reset the default modules, not any custom ones.',
     ],
     'states'    => [
         'disable'   => 'Disable',
         'enable'    => 'Enable',
     ],
     'sections' => [
-        'modules' => 'Modules',
+        'default' => 'Default modules',
         'features' => 'Features',
+        'custom' => 'Custom modules',
     ]
 ];

@@ -15,7 +15,8 @@ return [
         'files' => [
             'standard' => 3,
             'premium' => 20,
-        ]
+        ],
+        'modules' => env('APP_MODULE_LIMIT', 10),
     ],
 
     /**

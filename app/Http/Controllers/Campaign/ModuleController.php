@@ -30,8 +30,12 @@ class ModuleController extends Controller
             ->withDisabled()
             ->ordered();
 
+        $customEntityTypes = $entityTypes->whereNotNull('campaign_id');
+        $entityTypes = $entityTypes->whereNull('campaign_id');
+
         return view('campaigns.modules.index')
             ->with('campaign', $campaign)
+            ->with('customEntityTypes', $customEntityTypes)
             ->with('entityTypes', $entityTypes)
             ->with('canReset', true);
     }
@@ -111,7 +115,7 @@ class ModuleController extends Controller
 
             return response()->json([
                 'success' => true,
-                'status' => $campaign->setting->{$entityType},
+                'status' => $campaign->enabled($entityType),
                 'toast' => __('campaigns.settings.' . ($status ? 'enabled' : 'disabled'), ['module' => $entityType->plural()])
             ]);
         } catch (Exception $e) {

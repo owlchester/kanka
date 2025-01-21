@@ -51,7 +51,7 @@ class NewService
             if ($entityType->isSpecial() && !$entityType->isEnabled()) {
                 continue;
             }
-            if (!$entityType->isSpecial() && !$this->campaign->enabled($entityType->pluralCode())) {
+            if (!$entityType->isSpecial() && !$this->campaign->enabled($entityType)) {
                 continue;
             }
             if (in_array($entityType->id, $excludedTypes)) {

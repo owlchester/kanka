@@ -220,8 +220,11 @@ class Campaign extends Model
      * Determine if a campaign has a module enabled or not
      *
      */
-    public function enabled(string $module): bool
+    public function enabled(string|EntityType $module): bool
     {
+        if ($module instanceof EntityType) {
+            $module = $module->pluralCode();
+        }
         if ($module === 'attribute_templates') {
             $module = 'entity_attributes';
         }

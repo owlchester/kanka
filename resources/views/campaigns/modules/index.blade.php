@@ -43,35 +43,9 @@
             </p>
         </x-tutorial>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4">
-
-            @if (config('entities.custom'))
-                <div class="cell col-span-1 flex">
-                    @include('campaigns.entity-types.box.new')
-                </div>
-            @endif
-            @foreach ($entityTypes as $entityType)
-                <div class="cell col-span-1 flex">
-                    @includeWhen($entityType->isSpecial(), 'campaigns.entity-types.box.custom')
-                    @includeWhen(!$entityType->isSpecial(), 'campaigns.entity-types.box.default')
-                </div>
-            @endforeach
-        </div>
-
-        <h3 id="features">{{ __('campaigns/modules.sections.features')}}</h3>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4">
-
-            <div class="cell col-span-1 flex">
-                @include('campaigns.modules.box', ['icon' => 'fa-solid fa-suitcase', 'module' => 'inventories'])
-            </div>
-            <div class="cell col-span-1 flex">
-                @include('campaigns.modules.box', ['icon' => 'fa-solid fa-table', 'module' => 'entity_attributes'])
-            </div>
-            <div class="cell col-span-1 flex">
-                @include('campaigns.modules.box', ['icon' => 'fa-solid fa-folder', 'module' => 'assets'])
-            </div>
-        </div>
+        @includeWhen(config('entities.custom'), 'campaigns.modules._custom')
+        @include('campaigns.modules._default')
+        @include('campaigns.modules._features')
     </div>
 @endsection
 
@@ -80,7 +54,8 @@
     <x-dialog id="rename-dialog" :loading="true"></x-dialog>
 
     <x-dialog id="reset-confirm" :title="__('campaigns/modules.reset.title')">
-        <p>{{ __('campaigns/modules.reset.warning') }}</p>
+        <x-helper>{{ __('campaigns/modules.reset.warning') }}</x-helper>
+        <x-helper>{{ __('campaigns/modules.reset.default') }}</x-helper>
 
         <div class="grid grid-cols-2 gap-2 w-full">
             <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
