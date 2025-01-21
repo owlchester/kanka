@@ -3,6 +3,7 @@
 namespace App\Renderers;
 
 use App\Models\Entity;
+use App\Traits\EntityTypeAware;
 use UnitEnum;
 use App\Renderers\Layouts\Columns\Action;
 use App\Renderers\Layouts\Columns\Column;
@@ -19,6 +20,7 @@ use Closure;
 class DatagridRenderer2
 {
     use CampaignAware;
+    use EntityTypeAware;
 
     /**  */
     protected Layout $layout;

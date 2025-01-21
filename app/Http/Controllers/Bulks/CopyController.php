@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Bulks;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Bulks\Copy;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\BulkService;
@@ -24,24 +25,23 @@ class CopyController extends Controller
         ;
     }
 
-    public function apply(Campaign $campaign, EntityType $entityType)
+    public function apply(Copy $request, Campaign $campaign, EntityType $entityType)
     {
-        $models = explode(',', request()->get('models'));
-        $campaignId = request()->get('campaign');
-        if (empty($campaignId)) {
-            return redirect()->back();
-        }
+        $models = explode(',', $request->get('models'));
+
+        /** @var Campaign $target */
+        $target = Campaign::findOrFail($request->get('campaign'));
 
         $count = $this
             ->bulkService
             ->entityType($entityType)
             ->campaign($campaign)
             ->entities($models)
-            ->copyToCampaign($campaignId);
+            ->copyToCampaign($target);
 
-        $target = Campaign::findOrFail($campaignId);
+        $link = '<a href="' . route('dashboard', $target) . '">' . $target->name . '</a>';
         return redirect()
             ->back()
-            ->with('success_raw', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $target->name]));
+            ->with('success_raw', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $link]));
     }
 }

@@ -27,5 +27,6 @@
 <input type="hidden" name="entity" value="{{ $name }}" />
 <input type="hidden" name="mode" value="{{ $mode }}" />
 <input type="hidden" name="models" value="" id="datagrid-bulk-batch-models" />
+@isset($entityType) <input type="hidden" name="entity_type" value="{{ $entityType->id }}" />@endisset
 </x-form>
 

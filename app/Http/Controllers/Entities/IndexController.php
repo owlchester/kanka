@@ -58,7 +58,7 @@ class IndexController extends Controller
                 $base->where('entities.parent_id', request()->get('parent_id'));
             }
         }
-        if ($nested && $this->filterService->activeFiltersCount() === 0) {
+        if (empty($parent) && $nested && $this->filterService->activeFiltersCount() === 0) {
             // @phpstan-ignore-next-line
             $base->whereNull('entities.parent_id');
         }
@@ -68,7 +68,7 @@ class IndexController extends Controller
             $unfilteredCount = $base->count();
             $base = $base->filter($this->filterService->filters());
         }
-        $models = $base->paginate();
+        $models = $base->orderBy('name')->paginate();
 
         return view('entities.index.index')
             ->with('campaign', $campaign)

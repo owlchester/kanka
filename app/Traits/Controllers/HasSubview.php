@@ -10,12 +10,11 @@ trait HasSubview
 
     public function subview(string $view, $model)
     {
-
         return view('cruds.subview')
             ->with([
                 'fullview' => $view,
                 'model' => $model,
-                'entity' => $model->entity,
+                'entity' => $model instanceof Entity ? $model : $model->entity,
                 'campaign' => $this->campaign,
                 'rows' => $this->rows,
                 'mode' => $this->descendantsMode(),

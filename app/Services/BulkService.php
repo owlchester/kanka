@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignLocalization;
+use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\Relation;
 use App\Observers\Concerns\SaveLocations;
@@ -29,9 +31,6 @@ class BulkService
     use EntityTypeAware;
     use SaveLocations;
 
-    /** Entity name */
-    protected string $entityName;
-
     /** Ids of entities */
     protected array $ids;
 
@@ -47,15 +46,6 @@ class BulkService
         protected TransformService $transformService,
         protected MoveService $moveService
     ) {
-    }
-
-    /**
-     * @return $this
-     */
-    public function entity(string $entityName): self
-    {
-        $this->entityName = $entityName;
-        return $this;
     }
 
     /**
@@ -82,16 +72,25 @@ class BulkService
     public function delete(): int
     {
         $model = $this->getEntity();
-        foreach ($this->ids as $id) {
-            $entity = $model->find($id);
-            if (auth()->user()->can('delete', $entity)) {
-                if (request()->delete_mirrored && $entity->mirror) {
-                    $entity->mirror->delete();
-                    $this->count++;
-                }
-                $entity->delete();
+        if (isset($this->entityType)) {
+            $entities = $model->with('entity')->has('entity')->whereIn('id', $this->ids)->get();
+        } else {
+            $entities = $model->with('mirror')->whereIn('id', $this->ids)->get();
+        }
+        /** @var Entity|Relation $entity */
+        foreach ($entities as $entity) {
+            if (!isset($this->entityType) && !auth()->user()->can('delete', $entity)) {
+                continue;
+            }
+            elseif (isset($this->entityType) && !auth()->user()->can('delete', $entity->entity)) {
+                continue;
+            }
+            if (request()->delete_mirrored && $entity->mirror) {
+                $entity->mirror->delete();
                 $this->count++;
             }
+            $entity->delete();
+            $this->count++;
         }
 
         return $this->count;
@@ -119,8 +118,8 @@ class BulkService
         $model = $this->getEntity();
 
         foreach ($this->ids as $id) {
-            $entity = $model->findOrFail($id);
-            if (auth()->user()->can('update', $entity)) {
+            $entity = $model->with('entity')->findOrFail($id);
+            if (auth()->user()->can('update', $entity->entity)) {
                 $this->permissionService
                     ->entity($entity->entity)
                     ->override($override)
@@ -135,13 +134,14 @@ class BulkService
     /**
      * @throws TranslatableException
      */
-    public function copyToCampaign(int $campaignId): int
+    public function copyToCampaign(Campaign $campaign): int
     {
         $model = $this->getEntity();
 
         // First we make sure we have access to the new campaign.
-        $campaign = auth()->user()->campaigns()->where('campaign_id', $campaignId)->first();
-        if (empty($campaign)) {
+        // todo: move this to the request validator
+        $check = auth()->user()->campaigns()->where('campaign_id', $campaign->id)->first();
+        if (empty($check)) {
             throw new TranslatableException('crud.move.errors.unknown_campaign');
         }
 
@@ -150,9 +150,9 @@ class BulkService
             ->copy(true)
             ->to($campaign);
 
-        $entities = $model->whereIn('id', $this->ids)->get();
+        $entities = $model->with('entity')->whereIn('id', $this->ids)->get();
         foreach ($entities as $entity) {
-            if (!auth()->user()->can('update', $entity)) {
+            if (!auth()->user()->can('update', $entity->entity)) {
                 continue;
             }
             if (empty($entity->entity)) {
@@ -173,8 +173,8 @@ class BulkService
     {
         $model = $this->getEntity();
         foreach ($this->ids as $id) {
-            $entity = $model->findOrFail($id);
-            if (auth()->user()->can('update', $entity)) {
+            $entity = $model->with('entity')->findOrFail($id);
+            if (auth()->user()->can('update', $entity->entity)) {
                 $this->transformService
                     ->child($entity)
                     ->entityType($entityType)
@@ -271,8 +271,12 @@ class BulkService
             $headerUuid = $filledFields['entity_header'];
             unset($filledFields['entity_header']);
         }
+        if (isset($filledFields['type'])) {
+            $type = $filledFields['type'];
+            unset($filledFields['type']);
+        }
 
-        if ($this->entityName === 'relations') {
+        if (!isset($this->entityType)) {
             $mirrorOptions = [];
             $mirrorOptions['unmirror'] = (bool) Arr::get($fields, 'unmirror', '0');
             $mirrorOptions['update_mirrored'] = (bool) Arr::get($fields, 'update_mirrored', '0');
@@ -286,7 +290,7 @@ class BulkService
             /** @var MiscModel $entity */
             $entity = $model->with('entity', 'entity.tags')->findOrFail($id);
             $this->total++;
-            if (!auth()->user()->can('update', $entity)) {
+            if (!auth()->user()->can('update', isset($this->entityType) ? $entity->entity : $entity)) {
                 // Can't update this? Technically not possible since bulk editing is only available
                 // for admins, but better safe than sorry
                 continue;
@@ -329,6 +333,9 @@ class BulkService
 
                 if (isset($headerUuid)) {
                     $realEntity->header_uuid = $headerUuid;
+                }
+                if (isset($type)) {
+                    $realEntity->type = $type;
                 }
 
                 $realEntity->is_private = $entity->is_private;
@@ -384,7 +391,7 @@ class BulkService
         $entities = $model->with(['entity', 'entity.campaign'])->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
-            if (auth()->user()->can('update', $entity)) {
+            if (auth()->user()->can('update', $entity->entity)) {
                 $service->apply($entity->entity, $template);
                 $this->count++;
             }
@@ -401,9 +408,7 @@ class BulkService
         if (isset($this->entityType)) {
             return $this->entityType->getClass();
         }
-        if ($this->entityName === 'relations') {
-            return new Relation();
-        }
+        return new Relation();
     }
 
     /**

@@ -37,6 +37,7 @@ class TransformController extends Controller
     {
         $models = explode(',', request()->get('models'));
 
+        /** @var EntityType $newEntityType */
         $newEntityType = EntityType::inCampaign($campaign)->find($request->get('target'));
 
         $count = $this
@@ -46,8 +47,10 @@ class TransformController extends Controller
             ->campaign($campaign)
             ->transform($newEntityType);
 
+        $link = '<a href="' . ($newEntityType->isSpecial() ? route('entities.index', [$campaign, $newEntityType]) : route($newEntityType->pluralCode() . '.index', [$campaign])) . '">' . $newEntityType->name() . '</a>';
+
         return redirect()
             ->back()
-            ->with('success_raw', trans_choice('entities/transform.bulk.success', $count, ['count' => $count, 'type' => $newEntityType->plural()]));
+            ->with('success_raw', trans_choice('entities/transform.bulk.success', $count, ['count' => $count, 'type' => $link]));
     }
 }

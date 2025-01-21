@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Exceptions\TranslatableException;
 use App\Http\Requests\BulkRequest;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Services\BulkService;
 use App\Traits\BulkControllerTrait;
 use App\Traits\CampaignAware;
+use App\Traits\EntityTypeAware;
 use Exception;
 use Illuminate\Support\Str;
 
@@ -15,6 +17,7 @@ class BulkController extends Controller
 {
     use BulkControllerTrait;
     use CampaignAware;
+    use EntityTypeAware;
 
     protected BulkRequest $request;
 
@@ -31,7 +34,6 @@ class BulkController extends Controller
      */
     public function index(BulkRequest $request, Campaign $campaign)
     {
-        dd('what');
         $this->request = $request;
         $this->entity = $request->get('entity');
         $models = $request->get('model', []);
@@ -42,8 +44,11 @@ class BulkController extends Controller
         }
 
         $this->bulkService
-            ->entity($this->entity)
             ->entities($models);
+
+        if ($request->filled('entity_type')) {
+            $this->entityType = EntityType::find($request->get('entity_type'));
+        }
 
         try {
             if ($action === 'batch') {
@@ -75,10 +80,12 @@ class BulkController extends Controller
      */
     protected function batch()
     {
-        $classes = config('entities.classes-plural');
-        $entityObj = new $classes[$this->entity]();
-        if ($this->entity !== 'relations') {
-            $this->bulkService->entity(Str::singular($this->entity));
+        if (isset($this->entityType)) {
+            $entityObj = $this->entityType->getClass();
+            $this->bulkService->entityType($this->entityType);
+        } else {
+            $classes = config('entities.classes-plural');
+            $entityObj = new $classes[$this->entity]();
         }
 
         $langFile = $this->entity === 'relations' ? 'entities/relations.bulk.success.' : 'crud.bulk.success.';

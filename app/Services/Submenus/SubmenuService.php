@@ -127,8 +127,12 @@ class SubmenuService
 
         return $this;
     }
+
     protected function custom(): self
     {
+        if ($this->entity->entityType->isSpecial()) {
+            return $this->customEntityType();
+        }
         // Get the custom one based on the model name?
         $className = ucfirst($this->entity->entityType->code);
         $submenuName = 'App\Services\Submenus\\' . $className . 'Submenu';
@@ -136,10 +140,18 @@ class SubmenuService
             /** @var CharacterSubmenu $object */
             $object = app()->make($submenuName);
             // @phpstan-ignore-next-line
-            $this->items += $object->entity($this->entity)->campaign($this->campaign)->extra();
         } catch (\Exception $e) {
             // Some modules like convos have no submenu
         }
+
+        return $this;
+    }
+
+    protected function customEntityType(): self
+    {
+        /** @var CustomSubmenu $service */
+        $service = app()->make(CustomSubmenu::class);
+        $this->items += $service->entity($this->entity)->campaign($this->campaign)->extra();
 
         return $this;
     }

@@ -18,6 +18,9 @@ Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entitie
 Route::patch('/w/{campaign}/entities/{entity}/save', [App\Http\Controllers\Entities\EditController::class, 'save'])->name('entities.update');
 Route::delete('/w/{campaign}/entities/{entity}/delete', [App\Http\Controllers\Entities\DeleteController::class, 'index'])->name('entities.destroy');
 
+Route::get('/w/{campaign}/entities/{entity}/children', [App\Http\Controllers\Entities\ChildrenController::class, 'index'])->name('entities.children');
+
+
 // Abilities
 Route::get('/w/{campaign}/abilities/{ability}/abilities', 'Abilities\AbilityController@index')->name('abilities.abilities');
 Route::get('/w/{campaign}/abilities/{ability}/entities', 'Abilities\EntityController@index')->name('abilities.entities');

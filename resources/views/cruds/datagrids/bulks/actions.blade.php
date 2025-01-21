@@ -68,24 +68,24 @@ if ($datagridActions->hasBulkPrint()) {
         ' . __('crud.actions.print') . '
     </a>';*/
 }
-if (auth()->check() && auth()->user()->can('delete', $model)) {
+if ($model instanceof \App\Models\Relation && auth()->user()->can('delete', $model)) {
     $dropdownActions[] = 'divider';
-    if ($model instanceof \App\Models\Relation) {
-        $dropdownActions[] = [
-            'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.delete-relations', [$campaign])],
-            'class' => 'text-error hover:bg-error hover:text-error-content',
-            'icon' => 'trash',
-            'text' => __('crud.remove')
-        ];
-    } else {
-        $dropdownActions[] = [
-            'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.delete', [$campaign, 'entity_type' => $entityType->id])],
-            'class' => 'text-error hover:bg-error hover:text-error-content',
-            'icon' => 'trash',
-            'text' => __('crud.remove')
-        ];
-    }
+    $dropdownActions[] = [
+        'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.delete-relations', [$campaign])],
+        'class' => 'text-error hover:bg-error hover:text-error-content',
+        'icon' => 'trash',
+        'text' => __('crud.remove')
+    ];
+} elseif (isset($entityType) && auth()->check() && auth()->user()->can('deleteEntities', [$entityType, $campaign])) {
+    $dropdownActions[] = 'divider';
+    $dropdownActions[] = [
+        'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.delete', [$campaign, 'entity_type' => $entityType->id])],
+        'class' => 'text-error hover:bg-error hover:text-error-content',
+        'icon' => 'trash',
+        'text' => __('crud.remove')
+    ];
 }
+
 
 @endphp
 

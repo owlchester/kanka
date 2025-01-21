@@ -4,6 +4,7 @@ namespace App\Renderers\Layouts;
 
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Traits\EntityTypeAware;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class Layout

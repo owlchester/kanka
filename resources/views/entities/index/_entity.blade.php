@@ -1,5 +1,6 @@
 @php
-    $stacked = !isset($flat) && method_exists($model, 'children') && !isset($isParent) ? min(2, $model->children->count()) : null;
+/** @var \App\Models\Entity $model */
+    $stacked = !isset($flat) && !isset($isParent) ? min(2, $model->children->count()) : null;
     $dataAttributes = [];
     if ($model->is_private) {
         $dataAttributes[] = 'private';
