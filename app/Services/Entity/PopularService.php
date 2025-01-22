@@ -3,21 +3,38 @@
 namespace App\Services\Entity;
 
 use App\Models\EntityType;
-use Illuminate\Database\Eloquent\Collection;
+use App\Traits\CampaignAware;
+use App\Traits\UserAware;
+use Illuminate\Support\Collection;
 
 class PopularService
 {
-    /** @var array|string[] Popular entity types */
-    protected array $popularEntityTypes = [
-        'character',
-        'location',
-        'race',
-        'item',
-        'organisation',
-    ];
+    use CampaignAware;
+    use UserAware;
 
     public function get(): Collection
     {
-        return EntityType::whereIn('code', $this->popularEntityTypes)->get();
+        $types = new Collection();
+        /** @var EntityType $entityType */
+        foreach (EntityType::whereIn('id', $this->popularEntityIds())->get() as $entityType) {
+            if (!$this->campaign->enabled($entityType)) {
+                continue;
+            } elseif (!$this->user->can('create', [$entityType, $this->campaign])) {
+                continue;
+            }
+            $types->add($entityType);
+        }
+        return $types;
+    }
+
+    protected function popularEntityIds(): array
+    {
+        return [
+            config('entities.ids.character'),
+            config('entities.ids.location'),
+            config('entities.ids.race'),
+            config('entities.ids.item'),
+            config('entities.ids.organisation'),
+        ];
     }
 }

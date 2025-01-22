@@ -9,6 +9,7 @@ use App\Models\EntityType;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -16,12 +17,14 @@ class EntityTypeService
 {
     use CampaignAware;
     use EntityTypeAware;
+    use UserAware;
     use RequestAware;
 
     protected array $exclude = [];
     protected array $skip = [];
     protected array $prepend;
     protected bool $withDisabled = false;
+    protected bool $creatable = false;
 
     public function exclude(mixed $ids): self
     {
@@ -64,10 +67,19 @@ class EntityTypeService
             if (!$this->withDisabled && !$entityType->isSpecial() && !$this->campaign->enabled($entityType)) {
                 continue;
             }
+            if ($this->creatable && !$this->user->can('create', [$entityType, $this->campaign])) {
+                continue;
+            }
             $types->add($entityType);
         }
 
         return $types;
+    }
+
+    public function creatable(): self
+    {
+        $this->creatable = true;
+        return $this;
     }
 
 

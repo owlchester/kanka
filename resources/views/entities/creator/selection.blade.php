@@ -17,9 +17,11 @@
             @includeWhen(isset($new), 'entities.creator._created', ['success' => $new ?? null, 'dismissable' => false])
 
             <div class="options flex flex-col gap-5 sm:flex-row">
+                @if ($popular->isNotEmpty())
                 <div class="popular pr-4 sm:w-60">
                     @include('entities.creator.selection.popular')
                 </div>
+                @endif
                 <div class="all">
                     @include('entities.creator.selection.all')
                 </div>

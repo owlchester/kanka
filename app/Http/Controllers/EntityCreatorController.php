@@ -15,61 +15,58 @@ use App\Models\Post;
 use App\Services\Entity\PopularService;
 use App\Services\Entity\TagService;
 use App\Services\EntityService;
+use App\Services\EntityTypeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class EntityCreatorController extends Controller
 {
-    protected EntityService $entityService;
     protected Campaign $campaign;
-    protected PopularService $popularService;
 
     protected Request $request;
 
     protected array $inputFields;
 
-    public function __construct(EntityService $entityService, PopularService $popularService)
+    public function __construct(
+        protected EntityService $entityService,
+        protected PopularService $popularService,
+        protected EntityTypeService $entityTypeService,
+    )
     {
         $this->middleware('auth');
-        $this->entityService = $entityService;
-        $this->popularService = $popularService;
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function selection(Campaign $campaign)
+    public function selection(Request $request, Campaign $campaign)
     {
         $this->campaign = $campaign;
         $orderedEntityTypes = $this->orderedEntityTypes();
         return view('entities.creator.selection', [
             'campaign' => $campaign,
             'entityTypes' => $orderedEntityTypes,
-            'popular' => $this->popularService->get(),
+            'popular' => $this->popularService->campaign($campaign)->user($request->user())->get(),
         ]);
     }
 
-    /**
-     */
     public function form(Request $request, Campaign $campaign, EntityType $entityType)
     {
         return $this->renderForm($request, $campaign, $entityType);
     }
+
     public function post(Request $request, Campaign $campaign)
     {
         return $this->renderForm($request, $campaign);
     }
 
-    /**
-     *
-     */
     public function store(Request $request, Campaign $campaign, EntityType $entityType)
     {
-        // Make sure the user is allowed to create this kind of entity
-        $this->campaign = $campaign;
         $this->authorize('create', [$entityType, $campaign]);
-
+        $this->campaign = $campaign;
         $this->request = $request;
+
 
         $names = explode(PHP_EOL, str_replace("\r", '', $this->request->get('name')));
         $values = $this->request->all();
@@ -96,13 +93,11 @@ class EntityCreatorController extends Controller
         // Now loop on each name and create entities
         $createdEntities = $links = [];
 
-
         // Handle dynamic elements
         $this->inputFields = $values;
         $this->dynamicTags()
             ->dynamicLocation();
         $values = $this->inputFields;
-
 
         foreach ($names as $name) {
             if (empty($name)) {
@@ -168,7 +163,6 @@ class EntityCreatorController extends Controller
             ['link' => implode(', ', $links)]
         );
 
-
         // Continue creating more of the same kind
         if ($this->request->get('action') === 'more') {
             return $this->renderForm(new Request(), $campaign, $entityType, $success);
@@ -180,7 +174,7 @@ class EntityCreatorController extends Controller
             'campaign' => $this->campaign,
             'entityTypes' => $orderedEntityTypes,
             'new' => $success,
-            'popular' => [], //$this->popularService->get(),
+            'popular' => $this->popularService->campaign($campaign)->user($request->user())->get(),
         ]);
     }
 
@@ -270,7 +264,6 @@ class EntityCreatorController extends Controller
             ['link' => implode(', ', $links)]
         );
 
-
         // Continue creating more of the same kind
         if ($this->request->get('action') === 'more') {
             return $this->renderForm(new Request(), $campaign, null, $success);
@@ -288,8 +281,6 @@ class EntityCreatorController extends Controller
 
     /**
      * Validate an entity's request to make sure data doesn't contain erroneous info
-     * @return array
-     * @throws \Illuminate\Validation\ValidationException
      */
     protected function validateEntity(array $data, array $rules, array $messages = [], array $customAttributes = [])
     {
@@ -301,10 +292,6 @@ class EntityCreatorController extends Controller
         )->validate();
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     protected function renderForm(Request $request, Campaign $campaign, ?EntityType $entityType = null, ?string $success = null)
     {
         $this->campaign = $campaign;
@@ -369,39 +356,20 @@ class EntityCreatorController extends Controller
     /**
      * Ordered entity types alphabetically to the user's local
      */
-    protected function orderedEntityTypes(): array
+    protected function orderedEntityTypes(): Collection
     {
-        $orderedTypes = [];
-        /** @var EntityType $entityType */
-        foreach (EntityType::inCampaign($this->campaign)->enabled()->exclude([config('entities.ids.bookmark')])->get() as $entityType) {
-            // If the user can create, and the module is available
-            if ($entityType->isSpecial()) {
-                // Custom permission
-                $orderedTypes[$entityType->plural()] = $entityType;
-                continue;
-            }
-            if (!$this->campaign->enabled($entityType)) {
-                continue;
-            }
-            if (!auth()->user()->can('create', [$entityType, $this->campaign])) {
-                continue;
-            }
-            $orderedTypes[$entityType->plural()] = $entityType;
-        }
-        //        $types = config('entities.ids');
-        //        foreach ($types as $singular => $id) {
-        //            $plural = Str::plural($singular);
-        //            $orderedTypes[$plural] = $this->campaign->hasModuleName($id) ? $this->campaign->moduleName($id) : __('entities.' . $singular);
-        //        }
+        $types = $this->entityTypeService
+            ->campaign($this->campaign)
+            ->user(auth()->user())
+            ->exclude([config('entities.ids.bookmark')])
+            ->creatable()
+            ->ordered();
 
         if (auth()->user()->can('recover', $this->campaign)) {
-            $orderedTypes['posts'] = __('entities.posts');
+            $types->add(__('entities.posts'));
         }
 
-        $collator = new \Collator(app()->getLocale());
-        $collator->asort($orderedTypes);
-
-        return $orderedTypes;
+        return $types;
     }
 
     protected function dynamicLocation(): self
