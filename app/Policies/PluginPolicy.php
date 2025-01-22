@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Facades\UserCache;
 use App\Models\Plugin;
 use App\Traits\AdminPolicyTrait;
 use App\Models\User;

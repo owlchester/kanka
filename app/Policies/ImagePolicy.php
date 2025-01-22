@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Facades\EntityPermission;
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Image;

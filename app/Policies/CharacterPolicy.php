@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Facades\UserCache;
 use App\Models\User;
 use App\Models\Character;
 

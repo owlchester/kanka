@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\Facades\CampaignCache;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
-use App\Facades\UserCache;
 use App\Models\CampaignPermission;
 use App\Traits\AdminPolicyTrait;
 use App\Models\User;

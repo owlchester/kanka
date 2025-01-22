@@ -2,7 +2,6 @@
 
 namespace App\Services\Entity;
 
-use App\Facades\UserCache;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Models\MiscModel;

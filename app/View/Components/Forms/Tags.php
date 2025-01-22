@@ -4,7 +4,6 @@ namespace App\View\Components\Forms;
 
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\EntityType;
 use App\Models\Post;
 use Closure;
 use Illuminate\Contracts\View\View;

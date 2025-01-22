@@ -157,9 +157,9 @@ class User extends \Illuminate\Foundation\Auth\User
         }
         $campaign = CampaignLocalization::getCampaign();
         return $this->isAdmin = $this->campaignRoles
-                ->where('campaign_id', $campaign->id)
-                ->where('is_admin', 1)
-                ->count() === 1;
+            ->where('campaign_id', $campaign->id)
+            ->where('is_admin', 1)
+            ->count() === 1;
     }
 
     /**

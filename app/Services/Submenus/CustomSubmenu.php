@@ -2,8 +2,6 @@
 
 namespace App\Services\Submenus;
 
-use App\Models\Item;
-
 class CustomSubmenu extends BaseSubmenu implements EntitySubmenu
 {
     public function extra(): array

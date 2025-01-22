@@ -4,7 +4,6 @@ namespace App\Renderers;
 
 use App\Facades\Avatar;
 use App\Facades\Module;
-use App\Facades\UserCache;
 use App\Models\Bookmark;
 use App\Models\Entity;
 use App\Models\Journal;
