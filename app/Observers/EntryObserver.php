@@ -39,9 +39,7 @@ class EntryObserver
         if (!$model->isDirty($model->entryFieldName())) {
             return;
         }
-        if ($model instanceof MiscModel) {
-            EntityMappingJob::dispatch($model->entity);
-        } elseif (method_exists($model, 'mentions')) {
+        if (method_exists($model, 'mentions')) {
             EntityMappingJob::dispatch($model);
         }
     }
