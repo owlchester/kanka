@@ -33,6 +33,9 @@ class MentionsService
     /** @var array|Entity[] List of entities */
     protected array $entities = [];
 
+    /** @var array|Entity[] List of private entities */
+    protected array $privateEntities = [];
+
     /** @var array|EntityAsset[] List of entity aliases */
     protected array $aliases = [];
 
@@ -41,6 +44,9 @@ class MentionsService
 
     /** @var array List of mentioned entities (their ids) */
     protected array $mentionedEntities = [];
+
+    /** @var array List of mentioned private entities (their ids) */
+    protected array $hiddenEntities = [];
 
     /** @var array List of mentioned entity types (type_id) */
     protected array $mentionedEntityTypes = [];
@@ -244,13 +250,14 @@ class MentionsService
     }
 
     /**
-     * Searche mentions in a text and replace them with tooltiped links
+     * Search mentions in a text and replace them with tooltiped links
      * @return string|string[]|null
      */
     protected function extractAndReplace()
     {
         // Pre-fetch all the entities
         $this->prepareEntities();
+        $this->prepareHiddenEntities();
 
         // Extract links from the entry to foreign
         $this->replaceEntityMentions();
@@ -283,17 +290,35 @@ class MentionsService
             $entity = $this->entity($data['id']);
             $tagClasses = [];
             $cssClasses = ['entity-mention'];
-
             // No entity found, the user might not be allowed to see it
             if (empty($entity)) {
-                if ($this->onlyName) {
-                    return __('crud.history.unknown');
+                $hiddenEntity = $this->hiddenEntity($data['id']);
+                if (empty($hiddenEntity)) {
+                    if ($this->onlyName) {
+                        return __('crud.history.unknown');
+                    }
+                    $replace = Arr::get(
+                        $data,
+                        'text',
+                        '<i class="unknown-mention unknown-entity">' . __('crud.history.unknown') . '</i>'
+                    );
+                } else {
+                    // An alias was used for this mention, so let's try and find it. ACL is handled directly
+                    // on the EntityAlias object.
+                    if (!empty($data['alias'])) {
+                        $alias = $hiddenEntity->assets()->alias()->where('id', $data['alias'])->first();
+                        if (!empty($alias)) {
+                            $data['text'] = $alias->name;
+                        }
+                    }
+                    if ($this->onlyName) {
+                        return Arr::get($data, 'text', $hiddenEntity->name);
+                    }
+                    $replace = '<i class="unknown-mention unknown-entity" data-entity-type="' . 
+                        $hiddenEntity->entityType->code . '">' . 
+                        Arr::get($data, 'text', $hiddenEntity->name) . '</i>';
                 }
-                $replace = Arr::get(
-                    $data,
-                    'text',
-                    '<i class="unknown-mention unknown-entity">' . __('crud.history.unknown') . '</i>'
-                );
+
             } else {
                 $routeOptions = [];
                 if (!empty($data['params'])) {
@@ -568,11 +593,26 @@ class MentionsService
      */
     protected function entity(int $id): Entity|null
     {
-        if (!Arr::has($this->entities, (string) $id)) {
+        if (!Arr::has($this->entities, (string) $id) && !Arr::has($this->privateEntities, (string) $id)) {
             $this->entities[$id] = Entity::where(['id' => $id])->first();
         }
 
         return Arr::get($this->entities, $id);
+    }
+
+    /**
+     */
+    protected function hiddenEntity(int $id): Entity|null
+    {
+        if (!$this->campaign->getNamePrivateEntities()) {
+            return null;
+        }
+
+        if (!Arr::has($this->entities, (string) $id) && !Arr::has($this->privateEntities, (string) $id)) {
+            $this->privateEntities[$id] = Entity::where(['id' => $id])->withHidden()->first();
+        }
+
+        return Arr::get($this->privateEntities, $id);
     }
 
     public function preloadEntity(Entity $entity): void
@@ -652,6 +692,41 @@ class MentionsService
         //dump(count($ids));
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $entity;
+            $findKey = array_search($entity->id, $ids);
+            unset($ids[$findKey]);
+        }
+        $this->hiddenEntities = $ids;
+    }
+
+    /**
+     * Pre-fetch all private mentioned entities
+     */
+    protected function prepareHiddenEntities(): void
+    {
+        if (!$this->campaign->getNamePrivateEntities()) {
+            return;
+        }
+
+        // Remove those already cached in memory
+        $ids = [];
+        // @phpstan-ignore-next-line
+        foreach ($this->hiddenEntities as $id) {
+            if (!Arr::has($this->privateEntities, $id)) {
+                $ids[] = $id;
+            }
+        }
+
+        // @phpstan-ignore-next-line
+        if (empty($ids)) {
+            return;
+        }
+
+        // Directly get with the mentioned entity types (provided they are valid)
+        // @phpstan-ignore-next-line
+        $entities = Entity::whereIn('id', $ids)->with(['tags:id,name,slug', 'entityType:id,code,is_special'])->withInvisible()->get();
+        //dump(count($ids));
+        foreach ($entities as $entity) {
+            $this->privateEntities[$entity->id] = $entity;
         }
     }
 

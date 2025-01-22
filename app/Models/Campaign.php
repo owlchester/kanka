@@ -431,6 +431,13 @@ class Campaign extends Model
     }
 
     /**
+     */
+    public function getNamePrivateEntities(): mixed
+    {
+        return Arr::get($this->settings, 'private_mention_visibility', 0);
+    }
+
+    /**
      * Determine the campaign's default visibility_id select option
      */
     public function defaultVisibility(): Visibility
