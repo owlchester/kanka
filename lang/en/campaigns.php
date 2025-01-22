@@ -55,7 +55,7 @@ TEXT
         'past_featured'                     => 'Previously featured campaign',
         'post_collapsed'                    => 'New posts on entities are collapsed by default.',
         'premium'                           => 'Premium unlocked by :name',
-        'private_mention_visibility'        => 'Shows private entity names when they\'re mentioned.',
+        'private_mention_visibility'        => 'Show private entity names when they\'re mentioned.',
         'public'                            => 'Campaign visibility',
         'public_campaign_filters'           => 'Public Filters',
         'related_visibility'                => 'Related Elements Visibility',
