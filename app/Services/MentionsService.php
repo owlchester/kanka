@@ -48,9 +48,6 @@ class MentionsService
     /** @var array List of mentioned private entities (their ids) */
     protected array $hiddenEntities = [];
 
-    /** @var array List of mentioned entity types (type_id) */
-    protected array $mentionedEntityTypes = [];
-
     /** @var array List of mentioned attributes (their ids) */
     protected array $mentionedAttributes = [];
 
@@ -609,6 +606,7 @@ class MentionsService
         }
 
         if (!Arr::has($this->entities, (string) $id) && !Arr::has($this->privateEntities, (string) $id)) {
+            // @phpstan-ignore-next-line
             $this->privateEntities[$id] = Entity::where(['id' => $id])->withInvisible()->first();
         }
 
@@ -655,19 +653,9 @@ class MentionsService
         preg_replace_callback('`\[([a-z_]+):(.*?)\]`i', function ($matches) {
             $segments = explode('|', $matches[2]);
             $id = (int) $segments[0];
-            $entityType = $matches[1];
 
             if (!in_array($id, $this->mentionedEntities)) {
                 $this->mentionedEntities[] = $id;
-            }
-            // If the mentioned entity wasn't there yet, but the map also doesn't map to "entity"
-            if (!in_array($matches[1], $this->mentionedEntityTypes) && $this->validEntityType($entityType)) {
-                if ($matches[1] == 'attribute_template') {
-                    $matches[1] = 'attributeTemplate';
-                } elseif ($matches[1] == 'dice_roll') {
-                    $matches[1] = 'diceRoll';
-                }
-                $this->mentionedEntityTypes[] = $matches[1];
             }
             return $matches[0];
         }, $this->text);
