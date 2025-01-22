@@ -468,7 +468,7 @@ class DatagridRenderer
                     return null;
                 }
                 // @phpstan-ignore-next-line
-                if ($model->parent) {
+                if ($model->parent && $model->parent->entity) {
                     $content = $this->entityLink($model->parent->entity);
                 }
             } elseif ($type == 'is_private') {
