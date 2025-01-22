@@ -64,7 +64,7 @@ return [
                 . 'div[class|style|id|align|role|title],'
                 . 'p[class|style|id|dir|align],'
                 . 'span[class|style|id|dir],'
-                . 'a[href|class|style|target|rel|title|data-toggle|data-html|id|role],'
+                . 'a[href|class|style|target|rel|title|data-toggle|data-html|id|role|data-dropdown|data-pulse|data-animate],'
                 . 'br[class|style],'
                 . 'i[class],u[class],'
                 . 'img[src|style|alt|width|height|class|title|id|data-gallery-id],'
