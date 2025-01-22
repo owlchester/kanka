@@ -195,8 +195,8 @@ class ChunkingService
                     'public'
                 );
                 //unset($tile);
-                unset($png);
-                unset($image);
+                unset($png, $image);
+
             }
         }
 

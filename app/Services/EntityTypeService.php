@@ -17,8 +17,8 @@ class EntityTypeService
 {
     use CampaignAware;
     use EntityTypeAware;
-    use UserAware;
     use RequestAware;
+    use UserAware;
 
     protected array $exclude = [];
     protected array $skip = [];
