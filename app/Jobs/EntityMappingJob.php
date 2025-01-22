@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\Concerns\HasEntry;
 use App\Services\EntityMappingService;
 use App\Traits\MentionTrait;
 use Illuminate\Bus\Queueable;

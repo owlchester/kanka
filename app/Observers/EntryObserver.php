@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Facades\Mentions;
 use App\Jobs\EntityMappingJob;
-use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Model;
 
 /**
