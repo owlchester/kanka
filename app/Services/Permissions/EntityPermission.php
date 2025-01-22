@@ -52,7 +52,7 @@ class EntityPermission
     public function can(Permission $permission): bool
     {
         $this->loadAllPermissions();
-        if ($this->userIsAdmin) {
+        if ($this->userIsAdmin()) {
             return true;
         }
 
@@ -93,7 +93,7 @@ class EntityPermission
     ): bool {
         $this->loadAllPermissions();
 
-        if ($this->userIsAdmin) {
+        if ($this->userIsAdmin()) {
             return true;
         }
 
@@ -269,5 +269,10 @@ class EntityPermission
         $this->cached = [];
         unset($this->roleIds);
         unset($this->userIsAdmin);
+    }
+
+    protected function userIsAdmin(): bool
+    {
+        return isset($this->userIsAdmin) && $this->userIsAdmin;
     }
 }
