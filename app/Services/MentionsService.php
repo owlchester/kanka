@@ -601,7 +601,7 @@ class MentionsService
      */
     protected function hiddenEntity(int $id): Entity|null
     {
-        if (!$this->campaign->show_private_entity_mentions) {
+        if (!$this->campaign->showPrivateEntityMentions()) {
             return null;
         }
 
@@ -691,7 +691,7 @@ class MentionsService
      */
     protected function prepareHiddenEntities(): void
     {
-        if (!$this->campaign->show_private_entity_mentions) {
+        if (!$this->campaign->showPrivateEntityMentions()) {
             return;
         }
 
