@@ -287,3 +287,12 @@ blockquote {
     --tw-shadow-color: hsl(var(--n)/1);
     --tw-shadow: var(--tw-shadow-colored);
 }
+
+.focus\:bg-base-200:focus {
+    --tw-bg-opacity: 1;
+    background-color:hsl(var(--b2)/var(--tw-bg-opacity))
+}
+.focus\:border-accent:focus {
+    --tw-bg-opacity: 1;
+    border-color:hsl(var(--a)/var(--tw-bg-opacity))
+}

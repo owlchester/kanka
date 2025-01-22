@@ -38,6 +38,7 @@
                             <LookupEntity
                                 v-for="entity in results"
                                 :entity="entity"
+                                @keydown.esc="escape()"
                                 @preview="loadPreview"
                             >
                             </LookupEntity>
@@ -59,6 +60,7 @@
                             v-for="entity in recent"
                             :entity="entity"
                             @preview="loadPreview"
+                            @keydown.esc="escape()"
                         >
                         </LookupEntity>
                     </div>

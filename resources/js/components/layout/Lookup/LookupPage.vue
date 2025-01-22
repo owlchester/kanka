@@ -1,5 +1,5 @@
 <template>
-    <a class="flex justify-center gap-2 cursor-pointer w-full" :href="page.url">
+    <a :class="boxCss()" :href="page.url" tabindex="0">
         <div class="flex-none h-4 w-4">
             <i class="fa-solid fa-angles-right" aria-hidden="true" />
         </div>
@@ -13,6 +13,11 @@
 <script setup lang="ts">
 
 const props = defineProps<{
-    page: undefined
+    page: undefined,
 }>()
+
+const boxCss = () => {
+    let css = 'flex justify-center gap-2 cursor-pointer w-full';
+    return css;
+}
 </script>
