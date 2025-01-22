@@ -4,6 +4,7 @@ namespace App\View\Components\Forms;
 
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\EntityType;
 use App\Models\Post;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -41,6 +42,12 @@ class Tags extends Component
      */
     public function render(): View|Closure|string
     {
+        if ($this->allowNew && !auth()->user()->can('create', [
+            $this->campaign->getEntityTypes()->firstWhere('id', config('entities.ids.tag')),
+            $this->campaign
+        ])) {
+            $this->allowNew = false;
+        }
         $this->prepareOptions();
         return view('components.forms.tags')
             ->with('campaign', $this->campaign)

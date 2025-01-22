@@ -9,7 +9,7 @@
             :campaign="$campaign"
             :model="$model ?? $source ?? null"
             :dropdownParent="$dropdownParent ?? null"
-            :allowNew="isset($bulk) ? false : $enableNew  ?? false"
+            :allowNew="isset($bulk) ? false : $enableNew ?? true"
             allowClear="false"
             enableAuto="true"
             :entityTypeID="config('entities.ids.tag')"

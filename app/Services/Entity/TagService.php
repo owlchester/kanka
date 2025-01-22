@@ -53,7 +53,11 @@ class TagService
         if (!empty($this->canCreate)) {
             return $this->canCreate;
         }
-        return $this->canCreate = $this->user->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.tag'))->first(), $this->campaign]);
+        $campaign = $this->campaign ?? $this->entity->campaign;
+        return $this->canCreate = $this->user->can('create', [
+            $campaign->getEntityTypes()->firstWhere('id', config('entities.ids.tag')),
+            $campaign
+        ]);
     }
 
 
