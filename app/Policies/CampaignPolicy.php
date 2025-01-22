@@ -51,7 +51,7 @@ class CampaignPolicy
     {
         return
             $campaign->userIsMember($user) && (
-                UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_MANAGE, $user, $campaign)
+                $user->isAdmin() || $this->checkPermission(CampaignPermission::ACTION_MANAGE, $user, $campaign)
             );
     }
 
@@ -63,7 +63,7 @@ class CampaignPolicy
     {
         return
             $campaign->userIsMember($user) && (
-                UserCache::user($user)->admin()
+                $user->isAdmin()
             );
     }
 
@@ -83,7 +83,7 @@ class CampaignPolicy
     {
         return
             $campaign->userIsMember($user) &&
-            UserCache::user($user)->admin() &&
+            $user->isAdmin() &&
             CampaignCache::members()->count() == 1;
     }
 
@@ -92,7 +92,7 @@ class CampaignPolicy
     public function invite(User $user, Campaign $campaign): bool
     {
         return $campaign->userIsMember($user) && (
-            UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)
+            $user->isAdmin() || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)
         );
     }
 
@@ -100,14 +100,14 @@ class CampaignPolicy
      */
     public function setting(User $user, Campaign $campaign): bool
     {
-        return UserCache::user($user)->admin();
+        return $user->isAdmin();
     }
 
     /**
      */
     public function recover(User $user, Campaign $campaign): bool
     {
-        return UserCache::user($user)->admin();
+        return $user->isAdmin();
     }
 
     /**
@@ -121,21 +121,21 @@ class CampaignPolicy
      */
     public function dashboard(User $user, Campaign $campaign): bool
     {
-        return UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_DASHBOARD, $user, $campaign);
+        return $user->isAdmin() || $this->checkPermission(CampaignPermission::ACTION_DASHBOARD, $user, $campaign);
     }
 
     /**
      */
     public function stats(User $user, Campaign $campaign): bool
     {
-        return (UserCache::user($user)->admin() || $campaign->userIsMember());
+        return ($user->isAdmin() || $campaign->userIsMember());
     }
 
     /**
      */
     public function search(User $user, Campaign $campaign): bool
     {
-        return UserCache::user($user)->admin();
+        return $user->isAdmin();
     }
 
     public function import(User $user, Campaign $campaign): bool
@@ -155,7 +155,7 @@ class CampaignPolicy
             return false;
         }
         // If we are not the owner, or that we are an owner but there are other owners
-        return (!UserCache::user($user)->admin() || $campaign->adminCount() > 1);
+        return (!$user->isAdmin() || $campaign->adminCount() > 1);
     }
 
     /**
@@ -199,7 +199,7 @@ class CampaignPolicy
         if (!$user) {
             return false;
         }
-        return (UserCache::user($user)->admin() || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)) ||
+        return ($user->isAdmin() || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)) ||
             !($campaign->boosted() && $campaign->hide_members);
     }
 
@@ -208,7 +208,7 @@ class CampaignPolicy
      */
     public function submissions(?User $user): bool
     {
-        return $user && UserCache::user($user)->admin();
+        return $user && $user->isAdmin();
     }
 
     /**
@@ -216,7 +216,7 @@ class CampaignPolicy
     public function gallery(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            UserCache::user($user)->admin() ||
+            $user->isAdmin() ||
             $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
             $this->checkPermission(CampaignPermission::ACTION_GALLERY_BROWSE, $user, $campaign)
         );
@@ -226,7 +226,7 @@ class CampaignPolicy
      */
     public function relations(?User $user): bool
     {
-        return $user && UserCache::user($user)->admin();
+        return $user && $user->isAdmin();
     }
 
 
@@ -234,7 +234,7 @@ class CampaignPolicy
      */
     public function mapPresets(?User $user): bool
     {
-        return $user && UserCache::user($user)->admin();
+        return $user && $user->isAdmin();
     }
 
     /**
@@ -249,7 +249,7 @@ class CampaignPolicy
     public function galleryManage(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            UserCache::user($user)->admin() ||
+            $user->isAdmin() ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign)
         );
     }
@@ -257,7 +257,7 @@ class CampaignPolicy
     public function galleryBrowse(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            UserCache::user($user)->admin() ||
+            $user->isAdmin() ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY_BROWSE, $user, $campaign)
         );
@@ -266,7 +266,7 @@ class CampaignPolicy
     public function galleryUpload(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            UserCache::user($user)->admin() ||
+            $user->isAdmin() ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY_UPLOAD, $user, $campaign)
         );

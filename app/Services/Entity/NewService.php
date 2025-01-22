@@ -99,7 +99,7 @@ class NewService
 
     protected function private(): bool
     {
-        return (bool) (UserCache::user($this->user)->admin() && $this->campaign->entity_visibility);
+        return (bool) ($this->user->isAdmin() && $this->campaign->entity_visibility);
     }
 
 

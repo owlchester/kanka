@@ -16,17 +16,17 @@ class BookmarkPolicy
 
     public function browse(?User $user, Bookmark $bookmark): bool
     {
-        return UserCache::user($user)->admin() || $this->checkPermission(Permission::Bookmarks->value, $user);
+        return $user->isAdmin() || $this->checkPermission(Permission::Bookmarks->value, $user);
     }
 
     public function view(User $user, Bookmark $bookmark): bool
     {
-        return UserCache::user($user)->admin() || $this->checkPermission(Permission::Bookmarks->value, $user);
+        return $user->isAdmin() || $this->checkPermission(Permission::Bookmarks->value, $user);
     }
 
     public function create(User $user): bool
     {
-        return UserCache::user($user)->admin() || EntityPermission::user($user)->hasPermission(0, Permission::Bookmarks->value);
+        return $user->isAdmin() || EntityPermission::user($user)->hasPermission(0, Permission::Bookmarks->value);
     }
 
     public function update(User $user, Bookmark $bookmark): bool

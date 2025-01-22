@@ -30,7 +30,7 @@ class EntityPolicy
         if ($entity->exists === false) {
             return true;
         }
-        return !$entity->is_attributes_private || $user && UserCache::user($user)->admin();
+        return !$entity->is_attributes_private || $user && $user->isAdmin();
     }
 
     public function viewAttributes(?User $user, Entity $entity, Campaign $campaign): bool
@@ -42,17 +42,17 @@ class EntityPolicy
         if (!$entity->is_attributes_private) {
             return true;
         }
-        return $user && UserCache::user($user)->admin();
+        return $user && $user->isAdmin();
     }
 
     public function privacy(User $user): bool
     {
-        return UserCache::user($user)->admin();
+        return $user->isAdmin();
     }
 
     public function history(User $user, Entity $entity, Campaign $campaign): bool
     {
-        return UserCache::user($user)->admin() || !($campaign->boosted() && $campaign->hide_history);
+        return $user->isAdmin() || !($campaign->boosted() && $campaign->hide_history);
     }
 
     public function move(User $user, Entity $entity): bool

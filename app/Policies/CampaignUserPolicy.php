@@ -18,7 +18,7 @@ class CampaignUserPolicy
 
     public function view(User $user, CampaignUser $campaignUser, Campaign $campaign): bool
     {
-        return $campaignUser->campaign_id === $campaign->id && UserCache::user($user)->admin();
+        return $campaignUser->campaign_id === $campaign->id && $user->isAdmin();
     }
     public function update(User $user, CampaignUser $campaignUser): bool
     {
@@ -28,7 +28,7 @@ class CampaignUserPolicy
         }
 
         // If user isn't in admin
-        if (!UserCache::user($user)->admin()) {
+        if (!$user->isAdmin()) {
             return false;
         }
 
@@ -58,7 +58,7 @@ class CampaignUserPolicy
         if (Identity::isImpersonating()) {
             return false;
         }
-        return UserCache::user($user)->admin()
+        return $user->isAdmin()
             && !$campaignUser->user->isAdmin()
             && !$campaignUser->user->isBanned()
         ;

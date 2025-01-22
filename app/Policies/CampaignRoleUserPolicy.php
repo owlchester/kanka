@@ -16,7 +16,7 @@ class CampaignRoleUserPolicy
 
     public function view(User $user, CampaignRoleUser $campaignRoleUser, Campaign $campaign): bool
     {
-        return $campaignRoleUser->campaignRole->campaign_id === $campaign->id && UserCache::user($user)->admin();
+        return $campaignRoleUser->campaignRole->campaign_id === $campaign->id && $user->isAdmin();
     }
 
     public function create(User $user, Campaign $campaign): bool
@@ -31,6 +31,6 @@ class CampaignRoleUserPolicy
 
     public function delete(User $user): bool
     {
-        return UserCache::user($user)->admin();
+        return $user->isAdmin();
     }
 }

@@ -6,7 +6,7 @@
 $organisations = isset($model) ?
     $model->organisationMemberships()->with('organisation')->has('organisation')->orderBy('role', 'ASC')->get() :
     FormCopy::characterOrganisation();
-$isAdmin = UserCache::user(auth()->user())->admin();
+$isAdmin = auth()->user()->isAdmin();
 
 $singular = App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation'));
 $options = [

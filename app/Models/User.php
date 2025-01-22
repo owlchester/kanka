@@ -109,6 +109,8 @@ class User extends \Illuminate\Foundation\Auth\User
 
     protected array $imageFields = ['avatar'];
 
+    protected bool $isAdmin;
+
     /**
      * Get the other campaigns of the user
      */
@@ -138,24 +140,6 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * List of roles a user has in a campaign
-     */
-    public function rolesList(Campaign $campaign): string
-    {
-        /** @var CampaignRole[] $roles */
-        $roles = $this->campaignRoles->where('campaign_id', $campaign->id);
-        $roleLinks = [];
-        foreach ($roles as $role) {
-            if (auth()->user()->isAdmin()) {
-                $roleLinks[] = '<a href="' . route('campaign_roles.show', [$campaign, $role->id]) . '">' . $role->name . '</a>';
-            } else {
-                $roleLinks[] = $role->name;
-            }
-        }
-        return (string)implode(', ', $roleLinks);
-    }
-
-    /**
      * Determine if a user has a specific role
      */
     public function hasCampaignRole(int $roleId): bool
@@ -168,8 +152,14 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isAdmin(): bool
     {
+        if (isset($this->isAdmin)) {
+            return $this->isAdmin;
+        }
         $campaign = CampaignLocalization::getCampaign();
-        return UserCache::user($this)->campaign($campaign)->admin();
+        return $this->isAdmin = $this->campaignRoles
+                ->where('campaign_id', $campaign->id)
+                ->where('is_admin', 1)
+                ->count() === 1;
     }
 
     /**
