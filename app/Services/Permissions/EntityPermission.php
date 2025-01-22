@@ -107,10 +107,10 @@ class EntityPermission
         $key = $entityType . '_' . $action;
 
 
-//        if ($action === Permission::Bookmarks->value) {
-//            dump($key = $entityType . '_' . $action);
-//            dump($this->cached);
-//        }
+        //        if ($action === Permission::Bookmarks->value) {
+        //            dump($key = $entityType . '_' . $action);
+        //            dump($this->cached);
+        //        }
 
         $perm = false;
         if (isset($this->cached[$key]) && $this->cached[$key]) {
@@ -267,8 +267,8 @@ class EntityPermission
         // Reset the values keeping score
         $this->loadedAll = true;
         $this->cached = [];
-        unset($this->roleIds);
-        unset($this->userIsAdmin);
+        unset($this->roleIds, $this->userIsAdmin);
+
     }
 
     protected function userIsAdmin(): bool

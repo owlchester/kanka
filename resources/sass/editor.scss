@@ -83,7 +83,7 @@ img.note-float-left {
 }
 
 .note-editing-area {
-    .mention, .attribute {
+    .mention, .attribute, .post-mention {
         background-color: var(--mention-background, hsl(var(--in)/1));
         padding: 3px 5px;
         border-radius: 0.25rem;

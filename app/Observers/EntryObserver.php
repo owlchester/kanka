@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Facades\Mentions;
 use App\Jobs\EntityMappingJob;
-use App\Models\MiscModel;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -39,9 +38,7 @@ class EntryObserver
         if (!$model->isDirty($model->entryFieldName())) {
             return;
         }
-        if ($model instanceof MiscModel) {
-            EntityMappingJob::dispatch($model->entity);
-        } elseif (method_exists($model, 'mentions')) {
+        if (method_exists($model, 'mentions')) {
             EntityMappingJob::dispatch($model);
         }
     }

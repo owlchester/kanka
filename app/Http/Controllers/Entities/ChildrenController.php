@@ -30,7 +30,7 @@ class ChildrenController extends Controller
         }
 
         /** @var Children $layout */
-        $layout = app()->make(\App\Renderers\Layouts\Entity\Children::class);
+        $layout = app()->make(Children::class);
         $layout->entityType($entity->entityType);
         Datagrid::layout($layout)
             ->route('entities.children', $options);

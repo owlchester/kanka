@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\User;
 use App\Models\CampaignRole;
@@ -14,28 +13,28 @@ class CampaignRolePolicy
 
     public function view(User $user, CampaignRole $campaignRole, Campaign $campaign): bool
     {
-        return $campaignRole->campaign_id === $campaign->id && UserCache::user($user)->admin();
+        return $campaignRole->campaign_id === $campaign->id && $user->isAdmin();
     }
 
     public function create(User $user)
     {
-        return UserCache::user($user)->admin();
+        return $user->isAdmin();
     }
 
     public function update(User $user, CampaignRole $campaignRole)
     {
-        return UserCache::user($user)->admin();
+        return $user->isAdmin();
     }
 
     public function delete(User $user, CampaignRole $campaignRole)
     {
         return !$campaignRole->isAdmin() && !$campaignRole->isPublic()
-            && UserCache::user($user)->admin();
+            && $user->isAdmin();
     }
 
     public function user(User $user, CampaignRole $campaignRole)
     {
-        return UserCache::user($user)->admin();
+        return $user->isAdmin();
     }
 
     /**
@@ -54,6 +53,6 @@ class CampaignRolePolicy
     public function permission(User $user, CampaignRole $campaignRole)
     {
         return !$campaignRole->isAdmin()
-            && UserCache::user($user)->admin();
+            && $user->isAdmin();
     }
 }

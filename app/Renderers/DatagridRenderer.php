@@ -4,7 +4,6 @@ namespace App\Renderers;
 
 use App\Facades\Avatar;
 use App\Facades\Module;
-use App\Facades\UserCache;
 use App\Models\Bookmark;
 use App\Models\Entity;
 use App\Models\Journal;
@@ -195,7 +194,7 @@ class DatagridRenderer
                 );
             } elseif ($type == 'is_private') {
                 // Viewers can't see private
-                if (!isset($this->user) || !UserCache::user($this->user)->admin()) {
+                if (!isset($this->user) || !$this->user->isAdmin()) {
                     return null;
                 }
                 $html = $this->route(
@@ -469,12 +468,12 @@ class DatagridRenderer
                     return null;
                 }
                 // @phpstan-ignore-next-line
-                if ($model->parent) {
+                if ($model->parent && $model->parent->entity) {
                     $content = $this->entityLink($model->parent->entity);
                 }
             } elseif ($type == 'is_private') {
                 // Viewer can't see private
-                if (!isset($this->user) || !UserCache::user($this->user)->admin()) {
+                if (!isset($this->user) || !$this->user->isAdmin()) {
                     return null;
                 }
                 $content = $model->is_private ?

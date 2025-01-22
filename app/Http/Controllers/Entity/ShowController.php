@@ -20,6 +20,9 @@ class ShowController extends Controller
             return redirect()->route('entities.show', [$campaign, $entity, $entity->slug]);
         }*/
 
+        // Avoid sillyness
+        $entity->child->setRelation('entity', $entity);
+
 
         return view('cruds.show')
             ->with('campaign', $campaign)

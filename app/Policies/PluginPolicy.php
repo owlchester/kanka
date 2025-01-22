@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Facades\UserCache;
 use App\Models\Plugin;
 use App\Traits\AdminPolicyTrait;
 use App\Models\User;
@@ -15,33 +14,33 @@ class PluginPolicy
 
     public function delete(User $user): bool
     {
-        return UserCache::user($user)->admin();
+        return $user->isAdmin();
     }
 
     public function update(User $user, Plugin $plugin): bool
     {
-        return UserCache::user($user)->admin() && $plugin->hasUpdate();
+        return $user->isAdmin() && $plugin->hasUpdate();
     }
 
     public function changelog(User $user, Plugin $plugin): bool
     {
-        return UserCache::user($user)->admin() && !$plugin->hasUpdate();
+        return $user->isAdmin() && !$plugin->hasUpdate();
     }
 
     public function enable(User $user, Plugin $plugin): bool
     {
         // @phpstan-ignore-next-line
-        return UserCache::user($user)->admin() && $plugin->isTheme() && !$plugin->pivot->is_active;
+        return $user->isAdmin() && $plugin->isTheme() && !$plugin->pivot->is_active;
     }
 
     public function disable(User $user, Plugin $plugin): bool
     {
         // @phpstan-ignore-next-line
-        return UserCache::user($user)->admin() && $plugin->isTheme() && $plugin->pivot->is_active;
+        return $user->isAdmin() && $plugin->isTheme() && $plugin->pivot->is_active;
     }
 
     public function import(User $user, Plugin $plugin): bool
     {
-        return UserCache::user($user)->admin() && $plugin->isContentPack();
+        return $user->isAdmin() && $plugin->isContentPack();
     }
 }

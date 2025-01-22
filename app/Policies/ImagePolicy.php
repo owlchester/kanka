@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Facades\EntityPermission;
-use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
 use App\Models\Image;
@@ -22,7 +21,7 @@ class ImagePolicy
     public function browse(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            UserCache::user($user)->admin() ||
+            $user->isAdmin() ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY_BROWSE, $user, $campaign)
         );
@@ -31,7 +30,7 @@ class ImagePolicy
     public function create(?User $user, Campaign $campaign): bool
     {
         return $user && (
-            UserCache::user($user)->admin() ||
+            $user->isAdmin() ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY_UPLOAD, $user, $campaign)
         );
@@ -40,7 +39,7 @@ class ImagePolicy
     public function view(?User $user, Image $image, Campaign $campaign): bool
     {
         return $user && (
-            UserCache::user($user)->admin() ||
+            $user->isAdmin() ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY_BROWSE, $user, $campaign) ||
                 ($this->checkPermission(CampaignPermission::ACTION_GALLERY_UPLOAD, $user, $campaign) && $image->created_by === $user->id)
@@ -49,7 +48,7 @@ class ImagePolicy
     public function edit(?User $user, Image $image, Campaign $campaign): bool
     {
         return $user && (
-            UserCache::user($user)->admin() ||
+            $user->isAdmin() ||
                 $this->checkPermission(CampaignPermission::ACTION_GALLERY, $user, $campaign) ||
                 ($this->checkPermission(CampaignPermission::ACTION_GALLERY_UPLOAD, $user, $campaign) && $image->created_by === $user->id)
         );
