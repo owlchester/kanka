@@ -2,7 +2,6 @@
 
 namespace App\Renderers\Layouts\Entity;
 
-use App\Facades\Module;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 use App\Traits\EntityTypeAware;

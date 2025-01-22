@@ -314,8 +314,8 @@ class MentionsService
                     if ($this->onlyName) {
                         return Arr::get($data, 'text', $hiddenEntity->name);
                     }
-                    $replace = '<i class="unknown-mention unknown-entity" data-entity-type="' . 
-                        $hiddenEntity->entityType->code . '">' . 
+                    $replace = '<i class="unknown-mention unknown-entity" data-entity-type="' .
+                        $hiddenEntity->entityType->code . '">' .
                         Arr::get($data, 'text', $hiddenEntity->name) . '</i>';
                 }
 

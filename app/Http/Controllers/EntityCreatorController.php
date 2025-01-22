@@ -32,8 +32,7 @@ class EntityCreatorController extends Controller
         protected EntityService $entityService,
         protected PopularService $popularService,
         protected EntityTypeService $entityTypeService,
-    )
-    {
+    ) {
         $this->middleware('auth');
     }
 

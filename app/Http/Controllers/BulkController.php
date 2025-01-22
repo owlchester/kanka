@@ -11,7 +11,6 @@ use App\Traits\BulkControllerTrait;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use Exception;
-use Illuminate\Support\Str;
 
 class BulkController extends Controller
 {

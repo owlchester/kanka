@@ -8,7 +8,6 @@ use App\Traits\CampaignAware;
 use App\Services\Entity\TagService;
 use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 class BulkEntityCreatorService
