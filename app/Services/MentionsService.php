@@ -604,7 +604,7 @@ class MentionsService
      */
     protected function hiddenEntity(int $id): Entity|null
     {
-        if (!$this->campaign->getNamePrivateEntities()) {
+        if (!$this->campaign->show_private_entity_mentions) {
             return null;
         }
 
@@ -703,7 +703,7 @@ class MentionsService
      */
     protected function prepareHiddenEntities(): void
     {
-        if (!$this->campaign->getNamePrivateEntities()) {
+        if (!$this->campaign->show_private_entity_mentions) {
             return;
         }
 
@@ -723,7 +723,7 @@ class MentionsService
 
         // Directly get with the mentioned entity types (provided they are valid)
         // @phpstan-ignore-next-line
-        $entities = Entity::whereIn('id', $ids)->with(['tags:id,name,slug', 'entityType:id,code,is_special'])->withInvisible()->get();
+        $entities = Entity::whereIn('id', $ids)->with(['entityType:id,code,is_special'])->withInvisible()->get();
         //dump(count($ids));
         foreach ($entities as $entity) {
             $this->privateEntities[$entity->id] = $entity;

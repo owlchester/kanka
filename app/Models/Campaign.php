@@ -432,7 +432,7 @@ class Campaign extends Model
 
     /**
      */
-    public function getNamePrivateEntities(): mixed
+    public function getShowPrivateEntityMentionsAttribute(): bool
     {
         return Arr::get($this->settings, 'private_mention_visibility', 0);
     }
