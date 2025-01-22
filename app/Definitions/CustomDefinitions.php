@@ -14,6 +14,9 @@ class CustomDefinitions implements Definition
 
         // Mentions
         $def->addAttribute('a', 'data-toggle', 'Text');
+        $def->addAttribute('a', 'data-dropdown', 'Text');
+        $def->addAttribute('a', 'data-pulse', 'Text');
+        $def->addAttribute('a', 'data-animate', 'Text');
         $def->addAttribute('a', 'data-html', 'Text');
         $def->addAttribute('a', 'target', 'Text');
 
