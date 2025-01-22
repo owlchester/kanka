@@ -609,7 +609,7 @@ class MentionsService
         }
 
         if (!Arr::has($this->entities, (string) $id) && !Arr::has($this->privateEntities, (string) $id)) {
-            $this->privateEntities[$id] = Entity::where(['id' => $id])->withHidden()->first();
+            $this->privateEntities[$id] = Entity::where(['id' => $id])->withInvisible()->first();
         }
 
         return Arr::get($this->privateEntities, $id);
@@ -709,14 +709,12 @@ class MentionsService
 
         // Remove those already cached in memory
         $ids = [];
-        // @phpstan-ignore-next-line
         foreach ($this->hiddenEntities as $id) {
             if (!Arr::has($this->privateEntities, $id)) {
                 $ids[] = $id;
             }
         }
 
-        // @phpstan-ignore-next-line
         if (empty($ids)) {
             return;
         }
