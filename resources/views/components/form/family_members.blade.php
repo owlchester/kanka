@@ -28,7 +28,7 @@ elseif(!empty($model)) {
 ?>
 <label>{{ __('organisations.fields.members') }}</label>
 
-<select multiple="multiple" name="members[]" id="members" class="w-full form-members" style="width: 100%" data-url="{{ route('search-list', [$campaign, config('entities.ids.character'), 'with-family' => '1']) }}">
+<select multiple="multiple" name="members[]" id="members" class="w-full form-members" style="width: 100%" data-url="{{ route('search-list', [$campaign, config('entities.ids.character'), 'with-family' => '1']) }}" data-placeholder="{{ __('crud.placeholders.character') }}">
     @foreach ($selectedOption as $key => $val)
         <option value="{{ $key }}" selected="selected">{{ $val }}</option>
     @endforeach

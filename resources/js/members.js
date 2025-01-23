@@ -16,6 +16,7 @@ const initFormMembersSelect = () => {
             tags: true,
             allowClear: allowClear || true,
             minimumInputLength: 2,
+            placeholder: form.dataset.placeholder,
             ajax: {
                 quietMillis: 500,
                 delay: 500,
@@ -35,6 +36,13 @@ const initFormMembersSelect = () => {
             },
             createTag: function() {
                 return undefined;
+            },
+            escapeMarkup: function (markup) {
+                return markup; // Disable escaping for HTML markup
+            },
+            templateSelection: function (item) {
+                // Render HTML for the selected option
+                return item.text ? `<span>${item.text}</span>` : item.text;
             }
         });
     });
