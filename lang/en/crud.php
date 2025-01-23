@@ -6,7 +6,9 @@ return [
         'apply'             => 'Apply',
         'back'              => 'Back',
         'change'            => 'Change',
+        'confirm'           => 'Confirm',
         'copy'              => 'Copy',
+        'close'             => 'Close',
         'copy_mention'      => 'Copy [ ] mention',
         'copy_to_campaign'  => 'Copy to campaign',
         'disable'           => 'Disable',
@@ -87,11 +89,6 @@ return [
         'bulk_title'    => 'Apply a template to multiple entities',
     ],
     'cancel'                    => 'Cancel',
-    'click_modal'               => [
-        'close'     => 'Close',
-        'confirm'   => 'Confirm',
-        'title'     => 'Confirm your action',
-    ],
     'copy_to_campaign'          => [
         'bulk_title'    => 'Copy entities to another campaign',
         'panel'         => 'Copy',
@@ -103,9 +100,7 @@ return [
     ],
     'delete_modal'              => [
         'callout'           => 'Psst!',
-        'close'             => 'Close',
         'confirm'           => 'Confirm removal',
-        'delete'            => 'Remove',
         'description_v2'    => 'You are removing ":tag".',
         'permanent'         => 'This action is permanent and cannot be undone.',
         'recoverable'       => 'Entities can be recovered for up to :day days with a :boosted-campaign.',
@@ -166,40 +161,28 @@ return [
         'visibility'        => 'Visibility',
     ],
     'files'                     => [
-        'actions'   => [
-            'drop'      => 'Click to Add or Drop a file',
-            'manage'    => 'Manage Entity Files',
-        ],
         'errors'    => [
             'max'       => 'You have reached the maximum number (:max) of files for this entity.',
             'max_size'  => 'The campaign has reached the maximum file storage capacity.',
             'no_files'  => 'No files.',
         ],
-        'files'     => 'Uploaded Files',
         'hints'     => [
             'limit'         => 'Each entity can have a maximum of :max files uploaded to it.',
             'limitations'   => 'Supported formats: :formats. Max file size: :size.',
         ],
-        'title'     => 'Entity Files for :name',
     ],
     'filter'                    => 'Filter',
     'filters'                   => [
         'all'                       => 'Filter to all descendants',
         'clear'                     => 'Clear Filters',
         'copy_helper'               => 'Use the copied filters in your clipboard as values for filters on dashboard widgets and bookmarks.',
-        'copy_helper_no_filters'    => 'Define some filters first to be able to copy them to your clipboard.',
         'copy_to_clipboard'         => 'Copy filters to clipboard',
         'direct'                    => 'Filter to direct descendants',
         'filtered'                  => 'Showing :count of :total :entity.',
-        'hide'                      => 'Hide Filters',
         'lists'                     => [
             'desktop'   => [
                 'all'       => 'Show all descendants (:count)',
                 'filtered'  => 'Show direct descendants (:count)',
-            ],
-            'mobile'    => [
-                'all'       => 'Show all (:count)',
-                'filtered'  => 'Show direct (:count)',
             ],
         ],
         'mobile'                    => [
@@ -243,15 +226,11 @@ return [
     'hints'                     => [
         'attribute_template'    => 'The selected attribute template will be applied when saving the entity.',
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a reminder in the selected calendar.',
-        'gallery_header'        => 'If the entity has no header, display an image from the campaign gallery instead.',
-        'gallery_image'         => 'If the entity has no image, display an image from the campaign gallery instead.',
-        'header_image'          => 'This image is placed above the entity. For best results, use a wide image.',
         'image_dimension'       => 'Recommended dimensions: :dimension pixels.',
         'image_limitations'     => 'Supported formats: :formats. Max file size: :size.',
         'image_recommendation'  => 'Recommended dimensions: :width by :height px.',
         'is_star'               => 'Pinned elements will appear on the entity\'s overview page.',
         'tooltip'               => 'Replace the automatically generated tooltip with the following contents. Any HTML code will be stripped, but you can still mention other entities using advanced mentions.',
-        'visibility'            => 'Setting the visibility to admin means only members in the Admin campaign role can view this. Setting it to self means only you can view this.',
     ],
     'history'                   => [
         'created_clean'         => 'Created by :name :date',
@@ -266,14 +245,12 @@ return [
     ],
     'is_private'                => 'This entity is private and only visible to members of the campaign\'s Admin role.',
     'keyboard-shortcut'         => 'Keyboard shortcut :code',
-    'legacy'                    => 'Legacy',
     'navigation'                => [
         'cancel'            => 'cancel',
         'or_cancel'         => 'or :cancel',
         'skip_to_content'   => 'Skip navigation',
     ],
     'permissions'               => [
-        'action'            => 'Action',
         'actions'           => [
             'bulk'          => [
                 'add'       => 'Allow',
@@ -288,20 +265,16 @@ return [
             ],
             'delete'        => 'Delete',
             'edit'          => 'Edit',
-            'read'          => 'Read',
+            'view'          => 'View',
             'toggle'        => 'Toggle',
         ],
-        'allowed'           => 'Allowed',
         'fields'            => [
             'member'    => 'Member',
             'role'      => 'Role',
         ],
-        'helper'            => 'Use this interface to fine-tune which users and roles that can interact with this entity. :allow',
         'helpers'           => [
-            'setup' => 'Use this interface to fine-tune how roles and users can interact with this entity. :allow will allow the user or role to do this action. :deny will deny them that action. :inherit will use the user\'s role or main role\'s permission. A user set to :allow is able to do the action, even if their role is set to :deny.',
+            'setup' => 'Control how roles and members can interact with this entity. :allow will allow a member or role to do this action. :deny will deny them that action. :inherit will use the role or member\'s role\'s permission. A member set to :allow is able to do the action, even if one of their roles is set to :deny.',
         ],
-        'inherited'         => 'This role already has this permission set for this entity type.',
-        'inherited_by'      => 'This user is part of the \':role\' role which grants this permissions on this entity type.',
         'success'           => 'Permissions saved.',
         'title'             => 'Permissions',
         'too_many_members'  => 'This campaign has too many members (>:number) to display in this interface. Please use the Permission button on the entity view to control permissions in detail.',
@@ -347,7 +320,6 @@ return [
     'save_and_view'             => 'Save and View',
     'search'                    => 'Search',
     'select'                    => 'Select',
-    'superboosted_campaigns'    => 'Superboosted Campaigns',
     'tabs'                      => [
         'abilities'     => 'Abilities',
         'assets'        => 'Assets',
@@ -368,9 +340,6 @@ return [
     'titles'                    => [
         'editing'   => 'Editing :name',
         'new'       => 'New :module',
-    ],
-    'tooltips'                  => [
-        'new_post'  => 'Add a new post to this entity.',
     ],
     'update'                    => 'Update',
     'users'                     => [

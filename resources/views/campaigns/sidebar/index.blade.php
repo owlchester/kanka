@@ -123,7 +123,7 @@
             </x-buttons.confirm>
 
                 <x-buttons.confirm type="danger" full="true" outline="true">
-                    {{ __('crud.click_modal.confirm') }}
+                    {{ __('crud.actions.confirm') }}
                 </x-buttons.confirm>
         </div>
     </x-dialog>

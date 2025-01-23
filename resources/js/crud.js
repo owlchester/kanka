@@ -1,11 +1,5 @@
 /**
- * Crud
- */
-let entityFormActions;
-
-
-/**
- * Re-register any events that need to be binded when a modal is loaded
+ * Re-register any events that need to be bound when a modal is loaded
  */
 function registerModalLoad() {
     window.onEvent(function() {
@@ -62,7 +56,7 @@ function registerEntityNameCheck() {
  */
 const registerDropdownFormActions = () => {
     // Return early if there are no elements in the page to be handled
-    entityFormActions = document.querySelectorAll('.form-submit-actions');
+    const entityFormActions = document.querySelectorAll('.form-submit-actions');
     if (entityFormActions.length === 0) {
         return;
     }

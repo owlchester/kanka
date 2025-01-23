@@ -128,7 +128,7 @@ class RecoverySetupService
             'premium_title' =>  __('callouts.premium.title'),
             'premium' => __('campaigns/recovery.premium'),
             'upgrade'  => __('cookieconsent.link'),
-            'confirm' => __('crud.click_modal.confirm'),
+            'confirm' => __('crud.actions.confirm'),
             'deleted_at' => __('campaigns/recovery.fields.deleted_at', ['date' => 'placeholder', 'user' => 'placeholder']),
             'recovery_success' => __('campaigns/recovery.name_link', ['name' => '<a href="placeholder">placeholder</a>']),
 

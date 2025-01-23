@@ -67,7 +67,7 @@
 
             <x-form method="DELETE" :action="['settings.discord.destroy']" id="delete-form-discord">
                 <x-buttons.confirm type="danger" outline="true" full="true">
-                    {{ __('crud.click_modal.confirm') }}
+                    {{ __('crud.actions.confirm') }}
                 </x-buttons.confirm>
             </x-form>
         </div>

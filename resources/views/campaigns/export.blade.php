@@ -56,7 +56,7 @@
 
             <x-form :action="['campaign.export-process', $campaign]">
                 <x-buttons.confirm type="primary" full="true">
-                    {{ __('crud.click_modal.confirm') }}
+                    {{ __('crud.actions.confirm') }}
                 </x-buttons.confirm>
             </x-form>
         </div>

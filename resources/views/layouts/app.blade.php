@@ -47,6 +47,8 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @endif
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     @vite([
         'resources/sass/vendor.scss',
         'resources/sass/app.scss',
@@ -75,7 +77,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @endif
 
     @includeWhen(!empty($campaign), 'layouts._theme')
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     @livewireStyles
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}

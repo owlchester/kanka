@@ -27,6 +27,8 @@ $permissions = $permissionService->type($entity->type_id)->entityPermissions($en
             'title' => __('crud.permissions.title', ['name' => $entity->name]),
             'content' => 'cruds.permissions.permissions_table',
             'dialog' => true,
+            'articleClass' => 'max-w-3xl',
+            'showPermissionActions' => true
         ])
         <input type="hidden" name="entity_id" value="{{ $entity->id }}" />
     </x-form>

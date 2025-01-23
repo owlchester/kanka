@@ -12,6 +12,11 @@ $actions = [
     'inherit' => __('crud.permissions.actions.bulk_entity.inherit'),
 ];
 $permissionService->campaign($campaign);
+$hasActionCol = isset($showPermissionActions) && auth()->user()->isAdmin();
+$cols = 'md:grid-cols-5';
+if ($hasActionCol) {
+    $cols = 'md:grid-cols-6';
+}
 ?>
 
 <x-helper>
@@ -22,32 +27,36 @@ $permissionService->campaign($campaign);
     ]) !!}
 </x-helper>
 
-<div id="crud_permissions" class="flex flex-col gap-3">
-    <div class="hidden md:grid md:grid-cols-5 gap-2">
+<div id="crud_permissions" class="flex flex-col gap-2">
+    <div class="hidden md:grid {{ $cols }} gap-2">
         <div class="w-40 ">
-            <strong>{{ __('crud.permissions.fields.role') }}</strong>
+            <span class="font-bold">{{ __('crud.permissions.fields.role') }}</span>
         </div>
-        <div class="">
-            <i class="fa-solid fa-eye md:hidden" aria-hidden="true" title="{{ __('crud.permissions.actions.read') }}"></i>
-            <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.read') }}</strong></span>
+        <div class="" data-title="{{ __('permissions.helpers.view') }}" data-tooltip>
+            <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.view') }}</span>
+            <x-icon class="fa-regular fa-eye md:hidden" />
         </div>
-        <div class="">
-            <i class="fa-solid fa-edit md:hidden" aria-hidden="true" title="{{ __('crud.permissions.actions.edit') }}"></i>
-            <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.edit') }}</strong></span>
+        <div class="" data-title="{{ __('permissions.helpers.edit') }}" data-tooltip>
+            <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.edit') }}</span>
+            <x-icon class="fa-regular fa-edit md:hidden" />
         </div>
-        <div class="">
-            <i class="fa-solid fa-trash md:hidden" aria-hidden="true" title="{{ __('crud.permissions.actions.delete') }}"></i>
-            <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.delete') }}</strong></span>
+        <div class="" data-title="{{ __('permissions.helpers.delete') }}" data-tooltip>
+            <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.delete') }}</span>
+            <x-icon class="fa-regular fa-trash md:hidden" />
         </div>
-        <div class="">
-            <i class="fa-solid fa-sticky-note md:hidden" aria-hidden="true" title="{{ __('entities.posts') }}"></i>
-            <span class="hidden md:inline"><strong>{{ __('entities.posts') }}</strong></span>
-            <x-icon class="question" tooltip :title="__('campaigns.roles.permissions.helpers.entity_note')" />
+        <div class="" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}" data-tooltip>
+            <span class="hidden md:inline font-bold">{{ __('entities.posts') }}</span>
+            <x-icon class="fa-regular fa-note-sticky md:hidden" />
         </div>
+        @if ($hasActionCol)
+            <div class="">
+                <span class="hidden md:inline font-bold">{{ __('crud.actions.actions') }}</span>
+            </div>
+        @endif
     </div>
     @foreach ($campaign->roles()->withoutAdmin()->get() as $role)
         @php $permissionService->reset()->role($role) @endphp
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-2 items-center">
+        <div class="grid grid-cols-2 {{ $cols }} gap-2 items-center">
             <div class="w-40 col-span-2 md:col-span-1">
                 @can('update', $role)
                     <a href="{{ route('campaign_roles.edit', [$campaign, $role]) }}">
@@ -61,18 +70,19 @@ $permissionService->campaign($campaign);
                 @endcan
             </div>
             <div class="">
-                <label class="inline md:hidden">{{ __('crud.permissions.actions.read') }}</label>
+                <label class="inline md:hidden">{{ __('crud.permissions.actions.view') }}</label>
                 <div class="join w-full field">
                     <x-forms.select
                         name="role[{{ $role->id }}][{{ \App\Enums\Permission::View->value }}]"
                         :options="$actions"
                         :selected="$permissionService->action(\App\Enums\Permission::View)->selected('role')"
-                        class="join-item"
-                        label="__('crud.permissions.actions.read')" />
+                        class="join-item permission-control"
+                        :label="__('permissions.helpers.view')" />
                 @if ($permissionService->inherited())
-                    <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip" data-append="parent">
-                                <x-icon class="text-green-500 fa-solid fa-check-circle" />
+                    <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}" data-toggle="tooltip" data-append="parent">
+                            <x-icon class="text-green-500 fa-solid fa-check-circle" />
                     </span>
+                    <span class="sr-only">{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}</span>
                 @endif
                 </div>
             </div>
@@ -84,12 +94,13 @@ $permissionService->campaign($campaign);
                             name="role[{{ $role->id }}][{{ \App\Enums\Permission::Update->value }}]"
                             :options="$actions"
                             :selected="$permissionService->action(\App\Enums\Permission::Update)->selected('role')"
-                            class="join-item"
-                            label="__('crud.permissions.actions.edit')" />
+                            class="join-item permission-control"
+                            :label="__('permissions.helpers.edit')" />
                         @if ($permissionService->inherited())
-                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip" data-append="parent">
+                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}" data-toggle="tooltip" data-append="parent">
                                 <x-icon class="text-green-500 fa-solid fa-check-circle" />
                             </span>
+                            <span class="sr-only">{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}</span>
                         @endif
                     </div>
                 </div>
@@ -100,12 +111,13 @@ $permissionService->campaign($campaign);
                             name="role[{{ $role->id }}][{{ \App\Enums\Permission::Delete->value }}]"
                             :options="$actions"
                             :selected="$permissionService->action(\App\Enums\Permission::Delete)->selected('role')"
-                            class="join-item"
-                            label="__('crud.permissions.actions.delete')" />
+                            class="join-item permission-control"
+                            :label="__('permissions.helpers.delete')" />
                         @if ($permissionService->inherited())
-                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip" data-append="parent">
+                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}" data-toggle="tooltip" data-append="parent">
                                 <x-icon class="text-green-500 fa-solid fa-check-circle" />
                             </span>
+                            <span class="sr-only">{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}</span>
                         @endif
                     </div>
                 </div>
@@ -116,12 +128,13 @@ $permissionService->campaign($campaign);
                             name="role[{{ $role->id }}][{{ \App\Enums\Permission::Posts->value }}]"
                             :options="$actions"
                             :selected="$permissionService->action(\App\Enums\Permission::Posts)->selected('role')"
-                            class="join-item"
-                            label="__('entities.po')" />
+                            class="join-item permission-control"
+                            :label="__('entities.posts')" />
                         @if ($permissionService->inherited())
-                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited') }}" data-toggle="tooltip" data-append="parent">
+                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}" data-toggle="tooltip" data-append="parent">
                                 <x-icon class="text-green-500 fa-solid fa-check-circle" />
                             </span>
+                            <span class="sr-only">{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}</span>
                         @endif
                     </div>
                 </div>
@@ -133,41 +146,46 @@ $permissionService->campaign($campaign);
         </div>
     @endforeach
 
-    @if (isset($skipUsers) && $skipUsers && $campaign->nonAdmins()->count() > 10)
-        <x-helper>{{ __('crud.permissions.too_many_members', ['number' => 10]) }}</x-helper>
+    @if (isset($skipUsers) && $skipUsers && $campaign->nonAdmins()->count() > config('limits.campaigns.members'))
+        <x-helper>{{ __('crud.permissions.too_many_members', ['number' => config('limits.campaigns.members')]) }}</x-helper>
         <input type="hidden" name="permissions_too_many" value="1" />
     @else
-        <hr />
 
-        <div class="hidden md:grid grid-cols-5 gap-2 justify-center">
-            <div class=""><strong>{{ __('crud.permissions.fields.member') }}</strong></div>
+        <div class="hidden md:grid {{ $cols }} gap-2 justify-center mt-5">
+            <div class="font-bold">{{ __('crud.permissions.fields.member') }}</div>
 
-            <div class="">
-                <i class="fa-solid fa-eye md:hidden" aria-hidden="true" title="{{ __('crud.permissions.actions.read') }}"></i>
-                <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.read') }}</strong></span>
+            <div class="" data-title="{{ __('permissions.helpers.view') }}" data-tooltip>
+                <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.view') }}</span>
+                <x-icon class="fa-regular fa-eye md:hidden" />
             </div>
-            <div class="">
-                <i class="fa-solid fa-edit md:hidden" aria-hidden="true" title="{{ __('crud.permissions.actions.edit') }}"></i>
-                <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.edit') }}</strong></span>
+            <div class="" data-title="{{ __('permissions.helpers.edit') }}" data-tooltip>
+                <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.edit') }}</span>
+                <x-icon class="fa-regular fa-edit md:hidden" />
             </div>
-            <div class="">
-                <i class="fa-solid fa-trash md:hidden" aria-hidden="true" title="{{ __('crud.permissions.actions.delete') }}"></i>
-                <span class="hidden md:inline"><strong>{{ __('crud.permissions.actions.delete') }}</strong></span>
+            <div class="" data-title="{{ __('permissions.helpers.delete') }}" data-tooltip>
+                <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.delete') }}</span>
+                <x-icon class="fa-regular fa-trash md:hidden"  />
             </div>
-            <div class="">
-                <i class="fa-solid fa-sticky-note md:hidden" aria-hidden="true" title="{{ __('entities.posts') }}"></i>
-                <span class="hidden md:inline"><strong>{{ __('entities.posts') }}</strong></span>
-                <x-icon class="question" tooltip :title="__('campaigns.roles.permissions.helpers.entity_note')" />
+            <div class="" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}" data-tooltip>
+                <span class="hidden md:inline font-bold">{{ __('entities.posts') }}</span>
+                <x-icon class="fa-regular fa-sticky-note md:hidden" />
             </div>
+            @if ($hasActionCol)
+                <div class="">
+                    <span class="hidden md:inline font-bold">{{ __('crud.actions.actions') }}</span>
+                </div>
+            @endif
         </div>
         @foreach ($campaign->nonAdmins() as $member)
-            @php $permissionService->reset()->user($member->user) @endphp
-            <div class="grid grid-cols-2 md:grid-cols-5 md: gap-2">
-                <div class="col-span-2 md:col-span-1 flex flex-wrap items-center gap-2">
+            @php
+                $permissionService->reset()->user($member->user);
+            @endphp
+            <div class="grid grid-cols-2 {{ $cols }} md: gap-2">
+                <div class="col-span-2 md:col-span-1 flex items-center gap-2">
                     <div class="flex-none">
                         @if ($member->user->hasAvatar())
-                        <div class="rounded-full w-8 h-8 cover-background" style="background-image: url('{{ $member->user->getAvatarUrl() }}')" title="{{ $member->user->name }}">
-                        </div>
+                            <div class="rounded-full w-8 h-8 cover-background" style="background-image: url('{{ $member->user->getAvatarUrl() }}')" title="{{ $member->user->name }}">
+                            </div>
                         @else
                             <div class="rounded-full w-8 h-8 cover-background bg-neutral text-neutral-content uppercase flex items-center justify-center">
                                 {{ $member->user->initials() }}
@@ -177,31 +195,26 @@ $permissionService->campaign($campaign);
                     <div class="truncate">
                         {!! $member->user->name !!}
                     </div>
-                @if (isset($entity))
-                    @can('switch', $member)
-                        <div class="grow">
-                            <a class="btn2 btn-outline btn-xs btn-view-as" href="{{ route('identity.switch-entity', [$campaign, $member, $entity]) }}" data-title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
-                                <x-icon class="fa-solid fa-sign-in-alt" />
-                                {{ __('campaigns.members.actions.switch-entity') }}
-                            </a>
-                        </div>
-                    @endcan
-                @endif
                 </div>
                 <div class="">
-                    <label class="inline md:hidden">{{ __('crud.permissions.actions.read') }}</label>
+                    <label class="inline md:hidden">{{ __('crud.permissions.actions.view') }}</label>
                     <div class="join w-full field">
                         <x-forms.select
                             name="user[{{ $member->user_id }}][{{ \App\Enums\Permission::View->value }}]"
                             :options="$actions"
                             :selected="$permissionService->action(\App\Enums\Permission::View)->selected('user')"
-                            class="join-item"
-                            label="__('crud.permissions.actions.read')" />
+                            class="join-item permission-control"
+                            :label="__('permissions.helpers.view')" />
                         @if ($permissionService->inherited())
-                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited_by', [
-                           'role' => e($permissionService->inheritedRoleName())
-                           ]) }}" data-toggle="tooltip" data-append="parent">
+                            @php
+                                $inheritedHelper = __('permissions.members.inherited', [
+                                    'role' => e($permissionService->inheritedRoleName()),
+                                    'member' => $member->user->name
+                                ]);
+                            @endphp
+                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ $inheritedHelper }}" data-toggle="tooltip" data-append="parent">
                                 <i class="text-{{ $permissionService->inheritedRoleAccess() ? 'green-500' : 'red-500' }} fa-solid fa-check-circle" aria-hidden="true"></i>
+                                <span class="sr-only">{{ $inheritedHelper }}</span>
                             </span>
                         @endif
                     </div>
@@ -213,13 +226,18 @@ $permissionService->campaign($campaign);
                             name="user[{{ $member->user_id }}][{{ \App\Enums\Permission::Update->value }}]"
                             :options="$actions"
                             :selected="$permissionService->action(\App\Enums\Permission::Update)->selected('user')"
-                            class="join-item"
-                            label="__('crud.permissions.actions.edit')" />
+                            class="join-item permission-control"
+                            :label="__('permissions.helpers.edit')" />
                         @if ($permissionService->inherited())
-                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited_by', [
-                           'role' => e($permissionService->inheritedRoleName())
-                           ]) }}" data-toggle="tooltip" data-append="parent">
+                            @php
+                                $inheritedHelper = __('permissions.members.inherited', [
+                                    'role' => e($permissionService->inheritedRoleName()),
+                                    'member' => $member->user->name
+                                ]);
+                            @endphp
+                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ $inheritedHelper }}" data-toggle="tooltip" data-append="parent">
                                 <i class="text-{{ $permissionService->inheritedRoleAccess() ? 'green-500' : 'red-500' }} fa-solid fa-check-circle" aria-hidden="true"></i>
+                                <span class="sr-only">{{ $inheritedHelper }}</span>
                             </span>
                         @endif
                     </div>
@@ -231,13 +249,18 @@ $permissionService->campaign($campaign);
                             name="user[{{ $member->user_id }}][{{ \App\Enums\Permission::Delete->value }}]"
                             :options="$actions"
                             :selected="$permissionService->action(\App\Enums\Permission::Delete)->selected('user')"
-                            class="join-item"
-                            label="__('crud.permissions.actions.delete')" />
+                            class="join-item permission-control"
+                            :label="__('permissions.helpers.delete')" />
                         @if ($permissionService->inherited())
-                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited_by', [
-                           'role' => e($permissionService->inheritedRoleName())
-                           ]) }}" data-toggle="tooltip" data-append="parent">
+                            @php
+                                $inheritedHelper = __('permissions.members.inherited', [
+                                    'role' => e($permissionService->inheritedRoleName()),
+                                    'member' => $member->user->name
+                                ]);
+                            @endphp
+                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ $inheritedHelper }}" data-toggle="tooltip" data-append="parent">
                                 <i class="text-{{ $permissionService->inheritedRoleAccess() ? 'green-500' : 'red-500' }} fa-solid fa-check-circle" aria-hidden="true"></i>
+                                <span class="sr-only">{{  $inheritedHelper }}</span>
                             </span>
                         @endif
                     </div>
@@ -249,17 +272,32 @@ $permissionService->campaign($campaign);
                             name="user[{{ $member->user_id }}][{{ \App\Enums\Permission::Posts->value }}]"
                             :options="$actions"
                             :selected="$permissionService->action(\App\Enums\Permission::Posts)->selected('user')"
-                            class="join-item"
-                            label="__('entities.posts')" />
+                            class="join-item permission-control"
+                            :label="__('entities.posts')" />
                         @if ($permissionService->inherited())
-                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('crud.permissions.inherited_by', [
-                           'role' => e($permissionService->inheritedRoleName())
-                           ]) }}" data-toggle="tooltip" data-append="parent">
+                            @php
+                                $inheritedHelper = __('permissions.members.inherited', [
+                                    'role' => e($permissionService->inheritedRoleName()),
+                                    'member' => $member->user->name
+                                ]);
+                            @endphp
+                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ $inheritedHelper }}" data-toggle="tooltip" data-append="parent">
                                 <i class="text-{{ $permissionService->inheritedRoleAccess() ? 'green-500' : 'red-500' }} fa-solid fa-check-circle" aria-hidden="true"></i>
+                                <span class="sr-only">{{ $inheritedHelper}}</span>
                             </span>
                         @endif
                     </div>
                 </div>
+                @if ($hasActionCol)
+                    @can('switch', $member)
+                        <div class="flex items-center">
+                            <a class="btn2 btn-outline btn-xs btn-view-as" href="{{ route('identity.switch-entity', [$campaign, $member, $entity]) }}" data-title="{{ __('campaigns.members.helpers.switch') }}" data-toggle="tooltip">
+                                {{ __('campaigns.members.actions.switch-entity') }}
+                                <x-icon class="fa-solid fa-sign-in-alt" />
+                            </a>
+                        </div>
+                    @endcan
+                @endif
             </div>
         @endforeach
     @endif

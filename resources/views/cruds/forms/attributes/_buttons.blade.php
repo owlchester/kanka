@@ -89,7 +89,7 @@
             </x-buttons.confirm>
             <x-buttons.confirm type="danger" outline="true" full="true" id="attributes-delete-all-confirm-submit">
                 <x-icon class="trash" />
-                {{ __('crud.click_modal.confirm') }}
+                {{ __('crud.actions.confirm') }}
             </x-buttons.confirm>
             <input type="hidden" name="delete-all-attributes" value="" />
         </div>

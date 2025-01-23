@@ -10,7 +10,7 @@ $actions = [
     <tbody>
     <tr>
         <th>{{ __('crud.permissions.fields.role') }}</th>
-        <th>{{ __('crud.permissions.actions.read') }}</th>
+        <th>{{ __('crud.permissions.actions.view') }}</th>
         <th>{{ __('crud.permissions.actions.edit') }}</th>
         <th>{{ __('crud.permissions.actions.delete') }}</th>
         <th>{{ __('entities.posts') }}</th>
@@ -42,7 +42,7 @@ $actions = [
     </tr>
     <tr>
         <th>{{ __('crud.permissions.fields.member') }}</th>
-        <th>{{ __('crud.permissions.actions.read') }}</th>
+        <th>{{ __('crud.permissions.actions.view') }}</th>
         <th>{{ __('crud.permissions.actions.edit') }}</th>
         <th>{{ __('crud.permissions.actions.delete') }}</th>
         <th>{{ __('entities.posts') }}</th>
