@@ -28,6 +28,17 @@ return [
         'title' => 'Maintenance',
     ],
     'footer'        => 'If you need further assistance, please contact us at :email or on the :discord',
-    'log-in'        => 'Login in to your account might reveal what you are looking for.',
+    'log-in'        => 'Logging in to your account might reveal what you are looking for.',
     'post_layout'   => 'Invalid post layout.',
+    'back-to-campaigns' => 'Go back to one of your campaigns',
+    'private-campaign' => [
+        'title' => 'Private campaign',
+        'auth' => [
+            'helper' => 'You don\'t have access to this campaign.',
+        ],
+        'guest' => [
+            'helper' => 'The campaign you are trying to access is private and you are not logged in.',
+            'login' => 'Logging in might let you access the contents.',
+        ],
+    ],
 ];
