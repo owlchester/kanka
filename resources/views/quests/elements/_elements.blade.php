@@ -44,7 +44,7 @@
                     <div class="grow">
                         @include('icons.visibility', ['icon' => $element->visibilityIcon()])
                     </div>
-                    @can('update', $model)
+                    @can('update', $entity)
                         <div class="flex gap-2 items-center">
                             <x-button.delete-confirm target="#delete-form-{{ $element->id }}" size="sm" />
 

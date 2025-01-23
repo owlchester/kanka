@@ -11,9 +11,11 @@
 @import "@melloware/coloris/dist/coloris.css";
 .clr-clear, .clr-close {
     color: hsl(var(--bc)/1);
+    background-color: hsl(var(--b2)/1);
+    letter-spacing: normal;
 }
 .clr-picker {
-    background-color: hsl(var(--b2)/1);
+    background-color: hsl(var(--b1)/1);
 }
 .clr-field button {
     height: 2.1rem;

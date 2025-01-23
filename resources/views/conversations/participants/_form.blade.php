@@ -10,7 +10,7 @@
                 @endif
             </div>
 
-            @can('update', $model)
+            @can('update', $entity)
                 <x-form method="DELETE" :action="['conversations.conversation_participants.destroy', $campaign, $model, $participant]">
                     <button class="btn2 btn-error btn-outline btn-sm">
                         <x-icon class="trash" />

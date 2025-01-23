@@ -75,11 +75,11 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-d8f305f0.js",
+    "file": "assets/app-d2a14944.js",
     "imports": [
-      "_tippy.esm-24ef6cb2.js",
       "_sortable.esm-89cfb839.js",
       "_dialog-d7ca7e30.js",
+      "_tippy.esm-24ef6cb2.js",
       "_vue.esm-bundler-613eae9f.js",
       "_v-click-outside.umd-1708c20a.js",
       "__plugin-vue_export-helper-c27b6911.js",
@@ -263,12 +263,12 @@
     "src": "resources/js/vendor-final.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-d0a22e99.css",
+    "file": "assets/app-526e0182.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-2545f29b.css",
+    "file": "assets/auth-9f54961e.css",
     "isEntry": true,
     "src": "resources/sass/auth.scss"
   },
@@ -293,7 +293,7 @@
     "src": "resources/sass/freyja/freyja.scss"
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-3a1efc8f.css",
+    "file": "assets/front-839d4aa0.css",
     "isEntry": true,
     "src": "resources/sass/front.scss"
   },
@@ -338,7 +338,7 @@
     "src": "resources/sass/tinymce.scss"
   },
   "resources/sass/vendor.scss": {
-    "file": "assets/vendor-df9013c8.css",
+    "file": "assets/vendor-29d210e8.css",
     "isEntry": true,
     "src": "resources/sass/vendor.scss"
   }

@@ -63,7 +63,7 @@ if ($attribute->isSection()) {
            data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
         ></i>
         @endif
-        @if (!isset($model) || auth()->user()->can('update', $model))
+        @if (!isset($entity) || auth()->user()->can('update', $entity))
             <a class="text-error attribute_delete" title="{{ __('crud.remove') }}">
                 <x-icon class="trash" size="fa-2x" />
                 <span class="sr-only">{{ __('crud.remove') }}</span>
