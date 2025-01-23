@@ -64,7 +64,7 @@ class Handler extends ExceptionHandler
             if (empty($campaign) || !($campaign instanceof Campaign)) {
                 session()->put('login_redirect', $request->getRequestUri());
                 /** @var Campaign $campaign */
-                $campaign = Campaign::slug($campaign)->first();
+                $campaign = Campaign::select('id')->slug($campaign)->first();
                 if ($campaign && !$campaign->isPublic()) {
                     return response()->view('errors.private-campaign', [
                         'campaign' => $campaign
