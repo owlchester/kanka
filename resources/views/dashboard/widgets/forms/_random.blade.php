@@ -42,6 +42,7 @@
                 </x-forms.field>
 
                 @include('dashboard.widgets.forms._name', ['random' => true])
+                @include('dashboard.widgets.forms._display')
 
                 @include('dashboard.widgets.forms._width')
 

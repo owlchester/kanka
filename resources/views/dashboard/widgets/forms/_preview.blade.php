@@ -21,18 +21,7 @@
                     @include('cruds.fields.entity', ['required' => true])
                 </div>
 
-                @php
-                $displayOptions = [
-                    0 => __('dashboard.widgets.preview.displays.expand'),
-                    1 => __('dashboard.widgets.preview.displays.full'),
-                    2 => __('crud.tabs.attributes'),
-                ];
-                @endphp
-                <x-forms.field
-                    field="display"
-                    :label="__('dashboard.widgets.preview.fields.display')">
-                    <x-forms.select name="config[full]" :options="$displayOptions" :selected="$source->config['full'] ?? $model->config['full'] ?? null" />
-                </x-forms.field>
+                @include('dashboard.widgets.forms._display')
 
                 @include('dashboard.widgets.forms._name')
 
