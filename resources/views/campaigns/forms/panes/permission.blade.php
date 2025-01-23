@@ -46,7 +46,7 @@ $visibilities = [
                 field="private_mention_visibility"
                 :label="__('campaigns.fields.private_mention_visibility')"
                 :helper="__('campaigns.helpers.private_mention_visibility')">
-                <x-forms.select name="settings[private_mention_visibility]" :options="[0 => __('campaigns.privacy.private'), 1 => __('campaigns.privacy.visible')]" :selected="$campaign->settings['private_mention_visibility'] ?? null" />
+                <x-forms.select name="settings[private_mention_visibility]" :options="[0 => __('campaigns.mentions.private'), 1 => __('campaigns.mentions.visible')]" :selected="$campaign->settings['private_mention_visibility'] ?? null" />
             </x-forms.field>
         </x-grid>
     </x-grid>
