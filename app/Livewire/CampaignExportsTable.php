@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Livewire;
 
 use App\Models\Campaign;
@@ -56,7 +57,7 @@ class CampaignExportsTable extends Component
     public function type(int $type): string
     {
         $key = 'entities';
-        if ($type == \App\Models\CampaignExport::TYPE_ASSETS) {
+        if ($type == CampaignExport::TYPE_ASSETS) {
             $key = 'assets';
         }
 
@@ -66,12 +67,12 @@ class CampaignExportsTable extends Component
     public function status(int $status): string
     {
         $key = 'running';
-        /** @var \App\Models\CampaignExport $model */
-        if ($status == \App\Models\CampaignExport::STATUS_FAILED) {
+        /** @var CampaignExport $model */
+        if ($status == CampaignExport::STATUS_FAILED) {
             $key = 'failed';
-        } elseif ($status == \App\Models\CampaignExport::STATUS_SCHEDULED) {
+        } elseif ($status == CampaignExport::STATUS_SCHEDULED) {
             $key = 'scheduled';
-        } elseif ($status == \App\Models\CampaignExport::STATUS_FINISHED) {
+        } elseif ($status == CampaignExport::STATUS_FINISHED) {
             $key = 'finished';
         }
 
