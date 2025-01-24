@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Campaign;
 use App\Exceptions\TranslatableException;
 use App\Facades\Identity;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\API\UpdateUserRole;
+use App\Http\Requests\UpdateUserRoles;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Models\CampaignUser;
@@ -65,15 +67,14 @@ class MemberController extends Controller
     /**
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function updateRoles(Campaign $campaign, CampaignUser $campaignUser, CampaignRole $campaignRole)
+    public function updateRoles(UpdateUserRoles $request, Campaign $campaign, CampaignUser $campaignUser)
     {
         $this->authorize('update', $campaignUser);
         if (request()->ajax()) {
             return response()->json();
         }
-
         try {
-            $added = $this->service->update($campaignUser, $campaignRole);
+            $added = $this->service->campaign($campaign)->update($campaignUser, $request->get('roles') ?? []);
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('campaign_users.index', $campaign)
@@ -82,9 +83,8 @@ class MemberController extends Controller
 
         return redirect()
             ->route('campaign_users.index', $campaign)
-            ->with('success', __('campaigns.members.updates.' . ($added ? 'added' : 'removed'), [
+            ->with('success', __('campaigns.members.updates.roles', [
                 'user' => $campaignUser->user->name,
-                'role' => $campaignRole->name
             ]));
     }
 

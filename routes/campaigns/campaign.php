@@ -48,7 +48,7 @@ Route::get('/w/{campaign}/members/back', 'Campaign\MemberController@back')->name
 Route::get('/w/{campaign}/members/switch/{campaign_user}/{entity}', 'Campaign\MemberController@switch')->name('identity.switch-entity');
 
 
-Route::post('/w/{campaign}/campaign_users/{campaign_user}/update-role/{campaign_role}', 'Campaign\MemberController@updateRoles')->name('campaign_users.update-roles');
+Route::post('/w/{campaign}/campaign_users/{campaign_user}/update-roles/', 'Campaign\MemberController@updateRoles')->name('campaign_users.update-roles');
 Route::get('/w/{campaign}/campaign_users/{campaign_user}/delete', [App\Http\Controllers\Campaign\MemberController::class, 'delete'])->name('campaign_users.delete');
 Route::get('/w/{campaign}/campaign_user_roles/{campaign_user}', [App\Http\Controllers\Campaign\Members\RoleController::class, 'index'])->name('campaign.members.roles');
 

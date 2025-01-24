@@ -42,20 +42,23 @@ class MemberService
 
     /**
      */
-    public function update(CampaignUser $user, CampaignRole $campaignRole): bool
+    public function update(CampaignUser $user, array $roles): bool
     {
+        $currentRoles = $user->roles->pluck('id')->toArray();
+        $roleUsers = CampaignRoleUser::where('user_id', $user->user_id)
+            ->whereIn('campaign_role_id', $currentRoles)
+            ->whereNotIn('campaign_role_id', $roles)
+            ->with('campaignRole')
+            ->get();
+
+        $deletedRoles = [];
         /** @var ?CampaignRoleUser $role */
-        $role = CampaignRoleUser::where('user_id', $user->user_id)
-            ->where('campaign_role_id', $campaignRole->id)
-            ->first();
-
-        // Admin role being switched? Forget the cache
-        if ($campaignRole->isAdmin()) {
-            CampaignCache::campaign($campaignRole->campaign)->clear();
-        }
-
-        // Deleting an existing role
-        if ($role) {
+        foreach ($roleUsers as $role) {
+            // Admin role being switched? Forget the cache
+            if ($role->campaignRole->isAdmin()) {
+                CampaignCache::campaign($this->campaign)->clear();
+            }
+            // Deleting an existing role
             if ($role->campaignRole->isAdmin() && !$role->recentlyCreated()) {
                 throw (new TranslatableException(
                     'campaigns.roles.users.errors.cant_kick_admins'
@@ -65,14 +68,16 @@ class MemberService
                     'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>',
                 ]);
             }
+            $deletedRoles[] = $role->id;
             $role->delete();
-            return false;
         }
-
-        CampaignRoleUser::create([
-            'campaign_role_id' => $campaignRole->id,
-            'user_id' => $user->user_id
-        ]);
+        $rolesToCreate = array_diff_key($roles, $currentRoles);
+        foreach ($rolesToCreate as $role) {
+            CampaignRoleUser::create([
+                'campaign_role_id' => $role,
+                'user_id' => $user->user_id
+            ]);
+        }
         return true;
     }
 
