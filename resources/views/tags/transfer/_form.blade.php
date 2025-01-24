@@ -3,5 +3,5 @@
         {{ __('tags.transfer.description') }}
     </p>
 
-    @include('cruds.fields.tag', ['model' => $tag, 'allowNew' => false])
+    @include('cruds.fields.tag', ['model' => $tag->entity, 'allowNew' => false])
 </x-grid>
