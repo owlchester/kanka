@@ -24,9 +24,23 @@ trait SubEntityScopes
      */
     public function scopePreparedWith(Builder $query): Builder
     {
-        return $query->with([
-            'entity', 'entity.image', 'entity.entityType'
-        ])->has('entity');
+        $with = [
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
+            },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code');
+            },
+        ];
+        $query->with($with)->has('entity');
+        if (!method_exists($this, 'getParentKeyName')) {
+            return $query;
+        }
+
+        return $query->withCount('children');
     }
 
     /**

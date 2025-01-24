@@ -117,16 +117,7 @@ class Family extends MiscModel
      */
     public function scopePreparedWith(Builder $query): Builder
     {
-        return $query->with([
-            'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
-            },
-            'entity.image' => function ($sub) {
-                $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
-            },
-            'entity.entityType' => function ($sub) {
-                $sub->select('id', 'code');
-            },
+        return parent::scopePreparedWith($query->with([
             'location' => function ($sub) {
                 $sub->select('id', 'name');
             },
@@ -139,11 +130,7 @@ class Family extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'members',
-            'children' => function ($sub) {
-                $sub->select('id', 'family_id');
-            },
-        ]);
+        ]))->withCount('members');
     }
 
     /**

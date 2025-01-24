@@ -42,6 +42,7 @@ class ChildrenController extends Controller
             ->with([
                 'image', 'entityType',
                 'tags', 'tags.entity',
+                'children',
                 'parent',
             ])
             ->filter($filters)

@@ -14,14 +14,14 @@
         [
             'label' => '<i class="' . \App\Facades\Module::duoIcon('ability') . '" title="' . __('entities.abilities') . '"></i>',
             'render' => function($model) {
-                return $model->children->count();
+                return number_format($model->children_count);
             },
             'disableSort' => true,
         ],
         [
             'label' => '<i class="fa-solid fa-user" title="' . __('abilities.show.tabs.entities') . '"></i>',
             'render' => function($model) {
-                return $model->entities->count();
+                return number_format($model->entities_count);
             },
             'disableSort' => true,
         ],

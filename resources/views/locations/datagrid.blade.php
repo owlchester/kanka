@@ -14,6 +14,7 @@
             'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
+                return number_format($model->characters_count);
                 $total = $model->characters->count();
                 foreach ($model->descendants()->with('characters')->get() as $child) {
                     $total += $child->characters->count();

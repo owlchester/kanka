@@ -10,6 +10,7 @@
        [
             'label' => __('attribute_templates.fields.attributes'),
             'render' => function($model) {
+                return number_format($model->entity->attributes_count);
                 return $model->entity->attributes()->count();
             },
             'disableSort' => true,

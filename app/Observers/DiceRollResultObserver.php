@@ -7,11 +7,8 @@ use App\Services\DiceRollerService;
 
 class DiceRollResultObserver
 {
-    protected DiceRollerService $diceRollerService;
-
-    public function __construct(DiceRollerService $diceRollerService)
+    public function __construct(protected DiceRollerService $diceRollerService)
     {
-        $this->diceRollerService = $diceRollerService;
     }
 
     /**

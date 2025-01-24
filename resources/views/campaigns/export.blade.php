@@ -38,7 +38,7 @@
 
         <div class="box box-solid">
             <div id="datagrid-parent" class="table-responsive">
-                @livewire('campaign-exports-table', ['campaign' => $campaign])
+                @livewire('campaigns.exports-table', ['campaign' => $campaign])
             </div>
         </div>
     </div>

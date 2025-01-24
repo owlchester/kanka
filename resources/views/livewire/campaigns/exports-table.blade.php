@@ -2,19 +2,11 @@
     <table class="table table-hover m-0 mb-2 w-full shadow-xs bg-box rounded">
         <thead>
             <tr>
-                <th wire:click="sortBy('type')" style="cursor: pointer;">
-                    <a href="#" >
-                        @if ($sortColumn === 'type')
-                            <span>{!! $this->sortIcon() !!}</span>
-                        @endif
-                        {{ __('campaigns/export.type') }}
-                    </a>
-                </th>
                 <th wire:click="sortBy('status')" style="cursor: pointer;">
-                    <a href="#" >    
+                    <a href="#" >
                         @if ($sortColumn === 'status')
                             <span>{!! $this->sortIcon() !!}</span>
-                        @endif   
+                        @endif
                         {{ __('campaigns/plugins.fields.status') }}
                     </a>
                 </th>
@@ -48,8 +40,7 @@
         <tbody wire:poll.{{$updateInterval}}s>
             @forelse ($campaignExports as $campaignExport)
                 <tr>
-                    <td>{!! $this->type($campaignExport->id) !!}</td>
-                    <td>{{ $this->status($campaignExport->status) }}</td>
+                    <td>{{ $this->status($campaignExport) }}</td>
                     <td>
                         @if ($campaignExport->created_by)
                             <a class="block break-all truncate" href="{!! route('users.profile', [$campaignExport->user]) !!}" target="_blank">

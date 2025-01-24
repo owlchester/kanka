@@ -44,7 +44,11 @@ class IndexController extends Controller
         $nested = $this->isNested();
 
         $base = Entity::inTypes($entityType->id)
-            ->select(['entities.*'])
+            ->select([
+                'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
+                'entities.type_id', 'entities.parent_id',
+                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y'
+            ])
             ->with(['entityType', 'image', 'children'])
             ->search($this->filterService->search())
             ->order($this->filterService->order())
@@ -53,7 +57,12 @@ class IndexController extends Controller
 
         $parent = null;
         if (request()->has('parent_id')) {
-            $parent = Entity::inTypes([$entityType->id])->where('id', request()->get('parent_id'))->first();
+            $parent = Entity::select([
+                'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
+                'entities.type_id', 'entities.parent_id',
+                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y'
+            ])
+                ->inTypes([$entityType->id])->where('id', request()->get('parent_id'))->first();
             if ($parent) {
                 $base->where('entities.parent_id', request()->get('parent_id'));
             }

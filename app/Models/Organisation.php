@@ -105,27 +105,18 @@ class Organisation extends MiscModel
      */
     public function scopePreparedWith(Builder $query): Builder
     {
-        return $query
-            ->with([
-                'entity',
-                'entity.image',
-                'entity.entityType' => function ($sub) {
-                    $sub->select('id', 'code');
-                },
-                'locations' => function ($sub) {
-                    $sub->select('id', 'name');
-                },
-                'parent' => function ($sub) {
-                    $sub->select('id', 'name');
-                },
-                'parent.entity' => function ($sub) {
-                    $sub->select('id', 'name', 'entity_id', 'type_id');
-                },
-                'members',
-                'children' => function ($sub) {
-                    $sub->select('id', 'organisation_id');
-                },
-            ]);
+        return parent::scopePreparedWith($query->with([
+            'locations' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'parent' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'parent.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+        ]))
+            ->withCount('members');
     }
 
     /**

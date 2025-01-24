@@ -17,6 +17,7 @@ $cols = 'md:grid-cols-5';
 if ($hasActionCol) {
     $cols = 'md:grid-cols-6';
 }
+$moduleName = $entityType->name() ?? $entity->entityType->name();
 ?>
 
 <x-helper>
@@ -79,10 +80,10 @@ if ($hasActionCol) {
                         class="join-item permission-control"
                         :label="__('permissions.helpers.view')" />
                 @if ($permissionService->inherited())
-                    <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}" data-toggle="tooltip" data-append="parent">
+                    <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $moduleName]) }}" data-toggle="tooltip" data-append="parent">
                             <x-icon class="text-green-500 fa-solid fa-check-circle" />
                     </span>
-                    <span class="sr-only">{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}</span>
+                    <span class="sr-only">{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $moduleName]) }}</span>
                 @endif
                 </div>
             </div>
@@ -97,10 +98,10 @@ if ($hasActionCol) {
                             class="join-item permission-control"
                             :label="__('permissions.helpers.edit')" />
                         @if ($permissionService->inherited())
-                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}" data-toggle="tooltip" data-append="parent">
+                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $moduleName]) }}" data-toggle="tooltip" data-append="parent">
                                 <x-icon class="text-green-500 fa-solid fa-check-circle" />
                             </span>
-                            <span class="sr-only">{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}</span>
+                            <span class="sr-only">{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $moduleName]) }}</span>
                         @endif
                     </div>
                 </div>
@@ -114,10 +115,10 @@ if ($hasActionCol) {
                             class="join-item permission-control"
                             :label="__('permissions.helpers.delete')" />
                         @if ($permissionService->inherited())
-                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}" data-toggle="tooltip" data-append="parent">
+                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $moduleName]) }}" data-toggle="tooltip" data-append="parent">
                                 <x-icon class="text-green-500 fa-solid fa-check-circle" />
                             </span>
-                            <span class="sr-only">{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}</span>
+                            <span class="sr-only">{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $moduleName]) }}</span>
                         @endif
                     </div>
                 </div>
@@ -131,10 +132,10 @@ if ($hasActionCol) {
                             class="join-item permission-control"
                             :label="__('entities.posts')" />
                         @if ($permissionService->inherited())
-                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}" data-toggle="tooltip" data-append="parent">
+                            <span class="join-item flex items-center bg-base-200 p-2 rounded" data-title="{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $moduleName]) }}" data-toggle="tooltip" data-append="parent">
                                 <x-icon class="text-green-500 fa-solid fa-check-circle" />
                             </span>
-                            <span class="sr-only">{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $entity->entityType->name()]) }}</span>
+                            <span class="sr-only">{{ __('permissions.roles.inherited', ['role' => $role->name, 'module' => $moduleName]) }}</span>
                         @endif
                     </div>
                 </div>

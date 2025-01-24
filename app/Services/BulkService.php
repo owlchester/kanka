@@ -74,7 +74,7 @@ class BulkService
         $model = $this->getEntity();
         if (isset($this->entityType)) {
             if ($this->entityType->hasEntity()) {
-                $entities = $model->with('entity')->has('entity')->whereIn('id', $this->ids)->get();
+                $entities = $model->with(['entity', 'children', 'entity.entityType', 'entity.campaign'])->has('entity')->whereIn('id', $this->ids)->get();
             } else {
                 $entities = $model->whereIn('id', $this->ids)->get();
             }

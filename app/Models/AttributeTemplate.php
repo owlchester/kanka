@@ -91,22 +91,17 @@ class AttributeTemplate extends MiscModel
      */
     public function scopePreparedWith(Builder $query): Builder
     {
-        return $query->with([
-            'entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
-            },
-            'entity.image' => function ($sub) {
-                $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
-            },
-            'entity.entityType' => function ($sub) {
-                $sub->select('id', 'code');
-            },
+        return parent::scopePreparedWith($query->with([
             'parent',
             'entityType',
-            'children' => function ($sub) {
-                $sub->select('id', 'attribute_template_id');
-            }
-        ]);
+        ]))
+            // Redefine the entity with to include an attributes count
+            ->with([
+                'entity' => function ($sub) {
+                    $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y')
+                        ->withCount('attributes');
+                }
+            ]);
     }
 
 

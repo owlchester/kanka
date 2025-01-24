@@ -30,7 +30,7 @@ class DiceRollController extends CrudController
     protected function setNavActions(): CrudController
     {
         $this->addNavAction(
-            route('dice_roll_results.index', $this->campaign),
+            route('dice_rolls.results', $this->campaign),
             '<i class="fa-solid fa-list"></i> ' . __('dice_rolls.index.actions.results')
         );
         $this->addNavAction(
@@ -97,7 +97,7 @@ class DiceRollController extends CrudController
      */
     public function roll(Campaign $campaign, DiceRoll $diceRoll)
     {
-        $this->authorize('roll', $diceRoll);
+        $this->authorize('view', $diceRoll->entity);
 
         try {
             $result = DiceRollResult::create([

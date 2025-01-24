@@ -73,4 +73,12 @@ class CampaignExport extends Model
     {
         return $this->status === CampaignExport::STATUS_RUNNING;
     }
+    public function scheduled(): bool
+    {
+        return $this->status === CampaignExport::STATUS_SCHEDULED;
+    }
+    public function failed(): bool
+    {
+        return $this->status === CampaignExport::STATUS_FAILED;
+    }
 }

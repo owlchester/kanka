@@ -20,7 +20,7 @@
             'label' => '<i class="fa-solid fa-users" title="' . trans('families.fields.members') . '"></i>',
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
-                return $model->members->count();
+                return number_format($model->members_count);
             },
             'disableSort' => true,
         ],

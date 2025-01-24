@@ -1,9 +1,9 @@
-<?php $r = $model->diceRollResults()->with('creator')->orderBy('created_at', 'DESC')->paginate(); ?>
+<?php $r = $entity->child->diceRollResults()->with('creator')->orderBy('created_at', 'DESC')->paginate(); ?>
 
 <div class="flex gap-2 items-center">
     <h4 class="grow">{{ __('dice_rolls.index.actions.results') }}</h4>
-    @can('roll', $model)
-        <a href="{{ route('dice_rolls.roll', [$campaign, 'dice_roll' => $model]) }}" class="btn2 btn-sm">
+    @can('view', $entity)
+        <a href="{{ route('dice_rolls.roll', [$campaign, 'dice_roll' => $entity->child]) }}" class="btn2 btn-sm">
             <x-icon class="plus" /> {{ __('dice_rolls.results.actions.add') }}
         </a>
     @endcan
@@ -27,8 +27,8 @@
             <td>{{ $relation->results }}</td>
             <td>{{ $relation->updated_at->diffForHumans() }}</td>
             <td class="text-right">
-                @can('delete', $model)
-                    <x-form method="DELETE" :action="['dice_rolls.destroy_roll', $campaign, $model, $relation->id]">
+                @can('delete', $entity)
+                    <x-form method="DELETE" :action="['dice_rolls.destroy_roll', $campaign, $entity->child, $relation->id]">
                         <button class="btn2 btn-xs btn-error btn-outline" data-title="{{ __('crud.remove') }}" data-toggle="tooltip">
                             <x-icon class="trash" />
                         </button>

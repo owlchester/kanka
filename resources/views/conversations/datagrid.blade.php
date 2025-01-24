@@ -19,14 +19,14 @@
         [
             'label' => __('conversations.fields.participants'),
             'render' => function($model) {
-                return $model->participants()->count();
+                return number_format($model->participants_count);
             },
             'disableSort' => true,
         ],
         [
             'label' => __('conversations.fields.messages'),
             'render' => function($model) {
-                return $model->messages()->count();
+                return number_format($model->messages_count);
             },
             'disableSort' => true,
         ],

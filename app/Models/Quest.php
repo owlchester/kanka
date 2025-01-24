@@ -123,17 +123,13 @@ class Quest extends MiscModel
      */
     public function scopePreparedWith(Builder $query): Builder
     {
-        return $query->with([
-            'entity',
-            'entity.image',
-            'entity.entityType' => function ($sub) {
-                $sub->select('id', 'code');
-            },
+        return parent::scopePreparedWith($query->with([
             'entity.calendarDate',
             'entity.calendarDate.calendar',
             'entity.calendarDate.calendar.entity',
-            'instigator',
-            //'elements',
+            'instigator' => function ($sub) {
+                $sub->select('id', 'name');
+            },
             'parent' => function ($sub) {
                 $sub->select('id', 'name');
             },
@@ -146,10 +142,8 @@ class Quest extends MiscModel
             'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'children' => function ($sub) {
-                $sub->select('id', 'quest_id');
-            }
-        ]);
+        ]))
+            ->withCount('elements');
     }
 
     /**

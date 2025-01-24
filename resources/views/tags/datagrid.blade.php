@@ -26,15 +26,14 @@
         [
             'label' => \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')),
             'render' => function($model) {
-                return $model->children->count();
+                return number_format($model->children_count);
             },
             'disableSort' => true,
         ],
         [
             'label' => __('tags.fields.children'),
             'render' => function($model) {
-                $total = $model->entities->count();
-                return $total;
+                return number_format($model->entities_count);
             },
             'disableSort' => true,
         ],

@@ -31,7 +31,7 @@
         [
             'label' => __('quests.show.tabs.elements'),
             'render' => function($model) {
-                return $model->elements()->has('entity')->count();
+                return number_format($model->elements_count);
             },
             'disableSort' => true,
         ],

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Campaigns;
 
 use App\Models\Campaign;
-use Livewire\Component;
-use Livewire\WithPagination;
 use App\Models\CampaignExport;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Component;
+use Livewire\WithPagination;
 
-class CampaignExportsTable extends Component
+class ExportsTable extends Component
 {
     use WithPagination;
 
@@ -44,34 +44,24 @@ class CampaignExportsTable extends Component
         //$campaignExports = CampaignExport::orderBy($this->sortColumn, $this->sortDirection)->paginate(10);
 
         $campaignExports = $this->campaign->campaignExports()
-            ->with(['user', 'campaign'])
+            ->with(['user'])
             ->orderBy($this->sortColumn, $this->sortDirection)
             //->orderBy('updated_at', 'DESC')
             ->paginate();
 
-        return view('livewire.campaign-exports-table', [
+        return view('livewire.campaigns.exports-table', [
             'campaignExports' => $campaignExports,
         ]);
     }
 
-    public function type(int $type): string
-    {
-        $key = 'entities';
-        if ($type == CampaignExport::TYPE_ASSETS) {
-            $key = 'assets';
-        }
-
-        return __('campaigns/export.type_' . $key);
-    }
-
-    public function status(int $status): string
+    public function status(CampaignExport $export): string
     {
         $key = 'running';
-        if ($status == CampaignExport::STATUS_FAILED) {
+        if ($export->failed()) {
             $key = 'failed';
-        } elseif ($status == CampaignExport::STATUS_SCHEDULED) {
+        } elseif ($export->scheduled()) {
             $key = 'scheduled';
-        } elseif ($status == CampaignExport::STATUS_FINISHED) {
+        } elseif ($export->finished()) {
             $key = 'finished';
         }
 

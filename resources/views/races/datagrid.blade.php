@@ -16,7 +16,7 @@
             'label' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
-                return $model->characters->count();
+                return number_format($model->characters_count);
             },
             'disableSort' => true,
         ],

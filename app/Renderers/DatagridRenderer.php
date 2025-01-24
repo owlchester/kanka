@@ -333,7 +333,7 @@ class DatagridRenderer
             }
         }*/
         if (!empty($this->nestedFilter) && method_exists($model, 'children')) {
-            $html .= ' data-children="' . $model->children->count() . '"';
+            $html .= ' data-children="' . $model->children_count . '"';
         }
         $html .= '>';
 
