@@ -36,7 +36,7 @@ trait SubEntityScopes
             },
         ];
         if (!method_exists($this, 'getParentKeyName')) {
-            $query->with($with)->has('entity');
+            return $query->with($with)->has('entity');
         }
 
         $with['parent'] = function ($sub) {
