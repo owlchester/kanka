@@ -67,7 +67,6 @@ class CampaignExportsTable extends Component
     public function status(int $status): string
     {
         $key = 'running';
-        /** @var CampaignExport $model */
         if ($status == CampaignExport::STATUS_FAILED) {
             $key = 'failed';
         } elseif ($status == CampaignExport::STATUS_SCHEDULED) {
