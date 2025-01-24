@@ -17,7 +17,7 @@ $cols = 'md:grid-cols-5';
 if ($hasActionCol) {
     $cols = 'md:grid-cols-6';
 }
-$moduleName = $entityType->name() ?? $entity->entityType->name();
+$moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->name();
 ?>
 
 <x-helper>
