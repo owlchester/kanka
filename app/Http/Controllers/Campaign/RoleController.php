@@ -39,7 +39,7 @@ class RoleController extends Controller
 
         $roles = $campaign->roles()
             ->sort(request()->only(['o', 'k']))
-            ->with(['users', 'permissions', 'campaign'])
+            ->withCount(['users', 'rolePermissions'])
             ->orderBy('is_admin', 'DESC')
             ->orderBy('is_public', 'DESC')
             ->orderBy('name')

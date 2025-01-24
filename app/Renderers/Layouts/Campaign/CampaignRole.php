@@ -31,7 +31,7 @@ class CampaignRole extends Layout
             'users' => [
                 'label' => 'campaigns.roles.fields.users',
                 'render' => function ($model) {
-                    return $model->users->count();
+                    return number_format($model->users_count);
                 }
             ],
             'type' => [

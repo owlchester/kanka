@@ -130,16 +130,10 @@ class Quest extends MiscModel
             'instigator' => function ($sub) {
                 $sub->select('id', 'name');
             },
-            'parent' => function ($sub) {
-                $sub->select('id', 'name');
-            },
             'location' => function ($sub) {
                 $sub->select('id', 'name');
             },
             'location.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-            'parent.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
         ]))

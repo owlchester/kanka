@@ -109,12 +109,6 @@ class Organisation extends MiscModel
             'locations' => function ($sub) {
                 $sub->select('id', 'name');
             },
-            'parent' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'parent.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
         ]))
             ->withCount('members');
     }

@@ -91,10 +91,7 @@ class AttributeTemplate extends MiscModel
      */
     public function scopePreparedWith(Builder $query): Builder
     {
-        return parent::scopePreparedWith($query->with([
-            'parent',
-            'entityType',
-        ]))
+        return parent::scopePreparedWith($query)
             // Redefine the entity with to include an attributes count
             ->with([
                 'entity' => function ($sub) {

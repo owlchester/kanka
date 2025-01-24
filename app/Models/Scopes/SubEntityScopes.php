@@ -35,12 +35,18 @@ trait SubEntityScopes
                 $sub->select('id', 'code');
             },
         ];
-        $query->with($with)->has('entity');
         if (!method_exists($this, 'getParentKeyName')) {
-            return $query;
+            $query->with($with)->has('entity');
         }
 
-        return $query->withCount('children');
+        $with['parent'] = function ($sub) {
+            $sub->select('id', 'name');
+        };
+        $with['parent.entity'] = function ($sub) {
+            $sub->select('id', 'name', 'entity_id', 'type_id');
+        };
+
+        return $query->with($with)->has('entity')->withCount('children');
     }
 
     /**
@@ -51,6 +57,7 @@ trait SubEntityScopes
         return $query
             ->select($this->exploreGridSelectFields())
             ->with($this->exploreGridWith())
+            ->withCount($this->exploreGridWithCount())
             ->has('entity');
     }
 
@@ -82,11 +89,16 @@ trait SubEntityScopes
                 $sub->select('id', 'code');
             },
         ];
-        if (method_exists($this, 'getParentKeyName')) {
-            $with[] = 'children';
-        }
 
         return $with;
+    }
+
+    protected function exploreGridWithCount(): array
+    {
+        if (!method_exists($this, 'getParentKeyName')) {
+            return [];
+        }
+        return ['children'];
     }
 
     /**

@@ -91,14 +91,7 @@ class Timeline extends MiscModel
      */
     public function scopePreparedWith(Builder $query): Builder
     {
-        return parent::scopePreparedWith($query->with([
-            'parent' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'parent.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
-        ]))->withCount('eras');
+        return parent::scopePreparedWith($quer)->withCount('eras');
     }
 
     /**

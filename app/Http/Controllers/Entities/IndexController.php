@@ -49,7 +49,8 @@ class IndexController extends Controller
                 'entities.type_id', 'entities.parent_id',
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y'
             ])
-            ->with(['entityType', 'image', 'children'])
+            ->with(['entityType', 'image'])
+            ->withCount('children')
             ->search($this->filterService->search())
             ->order($this->filterService->order())
             ->distinct()

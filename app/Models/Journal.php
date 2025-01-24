@@ -126,12 +126,6 @@ class Journal extends MiscModel
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'parent' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'parent.entity' => function ($sub) {
-                $sub->select('id', 'name', 'entity_id', 'type_id');
-            },
         ]));
     }
 

@@ -7,11 +7,11 @@
     <a
         href="{{ route('campaign_roles.show', [$campaign, 'campaign_role' => $model]) }}"
         title="{{ __('campaigns.roles.actions.permissions') }}">
-        {{ $model->permissions->whereNull('entity_id')->count() }}
+        {{ number_format($model->role_permissions_count) }}
     </a>
 @endif
 
-@if ($model->isPublic() && !$campaign->isPublic() && $model->permissions->whereNull('entity_id')->count() > 0)
+@if ($model->isPublic() && !$campaign->isPublic() && $model->role_permissions_count > 0)
     <div class="hidden sm:block">
         <x-icon class="fa-solid fa-exclamation-triangle" tooltip title="{{ __('campaigns.roles.hints.campaign_not_public') }}" />
     </div>
