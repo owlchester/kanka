@@ -85,8 +85,8 @@ class Entity extends Model
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
-    use Templatable;
     use Taggable;
+    use Templatable;
 
     protected $fillable = [
         'campaign_id',
