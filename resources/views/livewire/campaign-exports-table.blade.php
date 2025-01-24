@@ -45,7 +45,7 @@
                 </th>
             </tr>
         </thead>
-        <tbody wire:poll.15s>
+        <tbody wire:poll.{{$updateInterval}}s>
             @forelse ($campaignExports as $campaignExport)
                 <tr>
                     <td>{!! $this->type($campaignExport->id) !!}</td>
@@ -81,17 +81,7 @@
     </table>
 
     <!-- Pagination -->
-    <div class="d-flex justify-content-center">
+    <div>
         {{ $campaignExports->links() }}
     </div>
-
-    <!-- JavaScript to trigger updates -->
-    <script>
-        document.addEventListener('livewire:load', () => {
-            console.log('ass');
-            setInterval(() => {
-                Livewire.emit('refreshTable'); // Emit refresh event to Livewire
-            },  1500 );
-        });
-    </script>
 </div>

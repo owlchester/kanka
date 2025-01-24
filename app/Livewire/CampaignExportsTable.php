@@ -13,7 +13,7 @@ class CampaignExportsTable extends Component
 
     public $sortColumn = 'created_at'; // Default column to sort by
     public $sortDirection = 'desc'; // Default sort direction (asc/desc)
-    public $updateInterval = 15000; // Update interval in milliseconds
+    public $updateInterval = 15; // Update interval in seconds
     protected $listeners = ['refreshTable' => '$refresh']; // Listen for table refresh event
 
     public Campaign $campaign;
@@ -110,10 +110,9 @@ class CampaignExportsTable extends Component
         if ($model->path && Storage::exists($model->path)) {
             $html = '<a class="block break-all truncate" href="' . Storage::url($model->path) . '" target="_blank">' . __('campaigns/export.actions.download') . '</a>';
             return $html;
-        } elseif ($model->path) {
-            return '<span class="text-neutral-content">' . __('campaigns/export.expired') . '</span>';
         }
-        return '';
+
+        return '<span class="text-neutral-content">' . __('campaigns/export.expired') . '</span>';
     }
 
     public function sortIcon(): string
