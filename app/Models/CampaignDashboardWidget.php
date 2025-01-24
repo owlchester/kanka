@@ -311,14 +311,19 @@ class CampaignDashboardWidget extends Model
     public function randomEntity()
     {
         $entityType = $this->conf('entity');
-        $entityTypeID = null;
-        if (!empty($entityType)) {
-            $entityTypeID = (int) config('entities.ids.' . $entityType);
-        }
-
         $base = new Entity();
 
-        if ($this->entityType && !$this->entityType->isSpecial()) {
+        if ($this->entityType) {
+            if ($this->entityType->isSpecial()) {
+                return $base
+                    ->filter($this->filterOptions())
+                    ->inTags($this->tags->pluck('id')->toArray())
+                    ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
+                    ->inTypes($this->entityType->id)
+                    ->with(['image', 'entityType', 'header', 'tags'])
+                    ->inRandomOrder()
+                    ->first();
+            }
             $model = $this->entityType->getClass();
 
             /** @var FilterService $filterService */
@@ -347,7 +352,7 @@ class CampaignDashboardWidget extends Model
             ->whereNotIn('type_id', [config('entities.ids.attribute_template'), config('entities.ids.conversation'), config('entities.ids.tag')])
             ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
             ->inTypes($this->entityType?->id)
-            ->with(['image', 'entityType', 'header'])
+            ->with(['image', 'entityType', 'header', 'tags'])
             ->inRandomOrder()
             ->first();
     }

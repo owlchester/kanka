@@ -13,6 +13,9 @@ return [
     'placeholders'  => [
         'name'  => 'Name of the post',
     ],
+    'helpers' => [
+        'new'  => 'Add a new post to this entity.',
+    ],
     'position'      => [
         'dont_change'   => 'Don\'t change',
         'first'         => 'First',

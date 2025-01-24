@@ -47,7 +47,7 @@ use App\Enums\Widget;
                 <p class="text-neutral-content text-sm">
                     <x-icon class="fa-solid fa-search" />
                 @if ($widget->entityType)
-                    {{ $widget->entityType->plural() }}
+                    {!! $widget->entityType->plural() !!}
                 @elseif (!empty($widget->conf('singular')))
                     {{ __('dashboard.widgets.recent.singular') }}
                 @else

@@ -30,6 +30,9 @@ window.initTags = function() {
                 },
                 cache: true
             },
+            escapeMarkup: function (markup) {
+                return markup; // Disable escaping for HTML markup
+            },
             createTag: function (params) {
                 const term = params.term?.trim();
 

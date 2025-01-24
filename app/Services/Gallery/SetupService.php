@@ -165,7 +165,7 @@ class SetupService
             'delete' => __('crud.remove'),
             'save' => __('crud.save'),
             'saved' => __('gallery.file.saved'),
-            'confirm' => __('crud.click_modal.confirm'),
+            'confirm' => __('crud.actions.confirm'),
             'visibility' => __('crud.fields.visibility'),
             'size' => __('campaigns/gallery.fields.size'),
             'file_type' => __('campaigns/gallery.fields.file_type'),

@@ -13,6 +13,12 @@ const initAnimations = () => {
     pulses.forEach((e) => {
         e.addEventListener('click', clickWelcomePulse);
     });
+
+    const permissions = document.querySelectorAll('select.permission-control');
+    permissions.forEach(e => {
+        changePermissionColour(e);
+        e.addEventListener('change', changePermission);
+    });
 };
 
 const clickWelcomePulse = (e) => {
@@ -54,6 +60,19 @@ function change (e) {
         target.classList.add('hidden');
     } else {
         target.classList.remove('hidden');
+    }
+}
+
+function changePermission(e) {
+    changePermissionColour(this);
+}
+
+function changePermissionColour(select) {
+    select.classList.remove('text-red-500', 'text-green-500');
+    if (select.value === 'deny') {
+        select.classList.add('text-red-500');
+    } else if (select.value === 'allow') {
+        select.classList.add('text-green-500');
     }
 }
 

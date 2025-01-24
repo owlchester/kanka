@@ -64,7 +64,7 @@
 
             <x-form method="DELETE" :action="['modules.reset', $campaign]">
             <x-buttons.confirm type="danger" full="true" outline="true">
-                {{ __('crud.click_modal.confirm') }}
+                {{ __('crud.actions.confirm') }}
             </x-buttons.confirm>
             </x-form>
         </div>

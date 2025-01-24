@@ -5,9 +5,9 @@
         <h4 class="text-md grow !text-left">
             {!! $feature->name !!}
         </h4>
-        <button autofocus type="button" class="text-md self-start" onclick="this.closest('dialog').close('close')" title="{{ __('crud.delete_modal.close') }}">
+        <button autofocus type="button" class="text-md self-start" onclick="this.closest('dialog').close('close')" title="{{ __('crud.actions.close') }}">
             <x-icon class="fa-regular fa-times" />
-            <span class="sr-only">{{ __('crud.delete_modal.close') }}</span>
+            <span class="sr-only">{{ __('crud.actions.close') }}</span>
         </button>
     </div>
     <div class="flex gap-5 w-full">

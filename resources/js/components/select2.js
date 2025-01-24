@@ -73,6 +73,9 @@ window.initForeignSelect = function () {
             },
             templateResult: formatResultList,
             templateSelection: formatResult,
+            escapeMarkup: function (markup) {
+                return markup; // Disable escaping for HTML markup
+            },
             createTag: function (data) {
                 let term = data.term?.trim();
 

@@ -14,7 +14,7 @@ if ($hasImage) {
 <div class="marker-header flex flex-col gap-2 {{ $class }}" style="{{ $backgroundImage }}">
 
         <div class="p-1 text-right">
-            <span class="marker-close" data-tooltip data-title="{{ __('crud.click_modal.close') }}">
+            <span class="marker-close" data-tooltip data-title="{{ __('crud.actions.close') }}">
                 <x-icon class="fa-solid fa-close" />
             </span>
         </div>

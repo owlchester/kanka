@@ -1,7 +1,6 @@
 import './events';
 import './tags';
 import './components/select2.js';
-import Coloris from "@melloware/coloris";
 import dynamicMentions from "./mention";
 
 import.meta.glob([
@@ -21,7 +20,6 @@ window.onEvent(function() {
     window.initDropdowns();
     window.initSortable();
     initAjaxPagination();
-    initColourPicker();
     initDynamicDelete();
     initImageRemoval();
     initFeedbackButtons();
@@ -46,37 +44,7 @@ function initAdblocker() {
     });
 }
 
-/**
- * Initiate color for the various fields
- */
-function initColourPicker() {
 
-    Coloris.init();
-    Coloris({
-        el: '.spectrum',
-        format: 'hex',
-        alpha: false,
-        theme: 'pill',
-        clearButton: true,
-        closeButton: true,
-    });
-
-    document.querySelectorAll('.spectrum').forEach(input => {
-        if (input.dataset.init === "1") {
-            return;
-        }
-        input.dataset.init = 1;
-        input.addEventListener('click', function (e) {
-            Coloris({
-                parent: input.dataset.appendTo ?? '.container',
-            });
-        });
-        // Don't close the dialog backdrop
-        input.addEventListener('close', e => {
-            e.stopPropagation();
-        });
-    });
-}
 
 
 /**
@@ -340,6 +308,7 @@ import './timelines';
 import './utility/sortable';
 import './utility/formError';
 import './utility/dialog';
+import './utility/colour-picker';
 import './togglers';
 
 // VueJS elements
@@ -355,7 +324,6 @@ initPageHeight();
 
 window.initForeignSelect();
 window.initDialogs();
-initColourPicker();
 initSubmenuSwitcher();
 
 manageTabs();

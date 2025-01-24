@@ -32,7 +32,6 @@ const openDialog = (target, url, focus) => {
     target.removeAttribute('open');
     target.setAttribute('aria-hidden', false);
     target.show();
-    target.focus();
     document.addEventListener('keydown', handleKeydown);
 
     backdrop.classList.remove('hidden');

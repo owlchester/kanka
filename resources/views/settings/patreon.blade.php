@@ -46,7 +46,7 @@
 
         <x-form method="DELETE" :action="['settings.patreon.unlink']" class="text-center">
             <x-buttons.confirm type="danger" outline="true" full="true">
-                {{ __('crud.click_modal.confirm') }}
+                {{ __('crud.actions.confirm') }}
             </x-buttons.confirm>
         </x-form>
     </x-dialog>

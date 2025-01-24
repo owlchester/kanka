@@ -12,8 +12,8 @@
 
 @section('entity-header-actions')
     <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
-        @can('update', $model)
-            <a href="{{ $model->getLink('edit') }}" class="btn2 btn-sm">
+        @can('update', $entity)
+            <a href="{{ $entity->url('edit') }}" class="btn2 btn-sm">
                 {{ __('entities/profile.actions.edit_profile') }}
             </a>
         @endcan

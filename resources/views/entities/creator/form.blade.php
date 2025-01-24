@@ -102,7 +102,7 @@
                 </button>
             @endif
 
-            <a role="button" class="btn2 btn-sm btn-ghost" onclick="this.closest('dialog').close('close')" aria-label="{{ __('crud.delete_modal.close') }}">
+            <a role="button" class="btn2 btn-sm btn-ghost" onclick="this.closest('dialog').close('close')" aria-label="{{ __('crud.actions.close') }}">
                 {{ __('crud.cancel') }}
             </a>
     </div>
