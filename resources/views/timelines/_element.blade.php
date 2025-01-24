@@ -34,7 +34,7 @@
                 <div class="flex-none flex items-center gap-2">
                     @includeWhen(auth()->check(), 'icons.visibility', ['icon' => $element->visibilityIcon('')])
 
-                    @can('update', $timeline)
+                    @can('update', $timeline->entity)
                         <div class="dropdown inline">
                             <a class="btn2 btn-xs btn-ghost" data-dropdown aria-expanded="false" data-placement="right">
                                 <x-icon class="fa-solid fa-ellipsis-v" />

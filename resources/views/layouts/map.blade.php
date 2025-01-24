@@ -82,7 +82,7 @@ $specificTheme = null;
                         </div>
 
                         <div class="marker-actions text-center">
-                            @can('update', $map)
+                            @can('update', $map->entity)
                                 <div class="join">
                                     <a href="{{ route('maps.edit', [$campaign, $map]) }}" class="btn2 btn-primary btn-sm join-item">
                                         <x-icon class="map" /> {{ __('maps.actions.edit') }}

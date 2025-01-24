@@ -13,7 +13,7 @@
         </div>
     @endif
     <x-dialog.footer :dialog="true">
-        @can('update', $marker->map)
+        @can('update', $marker->map->entity)
             <a href="{{ route('maps.map_markers.edit', [$campaign, $marker->map, $marker, 'from' => 'explore']) }}" class="btn2 btn-ghost btn-sm join-item">
                 <x-icon class="fa-solid fa-map-pin" />
                 {{ __('maps/markers.actions.update') }}

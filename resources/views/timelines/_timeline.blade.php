@@ -27,7 +27,7 @@ $loadedElements = [];
             </h3>
 
             <div class="flex-none flex items-center gap-2">
-                @can('update', $timeline)
+                @can('update', $timeline->entity)
                     <a href="{{ route('timelines.timeline_eras.edit', [$campaign, $timeline, $era, 'from' => 'view']) }}"
                        class="btn2 btn-ghost btn-xs " role="button"
                        title="{{ __('crud.edit') }}"
@@ -63,7 +63,7 @@ $loadedElements = [];
     @endforeach
     </ul>
 
-    @can('update', $timeline)
+    @can('update', $timeline->entity)
         <div class="text-center">
             <a href="{{ route('timelines.timeline_elements.create', [$campaign, $entity->child, 'era_id' => $era, 'position' => $position]) }}" class="btn2 btn-primary btn-sm"
                 title="{{ __('crud.create') }}"
@@ -80,7 +80,7 @@ $loadedElements = [];
             <p>
                 {{ __('timelines.helpers.no_era_v2') }}
             </p>
-            @can('update', $timeline)
+            @can('update', $timeline->entity)
                 <div>
             <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $entity->child, 'from' => 'view']) }}" class="btn2 btn-sm">
                 <x-icon class="plus" /> {{ __('timelines/eras.actions.add') }}
@@ -90,7 +90,7 @@ $loadedElements = [];
     </x-alert>
 @endforelse
 @if (!$timeline->eras->isEmpty())
-    @can('update', $timeline)
+    @can('update', $timeline->entity)
         <div class="text-center">
             <a href="{{ route('timelines.timeline_eras.create', [$campaign, 'timeline' => $entity->child, 'from' => 'view']) }}" class="btn2 btn-primary btn-sm">
                 <x-icon class="plus" />

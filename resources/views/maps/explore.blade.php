@@ -10,7 +10,7 @@
 ])
 
 @section('content')
-    @can('update', $map)
+    @can('update', $map->entity)
         <div class="map-actions absolute bottom-0 right-0 m-2">
             <button class="btn2 btn-mode-enable">
                 <x-icon class="plus" />
@@ -102,7 +102,7 @@
         @endforeach
    @endif
 
-    @can('update', $map)
+        @can('update', $map->entity)
         map{{ $map->id }}.on('click', function(ev) {
             window.handleExploreMapClick(ev);
         });
@@ -164,7 +164,7 @@
 @section('modals')
     <x-dialog id="map-marker-modal" loading full></x-dialog>
 
-@can('update', $map)
+    @can('update', $map->entity)
     <x-form :action="['maps.map_markers.store', $campaign, $map]" id="map-marker-form">
     <x-dialog
         id="marker-modal"

@@ -39,7 +39,7 @@ if ($hasImage) {
                         <x-icon class="map" />
                     </a>
                 @endif
-                @can('update', $marker->map)
+                @can('update', $marker->map->entity)
                     <a href="{{ route('maps.map_markers.edit', [$campaign, $marker->map, $marker, 'from' => 'explore']) }}" class="marker-edit-link text-sidebar-content" data-tooltip data-title="{{ __('maps/markers.actions.update') }}">
                         <x-icon class="edit" />
                     </a>
@@ -99,7 +99,7 @@ if ($hasImage) {
         </div>
     @endif
 
-    @can('update', $marker->map)
+    @can('update', $marker->map->entity)
         <div class="marker-actions text-center sm:rounded-t">
             <x-button.delete-confirm  target="#delete-marker-confirm-form-{{ $marker->id }}" />
         </div>
