@@ -94,6 +94,7 @@ class AttributeTemplate extends MiscModel
         return parent::scopePreparedWith($query)
             // Redefine the entity with to include an attributes count
             ->with([
+                'entityType',
                 'entity' => function ($sub) {
                     $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y')
                         ->withCount('attributes');
