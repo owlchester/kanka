@@ -46,6 +46,30 @@
                 @endguest
 
                 @auth()
+                    @if(app()->isLocal())
+                        @php $themeUrl = \Illuminate\Support\Str::before(request()->fullUrl(), '_theme=');
+                        $themeUrl .= \Illuminate\Support\Str::contains($themeUrl, '?') ? '&' : '?';
+                        @endphp
+                        <div class="dropdown">
+                            <button type="button" class="rounded hover:text-accent text-2xl" data-dropdown aria-expanded="false">
+                                <x-icon class="fa-solid fa-palette" />
+                            </button>
+                            <div class="dropdown-menu hidden" role="menu">
+                                <x-dropdowns.item
+                                    link="{!! $themeUrl . '_theme=base' !!}">
+                                    Light
+                                </x-dropdowns.item>
+                                <x-dropdowns.item
+                                    link="{!! $themeUrl . '_theme=dark' !!}">
+                                    Dark
+                                </x-dropdowns.item>
+                                <x-dropdowns.item
+                                    link="{!! $themeUrl . '_theme=midnight' !!}">
+                                    Midnight
+                                </x-dropdowns.item>
+                            </div>
+                        </div>
+                    @endif
                     <nav-switcher
                         user_id="{{ auth()->user()->id }}"
                         api="{{ route('layout.navigation') }}"
