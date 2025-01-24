@@ -38,7 +38,7 @@
 
         <div class="box box-solid">
             <div id="datagrid-parent" class="table-responsive">
-                @include('layouts.datagrid._table')
+                @livewire('campaign-exports-table', ['campaign' => $campaign])
             </div>
         </div>
     </div>
