@@ -264,6 +264,18 @@ blockquote {
     --tw-border-opacity: 1;
     border-color:hsl(var(--b1)/var(--tw-border-opacity))
 }
+.border-base-200 {
+    --tw-border-opacity: 1;
+    border-color:hsl(var(--b2)/var(--tw-border-opacity))
+}
+.border-base-300 {
+    --tw-border-opacity: 1;
+    border-color:hsl(var(--b3)/var(--tw-border-opacity))
+}
+.border-base-content {
+    --tw-border-opacity: 1;
+    border-color:hsl(var(--bc)/var(--tw-border-opacity))
+}
 
 /** hovers **/
 .hover\:bg-base-100:hover {
