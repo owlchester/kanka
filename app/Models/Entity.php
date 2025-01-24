@@ -19,6 +19,7 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SortableTrait;
+use App\Models\Concerns\Taggable;
 use App\Models\Concerns\Templatable;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
@@ -85,6 +86,7 @@ class Entity extends Model
     use SoftDeletes;
     use SortableTrait;
     use Templatable;
+    use Taggable;
 
     protected $fillable = [
         'campaign_id',
@@ -104,6 +106,8 @@ class Entity extends Model
     protected array $sanitizable = [
         'type',
     ];
+
+    protected string $tagPivotName = 'entity_tags';
 
     /** @var array Searchable fields */
     protected array $searchableColumns = [
@@ -486,7 +490,7 @@ class Entity extends Model
         $classes[] = 'kanka-type-' . Str::slug($this->type);
 
 
-        foreach ($this->tagsWithEntity(true) as $tag) {
+        foreach ($this->tags as $tag) {
             $classes[] = 'kanka-tag-' . $tag->id;
             $classes[] = 'kanka-tag-' . $tag->slug;
 

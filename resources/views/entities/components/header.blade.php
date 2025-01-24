@@ -17,7 +17,7 @@ $addTagsUrl = route('entity.tags-add', [$campaign, $entity]);
 $adminRole = \App\Facades\CampaignCache::adminRole();
 
 /** @var \App\Models\Tag[] $entityTags */
-$entityTags = $entity->tagsWithEntity();
+$entityTags = $entity->visibleTags;
 
 $buttonsClass = 1;
 if ($entity->isCharacter() && $entity->child->is_dead) {

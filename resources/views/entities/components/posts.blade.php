@@ -8,7 +8,7 @@ $wrapper = false;
 $entryShown = false;
 if (!isset($posts)) {
     $pagination = config('limits.pagination');
-    $posts = $entity->posts()->with(['permissions', 'location', 'layout'])->ordered()->paginate($pagination);
+    $posts = $entity->posts()->with(['permissions', 'location', 'layout', 'visibleTags'])->ordered()->paginate($pagination);
     $wrapper = true;
 }
 

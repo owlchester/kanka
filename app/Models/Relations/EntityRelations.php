@@ -80,9 +80,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 trait EntityRelations
 {
-    /** @var Collection List of tags attached to the entity */
-    protected Collection $tagsWithEntity;
-
     public function entityType(): BelongsTo
     {
         return $this->belongsTo(EntityType::class, 'type_id');
@@ -182,35 +179,6 @@ trait EntityRelations
     public function tag(): HasOne
     {
         return $this->hasOne('App\Models\Tag', 'id', 'entity_id');
-    }
-
-    public function tags(): BelongsToMany
-    {
-        return $this->belongsToMany(
-            'App\Models\Tag',
-            'entity_tags',
-            'entity_id',
-            'tag_id',
-            'id',
-            'id'
-        );
-    }
-
-    /**
-     * @return Collection|Tag[]
-     */
-    public function tagsWithEntity(bool $excludeHidden = false): Collection
-    {
-        if (!isset($this->tagsWithEntity)) {
-            $this->tagsWithEntity = $this->tags()
-                ->with('entity')
-                ->has('entity')
-                ->get();
-        }
-        if (!$excludeHidden) {
-            return $this->tagsWithEntity->where('is_hidden', '=', '0');
-        }
-        return $this->tagsWithEntity;
     }
 
     public function timeline(): HasOne

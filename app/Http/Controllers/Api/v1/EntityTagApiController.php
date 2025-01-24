@@ -18,7 +18,7 @@ class EntityTagApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
-        return Resource::collection($entity->entityTags()->paginate());
+        return Resource::collection($entity->tags()->paginate());
     }
 
     /**

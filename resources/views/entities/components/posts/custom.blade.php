@@ -5,7 +5,7 @@
 * @var \App\Models\Post $post
 */
 /** @var \App\Models\Tag[] $entityTags */
-$entityTags = $post->tagsWithEntity();
+$entityTags = $post->visibleTags;
 ?>
 <div class="flex flex-col gap-2 post-block post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
     <div class="flex gap-2 items-center">

@@ -5,7 +5,7 @@
 */
 
 /** @var \App\Models\Tag[] $entityTags */
-$entityTags = $post->tagsWithEntity();
+$entityTags = $post->visibleTags;
 ?>
 <article class="flex flex-col gap-2 post-block post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}" data-template="{{ $post->isTemplate() ? '1' : '0' }}" id="post-{{ $post->id }}">
     <div class="post-header flex gap-1 md:gap-2 items-center">

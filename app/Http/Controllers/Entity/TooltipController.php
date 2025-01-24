@@ -20,7 +20,7 @@ class TooltipController extends Controller
     {
         $this->campaign($campaign)->authEntityView($entity);
 
-        $tags = $entity->tagsWithEntity();
+        $tags = $entity->tags;
         $tagClasses = [];
         foreach ($tags as $tag) {
             $tagClasses[] = 'kanka-tag-' . $tag->id;
@@ -31,7 +31,7 @@ class TooltipController extends Controller
         $tooltip = view('entities.components.tooltip')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
-            ->with('tags', $entity->tagsWithEntity())
+            ->with('tags', $entity->visibleTags)
             ->with('tagClasses', $tagClasses)
             ->with('render', $render)
             ->render();

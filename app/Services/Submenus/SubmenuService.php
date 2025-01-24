@@ -95,7 +95,7 @@ class SubmenuService
             $this->items['third']['assets'] = [
                 'name' => 'crud.tabs.assets',
                 'route' => 'entities.entity_assets.index',
-                'count' => $this->entity->assets()->filtered($this->campaign->boosted())->count(),
+                'count' => $this->entity->assets()->count(),
                 'entity' => true,
                 'icon' => 'fa-solid fa-file',
             ];

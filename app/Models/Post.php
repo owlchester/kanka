@@ -67,9 +67,6 @@ class Post extends Model
     use Taggable;
     use Templatable;
 
-    /** @var Collection List of tags attached to the entity */
-    protected Collection $tagsWithEntity;
-
     protected $fillable = [
         'entity_id',
         'name',
@@ -242,23 +239,6 @@ class Post extends Model
             ->leftJoin('entities', $this->getTable() . '.entity_id', '=', 'entities.id')
             ->has('entity')
             ->with('entity');
-    }
-
-    /**
-     * @return Collection|Tag[]
-     */
-    public function tagsWithEntity(bool $excludeHidden = false): Collection
-    {
-        if (!isset($this->tagsWithEntity)) {
-            $this->tagsWithEntity = $this->tags()
-                ->with('entity')
-                ->has('entity')
-                ->get();
-        }
-        if (!$excludeHidden) {
-            return $this->tagsWithEntity->where('is_hidden', '=', '0');
-        }
-        return $this->tagsWithEntity;
     }
 
     public function toSearchableArray()
