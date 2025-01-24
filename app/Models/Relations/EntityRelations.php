@@ -364,7 +364,8 @@ trait EntityRelations
 
     public function assets(): HasMany
     {
-        return $this->hasMany(EntityAsset::class, 'entity_id', 'id');
+        return $this->hasMany(EntityAsset::class, 'entity_id', 'id')
+            ->with('image');
     }
 
     /**
