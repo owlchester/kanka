@@ -78,9 +78,10 @@ $mapSidebarWidth: 380px;
 
 .marker {
     i {
-        font-size: 20px;
+        font-size: 1.25rem;
         margin: 0;
-        position: absolute;
+        // Sometimes FA does weird stuff like putting position: relative, breaking markers
+        position: absolute !important;
         top: 50%;
         left: 50%;
         -ms-transform: translate(-50%, -50%);

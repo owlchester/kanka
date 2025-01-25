@@ -126,20 +126,9 @@ const quickCreatorSubformHandler = () => {
                         window.location.replace(res.data.redirect);
                         return;
                     }
-                    let option = new Option(res.data._name, res.data._id);
+                    let option = new Option(res.data._name, res.data._id, true, true);
                     let field = document.querySelector('#' + res.data._target);
-                    if (res.data._multi) {
-                        let selectedValues = field.value;
-                        selectedValues.push(res.data._id);
-                        field.appendChild(option);
-                        field.value = selectedValues;
-                    } else {
-                        while (field.options.length > 0) {
-                            field.options.remove(0);
-                        }
-                        field.appendChild(option);
-                        field.value = res.data._id;
-                    }
+                    field.appendChild(option);
                     field.dispatchEvent(new Event('change'));
 
                     const form = document.querySelector('#qq-modal-form');
