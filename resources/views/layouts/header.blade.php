@@ -46,7 +46,7 @@
                 @endguest
 
                 @auth()
-                    @if(app()->isLocal())
+                    @if (config('app.debug'))
                         @php
                             $themeUrl = \Illuminate\Support\Str::before(request()->fullUrl(), '_theme=');
                             $themeUrl .= \Illuminate\Support\Str::contains($themeUrl, '?') ? '&' : '?';

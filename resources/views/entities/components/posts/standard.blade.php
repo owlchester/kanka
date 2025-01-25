@@ -14,7 +14,7 @@ $entityTags = $post->visibleTags;
             <x-icon class="fa-solid fa-chevron-down icon-hide" />
             <h3 class="post-title grow {{ $post->collapsed() ? "collapsed" : null }}"  >
                 {!! $post->name !!}
-                @if (app()->isLocal())
+                @if (config('app.debug'))
                     <sup class="text-xs">({{ $post->position }})</sup>
                 @endif
             </h3>

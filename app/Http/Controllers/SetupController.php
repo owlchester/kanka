@@ -6,7 +6,7 @@ class SetupController extends Controller
 {
     public function index()
     {
-        if (!app()->isLocal()) {
+        if (!config('app.debug')) {
             return abort(404);
         }
         return view('setup');

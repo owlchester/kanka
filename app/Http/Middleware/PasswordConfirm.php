@@ -77,7 +77,7 @@ class PasswordConfirm
      */
     protected function shouldConfirmPassword($request)
     {
-        if (app()->isLocal()) {
+        if (config('app.debug')) {
             return false;
         }
 

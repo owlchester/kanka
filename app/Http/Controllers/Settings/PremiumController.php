@@ -86,7 +86,7 @@ class PremiumController extends Controller
      */
     public function back()
     {
-        if (!app()->isLocal()) {
+        if (!config('app.debug')) {
             return redirect()->route('settings.premium');
         }
 

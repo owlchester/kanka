@@ -35,7 +35,7 @@
                     </p>
 
                     <div class="required field flex gap-2 flex-wrap">
-                        <input type="text" name="delete" @if (app()->isLocal()) value="delete" @endif autofocus maxlength="10" required id="module-delete-form" class="w-full" />
+                        <input type="text" name="delete" @if (config('app.debug')) value="delete" @endif autofocus maxlength="10" required id="module-delete-form" class="w-full" />
                     </div>
 
 

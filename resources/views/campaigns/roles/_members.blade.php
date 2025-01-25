@@ -17,7 +17,7 @@
                     <div class="truncate" data-toggle="tooltip" data-title="{{ $relation->user->name }}">
                         {{ $relation->user->name }}
                     </div>
-                @if (app()->isLocal())
+                @if (config('app.debug'))
                     <span class="text-neutral-content text-xs">
                         {{ $relation->user->email }}
                     </span>

@@ -454,7 +454,7 @@ class CrudController extends Controller
             return response()->redirectTo($route);
 
         } catch (LogicException $exception) {
-            if (app()->isLocal()) {
+            if (config('app.debug')) {
                 throw $exception;
             }
             $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));

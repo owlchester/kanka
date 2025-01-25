@@ -126,7 +126,7 @@
                     {!! __('profiles.sections.delete.goodbye', ['code' => '<code>goodbye</code>']) !!}
                 </p>
                 <x-forms.field field="goodbye" required>
-                    <input type="text" name="goodbye" @if (app()->isLocal()) value="goodbye" @endif required  />
+                    <input type="text" name="goodbye" @if (config('app.debug')) value="goodbye" @endif required  />
                 </x-forms.field>
                 <x-buttons.confirm type="danger" outline="true" full="true">
                     <x-icon class="fa-solid fa-exclamation-triangle" />

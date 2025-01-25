@@ -11,7 +11,7 @@ $entityTags = $post->visibleTags;
     <div class="flex gap-2 items-center">
         <h3 class="grow" >
             {{ $post->name  }}
-            @if (app()->isLocal())
+            @if (config('app.debug'))
                 <sup class="text-xs">({{ $post->position }})</sup>
             @endif
         </h3>

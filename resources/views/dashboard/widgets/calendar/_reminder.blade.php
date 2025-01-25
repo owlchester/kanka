@@ -2,7 +2,7 @@
     <div class="grow">
         <a href="{{ $reminder->entity->url() }}">{!! $reminder->entity->name !!}</a>
 
-        @if (app()->isLocal())
+        @if (config('app.debug'))
             @if (isset($future))
                 <span class="text-xs">({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)</span>
             @else

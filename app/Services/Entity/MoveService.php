@@ -221,7 +221,7 @@ class MoveService
             $success = true;
         } catch (Exception $e) {
             DB::rollBack();
-            if (app()->isLocal()) {
+            if (config('app.debug')) {
                 throw $e;
             }
         }

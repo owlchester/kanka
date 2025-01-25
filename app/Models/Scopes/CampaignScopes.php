@@ -139,7 +139,7 @@ trait CampaignScopes
      */
     public function scopeFront(Builder $query, ?int $sort = null): Builder
     {
-        if (!app()->isLocal()) {
+        if (!config('app.debug')) {
             $query
                 ->where('visible_entity_count', '>', 0);
         }

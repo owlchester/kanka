@@ -183,7 +183,7 @@ class TimelineEra extends Model
             }
             $key = $element->position;
             $lang = __('maps/layers.placeholders.position_list', ['name' => $element->elementName()]);
-            if (app()->isLocal()) {
+            if (config('app.debug')) {
                 $lang .= ' (' . $key . ')';
             }
             if (!($position == $key)) {

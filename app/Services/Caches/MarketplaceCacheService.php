@@ -22,7 +22,7 @@ class MarketplaceCacheService extends BaseCache
             2 => 0,
             3 => 0,
         ];
-        $bonus = app()->isLocal() ? 22 : 1;
+        $bonus = config('app.debug') ? 22 : 1;
         $counts = Plugin::where('status_id', 3)
             ->groupBy('type_id')
             ->select('type_id', DB::raw('count(*) as tot'))

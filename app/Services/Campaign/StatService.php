@@ -21,7 +21,7 @@ class StatService
     public function get(): array
     {
         $key = 'campaign_stats_' . $this->campaign->id;
-        if (Cache::has($key) && !app()->isLocal()) {
+        if (Cache::has($key) && !config('app.debug')) {
             return Cache::get($key);
         }
 

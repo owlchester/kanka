@@ -44,7 +44,7 @@
                         </p>
 
                         <div class="required field flex gap-2 flex-wrap">
-                            <input type="text" name="delete" vlaue="{{ old('delete', app()->isLocal() ? 'delete' : null) }}" autofocus maxlength="10" required id="campaign-delete-form" class="w-full" />
+                            <input type="text" name="delete" value="{{ old('delete', config('app.debug') ? 'delete' : null) }}" autofocus maxlength="10" required id="campaign-delete-form" class="w-full" />
                         </div>
 
 

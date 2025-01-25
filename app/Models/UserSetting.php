@@ -217,7 +217,7 @@ trait UserSetting
      */
     public function hasBoosterNomenclature(): bool
     {
-        if (app()->isLocal() && request()->get('_legacy') == 1) {
+        if (config('app.debug') && request()->get('_legacy') == 1) {
             return true;
         }
         return Arr::get($this->settings, 'grandfathered_boost') === 1;

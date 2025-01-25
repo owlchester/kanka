@@ -225,7 +225,7 @@ class AppServiceProvider extends ServiceProvider
         // Tell laravel that we are using bootstrap 3 to style the paginators
         //Paginator::useTailwind();
 
-        if (request()->has('_debug_perm') && app()->isLocal()) {
+        if (request()->has('_debug_perm') && config('app.debug')) {
             // Add in boot function
             DB::listen(function ($query) {
                 $sql = $query->sql;

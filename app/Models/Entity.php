@@ -357,7 +357,7 @@ class Entity extends Model
             }
             $key = $layer->position > 0 ? $layer->position + 1 : $layer->position;
             $lang = __('maps/layers.placeholders.position_list', ['name' => $layer->name]);
-            if (app()->isLocal()) {
+            if (config('app.debug')) {
                 $lang .= ' (' . $key . ')';
             }
             $options[$key] = $lang;
