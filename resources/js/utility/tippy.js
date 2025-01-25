@@ -13,7 +13,7 @@ const initAjaxTooltips = () => {
         }
         e.dataset.loaded = '1';
         tippy(e, {
-            theme: 'kanka',
+            theme: 'entity-tooltip',
             placement: e.dataset.direction ?? 'bottom',
             allowHTML: true,
             interactive: true,

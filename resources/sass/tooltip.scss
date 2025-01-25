@@ -53,16 +53,15 @@
     border-radius: 0.25rem;
     --tw-drop-shadow:drop-shadow(0 1px 2px rgb(0 0 0 / .1)) drop-shadow(0 1px 1px rgb(0 0 0 / .06));
     filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-    .tippy-content {
-        padding: .5rem;
-        font-size: 0.8rem;
-    }
-}
-.tippy-box {
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b2)/var(--tw-bg-opacity));
     --tw-text-opacity: 1;
     color: hsl(var(--bc)/var(--tw-text-opacity));
+
+    .tippy-content {
+        padding: .5rem;
+        font-size: 0.8rem;
+    }
 }
 .tippy-box[data-placement^='top'] > .tippy-arrow::before {
     --tw-bg-opacity: 1;
@@ -105,4 +104,8 @@
             height: 1px;
         }
     }
+}
+
+.tippy-box[data-theme~="entity-tooltip"] {
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
 }

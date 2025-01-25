@@ -75,7 +75,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-b3e4fbbe.js",
+    "file": "assets/app-759d74ab.js",
     "imports": [
       "_sortable.esm-89cfb839.js",
       "_dialog-f81aa5d0.js",
@@ -263,7 +263,7 @@
     "src": "resources/js/vendor-final.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-17b54806.css",
+    "file": "assets/app-90aff907.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   },
