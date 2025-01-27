@@ -86,6 +86,7 @@ class ExportService
                 ->info()
                 ->campaignJson()
                 ->campaignModules()
+                ->customCampaignModules()
                 ->entities()
                 ->gallery()
                 ->finish()
@@ -141,6 +142,15 @@ class ExportService
 
         }
         $this->archive->add(json_encode($modules), 'settings/modules.json', );
+        $this->files++;
+
+        return $this;
+    }
+
+    protected function customCampaignModules(): self
+    {
+        $settings = $this->campaign->entityTypes->where('is_special', 1)->select('id', 'code', 'is_enabled', 'singular', 'plural', 'icon')->toArray();
+        $this->archive->add(json_encode($settings), 'settings/custom-modules.json', );
         $this->files++;
 
         return $this;

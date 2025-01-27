@@ -5,6 +5,7 @@ namespace App\Services\Campaign\Import;
 class ImportIdMapper
 {
     protected array $misc = [];
+    protected array $customEntityTypes = [];
     protected array $entities = [];
     protected array $gallery = [];
     protected array $posts = [];
@@ -20,6 +21,12 @@ class ImportIdMapper
     public function putEntity(int $old, int $new): self
     {
         $this->entities[$old] = $new;
+        return $this;
+    }
+
+    public function putCustomEntityType(int $old, int $new): self
+    {
+        $this->customEntityTypes[$old] = $new;
         return $this;
     }
 
@@ -62,6 +69,16 @@ class ImportIdMapper
     public function hasEntity(int $old): bool
     {
         return !empty($this->entities[$old]);
+    }
+
+    public function getCustomEntityType(int $old): int
+    {
+        return $this->customEntityTypes[$old];
+    }
+
+    public function hasOldEntityType(int $old): bool
+    {
+        return !empty($this->customEntityTypes[$old]);
     }
 
     public function getGallery(string $old): string
