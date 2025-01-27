@@ -10,7 +10,7 @@
 @endcan
 @if (!isset($more))
     @php
-        $title = '[' . $entity->entityType->code . ':' . $entity->id . '|anchor:post-' . $post->id . ']';
+        $title = '[post:' . $post->id . ']';
         $data = [
             'title' => $title,
             'toggle' => 'tooltip',
@@ -19,17 +19,6 @@
     ]; @endphp
     <x-dropdowns.item link="#" :data="$data" icon="fa-solid fa-link">
         {{ __('entities/notes.copy_mention.copy') }}
-    </x-dropdowns.item>
-    @php
-        $title = '[' . $entity->entityType->code . ':' . $entity->id . '|anchor:post-' . $post->id . '|' . $post->name . ']';
-        $data = [
-            'title' => $title,
-            'toggle' => 'tooltip',
-            'clipboard' => $title,
-            'toast' => __('entities/notes.copy_mention.success')
-    ]; @endphp
-    <x-dropdowns.item link="#" :data="$data" icon="fa-solid fa-link">
-        {{ __('entities/notes.copy_mention.copy_with_name') }}
     </x-dropdowns.item>
 @endif
 @if(auth()->user()->isAdmin())

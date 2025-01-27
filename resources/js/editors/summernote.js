@@ -86,6 +86,22 @@ const initField = (field) => {
         },
         hint: [
             {
+                match: /\B@@(\S*)$/,
+                search: function (keyword, callback) {
+                    if (keyword.length < 3) {
+                        return [];
+                    }
+                    return hintPosts(keyword, callback);
+                },
+                template: function (item) {
+                    return hintTemplate(item);
+                },
+                content: function (item) {
+                    advancedRequest = false;
+                    return hintContent(item);
+                }
+            },
+            {
                 match: /\B@(\S*)$/,
                 search: function (keyword, callback) {
                     if (keyword.length < 3) {
@@ -215,8 +231,23 @@ const initField = (field) => {
  * @param callback
  */
 function hintEntities(keyword, callback) {
-
     axios.get(summernoteConfig.dataset.mention + '?q=' + keyword + '&new=1')
+        .then(res => callback(res.data))
+        .catch(err => {
+            if (err.resonse.status === 503) {
+                window.showToast(err.response.data.message, 'error');
+            }
+        })
+    ;
+}
+
+/**
+ * Search for posts
+ * @param keyword
+ * @param callback
+ */
+function hintPosts(keyword, callback) {
+    axios.get(summernoteConfig.dataset.mention + '?q=' + keyword + '&posts=1')
         .then(res => callback(res.data))
         .catch(err => {
             if (err.resonse.status === 503) {

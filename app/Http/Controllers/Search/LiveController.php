@@ -29,6 +29,9 @@ class LiveController extends Controller
         if ($request->get('v2') === "true") {
             $this->searchService->v2();
         }
+        if ($request->has('posts')) {
+            $this->searchService->posts(true);
+        }
 
         $this->searchService
             ->term($term)

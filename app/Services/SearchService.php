@@ -51,6 +51,11 @@ class SearchService
      */
     protected bool $new = false;
 
+    /**
+     * Set to true to return posts
+     */
+    protected bool $posts = false;
+
     protected Collection $pages;
 
     public function __construct(
@@ -93,6 +98,14 @@ class SearchService
     public function new(bool $new = false): self
     {
         $this->new = $new;
+        return $this;
+    }
+
+    /**
+     */
+    public function posts(bool $posts = false): self
+    {
+        $this->posts = $posts;
         return $this;
     }
 
@@ -232,8 +245,12 @@ class SearchService
             $query->whereNotIn('entities.id', $this->excludeIds);
         }
 
+        $with = ['image', 'entityType'];
+        if ($this->posts) {
+            $with[] = 'posts';
+        }
         $query
-            ->with(['image', 'entityType'])
+            ->with($with)
             ->limit($this->limit);
 
         $searchResults = $foundEntityIds = [];
@@ -290,7 +307,7 @@ class SearchService
 
             //If the result is a map, also add its explore page as a result.
             // @phpstan-ignore-next-line
-            if (!request()->new && $model->isMap() && $model->child->explorable()) {
+            if (! $this->posts && !request()->new && $model->isMap() && $model->child->explorable()) {
                 $searchResults[] = [
                     'id' => $model->id,
                     'fullname' => $parsedName,
@@ -302,6 +319,25 @@ class SearchService
                     'alias_id' => $model->alias_id, // @phpstan-ignore-line
                     'advanced_mention' => Mentions::advancedMentionHelper($model->name),
                     'advanced_mention_alias' => $model->alias_name ? Mentions::advancedMentionHelper($model->alias_name) : null,
+                ];
+            }
+
+            if (!$this->posts) {
+                continue;
+            }
+            foreach ($model->posts as $post) {
+                $postName = str_replace(['&#039;', '&amp;'], ['\'', '&'], $post->name);
+                $searchResults[] = [
+                    'id' => $post->id,
+                    'fullname' => $postName,
+                    'image' => null,
+                    'name' => $postName,
+                    'type' => __('entities.post') . ' - ' . Str::limit($parsedName, 12),
+                    'model_type' => 'post',
+                    'url' => route('entities.show', [$this->campaign, $model, '#post-' . $post->id]),
+                    'alias_id' => null,
+                    'advanced_mention' => Mentions::advancedMentionHelper($post->name),
+                    'advanced_mention_alias' => null,
                 ];
             }
         }

@@ -9,14 +9,11 @@ use Illuminate\Http\Request;
 
 class EntityController extends Controller
 {
-    protected SearchService $search;
-
     /**
      * LiveController constructor.
      */
-    public function __construct(SearchService $searchService)
+    public function __construct(protected SearchService $searchService)
     {
-        $this->search = $searchService;
     }
 
     /**
@@ -27,7 +24,7 @@ class EntityController extends Controller
         $term = mb_trim($request->q ?? '');
 
         return response()->json(
-            $this->search
+            $this->searchService
                 ->term($term)
                 ->campaign($campaign)
                 ->only([config('entities.ids.calendar')])
