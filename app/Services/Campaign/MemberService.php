@@ -58,7 +58,7 @@ class MemberService
             if ($role->campaignRole->isAdmin()) {
                 CampaignCache::campaign($this->campaign)->clear();
             }
-            // Deleting an existing role
+            // When trying to delete an admin role check if it was created recently
             if ($role->campaignRole->isAdmin() && !$role->recentlyCreated()) {
                 throw (new TranslatableException(
                     'campaigns.roles.users.errors.cant_kick_admins'
@@ -69,8 +69,11 @@ class MemberService
                 ]);
             }
             $deletedRoles[] = $role->id;
-            $role->delete();
         }
+        CampaignRoleUser::where('user_id', $user->user_id)
+            ->whereIn('campaign_role_id', $currentRoles)
+            ->whereNotIn('campaign_role_id', $roles)
+            ->delete();
         $rolesToCreate = array_diff_key($roles, $currentRoles);
         foreach ($rolesToCreate as $role) {
             CampaignRoleUser::create([

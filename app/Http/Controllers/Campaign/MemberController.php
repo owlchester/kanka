@@ -72,7 +72,7 @@ class MemberController extends Controller
             return response()->json();
         }
         try {
-            $added = $this->service->campaign($campaign)->update($campaignUser, $request->get('roles') ?? []);
+            $added = $this->service->campaign($campaign)->update($campaignUser, $request->get('roles', []));
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('campaign_users.index', $campaign)

@@ -25,7 +25,7 @@ $multiple = Arr::get($options, 'multiple');
 <select name="{{ $multiple ? 'roles[]' : 'role'}}" id="{{ $multiple ? 'roles' : 'role'}}"
     class="select2 form-role w-100"
     @if (isset($multiple) && $multiple) multiple @endif
-    data-url="{{ route('roles.find', ['campaign' => $campaign, 'withAdmin' => true]) }}"
+    data-url="{{ route('roles.find', ['campaign' => $campaign, 'with-admin' => true]) }}"
     @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif>
 
     @foreach ($selectedOption as $key => $val)
