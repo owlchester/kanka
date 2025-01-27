@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Tags;
 
+use App\Models\Campaign;
 use App\Models\Tag;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -14,6 +15,7 @@ class Bubble extends Component
      */
     public function __construct(
         public Tag $tag,
+        public Campaign $campaign,
     ) {
     }
 

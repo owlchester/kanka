@@ -7,7 +7,7 @@
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $post->visibleTags;
 ?>
-<article class="flex flex-col gap-2 post-block post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}" data-template="{{ $post->isTemplate() ? '1' : '0' }}" id="post-{{ $post->id }}">
+<article class="flex flex-col gap-2 post-block post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}" data-template="{{ $post->isTemplate() ? '1' : '0' }}" id="post-{{ $post->id }}" data-word-count="{{ $post->words }}">
     <div class="post-header flex gap-1 md:gap-2 items-center">
         <div class="grow flex gap-2 items-center cursor-pointer element-toggle {{ $post->collapsed() ? "animate-collapsed" : null }}" data-animate="collapse" data-target="#post-body-{{ $post->id }}">
             <x-icon class="fa-solid fa-chevron-up icon-show" />
@@ -39,19 +39,7 @@ $entityTags = $post->visibleTags;
     <div class="bg-box rounded post entity-note">
         <div class="entity-content overflow-hidden @if ($post->collapsed()) hidden @endif" id="post-body-{{ $post->id }}">
             <div class="flex flex-col gap-2 p-4">
-                @if($entityTags->count() > 0)
-                    <div class="post-tags flex gap-1 items-center flex-wrap">
-                    @foreach ($entityTags as $tag)
-                        @if (!$tag->entity) @continue @endif
-                        <a href="{{ route('tags.show', [$campaign, $tag]) }}" data-toggle="tooltip-ajax"
-                           data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity->id]) }}"
-                           data-tag-slug="{{ $tag->slug }}"
-                        >
-                            <x-tags.bubble :tag="$tag" />
-                        </a>
-                    @endforeach
-                    </div>
-                @endif
+                <x-posts.tags :post="$post" :campaign="$campaign"></x-posts.tags>
 
                 <div class="post-details entity-note-details">
                     @if ($post->location)
@@ -86,6 +74,7 @@ $entityTags = $post->visibleTags;
                     </span>
                     @endif
                 </div>
+                <x-word-count :count="$post->words" />
             </div>
         </div>
     </div>

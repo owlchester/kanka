@@ -37,10 +37,13 @@
                     <div class="inline-block bg-base-200 p-2 rounded-xl" v-html="ability.type"></div>
                 </div>
                 <div class="entity-content" v-if="ability.entry" v-html="ability.entry"></div>
-                <div class="flex gap-2 items-center" v-if="ability.tags">
+                <div class="flex gap-2 items-center ability-tags" v-if="ability.tags">
                     <a v-for="tag in ability.tags"
-                       class="rounded-lg bg-base-200 text-xs py-1 px-2 text-base-content"
+                       v-bind:class="tagClass(tag)"
                        v-bind:href="tag.url"
+                       data-toggle="tooltip-ajax"
+                       v-bind:data-url="tag.tooltip"
+
                        v-html="tag.name">
                     </a>
                 </div>
@@ -103,6 +106,11 @@ const remainingNumber = () => {
 const remainingText = () => {
     return props.ability.i18n.left.replace(/:amount/, '');
 }
+
+const tagClass = (tag) => {
+   let css = 'rounded-xl bg-base-200 text-xs py-1 px-3 text-base-content';
+   return css += ' ' + tag.class;
+};
 
 const useCharge = (ability, charge) => {
     if (charge > ability.used_charges) {

@@ -113,7 +113,7 @@
             <div class="flex gap-2 item-entity-tags">
                 @foreach ($inventory->item->entity->tags()->with('entity')->get() as $tag)
                     @if (!$tag->entity) @continue @endif
-                    <x-tags.bubble :tag="$tag" />
+                    <x-tags.bubble :tag="$tag" :campaign="$campaign" />
                 @endforeach
             </div>
         @endif

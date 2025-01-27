@@ -36,6 +36,7 @@ class AbilityService extends BaseAbilityService
             ->with(['ability',
                 // entity
                 'ability.entity', 'ability.entity.image', 'ability.entity.attributes', 'ability.entity.attributes.entity',
+                'ability.entity.visibleTags',
                 // parent
                 'ability.parent', 'ability.parent.entity', 'ability.parent.entity.tags', 'ability.parent.entity.image',
             ])
@@ -198,6 +199,8 @@ class AbilityService extends BaseAbilityService
                 'id' => $tag->id,
                 'name' => $tag->name,
                 'url' => $tag->getLink(),
+                'tooltip' => route('entities.tooltip', [$this->campaign, $tag->entity]),
+                'class' => $tag->colourClass(),
             ];
         }
 

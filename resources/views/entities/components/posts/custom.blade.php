@@ -7,25 +7,11 @@
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $post->visibleTags;
 ?>
-<div class="flex flex-col gap-2 post-block post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}">
+<article class="flex flex-col gap-2 post-block post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}" data-word-count="{{ $post->words }}">
     <div class="flex gap-2 items-center">
         <h3 class="grow" >
-            {{ $post->name  }}
-            @if (config('app.debug'))
-                <sup class="text-xs">({{ $post->position }})</sup>
-            @endif
+            {{ $post->name }}
         </h3>
-        @if($entityTags->count() > 0)
-            @foreach ($entityTags as $tag)
-                @if (!$tag->entity) @continue @endif
-                <a href="{{ route('tags.show', [$campaign, $tag]) }}" data-toggle="tooltip-ajax"
-                    data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity->id]) }}"
-                    data-tag-slug="{{ $tag->slug }}"
-                >
-                    @include ('tags._badge')
-                </a>
-            @endforeach
-        @endif
         <div class="post-buttons flex items-center gap-2 flex-wrap justify-end">
             @if (auth()->check())
                 @include('icons.visibility', ['icon' => $post->visibilityIcon('')])
@@ -41,6 +27,7 @@ $entityTags = $post->visibleTags;
             @endif
         </div>
     </div>
+    <x-posts.tags :post="$post" :campaign="$campaign"></x-posts.tags>
 
     @if($post->layout?->code == 'inventory')
         @php
@@ -169,4 +156,4 @@ $entityTags = $post->visibleTags;
             </div>
         @endif
     @endif
-</div>
+</article>

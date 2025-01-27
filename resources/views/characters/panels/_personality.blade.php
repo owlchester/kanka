@@ -27,7 +27,7 @@ $traits = $entity->child->personality;
             <div class="entity-content overflow-hidden" id="character-personality-body">
                 <div class="p-4">
                     @foreach ($traits as $trait)
-                        <p class="entity-trait-{{ \Illuminate\Support\Str::slug($trait->name) }}">
+                        <p class="entity-trait-{{ \Illuminate\Support\Str::slug($trait->name) }}" data-word-count="{{ $trait->words }}">
                             <b>{{ $trait->name }}</b><br />
                             {!! nl2br(\App\Facades\Mentions::mapAny($trait, 'entry')) !!}
                         </p>
