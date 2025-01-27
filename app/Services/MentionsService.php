@@ -379,7 +379,7 @@ class MentionsService
                 }
 
                 // Add tags as a class
-                foreach ($entity->tagsWithEntity() as $tag) {
+                foreach ($entity->tags as $tag) {
                     $tagClasses[] = 'id-' . $tag->id;
                     $tagClasses[] = $tag->slug;
                 }
@@ -974,7 +974,7 @@ class MentionsService
         $cssClasses = ['entity-mention'];
 
         $tagClasses = [];
-        foreach ($post->entity->tagsWithEntity() as $tag) {
+        foreach ($post->entity->tags as $tag) {
             $tagClasses[] = 'id-' . $tag->id;
             $tagClasses[] = $tag->slug;
         }
