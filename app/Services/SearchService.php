@@ -103,7 +103,7 @@ class SearchService
 
     /**
      */
-    public function posts(bool $posts = false): self
+    public function posts(bool $posts = true): self
     {
         $this->posts = $posts;
         return $this;
@@ -271,7 +271,7 @@ class SearchService
             }
             $img = '';
             if ($model->hasImage()) {
-                $img = '<span class="entity-image cover-background" style="background-image: url(\''
+                $img = '<span class="entity-image cover-background w-8 h-8" style="background-image: url(\''
                     . Avatar::entity($model)->size(192)->thumbnail() . '\');"></span> ';
             }
 
@@ -307,7 +307,7 @@ class SearchService
 
             //If the result is a map, also add its explore page as a result.
             // @phpstan-ignore-next-line
-            if (! $this->posts && !request()->new && $model->isMap() && $model->child->explorable()) {
+            if (!$this->posts && !$this->new && $model->isMap() && $model->child->explorable()) {
                 $searchResults[] = [
                     'id' => $model->id,
                     'fullname' => $parsedName,
@@ -332,7 +332,7 @@ class SearchService
                     'fullname' => $postName,
                     'image' => null,
                     'name' => $postName,
-                    'type' => __('entities.post') . ' - ' . Str::limit($parsedName, 12),
+                    'type' => '',
                     'model_type' => 'post',
                     'url' => route('entities.show', [$this->campaign, $model, '#post-' . $post->id]),
                     'alias_id' => null,

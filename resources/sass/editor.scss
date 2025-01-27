@@ -107,16 +107,21 @@ img.note-float-left {
         }
     }
 }
+
+.note-editor .note-popover {
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
 .note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-reset:hover, .note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette .note-color-select:hover, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-reset:hover, .note-popover .popover-content .note-color .note-dropdown-menu .note-palette .note-color-select:hover {
   color: hsl(var(--bc)/1);
 }
 .note-hint-popover .popover-content .note-hint-group .note-hint-item.active, .note-hint-popover .popover-content .note-hint-group .note-hint-item:hover {
-  white-space: normal !important;
+    white-space: normal !important;
 }
 .note-hint-popover .popover-content .note-hint-group .note-hint-item.active, .note-hint-popover .popover-content .note-hint-group .note-hint-item:hover {
     --tw-bg-opacity: 1;
-    background-color: hsl(var(--p)/var(--tw-bg-opacity)) !important;
-    color: hsl(var(--pc)) !important
+    background-color: hsl(var(--b2)/var(--tw-bg-opacity)) !important;
+    color: hsl(var(--bc)) !important;
+    line-height: inherit !important;
 }
 .note-placeholder {
     --tw-text-opacity: .5;

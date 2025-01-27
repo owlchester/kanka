@@ -436,7 +436,7 @@ class DatagridRenderer
                 $class = !empty($column['parent']) ? $this->hidden : $class;
                 if (!empty($who)) {
                     $route = $who->getLink();
-                    $content = '<a class="entity-image cover-background" style="background-image: url(\'' . Avatar::size(40)->fallback()->thumbnail() .
+                    $content = '<a class="entity-image cover-background w-10 h-10" style="background-image: url(\'' . Avatar::size(40)->fallback()->thumbnail() .
                         '\');" title="' . e($who->name) . '" href="' . $route . '"></a>';
                 }
             } elseif ($type == 'location') {

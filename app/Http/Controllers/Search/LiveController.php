@@ -24,19 +24,19 @@ class LiveController extends Controller
         if ($exclude === 'undefined') {
             $exclude = null;
         }
-        $new = request()->has('new');
-
+        if (request()->has('new')) {
+            $this->searchService->new(true);
+        }
         if ($request->get('v2') === "true") {
             $this->searchService->v2();
         }
         if ($request->has('posts')) {
-            $this->searchService->posts(true);
+            $this->searchService->posts()->new();
         }
 
         $this->searchService
             ->term($term)
             ->campaign($campaign)
-            ->new($new)
             ->full()
             ->excludeIds($exclude);
 

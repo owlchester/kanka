@@ -22,7 +22,7 @@ class Recovery extends Layout
                     if (empty($child)) {
                         return '';
                     }
-                    return '<div style="background-image: url(' . Avatar::entity($entity)->size(40)->thumbnail() . ');" class="entity-image"></div>';
+                    return '<div style="background-image: url(' . Avatar::entity($entity)->size(40)->thumbnail() . ');" class="entity-image w-10 h-10"></div>';
                 },
             ],
             'name' => [

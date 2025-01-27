@@ -86,7 +86,7 @@ const initField = (field) => {
         },
         hint: [
             {
-                match: /\B@@(\S*)$/,
+                match: /\B::(\S*)$/,
                 search: function (keyword, callback) {
                     if (keyword.length < 3) {
                         return [];

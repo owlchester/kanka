@@ -12,7 +12,7 @@
                 <div class="flex p-4 gap-2 items-center border-b h-20 {{ $element->colourClass() }}">
                     @if ($element->entity && $element->entity->hasImage($campaign->boosted()))
                         <div class="widget-user-image">
-                            <img class="flex-none entity-image rounded-full pull-left" src="{{ Avatar::entity($element->entity)->size(40)->thumbnail() }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
+                            <img class="flex-none entity-image rounded-full pull-left w-10 h-10" src="{{ Avatar::entity($element->entity)->size(40)->thumbnail() }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
                         </div>
                     @endif
 

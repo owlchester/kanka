@@ -91,7 +91,7 @@
                         <div class="flex gap-1 items-center">
                             @if (Avatar::entity($event->entity)->hasImage())
                                 <div class="hidden md:inline grow-0">
-                                    <a href="{{ $event->entity->url() }}" class="entity-image !w-7 !h-7 cover-background" style="background-image: url('{{ Avatar::size(40)->thumbnail() }}');"></a>
+                                    <a href="{{ $event->entity->url() }}" class="entity-image w-7 h-7 cover-background" style="background-image: url('{{ Avatar::size(40)->thumbnail() }}');"></a>
                                 </div>
                             @endif
                             <span data-toggle="tooltip-ajax" data-id="{{ $event->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $event->entity]) }}" class="grow truncate">
