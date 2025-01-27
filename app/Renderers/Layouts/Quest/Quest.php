@@ -42,10 +42,6 @@ class Quest extends Layout
                     return '<i class="fa-solid fa-check-circle" data-title="' . __('quests.fields.is_completed') . '" aria-hidden="true"></i>';
                 },
             ],
-            'location' => [
-                'key' => 'location',
-                'label' => 'quests.fields.location',
-            ],
             'tags' => [
                 'render' => Standard::TAGS
             ]

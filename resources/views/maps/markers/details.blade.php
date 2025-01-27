@@ -84,8 +84,9 @@ if ($hasImage) {
         </div>
     @endif
     @if ($marker->hasEntry())
-        <div class="marker-entry entity-content marker-custom-entry">
+        <div class="marker-entry entity-content marker-custom-entry" data-word-count="{{ $marker->words }}">
             {!! \App\Facades\Mentions::mapAny($marker) !!}
+            <x-word-count :count="$marker->words" />
         </div>
     @endif
     @if ($marker->entity && $marker->entity->hasEntry())

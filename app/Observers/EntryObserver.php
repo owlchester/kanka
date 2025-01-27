@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Facades\Mentions;
 use App\Jobs\EntityMappingJob;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 /**
  *
@@ -30,6 +31,12 @@ class EntryObserver
         $model->{$model->entryFieldName()} = $this->purify(Mentions::codify($model->{$model->entryFieldName()}));
         //        dump('Becomes');
         //        dd($model->{$model->entryFieldName()});
+
+        // Word count
+        if (!Arr::exists($attributes, 'words')) {
+            return;
+        }
+        $model->words = str_word_count(strip_tags($model->{$model->entryFieldName()}));
     }
 
     public function saved(Model $model)

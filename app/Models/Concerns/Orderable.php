@@ -40,7 +40,6 @@ trait Orderable
                 ->orderBy('cd.day', $direction);
         }
 
-
         if (!empty($field)) {
             $segments = explode('.', $field);
             if (count($segments) > 1) {
@@ -50,11 +49,10 @@ trait Orderable
                 $relation = $this->{$relationName}();
                 $foreignName = $relation->getQuery()->getQuery()->from;
                 return $query
-                    ->select($this->getTable() . '.*')
                     ->with($relationName)
                     ->leftJoin(
-                        $foreignName . ' as f',
-                        'f.id',
+                        $foreignName . ' as orderable_j',
+                        'orderable_j.id',
                         $this->getTable() . '.' . $relation->getForeignKeyName()
                     )
                     ->orderBy(str_replace($relationName, 'f', $field), $direction);

@@ -37,7 +37,7 @@ class QuestController extends Controller
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'entity', 'entity.image', 'entity.entityType',
-                'entity.tags', 'entity.tags.entity',
+                'entity.visibleTags',
                 'parent', 'parent.entity',
             ])
             ->has('entity')

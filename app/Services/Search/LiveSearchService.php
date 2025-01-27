@@ -51,6 +51,9 @@ class LiveSearchService
         $list = [];
         /** @var Entity $entity */
         foreach ($entities as $entity) {
+            if (!$this->entityType->isSpecial() && empty($entity->{$this->entityType->code})) {
+                continue;
+            }
             $format = [
                 'id' => $this->entityType->isSpecial() ? $entity->id : $entity->{$this->entityType->code}->id,
                 'entity_id' => $entity->id,

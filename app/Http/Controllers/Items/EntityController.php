@@ -30,7 +30,7 @@ class EntityController extends Controller
         $this->rows = $item
             ->entities()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with(['image', 'entityType', 'tags', 'tags.entity'])
+            ->with(['image', 'entityType', 'visibleTags'])
             ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {

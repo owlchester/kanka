@@ -44,7 +44,7 @@
             'type' => 'is_private',
         ]
     ])
-    ->options(    [
+    ->options([
         'route' => 'items.index',
         'baseRoute' => 'items',
         'trans' => 'items.fields.',

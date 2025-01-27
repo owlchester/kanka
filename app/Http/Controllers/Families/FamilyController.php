@@ -37,7 +37,7 @@ class FamilyController extends Controller
             ->filter($filters)
             ->with([
                 'location', 'location.entity',
-                'entity', 'entity.image', 'entity.entityType', 'entity.tags', 'entity.tags.entity',
+                'entity', 'entity.image', 'entity.entityType', 'entity.visibleTags',
                 'parent', 'parent.entity',
             ])
             ->paginate(config('limits.pagination'));

@@ -10,7 +10,7 @@ $previousRelation = null;
     @if(!empty($previousRelation) && $previousRelation == $member->role)
     <div class="pinned-member flex gap-2" data-character="{{ $member->character_id }}" data-organisation="{{ $member->organisation_id }}" data-role="{{ $member->role }}" data-private="{{ $member->is_private }}">
         <div class="grow text-right">
-            @if ($model instanceof \App\Models\Character && $member->organisation->entity)
+            @if ($entity->isCharacter() && $member->organisation->entity)
                 <x-entity-link
                     :entity="$member->organisation->entity"
                     :campaign="$campaign" />

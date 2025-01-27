@@ -36,7 +36,8 @@ class MemberController extends Controller
             ->with([
                 'location', 'location.entity',
                 'characterRaces',
-                'entity', 'entity.tags', 'entity.image', 'entity.tags.entity', 'entity.entityType',
+                'entity', 'entity.tags', 'entity.image', 'entity.visibleTags',
+                'entity.entityType',
             ])
             ->has('entity')
             ->paginate(config('limits.pagination'));

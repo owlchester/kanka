@@ -51,7 +51,7 @@
     "src": "resources/images/leaflet/icon.png"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-48db57f2.js",
+    "file": "assets/abilities-db9a875a.js",
     "imports": [
       "_vue.esm-bundler-613eae9f.js"
     ],

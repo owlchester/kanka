@@ -2,11 +2,9 @@
 
 {!! $datagrid
     ->columns([
-        // Avatar
         [
             'type' => 'avatar'
         ],
-        // Name
         'name',
         'type',
         [

@@ -159,6 +159,7 @@ return [
         'tooltip'           => 'Tooltip',
         'type'              => 'Type',
         'visibility'        => 'Visibility',
+        'word-count'        => 'Word count: :number',
     ],
     'files'                     => [
         'errors'    => [

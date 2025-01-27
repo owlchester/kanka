@@ -37,7 +37,7 @@ class RaceController extends Controller
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'entity', 'entity.image', 'entity.entityType',
-                'entity.tags', 'entity.tags.entity',
+                'entity.visibleTags',
                 'characters',
                 'parent', 'parent.entity',
             ])

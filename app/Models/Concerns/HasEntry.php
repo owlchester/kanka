@@ -8,6 +8,7 @@ use App\Observers\EntryObserver;
 /**
  *
  * @property ?string $entry
+ * @property ?int $words
  */
 trait HasEntry
 {
