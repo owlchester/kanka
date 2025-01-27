@@ -230,6 +230,8 @@ class RoleController extends Controller
         $term = $request->get('q', null);
         if (empty($term)) {
             $members = $campaign->roles()->where('is_admin', 0)->where('is_public', 0)->orderBy('name', 'asc')->limit(5)->get();
+        } elseif ($request->get('with-admin', null)) {
+            $members = $campaign->roles()->where('is_public', 0)->where('name', 'like', '%' . $term . '%')->limit(5)->get();
         } else {
             $members = $campaign->roles()->where('is_admin', 0)->where('is_public', 0)->where('name', 'like', '%' . $term . '%')->limit(5)->get();
         }

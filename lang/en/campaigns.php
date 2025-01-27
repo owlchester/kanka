@@ -197,8 +197,7 @@ TEXT
         'switch_back_success'   => 'Switched back to your account.',
         'title'                 => 'Members - :name',
         'updates'               => [
-            'added'     => 'Role :role added to :user.',
-            'removed'   => 'Role :role removed from :user.',
+            'roles'     => 'Roles successfully updated for :user',
         ],
     ],
     'mentions' => [

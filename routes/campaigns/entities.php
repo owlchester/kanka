@@ -59,7 +59,7 @@ Route::post('/w/{campaign}/characters/{character}/families/save', 'Characters\Fa
 
 Route::get('/w/{campaign}/dice_rolls/{dice_roll}/roll', 'Crud\DiceRollController@roll')->name('dice_rolls.roll');
 Route::delete('/w/{campaign}/dice_rolls/{dice_roll}/roll/{dice_roll_result}/destroy', 'Crud\DiceRollController@destroyRoll')->name('dice_rolls.destroy_roll');
-Route::get('/w/{campaign}/dice_rolls/results', [\App\Http\Controllers\DiceRolls\ResultsController::class, 'index'])->name('dice_rolls.results');
+Route::get('/w/{campaign}/dice_rolls/results', [App\Http\Controllers\DiceRolls\ResultsController::class, 'index'])->name('dice_rolls.results');
 
 // Locations
 Route::get('/w/{campaign}/locations/{location}/characters', 'Locations\CharacterController@index')->name('locations.characters');

@@ -1,8 +1,7 @@
-<div class="formless">
-    <x-dialog.header>
-        {{ __('campaigns.members.manage_roles') }} - {!! $campaignUser->user->name !!}
-    </x-dialog.header>
-    <article class="max-w-2xl">
-        @include('campaigns.members._form')
-    </article>
-</div>
+<x-form :action="['campaign_users.update-roles', $campaign, $campaignUser]">
+    @include('partials.forms.form', [
+        'title' => __('campaigns.members.manage_roles') . ' - ' . $campaignUser->user->name,
+        'content' => 'campaigns.members._form',
+        'dialog' => true,
+    ])
+</x-form>
