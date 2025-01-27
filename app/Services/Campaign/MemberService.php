@@ -68,12 +68,14 @@ class MemberService
                     'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>',
                 ]);
             }
-            $deletedRoles[] = $role->id;
         }
-        CampaignRoleUser::where('user_id', $user->user_id)
-            ->whereIn('campaign_role_id', $currentRoles)
-            ->whereNotIn('campaign_role_id', $roles)
-            ->delete();
+
+        //Now actually delete the roles
+        foreach ($roleUsers as $role) {
+            $deletedRoles[] = $role->id;
+            $role->delete();
+        }
+
         $rolesToCreate = array_diff_key($roles, $currentRoles);
         foreach ($rolesToCreate as $role) {
             CampaignRoleUser::create([
