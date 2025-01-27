@@ -53,8 +53,8 @@ class CampaignUser extends Layout
                     $html = (string)implode(', ', $roleLinks);
 
                     if (auth()->user()->can('update', $model)) {
-                        $html .= ' <i href="' . route('campaign.members.roles', [$campaign, $model->id]) . '" class="fa-solid fa-plus-circle cursor-pointer"
-                            data-toggle="dialog-ajax" data-target="new-invite" data-url="' . route('campaign.members.roles', [$campaign, $model->id]) . '">
+                        $html .= ' <i href="' . route('campaign.members.roles', [$campaign, $model->id]) . '" class="fa-regular fa-pencil cursor-pointer"
+                            data-toggle="dialog-ajax" data-target="new-invite" data-url="' . route('campaign.members.roles', [$campaign, $model->id]) . '" data-tooltip data-title="' . __('campaigns/members.roles.title') . '" aria-label="' . __('campaigns/members.roles.title') . '">
                         </i>';
                     }
                     return $html;

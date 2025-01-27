@@ -13,17 +13,14 @@ use App\Services\Campaign\MemberService;
 
 class MemberController extends Controller
 {
-    protected MemberService $service;
-
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(MemberService $memberService)
+    public function __construct()
     {
         $this->middleware('auth');
-        $this->service = $memberService;
     }
 
     /**
@@ -60,30 +57,6 @@ class MemberController extends Controller
         }
         return redirect()
             ->route('dashboard', $campaign);
-    }
-
-    /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function updateRoles(UpdateUserRoles $request, Campaign $campaign, CampaignUser $campaignUser)
-    {
-        $this->authorize('update', $campaignUser);
-        if (request()->ajax()) {
-            return response()->json();
-        }
-        try {
-            $added = $this->service->campaign($campaign)->update($campaignUser, $request->get('roles', []));
-        } catch (TranslatableException $e) {
-            return redirect()
-                ->route('campaign_users.index', $campaign)
-                ->with('error_raw', $e->getTranslatedMessage());
-        }
-
-        return redirect()
-            ->route('campaign_users.index', $campaign)
-            ->with('success', __('campaigns.members.updates.roles', [
-                'user' => $campaignUser->user->name,
-            ]));
     }
 
     public function delete(Campaign $campaign, CampaignUser $campaignUser)

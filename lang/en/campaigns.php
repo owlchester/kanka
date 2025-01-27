@@ -185,7 +185,6 @@ TEXT
             'more'          => 'More roles can be created on the :link page.',
             'title'         => 'Invites',
         ],
-        'manage_roles'          => 'Member roles',
         'removal'               => 'You are removing ":member" from the campaign.',
         'roles'                 => [
             'member'    => 'Member',
@@ -195,10 +194,6 @@ TEXT
             'viewer'    => 'Viewer',
         ],
         'switch_back_success'   => 'Switched back to your account.',
-        'title'                 => 'Members - :name',
-        'updates'               => [
-            'roles'     => 'Roles successfully updated for :user',
-        ],
     ],
     'mentions' => [
         'visible' => 'Show entity name',

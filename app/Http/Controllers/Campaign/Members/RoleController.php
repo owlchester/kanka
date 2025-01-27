@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Campaign\Members;
 
+use App\Exceptions\TranslatableException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUserRoles;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
+use App\Services\Campaign\MemberService;
 
 class RoleController extends Controller
 {
@@ -13,7 +16,9 @@ class RoleController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        protected MemberService $memberService
+    )
     {
         $this->middleware('auth');
     }
@@ -32,5 +37,31 @@ class RoleController extends Controller
             'roles' => $roles,
             'campaignUser' => $campaignUser,
         ]);
+    }
+
+    /**
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function save(UpdateUserRoles $request, Campaign $campaign, CampaignUser $campaignUser)
+    {
+        $this->authorize('update', $campaignUser);
+        if (request()->ajax()) {
+            return response()->json();
+        }
+        try {
+            $this->memberService
+                ->campaign($campaign)
+                ->update($campaignUser, $request->get('roles', []));
+        } catch (TranslatableException $e) {
+            return redirect()
+                ->route('campaign_users.index', $campaign)
+                ->with('error_raw', $e->getTranslatedMessage());
+        }
+
+        return redirect()
+            ->route('campaign_users.index', $campaign)
+            ->with('success', __('campaigns/members.roles.success', [
+                'user' => $campaignUser->user->name,
+            ]));
     }
 }

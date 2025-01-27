@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @package App\Models\Concerns
  *
  * @property Tag[]|Collection $tags
+ * @property Tag[]|Collection $visibleTags
  */
 trait Taggable
 {
