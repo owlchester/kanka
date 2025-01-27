@@ -10,6 +10,7 @@ use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\EntityType;
 use App\Models\MiscModel;
+use App\Models\Post;
 use App\Models\Quest;
 use App\Services\Entity\NewService;
 use App\Services\TOC\TocSlugify;
@@ -32,6 +33,9 @@ class MentionsService
 
     /** @var array|Entity[] List of entities */
     protected array $entities = [];
+
+    /** @var array|Post[] List of posts */
+    protected array $posts = [];
 
     /** @var array|Entity[] List of private entities */
     protected array $privateEntities = [];
@@ -61,7 +65,7 @@ class MentionsService
     protected bool $createdNewEntities = false;
 
     /** @var string Class used to inject and strip advanced mention name helpers */
-    public const ADVANCED_MENTION_CLASS = 'advanced-mention-name';
+    public const string ADVANCED_MENTION_CLASS = 'advanced-mention-name';
 
     /** @var bool When false, parsing field:entry won't render mentions */
     protected bool $enableEntryField = true;
@@ -232,7 +236,6 @@ class MentionsService
             $text
         );
 
-        //dd($text);
         return $text;
     }
 
@@ -279,10 +282,13 @@ class MentionsService
             // Icons
             $fontAwesomes = ['fa ', 'fas ', 'far ', 'fab ', 'ra ', 'fa-solid ', 'fa-regular ', 'fa-brands '];
             if ($matches[1] == 'icon' && Str::startsWith($matches[2], $fontAwesomes)) {
-                return '<i class="' . e($matches[2]) . '"></i>';
+                return '<i class="' . e($matches[2]) . '" aria-hidden="true"></i>';
             }
 
             $data = $this->extractData($matches);
+            if (Arr::get($data, 'type') === 'post') {
+                return $this->mentionPost($data);
+            }
 
             $entity = $this->entity($data['id']);
             $tagClasses = [];
@@ -373,7 +379,7 @@ class MentionsService
                 }
 
                 // Add tags as a class
-                foreach ($entity->tags as $tag) {
+                foreach ($entity->tagsWithEntity() as $tag) {
                     $tagClasses[] = 'id-' . $tag->id;
                     $tagClasses[] = $tag->slug;
                 }
@@ -504,8 +510,11 @@ class MentionsService
         $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i', function ($matches) {
             $data = $this->extractData($matches);
 
-            $hasCustom = Arr::has($data, 'custom');
+            if ($data['type'] === 'post') {
+                return $this->parsePostForEdit($matches[0], $data);
+            }
 
+            $hasCustom = Arr::has($data, 'custom');
             // If the user always wants advanced mentions, we force the [] syntax upon them
             if ($hasCustom || auth()->user()->alwaysAdvancedMentions()) {
                 // Still need to show the target's name in the advanced mention
@@ -586,6 +595,29 @@ class MentionsService
         return $this;
     }
 
+    protected function parsePostForEdit(string $mention, array $data): string
+    {
+        $post = $this->post($data['id']);
+
+        $hasCustom = Arr::has($data, 'custom');
+        if ($hasCustom || auth()->user()->alwaysAdvancedMentions()) {
+            $advancedName = $this->advancedMentionHelper($post->name);
+            return Str::replaceLast(']', $advancedName . ']', $mention);
+        }
+
+        // No entity found, the user might not be allowed to see it
+        if (empty($post) || $post->entity->isMissingChild()) {
+            $name = __('crud.history.unknown');
+            $dataName = $name;
+        } else {
+            $name = $post->name;
+            $dataName = Str::replace('"', '&quot;', $post->name);
+        }
+
+        return '<a href="#" class="post-mention" data-name="' . $dataName . '" data-mention="' . $mention
+            . '">' . $name . '</a>';
+    }
+
     /**
      */
     protected function entity(int $id): Entity|null
@@ -595,6 +627,17 @@ class MentionsService
         }
 
         return Arr::get($this->entities, $id);
+    }
+
+    protected function post(int $id): Post|null
+    {
+        if (!Arr::has($this->posts, (string) $id)) {
+            $this->posts[$id] = Post::with(['entity', 'entity.tags', 'entity.entityType'])
+                ->has('entity')
+                ->find($id);
+        }
+
+        return Arr::get($this->posts, $id);
     }
 
     /**
@@ -885,7 +928,7 @@ class MentionsService
     protected function linkAttributes(string $html): array
     {
         // Don't waste time on the expensive DOMDocument call if there is no mention
-        if (!Str::contains($html, ['"mention"', '"attribute attribute-mention"'])) {
+        if (!Str::contains($html, ['"mention"', '"post-mention"', '"attribute attribute-mention"'])) {
             return [];
         }
         $attributes = [];
@@ -908,5 +951,75 @@ class MentionsService
         }
 
         return $attributes;
+    }
+
+    protected function mentionPost(array $data): string
+    {
+        $post = $this->post($data['id']);
+        $isTranscluding = Arr::get($data, 'text') === 'transclude';
+        if (!$post) {
+            if ($this->onlyName || $isTranscluding) {
+                return __('crud.history.unknown');
+            }
+            return Arr::get(
+                $data,
+                'text',
+                '<i class="unknown-mention unknown-entity">' . __('crud.history.unknown') . '</i>'
+            );
+        }
+
+        $url = route('entities.show', [$this->campaign, $post->entity, '#post-' . $post->id]);
+        $tooltipUrl = route('entities.tooltip', [$this->campaign, $post->entity]);
+
+        $cssClasses = ['entity-mention'];
+
+        $tagClasses = [];
+        foreach ($post->entity->tagsWithEntity() as $tag) {
+            $tagClasses[] = 'id-' . $tag->id;
+            $tagClasses[] = $tag->slug;
+        }
+
+        if ($isTranscluding) {
+            if ($this->enableEntryField) {
+                $this->lockEntryRendering();
+                $parsedTargetEntry = $post->parsedEntry();
+                $this->unlockEntryRendering();
+            } else {
+                $parsedTargetEntry = $post->entry;
+            }
+            $cssClasses[] = 'mention-field-post block';
+            $entityName = '<a href="' . $url . '"'
+                . ' class="entity-mention-name block mb-2"'
+                . ' data-toggle="tooltip-ajax"'
+                . ' data-id="' . $post->entity->id . '"'
+                . ' data-url="' . $tooltipUrl . '"'
+                . '>'
+                . $post->name
+                . '</a>';
+            return '<span class="' . implode(' ', $cssClasses) . '"'
+                . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
+                . '>'
+                . $entityName
+                . '<div class="mention-post-content">'
+                . $parsedTargetEntry
+                . '</div>'
+                . '</span>';
+        }
+
+        if ($this->onlyName) {
+            return Arr::get($data, 'text', $post->name);
+        }
+        return '<a href="' . $url . '"'
+            . ' class="' . implode(' ', $cssClasses) . '"'
+            . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
+            . ' data-entity-type="' . $post->entity->entityType->code . '"'
+            . ' data-toggle="tooltip-ajax"'
+            . ' data-id="' . $post->entity->id . '"'
+            . ' data-url="' . $tooltipUrl . '"'
+//                    . ' data-mention-url="' . route('entities.tooltip', $entity). '"'
+//                    . ' title="<i class=\'fa fa-spinner fa-spin\'></i>"'
+            . '>'
+            . Arr::get($data, 'text', $post->name)
+            . '</a>';
     }
 }

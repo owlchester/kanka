@@ -39,6 +39,8 @@ class EntityMappingService
      */
     public bool $verbose = false;
 
+    protected array $existingTargets = [];
+
     /**
      * Set errors and verbose to silent
      */
@@ -126,15 +128,15 @@ class EntityMappingService
         } elseif ($this->model instanceof Post) {
             $images = $this->extractImages($this->post()->entry);
         }
-        $existingTargets = [];
+        $this->existingTargets = [];
         if ($this->model instanceof Entity) {
             /** @var ImageMention $map */
             foreach ($this->model->imageMentions()->whereNull('post_id')->get() as $map) {
-                $existingTargets[$map->image_id] = $map;
+                $this->existingTargets[$map->image_id] = $map;
             }
         } else {
             foreach ($this->model->imageMentions as $map) {
-                $existingTargets[$map->image_id] = $map;
+                $this->existingTargets[$map->image_id] = $map;
             }
         }
 
@@ -157,13 +159,13 @@ class EntityMappingService
                 continue;
             }
             // Don't map the same image multiple times
-            if (!empty($existingTargets[$target->id])) {
-                if ($this->model instanceof Post && $existingTargets[$target->id]->post_id == $this->model->id) {
-                    unset($existingTargets[$target->id]);
+            if (!empty($this->existingTargets[$target->id])) {
+                if ($this->model instanceof Post && $this->existingTargets[$target->id]->post_id == $this->model->id) {
+                    unset($this->existingTargets[$target->id]);
                     $this->updatedImages++;
                     continue;
-                } elseif ($this->model instanceof Entity && !$existingTargets[$target->id]->post_id) {
-                    unset($existingTargets[$target->id]);
+                } elseif ($this->model instanceof Entity && !$this->existingTargets[$target->id]->post_id) {
+                    unset($this->existingTargets[$target->id]);
                     $this->updatedImages++;
                     continue;
                 }
@@ -172,7 +174,7 @@ class EntityMappingService
         }
 
         // Existing mappings that are no longer needed
-        foreach ($existingTargets as $targetId => $map) {
+        foreach ($this->existingTargets as $targetId => $map) {
             $map->delete();
             $this->deletedImages++;
         }
@@ -182,20 +184,14 @@ class EntityMappingService
 
     protected function entry(): self
     {
-        $existingTargets = [];
+        $this->existingTargets = [];
         // @phpstan-ignore-next-line
         foreach ($this->model->mentions as $map) {
-            $existingTargets[$map->target_id] = $map;
+            $this->existingTargets[$map->target_id] = $map;
         }
-        $createdMappings = 0;
-        $existingMappings = 0;
 
-        if ($this->model instanceof Entity) {
-            $mentions = $this->extract($this->model->entry);
-        } else {
-            // @phpstan-ignore-next-line
-            $mentions = $this->extract($this->model->{$this->model->entryFieldName()});
-        }
+        // @phpstan-ignore-next-line
+        $mentions = $this->extract($this->model->{$this->model->entryFieldName()});
 
         foreach ($mentions as $data) {
             $type = $data['type'];
@@ -213,43 +209,52 @@ class EntityMappingService
             if ($singularType == 'campaign') {
                 continue;
             }
+            $target = null;
+
             $entityType = $this->getEntityTypeID($singularType);
-            if (!$entityType) {
+            if (!$entityType && $singularType !== 'post') {
                 continue;
             }
 
-            // Determine the real campaign id from the model.
-            $campaignId = $this->campaignID();
-
-            /** @var ?Entity $target */
-            $target = Entity::where([
-                'type_id' => $entityType,
-                'id' => $id,
-                'campaign_id' => $campaignId
-            ])->first();
+            /** @var Entity|Post|null $target */
+            $target = $this->getTarget($id, $entityType);
             if (!$target) {
                 continue;
             }
             // Do we already have this mention mapped?
-            if (!empty($existingTargets[$target->id])) {
+            if (!empty($this->existingTargets[$target->id])) {
                 //$this->log("- already have mapping");
-                unset($existingTargets[$target->id]);
-                $existingMappings++;
+                unset($this->existingTargets[$target->id]);
                 continue;
             }
 
             $this->createNewMention($target->id);
-            $createdMappings++;
         }
 
         // Existing mappings that are no longer needed
-        $deletedMappings = 0;
-        foreach ($existingTargets as $targetId => $map) {
+        foreach ($this->existingTargets as $targetId => $map) {
             $map->delete();
-            $deletedMappings++;
         }
 
         return $this;
+    }
+
+    protected function getTarget(int $id, ?int $entityType): Entity|null
+    {
+        if (!isset($entityType)) {
+            $post = Post::with('entity')->where([
+                'id' => $id,
+            ])->first();
+            if ($post && $post->entity && $post->entity->campaign_id === $this->campaignID()) {
+                return $post->entity;
+            }
+            return null;
+        }
+        return Entity::where([
+            'type_id' => $entityType,
+            'id' => $id,
+            'campaign_id' => $this->campaignID()
+        ])->first();
     }
 
     protected function campaignID(): int
