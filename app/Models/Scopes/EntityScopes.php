@@ -171,7 +171,7 @@ trait EntityScopes
         foreach ($filters as $name => $values) {
             if (!is_array($values) && $values === null) {
                 continue;
-            } elseif (in_array($name, ['name', 'type', 'is_private'])) {
+            } elseif (in_array($name, ['name', 'type', 'is_private', 'parent_id'])) {
                 $query->where($name, $values);
                 continue;
             } elseif (in_array($name, ['has_image', 'template'])) {

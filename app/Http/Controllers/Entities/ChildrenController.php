@@ -26,7 +26,7 @@ class ChildrenController extends Controller
         $options = ['campaign' => $campaign, 'entity' => $entity, 'm' => $this->descendantsMode()];
         $filters = [];
         if ($this->filterToDirect()) {
-            $filters['parent'] = $entity->id;
+            $filters['parent_id'] = $entity->id;
         }
 
         /** @var Children $layout */

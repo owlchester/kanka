@@ -67,7 +67,8 @@ trait HasFilters
             'attribute_value',
             'connections',
             'connection_target',
-            'connection_name'
+            'connection_name',
+            'parent_id',
         ];
     }
 
