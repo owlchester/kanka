@@ -17,10 +17,6 @@
         <input id="{{ $fieldID }}" type="text" name="age" value="{{ old('age', FormCopy::field('age')->child()->string() ?: $model->age ?? null) }}" maxlength="25" class="w-full"  autocomplete="off" placeholder="{{ __('characters.placeholders.age') }}" />
     </x-forms.field>
 
-    @include('cruds.fields.sex')
-
-    @include('cruds.fields.pronouns')
-
     @php
         $fieldID = uniqid('dead_');
     @endphp
@@ -33,6 +29,10 @@
             <input id="{{ $fieldID }}" type="checkbox" name="is_dead" value="1" @if (old('is_dead', FormCopy::field('is_dead')->child() ?? $model->is_dead ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
+
+    @include('cruds.fields.sex')
+
+    @include('cruds.fields.pronouns')
 
     @include('cruds.fields.tags')
 

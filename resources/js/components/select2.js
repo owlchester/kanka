@@ -37,7 +37,7 @@ window.initForeignSelect = function () {
         }
 
         // Check it isn't the select2-icon
-        //console.log('select2', field, field.dataset.allowNew === 'true');
+        console.log('select2', field.name, field.dataset.allowNew === 'true');
         $(field).select2({
             tags: field.dataset.allowNew === 'true',
             placeholder: placeholder,
@@ -77,6 +77,9 @@ window.initForeignSelect = function () {
                 return markup; // Disable escaping for HTML markup
             },
             createTag: function (data) {
+                if (field.dataset.allowNew !== 'true') {
+                    return null;
+                }
                 let term = data.term?.trim();
 
                 if (term === '') {
