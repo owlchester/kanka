@@ -6,6 +6,7 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
+use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Privatable;
@@ -54,6 +55,7 @@ class Bookmark extends Model
     use HasCampaign;
     use HasFactory;
     use HasFilters;
+    use HasSuggestions;
     use LastSync;
     use Orderable;
     use Privatable;
@@ -119,6 +121,10 @@ class Bookmark extends Model
 
     protected array $apiWith = [
         'target',
+    ];
+
+    protected array $suggestions = [
+        BookmarkCache::class => 'clearSuggestion',
     ];
 
     /**

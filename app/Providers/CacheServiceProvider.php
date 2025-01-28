@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Facades\CampaignLocalization;
 use App\Services\Caches\AdCacheService;
+use App\Services\Caches\BookmarkCacheService;
 use App\Services\Caches\CampaignCacheService;
 use App\Services\Caches\CharacterCacheService;
+use App\Services\Caches\EntityAssetCacheService;
 use App\Services\Caches\MarketplaceCacheService;
 use App\Services\Caches\QuestCacheService;
 use App\Services\Caches\MapMarkerCacheService;
@@ -75,6 +77,20 @@ class CacheServiceProvider extends ServiceProvider
             }
             return $service;
         });
+        $this->app->singleton(EntityAssetCacheService::class, function () {
+            $service = new EntityAssetCacheService();
+            if (CampaignLocalization::hasCampaign()) {
+                $service->campaign(CampaignLocalization::getCampaign());
+            }
+            return $service;
+        });
+        $this->app->singleton(BookmarkCacheService::class, function () {
+            $service = new BookmarkCacheService();
+            if (CampaignLocalization::hasCampaign()) {
+                $service->campaign(CampaignLocalization::getCampaign());
+            }
+            return $service;
+        });
         $this->app->singleton(TimelineElementCacheService::class, function () {
             $service = new TimelineElementCacheService();
             if (CampaignLocalization::hasCampaign()) {
@@ -96,6 +112,8 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->alias(FrontCacheService::class, 'frontcache');
         $this->app->alias(AdCacheService::class, 'adcache');
         $this->app->alias(MapMarkerCacheService::class, 'mapmarkercache');
+        $this->app->alias(EntityAssetCacheService::class, 'entityassetcache');
+        $this->app->alias(BookmarkCacheService::class, 'bookmarkcache');
         $this->app->alias(TimelineElementCacheService::class, 'timelineelementcache');
         $this->app->alias(MarketplaceCacheService::class, 'marketplacecache');
     }

@@ -30,7 +30,7 @@ $premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campa
             <input type="text" name="icon" value="{{ old('text', $source->icon ?? $model->icon ?? null) }}" placeholder="fa-solid fa-users" list="link-icon-list" data-paste="fontawesome" maxlength="45" />
             <div class="hidden">
                 <datalist id="link-icon-list">
-                    @foreach (\App\Facades\MapMarkerCache::iconSuggestion() as $icon)
+                    @foreach (\App\Facades\BookmarkCache::iconSuggestion() as $icon)
                         <option value="{{ $icon }}">{{ $icon }}</option>
                     @endforeach
                 </datalist>
