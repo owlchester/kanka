@@ -309,10 +309,10 @@ class ImportService
             $newModule->plural = $module['plural'];
             $newModule->icon = $module['icon'];
             $newModule->save();
-    
+
             ImportIdMapper::putCustomEntityType($module['id'], $newModule->id);
         }
-        
+
         return $this;
     }
 
