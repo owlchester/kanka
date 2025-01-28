@@ -3,8 +3,10 @@
 namespace App\Services\Campaign\Import;
 
 use App\Enums\CampaignImportStatus;
+use App\Facades\BookmarkCache;
 use App\Facades\CampaignCache;
 use App\Facades\CharacterCache;
+use App\Facades\EntityAssetCache;
 use App\Facades\EntityCache;
 use App\Facades\MapMarkerCache;
 use App\Facades\QuestCache;
@@ -284,6 +286,8 @@ class ImportService
         TimelineElementCache::campaign($this->campaign);
         QuestCache::campaign($this->campaign);
         MapMarkerCache::campaign($this->campaign);
+        EntityAssetCache::campaign($this->campaign);
+        BookmarkCache::campaign($this->campaign);
 
         return $this;
     }

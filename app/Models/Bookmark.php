@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\BookmarkCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
 use App\Models\Concerns\HasCampaign;

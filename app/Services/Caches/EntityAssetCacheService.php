@@ -21,23 +21,17 @@ class EntityAssetCacheService extends BaseCache
         }
 
         $default = [
-            'ra ra-tower',
-            'fa-solid fa-home',
-            'ra ra-capitol',
-            'ra ra-skull',
-            'fa-solid fa-coins',
-            'ra ra-beer',
-            'fa-solid fa-map-marker-alt',
-            'fa-solid fa-thumbtack',
-            'ra ra-wooden-sign',
-            'fa-solid fa-map-pin'
+            'fa-brands fa-d-and-d-beyond',
+            'ra ra-aura',
         ];
 
+        $data = [];
+        
         $settings = EntityAsset::leftJoin('entities as e', 'e.id', 'entity_assets.entity_id')
             ->where('e.campaign_id', $this->campaign->id)
             ->select(DB::raw('metadata, MAX(entity_assets.created_at) as cmat'))
             ->groupBy('metadata')
-            ->whereNotNull('metadata')
+            ->whereNotNull('metadata->icon')
             ->where('entity_assets.type_id', EntityAsset::TYPE_LINK)
             ->orderBy('cmat', 'DESC')
             ->take(10)

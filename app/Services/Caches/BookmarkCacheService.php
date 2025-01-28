@@ -20,20 +20,6 @@ class BookmarkCacheService extends BaseCache
             return Cache::get($key);
         }
 
-        $default = [
-            'ra ra-tower',
-            'fa-solid fa-home',
-            'ra ra-capitol',
-            'ra ra-skull',
-            'fa-solid fa-coins',
-            'ra ra-beer',
-            'fa-solid fa-map-marker-alt',
-            'fa-solid fa-thumbtack',
-            'ra ra-wooden-sign',
-            'fa-solid fa-map-pin'
-        ];
-
-
         $data = Bookmark::where('campaign_id', $this->campaign->id)
             ->whereNotNull('icon')
             ->select(DB::raw('icon, MAX(created_at) as cmat'))
@@ -42,13 +28,6 @@ class BookmarkCacheService extends BaseCache
             ->take(10)
             ->pluck('icon')
             ->all();
-
-
-        foreach ($default as $value) {
-            if (!in_array($value, $data)) {
-                $data[] = $value;
-            }
-        }
 
         $data = array_slice($data, 0, 10);
 
