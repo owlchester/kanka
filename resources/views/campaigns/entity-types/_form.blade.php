@@ -26,14 +26,7 @@
         'example' => '<code>fa-solid fa-flask-round-potion</code>',
         ])"
     >
-        <input type="text" name="icon" value="{{ old('icon', $entityType->icon ?? '') }}" maxlength="40" placeholder="fa-solid fa-car" class="w-full" list="module-icon-list" autocomplete="off" data-paste="fontawesome" />
-        <div class="hidden">
-            <datalist id="module-icon-list">
-                @foreach (\App\Facades\MapMarkerCache::iconSuggestion() as $icon)
-                    <option value="{{ $icon }}">{{ $icon }}</option>
-                @endforeach
-            </datalist>
-        </div>
+        <input type="text" name="icon" value="{{ old('icon', $entityType->icon ?? '') }}" maxlength="40" placeholder="fa-solid fa-car" class="w-full" autocomplete="off" data-paste="fontawesome" />
     </x-forms.field>
 
     @if (!isset($entityType))
