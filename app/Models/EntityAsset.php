@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Facades\EntityAssetCache;
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
+use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Scopes\EntityAssetScopes;
@@ -37,6 +39,7 @@ class EntityAsset extends Model
     use Blameable;
     use EntityAssetScopes;
     use HasFactory;
+    use HasSuggestions;
     use HasVisibility;
     use Pinnable;
     use Sanitizable;
@@ -64,6 +67,10 @@ class EntityAsset extends Model
         'name',
         'metadata.icon',
         'metadata.url',
+    ];
+
+    protected array $suggestions = [
+        EntityAssetCache::class => 'clearSuggestion',
     ];
 
     public function entity(): BelongsTo

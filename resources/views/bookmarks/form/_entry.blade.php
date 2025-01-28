@@ -27,11 +27,18 @@ $premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campa
 
     <x-forms.field field="icon" :label="__('entities/links.fields.icon')">
         @if($campaign->boosted())
-            <input type="text" name="icon" value="{{ old('text', $source->icon ?? $model->icon ?? null) }}" placeholder="fa-solid fa-users" data-paste="fontawesome" maxlength="45" />
+            <input type="text" name="icon" value="{{ old('text', $source->icon ?? $model->icon ?? null) }}" placeholder="fa-solid fa-users" list="link-icon-list" data-paste="fontawesome" maxlength="45" />
+            <div class="hidden">
+                <datalist id="link-icon-list">
+                    @foreach (\App\Facades\BookmarkCache::iconSuggestion() as $icon)
+                        <option value="{{ $icon }}">{{ $icon }}</option>
+                    @endforeach
+                </datalist>
+            </div>
             <x-helper>
                 {!! __('entities/links.helpers.icon', [
                     'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">FontAwesome</a>',
-                    'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPGAwesom</a>',
+                    'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPGAwesome</a>',
                     'docs' => '<a href="https://docs.kanka.io/en/latest/articles/available-icons.html" target="_blank">' . __('footer.documentation',) . '</a>',
                 ]) !!}
             </x-helper>

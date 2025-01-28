@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Exceptions\TranslatableException;
 use App\Facades\Identity;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateUserRoles;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
 use App\Models\Entity;
-use App\Services\Campaign\MemberService;
 
 class MemberController extends Controller
 {
