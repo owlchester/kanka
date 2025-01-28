@@ -282,13 +282,14 @@ class MapMarker extends Model
     protected function labelMarker(): string
     {
         return 'L.marker([' . $this->latitude . ', ' . $this->longitude . '], {
-                opacity: 0,
+                opacity: 0.1,
                 icon: labelShapeIcon,'
             . ($this->editing ? null : null) . '
             }).bindTooltip(`' . str_replace('`', '\'', $this->markerTitle()) . '`, {
                 direction: \'center\',
                 permanent: true,
-                offset: [0,0]
+                offset: [0,0],
+                opacity: ' . $this->floatOpacity() . ',
             })' . $this->popup();
     }
 
