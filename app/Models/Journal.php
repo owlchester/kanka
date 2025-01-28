@@ -114,18 +114,18 @@ class Journal extends MiscModel
     public function scopePreparedWith(Builder $query): Builder
     {
         return parent::scopePreparedWith($query->with([
-            //            'entity.calendarDate',
-            //            'entity.calendarDate.calendar',
-            //            'entity.calendarDate.calendar.entity',
-            //            'location' => function ($sub) {
-            //                $sub->select('id', 'name');
-            //            },
-            //            'author' => function ($sub) {
-            //                $sub->select('id', 'name');
-            //            },
-            //            'location.entity' => function ($sub) {
-            //                $sub->select('id', 'name', 'entity_id', 'type_id');
-            //            },
+            'entity.calendarDate',
+            'entity.calendarDate.calendar',
+            'entity.calendarDate.calendar.entity',
+            'location' => function ($sub) {
+                $sub->select('id', 'name');
+            },
+            'location.entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id');
+            },
+            'author' => function ($sub) {
+                $sub->select('id', 'name');
+            },
         ]));
     }
 
