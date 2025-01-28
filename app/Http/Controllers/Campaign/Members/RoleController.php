@@ -18,8 +18,7 @@ class RoleController extends Controller
      */
     public function __construct(
         protected MemberService $memberService
-    )
-    {
+    ) {
         $this->middleware('auth');
     }
 
