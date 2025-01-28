@@ -36,6 +36,7 @@ class EntryObserver
         if (!Arr::exists($attributes, 'words')) {
             return;
         }
+        //@phpstan-ignore-next-line
         $model->words = str_word_count(strip_tags($model->{$model->entryFieldName()}));
     }
 
