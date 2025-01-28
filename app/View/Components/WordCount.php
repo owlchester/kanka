@@ -4,7 +4,6 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\Component;
 
 class WordCount extends Component
@@ -14,9 +13,8 @@ class WordCount extends Component
      */
     public function __construct(
         public ?int $count
-    )
-    {
-        //
+    ) {
+
     }
 
     /**
