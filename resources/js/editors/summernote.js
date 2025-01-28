@@ -94,7 +94,7 @@ const initField = (field) => {
                     return hintPosts(keyword, callback);
                 },
                 template: function (item) {
-                    return hintTemplate(item);
+                    return hintPostTemplate(item);
                 },
                 content: function (item) {
                     advancedRequest = false;
@@ -299,6 +299,15 @@ function hintTemplate(item) {
         return div;
     }
     return item.fullname + type;
+}
+
+
+function hintPostTemplate(item) {
+    if (item.type) {
+        return hintTemplate(item);
+    }
+
+    return '<div class="post flex items-center gap-1"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i>' + item.fullname + '</div>';
 }
 
 /**

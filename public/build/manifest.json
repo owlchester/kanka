@@ -158,7 +158,7 @@
     "src": "resources/js/dashboard.js"
   },
   "resources/js/editors/summernote.js": {
-    "file": "assets/summernote-ba87ceaa.js",
+    "file": "assets/summernote-72e413eb.js",
     "isEntry": true,
     "src": "resources/js/editors/summernote.js"
   },
