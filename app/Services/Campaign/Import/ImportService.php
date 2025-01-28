@@ -308,6 +308,7 @@ class ImportService
             $newModule->singular = $module['singular'];
             $newModule->plural = $module['plural'];
             $newModule->icon = $module['icon'];
+            $newModule->icon = $module['code'];
             $newModule->save();
 
             ImportIdMapper::putCustomEntityType($module['id'], $newModule->id);

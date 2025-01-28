@@ -41,7 +41,6 @@ class EntityType extends Model
 
     public $fillable = [
         'id',
-        'campaign_id',
         'code',
         'position',
         'is_enabled',
