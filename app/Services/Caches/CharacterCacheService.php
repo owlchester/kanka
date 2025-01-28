@@ -28,27 +28,6 @@ class CharacterCacheService extends BaseCache
             ->pluck('sex')
             ->all();
 
-        Cache::put($key, $data, 24 * 3600);
-        return $data;
-    }
-
-    /**
-     */
-    public function pronounSuggestion(): array
-    {
-        $key = $this->pronounSuggestionKey();
-        if (Cache::has($key)) {
-            return Cache::get($key);
-        }
-
-        $data = Character::select(DB::raw('pronouns, MAX(created_at) as cmat'))
-            ->groupBy('pronouns')
-            ->whereNotNull('pronouns')
-            ->orderBy('cmat', 'DESC')
-            ->take(10)
-            ->pluck('pronouns')
-            ->all();
-
 
         Cache::put($key, $data, 24 * 3600);
         return $data;
@@ -63,11 +42,9 @@ class CharacterCacheService extends BaseCache
             $this->genderSuggestionKey()
         );
 
-        $this->forget(
-            $this->pronounSuggestionKey()
-        );
         return $this;
     }
+
 
     /**
      * Type suggestion cache key
@@ -75,13 +52,5 @@ class CharacterCacheService extends BaseCache
     protected function genderSuggestionKey(): string
     {
         return 'campaign_' . $this->campaign->id . '_character_gender_suggestions';
-    }
-
-    /**
-     * Type suggestion cache key
-     */
-    protected function pronounSuggestionKey(): string
-    {
-        return 'campaign_' . $this->campaign->id . '_character_pronoun_suggestions';
     }
 }
