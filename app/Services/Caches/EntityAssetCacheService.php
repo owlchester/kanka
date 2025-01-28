@@ -26,7 +26,7 @@ class EntityAssetCacheService extends BaseCache
         ];
 
         $data = [];
-        
+
         $settings = EntityAsset::leftJoin('entities as e', 'e.id', 'entity_assets.entity_id')
             ->where('e.campaign_id', $this->campaign->id)
             ->select(DB::raw('metadata, MAX(entity_assets.created_at) as cmat'))
