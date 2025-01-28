@@ -38,7 +38,7 @@ class CharacterCacheService extends BaseCache
     {
         $key = $this->pronounSuggestionKey();
         if (Cache::has($key)) {
-            //return Cache::get($key);
+            return Cache::get($key);
         }
 
         $data = Character::select(DB::raw('pronouns, MAX(created_at) as cmat'))
@@ -48,8 +48,6 @@ class CharacterCacheService extends BaseCache
             ->take(10)
             ->pluck('pronouns')
             ->all();
-            $data[] = 'ass';
-
 
         Cache::put($key, $data, 24 * 3600);
         return $data;
