@@ -51,7 +51,6 @@ return [
             | http://htmlpurifier.org/live/configdoc/plain.html#HTML.Allowed
             |
             */
-
             'HTML.Allowed' => ''
                 /** Titles */
                 . 'h1[class|style|id|title],'
@@ -64,7 +63,7 @@ return [
                 . 'div[class|style|id|align|role|title],'
                 . 'p[class|style|id|dir|align],'
                 . 'span[class|style|id|dir],'
-                . 'a[href|class|style|target|rel|title|data-toggle|data-html|id|role|data-dropdown|data-pulse|data-animate],'
+                . 'a[href|class|style|target|rel|title|id|role|data-toggle|data-html|data-dropdown|data-pulse|data-animate|data-tooltip|data-title],'
                 . 'br[class|style],'
                 . 'i[class],u[class],'
                 . 'img[src|style|alt|width|height|class|title|id|data-gallery-id],'
