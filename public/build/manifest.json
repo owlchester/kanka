@@ -75,7 +75,7 @@
     "src": "resources/js/api.js"
   },
   "resources/js/app.js": {
-    "file": "assets/app-9a5a382e.js",
+    "file": "assets/app-96aac3fd.js",
     "imports": [
       "_sortable.esm-89cfb839.js",
       "_dialog-f81aa5d0.js",
