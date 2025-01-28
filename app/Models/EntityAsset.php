@@ -39,8 +39,8 @@ class EntityAsset extends Model
     use Blameable;
     use EntityAssetScopes;
     use HasFactory;
-    use HasVisibility;
     use HasSuggestions;
+    use HasVisibility;
     use Pinnable;
     use Sanitizable;
 
