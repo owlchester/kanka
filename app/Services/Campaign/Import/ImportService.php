@@ -9,7 +9,9 @@ use App\Facades\EntityCache;
 use App\Facades\MapMarkerCache;
 use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
+use App\Facades\ImportIdMapper;
 use App\Models\CampaignImport;
+use App\Models\EntityType;
 use App\Notifications\Header;
 use App\Services\Campaign\Import\Mappers\AbilityMapper;
 use App\Services\Campaign\Import\Mappers\CalendarMapper;
@@ -165,6 +167,7 @@ class ImportService
         try {
             $this->importCampaign()
                 ->moduleSettings()
+                ->customModules()
                 ->gallery()
                 ->entities()
                 ->secondCampaign()
@@ -284,6 +287,32 @@ class ImportService
         TimelineElementCache::campaign($this->campaign);
         QuestCache::campaign($this->campaign);
         MapMarkerCache::campaign($this->campaign);
+
+        return $this;
+    }
+
+    protected function customModules(): self
+    {
+        // Open the campaign settings file
+        $data = $this->open('settings/custom-modules.json');
+
+        if (!$data || !$this->campaign->premium()) {
+            return $this;
+        }
+
+        foreach ($data as $module) {
+            $newModule = new EntityType();
+            $newModule->campaign_id = $this->campaign->id;
+            $newModule->is_special = true;
+            $newModule->is_enabled = $module['is_enabled'];
+            $newModule->singular = $module['singular'];
+            $newModule->plural = $module['plural'];
+            $newModule->icon = $module['icon'];
+            $newModule->icon = $module['code'];
+            $newModule->save();
+
+            ImportIdMapper::putCustomEntityType($module['id'], $newModule->id);
+        }
 
         return $this;
     }
