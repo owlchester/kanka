@@ -26,7 +26,7 @@ class LogController extends Controller
         $logs = $entity
             ->logs()
             ->filter($request->only($fields))
-            ->with(['user', 'impersonator', 'post'])
+            ->with(['user:id,name', 'impersonator:id,name', 'post:id,name'])
             ->recent()
             ->paginate(config('limits.pagination'));
 

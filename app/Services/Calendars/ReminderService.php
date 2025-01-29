@@ -23,7 +23,7 @@ class ReminderService
     public function upcoming(int $needle = 10): Collection
     {
         $reminders = $this->calendar->calendarEvents()
-            ->with(['entity', 'calendar'])
+            ->with(['entity:id,name'])
             ->has('entity')
             ->where(function ($primary) {
                 $primary->where(function ($sub) {
@@ -73,7 +73,8 @@ class ReminderService
 
         // Order the past events in descending date to get the closest ones to the current date first
         return $reminders->sortBy(function (EntityEvent $reminder) {
-            return $reminder->nextUpcomingOccurrence(
+            return $reminder->setRelation('calendar', $this->calendar)
+                ->nextUpcomingOccurrence(
                 $this->calendar->currentYear(),
                 $this->calendar->currentMonth(),
                 $this->calendar->currentDay(),
@@ -90,7 +91,7 @@ class ReminderService
     public function past(int $needle = 10): Collection
     {
         $reminders = $this->calendar->calendarEvents()
-            ->with(['entity', 'calendar'])
+            ->with(['entity:id,name'])
             ->has('entity')
             ->where(function ($primary) {
                 $primary->where(function ($sub) {
@@ -141,12 +142,14 @@ class ReminderService
 
         // Order the past events in descending date to get the closest ones to the current date first
         return $reminders->sortBy(function (EntityEvent $reminder) {
-            return $reminder->mostRecentOccurrence(
-                $this->calendar->currentYear(),
-                $this->calendar->currentMonth(),
-                $this->calendar->currentDay(),
-                $this->calendar->months(),
-                $this->calendar->daysInYear()
+            return $reminder
+                ->setRelation('calendar', $this->calendar)
+                ->mostRecentOccurrence(
+                    $this->calendar->currentYear(),
+                    $this->calendar->currentMonth(),
+                    $this->calendar->currentDay(),
+                    $this->calendar->months(),
+                    $this->calendar->daysInYear()
             );
         });
     }
