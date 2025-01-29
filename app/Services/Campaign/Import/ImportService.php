@@ -355,7 +355,7 @@ class ImportService
                         $data = $this->open($filePath);
                         Log::info('array: ' . json_encode($data));
                         Log::info('array: ' . $filePath);
-        
+
                         $mapper
                             ->path($this->dataPath . '/')
                             ->data($data)
@@ -363,7 +363,7 @@ class ImportService
                         ;
                         $count++;
                         unset($data);
-                    }            
+                    }
                     $this->logs[] = $count;
                     $mapper->tree()->clear();
                 }
@@ -420,7 +420,7 @@ class ImportService
 
             } else {
                 if (!method_exists($mapper, 'second')) {
-                continue;
+                    continue;
                 }
                 $this->logs[] = 'Second round ' . $model;
                 $count = 0;
@@ -446,7 +446,7 @@ class ImportService
         }
 
         foreach ($this->mappers as $model => $mapper) {
-            if ($model == 'custom') {                
+            if ($model == 'custom') {
                 foreach ($fileNames as $fileName => $newId) {
                     if (!method_exists($mapper, 'third')) {
                         continue;
