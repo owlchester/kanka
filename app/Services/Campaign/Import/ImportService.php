@@ -448,7 +448,7 @@ class ImportService
                 ;
                 $count++;
                 unset($data);
-            }            
+            }
 
             $this->logs[] = $count;
             $mapper->tree()->clear();
