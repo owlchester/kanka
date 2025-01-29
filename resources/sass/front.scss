@@ -1,3 +1,4 @@
+@use "sass:meta";
 
 @tailwind base;
 @tailwind components;
@@ -253,4 +254,4 @@ html {
     }
 }
 
-@import "dialog";
+@include meta.load-css("dialog");

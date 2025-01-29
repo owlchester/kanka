@@ -1,3 +1,4 @@
+@use "sass:meta";
 @font-face {
   font-family: Verdana, sans-serif;
   font-display: fallback;
@@ -11,7 +12,7 @@
     --kanka-boost-accent: 338 78% 48%;
 }
 
-@import "theming";
+@include meta.load-css("theming");
 
 .content-header {
     .breadcrumb {
@@ -289,38 +290,38 @@ ul.entity-menu {
     text-shadow: 0 1px rgb(0 0 0/var(--glass-text-shadow-opacity,5%));
 }
 
-@import "typography";
-@import "alerts";
-@import "buttons";
-@import "badge";
-@import "calendar";
-@import "code";
-@import "tooltip";
-@import "timeline";
-@import "mobile";
-@import "boosted";
-@import "entity";
-@import "footer";
-@import "editor";
-@import "box";
+@include meta.load-css("typography");
+@include meta.load-css("alerts");
+@include meta.load-css("buttons");
+@include meta.load-css("badge");
+@include meta.load-css("calendar");
+@include meta.load-css("code");
+@include meta.load-css("tooltip");
+@include meta.load-css("timeline");
+@include meta.load-css("mobile");
+@include meta.load-css("boosted");
+@include meta.load-css("entity");
+@include meta.load-css("footer");
+@include meta.load-css("editor");
+@include meta.load-css("box");
 //@import "tutorial";
-@import "conversation";
-@import "quest";
-@import "quick-creator";
-@import "ads";
-@import "sortable";
-@import "campaign";
-@import "attributes/attributes";
-@import "ab-testing";
-@import "toggle";
-@import "tabs";
-@import "table";
+@include meta.load-css("conversation");
+@include meta.load-css("quest");
+@include meta.load-css("quick-creator");
+@include meta.load-css("ads");
+@include meta.load-css("sortable");
+@include meta.load-css("campaign");
+@include meta.load-css("attributes/attributes");
+@include meta.load-css("ab-testing");
+@include meta.load-css("toggle");
+@include meta.load-css("tabs");
+@include meta.load-css("table");
 //@import "tw/tailwind";
-@import "dialog";
-@import "adminlte";
-@import "print/general";
-@import "colour";
-@import "dl";
+@include meta.load-css("dialog");
+@include meta.load-css("adminlte");
+@include meta.load-css("print/general");
+@include meta.load-css("colour");
+@include meta.load-css("dl");
 
-@import 'freyja/freyja';
+@include meta.load-css('freyja/freyja');
 @import 'cookieconsent/build/cookieconsent.min.css';
