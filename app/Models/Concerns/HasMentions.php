@@ -44,7 +44,9 @@ trait HasMentions
      */
     public function scopeUnmentioned(Builder $query): Builder
     {
-        return $query->select($this->getTable() . '.*')
+        return $query->select([
+            $this->getTable() . '.*'
+        ])
             ->leftJoin('entity_mentions as em', 'em.target_id', $this->getTable() . '.id')
             ->whereNull('em.id');
     }

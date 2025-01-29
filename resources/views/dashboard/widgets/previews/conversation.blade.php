@@ -6,7 +6,7 @@
  */
 $conversation = $entity->child;
 ?>
-<x-box padding="0" css="widget-conversation {{ $widget->customClass($campaign) }}">
+<x-box padding="0" css="widget-conversation {{ $widget->customClass() }}">
     <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity">
         <span class="" data-toggle="tooltip" data-title="{{ __('conversations.tabs.participants') }}">
             <x-badge>
