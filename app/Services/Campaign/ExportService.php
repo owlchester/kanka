@@ -364,7 +364,7 @@ class ExportService
 
     protected function process(string $entity, $model): self
     {
-        
+
         if ($model instanceof Entity) {
             $modelEntity = $model;
         } else {

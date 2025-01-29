@@ -19,7 +19,7 @@ class CustomMapper
     protected array $parents = [];
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'parent_id', 'created_at', 'updated_at'];
     protected string $mappingName;
-    
+
     public function prepare(): self
     {
         //$this->campaign->{$this->mappingName}()->forceDelete();
@@ -41,7 +41,7 @@ class CustomMapper
             ->loadEntity()
             ->saveEntity()
             ->entitySecond()
-        ;    
+        ;
     }
 
     public function tree(): self
