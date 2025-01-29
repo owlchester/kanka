@@ -59,7 +59,6 @@ trait CustomEntityMapper
         }
     }
 
-    //This is a new function
     protected function entity(): void
     {        
         $entityMapping = ['name', 'is_private', 'tooltip', 'is_template', 'is_attributes_private', 'focus_x', 'focus_y', 'entry', 'type'];

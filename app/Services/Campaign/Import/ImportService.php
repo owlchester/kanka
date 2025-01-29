@@ -175,7 +175,6 @@ class ImportService
                 ->customModules()
                 ->gallery()
                 ->entities()
-                ->customEntities()
                 ->secondCampaign()
             ;
             $this->job->status_id = CampaignImportStatus::FINISHED;
@@ -336,176 +335,170 @@ class ImportService
 
     protected function entities(): self
     {
+        $fileNames = ImportIdMapper::getCustomEntityTypes();
+
         /**
          * @var string $model
          * @var mixed $mapper
          */
         foreach ($this->mappers as $model => $mapper) {
             if ($model == 'custom') {
-                //We handle custom models later.
-                continue;
-            }
-            $this->logs[] = 'Processing ' . $model;
-            $count = 0;
-            foreach ($this->files($model) as $file) {
-                if (!Str::endsWith($file, '.json')) {
-                    continue;
+                //We handle custom models differently.
+                foreach ($fileNames as $fileName => $newID) {
+                    $this->logs[] = 'Processing ' . $fileName;
+                    $count = 0;
+                    foreach ($this->files($fileName) as $file) {
+                        if (!Str::endsWith($file, '.json')) {
+                            continue;
+                        }
+                        $filePath = Str::replace($this->dataPath, '', $file);
+                        $data = $this->open($filePath);
+                        Log::info('array: ' . json_encode($data));
+                        Log::info('array: ' . $filePath);
+        
+                        $mapper
+                            ->path($this->dataPath . '/')
+                            ->data($data)
+                            ->first()
+                        ;
+                        $count++;
+                        unset($data);
+                    }            
+                    $this->logs[] = $count;
+                    $mapper->tree()->clear();
                 }
-                $filePath = Str::replace($this->dataPath, '', $file);
-                $data = $this->open($filePath);
-                $mapper
-                    ->path($this->dataPath . '/')
-                    ->data($data)
-                    ->first()
-                ;
-                $count++;
-                unset($data);
+            } else {
+                $this->logs[] = 'Processing ' . $model;
+                $count = 0;
+                foreach ($this->files($model) as $file) {
+                    if (!Str::endsWith($file, '.json')) {
+                        continue;
+                    }
+                    $filePath = Str::replace($this->dataPath, '', $file);
+                    $data = $this->open($filePath);
+                    $mapper
+                        ->path($this->dataPath . '/')
+                        ->data($data)
+                        ->first()
+                    ;
+                    $count++;
+                    unset($data);
+                }
+                $this->logs[] = $count;
+                $mapper->tree()->clear();
             }
-            $this->logs[] = $count;
-            $mapper->tree()->clear();
         }
 
         // Second parse
         foreach ($this->mappers as $model => $mapper) {
-            if (!method_exists($mapper, 'second')) {
-                continue;
-            }
-            $this->logs[] = 'Second round ' . $model;
-            $count = 0;
-            foreach ($this->files($model) as $file) {
-                if (!Str::endsWith($file, '.json')) {
-                    continue;
+            if ($model == 'custom') {
+                foreach ($fileNames as $fileName => $newId) {
+                    if (!method_exists($mapper, 'second')) {
+                        continue;
+                    }
+                    $this->logs[] = 'Second round ' . $fileName;
+                    $count = 0;
+                    foreach ($this->files($fileName) as $file) {
+                        if (!Str::endsWith($file, '.json')) {
+                            continue;
+                        }
+                        $filePath = Str::replace($this->dataPath, '', $file);
+                        $data = $this->open($filePath);
+                        // Add the original campaign id for gallery image mapping
+                        $data['campaign_id'] = $this->originalCampaignID;
+                        // @phpstan-ignore-next-line
+                        $mapper
+                            ->path($this->dataPath . '/')
+                            ->data($data)
+                            ->second()
+                        ;
+                        $count++;
+                        unset($data);
+                    }
+                    $this->logs[] = $count;
                 }
-                $filePath = Str::replace($this->dataPath, '', $file);
-                $data = $this->open($filePath);
-                // Add the original campaign id for gallery image mapping
-                $data['campaign_id'] = $this->originalCampaignID;
-                // @phpstan-ignore-next-line
-                $mapper
-                    ->path($this->dataPath . '/')
-                    ->data($data)
-                    ->second()
-                ;
-                $count++;
-                unset($data);
+
+            } else {
+                if (!method_exists($mapper, 'second')) {
+                continue;
+                }
+                $this->logs[] = 'Second round ' . $model;
+                $count = 0;
+                foreach ($this->files($model) as $file) {
+                    if (!Str::endsWith($file, '.json')) {
+                        continue;
+                    }
+                    $filePath = Str::replace($this->dataPath, '', $file);
+                    $data = $this->open($filePath);
+                    // Add the original campaign id for gallery image mapping
+                    $data['campaign_id'] = $this->originalCampaignID;
+                    // @phpstan-ignore-next-line
+                    $mapper
+                        ->path($this->dataPath . '/')
+                        ->data($data)
+                        ->second()
+                    ;
+                    $count++;
+                    unset($data);
+                }
+                $this->logs[] = $count;
             }
-            $this->logs[] = $count;
         }
 
         foreach ($this->mappers as $model => $mapper) {
-            if (!method_exists($mapper, 'third')) {
-                continue;
-            }
-            $this->logs[] = 'Third round ' . $model;
-            $count = 0;
-            foreach ($this->files($model) as $file) {
-                if (!Str::endsWith($file, '.json')) {
+            if ($model == 'custom') {                
+                foreach ($fileNames as $fileName => $newId) {
+                    if (!method_exists($mapper, 'third')) {
+                        continue;
+                    }
+                    $this->logs[] = 'Third round ' . $fileName;
+                    $count = 0;
+                    foreach ($this->files($fileName) as $file) {
+                        if (!Str::endsWith($file, '.json')) {
+                            continue;
+                        }
+                        $filePath = Str::replace($this->dataPath, '', $file);
+                        $data = $this->open($filePath);
+                        if (empty($data['entity']['mentions'])) {
+                            continue;
+                        }
+                        // @phpstan-ignore-next-line
+                        $mapper
+                            ->path($this->dataPath . '/')
+                            ->data($data)
+                            ->third()
+                        ;
+                        $count++;
+                        unset($data);
+                    }
+                    $this->logs[] = '- ' . $count;
+                }
+            } else {
+                if (!method_exists($mapper, 'third')) {
                     continue;
                 }
-                $filePath = Str::replace($this->dataPath, '', $file);
-                $data = $this->open($filePath);
-                if (empty($data['entity']['mentions'])) {
-                    continue;
+                $this->logs[] = 'Third round ' . $model;
+                $count = 0;
+                foreach ($this->files($model) as $file) {
+                    if (!Str::endsWith($file, '.json')) {
+                        continue;
+                    }
+                    $filePath = Str::replace($this->dataPath, '', $file);
+                    $data = $this->open($filePath);
+                    if (empty($data['entity']['mentions'])) {
+                        continue;
+                    }
+                    // @phpstan-ignore-next-line
+                    $mapper
+                        ->path($this->dataPath . '/')
+                        ->data($data)
+                        ->third()
+                    ;
+                    $count++;
+                    unset($data);
                 }
-                // @phpstan-ignore-next-line
-                $mapper
-                    ->path($this->dataPath . '/')
-                    ->data($data)
-                    ->third()
-                ;
-                $count++;
-                unset($data);
+                $this->logs[] = '- ' . $count;
             }
-            $this->logs[] = '- ' . $count;
-        }
-
-        return $this;
-    }
-
-    protected function customEntities(): self
-    {
-        $fileNames = ImportIdMapper::getCustomEntityTypes();
-
-        $mapper = $this->mappers['custom'];
-        Log::info('Loaded mapper');
-
-        foreach ($fileNames as $fileName => $newID) {
-            $this->logs[] = 'Processing ' . $fileName;
-            $count = 0;
-            foreach ($this->files($fileName) as $file) {
-                if (!Str::endsWith($file, '.json')) {
-                    continue;
-                }
-                $filePath = Str::replace($this->dataPath, '', $file);
-                $data = $this->open($filePath);
-                Log::info('array: ' . json_encode($data));
-                Log::info('array: ' . $filePath);
-
-                $mapper
-                    ->path($this->dataPath . '/')
-                    ->data($data)
-                    ->first()
-                ;
-                $count++;
-                unset($data);
-            }            
-
-            $this->logs[] = $count;
-            $mapper->tree()->clear();
-        }
-
-        // Second parse
-        foreach ($fileNames as $fileName => $newId) {
-            if (!method_exists($mapper, 'second')) {
-                continue;
-            }
-            $this->logs[] = 'Second round ' . $fileName;
-            $count = 0;
-            foreach ($this->files($fileName) as $file) {
-                if (!Str::endsWith($file, '.json')) {
-                    continue;
-                }
-                $filePath = Str::replace($this->dataPath, '', $file);
-                $data = $this->open($filePath);
-                // Add the original campaign id for gallery image mapping
-                $data['campaign_id'] = $this->originalCampaignID;
-                // @phpstan-ignore-next-line
-                $mapper
-                    ->path($this->dataPath . '/')
-                    ->data($data)
-                    ->second()
-                ;
-                $count++;
-                unset($data);
-            }
-            $this->logs[] = $count;
-        }
-
-        foreach ($fileNames as $fileName => $newId) {
-            if (!method_exists($mapper, 'third')) {
-                continue;
-            }
-            $this->logs[] = 'Third round ' . $fileName;
-            $count = 0;
-            foreach ($this->files($fileName) as $file) {
-                if (!Str::endsWith($file, '.json')) {
-                    continue;
-                }
-                $filePath = Str::replace($this->dataPath, '', $file);
-                $data = $this->open($filePath);
-                if (empty($data['entity']['mentions'])) {
-                    continue;
-                }
-                // @phpstan-ignore-next-line
-                $mapper
-                    ->path($this->dataPath . '/')
-                    ->data($data)
-                    ->third()
-                ;
-                $count++;
-                unset($data);
-            }
-            $this->logs[] = '- ' . $count;
         }
 
         return $this;
