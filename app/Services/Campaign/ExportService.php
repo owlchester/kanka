@@ -88,6 +88,7 @@ class ExportService
                 ->campaignModules()
                 ->customCampaignModules()
                 ->entities()
+                ->customEntities()
                 ->gallery()
                 ->finish()
                 ->notify();
@@ -269,6 +270,53 @@ class ExportService
         return $this;
     }
 
+    protected function customEntities(): self
+    {
+        $entityWith = [
+            'entityTags', 'relationships',
+            'posts', 'posts.postTags', 'abilities', 'abilities.ability',
+            'events',
+            'image',
+            'header',
+            'assets',
+            'files',
+            'mentions',
+            'inventories',
+            'inventories.item',
+            'entityAttributes',
+        ];
+
+        $entityTypes = $this->campaign->entityTypes->where('is_special', 1)->all();
+
+        foreach ($entityTypes as $entityType) {
+            if (!$entityType->isEnabled()) {
+                continue;
+            }
+
+            try {
+                $base = Entity::inTypes($entityType->id)
+
+                    ->with($entityWith)
+                    ->get();
+
+                $name = Str::camel($entityType->code) . '_' . $entityType->id;
+                foreach ($base as $model) {
+                    $this->process($name, $model);
+                }
+            } catch (Exception $e) {
+                Log::error('Campaign export', ['err' => $e->getMessage()]);
+                $saveFolder = storage_path($this->exportPath);
+                $this->archive->saveTo($saveFolder);
+                unlink($this->path);
+                throw new Exception(
+                    'Missing campaign entity relation: ' . $entityType->singular . '-' . $name . '? '
+                    . $e->getMessage()
+                );
+            }
+        }
+        return $this;
+    }
+
     protected function smartWith(array $with, string $entityClass): array
     {
         /** @var MiscModel $class */
@@ -316,33 +364,44 @@ class ExportService
 
     protected function process(string $entity, $model): self
     {
+        
+        if ($model instanceof Entity) {
+            $modelEntity = $model;
+        } else {
+            $modelEntity = $model->entity;
+        }
+
         if (!$this->assets) {
-            $this->archive->add($model->export(), $entity . '/' . Str::slug($model->name) . '.json', );
+            if ($model instanceof Entity) {
+                $this->archive->add(json_encode(['entity' => $model->export(true)]), $entity . '/' . Str::slug($model->name) . '.json', );
+            } else {
+                $this->archive->add($model->export(), $entity . '/' . Str::slug($model->name) . '.json', );
+            }
             $this->files++;
             //return $this;
         }
 
-        $path = $model->entity->image_path;
+        $path = $modelEntity->image_path;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
                 $this->files++;
             } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get image_path', 'image_path' => $path, 'entity' => $model->entity->id]);
+                Log::warning('Campaign export', ['err' => 'Can\'t get image_path', 'image_path' => $path, 'entity' => $modelEntity->id]);
             }
         }
-        $path = $model->entity->header_image;
+        $path = $modelEntity->header_image;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
                 $this->files++;
             } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get header_image', 'header_image' => $path, 'entity' => $model->entity->id]);
+                Log::warning('Campaign export', ['err' => 'Can\'t get header_image', 'header_image' => $path, 'entity' => $modelEntity->id]);
             }
         }
 
         /** @var EntityAsset $file */
-        foreach ($model->entity->files as $file) {
+        foreach ($modelEntity->files as $file) {
             if (!isset($file->metadata['path'])) {
                 continue;
             }

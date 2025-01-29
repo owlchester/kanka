@@ -12,6 +12,7 @@ use App\Facades\MapMarkerCache;
 use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
 use App\Facades\ImportIdMapper;
+use App\Models\Bookmark;
 use App\Models\CampaignImport;
 use App\Models\EntityType;
 use App\Notifications\Header;
@@ -20,6 +21,7 @@ use App\Services\Campaign\Import\Mappers\CalendarMapper;
 use App\Services\Campaign\Import\Mappers\CampaignMapper;
 use App\Services\Campaign\Import\Mappers\CharacterMapper;
 use App\Services\Campaign\Import\Mappers\CreatureMapper;
+use App\Services\Campaign\Import\Mappers\CustomMapper;
 use App\Services\Campaign\Import\Mappers\EventMapper;
 use App\Services\Campaign\Import\Mappers\FamilyMapper;
 use App\Services\Campaign\Import\Mappers\GalleryMapper;
@@ -120,6 +122,7 @@ class ImportService
             'maps' => MapMapper::class,
             'locations' => LocationMapper::class,
             'characters' => CharacterMapper::class,
+            'custom'     => CustomMapper::class
         ];
         foreach ($setup as $model => $mapperClass) {
             $this->logs[]  = 'Init mapper ' . $model;
@@ -172,6 +175,7 @@ class ImportService
                 ->customModules()
                 ->gallery()
                 ->entities()
+                ->customEntities()
                 ->secondCampaign()
             ;
             $this->job->status_id = CampaignImportStatus::FINISHED;
@@ -305,6 +309,7 @@ class ImportService
         }
 
         foreach ($data as $module) {
+            //Create Custom Module
             $newModule = new EntityType();
             $newModule->campaign_id = $this->campaign->id;
             $newModule->is_special = true;
@@ -312,10 +317,18 @@ class ImportService
             $newModule->singular = $module['singular'];
             $newModule->plural = $module['plural'];
             $newModule->icon = $module['icon'];
-            $newModule->icon = $module['code'];
+            $newModule->code = $module['code'];
             $newModule->save();
+            //Create its corresponding bookmark
+            $bookmark = new Bookmark();
+            $bookmark->campaign_id = $this->campaign->id;
+            $bookmark->entity_type_id = $newModule->id;
+            $bookmark->name = $newModule->singular;
+            $bookmark->save();
 
             ImportIdMapper::putCustomEntityType($module['id'], $newModule->id);
+            ImportIdMapper::putCustomEntityTypeName($module['code'] . '_' . $module['id'], $newModule->id);
+
         }
 
         return $this;
@@ -328,6 +341,10 @@ class ImportService
          * @var mixed $mapper
          */
         foreach ($this->mappers as $model => $mapper) {
+            if ($model == 'custom') {
+                //We handle custom models later.
+                continue;
+            }
             $this->logs[] = 'Processing ' . $model;
             $count = 0;
             foreach ($this->files($model) as $file) {
@@ -382,6 +399,95 @@ class ImportService
             $this->logs[] = 'Third round ' . $model;
             $count = 0;
             foreach ($this->files($model) as $file) {
+                if (!Str::endsWith($file, '.json')) {
+                    continue;
+                }
+                $filePath = Str::replace($this->dataPath, '', $file);
+                $data = $this->open($filePath);
+                if (empty($data['entity']['mentions'])) {
+                    continue;
+                }
+                // @phpstan-ignore-next-line
+                $mapper
+                    ->path($this->dataPath . '/')
+                    ->data($data)
+                    ->third()
+                ;
+                $count++;
+                unset($data);
+            }
+            $this->logs[] = '- ' . $count;
+        }
+
+        return $this;
+    }
+
+    protected function customEntities(): self
+    {
+        $fileNames = ImportIdMapper::getCustomEntityTypes();
+
+        $mapper = $this->mappers['custom'];
+        Log::info('Loaded mapper');
+
+        foreach ($fileNames as $fileName => $newID) {
+            $this->logs[] = 'Processing ' . $fileName;
+            $count = 0;
+            foreach ($this->files($fileName) as $file) {
+                if (!Str::endsWith($file, '.json')) {
+                    continue;
+                }
+                $filePath = Str::replace($this->dataPath, '', $file);
+                $data = $this->open($filePath);
+                Log::info('array: ' . json_encode($data));
+                Log::info('array: ' . $filePath);
+
+                $mapper
+                    ->path($this->dataPath . '/')
+                    ->data($data)
+                    ->first()
+                ;
+                $count++;
+                unset($data);
+            }            
+
+            $this->logs[] = $count;
+            $mapper->tree()->clear();
+        }
+
+        // Second parse
+        foreach ($fileNames as $fileName => $newId) {
+            if (!method_exists($mapper, 'second')) {
+                continue;
+            }
+            $this->logs[] = 'Second round ' . $fileName;
+            $count = 0;
+            foreach ($this->files($fileName) as $file) {
+                if (!Str::endsWith($file, '.json')) {
+                    continue;
+                }
+                $filePath = Str::replace($this->dataPath, '', $file);
+                $data = $this->open($filePath);
+                // Add the original campaign id for gallery image mapping
+                $data['campaign_id'] = $this->originalCampaignID;
+                // @phpstan-ignore-next-line
+                $mapper
+                    ->path($this->dataPath . '/')
+                    ->data($data)
+                    ->second()
+                ;
+                $count++;
+                unset($data);
+            }
+            $this->logs[] = $count;
+        }
+
+        foreach ($fileNames as $fileName => $newId) {
+            if (!method_exists($mapper, 'third')) {
+                continue;
+            }
+            $this->logs[] = 'Third round ' . $fileName;
+            $count = 0;
+            foreach ($this->files($fileName) as $file) {
                 if (!Str::endsWith($file, '.json')) {
                     continue;
                 }
