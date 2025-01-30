@@ -11,6 +11,11 @@ const initCalendarEventBlock = () => {
             });
         }
     });
+    document.querySelectorAll(".calendar-day-block").forEach(function (td) {
+        td.addEventListener("dblclick", function () {
+            window.openDialog('primary-dialog', td.dataset.url);
+        });
+    });
 };
 
 const initCalendarEventModal = () => {
