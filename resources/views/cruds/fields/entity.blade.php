@@ -19,6 +19,8 @@
     :label="$label ?? null"
     :placeholder="$placeholder ?? null"
     :allowClear="$allowClear ?? true"
+    :dynamicNew="$dynamicNew ?? false"
+    :dynamicTag="$dynamicTag ?? null"
     :route="route($route ?? 'search.entities-with-relations', [$campaign] + (isset($model) ? ['exclude' => $model->id] : []))"
     :selected="$preset"
     :helper="$helper ?? null"

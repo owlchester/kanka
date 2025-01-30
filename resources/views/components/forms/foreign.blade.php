@@ -22,7 +22,7 @@
             data-language="{{ LaravelLocalization::getCurrentLocale() }}"
             data-allow-clear="{{ $allowClear ? 'true' : 'false' }}"
             @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif
-            @if ($dynamicNew) data-new-tag="{{ __('crud.actions.new') }}" @endif
+            @if ($dynamicNew) data-new-tag="{{ $dynamicTag ?? __('crud.actions.new') }}" @endif
     >
         @foreach ($options as $key => $value)
             <option value="{{ $key }}" selected="selected">{!! $value !!}</option>

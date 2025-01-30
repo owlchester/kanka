@@ -38,6 +38,7 @@ class Foreign extends Component
         public ?string $helper = null,
         public ?string $dropdownParent = null,
         public ?int $entityTypeID = null,
+        public ?string $dynamicTag = null,
     ) {
         $this->id = !empty($id) ? $id : $name . '_' . uniqid();
     }

@@ -26,9 +26,12 @@
     @if (empty($entityEvent))
         <div class="flex gap-2 md:gap-4 items-center">
             <div class="grow calendar-existing-event-field">
+                @php $eventModule = \App\Models\EntityType::find(config('entities.ids.event')) @endphp
                 @include('cruds.fields.entity', [
                     'dropdownParent' => $dropdownParent ?? (request()->ajax() ? '#primary-dialog' : null),
-                    'required' => true
+                    'required' => true,
+                    'dynamicNew' => auth()->user()->can('create', [$eventModule, $campaign]),
+                    'dynamicTag' => __('crud.titles.new', ['module' => $eventModule->name()])
                 ])
             </div>
             <div class="grow calendar-new-event-field">
