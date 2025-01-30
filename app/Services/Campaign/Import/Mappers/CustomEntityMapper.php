@@ -54,8 +54,8 @@ trait CustomEntityMapper
     {
         $this->mapping[$this->data['entity']['id']] = $this->entity->id;
         ImportIdMapper::putEntity($this->data['entity']['id'], $this->entity->id);
-        if ($parent && !empty($this->data[$parent])) {
-            $this->parents[$this->data[$parent]][] = $this->entity->id;
+        if ($parent && !empty($this->data['entity'][$parent])) {
+            $this->parents[$this->data['entity'][$parent]][] = $this->entity->id;
         }
     }
 
@@ -165,6 +165,24 @@ trait CustomEntityMapper
         ImportIdMapper::putGallery($image->id, $image->id);
 
         return $image;
+    }
+
+    public function tree(): self
+    {
+        dump($this->parents);
+        foreach ($this->parents as $parent => $children) {
+            if (!isset($this->mapping[$parent])) {
+                continue;
+            }
+            // We need the nested trait to trigger for this so it's going to be inefficient
+            $models = Entity::whereIn('id', $children)->get();
+            foreach ($models as $model) {
+                $model->parent_id = $this->mapping[$parent];
+                $model->saveQuietly();
+            }
+        }
+
+        return $this;
     }
 
     protected function gallery(): self

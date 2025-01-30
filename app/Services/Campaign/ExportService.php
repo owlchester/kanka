@@ -362,46 +362,43 @@ class ExportService
         return $this;
     }
 
-    protected function process(string $entity, $model): self
+    protected function process(string $module, $model): self
     {
+        if ($model instanceof Entity) {
+            $entity = $model;
+        } else {
+            $entity = $model->entity;
+        }
 
         if ($model instanceof Entity) {
-            $modelEntity = $model;
+            $this->archive->add(json_encode(['entity' => $model->export()]), $module . '/' . Str::slug($model->name) . '.json');
         } else {
-            $modelEntity = $model->entity;
+            $this->archive->add($model->export(), $module . '/' . Str::slug($model->name) . '.json');
         }
+        $this->files++;
+        
 
-        if (!$this->assets) {
-            if ($model instanceof Entity) {
-                $this->archive->add(json_encode(['entity' => $model->export(true)]), $entity . '/' . Str::slug($model->name) . '.json', );
-            } else {
-                $this->archive->add($model->export(), $entity . '/' . Str::slug($model->name) . '.json', );
-            }
-            $this->files++;
-            //return $this;
-        }
-
-        $path = $modelEntity->image_path;
+        $path = $entity->image_path;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
                 $this->files++;
             } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get image_path', 'image_path' => $path, 'entity' => $modelEntity->id]);
+                Log::warning('Campaign export', ['err' => 'Can\'t get image_path', 'image_path' => $path, 'entity' => $entity->id]);
             }
         }
-        $path = $modelEntity->header_image;
+        $path = $entity->header_image;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
                 $this->files++;
             } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get header_image', 'header_image' => $path, 'entity' => $modelEntity->id]);
+                Log::warning('Campaign export', ['err' => 'Can\'t get header_image', 'header_image' => $path, 'entity' => $entity->id]);
             }
         }
 
         /** @var EntityAsset $file */
-        foreach ($modelEntity->files as $file) {
+        foreach ($entity->files as $file) {
             if (!isset($file->metadata['path'])) {
                 continue;
             }

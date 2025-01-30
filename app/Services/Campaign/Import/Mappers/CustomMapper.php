@@ -22,11 +22,8 @@ class CustomMapper
 
     public function prepare(): self
     {
-        //$this->campaign->{$this->mappingName}()->forceDelete();
         return $this;
     }
-
-
 
     public function first(): void
     {
@@ -42,23 +39,6 @@ class CustomMapper
             ->saveEntity()
             ->entitySecond()
         ;
-    }
-
-    public function tree(): self
-    {
-        foreach ($this->parents as $parent => $children) {
-            if (!isset($this->mapping[$parent])) {
-                continue;
-            }
-            // We need the nested trait to trigger for this so it's going to be inefficient
-            $models = Entity::whereIn('id', $children)->get();
-            foreach ($models as $model) {
-                $model->parent_id = $this->mapping[$parent];
-                $model->saveQuietly();
-            }
-        }
-
-        return $this;
     }
 
     public function third(): self
