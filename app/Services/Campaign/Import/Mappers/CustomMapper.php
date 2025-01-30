@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
-use App\Models\Entity;
 use App\Services\Campaign\Import\ImportMentions;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;

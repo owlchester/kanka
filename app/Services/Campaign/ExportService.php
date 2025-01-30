@@ -376,7 +376,7 @@ class ExportService
             $this->archive->add($model->export(), $module . '/' . Str::slug($model->name) . '.json');
         }
         $this->files++;
-        
+
 
         $path = $entity->image_path;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
