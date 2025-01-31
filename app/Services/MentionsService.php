@@ -430,7 +430,9 @@ class MentionsService
                             . $parsedTargetEntry
                             . '</div>'
                             . '</span>';
-                    } elseif (!$entity->isMissingChild() && isset($entity->child->$field)) {
+                    } elseif ($field === 'attributes') {
+                        return '<iframe src="' . route('entities.attributes-dashboard', [$this->campaign, $entity]) . '" class="entity-attributes-render w-full h-fit"></iframe>';
+                    }  elseif (!$entity->isMissingChild() && isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {
                             if (isset($foreign->name) && !empty($foreign->name)) {
