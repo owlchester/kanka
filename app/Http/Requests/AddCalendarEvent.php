@@ -39,4 +39,14 @@ class AddCalendarEvent extends FormRequest
             'visibility_id' => 'nullable|exists:visibilities,id'
         ];
     }
+
+    public function prepareForValidation()
+    {
+        if ($this->entity_id && !is_numeric($this->entity_id)) {
+            $this->merge([
+                'name' => $this->entity_id,
+            ]);
+            $this->offsetUnset('entity_id');
+        }
+    }
 }

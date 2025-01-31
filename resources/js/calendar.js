@@ -11,6 +11,11 @@ const initCalendarEventBlock = () => {
             });
         }
     });
+    document.querySelectorAll(".calendar-day-block").forEach(function (td) {
+        td.addEventListener("dblclick", function () {
+            window.openDialog('primary-dialog', td.dataset.url);
+        });
+    });
 };
 
 const initCalendarEventModal = () => {
@@ -26,35 +31,6 @@ const initCalendarEventModal = () => {
             until.classList.add('hidden');
         }
     };
-
-    const first = document.querySelector('#calendar-event-first');
-    const newEvent = document.querySelector('.calendar-new-event-field');
-    const existingEvent = document.querySelector('.calendar-existing-event-field');
-    const subform = document.querySelector('#calendar-event-subform');
-
-    document.querySelector('#calendar-action-existing')?.addEventListener('click', function(e) {
-        e.preventDefault();
-        first.classList.add('!hidden');
-        newEvent.classList.add('hidden');
-        existingEvent.classList.remove('hidden');
-        subform.classList.remove('hidden');
-    });
-
-    document.querySelector('#calendar-action-new')?.addEventListener('click', function(e) {
-        e.preventDefault();
-        first.classList.add('!hidden');
-        newEvent.classList.remove('hidden');
-        existingEvent.classList.add('hidden');
-        subform.classList.remove('hidden');
-    });
-
-    document.querySelector('#calendar-event-switch')?.addEventListener('click', function(e) {
-        e.preventDefault();
-        subform.classList.add('hidden');
-        first.classList.remove('!hidden');
-        existingEvent.classList.remove('hidden');
-        newEvent.classList.remove('hidden');
-    });
 };
 
 /**
