@@ -1,6 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('calendars.event.create.title', ['name' => $entity->name]),
-    'description' => '',
     'breadcrumbs' => [
         ['url' => route('calendars.index', $campaign), 'label' => __('entities.calendars')],
         ['url' => $entity->url(), 'label' => $entity->name],

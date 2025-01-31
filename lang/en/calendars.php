@@ -8,7 +8,7 @@ return [
         'add_moon'          => 'Moon',
         'add_reminder'      => 'Add a reminder',
         'add_season'        => 'Season',
-        'add_weather'       => 'Set weather effect',
+        'add_weather'       => 'Set weather',
         'add_week'          => 'Named week',
         'add_weekday'       => 'Week day',
         'add_year'          => 'Named year',
@@ -23,19 +23,14 @@ return [
         'title' => 'New Calendar',
     ],
     'edit'          => [
-        'today' => 'Calendar date updated.',
+        'today' => 'Current date updated.',
     ],
     'event'         => [
-        'actions'   => [
-            'existing'  => 'Existing Entity',
-            'new'       => 'New Event',
-            'switch'    => 'Change choice',
-        ],
         'create'    => [
-            'success'   => 'Calendar event created.',
-            'title'     => 'Add a Calendar Event to :name',
+            'success'   => 'Reminder created.',
+            'title'     => 'New reminder',
         ],
-        'destroy'   => 'Reminder removed from calendar \':name\'.',
+        'destroy'   => 'Reminder removed from \':name\'.',
         'edit'      => [
             'success'   => 'Reminder updated.',
             'title'     => 'Updating :name\'s reminder',
@@ -44,14 +39,9 @@ return [
             'invalid_entity'    => 'Invalid entity selection',
         ],
         'helpers'   => [
-            'add'               => 'Add an existing event to this calendar.',
-            'new'               => 'Or create a new event by simply providing a name.',
-            'other_calendar'    => 'You are editing a reminder that is on the :calendar calendar.',
+            'other_calendar'    => 'You are editing a reminder that is on :calendar.',
         ],
-        'modal'     => [
-            'title' => 'Add a reminder to the calendar',
-        ],
-        'success'   => 'Reminder \':event\' added to the calendar.',
+        'success'   => 'Reminder \':event\' added to :calendar.',
     ],
     'events'        => [
         'bulks'     => [
@@ -67,7 +57,6 @@ return [
         'start'     => '(start)',
     ],
     'fields'        => [
-        'colour'                => 'Colour',
         'comment'               => 'Comment',
         'current_day'           => 'Current Day',
         'current_month'         => 'Current Month',
@@ -76,7 +65,6 @@ return [
         'day'                   => 'Day',
         'default_layout'        => 'Default layout',
         'format'                => 'Format',
-        'intercalary'           => 'Intercalary Days',
         'is_incrementing'       => 'Advancing date',
         'is_recurring'          => 'Recurring',
         'leap_year'             => 'Leap years',
@@ -84,7 +72,7 @@ return [
         'leap_year_month'       => 'Month',
         'leap_year_offset'      => 'Every',
         'leap_year_start'       => 'Leap Year',
-        'length'                => 'Event Length',
+        'length'                => 'Days',
         'length_days'           => ':count day|:count days',
         'month'                 => 'Month',
         'months'                => 'Months',
@@ -110,10 +98,8 @@ return [
         'start_offset'      => 'By default, the calendar starts on the first weekday of year 0. Changing this field influences where the calendar\'s first day is placed.',
     ],
     'hints'         => [
-        'event_length'      => 'How long an event is set to last. A reminder will only be displayed on its first two years.',
-        'intercalary'       => 'Days that fall outside of the standard months and weeks. They don\'t influence week days but influence moon cycles.',
+        'event_length'      => 'How many days a reminder lasts. A reminder will only be displayed on its first two years.',
         'is_incrementing'   => 'Automatically switch to the next day at 00:00 UTC.',
-        'is_recurring'      => 'An event can be set to recurring. It will reappear every year on the same date.',
         'leap_year'         => 'Set up leap years for the calendar.',
         'months'            => 'Your calendar should have at least 2 months.',
         'moons'             => 'Adding moons will make them show up in the calendar on every full and new moon. If the full moon period is bigger than 10 days, first and third quarter moons will also be displayed.',
@@ -134,7 +120,7 @@ return [
     ],
     'modals'        => [
         'switcher'  => [
-            'title' => 'Year Switcher',
+            'title' => 'Change year',
         ],
     ],
     'month_types'   => [
@@ -206,7 +192,7 @@ return [
         'leap_year_month'   => 'Month on which days are added',
         'leap_year_offset'  => 'Every how many years is a leap year',
         'leap_year_start'   => 'First year that is a leap year',
-        'length'            => 'Event length in days',
+        'length'            => 'Reminder length in days',
         'months'            => 'Number of months in a year',
         'recurring_until'   => 'Last recurring year (leave empty for forever recurring)',
         'seasons'           => 'Number of seasons',
