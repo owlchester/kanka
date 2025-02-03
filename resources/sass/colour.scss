@@ -90,20 +90,16 @@
 
 /** background colours **/
 .bg-primary {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--p)/var(--tw-bg-opacity));
+    background-color: hsl(var(--p)/var(--tw-bg-opacity, 1));
 }
 .bg-primary-content {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--pc)/var(--tw-bg-opacity));
+    background-color: hsl(var(--pc)/var(--tw-bg-opacity, 1));
 }
 .bg-secondary {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--s)/var(--tw-bg-opacity));
+    background-color: hsl(var(--s)/var(--tw-bg-opacity, 1));
 }
 .bg-secondary-content {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--sc)/var(--tw-bg-opacity));
+    background-color: hsl(var(--sc)/var(--tw-bg-opacity, 1));
 }
 .bg-warning {
     --tw-bg-opacity: 1;
@@ -114,36 +110,28 @@
     background-color: hsl(var(--n)/var(--tw-bg-opacity));
 }
 .bg-neutral-content {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--nc)/var(--tw-bg-opacity));
+    background-color: hsl(var(--nc)/var(--tw-bg-opacity, 1));
 }
 .bg-base-100 {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity, 1));
 }
 .bg-base-200 {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
+    background-color: hsl(var(--b2)/var(--tw-bg-opacity, 1));
 }
 .odd\:bg-base-200:nth-child(odd) {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
+    background-color: hsl(var(--b2)/var(--tw-bg-opacity, 1));
 }
 .even\:bg-base-200:nth-child(even) {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
+    background-color: hsl(var(--b2)/var(--tw-bg-opacity, 1));
 }
 .bg-base-300 {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--b3)/var(--tw-bg-opacity));
+    background-color: hsl(var(--b3)/var(--tw-bg-opacity, 1));
 }
 .bg-accent {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--a)/var(--tw-bg-opacity));
+    background-color: hsl(var(--a)/var(--tw-bg-opacity, 1));
 }
 .bg-accent-focus {
-    --tw-bg-opacity: 1;
-    background-color: hsl(var(--af)/var(--tw-bg-opacity));
+    background-color: hsl(var(--af)/var(--tw-bg-opacity, 1));
 }
 .gradient-to-base-100 {
     background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient, hsl(var(--b1)/1)));

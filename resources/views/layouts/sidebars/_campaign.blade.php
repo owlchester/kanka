@@ -1,9 +1,9 @@
-<section class="sidebar-campaign h-40 overflow-hidden">
-    <div class="campaign-block h-32 px-4 pt-24">
+<section class="sidebar-campaign h-52 flex-none overflow-hidden flex items-end">
+    <div class="campaign-block px-4 py-4">
         <div class="campaign-head">
             @if (!$campaign->image && auth()->check() && auth()->user()->can('update', $campaign))
                 <div class="flex gap-2 items-center">
-                    <div class="campaign-name grow truncate  text-xl">
+                    <div class="campaign-name grow truncate text-xl">
                         {!! $campaign->name !!}
                     </div>
                     <a href="#" class="text-sidebar-content" data-toggle="dialog"
