@@ -195,23 +195,7 @@ body.map-drawing-mode {
 
 @media (min-width: 768px) {
     #map-body {
-        .main-sidebar {
-            width: $mapSidebarWidth;
-        }
-
-        .content-wrapper, .main-footer {
-            margin-left: $mapSidebarWidth;
-        }
-
-        .navbar .sidebar-toggle {
-            margin-left: 0;
-        }
-    }
-    #map-body .main-header .navbar-static-top {
-        margin-left: $mapSidebarWidth;
-    }
-    #map-body.sidebar-collapse .main-header .navbar-static-top {
-        margin-left: 0;
+        --sidebar-width: 24rem; /* 384px */
     }
 }
 

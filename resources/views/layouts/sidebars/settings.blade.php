@@ -1,8 +1,8 @@
 <?php /** @var \App\Services\SidebarService $sidebar */?>
 @inject('sidebar', 'App\Services\SidebarService')
-<aside class="main-sidebar main-sidebar-placeholder t-0 l-0 absolute">
-    <section class="sidebar-campaign h-40 overflow-hidden">
-        <div class="campaign-block h-32 px-4 pt-24">
+<aside class="main-sidebar main-sidebar-placeholder absolute z-20 h-full flex flex-col background-cover" @if ($user->avatar) style="--sidebar-placeholder: url({{ Img::crop(240, 208)->url($user->avatar) }})" @endif>
+    <section class="sidebar-campaign h-52 flex-none overflow-hidden flex items-end">
+        <div class="px-4 py-4">
             <div class="campaign-head">
                 <div class="campaign-name truncate text-xl">
                     {{ auth()->user()->name }}
@@ -10,8 +10,8 @@
             </div>
         </div>
     </section>
-    <section class="sidebar" style="height: auto">
-        <ul class="sidebar-menu overflow-hidden whitespace-no-wrap m-0 p-0 list-none mb-14">
+    <section class="sidebar grow">
+        <ul class="sidebar-menu overflow-hidden whitespace-no-wrap m-0 p-0 list-none flex flex flex-col gap-0.5">
             <li class="px-2 {{ $sidebar->settings('profile') }}">
                 <x-sidebar.element
                     :url="route('settings.profile')"

@@ -111,21 +111,21 @@
                     <div class="grid grid-cols-3 gap-2">
                         <a v-bind:href="marketplace.themes.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1" target="_blank">
                             <div class="icon bg-base-200 rounded-full w-14 h-14 text-3xl aspect-square flex justify-center items-center">
-                                <i class="fa-solid fa-palette" aria-hidden="true"></i>
+                                <i class="fa-duotone fa-palette" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.themes.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.themes.number }}</div>
                         </a>
                         <a v-bind:href="marketplace.sheets.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1" target="_blank">
                             <div class="icon bg-base-200 rounded-full w-14 h-14 text-3xl aspect-square flex justify-center items-center">
-                            <i class="fa-solid fa-columns" aria-hidden="true"></i>
+                            <i class="fa-duotone fa-table-cells" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.sheets.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.sheets.number }}</div>
                         </a>
                         <a v-bind:href="marketplace.content.url" class="border py-2 items-center justify-center rounded-md hover:shadow-md flex flex-col gap-1" target="_blank">
                             <div class="icon bg-base-200 rounded-full w-14 h-14 text-3xl aspect-square flex justify-center items-center">
-                                <i class="fa-solid fa-dice-d20" aria-hidden="true"></i>
+                                <i class="fa-duotone fa-dice-d20" aria-hidden="true"></i>
                             </div>
                             <div>{{ marketplace.content.title }}</div>
                             <div class="text-muted text-xs">{{ marketplace.content.number }}</div>

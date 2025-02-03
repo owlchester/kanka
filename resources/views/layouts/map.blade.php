@@ -63,8 +63,8 @@ $specificTheme = null;
         <!-- Header -->
         @include('layouts.header', ['toggle' => true])
 
-        <aside class="main-sidebar overflow-hidden pt-0 t-0 l-0 absolute">
-            <section class="sidebar" style="height: auto">
+        <aside class="main-sidebar overflow-hidden absolute z-20 h-full flex flex-col">
+            <section class="sidebar grow mb-20" style="height: auto">
 
                 <div id="sidebar-content" class="p-0 overflow-auto h-sidebar">
                     <!-- The legend / overview default sidebar of the map -->

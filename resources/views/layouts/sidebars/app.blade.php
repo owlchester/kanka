@@ -7,12 +7,12 @@
 @if (!empty($campaign))
     @inject('sidebar', 'App\Services\SidebarService')
     @php $sidebar->campaign($campaign)->prepareBookmarks()@endphp
-    <aside class="main-sidebar main-sidebar-placeholder t-0 l-0 absolute z-20 @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(240, 210)->url($campaign->image) }})" @endif>
+    <aside class="main-sidebar main-sidebar-placeholder absolute z-20 h-full flex flex-col background-cover @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(240, 208)->url($campaign->image) }})" @endif>
 
         @include('layouts.sidebars._campaign')
 
-        <section class="sidebar pb-14" style="height: auto">
-            <ul class="sidebar-menu overflow-hidden whitespace-no-wrap list-none m-0 p-0">
+        <section class="sidebar grow mb-20">
+            <ul class="sidebar-menu overflow-hidden whitespace-no-wrap list-none m-0 p-0 flex flex-col gap-0.5">
                 @foreach ($sidebar->campaign($campaign)->layout() as $name => $element)
                     @if ($name === 'bookmarks')
                         @includeWhen($campaign->enabled('bookmarks'), 'layouts.sidebars.quick-links', ['links' => $sidebar->bookmarks('bookmarks')])
@@ -40,7 +40,7 @@
                         @endif
                         @if (!empty($element['children']))
 
-                        <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
+                        <ul class="sidebar-submenu list-none p-0 pl-3 m-0 flex flex-col gap-0.5">
                         @foreach($element['children'] as $childName => $child)
                             <li class="p-0 m-0 {{ (!isset($child['route']) || $child['route'] !== false ? $sidebar->active($childName) : null) }} subsection section-{{ $childName }}">
                                 @php

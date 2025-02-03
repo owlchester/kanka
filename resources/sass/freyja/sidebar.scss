@@ -1,5 +1,6 @@
 :root {
-    --sidebar-width: 240px;
+    --sidebar-width: 15rem; /* 240px */
+    --sidebar-expanded: 16rem; /* 256px */
 }
 
 .content-wrapper {
@@ -20,24 +21,19 @@
     --tw-text-opacity: 1;
     color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity)));
 
-    background-size: var(--sidebar-width) 210px;
+    background-size: var(--sidebar-width) 208px;
     background-repeat: no-repeat;
-    padding-top: 50px;
-    min-height: 100%;
     transition: all 0.3s ease-in-out, width 0.3s ease-in-out;
 
     .campaign-updated {
-        --tw-text-opacity: 0.7;
-        color: hsl(var(--sic)/var(--tw-text-opacity));
+        color: hsl(var(--sic)/var(--tw-text-opacity, 0.7));
     }
 
     .sidebar-menu {
-        --tw-text-opacity: 1;
-        color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity)));
+        color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity, 1)));
         li {
             a, span {
-                --tw-text-opacity: 1;
-                color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity)));
+                color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity, 1)));
                 letter-spacing: 1.5px;
             }
 
@@ -45,29 +41,25 @@
                 &:hover {
                     --tw-bg-opacity: .7;
                     background: hsl(var(--sif)/var(--tw-bg-opacity));
-                    --tw-text-opacity: 1;
-                    color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity)));
+                    color: var(--sidebar-text, hsl(var(--sic)/var(--tw-text-opacity, 1)));
                 }
             }
         }
 
         li.active > a, li.active.sidebar-section {
-            --tw-bg-opacity: .7;
-            background: hsl(var(--sif)/var(--tw-bg-opacity));
+            background: hsl(var(--sif)/var(--tw-bg-opacity, .7));
         }
     }
 }
 .main-sidebar-placeholder {
-    background-image: var(--sidebar-placeholder, url(https://th.kanka.io/oQoDfnsNQjOBaFeGWKlGYWG9sUM=/240x190/smart/src/app/backgrounds/mountain-background-medium.jpg));
+    background-image: var(--sidebar-placeholder, url('https://th.kanka.io/kZFdGAs5iN41r9mDqNqix8BxaAA=/240x208/smart/src/app/backgrounds/mountain-background-medium.jpg'));
 }
 
 section.sidebar-campaign {
-    --tw-bg-opacity: 1;
-    background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity))) 100%);
+    background: linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity, 1))) 100%);
 }
 .bg-sidebar {
-    --tw-bg-opacity: 1;
-    background: var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity)));
+    background: var(--sidebar-background, hsl(var(--si)/var(--tw-bg-opacity, 1)));
 }
 
 .main-footer {
