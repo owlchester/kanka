@@ -11,16 +11,16 @@ if (!isset($entity)) {
 ?>
 
 @if ($plugin->version->isDraft())
-    <x-alert type="info" class="max-w-4xl">
+    <x-alert type="warning" class="max-w-4xl">
         {{ __('This plugin is a draft, meaning only its authors can see it rendered.') }}
     </x-alert>
 @endif
 
-<x-box css="box-entity-attributes">
+<div class="box-entity-attributes" data-plugin="{{ $plugin->id }}" data-version="{{ $plugin->version->id }}">
     <div class="marketplace-template-{{ $plugin->plugin->uuid }}">
         {!! $plugin->version->content($entity) !!}
     </div>
-</x-box>
+</div>
 
 @section('styles')
     @parent

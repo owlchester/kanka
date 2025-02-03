@@ -77,7 +77,7 @@ $postCount = 0;
     <div class="text-center row-add-note-button">
         <a href="{{ route('entities.posts.create', [$campaign, $entity]) }}" class="btn2 btn-sm btn-new-post  btn-block"
            data-entity-type="post" data-toggle="tooltip" data-title="{{ __('posts.helpers.new') }}">
-            <x-icon class="plus" />
+            <x-icon class="fa-solid fa-pen-to-square" />
             {{ __('crud.actions.new_post') }}
         </a>
     </div>

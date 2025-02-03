@@ -13,16 +13,15 @@
                     }
                     $icon = null;
                     if (isset($order) && $order === $field) {
-                        if (isset($desc) && $desc === 1) {
-                            $icon = '<i class="fa-solid fa-arrow-down-a-z !mr-0" aria-hidden="true"></i>';
+                        if (isset($desc) && $desc == 1) {
+                            $icon = 'fa-solid fa-arrow-down-a-z';
                         } else {
                             $options['desc'] = 1;
-                            $icon = '<i class="fa-solid fa-arrow-up-a-z !mr-0" aria-hidden="true"></i>';
+                            $icon = 'fa-solid fa-arrow-up-a-z';
                         }
                     }
                 @endphp
-                <x-dropdowns.item :link="route($route, $options)" :css="isset($order) && $order === $field ? 'font-bold' : null">
-                    {!! $icon !!}
+                <x-dropdowns.item :link="route($route, $options)" :css="isset($order) && $order === $field ? 'font-bold' : null" :icon="$icon">
                     {{ $translation }}
                 </x-dropdowns.item>
             @endforeach

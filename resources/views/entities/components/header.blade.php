@@ -69,8 +69,8 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                 <div class="dropdown-menu hidden" role="menu">
                     <x-dropdowns.item
                         :link="$imageUrl"
+                        icon="fa-solid fa-external-link"
                         target="_blank">
-                        <x-icon class="fa-solid fa-external-link" />
                         {{ __('entities/image.actions.view') }}
                     </x-dropdowns.item>
                     <hr class="m-0" />
