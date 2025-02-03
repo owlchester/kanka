@@ -1,5 +1,5 @@
 <section class="sidebar-campaign h-52 flex-none overflow-hidden flex items-end">
-    <div class="campaign-block px-4 py-4">
+    <div class="campaign-block px-4 py-4 w-full">
         <div class="campaign-head">
             @if (!$campaign->image && auth()->check() && auth()->user()->can('update', $campaign))
                 <div class="flex gap-2 items-center">
