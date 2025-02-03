@@ -41,7 +41,8 @@ class LeaveController extends Controller
             $this->campaignService
                 ->user(auth()->user())
                 ->next();
-            return redirect()->route('home');
+            return redirect()->route('home')
+                ->with('success', __('campaigns.leave.success', ['name' => $campaign->name]));
         } catch (Exception $e) {
             $this->campaignService
                 ->user(auth()->user())

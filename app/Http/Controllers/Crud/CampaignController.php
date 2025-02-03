@@ -62,11 +62,11 @@ class CampaignController extends Controller
         if ($request->has('submit-update')) {
             return redirect()
                 ->to(app()->getLocale() . '/campaign/' . $campaign->id . '/campaigns/' . $campaign->id . '/edit')
-                ->with('success', __($this->view . '.create.success'));
+                ->with('success', __($this->view . '.create.success', ['name' => $campaign->name]));
         } elseif ($request->has('submit-new')) {
             return redirect()
                 ->route('start')
-                ->with('success', __($this->view . '.create.success'));
+                ->with('success', __($this->view . '.create.success', ['name' => $campaign->name]));
         } elseif ($first) {
             $user = auth()->user();
             $user->save();
@@ -74,7 +74,7 @@ class CampaignController extends Controller
         }
 
         return redirect()->route('dashboard', $campaign)
-            ->with('success', __($this->view . '.create.success'));
+            ->with('success', __($this->view . '.create.success', ['name' => $campaign->name]));
     }
 
     public function edit(Campaign $campaign)
@@ -140,15 +140,15 @@ class CampaignController extends Controller
         if ($request->has('submit-update')) {
             return redirect()
                 ->route('campaigns.edit', $campaign)
-                ->with('success', __($this->view . '.edit.success'));
+                ->with('success', __($this->view . '.edit.success', ['name' => $campaign->name]));
         }
         if ($request->has('submit-new')) {
             return redirect()
                 ->route('start')
-                ->with('success', __($this->view . '.edit.success'));
+                ->with('success', __($this->view . '.edit.success', ['name' => $campaign->name]));
         }
 
         return redirect()->route('overview', $campaign)
-            ->with('success', __($this->view . '.edit.success'));
+            ->with('success', __($this->view . '.edit.success', ['name' => $campaign->name]));
     }
 }

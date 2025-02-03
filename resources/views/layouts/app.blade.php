@@ -15,11 +15,10 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
 <head>
 @include('layouts.tracking.tracking')
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{!! $seoTitle !!} - {{ config('app.name', 'Kanka') }}</title>
+    <title>{!! $seoTitle !!}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=5' name='viewport'>
-    <meta property="og:title" content="{!! $seoTitle !!} - {{ config('app.name') }}" />
+    <meta property="og:title" content="{!! $seoTitle !!}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 @if (isset($canonical))
     <link rel="canonical" href="{{ $cleanCanonical }}" />

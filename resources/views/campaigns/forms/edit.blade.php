@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('campaigns.edit.title', ['campaign' => $model->name]),
+    'title' => __('crud.titles.editing', ['name' => $model->name]),
     'breadcrumbs' => [
         ['url' => route('overview', $campaign), 'label' => __('entities.campaign')],
         __('crud.edit')

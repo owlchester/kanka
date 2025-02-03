@@ -4,7 +4,7 @@
  */
 ?>
 @extends('layouts.app', [
-    'title' => __('campaigns/roles.show.title', ['role' => $role->name, 'campaign' => $model->name]),
+    'title' => $role->name . ' - ' . $model->name,
     'breadcrumbs' => [
         ['url' => route('campaign_roles.index', $campaign), 'label' => __('campaigns.show.tabs.roles')],
         $role->name,

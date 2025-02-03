@@ -2,23 +2,11 @@
 
 return [
     'create'                            => [
-        'description'           => 'Create a new campaign',
-        'helper'                => [
-            'title'     => 'Welcome to :name',
-            'welcome'   => <<<'TEXT'
-Before going any further, you need to pick a campaign name. This is the name of your world. If you don't have a good name yet, don't worry, you can always change it later, or create more campaigns.
-
-Thanks for joining Kanka, and welcome to our thriving community!
-TEXT
-,
-        ],
-        'success'               => 'Campaign created.',
-        'success_first_time'    => 'Your campaign has been created! Since it\'s your first campaign, we\'ve created a few things to help you get started and hopefully provide a bit of inspiration on what you can do.',
+        'success'               => ':name created.',
         'title'                 => 'New Campaign',
     ],
     'edit'                              => [
-        'success'   => 'Campaign updated.',
-        'title'     => 'Edit Campaign :campaign',
+        'success'   => ':name updated.',
     ],
     'entity_personality_visibilities'   => [
         'private'   => 'New characters have their personality private by default.',
@@ -40,19 +28,17 @@ TEXT
         'description'                       => 'Description',
         'entity_count'                      => 'Entity Count',
         'entity_privacy'                    => 'Default new entity privacy',
-        'entry'                             => 'Campaign description',
-        'excerpt'                           => 'Campaign dashboard text',
-        'featured'                          => 'Featured campaign',
+        'entry'                             => 'Description of the world',
+        'excerpt'                           => 'Dashboard description',
         'followers'                         => 'Followers',
         'gallery_visibility'                => 'Default Gallery Image Visibility',
         'genre'                             => 'Genre(s)',
-        'header_image'                      => 'Campaign dashboard background image',
+        'header_image'                      => 'Dashboard background image',
         'image'                             => 'Sidebar image',
         'is_discreet'                       => 'Discreet',
         'locale'                            => 'Locale',
         'name'                              => 'Name',
         'open'                              => 'Open to applications',
-        'past_featured'                     => 'Previously featured campaign',
         'post_collapsed'                    => 'New posts on entities are collapsed by default.',
         'premium'                           => 'Premium unlocked by :name',
         'private_mention_visibility'        => 'Private mentions',
@@ -95,13 +81,6 @@ TEXT
         'view_public'                       => 'To view your campaign as a public viewer would, open :link in an incognito window.',
         'visibility'                        => 'Making a campaign public will mean anyone with a link to it will be able to see it.',
     ],
-    'index'                             => [
-        'actions'   => [
-            'new'   => [
-                'title' => 'New Campaign',
-            ],
-        ],
-    ],
     'invites'                           => [
         'actions'               => [
             'copy'  => 'Copy the link to your clipboard',
@@ -118,11 +97,9 @@ TEXT
             'success'   => 'Invitation removed.',
         ],
         'error'                 => [
-            'already_member'    => 'You are already a member of that campaign.',
             'inactive_token'    => 'This token has already been used, or the campaign no longer exists.',
             'invalid_token'     => 'This token is no longer valid.',
             'join'              => 'Please log in or register a new account to join :campaign.',
-            'login'             => 'Please log in or register to join the campaign.',
         ],
         'fields'                => [
             'created'   => 'Created',
@@ -144,12 +121,12 @@ TEXT
         ],
     ],
     'leave'                             => [
-        'confirm'           => 'Are you sure you want to leave the :name campaign? You won\'t be able to access it anymore, unless an admin of the campaign invites you again.',
-        'confirm-button'    => 'Yes, leave the campaign',
+        'confirm'           => 'Are you sure you want to leave :name? You won\'t be able to access it anymore, unless one of it\'s admins invites you again.',
+        'confirm-button'    => 'Yes, leave now',
         'error'             => 'Can\'t leave the campaign.',
-        'fix'               => 'Go to the campaign members',
+        'fix'               => 'Go to the members management',
         'no-admin-left'     => 'Leaving the campaign isn\'t possible because doing so would leave it without any admins. Add another member to the admin role first.',
-        'success'           => 'You have left the campaign.',
+        'success'           => 'You have left :name.',
         'title'             => 'Leaving the campaign',
     ],
     'members'                           => [
@@ -158,12 +135,6 @@ TEXT
             'switch'        => 'View campaign as user',
             'switch-back'   => 'Back to my account',
             'switch-entity' => 'View as',
-        ],
-        'create'                => [
-            'title' => 'Add a member to your campaign',
-        ],
-        'edit'                  => [
-            'title' => 'Edit member :name',
         ],
         'fields'                => [
             'banned'        => 'User is banned',
@@ -177,11 +148,11 @@ TEXT
             'switch'    => 'View the campaign as this member',
         ],
         'impersonating'         => [
-            'message'   => 'You are viewing and interacting with the campaign as :name. Some features have been disabled, but the rest acts exactly as they would see it.',
+            'message'   => 'You are viewing and interacting with :campaign as :name. Some features have been disabled, but the rest acts exactly as they would see it.',
             'title'     => 'Impersonating :name',
         ],
         'invite'                => [
-            'description'   => 'Invite friends and players to the campaign by creating an invitation link and sending them the generated URL! Upon accepting their invitation, they will be added as a member in the invitation\'s requested role.',
+            'description'   => 'Invite friends and players to :campaign by creating an invitation link and sending them the generated URL! Upon accepting their invitation, they will be added as a member in the invitation\'s requested role.',
             'more'          => 'More roles can be created on the :link page.',
             'title'         => 'Invites',
         ],
@@ -215,9 +186,8 @@ TEXT
         'ui'        => 'Interface',
     ],
     'placeholders'                      => [
-        'description'   => 'A short summary of your campaign',
         'locale'        => 'Language code',
-        'name'          => 'Your campaign name',
+        'name'          => 'The name of your world',
         'system'        => 'D&D, Pathfinder, Fate, DSA',
     ],
     'privacy'                           => [
@@ -312,7 +282,7 @@ TEXT
                     'manage'    => 'Allow everything on the gallery as an admin can, including editing and deleting images.',
                     'upload'    => 'Allows uploading images to the gallery. Will only see images they have uploaded if not combined with the browse permission.',
                 ],
-                'manage'        => 'Allow editing the campaign as a campaign admin would, without allowing the members to delete the campaign.',
+                'manage'        => 'Allow editing the campaign as an admin would, without allowing the members to delete the campaign.',
                 'members'       => 'Allow inviting new members to the campaign.',
                 'not_public'    => 'The campaign isn\'t public. Permissions for the public role can be set, but will be ignored. Go and edit the campaign to make it public.',
                 'permission'    => 'Allow setting permissions on entities of this type they can edit.',
@@ -321,9 +291,6 @@ TEXT
         ],
         'placeholders'  => [
             'name'  => 'Name of the role',
-        ],
-        'show'          => [
-            'title' => 'Campaign Role \':role\'',
         ],
         'title'         => 'Roles - :name',
         'types'         => [
@@ -345,7 +312,7 @@ TEXT
                 'success'   => ':user removed from the role :role.',
             ],
             'errors'    => [
-                'cant_kick_admins'  => 'To avoid abuse, it is not possible to remove other members from the campaign\'s :admin role. In case of issues, contact us on :discord or at :email.',
+                'cant_kick_admins'  => 'To avoid abuse, it is not possible to remove other members from the :admin role. In case of issues, contact us on :discord or at :email.',
                 'needs_more_roles'  => 'You need to add yourself to another role in the campaign before being able to remove yourself from the :admin role.',
             ],
             'fields'    => [
@@ -365,7 +332,7 @@ TEXT
         'disabled'      => 'The :module module is disabled.',
         'enabled'       => 'The :module module is enabled.',
         'errors'        => [
-            'module-disabled'   => 'The requested module is currently disabled in the campaign settings. :fix.',
+            'module-disabled'   => 'The requested module is currently disabled in the settings. :fix.',
         ],
         'helpers'       => [
             'abilities'         => 'Create abilities, be it feats, spells, or powers that can be assigned to entities.',
@@ -373,17 +340,17 @@ TEXT
             'bookmarks'         => 'Create bookmarks to entities or filtered lists that appear in the sidebar.',
             'calendars'         => 'A place to define the calendars of the world.',
             'characters'        => 'Create and keep track of the people inhabiting the world with characters.',
-            'conversations'     => 'Fictional conversations between characters or between campaign members.',
+            'conversations'     => 'Fictional conversations between characters or between members.',
             'creatures'         => 'Build your world\'s creatures, animals, and monsters with the creatures module.',
-            'dice_rolls'        => 'For those who use Kanka for RPG campaigns, a way to handle dice rolls.',
-            'entity_attributes' => 'Keep track of attributes on entities of the campaign, for example HP or SPEED.',
+            'dice_rolls'        => 'For those who use Kanka for RPG games, a way to handle dice rolls.',
+            'entity_attributes' => 'Keep track of attributes on entities of the world, for example HP or SPEED.',
             'events'            => 'Holidays, festivals, disasters, birthdays, wars.',
             'families'          => 'Clans or families, their relations and their members.',
             'inventories'       => 'Manage inventories on your entities.',
             'items'             => 'Weapons, vehicles, relics, potions.',
             'journals'          => 'Observations written by characters, or session prep for the dungeon master.',
             'locations'         => 'Planets, planes, continents, rivers, states, settlements, temples, taverns.',
-            'maps'              => 'Upload maps with layers and markers pointing to other entities in the campaign.',
+            'maps'              => 'Create rich and beautiful maps with markers linking to the world\'s entities.',
             'notes'             => 'Lore, nature, history, magic, cultures.',
             'organisations'     => 'Cults, religions, factions, guilds.',
             'quests'            => 'To keep track of various quests with characters and locations.',
@@ -394,8 +361,8 @@ TEXT
     ],
     'sharing'                           => [
         'filters'   => 'Public campaigns are visible on the :public-campaigns page. Filling out these fields makes it easier for others to discover it.',
-        'language'  => 'The main language in which the campaign\'s content is written.',
-        'system'    => 'If playing a TTRPG, the system used to play in the campaign.',
+        'language'  => 'The main language in which your content is written.',
+        'system'    => 'If playing a TTRPG, the system used to play.',
     ],
     'show'                              => [
         'actions'   => [
@@ -463,7 +430,7 @@ TEXT
             'descendants'       => 'Descendants filtering',
             'entity_history'    => 'Entity\'s history logs',
             'entity_image'      => 'Entity\'s image',
-            'member_list'       => 'Campaign\'s member list',
+            'member_list'       => 'Member list',
             'post_collapsed'    => 'New post default collapsed value',
         ],
         'helpers'           => [

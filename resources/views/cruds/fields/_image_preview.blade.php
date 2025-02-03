@@ -1,7 +1,7 @@
 <div class="preview-v2">
-    <div class="image rounded h-28 cover-background relative inline-block w-full " style="background-image: url('{{ $image }}')" title="{{ $title }}">
+    <div class="image rounded h-28 cover-background relative w-full flex items-end " style="background-image: url('{{ $image }}')" aria-title="{{ $title }}">
         @if (isset($target) && !empty($target))
-        <a href="#" data-img="delete" class="text-center absolute bottom-0 block rounded-b w-full p-2 overflow-hidden text-white bg-error opacity-70 hover:opacity-100 duration-150 transition-opacity" data-target="{{ $target }}" title="{{ __('crud.remove') }}">
+        <a href="#" data-img="delete" class="text-center block rounded w-full p-2 overflow-hidden m-1 text-white hover:bg-error backdrop-blur-sm duration-150 transition-opacity truncate" data-target="{{ $target }}" data-tooltip data-title="{{ __('crud.remove') }}" aria-label="{{ __('crud.remove') }}">
             <x-icon class="trash" /> {{ __('crud.remove') }}
         </a>
         @endif

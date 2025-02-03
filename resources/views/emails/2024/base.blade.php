@@ -2,7 +2,6 @@
 <html lang="{{ app()->getLocale() }}" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
     <meta name="x-apple-disable-message-reformatting">
     <link rel="preconnect" href="https://fonts.googleapis.com">

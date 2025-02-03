@@ -88,7 +88,7 @@
         'id' => 'invite-help',
         'title' => __('campaigns.members.invite.title'),
         'textes' => [
-            __('campaigns.members.invite.description'),
+            __('campaigns.members.invite.description', ['campaign' => $campaign->name]),
             __('campaigns.members.invite.more', [
                         'link' =>
                             '<a href="' . route('campaign_roles.index', $campaign) . '">'

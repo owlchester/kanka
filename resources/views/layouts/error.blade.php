@@ -12,7 +12,7 @@
     <meta property="og:title" content="{{ $title ?? __('front.meta.title', ['kanka' => config('app.name')]) }} - {{ config('app.name') }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 
-    <title>{{ $error }} {{ __('errors.' . $error . '.title') }} - {{ config('app.name', 'Kanka') }}</title>
+    <title>{{ $error }} {{ __('errors.' . $error . '.title') }}</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>

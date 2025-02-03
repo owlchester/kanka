@@ -9,11 +9,10 @@ $specificTheme = null;
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{!! $title ?? '' !!} - {{ config('app.name', 'Kanka') }}</title>
+    <title>{!! $title ?? '' !!}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <meta property="og:title" content="{{ $title ?? '' }} - {{ config('app.name') }}" />
+    <meta property="og:title" content="{{ $title ?? '' }}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
 
     <link rel="shortcut icon" href="/images/favicon/favicon.ico" type="image/x-icon" />

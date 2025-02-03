@@ -46,7 +46,7 @@
       }
     </script>@endif
 
-    <title>{{ $title ?? __('front.meta.title', ['kanka' => config('app.name')]) }}@if (!isset($skipEnding)) - {{ config('app.name', 'Kanka') }}@endif</title>
+    <title>{{ $title ?? __('front.meta.title', ['kanka' => config('app.name')]) }}</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

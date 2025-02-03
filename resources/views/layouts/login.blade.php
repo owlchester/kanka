@@ -3,7 +3,6 @@
 <head>
 @include('layouts.tracking.tracking')
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{{ $title ?? __('default.page_title') }} - {{ config('app.name', 'Laravel') }}</title>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
