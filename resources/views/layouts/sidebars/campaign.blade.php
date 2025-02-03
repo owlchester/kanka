@@ -19,7 +19,7 @@
                     :text="__('crud.tabs.overview')"
                 ></x-sidebar.element>
 
-                <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
+                <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
                     @can('update', $campaign)
                         <li class="px-2 section-overview {{ $sidebar->activeCampaign('recovery') }}">
                             <x-sidebar.element
@@ -52,7 +52,7 @@
                     :text="__('campaigns.show.tabs.management')"
                 ></x-sidebar.element>
 
-                <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
+                <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
                 @can('members', $campaign)
                 <li class="px-2 section-members {{ $sidebar->activeCampaign('campaign_users') }}">
                     <x-sidebar.element
@@ -89,7 +89,7 @@
                     icon="fa-duotone fa-cog"
                     :text="__('campaigns.show.tabs.customisation')"
                 ></x-sidebar.element>
-                <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
+                <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
 
                     <li class="px-2 section-modules {{ $sidebar->activeCampaign(['modules', 'entity_types']) }}">
                         <x-sidebar.element
@@ -116,7 +116,7 @@
                     </li>
 
                     @can('update', $campaign)
-                        <li class="px-2 section-modules {{ $sidebar->activeCampaign('campaign_styles') }}">
+                        <li class="px-2 section-modules {{ $sidebar->activeCampaign(['campaign_styles', 'theme-builder']) }}">
                             <x-sidebar.element
                                 :url="route('campaign_styles.index', [$campaign])"
                                 icon="fa-duotone fa-palette"
@@ -140,7 +140,7 @@
                     icon="fa-duotone fa-database"
                     :text="__('campaigns.show.tabs.data')"
                 ></x-sidebar.element>
-                <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
+                <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
                     <li class="px-2 section-overview {{ $sidebar->activeCampaign('campaign-export') }}">
                         <x-sidebar.element
                             :url="route('campaign.export', [$campaign])"
@@ -174,7 +174,7 @@
                         icon="fa-duotone fa-radiation"
                         :text="__('campaigns.show.tabs.danger')"
                     ></x-sidebar.element>
-                    <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
+                    <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
                         <li class="px-2 section-overview {{ $sidebar->activeCampaign('deletion') }}">
                             <x-sidebar.element
                                 :url="route('campaign.delete', [$campaign])"

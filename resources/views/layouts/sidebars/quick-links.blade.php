@@ -4,7 +4,7 @@
         :icon="$element['custom_icon'] ?? $element['icon']"
         :text="$element['custom_label'] ?? $element['label'] ?? __($element['label_key'])"
     ></x-sidebar.element>
-    <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
+    <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
         @foreach ($links as $bookmark)
             @include('layouts.sidebars._quick-link', ['bookmark' => $bookmark])
         @endforeach

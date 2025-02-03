@@ -7,6 +7,7 @@ $themeOverride = request()->get('_theme');
 $specificTheme = null;
 $seoTitle = isset($seoTitle) ? $seoTitle : (isset($title) ? $title : null);
 $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign);
+$sidebarCollapsed = Cookie::get('toggleState') === 'collapsed';
 $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
 
 ?><!DOCTYPE html>
@@ -83,7 +84,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
 {{-- Hide the sidebar if the there is no current campaign --}}
 <body class=" @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif
 @if(isset($entity)){{ $entity->bodyClasses() }}@endif
-@if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar) sidebar-collapse @endif antialiased" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember() ? 1 : 0 }}" @endif>
+@if(isset($dashboard))dashboard-{{ $dashboard->id }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif @if(!$showSidebar || $sidebarCollapsed) sidebar-collapse @endif antialiased" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember() ? 1 : 0 }}" @endif >
 
 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="skip-nav-link absolute mx-2 top-0 btn2 btn-primary btn-sm rounded-t-none" tabindex="0">
     {{ __('crud.navigation.skip_to_content') }}
@@ -92,7 +93,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
         @include('layouts.header', ['toggle' => $showSidebar])
         @includeWhen(isset($campaign) || isset($sidebar) && $sidebar == 'settings', 'layouts.sidebars.' . ($sidebar ?? 'app'))
 
-        <div class="content-wrapper" id="{{ isset($contentId) ? $contentId : "main-content" }}">
+        <div class="content-wrapper transition-all duration-150" id="{{ isset($contentId) ? $contentId : "main-content" }}">
             @include('layouts.banner')
 
             @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))

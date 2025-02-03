@@ -24,7 +24,7 @@
     background-repeat: no-repeat;
     padding-top: 50px;
     min-height: 100%;
-    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out, width 0.3s ease-in-out;
 
     .campaign-updated {
         --tw-text-opacity: 0.7;
@@ -93,7 +93,8 @@ body.sidebar-collapse .sidebar-toggle [data-sidebar="expand"] {
 /** Mobile **/
 @media (max-width: 767px) {
     .main-sidebar {
-        transform: translateX(calc(0px - var(--sidebar-width)));
+        //transform: translateX(calc(0px - var(--sidebar-width)));
+        margin-left: calc(0px - var(--sidebar-width));
     }
     .content-wrapper, .main-footer {
         margin-left: 0;
@@ -101,10 +102,12 @@ body.sidebar-collapse .sidebar-toggle [data-sidebar="expand"] {
 
 
     .sidebar-collapse .main-sidebar {
-        transform: translate(0);
+        margin-left: 0;
+        //transform: translate(0);
     }
     .sidebar-collapse .content-wrapper, .sidebar-collapse .main-footer {
-        transform: translate(var(--sidebar-width), 0);
+        //transform: translate(var(--sidebar-width), 0);
+        margin-left: 0;
     }
 }
 @media (min-width: 768px) {
@@ -112,8 +115,9 @@ body.sidebar-collapse .sidebar-toggle [data-sidebar="expand"] {
         width: min(var(--sidebar-width), 90vw);
     }
     .sidebar-collapse .main-sidebar {
-        transform: translate(0, 0);
-        width: 0 !important;
+        //transform: translate(0, 0);
+        margin-left: calc(0px - var(--sidebar-width));
+        //width: 0 !important;
         z-index: 850;
     }
     .sidebar-collapse .content-wrapper, .sidebar-collapse .right-side, .sidebar-collapse .main-footer {

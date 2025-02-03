@@ -7,7 +7,7 @@
 @if (!empty($campaign))
     @inject('sidebar', 'App\Services\SidebarService')
     @php $sidebar->campaign($campaign)->prepareBookmarks()@endphp
-    <aside class="main-sidebar main-sidebar-placeholder t-0 l-0 absolute @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(240, 210)->url($campaign->image) }})" @endif>
+    <aside class="main-sidebar main-sidebar-placeholder t-0 l-0 absolute z-20 @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(240, 210)->url($campaign->image) }})" @endif>
 
         @include('layouts.sidebars._campaign')
 
@@ -40,7 +40,7 @@
                         @endif
                         @if (!empty($element['children']))
 
-                        <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
+                        <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
                         @foreach($element['children'] as $childName => $child)
                             <li class="p-0 m-0 {{ (!isset($child['route']) || $child['route'] !== false ? $sidebar->active($childName) : null) }} subsection section-{{ $childName }}">
                                 @php

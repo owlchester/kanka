@@ -9,7 +9,7 @@
 
 body {
     --tw-background-opacity: 1;
-    background-color: var(--body-background, hsl(var(--b1)/var(--tw-background-opacity)));
+    background-color: var(--body-background, var(--content-wrapper-background, hsl(var(--b1)/var(--tw-background-opacity))));
     --tw-text-opacity: 1;
     color: var(--body-text, hsl(var(--bc)/var(--tw-text-opacity)));
 }
@@ -42,10 +42,6 @@ h1, h2, h3, h4, h5, h6, h1 > small, .panel-title {
     color: var(--header-text, hsl(var(--bc)/var(--tw-text-opacity)));
 }
 
-.content-wrapper {
-    background-color: var(--content-wrapper-background, hsl(var(--b1)/var(--tw-background-opacity)));
-    --tw-background-opacity: 1;
-}
 .bg-wrapper {
     background-color: var(--content-wrapper-background, hsl(var(--b1)/var(--tw-background-opacity)));
     --tw-background-opacity: 1;
