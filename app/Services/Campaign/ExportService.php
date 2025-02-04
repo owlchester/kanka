@@ -309,7 +309,7 @@ class ExportService
                 $this->archive->saveTo($saveFolder);
                 unlink($this->path);
                 throw new Exception(
-                    'Missing campaign entity relation: ' . $entityType->singular . '-' . $name ?? 'unknown' . '? '
+                    'Missing campaign entity relation: ' . $entityType->singular . '? '
                     . $e->getMessage()
                 );
             }
