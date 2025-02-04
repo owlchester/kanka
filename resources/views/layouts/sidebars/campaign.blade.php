@@ -1,9 +1,8 @@
 @inject('sidebar', 'App\Services\SidebarService')
-<aside class="main-sidebar main-sidebar-placeholder z-20 h-full absolute flex flex-col @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(240, 210)->url($campaign->image) }})" @endif>
-
+<aside class="main-sidebar main-sidebar-placeholder z-20 h-auto min-h-full absolute flex flex-col @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(240, 210)->url($campaign->image) }})" @endif>
     @include('layouts.sidebars._campaign')
 
-    <section class="sidebar pb-14" style="height: auto">
+    <section class="sidebar grow">
         <ul class="sidebar-menu overflow-hidden whitespace-no-wrap list-none m-0 p-0">
             <li class="px-2 section-dashboard">
                 <x-sidebar.element
@@ -186,6 +185,5 @@
                 </li>
             @endcan
         </ul>
-
     </section>
 </aside>
