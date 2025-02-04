@@ -169,7 +169,6 @@ trait CustomEntityMapper
 
     public function tree(): self
     {
-        dump($this->parents);
         foreach ($this->parents as $parent => $children) {
             if (!isset($this->mapping[$parent])) {
                 continue;
@@ -344,29 +343,6 @@ trait CustomEntityMapper
             $entityTag->save();
         }
 
-        return $this;
-    }
-
-    protected function foreign(string $model, string $field): self
-    {
-        if (empty($this->data[$field])) {
-            return $this;
-        }
-        if ($model === 'entities') {
-            if (!ImportIdMapper::hasEntity($this->data[$field])) {
-                return $this;
-            }
-            $foreignID = ImportIdMapper::getEntity($this->data[$field]);
-        } else {
-            if (!ImportIdMapper::has($model, $this->data[$field])) {
-                return $this;
-            }
-            $foreignID = ImportIdMapper::get($model, $this->data[$field]);
-        }
-        if (!$foreignID) {
-            return $this;
-        }
-        $this->model->$field = $foreignID;
         return $this;
     }
 
