@@ -30,9 +30,6 @@
                             $modelclass = new $field['model'];
                             $model = $modelclass->find($value);
                         }
-                        if ($field['multiple']) {
-                            $value = $filterService->filterValue($field['type']);
-                        }
                         ?>
                     @if ($field['type'] === 'tag')
                         @include('cruds.datagrids.filters._tag', ['value' => $filterService->filterValue('tags')])
