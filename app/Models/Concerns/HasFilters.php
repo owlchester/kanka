@@ -499,7 +499,7 @@ trait HasFilters
             $races = DB::select("
                     WITH RECURSIVE race_tree AS (
                         -- Select parents
-                        SELECT * FROM races WHERE id IN (".implode(',', $raceIds).")
+                        SELECT * FROM races WHERE id IN (" . implode(',', $raceIds) . ")
                         UNION ALL
                         -- Recursively get all descendants
                         SELECT r.* FROM races r
@@ -507,10 +507,10 @@ trait HasFilters
                     )
                     SELECT * FROM race_tree
                 ");
-                $raceIds = collect($races)->pluck('id'); // Extract IDs
-                $query->whereIn($this->getTable() . '.race_id', $raceIds)->distinct();
-                return;
-            }
+            $raceIds = collect($races)->pluck('id'); // Extract IDs
+            $query->whereIn($this->getTable() . '.race_id', $raceIds)->distinct();
+            return;
+        }
 
         foreach ($value as $v) {
             $v = (int) $v;
@@ -573,10 +573,10 @@ trait HasFilters
         }
 
         if ($this->filterOption('children')) {
-           $locations = DB::select("
+            $locations = DB::select("
                 WITH RECURSIVE location_tree AS (
                     -- Select parents
-                    SELECT * FROM locations WHERE id IN (".implode(',', $locationIds).")
+                    SELECT * FROM locations WHERE id IN (" . implode(',', $locationIds) . ")
                     UNION ALL
                     -- Recursively get all descendants
                     SELECT l.* FROM locations l
@@ -624,7 +624,7 @@ trait HasFilters
             $orgs = DB::select("
                     WITH RECURSIVE organisation_tree AS (
                         -- Select parents
-                        SELECT * FROM organisations WHERE id IN (".implode(',', $orgIds).")
+                        SELECT * FROM organisations WHERE id IN (" . implode(',', $orgIds) . ")
                         UNION ALL
                         -- Recursively get all descendants
                         SELECT r.* FROM organisations r
@@ -632,10 +632,10 @@ trait HasFilters
                     )
                     SELECT * FROM organisation_tree
                 ");
-                $orgIds = collect($orgs)->pluck('id'); // Extract IDs
-                $query->whereIn($this->getTable() . '.organisation_id', $orgIds)->distinct();
-                return;
-            }
+            $orgIds = collect($orgs)->pluck('id'); // Extract IDs
+            $query->whereIn($this->getTable() . '.organisation_id', $orgIds)->distinct();
+            return;
+        }
 
         foreach ($value as $v) {
             $v = (int) $v;
