@@ -33,35 +33,10 @@ class CharacterFilter extends DatagridFilter
         $this
             ->add('name')
             ->add('title')
-            ->add([
-                'field' => 'family_id',
-                'label' => Module::singular(config('entities.ids.family'), __('entities.family')),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.family')]),
-                'placeholder' =>  $famPlaceholder,
-                'model' => Family::class,
-                'withChildren' => true,
-            ])
-            ->location()
-            ->add([
-                'field' => 'race_id',
-                'label' => Module::singular(config('entities.ids.race'), __('entities.race')),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.race')]),
-                'placeholder' =>  $racePlaceholder,
-                'model' => Race::class,
-                'withChildren' => true,
-            ])
-            ->add([
-                'field' => 'member_id',
-                'label' => Module::singular(config('entities.ids.organisation'), __('entities.organisation')),
-                'type' => 'select2',
-                'route' => route('search-list', [$this->campaign, config('entities.ids.organisation')]),
-                'placeholder' => $orgPlaceholder,
-                'model' => Organisation::class,
-                'withChildren' => true,
-
-            ])
+            ->families()
+            ->locations()
+            ->races()
+            ->organisations()
             ->add('type')
             ->add('age')
             ->add('sex')

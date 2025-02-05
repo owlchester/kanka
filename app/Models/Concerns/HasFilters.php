@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\Location;
 use App\Models\Family;
 use App\Models\Race;
+use Illuminate\Support\Facades\DB;
 
 /**
  * HasFilters
@@ -84,8 +85,8 @@ trait HasFilters
 
         foreach ($this->filterParams as $key => $value) {
             if (isset($value) && in_array($key, $fields)) {
-                // The requested field is an array, which we don't support for anything other than tags ("or" searches)
-                if (is_array($value) && $key != "tags") {
+                // The requested field is an array, which we don't support for anything other than tags, and locations ("or" searches)
+                if (is_array($value) && $key != "tags" && $key != "locations" && $key != "organisations" && $key != "races" && $key != "families") {
                     continue;
                 }
                 $this->filterOption = !empty($params[$key . '_option']) ? $params[$key . '_option'] : null;
@@ -111,6 +112,14 @@ trait HasFilters
 
                 if ($key === 'tags') {
                     $this->filterTags($query, $value);
+                } elseif ($key == 'locations') {
+                    $this->filterMultipleLocations($query, $value);
+                } elseif ($key == 'organisations') {
+                    $this->filterOrganisations($query, $value);
+                } elseif ($key == 'races') {
+                    $this->filterRaces($query, $value);
+                } elseif ($key == 'families') {
+                    $this->filterFamilies($query, $value);
                 } elseif (in_array($key, ['date_start' , 'date_end'])) {
                     $this->filterDateRange($query, $key, $params);
                 } elseif ($key == 'races') {
@@ -179,7 +188,7 @@ trait HasFilters
     {
         $operator = 'like';
         $filterValue = $value;
-        if (($key !== 'tags') && ($key !== 'races')) {
+        if (($key !== 'tags') && ($key !== 'races') && ($key !== 'locations') && ($key !== 'families') && ($key !== 'organisations')) {
             if ($value == '!!') {
                 $operator = 'IS NULL';
                 $filterValue = null;
@@ -475,16 +484,33 @@ trait HasFilters
         if (!is_array($value)) {
             $value = [$value];
         }
+        $raceIds = [];
+        foreach ($value as $v) {
+            $raceIds[] = (int) $v;
+        }
 
         if ($this->filterOption('exclude')) {
-            $raceIds = [];
-            foreach ($value as $v) {
-                $raceIds[] = (int) $v;
-            }
             $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' .
                 $this->getTable() . '.id and cr.race_id in (' . implode(', ', $raceIds) . ')) = 0');
             return;
         }
+
+        if ($this->filterOption('children')) {
+            $races = DB::select("
+                    WITH RECURSIVE race_tree AS (
+                        -- Select parents
+                        SELECT * FROM races WHERE id IN (".implode(',', $raceIds).")
+                        UNION ALL
+                        -- Recursively get all descendants
+                        SELECT r.* FROM races r
+                        INNER JOIN race_tree rt ON r.race_id = rt.id
+                    )
+                    SELECT * FROM race_tree
+                ");
+                $raceIds = collect($races)->pluck('id'); // Extract IDs
+                $query->whereIn($this->getTable() . '.race_id', $raceIds)->distinct();
+                return;
+            }
 
         foreach ($value as $v) {
             $v = (int) $v;
@@ -517,6 +543,144 @@ trait HasFilters
             return;
         }
         $this->filterFallback($query, $key);
+    }
+
+    /**
+     * Filter on characters on multiple locations
+     */
+    protected function filterMultipleLocations(Builder $query, null|string|array $value = null, string $key = null): void
+    {
+        // "none" filter keys is handled later
+        if ($this->filterOption('none')) {
+            return;
+        }
+
+        $query
+            ->joinEntity()
+        ;
+        // Make sure we always have an array
+        if (!is_array($value)) {
+            $value = [$value];
+        }
+        $locationIds = [];
+        foreach ($value as $v) {
+            $locationIds[] = (int) $v;
+        }
+
+        if ($this->filterOption('exclude')) {
+            $query->whereNotIn($this->getTable() . '.location_id', $locationIds)->distinct();
+            return;
+        }
+
+        if ($this->filterOption('children')) {
+           $locations = DB::select("
+                WITH RECURSIVE location_tree AS (
+                    -- Select parents
+                    SELECT * FROM locations WHERE id IN (".implode(',', $locationIds).")
+                    UNION ALL
+                    -- Recursively get all descendants
+                    SELECT l.* FROM locations l
+                    INNER JOIN location_tree lt ON l.location_id = lt.id
+                )
+                SELECT * FROM location_tree
+            ");
+            $locIds = collect($locations)->pluck('id'); // Extract IDs
+            $query->whereIn($this->getTable() . '.location_id', $locIds)->distinct();
+            return;
+        }
+
+        $query->whereIn($this->getTable() . '.location_id', $locationIds)->distinct();
+    }
+
+    /**
+     * Filter on characters on multiple organisations
+     */
+    protected function filterOrganisations(Builder $query, null|string|array $value = null, string $key = null): void
+    {
+        // "none" filter keys is handled later
+        if ($this->filterOption('none')) {
+            return;
+        }
+        $query
+            ->joinEntity()
+        ;
+
+        // Make sure we always have an array
+        if (!is_array($value)) {
+            $value = [$value];
+        }
+        $orgIds = [];
+        foreach ($value as $v) {
+            $orgIds[] = (int) $v;
+        }
+
+        if ($this->filterOption('exclude')) {
+            $query->whereRaw('(select count(*) from organisation_member as cr where cr.character_id = ' .
+                $this->getTable() . '.id and cr.organisation_id in (' . implode(', ', $orgIds) . ')) = 0');
+            return;
+        }
+
+        if ($this->filterOption('children')) {
+            $orgs = DB::select("
+                    WITH RECURSIVE organisation_tree AS (
+                        -- Select parents
+                        SELECT * FROM organisations WHERE id IN (".implode(',', $orgIds).")
+                        UNION ALL
+                        -- Recursively get all descendants
+                        SELECT r.* FROM organisations r
+                        INNER JOIN organisation_tree rt ON r.organisation_id = rt.id
+                    )
+                    SELECT * FROM organisation_tree
+                ");
+                $orgIds = collect($orgs)->pluck('id'); // Extract IDs
+                $query->whereIn($this->getTable() . '.organisation_id', $orgIds)->distinct();
+                return;
+            }
+
+        foreach ($value as $v) {
+            $v = (int) $v;
+            $query
+                ->leftJoin('organisation_member as cr' . $v, "cr{$v}.character_id", $this->getTable() . '.id')
+                ->where("cr{$v}.organisation_id", $v)
+            ;
+        }
+    }
+
+    /**
+     * Filter on characters on multiple families
+     */
+    protected function filterFamilies(Builder $query, null|string|array $value = null, string $key = null): void
+    {
+        // "none" filter keys is handled later
+        if ($this->filterOption('none')) {
+            return;
+        }
+        $query
+            ->joinEntity()
+        ;
+
+        // Make sure we always have an array
+        if (!is_array($value)) {
+            $value = [$value];
+        }
+
+        if ($this->filterOption('exclude')) {
+            $familyIds = [];
+            foreach ($value as $v) {
+                $familyIds[] = (int) $v;
+            }
+            $query->whereRaw('(select count(*) from character_family as cr where cr.character_id = ' .
+                $this->getTable() . '.id and cr.family_id in (' . implode(', ', $familyIds) . ')) = 0');
+            return;
+        }
+
+        foreach ($value as $v) {
+            $v = (int) $v;
+            $query
+                ->leftJoin('character_family as cr' . $v, "cr{$v}.character_id", $this->getTable() . '.id')
+                ->where("cr{$v}.family_id", $v)
+            ;
+        }
     }
 
     /**
@@ -670,6 +834,11 @@ trait HasFilters
     protected function filterNoneOptions(Builder $query, string $key, array $fields = []): void
     {
         $key = Str::beforeLast($key, '_option');
+
+        if (in_array($key, ['races', 'families', 'locations', 'organisations'])) {
+            $names = ['races' => 'race_id', 'families' => 'family_id', 'organisations' => 'organisation_id', 'locations' => 'location_id'];
+            $key = $names[$key];
+        }
         // Validate the key is a filter
         if (!in_array($key, $fields)) {
             return;

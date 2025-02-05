@@ -4,8 +4,11 @@ namespace App\Datagrids\Filters;
 
 use App\Facades\Module;
 use App\Models\Character;
+use App\Models\Family;
 use App\Models\Journal;
 use App\Models\Location;
+use App\Models\Organisation;
+use App\Models\Race;
 use App\Models\Tag;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Auth;
@@ -69,6 +72,102 @@ abstract class DatagridFilter
     }
 
     /**
+     * Add the locations filters
+     * @return $this
+     */
+    protected function locations(): self
+    {
+        $name = Module::plural(config('entities.ids.location'));
+        $placeholder = __('crud.placeholders.multiple');
+        if (!empty($name)) {
+            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
+        }
+        $this->filters[] = [
+            'field' => 'locations',
+            'label' => Module::plural(config('entities.ids.location'), __('entities.locations')),
+            'type' => 'selectMultiple',
+            'route' => route('search-list', [$this->campaign, config('entities.ids.location')]),
+            'placeholder' =>  $placeholder,
+            'model' => Location::class,
+            'multiple' => true,
+            'withChildren' => true,
+        ];
+        return $this;
+    }
+
+    /**
+     * Add the races filters
+     * @return $this
+     */
+    protected function races(): self
+    {
+        $name = Module::plural(config('entities.ids.race'));
+        $placeholder = __('crud.placeholders.multiple');
+        if (!empty($name)) {
+            $placeholder = __('crud.placeholders.multiple', ['module' => $name]);
+        }
+        $this->filters[] = [
+            'field' => 'races',
+            'label' => Module::plural(config('entities.ids.race'), __('entities.races')),
+            'type' => 'selectMultiple',
+            'route' => route('search-list', [$this->campaign, config('entities.ids.race')]),
+            'placeholder' =>  $placeholder,
+            'model' => Race::class,
+            'multiple' => true,
+            'withChildren' => true,
+        ];
+        return $this;
+    }
+
+    /**
+     * Add the organisations filters
+     * @return $this
+     */
+    protected function organisations(): self
+    {
+        $name = Module::plural(config('entities.ids.organisation'));
+        $placeholder = __('crud.placeholders.multiple');
+        if (!empty($name)) {
+            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
+        }
+        $this->filters[] = [
+            'field' => 'organisations',
+            'label' => Module::plural(config('entities.ids.organisation'), __('entities.organisations')),
+            'type' => 'selectMultiple',
+            'route' => route('search-list', [$this->campaign, config('entities.ids.organisation')]),
+            'placeholder' =>  $placeholder,
+            'model' => Organisation::class,
+            'multiple' => true,
+            'withChildren' => true,
+        ];
+        return $this;
+    }
+
+    /**
+     * Add the families filters
+     * @return $this
+     */
+    protected function families(): self
+    {
+        $name = Module::plural(config('entities.ids.family'));
+        $placeholder = __('crud.placeholders.multiple');
+        if (!empty($name)) {
+            $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
+        }
+        $this->filters[] = [
+            'field' => 'families',
+            'label' => Module::plural(config('entities.ids.family'), __('entities.families')),
+            'type' => 'selectMultiple',
+            'route' => route('search-list', [$this->campaign, config('entities.ids.family')]),
+            'placeholder' =>  $placeholder,
+            'model' => Family::class,
+            'multiple' => true,
+            'withChildren' => true,
+        ];
+        return $this;
+    }
+
+    /**
      * Add the character filters
      * @return $this
      */
@@ -125,7 +224,7 @@ abstract class DatagridFilter
         }
         $this->filters[] = [
             'field' => 'tags',
-            'label' => Module::singular(config('entities.ids.tag'), __('entities.tag')),
+            'label' => Module::singular(config('entities.ids.tag'), __('entities.tags')),
             'type' => 'tag',
             'route' => route('search-list', [$this->campaign, config('entities.ids.tag')]),
             'placeholder' =>  $placeholder,
