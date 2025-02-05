@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Filters;
 
+use App\Datagrids\Filters\CharacterFilter;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\EntityType;
@@ -65,6 +66,7 @@ class FormController extends Controller
 
         $reflect = new ReflectionClass($model);
         $filtersClass = 'App\Datagrids\Filters\\' . $reflect->getShortName() . 'Filter';
+        /** @var CharacterFilter $filters */
         $filters = app()->make($filtersClass);
         if ($filters) {
             $filters->campaign($this->campaign)->build();

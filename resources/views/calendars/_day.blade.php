@@ -19,7 +19,7 @@
     }
     @endphp
 
-    <td class="h-24 text-center calendar-day-block break-words align-top {{ $day['isToday'] ? 'today bg-base-200' : null }}" data-target="primary-dialog" data-url="{{ route('calendars.event.create', $routeOptions) }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}">
+    <td class="h-24 text-center break-words align-top {{ $day['isToday'] ? 'today bg-base-200' : null }}" data-date="{{ \Illuminate\Support\Arr::get($day, 'date', null) }}" @if ($canEdit) data-dbclick data-target="primary-dialog" data-url="{{ route('calendars.event.create', $routeOptions) }}" @endif>
         <div class="flex flex-col gap-1">
         @if ($day['day'])
             <div class="flex gap-1 items-center">

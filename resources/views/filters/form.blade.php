@@ -1,4 +1,5 @@
 @php
+    /** @var \App\Services\FilterService $filterService */
     use Illuminate\Support\Arr;
 @endphp
 <x-form :action="[$route, $campaign, 'm' => $mode]" method="GET" id="crud-filters-form" class="block">
@@ -28,6 +29,9 @@
                         if (!empty($value) && $field['type'] == 'select2') {
                             $modelclass = new $field['model'];
                             $model = $modelclass->find($value);
+                        }
+                        if ($field['multiple']) {
+                            $value = $filterService->filterValue($field['type']);
                         }
                         ?>
                     @if ($field['type'] === 'tag')
