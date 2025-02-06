@@ -506,13 +506,10 @@ trait HasFilters
             $value = $ids;
         }
 
-        foreach ($value as $v) {
-            $v = (int) $v;
-            $query
-                ->leftJoin('character_race as cr' . $v, "cr{$v}.character_id", $this->getTable() . '.id')
-                ->where("cr{$v}.race_id", $v)
-            ;
-        }
+        $values = collect($value)->map(fn($v) => (int) $v)->toArray(); // Ensure values are integers
+        $query
+            ->leftJoin('character_race as cr', 'cr.character_id', '=', $this->getTable() . '.id')
+            ->whereIn('cr.race_id', $values);
     }
 
     /**
@@ -619,13 +616,10 @@ trait HasFilters
             $value = $ids;
         }
 
-        foreach ($value as $v) {
-            $v = (int) $v;
-            $query
-                ->leftJoin('organisation_member as cr' . $v, "cr{$v}.character_id", $this->getTable() . '.id')
-                ->where("cr{$v}.organisation_id", $v)
-            ;
-        }
+        $values = collect($value)->map(fn($v) => (int) $v)->toArray(); // Ensure values are integers
+        $query
+            ->leftJoin('organisation_member as om', 'om.character_id', '=', $this->getTable() . '.id')
+            ->whereIn('om.organisation_id', $values);
     }
 
     /**
@@ -668,13 +662,10 @@ trait HasFilters
             $value = $ids;
         }
 
-        foreach ($value as $v) {
-            $v = (int) $v;
-            $query
-                ->leftJoin('character_family as cr' . $v, "cr{$v}.character_id", $this->getTable() . '.id')
-                ->where("cr{$v}.family_id", $v)
-            ;
-        }
+        $values = collect($value)->map(fn($v) => (int) $v)->toArray(); // Ensure values are integers
+        $query
+            ->leftJoin('character_family as cf', 'cf.character_id', '=', $this->getTable() . '.id')
+            ->whereIn('cf.family_id', $values);
     }
 
     /**
