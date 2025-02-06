@@ -18,5 +18,5 @@
 
 
 
-@if (isset($campaign))<meta name="apple-mobile-web-app-title" content="{{ $campaign->name }}">@else<meta name="apple-mobile-web-app-title" content="{{ config('app.name') }}" />@endif
+<meta name="apple-mobile-web-app-title" content="{{ $campaign->name ?? config('app.name') }}">
 <meta name="apple-mobile-web-app-status-bar-style" content="#40479e">
