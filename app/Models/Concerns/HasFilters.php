@@ -10,7 +10,6 @@ use App\Models\Location;
 use App\Models\Family;
 use App\Models\Organisation;
 use App\Models\Race;
-use Illuminate\Support\Facades\DB;
 
 /**
  * HasFilters
@@ -189,7 +188,7 @@ trait HasFilters
     {
         $operator = 'like';
         $filterValue = $value;
-        if (!in_array($key, ['tags', 'locations', 'organisations', 'races', 'families'])) {    
+        if (!in_array($key, ['tags', 'locations', 'organisations', 'races', 'families'])) {
             if ($value == '!!') {
                 $operator = 'IS NULL';
                 $filterValue = null;
@@ -668,7 +667,7 @@ trait HasFilters
             }
             $value = $ids;
         }
-        
+
         foreach ($value as $v) {
             $v = (int) $v;
             $query
