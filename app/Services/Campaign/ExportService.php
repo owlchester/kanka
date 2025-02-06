@@ -88,6 +88,7 @@ class ExportService
                 ->campaignModules()
                 ->customCampaignModules()
                 ->entities()
+                ->customEntities()
                 ->gallery()
                 ->finish()
                 ->notify();
@@ -269,6 +270,53 @@ class ExportService
         return $this;
     }
 
+    protected function customEntities(): self
+    {
+        $entityWith = [
+            'entityTags', 'relationships',
+            'posts', 'posts.postTags', 'abilities', 'abilities.ability',
+            'events',
+            'image',
+            'header',
+            'assets',
+            'files',
+            'mentions',
+            'inventories',
+            'inventories.item',
+            'entityAttributes',
+        ];
+
+        $entityTypes = $this->campaign->entityTypes->where('is_special', 1)->all();
+
+        foreach ($entityTypes as $entityType) {
+            if (!$entityType->isEnabled()) {
+                continue;
+            }
+
+            try {
+                $base = Entity::inTypes($entityType->id)
+
+                    ->with($entityWith)
+                    ->get();
+
+                $name = Str::camel($entityType->code) . '_' . $entityType->id;
+                foreach ($base as $model) {
+                    $this->process($name, $model);
+                }
+            } catch (Exception $e) {
+                Log::error('Campaign export', ['err' => $e->getMessage()]);
+                $saveFolder = storage_path($this->exportPath);
+                $this->archive->saveTo($saveFolder);
+                unlink($this->path);
+                throw new Exception(
+                    'Missing campaign entity relation: ' . $entityType->singular . '? '
+                    . $e->getMessage()
+                );
+            }
+        }
+        return $this;
+    }
+
     protected function smartWith(array $with, string $entityClass): array
     {
         /** @var MiscModel $class */
@@ -314,35 +362,43 @@ class ExportService
         return $this;
     }
 
-    protected function process(string $entity, $model): self
+    protected function process(string $module, $model): self
     {
-        if (!$this->assets) {
-            $this->archive->add($model->export(), $entity . '/' . Str::slug($model->name) . '.json', );
-            $this->files++;
-            //return $this;
+        if ($model instanceof Entity) {
+            $entity = $model;
+        } else {
+            $entity = $model->entity;
         }
 
-        $path = $model->entity->image_path;
+        if ($model instanceof Entity) {
+            $this->archive->add(json_encode(['entity' => $model->export()]), $module . '/' . Str::slug($model->name) . '.json');
+        } else {
+            $this->archive->add($model->export(), $module . '/' . Str::slug($model->name) . '.json');
+        }
+        $this->files++;
+
+
+        $path = $entity->image_path;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
                 $this->files++;
             } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get image_path', 'image_path' => $path, 'entity' => $model->entity->id]);
+                Log::warning('Campaign export', ['err' => 'Can\'t get image_path', 'image_path' => $path, 'entity' => $entity->id]);
             }
         }
-        $path = $model->entity->header_image;
+        $path = $entity->header_image;
         if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
                 $this->files++;
             } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get header_image', 'header_image' => $path, 'entity' => $model->entity->id]);
+                Log::warning('Campaign export', ['err' => 'Can\'t get header_image', 'header_image' => $path, 'entity' => $entity->id]);
             }
         }
 
         /** @var EntityAsset $file */
-        foreach ($model->entity->files as $file) {
+        foreach ($entity->files as $file) {
             if (!isset($file->metadata['path'])) {
                 continue;
             }

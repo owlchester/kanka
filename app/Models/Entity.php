@@ -380,6 +380,7 @@ class Entity extends Model
         $fields = [
             'id',
             'entity_id',
+            'parent_id',
             'type_id',
             'name',
             'type',

@@ -6,6 +6,7 @@ class ImportIdMapper
 {
     protected array $misc = [];
     protected array $customEntityTypes = [];
+    protected array $customEntityTypeNames = [];
     protected array $entities = [];
     protected array $gallery = [];
     protected array $posts = [];
@@ -27,6 +28,12 @@ class ImportIdMapper
     public function putCustomEntityType(int $old, int $new): self
     {
         $this->customEntityTypes[$old] = $new;
+        return $this;
+    }
+
+    public function putCustomEntityTypeName(string $old, int $new): self
+    {
+        $this->customEntityTypeNames[$old] = $new;
         return $this;
     }
 
@@ -74,6 +81,11 @@ class ImportIdMapper
     public function getCustomEntityType(int $old): int
     {
         return $this->customEntityTypes[$old];
+    }
+
+    public function getCustomEntityTypes(): array
+    {
+        return $this->customEntityTypeNames;
     }
 
     public function hasOldEntityType(int $old): bool
