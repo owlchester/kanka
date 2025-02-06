@@ -224,7 +224,7 @@ abstract class DatagridFilter
         }
         $this->filters[] = [
             'field' => 'tags',
-            'label' => Module::singular(config('entities.ids.tag'), __('entities.tags')),
+            'label' => Module::plural(config('entities.ids.tag'), __('entities.tags')),
             'type' => 'tag',
             'route' => route('search-list', [$this->campaign, config('entities.ids.tag')]),
             'placeholder' =>  $placeholder,

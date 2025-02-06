@@ -128,6 +128,10 @@ class FilterService
             $this->filters = [];
         }
 
+        foreach (['tags', 'locations', 'organisations', 'races', 'families'] as $key) {
+            $this->checkFilterData($key, $availableFilters);
+        }
+
         // If we have data but no "tags" array, it's empty
         if (!empty($this->data) && in_array('tags', $availableFilters) && !isset($this->data['tags'])) {
             // Not calling from a page or order result, we can junk the filters
@@ -244,6 +248,17 @@ class FilterService
         // Save the new data into the session
         session()->put($sessionKey, $this->order);
         return $this;
+    }
+
+    private function checkFilterData(string $key, array $availableFilters): void
+    {
+        // If we have data but no array, it's empty
+        if (!empty($this->data) && in_array($key, $availableFilters) && !isset($this->data[$key])) {
+            // Not calling from a page or order result, we can junk the filters
+            if (empty($this->data['page']) && empty($this->data['order'])) {
+                unset($this->data[$key]);
+            }
+        }
     }
 
     /**
