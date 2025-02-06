@@ -128,6 +128,10 @@ class FilterService
             $this->filters = [];
         }
 
+        foreach (['tags', 'locations', 'organisations', 'races', 'families'] as $key) {
+            $this->checkFilterData($key, $availableFilters);
+        }
+
         // If we have data but no "tags" array, it's empty
         if (!empty($this->data) && in_array('tags', $availableFilters) && !isset($this->data['tags'])) {
             // Not calling from a page or order result, we can junk the filters
@@ -135,6 +139,38 @@ class FilterService
                 unset($this->data['tags']);
             }
         }
+        // If we have data but no "locations" array, it's empty
+        if (!empty($this->data) && in_array('locations', $availableFilters) && !isset($this->data['locations'])) {
+            // Not calling from a page or order result, we can junk the filters
+            if (empty($this->data['page']) && empty($this->data['order'])) {
+                unset($this->data['locations']);
+            }
+        }
+
+        // If we have data but no "organisations" array, it's empty
+        if (!empty($this->data) && in_array('organisations', $availableFilters) && !isset($this->data['organisations'])) {
+            // Not calling from a page or order result, we can junk the filters
+            if (empty($this->data['page']) && empty($this->data['order'])) {
+                unset($this->data['organisations']);
+            }
+        }
+
+        // If we have data but no "races" array, it's empty
+        if (!empty($this->data) && in_array('races', $availableFilters) && !isset($this->data['races'])) {
+            // Not calling from a page or order result, we can junk the filters
+            if (empty($this->data['page']) && empty($this->data['order'])) {
+                unset($this->data['races']);
+            }
+        }
+
+        // If we have data but no "families" array, it's empty
+        if (!empty($this->data) && in_array('families', $availableFilters) && !isset($this->data['families'])) {
+            // Not calling from a page or order result, we can junk the filters
+            if (empty($this->data['page']) && empty($this->data['order'])) {
+                unset($this->data['families']);
+            }
+        }
+
         // Don't support the old tags, force using tags[]
         if (isset($this->data['tags']) && !is_array($this->data['tags'])) {
             unset($this->data['tags']);
@@ -212,6 +248,17 @@ class FilterService
         // Save the new data into the session
         session()->put($sessionKey, $this->order);
         return $this;
+    }
+
+    private function checkFilterData(string $key, array $availableFilters): void
+    {
+        // If we have data but no array, it's empty
+        if (!empty($this->data) && in_array($key, $availableFilters) && !isset($this->data[$key])) {
+            // Not calling from a page or order result, we can junk the filters
+            if (empty($this->data['page']) && empty($this->data['order'])) {
+                unset($this->data[$key]);
+            }
+        }
     }
 
     /**

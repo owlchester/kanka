@@ -24,13 +24,23 @@
             <div class="field flex flex-col gap-1 field-">
                 @if (is_array($field))
                     <label>{!! Arr::get($field, 'label', __('crud.fields.' . $field['field'])) !!}</label>
-                        <?php $model = null;
+                    <?php 
+                        $model = $models = null;
                         $value = $filterService->single($field['field']);
                         if (!empty($value) && $field['type'] == 'select2') {
                             $modelclass = new $field['model'];
                             $model = $modelclass->find($value);
                         }
-                        ?>
+                        // Support for fields with multiple models selected
+                        if (Arr::get($field, 'multiple') === true && $field['type'] == 'selectMultiple') {
+                            $value = $filterService->filterValue($field['field']);
+                            if (!empty($value)) {
+                                $modelclass = new $field['model'];
+                                $models = $modelclass->whereIn('id', $value)->get()->pluck('name', 'id')->toArray();
+                            }
+                        }
+                    ?>
+
                     @if ($field['type'] === 'tag')
                         @include('cruds.datagrids.filters._tag', ['value' => $filterService->filterValue('tags')])
                     @elseif ($field['type'] === 'select')
