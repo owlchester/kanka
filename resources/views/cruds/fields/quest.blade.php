@@ -16,6 +16,7 @@ if (isset($model) && $model->parent) {
     name="quest_id"
     key="quest"
     :allowNew="$allowNew ?? true"
+    :dynamicNew="$dynamicNew ?? false"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
     :route="route('search-list', [$campaign, config('entities.ids.quest')] + (isset($model) ? ['exclude' => $model->id] : []))"

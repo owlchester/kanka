@@ -19,6 +19,7 @@
     :key="isset($multiple) && $multiple ? 'items' : 'item'"
     :required="$required ?? false"
     :allowNew="$allowNew ?? true"
+    :dynamicNew="$dynamicNew ?? false"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
     :placeholder="isset($multiple) && $multiple ? __('crud.placeholders.multiple') : null"

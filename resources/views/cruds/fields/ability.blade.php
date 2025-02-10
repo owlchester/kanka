@@ -18,6 +18,7 @@ if (isset($model) && $model->ability) {
     name="ability_id"
     key="ability"
     :allowNew="$allowNew ?? true"
+    :dynamicNew="$dynamicNew ?? false"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
     :route="route('search-list', [$campaign, config('entities.ids.ability')] + (isset($model) ? ['exclude' => $model->id] : []))"
