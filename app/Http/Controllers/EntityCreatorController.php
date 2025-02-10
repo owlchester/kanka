@@ -107,8 +107,6 @@ class EntityCreatorController extends Controller
 
         $values = $this->inputFields;
 
-        $request->merge($values);
-
         foreach ($names as $name) {
             if (empty($name)) {
                 continue;
