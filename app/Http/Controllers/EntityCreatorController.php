@@ -530,10 +530,10 @@ class EntityCreatorController extends Controller
                 $this->inputFields[$entityType->code . '_id'] = $new->id;
 
             } else {
-               unset($this->inputFields[$entityType->code . '_id']);
+                unset($this->inputFields[$entityType->code . '_id']);
             }
         }
-        
+
         return $this;
     }
 }
