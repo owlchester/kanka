@@ -100,7 +100,7 @@ class EntityCreatorController extends Controller
             ->dynamicParent($entityType)
             ->dynamicLocations()
             ->dynamicLocation();
-        if ($entityType->code == 'character') {
+        if ($entityType->id == config('entities.ids.character')) {
             $this->dynamicFamilies()
                 ->dynamicRaces();
         }
@@ -510,28 +510,23 @@ class EntityCreatorController extends Controller
 
     protected function dynamicParent(EntityType $entityType): self
     {
-        if (!$this->request->has('save-tags') && !$this->request->has($entityType->code . '_id')) {
+        if (!$this->request->has($entityType->code . '_id')) {
             return $this;
         }
-        $canCreate = auth()->user()->can('create', [$entityType, $this->campaign]);
 
+        $value = $this->request->get($entityType->code . '_id', null);
         //Handle parent.
-        if (isset($values[$entityType->code . '_id']) && !is_numeric($values[$entityType->code . '_id'])) {
-            if ($canCreate) {
-                /** @var MiscModel $new */
-                $new = $entityType->getClass();
-                $new->name = $values[$entityType->code . '_id'];
-                $new->campaign_id = $this->campaign->id;
-                $new->save();
-                $new->crudSaved();
-                if ($new->entity) {
-                    $new->entity->crudSaved();
-                }
-                $this->inputFields[$entityType->code . '_id'] = $new->id;
-
-            } else {
-               unset($this->inputFields[$entityType->code . '_id']);
+        if (!is_numeric($value)) {
+            /** @var MiscModel $new */
+            $new = $entityType->getClass();
+            $new->name = $value;
+            $new->campaign_id = $this->campaign->id;
+            $new->save();
+            $new->crudSaved();
+            if ($new->entity) {
+                $new->entity->crudSaved();
             }
+            $this->inputFields[$entityType->code . '_id'] = $new->id;
         }
         
         return $this;

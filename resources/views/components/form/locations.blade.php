@@ -35,7 +35,7 @@ if ($quickCreator) {
 
 @if ($quickCreator)<div class="join w-full">@endif
 
-<select multiple="multiple" name="locations[]" class="w-full select2 join-item" data-tags="true" style="width: 100%" data-url="{{ route('search-list', [$campaign, config('entities.ids.location')]) }}" data-allow-clear="true" data-allow-new="{{ $dynamicNew ? 'true' : false}}" data-placeholder="{{ __('crud.placeholders.multiple') }}" id="{{ $fieldUniqIdentifier }}">
+<select multiple="multiple" name="locations[]" class="w-full select2 join-item" data-tags="true" style="width: 100%" data-url="{{ route('search-list', [$campaign, config('entities.ids.location')]) }}" data-allow-clear="true" data-new-tag="{{ __('crud.actions.new') }}" data-allow-new="{{ $dynamicNew ? 'true' : false}}" data-placeholder="{{ __('crud.placeholders.multiple') }}" id="{{ $fieldUniqIdentifier }}">
     @foreach ($selectedOption as $key => $val)
         <option value="{{ $key }}" selected="selected">{{ $val }}</option>
     @endforeach
