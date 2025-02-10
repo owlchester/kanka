@@ -528,7 +528,7 @@ class EntityCreatorController extends Controller
             }
             $this->inputFields[$entityType->code . '_id'] = $new->id;
         }
-        
+
         return $this;
     }
 }
