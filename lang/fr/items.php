@@ -7,10 +7,11 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'fields'        => [
-        'character'     => 'Personnage',
+        'character'     => 'Créateur(trice)',
         'is_equipped'   => 'Équipé',
         'price'         => 'Prix',
         'size'          => 'Taille',
+        'weight'        => 'Poids',
     ],
     'helpers'       => [],
     'hints'         => [
@@ -20,8 +21,9 @@ return [
     'inventories'   => [],
     'placeholders'  => [
         'price' => 'Prix de l\'objet',
-        'size'  => 'Taille, poids, dimensions.',
+        'size'  => 'Taille, Dimensions, Capacité',
         'type'  => 'Arme, Potion, Coffre',
+        'weight'=> 'Poid de l\'objet',
     ],
     'quests'        => [],
     'show'          => [

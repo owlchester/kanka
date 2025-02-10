@@ -58,6 +58,7 @@ TEXT
         'past_featured'                     => 'Campagne précédemment vedette',
         'post_collapsed'                    => 'Les nouveaux articles sur les entités sont minimisés par défaut.',
         'premium'                           => 'Premium débloqué par :name',
+        'private_mention_visibility'        => 'Mentions privées',
         'public'                            => 'Visibilité de la campagne',
         'public_campaign_filters'           => 'Filtres pour les campagnes publiques',
         'related_visibility'                => 'Visibilité des éléments liés',
@@ -87,6 +88,7 @@ TEXT
         'no_entry'                          => 'La campagne n\'a pas encore de description! Corrigeons cela.',
         'permissions_tab'                   => 'Controller les visibilités par défaut de nouveaux éléments avec ces options.',
         'premium'                           => 'Certaines fonctionnalités sont disponibles parce que les fonctionnalités Premium de cette campagne sont débloquées. Pour en savoir plus, consultez la page :settings.',
+        'private_mention_visibility'        => 'Contrôler si les mentions vers les entités privées sont cachées ou affiche leur nom.',
         'public_campaign_filters'           => 'Aides les autres utilisateurs à trouver la campagne parmi les autres campagnes publiques en fournissant les détails suivants.',
         'public_no_visibility'              => 'Attention! La campagne est public, mais le rôle publique de la campagne n\'a pas d\'accès. :fix.',
         'related_visibility'                => 'Visibilité par défaut lors de la création d\'un nouvel élément avec ce champ (note d\'entité, relation, pouvoir, etc)',
@@ -201,6 +203,10 @@ TEXT
             'added'     => ':user a été ajouté au rôle :role.',
             'removed'   => ':user a été retiré du rôle :role.',
         ],
+    ],
+    'mentions'                          => [
+        'private'   => 'Cacher le nom',
+        'visible'   => 'Afficher le nom',
     ],
     'modules'                           => [
         'permission-disabled'   => 'Ce module est désactivé.',

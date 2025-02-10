@@ -1,25 +1,25 @@
 <?php
 
 return [
-    '403'           => [
+    '403'               => [
         'body'  => 'Tu n\'as pas accès à cette page!',
         'title' => 'Accès refusé.',
     ],
-    '403-form'      => [
+    '403-form'          => [
         'help'  => 'Ceci peut être dû à la session qui n\'est plus active. Prière de se reconnecter dans une autre fenêtre avant de ressayer d\'enregistrer.',
     ],
-    '404'           => [
+    '404'               => [
         'body'  => 'Désolé, la page demandée ne peut être trouvée.',
         'title' => 'Page Inconnue',
     ],
-    '500'           => [
+    '500'               => [
         'body'  => [
             '1' => 'Oups, quelque chose s\'est mal passé.',
             '2' => 'Un rapport avec l\'erreur rencontrée nous a été envoyé, mais quelques fois ça aide si nous avons plus de détails.',
         ],
         'title' => 'Erreur',
     ],
-    '503'           => [
+    '503'               => [
         'body'  => [
             '1' => 'Kanka est actuellement en maintenance, ce qui d\'habitude signifie qu\'une mise à jour est en cours!',
             '2' => 'Désolé pour le dérangement. Tout reviendra à la normale dans quelques minutes.',
@@ -27,8 +27,19 @@ return [
         'json'  => 'Kanka est actuellement en maintenance. Prière de ressayer dans quelques minutes.',
         'title' => 'Maintenance',
     ],
-    '503-form'      => [],
-    'footer'        => 'Si tu as besoin d\'aide, contacte-nous a hello@kanka.io ou sur le :discord.',
-    'log-in'        => 'La connexion à ton compte pourrait te permettre de trouver ce que tu cherches.',
-    'post_layout'   => 'Mise en page de post invalide.',
+    '503-form'          => [],
+    'back-to-campaigns' => 'Revenir à une de tes campagnes',
+    'footer'            => 'Si tu as besoin d\'aide, contacte-nous a hello@kanka.io ou sur le :discord.',
+    'log-in'            => 'La connexion à ton compte pourrait te permettre de trouver ce que tu cherches.',
+    'post_layout'       => 'Mise en page de post invalide.',
+    'private-campaign'  => [
+        'auth'  => [
+            'helper'    => 'Tu n\'as pas accès à cette campagne.',
+        ],
+        'guest' => [
+            'helper'    => 'La campagne que tu essaye d\'accéder est privée et tu n\'es pas connecté à ton compte.',
+            'login'     => 'Se connecter pourrait te donner accès au contenu.',
+        ],
+        'title' => 'Campagne privée',
+    ],
 ];

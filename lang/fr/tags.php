@@ -25,6 +25,7 @@ return [
     ],
     'helpers'       => [
         'no_children'   => 'Il n\'y a actuellement aucune entité avec cette étiquette.',
+        'no_posts'      => 'Il n\'y a actuellement aucun article avec cette étiquette.',
     ],
     'hints'         => [
         'children'          => 'Cette liste contient toutes les entités directement dans cette étiquette et toutes les étiquettes enfants.',
@@ -43,10 +44,13 @@ return [
     ],
     'tags'          => [],
     'transfer'      => [
-        'description'   => 'Transférer les entités de cette étiquette vers une autre étiquette.',
-        'fail'          => 'Les entités de :tag n\'ont pas pu être transférées vers :newTag',
-        'success'       => 'Les entités de :tag ont été transférées vers :newTag',
-        'title'         => 'Transférer :name',
-        'transfer'      => 'Transférer',
+        'description'       => 'Transférer les entités de cette étiquette vers une autre étiquette.',
+        'fail'              => 'Les entités de :tag n\'ont pas pu être transférées vers :newTag',
+        'fail_post'         => 'Les articles de :tag n\'ont pas pu être transférés vers :newTag',
+        'post_description'  => 'Transférer les articles de cette étiquette vers une autre étiquette.',
+        'success'           => 'Les entités de :tag ont été transférées vers :newTag',
+        'success_post'      => 'Les articles de :tag ont été transférés vers :newTag',
+        'title'             => 'Transférer :name',
+        'transfer'          => 'Transférer',
     ],
 ];

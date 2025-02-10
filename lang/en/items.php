@@ -17,8 +17,8 @@ return [
     'placeholders'  => [
         'price' => 'Price of the item',
         'size'  => 'Size, Dimensions, Capacity',
-        'weight'  => 'Weight of the item',
         'type'  => 'Weapon, Potion, Artefact',
+        'weight'=> 'Weight of the item',
     ],
     'show'          => [
         'tabs'  => [

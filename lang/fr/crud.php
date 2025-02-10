@@ -6,6 +6,8 @@ return [
         'apply'             => 'Appliquer',
         'back'              => 'Retour',
         'change'            => 'Changer',
+        'close'             => 'Fermer',
+        'confirm'           => 'Confirmer',
         'copy'              => 'Copier',
         'copy_mention'      => 'Copier mention [ ]',
         'copy_to_campaign'  => 'Copier vers une campagne',
@@ -165,6 +167,7 @@ return [
         'tooltip'           => 'Infobulle',
         'type'              => 'Type',
         'visibility'        => 'Visibilité',
+        'word-count'        => 'Nombre de mots: :number',
     ],
     'files'                     => [
         'actions'   => [
@@ -293,6 +296,7 @@ return [
             'edit'          => 'Modifier',
             'read'          => 'Lire',
             'toggle'        => 'Basculer',
+            'view'          => 'Voir',
         ],
         'allowed'           => 'Permis',
         'fields'            => [
@@ -334,6 +338,7 @@ return [
         'race'          => 'Choix d\'une race',
         'tag'           => 'Choix d\'une étiquette',
         'timeline'      => 'Choix d\'une chronologie',
+        'type'          => 'Type de l\'entité',
         'user'          => 'Choix d\'un utilisateur',
     ],
     'relations'                 => [],

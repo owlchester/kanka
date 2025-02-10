@@ -40,9 +40,9 @@ return [
     'placeholders'  => [
         'date'      => 'Real world date for the quest',
         'entity'    => 'Name of an element from the quest',
+        'location'  => 'The quest\'s starting location',
         'role'      => 'This entity\'s role in the quest',
         'type'      => 'Character Arc, Sidequest, Main',
-        'location'  => 'The quest\'s starting location',
     ],
     'show'          => [
         'actions'   => [

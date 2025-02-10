@@ -6,9 +6,9 @@ return [
         'title'     => 'Available members',
         'unlimited' => ':amount of unlimited members.',
     ],
-    'roles' => [
-        'title' => 'Edit member roles',
-        'helper' => 'Add or remove roles of the member :user.',
-        'success' => 'Roles successfully updated for :user.'
+    'roles'     => [
+        'helper'    => 'Add or remove roles of the member :user.',
+        'success'   => 'Roles successfully updated for :user.',
+        'title'     => 'Edit member roles',
     ],
 ];

@@ -27,4 +27,7 @@ return [
     'success'       => 'L\'entité :name a été déplacée.',
     'success_copy'  => 'L\'entité :name a été copiée.',
     'title'         => 'Déplacer :name',
+    'warnings'      => [
+        'custom'    => 'Cette entité n\'est pas d\'un module par défaut, mais d\'un module personnalisé ":module". Elle sera créée en tant que Note dans la campagne cible.',
+    ],
 ];

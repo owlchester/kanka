@@ -10,11 +10,11 @@ return [
     'fields'        => [
         'name'  => 'Name',
     ],
+    'helpers'       => [
+        'new'   => 'Add a new post to this entity.',
+    ],
     'placeholders'  => [
         'name'  => 'Name of the post',
-    ],
-    'helpers' => [
-        'new'  => 'Add a new post to this entity.',
     ],
     'position'      => [
         'dont_change'   => 'Don\'t change',

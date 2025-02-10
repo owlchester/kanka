@@ -30,6 +30,7 @@ return [
         'element_role'  => 'Rôle',
         'instigator'    => 'Instigateur',
         'is_completed'  => 'Completée',
+        'location'      => 'Lieu de départ',
         'role'          => 'Rôle',
     ],
     'helpers'       => [
@@ -42,6 +43,7 @@ return [
     'placeholders'  => [
         'date'      => 'Date réelle de la quête',
         'entity'    => 'Nom d\'un élément dans la quête',
+        'location'  => 'Le lieu de départ de la quête',
         'role'      => 'Le rôle de l\'entité dans la quête.',
         'type'      => 'Principale, side quest, personnage',
     ],

@@ -2,8 +2,8 @@
 
 return [
     'create'                            => [
-        'success'               => ':name created.',
-        'title'                 => 'New Campaign',
+        'success'   => ':name created.',
+        'title'     => 'New Campaign',
     ],
     'edit'                              => [
         'success'   => ':name updated.',
@@ -71,9 +71,9 @@ return [
         'no_entry'                          => 'Looks like the campaign doesn\'t have a description yet! Let\'s fix that.',
         'permissions_tab'                   => 'Control the default privacy and visibility settings of new elements with the following options.',
         'premium'                           => 'Some features require premium features te be unlocked. Find out more about :settings.',
+        'private_mention_visibility'        => 'Control if mentions to private entities are kept secret or show their names.',
         'public_campaign_filters'           => 'Help others find the campaign among other public campaigns by providing the following information.',
         'public_no_visibility'              => 'Heads up! The campaign is public, but the campaign\'s public role can\'t access anything. :fix.',
-        'private_mention_visibility'        => 'Control if mentions to private entities are kept secret or show their names.',
         'related_visibility'                => 'Default Visibility value when creating a new element with this field (posts, connections, abilities, etc)',
         'system'                            => 'If your campaign is publicly visible, the system is shown in the :link page.',
         'systems'                           => 'To avoid cluttering users with options, some features of Kanka are only available with specific RPG systems (ie the D&D 5e monster stat block). Adding supported systems here will enable those features.',
@@ -166,9 +166,9 @@ return [
         ],
         'switch_back_success'   => 'Switched back to your account.',
     ],
-    'mentions' => [
-        'visible' => 'Show entity name',
-        'private' => 'Hide entity name',
+    'mentions'                          => [
+        'private'   => 'Hide target name',
+        'visible'   => 'Show target name',
     ],
     'modules'                           => [
         'permission-disabled'   => 'This module is disabled.',
@@ -186,9 +186,9 @@ return [
         'ui'        => 'Interface',
     ],
     'placeholders'                      => [
-        'locale'        => 'Language code',
-        'name'          => 'The name of your world',
-        'system'        => 'D&D, Pathfinder, Fate, DSA',
+        'locale'    => 'Language code',
+        'name'      => 'The name of your world',
+        'system'    => 'D&D, Pathfinder, Fate, DSA',
     ],
     'privacy'                           => [
         'hidden'    => 'Hidden',
