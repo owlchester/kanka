@@ -18,19 +18,21 @@
                         <span class="sr-only">Change type</span>
                     </div>
                     <div class="dropdown-menu hidden" role="menu">
+                        <div class="overflow-y-auto max-h-80">
                         @foreach ($orderedEntityTypes as $dropdownEntityType)
                             @include('entities.creator.header._dropdown')
                         @endforeach
                         <hr class="m-0" />
-                            @php $data = ['toggle' => 'entity-creator', 'url' => route('entity-creator.selection', $campaign), 'entity-type' => 'return']; @endphp
-                            <x-dropdowns.item link="#" icon="fa-solid fa-arrow-left" :data="$data">
-                                {{ __('entities.creator.back') }}
-                            </x-dropdowns.item>
+                        @php $data = ['toggle' => 'entity-creator', 'url' => route('entity-creator.selection', $campaign), 'entity-type' => 'return']; @endphp
+                        <x-dropdowns.item link="#" icon="fa-solid fa-arrow-left" :data="$data">
+                            {{ __('entities.creator.back') }}
+                        </x-dropdowns.item>
+                        </div>
                     </div>
                 </div>
             @else
                 <div>
-                    <div class="text-2xl text-2xl">
+                    <div class="text-2xl">
                         {!! $newLabel !!}
                     </div>
                 </div>

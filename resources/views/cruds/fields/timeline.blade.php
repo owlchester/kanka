@@ -14,6 +14,7 @@
     name="timeline_id"
     key="timeline"
     :allowNew="$allowNew ?? true"
+    :dynamicNew="$dynamicNew ?? false"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
     :route="route('search-list', [$campaign, config('entities.ids.timeline')] + (isset($model) ? ['exclude' => $model->id] : []))"

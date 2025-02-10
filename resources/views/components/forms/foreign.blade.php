@@ -19,6 +19,7 @@
             data-url="{{ $route }}"
             data-placeholder="{!! $placeholder ?? __('crud.placeholders.parent') !!}"
             data-allow-new="{{ $dynamicNew ? 'true' : 'false' }}"
+            data-new-tag="{{ __('crud.actions.new') }}"
             data-language="{{ LaravelLocalization::getCurrentLocale() }}"
             data-allow-clear="{{ $allowClear ? 'true' : 'false' }}"
             @if (!empty($dropdownParent)) data-dropdown-parent="{{ $dropdownParent }}" @endif

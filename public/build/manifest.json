@@ -301,12 +301,12 @@
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-D81lTVnu.css",
+    "file": "assets/app-C5cfR3eu.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-wdFQTqlQ.css",
+    "file": "assets/auth-DEWWEhw4.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -331,7 +331,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-BIsGPfM4.css",
+    "file": "assets/front-DhjSLVj2.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },

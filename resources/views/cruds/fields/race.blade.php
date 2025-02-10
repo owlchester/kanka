@@ -17,6 +17,7 @@ if (isset($model) && $model->parent) {
     key="race"
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
+    :dynamicNew="$dynamicNew ?? false"
     :parent="$isParent ?? false"
     :route="route('search-list', [$campaign, config('entities.ids.race')] + (isset($model) ? ['exclude' => $model->id] : []))"
     :selected="$preset"

@@ -10,8 +10,10 @@ use App\Models\EntityType;
 use App\Models\Location;
 use App\Models\MiscModel;
 use App\Models\Entity;
+use App\Models\Family;
 use App\Models\Tag;
 use App\Models\Post;
+use App\Models\Race;
 use App\Services\Entity\PopularService;
 use App\Services\Entity\TagService;
 use App\Services\EntityService;
@@ -95,8 +97,17 @@ class EntityCreatorController extends Controller
         // Handle dynamic elements
         $this->inputFields = $values;
         $this->dynamicTags()
+            ->dynamicParent($entityType)
+            ->dynamicLocations()
             ->dynamicLocation();
+        if ($entityType->id == config('entities.ids.character')) {
+            $this->dynamicFamilies()
+                ->dynamicRaces();
+        }
+
         $values = $this->inputFields;
+
+        $request->merge($values);
 
         foreach ($names as $name) {
             if (empty($name)) {
@@ -419,6 +430,105 @@ class EntityCreatorController extends Controller
             }
         }
         $this->inputFields['tags'] = $tags;
+        return $this;
+    }
+
+    protected function dynamicLocations(): self
+    {
+        if (!$this->request->has('locations') && !$this->request->has('save_locations')) {
+            return $this;
+        }
+        $canCreate = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $this->campaign]);
+
+        // Exclude existing locations to avoid adding a location several times
+        $locations = $this->request->get('locations', []);
+        foreach ($locations as $number => $id) {
+            // Create the location if the user has permission to do so
+            if (!is_numeric($id) && !empty(mb_trim($id))) {
+                if ($canCreate) {
+                    $model = Location::create(['name' => $id, 'campaign_id' => $this->campaign->id]);
+                    $location = (int) $model->id;
+                    $locations[$number] = $location;
+                } else {
+                    unset($locations[$number]);
+                }
+            }
+        }
+        $this->inputFields['locations'] = $locations;
+        return $this;
+    }
+
+    protected function dynamicRaces(): self
+    {
+        if (!$this->request->has('races') && !$this->request->has('save_races')) {
+            return $this;
+        }
+        $canCreate = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.race'))->first(), $this->campaign]);
+
+        // Exclude existing races to avoid adding a race several times
+        $races = $this->request->get('races', []);
+        foreach ($races as $number => $id) {
+            // Create the race if the user has permission to do so
+            if (!is_numeric($id) && !empty(mb_trim($id))) {
+                if ($canCreate) {
+                    $model = Race::create(['name' => $id, 'campaign_id' => $this->campaign->id]);
+                    $race = (string) $model->id;
+                    $races[$number] = $race;
+                } else {
+                    unset($races[$number]);
+                }
+            }
+        }
+        $this->inputFields['races'] = $races;
+        return $this;
+    }
+
+    protected function dynamicFamilies(): self
+    {
+        if (!$this->request->has('families') && !$this->request->has('save_families')) {
+            return $this;
+        }
+        $canCreate = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.family'))->first(), $this->campaign]);
+
+        // Exclude existing families to avoid adding a family several times
+        $families = $this->request->get('families', []);
+        foreach ($families as $number => $id) {
+            // Create the family if the user has permission to do so
+            if (!is_numeric($id) && !empty(mb_trim($id))) {
+                if ($canCreate) {
+                    $model = Family::create(['name' => $id, 'campaign_id' => $this->campaign->id]);
+                    $family = (string) $model->id;
+                    $families[$number] = $family;
+                } else {
+                    unset($families[$number]);
+                }
+            }
+        }
+        $this->inputFields['families'] = $families;
+        return $this;
+    }
+
+    protected function dynamicParent(EntityType $entityType): self
+    {
+        if (!$this->request->has($entityType->code . '_id')) {
+            return $this;
+        }
+
+        $value = $this->request->get($entityType->code . '_id', null);
+        //Handle parent.
+        if (!is_numeric($value)) {
+            /** @var MiscModel $new */
+            $new = $entityType->getClass();
+            $new->name = $value;
+            $new->campaign_id = $this->campaign->id;
+            $new->save();
+            $new->crudSaved();
+            if ($new->entity) {
+                $new->entity->crudSaved();
+            }
+            $this->inputFields[$entityType->code . '_id'] = $new->id;
+        }
+
         return $this;
     }
 }

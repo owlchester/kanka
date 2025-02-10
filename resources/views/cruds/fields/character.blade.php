@@ -20,6 +20,7 @@
     :label="$label ?? null"
     :placeholder="$placeholder ?? null"
     :allowNew="$allowNew ?? true"
+    :dynamicNew="$dynamicNew ?? false"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
     :route="route($route ?? 'search-list', [$campaign, config('entities.ids.character')] + (isset($model) ? ['exclude' => $model->id] : []))"
