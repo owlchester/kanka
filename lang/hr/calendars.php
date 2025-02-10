@@ -26,11 +26,6 @@ return [
         'today' => 'Ažuriran datum kalendara.',
     ],
     'event'         => [
-        'actions'   => [
-            'existing'  => 'Postojeći entitet',
-            'new'       => 'Novi događaj',
-            'switch'    => 'Promjeni odabir',
-        ],
         'create'    => [
             'success'   => 'Kreiran događaj u kalendaru.',
             'title'     => 'Dodaj događaj u kalendaru na :name',
@@ -41,24 +36,17 @@ return [
             'title'     => 'Ažuriraj događaj kalendara u :name',
         ],
         'helpers'   => [
-            'add'               => 'Dodaj postojeći događaj na ovaj kalendar.',
-            'new'               => 'Ili kreiraj novi događaj tako što upišeš naziv.',
             'other_calendar'    => 'Uređujete podsjetnik koji se nalazi na kalendaru :calendar.',
-        ],
-        'modal'     => [
-            'title' => 'Dodaj događaj u kalendar',
         ],
         'success'   => 'Događaj ":event" dodan u kalendar.',
     ],
     'events'        => [],
     'fields'        => [
-        'colour'                => 'Boja',
         'comment'               => 'Komentar',
         'current_day'           => 'Trenutni dan',
         'current_month'         => 'Trenutni mjesec',
         'current_year'          => 'Trenutna godina',
         'date'                  => 'Trenutni datum',
-        'intercalary'           => 'Interkalarni dani',
         'is_incrementing'       => 'Pomični datum',
         'is_recurring'          => 'Ponavljajući',
         'leap_year_amount'      => 'Dodaj dane',
@@ -85,9 +73,7 @@ return [
     ],
     'hints'         => [
         'event_length'      => 'Koliko dugo treba trajati događaj. Događaj ne može trajati duže od dva mjeseca.',
-        'intercalary'       => 'Dani koji padaju van standardnih mjeseci i tjedana. Oni ne utječu dane u tjednu, ali utječu na cikluse mjeseca.',
         'is_incrementing'   => 'Pomični kalendari će automatski povećati svoj trenutni dan u 00:00 UTC.',
-        'is_recurring'      => 'Događaj se može postaviti kao ponavljajući. Pojavit će se svake godine na isti datum.',
         'months'            => 'Tvoj kalendar bi trebao imati barem 2 kalendarska mjeseca.',
         'moons'             => 'Dodavanje mjeseci (nebeskih tijela) će ih dodati na kalendar za svaki puni i mladi mjesec. Ako je period punog mjeseca duži od 10 dana, prikazat će se i prva i posljednja četvrt.',
         'parent_calendar'   => 'Dodavanje roditeljskog kalendara uključuje podsjetnike i vremenske uvjete tog roditeljskog kalendara.',

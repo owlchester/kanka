@@ -3,24 +3,12 @@
 return [
     'actions'                           => [],
     'create'                            => [
-        'description'           => 'Utwórz nową kampanię',
-        'helper'                => [
-            'title'     => 'Witaj w :name',
-            'welcome'   => <<<'TEXT'
-Zanim przejdziesz dalej, musisz nadać swojej kampanii tytuł albo nazwać jakoś powstający świat. Jeżeli nie masz jeszcze dobrego pomysłu, nie martw się! Zawsze możesz zmienić go później, albo utworzyć nową kampanię.
-
-Dziękujemy za wybór Kanki i witamy w naszej kwitnącej społeczności!
-TEXT
-,
-        ],
-        'success'               => 'Kampania utworzona.',
-        'success_first_time'    => 'Twoja kampania została utworzona! Ponieważ to twój pierwszy raz, dodaliśmy od razu kilka elementów, które pomogą ci zacząć i być może podsuną pomysły, co robić dalej.',
-        'title'                 => 'Nowa kampania',
+        'success'   => 'Kampania utworzona.',
+        'title'     => 'Nowa kampania',
     ],
     'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Zmieniono kampanię.',
-        'title'     => 'Edycja kampanii :name',
     ],
     'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
@@ -45,7 +33,6 @@ TEXT
         'entity_privacy'                    => 'Domyślna widoczność nowych elementów',
         'entry'                             => 'Opis kampanii',
         'excerpt'                           => 'Podsumowanie',
-        'featured'                          => 'Wyróżniona kampania',
         'followers'                         => 'Obserwujący',
         'gallery_visibility'                => 'Domyślna widoczność w galerii',
         'genre'                             => 'Gatunek',
@@ -55,7 +42,6 @@ TEXT
         'locale'                            => 'Język kampanii',
         'name'                              => 'Nazwa',
         'open'                              => 'Otwarta na zgłoszenia',
-        'past_featured'                     => 'Poprzednio wyróżniona kampania',
         'post_collapsed'                    => 'Nowe komentarze do elementów są domyślnie zwynięte.',
         'premium'                           => 'Premium odblokowana przez :name',
         'public'                            => 'Widoczność kampanii',
@@ -96,13 +82,7 @@ TEXT
         'view_public'                       => 'By zobaczyć kampanię tak, jak obserwujący otwórz :link w trybie incognito.',
         'visibility'                        => 'Jeżeli kampania jest publiczna, każda osoba posiadająca odnośnik będzie mogła ją zobaczyć.',
     ],
-    'index'                             => [
-        'actions'   => [
-            'new'   => [
-                'title' => 'Nowa kampania',
-            ],
-        ],
-    ],
+    'index'                             => [],
     'invites'                           => [
         'actions'               => [
             'copy'  => 'Skopiuj odnośnik do schowka',
@@ -119,11 +99,9 @@ TEXT
             'success'   => 'Usunięto zaproszenie.',
         ],
         'error'                 => [
-            'already_member'    => 'Bierzesz już udział w tej kampanii.',
             'inactive_token'    => 'Ta przepustka jest już wykorzystana albo kampania została usunięta.',
             'invalid_token'     => 'Przepustka jest nieważna.',
             'join'              => 'Zaloguj się lub zarejestruj by dołączyć do kampanii :campaign.',
-            'login'             => 'Zaloguj się lub zarejestruj, by dołączyć do kampanii.',
         ],
         'fields'                => [
             'created'   => 'Wysłano',
@@ -156,12 +134,6 @@ TEXT
             'switch-back'   => 'Powrót do profilu',
             'switch-entity' => 'Zobacz jako',
         ],
-        'create'                => [
-            'title' => 'Dodaj uczestnika kampanii',
-        ],
-        'edit'                  => [
-            'title' => 'Edytuj uczestnika :name',
-        ],
         'fields'                => [
             'banned'        => 'Użytkownik zablokowany',
             'joined'        => 'Dołączył(a)',
@@ -182,7 +154,6 @@ TEXT
             'more'          => 'Możesz dodawać nowe role tutaj: :link.',
             'title'         => 'Zaproszenia',
         ],
-        'manage_roles'          => 'Zarządzaj rolami uczestników',
         'removal'               => 'Usuwasz ":member" z kampanii.',
         'roles'                 => [
             'member'    => 'Uczestnik',
@@ -192,11 +163,6 @@ TEXT
             'viewer'    => 'Obserwator',
         ],
         'switch_back_success'   => 'Powrócono do podstawowego profilu.',
-        'title'                 => 'Uczestnicy kampanii :name',
-        'updates'               => [
-            'added'     => 'Uczestnikowi :user przyznano rolę :role.',
-            'removed'   => 'Uczestnikowi :user odebrano rolę :role.',
-        ],
     ],
     'modules'                           => [
         'permission-disabled'   => 'Moduł jest wyłączony.',
@@ -216,10 +182,9 @@ TEXT
         'ui'        => 'Wygląd',
     ],
     'placeholders'                      => [
-        'description'   => 'Krótkie podsumowanie kampanii',
-        'locale'        => 'Język kampanii',
-        'name'          => 'Tytuł tej kampanii',
-        'system'        => 'D&D, Pathfinder, Fate, DSA',
+        'locale'    => 'Język kampanii',
+        'name'      => 'Tytuł tej kampanii',
+        'system'    => 'D&D, Pathfinder, Fate, DSA',
     ],
     'privacy'                           => [
         'hidden'    => 'Ukryta',
@@ -322,9 +287,6 @@ TEXT
         ],
         'placeholders'  => [
             'name'  => 'Nazwa roli',
-        ],
-        'show'          => [
-            'title' => 'Rola w kampanii ":role"',
         ],
         'title'         => 'Role w kampanii :name',
         'types'         => [

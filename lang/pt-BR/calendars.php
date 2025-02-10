@@ -27,11 +27,6 @@ return [
         'today' => 'Data do calendário atualizada.',
     ],
     'event'         => [
-        'actions'   => [
-            'existing'  => 'Entidade Existente',
-            'new'       => 'Novo Evento',
-            'switch'    => 'Mudar de escolha',
-        ],
         'create'    => [
             'success'   => 'Evento de calendário criado.',
             'title'     => 'Adicionar um Evento de Calendário para :name',
@@ -45,12 +40,7 @@ return [
             'invalid_entity'    => 'Seleção de entidade inválida.',
         ],
         'helpers'   => [
-            'add'               => 'Adicionar um evento existente para esse calendário.',
-            'new'               => 'Ou crie um novo evento simplesmente fornecendo um nome.',
             'other_calendar'    => 'Você está editando um lembrete que está no calendário :calendar.',
-        ],
-        'modal'     => [
-            'title' => 'Adicionar um evento ao calendário',
         ],
         'success'   => 'Lembrete \':event\' adicionado ao calendário.',
     ],
@@ -68,7 +58,6 @@ return [
         'start'     => '(começo)',
     ],
     'fields'        => [
-        'colour'                => 'Cor',
         'comment'               => 'Comentário',
         'current_day'           => 'Dia Atual',
         'current_month'         => 'Mês Atual',
@@ -77,7 +66,6 @@ return [
         'day'                   => 'Dia',
         'default_layout'        => 'Layout padrão',
         'format'                => 'Formato',
-        'intercalary'           => 'Dias Intercalares',
         'is_incrementing'       => 'Avançando data',
         'is_recurring'          => 'Recorrente',
         'leap_year'             => 'Anos bissextos',
@@ -112,9 +100,7 @@ return [
     ],
     'hints'         => [
         'event_length'      => 'Quanto tempo um evento deve durar. Um evento não pode durar mais de dois meses.',
-        'intercalary'       => 'Dias que estão fora dos meses e semanas padrão. Eles não influenciam os dias da semana, mas influenciam os ciclos lunares.',
         'is_incrementing'   => 'O avanço de calendário automaticamente terá seu incremento da data atual às 00:00 UTC.',
-        'is_recurring'      => 'Um evento pode ser marcado como recorrente. Ele reaparecerá todo ano na mesma data.',
         'leap_year'         => 'Configure anos bissextos para o calendário.',
         'months'            => 'Seu calendário deve ter pelo menos 2 meses.',
         'moons'             => 'Adicionar luas fará com que elas apareçam no calendário em cada lua cheia e nova. Se o período da lua cheia for maior que 10 dias, as luas minguantes e crescentes também serão exibidas.',

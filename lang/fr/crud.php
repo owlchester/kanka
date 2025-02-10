@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'                   => [
+    'actions'           => [
         'actions'           => 'Actions',
         'apply'             => 'Appliquer',
         'back'              => 'Retour',
@@ -32,13 +32,13 @@ return [
         'reset'             => 'Réinitialiser',
         'transform'         => 'Transformer',
     ],
-    'add'                       => 'Ajouter',
-    'alerts'                    => [
+    'add'               => 'Ajouter',
+    'alerts'            => [
         'copy_attribute'    => 'La mention de l\'attribut à été copiée au presse-papier.',
         'copy_invite'       => 'Le lien d\'invitation a été copié au presse-papier.',
         'copy_mention'      => 'La mention avancée de cette entité a été copiée au presse-papier.',
     ],
-    'bulk'                      => [
+    'bulk'              => [
         'actions'       => [
             'edit'          => 'Opération de masse',
             'permissions'   => 'Changer les permissions',
@@ -85,48 +85,42 @@ return [
             'templates'         => 'Le modèle d\'attribute a été appliqué sur :count entité.|Le modèle d\'attribut a été appliqué sur :count entités.',
         ],
     ],
-    'bulk_templates'            => [
+    'bulk_templates'    => [
         'bulk_title'    => 'Appliquer un modèle d\'attribute aux entités',
     ],
-    'cancel'                    => 'Annuler',
-    'click_modal'               => [
-        'close'     => 'Fermer',
-        'confirm'   => 'Confirmer',
-        'title'     => 'Confirme ton action',
-    ],
-    'copy_to_campaign'          => [
+    'cancel'            => 'Annuler',
+    'click_modal'       => [],
+    'copy_to_campaign'  => [
         'bulk_title'    => 'Copier vers une campagne',
         'panel'         => 'Copier',
         'title'         => 'Copier \':name\' vers une autre campagne',
     ],
-    'create'                    => 'Créer',
-    'datagrid'                  => [
+    'create'            => 'Créer',
+    'datagrid'          => [
         'empty' => 'Rien à afficher.',
     ],
-    'delete_modal'              => [
+    'delete_modal'      => [
         'callout'           => 'Oyé!',
-        'close'             => 'Fermer',
         'confirm'           => 'Confirmer la suppression',
-        'delete'            => 'Supprimer',
         'description_v2'    => 'Tu supprimes ":tag".',
         'permanent'         => 'Cette action est permanente.',
         'recoverable'       => 'Les entités supprimées peuvent être récupérées pendant :day jours avec une :boosted-campaign.',
         'title'             => 'Confirmation de la suppression',
     ],
-    'destroy_many'              => [
+    'destroy_many'      => [
         'success'   => ':count élément supprimé.|:count éléments supprimés.',
     ],
-    'dynamic'                   => [
+    'dynamic'           => [
         'permission'    => 'Tu n\'as pas les permissions nécessaires pour créer une entité du module :module.',
         'unknown'       => 'Entité non valide du module :module.',
     ],
-    'edit'                      => 'Modifier',
-    'errors'                    => [
+    'edit'              => 'Modifier',
+    'errors'            => [
         'boosted_campaigns'     => 'Cette fonctionnalité n\'est que disponible que pour les :boosted.',
         'unavailable_feature'   => 'Fonctionnalité indisponible',
     ],
-    'events'                    => [],
-    'fields'                    => [
+    'events'            => [],
+    'fields'            => [
         'calendar_date'     => 'Date calendrier',
         'child'             => 'Enfant',
         'closed'            => 'Fermée',
@@ -169,48 +163,36 @@ return [
         'visibility'        => 'Visibilité',
         'word-count'        => 'Nombre de mots: :number',
     ],
-    'files'                     => [
-        'actions'   => [
-            'drop'      => 'Ajouter un fichier en cliquant ou en glissant déposant',
-            'manage'    => 'Gérer les fichiers d\'entité',
-        ],
+    'files'             => [
         'errors'    => [
             'max'       => 'Nombre maximal de fichier (:max) atteint pour cette entité.',
             'max_size'  => 'La campagne a atteint la capacité maximale de stockage de fichiers.',
             'no_files'  => 'Aucun fichier.',
         ],
-        'files'     => 'Fichiers uploadés',
         'hints'     => [
             'limit'         => 'Chaque entité peut avoir un nombre maximal de :max fichiers uploadés.',
             'limitations'   => 'Formats pris en charge: :formats. Taille maximale: :size',
         ],
-        'title'     => 'Fichiers d\'entité pour :name',
     ],
-    'filter'                    => 'Filtre',
-    'filters'                   => [
-        'all'                       => 'Afficher tous les descendants',
-        'clear'                     => 'Effacer les filtres',
-        'copy_helper'               => 'Utilises les filtres copiers dans ton presse-papier comme valeurs de filtre pour les widget de tableau de bord et liens rapides.',
-        'copy_helper_no_filters'    => 'Dès que des filtres sont définis, ils peuvent être copiés au presse-papier',
-        'copy_to_clipboard'         => 'Copier les filtres',
-        'direct'                    => 'Afficher seulement les descendants directs',
-        'filtered'                  => 'Affichant :count de :total :entity.',
-        'hide'                      => 'Cacher les filtres',
-        'lists'                     => [
+    'filter'            => 'Filtre',
+    'filters'           => [
+        'all'               => 'Afficher tous les descendants',
+        'clear'             => 'Effacer les filtres',
+        'copy_helper'       => 'Utilises les filtres copiers dans ton presse-papier comme valeurs de filtre pour les widget de tableau de bord et liens rapides.',
+        'copy_to_clipboard' => 'Copier les filtres',
+        'direct'            => 'Afficher seulement les descendants directs',
+        'filtered'          => 'Affichant :count de :total :entity.',
+        'lists'             => [
             'desktop'   => [
                 'all'       => 'Afficher tous les descendants (:count)',
                 'filtered'  => 'Afficher les descendants directs (:count)',
             ],
-            'mobile'    => [
-                'all'       => 'Afficher tous (:count)',
-                'filtered'  => 'Afficher directs (:count)',
-            ],
         ],
-        'mobile'                    => [
+        'mobile'            => [
             'clear' => 'Effacer',
             'copy'  => 'Presse-papier',
         ],
-        'options'                   => [
+        'options'           => [
             'children'  => 'Correspond à ceci ou ses descendants',
             'exclude'   => 'Ne correspond pas à',
             'hide'      => 'Cacher',
@@ -218,22 +200,22 @@ return [
             'none'      => 'Aucun(e)',
             'show'      => 'Afficher',
         ],
-        'show'                      => 'Afficher les filtres',
-        'sorting'                   => [
+        'show'              => 'Afficher les filtres',
+        'sorting'           => [
             'asc'       => ':field ascendant',
             'desc'      => ':field descendant',
             'helper'    => 'Contrôler l\'ordre d\'affichage des résultats.',
         ],
-        'title'                     => 'Filtres',
+        'title'             => 'Filtres',
     ],
-    'fix-this-issue'            => 'Réparer ce problème',
-    'forms'                     => [
+    'fix-this-issue'    => 'Réparer ce problème',
+    'forms'             => [
         'actions'       => [
             'calendar'  => 'Ajouter une date de calendrier',
         ],
         'copy_options'  => 'Option de copie',
     ],
-    'helpers'                   => [
+    'helpers'           => [
         'copy_options'  => 'Copier les éléments liés suivant de la source à la nouvelle entité.',
         'learn_more'    => 'En savoir plus sur cette fonctionnalité dans notre :documentation.',
         'linking'       => 'Lier d\'autres entités',
@@ -243,21 +225,17 @@ return [
             'text'      => 'Plus de résultats par page peuvent être affiché en modifiant tes :settings.',
         ],
     ],
-    'hidden'                    => 'Caché',
-    'hints'                     => [
+    'hidden'            => 'Caché',
+    'hints'             => [
         'attribute_template'    => 'Appliquer un modèle d\'attribut lors de la création ou l\'édition de cette entité.',
         'calendar_date'         => 'Une date de calendrier permet un triage plus facile dans les listes, et garde à jour un événement de calendrier dans le calendrier sélectionné.',
-        'gallery_header'        => 'Si l\'entité n\'a pas d\'entête, afficher une image depuis la galerie de la campagne.',
-        'gallery_image'         => 'Si l\'entité n\'a pas d\'image, afficher une image depuis la galerie de la campagne.',
-        'header_image'          => 'Cette image s\'affiche au-delà de l\'entité. Les images larges mènent a un meilleur résultat.',
         'image_dimension'       => 'Dimentions recommendées: :dimension pixels.',
         'image_limitations'     => 'Formats supportés: :formats. Taille maximale: :size.',
         'image_recommendation'  => 'Dimensions recommandées: :width par :height px.',
         'is_star'               => 'Les éléments épinglés sont affichés sur le menu de l\'entité.',
         'tooltip'               => 'Remplace l\'infobulle automatiquement généré avec le texte ci-dessous.',
-        'visibility'            => 'Si la visibilité est définie à Admin, seuls les membres du rôle Admin de la campagne verront ceci. La visibilité "Soi-même" signifie que tu es le seul à le voir.',
     ],
-    'history'                   => [
+    'history'           => [
         'created_clean'         => 'Créé par :name :date',
         'created_date_clean'    => 'Créé :date',
         'unknown'               => 'Inconnu',
@@ -265,21 +243,19 @@ return [
         'updated_date_clean'    => 'Dernière modification :date',
         'view'                  => 'Visionner les journaux de l\'entité',
     ],
-    'image'                     => [
+    'image'             => [
         'error' => 'Impossible de récupérer l\'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n\'est plus valide.',
     ],
-    'is_private'                => 'Cet élément est privé et pas visible.',
-    'keyboard-shortcut'         => 'Raccourci clavier :code',
-    'legacy'                    => 'Ancien',
-    'navigation'                => [
+    'is_private'        => 'Cet élément est privé et pas visible.',
+    'keyboard-shortcut' => 'Raccourci clavier :code',
+    'navigation'        => [
         'cancel'            => 'annuler',
         'or_cancel'         => 'ou :cancel',
         'skip_to_content'   => 'Aller au contenu',
     ],
-    'new_entity'                => [],
-    'panels'                    => [],
-    'permissions'               => [
-        'action'            => 'Action',
+    'new_entity'        => [],
+    'panels'            => [],
+    'permissions'       => [
         'actions'           => [
             'bulk'          => [
                 'add'       => 'Ajouter',
@@ -294,26 +270,21 @@ return [
             ],
             'delete'        => 'Supprimer',
             'edit'          => 'Modifier',
-            'read'          => 'Lire',
             'toggle'        => 'Basculer',
             'view'          => 'Voir',
         ],
-        'allowed'           => 'Permis',
         'fields'            => [
             'member'    => 'Membre',
             'role'      => 'Rôle',
         ],
-        'helper'            => 'En utilisant cette interface, il est possible d\'affiner les permissions des membres et rôles de la campagne pouvant interagir avec cette entité.',
         'helpers'           => [
             'setup' => 'Utilise cette interface pour affiner la manière dont les rôles et les utilisateurs peuvent interagir avec cette entité. :allow permettra à l\'utilisateur ou au rôle d\'effectuer cette action. :deny leur empêchera de prendre cette action. :inherit utilisera le rôle de l\'utilisateur ou l\'autorisation de leur rôle. Un utilisateur avec :allow peut effectuer l\'action en question, même si son rôle est en :deny.',
         ],
-        'inherited'         => 'Ce rôle a déjà cette permission pour ce type d\'entité.',
-        'inherited_by'      => 'Cet utilisateur fait partie du rôle :role qui permet cette permission pour ce type d\'entité.',
         'success'           => 'Permissions enregistrées.',
         'title'             => 'Permissions',
         'too_many_members'  => 'Cette campagne a trop de members (>10) pour afficher cette interface correctement. Prière d\'utiliser le boutton Permission sur la vue de l\'entité pour gérer les permissions.',
     ],
-    'placeholders'              => [
+    'placeholders'      => [
         'ability'       => 'Choix d\'un pouvoir',
         'calendar'      => 'Choix du calendrier',
         'character'     => 'Choix du personnage',
@@ -341,22 +312,21 @@ return [
         'type'          => 'Type de l\'entité',
         'user'          => 'Choix d\'un utilisateur',
     ],
-    'relations'                 => [],
-    'remove'                    => 'Supprimer',
-    'rename'                    => 'Renommer',
-    'reorder'                   => [
+    'relations'         => [],
+    'remove'            => 'Supprimer',
+    'rename'            => 'Renommer',
+    'reorder'           => [
         'empty' => 'Aucun élément à réorganiser.',
     ],
-    'save'                      => 'Enregistrer',
-    'save_and_close'            => 'Enregistrer et Fermer',
-    'save_and_copy'             => 'Enregistrer et Copier',
-    'save_and_new'              => 'Enregistrer et Nouveau',
-    'save_and_update'           => 'Enregistrer et continuer la modification',
-    'save_and_view'             => 'Enregistrer et Afficher',
-    'search'                    => 'Rechercher',
-    'select'                    => 'Sélection',
-    'superboosted_campaigns'    => 'Campagnes Superboostées',
-    'tabs'                      => [
+    'save'              => 'Enregistrer',
+    'save_and_close'    => 'Enregistrer et Fermer',
+    'save_and_copy'     => 'Enregistrer et Copier',
+    'save_and_new'      => 'Enregistrer et Nouveau',
+    'save_and_update'   => 'Enregistrer et continuer la modification',
+    'save_and_view'     => 'Enregistrer et Afficher',
+    'search'            => 'Rechercher',
+    'select'            => 'Sélection',
+    'tabs'              => [
         'abilities'     => 'Pouvoirs',
         'assets'        => 'Ressources',
         'attributes'    => 'Attributs',
@@ -373,19 +343,17 @@ return [
         'reminders'     => 'Rappels',
         'story'         => 'Histoire',
     ],
-    'titles'                    => [
+    'titles'            => [
         'editing'   => 'Modification de :name',
         'new'       => 'Nouveau/elle :module',
     ],
-    'tooltips'                  => [
-        'new_post'  => 'Ajouter un nouveau post à cette entité.',
-    ],
-    'update'                    => 'Modifier',
-    'users'                     => [
+    'tooltips'          => [],
+    'update'            => 'Modifier',
+    'users'             => [
         'unknown'   => 'Inconnu',
     ],
-    'view'                      => 'Voir',
-    'visibilities'              => [
+    'view'              => 'Voir',
+    'visibilities'      => [
         'admin'         => 'Admin',
         'admin-self'    => 'Soi-même & Admin',
         'all'           => 'Tous',

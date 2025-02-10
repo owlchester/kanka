@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'                   => [
+    'actions'           => [
         'actions'           => 'Akcje',
         'apply'             => 'Zastosuj',
         'back'              => 'Cofnij',
@@ -30,13 +30,13 @@ return [
         'reset'             => 'Reset',
         'transform'         => 'Przekształć',
     ],
-    'add'                       => 'Dodaj',
-    'alerts'                    => [
+    'add'               => 'Dodaj',
+    'alerts'            => [
         'copy_attribute'    => 'Wzmianka cechy została skopiowana do schowka.',
         'copy_invite'       => 'Skopiowano do schowka odnośnik zaproszenia.',
         'copy_mention'      => 'Zaawansowana wzmianka elementu została skopiowana do schowka.',
     ],
-    'bulk'                      => [
+    'bulk'              => [
         'actions'       => [
             'edit'          => 'Edytuj zaznaczone',
             'permissions'   => 'Zmiana uprawnień',
@@ -83,44 +83,38 @@ return [
             'templates'         => 'Zastosowano szablon do {1} :count elementu.|Zastosowano szablony do [2,*] :count elementów .',
         ],
     ],
-    'bulk_templates'            => [
+    'bulk_templates'    => [
         'bulk_title'    => 'Zastosuj szablon do wielu elementów',
     ],
-    'cancel'                    => 'Anuluj',
-    'click_modal'               => [
-        'close'     => 'Zamknij',
-        'confirm'   => 'Potwierdź',
-        'title'     => 'Potwierdź tę akcję',
-    ],
-    'copy_to_campaign'          => [
+    'cancel'            => 'Anuluj',
+    'click_modal'       => [],
+    'copy_to_campaign'  => [
         'bulk_title'    => 'Kopiuj elementy do innej kampanii',
         'panel'         => 'Kopiuj',
         'title'         => 'Kopiuj :name do innej kampanii',
     ],
-    'create'                    => 'Stwórz',
-    'datagrid'                  => [
+    'create'            => 'Stwórz',
+    'datagrid'          => [
         'empty' => 'Na razie nic tu nie ma.',
     ],
-    'delete_modal'              => [
+    'delete_modal'      => [
         'callout'           => 'Psst!',
-        'close'             => 'Zamknij',
         'confirm'           => 'Potwierdź usunięcie',
-        'delete'            => 'Usuń',
         'description_v2'    => 'Usuwasz ":tag".',
         'permanent'         => 'Tego działania nie można cofnąć.',
         'recoverable'       => 'Usunięte elementy można odzyskiwać przez :day dni w :boosted-campaign.',
         'title'             => 'Potwierdzanie usunięcia',
     ],
-    'destroy_many'              => [
+    'destroy_many'      => [
         'success'   => 'Usunięto :count element|Usunięto :count elementy.|Usunięto :count elementów.',
     ],
-    'edit'                      => 'Edytuj',
-    'errors'                    => [
+    'edit'              => 'Edytuj',
+    'errors'            => [
         'boosted_campaigns'     => 'By korzystać z tej funkcji, kampania musi być :boosted.',
         'unavailable_feature'   => 'Funkcja niedostępna',
     ],
-    'events'                    => [],
-    'fields'                    => [
+    'events'            => [],
+    'fields'            => [
         'calendar_date'     => 'Data',
         'child'             => 'Pochodzenie',
         'closed'            => 'Zamknięta',
@@ -162,48 +156,36 @@ return [
         'type'              => 'Rodzaj',
         'visibility'        => 'Widoczność',
     ],
-    'files'                     => [
-        'actions'   => [
-            'drop'      => 'Kliknij by dodać lub przeciągnij plik',
-            'manage'    => 'Zarządzaj plikami elementu',
-        ],
+    'files'             => [
         'errors'    => [
             'max'       => 'Osiągnięto maksymalną liczbę (:max) plików dla tego elementu.',
             'max_size'  => 'Kampania osiągnęła maksymalną liczbę plików.',
             'no_files'  => 'Brak plików.',
         ],
-        'files'     => 'Dodano pliki',
         'hints'     => [
             'limit'         => 'Do każdego elementu można dodać maksymalnie :max plików.',
             'limitations'   => 'Dopuszczalne formaty: :formats. Maksymalny rozmiar: :size.',
         ],
-        'title'     => 'Pliki elementu :name.',
     ],
-    'filter'                    => 'Filtruj',
-    'filters'                   => [
-        'all'                       => 'Pokaż wszystkie elementy pochodne',
-        'clear'                     => 'Usuń filtry',
-        'copy_helper'               => 'Użyj skopiowanych do schowka filtrów by stworzyć filtry na pulpicie albo skróty.',
-        'copy_helper_no_filters'    => 'By skopiować filtry do schowka, musisz je najpierw ustawić.',
-        'copy_to_clipboard'         => 'Kopiuj filtry do schowka',
-        'direct'                    => 'Pokaż elementy bezpośrednio pochodne',
-        'filtered'                  => 'Wyświetlono :count z :total elementów.',
-        'hide'                      => 'Ukryj filtry',
-        'lists'                     => [
+    'filter'            => 'Filtruj',
+    'filters'           => [
+        'all'               => 'Pokaż wszystkie elementy pochodne',
+        'clear'             => 'Usuń filtry',
+        'copy_helper'       => 'Użyj skopiowanych do schowka filtrów by stworzyć filtry na pulpicie albo skróty.',
+        'copy_to_clipboard' => 'Kopiuj filtry do schowka',
+        'direct'            => 'Pokaż elementy bezpośrednio pochodne',
+        'filtered'          => 'Wyświetlono :count z :total elementów.',
+        'lists'             => [
             'desktop'   => [
                 'all'       => 'Pokaż wszystkie pochodne (:count)',
                 'filtered'  => 'Pokaż bezpośrednio pochodne  (:count)',
             ],
-            'mobile'    => [
-                'all'       => 'Pokaż wszystkie  (:count)',
-                'filtered'  => 'Pokaż bezpośrednie (:count)',
-            ],
         ],
-        'mobile'                    => [
+        'mobile'            => [
             'clear' => 'Wyczyść',
             'copy'  => 'Schowek',
         ],
-        'options'                   => [
+        'options'           => [
             'children'  => 'Z pochodnymi',
             'exclude'   => 'Nie zawiera',
             'hide'      => 'Ukryj',
@@ -211,22 +193,22 @@ return [
             'none'      => 'Brak',
             'show'      => 'Pokaż',
         ],
-        'show'                      => 'Pokaż filtry',
-        'sorting'                   => [
+        'show'              => 'Pokaż filtry',
+        'sorting'           => [
             'asc'       => ':field rosnąco',
             'desc'      => ':field malejąco',
             'helper'    => 'Określa kolejność wyświetlania rezultatów.',
         ],
-        'title'                     => 'Filtry',
+        'title'             => 'Filtry',
     ],
-    'fix-this-issue'            => 'Napraw ten problem',
-    'forms'                     => [
+    'fix-this-issue'    => 'Napraw ten problem',
+    'forms'             => [
         'actions'       => [
             'calendar'  => 'Dodaj datę kalendarzową',
         ],
         'copy_options'  => 'Opcje kopiowania',
     ],
-    'helpers'                   => [
+    'helpers'           => [
         'copy_options'  => 'Skopiuj następujące elementy elementu źródłowego do nowego elementu.',
         'learn_more'    => 'Więc informacji o tej funkcji zawiera :documentation.',
         'linking'       => 'Łącza do innych elementów',
@@ -236,21 +218,17 @@ return [
             'text'      => 'Możesz wyświetlać więcej wpisów na stronie, zmieniając swoje :settings.',
         ],
     ],
-    'hidden'                    => 'Ukryte',
-    'hints'                     => [
+    'hidden'            => 'Ukryte',
+    'hints'             => [
         'attribute_template'    => 'Zastosuj szablon cech bezpośrednio podczas tworzenia lub edycji tego elementu.',
         'calendar_date'         => 'Data kalendarzowa umożliwia łatwiejsze filtrowanie i sprawia, że dane wydarzenie zostaje przypisane do kalendarza.',
-        'gallery_header'        => 'Jeżeli element nie ma nagłówka, wyświetla zamiast tego obraz z galerii kampanii.',
-        'gallery_image'         => 'Jeżeli element nie posiada własnego obrazu, zamiast niego wyświetlany będzie wybrany obraz z galerii kampanii.',
-        'header_image'          => 'Obraz umieszczony w nagłówku elementu. Użyj szerokiego obrazu by osiągnąć najlepszy efekt.',
         'image_dimension'       => 'Sugerowany rozmiar: :dimension pikseli.',
         'image_limitations'     => 'Dozwolone formaty: :formats. Maksymalny rozmiar pliku :size.',
         'image_recommendation'  => 'Sugerowane wymiary: :width na :height pikseli.',
         'is_star'               => 'Elementy przypięte pojawiają się w menu elementu.',
         'tooltip'               => 'Zastąp dymek z poradą generowaną automatycznie następującą zawartością.',
-        'visibility'            => 'Opcja widoczności "Administrator" sprawia, że widzą to wszyscy administratorzy kampanii. Ustawienie widoczności "Ja" oznacza, że widzisz to wyłącznie ty.',
     ],
-    'history'                   => [
+    'history'           => [
         'created_clean'         => 'Stworzone przez :name :date',
         'created_date_clean'    => 'Stworzone :date',
         'unknown'               => 'Nieznane',
@@ -258,21 +236,19 @@ return [
         'updated_date_clean'    => 'Ostatnio zmienione :date',
         'view'                  => 'Zobacz dziennik elementu',
     ],
-    'image'                     => [
+    'image'             => [
         'error' => 'Nie udało nam się pozyskać wskazanego obrazu. Być może strona uniemożliwia pobieranie (na przykład Squarespace albo DeviantArt), albo odnośnik nie jest już aktywny. Upewnij się też, że obrazek nie jest większy niż :size.',
     ],
-    'is_private'                => 'Ten element jest tajny, a zatem widoczny tylko dla uczestników posiadających rolę administratora.',
-    'keyboard-shortcut'         => 'Skrót klawiaturowy :code',
-    'legacy'                    => 'Poprzednia wersja',
-    'navigation'                => [
+    'is_private'        => 'Ten element jest tajny, a zatem widoczny tylko dla uczestników posiadających rolę administratora.',
+    'keyboard-shortcut' => 'Skrót klawiaturowy :code',
+    'navigation'        => [
         'cancel'            => 'anuluj',
         'or_cancel'         => 'lub :cancel',
         'skip_to_content'   => 'Pomiń nawigację',
     ],
-    'new_entity'                => [],
-    'panels'                    => [],
-    'permissions'               => [
-        'action'            => 'Akcja',
+    'new_entity'        => [],
+    'panels'            => [],
+    'permissions'       => [
         'actions'           => [
             'bulk'          => [
                 'add'       => 'Zezwól',
@@ -287,25 +263,20 @@ return [
             ],
             'delete'        => 'Usuń',
             'edit'          => 'Edytuj',
-            'read'          => 'Czytaj',
             'toggle'        => 'Przełącz',
         ],
-        'allowed'           => 'Zezwolono',
         'fields'            => [
             'member'    => 'Uczestnik',
             'role'      => 'Rola',
         ],
-        'helper'            => 'W tym menu określaj szczegółowo, jak role i użytkownicy działają na element. :allow',
         'helpers'           => [
             'setup' => 'Przy pomocy tej funkcji możesz dokładnie określić, jak role i uczestnicy kampanii mogą działać na ten element. :allow pozwala użytkownikowi albo roli wykonać dane działanie. :deny im to uniemożliwi. :inherit zastosuje uprawnienia roli głównej albo użytkownika. Użytkownik posiadający ustawienie :allow może działać na element, nawet jeżeli jego roli przypisano :deny.',
         ],
-        'inherited'         => 'Ta rola posiada już ten typ uprawnień wobec tego rodzaju elementów.',
-        'inherited_by'      => 'Ten użytkownik posiada rolę :role, która posiada już te uprawnienia dla tego rodzaju elementów.',
         'success'           => 'Zapisano uprawenienia.',
         'title'             => 'Uprawienia',
         'too_many_members'  => 'Kampania ma zbyt wielu uczestników (>10) by ich tu wyświetlić. Używaj przycisku Uprawienia w opisie elementu, by szczegółowo zarządzać uprawieniami.',
     ],
-    'placeholders'              => [
+    'placeholders'      => [
         'ability'       => 'Wybierz zdolność',
         'calendar'      => 'Wybierz kalendarz',
         'character'     => 'Wybierz postać',
@@ -332,22 +303,21 @@ return [
         'timeline'      => 'Wybierz historię',
         'user'          => 'Wybierz użytkownika',
     ],
-    'relations'                 => [],
-    'remove'                    => 'Usuń',
-    'rename'                    => 'Zmień nazwę',
-    'reorder'                   => [
+    'relations'         => [],
+    'remove'            => 'Usuń',
+    'rename'            => 'Zmień nazwę',
+    'reorder'           => [
         'empty' => 'Brak elementów do zmiany kolejności.',
     ],
-    'save'                      => 'Zapisz',
-    'save_and_close'            => 'Zapisz i zamknij',
-    'save_and_copy'             => 'Zapisz i skopiuj',
-    'save_and_new'              => 'Zapisz i nowe',
-    'save_and_update'           => 'Zapisz i edytuj',
-    'save_and_view'             => 'Zapisz i pokaż',
-    'search'                    => 'Szukaj',
-    'select'                    => 'Wybierz',
-    'superboosted_campaigns'    => 'Turbodoładowane kampanie',
-    'tabs'                      => [
+    'save'              => 'Zapisz',
+    'save_and_close'    => 'Zapisz i zamknij',
+    'save_and_copy'     => 'Zapisz i skopiuj',
+    'save_and_new'      => 'Zapisz i nowe',
+    'save_and_update'   => 'Zapisz i edytuj',
+    'save_and_view'     => 'Zapisz i pokaż',
+    'search'            => 'Szukaj',
+    'select'            => 'Wybierz',
+    'tabs'              => [
         'abilities'     => 'Zdolności',
         'assets'        => 'Zasoby',
         'attributes'    => 'Cechy',
@@ -364,19 +334,17 @@ return [
         'reminders'     => 'Ważne daty',
         'story'         => 'Podstawy',
     ],
-    'titles'                    => [
+    'titles'            => [
         'editing'   => 'Edycja :name',
         'new'       => 'Nowy :module',
     ],
-    'tooltips'                  => [
-        'new_post'  => 'Dodaj do tego elementu nowy komentarz.',
-    ],
-    'update'                    => 'Aktualizacja',
-    'users'                     => [
+    'tooltips'          => [],
+    'update'            => 'Aktualizacja',
+    'users'             => [
         'unknown'   => 'Nieznany',
     ],
-    'view'                      => 'Zobacz',
-    'visibilities'              => [
+    'view'              => 'Zobacz',
+    'visibilities'      => [
         'admin'         => 'Administrator',
         'admin-self'    => 'Ja i administrator',
         'all'           => 'Wszyscy',

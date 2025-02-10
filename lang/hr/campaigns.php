@@ -2,24 +2,12 @@
 
 return [
     'create'                            => [
-        'description'           => 'Kreiraj novu kampanju',
-        'helper'                => [
-            'title'     => 'Dobro došli u :name!',
-            'welcome'   => <<<'TEXT'
-Prije nego što nastaviš dalje, moraš odabrati naziv kampanje. To je ime tvog svijeta. Ako još nemaš dobro ime, ne brini, uvijek ga možeš promijeniti kasnije ili stvoriti više kampanja.
-
-Hvala što si se pridružio/la Kanki i dobrodošao/la u našu uspješnu zajednicu!
-TEXT
-,
-        ],
-        'success'               => 'Kampanja kreirana.',
-        'success_first_time'    => 'Tvoja kampanja je kreirana! Budući da je tvoja prva kampanja, kreirali smo nekoliko stvari da ti pomognemo započeti i, po mogućnosti, pružimo malo inspiracije za što sve možeš napraviti.',
-        'title'                 => 'Nova kampanja',
+        'success'   => 'Kampanja kreirana.',
+        'title'     => 'Nova kampanja',
     ],
     'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Kampanja ažurirana.',
-        'title'     => 'Uredi kampanju :campaign',
     ],
     'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
@@ -73,13 +61,7 @@ TEXT
         'view_public'               => 'Da bi vidio/la svoju kampanju kao javni gledatelj, otvori :link u anonimnom prozoru.',
         'visibility'                => 'Proglašavanje kampanje javnom znači da će ju moći vidjeti svi koji imaju s odgovarajućom poveznicom.',
     ],
-    'index'                             => [
-        'actions'   => [
-            'new'   => [
-                'title' => 'Nova kampanja',
-            ],
-        ],
-    ],
+    'index'                             => [],
     'invites'                           => [
         'actions'               => [
             'copy'  => 'Kopiraj poveznicu u međuspremnik',
@@ -96,10 +78,8 @@ TEXT
             'success'   => 'Pozivnica uklonjena.',
         ],
         'error'                 => [
-            'already_member'    => 'Već si član te kampanje.',
             'inactive_token'    => 'Ovaj token je već iskorišten ili kampanja više ne postoji.',
             'invalid_token'     => 'Ovaj token više nije validan.',
-            'login'             => 'Prijavi se ili registriraj da bi se priključio/la kampanji.',
         ],
         'fields'                => [
             'created'   => 'Poslano',
@@ -117,12 +97,6 @@ TEXT
         'actions'               => [
             'switch'        => 'Imitiraj',
             'switch-back'   => 'Povratak na mog korisnika',
-        ],
-        'create'                => [
-            'title' => 'Dodaj člana u svoju kampanju',
-        ],
-        'edit'                  => [
-            'title' => 'Uredi člana :name',
         ],
         'fields'                => [
             'joined'        => 'Pridružen/a',
@@ -143,7 +117,6 @@ TEXT
             'more'          => 'Možeš dodati više uloga na :link.',
             'title'         => 'Pozvati',
         ],
-        'manage_roles'          => 'Upravljanje korisničkim ulogama',
         'roles'                 => [
             'member'    => 'Član',
             'owner'     => 'Administrator',
@@ -152,11 +125,6 @@ TEXT
             'viewer'    => 'Osmatrač',
         ],
         'switch_back_success'   => 'Vratio si se na svog korisnika.',
-        'title'                 => 'Članovi kampanje :name',
-        'updates'               => [
-            'added'     => 'Uloga :role dodana korisniku :user.',
-            'removed'   => 'Uloga :role uklonjena od korisnika :user.',
-        ],
     ],
     'open_campaign'                     => [],
     'panels'                            => [
@@ -168,10 +136,9 @@ TEXT
         'ui'        => 'Sučelje',
     ],
     'placeholders'                      => [
-        'description'   => 'Kratki sažetak tvoje kampanje',
-        'locale'        => 'Jezični kod',
-        'name'          => 'Naziv tvoje kampanje',
-        'system'        => 'D&D, Pathfinder, Fate, DSA',
+        'locale'    => 'Jezični kod',
+        'name'      => 'Naziv tvoje kampanje',
+        'system'    => 'D&D, Pathfinder, Fate, DSA',
     ],
     'roles'                             => [
         'actions'       => [
@@ -224,9 +191,6 @@ TEXT
         ],
         'placeholders'  => [
             'name'  => 'Naziv uloge',
-        ],
-        'show'          => [
-            'title' => 'Uloga kampanje ":role"',
         ],
         'title'         => 'Uloge kampanje :name',
         'types'         => [

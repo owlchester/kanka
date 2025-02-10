@@ -27,11 +27,6 @@ return [
         'today' => 'Data del calendario aggiornata.',
     ],
     'event'         => [
-        'actions'   => [
-            'existing'  => 'Entità esistente',
-            'new'       => 'Nuovo Evento',
-            'switch'    => 'Cambia scelta',
-        ],
         'create'    => [
             'success'   => 'Evento del calendario creato',
             'title'     => 'Aggiungi un Evento del Calendario su :name',
@@ -45,12 +40,7 @@ return [
             'invalid_entity'    => 'Selezione dell\'entità non valida',
         ],
         'helpers'   => [
-            'add'               => 'Aggiungi un evento esistente a questo calendario',
-            'new'               => 'O crea un nuovo evento semplicemente inserendone il nome.',
             'other_calendar'    => 'Stai modificando un evento che si trova sul calendario :calendar',
-        ],
-        'modal'     => [
-            'title' => 'Aggiungi un evento al calendario',
         ],
         'success'   => 'Evento \':event\' aggiunto al calendario.',
     ],
@@ -68,7 +58,6 @@ return [
         'start'     => '(inizio)',
     ],
     'fields'        => [
-        'colour'                => 'Colore',
         'comment'               => 'Commento',
         'current_day'           => 'Giorno corrente',
         'current_month'         => 'Mese corrente',
@@ -77,7 +66,6 @@ return [
         'day'                   => 'Giorno',
         'default_layout'        => 'Layout predefinito',
         'format'                => 'Formato',
-        'intercalary'           => 'Giorni intercalari',
         'is_incrementing'       => 'Data di Avanzamento',
         'is_recurring'          => 'Ricorrente',
         'leap_year'             => 'Anni bisestili',
@@ -112,9 +100,7 @@ return [
     ],
     'hints'         => [
         'event_length'      => 'La durata prevista per l\'evento. Un evento verrà visualizzato solo nei primi due anni.',
-        'intercalary'       => 'Giorni che non rientrano nei normali mesi e settimane. Non influenzano i giorni della settimana, ma influenzano le fasi lunari.',
         'is_incrementing'   => 'I calendari con avanzamento incrementeranno automaticamente la loro data corrente alle 00:00 UTC.',
-        'is_recurring'      => 'Un evento può essere impostato come ricorrente. Esso riapparirà ogni anno alla stessa data.',
         'leap_year'         => 'Imposta gli anni bisestili per il calendario.',
         'months'            => 'Il tuo calendario deve avere almeno 2 mesi.',
         'moons'             => 'Aggiungere lune le farà apparire sul calendario ad ogni luna piena e luna nuova. Se il ciclo di luna piena è maggiore di 10 giorni, saranno mostrate anche la luna calante e la luna crescente.',

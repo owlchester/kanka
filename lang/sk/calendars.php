@@ -28,11 +28,6 @@ return [
         'today' => 'Kalendárny dátum upravený.',
     ],
     'event'         => [
-        'actions'   => [
-            'existing'  => 'Existujúci objekt',
-            'new'       => 'Nová udalosť',
-            'switch'    => 'Zmeniť výber',
-        ],
         'create'    => [
             'success'   => 'Nová udalosť vytvorená',
             'title'     => 'Pridať udalosť do :name',
@@ -46,12 +41,7 @@ return [
             'invalid_entity'    => 'Neplatná voľba objektu.',
         ],
         'helpers'   => [
-            'add'               => 'Pridať existujúcu udalosť do tohto kalendára.',
-            'new'               => 'Alebo vytvoriť novú udalosť zadaním jej názvu.',
             'other_calendar'    => 'Upravuješ pripomienku, ktorá je v kalendári :calendar.',
-        ],
-        'modal'     => [
-            'title' => 'Pridať udalosť do kalendára',
         ],
         'success'   => 'Udalosť ":event" pridaná do kalendára.',
     ],
@@ -69,7 +59,6 @@ return [
         'start'     => '(začiatok)',
     ],
     'fields'        => [
-        'colour'                => 'Farba',
         'comment'               => 'Komentár',
         'current_day'           => 'Aktuálny deň',
         'current_month'         => 'Aktuálny mesiac',
@@ -78,7 +67,6 @@ return [
         'day'                   => 'Deň',
         'default_layout'        => 'Štandardné rozmiestnenie',
         'format'                => 'Formát',
-        'intercalary'           => 'Priestupné dni',
         'is_incrementing'       => 'Narastajúce dni',
         'is_recurring'          => 'Opakujúce',
         'leap_year'             => 'Priestupné roky',
@@ -113,9 +101,7 @@ return [
     ],
     'hints'         => [
         'event_length'      => 'Ako dlho má trvať daná udalosť. Udalosť nemôže trvať dlhšie ako dva mesiace.',
-        'intercalary'       => 'Dni, ktoré spadajú mimo štandardné mesiace a týždne. Neovplyvňujú dni v týždni, ale ovplyvňujú cykly družíc.',
         'is_incrementing'   => 'Narastajúci kalendár automaticky posunie aktuálny deň o 00:00 UTC.',
-        'is_recurring'      => 'Udalosť je možné nastaviť ako opakujúcu sa. Bude sa následne zobrazovať každý rok v ten istý deň.',
         'leap_year'         => 'Nastav priestupné roky pre kalendár.',
         'months'            => 'Kalendár by mal mať min. 2 mesiace.',
         'moons'             => 'Pridané družice sa zobrazia v kalendári počas ich splnu.',

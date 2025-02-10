@@ -3,24 +3,12 @@
 return [
     'actions'                           => [],
     'create'                            => [
-        'description'           => 'Vytvoriť novú kampaň',
-        'helper'                => [
-            'title'     => 'Vitaj v :name!',
-            'welcome'   => <<<'TEXT'
-Predtým, než budeš pokračovať, musíš zvoliť názov kampane. Je to meno tvojho sveta. Ak ešte nemáš žiadne vymyslené, nič sa nedeje, môžeš ho stále zmeniť neskôr alebo vytvoriť ďalšiu kampaň.
-
-Vďaka za to, že používaš Kanku a vitaj v našej rozkvitajúcej komunite!
-TEXT
-,
-        ],
-        'success'               => 'Kampaň vytvorená.',
-        'success_first_time'    => 'Tvoja kampaň bola vytvorená! Keďže je to tvoja prvá kampaň, vytvorili sme v nej pár vecí, ktoré ti pomôžu začať a dúfame, že ti poskytnú inšpiráciu, čo všetko je možné.',
-        'title'                 => 'Vytvoriť novú kampaň',
+        'success'   => 'Kampaň vytvorená.',
+        'title'     => 'Vytvoriť novú kampaň',
     ],
     'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Kampaň upravená.',
-        'title'     => 'Upraviť kampaň :campaign',
     ],
     'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
@@ -45,7 +33,6 @@ TEXT
         'entity_privacy'                    => 'Štandardné nastavenie súkromia objektov',
         'entry'                             => 'Popis kampane',
         'excerpt'                           => 'Krátky popis',
-        'featured'                          => 'Zvýraznená kampaň',
         'followers'                         => 'Odberatelia',
         'gallery_visibility'                => 'Štandardná viditeľnosť obrázkov galérie',
         'genre'                             => 'Žáner',
@@ -55,7 +42,6 @@ TEXT
         'locale'                            => 'Jazyk',
         'name'                              => 'Názov',
         'open'                              => 'Otvorená pre prihlášky',
-        'past_featured'                     => 'Posledne zvýraznená kampaň',
         'post_collapsed'                    => 'Nové príspevky k objektom sú štandardne minimalizované.',
         'premium'                           => 'Prémium poskytnuté od :name',
         'public'                            => 'Viditeľnosť kampane',
@@ -96,13 +82,7 @@ TEXT
         'view_public'                       => 'Ak si chceš pozrieť tvoju kampaň ako verejnú, otvor tento :link v novom inkognito okne.',
         'visibility'                        => 'Ak nastavíte kampaň ako verejnú, bude ju vidieť každý, kto k nej bude mať link.',
     ],
-    'index'                             => [
-        'actions'   => [
-            'new'   => [
-                'title' => 'Nová kampaň',
-            ],
-        ],
-    ],
+    'index'                             => [],
     'invites'                           => [
         'actions'               => [
             'copy'  => 'Kopírovať link do schránky',
@@ -119,11 +99,9 @@ TEXT
             'success'   => 'Pozvánka odstránená.',
         ],
         'error'                 => [
-            'already_member'    => 'Už si súčasťou tejto kampane.',
             'inactive_token'    => 'Táto pozvánka už bola použitá alebo daná kampaň už neexistuje.',
             'invalid_token'     => 'Platnosť tejto pozvánky už vypršala.',
             'join'              => 'Prosím, prihlás sa alebo si registruj nové konto k prístupu do :campaign.',
-            'login'             => 'Prosím, prihlás alebo registruj sa, aby si sa pridal/a do kampane.',
         ],
         'fields'                => [
             'created'   => 'Zaslať',
@@ -156,12 +134,6 @@ TEXT
             'switch-back'   => 'Prepnúť späť',
             'switch-entity' => 'Zobraziť ako',
         ],
-        'create'                => [
-            'title' => 'Pridať člena do tvojej kampane',
-        ],
-        'edit'                  => [
-            'title' => 'Upraviť člena :name',
-        ],
         'fields'                => [
             'banned'        => 'Užívateľ má zákaz',
             'joined'        => 'Súčasťou od',
@@ -182,7 +154,6 @@ TEXT
             'more'          => 'Nové role môžeš pridať cez :link.',
             'title'         => 'Pozvať',
         ],
-        'manage_roles'          => 'Spravovať roly užívateľov',
         'removal'               => 'Odstraňuješ ":member" z kampane.',
         'roles'                 => [
             'member'    => 'Člen',
@@ -192,11 +163,6 @@ TEXT
             'viewer'    => 'Divák',
         ],
         'switch_back_success'   => 'Teraz si späť ako tvoj vlastný užívateľ.',
-        'title'                 => 'Členovia kampane :name',
-        'updates'               => [
-            'added'     => 'Rola :role pridaná užívateľovi :user.',
-            'removed'   => 'Rola :role odňatá užívateľovi :user.',
-        ],
     ],
     'modules'                           => [
         'permission-disabled'   => 'Tento modul je deaktivovaný.',
@@ -216,10 +182,9 @@ TEXT
         'ui'        => 'Rozhranie',
     ],
     'placeholders'                      => [
-        'description'   => 'Krátky popis tvojej kampane',
-        'locale'        => 'Jazyk',
-        'name'          => 'Názov tvojej kampane',
-        'system'        => 'D&D, Pathfinder, Fate, Dračí Doupě',
+        'locale'    => 'Jazyk',
+        'name'      => 'Názov tvojej kampane',
+        'system'    => 'D&D, Pathfinder, Fate, Dračí Doupě',
     ],
     'privacy'                           => [
         'hidden'    => 'Skryté',
@@ -322,9 +287,6 @@ TEXT
         ],
         'placeholders'  => [
             'name'  => 'Názov role',
-        ],
-        'show'          => [
-            'title' => 'Rola :role kampane :campaign',
         ],
         'title'         => 'Roly kampane :name',
         'types'         => [

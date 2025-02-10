@@ -24,11 +24,6 @@ return [
         'today' => 'Kalender datum bijgewerkt',
     ],
     'event'         => [
-        'actions'   => [
-            'existing'  => 'Bestaande entiteit',
-            'new'       => 'Nieuwe gebeurtenis',
-            'switch'    => 'Wijzig keuze',
-        ],
         'create'    => [
             'success'   => 'Kalender gebeurtenis gemaakt.',
             'title'     => 'Voeg een Kalender Gebeurtenis toe aan :name',
@@ -39,24 +34,17 @@ return [
             'title'     => 'Werk Kalender Gebeurtenis bij voor :naam',
         ],
         'helpers'   => [
-            'add'               => 'Voeg een bestaande gebeurtenis toe aan deze kalender.',
-            'new'               => 'Of maak een nieuwe gebeurtenis door simpelweg een naam op te geven.',
             'other_calendar'    => 'Je bewerkt een herinnering die in de kalender :calendar staat.',
-        ],
-        'modal'     => [
-            'title' => 'Voeg een gebeurtenis toe aan de kalender',
         ],
         'success'   => 'Gebeurtenis \':event\' toegevoegd aan de kalender',
     ],
     'events'        => [],
     'fields'        => [
-        'colour'                => 'Kleur',
         'comment'               => 'Opmerking',
         'current_day'           => 'Huidige Dag',
         'current_month'         => 'Huidige Maand',
         'current_year'          => 'Huidig Jaar',
         'date'                  => 'Huidige Datum',
-        'intercalary'           => 'Schrikkeldagen',
         'is_incrementing'       => 'Vooruitgaande Datum',
         'is_recurring'          => 'Terugkerend',
         'leap_year_amount'      => 'Voeg Dagen toe',
@@ -82,9 +70,7 @@ return [
         'start_offset'  => 'Standaard begint de kalender op de eerste weekdag van jaar 0. Het wijzigen van dit veld heeft invloed op de plaats van de eerste dag van de kalender.',
     ],
     'hints'         => [
-        'intercalary'       => 'Dagen die buiten de standaard maanden en weken vallen. Ze hebben geen invloed op weekdagen maar op maan cycli.',
         'is_incrementing'   => 'Bij vooruitgaande kalenders wordt de huidige datum automatisch verhoogd om 00:00 UTC.',
-        'is_recurring'      => 'Een gebeurtenis kan worden ingesteld op terugkerend. Het zal elk jaar op dezelfde datum opnieuw verschijnen.',
         'months'            => 'Je kalender moet minimaal 2 maanden bevatten.',
         'moons'             => 'Door manen toe te voegen, verschijnen ze bij elke volle en nieuwe maan in de kalender. Als de periode van volle maan langer is dan 10 dagen, worden ook afnemende en wassende manen weergegeven.',
         'parent_calendar'   => 'Als je de kalender een bovenliggende kalender geeft, worden de herinneringen en weerseffecten van de bovenliggende kalender meegenomen.',

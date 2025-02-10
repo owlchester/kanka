@@ -3,24 +3,12 @@
 return [
     'actions'                           => [],
     'create'                            => [
-        'description'           => 'Crear nueva campaña',
-        'helper'                => [
-            'title'     => '¡Te damos la bienvenida a :name!',
-            'welcome'   => <<<'TEXT'
-Antes de continuar, necesitas un nombre para tu campaña. Este será el nombre de tu mundo. Si no tienes un buen nombre aún, no te preocupes, pues puedes cambiarlo más tarde o crear nuevas campañas.
-
-¡Gracias por unirte a Kanka, y te damos la bienvenida a nuestra floreciente comunidad!
-TEXT
-,
-        ],
-        'success'               => 'Campaña creada.',
-        'success_first_time'    => '¡La campaña ha sido creada! Como es tu primera campaña, hemos rellenado algunas cosas para que te familiarices y con suerte proveerte con algo de inspiración, para que veas que puedes conseguir.',
-        'title'                 => 'Nueva campaña',
+        'success'   => 'Campaña creada.',
+        'title'     => 'Nueva campaña',
     ],
     'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Campaña actualizada.',
-        'title'     => 'Editar campaña :campaign',
     ],
     'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
@@ -45,7 +33,6 @@ TEXT
         'entity_privacy'                    => 'Privacidad por defecto de nuevas entidades',
         'entry'                             => 'Descripción de la campaña',
         'excerpt'                           => 'Extracto',
-        'featured'                          => 'Campaña destacada',
         'followers'                         => 'Seguidores',
         'genre'                             => 'Género(s)',
         'header_image'                      => 'Imagen de cabecera',
@@ -54,7 +41,6 @@ TEXT
         'locale'                            => 'Idioma',
         'name'                              => 'Nombre',
         'open'                              => 'Inscripciones abiertas',
-        'past_featured'                     => 'Campaña destacada previamente',
         'post_collapsed'                    => 'Los nuevos posts en las entidades están colapsados por defecto.',
         'premium'                           => 'Premium desbloqueado por :name',
         'public'                            => 'Visibilidad de la campaña',
@@ -94,13 +80,7 @@ TEXT
         'view_public'                       => 'Para ver tu campaña como lo haría un visitante público, abre un :link en una ventana de incógnito.',
         'visibility'                        => 'Hacer pública una campaña implica que todos los que tengan el enlace a ella la podrán ver.',
     ],
-    'index'                             => [
-        'actions'   => [
-            'new'   => [
-                'title' => 'Nueva campaña',
-            ],
-        ],
-    ],
+    'index'                             => [],
     'invites'                           => [
         'actions'               => [
             'copy'  => 'Copiar el enlace al portapapeles',
@@ -117,10 +97,8 @@ TEXT
             'success'   => 'Invitación eliminada.',
         ],
         'error'                 => [
-            'already_member'    => 'Ya eres miembro de esta campaña.',
             'inactive_token'    => 'Este identificador ya se ha usado o la campaña ya no existe.',
             'invalid_token'     => 'El identificador ya no es válido.',
-            'login'             => 'Inicia sesión o regístrate para unirte a la campaña.',
         ],
         'fields'                => [
             'created'   => 'Enviado',
@@ -153,12 +131,6 @@ TEXT
             'switch-back'   => 'Volver a mi usuario',
             'switch-entity' => 'Ver como',
         ],
-        'create'                => [
-            'title' => 'Añade un miembro a la campaña',
-        ],
-        'edit'                  => [
-            'title' => 'Editar miembro :name',
-        ],
         'fields'                => [
             'banned'        => 'El usuario está baneado',
             'joined'        => 'Inscrito',
@@ -179,7 +151,6 @@ TEXT
             'more'          => 'Puedes añadir más roles desde la :link.',
             'title'         => 'Invitaciones',
         ],
-        'manage_roles'          => 'Configurar roles de usuario',
         'removal'               => 'Estás eliminando a ":member" de la campaña.',
         'roles'                 => [
             'member'    => 'Miembro',
@@ -189,11 +160,6 @@ TEXT
             'viewer'    => 'Invitado',
         ],
         'switch_back_success'   => 'Has vuelto a tu usuario.',
-        'title'                 => 'Miembros de la campaña :name',
-        'updates'               => [
-            'added'     => 'Se ha añadido el rol :role a :user.',
-            'removed'   => 'Se ha quitado el rol :role de :user.',
-        ],
     ],
     'modules'                           => [
         'permission-disabled'   => 'Este módulo está deshabilitado.',
@@ -213,10 +179,9 @@ TEXT
         'ui'        => 'Interfaz',
     ],
     'placeholders'                      => [
-        'description'   => 'Un breve resumen de tu campaña',
-        'locale'        => 'Código de idioma',
-        'name'          => 'El nombre de tu campaña',
-        'system'        => 'D&D 5e, Pathfinder, Fate...',
+        'locale'    => 'Código de idioma',
+        'name'      => 'El nombre de tu campaña',
+        'system'    => 'D&D 5e, Pathfinder, Fate...',
     ],
     'privacy'                           => [
         'hidden'    => 'Oculta',
@@ -318,9 +283,6 @@ TEXT
         ],
         'placeholders'  => [
             'name'  => 'Nombre del rol',
-        ],
-        'show'          => [
-            'title' => 'Rol ":role"',
         ],
         'title'         => 'Roles de la campaña :name',
         'types'         => [

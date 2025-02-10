@@ -3,24 +3,12 @@
 return [
     'actions'                           => [],
     'create'                            => [
-        'description'           => 'Crea una nuova campagna',
-        'helper'                => [
-            'title'     => 'Un benvenuto a :name!',
-            'welcome'   => <<<'TEXT'
-Prima di proseguire, devi scegliere un nome per la tua campagna. Questo è il nome del tuo mondo. Se non hai ancora un buon nome da scegliere, non preoccuparti: potrai sempre cambiarlo in un secondo momento, o creare altre campagne.
-
-Grazie per esserti unito a Kanka, e benvenuto nella nostra florida community!
-TEXT
-,
-        ],
-        'success'               => 'Campagna creata.',
-        'success_first_time'    => 'La tua campagna è stata creata! Siccome si tratta della tua prima campagna abbiamo provveduto a creare alcune cose per aiutarti ad iniziare e speriamo che ti possa dare un po\' di ispirazione per quello che potrai fare.',
-        'title'                 => 'Nuova campagna',
+        'success'   => 'Campagna creata.',
+        'title'     => 'Nuova campagna',
     ],
     'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Campagna aggiornata.',
-        'title'     => 'Modifica la Campagna :campaign',
     ],
     'entity_personality_visibilities'   => [
         'private'   => 'I nuovi personaggi hanno la loro personalità privata in maniera predefinita.',
@@ -44,7 +32,6 @@ TEXT
         'entity_privacy'                    => 'Privacy predefinita per nuova entità',
         'entry'                             => 'Descrizione della Campagna',
         'excerpt'                           => 'Testo della Pagina Principale',
-        'featured'                          => 'Campagna in Primo Piano',
         'followers'                         => 'Seguaci',
         'gallery_visibility'                => 'Visibilità della Galleria di Immagini Predefinita',
         'genre'                             => 'Genere(i)',
@@ -54,7 +41,6 @@ TEXT
         'locale'                            => 'Lingua',
         'name'                              => 'Nome',
         'open'                              => 'Aperto a candidature',
-        'past_featured'                     => 'Campagna precedentemente in Primo Piano',
         'post_collapsed'                    => 'I nuovi post sulle entità sono ripiegati in modo predefinito.',
         'premium'                           => 'Premium sbloccato da :name',
         'public'                            => 'Visibilità della campagna',
@@ -95,13 +81,7 @@ TEXT
         'view_public'                       => 'Per visualizzare la tua campagna come farebbe uno spettatore pubblico, apri :link in una finestra di navigazione in incognito.',
         'visibility'                        => 'Rendere pubblica una campagna significa che chiunque abbia il link può vederla.',
     ],
-    'index'                             => [
-        'actions'   => [
-            'new'   => [
-                'title' => 'Nuova Campagna',
-            ],
-        ],
-    ],
+    'index'                             => [],
     'invites'                           => [
         'actions'               => [
             'copy'  => 'Copia il link nei tuoi appunti',
@@ -118,11 +98,9 @@ TEXT
             'success'   => 'Invito rimosso.',
         ],
         'error'                 => [
-            'already_member'    => 'Sei già un membro di questa campagna.',
             'inactive_token'    => 'Questo token è già stato utilizzato o la campagna non esiste più.',
             'invalid_token'     => 'Questo token non è più valido.',
             'join'              => 'Per favore accedi o registrati con un nuovo account per entrare in :campaign.',
-            'login'             => 'Per favore accedi o registrati per unirti alla campagna.',
         ],
         'fields'                => [
             'created'   => 'Creato',
@@ -155,12 +133,6 @@ TEXT
             'switch-back'   => 'Torna al mio utente',
             'switch-entity' => 'Visualizza come',
         ],
-        'create'                => [
-            'title' => 'Aggiungi un membro alla tua campagna',
-        ],
-        'edit'                  => [
-            'title' => 'Modifica il membro :name',
-        ],
         'fields'                => [
             'banned'        => 'L\'utente è bannato',
             'joined'        => 'Unito',
@@ -181,7 +153,6 @@ TEXT
             'more'          => 'Puoi aggiungere ulteriori ruoli su :link.',
             'title'         => 'Invita',
         ],
-        'manage_roles'          => 'Gestisci i ruoli degli utenti',
         'removal'               => 'Stai rimuovendo ":membro" dalla campagna.',
         'roles'                 => [
             'member'    => 'Membro',
@@ -191,11 +162,6 @@ TEXT
             'viewer'    => 'Spettatore',
         ],
         'switch_back_success'   => 'Ora sei tornato al tuo utente originale.',
-        'title'                 => 'Membri - :name',
-        'updates'               => [
-            'added'     => 'Ruolo :role aggiunto a :user.',
-            'removed'   => 'Ruolo :role rimosso da :user',
-        ],
     ],
     'modules'                           => [
         'permission-disabled'   => 'Questo modulo è disattivato.',
@@ -213,10 +179,9 @@ TEXT
         'ui'        => 'Interfaccia',
     ],
     'placeholders'                      => [
-        'description'   => 'Un piccolo riassunto della tua campagna',
-        'locale'        => 'Codice di lingua',
-        'name'          => 'Il nome della tua campagna',
-        'system'        => 'D&D 5e, Pathfinder, Fate, Gurps, DSA',
+        'locale'    => 'Codice di lingua',
+        'name'      => 'Il nome della tua campagna',
+        'system'    => 'D&D 5e, Pathfinder, Fate, Gurps, DSA',
     ],
     'privacy'                           => [
         'hidden'    => 'Nascosto',
@@ -319,9 +284,6 @@ TEXT
         ],
         'placeholders'  => [
             'name'  => 'Nome del ruolo',
-        ],
-        'show'          => [
-            'title' => 'Ruolo nella campagna \':role\'',
         ],
         'title'         => 'Ruoli della campagna :name',
         'types'         => [

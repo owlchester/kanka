@@ -27,11 +27,6 @@ return [
         'today' => 'Date du calendrier mise à jour.',
     ],
     'event'         => [
-        'actions'   => [
-            'existing'  => 'Entité Existante',
-            'new'       => 'Nouvel Événement',
-            'switch'    => 'Choix différent',
-        ],
         'create'    => [
             'success'   => 'Evénement de calendrier ajouté.',
             'title'     => 'Ajouter un événement de calendrier à :name',
@@ -45,12 +40,7 @@ return [
             'invalid_entity'    => 'Choix invalide d\'entité.',
         ],
         'helpers'   => [
-            'add'               => 'Ajouter un événement à ce calendrier en utilisant la liste à choix.',
-            'new'               => 'Ou créer un nouveu événement en indiquant un nom.',
             'other_calendar'    => 'Modification d\'un rappel du calendrier :calendar.',
-        ],
-        'modal'     => [
-            'title' => 'Ajouter un rappel au calendrier',
         ],
         'success'   => 'Rappel \':event\' ajouté au calendrier.',
     ],
@@ -68,7 +58,6 @@ return [
         'start'     => '(début)',
     ],
     'fields'        => [
-        'colour'                => 'Couleur',
         'comment'               => 'Commentaire',
         'current_day'           => 'Jour Actuel',
         'current_month'         => 'Mois actuel',
@@ -77,7 +66,6 @@ return [
         'day'                   => 'Jour',
         'default_layout'        => 'Mise en page par défaut',
         'format'                => 'Format',
-        'intercalary'           => 'Jours Intercalaires',
         'is_incrementing'       => 'Incrément de date',
         'is_recurring'          => 'Récurrent',
         'leap_year'             => 'Années bissextiles',
@@ -112,9 +100,7 @@ return [
     ],
     'hints'         => [
         'event_length'      => 'La durée d\'un événement. Un événement ne peux pas durer plus de 2 mois.',
-        'intercalary'       => 'Les jours tombants hors des mois et semaines standards. Ils n\'influenceronts pas le jour de semaine.',
         'is_incrementing'   => 'Un calendrier avec cette option vera son jour actuel automatiquement avancer chaque jour à 00:00 UTC.',
-        'is_recurring'      => 'Un événement peut être récurrent. Il réapparaitera chaque année à la même date.',
         'leap_year'         => 'Définir les années bissextiles du calendrier.',
         'months'            => 'Le calendrier doit avoir au moins 2 mois.',
         'moons'             => 'Chaque lune sera affichée dans le calendrier lors de la pleine lune.',

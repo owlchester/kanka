@@ -28,11 +28,6 @@ return [
         'today' => 'Zmieniono datę kalendarza.',
     ],
     'event'         => [
-        'actions'   => [
-            'existing'  => 'Istniejący element',
-            'new'       => 'Nowe wydarzenie',
-            'switch'    => 'Zmień wybór',
-        ],
         'create'    => [
             'success'   => 'Utworzono wydarzenie.',
             'title'     => 'Dodaj wydarzenie do :name',
@@ -46,12 +41,7 @@ return [
             'invalid_entity'    => 'Wybrano niewłaściwy element.',
         ],
         'helpers'   => [
-            'add'               => 'Dodaj istniejące wydarzenie do tego kalendarza.',
-            'new'               => 'Albo stwórz nowe wydarzenie po prostu podając jego nazwę.',
             'other_calendar'    => 'Edytujesz ważną datę zapisaną w kalendarzu :calendar.',
-        ],
-        'modal'     => [
-            'title' => 'Dodaj wydarzenie do kalendarza',
         ],
         'success'   => 'Dodano do kalendarza wydarzenie \':event\'.',
     ],
@@ -69,7 +59,6 @@ return [
         'start'     => '(początek)',
     ],
     'fields'        => [
-        'colour'                => 'Kolor',
         'comment'               => 'Opis',
         'current_day'           => 'Obecny dzień',
         'current_month'         => 'Obecny miesiąc',
@@ -78,7 +67,6 @@ return [
         'day'                   => 'Dzień',
         'default_layout'        => 'Domyślny układ',
         'format'                => 'Zapis',
-        'intercalary'           => 'Dni dodatkowe',
         'is_incrementing'       => 'Upływ czasu',
         'is_recurring'          => 'Cykliczne',
         'leap_year'             => 'Lata przestępne',
@@ -113,9 +101,7 @@ return [
     ],
     'hints'         => [
         'event_length'      => 'Czas trwania wydarzenia. Nie może być dłuższy, niż dwa miesiące.',
-        'intercalary'       => 'Dni, których nie wlicza się do miesięcy oraz tygodni. Wpływają jednak na fazy księżyca.',
         'is_incrementing'   => 'Kalendarze, którym zaznaczono tę opcję, automatycznie przesuwają w przód datę każdego dnia o 00:00 UTC.',
-        'is_recurring'      => 'Wydarzenie może być cykliczne. Nastąpi wówczas tego samego dnia każdego kolejnego roku.',
         'leap_year'         => 'Ten kalendarz posiada lata przestępne.',
         'months'            => 'Kalendarz powinien mieć co najmniej 2 miesiące.',
         'moons'             => 'Dodanie księżyca spowoduje, że w kalendarzu wyświetlana będzie każda pełnia i nów. Jeżeli cykl księżycowy jest dłuższy niż 10 dni, pojawią się też informacje o pierwszej i trzeciej kwadrze.',

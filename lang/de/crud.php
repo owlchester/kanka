@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'                   => [
+    'actions'           => [
         'actions'           => 'Aktionen',
         'apply'             => 'Übernehmen',
         'back'              => 'Zurück',
@@ -30,13 +30,13 @@ return [
         'reset'             => 'Zurücksetzen',
         'transform'         => 'Umwandeln',
     ],
-    'add'                       => 'Hinzufügen',
-    'alerts'                    => [
+    'add'               => 'Hinzufügen',
+    'alerts'            => [
         'copy_attribute'    => 'Die Erwähnung des Attributs wurde in Ihre Zwischenablage kopiert.',
         'copy_invite'       => 'Der Einladungslink zur Kampagne wurde in deine Zwischenablage kopiert.',
         'copy_mention'      => 'Die erweiterte Erwähnung dieses Objekts wurde in Ihre Zwischenablage kopiert.',
     ],
-    'bulk'                      => [
+    'bulk'              => [
         'actions'       => [
             'edit'          => 'Bearbeitung vieler Objekte',
             'permissions'   => 'Berechtigungen ändern',
@@ -83,44 +83,38 @@ return [
             'templates'         => '{1} Auf :count Objekt wurde eine Vorlage angewendet. | [2, *] auf :count Objekt wurde eine Vorlage angewendet.',
         ],
     ],
-    'bulk_templates'            => [
+    'bulk_templates'    => [
         'bulk_title'    => 'Wenden Sie eine Vorlage auf mehrere Objekte an',
     ],
-    'cancel'                    => 'Abbrechen',
-    'click_modal'               => [
-        'close'     => 'Schließen',
-        'confirm'   => 'Bestätigen',
-        'title'     => 'Bestätige deine Aktion',
-    ],
-    'copy_to_campaign'          => [
+    'cancel'            => 'Abbrechen',
+    'click_modal'       => [],
+    'copy_to_campaign'  => [
         'bulk_title'    => 'Kopieren Sie Objekte in eine andere Kampagne',
         'panel'         => 'Kopieren',
         'title'         => 'Kopiere :name in eine andere Kampagne',
     ],
-    'create'                    => 'Erstellen',
-    'datagrid'                  => [
+    'create'            => 'Erstellen',
+    'datagrid'          => [
         'empty' => 'Nichts zu sehen bisher.',
     ],
-    'delete_modal'              => [
+    'delete_modal'      => [
         'callout'           => 'Psst!',
-        'close'             => 'Schließen',
         'confirm'           => 'Bestätige das Entfernen',
-        'delete'            => 'Löschen',
         'description_v2'    => 'Du entfernst ":tag".',
         'permanent'         => 'Diese Aktion ist dauerhaft.',
         'recoverable'       => 'Objekte können mit einer :boosted-campaign bis zu :day Tage lang wiederhergestellt werden.',
         'title'             => 'Löschen bestätigen',
     ],
-    'destroy_many'              => [
+    'destroy_many'      => [
         'success'   => ':count Objekt gelöscht|:count Objekte gelöscht',
     ],
-    'edit'                      => 'Bearbeiten',
-    'errors'                    => [
+    'edit'              => 'Bearbeiten',
+    'errors'            => [
         'boosted_campaigns'     => 'Diese Funktion ist nur für :boosted verfügbar',
         'unavailable_feature'   => 'nicht verfügbare Eigenschaft',
     ],
-    'events'                    => [],
-    'fields'                    => [
+    'events'            => [],
+    'fields'            => [
         'calendar_date'     => 'Kalenderdatum',
         'child'             => 'Kind',
         'closed'            => 'geschlossen',
@@ -162,48 +156,36 @@ return [
         'type'              => 'Typ',
         'visibility'        => 'Sichtbarkeit',
     ],
-    'files'                     => [
-        'actions'   => [
-            'drop'      => 'Klicken zum Hinzufügen oder Datei hierher ziehen (Drag & Drop).',
-            'manage'    => 'Verwalte Objektdateien',
-        ],
+    'files'             => [
         'errors'    => [
             'max'       => 'Du hast die maximale Anzahl (:max) von Dateien in diesem Objekt erreicht.',
             'max_size'  => 'Die Kampagne hat die maximale Dateispeicherkapazität erreicht.',
             'no_files'  => 'Keine Dateien.',
         ],
-        'files'     => 'Hochgeladene Dateien',
         'hints'     => [
             'limit'         => 'In jedem Objekt kann eine maximale Anzahl von :max Dateien hochgeladen werden.',
             'limitations'   => 'Unterstütze Formate: jpg, png, gif, und pdf. Max. Dateigröße: :size',
         ],
-        'title'     => 'Objektdateien für :name',
     ],
-    'filter'                    => 'Filter',
-    'filters'                   => [
-        'all'                       => 'Filter um alle Unterobjekte zu sehen',
-        'clear'                     => 'Filter zurücksetzen',
-        'copy_helper'               => 'Verwenden Sie die kopierten Filter in Ihrer Zwischenablage als Werte für Filter in Dashboard-Widgets und Quicklinks.',
-        'copy_helper_no_filters'    => 'Definieren Sie zuerst einige Filter, um sie in Ihre Zwischenablage kopieren zu können.',
-        'copy_to_clipboard'         => 'Kopiere Filter in die Zwischenablage',
-        'direct'                    => 'Filter um nur direkte Unterobjekte zu sehen',
-        'filtered'                  => 'Zeige :count von :total :entity.',
-        'hide'                      => 'Verstecken',
-        'lists'                     => [
+    'filter'            => 'Filter',
+    'filters'           => [
+        'all'               => 'Filter um alle Unterobjekte zu sehen',
+        'clear'             => 'Filter zurücksetzen',
+        'copy_helper'       => 'Verwenden Sie die kopierten Filter in Ihrer Zwischenablage als Werte für Filter in Dashboard-Widgets und Quicklinks.',
+        'copy_to_clipboard' => 'Kopiere Filter in die Zwischenablage',
+        'direct'            => 'Filter um nur direkte Unterobjekte zu sehen',
+        'filtered'          => 'Zeige :count von :total :entity.',
+        'lists'             => [
             'desktop'   => [
                 'all'       => 'Zeige alle Nachkommen (:count)',
                 'filtered'  => 'Zeige direkte Nachkommen (:count)',
             ],
-            'mobile'    => [
-                'all'       => 'Zeige alle (:count)',
-                'filtered'  => 'Zeige direkte (:count)',
-            ],
         ],
-        'mobile'                    => [
+        'mobile'            => [
             'clear' => 'Löschen',
             'copy'  => 'Clipboard',
         ],
-        'options'                   => [
+        'options'           => [
             'children'  => 'Mit untergeordneten Objekten',
             'exclude'   => 'Ausschließen',
             'hide'      => 'verbergen',
@@ -211,22 +193,22 @@ return [
             'none'      => 'keine',
             'show'      => 'anzeigen',
         ],
-        'show'                      => 'Zeigen',
-        'sorting'                   => [
+        'show'              => 'Zeigen',
+        'sorting'           => [
             'asc'       => ':field Aufsteigend',
             'desc'      => ':field absteigend',
             'helper'    => 'Steuern Sie, in welcher Reihenfolge die Ergebnisse angezeigt werden.',
         ],
-        'title'                     => 'Filter',
+        'title'             => 'Filter',
     ],
-    'fix-this-issue'            => 'Beheben Sie dieses Problem',
-    'forms'                     => [
+    'fix-this-issue'    => 'Beheben Sie dieses Problem',
+    'forms'             => [
         'actions'       => [
             'calendar'  => 'Füge Datum hinzu',
         ],
         'copy_options'  => 'Kopiere Optionen',
     ],
-    'helpers'                   => [
+    'helpers'           => [
         'copy_options'  => 'Kopieren Sie die folgenden verwandten Elemente aus der Quelle in das neue Objekt.',
         'learn_more'    => 'Erfahre mehr über diese Funktion in unserer :documentation.',
         'linking'       => 'Verknüpfung mit anderen Objekten',
@@ -236,21 +218,17 @@ return [
             'text'      => 'Durch Ändern deiner :settings können mehr Ergebnisse pro Seite angezeigt werden.',
         ],
     ],
-    'hidden'                    => 'Versteckt',
-    'hints'                     => [
+    'hidden'            => 'Versteckt',
+    'hints'             => [
         'attribute_template'    => 'Wende eine Attributsvorlage direkt beim erstellen des Objektes an.',
         'calendar_date'         => 'Ein Datum erlaubt es, Listen einfach zu filtern und pflegt ein Ereignis im ausgewählten Kalender.',
-        'gallery_header'        => 'Wenn das Objekt keine Kopfzeile hat, zeigen Sie stattdessen ein Bild aus der Kampagnengalerie an.',
-        'gallery_image'         => 'Wenn das Objekt kein Bild hat, wird  ein Bild aus der Kampagnengalerie angezeigt.',
-        'header_image'          => 'Dieses Bild wird über dem Objekt platziert. Verwenden Sie ein breites Bild, um optimale Ergebnisse zu erzielen.',
         'image_dimension'       => 'Empfohlene Abmessungen: :dimension Pixel.',
         'image_limitations'     => 'Unterstützte Formate: :formats. Maximale Dateigröße: :size.',
         'image_recommendation'  => 'empfohlene Abmaße: :width by :height px.',
         'is_star'               => 'Angepinnte Objekte erscheinen im Objektmenü.',
         'tooltip'               => 'Ersetzen Sie die automatisch generierte Kurzinfo durch den folgenden Inhalt.',
-        'visibility'            => 'Wenn die Sichtbarkeit auf Admin festgelegt wird, können dies nur Mitglieder in der Rolle Admin sehen. Wird es auf "Selbst" gesetzt, kannst es nur du sehen.',
     ],
-    'history'                   => [
+    'history'           => [
         'created_clean'         => 'Erstellt von :name :date',
         'created_date_clean'    => 'Erstellt :date',
         'unknown'               => 'Unbekannt',
@@ -258,22 +236,20 @@ return [
         'updated_date_clean'    => 'Zuletzt bearbeitet :date',
         'view'                  => 'Zeige Objektprotokoll',
     ],
-    'image'                     => [
+    'image'             => [
         'error' => 'Wir konnten das von dir angeforderte Bild nicht laden. Es könnte sein, dass die Website nicht erlaubt, Bilder herunterzuladen (typisch für Squarespace und DeviantArt) oder dass der Link nicht mehr gültig ist.',
     ],
-    'is_private'                => 'Dieses Objekt ist privat und nicht von Zuschauern einsehbar.',
-    'keyboard-shortcut'         => 'Tastaturkürzel: Code',
-    'legacy'                    => 'Erbe',
-    'move'                      => [],
-    'navigation'                => [
+    'is_private'        => 'Dieses Objekt ist privat und nicht von Zuschauern einsehbar.',
+    'keyboard-shortcut' => 'Tastaturkürzel: Code',
+    'move'              => [],
+    'navigation'        => [
         'cancel'            => 'Abbrechen',
         'or_cancel'         => 'oder :cancel',
         'skip_to_content'   => 'Navigation überspringen',
     ],
-    'new_entity'                => [],
-    'panels'                    => [],
-    'permissions'               => [
-        'action'            => 'Aktion',
+    'new_entity'        => [],
+    'panels'            => [],
+    'permissions'       => [
         'actions'           => [
             'bulk'          => [
                 'add'       => 'Hinzufügen',
@@ -288,25 +264,20 @@ return [
             ],
             'delete'        => 'Löschen',
             'edit'          => 'Bearbeiten',
-            'read'          => 'Lesen',
             'toggle'        => 'Umschalten',
         ],
-        'allowed'           => 'Erlaubt',
         'fields'            => [
             'member'    => 'Mitglied',
             'role'      => 'Rolle',
         ],
-        'helper'            => 'Benutze dieses Interface um die Berechtigungen von Nutzern und Rollen mit diesem Objekt  fein zu justieren.',
         'helpers'           => [
             'setup' => 'Verwenden Sie diese Schnittstelle, um zu optimieren, wie Rollen und Benutzer mit diesem Objekt interagieren können. :allow ermöglicht dem Benutzer oder der Rolle, diese Aktion auszuführen. :deny wird ihnen diese Handlung verweigern. :inherit verwendet die Berechtigung des Benutzers oder der Hauptrolle. Ein Benutzer, der auf :allow eingestellt ist, kann die Aktion ausführen, auch wenn seine Rolle auf :deny eingestellt ist.',
         ],
-        'inherited'         => 'Für diese Rolle ist die Berechtigung für diesen Objekttyp bereits festgelegt.',
-        'inherited_by'      => 'Dieser Benutzer ist Teil der Rolle \':role\', die diese Berechtigungen für diesen Objekttyp erteilt.',
         'success'           => 'Berechtigungen gespeichert.',
         'title'             => 'Berechtigungen',
         'too_many_members'  => 'Diese Kampagne hat zu viele Mitglieder (> 10), um in dieser Benutzeroberfläche angezeigt zu werden. Verwenden Sie die Schaltfläche Berechtigung in der Objektansicht, um die Berechtigungen im Detail zu steuern.',
     ],
-    'placeholders'              => [
+    'placeholders'      => [
         'ability'       => 'Wähle eine Fähigkeit',
         'calendar'      => 'Wähle einen Kalender',
         'character'     => 'Wähle einen Character',
@@ -333,22 +304,21 @@ return [
         'timeline'      => 'Wähle einen Zeitstrahl',
         'user'          => 'wähle einen Benutzer',
     ],
-    'relations'                 => [],
-    'remove'                    => 'Löschen',
-    'rename'                    => 'Umbenennen',
-    'reorder'                   => [
+    'relations'         => [],
+    'remove'            => 'Löschen',
+    'rename'            => 'Umbenennen',
+    'reorder'           => [
         'empty' => 'Keine Elemente zum Neuordnen.',
     ],
-    'save'                      => 'Speichern',
-    'save_and_close'            => 'Speichern und schließen',
-    'save_and_copy'             => 'Speichern und kopieren',
-    'save_and_new'              => 'Speichern und neu',
-    'save_and_update'           => 'Speichern und aktualisieren',
-    'save_and_view'             => 'Speichern und ansehen',
-    'search'                    => 'Suchen',
-    'select'                    => 'Auswählen',
-    'superboosted_campaigns'    => 'Superboost Kampagne',
-    'tabs'                      => [
+    'save'              => 'Speichern',
+    'save_and_close'    => 'Speichern und schließen',
+    'save_and_copy'     => 'Speichern und kopieren',
+    'save_and_new'      => 'Speichern und neu',
+    'save_and_update'   => 'Speichern und aktualisieren',
+    'save_and_view'     => 'Speichern und ansehen',
+    'search'            => 'Suchen',
+    'select'            => 'Auswählen',
+    'tabs'              => [
         'abilities'     => 'Fähigkeiten',
         'assets'        => 'Anhänge',
         'attributes'    => 'Attribute',
@@ -365,19 +335,17 @@ return [
         'reminders'     => 'Erinnerungen',
         'story'         => 'Übersicht',
     ],
-    'titles'                    => [
+    'titles'            => [
         'editing'   => ':name editieren',
         'new'       => 'Neu :module',
     ],
-    'tooltips'                  => [
-        'new_post'  => 'Fügen Sie diesem Objekt einen neuen Beitrag hinzu.',
-    ],
-    'update'                    => 'Bearbeiten',
-    'users'                     => [
+    'tooltips'          => [],
+    'update'            => 'Bearbeiten',
+    'users'             => [
         'unknown'   => 'Unbekannt',
     ],
-    'view'                      => 'Ansehen',
-    'visibilities'              => [
+    'view'              => 'Ansehen',
+    'visibilities'      => [
         'admin'         => 'Admin',
         'admin-self'    => 'Selbst & Admin',
         'all'           => 'Jeder',

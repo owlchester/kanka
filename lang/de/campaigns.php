@@ -3,24 +3,12 @@
 return [
     'actions'                           => [],
     'create'                            => [
-        'description'           => 'Erstelle eine neue Kampagne',
-        'helper'                => [
-            'title'     => 'Willkommen bei :name!',
-            'welcome'   => <<<'TEXT'
-Bevor Sie fortfahren, müssen Sie einen Kampagnennamen auswählen. Das ist der Name deiner Welt. Wenn Sie noch keinen guten Namen haben, machen Sie sich keine Sorgen, Sie können ihn später jederzeit ändern oder weitere Kampagnen erstellen.
-
-Vielen Dank, dass Sie sich Kanka angeschlossen haben, und willkommen in unserer florierenden Community!
-TEXT
-,
-        ],
-        'success'               => 'Kampagne erstellt.',
-        'success_first_time'    => 'Deine Kampagne wurde erstellt! Da es deine erste Kampagne ist, haben wir ein paar Dinge für dich erstellt, die dir helfen sollen, loszulegen und hoffentlich ein bisschen Inspiration liefern, was du alles machen kannst.',
-        'title'                 => 'Neue Kampagne erstellen',
+        'success'   => 'Kampagne erstellt.',
+        'title'     => 'Neue Kampagne erstellen',
     ],
     'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Kampagne aktualisiert',
-        'title'     => 'Kampagne :campaign bearbeiten',
     ],
     'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
@@ -45,7 +33,6 @@ TEXT
         'entity_privacy'                    => 'stanardmäig privat für neue Objekte',
         'entry'                             => 'Kampagnenbeschreibung',
         'excerpt'                           => 'Zusammenfassung',
-        'featured'                          => 'Vorgestellte Kampagne',
         'followers'                         => 'Abonnenten',
         'gallery_visibility'                => 'Standard-Sichtbarkeit von Galeriebildern',
         'genre'                             => 'Genre(s)',
@@ -55,7 +42,6 @@ TEXT
         'locale'                            => 'Sprache',
         'name'                              => 'Name',
         'open'                              => 'Offen für Bewerbungen',
-        'past_featured'                     => 'Zuvor vorgestellte Kampagne',
         'post_collapsed'                    => 'Neue Beiträge zu Objekten werden standardmäßig minimiert.',
         'premium'                           => 'Premium freigeschaltet von :name',
         'public'                            => 'Sichtbarkeit der Kampagne',
@@ -96,13 +82,7 @@ TEXT
         'view_public'                       => 'Um Ihre Kampagne als öffentlichen Betrachter anzuzeigen, öffnen Sie :link in einem Inkognito-Fenster.',
         'visibility'                        => 'Eine Kampagne öffentlich machen bedeutet, dass jeder mit einem Link dazu sie sehen kann.',
     ],
-    'index'                             => [
-        'actions'   => [
-            'new'   => [
-                'title' => 'Neue Kampagne',
-            ],
-        ],
-    ],
+    'index'                             => [],
     'invites'                           => [
         'actions'               => [
             'copy'  => 'Kopieren Sie den Link in Ihre Zwischenablage',
@@ -119,11 +99,9 @@ TEXT
             'success'   => 'Einladung entfernt.',
         ],
         'error'                 => [
-            'already_member'    => 'Du bist bereits Mitglied dieser Kampagne',
             'inactive_token'    => 'Dieses Token wurde bereits genutzt oder die Kampagne existiert nicht mehr.',
             'invalid_token'     => 'Dieser Token ist nicht mehr gültig.',
             'join'              => 'Bitte melde dich an oder registriere  ein neues Konto, um an :campaign teilzunehmen.',
-            'login'             => 'Bitte logge dich ein oder registriere dich, um der Kampagne beizutreten.',
         ],
         'fields'                => [
             'created'   => 'Senden',
@@ -156,12 +134,6 @@ TEXT
             'switch-back'   => 'Zurück zu meinem User',
             'switch-entity' => 'Anzeigen als',
         ],
-        'create'                => [
-            'title' => 'Füge ein Mitglied zu deiner Kampagne hinzu.',
-        ],
-        'edit'                  => [
-            'title' => 'Bearbeite Mitglied :name',
-        ],
         'fields'                => [
             'banned'        => 'Benutzer ist gesperrt',
             'joined'        => 'Beigetreten',
@@ -186,7 +158,6 @@ TEXT
             'more'          => 'Du kannst neue Rollen unter :link hinzufügen.',
             'title'         => 'Einladen',
         ],
-        'manage_roles'          => 'Verwalten von Benutzerrollen',
         'removal'               => 'Du entfernst ":member" aus der Kampagne.',
         'roles'                 => [
             'member'    => 'Mitglied',
@@ -196,11 +167,6 @@ TEXT
             'viewer'    => 'Zuschauer',
         ],
         'switch_back_success'   => 'Du bist nun zurück in deinem eigentlichen User.',
-        'title'                 => 'Kampagne :name Mitglieder',
-        'updates'               => [
-            'added'     => 'Rolle :role zu :user hinzugefügt',
-            'removed'   => 'Rolle :role von :user entfernt',
-        ],
     ],
     'modules'                           => [
         'permission-disabled'   => 'Dieses Modul ist deaktiviert.',
@@ -220,10 +186,9 @@ TEXT
         'ui'        => 'Schnittstelle',
     ],
     'placeholders'                      => [
-        'description'   => 'Eine kurze Zusammenfassung deiner Kampagne',
-        'locale'        => 'Sprachcode',
-        'name'          => 'Dein Kampagnenname',
-        'system'        => 'D&D 5e, 3.5, Pathfinder, Gurps, DSA',
+        'locale'    => 'Sprachcode',
+        'name'      => 'Dein Kampagnenname',
+        'system'    => 'D&D 5e, 3.5, Pathfinder, Gurps, DSA',
     ],
     'privacy'                           => [
         'hidden'    => 'Versteckt',
@@ -326,9 +291,6 @@ TEXT
         ],
         'placeholders'  => [
             'name'  => 'Name der Rolle',
-        ],
-        'show'          => [
-            'title' => 'Rolle \':role\' für Kampagne \':campaign\'',
         ],
         'title'         => 'Kampagne :name Rollen',
         'types'         => [

@@ -27,11 +27,6 @@ return [
         'today' => 'Fecha del calendario actualizada.',
     ],
     'event'         => [
-        'actions'   => [
-            'existing'  => 'Entidad existente',
-            'new'       => 'Nuevo evento',
-            'switch'    => 'Cambiar elección',
-        ],
         'create'    => [
             'success'   => 'Evento creado en el calendario',
             'title'     => 'Añadir evento del calendario a :name',
@@ -45,12 +40,7 @@ return [
             'invalid_entity'    => 'Selección de entidad inválida',
         ],
         'helpers'   => [
-            'add'               => 'Añade un evento existente a este calendario.',
-            'new'               => 'O crea un nuevo evento simplemente proporcionando un nombre.',
             'other_calendar'    => 'Estás editando un recordatorio del calendario :calendar.',
-        ],
-        'modal'     => [
-            'title' => 'Añadir evento al calendario',
         ],
         'success'   => 'Evento \':event\' añadido al calendario.',
     ],
@@ -68,7 +58,6 @@ return [
         'start'     => '(inicio)',
     ],
     'fields'        => [
-        'colour'                => 'Color',
         'comment'               => 'Comentario',
         'current_day'           => 'Día actual',
         'current_month'         => 'Mes actual',
@@ -77,7 +66,6 @@ return [
         'day'                   => 'Día',
         'default_layout'        => 'Diseño predeterminado',
         'format'                => 'Formato',
-        'intercalary'           => 'Días intercalares',
         'is_incrementing'       => 'Fecha incremental',
         'is_recurring'          => 'Recurrente',
         'leap_year'             => 'Años bisiestos',
@@ -112,9 +100,7 @@ return [
     ],
     'hints'         => [
         'event_length'      => 'Cuánto dura el evento. Un evento no puede durar más de dos meses.',
-        'intercalary'       => 'Días que están fuera de los meses y semanas estándar. No influyen en los días de la semana, pero afectan a los ciclos lunares.',
         'is_incrementing'   => 'Si está activado, se incrementará la fecha actual automáticamente a las 00:00h UTC.',
-        'is_recurring'      => 'Si un evento es recurrente, reaparecerá cada año en la misma fecha.',
         'leap_year'         => 'Configure los años bisiestos para el calendario.',
         'months'            => 'Tu calendario debe tener al menos 2 meses.',
         'moons'             => 'Si añades lunas, aparecerán en el calendario cada luna llena y nueva. Si el período entre estas es mayor que 10 días, también se mostrarán los cuartos creciente y menguante.',

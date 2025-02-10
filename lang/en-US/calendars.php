@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'fields'        => [
-        'colour'    => 'Color',
-    ],
+    'fields'        => [],
     'placeholders'  => [
         'colour'    => 'Color',
     ],

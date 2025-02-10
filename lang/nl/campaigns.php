@@ -2,24 +2,12 @@
 
 return [
     'create'                            => [
-        'description'           => 'Maak een nieuwe campaign',
-        'helper'                => [
-            'title'     => 'Welkom :name',
-            'welcome'   => <<<'TEXT'
-Voordat je verder gaat, moet je een campaign naam kiezen. Dit is de naam van jouw wereld. Als je nog geen goede naam hebt, hoef je je geen zorgen te maken, je kunt deze altijd later wijzigen of meerdere campaigns maken.
-
-Bedankt dat je lid bent geworden van Kanka en welkom bij onze bloeiende gemeenschap!
-TEXT
-,
-        ],
-        'success'               => 'Campaign gemaakt.',
-        'success_first_time'    => 'Je campaign is gemaakt! Aangezien het je eerste campaign is, hebben we een paar dingen bedacht om je op weg te helpen en hopelijk een beetje inspiratie te bieden voor wat je kunt doen.',
-        'title'                 => 'Nieuwe Campaign',
+        'success'   => 'Campaign gemaakt.',
+        'title'     => 'Nieuwe Campaign',
     ],
     'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Campaign bijgewerkt.',
-        'title'     => 'Wijzig Campaign :campaign',
     ],
     'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
@@ -70,13 +58,7 @@ TEXT
         'view_public'               => 'Om je campaign te bekijken zoals een openbare kijker dat zou doen, open je :link in een incognitovenster.',
         'visibility'                => 'Als je een campaign openbaar maakt, kan iedereen met een link ernaar de campaign zien.',
     ],
-    'index'                             => [
-        'actions'   => [
-            'new'   => [
-                'title' => 'Nieuwe Campaign',
-            ],
-        ],
-    ],
+    'index'                             => [],
     'invites'                           => [
         'actions'               => [
             'copy'  => 'Kopieer de link naar je klembord',
@@ -92,10 +74,8 @@ TEXT
             'success'   => 'Uitnodiging verwijderd.',
         ],
         'error'                 => [
-            'already_member'    => 'Je bent al lid van die campaign.',
             'inactive_token'    => 'Deze token is al gebruikt of de campaign bestaat niet meer.',
             'invalid_token'     => 'Dit token is niet meer geldig.',
-            'login'             => 'Log in of registreer om deel te nemen aan de campaign.',
         ],
         'fields'                => [
             'created'   => 'Verstuurd',
@@ -113,12 +93,6 @@ TEXT
         'actions'               => [
             'switch'        => 'Wissel',
             'switch-back'   => 'Terug naar mijn gebruiker',
-        ],
-        'create'                => [
-            'title' => 'Voeg een lid toe aan je campaign',
-        ],
-        'edit'                  => [
-            'title' => 'Wijzig lid :name',
         ],
         'fields'                => [
             'joined'        => 'Aangesloten',
@@ -147,7 +121,6 @@ TEXT
             'viewer'    => 'Kijker',
         ],
         'switch_back_success'   => 'Je bent nu terug bij je oorspronkelijke gebruiker.',
-        'title'                 => 'Campaign :name Leden',
     ],
     'open_campaign'                     => [],
     'panels'                            => [
@@ -159,10 +132,9 @@ TEXT
         'ui'        => 'Interface',
     ],
     'placeholders'                      => [
-        'description'   => 'Een korte samenvatting van je campaign',
-        'locale'        => 'Taal code',
-        'name'          => 'Jouw campaign naam',
-        'system'        => 'D&D, Pathfinder, Fate, DSA',
+        'locale'    => 'Taal code',
+        'name'      => 'Jouw campaign naam',
+        'system'    => 'D&D, Pathfinder, Fate, DSA',
     ],
     'roles'                             => [
         'actions'       => [
@@ -215,9 +187,6 @@ TEXT
         ],
         'placeholders'  => [
             'name'  => 'Naam van de rol',
-        ],
-        'show'          => [
-            'title' => 'Campaign Rol \':role\'',
         ],
         'title'         => 'Campaign :name Rollen',
         'types'         => [

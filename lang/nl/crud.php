@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'                   => [
+    'actions'           => [
         'actions'           => 'Acties',
         'apply'             => 'Toepassen',
         'back'              => 'Terug',
@@ -19,11 +19,11 @@ return [
         'next'              => 'Volgende',
         'reset'             => 'Reset',
     ],
-    'add'                       => 'Toevoegen',
-    'alerts'                    => [
+    'add'               => 'Toevoegen',
+    'alerts'            => [
         'copy_mention'  => 'De geavanceerde vermelding van de entiteit is naar je klembord gekopieerd.',
     ],
-    'bulk'                      => [
+    'bulk'              => [
         'actions'       => [
             'edit'  => 'Bulk Bewerken en Taggen',
         ],
@@ -63,39 +63,33 @@ return [
             'templates'         => '{1} :count entiteit heeft een sjabloon toegepast.|[2,*] :count entiteiten hebben een sjabloon toegepast.',
         ],
     ],
-    'bulk_templates'            => [
+    'bulk_templates'    => [
         'bulk_title'    => 'Pas een sjabloon toe op meerdere entiteiten',
     ],
-    'cancel'                    => 'Annuleer',
-    'click_modal'               => [
-        'close'     => 'Sluiten',
-        'confirm'   => 'Bevestig',
-        'title'     => 'Bevestig je actie',
-    ],
-    'copy_to_campaign'          => [
+    'cancel'            => 'Annuleer',
+    'click_modal'       => [],
+    'copy_to_campaign'  => [
         'bulk_title'    => 'Kopieer entiteiten naar andere campaign',
         'panel'         => 'Kopieer',
         'title'         => 'Kopieer \':name\' naar andere campaign',
     ],
-    'create'                    => 'Maak',
-    'datagrid'                  => [
+    'create'            => 'Maak',
+    'datagrid'          => [
         'empty' => 'Nog niets te laten zien.',
     ],
-    'delete_modal'              => [
-        'close' => 'Sluiten',
-        'delete'=> 'Verwijder',
+    'delete_modal'      => [
         'title' => 'Bevestiging verwijderen',
     ],
-    'destroy_many'              => [
+    'destroy_many'      => [
         'success'   => ':count entiteit verwijderd|:count entiteiten verwijderd.',
     ],
-    'edit'                      => 'Wijzig',
-    'errors'                    => [
+    'edit'              => 'Wijzig',
+    'errors'            => [
         'boosted_campaigns'     => 'Deze functie is alleen beschikbaar voor :boosted.',
         'unavailable_feature'   => 'Functie niet beschikbaar',
     ],
-    'events'                    => [],
-    'fields'                    => [
+    'events'            => [],
+    'fields'            => [
         'calendar_date'     => 'Kalender Datum',
         'colour'            => 'Kleur',
         'copy_abilities'    => 'Kopieer Vaardigheden',
@@ -122,29 +116,22 @@ return [
         'type'              => 'Type',
         'visibility'        => 'Zichtbaarheid',
     ],
-    'files'                     => [
-        'actions'   => [
-            'drop'      => 'Klik om een bestand toe te voegen of te droppen',
-            'manage'    => 'Beheer Entiteit Bestanden',
-        ],
+    'files'             => [
         'errors'    => [
             'max'       => 'Je hebt het maximale aantal (: max) bestanden voor deze entiteit bereikt.',
             'no_files'  => 'Geen bestanden.',
         ],
-        'files'     => 'Geüploade Bestanden',
         'hints'     => [
             'limit'         => 'Elke entiteit kan maximaal :max bestanden hebben geüpload.',
             'limitations'   => 'Ondersteunde formaten: :formats. Max Bestandsgrootte: :size',
         ],
-        'title'     => 'Entiteit Bestanden voor :name',
     ],
-    'filter'                    => 'Filter',
-    'filters'                   => [
+    'filter'            => 'Filter',
+    'filters'           => [
         'all'       => 'Filter op alle afstammelingen',
         'clear'     => 'Wis Filters',
         'direct'    => 'Filter naar directe afstammelingen',
         'filtered'  => ':count van :total :entity weergegeven.',
-        'hide'      => 'Verberg Filters',
         'options'   => [
             'exclude'   => 'Uitsluiten',
             'include'   => 'Omvatten',
@@ -158,39 +145,34 @@ return [
         ],
         'title'     => 'Filters',
     ],
-    'forms'                     => [
+    'forms'             => [
         'actions'       => [
             'calendar'  => 'Voeg een kalender datum toe',
         ],
         'copy_options'  => 'Kopieer Opties',
     ],
-    'helpers'                   => [
+    'helpers'           => [
         'copy_options'  => 'Kopieer de volgende gerelateerde elementen van de bron naar de nieuwe entiteit.',
     ],
-    'hidden'                    => 'Verborgen',
-    'hints'                     => [
+    'hidden'            => 'Verborgen',
+    'hints'             => [
         'attribute_template'    => 'Pas een attribuutsjabloon rechtstreeks toe wanneer je deze entiteit maakt of bewerkt.',
         'calendar_date'         => 'Een kalender datum maakt eenvoudig filteren in lijsten mogelijk en houdt ook een kalender gebeurtenis bij in de geselecteerde kalender.',
-        'gallery_image'         => 'Als de entiteit geen afbeelding heeft, geef je in plaats daarvan een afbeelding uit de campaign galerij weer.',
-        'header_image'          => 'Deze afbeelding wordt boven de entiteit geplaatst. Gebruik een brede afbeelding voor de beste resultaten.',
         'image_limitations'     => 'Ondersteunde formaten: :formats. Max Bestandsgrootte: :size.',
         'is_star'               => 'Vastgezette elementen verschijnen in het menu van de entiteit',
         'tooltip'               => 'Vervang de automatisch gegenereerde tooltip door de volgende inhoud.',
-        'visibility'            => 'Als je de zichtbaarheid instelt op beheerder, kunnen alleen leden met de campaign rol Beheerder dit zien. Als je het op zichzelf instelt, betekent dit dat alleen jij dit kunt zien.',
     ],
-    'history'                   => [
+    'history'           => [
         'unknown'   => 'Onbekend',
         'view'      => 'Bekijk entiteit log',
     ],
-    'image'                     => [
+    'image'             => [
         'error' => 'We kunnen de door jou aangevraagde afbeelding niet ophalen. Het kan zijn dat de website ons niet toestaat om de afbeelding te downloaden (meestal voor Squarespace en DeviantArt), of dat de link niet langer geldig is. Let er ook op dat de afbeelding niet groter is dan :size.',
     ],
-    'is_private'                => 'Deze entiteit is privé en alleen zichtbaar voor leden van de Beheerder rol.',
-    'legacy'                    => 'Legacy',
-    'new_entity'                => [],
-    'panels'                    => [],
-    'permissions'               => [
-        'action'            => 'Actie',
+    'is_private'        => 'Deze entiteit is privé en alleen zichtbaar voor leden van de Beheerder rol.',
+    'new_entity'        => [],
+    'panels'            => [],
+    'permissions'       => [
         'actions'           => [
             'bulk'          => [
                 'add'       => 'Toestaan',
@@ -205,25 +187,20 @@ return [
             ],
             'delete'        => 'Verwijder',
             'edit'          => 'Wijzig',
-            'read'          => 'Lees',
             'toggle'        => 'Wissel',
         ],
-        'allowed'           => 'Toegestaan',
         'fields'            => [
             'member'    => 'Lid',
             'role'      => 'Rol',
         ],
-        'helper'            => 'Gebruik deze interface om af te stemmen welke gebruikers en rollen kunnen communiceren met deze entiteit. :allow',
         'helpers'           => [
             'setup' => 'Gebruik deze interface om te verfijnen hoe rollen en gebruikers kunnen communiceren met deze entiteit. :allow staat de gebruiker of rol toe om deze actie uit te voeren. :deny zal hen die actie ontzeggen. :inherit gebruikt de gebruiker\'s rol of de toestemming van de hoofd rol. Een gebruiker die is ingesteld op :allow, kan de actie uitvoeren, zelfs als hun rol is ingesteld op :deny.',
         ],
-        'inherited'         => 'Deze rol heeft al deze permissies voor dit entiteitstype.',
-        'inherited_by'      => 'Deze gebruiker maakt deel uit van de rol \':role\' die deze permissies voor dit entiteit type verleent.',
         'success'           => 'Permissies opgeslagen.',
         'title'             => 'Permissies',
         'too_many_members'  => 'Deze campaign heeft te veel leden (>10) om in deze interface weer te geven. Gebruik de Permissie knop in de entiteit weergave om permissies in detail te beheren.',
     ],
-    'placeholders'              => [
+    'placeholders'      => [
         'ability'       => 'Kies een vaardigheid',
         'calendar'      => 'Kies een kalender',
         'character'     => 'Kies een personage',
@@ -242,19 +219,18 @@ return [
         'tag'           => 'Kies een tag',
         'timeline'      => 'Kies een tijdlijn',
     ],
-    'relations'                 => [],
-    'remove'                    => 'Verwijder',
-    'rename'                    => 'Hernoemen',
-    'save'                      => 'Opslaan',
-    'save_and_close'            => 'Opslaan en Afsluiten',
-    'save_and_copy'             => 'Opslaan en Kopiëren',
-    'save_and_new'              => 'Opslaan en Nieuwe',
-    'save_and_update'           => 'Opslaan en Wijzig',
-    'save_and_view'             => 'Opslaan en Bekijken',
-    'search'                    => 'Zoeken',
-    'select'                    => 'Selecteren',
-    'superboosted_campaigns'    => 'Superboosted Campaigns',
-    'tabs'                      => [
+    'relations'         => [],
+    'remove'            => 'Verwijder',
+    'rename'            => 'Hernoemen',
+    'save'              => 'Opslaan',
+    'save_and_close'    => 'Opslaan en Afsluiten',
+    'save_and_copy'     => 'Opslaan en Kopiëren',
+    'save_and_new'      => 'Opslaan en Nieuwe',
+    'save_and_update'   => 'Opslaan en Wijzig',
+    'save_and_view'     => 'Opslaan en Bekijken',
+    'search'            => 'Zoeken',
+    'select'            => 'Selecteren',
+    'tabs'              => [
         'abilities'     => 'Vaardigheden',
         'attributes'    => 'Attributen',
         'boost'         => 'Boost',
@@ -264,12 +240,12 @@ return [
         'relations'     => 'Relaties',
         'reminders'     => 'Herinneringen',
     ],
-    'update'                    => 'Update',
-    'users'                     => [
+    'update'            => 'Update',
+    'users'             => [
         'unknown'   => 'Onbekend',
     ],
-    'view'                      => 'Bekijk',
-    'visibilities'              => [
+    'view'              => 'Bekijk',
+    'visibilities'      => [
         'admin'         => 'Beheerder',
         'admin-self'    => 'Zelf & Beheerder',
         'all'           => 'Alle',

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'                   => [
+    'actions'           => [
         'actions'           => 'Akcije',
         'apply'             => 'Primijeni',
         'back'              => 'Natrag',
@@ -21,12 +21,12 @@ return [
         'reset'             => 'Resetiraj',
         'transform'         => 'Transformiranje',
     ],
-    'add'                       => 'Dodaj',
-    'alerts'                    => [
+    'add'               => 'Dodaj',
+    'alerts'            => [
         'copy_attribute'    => 'Spomen atributa kopiran je u tvoj međuspremnik.',
         'copy_mention'      => 'Napredno spominjanje entiteta kopirano je u međuspremnik.',
     ],
-    'bulk'                      => [
+    'bulk'              => [
         'actions'       => [
             'edit'  => 'Skupno uređivanje i označavanje',
         ],
@@ -66,39 +66,33 @@ return [
             'templates'         => '{1} :count entitet ima primjenjen predložak.|[2,*] :count entiteta ima primjenjen predložak.',
         ],
     ],
-    'bulk_templates'            => [
+    'bulk_templates'    => [
         'bulk_title'    => 'Primijeni predložak na više entiteta',
     ],
-    'cancel'                    => 'Otkaži',
-    'click_modal'               => [
-        'close'     => 'Zatvori',
-        'confirm'   => 'Potvrdi',
-        'title'     => 'Potvrdi svoju akciju',
-    ],
-    'copy_to_campaign'          => [
+    'cancel'            => 'Otkaži',
+    'click_modal'       => [],
+    'copy_to_campaign'  => [
         'bulk_title'    => 'Kopiraj entitete u drugu kampanju',
         'panel'         => 'Kopiraj',
         'title'         => 'Kopiraj ":name" u drugu kampanju',
     ],
-    'create'                    => 'Kreiraj',
-    'datagrid'                  => [
+    'create'            => 'Kreiraj',
+    'datagrid'          => [
         'empty' => 'Nema ništa za prikazati.',
     ],
-    'delete_modal'              => [
-        'close' => 'Zatvori',
-        'delete'=> 'Obriši',
+    'delete_modal'      => [
         'title' => 'Izbriši potvrdu',
     ],
-    'destroy_many'              => [
+    'destroy_many'      => [
         'success'   => 'Obrisano :count entitet|Obrisano :count entiteta.',
     ],
-    'edit'                      => 'Uredi',
-    'errors'                    => [
+    'edit'              => 'Uredi',
+    'errors'            => [
         'boosted_campaigns'     => 'Ova funkcionalnost je dostupna samo za :boosted.',
         'unavailable_feature'   => 'Nedostupna funkcionalnost',
     ],
-    'events'                    => [],
-    'fields'                    => [
+    'events'            => [],
+    'fields'            => [
         'calendar_date'     => 'Datum kalendara',
         'closed'            => 'Zatvoreno',
         'colour'            => 'Boja',
@@ -129,89 +123,75 @@ return [
         'type'              => 'Tip',
         'visibility'        => 'Vidljivost',
     ],
-    'files'                     => [
-        'actions'   => [
-            'drop'      => 'Klikni za dodavanje ili dovuci datoteku',
-            'manage'    => 'Upravljanje datotekama entiteta',
-        ],
+    'files'             => [
         'errors'    => [
             'max'       => 'Dosegnut maksimalni broj (:max) datoteka za ovaj entitet.',
             'no_files'  => 'Nema datoteka.',
         ],
-        'files'     => 'Prenesene datoteke',
         'hints'     => [
             'limit'         => 'Svaki entitet može imati maksimalno  :max datoteka prenesenih na njega.',
             'limitations'   => 'Podržani formati: :formats. Maksimalna veličina datoteke: :size',
         ],
-        'title'     => 'Entitetske datoteke za :name',
     ],
-    'filter'                    => 'Filtar',
-    'filters'                   => [
-        'all'                       => 'Filtriraj na sve potomke',
-        'clear'                     => 'Očistite filtre',
-        'copy_helper'               => 'Kopirane filtre u međuspremniku koristi kao vrijednosti za filtre na programčićima naslovne ploče i brzim vezama.',
-        'copy_helper_no_filters'    => 'Prvo definiraj neke filtre da bi ih mogao/la kopirati u međuspremnik.',
-        'copy_to_clipboard'         => 'Kopiraj filtre u međuspremnik',
-        'direct'                    => 'Filtriraj na direktne potomke',
-        'filtered'                  => 'Prikazuje se :count od :total :entity.',
-        'hide'                      => 'Sakrij filtre',
-        'mobile'                    => [
+    'filter'            => 'Filtar',
+    'filters'           => [
+        'all'               => 'Filtriraj na sve potomke',
+        'clear'             => 'Očistite filtre',
+        'copy_helper'       => 'Kopirane filtre u međuspremniku koristi kao vrijednosti za filtre na programčićima naslovne ploče i brzim vezama.',
+        'copy_to_clipboard' => 'Kopiraj filtre u međuspremnik',
+        'direct'            => 'Filtriraj na direktne potomke',
+        'filtered'          => 'Prikazuje se :count od :total :entity.',
+        'mobile'            => [
             'clear' => 'Očisti',
             'copy'  => 'Međuspremnik',
         ],
-        'options'                   => [
+        'options'           => [
             'exclude'   => 'Izuzmi',
             'include'   => 'Uključi',
             'none'      => 'Ništa',
         ],
-        'show'                      => 'Prikaži filtre',
-        'sorting'                   => [
+        'show'              => 'Prikaži filtre',
+        'sorting'           => [
             'asc'       => ':field uzlazno',
             'desc'      => ':field silazno',
             'helper'    => 'Kontroliraj u kojem se prikazuju rezultati.',
         ],
-        'title'                     => 'Filteri',
+        'title'             => 'Filteri',
     ],
-    'fix-this-issue'            => 'Riješi ovaj problem',
-    'forms'                     => [
+    'fix-this-issue'    => 'Riješi ovaj problem',
+    'forms'             => [
         'actions'       => [
             'calendar'  => 'Dodajte datum kalendara',
         ],
         'copy_options'  => 'Opcije kopiranja',
     ],
-    'helpers'                   => [
+    'helpers'           => [
         'copy_options'  => 'Kopiraj sljedeće povezane elemente iz izvora u novi entitet.',
     ],
-    'hidden'                    => 'Skriveno',
-    'hints'                     => [
+    'hidden'            => 'Skriveno',
+    'hints'             => [
         'attribute_template'    => 'Primijeni predložak atributa izravno prilikom stvaranja ovog entiteta.',
         'calendar_date'         => 'Datum kalendara omogućava jednostavno filtriranje u popisima, također održavajući događaj kalendara u odabranom kalendaru.',
-        'gallery_header'        => 'Ako entitet nema zaglavlje, prikaži sliku iz galerije kampanje umjesto njega.',
-        'gallery_image'         => 'Ako entitet nema sliku, umjesto toga prikaži sliku iz galerije kampanje.',
-        'header_image'          => 'Ova se slika postavlja iznad entiteta. Za najbolje rezultate koristite široku sliku.',
         'image_limitations'     => 'Podržani formati: :formats. Maksimalna veličina datoteke: :size.',
         'is_star'               => 'Prikvačeni elementi pojavit će se na izborniku entiteta',
         'tooltip'               => 'Zamijeni automatski generirani kratki opis sljedećim sadržajem.',
-        'visibility'            => 'Postavljanje vidljivosti na "Administratori" znači da će samo članovi kampanje u ulozi Administrator vidjeti ovo. Postavljanje vidljivosti na "Samo ja" znači da samo ti vidiš ovo.',
     ],
-    'history'                   => [
+    'history'           => [
         'unknown'   => 'Nepoznato',
         'view'      => 'Pogledaj zapisnik entiteta',
     ],
-    'image'                     => [
+    'image'             => [
         'error' => 'Nismo uspjeli dobiti sliku koju ste tražili. Može biti da nam web mjesto ne dopušta preuzimanje slike (uobičajeno za Squarespace i DeviantArt) ili da veza više nije valjana. Provjerite također da slika nije veća od :size.',
     ],
-    'is_private'                => 'Ovaj je entitet privatan i vidljiv samo članovima administratorske uloge.',
-    'legacy'                    => 'Nasljedstvo',
-    'move'                      => [],
-    'navigation'                => [
+    'is_private'        => 'Ovaj je entitet privatan i vidljiv samo članovima administratorske uloge.',
+    'move'              => [],
+    'navigation'        => [
         'cancel'    => 'otkaži',
         'or_cancel' => 'ili :cancel',
     ],
-    'new_entity'                => [],
-    'panels'                    => [],
-    'permissions'               => [
-        'action'            => 'Akcija',
+    'new_entity'        => [],
+    'panels'            => [],
+    'permissions'       => [
         'actions'           => [
             'bulk'          => [
                 'add'       => 'Dodaj',
@@ -226,25 +206,20 @@ return [
             ],
             'delete'        => 'Brisanje',
             'edit'          => 'Uređivanje',
-            'read'          => 'Čitanje',
             'toggle'        => 'Uključi ili isključi',
         ],
-        'allowed'           => 'Dopušteno',
         'fields'            => [
             'member'    => 'Član',
             'role'      => 'Uloga',
         ],
-        'helper'            => 'Koristi ovo sučelje za preciziranje korisnika i uloga koji mogu vidjeti ili koristiti ovaj entitet.',
         'helpers'           => [
             'setup' => 'Koristi ovo sučelje za detaljno namještanje ovlasti uloga i korisnika za ovaj entitet. :allow će dopustiti korisniku ili ulozi da odradi tu akciju. :deny će zabraniti akciju. :inherit će koristiti ovlasti korisnikove ili glavne uloge. Korisnik kojemu je postavljano :allow, može odrađivati akciju čak i ako uloga čiji je član ima :deny.',
         ],
-        'inherited'         => 'Ova uloga već ima postavljeno dopuštenje za ovu vrstu entiteta.',
-        'inherited_by'      => 'Ovaj je korisnik dio uloge ":role" koja daje ova dopuštenja ovom entitetu.',
         'success'           => 'Ovlasti spremljene.',
         'title'             => 'Ovlasti',
         'too_many_members'  => 'Ova kampanja ima previše članova (> 10) za prikaz u ovom sučelju. Upotrijebite gumb Ovlasti na prikazu entiteta za detaljnu kontrolu ovlasti.',
     ],
-    'placeholders'              => [
+    'placeholders'      => [
         'ability'       => 'Izaberi sposobnost',
         'calendar'      => 'Izaberi kalendar',
         'character'     => 'Izaberi lika',
@@ -264,19 +239,18 @@ return [
         'tag'           => 'Izaberi oznaku',
         'timeline'      => 'Odaberite kronologiju',
     ],
-    'relations'                 => [],
-    'remove'                    => 'Ukloni',
-    'rename'                    => 'Preimenuj',
-    'save'                      => 'Spremi',
-    'save_and_close'            => 'Spremi i zatvori',
-    'save_and_copy'             => 'Spremi i kopiraj',
-    'save_and_new'              => 'Spremi i kreni na novo',
-    'save_and_update'           => 'Spremi i ažuriraj',
-    'save_and_view'             => 'Spremi i pogledaj',
-    'search'                    => 'Pretraži',
-    'select'                    => 'Odaberi',
-    'superboosted_campaigns'    => 'Super pojačane kampanje',
-    'tabs'                      => [
+    'relations'         => [],
+    'remove'            => 'Ukloni',
+    'rename'            => 'Preimenuj',
+    'save'              => 'Spremi',
+    'save_and_close'    => 'Spremi i zatvori',
+    'save_and_copy'     => 'Spremi i kopiraj',
+    'save_and_new'      => 'Spremi i kreni na novo',
+    'save_and_update'   => 'Spremi i ažuriraj',
+    'save_and_view'     => 'Spremi i pogledaj',
+    'search'            => 'Pretraži',
+    'select'            => 'Odaberi',
+    'tabs'              => [
         'abilities'     => 'Sposobnosti',
         'assets'        => 'Imovina',
         'attributes'    => 'Atributi',
@@ -290,12 +264,12 @@ return [
         'reminders'     => 'Podsjetnici',
         'story'         => 'Priča',
     ],
-    'update'                    => 'Ažuriraj',
-    'users'                     => [
+    'update'            => 'Ažuriraj',
+    'users'             => [
         'unknown'   => 'Nepoznato',
     ],
-    'view'                      => 'Vidljivost',
-    'visibilities'              => [
+    'view'              => 'Vidljivost',
+    'visibilities'      => [
         'admin'         => 'Administratori',
         'admin-self'    => 'Ja i administratori',
         'all'           => 'Svi',

@@ -27,11 +27,6 @@ return [
         'today' => 'Kalenderdatum aktualisiert.',
     ],
     'event'         => [
-        'actions'   => [
-            'existing'  => 'Bestehendes Objekt',
-            'new'       => 'Neues Ereignis',
-            'switch'    => 'Auswahl ändern',
-        ],
         'create'    => [
             'success'   => 'Kalender Ereignis wurde erstellt',
             'title'     => 'Kalender Ereignis zu :name hinzufügen',
@@ -45,12 +40,7 @@ return [
             'invalid_entity'    => 'Ungültige Objektauswahl',
         ],
         'helpers'   => [
-            'add'               => 'Füge ein bestehendes Ereignis aus der Liste hinzu.',
-            'new'               => 'Oder gebe einfach einen Namen für ein neues Ereignis ein.',
             'other_calendar'    => 'Sie bearbeiten eine Erinnerung, die sich im :calender befindet.',
-        ],
-        'modal'     => [
-            'title' => 'Füge ein Event zum Kalender hinzu',
         ],
         'success'   => 'Event \':event\' zum Kalender hinzugefügt.',
     ],
@@ -68,7 +58,6 @@ return [
         'start'     => '(start)',
     ],
     'fields'        => [
-        'colour'                => 'Farbe',
         'comment'               => 'Kommentar',
         'current_day'           => 'Aktueller Tag',
         'current_month'         => 'Aktueller Monat',
@@ -77,7 +66,6 @@ return [
         'day'                   => 'Tag',
         'default_layout'        => 'Standardlayout',
         'format'                => 'Format',
-        'intercalary'           => 'Schalttage',
         'is_incrementing'       => 'Vorausdatierung',
         'is_recurring'          => 'Wiederkehrend',
         'leap_year'             => 'Schaltjahre',
@@ -112,9 +100,7 @@ return [
     ],
     'hints'         => [
         'event_length'      => 'Wie lange ein Ereignis dauern soll. Ein Ereignis kann nicht länger als zwei Monate dauern.',
-        'intercalary'       => 'Tage die außerhalb der Standard Monate und Wochen liegen. Sie beeinflussen keine Wochentage aber beeinflussen Mondzyklen.',
         'is_incrementing'   => 'Wenn aktiviert, wird das aktuelle Datum des Kalenders automatisch um 00:00 UTC erhöht',
-        'is_recurring'      => 'Ein Event kann wiederkehrend sein. Es wird dann jedes Jahr am gleichen Tag erscheinen.',
         'leap_year'         => 'Richte Schaltjahre für den Kalender ein.',
         'months'            => 'Dein Kalender sollte mindestens 2 Monate haben.',
         'moons'             => 'Hinzugefügte Monde werden bei jedem Vollmond im Kalender angezeigt.',

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions'                   => [
+    'actions'           => [
         'actions'           => 'Acciones',
         'apply'             => 'Aplicar',
         'back'              => 'Atrás',
@@ -30,13 +30,13 @@ return [
         'reset'             => 'Restablecer',
         'transform'         => 'Transformar',
     ],
-    'add'                       => 'Añadir',
-    'alerts'                    => [
+    'add'               => 'Añadir',
+    'alerts'            => [
         'copy_attribute'    => 'Se ha copiado la mención del atributo al portapapeles.',
         'copy_invite'       => 'El enlace de invitación a la campaña se ha copiado en el portapapeles.',
         'copy_mention'      => 'La mención avanzada de la entidad se ha copiado al portapapeles.',
     ],
-    'bulk'                      => [
+    'bulk'              => [
         'actions'       => [
             'edit'          => 'Editar y etiquetar en lote',
             'permissions'   => 'Cambiar permisos',
@@ -82,44 +82,38 @@ return [
             'templates'         => '{1} Se ha aplicado la plantilla a :count entidad.|[2,*] Se ha aplicado la plantilla a :count entidades.',
         ],
     ],
-    'bulk_templates'            => [
+    'bulk_templates'    => [
         'bulk_title'    => 'Aplicar una plantilla a varias entidades',
     ],
-    'cancel'                    => 'Cancelar',
-    'click_modal'               => [
-        'close'     => 'Cerrar',
-        'confirm'   => 'Confirmar',
-        'title'     => 'Confirmar acción',
-    ],
-    'copy_to_campaign'          => [
+    'cancel'            => 'Cancelar',
+    'click_modal'       => [],
+    'copy_to_campaign'  => [
         'bulk_title'    => 'Copiar entidades a otra campaña',
         'panel'         => 'Copiar',
         'title'         => 'Copiar ":name" a otra campaña',
     ],
-    'create'                    => 'Crear',
-    'datagrid'                  => [
+    'create'            => 'Crear',
+    'datagrid'          => [
         'empty' => 'Aún no hay nada que mostrar.',
     ],
-    'delete_modal'              => [
+    'delete_modal'      => [
         'callout'           => '¡Pssst!',
-        'close'             => 'Cerrar',
         'confirm'           => 'Confirmar eliminación',
-        'delete'            => 'Eliminar',
         'description_v2'    => 'Estás eliminando ":tag".',
         'permanent'         => 'Esta acción es permanente.',
         'recoverable'       => 'Las entidades pueden recuperarse durante un máximo de :día días con una campaña :boosted.',
         'title'             => 'Eliminar',
     ],
-    'destroy_many'              => [
+    'destroy_many'      => [
         'success'   => '{1} Se ha eliminado :count entidad .|[2,*] Se han eliminado :count entidades.',
     ],
-    'edit'                      => 'Editar',
-    'errors'                    => [
+    'edit'              => 'Editar',
+    'errors'            => [
         'boosted_campaigns'     => 'Esta funcionalidad solo está disponible para las :boosted.',
         'unavailable_feature'   => 'Funcionalidad no disponible',
     ],
-    'events'                    => [],
-    'fields'                    => [
+    'events'            => [],
+    'fields'            => [
         'calendar_date'     => 'Fecha del calendario',
         'child'             => 'Hijo',
         'closed'            => 'Cerrado',
@@ -160,47 +154,35 @@ return [
         'type'              => 'Tipo',
         'visibility'        => 'Visibilidad',
     ],
-    'files'                     => [
-        'actions'   => [
-            'drop'      => 'Haz clic para añadir o arrastra un archivo',
-            'manage'    => 'Administrar archivos de la entidad',
-        ],
+    'files'             => [
         'errors'    => [
             'max'       => 'Has alcanzado el número máximo (:max) de archivos para esta entidad.',
             'no_files'  => 'No hay archivos.',
         ],
-        'files'     => 'Archivos subidos',
         'hints'     => [
             'limit'         => 'Cada entidad puede tener un máximo de :max archivos.',
             'limitations'   => 'Formatos soportados: jpg, png, gif y pdf. Tamaño máximo de archivo: :size',
         ],
-        'title'     => 'Archivos de :name',
     ],
-    'filter'                    => 'Filtrar',
-    'filters'                   => [
-        'all'                       => 'Mostrar todos los descendientes',
-        'clear'                     => 'Quitar filtros',
-        'copy_helper'               => 'Usa los filtros copiados en el portapapeles para filtrar los widgets del tablero y los accesos directos.',
-        'copy_helper_no_filters'    => 'Define algún filtro primero para poder copiarlos al portapapeles.',
-        'copy_to_clipboard'         => 'Copiar filtros',
-        'direct'                    => 'Filtrar solo los descendientes directos',
-        'filtered'                  => 'Mostrando :count de :total :entity.',
-        'hide'                      => 'Ocultar filtros',
-        'lists'                     => [
+    'filter'            => 'Filtrar',
+    'filters'           => [
+        'all'               => 'Mostrar todos los descendientes',
+        'clear'             => 'Quitar filtros',
+        'copy_helper'       => 'Usa los filtros copiados en el portapapeles para filtrar los widgets del tablero y los accesos directos.',
+        'copy_to_clipboard' => 'Copiar filtros',
+        'direct'            => 'Filtrar solo los descendientes directos',
+        'filtered'          => 'Mostrando :count de :total :entity.',
+        'lists'             => [
             'desktop'   => [
                 'all'       => 'Mostrar todos los descendientes (:count)',
                 'filtered'  => 'Mostrar los descendientes directos (:count)',
             ],
-            'mobile'    => [
-                'all'       => 'Mostrar todos (:count)',
-                'filtered'  => 'Mostrar directos (:count)',
-            ],
         ],
-        'mobile'                    => [
+        'mobile'            => [
             'clear' => 'Quitar',
             'copy'  => 'Portapapeles',
         ],
-        'options'                   => [
+        'options'           => [
             'children'  => 'Coincide con éste o sus descendientes',
             'exclude'   => 'Excluir',
             'hide'      => 'Ocultar',
@@ -208,22 +190,22 @@ return [
             'none'      => 'Nada',
             'show'      => 'Mostrar',
         ],
-        'show'                      => 'Mostrar filtros',
-        'sorting'                   => [
+        'show'              => 'Mostrar filtros',
+        'sorting'           => [
             'asc'       => 'Ascendiente por :field',
             'desc'      => 'Descendiente por :field',
             'helper'    => 'Controla en qué orden aparecen los resultados.',
         ],
-        'title'                     => 'Filtros',
+        'title'             => 'Filtros',
     ],
-    'fix-this-issue'            => 'Arreglar este problema',
-    'forms'                     => [
+    'fix-this-issue'    => 'Arreglar este problema',
+    'forms'             => [
         'actions'       => [
             'calendar'  => 'Añadir fecha de calendario',
         ],
         'copy_options'  => 'Opciones de copia',
     ],
-    'helpers'                   => [
+    'helpers'           => [
         'copy_options'  => 'Copia los siguientes elementos relacionados del origen a la nueva entidad.',
         'learn_more'    => 'Obtenga más información sobre esta función en nuestra :documentation.',
         'linking'       => 'Vinculando con otras entidades',
@@ -233,21 +215,17 @@ return [
             'text'      => 'Se pueden mostrar más resultados por página cambiando la :settings.',
         ],
     ],
-    'hidden'                    => 'Oculto',
-    'hints'                     => [
+    'hidden'            => 'Oculto',
+    'hints'             => [
         'attribute_template'    => 'Aplica una plantilla de atributos directamente al crear esta entidad.',
         'calendar_date'         => 'Las fechas de calendario hacen que sea más fácil filtrar las listas, y también fijan los eventos al calendario seleccionado.',
-        'gallery_header'        => 'Si la entidad no tiene cabecera, muestra una imagen de la galería en su lugar.',
-        'gallery_image'         => 'Si la entidad no tiene imagen, muestra una imagen de la galería en su lugar.',
-        'header_image'          => 'Esta imagen está situada sobre la entidad. Para obtener mejores resultados, usa una imagen apaisada.',
         'image_dimension'       => 'Dimensiones recomendadas: :dimension píxeles.',
         'image_limitations'     => 'Formatos soportados: :formats. Tamaño máximo del archivo: :size.',
         'image_recommendation'  => 'Dimensiones recomendadas: :width por :height px.',
         'is_star'               => 'Los elementos fijados aparecerán en el menú principal de la entidad.',
         'tooltip'               => 'Reemplaza la descripción emergente automática con el siguiente contenido.',
-        'visibility'            => 'Al seleccionar "Administrador", solo los miembros con el rol de administrador podrán ver esto. "Solo yo" significa que solo tú puedes ver esto.',
     ],
-    'history'                   => [
+    'history'           => [
         'created_clean'         => 'Creado por :name el :date',
         'created_date_clean'    => 'Creado el :date',
         'unknown'               => 'Desconocido',
@@ -255,22 +233,20 @@ return [
         'updated_date_clean'    => 'Última modificación el :date',
         'view'                  => 'Historial de cambios de la entidad',
     ],
-    'image'                     => [
+    'image'             => [
         'error' => 'No hemos podido obtener la imagen. Puede que la página web no nos permita descargarla (típico de Squarespace o DeviantArt), o que el enlace ya no sea válido. Asegúrate también de que la imagen no supera los :size.',
     ],
-    'is_private'                => 'Esta entidad es privada y solo pueden verla los administradores.',
-    'keyboard-shortcut'         => 'Atajo de teclado :code',
-    'legacy'                    => 'Obsoleto',
-    'move'                      => [],
-    'navigation'                => [
+    'is_private'        => 'Esta entidad es privada y solo pueden verla los administradores.',
+    'keyboard-shortcut' => 'Atajo de teclado :code',
+    'move'              => [],
+    'navigation'        => [
         'cancel'            => 'cancelar',
         'or_cancel'         => 'o :cancel',
         'skip_to_content'   => 'Saltar navegación',
     ],
-    'new_entity'                => [],
-    'panels'                    => [],
-    'permissions'               => [
-        'action'            => 'Acción',
+    'new_entity'        => [],
+    'panels'            => [],
+    'permissions'       => [
         'actions'           => [
             'bulk'          => [
                 'add'       => 'Permitir',
@@ -285,25 +261,20 @@ return [
             ],
             'delete'        => 'Eliminar',
             'edit'          => 'Editar',
-            'read'          => 'Leer',
             'toggle'        => 'Cambiar',
         ],
-        'allowed'           => 'Permitido',
         'fields'            => [
             'member'    => 'Miembro',
             'role'      => 'Rol',
         ],
-        'helper'            => 'Desde aquí puedes afinar qué usuarios y roles pueden interactuar con esta entidad.',
         'helpers'           => [
             'setup' => 'Desde aquí puedes afinar cómo los diferentes roles y usuarios pueden interactuar con esta entidad. :allow les permitirá hacer dicha acción; :deny se la denegará, y :inherit usará el permiso que ya tenga el rol o usuario. Un usuario con una acción puesta en :allow podrá hacerla, aunque su rol esté en :deny.',
         ],
-        'inherited'         => 'Este rol ya tiene este permiso en esta entidad.',
-        'inherited_by'      => 'Este usuario forma parte del rol ":role", que le otorga este permiso en esta entidad.',
         'success'           => 'Permisos guardados.',
         'title'             => 'Permisos',
         'too_many_members'  => 'Esta campaña tiene demasiados miembros (>10) para poder mostrarlos todos aquí. Usa el botón de permisos en la vista de entidad para controlar los permisos detalladamente.',
     ],
-    'placeholders'              => [
+    'placeholders'      => [
         'ability'       => 'Escoge una habilidad',
         'calendar'      => 'Escoge un calendario',
         'character'     => 'Escoge un personaje',
@@ -330,19 +301,18 @@ return [
         'timeline'      => 'Elige una línea de tiempo',
         'user'          => 'Elija un usuario',
     ],
-    'relations'                 => [],
-    'remove'                    => 'Eliminar',
-    'rename'                    => 'Renombrar',
-    'save'                      => 'Guardar',
-    'save_and_close'            => 'Guardar y cerrar',
-    'save_and_copy'             => 'Guardar y copiar',
-    'save_and_new'              => 'Guardar y crear nuevo',
-    'save_and_update'           => 'Guardar y seguir editando',
-    'save_and_view'             => 'Guardar y ver',
-    'search'                    => 'Buscar',
-    'select'                    => 'Seleccionar',
-    'superboosted_campaigns'    => 'Campañas supermejoradas',
-    'tabs'                      => [
+    'relations'         => [],
+    'remove'            => 'Eliminar',
+    'rename'            => 'Renombrar',
+    'save'              => 'Guardar',
+    'save_and_close'    => 'Guardar y cerrar',
+    'save_and_copy'     => 'Guardar y copiar',
+    'save_and_new'      => 'Guardar y crear nuevo',
+    'save_and_update'   => 'Guardar y seguir editando',
+    'save_and_view'     => 'Guardar y ver',
+    'search'            => 'Buscar',
+    'select'            => 'Seleccionar',
+    'tabs'              => [
         'abilities'     => 'Habilidades',
         'assets'        => 'Archivos',
         'attributes'    => 'Atributos',
@@ -359,19 +329,17 @@ return [
         'reminders'     => 'Recordatorios',
         'story'         => 'Historia',
     ],
-    'titles'                    => [
+    'titles'            => [
         'editing'   => 'Editando :name',
         'new'       => 'Nuevo :module',
     ],
-    'tooltips'                  => [
-        'new_post'  => 'Añadir un post a esta entidad.',
-    ],
-    'update'                    => 'Actualizar',
-    'users'                     => [
+    'tooltips'          => [],
+    'update'            => 'Actualizar',
+    'users'             => [
         'unknown'   => 'Desconocido',
     ],
-    'view'                      => 'Ver',
-    'visibilities'              => [
+    'view'              => 'Ver',
+    'visibilities'      => [
         'admin'         => 'Admin',
         'admin-self'    => 'Yo + Admin',
         'all'           => 'Todos',
