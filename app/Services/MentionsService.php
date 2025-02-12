@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Facades\Attributes;
+use App\Facades\CampaignLocalization;
 use App\Facades\Domain;
 use App\Models\Attribute;
 use App\Models\Character;
@@ -73,6 +74,8 @@ class MentionsService
     /** @var bool When true, names of entities will be rendered, instead of a tooltip link */
     protected bool $onlyName = false;
 
+    /** @var bool When true, mentions will be mapped into links to the entities */
+    protected bool $isCopying = true;
 
     public function __construct(
         protected MarkupFixer $markupFixer,
@@ -97,6 +100,15 @@ class MentionsService
     {
         $this->text = $text;
         return $this->extractAndReplace();
+    }
+
+    /**
+     * Map a string
+     */
+    public function mapCopiedEntry(?string $text = null): string
+    {
+        $this->text = $text;
+        return $this->extractAndLink();
     }
 
     /**
@@ -272,6 +284,21 @@ class MentionsService
         $this->text = str_replace('`', '\'', $this->text);
 
         $this->fixGalleryUrls();
+
+        return $this->text;
+    }
+
+    public function extractAndLink(): string
+    {
+        CampaignLocalization::forceCampaign($this->campaign);
+
+        $this->isCopying = true;
+        // Pre-fetch all the entities
+        $this->prepareEntities();
+        $this->prepareHiddenEntities();
+
+        // Extract links from the entry to foreign
+        $this->replaceEntityMentions();
 
         return $this->text;
     }
@@ -454,6 +481,13 @@ class MentionsService
                 if ($this->onlyName) {
                     return Arr::get($data, 'text', $entity->name);
                 }
+
+                if ($this->isCopying) {
+                    return '<a href="' . $url . '"'
+                    . '>'
+                    . Arr::get($data, 'text', $entity->name)
+                    . '</a>';
+                }
                 $replace = '<a href="' . $url . '"'
                     . ' class="' . implode(' ', $cssClasses) . '"'
                     . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
@@ -624,10 +658,16 @@ class MentionsService
      */
     protected function entity(int $id): Entity|null
     {
+        Log::info('looking for entity');
+
+
         if (!Arr::has($this->entities, (string) $id) && !Arr::has($this->privateEntities, (string) $id)) {
+            if ($this->isCopying) {
+                CampaignLocalization::forceCampaign($this->campaign);
+            }
             $this->entities[$id] = Entity::where(['id' => $id])->first();
         }
-
+        Log::info($this->entities);
         return Arr::get($this->entities, $id);
     }
 
