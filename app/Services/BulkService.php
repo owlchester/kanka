@@ -152,7 +152,14 @@ class BulkService
             ->copy(true)
             ->to($campaign);
 
-        $entities = $model->with('entity')->whereIn('id', $this->ids)->get();
+        $entities = $model->with([
+            'entity',
+            'entity.entityType',
+            'entity.image',
+            'entity.inventories',
+            'entity.attributes',
+        ])->whereIn('id', $this->ids)->get();
+
         foreach ($entities as $entity) {
             if (!$this->can('update', $entity)) {
                 continue;

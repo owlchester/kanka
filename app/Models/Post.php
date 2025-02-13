@@ -12,6 +12,7 @@ use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Taggable;
 use App\Models\Concerns\Templatable;
+use App\Services\MentionsService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -155,6 +156,11 @@ class Post extends Model
         $new = $this->replicate($without);
         $new->entity_id = $target->id;
         $new->created_by = auth()->user()->id;
+        /** @var MentionsService $mentionsService */
+        $mentionsService = app()->make(MentionsService::class);
+
+        $newEntry = $mentionsService->mapCopiedEntry($new->entry);
+        $new->entry = $newEntry;
         $new->saveQuietly();
 
         if (!$sameCampaign) {
