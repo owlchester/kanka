@@ -1,5 +1,6 @@
 <?php
 /**
+ * @var \App\Models\Entity $entity
  * @var \App\Models\Attribute $attribute
  */
 $attributes = $entity->starredAttributes();

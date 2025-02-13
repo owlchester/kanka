@@ -101,7 +101,7 @@ trait EntityRelations
     public function entityAttributes()
     {
         return $this->attributes()
-            ->with('entity')
+            ->with('entity:id,name,type_id')
             ->ordered()
         ;
     }
@@ -342,7 +342,9 @@ trait EntityRelations
      */
     public function image(): HasOne
     {
-        return $this->hasOne('App\Models\Image', 'id', 'image_uuid');
+        return $this
+            ->hasOne(Image::class, 'id', 'image_uuid')
+            ->select(['campaign_id', 'id', 'ext', 'focus_x', 'focus_y']);
     }
 
     /**
@@ -350,7 +352,8 @@ trait EntityRelations
      */
     public function header(): HasOne
     {
-        return $this->hasOne('App\Models\Image', 'id', 'header_uuid');
+        return $this->hasOne(Image::class, 'id', 'header_uuid')
+            ->select(['campaign_id', 'id', 'ext', 'focus_x', 'focus_y']);
     }
 
     /**
@@ -380,7 +383,10 @@ trait EntityRelations
         return $this->relationships()
             ->pinned()
             ->ordered()
-            ->with(['target', 'target.image'])
+            ->with([
+                'target:id,name,is_private,type_id,entity_id',
+                'target.image'
+            ])
             ->has('target');
     }
 

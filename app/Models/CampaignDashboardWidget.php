@@ -35,6 +35,7 @@ use Illuminate\Support\Str;
  * @property ?EntityType $entityType
  *
  * @method static self|Builder positioned()
+ * @method static self|Builder setup()
  * @method static self|Builder onDashboard(?CampaignDashboard $dashboard = null)
  */
 class CampaignDashboardWidget extends Model
@@ -127,11 +128,47 @@ class CampaignDashboardWidget extends Model
     public function scopePositioned(Builder $query): Builder
     {
         return $query->with([
-            'entity', 'entity.image', 'entity.entityType', 'entity.header',
-            'tags',
-            'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug',
-            'entity.pinnedRelations', 'entity.entityAttributes',
-            'entityType',
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+            },
+            'tags' => function ($sub) {
+                $sub->select('id', 'name', 'colour', 'slug');
+            },
+            'entity.image',
+            'entity.header',
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code', 'is_special');
+            },
+            'entityType' => function ($sub) {
+                $sub->select('id', 'code', 'is_special', 'plural');
+            },
+            'entity.mentions:id,target_id',
+            'entity.mentions.target:id,name',
+            'entity.mentions.target.tags:id,name,slug',
+            'entity.pinnedRelations',
+            'entity.entityAttributes',
+        ])
+            ->orderBy('position', 'asc');
+    }
+
+    public function scopeSetup(Builder $query): Builder
+    {
+        return $query->with([
+            'entity' => function ($sub) {
+                $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y');
+            },
+            'tags' => function ($sub) {
+                $sub->select('id', 'name', 'colour', 'slug');
+            },
+            'entity.image' => function ($sub) {
+                $sub->select('campaign_id', 'id', 'ext', 'focus_x', 'focus_y');
+            },
+            'entity.entityType' => function ($sub) {
+                $sub->select('id', 'code', 'is_special');
+            },
+            'entityType' => function ($sub) {
+                $sub->select('id', 'code', 'is_special', 'plural');
+            },
         ])
             ->orderBy('position', 'asc');
     }
@@ -296,9 +333,28 @@ class CampaignDashboardWidget extends Model
         }
 
         return $base
+            ->select([
+                'entities.id',
+                'entities.name',
+                'entities.is_private',
+                'entities.type',
+                'entities.type_id',
+                'entities.image_uuid',
+                'entities.image_path',
+                'entities.focus_x',
+                'entities.focus_y',
+                'entities.updated_at',
+                'entities.updated_by',
+            ])
             ->inTags($this->tags->pluck('id')->toArray())
             ->inTypes($this->entityType?->id)
-            ->with(['image:campaign_id,id,ext,focus_x,focus_y', 'entityType:id,code,is_special', 'mentions', 'mentions.target', 'mentions.target.tags'])
+            ->with([
+                'image',
+                'entityType:id,code,is_special',
+                'mentions:target_id',
+                'mentions.target:id',
+                'mentions.target.tags:id,colour,slug'
+            ])
             ->paginate(10, ['*'], 'page', $page)
         ;
     }
@@ -320,7 +376,7 @@ class CampaignDashboardWidget extends Model
                     ->inTags($this->tags->pluck('id')->toArray())
                     ->whereNotIn('entities.id', \App\Facades\Dashboard::excluding())
                     ->inTypes($this->entityType->id)
-                    ->with(['image', 'entityType', 'header', 'tags'])
+                    ->with(['image', 'entityType:id,code,plural,is_special', 'header', 'tags:id,colour,slug,name'])
                     ->inRandomOrder()
                     ->first();
             }
@@ -418,11 +474,8 @@ class CampaignDashboardWidget extends Model
 
     /**
      */
-    public function customClass(Campaign $campaign): string
+    public function customClass(): string
     {
-        if (!$campaign->boosted()) {
-            return '';
-        }
         if (empty($this->conf('class'))) {
             return '';
         }

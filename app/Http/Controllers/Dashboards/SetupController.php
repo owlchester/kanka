@@ -22,7 +22,7 @@ class SetupController extends Controller
         $dashboard = request()->has('dashboard') ? CampaignDashboard::where('id', request()->get('dashboard'))->first() : null;
         $dashboards = CampaignDashboard::exclude($dashboard)->orderBy('name')->get();
 
-        $widgets = CampaignDashboardWidget::onDashboard($dashboard)->positioned()->get();
+        $widgets = CampaignDashboardWidget::onDashboard($dashboard)->setup()->get();
 
         return view('dashboard.setup')
             ->with('campaign', $campaign)
