@@ -658,16 +658,13 @@ class MentionsService
      */
     protected function entity(int $id): Entity|null
     {
-        Log::info('looking for entity');
-
-
         if (!Arr::has($this->entities, (string) $id) && !Arr::has($this->privateEntities, (string) $id)) {
             if ($this->isCopying) {
                 CampaignLocalization::forceCampaign($this->campaign);
             }
             $this->entities[$id] = Entity::where(['id' => $id])->first();
         }
-        Log::info($this->entities);
+
         return Arr::get($this->entities, $id);
     }
 
