@@ -15,7 +15,7 @@ class PreviewController extends Controller
 
 
     public function index(Campaign $campaign, Map $map)
-    {        
+    {
         if (!$campaign->enabled('maps')) {
             return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
@@ -23,7 +23,7 @@ class PreviewController extends Controller
                     'fix' => '<a href="' . route('campaign.modules', [$campaign, '#maps']) . '">' . __('crud.fix-this-issue') . '</a>'
                 ])
             );
-        }        
+        }
 
         $this->campaign($campaign)->authEntityView($map->entity);
 
