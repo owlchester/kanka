@@ -431,7 +431,18 @@ class MentionsService
                             . '</div>'
                             . '</span>';
                     } elseif ($field === 'attributes') {
-                        return '<iframe src="' . route('entities.attributes-dashboard', [$this->campaign, $entity]) . '" class="entity-attributes-render w-full h-full"></iframe>';
+                        return '<iframe src="' . route('entities.attributes-dashboard', [$this->campaign, $entity]) . '" class="entity-attributes-render w-full h-full"></iframe>'; 
+                    /** @var Map $child */
+                    } elseif ($field == 'map' && $child->explorable()) {
+                        $height = 300;
+                        $width = 300;
+                        if (isset($routeOptions['height']) && is_numeric($routeOptions['height'])) {
+                            $height = $routeOptions['height'];
+                        }
+                        if (isset($routeOptions['width']) && is_numeric($routeOptions['width'])) {
+                            $width = $routeOptions['width'];
+                        }
+                        return '<iframe src="' . route('maps.preview', [$this->campaign, $child]) . '" class="map-preview" data-map="{{ $entity->id }}" width="' . $width . '" height="' . $height . '"></iframe>'; 
                     } elseif (!$entity->isMissingChild() && isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {
