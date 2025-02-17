@@ -25,8 +25,8 @@
             @input="onInput"
             rows="3"
             ref="textarea"
-            @keydown.down.prevent="highlightNext"
-            @keydown.up.prevent="highlightPrev"
+            @keydown.down="highlightNext"
+            @keydown.up="highlightPrev"
             @keydown.enter="handleEnter"
             @keydown.esc="hideSuggestions"
             @blur="onBlur"
@@ -82,7 +82,11 @@ const onInput = (event) => {
     }
 }
 
-const highlightNext = () => {
+const highlightNext = (event) => {
+    if (highlightedIndex.value === -1) {
+        return;
+    }
+    event.preventDefault();
     if (highlightedIndex.value < suggestions.value.length - 1) {
         highlightedIndex.value++;
     } else if (suggestions.value.length > 0) {
@@ -90,7 +94,11 @@ const highlightNext = () => {
     }
 };
 
-const highlightPrev = () => {
+const highlightPrev = (event) => {
+    if (highlightedIndex.value === -1) {
+        return;
+    }
+    event.preventDefault();
     if (highlightedIndex.value > 0) {
         highlightedIndex.value--;
     } else if (suggestions.value.length > 0) {
