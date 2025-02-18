@@ -7,11 +7,11 @@
 {{--@endif--}}
 
 
-{{--<x-tutorial code="banner_jan25" type="warning" :auth="false">--}}
-{{--    <p>--}}
-{{--        Kanka will be undergoing scheduled server and network maintenance on Wednesday 29th of January 2025. As a result, Kanka will be unavailable from <a href="https://everytimezone.com/s/fe312f10" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link" aria-hidden="true"></i> 14:15 UTC</a> to 14:25 UTC. Join us on <a href="{{ config('social.discord') }}" target="_blank"  style="text-decoration: underline">Discord</a> to get updates.--}}
-{{--    </p>--}}
-{{--</x-tutorial>--}}
+<x-tutorial code="banner_kanka30" type="warning" :auth="false">
+    <p>
+        We are releasing a big update on Wednesday 19th of February 2025. As a result, Kanka will be unavailable from <a href="https://everytimezone.com/s/07a5d1d9" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link" aria-hidden="true"></i> 14:30 UTC</a> to 15:30 UTC. Join us on <a href="{{ config('social.discord') }}" target="_blank"  style="text-decoration: underline">Discord</a> to get updates.
+    </p>
+</x-tutorial>
 
 {{--@if (auth()->check() && auth()->user()->subscriptions()->count() === 0 && \Carbon\Carbon::now()->between(\Carbon\Carbon::create('2024-11-29'), \Carbon\Carbon::create('2024-12-02')))--}}
 {{--    <x-tutorial code="bf2024" type="warning">--}}
