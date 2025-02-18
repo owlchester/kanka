@@ -41,7 +41,6 @@ return [
         'no-account'            => 'Don\'t have an account?',
         'or'                    => 'OR',
         'password_forgotten'    => 'Forgot your password?',
-        'remember_me'           => 'Remember me',
         'sign-up'               => 'Sign up',
         'submit'                => 'Login',
         'title'                 => 'Login',
