@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\MiscModel;
 use App\Models\Note;
 use App\Services\Gallery\StorageService;
+use App\Services\MentionsService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
@@ -27,15 +28,17 @@ class MoveService
 
     protected StorageService $storageService;
     protected CopyService $copyService;
+    protected MentionsService $mentionsService;
 
     protected bool $copy = false;
 
     protected int $count = 0;
 
-    public function __construct(StorageService $storageService, CopyService $copyService)
+    public function __construct(StorageService $storageService, CopyService $copyService, MentionsService $mentionsService)
     {
         $this->storageService = $storageService;
         $this->copyService = $copyService;
+        $this->mentionsService = $mentionsService;
     }
 
     public function to(Campaign|int $campaign): self
@@ -125,12 +128,13 @@ class MoveService
 
             $newModel->campaign_id = $this->to->id;
             $image = $this->entity->image; // Load the image before switching campaigns
+            $newEntry = $this->mentionsService->campaign($this->campaign)->mapCopiedEntry($this->entity->entry);
 
             CampaignLocalization::forceCampaign($this->to);
 
             // The model is ready to be saved.
             $newModel->saveQuietly();
-            $newModel->createEntity();
+            $newModel->createEntity($newEntry);
 
             // Copy the gallery image over
             if (!empty($image)) {
