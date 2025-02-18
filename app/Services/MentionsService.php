@@ -483,7 +483,7 @@ class MentionsService
                 }
 
                 if ($this->isCopying) {
-                    return '<a href="' . $url . '"'
+                    return '<a href="' . $url . '" class="external-mention" data-entity-type="' . $entity->entityType->code . '"'
                     . '>'
                     . Arr::get($data, 'text', $entity->name)
                     . '</a>';

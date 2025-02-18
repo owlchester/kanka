@@ -20,6 +20,7 @@ class CustomDefinitions implements Definition
         $def->addAttribute('a', 'data-tooltip', 'Text');
         $def->addAttribute('a', 'data-title', 'Text');
         $def->addAttribute('a', 'data-html', 'Text');
+        $def->addAttribute('a', 'data-entity-type', 'Text');
         $def->addAttribute('a', 'target', 'Text');
 
         // Gallery
