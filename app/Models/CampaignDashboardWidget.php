@@ -75,6 +75,7 @@ class CampaignDashboardWidget extends Model
         return $this->belongsTo(CampaignDashboard::class, 'dashboard_id', 'id');
     }
 
+
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -82,7 +83,9 @@ class CampaignDashboardWidget extends Model
             'campaign_dashboard_widget_tags',
             'widget_id',
             'tag_id'
-        )->using(CampaignDashboardWidgetTag::class);
+        )->using(CampaignDashboardWidgetTag::class)
+            ->with('entity')
+            ->has('entity');
     }
 
     public function dashboardWidgetTags(): HasMany
