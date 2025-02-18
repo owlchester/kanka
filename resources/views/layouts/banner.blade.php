@@ -9,7 +9,7 @@
 
 <x-tutorial code="banner_kanka30" type="warning" :auth="false">
     <p>
-        We are releasing a big update on Wednesday 19th of February 2025. As a result, Kanka will be unavailable from <a href="https://everytimezone.com/s/07a5d1d9" target="_blank" style="text-decoration: underline"><i class="fa-solid fa-external-link" aria-hidden="true"></i> 14:30 UTC</a> to 15:30 UTC. Join us on <a href="{{ config('social.discord') }}" target="_blank"  style="text-decoration: underline">Discord</a> to get updates.
+        We are releasing a big update on Wednesday 19th of February 2025. As a result, Kanka will be unavailable from <a href="https://everytimezone.com/s/07a5d1d9" target="_blank" class="underline"><i class="fa-solid fa-external-link" aria-hidden="true"></i> 14:30 UTC</a> to 15:30 UTC. Join us on <a href="{{ config('social.discord') }}" target="_blank" class="underline">Discord</a> to get updates.
     </p>
 </x-tutorial>
 
