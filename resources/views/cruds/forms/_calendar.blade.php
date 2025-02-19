@@ -32,7 +32,7 @@ if (!empty($oldCalendarID)) {
 
     <div class="entity-calendar-form <?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "hidden" : null)?>">
         @if (count($calendars) == 1)
-            <input type="hidden" name="calendar_id" value="{{ isset($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar_id : $source->child->calendar_id }}" />
+            <input type="hidden" name="calendar_id" value="{{ isset($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar_id : $source->child->calendar_id ?? null }}" />
         @else
             <input type="hidden" name="calendar_id" />
             <div class="grid gap-2 md:gap-4 md:grid-cols-3 mb-4">

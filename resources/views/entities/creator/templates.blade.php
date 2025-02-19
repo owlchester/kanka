@@ -1,4 +1,4 @@
-<div class="entity-creator-body-{{ $type }}">
+<div class="entity-creator-body-{{ $entityType->code }}">
 
     @include('entities.creator.header.header')
     <div class="quick-creator-body">
@@ -12,9 +12,16 @@
             <ul>
                 @foreach ($templates as $template)
                     <li>
-                        <a href="{{ route($type . '.create', [$campaign, 'copy' => $template->id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $type }}">
+                        @if ($entityType->isSpecial())
+
+                            <a href="{{ route('entities.create', [$campaign, $entityType, 'copy' => $template->id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $entityType->plural() }}">
+                                {{ $template->name  }}
+                            </a>
+                        @else
+                        <a href="{{ route($entityType->plural() . '.create', [$campaign, 'copy' => $template->id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $entityType->plural() }}">
                             {{ $template->name  }}
                         </a>
+                        @endif
                     </li>
                 @endforeach
             </ul>
