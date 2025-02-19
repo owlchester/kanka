@@ -75,7 +75,7 @@ class MentionsService
     protected bool $onlyName = false;
 
     /** @var bool When true, mentions will be mapped into links to the entities */
-    protected bool $isCopying = true;
+    protected bool $isCopying = false;
 
     public function __construct(
         protected MarkupFixer $markupFixer,
@@ -290,6 +290,7 @@ class MentionsService
 
     public function extractAndLink(): string
     {
+        dd('no');
         CampaignLocalization::forceCampaign($this->campaign);
 
         $this->isCopying = true;
@@ -660,6 +661,7 @@ class MentionsService
     {
         if (!Arr::has($this->entities, (string) $id) && !Arr::has($this->privateEntities, (string) $id)) {
             if ($this->isCopying) {
+                dd('no');
                 CampaignLocalization::forceCampaign($this->campaign);
             }
             $this->entities[$id] = Entity::where(['id' => $id])->first();
@@ -773,6 +775,10 @@ class MentionsService
      */
     protected function prepareHiddenEntities(): void
     {
+        // For some reason this is sometimes false
+        if (!isset($this->campaign)) {
+            $this->campaign = CampaignLocalization::getCampaign();
+        }
         if (!$this->campaign->showPrivateEntityMentions()) {
             return;
         }

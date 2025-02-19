@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Bulks;
 
+use App\Facades\Mentions;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\EntityType;
@@ -17,6 +18,7 @@ class PrintController extends Controller
 
     public function index(Campaign $campaign, EntityType $entityType)
     {
+        Mentions::campaign($campaign);
         $entities = $this->bulkService
             ->campaign($campaign)
             ->entityType($entityType)
