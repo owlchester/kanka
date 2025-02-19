@@ -130,12 +130,12 @@ class CampaignDashboardWidget extends Model
     public function scopePositioned(Builder $query): Builder
     {
         return $query->with([
-            'entity', 'entity.image', 'entity.entityType', 'entity.header',
-            'tags',
-            'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug',
-            'entityType',
+//            'entity', 'entity.image', 'entity.entityType', 'entity.header',
+//            'tags',
+//            'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug',
+//            'entityType',
         ])
-            ->orderBy('position2');
+            ->orderBy('position');
     }
 
     /**
