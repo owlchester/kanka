@@ -31,6 +31,10 @@ use App\Enums\Widget;
 
         @include('ads.top')
 
+            <x-alert type="error">
+                <p>Dashboards are currently unavailable. We are working on bring them back ASAP.</p>
+            </x-alert>
+
         <div class="dashboard-widgets grid grid-cols-12 gap-4 md:gap-5 ">
             @if (!$hasCampaignHeader)
                 <div class="col-span-12 flex gap-5 justify-end">

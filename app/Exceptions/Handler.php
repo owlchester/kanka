@@ -58,19 +58,19 @@ class Handler extends ExceptionHandler
         } elseif ($exception instanceof AuthorizationException && auth()->guest()) {
             // User needs to be logged in, remember the page they visited
             session()->put('login_redirect', $request->getRequestUri());
-//        } elseif (!$request->is('api/*') && $exception instanceof ModelNotFoundException) {
-//            // If the guest user tries accessing a private campaign, let's tell them about it
-//            $campaign = request()->route('campaign');
-//            if (empty($campaign) || !($campaign instanceof Campaign)) {
-//                session()->put('login_redirect', $request->getRequestUri());
-//                /** @var Campaign $campaign */
-//                $campaign = Campaign::select('id')->slug($campaign)->first();
-//                if ($campaign && !$campaign->isPublic()) {
-//                    return response()->view('errors.private-campaign', [
-//                        'campaign' => $campaign
-//                    ], 200);
-//                }
-//            }
+        } elseif (!$request->is('api/*') && $exception instanceof ModelNotFoundException) {
+            // If the guest user tries accessing a private campaign, let's tell them about it
+            $campaign = request()->route('campaign');
+            if (empty($campaign) || !($campaign instanceof Campaign)) {
+                session()->put('login_redirect', $request->getRequestUri());
+                /** @var Campaign $campaign */
+                $campaign = Campaign::select('id')->slug($campaign)->first();
+                if ($campaign && !$campaign->isPublic()) {
+                    return response()->view('errors.private-campaign', [
+                        'campaign' => $campaign
+                    ], 200);
+                }
+            }
         } elseif ($exception instanceof SymHttpException && $exception->getStatusCode() == 503) {
             if (request()->ajax()) {
                 return response()->json([
