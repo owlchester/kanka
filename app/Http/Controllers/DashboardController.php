@@ -26,8 +26,6 @@ class DashboardController extends Controller
         $widgets = request()->has('_widgets') || app()->isLocal() ?
             CampaignDashboardWidget::onDashboard($dashboard)
                 ->positioned()
-                ->offset(request()->get('offset'))
-                ->limit(request()->get('limit'))
                 ->get() : [];
 
         // A user with campaigns doesn't need this process.

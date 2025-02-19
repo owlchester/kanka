@@ -59,7 +59,7 @@ use App\Enums\Widget;
                     continue;
                 endif; ?>
                     <div class="col-span-12 md:col-span-{{ $widget->mdColSize() }} lg:col-span-{{ $widget->colSize() }} widget widget-{{ $widget->widget->value }}" id="widget-col-{{ $widget->id }}">
-                        @include('dashboard.widgets._' . $widget->widget->value)
+                        @includeWhen(false, 'dashboard.widgets._' . $widget->widget->value)
                     </div>
             @endforeach
 
