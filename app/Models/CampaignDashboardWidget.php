@@ -313,7 +313,6 @@ class CampaignDashboardWidget extends Model
      */
     public function randomEntity()
     {
-        $entityType = $this->conf('entity');
         $base = new Entity();
 
         if ($this->entityType) {
