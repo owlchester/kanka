@@ -135,7 +135,7 @@ class CampaignDashboardWidget extends Model
             'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug',
             'entityType',
         ])
-            ->orderBy('position');
+            ->orderBy('position2');
     }
 
     /**
