@@ -55,7 +55,7 @@ trait Orderable
                         'orderable_j.id',
                         $this->getTable() . '.' . $relation->getForeignKeyName()
                     )
-                    ->orderBy(str_replace($relationName, 'f', $field), $direction);
+                    ->orderBy(str_replace($relationName, 'orderable_j', $field), $direction);
             } else {
                 // Order by related table? Yeah that's fun.
                 // While this would be possible, this would mean injecting the acl/permission system
