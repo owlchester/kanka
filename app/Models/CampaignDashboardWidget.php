@@ -131,9 +131,9 @@ class CampaignDashboardWidget extends Model
     {
         return $query->with([
 //            'entity', 'entity.image', 'entity.entityType', 'entity.header',
-//            'tags',
+            'tags',
 //            'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug',
-//            'entityType',
+            'entityType',
         ])
             ->orderBy('position');
     }
