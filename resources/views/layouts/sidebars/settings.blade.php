@@ -1,4 +1,9 @@
-<?php /** @var \App\Services\SidebarService $sidebar */?>
+<?php /** @var \App\Services\SidebarService $sidebar */
+if (!isset($user)) {
+    $user = auth()->user();
+}
+?>
+
 @inject('sidebar', 'App\Services\SidebarService')
 <aside class="main-sidebar main-sidebar-placeholder absolute z-20 h-full flex flex-col background-cover" @if ($user->avatar) style="--sidebar-placeholder: url({{ Img::crop(240, 208)->url($user->avatar) }})" @endif>
     <section class="sidebar-campaign h-52 flex-none overflow-hidden flex items-end">
