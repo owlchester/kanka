@@ -30,7 +30,7 @@ class LiveSearchService
             $query->whereNotIn('id', [$excludes]);
         }
         if (!$this->entityType->isSpecial()) {
-            $with[] = $this->entityType->code;
+            $with[] = Str::camel($this->entityType->code);
         }
         $query->with($with);
 
