@@ -23,10 +23,10 @@ class DashboardController extends Controller
             ->getDashboard((int) $requestedDashboard);
         $dashboards = Dashboard::getDashboards();
 
-        $widgets = request()->has('_widgets') || app()->isLocal() ?
+        $widgets =
             CampaignDashboardWidget::onDashboard($dashboard)
                 ->positioned()
-                ->get() : [];
+                ->get();
 
         // A user with campaigns doesn't need this process.
         $gaTrackingEvent = null;
