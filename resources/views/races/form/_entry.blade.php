@@ -10,7 +10,7 @@
     <x-forms.field field="extinct" :label="__('creatures.fields.is_extinct')">
         <input type="hidden" name="is_extinct" value="0" />
         <x-checkbox :text="__('races.hints.is_extinct')">
-            <input type="checkbox" name="is_extinct" value="1" @if (old('is_extinct', $source->is_extinct ?? $model->is_extinct ?? false)) checked="checked" @endif />
+            <input type="checkbox" name="is_extinct" value="1" @if (old('is_extinct', $source->child->is_extinct ?? $model->is_extinct ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 

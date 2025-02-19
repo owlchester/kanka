@@ -1,5 +1,5 @@
 @inject('sidebar', 'App\Services\SidebarService')
-<aside class="main-sidebar main-sidebar-placeholder z-20 h-auto min-h-full absolute flex flex-col @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(240, 210)->url($campaign->image) }})" @endif>
+<aside class="main-sidebar main-sidebar-placeholder z-20 h-auto min-h-full absolute flex flex-col @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(240, 208)->url($campaign->image) }})" @endif>
     @include('layouts.sidebars._campaign')
 
     <section class="sidebar grow">

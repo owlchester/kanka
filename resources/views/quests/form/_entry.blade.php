@@ -10,7 +10,7 @@
     <x-forms.field field="completed" :label="__('quests.fields.is_completed')">
         <input type="hidden" name="is_completed" value="0" />
         <x-checkbox :text="__('quests.helpers.is_completed')">
-            <input type="checkbox" name="is_completed" value="1" @if ($source->is_completed ?? old('is_completed', $model->is_completed ?? false)) checked="checked" @endif />
+            <input type="checkbox" name="is_completed" value="1" @if (old('is_completed', $source->child->is_completed ?? $model->is_completed ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 

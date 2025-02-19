@@ -43,7 +43,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             <input type="hidden" name="is_appearance_pinned" value="0" />
 
             <x-checkbox :text="__('characters.hints.is_appearance_pinned')">
-                <input type="checkbox" name="is_appearance_pinned" value="1" @if (old('is_appearance_pinned', $source->is_appearance_pinned ?? $model->is_appearance_pinned ?? false)) checked="checked" @endif/>
+                <input type="checkbox" name="is_appearance_pinned" value="1" @if (old('is_appearance_pinned', $source->child->is_appearance_pinned ?? $model->is_appearance_pinned ?? false)) checked="checked" @endif/>
             </x-checkbox>
         </x-forms.field>
     </x-grid>
@@ -95,7 +95,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             >
                 <input type="hidden" name="is_personality_pinned" value="0" />
                 <x-checkbox :text="__('characters.hints.is_personality_pinned')">
-                    <input type="checkbox" name="is_personality_pinned" value="1" @if (old('is_personality_pinned', $source->is_personality_pinned ?? $model->is_personality_pinned ?? false)) checked="checked" @endif/>
+                    <input type="checkbox" name="is_personality_pinned" value="1" @if (old('is_personality_pinned', $source->child->is_personality_pinned ?? $model->is_personality_pinned ?? false)) checked="checked" @endif/>
                 </x-checkbox>
             </x-forms.field>
         @endif
@@ -110,7 +110,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                 <x-checkbox :text="__('characters.hints.is_personality_visible', [
         'admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' target=\'_blank\'>' . \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>'
 ])">
-                    <input type="checkbox" name="is_personality_visible" value="1" @if (old('is_personality_visible', $source->is_personality_visible ?? $model->is_personality_visible ?? false)) checked="checked" @endif/>
+                    <input type="checkbox" name="is_personality_visible" value="1" @if (old('is_personality_visible', $source->child->is_personality_visible ?? $model->is_personality_visible ?? false)) checked="checked" @endif/>
                 </x-checkbox>
             </x-forms.field>
         @else

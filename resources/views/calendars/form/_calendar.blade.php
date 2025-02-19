@@ -5,7 +5,7 @@
         <x-forms.field field="skip-zero" :label="__('calendars.fields.skip_year_zero')">
             <input type="hidden" name="skip_year_zero" value="0" />
             <x-checkbox :text="__('calendars.hints.skip_year_zero')">
-                <input type="checkbox" name="skip_year_zero" value="1" @if (old('skip_year_zero', $source->skip_year_zero ?? $model->skip_year_zero ?? false)) checked="checked" @endif />
+                <input type="checkbox" name="skip_year_zero" value="1" @if (old('skip_year_zero', $source->child->skip_year_zero ?? $model->skip_year_zero ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
 
@@ -41,7 +41,7 @@
         <x-forms.field field="incrementing" :label="__('calendars.fields.is_incrementing')">
             <input type="hidden" name="is_incrementing" value="0" />
             <x-checkbox :text="__('calendars.hints.is_incrementing')">
-                <input type="checkbox" name="is_incrementing" value="1" @if (old('is_incrementing', $source->is_incrementing ?? $model->is_incrementing ?? false)) checked="checked" @endif />
+                <input type="checkbox" name="is_incrementing" value="1" @if (old('is_incrementing', $source->child->is_incrementing ?? $model->is_incrementing ?? false)) checked="checked" @endif />
             </x-checkbox>
         </x-forms.field>
 
