@@ -157,11 +157,13 @@ class Handler extends ExceptionHandler
         }
 
         $limit = app()->isProduction() ? 100 : 2000;
+        $trace = app()->hasDebugModeEnabled() ? $exception->getTrace() : null;
         return response()
             ->json([
                 'code' => 500,
                 'error' => 'Unhandled API error. Contact us on Discord',
-                'hint' => Str::limit($exception->getMessage(), $limit)
+                'hint' => Str::limit($exception->getMessage(), $limit),
+                'trace' => $trace,
             ], 500);
     }
 }
