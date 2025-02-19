@@ -179,7 +179,7 @@ class ReminderController extends Controller
             $this->authorize('reminders', $newEntity);
             $request->merge(['type_id' => null]);
         }
-        $routeOptions = ['campaign' => $campaign, 'calendar' => $entityEvent->calendar->id, 'year' => request()->post('year')];
+        $routeOptions = ['campaign' => $campaign, 'entity' => $entityEvent->calendar->entity, 'year' => request()->post('year')];
         $entityEvent->update($request->all());
 
         if (request()->has('layout')) {
@@ -203,7 +203,7 @@ class ReminderController extends Controller
             $routeOptions['calendar'] = $id;
         }
 
-        return redirect()->route('calendars.show', $routeOptions)
+        return redirect()->route('entities.show', $routeOptions)
             ->with('success', __('calendars.event.edit.success'));
     }
 
