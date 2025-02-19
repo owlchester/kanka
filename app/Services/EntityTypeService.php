@@ -176,5 +176,6 @@ class EntityTypeService
         $this->entityType->entities()->delete();
         $this->entityType->attributeTemplates()->delete();
         $this->entityType->entities()->delete();
+        $this->entityType->delete();
     }
 }
