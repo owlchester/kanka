@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use App\Models\UserApp;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class RegenerateDiscordToken extends Command
 {
@@ -59,7 +60,11 @@ class RegenerateDiscordToken extends Command
         }
 
         foreach ($tokens as $token) {
-            $this->service->user($token->user)->refresh();
+            try {
+                $this->service->user($token->user)->refresh();
+            } catch (\Exception $e) {
+                // Silence errors and ignore
+            }
         }
 
         $logs = $this->service->logs();
