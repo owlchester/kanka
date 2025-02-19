@@ -290,7 +290,6 @@ class MentionsService
 
     public function extractAndLink(): string
     {
-        dd('no');
         CampaignLocalization::forceCampaign($this->campaign);
 
         $this->isCopying = true;
