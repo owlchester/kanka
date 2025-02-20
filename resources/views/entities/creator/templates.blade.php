@@ -18,7 +18,7 @@
                                 {{ $template->name  }}
                             </a>
                         @else
-                        <a href="{{ route($entityType->plural() . '.create', [$campaign, 'copy' => $template->id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $entityType->plural() }}">
+                        <a href="{{ route($entityType->pluralCode() . '.create', [$campaign, 'copy' => $template->id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $entityType->plural() }}">
                             {{ $template->name  }}
                         </a>
                         @endif
