@@ -61,7 +61,7 @@ class Handler extends ExceptionHandler
         } elseif (!$request->is('api/*') && $exception instanceof ModelNotFoundException) {
             // If the guest user tries accessing a private campaign, let's tell them about it
             $campaign = request()->route('campaign');
-            if (empty($campaign) || !($campaign instanceof Campaign)) {
+            if (!empty($campaign) && !($campaign instanceof Campaign)) {
                 session()->put('login_redirect', $request->getRequestUri());
                 /** @var Campaign $campaign */
                 $campaign = Campaign::select('id')->slug($campaign)->first();
