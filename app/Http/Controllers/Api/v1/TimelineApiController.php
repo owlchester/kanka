@@ -42,7 +42,7 @@ class TimelineApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', EntityType::find(config('entities.ids.timeline')));
+        $this->authorize('create', [EntityType::find(config('entities.ids.timeline')), $campaign]);
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

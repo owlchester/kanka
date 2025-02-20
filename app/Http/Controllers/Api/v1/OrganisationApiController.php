@@ -42,7 +42,7 @@ class OrganisationApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', EntityType::find(config('entities.ids.organisation')));
+        $this->authorize('create', [EntityType::find(config('entities.ids.organisation')), $campaign]);
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

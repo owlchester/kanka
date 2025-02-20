@@ -42,7 +42,7 @@ class MapApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', EntityType::find(config('entities.ids.map')));
+        $this->authorize('create', [EntityType::find(config('entities.ids.map')), $campaign]);
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

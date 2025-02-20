@@ -50,7 +50,7 @@ class CalendarApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', EntityType::find(config('entities.ids.calendar')));
+        $this->authorize('create', [EntityType::find(config('entities.ids.calendar')), $campaign]);
 
         $request->merge($this->sanitizer->request($request)->sanitize());
         $data = $request->all();
