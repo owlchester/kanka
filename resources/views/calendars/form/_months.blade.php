@@ -31,7 +31,7 @@
     } elseif (isset($model)) {
         $months = $model->months();
     } elseif (isset($source)) {
-        $months = $source->months();
+        $months = $source->child->months();
     }
     $monthTypes = [
         'intercalary' => __('calendars.month_types.intercalary'),
