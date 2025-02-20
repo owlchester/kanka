@@ -12,11 +12,11 @@ class EntityEventPolicy
 
     public function update(?User $user, EntityEvent $entityEvent)
     {
-        return $user && $user->can('events', $entityEvent->calendar);
+        return $user && $user->can('update', $entityEvent->calendar->entity);
     }
 
     public function delete(?User $user, EntityEvent $entityEvent)
     {
-        return $user && $user->can('events', $entityEvent->calendar);
+        return $user && $user->can('update', $entityEvent->calendar->entity);
     }
 }
