@@ -184,7 +184,8 @@ class EntityMappingService
 
     protected function entry(): self
     {
-        $this->existingTargets = [];
+        // Build a list of existing targets, so that we delete the unused ones
+        $this->existingTargets = $alreadyMentioned = [];
         // @phpstan-ignore-next-line
         foreach ($this->model->mentions as $map) {
             $this->existingTargets[$map->target_id] = $map;
@@ -211,6 +212,7 @@ class EntityMappingService
             }
             $target = null;
 
+            // Validate that it's either targeting a post, or a valid entity type
             $entityType = $this->getEntityTypeID($singularType);
             if (!$entityType && $singularType !== 'post') {
                 continue;
@@ -221,13 +223,22 @@ class EntityMappingService
             if (!$target) {
                 continue;
             }
+
+            // If already mentioned, don't create more mentions
+            if (in_array($target->id, $alreadyMentioned)) {
+                $alreadyMentioned[] = $target->id;
+                continue;
+            }
             // Do we already have this mention mapped?
             if (!empty($this->existingTargets[$target->id])) {
+                $alreadyMentioned[] = $target->id;
                 //$this->log("- already have mapping");
                 unset($this->existingTargets[$target->id]);
                 continue;
             }
+            $alreadyMentioned[] = $target->id;
 
+            // If a same target is mentioned multiple times, don't create a new mention each time
             $this->createNewMention($target->id);
         }
 

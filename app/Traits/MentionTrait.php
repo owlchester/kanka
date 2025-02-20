@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 trait MentionTrait
 {
@@ -17,7 +18,8 @@ trait MentionTrait
 
         foreach ($segments[1] as $id => $type) {
             $options = explode('|', $segments[2][$id]);
-            $id = Arr::first($options);
+            // Force numbers in case someone copy-pasts mentions with <ins> tags
+            $id = Str::numbers(Arr::first($options));
             $key = $type . '.' . $id;
 
             $data = [
