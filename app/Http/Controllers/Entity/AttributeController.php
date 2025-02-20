@@ -105,6 +105,7 @@ class AttributeController extends Controller
         if ($entity->isMissingChild()) {
             abort(404);
         }
+        $this->authorize('update', $entity);
         $this->authorize('attributes', $entity);
 
         return view('entities.pages.attributes.edit', compact(
@@ -118,6 +119,7 @@ class AttributeController extends Controller
         if ($entity->isMissingChild()) {
             abort(404);
         }
+        $this->authorize('update', $entity);
         $this->authorize('attributes', $entity);
 
         $attributes = $request->get('attribute', []);
