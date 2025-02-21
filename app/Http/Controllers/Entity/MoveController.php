@@ -23,6 +23,7 @@ class MoveController extends Controller
         protected MoveService $service,
         protected EntityTypeService $entityTypeService
     ) {
+        $this->middleware(['auth']);
     }
 
     /**
