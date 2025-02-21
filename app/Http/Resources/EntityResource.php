@@ -59,6 +59,12 @@ class EntityResource extends JsonResource
             'type' => $entity->entityType->code,
             'type_field' => $entity->type,
             'type_id' => $entity->type_id,
+            'module' => [
+                'id' => $entity->entityType->id,
+                'code' => $entity->entityType->code,
+                'singular' => $entity->entityType->name(),
+                'plural' => $entity->entityType->plural(),
+            ],
             'tags' => $entity->tags->pluck('id')->toArray(),
             'is_private' => (bool) $entity->is_private,
             'is_template' => $entity->isTemplate(),
@@ -170,6 +176,13 @@ class EntityResource extends JsonResource
             'is_attributes_private' => (bool) $misc->entity->is_attributes_private,
 
             'entity_id' => $misc->entity->id,
+
+//            'module' => [
+//                'id' => $misc->entity->entityType->id,
+//                'code' => $misc->entity->entityType->code,
+//                'singular' => $misc->entity->entityType->name(),
+//                'plural' => $misc->entity->entityType->plural(),
+//            ],
             'tags' => $misc->entity->tags()->pluck('tags.id')->toArray(),
 
             'created_at' => $misc->created_at,
