@@ -18,12 +18,12 @@ class BookmarkObserver
         }
 
         // Handle the entity type or direct entity
-        if (!empty($model->type)) {
+        if (!empty($model->entity_type_id)) {
             $model->entity_id = null;
             //$model->tab = null;
             $model->menu = '';
         } else {
-            $model->type = null;
+            $model->entity_type_id = null;
             $model->filters = null;
         }
 
