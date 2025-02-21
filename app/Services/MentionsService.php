@@ -458,7 +458,12 @@ class MentionsService
                             . '</div>'
                             . '</span>';
                     } elseif ($field === 'attributes') {
-                        return '<iframe src="' . route('entities.attributes-dashboard', [$this->campaign, $entity]) . '" class="entity-attributes-render w-full h-full"></iframe>';
+                        return '<iframe
+                            src="' . route('entities.attributes-dashboard', [$this->campaign, $entity]) . '"
+                            data-entity-tags="' . implode(' ', $tagClasses) . '"
+                            data-entity-type="' . $entity->entityType->code . '"
+                            class="entity-attributes-render w-full h-full"
+                        ></iframe>';
                     } elseif (!$entity->isMissingChild() && isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {
