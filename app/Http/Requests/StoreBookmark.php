@@ -29,8 +29,8 @@ class StoreBookmark extends FormRequest
     {
         return $this->clean([
             'name' => 'required|max:191',
-            'entity_id' => 'required_without_all:entity_type_id,random_entity_type,dashboard_id|exists:entities,id',
-            'entity_type_id' => 'required_without_all:entity_id,random_entity_type,dashboard_id|exists:entity_types,id',
+            'entity_id' => 'required_without_all:entity_type_id,random_entity_type,dashboard_id|nullable|exists:entities,id',
+            'entity_type_id' => 'required_without_all:entity_id,random_entity_type,dashboard_id|nullable|exists:entity_types,id',
             'random_entity_type' => 'required_without_all:entity_id,entity_type_id,dashboard_id',
             'dashboard_id' => 'required_without_all:entity_id,entity_type_id,random_entity_type',
             'icon' => ['nullable', new FontAwesomeIcon()],
