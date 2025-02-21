@@ -81,7 +81,6 @@ class EntityResource extends JsonResource
         ];
 
         if ($entity->entityType->isSpecial()) {
-            $data['type'] = $entity->type;
             $data['entry'] = $entity->entry;
             $data['entry_parsed'] = Mentions::mapEntity($entity, 'entry');
             $data['parent_id'] = $entity->parent_id;
