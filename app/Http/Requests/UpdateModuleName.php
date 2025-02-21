@@ -24,7 +24,7 @@ class UpdateModuleName extends FormRequest
         return [
             'singular' => 'nullable|string|max:45',
             'plural' => 'nullable|string|max:45',
-            'icon' => 'nullable|string|max:40',
+            'icon' => 'nullable|string|max:60',
         ];
     }
 }

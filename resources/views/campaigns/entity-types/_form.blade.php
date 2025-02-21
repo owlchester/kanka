@@ -26,7 +26,7 @@
         'example' => '<i class=\'fa-solid fa-flask-round-potion\' aria-hidden=\'true\'></i>  <code>fa-solid fa-flask-round-potion</code>',
         ])"
     >
-        <input type="text" name="icon" value="{{ old('icon', $entityType->icon ?? '') }}" maxlength="40" placeholder="fa-solid fa-car" class="w-full" list="module-icon-list" autocomplete="off" data-paste="fontawesome" />
+        <input type="text" name="icon" value="{{ old('icon', $entityType->icon ?? '') }}" maxlength="100" placeholder="fa-solid fa-car" class="w-full" list="module-icon-list" autocomplete="off" data-paste="fontawesome" />
         <div class="hidden">
             <datalist id="module-icon-list">
                 @foreach (\App\Facades\MapMarkerCache::iconSuggestion() as $icon)
