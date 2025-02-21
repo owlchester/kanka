@@ -47,13 +47,13 @@ if (!isset($entity)) {
                 code: "{{ $entity->entityType->code }}",
                 custom: `{!! \App\Facades\Module::singular($entity->type_id) !!}`,
             },
+            type_field: `{{ $entity->type }}`,
             attributes: {
 @foreach ($entity->allAttributes as $attr)
 "{{ $attr->exposedName() }}": `{!! $attr->value !!}`,
 @endforeach
             },
-@if ($entity->child instanceof \App\Models\Character)
-            type_field: `{{ $entity->child->type }}`,
+@if ($entity->isCharacter() && $entity->child)
             gender: `{{ $entity->child->sex }}`,
             pronouns: `{{ $entity->child->pronouns }}`,
             is_dead: {{ $entity->child->isDead() ? 'true' : 'false' }},
@@ -81,14 +81,25 @@ if (!isset($entity)) {
                 url: `{{ $family->family->getLink() }}`
             },
             @endforeach ],
-            @endif
-            @if ($entity->child->location)
+@elseif ($entity->isLocation() && $entity->child)
+        is_destroyed: {{ $entity->child->isDestroyed() ? 'true' : 'false' }},
+@elseif ($entity->isOrganisation() && $entity->child)
+        is_defunct: {{ $entity->child->isDefunct() ? 'true' : 'false' }},
+@elseif ($entity->isQuest() && $entity->child)
+        is_completed: {{ $entity->child->isCompleted() ? 'true' : 'false' }},
+@elseif ($entity->isCreature() && $entity->child)
+        is_dead: {{ $entity->child->isDead() ? 'true' : 'false' }},
+        is_extinct: {{ $entity->child->isExtinct() ? 'true' : 'false' }},
+@elseif (($entity->isRace() || $entity->isFamily()) && $entity->child)
+        is_extinct: {{ $entity->child->isExtinct() ? 'true' : 'false' }},
+@endif
+@if ($entity->hasChild() && $entity->child->location)
             location: {
                 id: {{ $entity->child->location->id }},
                 name: `{{ $entity->child->location->name }}`,
                 url: `{{ $entity->child->location->getLink() }}`
             },
-            @endif
+@endif
 
             tags: [@foreach ($entity->tags as $tag)
             {
