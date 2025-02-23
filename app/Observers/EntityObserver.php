@@ -167,7 +167,7 @@ class EntityObserver
         EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
 
         // Sometimes we just touch the entity, which should also touch the child
-        if (!$entity->entityType->isSpecial() && $entity->child && $entity->updated_at->greaterThan($entity->child->updated_at)) {
+        if ($entity->hasChild() && $entity->child && $entity->updated_at->greaterThan($entity->child->updated_at)) {
             $entity->child->touchSilently();
         }
     }
