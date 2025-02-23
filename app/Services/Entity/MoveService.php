@@ -134,8 +134,9 @@ class MoveService
 
             // The model is ready to be saved.
             $newModel->saveQuietly();
-            $newModel->createEntity($newEntry);
+            $newModel->createEntity();
 
+            $newModel->entity->entry = $newEntry;
             // Copy the gallery image over
             if (!empty($image)) {
                 // If there is enough space in the target campaign gallery
@@ -148,9 +149,9 @@ class MoveService
                     Storage::copy($image->path, $newImage->path);
 
                     $newModel->entity->image_uuid = $newImage->id;
-                    $newModel->entity->saveQuietly();
                 }
             }
+            $newModel->entity->saveQuietly();
 
             $this->copyService
                 ->entity($newModel->entity)

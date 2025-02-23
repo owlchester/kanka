@@ -126,13 +126,12 @@ abstract class MiscModel extends Model
     /**
      * Create the model's Entity
      */
-    public function createEntity(?string $newEntry = null): Entity
+    public function createEntity(): Entity
     {
         $entity = new Entity();
         $entity->entity_id = $this->id;
         $entity->name = $this->name;
         $entity->campaign_id = $this->campaign_id;
-        $entity->entry = $newEntry;
         $entity->type_id = $this->entityTypeId();
         $entity->is_private = $this->isPrivate();
         $entity->save();

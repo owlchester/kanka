@@ -38,6 +38,8 @@ class EntityObserver
         }
         if (request()->has('entry')) {
             $entity->entry = request()->get('entry');
+            // Dirty, force the entry to be saved to trigger the HasEntry observer
+            $entity->save();
         }
 
         if (request()->post('remove-image') == '1') {
