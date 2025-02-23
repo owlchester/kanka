@@ -315,7 +315,7 @@ class SearchService
                     'name' => $parsedName,
                     'type' => __('maps.actions.explore'),
                     'model_type' => $model->entityType->code,
-                    'url' => $model->url('explore'),
+                    'url' => $model->child->getLink('explore'),
                     'alias_id' => $model->alias_id, // @phpstan-ignore-line
                     'advanced_mention' => Mentions::advancedMentionHelper($model->name),
                     'advanced_mention_alias' => $model->alias_name ? Mentions::advancedMentionHelper($model->alias_name) : null,
