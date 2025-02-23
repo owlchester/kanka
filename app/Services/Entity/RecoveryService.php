@@ -26,12 +26,17 @@ class RecoveryService
      */
     protected function entity(int $id): mixed
     {
+        /** @var ?Entity $entity */
         $entity = Entity::onlyTrashed()->find($id);
         if (!$entity) {
             return null;
         }
 
         // @phpstan-ignore-next-line
+        if ($entity->entityType->isSpecial()) {
+            $entity->restore();
+            return $entity->url();
+        }
         $child = $entity->child()->onlyTrashed()->first();
         if (!$child) {
             return null;
