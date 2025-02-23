@@ -42,7 +42,7 @@ class MoveController extends Controller
         }
         /** @var Entity|null $newEntity */
         $newEntity = Entity::where(['id' => $request['entity']])->first();
-        $this->authorize('update', $newEntity->child);
+        $this->authorize('update', $newEntity);
         try {
             //Check if the post has a layout and if said layout is compatible with the new entity
             if ($post->layout_id) {
