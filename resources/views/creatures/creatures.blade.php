@@ -14,13 +14,13 @@
             <a href="{{ route('creatures.creatures', [$campaign, $model, 'm' => \App\Enums\Descendants::All]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span>
-                ({{ $model->descendants()->count() }})
+                ({{ $model->descendants()->has('entity')->count() }})
             </a>
         @else
             <a href="{{ route('creatures.creatures', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>
-                ({{ $model->children()->count() }})
+                ({{ $model->children()->has('entity')->count() }})
             </a>
         @endif
         @include('entities.headers.actions', ['edit' => false])

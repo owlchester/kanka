@@ -15,7 +15,7 @@ class FamilySubmenu extends BaseSubmenu implements EntitySubmenu
         $items['second']['families'] = [
             'name' => Module::plural($family->entityTypeId(), 'entities.families'),
             'route' => 'families.families',
-            'count' => $family->descendants()->count()
+            'count' => $family->descendants()->has('entity')->count()
         ];
 
         if (config('services.stripe.enabled')) {
