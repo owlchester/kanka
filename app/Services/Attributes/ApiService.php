@@ -141,6 +141,9 @@ class ApiService
 
     protected function addTemplate(AttributeTemplate $template): void
     {
+        if (!$template->entity) {
+            return;
+        }
         $first = true;
         $count = $template->entity->attributes->count();
         $this->template = true;
