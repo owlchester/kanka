@@ -4,6 +4,7 @@ namespace App\Enums;
 
 enum AttributeType: int
 {
+    case Invalid = 0;
     case Standard = 1;
     case Block = 2;
     case Checkbox = 3;
