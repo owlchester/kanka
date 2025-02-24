@@ -283,7 +283,7 @@ class EntityCreatorController extends Controller
             'campaign' => $this->campaign,
             'entityTypes' => $orderedEntityTypes,
             'new' => $success,
-            'popular' => [], //$this->popularService->get(),
+            'popular' => new Collection(), //$this->popularService->get(),
         ]);
     }
 
