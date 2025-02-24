@@ -642,6 +642,9 @@ class MentionsService
 
         $hasCustom = Arr::has($data, 'custom');
         if ($hasCustom || auth()->user()->alwaysAdvancedMentions()) {
+            if (!$post) {
+                return $mention;
+            }
             $advancedName = $this->advancedMentionHelper($post->name);
             return Str::replaceLast(']', $advancedName . ']', $mention);
         }
