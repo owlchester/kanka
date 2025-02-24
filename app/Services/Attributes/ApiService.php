@@ -123,6 +123,7 @@ class ApiService
         $templates = $this->entityType
             ->attributeTemplates()
             ->with(['entity', 'entity.attributes', 'ancestors'])
+            ->has('entity')
             ->get();
         /** @var AttributeTemplate $template */
         foreach ($templates as $template) {
