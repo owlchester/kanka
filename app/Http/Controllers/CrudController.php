@@ -468,6 +468,9 @@ class CrudController extends Controller
     public function crudShow(Model|MiscModel $model)
     {
         //@phpstan-ignore-next-line
+        if (!$model->entity) {
+            abort(404);
+        }
         return redirect()->route('entities.show', [$this->campaign, $model->entity]);
     }
 
