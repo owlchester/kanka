@@ -26,6 +26,9 @@ class Item extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
+                'render' => function (\App\Models\Item $model) {
+                    return $model->entity->type;
+                },
             ],
             'price' => [
                 'key' => 'price',

@@ -67,6 +67,7 @@ class Family extends MiscModel
         'location.name',
         'parent.name',
         'is_extinct',
+        'type',
     ];
 
     /**

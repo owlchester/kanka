@@ -26,6 +26,9 @@ class Quest extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
+                'render' => function (\App\Models\Quest $model) {
+                    return $model->entity->type;
+                },
             ],
             'date' => [
                 'key' => 'date',
@@ -33,7 +36,7 @@ class Quest extends Layout
                 'render' => Standard::DATE,
             ],
             'completed' => [
-                'key' => 'is_complete',
+                'key' => 'is_completed',
                 'label' => 'quests.fields.is_completed',
                 'render' => function ($model) {
                     if (!$model->is_completed) {

@@ -62,6 +62,7 @@ class Quest extends MiscModel
         'name',
         'date',
         'is_completed',
+        'type',
         'parent.name',
     ];
 

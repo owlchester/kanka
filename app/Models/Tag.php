@@ -60,6 +60,7 @@ class Tag extends MiscModel
         'colour',
         'is_auto_applied',
         'is_hidden',
+        'type',
     ];
 
     /**

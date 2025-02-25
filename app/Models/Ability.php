@@ -51,6 +51,7 @@ class Ability extends MiscModel
 
     protected array $sortable = [
         'name',
+        'type',
         'parent.name',
     ];
 

@@ -68,6 +68,7 @@ class Creature extends MiscModel
         'parent.name',
         'is_extinct',
         'is_dead',
+        'type',
     ];
 
     /**

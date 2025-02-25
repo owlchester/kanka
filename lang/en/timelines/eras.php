@@ -35,7 +35,7 @@ return [
     'placeholders'  => [
         'abbreviation'  => 'AD, BC, BCE',
         'end_year'      => 'Year the era ends. Leave blank if this is the current era.',
-        'name'          => 'Modern Era, Bronz Age, Galactic Wars',
+        'name'          => 'Modern Era, Bronze Age, Galactic Wars',
         'start_year'    => 'Year the era starts. Leave blank if this is the first era.',
     ],
 ];
