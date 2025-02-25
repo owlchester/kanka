@@ -403,6 +403,9 @@ return [
         'free'      => 'Premium features disabled.',
         'premium'   => 'Premium features unlocked by :name.',
         'title'     => 'Premium features',
+        'legacy' => [
+            'title'     => 'Boosted features (legacy)',
+        ]
     ],
     'themes'                            => [
         'none'  => 'None (defaults to user\'s preference)',

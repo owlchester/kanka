@@ -6,12 +6,12 @@
 ?>
 <x-form :action="['campaign_boosts.store']">
 
-    @include('partials.forms.form', [
-        'title' => __('settings/boosters.' . ($superboost ? 'superboost' : 'boost') . '.title', ['campaign' => $campaign->name]) ,
-        'content' => 'settings.boosters.create._form',
-        'actions' => 'settings.boosters.create._actions',
-        'dialog' => true,
-    ])
+    <div class="flex flex-col gap-5 rounded p-4 shadow">
+        @include('settings.boosters.create._form')
+        <div class="flex gap-5 justify-end">
+            @include('settings.boosters.create._actions')
+        </div>
+    </div>
     <input type="hidden" name="action" value="{{ $superboost ? 'superboost' : 'boost' }}" />
     <input type="hidden" name="campaign_id" value="{{ $campaign->id }}" />
 </x-form>
