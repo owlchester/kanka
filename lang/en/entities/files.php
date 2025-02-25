@@ -21,6 +21,7 @@ return [
         'title' => 'Limit reached',
     ],
     'update'            => [
+        'title' => 'Update entity file',
         'success'   => 'File :name updated.',
     ],
 ];

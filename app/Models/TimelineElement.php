@@ -169,7 +169,7 @@ class TimelineElement extends Model
         if (empty($this->entity_id)) {
             return true;
         }
-        return !$this->entity->isMissingChild();
+        return $this->entity && !$this->entity->isMissingChild();
     }
 
     /**

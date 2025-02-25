@@ -13,7 +13,7 @@
 @section('content')
     <x-form :action="['entities.entity_assets.update', $campaign, $entity->id, $entityAsset]" method="PATCH">
         @include('partials.forms.form', [
-            'title' => $entityAsset->name,
+            'title' => __('entities/aliases.update.title', ['name' => $entity->name]),
             'content' => 'entities.pages.aliases._form',
             'deleteID' => '#delete-alias-' . $entityAsset->id,
             'dialog' => true,
