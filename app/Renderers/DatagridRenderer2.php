@@ -239,6 +239,9 @@ class DatagridRenderer2
         if (request()->has('k')) {
             $options['k'] = request()->get('k');
         }
+        if (request()->has('m')) {
+            $options['m'] = request()->get('m');
+        }
         return $options;
     }
 
