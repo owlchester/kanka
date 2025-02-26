@@ -26,7 +26,7 @@
         </p>
     @endforelse
 
-    @if (auth()->check() && $models instanceof \Illuminate\Pagination\LengthAwarePaginator && $models->hasPages() && !UserCache::dismissedTutorial('pagination'))
+    @if (!isset($skipPaginationHelper) && auth()->check() && $models instanceof \Illuminate\Pagination\LengthAwarePaginator && $models->hasPages() && !UserCache::dismissedTutorial('pagination'))
         <div class="block border rounded shadow-xs hover:shadow-md w-48 overflow-hidden tutorial pagination-tutorial">
             <div class="bg-blue-100 h-48 w-48 overflow-hidden p-2 flex flex-col gap-2">
                 <a class="grow" href="{{ route('settings.appearance', ['highlight' => 'pagination', 'from' => base64_encode(route($route, array_merge([$campaign], [$entityType->isSpecial() ? $entityType : null])))]) }}">

@@ -63,7 +63,7 @@ return [
                 . 'div[class|style|id|align|role|title],'
                 . 'p[class|style|id|dir|align],'
                 . 'span[class|style|id|dir],'
-                . 'a[href|class|style|target|rel|title|id|role|data-toggle|data-html|data-dropdown|data-pulse|data-animate|data-tooltip|data-title],'
+                . 'a[href|class|style|target|rel|title|id|role|data-toggle|data-html|data-dropdown|data-pulse|data-animate|data-tooltip|data-title|data-entity-type],'
                 . 'br[class|style],'
                 . 'i[class],u[class],'
                 . 'img[src|style|alt|width|height|class|title|id|data-gallery-id],'

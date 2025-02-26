@@ -12,7 +12,7 @@ class BookmarkPolicy
 {
     use HandlesAuthorization;
 
-    public function browse(?User $user, Bookmark $bookmark): bool
+    public function browse(User $user, Bookmark $bookmark): bool
     {
         return $user->isAdmin() || $this->checkPermission(Permission::Bookmarks->value, $user);
     }

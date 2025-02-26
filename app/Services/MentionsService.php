@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Facades\Attributes;
+use App\Facades\CampaignLocalization;
 use App\Facades\Domain;
 use App\Models\Attribute;
 use App\Models\Character;
@@ -73,6 +74,8 @@ class MentionsService
     /** @var bool When true, names of entities will be rendered, instead of a tooltip link */
     protected bool $onlyName = false;
 
+    /** @var bool When true, mentions will be mapped into links to the entities */
+    protected bool $isCopying = false;
 
     public function __construct(
         protected MarkupFixer $markupFixer,
@@ -97,6 +100,15 @@ class MentionsService
     {
         $this->text = $text;
         return $this->extractAndReplace();
+    }
+
+    /**
+     * Map a string
+     */
+    public function mapCopiedEntry(?string $text = null): string
+    {
+        $this->text = $text;
+        return $this->extractAndLink();
     }
 
     /**
@@ -276,6 +288,21 @@ class MentionsService
         return $this->text;
     }
 
+    public function extractAndLink(): string
+    {
+        CampaignLocalization::forceCampaign($this->campaign);
+
+        $this->isCopying = true;
+        // Pre-fetch all the entities
+        $this->prepareEntities();
+        $this->prepareHiddenEntities();
+
+        // Extract links from the entry to foreign
+        $this->replaceEntityMentions();
+
+        return $this->text;
+    }
+
     protected function replaceEntityMentions(): void
     {
         $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i', function ($matches) {
@@ -431,7 +458,12 @@ class MentionsService
                             . '</div>'
                             . '</span>';
                     } elseif ($field === 'attributes') {
-                        return '<iframe src="' . route('entities.attributes-dashboard', [$this->campaign, $entity]) . '" class="entity-attributes-render w-full h-full"></iframe>';
+                        return '<iframe
+                            src="' . route('entities.attributes-dashboard', [$this->campaign, $entity]) . '"
+                            data-entity-tags="' . implode(' ', $tagClasses) . '"
+                            data-entity-type="' . $entity->entityType->code . '"
+                            class="entity-attributes-render w-full h-full"
+                        ></iframe>';
                         /** @var Map $child */
                     } elseif ($field == 'map' && $child->explorable()) {
                         $height = 300;
@@ -464,6 +496,13 @@ class MentionsService
 
                 if ($this->onlyName) {
                     return Arr::get($data, 'text', $entity->name);
+                }
+
+                if ($this->isCopying) {
+                    return '<a href="' . $url . '" class="external-mention" data-entity-type="' . $entity->entityType->code . '"'
+                    . '>'
+                    . Arr::get($data, 'text', $entity->name)
+                    . '</a>';
                 }
                 $replace = '<a href="' . $url . '"'
                     . ' class="' . implode(' ', $cssClasses) . '"'
@@ -516,7 +555,6 @@ class MentionsService
 
     /**
      * Replace mentions of entities to a visual representation for the text editor
-     * @return $this
      */
     protected function parseMentionsForEdit(): self
     {
@@ -614,6 +652,9 @@ class MentionsService
 
         $hasCustom = Arr::has($data, 'custom');
         if ($hasCustom || auth()->user()->alwaysAdvancedMentions()) {
+            if (!$post) {
+                return $mention;
+            }
             $advancedName = $this->advancedMentionHelper($post->name);
             return Str::replaceLast(']', $advancedName . ']', $mention);
         }
@@ -636,6 +677,9 @@ class MentionsService
     protected function entity(int $id): Entity|null
     {
         if (!Arr::has($this->entities, (string) $id) && !Arr::has($this->privateEntities, (string) $id)) {
+            if ($this->isCopying) {
+                CampaignLocalization::forceCampaign($this->campaign);
+            }
             $this->entities[$id] = Entity::where(['id' => $id])->first();
         }
 
@@ -747,6 +791,10 @@ class MentionsService
      */
     protected function prepareHiddenEntities(): void
     {
+        // For some reason this is sometimes false
+        if (!isset($this->campaign)) {
+            $this->campaign = CampaignLocalization::getCampaign();
+        }
         if (!$this->campaign->showPrivateEntityMentions()) {
             return;
         }

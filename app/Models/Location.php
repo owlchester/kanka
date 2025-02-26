@@ -63,6 +63,7 @@ class Location extends MiscModel
 
     protected array $sortable = [
         'name',
+        'type',
         'parent.name',
         'is_destroyed',
     ];

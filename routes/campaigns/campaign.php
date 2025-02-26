@@ -32,6 +32,10 @@ Route::post('/w/{campaign}/gallery/{image}/update', [App\Http\Controllers\Galler
 Route::delete('/w/{campaign}/gallery/{image}/delete', [App\Http\Controllers\Gallery\DeleteController::class, 'file'])->name('gallery.file.delete');
 Route::post('/w/{campaign}/gallery/{image}/update-focus', [App\Http\Controllers\Gallery\UpdateController::class, 'focus'])->name('gallery.file.update-focus');
 
+
+Route::get('/w/{campaign}/gallery/{image}/visibility', [App\Http\Controllers\Gallery\VisibilityController::class, 'index'])->name('gallery.file.visibility');
+Route::patch('/w/{campaign}/gallery/{image}/visibility', [App\Http\Controllers\Gallery\VisibilityController::class, 'save'])->name('gallery.file.visibility-save');
+
 // Campaign
 Route::get('/w/{campaign}/editing-warning', [App\Http\Controllers\EditingController::class, 'index'])->name('campaign.editing-warning');
 Route::post('/w/{campaign}/editing/confirm-editing', 'EditingController@confirmCampaign')->name('campaigns.confirm-editing');

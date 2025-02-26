@@ -29,19 +29,22 @@
 
 <section class="bg-purple text-white gap-16">
     <div class="px-6 py-20 lg:max-w-7xl mx-auto text-center flex flex-col gap-8">
+        @if (false)
         <h2 id="maintenance">Server maintenance</h2>
 
         <p class="lg:max-w-2xl mx-auto text-center">Kanka is currently unavailable due to planned server maintenance.</p>
-{{--       <p class="lg:max-w-2xl mx-auto text-center">This maintenance is planned to last until <a href="https://everytimezone.com/s/78b7fbd3" target="_blank" class="link-light"><i class="fa-solid fa-external-link"></i> 16:00 UTC</a>.</p>--}}
+
+        <p class="lg:max-w-2xl mx-auto text-center">This maintenance is planned to last until <a href="https://everytimezone.com/s/6b4d2bc8" target="_blank" class="link-light"><i class="fa-solid fa-external-link"></i> 15:30 UTC</a>.</p>
+        @else
+
+        <h2 id="maintenance">{{ __('errors.503.title') }}</h2>
+
+        <p class="lg:max-w-2xl mx-auto text-center">{{ __('errors.503.body.1') }}</p>
+        <p  class="lg:max-w-2xl mx-auto text-center">{{ __('errors.503.body.2') }}</p>
+        @endif
+
 
         <p class="lg:max-w-2xl mx-auto text-center">Join us over on our <a href="https://kanka.io/go/discord" class="link-light">Discord</a> to be notified as soon as the maintenance is over.</p>
-
-        <div class="hidden">
-            <h2 id="maintenance">{{ __('errors.503.title') }}</h2>
-
-            <p class="lg:max-w-2xl mx-auto text-center">{{ __('errors.503.body.1') }}</p>
-            <p  class="lg:max-w-2xl mx-auto text-center">{{ __('errors.503.body.2') }}</p>
-        </div>
     </div>
 </section>
 

@@ -60,6 +60,7 @@ class Race extends MiscModel
         'type',
         'parent.name',
         'is_extinct',
+        'type',
     ];
 
     protected array $sortableColumns = [

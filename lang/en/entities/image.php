@@ -2,11 +2,12 @@
 
 return [
     'actions'               => [
-        'change_focus'  => 'Change focus point',
-        'replace_image' => 'Replace image',
-        'save-replace'  => 'Replace image',
-        'save_focus'    => 'Save focus point',
-        'view'          => 'View image',
+        'change_focus'      => 'Change focus point',
+        'change_visibility' => 'Change visibility',
+        'replace_image'     => 'Replace image',
+        'save-replace'      => 'Replace image',
+        'save_focus'        => 'Save focus point',
+        'view'              => 'View image',
     ],
     'call-to-action'        => 'Click on the entity\'s image to set it\'s focus point instead of using the automated guess.',
     'focus'                 => [
@@ -28,6 +29,10 @@ return [
         'breadcrumb'    => 'Image replacement',
         'panel_title'   => 'Entity image replacement',
         'success'       => 'Image replaced.',
-        'title'         => 'Entity :name image replacement',
+        'title'         => 'Image replacement',
+    ],
+    'visibility'            => [
+        'helper'    => 'Change the gallery image\'s visibility, controlling who can view it.',
+        'updated'   => 'Image visibility updated.',
     ],
 ];

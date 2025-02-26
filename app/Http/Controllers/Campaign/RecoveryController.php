@@ -48,6 +48,8 @@ class RecoveryController extends Controller
             ;
         }
 
+        $this->authorize('recover', $campaign);
+
         try {
             $entities = $this->entityService->recover($request->get('entities', []));
             $posts = $this->postService->recover($request->get('posts', []));

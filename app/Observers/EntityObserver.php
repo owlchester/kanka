@@ -38,6 +38,8 @@ class EntityObserver
         }
         if (request()->has('entry')) {
             $entity->entry = request()->get('entry');
+            // Dirty, force the entry to be saved to trigger the HasEntry observer
+            $entity->save();
         }
 
         if (request()->post('remove-image') == '1') {
@@ -167,7 +169,7 @@ class EntityObserver
         EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
 
         // Sometimes we just touch the entity, which should also touch the child
-        if (!$entity->entityType->isSpecial() && $entity->child && $entity->updated_at->greaterThan($entity->child->updated_at)) {
+        if ($entity->hasChild() && $entity->child && $entity->updated_at->greaterThan($entity->child->updated_at)) {
             $entity->child->touchSilently();
         }
     }
@@ -192,7 +194,7 @@ class EntityObserver
         }
 
         // Superboosted image gallery selection
-        if ($entity->campaign->superboosted()) {
+        if ($entity->campaign->boosted()) {
             if (request()->has('entity_header_uuid')) {
                 $entity->header_uuid = request()->get('entity_header_uuid');
             } elseif (Domain::isApp()) {

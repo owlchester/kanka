@@ -69,7 +69,6 @@ class DiscordService
      * Add the user to the server.
      * We don't need to worry about re-adding a user twice, Discord's api will provide
      * a success message back with the info.
-     * @return $this
      */
     public function addServer(): self
     {

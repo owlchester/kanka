@@ -42,7 +42,7 @@ class TagApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', EntityType::find(config('entities.ids.tag')));
+        $this->authorize('create', [EntityType::find(config('entities.ids.tag')), $campaign]);
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

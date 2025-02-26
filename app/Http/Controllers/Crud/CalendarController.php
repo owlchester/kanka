@@ -82,7 +82,7 @@ class CalendarController extends CrudController
      */
     public function today(Campaign $campaign, Calendar $calendar)
     {
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
 
         $date = request()->get('date', null);
         if ($date) {

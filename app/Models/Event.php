@@ -53,6 +53,7 @@ class Event extends MiscModel
         'name',
         'date',
         'parent.name',
+        'type',
     ];
 
     protected string $entityType = 'event';

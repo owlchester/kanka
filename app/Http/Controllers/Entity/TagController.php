@@ -44,6 +44,9 @@ class TagController extends Controller
     public function store(UpdateEntityTags $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity);
+        if ($request->ajax()) {
+            return response()->json();
+        }
 
         $ids = request()->post('tags', []);
         if (empty($ids)) {

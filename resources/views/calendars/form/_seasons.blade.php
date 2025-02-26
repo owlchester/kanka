@@ -25,7 +25,7 @@
     } elseif (isset($model)) {
         $seasons = $model->seasons();
     } elseif (isset($source)) {
-        $seasons = $source->seasons();
+        $seasons = $source->child->seasons();
     }?>
     <div class="calendar-seasons sortable-elements flex flex-col gap-2" data-handle=".sortable-handler">
         <x-grid type="3/3">

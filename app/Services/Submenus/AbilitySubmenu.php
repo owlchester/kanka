@@ -15,7 +15,7 @@ class AbilitySubmenu extends BaseSubmenu implements EntitySubmenu
         $items['second']['abilities'] = [
             'name' => Module::plural($ability->entityTypeId(), 'entities.abilities'),
             'route' => 'abilities.abilities',
-            'count' => $ability->descendants()->count()
+            'count' => $ability->descendants()->has('entity')->count()
         ];
         $items['second']['entities'] = [
             'name' => 'abilities.show.tabs.entities',

@@ -7,6 +7,7 @@ use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\CharacterCache;
 use App\Facades\EntityCache;
+use App\Facades\EntityPermission;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -32,6 +33,7 @@ class StarterService
             'excerpt' => '',
         ];
         $this->campaign = Campaign::create($data);
+        EntityPermission::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
         UserCache::campaign($this->campaign);
 

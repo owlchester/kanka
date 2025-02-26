@@ -42,7 +42,7 @@ class JournalApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', EntityType::find(config('entities.ids.journal')));
+        $this->authorize('create', [EntityType::find(config('entities.ids.journal')), $campaign]);
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

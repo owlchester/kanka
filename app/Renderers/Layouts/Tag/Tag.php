@@ -27,12 +27,18 @@ class Tag extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
+                'render' => function (\App\Models\Tag $model) {
+                    return $model->entity->type;
+                },
             ],
             'colour' => [
                 'key' => 'colour',
                 'label' => 'crud.fields.colour',
-                'render' => function ($tag) {
-                    return Blade::render('<x-tags.bubble :tag="$tag" />', ['tag' => $tag]);
+                'render' => function (\App\Models\Tag $tag) {
+                    if (empty($tag->colour)) {
+                        return '';
+                    }
+                    return '<div class="rounded-full w-6 h-6 bg-base-200 ' . $tag->colourClass() . '"></div>';
                 },
             ],
             'tag' => [

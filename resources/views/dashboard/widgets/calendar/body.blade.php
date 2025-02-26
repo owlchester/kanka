@@ -30,7 +30,7 @@ $weather = $calendar->calendarWeather()
 ?>
 <x-grid>
 <div class="col-span-2 current-date text-center text-xl flex items-center justify-center gap-2" id="widget-date-{{ $widget->id }}">
-    @can('update', $calendar)
+    @can('update', $entity)
         <a href="#" class="widget-calendar-switch" data-url="{{ route('dashboard.calendar.sub', [$campaign, $widget]) }}" data-widget="{{ $widget->id }}"  data-toggle="tooltip" data-title="{{ __('dashboard.widgets.calendar.actions.previous') }}" role="button">
             <x-icon class="fa-solid fa-chevron-circle-left" />
             <span class="sr-only">{{ __('dashboard.widgets.calendar.actions.previous') }}</span>

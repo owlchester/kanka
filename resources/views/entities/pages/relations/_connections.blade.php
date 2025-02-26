@@ -37,7 +37,7 @@
             </thead>
             <tbody>
             @foreach ($connections as $connection)
-                <tr data-entity-id="{{ $connection->id }}" data-entity-type="{{ $connection->type() }}">
+                <tr data-entity-id="{{ $connection->id }}" data-entity-type="{{ $connection->entityType->code }}">
                     <td class="w-14">
                         <x-entities.thumbnail :entity="$connection" :title="$connection->name"></x-entities.thumbnail>
                     </td>
@@ -46,7 +46,7 @@
                             :entity="$connection"
                             :campaign="$campaign" />
 
-                        @if ($connection->type() == 'map')
+                        @if ($connection->isMap() == 'map')
                             @includeWhen($connection->map->explorable(), 'maps._explore-link', ['map' => $connection->map])
                         @endif
                     </td>

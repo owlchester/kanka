@@ -108,7 +108,7 @@ class TimelineElement extends Model
     public function elementName(): string
     {
         if (!empty($this->entity_id)) {
-            return $this->entity->name;
+            return $this->entity?->name ?? __('crud.history.unknown');
         }
         return $this->name;
     }
@@ -169,7 +169,7 @@ class TimelineElement extends Model
         if (empty($this->entity_id)) {
             return true;
         }
-        return !empty($this->entity->child);
+        return $this->entity && !$this->entity->isMissingChild();
     }
 
     /**

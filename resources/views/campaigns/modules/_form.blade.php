@@ -20,6 +20,6 @@
         'fontawesome' => '<a href=\'' . config('fontawesome.search') . '\'>FontAwesome</a>',
         'example' => '<i class=\'fa-solid fa-horse\' aria-hidden=\'true\'></i> <code>fa-solid fa-horse</code>',
         ])">
-        <input type="text" name="icon" value="{{ old('icon', $icon) }}" maxlength="40" class="w-full" list="module-icon-list" placeholder="{{ $entityType->icon() }}" />
+        <input type="text" name="icon" value="{{ old('icon', $icon) }}" maxlength="60" class="w-full" list="module-icon-list" placeholder="{{ $entityType->icon() }}" />
     </x-forms.field>
 </x-grid>

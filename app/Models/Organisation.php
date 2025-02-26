@@ -52,6 +52,7 @@ class Organisation extends MiscModel
 
     protected array $sortable = [
         'name',
+        'type',
         'parent.name',
         'is_defunct',
     ];

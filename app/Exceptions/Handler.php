@@ -61,7 +61,7 @@ class Handler extends ExceptionHandler
         } elseif (!$request->is('api/*') && $exception instanceof ModelNotFoundException) {
             // If the guest user tries accessing a private campaign, let's tell them about it
             $campaign = request()->route('campaign');
-            if (empty($campaign) || !($campaign instanceof Campaign)) {
+            if (!empty($campaign) && !($campaign instanceof Campaign)) {
                 session()->put('login_redirect', $request->getRequestUri());
                 /** @var Campaign $campaign */
                 $campaign = Campaign::select('id')->slug($campaign)->first();
@@ -157,11 +157,13 @@ class Handler extends ExceptionHandler
         }
 
         $limit = app()->isProduction() ? 100 : 2000;
+        $trace = app()->hasDebugModeEnabled() ? $exception->getTrace() : null;
         return response()
             ->json([
                 'code' => 500,
                 'error' => 'Unhandled API error. Contact us on Discord',
-                'hint' => Str::limit($exception->getMessage(), $limit)
+                'hint' => Str::limit($exception->getMessage(), $limit),
+                'trace' => $trace,
             ], 500);
     }
 }

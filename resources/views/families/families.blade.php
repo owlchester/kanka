@@ -10,12 +10,12 @@
         @if ($mode === \App\Enums\Descendants::Direct)
             <a href="{{ route('families.families', [$campaign, $model, 'm' => \App\Enums\Descendants::All]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span>({{ $model->descendants()->count() }})
+                <span class="hidden xl:inline">{{ __('crud.filters.all') }}</span>({{ $model->descendants()->has('entity')->count() }})
             </a>
         @else
             <a href="{{ route('families.families', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>({{ $model->children()->count() }})
+                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>({{ $model->children()->has('entity')->count() }})
             </a>
         @endif
         @include('entities.headers.actions', ['edit' => false])

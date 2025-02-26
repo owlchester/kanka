@@ -26,6 +26,9 @@ class Journal extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
+                'render' => function (\App\Models\Journal $model) {
+                    return $model->entity->type;
+                },
             ],
             'date' => [
                 'key' => 'date',

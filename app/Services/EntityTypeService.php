@@ -142,7 +142,7 @@ class EntityTypeService
         $bookmark = new Bookmark();
         $bookmark->campaign_id = $this->campaign->id;
         $bookmark->entity_type_id = $this->entityType->id;
-        $bookmark->name = $this->entityType->singular;
+        $bookmark->name = $this->entityType->plural;
         $bookmark->save();
         return $this;
     }
@@ -176,5 +176,6 @@ class EntityTypeService
         $this->entityType->entities()->delete();
         $this->entityType->attributeTemplates()->delete();
         $this->entityType->entities()->delete();
+        $this->entityType->delete();
     }
 }

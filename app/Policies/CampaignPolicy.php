@@ -198,7 +198,7 @@ class CampaignPolicy
         if (!$user) {
             return false;
         }
-        return ($user->isAdmin() || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)) ||
+        return ($user->isAdmin($campaign) || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)) ||
             !($campaign->boosted() && $campaign->hide_members);
     }
 

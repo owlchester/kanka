@@ -15,9 +15,9 @@ if (!empty($layout)) {
 }
 ?>
 
-@if (!empty($template))
+@if (!empty($template) && $entity->hasChild())
     <x-box css="box-entity-attributes">
-        @include($template->view())
+        @include($template->view(), ['model' => $model ?? $entity->child])
     </x-box>
 @elseif (!empty($marketplaceTemplate))
     @include('entities.pages.attributes.rendering.marketplace', ['plugin' => $marketplaceTemplate])

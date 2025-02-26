@@ -26,6 +26,9 @@ class Location extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
+                'render' => function (\App\Models\Location $model) {
+                    return $model->entity->type;
+                },
             ],
             'location' => [
                 'key' => 'parent.name',

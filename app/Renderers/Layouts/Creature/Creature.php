@@ -26,6 +26,9 @@ class Creature extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
+                'render' => function (\App\Models\Creature $model) {
+                    return $model->entity->type;
+                },
             ],
             'creature' => [
                 'key' => 'parent.name',

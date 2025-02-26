@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\Tag $tag */ ?>
 <a
     href="{{ $tag->getLink() }}"
     class="{{ $css }}"

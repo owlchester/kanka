@@ -21,7 +21,7 @@ class ShowController extends Controller
         }*/
 
         // Perf trick
-        if (!$entity->entityType->isSpecial()) {
+        if ($entity->hasChild()) {
             $entity->child->setRelation('entity', $entity);
         }
 

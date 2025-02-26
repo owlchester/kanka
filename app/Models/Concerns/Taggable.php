@@ -29,7 +29,8 @@ trait Taggable
     {
         return $this->belongsToMany(Tag::class, $this->getTagPivotTableName())
             ->with('entity')
-            ->has('entity');
+            ->has('entity')
+        ;
     }
 
     protected function getTagPivotTableName(): ?string

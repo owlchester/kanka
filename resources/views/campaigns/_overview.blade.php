@@ -33,10 +33,9 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
             @endif
         </div>
         @if (!$campaign->boosted() && auth()->check())
-            @if (auth()->user()->hasBoosterNomenclature()) {
-                <a class="rounded border h-12 gap-2 flex items-center justify-center cursor-pointer neutral-link" href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}">
+            @if (auth()->user()->hasBoosterNomenclature())
+                <a class="rounded-full border h-12 w-12 gap-2 flex items-center justify-center cursor-pointer neutral-link" href="{{ route('settings.boost', ['campaign' => $campaign->id]) }}">
                     <x-icon class="fa-solid fa-angle-right" />
-                    {{ __('crud.actions.enable') }}
                 </a>
             @else
                 <a class="rounded-full border h-12 w-12 flex gap-2 items-center justify-center cursor-pointer neutral-link" href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" data-tooltip data-title="{{ __('campaigns/overview.premium.enable') }}">

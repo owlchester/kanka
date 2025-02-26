@@ -75,6 +75,7 @@ class Journal extends MiscModel
         'date',
         'character.name',
         'parent.name',
+        'type',
         //'character.name',
     ];
 

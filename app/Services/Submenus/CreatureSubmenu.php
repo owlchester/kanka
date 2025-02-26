@@ -12,7 +12,7 @@ class CreatureSubmenu extends BaseSubmenu implements EntitySubmenu
         $items = [];
         /** @var Creature $creature */
         $creature = $this->entity->child;
-        $count = $creature->descendants()->count();
+        $count = $creature->descendants()->has('entity')->count();
         if ($count > 0) {
             $items['second']['creatures'] = [
                 'name' => Module::plural($creature->entityTypeId(), 'entities.creatures'),

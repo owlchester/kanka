@@ -85,15 +85,19 @@ class UserEventSubscriber
         } elseif (session()->has('first_login')) {
             // Todo: move this to the controller? Not sure why it should be an event's responsibility
             // Let's create their first campaign for them
-            $campaign = $this->starterService
-                ->user($event->user)
-                ->create();
-            session()->remove('first_login');
-            $this->campaignService
-                ->user($event->user)
-                ->campaign($campaign)
-                ->set();
-            return true;
+            try {
+                $campaign = $this->starterService
+                    ->user($event->user)
+                    ->create();
+                session()->remove('first_login');
+                $this->campaignService
+                    ->user($event->user)
+                    ->campaign($campaign)
+                    ->set();
+                return true;
+            } catch (Exception $e) {
+
+            }
         }
 
         return true;

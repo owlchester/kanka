@@ -26,19 +26,24 @@ class RecoveryService
      */
     protected function entity(int $id): mixed
     {
+        /** @var ?Entity $entity */
         $entity = Entity::onlyTrashed()->find($id);
         if (!$entity) {
             return null;
         }
 
+        $entity->restore();
         // @phpstan-ignore-next-line
-        $child = $entity->child()->onlyTrashed()->first();
-        if (!$child) {
-            return null;
+        if ($entity->entityType->isSpecial()) {
+            return $entity->url();
         }
 
-        $entity->restore();
-
+        // Sometimes the child is soft-deleted, sometimes not.
+        // Honestly we shouldn't have soft-deleted children and just rely on the entity to reduce complexity.
+        $child = $entity->child()->onlyTrashed()->first();
+        if (!$child) {
+            return $entity->url();
+        }
         // Refresh the child first to not re-trigger the entity creation on save
         $child->refresh();
         $child->restoreQuietly();

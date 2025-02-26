@@ -26,7 +26,7 @@
         :id="$fieldID">
         <input type="hidden" name="is_dead" value="0" />
         <x-checkbox :text="__('characters.hints.is_dead')">
-            <input id="{{ $fieldID }}" type="checkbox" name="is_dead" value="1" @if (old('is_dead', FormCopy::field('is_dead')->child() ?? $model->is_dead ?? false)) checked="checked" @endif />
+            <input id="{{ $fieldID }}" type="checkbox" name="is_dead" value="1" @if (old('is_dead', $source->child->is_dead ?? $model->is_dead ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 

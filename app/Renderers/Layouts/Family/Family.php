@@ -26,6 +26,9 @@ class Family extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
+                'render' => function (\App\Models\Family $model) {
+                    return $model->entity->type;
+                },
             ],
             'location' => [
                 'key' => 'location.name',

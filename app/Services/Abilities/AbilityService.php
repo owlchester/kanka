@@ -88,7 +88,7 @@ class AbilityService extends BaseAbilityService
                     'abilities' => [],
                 ];
             } else {
-                $type = empty($parent->type) ? Str::limit(strip_tags($parent->entry), 200) : $parent->type;
+                $type = empty($parent->entity->type) ? Str::limit(strip_tags($parent->entity->entry), 200) : $parent->entity->type;
                 $this->groups[$groupKey] = [
                     'id' => $parent->id,
                     'name' => $parent->name,
@@ -135,7 +135,7 @@ class AbilityService extends BaseAbilityService
             'ability_id' => $entityAbility->ability_id,
             'name' => $entityAbility->ability->name,
             'entry' => $this->parseEntry($entityAbility->ability),
-            'type' => $entityAbility->ability->type,
+            'type' => $entityAbility->ability->entity->type,
             'charges' => $this->parseCharges($entityAbility->ability),
             'used_charges' => $entityAbility->charges,
             'class' => $classes,

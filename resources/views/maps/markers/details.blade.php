@@ -35,7 +35,7 @@ if ($hasImage) {
             </div>
             <div class="flex-none marker-actions flex gap-3 items-center text-2xl">
                 @if($marker->entity && $marker->entity->isMap())
-                    <a href="{{ $marker->entity->url('explore') }}" class="marker-map-link text-sidebar-content" data-tooltip data-title="{{  __('maps.actions.explore') }}">
+                    <a href="{{ route('maps.explore', [$campaign, $marker->entity->child]) }}" class="marker-map-link text-sidebar-content" data-tooltip data-title="{{  __('maps.actions.explore') }}">
                         <x-icon class="map" />
                     </a>
                 @endif

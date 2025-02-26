@@ -43,7 +43,7 @@ class CreatureApiController extends ApiController
     public function store(Request $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('create', EntityType::find(config('entities.ids.creature')));
+        $this->authorize('create', [EntityType::find(config('entities.ids.creature')), $campaign]);
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;

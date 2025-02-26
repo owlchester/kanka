@@ -26,6 +26,9 @@ class Map extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
+                'render' => function (\App\Models\Map $model) {
+                    return $model->entity->type;
+                },
             ],
             'map' => [
                 'key' => 'parent.name',

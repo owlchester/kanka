@@ -1,4 +1,5 @@
-@can('update', $entity)
+<?php /** @var \App\Models\Conversation $model */?>
+@can('update', $model->entity)
     <?php $memberList = $campaign->membersList($model->participantsList(false, true)); ?>
     @if($model->forCharacters() || count($memberList) > 0)
         <x-form :action="['conversations.conversation_participants.store', $campaign, $model]">

@@ -26,6 +26,9 @@ class Organisation extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
+                'render' => function (\App\Models\Organisation $model) {
+                    return $model->entity->type;
+                },
             ],
             'organisation' => [
                 'key' => 'parent.name',

@@ -283,7 +283,7 @@ class EntityCreatorController extends Controller
             'campaign' => $this->campaign,
             'entityTypes' => $orderedEntityTypes,
             'new' => $success,
-            'popular' => [], //$this->popularService->get(),
+            'popular' => new Collection(), //$this->popularService->get(),
         ]);
     }
 
@@ -320,9 +320,8 @@ class EntityCreatorController extends Controller
 
         if ($mode === 'templates' && isset($entityType)) {
             /** @var MiscModel $modelClass */
-            $modelClass = $entityType->getClass();
             $templates = Entity::select('id', 'name', 'entity_id')
-                ->templates($modelClass->entityTypeID())
+                ->templates($entityType->id)
                 ->get();
             $view = 'templates';
         }

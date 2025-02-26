@@ -9,6 +9,7 @@
     ],
     'bodyClass' => 'entity-image-focus',
     'centered' => true,
+    'entity' => null
 ])
 
 @php

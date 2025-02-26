@@ -24,7 +24,7 @@ class StoreEntityType extends FormRequest
         return [
             'singular' => ['required', 'string', 'max:45'],
             'plural' => ['required', 'string', 'max:45'],
-            'icon' => ['required', 'string', 'max:45'],
+            'icon' => ['required', 'string', 'max:100'],
             'roles' => 'array',
             'roles.*' => 'exists:campaign_roles,id'
         ];

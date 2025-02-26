@@ -28,7 +28,7 @@
             <p class="text-lg">{!! __('search/fulltext.searching', ['term' => '<span class="italic">' . $term . '</span>']) !!}</p>
         @endif
 
-        @include('cruds.datagrids.explore', ['flat' => true])
+        @include('cruds.datagrids.explore', ['flat' => true, 'skipPaginationHelper' => true])
 
     </div>
 @endsection

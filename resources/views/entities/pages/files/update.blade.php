@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\EntityAsset $entityAsset */?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('entities/files.update.title', ['entity' => $entity->name, 'file' => $entityAsset->name]),
+        'title' => __('entities/files.update.title'),
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::entity($entity)->list(),
@@ -14,7 +14,7 @@
     <x-form :action="['entities.entity_assets.update', $campaign, $entity->id, $entityAsset]" method="PATCH">
 
     @include('partials.forms.form', [
-        'title' => $entityAsset->name,
+        'title' => __('entities/files.update.title'),
         'content' => 'entities.pages.files._form',
         'deleteID' => '#delete-file-' . $entityAsset->id,
         'dialog' => true,

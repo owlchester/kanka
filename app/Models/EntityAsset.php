@@ -30,7 +30,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property ?Entity $entity
- * @property bool|int $is_pinned
  * @property ?Image $image
  *
  */

@@ -26,8 +26,8 @@ class Character extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
-                'render' => function ($model) {
-                    return $model->type;
+                'render' => function (\App\Models\Character $model) {
+                    return $model->entity->type;
                 },
             ],
             'location' => [

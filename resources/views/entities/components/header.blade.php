@@ -38,7 +38,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
 
 ?>
 
-<div class="entity-header flex gap-5 items-end @if ($hasBanner) with-entity-banner p-4 text-white cover-background @endif" @if ($hasBanner) style="background-image: url('{{ $headerImageUrl }}');" @endif>
+<div class="entity-header flex gap-5 items-end relative @if ($hasBanner) with-entity-banner p-4 text-white cover-background @endif" @if ($hasBanner) style="background-image: url('{{ $headerImageUrl }}');" @endif>
 
     @if ($imageUrl)
     <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto">
@@ -57,7 +57,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                 <div class="cursor-pointer hidden sm:block print-none entity-picture relative {{ $imageClass }}" data-dropdown aria-expanded="false">
                     @if ($imageVisibility && $imageVisibility !== \App\Enums\Visibility::All)
                         <div class="absolute bottom-0 right-0 flex items-center justify-center w-6 h-6" data-toggle="tooltip" data-title="{{ __('entities/image.gallery_permissions.' . strtolower($entity->image->visibility_id->name), ['admin' => \Illuminate\Support\Arr::get($adminRole, 'name', __('campaigns.roles.admin_role')), 'creator' => $entity->image->creator?->name]) }}">
-                            <i class="{{ $entity->image->visibilityIcon()['class'] }}" aria-hidden="true"></i>
+                            <x-icon :class="$entity->image->visibilityIcon()['class']" />
                         </div>
                     @endif
                     <picture>
@@ -75,6 +75,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                     </x-dropdowns.item>
                     <hr class="m-0" />
                     <x-dropdowns.item
+                        icon="fa-solid fa-shuffle"
                         :link="route('entities.image.replace', [$campaign, $entity])"
                         :dialog="route('entities.image.replace', [$campaign, $entity])">
                         {{ __('entities/image.actions.replace_image') }}
@@ -82,13 +83,24 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
 
                     @if ($campaign->boosted())
                         <x-dropdowns.item
+                            icon="fa-solid fa-crosshairs"
                             :link="route('entities.image.focus', [$campaign, $entity])">
                             {{ __('entities/image.actions.change_focus') }}</x-dropdowns.item>
                     @else
                         <x-dropdowns.item
                             link="#"
+                            icon="fa-solid fa-crosshairs"
                             popup="booster-cta">
                             {{ __('entities/image.actions.change_focus') }}</x-dropdowns.item>
+                    @endif
+
+                    @if ($entity->image)
+                    <x-dropdowns.item
+                        icon="fa-solid fa-eye"
+                        :link="route('gallery.file.visibility', [$campaign, $entity->image])"
+                        :dialog="route('gallery.file.visibility', [$campaign, $entity->image])"
+                        >
+                        {{ __('entities/image.actions.change_visibility') }}</x-dropdowns.item>
                     @endif
                 </div>
             </div>
@@ -222,6 +234,22 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
 
         @yield($entityHeaderActions ?? 'entity-header-actions')
     </div>
+
+    @if ($hasBanner && $entity->header && $entity->header->visibility_id !== \App\Enums\Visibility::All)
+        @php
+            $headerHelper = __('entities/image.gallery_permissions.' . strtolower($entity->header->visibility_id->name), ['admin' => \Illuminate\Support\Arr::get($adminRole, 'name', __('campaigns.roles.admin_role')), 'creator' => $entity->header->creator?->name]);
+        @endphp
+        <span role="button"
+              tabindex="0"
+              class="header-visibility absolute top-2 right-2 rounded cursor-pointer"
+              data-toggle="dialog"
+              data-url="{{ route('gallery.file.visibility', [$campaign, $entity->header]) }}"
+              data-target="primary-dialog"
+              aria-haspopup="dialog"
+        >
+            <x-icon :class="$entity->header->visibilityIcon()['class']" :title="$headerHelper" tooltip />
+        </span>
+    @endif
 </div>
 
 @section('modals')

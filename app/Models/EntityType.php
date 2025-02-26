@@ -201,4 +201,13 @@ class EntityType extends Model
     {
         return $this->code !== 'bookmark';
     }
+
+    public function isNested(): bool
+    {
+        if ($this->isSpecial()) {
+            return true;
+        }
+        $model = $this->getClass();
+        return method_exists($model, 'getParentKeyName');
+    }
 }

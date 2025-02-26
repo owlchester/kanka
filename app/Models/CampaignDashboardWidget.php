@@ -75,6 +75,7 @@ class CampaignDashboardWidget extends Model
         return $this->belongsTo(CampaignDashboard::class, 'dashboard_id', 'id');
     }
 
+
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -82,7 +83,9 @@ class CampaignDashboardWidget extends Model
             'campaign_dashboard_widget_tags',
             'widget_id',
             'tag_id'
-        )->using(CampaignDashboardWidgetTag::class);
+        )->using(CampaignDashboardWidgetTag::class)
+            ->with('entity')
+            ->has('entity');
     }
 
     public function dashboardWidgetTags(): HasMany
@@ -128,12 +131,11 @@ class CampaignDashboardWidget extends Model
     {
         return $query->with([
             'entity', 'entity.image', 'entity.entityType', 'entity.header',
-            'tags',
+//            'tags',
             'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug',
-            'entity.pinnedRelations', 'entity.entityAttributes',
             'entityType',
         ])
-            ->orderBy('position', 'asc');
+            ->orderBy('position');
     }
 
     /**
@@ -310,7 +312,6 @@ class CampaignDashboardWidget extends Model
      */
     public function randomEntity()
     {
-        $entityType = $this->conf('entity');
         $base = new Entity();
 
         if ($this->entityType) {
@@ -328,10 +329,12 @@ class CampaignDashboardWidget extends Model
 
             /** @var FilterService $filterService */
             $filterService = app()->make('App\Services\FilterService');
+            if ($this->entityType) {
+                $filterService->entityType($this->entityType);
+            }
             $filterService
                 ->session(false)
                 ->options($this->filterOptions())
-                ->entityType($entityType)
                 ->model($model)
                 ->make('dashboard');
 

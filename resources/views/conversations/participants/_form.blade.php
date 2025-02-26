@@ -1,6 +1,9 @@
+<?php /**
+ * @var \App\Models\Conversation $model
+ */?>
 <x-grid type="1/1">
     @forelse ($model->participants as $participant)
-        @if ($participant->isMember() || (auth()->check() && auth()->user()->can('view', $participant->entity())))
+        @if ($participant->isMember() || (auth()->check() && auth()->user()->can('view', $participant->entity()->entity ?? false)))
         <div class="grid grid-cols-2 items-center align-middle gap-5">
             <div class="">
                 @if ($participant->isMember())
@@ -10,7 +13,7 @@
                 @endif
             </div>
 
-            @can('update', $entity)
+            @can('update', $model->entity)
                 <x-form method="DELETE" :action="['conversations.conversation_participants.destroy', $campaign, $model, $participant]">
                     <button class="btn2 btn-error btn-outline btn-sm">
                         <x-icon class="trash" />

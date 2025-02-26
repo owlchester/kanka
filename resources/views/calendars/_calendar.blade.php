@@ -51,11 +51,11 @@ $weekNumber = 1;
     </div>
 
     <div class="join">
-        <a href="{{ route('calendars.show', [$campaign, $model, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}"
+        <a href="{{ route('entities.show', [$campaign, $entity, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}"
            class="btn2 join-item btn-sm  <?=($renderer->isYearlyLayout() ? 'btn-disabled" disabled="disabled' : null)?>">
             {{ __('calendars.layouts.year') }}
         </a>
-        <a href="{{ route('calendars.show', array_merge([$campaign, $model, 'year' => $renderer->currentYear()], $model->defaultLayout() === 'year' ? ['layout' => 'month'] : [])) }}"
+        <a href="{{ route('entities.show', array_merge([$campaign, $entity, 'year' => $renderer->currentYear()], $model->defaultLayout() === 'year' ? ['layout' => 'month'] : [])) }}"
            class="btn2 join-item btn-sm <?=(!$renderer->isYearlyLayout() ? ' btn-disabled" disabled="disabled' : null)?>">
             {{ __('calendars.layouts.month') }}
         </a>
@@ -114,10 +114,10 @@ $weekNumber = 1;
 
 @section('modals')
     @parent
-    <x-form :action="['calendars.show', $campaign, $model]" method="GET">
+    <x-form :action="['entities.show', $campaign, $entity]" method="GET">
         <x-dialog id="calendar-year-switcher" :title="__('calendars.modals.switcher.title')" footer="calendars.year-switcher._footer">
             <x-forms.field field="year" :label="__('calendars.fields.year')">
-                <input type="number" name="year" placeholder="{{ $renderer->currentYear() }}" />
+                <input type="number" name="year" autofocus placeholder="{{ $renderer->currentYear() }}" />
             </x-forms.field>
 
             @if ($renderer->isYearlyLayout() && !$model->yearlyLayout())

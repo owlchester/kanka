@@ -74,7 +74,11 @@ class BulkService
         $model = $this->getEntity();
         if (isset($this->entityType)) {
             if ($this->entityType->hasEntity()) {
-                $entities = $model->with(['entity', 'children', 'entity.entityType', 'entity.campaign'])->has('entity')->whereIn('id', $this->ids)->get();
+                $with = ['entity', 'entity.entityType', 'entity.campaign'];
+                if ($this->entityType->isNested()) {
+                    $with[] = 'children';
+                }
+                $entities = $model->with($with)->has('entity')->whereIn('id', $this->ids)->get();
             } else {
                 $entities = $model->whereIn('id', $this->ids)->get();
             }
@@ -152,7 +156,14 @@ class BulkService
             ->copy(true)
             ->to($campaign);
 
-        $entities = $model->with('entity')->whereIn('id', $this->ids)->get();
+        $entities = $model->with([
+            'entity',
+            'entity.entityType',
+            'entity.image',
+            'entity.inventories',
+            'entity.attributes',
+        ])->whereIn('id', $this->ids)->get();
+
         foreach ($entities as $entity) {
             if (!$this->can('update', $entity)) {
                 continue;

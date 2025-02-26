@@ -123,6 +123,7 @@ class ApiService
         $templates = $this->entityType
             ->attributeTemplates()
             ->with(['entity', 'entity.attributes', 'ancestors'])
+            ->has('entity')
             ->get();
         /** @var AttributeTemplate $template */
         foreach ($templates as $template) {
@@ -140,6 +141,9 @@ class ApiService
 
     protected function addTemplate(AttributeTemplate $template): void
     {
+        if (!$template->entity) {
+            return;
+        }
         $first = true;
         $count = $template->entity->attributes->count();
         $this->template = true;

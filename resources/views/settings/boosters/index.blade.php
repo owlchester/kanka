@@ -119,6 +119,15 @@
         ]) !!}</p>
         @endif
 
+        @if ($focus)
+            @include('settings.boosters.create', [
+                'campaign' => $focus,
+                'superboost' => $superboost,
+                'cost' => $superboost ? 3 : 1,
+                'canSuperboost' => auth()->user()->availableBoosts() >= 3
+            ])
+        @endif
+
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 campaign-list">
             @foreach ($boosts as $boost)
                 @include('settings.boosters._campaign', ['campaign' => $boost->campaign])
@@ -127,7 +136,6 @@
                 @include('settings.boosters._campaign', ['campaign' => $c])
             @endforeach
         </div>
-
     </x-grid>
 @endsection
 
@@ -138,20 +146,6 @@
 
 @section('modals')
     @parent
-    @if ($focus)
-        <div class="modal fade" id="focus-modal" tabindex="-1" role="dialog" >
-            <div class="modal-dialog" role="document">
-                <div class="modal-content bg-base-100 rounded-2xl">
-                    @include('settings.boosters.create', [
-                        'campaign' => $focus,
-                        'superboost' => $superboost,
-                        'cost' => $superboost ? 3 : 1,
-                        'canSuperboost' => auth()->user()->availableBoosts() >= 3
-                    ])
-                </div>
-            </div>
-        </div>
-    @endif
 
     <x-dialog id="switch-dialog" title="Switch to premium">
         <div class="">

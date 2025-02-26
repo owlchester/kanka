@@ -26,6 +26,9 @@ class Race extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
+                'render' => function (\App\Models\Race $model) {
+                    return $model->entity->type;
+                },
             ],
             'race' => [
                 'key' => 'parent.name',

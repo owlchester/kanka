@@ -14,6 +14,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class SubscriptionEndJob implements ShouldQueue
 {
@@ -91,6 +92,11 @@ class SubscriptionEndJob implements ShouldQueue
         // Lastly, cleanup any discord stuff
         /** @var DiscordService $discord */
         $discord = app()->make('App\Services\DiscordService');
-        $discord->user($user)->removeRoles();
+        try {
+            $discord->user($user)->removeRoles();
+        } catch (Exception $e) {
+            Log::error("DiscordRoleJob:: " . $e->getMessage());
+            // Silence errors and ignore
+        }
     }
 }

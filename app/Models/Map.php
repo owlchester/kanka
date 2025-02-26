@@ -95,6 +95,7 @@ class Map extends MiscModel
     protected array $sortable = [
         'name',
         'parent.name',
+        'type',
     ];
 
     /**

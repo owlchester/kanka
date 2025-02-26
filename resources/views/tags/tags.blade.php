@@ -16,13 +16,13 @@
             <a href="{{ route('tags.tags', [$campaign, $entity->child, 'm' => \App\Enums\Descendants::All, '#tag-tags']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden md:inline">{{ __('crud.filters.all') }}</span>
-                ({{ $entity->child->descendants()->count() }})
+                ({{ $entity->child->descendants()->has('entity')->count() }})
             </a>
         @else
             <a href="{{ route('tags.tags', [$campaign, $entity->child, 'm' => \App\Enums\Descendants::Direct, '#tag-tags']) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden md:inline">{{ __('crud.filters.direct') }}</span>
-                ({{ $entity->child->children()->count() }})
+                ({{ $entity->child->children()->has('entity')->count() }})
             </a>
         @endif
         @include('entities.headers.actions', ['edit' => false])

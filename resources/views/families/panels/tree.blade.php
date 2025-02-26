@@ -5,7 +5,7 @@
 @else
     <div id="family-tree">
         <family-tree
-            permission="{{ auth()->check() && auth()->user()->can('update', $family) }}"
+            permission="{{ auth()->check() && auth()->user()->can('update', $family->entity) }}"
             api="{{ route('families.family-tree.api', [$campaign, $family]) }}"
             save_api="{{ route('families.family-tree.api-save', [$campaign, $family]) }}"
             entity_api="{{ route('families.family-tree.entity-api', [$campaign, 0]) }}"

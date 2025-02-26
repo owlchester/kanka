@@ -117,6 +117,7 @@ class Entity extends Model
     /** @var string[] Fields that can be used to order by */
     protected array $sortable = [
         'name',
+        'type',
         'type_id',
         'deleted_at',
     ];

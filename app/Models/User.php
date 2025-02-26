@@ -148,14 +148,20 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Figure out if the user is an admin of the current campaign
+     * Figure out if the user is an admin of the current campaign.
+     * $campaign can be provided, for example when listing a user's campaigns
      */
-    public function isAdmin(): bool
+    public function isAdmin(?Campaign $campaign = null): bool
     {
         if (isset($this->isAdmin)) {
             return $this->isAdmin;
         }
-        $campaign = CampaignLocalization::getCampaign();
+        if (empty($campaign) && CampaignLocalization::hasCampaign()) {
+            $campaign = CampaignLocalization::getCampaign();
+        }
+        if (empty($campaign)) {
+            return false;
+        }
         return $this->isAdmin = $this->campaignRoles
             ->where('campaign_id', $campaign->id)
             ->where('is_admin', 1)

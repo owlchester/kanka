@@ -71,6 +71,7 @@ $entityTags = $post->visibleTags;
                     ->elements()
                     ->paginate();
             $elements->withPath(route('quests.quest_elements.index', [$campaign, $entity->child]));
+            $model = $entity->child;
         @endphp
         @include('quests.elements._elements', ['elements' => $elements])
     @elseif ($post->layout?->code == 'location_characters')

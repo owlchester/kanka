@@ -29,7 +29,7 @@
                 <x-grid type="1/1">
                     <p class="">
                         {!! __('campaigns/modules.delete.confirm', [
-                            'campaign' => '<strong>' . $entityType->name . '</strong>',
+                            'name' => '<strong>' . $entityType->name . '</strong>',
                             'code' => '<code>delete</code>'
                         ]) !!}
                     </p>

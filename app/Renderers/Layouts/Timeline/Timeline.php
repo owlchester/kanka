@@ -26,6 +26,9 @@ class Timeline extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
+                'render' => function (\App\Models\Timeline $model) {
+                    return $model->entity->type;
+                },
             ],
             'timeline' => [
                 'key' => 'parent.name',

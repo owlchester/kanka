@@ -26,6 +26,9 @@ class Ability extends Layout
             'type' => [
                 'key' => 'type',
                 'label' => 'crud.fields.type',
+                'render' => function (\App\Models\Ability $model) {
+                    return $model->entity->type;
+                },
             ],
             'ability' => [
                 'key' => 'parent.name',

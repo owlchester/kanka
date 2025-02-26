@@ -468,6 +468,9 @@ class CrudController extends Controller
     public function crudShow(Model|MiscModel $model)
     {
         //@phpstan-ignore-next-line
+        if (!$model->entity) {
+            abort(404);
+        }
         return redirect()->route('entities.show', [$this->campaign, $model->entity]);
     }
 
@@ -786,10 +789,5 @@ class CrudController extends Controller
         }
         // Else use the user's preferred stacking for this entity type
         return Arr::get(auth()->user()->settings, $key, true);
-    }
-
-    protected function getEntityType(): EntityType
-    {
-        return EntityType::find(1);
     }
 }
