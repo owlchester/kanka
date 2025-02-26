@@ -11,17 +11,24 @@
         </select>
     </x-forms.field>
 
-    <hr class="m-0" />
+    <hr />
 
-    <p class="font-extrabold m-0">
+    <div class="flex flex-col gap-1">
+    <p class="">
         {{ __('entities/permissions.quick.viewable-by') }}
     </p>
     @if (!empty($visibility['roles']) || !empty($visibility['users']))
         <div class="@if ($entity->is_private) line-through text-slate-400 @endif flex flex-wrap gap-2 items-center ">
             @foreach ($visibility['roles'] as $role)
                 <span>
-                    <x-icon class="fa-solid fa-user-group" />
-                    {!! $role->name !!}
+                    <x-icon class="fa-regular fa-user-group" />
+                    @can('update', $role)
+                        <a href="{{ route('campaign_roles.edit', [$campaign, $role]) }}">
+                            {!! $role->name !!}
+                        </a>
+                    @else
+                        {!! $role->name !!}
+                    @endif
                     @if ($role->isPublic() && !$campaign->isPublic())
                         <x-icon class="fa-solid fa-exclamation-triangle text-accent" tooltip :title="__('campaigns.roles.permissions.helpers.not_public')" />
                     @endif
@@ -30,7 +37,7 @@
             @foreach ($visibility['users'] as $user)
                 <div class="flex gap-1 items-center">
                     @if ($user->hasAvatar())
-                        <div class="avatar cover-background w-4 h-4 rounded-full" style="background-image: url('{!! $user->getAvatarUrl() !!}')"></div>
+                        <div class="avatar cover-background w-5 h-5 rounded-full" style="background-image: url('{!! $user->getAvatarUrl() !!}')"></div>
                     @else
                         <x-icon class="fa-solid fa-user" />
                     @endif
@@ -43,4 +50,5 @@
             {{ __('entities/permissions.quick.empty-permissions') }}
         </p>
     @endif
+    </div>
 </x-grid>

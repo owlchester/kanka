@@ -61,13 +61,13 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
             <div class="w-40 col-span-2 md:col-span-1">
                 @can('update', $role)
                     <a href="{{ route('campaign_roles.edit', [$campaign, $role]) }}">
-                        {{ $role->name }}
+                        {!! $role->name !!}
                     </a>
                     @if ($role->isPublic() && !$campaign->isPublic())
                         <x-icon class="fa-solid fa-exclamation-triangle" tooltip :title="__('campaigns.roles.permissions.helpers.not_public')" />
                     @endif
                 @else
-                    {{ $role->name }}
+                    {!! $role->name !!}
                 @endcan
             </div>
             <div class="">

@@ -188,7 +188,6 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                     </span>
             @endif
-            @include('entities.headers.cog')
         </div>
 
         @if ($entity->isCharacter()&& !empty($entity->child->title))
