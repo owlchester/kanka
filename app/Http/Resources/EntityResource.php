@@ -177,12 +177,12 @@ class EntityResource extends JsonResource
 
             'entity_id' => $misc->entity->id,
 
-//            'module' => [
-//                'id' => $misc->entity->entityType->id,
-//                'code' => $misc->entity->entityType->code,
-//                'singular' => $misc->entity->entityType->name(),
-//                'plural' => $misc->entity->entityType->plural(),
-//            ],
+            //            'module' => [
+            //                'id' => $misc->entity->entityType->id,
+            //                'code' => $misc->entity->entityType->code,
+            //                'singular' => $misc->entity->entityType->name(),
+            //                'plural' => $misc->entity->entityType->plural(),
+            //            ],
             'tags' => $misc->entity->tags()->pluck('tags.id')->toArray(),
 
             'created_at' => $misc->created_at,

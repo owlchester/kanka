@@ -7,7 +7,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use App\Models\UserApp;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
 
 class RegenerateDiscordToken extends Command
 {
