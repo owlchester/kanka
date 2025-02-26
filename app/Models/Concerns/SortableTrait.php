@@ -28,8 +28,8 @@ trait SortableTrait
             return $query;
         }
 
-//        dump($this->sortable);
-//        dd($filters);
+        //        dump($this->sortable);
+        //        dd($filters);
         if (empty($this->sortable)) {
             return $query;
         }
@@ -59,11 +59,11 @@ trait SortableTrait
             return $query
                 ->select($this->getTable() . '.*')
                 ->leftJoin('entities as e', function ($join) {
-                $join->on('e.entity_id', '=', $this->getTable() . '.id');
-                // @phpstan-ignore-next-line
-                $join->where('e.type_id', '=', $this->entityTypeID())
-                    ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
-            })
+                    $join->on('e.entity_id', '=', $this->getTable() . '.id');
+                    // @phpstan-ignore-next-line
+                    $join->where('e.type_id', '=', $this->entityTypeID())
+                        ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
+                })
                 ->groupBy($this->getTable() . '.id')
                 ->orderBy('e.type', $order)
             ;

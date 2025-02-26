@@ -42,12 +42,11 @@ $specificTheme = null;
     @includeWhen(!empty($campaign), 'layouts._theme')
 @yield('styles')
 </head>
-<body id="map-body" class="map-page sidebar-collapse @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
-
+<body id="map-body" class="map-page sidebar-collapse @if(\App\Facades\DataLayer::groupB())ab-testing-second @else ab-testing-first @endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if(isset($noHeader)) style="margin-bottom: -30px;" @endif>
+@if (!isset($noHeader))
     <div id="app" class="wrapper h-full relative overflow-x-hidden overflow-y-auto mt-12">
         <!-- Header -->
-        @include('layouts.header', ['toggle' => true])
-
+        @includeWhen(!isset($noHeader), 'layouts.header', ['toggle' => true])
         <aside class="main-sidebar overflow-hidden absolute z-20 h-full flex flex-col">
             <section class="sidebar grow mb-20" style="height: auto">
 
@@ -130,6 +129,9 @@ $specificTheme = null;
     <div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
 
     <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full"></div>
+@else 
+    @yield('content')
+@endif
 
 @vite(['resources/js/vendor-final.js', 'resources/js/app.js', 'resources/js/cookieconsent.js'])
 @if (config('fontawesome.kit'))

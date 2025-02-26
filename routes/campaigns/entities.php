@@ -39,6 +39,7 @@ Route::get('/w/{campaign}/maps/{map}/maps', 'Maps\MapController@index')->name('m
 Route::get('/w/{campaign}/maps/{map}/explore', 'Maps\ExploreController@index')->name('maps.explore');
 Route::get('/w/{campaign}/maps/{map}/chunks/', 'Maps\ExploreController@chunks')->name('maps.chunks');
 Route::get('/w/{campaign}/maps/{map}/ticker', 'Maps\ExploreController@ticker')->name('maps.ticker');
+Route::get('/w/{campaign}/maps/{map}/preview', 'Maps\PreviewController@index')->name('maps.preview');
 Route::get('/w/{campaign}/maps/{map}/{map_marker}/details', 'Maps\Markers\DetailController@index')->name('maps.markers.details');
 Route::post('/w/{campaign}/maps/{map}/{map_marker}/move', 'Maps\Markers\MoveController@index')->name('maps.markers.move');
 Route::post('/w/{campaign}/maps/{map}/groups/bulk', 'Maps\Bulks\GroupController@index')->name('maps.groups.bulk');
