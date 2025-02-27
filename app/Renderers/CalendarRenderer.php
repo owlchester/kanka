@@ -1170,7 +1170,7 @@ class CalendarRenderer
                 //            dump("the current year (" . $this->getYear() . ") is >= to when the calendar leap year starts
                 //               (" . $this->calendar->leap_year_start . ")");
                 $yearDiffWithLeapStart = $this->getYear() - $this->calendar->leap_year_start;
-                $amountOfYears = ceil($yearDiffWithLeapStart / $this->calendar->leap_year_offset);
+                $amountOfYears = ceil($yearDiffWithLeapStart / max(1, $this->calendar->leap_year_offset));
                 //            dump ("the amount of leap years that has elapsed since the beginning is the following: $amountOfYears");
                 //            dump ("the value is ceil((" . $this->getYear() . "-" . $this->calendar->leap_year_start . ")
                 //               / " . $this->calendar->leap_year_offset . ")");
@@ -1183,7 +1183,7 @@ class CalendarRenderer
                 //            dump ("total leap days elapsed: $leapDays");
 
                 // But if we are a leap year, we need to do the math
-                if (($this->getYear() - $this->calendar->leap_year_start) % $this->calendar->leap_year_offset == 0) {
+                if (($this->getYear() - $this->calendar->leap_year_start) % max($this->calendar->leap_year_offset, 1) == 0) {
                     if ($this->getMonth() > $this->calendar->leap_year_month) {
                         // We've passed the leap month of the year
                         $leapDays += $this->calendar->leap_year_amount;
