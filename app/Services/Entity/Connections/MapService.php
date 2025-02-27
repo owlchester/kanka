@@ -769,7 +769,7 @@ class MapService
     protected function addMapMarkers(): self
     {
         /** @var MapMarker $related */
-        foreach ($this->entity->mapMarkers()->with(['map', 'map.entity', 'map.entity.image'])->has('map')->get() as $related) {
+        foreach ($this->entity->mapMarkers()->with(['map', 'map.entity', 'map.entity.image'])->has('map')->has('map.entity')->get() as $related) {
             $this->addEntity($related->map->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
@@ -811,7 +811,7 @@ class MapService
     protected function addQuests(): self
     {
         /** @var QuestElement $related */
-        foreach ($this->entity->quests()->with(['quest', 'quest.entity', 'quest.entity.image', 'quest.entity.entityType'])->has('quest')->get() as $related) {
+        foreach ($this->entity->quests()->with(['quest', 'quest.entity', 'quest.entity.image', 'quest.entity.entityType'])->has('quest')->has('quest.entity')->get() as $related) {
             $this->addEntity($related->quest->entity);
             $this->relations[] = [
                 'source' => $this->entity->id,
