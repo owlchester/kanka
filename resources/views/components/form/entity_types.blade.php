@@ -3,7 +3,7 @@ use Illuminate\Support\Arr;
 /**
  * We want to pre-load the data from the model, or what has been sent with the form.
  */
-$types = \App\Models\EntityType::where('code', '<>', 'bookmark')->inCampaign($campaign)->orderBy('code')->get();
+$types = \App\Models\EntityType::inCampaign($campaign)->where('code', '<>', 'bookmark')->orderBy('code')->get();
 $entityTypes = [];
 
 foreach ($types as $option) {
