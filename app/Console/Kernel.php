@@ -42,6 +42,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('backup:clean')->daily()->at('01:00');
         $schedule->command('backup:run')->twiceDaily(2, 14);
+        //$schedule->command('backup:monitor')->daily()->at('03:00');
 
         $schedule->command('model:prune')->daily();
         $schedule->command(CleanupEntityLogs::class)->dailyAt('03:30');
