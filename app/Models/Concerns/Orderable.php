@@ -38,8 +38,11 @@ trait Orderable
                 ->orderBy('cd.year', $direction)
                 ->orderBy('cd.month', $direction)
                 ->orderBy('cd.day', $direction);
+        } elseif ($field === 'type') {
+            return $query
+                ->joinEntity()
+                ->orderBy('e.type', $direction);
         }
-
         if (!empty($field)) {
             $segments = explode('.', $field);
             if (count($segments) > 1) {
