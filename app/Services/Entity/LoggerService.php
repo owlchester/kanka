@@ -253,6 +253,11 @@ class LoggerService
                     return (string) $originalAuthor->name;
                 }
                 return '';
+            } elseif ($attribute === 'parent_id' && !isset($this->model)) {
+                $originalAuthor = Entity::where('id', $original)->first();
+                if (!empty($originalAuthor)) {
+                    return (string) $originalAuthor->name;
+                }
             }
 
             // Silence
