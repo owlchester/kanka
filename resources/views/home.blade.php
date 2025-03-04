@@ -18,7 +18,7 @@ use App\Enums\Widget;
 ])
 
 @section('og')
-    <meta property="og:description" content="{{ $campaign->preview() }}" />
+    <meta property="og:description" content="{{ $campaign->hasPreview() ? $campaign->preview() : __('seo.dashboard', ['campaign' => $campaign->name]) }}" />
     @if ($campaign->image)<meta property="og:image" content="{{ Img::crop(50, 50)->url($campaign->image)  }}" />@endif
     <meta property="og:url" content="{{ route('campaigns.show', $campaign)  }}" />
 @endsection

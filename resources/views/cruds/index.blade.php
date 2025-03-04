@@ -1,6 +1,7 @@
 @extends('layouts.app', [
     'title' => $titleKey ?? __('entities.' . $langKey),
     'seoTitle' => $titleKey ?? __('entities.' . $langKey) . ' - ' . $campaign->name,
+
     'breadcrumbs' => false,
     'canonical' => true,
     'bodyClass' => 'kanka-' . $name,
@@ -64,4 +65,7 @@
     @includeWhen(auth()->check(), 'cruds.datagrids.bulks.modals')
 @endsection
 
+@section('og')
+    <meta property="og:description" content="{{ __('seo.entity-list', ['module' => ($titleKey ?? __('entities.' . $langKey)), 'campaign' => $campaign->name]) }}" />
+@endsection
 
