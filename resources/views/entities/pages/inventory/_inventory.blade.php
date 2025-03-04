@@ -55,7 +55,7 @@
                     {!! $item->name !!}
                 @endif<br />
                 <span class="text-sm text-muted">
-                    @if ($item->item && $item->copy_item_entry)
+                    @if ($item->item && $item->item->entity && $item->copy_item_entry)
                         {!! $item->item->entity->parsedEntry() !!}
                     @else
                     {{ $item->description }}
