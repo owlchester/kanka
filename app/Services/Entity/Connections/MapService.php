@@ -673,7 +673,7 @@ class MapService
         /** @var Location $child */
         $child = $this->entity->child;
         $parent = $child->parent;
-        if (empty($parent)) {
+        if (empty($parent) || empty($parent->entity)) {
             $this->addChildren();
             return $this;
         }
