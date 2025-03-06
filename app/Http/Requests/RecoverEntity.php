@@ -24,7 +24,7 @@ class RecoverEntity extends FormRequest
     public function rules()
     {
         $rules = [
-            'entities' => 'array',
+            'entities' => 'required|array',
             'entities.*' => 'distinct|exists:entities,id'
         ];
 
