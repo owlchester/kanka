@@ -48,9 +48,6 @@ class CampaignImageApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);
-        if (empty($request->file('file'))) {
-            return abort(422);
-        }
         $images = $this->service
             ->user($request->user())
             ->campaign($campaign)
