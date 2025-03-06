@@ -17,7 +17,12 @@ class EntityPolicy
 
     public function view(?User $user, Entity $entity): bool
     {
-        return EntityPermission::entity($entity)->user($user)->can(Permission::View);
+        if ($user) {
+            EntityPermission::user($user);
+        } else {
+            EntityPermission::userless();
+        }
+        return EntityPermission::entity($entity)->can(Permission::View);
     }
     public function update(User $user, Entity $entity): bool
     {
