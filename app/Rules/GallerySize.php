@@ -21,6 +21,11 @@ class GallerySize implements ValidationRule
         $service = app()->make(StorageService::class);
         $available = $service->campaign(CampaignLocalization::getCampaign())->available();
 
+        if (!is_object($value)) {
+            $fail('File isn\'t a stream');
+            return;
+        }
+
         try {
             $size = (int)floor($value->getSize() / 1024);
             if ($size > $available) {
