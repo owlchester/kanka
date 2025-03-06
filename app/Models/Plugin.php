@@ -109,14 +109,13 @@ class Plugin extends Model
      */
     public function author(): string
     {
-        if (!empty($this->user)) {
-            if (!empty($this->user->settings['marketplace_name'])) {
-                return e($this->user->settings['marketplace_name']);
-            }
-            return e($this->user->name);
+        if (empty($this->user)) {
+            return __('crud.users.unknown');
         }
-
-        return __('crud.users.unknown');
+        if (!empty($this->user->settings['marketplace_name'])) {
+            return e($this->user->settings['marketplace_name']);
+        }
+        return e($this->user->name);
     }
 
     /**
