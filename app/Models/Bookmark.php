@@ -419,7 +419,7 @@ class Bookmark extends Model
             return $campaign->boosted() && $this->isValidDashboard();
         } elseif ($this->target) {
             return true;
-        } elseif ($this->type) {
+        } elseif ($this->entityType) {
             return true;
         } return (bool) ($this->isRandom())
         ;
