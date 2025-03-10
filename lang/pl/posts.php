@@ -10,6 +10,9 @@ return [
     'fields'        => [
         'name'  => 'Tytuł',
     ],
+    'helpers'       => [
+        'new'   => 'Dodaj nowy komentarz do tego elementu.',
+    ],
     'placeholders'  => [
         'name'  => 'Tytuł komentarza',
     ],

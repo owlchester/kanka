@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'templates' => [
+    'new-action-button' => 'Przesunięto mnie tutaj!',
+    'templates'         => [
         'set'       => 'Ustaw jako szablon',
         'success'   => [
             'set'   => 'Element :name ustawiono jako szablon.',

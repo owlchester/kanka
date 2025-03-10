@@ -11,6 +11,11 @@ return [
         'helper'    => 'Bitte bestätigen Sie Ihr Passwort, bevor Sie fortfahren können.',
         'title'     => 'Passwort Bestätigung',
     ],
+    'continue'  => [
+        'facebook'  => 'Mit facebook fortfahren',
+        'google'    => 'Mit google fortfahren',
+        'x'         => 'Mit X fortfahren',
+    ],
     'failed'    => 'Wir kennen diese Logindaten nicht.',
     'helpers'   => [
         'password'  => 'Passwort anzeigen / verbergen',
@@ -25,9 +30,11 @@ return [
         'login_with_google'     => 'Login mit Google',
         'login_with_x'          => 'Anmeldung mit X (ehemals Twitter)',
         'new_account'           => 'Registriere einen neuen Account',
+        'no-account'            => 'Du hast noch kein Konto?',
         'or'                    => 'ODER',
         'password_forgotten'    => 'Passwort vergessen?',
         'remember_me'           => 'Benutzerdaten merken',
+        'sign-up'               => 'registriere dich',
         'submit'                => 'Login',
         'title'                 => 'Login',
     ],

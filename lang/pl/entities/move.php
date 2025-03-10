@@ -27,4 +27,7 @@ return [
     'success'       => 'Przeniesiono element :name.',
     'success_copy'  => 'Skopiowano element :name.',
     'title'         => 'Przenoszenie elementu :name',
+    'warnings'      => [
+        'custom'    => 'Ten element nie jest częścią modułu domyślnego, ale własnego, stworzonego w tej kampanii. W kampanii docelowej stanie się elementem Notatek.',
+    ],
 ];

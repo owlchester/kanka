@@ -94,6 +94,11 @@ return [
         'unlock'        => 'Atribút odomknutý',
         'unpin'         => 'Atribút odopnutý',
     ],
+    'tutorials'     => [
+        'character' => 'Napr. môžu mať vlastnosti ako :hp alebo :str.',
+        'general'   => 'Atribúty sú malé informácie priradené k :name.',
+        'location'  => 'Napr. môžu mať :pop. vlastnosť.',
+    ],
     'types'         => [
         'attribute' => 'Atribút',
         'block'     => 'Blok',

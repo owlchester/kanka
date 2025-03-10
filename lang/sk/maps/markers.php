@@ -28,6 +28,9 @@ return [
     'delete'        => [
         'success'   => 'Značka :name odstránená.',
     ],
+    'details'       => [
+        'from-entity'   => 'Z objektu',
+    ],
     'edit'          => [
         'success'   => 'Značka :name aktualizovaná.',
         'title'     => 'Upraviť značku :name',

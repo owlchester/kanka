@@ -25,6 +25,7 @@ return [
         'families'      => 'Rodinný plánovač/ka',
         'locations'     => 'Staviteľ/ka',
         'markers'       => 'Kartograf/ka',
+        'organisations' => 'Fúzie a akvizície',
         'plugins'       => 'Fajnšmeker/ka pluginov',
         'quests'        => 'Mastermind',
         'tags'          => 'Pod kontrolou',

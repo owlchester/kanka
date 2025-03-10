@@ -8,6 +8,7 @@ return [
         'image-link'    => 'Enlace a la imagen',
         'reset_focus'   => 'Restablecer el punto de enfoque',
         'save'          => 'Guardar',
+        'upgrade'       => 'Ampliar el espacio de almacenamiento',
     ],
     'breadcrumb'    => 'Galería',
     'bulk'          => [
@@ -28,14 +29,20 @@ return [
     ],
     'fields'        => [
         'created_by'            => 'Subida por',
+        'details'               => 'Detalles',
         'ext'                   => 'Ext',
+        'file_type'             => 'Tipo de archivo',
         'folder'                => 'Carpeta',
         'image_mentioned_in'    => '{0} Esta imagen no se menciona en ninguna de las entidades de la campaña.|{1} Mencionada en una entrada/post.|[2,*] mencionada en :count entradas/posts.',
         'image_used_in'         => '{1}Se usa como la imagen de una entidad.|[2,*]Se usa como la imagen de :count entidades.',
+        'link'                  => 'Enlace',
         'name'                  => 'Nombre',
         'size'                  => 'Tamaño',
+        'unused'                => 'No se utiliza en ninguna parte',
+        'used_in'               => 'Utilizado en',
     ],
     'focus'         => [
+        'locked'    => 'Para fijar el punto de enfoque de una imagen se necesita una campaña premium.',
         'removed'   => 'Enfoque de la imagen eliminado.',
         'updated'   => 'Enfoque de la imagen actualizado.',
     ],
@@ -46,6 +53,10 @@ return [
     'pitch'         => 'Sube imágenes a la galería de la campaña directamente desde el editor de texto.',
     'placeholders'  => [
         'search'    => 'Buscar nombre de imagen...',
+    ],
+    'storage'       => [
+        'of'    => 'de',
+        'title' => 'Almacenamiento',
     ],
     'title'         => 'Galería de la campaña :campaign',
     'update'        => [

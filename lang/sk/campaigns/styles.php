@@ -46,7 +46,9 @@ return [
         'title'     => 'Preskupiť štýly',
     ],
     'theme'         => [
-        'success'   => 'Téma kampane aktualizovaná.',
+        'none'      => 'Použiť preferenciu užívateľa',
+        'override'  => 'Prepísať tému',
+        'success'   => 'Téma kampane prepísaná.',
         'title'     => 'Aktualizovať tému kampane.',
     ],
     'title'         => 'Témovanie kampane',

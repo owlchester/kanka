@@ -59,6 +59,7 @@ return [
     ],
     'pitch'         => 'Inštaluj a spravuj pluginy z :marketplace.',
     'status'        => [
+        'always'    => 'Tento plugin bude stále aktívny, dokiaľ ho neodstrániš.',
         'disabled'  => 'Deaktivovaný',
         'enabled'   => 'Aktivovaný',
     ],

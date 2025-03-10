@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'templates' => [
+    'new-action-button' => 'Mňa premiestnili sem!',
+    'templates'         => [
         'set'       => 'Nastaviť ako šablónu',
         'success'   => [
             'set'   => 'Objekt :name nastavený ako šablóna.',

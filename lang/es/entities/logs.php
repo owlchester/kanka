@@ -17,7 +17,11 @@ return [
         'action'    => 'Acción',
         'date'      => 'Fecha',
     ],
+    'filters'           => [
+        'keywords'  => 'Palabras clave',
+    ],
     'impersonated'      => 'Hecho pasar por :name',
+    'none'              => 'Ninguno',
     'show'              => [
         'title' => 'Historial de :name',
     ],

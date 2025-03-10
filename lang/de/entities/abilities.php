@@ -7,7 +7,7 @@ return [
         'sync'  => 'Hinzufügen von Rassen',
     ],
     'charges'   => [
-        'left'  => ':amount links',
+        'left'  => ':amount verbleibend',
     ],
     'create'    => [
         'success'           => 'Fähigkeit :ability hinzugefügt zu :entity',

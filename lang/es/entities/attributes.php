@@ -3,21 +3,26 @@
 return [
     'actions'       => [
         'apply_template'    => 'Aplicar plantilla de atributos',
+        'load'              => 'Cargar',
         'manage'            => 'Administrar',
         'more'              => 'Más opciones',
         'remove_all'        => 'Eliminar todos',
         'save_and_edit'     => 'Aplicar y editar',
         'save_and_story'    => 'Aplicar y ver',
         'show_hidden'       => 'Mostrar atributos ocultos',
+        'toggle_privacy'    => 'Privado/Público',
     ],
     'errors'        => [
-        'loop'  => '¡Hay un bucle infinito en el cálculo de este atributo!',
+        'loop'                  => '¡Hay un bucle infinito en el cálculo de este atributo!',
+        'no_attribute_selected' => 'Selecciona uno o varios atributos primero.',
+        'too_many_v2'           => 'Se ha alcanzado el máximo de campos (:count/:max). Elimina algunos atributos primero antes de poder añadir más.',
     ],
     'fields'        => [
         'attribute'             => 'Atributo',
         'community_templates'   => 'Plantillas de la comunidad',
         'is_private'            => 'Atributos privados',
         'is_star'               => 'Fijado',
+        'preferences'           => 'Preferencias',
         'template'              => 'Plantilla',
         'value'                 => 'Valor',
     ],
@@ -65,20 +70,34 @@ return [
     'ranges'        => [
         'text'  => 'Opciones disponibles: :options',
     ],
+    'sections'      => [
+        'unorganised'   => 'Sin organizar',
+    ],
     'show'          => [
         'hidden'    => 'Atributos ocultos',
         'title'     => 'Atributos de :name',
     ],
     'template'      => [
+        'load'      => [
+            'success'   => 'Plantilla cargada',
+            'title'     => 'Cargar desde plantilla',
+        ],
         'success'   => 'Plantilla de atributos :name aplicada a :entity',
         'title'     => 'Aplicar plantilla de atributos a :name',
     ],
     'title'         => 'Atributos',
     'toasts'        => [
-        'lock'      => 'Atributo bloqueado',
-        'pin'       => 'Atributo fijado',
-        'unlock'    => 'Atributo desbloqueado',
-        'unpin'     => 'Atributo no fijado',
+        'bulk_deleted'  => 'Atributos eliminados',
+        'bulk_privacy'  => 'Privacidad de atributos cambiada',
+        'lock'          => 'Atributo bloqueado',
+        'pin'           => 'Atributo fijado',
+        'unlock'        => 'Atributo desbloqueado',
+        'unpin'         => 'Atributo no fijado',
+    ],
+    'tutorials'     => [
+        'character' => 'Por ejemplo, pueden tener una propiedad :hp y :str.',
+        'general'   => 'Los atributos son pequeños fragmentos de información asociados a :name.',
+        'location'  => 'Por ejemplo, pueden tener una propiedad :pop.',
     ],
     'types'         => [
         'attribute' => 'Atributo',

@@ -15,6 +15,7 @@ return [
         'other' => 'Inne języki',
         'title' => 'Wybierz język',
     ],
+    'made'              => 'Stworzono z ❤️ w Genewie, Szwajcaria',
     'marketplace'       => 'Targowisko',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Platforma',
@@ -26,8 +27,10 @@ return [
     'resources'         => 'Zasoby',
     'roadmap'           => 'W przygotowaniu',
     'security'          => 'Bezpieczeństwo',
+    'server-time'       => 'To czas naszego serwera (:server).',
     'status'            => 'Status usługi',
     'terms'             => 'Warunki',
+    'thanks'            => 'Ogromne wyrazy wdzięczności dla wszystkich subskrybujących.',
     'translator_call'   => 'Kanka jest tłumaczona na inne języki dzięki zaangażowaniu naszej społeczności. Jeżeli chcesz pomóc w przekładzie na swój język, daj nam znać na naszym serwerze :discord.',
     'whats-new'         => 'Co nowego',
 ];

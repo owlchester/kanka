@@ -30,6 +30,7 @@ return [
         'element_role'  => 'Rola',
         'instigator'    => 'Zleceniodawna',
         'is_completed'  => 'Ukończona',
+        'location'      => 'Miejsce rozpoczęcia',
         'role'          => 'Rola',
     ],
     'helpers'       => [
@@ -42,6 +43,7 @@ return [
     'placeholders'  => [
         'date'      => 'Data zadania w prawdziwym świecie',
         'entity'    => 'Nazwa elementu z tego zadania',
+        'location'  => 'Miejsce, w którym rozpoczyna się zadanie.',
         'role'      => 'Rola elementu w tym zadaniu',
         'type'      => 'Wątek osobisty, misja poboczna, zadanie główne',
     ],

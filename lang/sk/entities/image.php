@@ -2,11 +2,12 @@
 
 return [
     'actions'               => [
-        'change_focus'  => 'Zmeniť stredobod záujmu',
-        'replace_image' => 'Vymeniť obrázok',
-        'save-replace'  => 'Vymeniť obrázok',
-        'save_focus'    => 'Uložiť stredobod záujmu',
-        'view'          => 'Zobraziť obrázok',
+        'change_focus'      => 'Zmeniť stredobod záujmu',
+        'change_visibility' => 'Zmeniť viditeľnosť',
+        'replace_image'     => 'Vymeniť obrázok',
+        'save-replace'      => 'Vymeniť obrázok',
+        'save_focus'        => 'Uložiť stredobod záujmu',
+        'view'              => 'Zobraziť obrázok',
     ],
     'call-to-action'        => 'Kliknutím na obrázok objektu nastavíš jeho stredobod záujmu namiesto automatického odhadu.',
     'focus'                 => [
@@ -29,5 +30,9 @@ return [
         'panel_title'   => 'Výmena obrázku objektu',
         'success'       => 'Obrázok vymenený.',
         'title'         => 'Výmena obrázku objektu :name',
+    ],
+    'visibility'            => [
+        'helper'    => 'Zmeň viditeľnosť obrázku v galérii tým, že nastavíš, kto ho môže vidieť.',
+        'updated'   => 'Viditeľnosť obrázku aktualizovaná.',
     ],
 ];

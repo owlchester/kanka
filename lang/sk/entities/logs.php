@@ -8,6 +8,7 @@ return [
         'delete_post'   => 'Zmazaná správa',
         'reorder_post'  => 'Preusporiadané správy',
         'restore'       => 'Obnoviť',
+        'reveal'        => 'Zobraziť detaily',
         'update'        => 'Aktualizovať',
         'update_post'   => 'Aktualizovaná správa ":post"',
         'view'          => 'Zobraziť zmeny',
@@ -17,7 +18,11 @@ return [
         'action'    => 'Akcia',
         'date'      => 'Dátum',
     ],
+    'filters'           => [
+        'keywords'  => 'Kľúčové slová',
+    ],
     'impersonated'      => 'Vydáva sa za :name',
+    'none'              => 'Žiadne',
     'show'              => [
         'title' => 'Objekt :name Log',
     ],

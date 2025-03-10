@@ -44,6 +44,7 @@ return [
         'open'                              => 'Offen für Bewerbungen',
         'post_collapsed'                    => 'Neue Beiträge zu Objekten werden standardmäßig minimiert.',
         'premium'                           => 'Premium freigeschaltet von :name',
+        'private_mention_visibility'        => 'Private Erwähnungen',
         'public'                            => 'Sichtbarkeit der Kampagne',
         'public_campaign_filters'           => 'Öffentliche Kampagnenfilter',
         'related_visibility'                => 'Verwandte Elemente Sichtbarkeit',
@@ -73,6 +74,7 @@ return [
         'no_entry'                          => 'Anscheinend hat die Kampagne noch keine Beschreibung! Lasst uns das beheben.',
         'permissions_tab'                   => 'Steuern Sie die standardmäßigen Datenschutz- und Sichtbarkeitseinstellungen neuer Elemente mit den folgenden Optionen.',
         'premium'                           => 'Einige Funktionen sind verfügbar, da die Premiumfunktionen dieser Kampagne freigeschaltet sind. Weitere Informationen findest du auf der Seite :settings.',
+        'private_mention_visibility'        => 'Kontrolliere, ob Erwähnungen privater Einrichtungen geheim gehalten werden oder deren Namen angezeigt werden.',
         'public_campaign_filters'           => 'Helfen Sie anderen, die Kampagne unter anderen öffentlichen Kampagnen zu finden, indem Sie die folgenden Informationen bereitstellen.',
         'public_no_visibility'              => 'Kopf hoch! Ihre Kampagne ist öffentlich, aber die öffentliche Rolle der Kampagne kann auf nichts zugreifen. :fix.',
         'related_visibility'                => 'Standardwert für die Sichtbarkeit beim Erstellen eines neuen Elements mit diesem Feld (Objektnotizen, Beziehungen, Fähigkeiten usw.)',
@@ -109,6 +111,10 @@ return [
             'token'     => 'Token',
             'type'      => 'Typ',
             'usage'     => 'Maximale Anzahl von Verwendungen',
+        ],
+        'helpers'               => [
+            'role'  => 'Benutzer müssen erst beitreten, bevor sie zur Administratorrolle befördert werden können.',
+            'usage' => 'Wie oft der Einladungslink verwendet werden kann, bevor er inaktiv wird.',
         ],
         'unlimited_validity'    => 'Unbegrenzt',
         'usages'                => [
@@ -167,6 +173,10 @@ TEXT
             'viewer'    => 'Zuschauer',
         ],
         'switch_back_success'   => 'Du bist nun zurück in deinem eigentlichen User.',
+    ],
+    'mentions'                          => [
+        'private'   => 'Zielname ausblenden',
+        'visible'   => 'Zielname anzeigen',
     ],
     'modules'                           => [
         'permission-disabled'   => 'Dieses Modul ist deaktiviert.',
@@ -379,8 +389,10 @@ TEXT
             'applications'      => 'Bewerbungen',
             'campaign'          => 'Kampagne',
             'customisation'     => 'Anpassung',
+            'danger'            => 'Gefahr',
             'data'              => 'Daten',
             'default-images'    => 'Standardbilder',
+            'deletion'          => 'Löschung',
             'export'            => 'Export',
             'import'            => 'Importieren',
             'information'       => 'Informationen',
@@ -391,10 +403,16 @@ TEXT
             'recovery'          => 'Wiederherstellen',
             'roles'             => 'Rollen',
             'sidebar'           => 'Einrichtung der Seitenleiste',
+            'stats'             => 'Statistik',
             'styles'            => 'Thematisierung',
             'webhooks'          => 'Webhaken',
         ],
         'title'     => 'Kampagne :name',
+    ],
+    'status'                            => [
+        'free'      => 'Premium-Funktionen deaktiviert.',
+        'premium'   => 'Premium-Funktionen werden durch :name freigeschaltet.',
+        'title'     => 'Premium Funktionen',
     ],
     'superboosted'                      => [],
     'themes'                            => [
@@ -409,6 +427,10 @@ TEXT
             'explorer'  => 'Beziehungs-Explorer (falls verfügbar, für geboostete Kampagnen)',
             'list'      => 'Listenschnittstelle',
         ],
+        'descendants'       => [
+            'all'       => 'Standardmäßig alle Nachkommen anzeigen',
+            'direct'    => 'Direkte Nachkommenschaft standardmäßig anzeigen',
+        ],
         'entity_history'    => [
             'hidden'    => 'Nur für Kampagnenadministratoren sichtbar',
             'visible'   => 'sichtbar für Mitglieder',
@@ -416,6 +438,7 @@ TEXT
         'fields'            => [
             'connections'       => 'Verbindungsschnittstelle des Standardobjekts',
             'connections_mode'  => 'Standard Beziehung-Explorer für Beobachter',
+            'descendants'       => 'Filtern von Nachkommen',
             'entity_history'    => 'Verlaufsprotokolle des Objekts',
             'entity_image'      => 'Objekt Portrait',
             'member_list'       => 'Mitgliederliste der Kampagne',
@@ -424,6 +447,7 @@ TEXT
         'helpers'           => [
             'connections'       => 'Wenn Sie auf die Unterseite „Verbindungen“ eines Objekts klicken, wählen Sie die angezeigte Standardwerte aus.',
             'connections_mode'  => 'Definiere beim Anzeigen des Beziehungs-Explorers eines Objekts den ausgewählten Standardmodus.',
+            'descendants'       => 'Steuere die Standardfilterung beim Laden einer Teilliste. Zum Beispiel die Orte von Charaktere.',
             'entity-history'    => 'Steuere, wer die letzten Änderungen sehen kann, die an einzelnen Objekten der Kampagne vorgenommen wurden.',
             'member-list'       => 'Kontrolliere, wer sehen kann, wer an der Kampagne teilnimmt.',
             'other'             => 'Andere visuelle Optionen für die Kampagne.',

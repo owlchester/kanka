@@ -28,6 +28,9 @@ return [
     'delete'        => [
         'success'   => 'Usunięto znacznik :name.',
     ],
+    'details'       => [
+        'from-entity'   => 'Z elementu',
+    ],
     'edit'          => [
         'success'   => 'Zmieniono znacznik :name.',
         'title'     => 'Edycja znacznika :name',

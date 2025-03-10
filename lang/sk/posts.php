@@ -10,6 +10,9 @@ return [
     'fields'        => [
         'name'  => 'Názov',
     ],
+    'helpers'       => [
+        'new'   => 'Pridaj nový komentár k tomuto objektu.',
+    ],
     'placeholders'  => [
         'name'  => 'Názov komentára',
     ],

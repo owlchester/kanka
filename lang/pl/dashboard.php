@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'customise' => 'Dostosuj pulpit',
         'follow'    => 'Śledź',
         'join'      => 'Dołącz',
         'unfollow'  => 'Przestań śledzić',

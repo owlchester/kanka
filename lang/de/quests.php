@@ -30,6 +30,7 @@ return [
         'element_role'  => 'Rolle',
         'instigator'    => 'Impulsgeber',
         'is_completed'  => 'Abgeschlossen',
+        'location'      => 'Startpunkt',
         'role'          => 'Rolle',
     ],
     'helpers'       => [
@@ -45,6 +46,7 @@ return [
     'placeholders'  => [
         'date'      => 'Reales Datum der Quest',
         'entity'    => 'Name eines Elements aus der Quest',
+        'location'  => 'Der Startpunkt der Suche',
         'role'      => 'Die Rolle des Objekts in der Quest',
         'type'      => 'Charakterentwicklung, Sidequest, Hauptquest',
     ],

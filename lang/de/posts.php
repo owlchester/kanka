@@ -10,6 +10,9 @@ return [
     'fields'        => [
         'name'  => 'Name',
     ],
+    'helpers'       => [
+        'new'   => 'Füge einen neuen Beitrag zu diesem Objekt hinzu.',
+    ],
     'placeholders'  => [
         'name'  => 'Name des Posts',
     ],

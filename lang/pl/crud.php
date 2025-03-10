@@ -6,6 +6,8 @@ return [
         'apply'             => 'Zastosuj',
         'back'              => 'Cofnij',
         'change'            => 'Zmień',
+        'close'             => 'Zamknij',
+        'confirm'           => 'Potwierdź',
         'copy'              => 'Kopiuj',
         'copy_mention'      => 'Kopiuj wzmiankę [ ]',
         'copy_to_campaign'  => 'Kopiuj do kampanii',
@@ -108,6 +110,10 @@ return [
     'destroy_many'      => [
         'success'   => 'Usunięto :count element|Usunięto :count elementy.|Usunięto :count elementów.',
     ],
+    'dynamic'           => [
+        'permission'    => 'Nie masz uprawnień by tworzyć elementy modułu :module.',
+        'unknown'       => 'Element niewłaściwy dla modułu :module.',
+    ],
     'edit'              => 'Edytuj',
     'errors'            => [
         'boosted_campaigns'     => 'By korzystać z tej funkcji, kampania musi być :boosted.',
@@ -125,7 +131,7 @@ return [
         'copy_links'        => 'Kopiuj odnośniki elementu',
         'copy_permissions'  => 'Kopiuj uprawnienia (zastąpią obecnie obowiązujące uprawnienia)',
         'copy_posts'        => 'Kopiuj komentarze (oraz ich uprawnienia)',
-        'copy_reminders'    => 'Kopiuj przypomnienia',
+        'copy_reminders'    => 'Kopiuj epizody',
         'creator'           => 'Tworzenie',
         'date_range'        => 'Zakres dat',
         'entity'            => 'Element',
@@ -155,6 +161,7 @@ return [
         'tooltip'           => 'Dymek',
         'type'              => 'Rodzaj',
         'visibility'        => 'Widoczność',
+        'word-count'        => 'Liczba słów: :number',
     ],
     'files'             => [
         'errors'    => [
@@ -221,7 +228,7 @@ return [
     'hidden'            => 'Ukryte',
     'hints'             => [
         'attribute_template'    => 'Zastosuj szablon cech bezpośrednio podczas tworzenia lub edycji tego elementu.',
-        'calendar_date'         => 'Data kalendarzowa umożliwia łatwiejsze filtrowanie i sprawia, że dane wydarzenie zostaje przypisane do kalendarza.',
+        'calendar_date'         => 'Data kalendarzowa umożliwia łatwiejsze filtrowanie i pozwala umieścić w kalendarzu epizod.',
         'image_dimension'       => 'Sugerowany rozmiar: :dimension pikseli.',
         'image_limitations'     => 'Dozwolone formaty: :formats. Maksymalny rozmiar pliku :size.',
         'image_recommendation'  => 'Sugerowane wymiary: :width na :height pikseli.',
@@ -261,9 +268,10 @@ return [
                 'deny'      => 'Zabroń',
                 'inherit'   => 'Kopiuj',
             ],
-            'delete'        => 'Usuń',
-            'edit'          => 'Edytuj',
+            'delete'        => 'Usuwanie',
+            'edit'          => 'Edycja',
             'toggle'        => 'Przełącz',
+            'view'          => 'Wyświetlanie',
         ],
         'fields'            => [
             'member'    => 'Uczestnik',
@@ -301,6 +309,7 @@ return [
         'race'          => 'Wybierz rasę',
         'tag'           => 'Wybierz etykietę',
         'timeline'      => 'Wybierz historię',
+        'type'          => 'Rodzaj elementu',
         'user'          => 'Wybierz użytkownika',
     ],
     'relations'         => [],
@@ -331,7 +340,7 @@ return [
         'premium'       => 'Premium',
         'profile'       => 'Profil',
         'relations'     => 'Relacje',
-        'reminders'     => 'Ważne daty',
+        'reminders'     => 'Epizody',
         'story'         => 'Podstawy',
     ],
     'titles'            => [

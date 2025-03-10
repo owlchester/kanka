@@ -27,4 +27,7 @@ return [
     'success'       => 'Entidad :name movida.',
     'success_copy'  => 'Entidad :name copiada.',
     'title'         => 'Mover :name',
+    'warnings'      => [
+        'custom'    => 'Esta entidad no es de un módulo por defecto, sino de un tipo de entidad personalizada ":module". Se creará como una entidad Nota en la campaña de destino.',
+    ],
 ];

@@ -6,6 +6,8 @@ return [
         'apply'             => 'Aplicar',
         'back'              => 'Atrás',
         'change'            => 'Cambiar',
+        'close'             => 'Cerrar',
+        'confirm'           => 'Confirmar',
         'copy'              => 'Copiar',
         'copy_mention'      => 'Copiar mención [ ]',
         'copy_to_campaign'  => 'Copiar a campaña',
@@ -52,6 +54,7 @@ return [
             'warning'   => '¿Seguro que quieres eliminar las entidades seleccionadas?',
         ],
         'edit'          => [
+            'locations' => 'Acción para las ubicaciones',
             'tagging'   => 'Acción para las etiquetas',
             'tags'      => [
                 'add'       => 'Añadir',
@@ -107,6 +110,10 @@ return [
     'destroy_many'      => [
         'success'   => '{1} Se ha eliminado :count entidad .|[2,*] Se han eliminado :count entidades.',
     ],
+    'dynamic'           => [
+        'permission'    => 'No tienes los permisos adecuados para crear una entidad del módulo :module.',
+        'unknown'       => 'Entidad inválida del módulo :module.',
+    ],
     'edit'              => 'Editar',
     'errors'            => [
         'boosted_campaigns'     => 'Esta funcionalidad solo está disponible para las :boosted.',
@@ -124,6 +131,7 @@ return [
         'copy_links'        => 'Copiar notas de entidad',
         'copy_permissions'  => 'Copiar permisos (esto anulará los valores que hayas configurado en la pestaña de permisos)',
         'copy_posts'        => 'Copiar publicaciones (esto incluye los permisos de cada publicación)',
+        'copy_reminders'    => 'Copy Reminders',
         'creator'           => 'Creador',
         'date_range'        => 'Rango de fechas',
         'entity'            => 'Entidad',
@@ -153,10 +161,12 @@ return [
         'tooltip'           => 'Descripción emergente',
         'type'              => 'Tipo',
         'visibility'        => 'Visibilidad',
+        'word-count'        => 'Número de palabras: :number',
     ],
     'files'             => [
         'errors'    => [
             'max'       => 'Has alcanzado el número máximo (:max) de archivos para esta entidad.',
+            'max_size'  => 'La campaña ha alcanzado la capacidad de almacenamiento de archivos máxima.',
             'no_files'  => 'No hay archivos.',
         ],
         'hints'     => [
@@ -262,6 +272,7 @@ return [
             'delete'        => 'Eliminar',
             'edit'          => 'Editar',
             'toggle'        => 'Cambiar',
+            'view'          => 'Ver',
         ],
         'fields'            => [
             'member'    => 'Miembro',
@@ -299,11 +310,15 @@ return [
         'race'          => 'Elige una raza',
         'tag'           => 'Elige una etiqueta',
         'timeline'      => 'Elige una línea de tiempo',
+        'type'          => 'Tipo de la entidad',
         'user'          => 'Elija un usuario',
     ],
     'relations'         => [],
     'remove'            => 'Eliminar',
     'rename'            => 'Renombrar',
+    'reorder'           => [
+        'empty' => 'No hay elementos que reordenar.',
+    ],
     'save'              => 'Guardar',
     'save_and_close'    => 'Guardar y cerrar',
     'save_and_copy'     => 'Guardar y copiar',

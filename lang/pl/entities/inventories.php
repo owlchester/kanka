@@ -49,6 +49,11 @@ return [
     'tooltips'          => [
         'equipped'  => 'Przedmiot jest w użyciu.',
     ],
+    'tutorials'         => [
+        'character' => 'Kontroluj co :name posiada lub sprzedaje dodając przedmioty do ekwipunku.',
+        'location'  => 'Kontroluj co można kupić albo złupić w :name, dodając przedmioty do ekwipunku.',
+        'other'     => 'Kontroluj co :name posiada dodając przedmioty do ekwipunku.',
+    ],
     'update'            => [
         'success'   => 'Zaktualizowano przedmiot :item elementu :entity',
         'title'     => 'Zaktualizowano przedmiot u :name',

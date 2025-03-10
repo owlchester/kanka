@@ -25,6 +25,7 @@ return [
         'families'      => 'Familienplanung',
         'locations'     => 'Ersteller',
         'markers'       => 'Kartograph',
+        'organisations' => 'Fusionen und Übernahmen',
         'plugins'       => 'Plugin Kenner',
         'quests'        => 'Vordenker',
         'tags'          => 'Unter Kontrolle',

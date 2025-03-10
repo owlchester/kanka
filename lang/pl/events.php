@@ -13,7 +13,7 @@ return [
         'date'  => 'Data',
     ],
     'helpers'       => [
-        'date'  => 'W tym polu można umieścić wszystko - nie jest związane z kalendarzami kampanii. By umieścić je w kalendarzu, dodaj je ręcznie w menu kalendarza albo zakładce "Ważne daty" wydarzenia.',
+        'date'  => 'W tym polu można umieścić wszystko - nie jest związane z kalendarzami kampanii. By je tam umieścić kalendarzu, dodaj ręcznie epizod za pomocą kalendarza albo zakładki "Epizody" elementu.',
     ],
     'index'         => [],
     'placeholders'  => [

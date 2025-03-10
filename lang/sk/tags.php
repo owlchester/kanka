@@ -25,6 +25,7 @@ return [
     ],
     'helpers'       => [
         'no_children'   => 'Aktuálne nemá túto kategóriu pridelený žiaden objekt.',
+        'no_posts'      => 'Aktuálne nemá túto kategóriu pridelená žiadna poznámka.',
     ],
     'hints'         => [
         'children'          => 'Tento zoznam obsahuje všetky objekty priamo pod touto kategóriou a jej podriadenými kategóriami.',
@@ -43,10 +44,13 @@ return [
     ],
     'tags'          => [],
     'transfer'      => [
-        'description'   => 'Presunie objekty tejto kategórie pod inú kategóriu.',
-        'fail'          => 'Nepodarilo sa presunúť objekty z :tag na :newTag',
-        'success'       => 'Presun objektov z :tag na :newTag bol úspešný',
-        'title'         => 'Presun :name',
-        'transfer'      => 'Presun',
+        'description'       => 'Presunie objekty tejto kategórie pod inú kategóriu.',
+        'fail'              => 'Nepodarilo sa presunúť objekty z :tag na :newTag',
+        'fail_post'         => 'Nepodarilo sa presunúť ponámky z :tag na :newTag',
+        'post_description'  => 'Presunie poznámky tejto kategórie pod inú kategóriu.',
+        'success'           => 'Presun objektov z :tag na :newTag úspešný',
+        'success_post'      => 'Presun poznámok z :tag na :newTag úspešný',
+        'title'             => 'Presun :name',
+        'transfer'          => 'Presun',
     ],
 ];

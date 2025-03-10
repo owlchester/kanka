@@ -34,6 +34,7 @@ return [
         'entry'                             => 'Descripción de la campaña',
         'excerpt'                           => 'Extracto',
         'followers'                         => 'Seguidores',
+        'gallery_visibility'                => 'Visibilidad predeterminada de las imágenes de la galería',
         'genre'                             => 'Género(s)',
         'header_image'                      => 'Imagen de cabecera',
         'image'                             => 'Imagen',
@@ -43,6 +44,7 @@ return [
         'open'                              => 'Inscripciones abiertas',
         'post_collapsed'                    => 'Los nuevos posts en las entidades están colapsados por defecto.',
         'premium'                           => 'Premium desbloqueado por :name',
+        'private_mention_visibility'        => 'Menciones privadas',
         'public'                            => 'Visibilidad de la campaña',
         'public_campaign_filters'           => 'Filtros de las campañas públicas',
         'related_visibility'                => 'Visibilidad de elementos relacionados',
@@ -61,6 +63,7 @@ return [
         'entity_count_v3'                   => 'Este número se recalcula cada :amount horas.',
         'entity_privacy'                    => 'Selecciona la privacidad por defecto al crear nuevas entidades como administrador.',
         'excerpt'                           => 'El extracto de la campaña se mostrará en el tablero principal. Escribe unas pocas líneas para introducir tu mundo. Si lo dejas en blanco, se mostrarán los primeros 1.000 caracteres de la descripción de la campaña.',
+        'gallery_visibility'                => 'Visibilidad por defecto al subir imágenes a la galería.',
         'header_image'                      => 'La imagen que se muestra como fondo en el widget de la cabecera del tablero.',
         'hide_history'                      => 'Habilita esta opción para esconder el historial de entidades a los miembros no administradores.',
         'hide_members'                      => 'Habilita esta opción para esconder la lista de miembros de la campaña a los no administradores.',
@@ -71,6 +74,7 @@ return [
         'no_entry'                          => '¡Parece que la campaña aún no tiene una descripción! Arreglemos eso.',
         'permissions_tab'                   => 'Controla la privacidad y visibilidad de nuevos elementos mediante las opciones siguientes.',
         'premium'                           => 'Algunas funciones están disponibles porque las funciones premium de esta campaña están desbloqueadas. Más información en la página de :settings.',
+        'private_mention_visibility'        => 'Controla si las menciones a entidades privadas se mantienen ocultas o se muestran sus nombres.',
         'public_campaign_filters'           => 'Facilita que otros encuentren tu campaña entre las demás proporcionando la siguiente información.',
         'public_no_visibility'              => '¡Ojo! Tu campaña es pública, pero el rol público no tiene acceso a nada. :fix.',
         'related_visibility'                => 'La visibilidad por defecto al crear un elemento con este campo (notas de entidad, relaciones, habilidades, etc.)',
@@ -99,6 +103,7 @@ return [
         'error'                 => [
             'inactive_token'    => 'Este identificador ya se ha usado o la campaña ya no existe.',
             'invalid_token'     => 'El identificador ya no es válido.',
+            'join'              => 'Inicia sesión o registra una nueva cuenta para unirte a :campaign.',
         ],
         'fields'                => [
             'created'   => 'Enviado',
@@ -106,6 +111,10 @@ return [
             'token'     => 'Token',
             'type'      => 'Tipo',
             'usage'     => 'Número máximo de usos',
+        ],
+        'helpers'               => [
+            'role'  => 'Los usuarios tienen que unirse antes de que puedan ser ascendidos al rol de administrador.',
+            'usage' => 'Cuántas veces se puede utilizar el enlace de invitación antes de que quede inactivo.',
         ],
         'unlimited_validity'    => 'Ilimitado',
         'usages'                => [
@@ -160,6 +169,10 @@ return [
             'viewer'    => 'Invitado',
         ],
         'switch_back_success'   => 'Has vuelto a tu usuario.',
+    ],
+    'mentions'                          => [
+        'private'   => 'Ocultar el nombre del objetivo',
+        'visible'   => 'Mostrar el nombre del objetivo',
     ],
     'modules'                           => [
         'permission-disabled'   => 'Este módulo está deshabilitado.',
@@ -277,6 +290,7 @@ return [
                 ],
                 'manage'        => 'Permite editar la campaña como un administrador, excepto eliminar la campaña.',
                 'members'       => 'Permite invitar nuevos miembros a la campaña.',
+                'not_public'    => 'La campaña no es pública. Se pueden establecer permisos para el rol público, pero serán ignorados. Edita la campaña para hacerla pública.',
                 'permission'    => 'Permite configurar los permisos de las entidades de este tipo que puedan editar.',
                 'read'          => 'Permite visualizar todas las entidades de este tipo que no sean privadas.',
             ],
@@ -328,6 +342,7 @@ return [
         ],
         'helpers'       => [
             'abilities'         => 'Crea habilidades, proezas, hechizos o poderes y asígnalos a entidades.',
+            'assets'            => 'Sube archivos, establece enlaces y define alias para entidades individuales.',
             'bookmarks'         => 'Crea marcadores de entidades o listas filtradas que aparezcan en la barra lateral.',
             'calendars'         => 'El sitio para definir los calendarios de tu mundo.',
             'characters'        => 'Las personas que viven en tu mundo.',
@@ -370,8 +385,10 @@ return [
             'applications'      => 'Solicitudes',
             'campaign'          => 'Campaña',
             'customisation'     => 'Personalización',
+            'danger'            => 'Peligro',
             'data'              => 'Datos',
             'default-images'    => 'Imágenes por defecto',
+            'deletion'          => 'Eliminación',
             'export'            => 'Exportar',
             'import'            => 'Importar',
             'information'       => 'Información',
@@ -382,9 +399,16 @@ return [
             'recovery'          => 'Recuperación',
             'roles'             => 'Roles',
             'sidebar'           => 'Configuración de la barra lateral',
+            'stats'             => 'Estadísticas',
             'styles'            => 'Personalización',
+            'webhooks'          => 'Webhooks',
         ],
         'title'     => 'Campaña :name',
+    ],
+    'status'                            => [
+        'free'      => 'Funciones Premium desactivadas.',
+        'premium'   => 'Funciones premium desbloqueadas por :name.',
+        'title'     => 'Funciones Premium',
     ],
     'superboosted'                      => [],
     'themes'                            => [
@@ -399,6 +423,10 @@ return [
             'explorer'  => 'Explorador de relaciones (solo campañas mejoradas)',
             'list'      => 'Interfaz de lista',
         ],
+        'descendants'       => [
+            'all'       => 'Mostrar todos los descendientes por defecto',
+            'direct'    => 'Mostrar descendientes directos por defecto',
+        ],
         'entity_history'    => [
             'hidden'    => 'Solo visible para los administradores de campaña',
             'visible'   => 'Visible para los miembros',
@@ -406,6 +434,7 @@ return [
         'fields'            => [
             'connections'       => 'Interfaz de conexiones entre entidades por defecto',
             'connections_mode'  => 'Modo del explorador de relaciones predeterminado',
+            'descendants'       => 'Filtrado de los descendientes',
             'entity_history'    => 'Registros históricos de la entidad',
             'entity_image'      => 'Imagen de la entidad',
             'member_list'       => 'Lista de miembros de la campaña',
@@ -414,6 +443,7 @@ return [
         'helpers'           => [
             'connections'       => 'Al hacer clic en la subpágina de conexiones de una entidad, selecciona la interfaz por defecto.',
             'connections_mode'  => 'Al ver el explorador de relaciones de una entidad, defina el modo seleccionado por defecto.',
+            'descendants'       => 'Controla el filtrado por defecto al cargar una sublista. Por ejemplo, los personajes de una ubicación.',
             'entity-history'    => 'Controla quién puede ver los cambios realizados recientemente en cada entidad de la campaña.',
             'member-list'       => 'Controla quién puede ver a los miembros de la campaña.',
             'other'             => 'Otras opciones visuales para la campaña.',

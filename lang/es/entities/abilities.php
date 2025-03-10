@@ -4,6 +4,10 @@ return [
     'actions'   => [
         'add'   => 'Añadir habilidad',
         'reset' => 'Restablecer usos de habilidad',
+        'sync'  => 'Añadir desde razas',
+    ],
+    'charges'   => [
+        'left'  => ':amount restante',
     ],
     'create'    => [
         'success'           => 'Habilidad :ability añadida a :entity.',
@@ -14,8 +18,13 @@ return [
         'note'      => 'Nota',
         'position'  => 'Posición',
     ],
+    'groups'    => [
+        'unorganised'   => 'Sin organizar',
+    ],
     'helpers'   => [
-        'note'  => 'Puedes referenciar entidades mediante las menciones avanzadas (por ejemplo, :code) y atributos de la entidad (por ejemplo, :attr) en este campo.',
+        'note'      => 'Puedes referenciar entidades mediante las menciones avanzadas (por ejemplo, :code) y atributos de la entidad (por ejemplo, :attr) en este campo.',
+        'recharge'  => 'Restablece todos las cargas de las habilidades que se han utilizado.',
+        'sync'      => 'Importa habilidades que estén definidas en las razas del personaje.',
     ],
     'import'    => [
         'errors'    => [
@@ -23,6 +32,9 @@ return [
             'not_character' => 'La entidad no es un personaje.',
         ],
         'success'   => '{1} Se han importado :count habilidades.|[2,*] Se han importado :count habilidades.',
+    ],
+    'recharge'  => [
+        'success'   => 'Se han restablecido todos las cargas.',
     ],
     'reorder'   => [
         'parentless'    => 'Sin padre',
@@ -32,6 +44,9 @@ return [
         'helper'    => 'Adjunta habilidades a esta entidad. Puedes modificar su visibilidad o eliminarlas más adelante. Las habilidades pertenecientes al mismo grupo se agrupan por tipos.',
         'reorder'   => 'Reordenar',
         'title'     => 'Habilidades de :name',
+    ],
+    'types'     => [
+        'unorganised'   => 'Las habilidades se agrupan por su campo de origen, y en su defecto se encuentran aquí.',
     ],
     'update'    => [
         'success'   => 'Habilidad de la entidad :ability actualizada.',

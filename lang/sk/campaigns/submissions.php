@@ -19,13 +19,28 @@ return [
     'errors'        => [],
     'fields'        => [
         'application'   => 'Prihláška',
+        'reason'        => 'Dôvod schválenia / odmietnutia',
     ],
     'helpers'       => [
-        'modal'             => 'Do kampane, ktorá je verejná a prijíma prihlášky, si môžu podať prihlášku noví užívatelia.',
-        'no_applications'   => 'Aktuálne neevidujeme žiadne prihlášky do tvojej kampane. Užívatelia si môžu podať prihlášku navštívením nástenky a kliknutím na tlačidlo :button.',
+        'modal'                 => 'Do kampane, ktorá je verejná a prijíma prihlášky, si môžu podať prihlášku noví užívatelia.',
+        'no_applications'       => 'Aktuálne neevidujeme žiadne prihlášky do tvojej kampane. Užívatelia si môžu podať prihlášku navštívením nástenky a kliknutím na tlačidlo :button.',
+        'no_applications_title' => 'Žiadne prihlášky neboli nájdené',
+        'reason'                => 'Ak vyplnený, uchádzajúca sa osoba obdrží tento dôvod.',
+        'role'                  => 'Pri schvaľovaní rola, ktorú obdrží uchádzajúca sa osoba.',
+    ],
+    'open'          => [
+        'closed'    => 'Kampaň je uzatvorená',
+        'open'      => 'Kampaň je otvorená',
+        'title'     => 'Otvorená kampaň',
     ],
     'placeholders'  => [
-        'note'  => 'Spíš tvoju prihlášku na vstup do kampane',
+        'note'      => 'Spíš tvoju prihlášku na vstup do kampane',
+        'reason'    => 'Tvoj dôvod',
+    ],
+    'public'        => [
+        'private'   => 'Kampaň je súkromná.',
+        'public'    => 'Kampaň je verejná.',
+        'title'     => 'Verejná kampaň.',
     ],
     'statuses'      => [],
     'toggle'        => [

@@ -44,6 +44,7 @@ return [
         'open'                              => 'Otwarta na zgłoszenia',
         'post_collapsed'                    => 'Nowe komentarze do elementów są domyślnie zwynięte.',
         'premium'                           => 'Premium odblokowana przez :name',
+        'private_mention_visibility'        => 'Tajne wzmianki',
         'public'                            => 'Widoczność kampanii',
         'public_campaign_filters'           => 'Filtry kampanii publicznych',
         'related_visibility'                => 'Widoczność powiązanych elementów',
@@ -73,6 +74,7 @@ return [
         'no_entry'                          => 'Ta kampania nie ma chyba żadnego opisu! Pora to naprawić.',
         'permissions_tab'                   => 'Poniższe opcje pozwalają kontrolować widoczność i dostępność nowych elementów.',
         'premium'                           => 'Część opcji jest dostępna, ponieważ odblokowano funkcje premium. Więcej informacji na stronie :settings.',
+        'private_mention_visibility'        => 'Wybierz, czy tajne elementy są we wzmiankach ukryte, czy ich nazwa jest widoczna.',
         'public_campaign_filters'           => 'Pomóż innym graczom znaleźć twoją kampanię wśród innych dostępnych publicznie, podając następujące informacje.',
         'public_no_visibility'              => 'Uwaga! Ta kampania jest publiczna, ale nie rola "publiczność" na razie niczego nie widzi. :fix',
         'related_visibility'                => 'Domyślna widoczność nowych elementów powiązanych z innym elementem (notek, relacji, zdolności itd.)',
@@ -109,6 +111,10 @@ return [
             'token'     => 'Kod',
             'type'      => 'Rodzaj',
             'usage'     => 'Maksymalna liczba użyć',
+        ],
+        'helpers'               => [
+            'role'  => 'Użytkownik musi dołączyć, zanim otrzyma uprawnienia administratora.',
+            'usage' => 'Po tylu użyciach link z zaproszeniem przestanie być aktywny.',
         ],
         'unlimited_validity'    => 'Nieograniczona',
         'usages'                => [
@@ -164,6 +170,10 @@ return [
         ],
         'switch_back_success'   => 'Powrócono do podstawowego profilu.',
     ],
+    'mentions'                          => [
+        'private'   => 'Nazwa ukryta',
+        'visible'   => 'Nazwa widoczna',
+    ],
     'modules'                           => [
         'permission-disabled'   => 'Moduł jest wyłączony.',
     ],
@@ -188,7 +198,7 @@ return [
     ],
     'privacy'                           => [
         'hidden'    => 'Ukryta',
-        'private'   => 'Prywatna',
+        'private'   => 'Tajna',
         'visible'   => 'Widoczna',
     ],
     'public'                            => [
@@ -375,8 +385,10 @@ return [
             'applications'      => 'Zgłoszenia',
             'campaign'          => 'Kampania',
             'customisation'     => 'Dostosowanie',
+            'danger'            => 'Zagrożenia',
             'data'              => 'Dane',
             'default-images'    => 'Domyślne ikony',
+            'deletion'          => 'Usunięcie',
             'export'            => 'Eksport',
             'import'            => 'Import',
             'information'       => 'Informacja',
@@ -386,11 +398,17 @@ return [
             'plugins'           => 'Dodatki',
             'recovery'          => 'Odzyskiwanie',
             'roles'             => 'Role',
-            'sidebar'           => 'Ustawienia menu bocznego',
+            'sidebar'           => 'Menu boczne',
+            'stats'             => 'Statystyki',
             'styles'            => 'Motywy',
             'webhooks'          => 'Elementy webhook',
         ],
         'title'     => 'Kampania :name',
+    ],
+    'status'                            => [
+        'free'      => 'Opcje premium nieaktywne.',
+        'premium'   => 'Opcje premium odblokowane przez :name',
+        'title'     => 'Opcje premium',
     ],
     'superboosted'                      => [],
     'themes'                            => [
@@ -405,6 +423,10 @@ return [
             'explorer'  => 'Wizualizacja powiązań (tylko w doładowanych kampaniach)',
             'list'      => 'Tabela powiązań',
         ],
+        'descendants'       => [
+            'all'       => 'Pokaż wszystkie elementy pochodne',
+            'direct'    => 'Pokaż tylko elementy bezpośrednio pochodne',
+        ],
         'entity_history'    => [
             'hidden'    => 'Widoczna tylko dla adminów',
             'visible'   => 'Widoczna dla uczestników',
@@ -412,6 +434,7 @@ return [
         'fields'            => [
             'connections'       => 'Domyślny interfejs powiązań elementu',
             'connections_mode'  => 'Domyślny tryb wyświetlania relacji',
+            'descendants'       => 'Wyświetlanie pochodnych',
             'entity_history'    => 'Historia edycji elementu',
             'entity_image'      => 'Ilustracja elementu',
             'member_list'       => 'Lista uczestników kampanii',
@@ -420,6 +443,7 @@ return [
         'helpers'           => [
             'connections'       => 'Wybierz domyślny sposób wyświetlania powiązań po wejściu na odpowiednią podstronę elementu.',
             'connections_mode'  => 'Określ domyślny sposób wyświetlania relacji elementu z innymi.',
+            'descendants'       => 'Wybierz sposób wyświetlania pochodnych na podlistach, na przykład postaci w jakimś miejscu.',
             'entity-history'    => 'Kontroluje, kto może zobaczyć ostatnie zmiany w konkretnych elementach kampanii.',
             'member-list'       => 'Kontroluje kto może zobaczyć uczestników kampanii.',
             'other'             => 'Inne opcje wizualne kampanii',

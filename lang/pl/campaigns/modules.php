@@ -1,29 +1,57 @@
 <?php
 
 return [
-    'actions'   => [
+    'actions'       => [
+        'create'    => 'Stwórz moduł',
         'customise' => 'Modyfikuj',
     ],
-    'fields'    => [
+    'create'        => [
+        'helper'    => 'Stwórz nowy moduł dla elementów, które nie pasują do żadnego innego.',
+        'success'   => 'Stworzono nowy moduł.',
+        'title'     => 'Nowy moduł',
+    ],
+    'delete'        => [
+        'confirm'   => 'Wpisz :code jeżeli na pewno chcesz usunąć moduł własny :name.',
+        'helper'    => 'Czy na pewno usunąć moduł własny :name? Usunięte zostaną również wszystkie związane z nim elementy, zakładki i widżety.',
+        'success'   => 'Usunięto moduł :name.',
+        'title'     => 'Usunięcie modułu',
+    ],
+    'errors'        => [
+        'disabled'  => 'Moduł :name jest wyłączony. :fix',
+        'limit'     => 'Ponieważ wciąż pracujemy nad tą funkcją, kampania może na razie posiadać :max modułów własnych.',
+    ],
+    'fields'        => [
         'icon'      => 'Ikona modułu',
         'plural'    => 'Nazwa modułu w liczbie mnogiej',
         'singular'  => 'Nazwa modułu w liczbie pojedycznej',
     ],
-    'helpers'   => [
-        'info'  => 'Kampania podzielona jest na szereg powiązanych modułów. Możesz je włączać i wyłączać według potrzeb. Wyłączenie modułu nie powoduje usunięcia danych, tylko je ukrywa.',
+    'helpers'       => [
+        'custom'    => 'To jest moduł własny.',
+        'icon'      => 'Ikona :fontawesome, na przykład :example.',
+        'info'      => 'Kampania podzielona jest na szereg powiązanych modułów. Możesz je włączać i wyłączać według potrzeb. Wyłączenie modułu nie powoduje usunięcia danych, tylko je ukrywa.',
+        'plural'    => 'Nazwa elementów nowego modułu w liczbie mnogiej. Na przykład: eliksiry.',
+        'roles'     => 'Wybierz role, które będą widziały nowy moduł. Można je potem zmienić w menu uprawień ról.',
+        'singular'  => 'Nazwa elementów nowego modułu w liczbie pojedynczej. Na przykład: eliksir.',
     ],
-    'pitch'     => 'Zmień nazwę i ikonę tego modułu dla całej kampanii.',
-    'rename'    => [
+    'pitch'         => 'Zmień nazwę i ikonę tego modułu dla całej kampanii.',
+    'pitch-custom'  => 'Twórz własne moduły dla niecodziennych elementów.',
+    'rename'        => [
         'helper'    => 'Zmień używaną w tej kampanii nazwę i ikonę modułu. Pozostaw puste, by używać opcji domyślnej.',
         'success'   => 'Zmodyfikowano moduł.',
         'title'     => 'Modyfikuj moduł :module',
     ],
-    'reset'     => [
+    'reset'         => [
+        'default'   => 'Przywraca stan wyjściowy modułów domyślnych, ale nie własnych.',
         'success'   => 'Przywrócono domyślne moduły kampanii',
         'title'     => 'Przywracanie domyślnych nazw i ikon',
         'warning'   => 'Czy na pewno przywrócić domyślne nazwy i ikony modułów kampanii?',
     ],
-    'states'    => [
+    'sections'      => [
+        'custom'    => 'Moduły własne',
+        'default'   => 'Moduły domyślne',
+        'features'  => 'Opcje elementów',
+    ],
+    'states'        => [
         'disable'   => 'Nieaktywny',
         'enable'    => 'Aktywny',
     ],

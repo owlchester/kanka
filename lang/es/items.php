@@ -11,6 +11,7 @@ return [
         'is_equipped'   => 'Equipado',
         'price'         => 'Precio',
         'size'          => 'Tamaño',
+        'weight'        => 'Peso',
     ],
     'helpers'       => [],
     'hints'         => [
@@ -22,6 +23,7 @@ return [
         'price' => 'Precio del objeto',
         'size'  => 'Tamaño, peso, dimensiones',
         'type'  => 'Arma, Poción, Artefacto...',
+        'weight'=> 'Peso del objeto',
     ],
     'quests'        => [],
     'show'          => [

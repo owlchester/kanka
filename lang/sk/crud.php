@@ -6,6 +6,8 @@ return [
         'apply'             => 'Použiť',
         'back'              => 'Naspäť',
         'change'            => 'Zmeniť',
+        'close'             => 'Zavrieť',
+        'confirm'           => 'Potvrdiť',
         'copy'              => 'Kopírovať',
         'copy_mention'      => 'Kopírovať [ ] referenciu',
         'copy_to_campaign'  => 'Kopírovať do kampane',
@@ -108,6 +110,10 @@ return [
     'destroy_many'      => [
         'success'   => ':count objekt zmazaný|:count objekty zmazané',
     ],
+    'dynamic'           => [
+        'permission'    => 'Nemáš dostatočné oprávnenia na vytvorenie objektu v module :module.',
+        'unknown'       => 'Nesprávny objekt modulu :module.',
+    ],
     'edit'              => 'Upraviť',
     'errors'            => [
         'boosted_campaigns'     => 'Funkcionalita je dostupná iba pre :boosted.',
@@ -155,6 +161,7 @@ return [
         'tooltip'           => 'Bublina',
         'type'              => 'Typ',
         'visibility'        => 'Viditeľnosť',
+        'word-count'        => 'Počet slov: :number',
     ],
     'files'             => [
         'errors'    => [
@@ -264,6 +271,7 @@ return [
             'delete'        => 'Zmazať',
             'edit'          => 'Upraviť',
             'toggle'        => 'Prepnúť',
+            'view'          => 'Zobraziť',
         ],
         'fields'            => [
             'member'    => 'Člen',
@@ -301,6 +309,7 @@ return [
         'race'          => 'Vyber rasu',
         'tag'           => 'Vyber kategóriu',
         'timeline'      => 'Vyber časovú os',
+        'type'          => 'Typ objektu',
         'user'          => 'Vyber užívateľa',
     ],
     'relations'         => [],
@@ -346,9 +355,9 @@ return [
     'view'              => 'Zobraziť',
     'visibilities'      => [
         'admin'         => 'Admin',
-        'admin-self'    => 'Vlastník a Admin',
+        'admin-self'    => 'Iba ja a Admin',
         'all'           => 'Všetci',
-        'members'       => 'Členovia',
-        'self'          => 'Vlastník',
+        'members'       => 'Členstvá kampane',
+        'self'          => 'Iba ja',
     ],
 ];

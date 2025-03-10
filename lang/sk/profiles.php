@@ -28,6 +28,7 @@ return [
         'theme'                     => 'Téma',
     ],
     'helpers'                       => [
+        'new-password'  => 'Zmenou tvojho hesla ťa systém odhlási zo všetkých ostatných zariadení.',
         'profile-name'  => 'Zmeň, ako vyzerá tvoje meno na tvojom :profile a :marketplace. Ak ho ponecháš prázdne, bude sa používať meno tvojho konta.',
     ],
     'newsletter'                    => [

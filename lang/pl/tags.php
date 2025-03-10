@@ -25,6 +25,7 @@ return [
     ],
     'helpers'       => [
         'no_children'   => 'Obecnie nie oznaczono tą etykietą żadnych elementów.',
+        'no_posts'      => 'Obecnie nie oznaczono tą etykietą żadnych komentarzy.',
     ],
     'hints'         => [
         'children'          => 'Na liście znajdują się wszystkie elementy posiadające tę etykietę i etykiety pochodne.',
@@ -43,10 +44,13 @@ return [
     ],
     'tags'          => [],
     'transfer'      => [
-        'description'   => 'Zamienia tę etykietę na inną u wszystkich posiadających ją elementów.',
-        'fail'          => 'Nie udało się zamienić etykiety :tag na nową etykietę :newTag.',
-        'success'       => 'Zamieniono etykietę :tag na nową etykietę :newTag.',
-        'title'         => 'Zamiana :name',
-        'transfer'      => 'Zamień',
+        'description'       => 'Zamienia tę etykietę na inną u wszystkich posiadających ją elementów.',
+        'fail'              => 'Nie udało się zmienić elementom etykiety :tag na nową etykietę :newTag.',
+        'fail_post'         => 'Nie udało się zmienić komentarzom etykiety :tag na nową etykietę :newTag.',
+        'post_description'  => 'Zmień etykietę komentarza na nową.',
+        'success'           => 'Zamieniono elementom etykietę :tag na nową etykietę :newTag.',
+        'success_post'      => 'Zamieniono komentarzom etykietę :tag na nową etykietę :newTag.',
+        'title'             => 'Zamiana :name',
+        'transfer'          => 'Zamień',
     ],
 ];

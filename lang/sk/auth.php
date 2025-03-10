@@ -22,6 +22,11 @@ return [
         'helper'    => 'Prosím potvrď tvoje heslo, aby bolo možné pokračovať.',
         'title'     => 'Potvrdenie hesla',
     ],
+    'continue'  => [
+        'facebook'  => 'Pokračovať cez Facebook',
+        'google'    => 'Pokračovať cez Google',
+        'x'         => 'Pokračovať cez X',
+    ],
     'failed'    => 'Prihlasovacie údaje nie sú správne.',
     'helpers'   => [
         'password'  => 'Zobraziť / Skryť heslo',
@@ -36,9 +41,11 @@ return [
         'login_with_google'     => 'Prihlásenie cez Google',
         'login_with_x'          => 'Prihlásenie cez X (pôvodne Twitter)',
         'new_account'           => 'Registrovať nové konto',
+        'no-account'            => 'Nemáš ešte konto?',
         'or'                    => 'ALEBO',
         'password_forgotten'    => 'Zabudnuté heslo?',
         'remember_me'           => 'Zapamätaj si ma',
+        'sign-up'               => 'Registruj sa',
         'submit'                => 'Prihlásiť',
         'title'                 => 'Prihlásenie',
     ],

@@ -25,6 +25,7 @@ return [
         'families'      => 'Planowanie rodziny',
         'locations'     => 'Niech się mury pną do góry',
         'markers'       => 'Palcem po mapie',
+        'organisations' => 'Załóż firmę',
         'plugins'       => 'Na dodatek',
         'quests'        => 'Szczwany plan',
         'tags'          => 'Wszystko pod kontrolą',

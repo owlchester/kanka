@@ -19,13 +19,28 @@ return [
     'errors'        => [],
     'fields'        => [
         'application'   => 'Solicitud',
+        'reason'        => 'Motivo de aprobación / rechazo',
     ],
     'helpers'       => [
-        'modal'             => 'Una campaña que está abierta a solicitudes y al público permite que los usuarios soliciten unirse a la campaña.',
-        'no_applications'   => 'Actualmente no hay solicitudes pendientes para unirse a la campaña. Los usuarios pueden solicitar unirse a la campaña visitando su panel de control y haciendo clic en el botón :button.',
+        'modal'                 => 'Una campaña que está abierta a solicitudes y al público permite que los usuarios soliciten unirse a la campaña.',
+        'no_applications'       => 'Actualmente no hay solicitudes pendientes para unirse a la campaña. Los usuarios pueden solicitar unirse a la campaña visitando su panel de control y haciendo clic en el botón :button.',
+        'no_applications_title' => 'No se han encontrado aplicaciones',
+        'reason'                => 'Si se proporciona, se notificará al solicitante con este motivo.',
+        'role'                  => 'Si se aprueba, el rol al que se añade el aplicante.',
+    ],
+    'open'          => [
+        'closed'    => 'Campaña cerrada',
+        'open'      => 'Campaña abierta',
+        'title'     => 'Campaña abierta',
     ],
     'placeholders'  => [
-        'note'  => 'Escribe tu solicitud para unirte a la campaña',
+        'note'      => 'Escribe tu solicitud para unirte a la campaña',
+        'reason'    => 'Tus razones',
+    ],
+    'public'        => [
+        'private'   => 'La campaña es privada.',
+        'public'    => 'La campaña es pública.',
+        'title'     => 'Campaña pública',
     ],
     'statuses'      => [],
     'toggle'        => [

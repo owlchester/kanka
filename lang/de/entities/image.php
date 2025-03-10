@@ -2,11 +2,12 @@
 
 return [
     'actions'               => [
-        'change_focus'  => 'Fokuspunkt ändern',
-        'replace_image' => 'Bild ersetzen',
-        'save-replace'  => 'Bild ersetzen',
-        'save_focus'    => 'Fokus speichern',
-        'view'          => 'Bild zeigen',
+        'change_focus'      => 'Fokuspunkt ändern',
+        'change_visibility' => 'Sichtbarkeit ändern',
+        'replace_image'     => 'Bild ersetzen',
+        'save-replace'      => 'Bild ersetzen',
+        'save_focus'        => 'Fokus speichern',
+        'view'              => 'Bild zeigen',
     ],
     'call-to-action'        => 'Klicke auf das Bild des Objekts, um seinen Fokuspunkt festzulegen, anstatt die automatische Vermutung zu verwenden.',
     'focus'                 => [
@@ -29,5 +30,9 @@ return [
         'panel_title'   => 'Objektbild ersetzt',
         'success'       => 'Bild ersetzt',
         'title'         => 'Objekt :name Bild ersetzt',
+    ],
+    'visibility'            => [
+        'helper'    => 'Ändere die Sichtbarkeit des Galeriebildes und bestimme, wer es sehen kann.',
+        'updated'   => 'Sichtbarkeit des Bildes aktualisiert.',
     ],
 ];

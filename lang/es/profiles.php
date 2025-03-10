@@ -27,6 +27,7 @@ return [
         'theme'                     => 'Tema',
     ],
     'helpers'                       => [
+        'new-password'  => 'Al cambiar la contraseña, se cerrará la sesión en todos los demás dispositivos.',
         'profile-name'  => 'Cambia la forma en que aparece tu nombre en tu :profile y en el :marketplace. Si se deja en blanco, se utilizará el nombre de tu cuenta en su lugar.',
     ],
     'newsletter'                    => [

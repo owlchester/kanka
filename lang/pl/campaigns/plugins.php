@@ -59,6 +59,7 @@ return [
     ],
     'pitch'         => 'Instaluj i zarządzaj dodatkami z :marketplace.',
     'status'        => [
+        'always'    => 'Ten rodzaj dodatku jest zawsze aktywny, póki go nie usunąć.',
         'disabled'  => 'Niektywny',
         'enabled'   => 'Aktywny',
     ],

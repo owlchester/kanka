@@ -11,6 +11,12 @@ return [
             'title' => 'Mörder',
         ],
     ],
+    'cached'        => 'Diese Statistiken werden alle :amount Stunden neu berechnet.',
+    'fields'        => [
+        'created'   => 'Erstellt am',
+        'creator'   => 'Erstellt von',
+        'general'   => 'Allgemein',
+    ],
     'helper'        => 'Verfolgen Sie Ihren Fortschritt, um verschiedene Erfolge für Ihre Kampagne freizuschalten. Diese Nummern werden alle 24 Stunden aktualisiert.',
     'pitch'         => 'Verfolge deinen Fortschritt beim Weltenbau anhand unserer Kampagnenerfolge.',
     'placeholder'   => ':amount von :target',
@@ -22,6 +28,7 @@ return [
         'locations' => 'Erstelle :target Ort',
         'races'     => 'Erstelle :target Spezies',
     ],
+    'title2'        => 'Statistiken',
     'titles'        => [
         'calendars' => 'Zeitnehmer  level :level',
         'characters'=> 'Namensgeber  level :level',

@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'customise' => 'Dashboard anpassen',
         'follow'    => 'Folgen',
         'join'      => 'beitreten',
         'unfollow'  => 'Nicht mehr folgen',
@@ -80,6 +81,7 @@ return [
             'new'               => 'Neues :type widget',
         ],
         'reorder'   => [
+            'helper'    => 'Zieh mich, um mich zu bewegen',
             'success'   => 'Widgets neu geordnet.',
         ],
         'title'     => 'Kampagnen Dashboard Einrichtung',
@@ -119,6 +121,7 @@ return [
         ],
         'create'                    => [
             'success'   => 'Widget zum Dashboard hinzugefügt.',
+            'title'     => 'Neues Widget',
         ],
         'delete'                    => [
             'success'   => 'Widget vom Dashboard entfernt.',
@@ -166,6 +169,7 @@ return [
                 'mentionless'   => 'Erwähnungslos (Objekte, die andere Objekte nicht erwähnen)',
                 'unmentioned'   => 'Nicht erwähnt (Objekte, die von anderen Objekten nicht erwähnt werden)',
             ],
+            'all-entities'      => 'Alle Objekte',
             'entity-header'     => 'Verwenden Sie den Objekt-Header als Bild',
             'filters'           => 'Filter',
             'help'              => 'Nur das zuletzt aktualisierte Objekt anzeigen, aber eine vollständige Vorschau des Objektes anzeigen',

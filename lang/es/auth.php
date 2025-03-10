@@ -11,6 +11,11 @@ return [
         'helper'    => 'Por favor confirma tu contraseña antes de continuar.',
         'title'     => 'Confirmación de contraseña.',
     ],
+    'continue'  => [
+        'facebook'  => 'Continuar con Facebook',
+        'google'    => 'Continuar con Google',
+        'x'         => 'Continuar con X',
+    ],
     'failed'    => 'Los datos introducidos no coinciden con ningún usuario registrado.',
     'helpers'   => [
         'password'  => 'Mostrar/ocultar contraseña',
@@ -24,9 +29,11 @@ return [
         'login_with_facebook'   => 'Acceder con Facebook',
         'login_with_google'     => 'Acceder con Google',
         'new_account'           => 'Crear cuenta',
+        'no-account'            => '¿No tienes una cuenta?',
         'or'                    => 'o bien',
         'password_forgotten'    => '¿Olvidaste tu contraseña?',
         'remember_me'           => 'Recordar',
+        'sign-up'               => 'Registrarse',
         'submit'                => 'Acceder',
         'title'                 => 'Acceder',
     ],
@@ -64,4 +71,5 @@ return [
         'title'     => 'Autenticación de dos factores',
     ],
     'throttle'  => 'Demasiados intentos de acceso. Por favor inténtelo en :seconds segundos.',
+    'x-twitter' => 'X antes conocido como Twitter',
 ];

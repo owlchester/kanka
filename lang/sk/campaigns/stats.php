@@ -11,6 +11,12 @@ return [
             'title' => 'Vrah',
         ],
     ],
+    'cached'        => 'Tieto štatistiky sú prepočítavané každých :amount hod.',
+    'fields'        => [
+        'created'   => 'Vytvorené dňa',
+        'creator'   => 'Vytvorené',
+        'general'   => 'Všeobecné',
+    ],
     'helper'        => 'Zaznamenávaj svoj postup pri odomykaní rôznych úspechov pre tvoju kampaň. Tieto štatistiky sú aktualizované každých 24 hodín.',
     'pitch'         => 'Zaznamenávaj postup tvorby tvojho sveta voči našim úspechom kampane.',
     'placeholder'   => ':amount z :target',
@@ -22,6 +28,7 @@ return [
         'locations' => 'Vytvoriť :target miest',
         'races'     => 'Vytvoriť :target rás',
     ],
+    'title2'        => 'Štatistiky',
     'titles'        => [
         'calendars' => 'Záznamník času úrovne :level',
         'characters'=> 'Zadávateľ mien úrovne :level',

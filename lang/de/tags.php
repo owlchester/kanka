@@ -25,6 +25,7 @@ return [
     ],
     'helpers'       => [
         'no_children'   => 'Es gibt derzeit kein Objekt, die mit diesem Tag getaggt sind.',
+        'no_posts'      => 'Derzeit gibt es keine Beiträge mit diesem Tag.',
     ],
     'hints'         => [
         'children'          => 'Diese Liste enthält alle Objekte, die direkt in dieser Kategorie und allen Unterkategorien sind.',
@@ -43,10 +44,13 @@ return [
     ],
     'tags'          => [],
     'transfer'      => [
-        'description'   => 'Verschiebe das Objeklt dieses Tags in ein anderes Tag.',
-        'fail'          => 'Die Übertragung von Objekten von :tag nach :newTag ist fehlgeschlagen',
-        'success'       => 'Objekte wurden erfolgreich von :tag nach :newTag übertragen',
-        'title'         => 'übertrage :name',
-        'transfer'      => 'übertrage',
+        'description'       => 'Verschiebe das Objeklt dieses Tags in ein anderes Tag.',
+        'fail'              => 'Die Übertragung von Objekten von :tag nach :newTag ist fehlgeschlagen',
+        'fail_post'         => 'Übertragung von Beiträgen von :tag nach :newTag fehlgeschlagen',
+        'post_description'  => 'Verschiebe die Beiträge dieses Tags in einen anderen Tag.',
+        'success'           => 'Objekte wurden erfolgreich von :tag nach :newTag übertragen',
+        'success_post'      => 'Erfolgreich Beiträge von :tag nach :newTag übertragen',
+        'title'             => 'übertrage :name',
+        'transfer'          => 'übertrage',
     ],
 ];

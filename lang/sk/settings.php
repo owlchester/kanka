@@ -143,6 +143,10 @@ return [
             'saved'     => 'Uložený spôsob platby',
         ],
         'cancel'                => [
+            'grace'     => [
+                'text'  => 'Tvoje predplatné bude končiť k :date. Po danom dátume sa tvoje prémiové kampane vrátia do štandardnej formy a ostatné výhody spojené s podporou Kanky sa stanú neaktívne.',
+                'title' => 'Kulantná doba',
+            ],
             'options'   => [
                 'competitor'        => 'Prechádzam ku konkurencii',
                 'financial'         => 'Moja finančná situácia sa zmenila',
@@ -153,6 +157,7 @@ return [
                 'other'             => 'Iné',
             ],
             'text'      => 'Ľutujeme, že odchádzaš! Zrušením tvojho predplatného ostáva toto aktívne do ďalšieho platobného obdobia, po ktorom stratíš tvoje boosty kampaní a ostatné výhody vďaka podpore Kanky. Vyplnením následného formulára nám pomôžeš zistiť, čo by sme mali robiť lepšie, alebo čo ťa viedlo k tomuto rozhodnutiu.',
+            'title'     => 'Zrušiť predplatné',
         ],
         'cancelled'             => 'Tvoje predplatné bolo zrušené. Môžeš ho obnoviť, keď ti aktívne predplatné skončí.',
         'change'                => [

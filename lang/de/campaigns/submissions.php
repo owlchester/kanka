@@ -19,13 +19,28 @@ return [
     'errors'        => [],
     'fields'        => [
         'application'   => 'Bewerbung',
+        'reason'        => 'Grund der Genehmigung / Ablehnung',
     ],
     'helpers'       => [
-        'modal'             => 'Bei einer Kampagne, die für Bewerbungen offen und öffentlich ist, können sich Benutzer für die Teilnahme an der Kampagne bewerben.',
-        'no_applications'   => 'Derzeit gibt es keine ausstehenden Bewerbungen zur Teilnahme an Ihrer Kampagne. Benutzer können sich für die Teilnahme an Ihrer Kampagne bewerben, indem sie das Dashboard besuchen und auf die Schaltfläche :button klicken.',
+        'modal'                 => 'Bei einer Kampagne, die für Bewerbungen offen und öffentlich ist, können sich Benutzer für die Teilnahme an der Kampagne bewerben.',
+        'no_applications'       => 'Derzeit gibt es keine ausstehenden Bewerbungen zur Teilnahme an Ihrer Kampagne. Benutzer können sich für die Teilnahme an Ihrer Kampagne bewerben, indem sie das Dashboard besuchen und auf die Schaltfläche :button klicken.',
+        'no_applications_title' => 'Keine Anwendungen gefunden',
+        'reason'                => 'Wenn dies der Fall ist, wird der Bewerber mit dieser Begründung benachrichtigt.',
+        'role'                  => 'Bei Genehmigung die Rolle, welcher der Bewerber hinzugefügt wird.',
+    ],
+    'open'          => [
+        'closed'    => 'Kamagpene ist geschlossen',
+        'open'      => 'Kampagne ist offen',
+        'title'     => 'Offene Kampagne',
     ],
     'placeholders'  => [
-        'note'  => 'Notieren Sie Ihre Bewerbung für die Teilnahme an der Kampagne',
+        'note'      => 'Notieren Sie Ihre Bewerbung für die Teilnahme an der Kampagne',
+        'reason'    => 'dein Grund',
+    ],
+    'public'        => [
+        'private'   => 'Kampagne ist privat',
+        'public'    => 'Kampagne ist öffentlich',
+        'title'     => 'öffentliche Kampagne',
     ],
     'statuses'      => [],
     'toggle'        => [

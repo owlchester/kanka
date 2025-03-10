@@ -30,6 +30,10 @@ return [
         'success'   => 'Zeitstrahl erfolgreich neu geordnet.',
         'title'     => 'Ordne den Zeitstrahl neu',
     ],
-    'show'          => [],
+    'show'          => [
+        'tabs'  => [
+            'reorder-elements'  => 'Elemente neu ordnen',
+        ],
+    ],
     'timelines'     => [],
 ];

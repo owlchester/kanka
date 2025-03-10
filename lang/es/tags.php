@@ -25,6 +25,7 @@ return [
     ],
     'helpers'       => [
         'no_children'   => 'Actualmente no hay entidades etiquetadas con esta etiqueta.',
+        'no_posts'      => 'Actualmente no hay entradas etiquetadas con esta etiqueta.',
     ],
     'hints'         => [
         'children'          => 'Aquí se muestran todas las entidades que pertenecen directamente a esta etiqueta y a todas las etiquetas anidadas.',
@@ -43,10 +44,13 @@ return [
     ],
     'tags'          => [],
     'transfer'      => [
-        'description'   => 'Mover las entidades de esta etiqueta a otra etiqueta.',
-        'fail'          => 'Fallo al transferir entidades de :tag a :newTag',
-        'success'       => 'Entidades de :tag transferidas con éxito a :newTag',
-        'title'         => 'Transferir :name',
-        'transfer'      => 'Transferir',
+        'description'       => 'Mover las entidades de esta etiqueta a otra etiqueta.',
+        'fail'              => 'Fallo al transferir entidades de :tag a :newTag',
+        'fail_post'         => 'Error al transferir entradas de :tag a :newTag',
+        'post_description'  => 'Mover las entradas de esta etiqueta a otra etiqueta.',
+        'success'           => 'Entidades de :tag transferidas con éxito a :newTag',
+        'success_post'      => 'Se han transferido correctamente las entradas de :tag a :newTag',
+        'title'             => 'Transferir :name',
+        'transfer'          => 'Transferir',
     ],
 ];

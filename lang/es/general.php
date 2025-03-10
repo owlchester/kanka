@@ -6,9 +6,10 @@ return [
     'required'      => 'Requerido',
     'select_all'    => 'Seleccionar todo',
     'success'       => [
-        'created'   => 'Se ha creado :name.',
-        'deleted'   => 'Se ha eliminado :name.',
-        'updated'   => 'Se ha actualizado :name.',
+        'created'           => 'Se ha creado :name.',
+        'deleted'           => 'Se ha eliminado :name.',
+        'deleted-cancel'    => 'Se ha eliminado :name. :cancel.',
+        'updated'           => 'Se ha actualizado :name.',
     ],
     'yes'           => 'Si',
 ];

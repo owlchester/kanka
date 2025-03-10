@@ -2,7 +2,12 @@
 
 return [
     'actions'   => [
-        'status'    => 'Stav :status',
+        'status'    => 'Stav: :status',
+    ],
+    'overview'  => [
+        'limited'   => ':amount z :total rolí vytvorených.',
+        'title'     => 'Dostupné role',
+        'unlimited' => ':amount z nekonečna rolí vytvorených.',
     ],
     'public'    => [
         'campaign'      => [

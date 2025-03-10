@@ -14,6 +14,7 @@ return [
     ],
     'fields'            => [
         'file'  => 'Plik',
+        'files' => 'Pliki',
         'name'  => 'Nazwa pliku',
     ],
     'max'               => [

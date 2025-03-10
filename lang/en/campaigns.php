@@ -401,11 +401,11 @@ return [
     ],
     'status'                            => [
         'free'      => 'Premium features disabled.',
+        'legacy'    => [
+            'title' => 'Boosted features (legacy)',
+        ],
         'premium'   => 'Premium features unlocked by :name.',
         'title'     => 'Premium features',
-        'legacy' => [
-            'title'     => 'Boosted features (legacy)',
-        ]
     ],
     'themes'                            => [
         'none'  => 'None (defaults to user\'s preference)',

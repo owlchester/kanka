@@ -28,6 +28,9 @@ return [
     'delete'        => [
         'success'   => 'Marcador :name eliminado.',
     ],
+    'details'       => [
+        'from-entity'   => 'De entidad',
+    ],
     'edit'          => [
         'success'   => 'Marcador :name actualizado.',
         'title'     => 'Editar marcador :name',

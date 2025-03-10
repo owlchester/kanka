@@ -6,6 +6,8 @@ return [
         'apply'             => 'Übernehmen',
         'back'              => 'Zurück',
         'change'            => 'Ändern',
+        'close'             => 'schließen',
+        'confirm'           => 'bestätigen',
         'copy'              => 'Kopieren',
         'copy_mention'      => 'Kopie [] erwähnen',
         'copy_to_campaign'  => 'Kopiere zu Kampagne',
@@ -108,6 +110,10 @@ return [
     'destroy_many'      => [
         'success'   => ':count Objekt gelöscht|:count Objekte gelöscht',
     ],
+    'dynamic'           => [
+        'permission'    => 'Du hast nicht die nötige Berechtigungen, um ein Objekt des Moduls :module zu erstellen.',
+        'unknown'       => 'Ungültiges Objekt des :module Moduls .',
+    ],
     'edit'              => 'Bearbeiten',
     'errors'            => [
         'boosted_campaigns'     => 'Diese Funktion ist nur für :boosted verfügbar',
@@ -155,6 +161,7 @@ return [
         'tooltip'           => 'Kurzinfo',
         'type'              => 'Typ',
         'visibility'        => 'Sichtbarkeit',
+        'word-count'        => 'Wort count: :number',
     ],
     'files'             => [
         'errors'    => [
@@ -265,6 +272,7 @@ return [
             'delete'        => 'Löschen',
             'edit'          => 'Bearbeiten',
             'toggle'        => 'Umschalten',
+            'view'          => 'Ansicht',
         ],
         'fields'            => [
             'member'    => 'Mitglied',
@@ -302,6 +310,7 @@ return [
         'race'          => 'Wähle eine Spezies',
         'tag'           => 'Wähle ein Tag',
         'timeline'      => 'Wähle einen Zeitstrahl',
+        'type'          => 'Art des Objekts',
         'user'          => 'wähle einen Benutzer',
     ],
     'relations'         => [],

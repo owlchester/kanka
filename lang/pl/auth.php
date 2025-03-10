@@ -22,6 +22,11 @@ return [
         'helper'    => 'Przed przejściem dalej potwierdź swoje hasło',
         'title'     => 'Potwierdzenie hasła',
     ],
+    'continue'  => [
+        'facebook'  => 'Kontynuuj z Facebook',
+        'google'    => 'Kontynuuj z Google',
+        'x'         => 'Kontynuuj z X',
+    ],
     'failed'    => 'Błędny login lub hasło.',
     'helpers'   => [
         'password'  => 'Pokaż/ukryj hasło',
@@ -36,9 +41,11 @@ return [
         'login_with_google'     => 'Zaloguj przez Google',
         'login_with_x'          => 'Logowanie przez X (dawniej Twitter)',
         'new_account'           => 'Zarejestruj nowe konto',
+        'no-account'            => 'Nie masz konta?',
         'or'                    => 'LUB',
         'password_forgotten'    => 'Nie pamiętasz hasła?',
         'remember_me'           => 'Zapamiętaj',
+        'sign-up'               => 'Zarejestruj się',
         'submit'                => 'Zaloguj',
         'title'                 => 'Logowanie',
     ],
