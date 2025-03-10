@@ -25,7 +25,6 @@ class IndexController extends Controller
     }
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
-
         if (!$entityType->isEnabled()) {
             return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
@@ -34,6 +33,11 @@ class IndexController extends Controller
                     'fix' => '<a href="' . route('campaign.modules', [$campaign, '#' . $entityType->code]) . '">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
+        }
+
+        // If not a special entity type, redirect to their "old" route
+        if (!$entityType->isSpecial()) {
+            return redirect()->route($entityType->pluralCode() . '.index', $campaign);
         }
 
         $this->entityType = $entityType;
