@@ -31,35 +31,26 @@ return [
             'email'     => 'Email',
             'password'  => 'Password',
         ],
-        'login_with_facebook'   => 'Accedi con Facebook',
-        'login_with_google'     => 'Accedi con Google',
-        'login_with_x'          => 'Accedi con X (ex Twitter)',
-        'new_account'           => 'Registra un nuovo account',
         'or'                    => 'OPPURE',
         'password_forgotten'    => 'Password dimenticata?',
-        'remember_me'           => 'Ricordami',
         'submit'                => 'Accedi',
         'title'                 => 'Accedi',
     ],
     'register'  => [
-        'already'                   => 'Hai già un account? :login',
-        'errors'                    => [
+        'already'   => 'Hai già un account? :login',
+        'errors'    => [
             'email_already_taken'   => 'Un account con questa email è già stato registrato.',
             'general_error'         => 'C\'è stato un errore durante la registrazione del tuo account. Per favore riprova.',
         ],
-        'fields'                    => [
+        'fields'    => [
             'email'     => 'Email',
             'name'      => 'Nome Utente',
             'password'  => 'Password',
-            'tos_clean' => 'Accetto le condizioni :privacy',
         ],
-        'log-in'                    => 'Accedi',
-        'register_with_facebook'    => 'Registrati con Facebook',
-        'register_with_google'      => 'Registrati con Google',
-        'register_with_x'           => 'Registrati con X (ex Twitter)',
-        'submit'                    => 'Registrati',
-        'title'                     => 'Registrati',
-        'tos'                       => 'Registrando un account, accetti i nostri :terms e la nostra :privacy.',
+        'log-in'    => 'Accedi',
+        'submit'    => 'Registrati',
+        'title'     => 'Registrati',
+        'tos'       => 'Registrando un account, accetti i nostri :terms e la nostra :privacy.',
     ],
     'reset'     => [
         'fields'    => [

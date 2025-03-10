@@ -33,33 +33,26 @@ return [
             'email'     => 'Электронная почта',
             'password'  => 'Пароль',
         ],
-        'login_with_facebook'   => 'Войти через Facebook',
-        'login_with_google'     => 'Войти через Google',
-        'new_account'           => 'Создать новый аккаунт',
         'or'                    => 'ИЛИ',
         'password_forgotten'    => 'Забыли пароль?',
-        'remember_me'           => 'Запомнить меня',
         'submit'                => 'Войти',
         'title'                 => 'Вход',
     ],
     'register'  => [
-        'already'                   => 'Уже есть аккаунт? :login',
-        'errors'                    => [
+        'already'   => 'Уже есть аккаунт? :login',
+        'errors'    => [
             'email_already_taken'   => 'Аккаунт с такой электронной почтой уже зарегистрирован.',
             'general_error'         => 'При создании вашего аккаунта произошла ошибка. Пожалуйста, попробуйте еще раз.',
         ],
-        'fields'                    => [
+        'fields'    => [
             'email'     => 'Электронная почта',
             'name'      => 'Имя пользователя',
             'password'  => 'Пароль',
-            'tos_clean' => 'Я соглашаюсь с :privacy.',
         ],
-        'log-in'                    => 'Войти',
-        'register_with_facebook'    => 'Регистрация через Facebook',
-        'register_with_google'      => 'Регистрация через Google',
-        'submit'                    => 'Зарегистрироваться',
-        'title'                     => 'Регистрация',
-        'tos'                       => 'Регистрируясь, вы подтверждаете, что прочли :terms и :privacy и согласны с ними.',
+        'log-in'    => 'Войти',
+        'submit'    => 'Зарегистрироваться',
+        'title'     => 'Регистрация',
+        'tos'       => 'Регистрируясь, вы подтверждаете, что прочли :terms и :privacy и согласны с ними.',
     ],
     'reset'     => [
         'fields'    => [

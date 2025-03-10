@@ -26,35 +26,28 @@ return [
             'email'     => 'Email',
             'password'  => 'Contraseña',
         ],
-        'login_with_facebook'   => 'Acceder con Facebook',
-        'login_with_google'     => 'Acceder con Google',
-        'new_account'           => 'Crear cuenta',
         'no-account'            => '¿No tienes una cuenta?',
         'or'                    => 'o bien',
         'password_forgotten'    => '¿Olvidaste tu contraseña?',
-        'remember_me'           => 'Recordar',
         'sign-up'               => 'Registrarse',
         'submit'                => 'Acceder',
         'title'                 => 'Acceder',
     ],
     'register'  => [
-        'already'                   => '¿Ya tienes una cuenta? :login',
-        'errors'                    => [
+        'already'   => '¿Ya tienes una cuenta? :login',
+        'errors'    => [
             'email_already_taken'   => 'Ya existe una cuenta asociada a este correo electrónico.',
             'general_error'         => 'Ha ocurrido un error mientras se registraba la cuenta. Inténtalo de nuevo.',
         ],
-        'fields'                    => [
+        'fields'    => [
             'email'     => 'Correo electrónico',
             'name'      => 'Usuario',
             'password'  => 'Contraseña',
-            'tos_clean' => 'Acepto los :privacy',
         ],
-        'log-in'                    => 'Iniciar sesión',
-        'register_with_facebook'    => 'Registrarse con Facebook',
-        'register_with_google'      => 'Registrarse con Google',
-        'submit'                    => 'Registrarse',
-        'title'                     => 'Registrarse',
-        'tos'                       => 'Al registrar una cuenta, usted acepta nuestros :terms y :privacy.',
+        'log-in'    => 'Iniciar sesión',
+        'submit'    => 'Registrarse',
+        'title'     => 'Registrarse',
+        'tos'       => 'Al registrar una cuenta, usted acepta nuestros :terms y :privacy.',
     ],
     'reset'     => [
         'fields'    => [

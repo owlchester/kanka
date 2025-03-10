@@ -21,29 +21,23 @@ return [
             'email'     => 'Email',
             'password'  => 'Lozinka',
         ],
-        'login_with_facebook'   => 'Prijavi se pomoću Facebook računa',
-        'login_with_google'     => 'Prijavi se pomoću Google računa',
-        'new_account'           => 'Registriraj novi račun',
         'or'                    => 'ILI',
         'password_forgotten'    => 'Zaboravljena lozinka?',
-        'remember_me'           => 'Zapamti me',
         'submit'                => 'Prijava',
         'title'                 => 'Prijava',
     ],
     'register'  => [
-        'errors'                    => [
+        'errors'    => [
             'email_already_taken'   => 'Račun s ovom email adresom je već registriran.',
             'general_error'         => 'Dogodila se pogreška prilikom registracije. Molimo, pokušaj ponovno.',
         ],
-        'fields'                    => [
+        'fields'    => [
             'email'     => 'Email',
             'name'      => 'Korisničko ime',
             'password'  => 'Lozinka',
         ],
-        'register_with_facebook'    => 'Registriraj se pomoću Facebook računa',
-        'register_with_google'      => 'Registriraj se pomoću Google računa',
-        'submit'                    => 'Registracija',
-        'title'                     => 'Registracija',
+        'submit'    => 'Registracija',
+        'title'     => 'Registracija',
     ],
     'reset'     => [
         'fields'    => [
