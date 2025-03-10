@@ -28,6 +28,7 @@ return [
         'theme'                     => 'Theme',
     ],
     'helpers'                       => [
+        'new-password'  => 'Wenn du dein Passwort änderst, wirst du bei allen anderen Geräten abgemeldet.',
         'profile-name'  => 'Ändere die Art und Weise, wie dein Name in deinem :profile und dem :marketplace erscheint. Wenn du das Feld leer lässt, wird stattdessen dein Kontoname verwendet.',
     ],
     'newsletter'                    => [

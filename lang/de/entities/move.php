@@ -27,4 +27,7 @@ return [
     'success'       => 'Objekt :name verschoben',
     'success_copy'  => 'Objekt :name kopiert',
     'title'         => 'Bewege :name',
+    'warnings'      => [
+        'custom'    => 'Dieses Objekt gehört nicht zu einem Standardmodul, sondern zu einem benutzerdefinierten „:module“-Objekttyp. Sie wird als Notiz-Objekt in der Zielkampagne erstellt.',
+    ],
 ];

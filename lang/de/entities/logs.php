@@ -8,6 +8,7 @@ return [
         'delete_post'   => 'Beitrag gelöscht',
         'reorder_post'  => 'Beiträge neu geordnet',
         'restore'       => 'wiederherstellen',
+        'reveal'        => 'Details anzeigen',
         'update'        => 'Aktualisieren',
         'update_post'   => 'aktualisiere Beitrag ":post"',
         'view'          => 'Änderungen anzeigen',
@@ -17,7 +18,11 @@ return [
         'action'    => 'Aktion',
         'date'      => 'Datum',
     ],
+    'filters'           => [
+        'keywords'  => 'Schlüsselwörter',
+    ],
     'impersonated'      => 'Dargestellt von :name',
+    'none'              => 'Keine',
     'show'              => [
         'title' => 'Objektprotokoll: :name',
     ],

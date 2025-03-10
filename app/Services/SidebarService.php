@@ -724,7 +724,7 @@ class SidebarService
         }
         $bookmarks = $this->campaign->bookmarks()->active()->ordered()->with(['target' => function ($sub) {
             return $sub->select('id', 'type_id', 'entity_id');
-        }, 'entityType'])->get();
+        }, 'entityType', 'target.entityType'])->get();
         /** @var Bookmark $bookmark */
         foreach ($bookmarks as $bookmark) {
             if ($bookmark->entityType && $bookmark->entityType->isSpecial() && !$bookmark->entityType->isEnabled()) {

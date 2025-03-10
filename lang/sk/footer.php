@@ -15,6 +15,7 @@ return [
         'other' => 'Iné jazyky',
         'title' => 'Zvoľ tvoj jazyk',
     ],
+    'made'              => 'Vytovrené s ❤️ v Ženeve, Švajčiarsko',
     'marketplace'       => 'Trhovisko',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Platforma',
@@ -26,8 +27,10 @@ return [
     'resources'         => 'Zdroje',
     'roadmap'           => 'Plán',
     'security'          => 'Bezpečnosť',
+    'server-time'       => 'Toto je čas na našom serveri',
     'status'            => 'Stav služby',
     'terms'             => 'Všeobecné podmienky',
+    'thanks'            => 'Umožnené jedine s pomocou našich podporujúcich.',
     'translator_call'   => 'Kanka je prekladaná do iných jazykov vďaka našej úžasnej komunite. Ak chceš pomôcť s prekladom Kanky do tvojho jazyka, ozvi sa nám na :discord!',
     'whats-new'         => 'Čo je nové',
 ];

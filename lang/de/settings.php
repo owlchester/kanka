@@ -143,6 +143,10 @@ return [
             'saved'     => 'Gespeicherte Zahlungsmethode',
         ],
         'cancel'                => [
+            'grace'     => [
+                'text'  => 'Dein Abonnement ist bereits so eingestellt, dass es am :Datum endet. Danach wird deine Premium-Kampagnen wieder zu Standard-Kampagnen und andere Vorteile, die mit der Unterstützung von Kanka verbunden sind, werden deaktiviert.',
+                'title' => 'Karenzzeit',
+            ],
             'options'   => [
                 'competitor'        => 'Wechsel zu einem Wettbewerber',
                 'financial'         => 'Finanzielle Situation verändert',
@@ -153,6 +157,7 @@ return [
                 'other'             => 'Andere',
             ],
             'text'      => 'Es tut uns leid dich gehen zu sehen! Wenn Sie Ihr Abonnement kündigen, bleibt es bis zu Ihrem nächsten Abrechnungszyklus aktiv. Danach verlieren Sie Ihre Kampagnen-Boosts und andere Vorteile im Zusammenhang mit der Unterstützung von Kanka. Füllen Sie das folgende Formular aus, um uns mitzuteilen, was wir besser machen können oder was zu Ihrer Entscheidung geführt hat.',
+            'title'     => 'Abonnement kündigen',
         ],
         'cancelled'             => 'Ihr Abonnement wurde gekündigt. Sie können ein Abonnement verlängern, sobald Ihr aktuelles Abonnement endet.',
         'change'                => [

@@ -22,6 +22,11 @@ return [
         'helper'    => 'Przed przejściem dalej potwierdź swoje hasło',
         'title'     => 'Potwierdzenie hasła',
     ],
+    'continue'  => [
+        'facebook'  => 'Kontynuuj z Facebook',
+        'google'    => 'Kontynuuj z Google',
+        'x'         => 'Kontynuuj z X',
+    ],
     'failed'    => 'Błędny login lub hasło.',
     'helpers'   => [
         'password'  => 'Pokaż/ukryj hasło',
@@ -32,35 +37,28 @@ return [
             'email'     => 'Email',
             'password'  => 'Hasło',
         ],
-        'login_with_facebook'   => 'Zaloguj przez Facebooka',
-        'login_with_google'     => 'Zaloguj przez Google',
-        'login_with_x'          => 'Logowanie przez X (dawniej Twitter)',
-        'new_account'           => 'Zarejestruj nowe konto',
+        'no-account'            => 'Nie masz konta?',
         'or'                    => 'LUB',
         'password_forgotten'    => 'Nie pamiętasz hasła?',
-        'remember_me'           => 'Zapamiętaj',
+        'sign-up'               => 'Zarejestruj się',
         'submit'                => 'Zaloguj',
         'title'                 => 'Logowanie',
     ],
     'register'  => [
-        'already'                   => 'Masz już konto? :login',
-        'errors'                    => [
+        'already'   => 'Masz już konto? :login',
+        'errors'    => [
             'email_already_taken'   => 'Istnieje już konto związane z tym adresem email.',
             'general_error'         => 'Podczas rejestracji wystąpił błąd. Spróbuj jeszcze raz.',
         ],
-        'fields'                    => [
+        'fields'    => [
             'email'     => 'Email',
             'name'      => 'Nazwa użytkownika',
             'password'  => 'Hasło',
-            'tos_clean' => 'Akceptuję :privacy',
         ],
-        'log-in'                    => 'Zaloguj się',
-        'register_with_facebook'    => 'Zarejestruj przez Facebooka',
-        'register_with_google'      => 'Zarejestruj przez Google',
-        'register_with_x'           => 'Rejestracja przez X (dawniej Twitter)',
-        'submit'                    => 'Zarejestruj',
-        'title'                     => 'Rejestracja',
-        'tos'                       => 'Rejestrując konto zgadzasz się na nasze :terms i :privacy',
+        'log-in'    => 'Zaloguj się',
+        'submit'    => 'Zarejestruj',
+        'title'     => 'Rejestracja',
+        'tos'       => 'Rejestrując konto zgadzasz się na nasze :terms i :privacy',
     ],
     'reset'     => [
         'fields'    => [

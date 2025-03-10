@@ -27,7 +27,7 @@ class EntityTransformApiController extends ApiController
         $this->authorize('access', $campaign);
         $count = 0;
 
-        $entityType = EntityType::inCampaign($campaign)->find($request->entity_type);
+        $entityType = EntityType::inCampaign($campaign)->where('code', $request->entity_type)->first();
         foreach ($request->entities as $id) {
             $entity = Entity::find($id);
             if ($this->authorize('update', $entity)) {

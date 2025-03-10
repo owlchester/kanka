@@ -49,6 +49,11 @@ return [
     'tooltips'          => [
         'equipped'  => 'Dieser Artikel ist ausgestattet mit',
     ],
+    'tutorials'         => [
+        'character' => 'Behalte den Überblick darüber, was :name besitzt oder zu verkaufen hat, indem du Gegenstände zu seinem Inventar hinzufügst.',
+        'location'  => 'Behalte im Auge, was :name zu verkaufen oder zu plündern hat, indem du Gegenstände zu seinem Inventar hinzufügst.',
+        'other'     => 'Behalte im Auge, was :name besitzt, indem du Gegenstände zu seinem Inventar hinzufügst.',
+    ],
     'update'            => [
         'success'   => 'Gegenstand \':name\' für :entity aktualisiert',
         'title'     => 'Aktualisiere Gegenstand von :name',

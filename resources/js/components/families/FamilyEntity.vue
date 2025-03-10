@@ -6,7 +6,7 @@
                     <i class="fa-solid fa-3x fa-question" aria-hidden="true"/>
                 </span>
                 <a v-bind:href="entity.url" v-if="!node.isUnknown">
-                    <img v-bind:src="entity.thumb" class="rounded-full entity-image" v-bind:alt="entity.name" />
+                    <img v-bind:src="entity.thumb" class="rounded-full entity-image w-10 h-10" v-bind:alt="entity.name" />
                 </a>
             </div>
             <div class="grow justify-center truncate">

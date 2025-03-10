@@ -44,6 +44,7 @@ return [
         'open'                              => 'Otvorená pre prihlášky',
         'post_collapsed'                    => 'Nové príspevky k objektom sú štandardne minimalizované.',
         'premium'                           => 'Prémium poskytnuté od :name',
+        'private_mention_visibility'        => 'Súkromné referencie',
         'public'                            => 'Viditeľnosť kampane',
         'public_campaign_filters'           => 'Filter verejných kampaní',
         'related_visibility'                => 'Viditeľnosť príbuzných prvkov',
@@ -73,6 +74,7 @@ return [
         'no_entry'                          => 'Vyzerá to tak, že kampaň ešte nemá žiaden popis! Zmeňme to.',
         'permissions_tab'                   => 'Kontroluj štandardné nastavenia súkromia a viditeľnosti nových objektov s nasledujúcimi možnosťami.',
         'premium'                           => 'Niektoré funkcionality sú dostupné, lebo boli odomknuté prémiové funkcionality. Zisti viac na stránke :settings.',
+        'private_mention_visibility'        => 'Kontroluje nastavenie, či sú referencie na súkromné objekty viditeľné alebo nie.',
         'public_campaign_filters'           => 'Pomôž iným nájsť tvoju kampaň medzi ostatnými verejnými doplnením týchto informácií.',
         'public_no_visibility'              => 'Hlavu hore! Tvoja kampaň je verejná, ale rola pre verejnosť nemá k ničomu prístup. :fix',
         'related_visibility'                => 'Štandardná hodnota viditeľnosti, keď vytváraš nový prvok s týmto poľom (poznámky objektov, vlastností, schopností, atď.)',
@@ -86,7 +88,7 @@ return [
     'invites'                           => [
         'actions'               => [
             'copy'  => 'Kopírovať link do schránky',
-            'link'  => 'Nový link',
+            'link'  => 'Pozvať ľudí',
         ],
         'create'                => [
             'buttons'       => [
@@ -109,6 +111,10 @@ return [
             'token'     => 'Žetón',
             'type'      => 'Typ',
             'usage'     => 'Max. počet použití',
+        ],
+        'helpers'               => [
+            'role'  => 'Užívatelia musia byť súčasťou kampane, aby mohli obdržať rolu admina.',
+            'usage' => 'Koľkokrát môže byť pozvánkový link použitý, než sa stane nefunkčným.',
         ],
         'unlimited_validity'    => 'Neobmedzený',
         'usages'                => [
@@ -163,6 +169,10 @@ return [
             'viewer'    => 'Divák',
         ],
         'switch_back_success'   => 'Teraz si späť ako tvoj vlastný užívateľ.',
+    ],
+    'mentions'                          => [
+        'private'   => 'Skryť meno cieľa',
+        'visible'   => 'Zobraziť meno cieľa',
     ],
     'modules'                           => [
         'permission-disabled'   => 'Tento modul je deaktivovaný.',
@@ -375,8 +385,10 @@ return [
             'applications'      => 'Prihlášky',
             'campaign'          => 'Kampaň',
             'customisation'     => 'Úprava',
+            'danger'            => 'Výstrahy',
             'data'              => 'Údaje',
             'default-images'    => 'Prednastavené obrázky',
+            'deletion'          => 'Odstránenie',
             'export'            => 'Export',
             'import'            => 'Import',
             'information'       => 'Informácie',
@@ -387,10 +399,16 @@ return [
             'recovery'          => 'Obnovenie',
             'roles'             => 'Roly',
             'sidebar'           => 'Bočné menu',
+            'stats'             => 'Štatistiky',
             'styles'            => 'Témy',
             'webhooks'          => 'Webhooky',
         ],
         'title'     => 'Kampaň :name',
+    ],
+    'status'                            => [
+        'free'      => 'Prémiové funkcionality sú neaktívne.',
+        'premium'   => 'Vďaka :name sú prémiové funkcionality aktívne.',
+        'title'     => 'Prémiové funkcionality',
     ],
     'superboosted'                      => [],
     'themes'                            => [
@@ -405,6 +423,10 @@ return [
             'explorer'  => 'Prehliadač vzťahov (ak dostupný, pre boostnuté kampane)',
             'list'      => 'Rozhranie zoznamu',
         ],
+        'descendants'       => [
+            'all'       => 'Štandardne zobraziť všetky podradené objekty',
+            'direct'    => 'Štandardne zobraziť len priame podradené objekty',
+        ],
         'entity_history'    => [
             'hidden'    => 'Viditeľné len pre adminov kampane',
             'visible'   => 'Viditeľné pre členov',
@@ -412,6 +434,7 @@ return [
         'fields'            => [
             'connections'       => 'Štandardné rozhranie vzťahov objektu',
             'connections_mode'  => 'Štandardný mód prehliadača vzťahov',
+            'descendants'       => 'Filtrovanie podradených objektov',
             'entity_history'    => 'Protokol histórie objektu',
             'entity_image'      => 'Obrázok objektu',
             'member_list'       => 'Zoznam členov kampane',
@@ -420,6 +443,7 @@ return [
         'helpers'           => [
             'connections'       => 'Ak klikneš na podstránku so vzťahmi objektu, vyber si štandardné zobrazené rozhranie.',
             'connections_mode'  => 'Keď zobrazuješ prehliadač vzťahov objektu, definuj štandardný zvolený mód.',
+            'descendants'       => 'Kontroluje nastavenie filtra, ktorý zobrazuje zoznam podradených objektov, napr. postavy na danom mieste.',
             'entity-history'    => 'Kontroluj, kto vidí posledné zmeny v jednotlivých objektoch kampane.',
             'member-list'       => 'Kontroluj, kto vidí koho v kampani.',
             'other'             => 'Ďalšie možnosti zobrazenia kampane.',
@@ -434,8 +458,8 @@ return [
         'other'             => 'Ostatné',
     ],
     'visibilities'                      => [
-        'private'   => 'Súkromný',
-        'public'    => 'Verejný',
+        'private'   => 'Súkromná kampaň',
+        'public'    => 'Verejná kampaň',
         'review'    => 'Čaká na schválenie',
     ],
     'warning'                           => [],

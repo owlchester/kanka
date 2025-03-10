@@ -2,10 +2,16 @@
 
 return [
     'create'        => [
-        'title' => 'Nuevo post',
+        'template'  => [
+            'helper'    => 'Los administradores de la campaña han definido los siguientes posts como plantillas que pueden reutilizarse.',
+        ],
+        'title'     => 'Nuevo post',
     ],
     'fields'        => [
         'name'  => 'Nombre',
+    ],
+    'helpers'       => [
+        'new'   => 'Añadir un nuevo post a esta entidad.',
     ],
     'placeholders'  => [
         'name'  => 'Nombre del post',

@@ -16,6 +16,11 @@ return [
         'title'         => 'Galéria',
         'unauthorized'  => 'Žiadna z tvojich rolí nemá povolenie na "prehliadanie galérie".',
     ],
+    'cta'       => [
+        'action'    => 'Odomknúť viac úložného priestoru',
+        'helper'    => 'Odomkni až do :size GiB úložného priesotru pre :premium-campaign.',
+        'title'     => 'Úložisko plné',
+    ],
     'delete'    => [
         'success'   => '[0] Odstránených 0 prvkov|[1] Odstránený 1 prvok|{2,4} Odstránené :count prvky|{5,*} Odstránených :count prvkov',
     ],

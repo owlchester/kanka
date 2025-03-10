@@ -60,7 +60,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
     'asset_url' => env('ASSET_URL'),
-    'site_name' => env('APP_SITE_NAME', 'my self hosted miscellany'),
+    'site_name' => env('APP_SITE_NAME', 'my self hosted worldbuilding app'),
 
     /*
     |--------------------------------------------------------------------------

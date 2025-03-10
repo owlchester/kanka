@@ -10,7 +10,7 @@ use App\Models\User;
 trait UserAware
 {
     /**  */
-    public User|null $user;
+    public User $user;
 
     public function user(User $user): self
     {
@@ -18,8 +18,14 @@ trait UserAware
         return $this;
     }
 
+    public function userless(): self
+    {
+        unset($this->user);
+        return $this;
+    }
+
     public function hasUser(): bool
     {
-        return !empty($this->user);
+        return isset($this->user);
     }
 }

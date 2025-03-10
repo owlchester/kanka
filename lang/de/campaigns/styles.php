@@ -46,6 +46,8 @@ return [
         'title'     => 'Stile neu anordnen',
     ],
     'theme'         => [
+        'none'      => 'Benutzerpräferenz verwenden',
+        'override'  => 'Thema überschreiben',
         'success'   => 'Kampagnenthema aktualisiert.',
         'title'     => 'Aktualisieren Sie das Kampagnenthema',
     ],

@@ -29,26 +29,26 @@ return [
     ],
     'event'         => [
         'create'    => [
-            'success'   => 'Utworzono wydarzenie.',
-            'title'     => 'Dodaj wydarzenie do :name',
+            'success'   => 'Utworzono epizod.',
+            'title'     => 'Nowy epizod',
         ],
-        'destroy'   => 'Wydarzenie usunięto z kalendarza \':name\'.',
+        'destroy'   => 'Usunięto epizod z \':name\'.',
         'edit'      => [
-            'success'   => 'Zmieniono wydarzenie w kalendarzu.',
-            'title'     => 'Aktualizuj wydarzenie dla :name',
+            'success'   => 'Zmieniono epizod.',
+            'title'     => 'Edycja epizodu elementu :name',
         ],
         'errors'    => [
             'invalid_entity'    => 'Wybrano niewłaściwy element.',
         ],
         'helpers'   => [
-            'other_calendar'    => 'Edytujesz ważną datę zapisaną w kalendarzu :calendar.',
+            'other_calendar'    => 'Edytujesz epizod zapisany w kalendarzu :calendar.',
         ],
-        'success'   => 'Dodano do kalendarza wydarzenie \':event\'.',
+        'success'   => 'Epizod \':event\' zaznaczono w kalendarzu :calendar.',
     ],
     'events'        => [
         'bulks'     => [
-            'delete'    => '{1} Usunięto :count przypomnienie.|[2,4] Usunięto :count przypomnienia.|[5,*] Usunięto :count przypomnień.',
-            'patch'     => '{1} Zmieniono :count przypomnienie.|[2,4] Zmieniono :count przypomnienia.|[5,*] Zmieniono :count przypomnień.',
+            'delete'    => '{1} Usunięto :count epizod.|[2,4] Usunięto :count epizody.|[5,*] Usunięto :count episodów.',
+            'patch'     => '{1} Zmieniono :count epizod.|[2,4] Zmieniono :count epizody.|[5,*] Zmieniono :count epizodów.',
         ],
         'end'       => '(koniec)',
         'filters'   => [
@@ -100,12 +100,12 @@ return [
         'start_offset'      => 'Domyślnie kalendarz zaczyna się pierwszego dnia roku 0. Liczba w tym polu zmienia położenie pierwszego dnia kalendarza.',
     ],
     'hints'         => [
-        'event_length'      => 'Czas trwania wydarzenia. Nie może być dłuższy, niż dwa miesiące.',
+        'event_length'      => 'Czas trwania epizodu, w dniach. Wyświetlany będzie tylko przez pierwsze dwa lata.',
         'is_incrementing'   => 'Kalendarze, którym zaznaczono tę opcję, automatycznie przesuwają w przód datę każdego dnia o 00:00 UTC.',
         'leap_year'         => 'Ten kalendarz posiada lata przestępne.',
         'months'            => 'Kalendarz powinien mieć co najmniej 2 miesiące.',
         'moons'             => 'Dodanie księżyca spowoduje, że w kalendarzu wyświetlana będzie każda pełnia i nów. Jeżeli cykl księżycowy jest dłuższy niż 10 dni, pojawią się też informacje o pierwszej i trzeciej kwadrze.',
-        'parent_calendar'   => 'W kalendarzu pojawiają się wszystkie wydarzenia oraz efekty pogody z wybranego kalendarza źródłowego.',
+        'parent_calendar'   => 'W kalendarzu pojawiają się wszystkie epizody oraz efekty pogody z wybranego kalendarza źródłowego.',
         'reset'             => 'Każdy miesiąc lub rok zaczyna się zawsze od pierwszego dnia tygodnia.',
         'seasons'           => 'By dodać porę roku wystarczy określić, kiedy się zaczyna. Kanka obliczy resztę.',
         'show_birthdays'    => 'Co roku wyświetla w kalendarzu urodziny postaci o ustawionej dacie urodzin, aż do chwili ich śmierci.',
@@ -195,7 +195,7 @@ return [
         'leap_year_month'   => 'Miesiąc, do którego są dodane',
         'leap_year_offset'  => 'Co ile lat rok jest przestępny',
         'leap_year_start'   => 'Który rok jest przestępny jako pierwszy',
-        'length'            => 'Długość wydarzenia w dniach',
+        'length'            => 'Długość epizodu w dniach',
         'months'            => 'Liczba miesięcy w roku',
         'recurring_until'   => 'Ostatni rok cyklu (zostaw puste, jeżeli cykl ma trwać bez końca)',
         'seasons'           => 'Liczba pór roku',
@@ -210,7 +210,7 @@ return [
         'moon_last_quarter'     => ':moon - ostatnia kwadra',
         'moon_new'              => ':moon - nów',
         'tabs'                  => [
-            'events'    => 'Wydarzenia w kalendarzu',
+            'events'    => 'Epizody',
             'weather'   => 'Pogoda',
         ],
     ],
@@ -223,6 +223,6 @@ return [
         'moon_offset'   => 'Przesunięcie pierwszej pełni nie może być większe, niż długość pierwszego miesiąca w kalendarzu.',
     ],
     'warnings'      => [
-        'event_length'  => 'Przypomnienia trwające wiele lat są widoczne tylko przez pierwsze dwa lata. Więcej na ten temat - patrz : documentation.',
+        'event_length'  => 'Epizody trwające wiele lat są widoczne tylko przez pierwsze dwa lata. Więcej na ten temat - patrz : documentation.',
     ],
 ];

@@ -57,16 +57,17 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
-        's3-backup' => [
+        'backup' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET_BACKUP'),
+            'key' => env('HETZNER_S3_ACCESS_KEY_ID'),
+            'secret' => env('HETZNER_S3_ACCESS_KEY_SECRET'),
+            'region' => env('HETZNER_S3_REGION'),
+            'bucket' => env('S3_BUCKET_BACKUP'),
             'root' => env('APP_ENV'),
-            'url' => env('AWS_URL_BACKUP', env('AWS_URL')),
-            'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'endpoint' => env('HETZNER_S3_ENDPOINT'),
+            'use_path_style_endpoint' => true,
+            'throw' => false,
+            'visibility' => 'private',
         ],
 
         's3-assets' => [

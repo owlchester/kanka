@@ -97,6 +97,11 @@ return [
         'unlock'        => 'Attribut freigeschaltet',
         'unpin'         => 'Attribut nicht angepinnt',
     ],
+    'tutorials'     => [
+        'character' => 'Sie können zum Beispiel die Eigenschaften :hp und :str haben.',
+        'general'   => 'Attribute sind kleine Informationen, die mit :name verbunden sind.',
+        'location'  => 'Sie könnten zum Beispiel eine Eigenschaft :pop. haben.',
+    ],
     'types'         => [
         'attribute' => 'Attribute',
         'block'     => 'Block',

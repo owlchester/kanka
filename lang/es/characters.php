@@ -12,6 +12,12 @@ return [
     'destroy'       => [],
     'dice_rolls'    => [],
     'edit'          => [],
+    'families'      => [
+        'reorder'   => [
+            'success'   => 'Las familias del personaje se han actualizado correctamente.',
+        ],
+        'title'     => 'Administrar familias de :name',
+    ],
     'fields'        => [
         'age'                       => 'Edad',
         'is_appearance_pinned'      => 'Apariencia fijada',
@@ -85,6 +91,12 @@ return [
             'quest_giver'   => 'Misiones que el personaje ha promovido.',
             'quest_member'  => 'Misiones de las que el personaje es miembro.',
         ],
+    ],
+    'races'         => [
+        'reorder'   => [
+            'success'   => 'Razas del personaje actualizadas correctamente',
+        ],
+        'title'     => 'Administrar las razas de :name',
     ],
     'sections'      => [
         'appearance'    => 'Apariencia',

@@ -11,6 +11,11 @@ return [
         'helper'    => 'Bitte bestätigen Sie Ihr Passwort, bevor Sie fortfahren können.',
         'title'     => 'Passwort Bestätigung',
     ],
+    'continue'  => [
+        'facebook'  => 'Mit facebook fortfahren',
+        'google'    => 'Mit google fortfahren',
+        'x'         => 'Mit X fortfahren',
+    ],
     'failed'    => 'Wir kennen diese Logindaten nicht.',
     'helpers'   => [
         'password'  => 'Passwort anzeigen / verbergen',
@@ -21,35 +26,28 @@ return [
             'email'     => 'Email',
             'password'  => 'Passwort',
         ],
-        'login_with_facebook'   => 'Login mit Facebook',
-        'login_with_google'     => 'Login mit Google',
-        'login_with_x'          => 'Anmeldung mit X (ehemals Twitter)',
-        'new_account'           => 'Registriere einen neuen Account',
+        'no-account'            => 'Du hast noch kein Konto?',
         'or'                    => 'ODER',
         'password_forgotten'    => 'Passwort vergessen?',
-        'remember_me'           => 'Benutzerdaten merken',
+        'sign-up'               => 'registriere dich',
         'submit'                => 'Login',
         'title'                 => 'Login',
     ],
     'register'  => [
-        'already'                   => 'Hast du schon ein Konto? :login',
-        'errors'                    => [
+        'already'   => 'Hast du schon ein Konto? :login',
+        'errors'    => [
             'email_already_taken'   => 'Ein Account mit dieser Email ist bereits registriert.',
             'general_error'         => 'Beim erstellen des Accounts ist ein Fehler aufgetreten. Bitte erneut versuchen.',
         ],
-        'fields'                    => [
+        'fields'    => [
             'email'     => 'Email',
             'name'      => 'Nutzername',
             'password'  => 'Passwort',
-            'tos_clean' => 'Ich stimme der :privacy zu',
         ],
-        'log-in'                    => 'Log in',
-        'register_with_facebook'    => 'Mit Facebook registrieren',
-        'register_with_google'      => 'Mit Google registrieren',
-        'register_with_x'           => 'Registriert mit X (ehemals Twitter)',
-        'submit'                    => 'Registrieren',
-        'title'                     => 'Registrieren',
-        'tos'                       => 'Durch die Registrierung eines Kontos stimmst du unseren :terms und :privacy zu.',
+        'log-in'    => 'Log in',
+        'submit'    => 'Registrieren',
+        'title'     => 'Registrieren',
+        'tos'       => 'Durch die Registrierung eines Kontos stimmst du unseren :terms und :privacy zu.',
     ],
     'reset'     => [
         'fields'    => [

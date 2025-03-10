@@ -22,7 +22,10 @@ class AdvancerApiController extends ApiController
     public function advance(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
+        if ($calendar->missingDetails()) {
+            return response()->json(['Invalid calendar config'], 406);
+        }
         $this->service->calendar($calendar)->advance();
 
         return response()->json(['date' => $calendar->date]);
@@ -34,7 +37,10 @@ class AdvancerApiController extends ApiController
     public function retreat(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
+        if ($calendar->missingDetails()) {
+            return response()->json(['Invalid calendar config'], 406);
+        }
         $this->service->calendar($calendar)->retreat();
 
         return response()->json(['date' => $calendar->date]);

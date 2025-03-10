@@ -48,3 +48,8 @@
 @endsection
 
 
+@section('og')
+    <meta property="og:description" content="{{ __('seo.entity-list', ['module' => $entityType->plural(), 'campaign' => $campaign->name]) }}" />
+@endsection
+
+

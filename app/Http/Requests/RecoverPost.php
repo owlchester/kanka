@@ -24,7 +24,7 @@ class RecoverPost extends FormRequest
     public function rules()
     {
         $rules = [
-            'posts' => 'array',
+            'posts' => 'required|array',
             'posts.*' => 'distinct|exists:posts,id'
         ];
 

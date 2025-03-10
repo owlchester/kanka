@@ -27,9 +27,13 @@ return [
     ],
     'reorder'       => [
         'empty'     => 'Pridaj viac období a prvkov do časových osí, aby bolo možné meniť poradie v nich.',
-        'success'   => 'Časová os úspešne preskupená.',
-        'title'     => 'Preskupiť časovú os',
+        'success'   => ':name úspešne preskupená.',
+        'title'     => 'Preskupiť :name',
     ],
-    'show'          => [],
+    'show'          => [
+        'tabs'  => [
+            'reorder-elements'  => 'Preskupiť prvky',
+        ],
+    ],
     'timelines'     => [],
 ];

@@ -266,6 +266,10 @@ class Bookmark extends Model
             } elseif ($this->menu === 'relations') {
                 return route('entities.relations.index', $routeOptions);
             } elseif ($this->menu === 'abilities') {
+                if ($this->target->isAbility()) {
+                    $routeOptions = [$campaign, $this->target->entity_id, 'bookmark' => $this->id];
+                    return route('abilities.abilities', $routeOptions);
+                }
                 return route('entities.entity_abilities.index', $routeOptions);
             } elseif ($this->menu === 'assets') {
                 return route('entities.entity_assets.index', $routeOptions);
@@ -415,7 +419,7 @@ class Bookmark extends Model
             return $campaign->boosted() && $this->isValidDashboard();
         } elseif ($this->target) {
             return true;
-        } elseif ($this->type) {
+        } elseif ($this->entityType) {
             return true;
         } return (bool) ($this->isRandom())
         ;

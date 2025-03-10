@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'customise' => 'Upraviť nástenku',
         'follow'    => 'Sledovať',
         'join'      => 'Pridať sa',
         'unfollow'  => 'Zrušiť sledovanie',
@@ -80,6 +81,7 @@ return [
             'new'               => 'Nový :type widget',
         ],
         'reorder'   => [
+            'helper'    => 'Potiahni ma, ak ma chceš presunúť',
             'success'   => 'Widgety preskupené.',
         ],
         'title'     => 'Nastavenie nástenky kampane',
@@ -118,6 +120,7 @@ return [
         ],
         'create'                    => [
             'success'   => 'Widget bol pridaný na nástenku.',
+            'title'     => 'Nový widget',
         ],
         'delete'                    => [
             'success'   => 'Widget bol odstránený z nástenky.',
@@ -165,6 +168,7 @@ return [
                 'mentionless'   => 'Neobsahuje referencie (Objekty, ktoré nereferencujú iné)',
                 'unmentioned'   => 'Nereferencované (Objekty, ktoré nie sú referencované v iných)',
             ],
+            'all-entities'      => 'Všetky objekty',
             'entity-header'     => 'Použiť záhlavie objektu ako obrázok',
             'filters'           => 'Filtre',
             'help'              => 'Zobraziť iba posledný upravený objekt, no zobraziť celý náhľad na objekt',

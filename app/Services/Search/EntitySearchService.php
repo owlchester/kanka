@@ -142,12 +142,12 @@ class EntitySearchService
             ->get();
         $questElements = QuestElement::select(['id', 'quest_id'])
             ->with(['quest', 'quest.entity'])
-            ->has('quest')
+            ->has('quest.entity')
             ->whereIn('id', $this->questElementIds)
             ->get();
         $timelineElements = TimelineElement::select(['id', 'timeline_id'])
             ->with(['timeline', 'timeline.entity'])
-            ->has('timeline')
+            ->has('timeline.entity')
             ->whereIn('id', $this->timelineElementIds)
             ->get();
 

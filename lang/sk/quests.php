@@ -30,6 +30,7 @@ return [
         'element_role'  => 'Rola',
         'instigator'    => 'Podnet od',
         'is_completed'  => 'Splnená',
+        'location'      => 'Štartovacie miesto',
         'role'          => 'Rola',
     ],
     'helpers'       => [
@@ -42,6 +43,7 @@ return [
     'placeholders'  => [
         'date'      => 'Reálny dátum zadania úlohy',
         'entity'    => 'Názov prvku v úlohe',
+        'location'  => 'Štartovacie miesto úlohy',
         'role'      => 'Rola objektu v úlohe',
         'type'      => 'príbeh postavy, bočná úloha, hlavný dej',
     ],

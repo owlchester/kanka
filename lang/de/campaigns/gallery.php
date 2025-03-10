@@ -29,6 +29,7 @@ return [
     ],
     'fields'        => [
         'created_by'            => 'hochgeladen von',
+        'details'               => 'Details',
         'ext'                   => 'äußerlich',
         'file_type'             => 'Dateityp',
         'folder'                => 'Ordner',

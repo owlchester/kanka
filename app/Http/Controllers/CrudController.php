@@ -394,7 +394,7 @@ class CrudController extends Controller
             }
 
             // MenuLink have no entity attached to them.
-            if ($new->entity) {
+            if (!($new instanceof Bookmark) && $new->entity) {
                 $new->entity->crudSaved();
                 // Weird hack for prod issues
                 if (!$new->entity->child) {

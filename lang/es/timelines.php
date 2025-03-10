@@ -30,6 +30,10 @@ return [
         'success'   => ':name reordenado con éxito.',
         'title'     => 'Reordenar :name',
     ],
-    'show'          => [],
+    'show'          => [
+        'tabs'  => [
+            'reorder-elements'  => 'Reordenar elementos',
+        ],
+    ],
     'timelines'     => [],
 ];

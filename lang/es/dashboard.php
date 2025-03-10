@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'customise' => 'Personalizar el tablero',
         'follow'    => 'Seguir',
         'join'      => 'Unirse',
         'unfollow'  => 'Dejar de seguir',
@@ -80,6 +81,7 @@ return [
             'new'               => 'Nuevo widget :type',
         ],
         'reorder'   => [
+            'helper'    => 'Arrástrame para moverme',
             'success'   => 'Widgets reordenados.',
         ],
         'title'     => 'Configurar el tablero de campaña',
@@ -119,6 +121,7 @@ return [
         ],
         'create'                    => [
             'success'   => 'Widget añadido al tablero.',
+            'title'     => 'Nuevo widget',
         ],
         'delete'                    => [
             'success'   => 'Widget eliminado del tablero.',
@@ -166,6 +169,7 @@ return [
                 'mentionless'   => 'Sin menciones (entidades que no mencionan a otras)',
                 'unmentioned'   => 'No mencionada (entidades que no son mencionadas por otras)',
             ],
+            'all-entities'      => 'Todas las entidades',
             'entity-header'     => 'Usar la cabecera de la entidad como imagen',
             'filters'           => 'Filtros',
             'help'              => 'Solo muestra la previsualización de la última entidad actualizada.',

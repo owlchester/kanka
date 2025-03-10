@@ -58,7 +58,6 @@ class StoryController extends Controller
 
         return view('entities.components.posts')
             ->with('entity', $entity)
-            ->with('model', $entity->child)
             ->with('more', true)
             ->with('campaign', $campaign)
             ->with('posts', $posts);

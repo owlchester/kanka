@@ -32,7 +32,9 @@ class UserCacheService extends BaseCache
     public function __construct()
     {
         // Move this to cache service provider?
-        $this->user = Auth::check() ? Auth::user() : null;
+        if (auth()->check()) {
+            $this->user(auth()->user());
+        }
     }
 
     /**

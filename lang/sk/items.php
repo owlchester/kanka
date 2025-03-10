@@ -11,6 +11,7 @@ return [
         'is_equipped'   => 'Vo vybavení',
         'price'         => 'Cena',
         'size'          => 'Veľkosť',
+        'weight'        => 'Váha',
     ],
     'helpers'       => [],
     'hints'         => [
@@ -22,6 +23,7 @@ return [
         'price' => 'Cena predmetu',
         'size'  => 'veľkosť, váha, rozmery',
         'type'  => 'zbraň, elixír, artefakt',
+        'weight'=> 'Váha predmetu',
     ],
     'show'          => [
         'tabs'  => [

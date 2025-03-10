@@ -38,7 +38,7 @@ class OrganisationMemberApiController extends ApiController
     public function store(Request $request, Campaign $campaign, Organisation $organisation)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $organisation);
+        $this->authorize('update', $organisation->entity);
         $model = OrganisationMember::create($request->all());
         return new Resource($model);
     }
@@ -54,7 +54,7 @@ class OrganisationMemberApiController extends ApiController
         OrganisationMember $organisationMember
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $organisation);
+        $this->authorize('update', $organisation->entity);
         $organisationMember->update($request->all());
 
         return new Resource($organisationMember);
@@ -71,7 +71,7 @@ class OrganisationMemberApiController extends ApiController
         OrganisationMember $organisationMember
     ) {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $organisation);
+        $this->authorize('update', $organisation->entity);
         $organisationMember->delete();
 
         return response()->json(null, 204);

@@ -20,8 +20,8 @@ class ResultsController extends Controller
             'diceRoll.character.entity'
         ])
             ->orderByDesc('updated_at')
-            ->has('diceRoll')
             ->has('diceRoll.entity')
+            ->has('diceRoll.character.entity')
             ->paginate()
         ;
 

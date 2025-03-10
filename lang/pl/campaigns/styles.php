@@ -46,6 +46,8 @@ return [
         'title'     => 'Zmiana kolejności stylów',
     ],
     'theme'         => [
+        'none'      => 'Użyj preferencji użytkownika',
+        'override'  => 'Motyw nadrzędny',
         'success'   => 'Zmieniono motyw kampanii.',
         'title'     => 'Zmień motyw kampanii',
     ],

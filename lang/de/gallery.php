@@ -16,6 +16,11 @@ return [
         'title'         => 'Bildergallerie',
         'unauthorized'  => 'Keine deiner Rollen hat die Berechtigung „Galerie durchsuchen“.',
     ],
+    'cta'       => [
+        'action'    => 'Mehr Speicherplatz freischalten',
+        'helper'    => 'Schalte bis zu :size GiB Speicherplatz mit einer :premium-campaign frei.',
+        'title'     => 'Speicher voll',
+    ],
     'delete'    => [
         'success'   => '[0] Gelöschte 0 Elemente|[1] Gelöschte ein Element|{2,*} Gelöschte :count Elemente',
     ],

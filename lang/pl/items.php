@@ -11,6 +11,7 @@ return [
         'is_equipped'   => 'Na wyposażeniu',
         'price'         => 'Cena',
         'size'          => 'Rozmiar',
+        'weight'        => 'Waga',
     ],
     'helpers'       => [],
     'hints'         => [
@@ -22,6 +23,7 @@ return [
         'price' => 'Cena przedmiotu',
         'size'  => 'Wielkość, ciężar, wymiary',
         'type'  => 'Broń, eliksir, artefakt',
+        'weight'=> 'Waga jednego przedmiotu',
     ],
     'show'          => [
         'tabs'  => [

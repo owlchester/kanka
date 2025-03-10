@@ -27,4 +27,7 @@ return [
     'success'       => 'Objekt :name presunutý.',
     'success_copy'  => 'Objekt :name skopírovaný.',
     'title'         => 'Presun :name',
+    'warnings'      => [
+        'custom'    => 'Tento objekt nepatrí štandardnému modulu, ale vlastnému typu objektu :module. V cieľovej kampani bude vytvorený vo forme Poznámky.',
+    ],
 ];

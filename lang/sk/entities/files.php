@@ -14,6 +14,7 @@ return [
     ],
     'fields'            => [
         'file'  => 'Súbor',
+        'files' => 'Súbory',
         'name'  => 'Meno súboru',
     ],
     'max'               => [

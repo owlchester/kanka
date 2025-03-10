@@ -11,6 +11,7 @@ return [
         'is_equipped'   => 'Ausgestattet',
         'price'         => 'Preis',
         'size'          => 'Größe',
+        'weight'        => 'Gewicht',
     ],
     'helpers'       => [],
     'hints'         => [
@@ -22,6 +23,7 @@ return [
         'price' => 'Preis des Gegenstandes',
         'size'  => 'Größe, Gewicht, Maße',
         'type'  => 'Waffe, Trank, Artefakt',
+        'weight'=> 'Gewicht des Gegenstands',
     ],
     'show'          => [
         'tabs'  => [

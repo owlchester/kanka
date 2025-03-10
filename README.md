@@ -6,7 +6,7 @@
 
 [Kanka](https://kanka.io/en-US) is a **source available** collaborative world building and campaign management tool tailored for tabletop RPG players and storytellers. This repository is the primary source for development of the Kanka platform. It's written in PHP, a mix of VueJS and jQuery, and runs with a MySQL database. A new version is released on average every a month.
 
-<img width="900" alt="kanka-hero" src="https://images.kanka.io/app/77003-OIULLJT7wNJlfE9jeualk=/900x562/smart/src/images%2Ffront%2Fdevices-preview-hd.png">
+<img width="900" alt="kanka-hero" src="https://th.kanka.io/Vg8GkfblEvh1Z4HhO2Cwr4hzuCs=/900x562/smart/src/app/front/devices-preview-hd.png">
 
 This repository hosts the core Kanka web application.
 

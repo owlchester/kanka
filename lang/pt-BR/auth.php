@@ -21,35 +21,26 @@ return [
             'email'     => 'Email',
             'password'  => 'Senha',
         ],
-        'login_with_facebook'   => 'Entrar com o Facebook',
-        'login_with_google'     => 'Entrar com o Google',
-        'login_with_x'          => 'Entrar com X (anteriormente Twitter)',
-        'new_account'           => 'Registrar uma nova conta',
         'or'                    => 'OU',
         'password_forgotten'    => 'Esqueceu sua senha?',
-        'remember_me'           => 'Lembrar-me',
         'submit'                => 'Entrar',
         'title'                 => 'Entrar',
     ],
     'register'  => [
-        'already'                   => 'Já possui uma conta? :login',
-        'errors'                    => [
+        'already'   => 'Já possui uma conta? :login',
+        'errors'    => [
             'email_already_taken'   => 'Já há uma conta registrada com esse email.',
             'general_error'         => 'Um erro ocorreu enquanto sua conta era registrada. Por favor tente novamente.',
         ],
-        'fields'                    => [
+        'fields'    => [
             'email'     => 'Email',
             'name'      => 'Usuário',
             'password'  => 'Senha',
-            'tos_clean' => 'Eu concordo com :privacy',
         ],
-        'log-in'                    => 'Conectar-se',
-        'register_with_facebook'    => 'Registrar com o Facebook',
-        'register_with_google'      => 'Registrar com o Google',
-        'register_with_x'           => 'Registrar com X (anteriormente Twitter)',
-        'submit'                    => 'Registrar',
-        'title'                     => 'Registrar',
-        'tos'                       => 'Ao registrar uma conta, você concorda com nossos :terms e :privacy.',
+        'log-in'    => 'Conectar-se',
+        'submit'    => 'Registrar',
+        'title'     => 'Registrar',
+        'tos'       => 'Ao registrar uma conta, você concorda com nossos :terms e :privacy.',
     ],
     'reset'     => [
         'fields'    => [

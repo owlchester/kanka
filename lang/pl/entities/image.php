@@ -2,11 +2,12 @@
 
 return [
     'actions'               => [
-        'change_focus'  => 'Zmień punkt centralny',
-        'replace_image' => 'Zamień obraz',
-        'save-replace'  => 'Zamień obraz',
-        'save_focus'    => 'Zapisz punkt centralny',
-        'view'          => 'Zobacz obraz',
+        'change_focus'      => 'Zmień punkt centralny',
+        'change_visibility' => 'Zmień widoczność',
+        'replace_image'     => 'Zamień obraz',
+        'save-replace'      => 'Zamień obraz',
+        'save_focus'        => 'Zapisz punkt centralny',
+        'view'              => 'Zobacz obraz',
     ],
     'call-to-action'        => 'Kliknij na obraz elementu by ustawić centralny punkt wyświetlania, zamiast korzystać z wybranego automatycznie.',
     'focus'                 => [
@@ -29,5 +30,9 @@ return [
         'panel_title'   => 'Zmiana obrazu elementu',
         'success'       => 'Zmieniono obraz.',
         'title'         => 'Zmiana obrazu elementu :name',
+    ],
+    'visibility'            => [
+        'helper'    => 'Zmień widoczność obrazu w galerii, by określić kto go może wyświetlić.',
+        'updated'   => 'Zmieniono widoczność obrazu.',
     ],
 ];

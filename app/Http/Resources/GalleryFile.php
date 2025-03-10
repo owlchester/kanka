@@ -61,6 +61,9 @@ class GalleryFile extends JsonResource
     {
         $thumbnails = [];
         foreach ($file->images as $subFile) {
+            if (!$subFile->hasThumbnail()) {
+                continue;
+            }
             if (count($thumbnails) >= 3) {
                 return $thumbnails;
             }

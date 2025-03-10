@@ -29,6 +29,7 @@ class StoreCustomEntity extends FormRequest
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'image_uuid' => 'nullable|integer|exists:images,id',
+            'parent_id' => 'nullable|integer|exists:entities,id',
             'attribute' => ['array', new UniqueAttributeNames()],
         ];
 

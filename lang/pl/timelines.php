@@ -27,9 +27,13 @@ return [
     ],
     'reorder'       => [
         'empty'     => 'Dodaj epoki i ich elementy, by móc zmienić ich kolejność.',
-        'success'   => 'Zmieniono kolejność historii',
-        'title'     => 'Zmień kolejność historii',
+        'success'   => 'Zmieniono kolejność :name',
+        'title'     => 'Zmień kolejność :name',
     ],
-    'show'          => [],
+    'show'          => [
+        'tabs'  => [
+            'reorder-elements'  => 'Zmiana kolejności elementów',
+        ],
+    ],
     'timelines'     => [],
 ];

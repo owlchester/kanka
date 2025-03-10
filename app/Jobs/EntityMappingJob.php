@@ -52,6 +52,9 @@ class EntityMappingJob implements ShouldQueue
     {
         //Get the model
         $model = $this->class::find($this->modelId);
+        if (!$model) {
+            return;
+        }
 
         /** @var EntityMappingService $entityMappingService. */
         $entityMappingService = app()->make(EntityMappingService::class);

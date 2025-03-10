@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\v1\Campaigns;
 
 use App\Http\Controllers\Api\v1\ApiController;
+use App\Http\Middleware\PremiumCampaign;
 use App\Http\Requests\StoreEntityType;
 use App\Models\Campaign;
 use App\Models\EntityType;
@@ -15,7 +16,7 @@ class EntityTypeApiController extends ApiController
     public function __construct(
         protected EntityTypeService $entityTypeService
     ) {
-
+        $this->middleware(PremiumCampaign::class, ['except' => ['index', 'show']]);
     }
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -36,8 +37,12 @@ class EntityTypeApiController extends ApiController
     public function store(StoreEntityType $request, Campaign $campaign)
     {
         $this->authorize('setting', $campaign);
-        if (!$campaign->premium()) {
-            return response()->json(['error' => 'Feature requires a premium campaign.'], 401);
+
+        if ($campaign->entityTypes->count() >= config('limits.campaigns.modules')) {
+            return response()->json(['error' => 'Max number of custom modules reached (:count/:max)', [
+                'count' => $campaign->entityTypes->count(),
+                'max' => config('limits.campaigns.modules')
+            ]], 401);
         }
 
         $entityType = $this->entityTypeService
@@ -52,10 +57,6 @@ class EntityTypeApiController extends ApiController
     {
         $this->authorize('setting', $campaign);
         $this->authorize('update', [$entityType, $campaign]);
-
-        if (!$campaign->premium()) {
-            return response()->json(['error' => 'Feature requires a premium campaign.'], 401);
-        }
 
         $entityType = $this->entityTypeService
             ->campaign($campaign)

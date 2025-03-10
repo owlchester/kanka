@@ -143,6 +143,10 @@ return [
             'saved'     => 'Método de pago guardado',
         ],
         'cancel'                => [
+            'grace'     => [
+                'text'  => 'Tu suscripción ya está programada para finalizar en :date, después de lo cual tus campañas premium volverán a ser campañas estándar y se desactivarán otros beneficios relacionados con el apoyo a Kanka.',
+                'title' => 'Período de gracia',
+            ],
             'options'   => [
                 'competitor'        => 'Cambio a un competidor',
                 'financial'         => 'La suscripción es demasiado cara',
@@ -153,6 +157,7 @@ return [
                 'other'             => 'Otro',
             ],
             'text'      => '¡Lamentamos verte marchar! Al cancelar tu suscripción, esta seguirá activa hasta el nuevo ciclo de facturación, tras lo cual perderás tus mejoras de campaña y otros beneficios relacionados. No tengas miedo de informarnos sobre cómo podemos mejorar o qué te ha llevado a tomar esta decisión.',
+            'title'     => 'Cancelar suscripción',
         ],
         'cancelled'             => 'Se ha cancelado tu suscripción. Puedes renovarla una vez el período de la suscripción actual termine.',
         'change'                => [
@@ -172,6 +177,7 @@ return [
             'percent_off'   => '¡Tendrás un descuento del :percent% en tu primera suscripción anual!',
         ],
         'currencies'            => [
+            'brl'   => 'BRL',
             'eur'   => 'Euros',
             'usd'   => 'Dólares estadounidenses',
         ],
@@ -191,12 +197,16 @@ return [
             'payment_method'    => 'Método de pago',
             'plan'              => 'Plan actual',
             'reason'            => 'Razón',
+            'reset'             => 'Restablecer los datos de facturación',
+            'reset_billing'     => 'Entiendo que al cambiar de divisa se perderá mi historial de facturación y tendré que volver a introducir mi método de pago.',
         ],
         'helpers'               => [
             'alternatives'          => 'Paga por tu suscripción usando :method. Este método de pago no se renovará automáticamente al final de tu suscripción. :method solo está disponible en euros.',
             'alternatives-2'        => 'Paga tu suscripción utilizando :method. Este pago es único y no se renueva automáticamente al final de la suscripción.',
             'alternatives_warning'  => 'No se puede mejorar la suscripción usando este método. Por favor, crea una nueva suscripción cuando la actual termine.',
             'alternatives_yearly'   => 'Debido a las restricciones de los pagos recurrentes, :method solo está disponible para las suscripciones anuales.',
+            'currency_block'        => 'No es posible cambiar de divisa mientras tengas una suscripción a Kanka activa, puedes cambiar de divisa una vez que finalice tu suscripción actual.',
+            'currency_reset'        => 'Al cambiar la divisa elegida, se borrará tu historial de facturación y tendrás que volver a introducir un método de pago.',
             'paypal_v3'             => 'Paga tu suscripción anual de forma segura con PayPal.',
             'stripe'                => 'Tu información de facturación se procesa y almacena de forma segura a través de :stripe.',
         ],

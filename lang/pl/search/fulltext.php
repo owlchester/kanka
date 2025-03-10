@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'searching' => 'Przeszukuje elementy, notatki i cechy w poszukiwaniu terminu :term.',
+    'searching' => 'Przeszukuje elementy, notatki i cechy w poszukiwaniu słowa :term.',
     'title'     => 'Przeszukiwanie tekstu',
 ];

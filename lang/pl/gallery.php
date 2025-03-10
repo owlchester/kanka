@@ -16,6 +16,11 @@ return [
         'title'         => 'Galeria',
         'unauthorized'  => 'Żadna z twoich ról nie posiada uprawień do "przeglądania galerii".',
     ],
+    'cta'       => [
+        'action'    => 'Odblokuj większy magazyn',
+        'helper'    => 'Uzyskaj do :size GB magazynu w :premium-campaign.',
+        'title'     => 'Magazy jest pełny',
+    ],
     'delete'    => [
         'success'   => '[0] Usunięto 0 elementów|[1] Usunięto jeden element|{2,4} Usunięto :count elementy|{5,*} Usunięto :count elementów',
     ],

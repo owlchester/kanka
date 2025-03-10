@@ -28,6 +28,9 @@ return [
     'delete'        => [
         'success'   => 'Marker :name löschen',
     ],
+    'details'       => [
+        'from-entity'   => 'Vom Objekt',
+    ],
     'edit'          => [
         'success'   => 'Marker :name aktualisiert',
         'title'     => 'Marker :name editieren',
