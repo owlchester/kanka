@@ -57,7 +57,7 @@ class TimelineApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $timeline);
+        $this->authorize('update', $timeline->entity);
         $timeline->update($request->all());
         $this->crudSave($timeline);
 

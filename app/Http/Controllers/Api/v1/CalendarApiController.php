@@ -68,7 +68,7 @@ class CalendarApiController extends ApiController
     public function update(Request $request, Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $calendar);
+        $this->authorize('update', $calendar->entity);
         $request->merge($this->sanitizer->request($request)->sanitize());
         $calendar->update($request->all());
         $this->crudSave($calendar);
