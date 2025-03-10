@@ -166,7 +166,9 @@ class LiveController extends Controller
             /** @var Organisation $org */
             $org = Organisation::findOrFail($request->get('exclude'));
             /** @var OrganisationMember $member */
-            $members = $org->members()
+            $members = $org
+                ->members()
+                ->select('organisation_member.*')
                 ->with('character')
                 ->has('character')
                 ->leftJoin('characters as c', 'c.id', 'organisation_member.character_id')
