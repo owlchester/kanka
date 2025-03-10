@@ -55,7 +55,7 @@ Route::apiResources([
     'campaigns.entities.entity_abilities' => 'EntityAbilityApiController',
     'campaigns.entities.entity_assets' => 'EntityAssetApiController',
     'campaigns.entities.entity_permissions' => 'EntityPermissionApiController',
-    'campaigns.entity_types' => 'EntityTypeApiController',
+    'campaigns.entity_types' => 'Campaigns\EntityTypeApiController',
 
     'campaigns.campaign_dashboard_widgets' => 'CampaignDashboardWidgetApiController',
     'campaigns.campaign_styles' => 'CampaignStyleApiController',
