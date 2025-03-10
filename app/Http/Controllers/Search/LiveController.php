@@ -166,7 +166,16 @@ class LiveController extends Controller
             /** @var Organisation $org */
             $org = Organisation::findOrFail($request->get('exclude'));
             /** @var OrganisationMember $member */
-            foreach ($org->members()->with('character')->has('character')->get() as $member) {
+            $members = $org->members()
+                ->with('character')
+                ->has('character')
+                ->leftJoin('characters as c', 'c.id', 'organisation_member.character_id')
+            ->orderBy('c.name');
+            if (!empty($term)) {
+                $members
+                    ->whereLike('c.name', '%' . $term . '%');
+            }
+            foreach ($members->get() as $member) {
                 $data[] = [
                     'id' => $member->id,
                     'text' => $member->character->name . (!empty($member->role) ? ' (' . $member->role . ')' : null)
