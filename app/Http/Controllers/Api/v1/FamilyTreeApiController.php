@@ -25,6 +25,11 @@ class FamilyTreeApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $family->entity);
+        if (!$campaign->premium()) {
+            return response()->json([
+                'error' => 'This feature is reserved to premium campaigns.'
+            ]);
+        }
 
         return new Resource($family->familyTree);
     }
@@ -37,6 +42,11 @@ class FamilyTreeApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $family->entity);
+        if (!$campaign->premium()) {
+            return response()->json([
+                'error' => 'This feature is reserved to premium campaigns.'
+            ]);
+        }
 
         $data = $request->input('tree');
 
@@ -53,6 +63,11 @@ class FamilyTreeApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('delete', $family->entity);
+        if (!$campaign->premium()) {
+            return response()->json([
+                'error' => 'This feature is reserved to premium campaigns.'
+            ]);
+        }
 
         if ($family->familyTree) {
             $family->familyTree->delete();

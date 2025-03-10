@@ -17,6 +17,6 @@ class FamilyTreeResource extends EntityResource
         /** @var FamilyTree $model */
         $model = $this->resource;
 
-        return $model->config;
+        return $model->config ?? [];
     }
 }
