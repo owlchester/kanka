@@ -17,7 +17,7 @@ class FamilyTreeApiController extends ApiController
     public function __construct(FamilyTreeService $treeService)
     {
         $this->treeService = $treeService;
-        $this->middleware(PremiumCampaign::class);
+        $this->middleware(PremiumCampaign::class, ['except' => ['show']]);
     }
 
     /**
