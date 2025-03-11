@@ -4,6 +4,7 @@ namespace App\Services\Users;
 
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Str;
 
 class DateService
 {
@@ -39,6 +40,6 @@ class DateService
             return;
         }
         $this->format = mb_strtoupper(auth()->user()->dateformat);
-        $this->format = str_replace('M', 'MM', $this->format);
+        $this->format = Str::replace(['M', 'D'], ['MM', 'DD'], $this->format);
     }
 }
