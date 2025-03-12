@@ -39,6 +39,11 @@ class MapLayerApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $map->entity);
+
+        if ($map->layers->count() >= $campaign->maxMapLayers()) {
+            return response()->json(['error' => 'Max amount of map layers reached']);
+        }
+
         $model = MapLayer::create($request->all());
         $model->refresh();
         return new Resource($model);
