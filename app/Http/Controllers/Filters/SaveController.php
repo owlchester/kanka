@@ -18,6 +18,16 @@ class SaveController extends Controller
         $this->filterService = $filterService;
     }
 
+    protected function render(Campaign $campaign, EntityType $entityType)
+    {
+        $mode = request()->get('m');
+
+        return view('filters.save_form')
+            ->with('campaign', $campaign)
+            ->with('entityType', $entityType)
+            ->with('mode', $mode);
+    }
+
     public function save(Campaign $campaign, EntityType $entityType)
     {
         $this->authorize('create', Bookmark::class);
@@ -44,7 +54,8 @@ class SaveController extends Controller
 
         $bookmark = new Bookmark();
         $bookmark->campaign_id = $campaign->id;
-        $bookmark->name = __('filters.bookmark.name', ['module' => $entityType->plural()]);
+        $bookmark->name = request()->get('name', __('filters.bookmark.name', ['module' => $entityType->plural()]));
+        $bookmark->icon = request()->get('icon', null);
         $bookmark->entity_type_id = $entityType->id;
         $bookmark->filters = $filters;
         $bookmark->parent = $entityType->isSpecial() ? null : $entityType->pluralCode();

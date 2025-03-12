@@ -221,6 +221,7 @@ Route::get('/w/{campaign}/bookmarks/reorder', [App\Http\Controllers\Bookmarks\Re
     ->name('bookmarks.reorder');
 Route::post('/w/{campaign}/bookmarks/reorder', [App\Http\Controllers\Bookmarks\ReorderController::class, 'save'])
     ->name('bookmarks.reorder-save');
+Route::get('/w/{campaign}/entity_types/{entity_type}/bookmark-form', [App\Http\Controllers\Filters\SaveController::class, 'render'])->name('filters.modal_form');
 
 // Entity Abilities API
 Route::get('/w/{campaign}/entities/{entity}/abilities', 'Entity\AbilityController@index')->name('entities.abilities');
