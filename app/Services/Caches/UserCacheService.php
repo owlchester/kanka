@@ -11,7 +11,6 @@ use App\Services\Caches\Traits\User\TutorialCache;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserCacheService extends BaseCache
