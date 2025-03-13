@@ -204,7 +204,7 @@ class NavigationService
             ],
             'sheets' => [
                 'title' => __('Sheets'),
-                'url' => config('marketplace.url') . '/attribute-templates',
+                'url' => config('marketplace.url') . '/character-sheets',
                 'number' => number_format($counts[2]),
             ],
             'content' => [

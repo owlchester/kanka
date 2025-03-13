@@ -10,7 +10,7 @@ return [
         'changelog'         => 'Changelog',
         'disable'           => 'Disable theme',
         'enable'            => 'Enable theme',
-        'go_to_marketplace' => 'Go to the Marketplace',
+        'find-plugins'      => 'Find plugins',
         'import'            => 'Import',
         'update'            => 'Update plugin',
         'update_available'  => 'Update available!',

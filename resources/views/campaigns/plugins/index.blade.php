@@ -5,8 +5,8 @@
     <h3 class="inline-block grow">
         {{ __('campaigns.show.tabs.plugins') }}
     </h3>
-    <a href="{{ config('marketplace.url') }}" target="_blank" class="btn2 btn-primary">
-        {{ __('campaigns/plugins.actions.go_to_marketplace') }} <i class="fa-solid fa-external-link-alt"></i>
+    <a href="{{ config('marketplace.url') }}" class="btn2 btn-primary">
+        {{ __('campaigns/plugins.actions.find-plugins') }} <x-icon class="fa-solid fa-external-link-alt"></x-icon>
     </a>
 </div>
 
