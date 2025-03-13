@@ -20,9 +20,9 @@ $activeFilters = $filterService->activeFiltersCount();
     @if ($activeFilters > 0)
         @if (empty($bookmark) && isset($entityType))
         @can('create', \App\Models\Bookmark::class)
-            <div class="inline-block cursor-pointer btn2 btn-sm btn-primary break-keep" data-toggle="dialog" data-target="datagrid-bookmark" data-url="{{ route('filters.modal_form', [$campaign, $entityType, 'm' => $mode]) }}">
+            <div class="inline-block cursor-pointer btn2 btn-sm btn-primary break-keep" data-toggle="dialog" data-target="datagrid-filters" data-url="{{ route('filters.modal_form', [$campaign, $entityType, 'm' => $mode]) }}">
                 <x-icon class="fa-solid fa-bookmark" />
-                <span class="hidden sm:inline">{{ __('filters.actions.bookmark') }}</span>
+                <span class="hidden sm:inline"  aria-label="{{ __('filters.actions.bookmark') }}">{{ __('filters.actions.bookmark') }}</span>
             </div>
         @endcan
         @endif
@@ -43,8 +43,4 @@ $activeFilters = $filterService->activeFiltersCount();
     <x-dialog id="datagrid-filters" :loading="true" full="true">
 
     </x-dialog>
-
-    <x-dialog id="datagrid-bookmark" :loading="true" full="true">
-
-</x-dialog>
 @endsection

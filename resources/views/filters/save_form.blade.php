@@ -8,29 +8,30 @@
     {{ __('filters.actions.bookmark') }}
 </x-dialog.header>
 <article>
-    <div class="field flex flex-col gap-3 field-">    
-        <x-forms.field
-            field="name"
-            :label="__('crud.fields.name')">
-            <input type="text" name="name" value="{{  __('filters.bookmark.name', ['module' => $entityType->plural()]) }}" maxlength="191" class="w-full" autocomplete="off" />
-        </x-forms.field>
-        <x-forms.field
-            field="icon"
-            :label="__('maps/markers.fields.icon')">
-            <input type="text" name="icon" value="fa-solid fa-th-list" maxlength="191" class="w-full" autocomplete="off" />
-        </x-forms.field>
+<x-grid type="1/1">
+    <x-forms.field
+        field="name"
+        :label="__('crud.fields.name')">
+        <input type="text" name="name" value="{{  __('filters.bookmark.name', ['module' => $entityType->plural()]) }}" maxlength="191" class="w-full" autocomplete="off" />
+    </x-forms.field>
 
-        <x-forms.field
-            field="position"
-            :label="__('bookmarks.fields.position')"
-            tooltip
-            :helper="__('entities/links.helpers.parent')">
-            <x-forms.select name="parent" :options="$sidebar->campaign($campaign)->availableParents()" :selected="$entityType->plural() ?? 'bookmarks'" />
-            <p class="text-neutral-content md:hidden">
-                {!! __('entities/links.helpers.parent') !!}
-            </p>
-        </x-forms.field>
-    </div>
+    <x-forms.field
+        field="icon"
+        :label="__('maps/markers.fields.icon')">
+        <input type="text" name="icon" value="fa-solid fa-th-list" maxlength="191" class="w-full" autocomplete="off" />
+    </x-forms.field>
+
+    <x-forms.field
+        field="position"
+        :label="__('bookmarks.fields.position')"
+        tooltip
+        :helper="__('entities/links.helpers.parent')">
+        <x-forms.select name="parent" :options="$sidebar->campaign($campaign)->availableParents()" :selected="$entityType->plural() ?? 'bookmarks'" />
+        <p class="text-neutral-content md:hidden">
+            {!! __('entities/links.helpers.parent') !!}
+        </p>
+    </x-forms.field>
+</x-grid>
 <br class="clear-both" />
 </article>
 @if (auth()->check())
