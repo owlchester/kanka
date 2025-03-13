@@ -8,6 +8,9 @@
     {{ __('filters.actions.bookmark') }}
 </x-dialog.header>
 <article>
+<p class="text-neutral-content">
+    {{ __('filters.bookmark.helper') }}
+</p>
 <x-grid type="1/1">
     <x-forms.field
         field="name"
