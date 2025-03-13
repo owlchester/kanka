@@ -11,6 +11,22 @@
     "file": "assets/axios-upsvKRUO.js",
     "name": "axios"
   },
+  "_cytoscape-cose-bilkent-CU5iLMAw.js": {
+    "file": "assets/cytoscape-cose-bilkent-CU5iLMAw.js",
+    "name": "cytoscape-cose-bilkent",
+    "isDynamicEntry": true,
+    "imports": [
+      "__commonjsHelpers-Cpj98o6Y.js"
+    ]
+  },
+  "_cytoscape-panzoom-DCQzTrK1.js": {
+    "file": "assets/cytoscape-panzoom-DCQzTrK1.js",
+    "name": "cytoscape-panzoom",
+    "isDynamicEntry": true,
+    "imports": [
+      "__commonjsHelpers-Cpj98o6Y.js"
+    ]
+  },
   "_dialog-BdYAVhM4.js": {
     "file": "assets/dialog-BdYAVhM4.js",
     "name": "dialog"
@@ -33,6 +49,21 @@
   "_vue.esm-bundler-Dgt_CrCE.js": {
     "file": "assets/vue.esm-bundler-Dgt_CrCE.js",
     "name": "vue.esm-bundler"
+  },
+  "node_modules/cytoscape-dblclick/dist/index.esm.js": {
+    "file": "assets/index.esm-BsD3a6oO.js",
+    "name": "index.esm",
+    "src": "node_modules/cytoscape-dblclick/dist/index.esm.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "node_modules/cytoscape/dist/cytoscape.esm.mjs"
+    ]
+  },
+  "node_modules/cytoscape/dist/cytoscape.esm.mjs": {
+    "file": "assets/cytoscape.esm-D6h5aWdG.js",
+    "name": "cytoscape.esm",
+    "src": "node_modules/cytoscape/dist/cytoscape.esm.mjs",
+    "isDynamicEntry": true
   },
   "node_modules/rpg-awesome/fonts/rpgawesome-webfont.eot": {
     "file": "assets/rpgawesome-webfont-BRLmZ7ej.eot",
@@ -179,12 +210,6 @@
     "src": "resources/js/editors/summernote.js",
     "isEntry": true
   },
-  "resources/js/editors/tiptap.js": {
-    "file": "assets/tiptap-CJrokaPb.js",
-    "name": "tiptap",
-    "src": "resources/js/editors/tiptap.js",
-    "isEntry": true
-  },
   "resources/js/family-tree-vue.js": {
     "file": "assets/family-tree-vue-BGs6ImVQ.js",
     "name": "family-tree-vue",
@@ -268,12 +293,15 @@
     ]
   },
   "resources/js/relations.js": {
-    "file": "assets/relations-DlYWkeTy.js",
+    "file": "assets/relations-BHGoxxCU.js",
     "name": "relations",
     "src": "resources/js/relations.js",
     "isEntry": true,
-    "imports": [
-      "__commonjsHelpers-Cpj98o6Y.js"
+    "dynamicImports": [
+      "node_modules/cytoscape/dist/cytoscape.esm.mjs",
+      "_cytoscape-cose-bilkent-CU5iLMAw.js",
+      "_cytoscape-panzoom-DCQzTrK1.js",
+      "node_modules/cytoscape-dblclick/dist/index.esm.js"
     ]
   },
   "resources/js/settings.js": {
@@ -336,7 +364,7 @@
     "isEntry": true
   },
   "resources/sass/map-v3.scss": {
-    "file": "assets/map-v3-Ccr5qZJ_.css",
+    "file": "assets/map-v3-C6ket8Yb.css",
     "src": "resources/sass/map-v3.scss",
     "isEntry": true
   },

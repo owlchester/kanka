@@ -1,9 +1,3 @@
-import cytoscape from 'cytoscape';
-import coseBilkent from 'cytoscape-cose-bilkent';
-import panzoom from 'cytoscape-panzoom';
-import dblclick from 'cytoscape-dblclick';
-
-
 let cy;
 let entity, relation;
 let elementList = [];
@@ -11,11 +5,18 @@ const DEFAULT_COLOUR = '#777777';
 
 const cySelector = document.getElementById('cy');
 
-const initCytoscape = () => {
-
+const initCytoscape = async () => {
     if(!cySelector) {
         return;
     }
+
+    // Dynamically import cytoscape plugins
+    const { default: cytoscape } = await import('cytoscape');
+
+    const { default: coseBilkent } = await import('cytoscape-cose-bilkent');
+    const { default: panzoom } = await import('cytoscape-panzoom');
+    const { default: dblclick } = await import('cytoscape-dblclick');
+
 
     // Libraries
     cytoscape.use( dblclick );
@@ -23,7 +24,7 @@ const initCytoscape = () => {
     cytoscape.use( panzoom );
 
     cy = cytoscape({
-        container: cySelector, // container to render in
+        container: cySelector,
         wheelSensitivity: 0.5,
         style: cytoscape.stylesheet()
             .selector('node')
