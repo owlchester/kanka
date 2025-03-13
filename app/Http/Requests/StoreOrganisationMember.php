@@ -28,7 +28,9 @@ class StoreOrganisationMember extends FormRequest
     {
         return $this->clean([
             'organisation_id' => 'required|exists:organisations,id',
-            'character_id' => 'required|exists:characters,id',
+            'characters' => 'required_without:character_id|array|min:1',
+            'characters.*' => 'distinct|required|distinct|exists:characters,id',
+            'character_id' => 'required_without:characters|exists:characters,id',
             'role' => 'nullable',
             'is_private' => 'nullable',
             'parent_id' => 'nullable|exists:organisation_member,id',

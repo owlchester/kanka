@@ -55,7 +55,7 @@ $all = $entity->child->allMembers()->has('character')->count();
                data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('organisations.organisation_members.create', [$campaign, $entity->child->id]) }}">
                 <x-icon class="plus" />
                 <span class="hidden lg:inline">
-                    {{ __('organisations.members.actions.add') }}
+                    {{ __('organisations.members.actions.add_multiple') }}
                 </span>
             </a>
         @endcan

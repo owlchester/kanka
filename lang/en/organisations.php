@@ -13,12 +13,14 @@ return [
     ],
     'members'       => [
         'actions'       => [
-            'add'       => 'Add a member',
-            'submit'    => 'Add member',
+            'add'               => 'Add a member',
+            'submit'            => 'Add member',
+            'add_multiple'      => 'Add members',
         ],
         'create'        => [
             'success'   => 'Member added to :name.',
             'title'     => 'New Member',
+            'title_multiple'    => 'New Members',
         ],
         'destroy'       => [
             'success'   => 'Member removed from :name.',

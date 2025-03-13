@@ -84,12 +84,16 @@ class MemberController extends Controller
      */
     public function store(StoreOrganisationMember $request, Campaign $campaign, Organisation $organisation)
     {
+        //here
         $this->authorize('member', $organisation);
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
-
-        $relation = OrganisationMember::create($request->all());
+        $count = 0;
+        foreach ($request->get('characters', []) as $character) {
+            $relation = OrganisationMember::create(['character_id' => $character] + $request->except('characters'));
+            $count++;
+        }
         return redirect()->route('entities.show', [$campaign, $organisation->entity])
             ->with('success', __($this->view . '.create.success', ['name' => $organisation->name]));
     }

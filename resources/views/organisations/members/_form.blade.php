@@ -15,12 +15,7 @@ $statuses = [
 <x-grid>
 
     <div class="col-span-2">
-        @include('cruds.fields.character', [
-            'required' => true,
-            'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
-            'allowNew' => false,
-            'allowClear' => false,
-        ])
+        @include('cruds.fields.characters', ['quickCreator' => false, 'required' => true])
     </div>
 
     <div class="col-span-2">
