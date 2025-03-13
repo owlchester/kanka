@@ -21,7 +21,7 @@
                 <a href="{{ Domain::toFront('features') }}">{{ __('footer.features') }}</a>
                 <a href="{{ Domain::toFront('premium') }}">{{ __('footer.premium') }}</a>
                 <a href="{{ Domain::toFront('pricing') }}">{{ __('footer.pricing') }}</a>
-                <a href="https://marketplace.kanka.io" target="_blank">{{ __('footer.marketplace') }}</a>
+                <a href="{{ config('marketplace.url') }}" >{{ __('footer.plugins') }}</a>
             </div>
 
             <div class="flex flex-col gap-3 text-sm">

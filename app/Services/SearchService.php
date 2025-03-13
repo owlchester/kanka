@@ -458,7 +458,7 @@ class SearchService
         }
 
         $this->pages
-            ->add(['name' => __('footer.marketplace'), 'url' => 'https://marketplace.kanka.io'])
+            ->add(['name' => __('footer.plugins'), 'url' => config('marketplace.url')])
             ->add(['name' => __('footer.documentation'), 'url' => 'https://docs.kanka.io/en/latest/index.html'])
             ->add(['name' => __('front.features.api.link'), 'url' => route('larecipe.index')])
             ->add(['name' => __('Dark mode'), 'url' => route('settings.appearance', ['highlight' => 'dark'])])

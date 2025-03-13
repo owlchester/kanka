@@ -17,5 +17,5 @@ return [
     |
     | This value tells us the url for the marketplace
      */
-    'url' => env('APP_MARKETPLACE_URL', 'https://marketplace.kanka.io'),
+    'url' => env('APP_MARKETPLACE_URL', 'https://plugins.kanka.io'),
 ];

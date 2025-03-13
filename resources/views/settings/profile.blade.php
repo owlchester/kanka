@@ -21,7 +21,7 @@
                     </x-forms.field>
 
                     @php $helper =  __('profiles.helpers.profile-name', [
-    'marketplace' => '<a href="' . config('marketplace.url') . '" target="_blank">' . __('footer.marketplace'). '</a>',
+    'marketplace' => '<a href="' . config('marketplace.url') . '">' . __('footer.plugins'). '</a>',
     'profile' => '<a href="' . route('users.profile', $user) . '" target="_blank">' . __('profiles.settings.helpers.profile') . '</a>']) @endphp
                     <x-forms.field field="marketplace-name" :label="__('profiles.fields.profile-name')" :helper="$helper">
                         <input type="text" name="settings[marketplace_name]" maxlength="32" placeholder="{{ __('profiles.fields.profile-name') }}" class="rounded border p-2 w-full" value="{!! old('settings[marketplace_name]', $user->settings['marketplace_name'] ?? null) !!}" />

@@ -5,7 +5,7 @@
         required
     :helper="__('attributes/templates.pitch', [
     'boosted-campaign' => '<a href=\'https://kanka.io/premium\'>' . __('concept.premium-campaigns') . '</a>',
-    'marketplace' => '<a href=\'' . config('marketplace.url') . '/attribute-templates\' target=\'_blank\'>' . __('footer.marketplace') . '</a>'
+    'marketplace' => '<a href=\'' . config('marketplace.url') . '/character-sheets\'>' . __('footer.plugins') . '</a>'
     ])">
         <x-forms.select name="template_id" :options="$templates" :placeholder="__('entities/attributes.placeholders.template')" class="w-full" required />
     </x-forms.field>
