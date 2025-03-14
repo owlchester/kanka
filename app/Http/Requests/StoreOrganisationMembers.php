@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreOrganisationMember extends FormRequest
+class StoreOrganisationMembers extends FormRequest
 {
     use ApiRequest;
 
@@ -28,7 +28,8 @@ class StoreOrganisationMember extends FormRequest
     {
         return $this->clean([
             'organisation_id' => 'required|exists:organisations,id',
-            'character_id' => 'required|exists:characters,id',
+            'characters' => 'required|array|min:1',
+            'characters.*' => 'distinct|required|distinct|exists:characters,id',
             'role' => 'nullable',
             'is_private' => 'nullable',
             'parent_id' => 'nullable|exists:organisation_member,id',

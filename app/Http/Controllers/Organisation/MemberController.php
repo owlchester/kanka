@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Organisation;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrganisationMember;
+use App\Http\Requests\StoreOrganisationMembers;
 use App\Models\Campaign;
 use App\Models\Organisation;
 use App\Models\OrganisationMember;
@@ -82,9 +83,8 @@ class MemberController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreOrganisationMember $request, Campaign $campaign, Organisation $organisation)
+    public function store(StoreOrganisationMembers $request, Campaign $campaign, Organisation $organisation)
     {
-        //here
         $this->authorize('member', $organisation);
         if ($request->ajax()) {
             return response()->json(['success' => true]);
@@ -95,7 +95,7 @@ class MemberController extends Controller
             $count++;
         }
         return redirect()->route('entities.show', [$campaign, $organisation->entity])
-            ->with('success', __($this->view . '.create.success', ['name' => $organisation->name]));
+            ->with('success', trans_choice($this->view . '.create.success_multiple', $count, ['name' => $organisation->name, 'count' => $count]));
     }
 
     /**

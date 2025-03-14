@@ -14,12 +14,10 @@ return [
     'members'       => [
         'actions'       => [
             'add'               => 'Add a member',
-            'submit'            => 'Add member',
             'add_multiple'      => 'Add members',
         ],
         'create'        => [
-            'success'   => 'Member added to :name.',
-            'title'     => 'New Member',
+            'success_multiple'  => '{1} Added :count member to :name.|[2,*] Added :count members to :name.',
             'title_multiple'    => 'New Members',
         ],
         'destroy'       => [
