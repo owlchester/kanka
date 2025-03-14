@@ -172,7 +172,7 @@ class LiveController extends Controller
                 ->with('character')
                 ->has('character')
                 ->leftJoin('characters as c', 'c.id', 'organisation_member.character_id')
-            ->orderBy('c.name');
+                ->orderBy('c.name');
             if (!empty($term)) {
                 $members
                     ->whereLike('c.name', '%' . $term . '%');

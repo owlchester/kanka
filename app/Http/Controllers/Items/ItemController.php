@@ -38,7 +38,7 @@ class ItemController extends Controller
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with(['entity', 'entity.image', 'entity.entityType',
-            'parent', 'parent.entity',
+                'parent', 'parent.entity',
             ])
             ->paginate(config('limits.pagination'));
 
