@@ -157,7 +157,8 @@ class EntityCreatorController extends Controller
 
         // Redirect the user to the edit form
         if ($this->request->get('action') === 'edit' && isset($new)) {
-            $editUrl = $createdEntities[0]->getLink('edit');
+            $entity = $entityType->isSpecial() ? $createdEntities[0] : $createdEntities[0]->entity;
+            $editUrl = route('entities.edit', [$campaign, $entity]);
             return response()->json([
                 'redirect' => $editUrl,
             ]);
