@@ -11,6 +11,7 @@ return [
         'name'      => ':module (filtered)',
         'premium'   => 'Adding more bookmarks requires enabling premium campaign features.',
         'success'   => 'Bookmark created.',
+        'helper'    => 'You can create a new custom bookmark using the currently set advanced filters.',
     ],
     'helpers'   => [
         'guest' => 'Please log into your account to filter results.',
