@@ -206,9 +206,11 @@ class Entity extends Model
     /**
      * @return string
      */
-    public function url(string $action = 'show', array $options = [])
+    public function url(string $action = 'show', array $options = [], ?Campaign $campaign = null): string
     {
-        $campaign = CampaignLocalization::getCampaign();
+        if (empty($campaign)) {
+            $campaign = CampaignLocalization::getCampaign();
+        }
         try {
             if ($action == 'index') {
                 return route($this->entityType->code . '.index', [$campaign, $this->entityType]);

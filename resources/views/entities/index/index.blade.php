@@ -32,12 +32,13 @@
         </div>
     @else
         <div class="flex flex-stretch gap-2 items-center">
-            @include('layouts.datagrid.search', ['route' => ['entities.index', $campaign, $entityType]])
+{{--            @include('layouts.datagrid.search', ['route' => ['entities.index', $campaign, $entityType]])--}}
             @include('cruds.datagrids.filters.datagrid-filter', ['route' => ['entities.index', $campaign, $entityType]])
         </div>
     @endif
 
-        @include('cruds.datagrids.explore', ['route' => 'entities.index'])
+        @livewire('entities.explore', ['entityType' => $entityType, 'campaign' => $campaign, 'nested' => $nestable])
+{{--        @include('cruds.datagrids.explore', ['route' => 'entities.index'])--}}
 
     </div>
 @endsection

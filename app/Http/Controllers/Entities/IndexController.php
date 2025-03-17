@@ -47,52 +47,14 @@ class IndexController extends Controller
 
         $nested = $this->isNested();
 
-        $base = Entity::inTypes($entityType->id)
-            ->select([
-                'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
-                'entities.type_id', 'entities.parent_id',
-                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y'
-            ])
-            ->with(['entityType', 'image'])
-            ->withCount('children')
-            ->search($this->filterService->search())
-            ->order($this->filterService->order())
-            ->distinct()
-        ;
-
-        $parent = null;
-        if (request()->has('parent_id')) {
-            $parent = Entity::select([
-                'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
-                'entities.type_id', 'entities.parent_id',
-                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y'
-            ])
-                ->inTypes([$entityType->id])->where('id', request()->get('parent_id'))->first();
-            if ($parent) {
-                $base->where('entities.parent_id', request()->get('parent_id'));
-            }
-        }
-        if (empty($parent) && $nested && $this->filterService->activeFiltersCount() === 0) {
-            $base->whereNull('entities.parent_id');
-        }
-
-        $unfilteredCount = 0;
-        if ($this->filterService->hasFilters()) {
-            $unfilteredCount = $base->count();
-            $base = $base->filter($this->filterService->filters());
-        }
-        $models = $base->orderBy('name')->paginate();
 
         return view('entities.index.index')
             ->with('campaign', $campaign)
             ->with('entityType', $entityType)
-            ->with('models', $models)
-            ->with('mode', 'grid')
-            ->with('parent', $parent)
             ->with('forceMode', 'grid')
+            ->with('mode', 'grid')
             ->with('filterService', $this->filterService)
             ->with('nestable', $nested)
-            ->with('unfilteredCount', $unfilteredCount)
             ->with('templates', $this->loadTemplates($campaign, $entityType))
         ;
     }

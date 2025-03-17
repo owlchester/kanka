@@ -49,6 +49,7 @@ class VisibilityIDScope implements Scope
             $builder->where($model->getTable() . '.visibility_id', Visibility::All);
             return;
         }
+        // Todo: remove this to make it compatible with livewire
         $campaign = CampaignLocalization::getCampaign();
         if (!$campaign->userIsMember()) {
             $builder->where($model->getTable() . '.visibility_id', Visibility::All);
