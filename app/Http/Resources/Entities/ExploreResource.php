@@ -12,7 +12,6 @@ use Illuminate\Support\Str;
 
 class ExploreResource extends JsonResource
 {
-
     /**
      * Transform the resource into an array.
      *
