@@ -13,7 +13,7 @@ class ItemSubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Item $item */
         $item = $this->entity->child;
         $items['second']['items'] = [
-            'name' => Module::plural($item->entityTypeId(), 'entities.items'),
+            'name' => $item->entity->entityType->plural(),
             'route' => 'items.items',
             'count' => $item->descendants()->has('entity')->count()
         ];
