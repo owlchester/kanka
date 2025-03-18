@@ -16,6 +16,7 @@ use App\Services\Entity\TransformService;
 use App\Services\Permissions\BulkPermissionService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
+use App\Traits\RequestAware;
 use Illuminate\Support\Arr;
 use App\Models\MiscModel;
 use Exception;
@@ -29,6 +30,7 @@ class BulkService
 {
     use CampaignAware;
     use EntityTypeAware;
+    use RequestAware;
     use SaveLocations;
 
     /** Ids of entities */
@@ -73,7 +75,7 @@ class BulkService
     {
         $model = $this->getEntity();
         if (isset($this->entityType)) {
-            if ($this->entityType->hasEntity()) {
+            if (!$this->entityType->isSpecial()) {
                 $with = ['entity', 'entity.entityType', 'entity.campaign'];
                 if ($this->entityType->isNested()) {
                     $with[] = 'children';
@@ -122,13 +124,20 @@ class BulkService
     {
         $model = $this->getEntity();
 
-        $entities = $model->with('entity')->whereIn('id', $this->ids)->get();
+        $with = [];
+        if (!$this->entityType->isSpecial()) {
+            $with = ['entity'];
+        }
+        $entities = $model->with($with)->whereIn('id', $this->ids)->get();
         foreach ($entities as $entity) {
+            if (!$entity instanceof Entity) {
+                $entity = $entity->entity;
+            }
             if (!$this->can('update', $entity)) {
                 continue;
             }
             $this->permissionService
-                ->entity($entity->entity)
+                ->entity($entity)
                 ->override($override)
                 ->change($permissions);
             $this->count++;
@@ -156,22 +165,25 @@ class BulkService
             ->copy(true)
             ->to($campaign);
 
-        $entities = $model->with([
+        $with = !$this->entityType?->isSpecial() ? [
             'entity',
             'entity.entityType',
             'entity.image',
             'entity.inventories',
-            'entity.attributes',
-        ])->whereIn('id', $this->ids)->get();
+            'entity.attributes'
+        ] : [
+            'entityType', 'image', 'inventories', 'attributes'
+        ];
+        $entities = $model->with($with)->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
+            if (!$entity instanceof Entity) {
+                $entity = $entity->entity;
+            }
             if (!$this->can('update', $entity)) {
                 continue;
             }
-            if (empty($entity->entity)) {
-                dd(CampaignLocalization::getCampaign());
-            }
-            if ($this->moveService->entity($entity->entity)->process()) {
+            if ($this->moveService->entity($entity)->process()) {
                 $this->count++;
             }
         }
@@ -184,17 +196,25 @@ class BulkService
      */
     public function transform(EntityType $entityType): int
     {
+        $this->transformService
+            ->entityType($entityType)
+            ->campaign($this->campaign);
+
         $model = $this->getEntity();
+        $with = !$this->entityType->isSpecial() ? ['entity'] : [];
+
         foreach ($this->ids as $id) {
-            $entity = $model->with('entity')->findOrFail($id);
+            $entity = $model->with($with)->findOrFail($id);
             if (!$this->can('update', $entity)) {
                 continue;
             }
-            $this->transformService
-                ->child($entity)
-                ->entityType($entityType)
-                ->campaign($this->campaign)
-                ->transform();
+
+            if ($this->entityType->isSpecial()) {
+                $this->transformService->entity($entity);
+            } else {
+                $this->transformService->child($entity);
+            }
+            $this->transformService->transform();
             $this->count++;
         }
 
@@ -301,8 +321,9 @@ class BulkService
 
         // Todo: move model fetch above to actually use with()
         foreach ($this->ids as $id) {
-            /** @var MiscModel $entity */
-            $entity = $model->with('entity', 'entity.tags')->findOrFail($id);
+            /** @var MiscModel|Entity $entity */
+            $with = !$this->entityType->isSpecial() ? ['entity', 'entity.tags'] : ['tags'];
+            $entity = $model->with($with)->findOrFail($id);
             $this->total++;
             if (!$this->can('update', $entity)) {
                 continue;
@@ -332,10 +353,14 @@ class BulkService
             }
 
             // We have to still update the entity object (except for bookmarks)
-            // Todo: refactor into a trait or function
-            if (!empty($entity->entity)) {
+            $realEntity = null;
+            if ($this->entityType->isSpecial()) {
+                $realEntity = $entity;
+            } elseif (!$this->entityType->isSpecial() && !empty($entity->entity)) {
                 $realEntity = $entity->entity;
-
+            }
+            // Todo: refactor into a trait or function
+            if ($realEntity instanceof Entity) {
                 if (isset($imageUuid)) {
                     $realEntity->image_uuid = $imageUuid;
                     // Changed the image, reset the focus
@@ -372,16 +397,16 @@ class BulkService
 
             $tagAction = Arr::get($fields, 'bulk-tagging', 'add');
             if ($tagAction === 'remove') {
-                $entity->entity->tags()->detach($tagIds);
+                $realEntity->tags()->detach($tagIds);
             } else {
                 /** @var TagService $tagService */
                 $tagService = app()->make(TagService::class);
                 $tagService
                     ->user(auth()->user())
-                    ->entity($entity->entity)
+                    ->entity($realEntity)
                     ->withNew()
                     ->add($tagIds);
-                $entity->entity->touch();
+                $realEntity->touch();
             }
         }
 
@@ -400,13 +425,17 @@ class BulkService
         /** @var AttributeService $service */
         $service = app()->make('App\Services\AttributeService');
 
-        $entities = $model->with(['entity', 'entity.campaign'])->whereIn('id', $this->ids)->get();
+        $with = !$this->entityType?->isSpecial() ? ['entity', 'entity.campaign'] : [];
+        $entities = $model->with($with)->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
+            if (!$entity instanceof Entity) {
+                $entity = $entity->entity;
+            }
             if (!$this->can('update', $entity)) {
                 continue;
             }
-            $service->apply($entity->entity, $template);
+            $service->apply($entity, $template);
             $this->count++;
 
         }
@@ -420,6 +449,9 @@ class BulkService
     protected function getEntity()
     {
         if (isset($this->entityType)) {
+            if ($this->entityType->isSpecial()) {
+                return new Entity();
+            }
             return $this->entityType->getClass();
         }
         return new Relation();
@@ -472,7 +504,7 @@ class BulkService
 
     protected function can(string $action, $entity): bool
     {
-        if (!isset($this->entityType) || !$this->entityType->hasEntity()) {
+        if (!isset($this->entityType) || !$this->entityType->hasEntity() || $entity instanceof Entity) {
             return auth()->user()->can($action, $entity);
         }
         return auth()->user()->can($action, $entity->entity);

@@ -7,6 +7,7 @@ use App\Http\Requests\Bulks\Copy;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\BulkService;
+use Illuminate\Http\Request;
 
 class CopyController extends Controller
 {
@@ -16,18 +17,23 @@ class CopyController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Campaign $campaign, EntityType $entityType)
+    public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
+        $entities = $request->get('entities');
         return view('cruds.datagrids.bulks.modals._copy_campaign')
             ->with('campaign', $campaign)
             ->with('entityType', $entityType)
             ->with('type', $entityType->code)
+            ->with('entities', $entities)
         ;
     }
 
     public function apply(Copy $request, Campaign $campaign, EntityType $entityType)
     {
         $models = explode(',', $request->get('models'));
+        if ($request->has('entities')) {
+            $models = $request->get('entities');
+        }
 
         /** @var Campaign $target */
         $target = Campaign::findOrFail($request->get('campaign'));

@@ -5,5 +5,11 @@
         'submit' => __('crud.actions.apply'),
         'dialog' => true,
     ])
-    <input type="hidden" name="models" />
+    @if (!empty($entities))
+        @foreach ($entities as $id)
+            <input type="hidden" name="entities[]" value="{{ $id }}" />
+        @endforeach
+    @else
+        <input type="hidden" name="models" />
+    @endif
 </x-form>

@@ -26,7 +26,13 @@
 <input type="hidden" name="datagrid-action" value="batch" />
 <input type="hidden" name="entity" value="{{ $name }}" />
 <input type="hidden" name="mode" value="{{ $mode }}" />
-<input type="hidden" name="models" value="" id="datagrid-bulk-batch-models" />
+    @if (!empty($entities))
+        @foreach ($entities as $id)
+            <input type="hidden" name="entities[]" value="{{ $id }}" />
+        @endforeach
+    @else
+        <input type="hidden" name="models" value="" id="datagrid-bulk-batch-models" />
+    @endif
 @isset($entityType) <input type="hidden" name="entity_type" value="{{ $entityType->id }}" />@endisset
 </x-form>
 

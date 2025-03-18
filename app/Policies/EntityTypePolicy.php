@@ -9,7 +9,7 @@ use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\User;
 
-class EntityTypePolicy
+class  EntityTypePolicy
 {
     public function create(?User $user, EntityType $entityType, Campaign $campaign)
     {

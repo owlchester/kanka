@@ -256,7 +256,7 @@ class TransformService
         if (isset($this->new)) {
             $this->entity->entity_id = $this->new->id;
         }
-        $this->entity->cleanCache()->saveQuietly();
+        $this->entity->saveQuietly();
 
         EntityLogger::entity($this->entity)->dirty('entity_type', $type)->update();
 

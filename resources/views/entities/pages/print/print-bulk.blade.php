@@ -24,7 +24,14 @@
     </button>
 
     @foreach ($entities as $model)
-        @php $entity = $model->entity; $name = $entity->entityType->pluralCode() @endphp
+        @php
+        if ($model instanceof \App\Models\Entity) {
+            $entity = $model;
+        } else {
+            $entity = $model->entity;
+        }
+            $name = $entity->entityType->pluralCode()
+        @endphp
 
         @if(view()->exists($entity->entityType->pluralCode() . '.show'))
             @include($entity->entityType->pluralCode() . '.show')

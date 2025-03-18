@@ -26,7 +26,7 @@
             <a href="{{ route($route, [$campaign, 'parent_id' => $model->id]) }}"  class="block avatar grow relative cover-background overflow-hidden text-center" style="background-image: url('{{ Avatar::entity($model->entity)->fallback()->size(192, 144)->thumbnail() }}')">
 
                 @if ($model->is_private)
-                    <div class="bubble-private absolute left-1.5 top-1.5 text-base shadow-xs flex justify-center align-items-center items-center aspect-square rounded-full w-6 h-6 bg-box opacity-80">
+                    <div class="bubble-private absolute left-1.5 top-1.5 text-base shadow-xs flex justify-center align-items-center items-center aspect-square rounded-full w-6 h-6 bg-box opacity-80 text-base-content">
                         <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')" />
                     </div>
                 @endif
@@ -59,7 +59,7 @@
     <div class="entity overflow-hidden rounded shadow-sm hover:shadow-md w-[47%] xs:w-[25%] sm:w-48 aspect-square flex flex-col bg-box @if (isset($isParent)) shadow-lg stacking-parent font-bold @endif" title="{{ $model->name }}" @foreach ($dataAttributes as $att) data-{{ $att }}="true" @endforeach data-entity="{{ $model->entity->id }}" data-entity-type="{{ $model->entity->entityType->code }}" @if (!empty($model->type)) data-type="{{ \Illuminate\Support\Str::slug($model->type) }}" @endif>
         <a href="{{ $model->getLink() }}" class="block avatar grow relative cover-background" style="background-image: url('{{ Avatar::entity($model->entity)->fallback()->size(192, 144)->thumbnail() }}')">
             @if ($model->is_private)
-                <div class="bubble-private absolute left-1.5 top-1.5 shadow-xs flex justify-center align-items-center items-center aspect-square rounded-full w-6 h-6 text-xs bg-box opacity-80">
+                <div class="bubble-private absolute left-1.5 top-1.5 shadow-xs flex justify-center align-items-center items-center aspect-square rounded-full w-6 h-6 text-xs bg-box opacity-80 text-base-content">
                     <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')" />
                 </div>
             @endif

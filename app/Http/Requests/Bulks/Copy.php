@@ -22,8 +22,10 @@ class Copy extends FormRequest
     public function rules(): array
     {
         return [
-            'models' => 'required',
+            'models' => 'required_without:entities|array',
             'models.*' => 'integer',
+            'entities' => 'required_without:models|array',
+            'entities.*' => 'integer',
             'campaign' => 'required|exists:campaigns,id',
         ];
     }
