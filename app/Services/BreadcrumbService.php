@@ -14,7 +14,7 @@ class BreadcrumbService
 
     /**
      */
-    public function index(string $name = null): string
+    public function index(?string $name = null): string
     {
         // Determine the "mode" for logged-in users who prefer the old table view
         $params = [];

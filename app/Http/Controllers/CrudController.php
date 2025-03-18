@@ -111,8 +111,8 @@ class CrudController extends Controller
             return redirect()->route('dashboard', $this->campaign)->with(
                 'error_raw',
                 __('campaigns/modules.errors.disabled', [
-                    'name' => $this->getEntityType()->plural(),
-                    'fix' => '<a href="' . route('campaign.modules', [$this->campaign, '#' . $this->getEntityType()->code]) . '">' . __('crud.fix-this-issue') . '</a>',
+                    'name' => $this->getEntityType()->plural(), //@phpstan-ignore-line
+                    'fix' => '<a href="' . route('campaign.modules', [$this->campaign, '#' . $this->getEntityType()->code]) . '">' . __('crud.fix-this-issue') . '</a>', //@phpstan-ignore-line
                 ])
             );
         }
@@ -300,6 +300,7 @@ class CrudController extends Controller
     }
     public function crudCreate($params = [])
     {
+        //@phpstan-ignore-next-line
         $this->authorize('create', [$this->getEntityType(), $this->campaign]);
 
         if ($this->hasLimitCheck) {
@@ -357,8 +358,8 @@ class CrudController extends Controller
      */
     public function crudStore(Request $request, bool $redirectToCreated = false)
     {
+        //@phpstan-ignore-next-line
         $this->authorize('create', [$this->getEntityType(), $this->campaign]);
-
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {

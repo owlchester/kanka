@@ -242,7 +242,7 @@ class Entity extends Model
      * Get the image (or default image) of an entity
      * @param int $width = 200
      */
-    public function thumbnail(int $width = 400, int $height = null, $field = 'header_image'): string
+    public function thumbnail(int $width = 400, ?int $height = null, string $field = 'header_image'): string
     {
         if (empty($this->$field)) {
             return '';

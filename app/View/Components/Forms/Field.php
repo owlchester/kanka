@@ -21,13 +21,13 @@ class Field extends Component
      */
     public function __construct(
         string $field,
-        string $label = null,
+        ?string $label = null,
         bool $required = false,
         bool $tooltip = false,
         bool $hidden = false,
-        string $helper = null,
-        string $link = null,
-        string $css = null,
+        ?string $helper = null,
+        ?string $link = null,
+        ?string $css = null,
         public ?string $id = null,
     ) {
         $this->field = $field;

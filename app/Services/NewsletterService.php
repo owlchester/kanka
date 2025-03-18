@@ -87,7 +87,7 @@ class NewsletterService
             $interests = [];
             if (Arr::has($options, 'releases')) {
                 $interests[] = config('mailerlite.groups.all');
-                if ($this->user && $this->user->isSubscriber()) {
+                if (isset($this->user) && $this->user->isSubscriber()) {
                     $interests[] = config('mailerlite.groups.subs');
                 }
                 if (isset($options['new']) && $options['new']) {

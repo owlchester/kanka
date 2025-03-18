@@ -32,8 +32,6 @@ class MapGroupApiController extends ApiController
     }
 
     /**
-     * @return Resource
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Map $map)
     {
@@ -48,8 +46,6 @@ class MapGroupApiController extends ApiController
     }
 
     /**
-     * @return Resource
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(
         Request $request,

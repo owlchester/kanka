@@ -33,13 +33,13 @@ class RecoveryService
         }
 
         $entity->restore();
-        // @phpstan-ignore-next-line
         if ($entity->entityType->isSpecial()) {
             return $entity->url();
         }
 
         // Sometimes the child is soft-deleted, sometimes not.
         // Honestly we shouldn't have soft-deleted children and just rely on the entity to reduce complexity.
+        // @phpstan-ignore-next-line
         $child = $entity->child()->onlyTrashed()->first();
         if (!$child) {
             return $entity->url();

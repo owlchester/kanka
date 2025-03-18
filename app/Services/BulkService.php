@@ -164,7 +164,7 @@ class BulkService
             ->copy(true)
             ->to($campaign);
 
-        $with = !$this->entityType?->isSpecial() ? [
+        $with = isset($this->entityType) && $this->entityType->isSpecial() ? [
             'entity',
             'entity.entityType',
             'entity.image',
@@ -355,6 +355,7 @@ class BulkService
             $realEntity = null;
             if ($this->entityType->isSpecial()) {
                 $realEntity = $entity;
+                // @phpstan-ignore-next-line
             } elseif (!$this->entityType->isSpecial() && !empty($entity->entity)) {
                 $realEntity = $entity->entity;
             }
@@ -383,7 +384,6 @@ class BulkService
 
             $locationsAction = Arr::get($fields, 'bulk-locations', 'add');
             if ($locationsAction === 'remove') {
-                // @phpstan-ignore-next-line
                 $entity->locations()->detach($locationIds);
             } elseif (!empty($locationIds)) {
                 $this->saveLocations($entity, $locationIds);
@@ -424,7 +424,7 @@ class BulkService
         /** @var AttributeService $service */
         $service = app()->make('App\Services\AttributeService');
 
-        $with = !$this->entityType?->isSpecial() ? ['entity', 'entity.campaign'] : [];
+        $with = isset($this->entityType) && $this->entityType->isSpecial() ? ['entity', 'entity.campaign'] : [];
         $entities = $model->with($with)->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {

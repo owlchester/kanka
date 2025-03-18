@@ -80,7 +80,7 @@ class EntityPolicy
         return EntityPermission::entity($entity)->user($user)->can(Permission::Permissions);
     }
 
-    public function post(User $user, Entity $entity, string $action = null, ?Post $post = null): bool
+    public function post(User $user, Entity $entity, ?string $action = null, ?Post $post = null): bool
     {
         return (
             $this->update($user, $entity) ||
