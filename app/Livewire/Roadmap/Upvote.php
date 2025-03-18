@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Roadmap;
 
+use App\Jobs\Discord\UpdateFeatureUpvotes;
 use App\Models\Feature;
 use App\Models\FeatureVote;
 use Livewire\Component;
@@ -48,6 +49,8 @@ class Upvote extends Component
             $this->feature->updateQuietly();
             $this->count++;
         }
+
+        UpdateFeatureUpvotes::dispatch($this->feature->id);
     }
     public function render()
     {

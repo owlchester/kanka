@@ -55,7 +55,7 @@ class SendNewFeature implements ShouldQueue
         $title = $feature->name;
         $content = 'A new idea has been approved and can be voted on!';
 
-        Http::post(config('discord.webhooks.features'), [
+        $response = Http::post(config('discord.webhooks.features') . '?wait=true', [
             'content' => $content,
             'embeds' => [
                 [
@@ -70,7 +70,13 @@ class SendNewFeature implements ShouldQueue
                     ]
                 ]
             ],
+            'wait' => true,
         ]);
 
+        $messageData = $response->json();
+        $messageId = $messageData['id'];
+
+        $feature->message_id = $messageData['id'];
+        $feature->saveQuietly();
     }
 }
