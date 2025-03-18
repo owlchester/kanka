@@ -2,7 +2,6 @@
 
 namespace App\Services\Submenus;
 
-use App\Facades\Module;
 use App\Models\Item;
 
 class ItemSubmenu extends BaseSubmenu implements EntitySubmenu
