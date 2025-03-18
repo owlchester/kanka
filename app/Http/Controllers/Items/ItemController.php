@@ -48,7 +48,5 @@ class ItemController extends Controller
 
         return $this
             ->subview('items.items', $item);
-
-        return redirect()->to($item->getLink());
     }
 }
