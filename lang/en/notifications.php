@@ -68,5 +68,11 @@ return [
         'failed'        => 'We couldn\'t charge your payment details. Please update them in your Payment Method settings.',
         'started'       => 'Your subscription to Kanka has started.',
     ],
+    'plugins'           => [
+        'comments'      => [
+            'new_reply'     => ':user has replied to your comment in :plugin.',
+            'new_comment'   => ':user has left a new comment in your plugin :plugin.',
+        ],   
+    ],
     'unread'            => 'New notification',
 ];
