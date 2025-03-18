@@ -10,6 +10,7 @@ use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\EntityType;
+use App\Models\Map;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Quest;
@@ -419,7 +420,7 @@ class MentionsService
                     }
 
                     if (!$entity->isMissingChild()) {
-                        /** @var Character $child */
+                        /** @var Character|Map|Quest $child */
                         $child = $entity->child;
                         if ($field == 'family' && !$child->families->isEmpty()) {
                             $data['text'] = $child->characterFamilies()->first()->family->name;
@@ -427,7 +428,6 @@ class MentionsService
                         if ($field == 'race' && !$child->characterRaces->isEmpty()) {
                             $data['text'] = $child->characterRaces->first()->race->name;
                         }
-                        /** @var Quest $child */
                         if ($field == 'calendar_date' && $child->calendar_id) {
                             $data['text'] = $child->calendarReminder()->readableDate();
                         }
@@ -464,8 +464,7 @@ class MentionsService
                             data-entity-type="' . $entity->entityType->code . '"
                             class="entity-attributes-render w-full h-full"
                         ></iframe>';
-                        /** @var Map $child */
-                    } elseif ($field == 'map' && $child->explorable()) {
+                    } elseif ($field == 'map' && isset($child) && $child->explorable()) {
                         $height = 300;
                         $width = 300;
                         if (isset($routeOptions['height']) && is_numeric($routeOptions['height'])) {

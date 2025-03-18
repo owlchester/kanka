@@ -163,6 +163,9 @@ trait EntityScopes
 
     public function scopeOrder(Builder $query, array $config = []): Builder
     {
+        foreach ($config as $field => $order) {
+            $query->orderBy($field, $order);
+        }
         return $query;
     }
 

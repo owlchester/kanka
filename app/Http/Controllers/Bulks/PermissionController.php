@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\BulkService;
+use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
@@ -15,18 +16,22 @@ class PermissionController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Campaign $campaign, EntityType $entityType)
+    public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
-
+        $entities = $request->get('entities');
         return view('cruds.datagrids.bulks.modals._permissions')
             ->with('campaign', $campaign)
             ->with('entityType', $entityType)
+            ->with('entities', $entities)
         ;
     }
 
-    public function apply(Campaign $campaign, EntityType $entityType)
+    public function apply(Request $request, Campaign $campaign, EntityType $entityType)
     {
-        $models = explode(',', request()->get('models'));
+        $models = explode(',', $request->get('models'));
+        if ($request->has('entities')) {
+            $models = $request->get('entities');
+        }
 
         $count = $this
             ->bulkService

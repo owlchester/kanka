@@ -57,12 +57,11 @@ class CommunityEvent extends Model
 
     /**
      * Get the image (or default image) of an entity
-     * @return string|null
      */
-    public function thumbnail(int $width = 400, int $height = null, string $field = 'image')
+    public function thumbnail(int $width = 400, ?int $height = null, string $field = 'image'): string
     {
         if (empty($this->$field)) {
-            return null;
+            return '';
         }
         return Img::crop($width, (!empty($height) ? $height : $width))->url($this->$field);
     }

@@ -320,7 +320,6 @@ class EntityCreatorController extends Controller
         $view = 'form';
 
         if ($mode === 'templates' && isset($entityType)) {
-            /** @var MiscModel $modelClass */
             $templates = Entity::select('id', 'name', 'entity_id')
                 ->templates($entityType->id)
                 ->get();

@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\BulkService;
 use App\Services\EntityTypeService;
+use Illuminate\Http\Request;
 
 class TransformController extends Controller
 {
@@ -18,16 +19,18 @@ class TransformController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(Campaign $campaign, EntityType $entityType)
+    public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
-        $entities = $this->entityTypeService
+        $entityTypes = $this->entityTypeService
             ->campaign($campaign)
             ->exclude([$entityType->id, config('entities.ids.bookmark')])
             ->prepend(['' => __('entities/transform.fields.select_one')])
             ->toSelect();
+        $entities = $request->get('entities');
 
         return view('cruds.datagrids.bulks.modals._transform')
             ->with('campaign', $campaign)
+            ->with('entityTypes', $entityTypes)
             ->with('entities', $entities)
             ->with('entityType', $entityType)
         ;
@@ -35,7 +38,10 @@ class TransformController extends Controller
 
     public function apply(TransformEntityRequest $request, Campaign $campaign, EntityType $entityType)
     {
-        $models = explode(',', request()->get('models'));
+        $models = explode(',', $request->get('models'));
+        if ($request->has('entities')) {
+            $models = $request->get('entities');
+        }
 
         /** @var EntityType $newEntityType */
         $newEntityType = EntityType::inCampaign($campaign)->find($request->get('target'));

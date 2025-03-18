@@ -27,7 +27,7 @@ return [
     ],
     'helpers'       => [
         'custom'    => 'This is a custom module.',
-        'icon'      => 'The :fontawesome icon, for example :example.',
+        'icon'      => 'Give this module a special :fontawesome icon, for example :example.',
         'info'      => 'A campaign is split into several modules that interact with each other. Enable or disable those you don\'t need. Deactivating a module doesn\'t delete any of its data, it only hides it.',
         'plural'    => 'The plural name for entities of the new module. For example, potions',
         'roles'     => 'Select roles that should have permission to view entities of this new module. This can later be changed in the role permissions.',

@@ -29,7 +29,7 @@ class FormCopyService
         return $this;
     }
 
-    public function source(Entity|Model $source = null): self
+    public function source(Entity|Model|null $source = null): self
     {
         $this->source = $source;
         return $this;

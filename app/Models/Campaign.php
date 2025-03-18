@@ -207,7 +207,7 @@ class Campaign extends Model
     /**
      * Determine if the user is in the campaign
      */
-    public function userIsMember(User $user = null): bool
+    public function userIsMember(?User $user = null): bool
     {
         if (empty($user)) {
             $user = auth()->user();

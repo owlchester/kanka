@@ -156,7 +156,7 @@ class ApiService
         // Update the helper text of the attribute
     }
 
-    protected function parseAttribute(Attribute $attribute, AttributeTemplate $template = null, int $templateTotalAttributes = 0): void
+    protected function parseAttribute(Attribute $attribute, ?AttributeTemplate $template = null, int $templateTotalAttributes = 0): void
     {
         // If an attribute with the same name already exists, don't add it again
         $existing = $this->attributes->where('name', $attribute->name)->first();

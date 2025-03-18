@@ -2,6 +2,7 @@
 
 return [
     'deselect_all'  => 'Deselect All',
+    'done' => 'Done',
     'no'            => 'No',
     'required'      => 'Required',
     'select_all'    => 'Select All',

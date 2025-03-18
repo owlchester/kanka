@@ -194,12 +194,10 @@ class EntityObserver
         }
 
         // Superboosted image gallery selection
-        if ($entity->campaign->boosted()) {
-            if (request()->has('entity_header_uuid')) {
-                $entity->header_uuid = request()->get('entity_header_uuid');
-            } elseif (Domain::isApp()) {
-                $entity->header_uuid = null;
-            }
+        if (request()->has('entity_header_uuid')) {
+            $entity->header_uuid = request()->get('entity_header_uuid');
+        } elseif (Domain::isApp()) {
+            $entity->header_uuid = null;
         }
     }
 

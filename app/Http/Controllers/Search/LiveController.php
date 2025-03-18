@@ -165,7 +165,6 @@ class LiveController extends Controller
         if ($request->has('exclude')) {
             /** @var Organisation $org */
             $org = Organisation::findOrFail($request->get('exclude'));
-            /** @var OrganisationMember $member */
             $members = $org
                 ->members()
                 ->select('organisation_member.*')
@@ -177,6 +176,7 @@ class LiveController extends Controller
                 $members
                     ->whereLike('c.name', '%' . $term . '%');
             }
+            /** @var OrganisationMember $member */
             foreach ($members->get() as $member) {
                 $data[] = [
                     'id' => $member->id,

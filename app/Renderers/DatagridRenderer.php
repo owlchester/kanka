@@ -237,10 +237,7 @@ class DatagridRenderer
         return "<th class='dg-" . $type . " " . ($class ?? null) . "'>{$html}</th>\n";
     }
 
-    /**
-     * @return string
-     */
-    private function route(string $field = null, ?string $label = null)
+    private function route(?string $field = null, ?string $label = null): string
     {
         // Field is label
         if (empty($label)) {

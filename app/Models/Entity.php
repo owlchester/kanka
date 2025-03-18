@@ -130,11 +130,6 @@ class Entity extends Model
         'crudSaved',
     ];
 
-    protected string $cachedPluralName;
-
-    /** The entity type string */
-    protected string $cachedType;
-
     /**
      * Get the child entity
      * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne|MiscModel
@@ -243,18 +238,11 @@ class Entity extends Model
         return in_array($this->type_id, $types);
     }
 
-    public function cleanCache(): self
-    {
-        unset($this->cachedType, $this->cachedPluralName);
-
-        return $this;
-    }
-
     /**
      * Get the image (or default image) of an entity
      * @param int $width = 200
      */
-    public function thumbnail(int $width = 400, int $height = null, $field = 'header_image'): string
+    public function thumbnail(int $width = 400, ?int $height = null, string $field = 'header_image'): string
     {
         if (empty($this->$field)) {
             return '';
