@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use App\Facades\Domain;
 use App\Models\Campaign;
 use Closure;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 

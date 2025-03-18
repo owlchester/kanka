@@ -1,4 +1,5 @@
 <?php
+
 Route::get('/w/{campaign}/bulk/{entity_type}/batch', [App\Http\Controllers\Bulks\BatchController::class, 'index'])->name('bulk.batch');
 Route::post('/w/{campaign}/bulk/{entity_type}/batch', [App\Http\Controllers\Bulks\BatchController::class, 'apply'])->name('bulk.batch.apply');
 
