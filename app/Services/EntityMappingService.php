@@ -12,6 +12,7 @@ use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
 use App\Traits\MentionTrait;
+use App\View\Components\Helpers\Tooltip;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -192,8 +193,10 @@ class EntityMappingService
         }
 
         // @phpstan-ignore-next-line
-        $mentions = $this->extract($this->model->{$this->model->entryFieldName()});
-
+        $entryMentions = $this->extract($this->model->{$this->model->entryFieldName()});
+        // @phpstan-ignore-next-line
+        $tooltipMentions = $this->extract($this->model->{$this->model->tooltipFieldName()});
+        $mentions = array_merge($tooltipMentions, $entryMentions);
         foreach ($mentions as $data) {
             $type = $data['type'];
             $id = $data['id'];
