@@ -40,7 +40,9 @@ class SaveController extends Controller
             return redirect()->back()->withErrors(__('filters.bookmark.premium'));
         }
 
+        $filters = '';
         if ($entityType->isSpecial()) {
+            $filters = $this->filterService->clipboardFilters();
             $this->filterService
                 ->entityType($entityType)
                 ->build();
@@ -48,9 +50,9 @@ class SaveController extends Controller
             $this->filterService
                 ->model($entityType->getClass())
                 ->make($entityType->pluralCode());
+            $filters = 'm=' . request()->get('m') . '&' . $this->filterService->clipboardFilters();
         }
 
-        $filters = 'm=' . request()->get('m') . '&' . $this->filterService->clipboardFilters();
 
         $bookmark = new Bookmark();
         $bookmark->campaign_id = $campaign->id;

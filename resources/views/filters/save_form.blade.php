@@ -25,7 +25,7 @@
         'fontawesome' => '<a href=\'' . config('fontawesome.search') . '\'>FontAwesome</a>',
         'example' => '<i class=\'fa-solid fa-horse\' aria-hidden=\'true\'></i> <code>fa-solid fa-horse</code>',
         ])">
-        <input type="text" name="icon" value="{{ $entityType->icon() ?? "fa-solid fa-th-list" }}" maxlength="191" class="w-full" autocomplete="off" />
+        <input type="text" name="icon" value="fa-solid fa-th-list" maxlength="191" class="w-full" autocomplete="off" />
     </x-forms.field>
 
 
