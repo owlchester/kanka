@@ -39,9 +39,9 @@ class UpdateFeatureUpvotes implements ShouldQueue
     {
         /** @var Feature|null $feature */
         $feature = Feature::find($this->feature);
-        if (empty($feature)) {
+        if (empty($feature) || empty($feature->message_id)) {
             // Feature wasn't found
-            Log::warning('Jobs/Discord/UpdateFeatureUpvotes', ['unknown feature', 'feature' => $this->feature]);
+            Log::warning('Jobs/Discord/UpdateFeatureUpvotes', ['unknown feature or no message_id', 'feature' => $this->feature]);
             return;
         }
 
