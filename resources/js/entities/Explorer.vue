@@ -15,8 +15,8 @@
         </div>
     </div>
     <div class="flex flex-col gap-4 w-full" v-else>
-        <div class="flex gap-2 justify-between items-center">
-            <div class="flex gap-1 items-center">
+        <div class="flex gap-2 justify-between items-center flex-wrap ">
+            <div class="flex gap-1 items-center flex-wrap ">
                 <h1 class="grow text-3xl category-title truncate" v-html="props.module"></h1>
                 <div class="bg-base-200 flex items-stretch gap-1 rounded-xl" v-if="filters > 0">
                     <div class="flex items-center rounded-xl gap-2 hover:bg-base-300 px-2 py-2 cursor-pointer" v-bind:aria-label="i18n.filters" :title="i18n.filters" @click="openFilters">
