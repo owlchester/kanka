@@ -12,7 +12,7 @@
 @section('content')
     @include('partials.errors')
 
-    <x-form :action="['entities.transform', $campaign, $entity->id]">
+    <x-form :action="['entities.transform-process', $campaign, $entity->id]">
         <x-box>
             <x-grid type="1/1">
                 <p class="text-neutral-content m-0">

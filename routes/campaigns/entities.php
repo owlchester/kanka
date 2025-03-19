@@ -9,11 +9,7 @@ Route::get('/w/{campaign}/entities/{entity}-{slug}', [App\Http\Controllers\Entit
 Route::get('/w/{campaign}/t/{entityType}', [App\Http\Controllers\Entities\IndexController::class, 'index'])->name('entities.index');
 Route::get('/w/{campaign}/t/{entityType}/api', [App\Http\Controllers\Entities\IndexController::class, 'api'])->name('entities.index-api');
 Route::get('/w/{campaign}/t/{entityType}/create', [App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
-
-
-// New entity
-Route::get('/w/{campaign}/create/{entity_type}', [App\Http\Controllers\Entities\CreateController::class, 'index'])->name('entities.create');
-Route::post('/w/{campaign}/create/{entity_type}', [App\Http\Controllers\Entities\CreateController::class, 'store'])->name('entities.store');
+Route::post('/w/{campaign}/t/{entity_type}/create', [App\Http\Controllers\Entities\CreateController::class, 'store'])->name('entities.store');
 
 Route::get('/w/{campaign}/entities/{entity}/edit', [App\Http\Controllers\Entities\EditController::class, 'index'])->name('entities.edit');
 Route::patch('/w/{campaign}/entities/{entity}/save', [App\Http\Controllers\Entities\EditController::class, 'save'])->name('entities.update');
@@ -111,8 +107,8 @@ Route::get('/w/{campaign}/timelines/{timeline}/timelines', 'Timelines\TimelineCo
 Route::get('/w/{campaign}/tags/{tag}/tags', 'Tags\TagController@index')->name('tags.tags');
 Route::get('/w/{campaign}/tags/{tag}/transfer', 'Tags\TransferController@index')->name('tags.transfer');
 Route::get('/w/{campaign}/tags/{tag}/transfer-posts', 'Tags\TransferController@postIndex')->name('tags.transfer.posts');
-Route::post('/w/{campaign}/tags/{tag}/transfer', 'Tags\TransferController@process')->name('tags.transfer');
-Route::post('/w/{campaign}/tags/{tag}/transfer-posts', 'Tags\TransferController@processPosts')->name('tags.transfer.posts');
+Route::post('/w/{campaign}/tags/{tag}/transfer', 'Tags\TransferController@process')->name('tags.transfer-process');
+Route::post('/w/{campaign}/tags/{tag}/transfer-posts', 'Tags\TransferController@processPosts')->name('tags.transfer.posts-process');
 
 // Tags Quick Add
 Route::get('/w/{campaign}/tags/{tag}/children', 'Tags\ChildController@index')->name('tags.children');
@@ -294,13 +290,13 @@ Route::get('/w/{campaign}/redirect', 'RedirectController@index')->name('redirect
 
 // Move
 Route::get('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@index')->name('entities.move');
-Route::post('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move');
+Route::post('/w/{campaign}/entities/{entity}/move', 'Entity\MoveController@move')->name('entities.move-process');
 Route::get('/w/{campaign}/entities/{entity}/posts/{post}/move', 'Entity\Posts\MoveController@index')->name('posts.move');
-Route::post('/w/{campaign}/entities/{entity}/posts/{post}/move', 'Entity\Posts\MoveController@move')->name('posts.move');
+Route::post('/w/{campaign}/entities/{entity}/posts/{post}/move', 'Entity\Posts\MoveController@move')->name('posts.move-process');
 
 // Transform
 Route::get('/w/{campaign}/entities/{entity}/transform', 'Entity\TransformController@index')->name('entities.transform');
-Route::post('/w/{campaign}/entities/{entity}/transform', 'Entity\TransformController@transform')->name('entities.transform');
+Route::post('/w/{campaign}/entities/{entity}/transform', 'Entity\TransformController@transform')->name('entities.transform-process');
 
 Route::get('/w/{campaign}/entities/{entity}/tooltip', 'Entity\TooltipController@show')->name('entities.tooltip');
 
@@ -335,10 +331,10 @@ Route::get('/w/{campaign}/posts/{post}/template', 'Entity\Posts\TemplateControll
 
 // Attribute template
 Route::get('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@index')->name('entities.attributes.template');
-Route::post('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@process')->name('entities.attributes.template');
+Route::post('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@process')->name('entities.attributes.template-process');
 
 Route::get('/w/{campaign}/entities/{entity}/permissions', 'Entity\PermissionController@view')->name('entities.permissions');
-Route::post('/w/{campaign}/entities/{entity}/permissions', 'Entity\PermissionController@store')->name('entities.permissions');
+Route::post('/w/{campaign}/entities/{entity}/permissions', 'Entity\PermissionController@store')->name('entities.permissions-process');
 
 
 Route::get('/w/{campaign}/entities/{entity}/preview', 'Entity\PreviewController@index')->name('entities.preview');

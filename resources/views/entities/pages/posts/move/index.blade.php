@@ -10,7 +10,7 @@
 
 @section('content')
     @include('partials.errors')
-    <x-form :action="['posts.move', $campaign, $entity->id, $post->id]">
+    <x-form :action="['posts.move-process', $campaign, $entity->id, $post->id]">
     <x-box>
         <x-grid type="1/1">
             <x-forms.field field="entity" :label="__('entities/notes.move.entity')">

@@ -11,7 +11,7 @@
 
 @section('content')
     @include('partials.errors')
-    <x-form :action="['entities.move', $campaign, $entity]">
+    <x-form :action="['entities.move-process', $campaign, $entity]">
     <x-box>
         <x-grid type="1/1">
             <p class="text-neutral-content">

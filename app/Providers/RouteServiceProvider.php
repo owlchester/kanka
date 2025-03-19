@@ -86,12 +86,14 @@ class RouteServiceProvider extends ServiceProvider
     {
         $domain = Domain::isApi() ? Domain::api() : '';
         $prefix = Domain::isApi() ? null : 'api';
+        $prefixName = Domain::isApi() ? null : 'api.';
         Route::domain($domain)
             ->prefix($prefix)
             ->namespace($this->namespace)
             ->get('/health', [HealthController::class, 'index']);
 
         Route::domain($domain)
+            ->name($prefixName)
             ->prefix($prefix)
             ->middleware('api')
             ->namespace($this->namespace)

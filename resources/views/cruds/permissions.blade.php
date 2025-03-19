@@ -22,7 +22,7 @@
 /** @var \App\Services\PermissionService $permissionService */
 $permissions = $permissionService->type($entity->type_id)->entityPermissions($entity);
 @endphp
-    <x-form :action="['entities.permissions', $campaign, $entity->id]" direct>
+    <x-form :action="['entities.permissions-process', $campaign, $entity->id]" direct>
         @include('partials.forms.form', [
             'title' => __('crud.permissions.title', ['name' => $entity->name]),
             'content' => 'cruds.permissions.permissions_table',

@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'index'])->name('settings');
 Route::get('/profile', [ProfileController::class, 'index'])->name('settings.profile');
-Route::patch('/profile', [ProfileController::class, 'update'])->name('settings.profile');
+Route::patch('/profile', [ProfileController::class, 'update'])->name('settings.profile-process');
 Route::patch('/billing-info', [ProfileController::class, 'saveBillingInfo'])->name('settings.billing-info');
 
 Route::get('/boosters', [BoostController::class, 'index'])->name('settings.boost');

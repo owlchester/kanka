@@ -55,7 +55,6 @@ Route::apiResources([
     'campaigns.entities.entity_abilities' => 'EntityAbilityApiController',
     'campaigns.entities.entity_assets' => 'EntityAssetApiController',
     'campaigns.entities.entity_permissions' => 'EntityPermissionApiController',
-    'campaigns.entity_types' => 'Campaigns\EntityTypeApiController',
 
     'campaigns.campaign_dashboard_widgets' => 'CampaignDashboardWidgetApiController',
     'campaigns.campaign_styles' => 'CampaignStyleApiController',
@@ -126,6 +125,6 @@ Route::get('version', function () {
     return config('app.version');
 });
 
-Route::get('entity-types', [App\Http\Controllers\Api\v1\EntityTypeApiController::class, 'index']);
+Route::get('entity-types', [App\Http\Controllers\Api\v1\Campaigns\EntityTypeApiController::class, 'index']);
 Route::get('filters', [App\Http\Controllers\Api\v1\FilterApiController::class, 'index']);
 Route::get('filters/{entityType}', [App\Http\Controllers\Api\v1\FilterApiController::class, 'show']);

@@ -9,7 +9,7 @@
 ])
 
 @section('content')
-    <x-form :action="['tags.transfer', $campaign, $tag->id]">
+    <x-form :action="['tags.transfer-process', $campaign, $tag->id]">
         @include('partials.forms.form', [
             'title' => __('tags.transfer.transfer'),
             'content' => 'tags.transfer._form',

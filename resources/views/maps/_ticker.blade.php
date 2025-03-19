@@ -4,7 +4,3 @@
  * @var \App\Models\MapMarker $marker
  */
 ?>
-
-@foreach ()
-
-@endforeach

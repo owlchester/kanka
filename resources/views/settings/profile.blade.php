@@ -13,7 +13,7 @@
             {{ __('settings.profile.title') }}
         </h1>
 
-        <x-form :action="['settings.profile']" method="PATCH" files>
+        <x-form :action="['settings.profile-process']" method="PATCH" files>
             <div class="flex flex-col md:flex-row gap-5">
                 <div class="grow flex flex-col gap-5">
                     <x-forms.field field="name" :label="__('profiles.fields.name')" required>
