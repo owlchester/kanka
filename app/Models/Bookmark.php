@@ -430,6 +430,12 @@ class Bookmark extends Model
         if (empty($current) || request()->has('bookmark')) {
             return null;
         }
+        // We have no way of having a bookmark set "just to the custom module", so in cases where the campaign has a
+        // bookmark to the module with no filters, and one with, we assume we want the one without filters to be
+        // highlighted.
+        if (!empty($this->filters)) {
+            return null;
+        }
         if ($current instanceof EntityType) {
             if (!$current->isSpecial() || $current->id != $this->entity_type_id) {
                 return null;
