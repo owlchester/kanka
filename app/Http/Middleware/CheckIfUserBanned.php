@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 class CheckIfUserBanned
 {
@@ -16,7 +16,7 @@ class CheckIfUserBanned
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->guest() || !auth()->user()->isBanned()) {
+        if (auth()->guest() || ! auth()->user()->isBanned()) {
             return $next($request);
         }
 
@@ -24,12 +24,14 @@ class CheckIfUserBanned
         if (auth()->user()->banned_until < Carbon::now()->addDays(7)) {
             $days = auth()->user()->banned_until->diffInDays(Carbon::now());
             auth()->logout();
+
             return redirect()->route('login')->with(
                 'error',
                 trans_choice('auth.banned.temporary', $days, ['days' => $days])
             );
         }
         auth()->logout();
+
         return redirect()->route('login')->with('error', __('auth.banned.permanent'));
     }
 }

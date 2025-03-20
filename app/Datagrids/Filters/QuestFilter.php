@@ -2,8 +2,8 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\Quest;
 use App\Models\Entity;
+use App\Models\Quest;
 
 class QuestFilter extends DatagridFilter
 {
@@ -22,7 +22,7 @@ class QuestFilter extends DatagridFilter
                 'label' => __('quests.fields.instigator'),
                 'type' => 'select2',
                 'route' => route('search.entities-with-relations', $this->campaign),
-                'placeholder' =>  __('crud.placeholders.entity'),
+                'placeholder' => __('crud.placeholders.entity'),
                 'model' => Entity::class,
             ])
             ->location()
@@ -31,7 +31,7 @@ class QuestFilter extends DatagridFilter
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('search-list', [$this->campaign, config('entities.ids.quest')]),
-                'placeholder' =>  __('crud.placeholders.parent'),
+                'placeholder' => __('crud.placeholders.parent'),
                 'model' => Quest::class,
             ])
             ->add([
@@ -39,7 +39,7 @@ class QuestFilter extends DatagridFilter
                 'label' => __('crud.fields.entity'),
                 'type' => 'select2',
                 'route' => route('search.entities-with-relations', $this->campaign),
-                'placeholder' =>  __('quests.placeholders.entity'),
+                'placeholder' => __('quests.placeholders.entity'),
                 'model' => Entity::class,
             ])
             ->add('element_role')
@@ -51,7 +51,6 @@ class QuestFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
-            ->connections()
-        ;
+            ->connections();
     }
 }

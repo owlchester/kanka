@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Module
- * @package App\Facades
  *
  * @see \App\Services\Campaign\ModuleService
+ *
  * @mixin \App\Services\Campaign\ModuleService
  */
 class Module extends Facade

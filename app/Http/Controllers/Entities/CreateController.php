@@ -18,9 +18,8 @@ class CreateController extends Controller
     public function __construct(
         protected CopyService $copyService,
         protected AttributeService $attributeService
-    ) {
+    ) {}
 
-    }
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
         $this->authorize('create', [$entityType, $campaign]);
@@ -39,8 +38,7 @@ class CreateController extends Controller
             ->with('campaign', $campaign)
             ->with('entityType', $entityType)
             ->with('tabCopy', $tabCopy)
-            ->with('source', $source)
-        ;
+            ->with('source', $source);
     }
 
     public function store(StoreCustomEntity $request, Campaign $campaign, EntityType $entityType)
@@ -78,41 +76,45 @@ class CreateController extends Controller
                 }
             }
 
-
-
             $link = '<a href="' . route(
                 'entities.show',
                 [$campaign, $entity]
             )
                 . '">' . $entity->name . '</a>';
             $success = __('general.success.created', [
-                'name' => $link
+                'name' => $link,
             ]);
 
             session()->flash('success_raw', $success);
 
             if ($request->has('submit-new')) {
                 $route = route('entities.create', [$campaign, $entityType]);
+
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-update')) {
                 $route = route('entities.edit', [$campaign, $entity]);
+
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-view') && $entity) {
                 $route = route('entities.show', [$campaign, $entity]);
+
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-copy')) {
                 $route = route('entities..create', [$campaign, $entityType, 'copy' => $entity->id]);
+
                 return response()->redirectTo($route);
             }
 
             $route = route('entities.show', [$campaign, $entity]);
+
             return response()->redirectTo($route);
 
         } catch (LogicException $exception) {
             if (config('app.debug')) {
                 throw $exception;
             }
-            $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));
+            $error = str_replace(' ', '_', mb_strtolower($exception->getMessage()));
+
             return redirect()
                 ->back()
                 ->withInput()

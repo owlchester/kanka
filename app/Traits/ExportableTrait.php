@@ -7,8 +7,10 @@ use Exception;
 trait ExportableTrait
 {
     protected array $exportData;
+
     /**
      * Prepares the data of an entity to json.
+     *
      * @throws Exception
      */
     public function export(): string
@@ -23,8 +25,9 @@ trait ExportableTrait
 
     protected function baseExportData(): self
     {
-        if (!isset($this->exportFields)) {
+        if (! isset($this->exportFields)) {
             $this->exportData = $this->toArray();
+
             return $this;
         }
         $this->exportData = [];
@@ -38,6 +41,7 @@ trait ExportableTrait
         foreach ($this->exportFields as $field) {
             if ($field !== 'base') {
                 $this->exportData[$field] = $this->$field;
+
                 continue;
             }
             foreach ($baseFields as $baseField) {
@@ -45,7 +49,7 @@ trait ExportableTrait
                 $this->exportData[$baseField] = $this->$baseField;
             }
         }
-        //@phpstan-ignore-next-line
+        // @phpstan-ignore-next-line
         if (method_exists($this, 'getParentKeyName')) {
             $this->exportData[$this->getParentKeyName()] = $this->getAttribute($this->getParentKeyName());
         }
@@ -58,16 +62,19 @@ trait ExportableTrait
         if (isset($this->entity) && $this->entity) {
             $this->exportData['entity'] = $this->entity->export();
         }
+
         return $this;
     }
 
     public function exportRelations(): array
     {
-        if (!property_exists($this, 'foreignExport')) {
+        if (! property_exists($this, 'foreignExport')) {
             return [];
         }
+
         return $this->foreignExport;
     }
+
     protected function foreignExportData(): self
     {
         foreach ($this->exportRelations() as $foreign) {
@@ -88,6 +95,7 @@ trait ExportableTrait
                 }
             }
         }
+
         return $this;
     }
 }

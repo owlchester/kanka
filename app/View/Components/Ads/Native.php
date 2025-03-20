@@ -14,6 +14,7 @@ use Illuminate\View\Component;
 class Native extends Component
 {
     public User $user;
+
     public Ad $ad;
 
     /**
@@ -33,17 +34,18 @@ class Native extends Component
      */
     public function render(): View|Closure|string
     {
-        if (!$this->noAds()) {
+        if (! $this->noAds()) {
             return '';
         }
         $this->ad = AdCache::get();
+
         return view('components.ads.native');
     }
 
     protected function noAds(): bool
     {
         // No admin panel set up, no ads possible, since the admin project provides the tables
-        if (!config('app.admin')) {
+        if (! config('app.admin')) {
             return false;
         }
         // If we provided an ad test, override that
@@ -51,7 +53,7 @@ class Native extends Component
             return AdCache::test($this->section, request()->get('_adtest'));
         }
         // If the section has no ads, don't try and show anything
-        if (!AdCache::has($this->section)) {
+        if (! AdCache::has($this->section)) {
             return false;
         }
         // Force ads displayed
@@ -71,6 +73,6 @@ class Native extends Component
         }
 
         // Premium campaigns don't either have ads displayed to their members
-        return isset($this->campaign) && !$this->campaign->boosted();
+        return isset($this->campaign) && ! $this->campaign->boosted();
     }
 }

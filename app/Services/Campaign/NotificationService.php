@@ -9,8 +9,6 @@ class NotificationService
 {
     use CampaignAware;
 
-    /**
-     */
     public function notify(string $key, string $icon, string $colour, array $params = []): void
     {
         $this->campaign->notifyAdmins(

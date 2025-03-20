@@ -2,6 +2,4 @@
 
 namespace App\Observers;
 
-class AttributeTemplateObserver extends MiscObserver
-{
-}
+class AttributeTemplateObserver extends MiscObserver {}

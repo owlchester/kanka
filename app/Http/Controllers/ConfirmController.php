@@ -22,7 +22,6 @@ class ConfirmController extends Controller
             ->with('route', $route)
             ->with('name', $name)
             ->with('mirrored', $mirrored)
-            ->with('permanent', $permanent)
-        ;
+            ->with('permanent', $permanent);
     }
 }

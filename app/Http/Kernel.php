@@ -14,7 +14,6 @@ class Kernel extends HttpKernel
      * The application's global HTTP middleware stack.
      *
      * These middleware are run during every request to your application.
-     *
      */
     protected $middleware = [
         Middleware\TrustProxies::class,
@@ -27,7 +26,6 @@ class Kernel extends HttpKernel
 
     /**
      * The application's route middleware groups.
-     *
      */
     protected $middlewareGroups = [
         'web' => [
@@ -38,7 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            //Middleware\HttpsProtocol::class, // Force https in prod
+            // Middleware\HttpsProtocol::class, // Force https in prod
             Middleware\LocaleChange::class, // Save language changing
             Tracking::class,
             Middleware\CheckIfUserBanned::class,
@@ -46,7 +44,7 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            //Do this in the routes 'throttle:rate_limit,1',
+            // Do this in the routes 'throttle:rate_limit,1',
             'bindings',
             Middleware\ApiLogMiddleware::class,
         ],
@@ -59,14 +57,13 @@ class Kernel extends HttpKernel
             Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             Middleware\HttpsProtocol::class,
-        ]
+        ],
     ];
 
     /**
      * The application's route middleware.
      *
      * These middleware may be assigned to groups or used individually.
-     *
      */
     protected $middlewareAliases = [
         'localize' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,

@@ -17,7 +17,7 @@ class RelationFilter extends DatagridFilter
                 'label' => __('entities/relations.fields.owner'),
                 'type' => 'select2',
                 'route' => route('search.entities-with-relations', $this->campaign),
-                'placeholder' =>  __('crud.placeholders.entity'),
+                'placeholder' => __('crud.placeholders.entity'),
                 'model' => Entity::class,
             ])
             ->add([
@@ -25,12 +25,11 @@ class RelationFilter extends DatagridFilter
                 'label' => __('entities/relations.fields.target'),
                 'type' => 'select2',
                 'route' => route('search.entities-with-relations', $this->campaign),
-                'placeholder' =>  __('crud.placeholders.entity'),
+                'placeholder' => __('crud.placeholders.entity'),
                 'model' => Entity::class,
             ])
             ->add('relation')
             ->add('attitude')
-            ->add('is_pinned')
-        ;
+            ->add('is_pinned');
     }
 }

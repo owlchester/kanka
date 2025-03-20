@@ -45,6 +45,7 @@ class ResetUserPassword extends Command
         $user = User::find($userID);
         if (empty($user)) {
             $this->error('Invalid user id ' . $userID);
+
             return 0;
         }
 
@@ -58,6 +59,7 @@ class ResetUserPassword extends Command
         $user->log(UserLog::TYPE_PASSWORD_ADMIN_UPDATE);
 
         $this->info('User ' . $userID . ' updated to new password ' . $password);
+
         return 0;
     }
 }

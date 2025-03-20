@@ -28,7 +28,6 @@ class StoreEntityTag extends FormRequest
             'tag_id', 'integer|exists:tags,id',
         ];
 
-
         return $rules;
     }
 }

@@ -18,6 +18,7 @@ class ImageResource extends JsonResource
     {
         /** @var Image $image */
         $image = $this->resource;
+
         return [
             'id' => $image->id,
             'name' => $image->name,
@@ -35,8 +36,8 @@ class ImageResource extends JsonResource
 
             'visibility_id' => $image->visibility_id,
 
-            'focus_x'   => $image->focus_x,
-            'focus_y'   => $image->focus_y,
+            'focus_x' => $image->focus_x,
+            'focus_y' => $image->focus_y,
 
         ];
     }

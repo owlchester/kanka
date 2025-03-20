@@ -44,7 +44,7 @@ class RegenerateDiscordToken extends Command
      */
     public function handle()
     {
-        //$userID = $this->argument('user');
+        // $userID = $this->argument('user');
 
         $tokens = UserApp::select(['id', 'user_id', 'access_token', 'refresh_token', 'expires_at', 'updated_at'])
             ->with('user')
@@ -54,6 +54,7 @@ class RegenerateDiscordToken extends Command
 
         if ($tokens->count() === 0) {
             $this->error('No tokens to renew');
+
             return 0;
         }
 

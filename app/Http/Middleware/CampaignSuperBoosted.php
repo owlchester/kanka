@@ -21,12 +21,13 @@ class CampaignSuperBoosted
             return redirect()->route('home');
         }
 
-        if (!$campaign->superboosted()) {
+        if (! $campaign->superboosted()) {
             if ($request->is('api/*') || Domain::isApi()) {
                 return response()->json([
-                    'error' => 'This feature is reserved to premium campaign.'
+                    'error' => 'This feature is reserved to premium campaign.',
                 ]);
             }
+
             return redirect()->route('dashboard', $campaign)->withErrors(__('campaigns.errors.premium'));
         }
 

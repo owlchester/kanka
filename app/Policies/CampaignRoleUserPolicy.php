@@ -3,9 +3,9 @@
 namespace App\Policies;
 
 use App\Models\Campaign;
-use App\Traits\AdminPolicyTrait;
-use App\Models\User;
 use App\Models\CampaignRoleUser;
+use App\Models\User;
+use App\Traits\AdminPolicyTrait;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignRoleUserPolicy

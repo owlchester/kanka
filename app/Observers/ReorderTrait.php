@@ -9,12 +9,9 @@ use App\Models\TimelineElement;
 
 /**
  * Trait ReorderTrait
- * @package App\Observers
  */
 trait ReorderTrait
 {
-    /**
-     */
     public function reorder(mixed $model)
     {
         $position = 1;

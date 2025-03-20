@@ -14,6 +14,7 @@ class NewSubscriberMail extends Mailable
     use SerializesModels;
 
     public User $user;
+
     public Tier $tier;
 
     /**

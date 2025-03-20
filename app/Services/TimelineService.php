@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
+use App\Http\Requests\ReorderTimeline;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
 use App\Models\TimelineEra;
-use App\Http\Requests\ReorderTimeline;
 use Illuminate\Support\Arr;
 
 class TimelineService
@@ -18,17 +18,15 @@ class TimelineService
     public function timeline(Timeline $timeline): self
     {
         $this->timeline = $timeline;
+
         return $this;
     }
 
-    /**
-     * @param boolean $replace
-     */
     public function reorderElements(TimelineElement $timelineElement, bool $replace = false)
     {
         // First position. If replacing, start where the current one is gone
         $position = $timelineElement->position;
-        if (!$replace) {
+        if (! $replace) {
             $position++;
         }
 
@@ -46,8 +44,6 @@ class TimelineService
         }
     }
 
-    /**
-     */
     public function reorder(ReorderTimeline $request): bool
     {
         $ids = $request->get('timeline_era');
@@ -74,7 +70,7 @@ class TimelineService
                 continue;
             }
             $elementPosition = 1;
-            //dump($elements);
+            // dump($elements);
             foreach ($elements as $elementId) {
                 /** @var ?TimelineElement $element */
                 $element = TimelineElement::find($elementId);
@@ -83,7 +79,7 @@ class TimelineService
                 }
 
                 // Reposition
-                //dump("Reposition $element->name (# $element->id) to $elementPosition");
+                // dump("Reposition $element->name (# $element->id) to $elementPosition");
                 $element->position = $elementPosition;
                 $element->save();
 
@@ -91,7 +87,7 @@ class TimelineService
             }
         }
 
-        //dd('w');
+        // dd('w');
 
         return true;
     }

@@ -26,6 +26,7 @@ class TemplateController extends Controller
         }
 
         $this->service->post($post)->toggle();
+
         return redirect()->back()
             ->with(
                 'success',

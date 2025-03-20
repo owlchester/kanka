@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Races;
 
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCharacterRace;
 use App\Models\Campaign;
 use App\Models\Race;
-use App\Http\Requests\StoreCharacterRace;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -44,6 +44,7 @@ class MemberController extends Controller
 
         return $this->campaign($campaign)->datagridAjax();
     }
+
     /**
      * Show the form for creating a new resource.
      */

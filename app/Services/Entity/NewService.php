@@ -11,8 +11,8 @@ use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
-use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class NewService
 {
@@ -28,6 +28,7 @@ class NewService
 
     /**
      * Get a list of available entity types the user can create
+     *
      * @return Collection|EntityType[]
      */
     public function available(): Collection|array
@@ -35,7 +36,7 @@ class NewService
         if (isset($this->available)) {
             return $this->available;
         }
-        $this->available = new Collection();
+        $this->available = new Collection;
 
         if (auth()->guest()) {
             return $this->available;
@@ -48,21 +49,22 @@ class NewService
 
         foreach ($this->campaign->getEntityTypes() as $entityType) {
             // Skip disabled modules
-            if ($entityType->isSpecial() && !$entityType->isEnabled()) {
+            if ($entityType->isSpecial() && ! $entityType->isEnabled()) {
                 continue;
             }
-            if (!$entityType->isSpecial() && !$this->campaign->enabled($entityType)) {
+            if (! $entityType->isSpecial() && ! $this->campaign->enabled($entityType)) {
                 continue;
             }
             if (in_array($entityType->id, $excludedTypes)) {
                 continue;
             }
             // Check permission
-            if (!auth()->user()->can('create', [$entityType, $this->campaign])) {
+            if (! auth()->user()->can('create', [$entityType, $this->campaign])) {
                 continue;
             }
             $this->available->add($entityType);
         }
+
         return $this->available;
     }
 
@@ -70,7 +72,7 @@ class NewService
     {
         $name = Str::replace(['&lt;', '&gt;'], ['<', '>'], $name);
         if ($this->entityType->isSpecial()) {
-            $this->entity = new Entity();
+            $this->entity = new Entity;
             $this->entity->campaign_id = $this->campaign->id;
             $this->entity->type_id = $this->entityType->id;
             $this->entity->name = $this->purify(mb_trim(strip_tags($name)));
@@ -93,6 +95,7 @@ class NewService
         // Apply auto tags to the entity
         $allTags = $this->autoTags();
         $this->entity->tags()->attach($allTags);
+
         return $this->entity;
     }
 
@@ -100,7 +103,6 @@ class NewService
     {
         return (bool) ($this->user->isAdmin() && $this->campaign->entity_visibility);
     }
-
 
     public function autoTags(): array
     {

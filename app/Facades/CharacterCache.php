@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class CharacterCache
- * @package App\Facades
  *
  * @see \App\Services\Caches\CharacterCacheService
+ *
  * @mixin \App\Services\Caches\CharacterCacheService
  */
 class CharacterCache extends Facade

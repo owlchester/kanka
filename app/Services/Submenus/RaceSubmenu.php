@@ -17,9 +17,10 @@ class RaceSubmenu extends BaseSubmenu implements EntitySubmenu
             $items['second']['races'] = [
                 'name' => Module::plural($model->entityTypeId(), 'entities.races'),
                 'route' => 'races.races',
-                'count' => $count
+                'count' => $count,
             ];
         }
+
         return $items;
     }
 }

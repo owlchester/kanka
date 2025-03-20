@@ -34,7 +34,7 @@ class StoreConversation extends FormRequest
             'target_id' => 'required|numeric',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         return $this->clean($rules);

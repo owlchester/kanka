@@ -24,6 +24,7 @@ class TagController extends Controller
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign, Entity $entity)
@@ -34,7 +35,7 @@ class TagController extends Controller
         return view('entities.components.tags.create', [
             'campaign' => $campaign,
             'entity' => $entity,
-            'formOptions' => $formOptions
+            'formOptions' => $formOptions,
         ]);
     }
 
@@ -56,8 +57,7 @@ class TagController extends Controller
             ->user($request->user())
             ->entity($entity)
             ->withNew()
-            ->sync($ids)
-        ;
+            ->sync($ids);
         $entity->touch();
 
         return redirect()->route('entities.show', [$campaign, $entity])

@@ -17,15 +17,15 @@ class EntityTypePolicy
             return false;
         }
 
-        if (!$entityType->isEnabled()) {
+        if (! $entityType->isEnabled()) {
             return false;
         }
-        if ($entityType->isSpecial() && !$campaign->premium()) {
+        if ($entityType->isSpecial() && ! $campaign->premium()) {
             return false;
         }
 
         if ($entityType->code === 'bookmark') {
-            return auth()->user()->can('create', new Bookmark());
+            return auth()->user()->can('create', new Bookmark);
         }
 
         return EntityPermission::campaign($campaign)->user($user)->entityType($entityType)->can(Permission::Create);
@@ -40,6 +40,7 @@ class EntityTypePolicy
     {
         return $entityType->campaign_id === $campaign->id && $entityType->isSpecial();
     }
+
     public function deleteEntities(User $user, EntityType $entityType, Campaign $campaign)
     {
         return EntityPermission::campaign($campaign)->user($user)->entityType($entityType)->can(Permission::Delete);

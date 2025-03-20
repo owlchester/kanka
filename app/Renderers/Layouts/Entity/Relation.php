@@ -9,6 +9,7 @@ class Relation extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -24,7 +25,7 @@ class Relation extends Layout
                     }
 
                     return $icon . $relation->relation;
-                }
+                },
             ],
             'target' => [
                 'key' => 'target.name',
@@ -49,13 +50,14 @@ class Relation extends Layout
                     }
                     $html = '<div class="flex items-center gap-1">';
                     $icon = '<div class="flex-0 inline-block p-1 rounded-2xl w-5 h-5" style="background-color: ' . $relation->colour . '; "></div>';
+
                     return $html . $icon . '<div class="grow">' . $relation->attitude . '</div></div>';
-                }
+                },
             ],
             'visibility' => [
                 'label' => '',
-                'render' => Standard::VISIBILITY
-            ]
+                'render' => Standard::VISIBILITY,
+            ],
         ];
 
         return $columns;
@@ -68,7 +70,7 @@ class Relation extends Layout
     {
         return [
             self::ACTION_EDIT_DIALOG,
-            self::ACTION_DELETE
+            self::ACTION_DELETE,
         ];
     }
 }

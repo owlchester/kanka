@@ -28,6 +28,7 @@ class PatchCampaignApplication extends FormRequest
             'reason' => 'nullable|string|max:191',
             'action' => 'required',
         ];
+
         return $rules;
     }
 }

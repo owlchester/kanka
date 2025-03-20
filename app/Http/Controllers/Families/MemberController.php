@@ -29,8 +29,7 @@ class MemberController extends Controller
             $relation = 'members';
         }
         Datagrid::layout(\App\Renderers\Layouts\Family\Character::class)
-            ->route('families.members', $options)
-        ;
+            ->route('families.members', $options);
 
         $this->rows = $family
             ->{$relation}()
@@ -47,6 +46,7 @@ class MemberController extends Controller
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();
         }
+
         return $this
             ->campaign($campaign)
             ->subview('families.members', $family);

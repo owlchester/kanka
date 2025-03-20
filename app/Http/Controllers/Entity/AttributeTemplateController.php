@@ -12,6 +12,7 @@ use App\Services\AttributeService;
 class AttributeTemplateController extends Controller
 {
     protected AttributeService $service;
+
     protected TemplateService $templateService;
 
     public function __construct(AttributeService $service, TemplateService $templateService)
@@ -24,11 +25,11 @@ class AttributeTemplateController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        if (!$campaign->enabled('entity_attributes')) {
+        if (! $campaign->enabled('entity_attributes')) {
             return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '">' . __('crud.fix-this-issue') . '</a>'
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }
@@ -36,7 +37,6 @@ class AttributeTemplateController extends Controller
         $this->authorize('attributes', $entity);
 
         $templates = $this->service->campaign($campaign)->templateList();
-
 
         return view('entities.pages.attribute-templates.apply', compact(
             'campaign',
@@ -54,7 +54,7 @@ class AttributeTemplateController extends Controller
         $success = $this->templateService
             ->entity($entity)
             ->apply($request->get('template_id'));
-        if (!$success) {
+        if (! $success) {
             return redirect()->back()->with('error', __('entities/attributes.template.error'));
         }
         $templateName = $this->templateService->templateName();
@@ -62,19 +62,20 @@ class AttributeTemplateController extends Controller
             return redirect()
                 ->to($entity->url())
                 ->with('success', __('entities/attributes.template.success', [
-                    'name' => $templateName, 'entity' => $entity->child->name
+                    'name' => $templateName, 'entity' => $entity->child->name,
                 ]));
         } elseif ($request->has('submit-update')) {
             return redirect()
                 ->route('entities.attributes.edit', [$campaign, $entity])
                 ->with('success', __('entities/attributes.template.success', [
-                    'name' => $templateName, 'entity' => $entity->child->name
+                    'name' => $templateName, 'entity' => $entity->child->name,
                 ]));
         }
+
         return redirect()
             ->route('entities.attributes', [$campaign, $entity])
             ->with('success', __('entities/attributes.template.success', [
-                'name' => $templateName, 'entity' => $entity->child->name
+                'name' => $templateName, 'entity' => $entity->child->name,
             ]));
     }
 }

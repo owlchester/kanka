@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\RequireLoginException;
-use App\Services\InviteService;
 use App\Models\User;
+use App\Services\InviteService;
 use Exception;
 
 class InvitationController extends Controller
 {
     protected InviteService $inviteService;
+
     protected \App\Services\Users\CampaignService $campaignService;
 
     /**
@@ -24,7 +25,7 @@ class InvitationController extends Controller
     }
 
     /**
-     * @param string $token
+     * @param  string  $token
      * @return \Illuminate\Http\RedirectResponse
      */
     public function join($token)
@@ -40,6 +41,7 @@ class InvitationController extends Controller
                 ->user(auth()->user())
                 ->campaign($campaign)
                 ->set();
+
             return redirect()->to('/');
         } catch (RequireLoginException $e) {
             return redirect()->route('login')->with('info', $e->getMessage());
@@ -49,9 +51,10 @@ class InvitationController extends Controller
             }
             // Let's redirect the user to their first campaign, to handle the error message, or on start otherwise
             $campaign = auth()->user()->campaigns->first();
-            if (!$campaign) {
+            if (! $campaign) {
                 return redirect()->route('start')->withError($e->getMessage());
             }
+
             return redirect()
                 ->route('dashboard', $campaign)
                 ->withError($e->getMessage());

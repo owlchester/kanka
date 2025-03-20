@@ -22,7 +22,7 @@ class CreatureResource extends EntityResource
             'creature_id' => $model->creature_id,
             'is_extinct' => $model->isExtinct(),
             'is_dead' => $model->isDead(),
-            'locations' => $locationIDs
+            'locations' => $locationIDs,
         ]);
     }
 }

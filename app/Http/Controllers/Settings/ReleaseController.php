@@ -18,17 +18,18 @@ class ReleaseController extends Controller
 
     /**
      * Update the user's last viewed release
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function read(AppRelease $appRelease)
     {
         $user = auth()->user();
 
-        //Track it using the system already set up for tutorials.
+        // Track it using the system already set up for tutorials.
         $this->tutorialService->user($user)->track('releases_' . $appRelease->category_id . '_' . $appRelease->id);
 
         return response()->json([
-            'success' => true
+            'success' => true,
         ]);
     }
 }

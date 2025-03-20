@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class ApiLog
- * @package App\Facades
  *
  * @see \App\Services\Logs\ApiLogService
+ *
  * @mixin \App\Services\Logs\ApiLogService
  */
 class ApiLog extends Facade

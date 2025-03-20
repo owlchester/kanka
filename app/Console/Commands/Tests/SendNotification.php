@@ -51,6 +51,7 @@ class SendNotification extends Command
         $user->notify(new Header('campaign.application.approved', 'download', 'info', ['link' => $url, 'campaign' => 'Fun & Games']));
 
         $this->info('User ' . $user->name . '#' . $user->id . ' notified.');
+
         return 0;
     }
 }

@@ -11,8 +11,6 @@ class EntityAssetCacheService extends BaseCache
 {
     use CampaignAware;
 
-    /**
-     */
     public function iconSuggestion(): array
     {
         $key = $this->iconSuggestionKey();
@@ -38,13 +36,12 @@ class EntityAssetCacheService extends BaseCache
             ->pluck('metadata')
             ->all();
 
-
         foreach ($settings as $setting) {
             $data[] = $setting['icon'];
         }
 
         foreach ($default as $value) {
-            if (!in_array($value, $data)) {
+            if (! in_array($value, $data)) {
                 $data[] = $value;
             }
         }
@@ -52,6 +49,7 @@ class EntityAssetCacheService extends BaseCache
         $data = array_slice($data, 0, 10);
 
         Cache::put($key, $data, 24 * 3600);
+
         return $data;
     }
 
@@ -63,9 +61,9 @@ class EntityAssetCacheService extends BaseCache
         $this->forget(
             $this->iconSuggestionKey()
         );
+
         return $this;
     }
-
 
     /**
      * Type suggestion cache key

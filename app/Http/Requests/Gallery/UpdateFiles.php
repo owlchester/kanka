@@ -26,7 +26,7 @@ class UpdateFiles extends FormRequest
             'images.*' => 'distinct|exists:images,id',
             'visibility_id' => 'nullable|integer|exists:visibilities,id',
             'folder_id' => 'nullable|string|exists:images,id',
-            'folder_home' => 'nullable'
+            'folder_home' => 'nullable',
         ];
     }
 }

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Campaign;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWebhook;
+use App\Jobs\TestWebhookJob;
 use App\Models\Campaign;
 use App\Models\Webhook;
-use App\Jobs\TestWebhookJob;
 
 class WebhookController extends Controller
 {
@@ -20,6 +20,7 @@ class WebhookController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -30,15 +31,16 @@ class WebhookController extends Controller
 
         $rows = $campaign->webhooks()
             ->sort(request()->only(['o', 'k']))
-            //->with(['users', 'permissions', 'campaign'])
+            // ->with(['users', 'permissions', 'campaign'])
             ->orderBy('updated_at', 'DESC')
-            //->orderBy('name')
+            // ->orderBy('name')
             ->paginate();
 
         // Ajax Datagrid
         if (request()->ajax()) {
             $html = view('layouts.datagrid._table')->with('rows', $rows)->with('campaign', $campaign)->render();
             $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->with('campaign', $campaign)->render();
+
             return response()->json([
                 'success' => true,
                 'html' => $html,
@@ -51,6 +53,7 @@ class WebhookController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign)
@@ -59,7 +62,6 @@ class WebhookController extends Controller
 
         return view('campaigns.webhooks.create', ['campaign' => $campaign]);
     }
-
 
     public function store(StoreWebhook $request, Campaign $campaign)
     {
@@ -91,6 +93,7 @@ class WebhookController extends Controller
         $this->authorize('webhooks', $campaign);
 
         $webhook->update($request->all());
+
         return redirect()->route('webhooks.index', $campaign)
             ->with('success', __('campaigns/webhooks.edit.success'));
     }
@@ -100,19 +103,21 @@ class WebhookController extends Controller
         $this->authorize('webhooks', $campaign);
 
         $webhook->delete();
+
         return redirect()->route('webhooks.index', $campaign)
             ->with('success', __('campaigns/webhooks.destroy.success'));
     }
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function toggle(Campaign $campaign, Webhook $webhook)
     {
         $this->authorize('webhooks', $campaign);
 
-        $webhook->update(['status' => !$webhook->status]);
+        $webhook->update(['status' => ! $webhook->status]);
 
         return redirect()->route('webhooks.index', $campaign)
             ->with(
@@ -121,15 +126,13 @@ class WebhookController extends Controller
             );
     }
 
-    /**
-     */
     public function bulk(Campaign $campaign)
     {
         $this->authorize('webhooks', $campaign);
 
         $action = request()->get('action');
         $models = request()->get('model');
-        if (!in_array($action, ['enable', 'disable', 'delete']) || empty($models)) {
+        if (! in_array($action, ['enable', 'disable', 'delete']) || empty($models)) {
             return redirect()
                 ->route('webhooks.index', $campaign);
         }
@@ -147,7 +150,7 @@ class WebhookController extends Controller
             } elseif ($action === 'disable' && $webhook->status) {
                 $webhook->update(['status' => 0]);
                 $count++;
-            } elseif ($action === 'enable' && !$webhook->status) {
+            } elseif ($action === 'enable' && ! $webhook->status) {
                 $webhook->update(['status' => 1]);
                 $count++;
             }
@@ -160,6 +163,7 @@ class WebhookController extends Controller
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function test(Campaign $campaign, Webhook $webhook)

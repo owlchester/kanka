@@ -7,9 +7,6 @@ use App\Jobs\EntityMappingJob;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
-/**
- *
- */
 class EntryObserver
 {
     use PurifiableTrait;
@@ -20,7 +17,7 @@ class EntryObserver
         // check if they are in the attributes of the model before interacting with it;
         $attributes = $model->getAttributes();
         // @phpstan-ignore-next-line
-        if (!array_key_exists($model->entryFieldName(), $attributes)) {
+        if (! array_key_exists($model->entryFieldName(), $attributes)) {
             return;
         }
         //        dump('Submitted');
@@ -33,17 +30,17 @@ class EntryObserver
         //        dd($model->{$model->entryFieldName()});
 
         // Word count
-        if (!Arr::exists($attributes, 'words')) {
+        if (! Arr::exists($attributes, 'words')) {
             return;
         }
-        //@phpstan-ignore-next-line
+        // @phpstan-ignore-next-line
         $model->words = str_word_count(strip_tags($model->{$model->entryFieldName()}));
     }
 
     public function saved(Model $model)
     {
         // @phpstan-ignore-next-line
-        if (!$model->isDirty($model->entryFieldName())) {
+        if (! $model->isDirty($model->entryFieldName())) {
             return;
         }
         if (method_exists($model, 'mentions')) {

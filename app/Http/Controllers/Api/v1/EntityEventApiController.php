@@ -2,37 +2,41 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Models\Campaign;
-use App\Models\Entity;
 use App\Http\Requests\API\StoreReminder as Request;
 use App\Http\Resources\EntityEventResource as Resource;
+use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\EntityEvent;
 
 class EntityEventApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
+
         return Resource::collection($entity->reminders()->paginate());
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
+
         return new Resource($entityEvent);
     }
 
     /**
-     * @return Resource
+     * @return resource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Entity $entity)
@@ -43,11 +47,12 @@ class EntityEventApiController extends ApiController
         $data['entity_id'] = $entity->id;
         $model = EntityEvent::create($data);
         $model->refresh();
+
         return new Resource($model);
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function update(Request $request, Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
@@ -59,8 +64,9 @@ class EntityEventApiController extends ApiController
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(

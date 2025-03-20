@@ -8,13 +8,12 @@ use App\Models\Entity;
 use App\Services\Entity\ExportService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
-use League\HTMLToMarkdown\HtmlConverter;
-use League\HTMLToMarkdown\Converter\TableConverter;
 use Illuminate\Support\Str;
+use League\HTMLToMarkdown\Converter\TableConverter;
+use League\HTMLToMarkdown\HtmlConverter;
 
 /**
  * Class ExportController
- * @package App\Http\Controllers\Entity
  */
 class ExportController extends Controller
 {
@@ -39,9 +38,9 @@ class ExportController extends Controller
     {
         $this->campaign($campaign)->authEntityView($entity);
 
-        $converter = new HtmlConverter();
+        $converter = new HtmlConverter;
         $converter->getConfig()->setOption('strip_tags', true);
-        $converter->getEnvironment()->addConverter(new TableConverter());
+        $converter->getEnvironment()->addConverter(new TableConverter);
 
         return response()->view('entities.pages.print.markdown', ['entity' => $entity, 'converter' => $converter, 'campaign' => $campaign])
             ->header('Content-Type', 'application/md')
@@ -55,9 +54,8 @@ class ExportController extends Controller
         return view('entities.pages.print.print')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
-            ->with('model', !$entity->entityType->isSpecial() ? $entity->child : null)
+            ->with('model', ! $entity->entityType->isSpecial() ? $entity->child : null)
             ->with('name', $entity->entityType->pluralCode())
-            ->with('printing', true)
-        ;
+            ->with('printing', true);
     }
 }

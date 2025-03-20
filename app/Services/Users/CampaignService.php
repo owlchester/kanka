@@ -13,6 +13,7 @@ class CampaignService
 
     /**
      * Set a campaign as the user's "current" campaign
+     *
      * @return $this
      */
     public function set(): self
@@ -20,16 +21,17 @@ class CampaignService
         session()->put('campaign_id', $this->campaign->id);
         $this->user->last_campaign_id = $this->campaign->id;
         $this->user->saveQuietly();
+
         return $this;
     }
 
     public function last(): self
     {
-        if (!isset($this->user)) {
+        if (! isset($this->user)) {
             return $this;
         }
         $last = $this->user->lastCampaign;
-        if (!$last) {
+        if (! $last) {
             return $this;
         }
 

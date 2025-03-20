@@ -18,8 +18,7 @@ class Element extends Component
         public ?array $button = null,
         public ?string $ajax = null,
         public ?string $id = null,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

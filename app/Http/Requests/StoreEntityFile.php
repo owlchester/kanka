@@ -30,10 +30,10 @@ class StoreEntityFile extends FormRequest
                 'required',
                 'file',
                 'max:' . Limit::upload(),
-                new EntityFile()
+                new EntityFile,
             ],
             'name' => 'nullable|string|max:45',
-            'visibility_id' => 'nullable|exists:visibilities,id'
+            'visibility_id' => 'nullable|exists:visibilities,id',
         ];
     }
 }

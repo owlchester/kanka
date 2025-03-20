@@ -48,12 +48,11 @@ class RedirectController extends Controller
         }
         $name = $request->get('name');
 
-
-        if (!in_array($what, array_keys($allowed))) {
+        if (! in_array($what, array_keys($allowed))) {
             return redirect()->route('home')->withErrors(trans('redirects.unknown_entity', ['entity' => e($what)]));
         }
 
-        $modelClass = new $allowed[$what]();
+        $modelClass = new $allowed[$what];
         $model = $modelClass->where('name', 'like', "%{$name}%")->first();
         if ($model) {
             return redirect()->route($what . '.show', [$campaign, $model]);

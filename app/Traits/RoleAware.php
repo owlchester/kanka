@@ -11,6 +11,7 @@ trait RoleAware
     public function role(CampaignRole $role): self
     {
         $this->role = $role;
+
         return $this;
     }
 }

@@ -31,7 +31,7 @@ class ExploreResource extends JsonResource
         $links = ['back' => __('crud.actions.back')];
         if ($entity->parent) {
             $routeParams['parent_id'] = $entity->parent;
-            $links['back'] =  __('datagrids.actions.back_to', ['name' => $entity->parent->name]);
+            $links['back'] = __('datagrids.actions.back_to', ['name' => $entity->parent->name]);
         }
         $routeBack = route('entities.index', $routeParams);
 

@@ -15,6 +15,7 @@ trait SettingCache
     {
         $settings = $this->campaign->setting->toArray();
         unset($settings['id'], $settings['campaign_id'], $settings['created_at'], $settings['updated_at']);
+
         return $settings;
     }
 }

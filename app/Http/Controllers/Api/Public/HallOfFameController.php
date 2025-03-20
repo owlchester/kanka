@@ -14,10 +14,10 @@ class HallOfFameController extends Controller
     {
         $this->service = $service;
     }
+
     public function index()
     {
         return response()->json($this->service->subscribers())
-            ->header('Expires', Carbon::now()->addDays(1)->toDateTimeString())
-        ;
+            ->header('Expires', Carbon::now()->addDays(1)->toDateTimeString());
     }
 }

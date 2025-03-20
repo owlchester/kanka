@@ -16,6 +16,7 @@ class BookmarkResource extends EntityResource
     {
         /** @var Bookmark $model */
         $model = $this->resource;
+
         return [
             'id' => $model->id,
             'name' => $model->name,

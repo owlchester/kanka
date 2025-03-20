@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Models\Campaign;
-use App\Models\CampaignDashboardWidget;
 use App\Http\Requests\StoreCampaignDashboardWidget as Request;
 use App\Http\Resources\CampaignDashboardWidgetResource as Resource;
+use App\Models\Campaign;
+use App\Models\CampaignDashboardWidget;
 
 class CampaignDashboardWidgetApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+
         return Resource::collection(
             $campaign->widgets()
                 ->lastSync(request()->get('lastSync'))
@@ -24,16 +26,18 @@ class CampaignDashboardWidgetApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('update', $campaign);
+
         return new Resource($campaignDashboardWidget);
     }
 
     /**
-     * @return Resource
+     * @return resource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
@@ -42,11 +46,12 @@ class CampaignDashboardWidgetApiController extends ApiController
 
         $data = array_merge(['campaign_id' => $campaign->id], $request->all());
         $model = CampaignDashboardWidget::create($data);
+
         return new Resource($model);
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function update(Request $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
@@ -58,6 +63,7 @@ class CampaignDashboardWidgetApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)

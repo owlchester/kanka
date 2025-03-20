@@ -9,13 +9,21 @@ use Illuminate\View\Component;
 class Field extends Component
 {
     public string $field;
+
     public ?string $label;
+
     public bool $required;
+
     public bool $tooltip;
+
     public bool $hidden;
+
     public ?string $helper;
+
     public ?string $link;
+
     public ?string $css;
+
     /**
      * Create a new component instance.
      */

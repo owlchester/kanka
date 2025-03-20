@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Requests\TransformEntity as Request;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Http\Requests\TransformEntity as Request;
 use App\Models\EntityType;
 use App\Services\Entity\TransformService;
 

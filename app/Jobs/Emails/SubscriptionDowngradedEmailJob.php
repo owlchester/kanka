@@ -23,6 +23,7 @@ class SubscriptionDowngradedEmailJob implements ShouldQueue
 
     /** @var string */
     public $reason;
+
     public $custom;
 
     /** @var int how many times the job can fail before quitting */

@@ -10,13 +10,14 @@ class Character extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'character_id' => [
                 'key' => 'name',
@@ -39,12 +40,12 @@ class Character extends Layout
                 'render' => Standard::ENTITYLIST,
                 'with' => ['characterFamilies', 'family'],
                 'visible' => function () {
-                    return !request()->has('family_id');
-                }
+                    return ! request()->has('family_id');
+                },
             ],
             'tags' => [
-                'render' => Standard::TAGS
-            ]
+                'render' => Standard::TAGS,
+            ],
         ];
 
         return $columns;

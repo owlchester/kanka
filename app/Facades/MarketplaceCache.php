@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class MarketplaceCache
- * @package App\Facades
  *
  * @see \App\Services\Caches\MarketplaceCacheService
+ *
  * @mixin \App\Services\Caches\MarketplaceCacheService
  */
 class MarketplaceCache extends Facade

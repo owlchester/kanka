@@ -12,7 +12,9 @@ use App\Models\EntityType;
 class CharacterController extends CrudController
 {
     protected string $view = 'characters';
+
     protected string $route = 'characters';
+
     protected string $module = 'characters';
 
     protected string $model = Character::class;

@@ -38,9 +38,9 @@ class MigrateController extends Controller
         } catch (\Exception $e) {
 
         }
+
         return redirect()
             ->route('maps.map_layers.edit', [$campaign, $map, $mapLayer])
             ->withSuccess('Map layer image migrated.');
     }
-
 }

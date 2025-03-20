@@ -8,9 +8,11 @@ use App\Models\Calendar;
 class AdvancerService
 {
     protected Calendar $calendar;
+
     public function calendar(Calendar $calendar): self
     {
         $this->calendar = $calendar;
+
         return $this;
     }
 
@@ -19,11 +21,11 @@ class AdvancerService
      */
     public function advance(): self
     {
-        list($year, $month, $day) = $this->calendar->dateArray();
+        [$year, $month, $day] = $this->calendar->dateArray();
 
         // Day is longer than month max length?
         $months = $this->calendar->months();
-        if (!empty($day)) {
+        if (! empty($day)) {
             $day = ((int) $day) + 1;
             if ($day > $months[$month - 1]['length']) {
                 $day = 1;
@@ -39,11 +41,12 @@ class AdvancerService
             $year++;
         }
 
-        if (!$this->calendar->hasYearZero() && $year == 0) {
+        if (! $this->calendar->hasYearZero() && $year == 0) {
             $year++;
         }
         $this->calendar->date = $year . '-' . $month . ($day !== false ? '-' . $day : null);
         $this->calendar->save();
+
         return $this;
     }
 
@@ -52,7 +55,7 @@ class AdvancerService
      */
     public function retreat(): self
     {
-        list($year, $month, $day) = $this->calendar->dateArray();
+        [$year, $month, $day] = $this->calendar->dateArray();
 
         $day--;
         $months = $this->calendar->months();
@@ -65,12 +68,13 @@ class AdvancerService
             $day = $months[$month - 1]['length'];
         }
 
-        if (!$this->calendar->hasYearZero() && $year == 0) {
+        if (! $this->calendar->hasYearZero() && $year == 0) {
             $year--;
         }
         $this->calendar->date = $year . '-' . $month . '-' . $day;
         $this->calendar->save();
         CalendarsClearElapsed::dispatch($this->calendar);
+
         return $this;
     }
 }

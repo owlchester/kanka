@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Identity
- * @package App\Facades
  *
  * @see IdentityManager
+ *
  * @mixin IdentityManager
  */
 class Identity extends Facade

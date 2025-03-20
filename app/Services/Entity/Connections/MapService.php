@@ -44,6 +44,7 @@ class MapService
     protected array $mirrors = [];
 
     protected bool $family = false;
+
     protected bool $organisation = false;
 
     /** @var array Entities that have had their relations already loaded */
@@ -55,39 +56,43 @@ class MapService
     /** @var bool Enable loading entities on relations */
     protected bool $withEntity = false;
 
-    /**  */
-    protected string|null $option = null;
+    protected ?string $option = null;
 
     public function option(?string $option = null): self
     {
-        if (!in_array($option, ['related', 'mentions', 'only_relations'])) {
+        if (! in_array($option, ['related', 'mentions', 'only_relations'])) {
             $option = null;
         }
         $this->option = $option;
+
         return $this;
     }
 
     protected function family(bool $family = true): self
     {
         $this->family = $family;
+
         return $this;
     }
 
     protected function organisation(bool $organisation = true): self
     {
         $this->organisation = $organisation;
+
         return $this;
     }
 
     protected function withoutRelations(bool $without = true): self
     {
-        $this->withRelations = !$without;
+        $this->withRelations = ! $without;
+
         return $this;
     }
 
     protected function withEntity(bool $with = true): self
     {
         $this->withEntity = $with;
+
         return $this;
     }
 
@@ -107,7 +112,7 @@ class MapService
             $this->loadRelations();
 
             if ($this->withRelated()) {
-                if (!$this->entity->entityType->isSpecial()) {
+                if (! $this->entity->entityType->isSpecial()) {
                     $this->addParent()
                         ->addLocation()
                         ->addQuests()
@@ -121,6 +126,7 @@ class MapService
         $this->addMentions();
 
         $this->cleanup();
+
         return ['relations' => $this->relations, 'entities' => $this->entities];
     }
 
@@ -146,8 +152,8 @@ class MapService
      */
     protected function addEntity(Entity $entity, ?string $image = null): self
     {
-        //dump('add entity ' . $entity->name);
-        if (Arr::has($this->entities, (string)$entity->id)) {
+        // dump('add entity ' . $entity->name);
+        if (Arr::has($this->entities, (string) $entity->id)) {
             return $this;
         }
         // Make sure the child is accessible in case there is a permission mis-match
@@ -169,8 +175,9 @@ class MapService
             'name' => $entity->name . "\n(" . $entity->entityType->name() . ')',
             'image' => $img,
             'link' => route('entities.relations.index', $params),
-            //'tooltip' => route('entities.tooltip', $entity->id)
+            // 'tooltip' => route('entities.tooltip', $entity->id)
         ];
+
         return $this;
     }
 
@@ -179,8 +186,8 @@ class MapService
      */
     protected function addRelations(Entity $entity): self
     {
-        //dump('add relations for ' . $entity->name);
-        if (Arr::has($this->entityIds, (string)$entity->id)) {
+        // dump('add relations for ' . $entity->name);
+        if (Arr::has($this->entityIds, (string) $entity->id)) {
             return $this;
         }
         $this->entityIds[$entity->id] = true;
@@ -229,8 +236,8 @@ class MapService
                     'relation' => $relation,
                     'from' => $this->entity->id,
                     'mode' => 'map',
-                    'option' => $this->option
-                ])
+                    'option' => $this->option,
+                ]),
             ];
 
             if ($relation->isMirrored() && $relation->mirror && $relation->relation && $relation->relation == $relation->mirror->relation) {
@@ -286,6 +293,7 @@ class MapService
                 $this->addOrganisationRelations($org->organisation);
             }
         }
+
         return $this;
     }
 
@@ -347,6 +355,7 @@ class MapService
                 ->addMapMarkers()
                 ->addAuthorJournals();
         }
+
         return $this;
     }
 
@@ -398,7 +407,6 @@ class MapService
                 ->addRaces()
                 ->addLocationCreatures();
         }
-
 
         return $this;
     }
@@ -470,6 +478,7 @@ class MapService
                 'shape' => 'none',
             ];
         }
+
         return $this;
     }
 
@@ -495,6 +504,7 @@ class MapService
                 'shape' => 'triangle',
             ];
         }
+
         return $this;
     }
 
@@ -521,11 +531,10 @@ class MapService
                 'shape' => 'none',
             ];
         }
+
         return $this;
     }
 
-    /**
-     */
     protected function addOrganisations(): self
     {
         /** @var Location $child */
@@ -545,11 +554,10 @@ class MapService
                 'shape' => 'triangle',
             ];
         }
+
         return $this;
     }
 
-    /**
-     */
     protected function addCharacters(): self
     {
         /** @var Location $related */
@@ -557,7 +565,7 @@ class MapService
 
         foreach ($related->characters()->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')->get() as $sub) {
             $this->addEntity($sub->entity);
-            //$this->addRelations($sub->entity);
+            // $this->addRelations($sub->entity);
 
             $this->relations[] = [
                 'target' => $sub->entity->id,
@@ -569,11 +577,10 @@ class MapService
                 'shape' => 'triangle',
             ];
         }
+
         return $this;
     }
 
-    /**
-     */
     protected function addItems(): self
     {
         /** @var Character|Location $parent */
@@ -591,11 +598,10 @@ class MapService
                 'shape' => 'none',
             ];
         }
+
         return $this;
     }
 
-    /**
-     */
     protected function addJournals(): self
     {
         /** @var Location $parent */
@@ -613,6 +619,7 @@ class MapService
                 'shape' => 'none',
             ];
         }
+
         return $this;
     }
 
@@ -631,14 +638,13 @@ class MapService
                 'shape' => 'none',
             ];
         }
+
         return $this;
     }
 
-    /**
-     */
     protected function addLocation(): self
     {
-        if (!array_key_exists('location_id', $this->entity->child->getAttributes())) {
+        if (! array_key_exists('location_id', $this->entity->child->getAttributes())) {
             return $this;
         }
         if (empty($this->entity->child->location_id) || empty($this->entity->child->location)) {
@@ -666,7 +672,7 @@ class MapService
      */
     protected function addParent(): self
     {
-        if (!method_exists($this->entity->child, 'parent')) {
+        if (! method_exists($this->entity->child, 'parent')) {
             return $this;
         }
 
@@ -675,6 +681,7 @@ class MapService
         $parent = $child->parent;
         if (empty($parent) || empty($parent->entity)) {
             $this->addChildren();
+
             return $this;
         }
 
@@ -699,7 +706,7 @@ class MapService
      */
     protected function addChildren(): self
     {
-        if (!method_exists($this->entity->child, 'children')) {
+        if (! method_exists($this->entity->child, 'children')) {
             return $this;
         }
 
@@ -717,11 +724,10 @@ class MapService
                 'shape' => 'triangle',
             ];
         }
+
         return $this;
     }
 
-    /**
-     */
     protected function addDiceRolls(): self
     {
         /** @var Character $parent */
@@ -739,11 +745,10 @@ class MapService
                 'shape' => 'none',
             ];
         }
+
         return $this;
     }
 
-    /**
-     */
     protected function addConversations(): self
     {
         /** @var Character $parent */
@@ -761,11 +766,10 @@ class MapService
                 'shape' => 'none',
             ];
         }
+
         return $this;
     }
 
-    /**
-     */
     protected function addMapMarkers(): self
     {
         /** @var MapMarker $related */
@@ -781,11 +785,10 @@ class MapService
                 'shape' => 'none',
             ];
         }
+
         return $this;
     }
 
-    /**
-     */
     protected function addMaps(): self
     {
         /** @var Location $parent */
@@ -803,11 +806,10 @@ class MapService
                 'shape' => 'none',
             ];
         }
+
         return $this;
     }
 
-    /**
-     */
     protected function addQuests(): self
     {
         /** @var QuestElement $related */
@@ -823,6 +825,7 @@ class MapService
                 'shape' => 'none',
             ];
         }
+
         return $this;
     }
 
@@ -848,6 +851,7 @@ class MapService
                 'shape' => 'triangle',
             ];
         }
+
         return $this;
     }
 
@@ -873,16 +877,15 @@ class MapService
                 'shape' => 'triangle',
             ];
         }
+
         return $this;
     }
 
-    /**
-     */
     protected function addLocations(): self
     {
         /** @var Location $child */
         $child = $this->entity->child;
-        if (!method_exists($child, 'locations')) {
+        if (! method_exists($child, 'locations')) {
             return $this;
         }
 
@@ -900,9 +903,9 @@ class MapService
                 'shape' => 'triangle',
             ];
         }
+
         return $this;
     }
-
 
     /**
      * Load relations between linked entities
@@ -920,6 +923,7 @@ class MapService
         foreach ($entities as $entity) {
             $this->addRelations($entity);
         }
+
         return $this;
     }
 
@@ -928,7 +932,7 @@ class MapService
      */
     protected function addMentions(): self
     {
-        if (!$this->withMentions()) {
+        if (! $this->withMentions()) {
             return $this;
         }
 
@@ -957,11 +961,9 @@ class MapService
         return $this;
     }
 
-    /**
-     */
     protected function withRelations(): bool
     {
-        return !$this->onlyRelations();
+        return ! $this->onlyRelations();
     }
 
     /**

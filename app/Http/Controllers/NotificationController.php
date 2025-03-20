@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Layout\NavigationService;
 use App\Models\User;
+use App\Services\Layout\NavigationService;
 
 class NotificationController extends Controller
 {
     protected NavigationService $navigationService;
+
     /**
      * Create a new controller instance.
      *
@@ -43,6 +44,7 @@ class NotificationController extends Controller
         }
 
         $notification->markAsRead();
+
         return response()->json(['success' => true]);
     }
 
@@ -62,7 +64,6 @@ class NotificationController extends Controller
 
         return redirect()
             ->route('notifications')
-            ->with('success', __('notifications.clear.success'))
-        ;
+            ->with('success', __('notifications.clear.success'));
     }
 }

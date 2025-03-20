@@ -17,8 +17,7 @@ class ModuleController extends Controller
         protected SidebarService $sidebarService,
         protected ModuleEditService $moduleEditService,
         protected EntityTypeService $entityTypeService
-    ) {
-    }
+    ) {}
 
     public function index(Campaign $campaign)
     {
@@ -44,7 +43,7 @@ class ModuleController extends Controller
     {
         $this->authorize('setting', $campaign);
 
-        if (!$campaign->boosted()) {
+        if (! $campaign->boosted()) {
             return view('campaigns.modules.not-premium')
                 ->with('campaign', $campaign);
         }
@@ -58,15 +57,14 @@ class ModuleController extends Controller
             ->with('entityType', $entityType)
             ->with('singular', $singular)
             ->with('plural', $plural)
-            ->with('icon', $icon)
-        ;
+            ->with('icon', $icon);
     }
 
     public function update(UpdateModuleName $request, Campaign $campaign, EntityType $entityType)
     {
         $this->authorize('setting', $campaign);
 
-        if (!$campaign->boosted()) {
+        if (! $campaign->boosted()) {
             return view('campaign.modules')
                 ->with('errors', __('This feature is only available on premium and boosted campaigns'));
         }
@@ -116,11 +114,11 @@ class ModuleController extends Controller
             return response()->json([
                 'success' => true,
                 'status' => $campaign->enabled($entityType),
-                'toast' => __('campaigns.settings.' . ($status ? 'enabled' : 'disabled'), ['module' => $entityType->plural()])
+                'toast' => __('campaigns.settings.' . ($status ? 'enabled' : 'disabled'), ['module' => $entityType->plural()]),
             ]);
         } catch (Exception $e) {
             return response()->json([
-                'success' => false
+                'success' => false,
             ]);
         }
     }
@@ -140,11 +138,11 @@ class ModuleController extends Controller
             return response()->json([
                 'success' => true,
                 'status' => $campaign->setting->{$module},
-                'toast' => __('campaigns.settings.' . ($status ? 'enabled' : 'disabled'), ['module' => __('entities.' . $module)])
+                'toast' => __('campaigns.settings.' . ($status ? 'enabled' : 'disabled'), ['module' => __('entities.' . $module)]),
             ]);
         } catch (Exception $e) {
             return response()->json([
-                'success' => false
+                'success' => false,
             ]);
         }
     }

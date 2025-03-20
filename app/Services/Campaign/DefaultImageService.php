@@ -14,8 +14,6 @@ class DefaultImageService
     use CampaignAware;
     use EntityTypeAware;
 
-    /**
-     */
     public function save(Request $request): bool
     {
         // Does the campaign already have this type? If yes, let's stop
@@ -29,7 +27,7 @@ class DefaultImageService
         /** @var \Illuminate\Http\UploadedFile $source */
         $source = $request->file('default_entity_image');
 
-        $image = new Image();
+        $image = new Image;
         $image->campaign_id = $this->campaign->id;
         $image->ext = $source->extension();
         $image->size = (int) ceil($source->getSize() / 1024); // kb
@@ -62,7 +60,7 @@ class DefaultImageService
             $images = [];
         }
 
-        if (!isset($images[$this->entityType->pluralCode()])) {
+        if (! isset($images[$this->entityType->pluralCode()])) {
             return false;
         }
         /** @var ?Image $image */

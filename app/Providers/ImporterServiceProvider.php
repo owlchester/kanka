@@ -15,7 +15,7 @@ class ImporterServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(ImportIdMapper::class, function () {
-            return new ImportIdMapper();
+            return new ImportIdMapper;
         });
 
         $this->app->alias(ImportIdMapper::class, 'importidmapper');

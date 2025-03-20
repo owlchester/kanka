@@ -14,8 +14,8 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class UploadService
 {
@@ -23,6 +23,7 @@ class UploadService
     use UserAware;
 
     protected FormRequest $request;
+
     protected array $data;
 
     protected Image $image;
@@ -41,6 +42,7 @@ class UploadService
     public function request(FormRequest $request): self
     {
         $this->request = $request;
+
         return $this;
     }
 
@@ -48,21 +50,24 @@ class UploadService
     {
         if (empty($folder)) {
             unset($this->folder);
+
             return $this;
         }
         $this->folder = $folder;
+
         return $this;
     }
 
     public function data(array $data): self
     {
         $this->data = $data;
+
         return $this;
     }
 
     public function file(UploadedFile $file): array
     {
-        $this->image = new Image();
+        $this->image = new Image;
         $this->image->campaign_id = $this->campaign->id;
         $this->image->name = Str::beforeLast($file->getClientOriginalName(), '.');
         $this->image->ext = Str::before($file->extension(), '?');
@@ -93,12 +98,13 @@ class UploadService
             $available -= $kb;
             $data[] = (new GalleryFile($this->image))->campaign($this->campaign);
         }
+
         return $data;
     }
 
     public function url(string $url): array
     {
-        $this->image = new Image();
+        $this->image = new Image;
 
         $externalFile = basename($url);
 
@@ -127,7 +133,7 @@ class UploadService
             unlink($tempImage);
             throw ValidationException::withMessages([__('gallery.download.errors.too_big', [
                 'size' => number_format($copiedFileSize / 1024, 2),
-                'max' => number_format($max / 1024, 2)
+                'max' => number_format($max / 1024, 2),
             ])]);
         }
         $available = $this->storage->campaign($this->campaign)->available();
@@ -143,7 +149,7 @@ class UploadService
 
         // Invalid file type?
         $ext = mb_strtolower($file->guessExtension());
-        if (!in_array($ext, ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp'])) {
+        if (! in_array($ext, ['png', 'jpg', 'jpeg', 'gif', 'svg', 'webp'])) {
             unlink($tempImage);
             $key = 'gallery.download.errors.invalid_format';
             throw ValidationException::withMessages([__($key)]);
@@ -164,10 +170,10 @@ class UploadService
             Storage::put($this->image->path, $this->sanitizedSvg($file), 'public');
         } else {
             $manager = new ImageManager(
-                new Driver()
+                new Driver
             );
             $image = $manager->read($file);
-            Storage::put($this->image->path, (string)$image->toJpeg(), 'public');
+            Storage::put($this->image->path, (string) $image->toJpeg(), 'public');
         }
         unlink($tempImage);
         $this->storage->clearCache();
@@ -177,15 +183,16 @@ class UploadService
 
     protected function sanitizedSvg(string $path): string
     {
-        $sanitizer = new Sanitizer();
+        $sanitizer = new Sanitizer;
 
         // Custom allowed attributes for AFMG
-        $allowedAttributes = new SvgAllowedAttributes();
+        $allowedAttributes = new SvgAllowedAttributes;
         $sanitizer->setAllowedAttrs($allowedAttributes);
 
         $dirtySVG = file_get_contents($path);
         $cleanSVG = $sanitizer->sanitize($dirtySVG);
         file_put_contents($path, $cleanSVG);
+
         return $cleanSVG;
     }
 
@@ -196,7 +203,7 @@ class UploadService
             'name' => $this->image->name,
             'uuid' => $this->image->id,
             'path' => $this->image->path,
-            'thumbnail' => $this->image->getUrl(192, 144)
+            'thumbnail' => $this->image->getUrl(192, 144),
         ];
     }
 }

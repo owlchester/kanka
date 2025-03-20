@@ -12,6 +12,7 @@ use App\Services\Gallery\StorageService;
 class DeleteController extends Controller
 {
     protected DeleteService $service;
+
     protected StorageService $storage;
 
     public function __construct(DeleteService $service, StorageService $storageService)
@@ -33,7 +34,7 @@ class DeleteController extends Controller
 
         return response()->json([
             'toast' => trans_choice('gallery.delete.success', $count, ['count' => $count]),
-            'used' => $this->storage->uncachedUsedSpace()
+            'used' => $this->storage->uncachedUsedSpace(),
         ]);
     }
 
@@ -45,7 +46,7 @@ class DeleteController extends Controller
         $this->storage->campaign($campaign)->clearCache();
 
         return response()->json([
-            'used' => $this->storage->uncachedUsedSpace()
+            'used' => $this->storage->uncachedUsedSpace(),
         ]);
     }
 }

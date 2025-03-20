@@ -12,43 +12,35 @@ use App\Models\Quest;
 class QuestController extends CrudController
 {
     protected string $view = 'quests';
+
     protected string $route = 'quests';
+
     protected string $module = 'quests';
 
     protected string $model = Quest::class;
 
     protected string $filter = QuestFilter::class;
 
-    /**
-     */
     public function store(StoreQuest $request, Campaign $campaign)
     {
         return $this->campaign($campaign)->crudStore($request);
     }
 
-    /**
-     */
     public function show(Campaign $campaign, Quest $quest)
     {
         return $this->campaign($campaign)->crudShow($quest);
     }
 
-    /**
-     */
     public function edit(Campaign $campaign, Quest $quest)
     {
         return $this->campaign($campaign)->crudEdit($quest);
     }
 
-    /**
-     */
     public function update(StoreQuest $request, Campaign $campaign, Quest $quest)
     {
         return $this->campaign($campaign)->crudUpdate($request, $quest);
     }
 
-    /**
-     */
     public function destroy(Campaign $campaign, Quest $quest)
     {
         return $this->campaign($campaign)->crudDestroy($quest);

@@ -15,8 +15,9 @@ class JournalSubmenu extends BaseSubmenu implements EntitySubmenu
         $items['second']['journals'] = [
             'name' => Module::plural($journal->entityTypeId(), 'entities.journals'),
             'route' => 'journals.journals',
-            'count' => $journal->descendants()->has('entity')->count()
+            'count' => $journal->descendants()->has('entity')->count(),
         ];
+
         return $items;
     }
 }

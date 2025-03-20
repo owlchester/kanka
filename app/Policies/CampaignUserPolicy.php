@@ -6,9 +6,9 @@ use App\Facades\Identity;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignRoleUser;
-use App\Traits\AdminPolicyTrait;
-use App\Models\User;
 use App\Models\CampaignUser;
+use App\Models\User;
+use App\Traits\AdminPolicyTrait;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignUserPolicy
@@ -20,6 +20,7 @@ class CampaignUserPolicy
     {
         return $campaignUser->campaign_id === $campaign->id && $user->isAdmin();
     }
+
     public function update(User $user, CampaignUser $campaignUser): bool
     {
         // Don't allow updating if we are currently impersonating
@@ -28,7 +29,7 @@ class CampaignUserPolicy
         }
 
         // If user isn't in admin
-        if (!$user->isAdmin()) {
+        if (! $user->isAdmin()) {
             return false;
         }
 
@@ -37,7 +38,7 @@ class CampaignUserPolicy
         }
 
         // User isn't an admin, easy peasy
-        if (!$campaignUser->user->isAdmin()) {
+        if (! $campaignUser->user->isAdmin()) {
             return true;
         }
 
@@ -45,6 +46,7 @@ class CampaignUserPolicy
         /** @var CampaignRoleUser $adminRole */
         $adminRole = UserCache::adminRole();
         $role = $campaignUser->user->campaignRoleUser->where('campaign_role_id', $adminRole['id'])->first();
+
         return $role->created_at->diffInMinutes() <= 15;
     }
 
@@ -58,9 +60,9 @@ class CampaignUserPolicy
         if (Identity::isImpersonating()) {
             return false;
         }
+
         return $user->isAdmin()
-            && !$campaignUser->user->isAdmin()
-            && !$campaignUser->user->isBanned()
-        ;
+            && ! $campaignUser->user->isAdmin()
+            && ! $campaignUser->user->isBanned();
     }
 }

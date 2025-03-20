@@ -38,7 +38,7 @@ class StoreTimeline extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
             'revert_order' => 'nullable',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         return $this->clean($rules);

@@ -4,10 +4,10 @@ namespace App\Services;
 
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\EntityMention;
 use App\Models\EntityType;
 use App\Models\Image;
 use App\Models\ImageMention;
-use App\Models\EntityMention;
 use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
@@ -23,8 +23,11 @@ class EntityMappingService
     protected Model|Post|Entity|QuestElement|TimelineElement|Campaign $model;
 
     protected int $entities;
+
     protected int $createdImages = 0;
+
     protected int $updatedImages = 0;
+
     protected int $deletedImages = 0;
 
     protected array $entityTypes;
@@ -48,12 +51,14 @@ class EntityMappingService
     {
         $this->throwExceptions = false;
         $this->verbose = false;
+
         return $this;
     }
 
     public function with(Model|Post|Entity|QuestElement|TimelineElement|Campaign $model): self
     {
         $this->model = $model;
+
         return $this;
     }
 
@@ -67,11 +72,9 @@ class EntityMappingService
             ->entry();
     }
 
-    /**
-     */
     protected function createNewMention(int $target): void
     {
-        $mention = new EntityMention();
+        $mention = new EntityMention;
 
         // Determine what kind of entity this is
         // Todo: should be the model that gives us this info, not for the service to figure out
@@ -119,7 +122,7 @@ class EntityMappingService
      */
     protected function images(): self
     {
-        if (!method_exists($this->model, 'imageMentions')) {
+        if (! method_exists($this->model, 'imageMentions')) {
             return $this;
         }
         $images = [];
@@ -153,20 +156,22 @@ class EntityMappingService
             /** @var ?Image $target */
             $target = Image::where([
                 'id' => $id,
-                'campaign_id' => $campaignId
+                'campaign_id' => $campaignId,
             ])->first();
-            if (!$target) {
+            if (! $target) {
                 continue;
             }
             // Don't map the same image multiple times
-            if (!empty($this->existingTargets[$target->id])) {
+            if (! empty($this->existingTargets[$target->id])) {
                 if ($this->model instanceof Post && $this->existingTargets[$target->id]->post_id == $this->model->id) {
                     unset($this->existingTargets[$target->id]);
                     $this->updatedImages++;
+
                     continue;
-                } elseif ($this->model instanceof Entity && !$this->existingTargets[$target->id]->post_id) {
+                } elseif ($this->model instanceof Entity && ! $this->existingTargets[$target->id]->post_id) {
                     unset($this->existingTargets[$target->id]);
                     $this->updatedImages++;
+
                     continue;
                 }
             }
@@ -214,26 +219,28 @@ class EntityMappingService
 
             // Validate that it's either targeting a post, or a valid entity type
             $entityType = $this->getEntityTypeID($singularType);
-            if (!$entityType && $singularType !== 'post') {
+            if (! $entityType && $singularType !== 'post') {
                 continue;
             }
 
             /** @var Entity|Post|null $target */
             $target = $this->getTarget($id, $entityType);
-            if (!$target) {
+            if (! $target) {
                 continue;
             }
 
             // If already mentioned, don't create more mentions
             if (in_array($target->id, $alreadyMentioned)) {
                 $alreadyMentioned[] = $target->id;
+
                 continue;
             }
             // Do we already have this mention mapped?
-            if (!empty($this->existingTargets[$target->id])) {
+            if (! empty($this->existingTargets[$target->id])) {
                 $alreadyMentioned[] = $target->id;
-                //$this->log("- already have mapping");
+                // $this->log("- already have mapping");
                 unset($this->existingTargets[$target->id]);
+
                 continue;
             }
             $alreadyMentioned[] = $target->id;
@@ -250,21 +257,23 @@ class EntityMappingService
         return $this;
     }
 
-    protected function getTarget(int $id, ?int $entityType): Entity|null
+    protected function getTarget(int $id, ?int $entityType): ?Entity
     {
-        if (!isset($entityType)) {
+        if (! isset($entityType)) {
             $post = Post::with('entity')->where([
                 'id' => $id,
             ])->first();
             if ($post && $post->entity && $post->entity->campaign_id === $this->campaignID()) {
                 return $post->entity;
             }
+
             return null;
         }
+
         return Entity::where([
             'type_id' => $entityType,
             'id' => $id,
-            'campaign_id' => $this->campaignID()
+            'campaign_id' => $this->campaignID(),
         ])->first();
     }
 
@@ -280,15 +289,14 @@ class EntityMappingService
         } elseif ($this->model instanceof QuestElement) {
             return $this->model->quest->campaign_id;
         }
+
         // @phpstan-ignore-next-line
         return $this->model->campaign_id;
     }
 
-    /**
-     */
     protected function createNewImageMention(string $target): void
     {
-        $mention = new ImageMention();
+        $mention = new ImageMention;
 
         // Determine what kind of entity this is
         if ($this->model instanceof Post) {
@@ -302,18 +310,16 @@ class EntityMappingService
         $this->createdImages++;
     }
 
-    /**
-     */
     protected function log(?string $message = null)
     {
-        if (!$this->verbose) {
+        if (! $this->verbose) {
             return;
         }
         echo $message;
         if (app()->runningInConsole()) {
             echo "\n";
         } else {
-            echo "<br />";
+            echo '<br />';
         }
     }
 
@@ -322,6 +328,7 @@ class EntityMappingService
         // @phpstan-ignore-next-line
         return $this->model;
     }
+
     protected function entity(): Entity
     {
         // @phpstan-ignore-next-line
@@ -331,6 +338,7 @@ class EntityMappingService
     protected function getEntityTypeID(string $code): ?int
     {
         $this->loadEntityTypes();
+
         return Arr::get($this->entityTypes, $code);
     }
 

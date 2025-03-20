@@ -54,7 +54,7 @@ class CalendarAdvancer extends Command
     public function handle()
     {
         Calendar::where('is_incrementing', true)->chunkById(500, function ($calendars): void {
-            /** @var Calendar $calendar*/
+            /** @var Calendar $calendar */
             foreach ($calendars as $calendar) {
                 try {
                     $this->service->calendar($calendar)->advance();
@@ -70,7 +70,7 @@ class CalendarAdvancer extends Command
         $log = "Advanced {$this->count} calendars.";
         $this->info($log);
 
-        if (!empty($this->errors)) {
+        if (! empty($this->errors)) {
             $this->error('Errors for ' . count($this->errors) . ' calendars.');
             $this->error(implode(', ', array_keys($this->errors)));
 

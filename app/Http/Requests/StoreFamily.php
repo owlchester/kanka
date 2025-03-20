@@ -39,17 +39,17 @@ class StoreFamily extends FormRequest
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Family $self */
         $self = request()->route('family');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['family_id'] = [
                 'nullable',
                 'integer',
                 'exists:families,id',
-                new Nested(Family::class, $self)
+                new Nested(Family::class, $self),
             ];
         }
 

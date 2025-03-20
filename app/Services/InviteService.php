@@ -43,11 +43,11 @@ class InviteService
         }
 
         // Inactive (removed campaigns won't have their token still in the db)
-        if (!$invite->is_active) {
+        if (! $invite->is_active) {
             throw new Exception(__('campaigns.invites.error.inactive_token'));
         }
 
-        if (!$invite->campaign->canHaveMoreMembers()) {
+        if (! $invite->campaign->canHaveMoreMembers()) {
             throw new Exception(__('campaigns/limits.members'));
         }
 
@@ -91,6 +91,7 @@ class InviteService
             // User is already part of the campaign, don't go further otherwise one user can spam the join link and
             // use up all the available tokens (validity field).
             UserCache::clear();
+
             return true;
         }
 
@@ -98,12 +99,12 @@ class InviteService
         if ($invite->role) {
             $memberRole = CampaignRoleUser::create([
                 'campaign_role_id' => $invite->role->id,
-                'user_id' => $role->user_id
+                'user_id' => $role->user_id,
             ]);
         }
 
         // Invitation links can have a set number of usage (validity)
-        if (!empty($invite->validity)) {
+        if (! empty($invite->validity)) {
             $invite->validity--;
             if ($invite->validity <= 0) {
                 $invite->is_active = false;

@@ -17,6 +17,7 @@ class ProfileResource extends JsonResource
     {
         /** @var User $model */
         $model = $this->resource;
+
         return [
             'id' => $model->id,
             'name' => $model->name,

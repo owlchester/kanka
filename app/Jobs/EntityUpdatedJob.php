@@ -71,6 +71,7 @@ class EntityUpdatedJob implements ShouldQueue
                 return true;
             }
         }
+
         return false;
     }
 }

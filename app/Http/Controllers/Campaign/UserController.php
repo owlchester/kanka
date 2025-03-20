@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Campaign;
 
+use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\CampaignUser;
-use Illuminate\Http\Request;
-use App\Facades\Datagrid;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -27,6 +27,7 @@ class UserController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -62,6 +63,7 @@ class UserController extends Controller
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, CampaignUser $campaignUser)
@@ -70,11 +72,13 @@ class UserController extends Controller
         $this->authorize('view', [$campaignUser, $campaign]);
 
         $campaignUser->delete();
+
         return redirect()->route('campaign_users.index', $campaign);
     }
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function search(Request $request, Campaign $campaign)
@@ -92,7 +96,7 @@ class UserController extends Controller
         foreach ($members as $member) {
             $results[] = [
                 'id' => $member->id,
-                'text' => $member->name
+                'text' => $member->name,
             ];
         }
 

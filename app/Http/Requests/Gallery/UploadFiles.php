@@ -23,13 +23,14 @@ class UploadFiles extends FormRequest
     public function rules(): array
     {
         $types = ['jpeg', 'jpg', 'gif', 'png', 'webp', 'woff2'];
+
         return [
             'files' => 'required|array',
             'files.*' => [
                 'required',
                 File::types($types),
                 'max:' . Limit::upload(),
-                new GallerySize(),
+                new GallerySize,
             ],
         ];
     }

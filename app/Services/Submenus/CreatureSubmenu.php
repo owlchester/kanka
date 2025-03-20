@@ -17,9 +17,10 @@ class CreatureSubmenu extends BaseSubmenu implements EntitySubmenu
             $items['second']['creatures'] = [
                 'name' => Module::plural($creature->entityTypeId(), 'entities.creatures'),
                 'route' => 'creatures.creatures',
-                'count' => $count
+                'count' => $count,
             ];
         }
+
         return $items;
     }
 }

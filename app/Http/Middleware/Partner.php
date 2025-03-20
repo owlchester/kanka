@@ -14,7 +14,7 @@ class Partner
     public function handle($request, Closure $next)
     {
         // Just want the user to be a partner
-        if (!auth()->check() || (!auth()->user()->hasRole('partner') && !auth()->user()->hasRole('admin'))) {
+        if (! auth()->check() || (! auth()->user()->hasRole('partner') && ! auth()->user()->hasRole('admin'))) {
             return redirect()->route('home');
         }
 

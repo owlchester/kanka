@@ -4,7 +4,6 @@ namespace App\Services;
 
 /**
  * Class PaginationService
- * @package App\Services
  */
 class PaginationService
 {
@@ -19,10 +18,10 @@ class PaginationService
             null => __('settings/appearance.values.pagination', ['amount' => 15]),
             25 => __('settings/appearance.values.pagination', ['amount' => 25]),
             45 => __('settings/appearance.values.pagination', ['amount' => 45]),
-            self::MAX => __('settings/appearance.values.pagination', ['amount' => self::MAX])
+            self::MAX => __('settings/appearance.values.pagination', ['amount' => self::MAX]),
         ];
 
-        if (!auth()->user()->isSubscriber()) {
+        if (! auth()->user()->isSubscriber()) {
             $options[self::MAX] = __('settings/appearance.values.pagination-sub', ['amount' => self::MAX]);
         }
 
@@ -36,7 +35,7 @@ class PaginationService
     {
         $disabled = [];
 
-        if (!auth()->user()->isSubscriber()) {
+        if (! auth()->user()->isSubscriber()) {
             $disabled[self::MAX] = ['disabled' => true];
         }
 

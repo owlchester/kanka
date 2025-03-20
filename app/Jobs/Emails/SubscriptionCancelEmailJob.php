@@ -20,11 +20,11 @@ class SubscriptionCancelEmailJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /**  */
     public int $userId;
 
     /** @var string */
     public $reason;
+
     public $custom;
 
     /** @var int */

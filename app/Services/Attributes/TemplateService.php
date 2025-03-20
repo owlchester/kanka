@@ -21,6 +21,7 @@ class TemplateService
     protected RandomService $randomService;
 
     protected array $loadedTemplates = [];
+
     protected array $loadedPlugins = [];
 
     protected string $templateName;
@@ -40,23 +41,26 @@ class TemplateService
         $templateIdInt = (int) $templateId;
         if (Str::isUuid($templateId)) {
             return $this->applyMarketplaceTemplate($templateId);
-        } elseif (is_integer($templateIdInt) && !empty($templateIdInt)) {
+        } elseif (is_int($templateIdInt) && ! empty($templateIdInt)) {
             $attributeTemplate = $this->getAttributeTemplate($templateId);
             $attributeTemplate->apply($this->entity);
             $this->templateName = $attributeTemplate->name;
+
             return true;
         }
+
         return false;
     }
 
     /**
      * Apply a marketplace character sheet on an entity based on its uuid. This is called in the BULK interface
+     *
      * @todo: move to a separate service
      */
     public function applyMarketplaceTemplate(string $uuid): bool
     {
         $campaign = $this->entity->campaign;
-        if (!$campaign->boosted()) {
+        if (! $campaign->boosted()) {
             return false;
         }
 
@@ -69,7 +73,7 @@ class TemplateService
         $existing = array_values($this->entity->attributes()->pluck('name')->toArray());
         foreach ($plugin->version->attributes as $attribute) {
             // If the config is simply a name, we default to a small varchar
-            if (!is_array($attribute)) {
+            if (! is_array($attribute)) {
                 continue;
             }
 
@@ -82,7 +86,7 @@ class TemplateService
             $type = $this->mapAttributeTypeToID($type);
             $value = Arr::get($attribute, 'value', '');
 
-            list($type, $value) = $this->randomService->randomAttribute($type, $value);
+            [$type, $value] = $this->randomService->randomAttribute($type, $value);
 
             $order++;
 
@@ -100,7 +104,7 @@ class TemplateService
 
         // Layout attribute for rendering
         $layout = '_layout';
-        if (!in_array($layout, $existing)) {
+        if (! in_array($layout, $existing)) {
             $order++;
 
             Attribute::create([
@@ -123,13 +127,13 @@ class TemplateService
     /**
      * Get a character sheet marketplace plugin model from the db based on its uuid
      */
-    public function marketplaceTemplate(string $uuid): CampaignPlugin|null
+    public function marketplaceTemplate(string $uuid): ?CampaignPlugin
     {
-        if (!$this->campaign->boosted() || !config('marketplace.enabled')) {
+        if (! $this->campaign->boosted() || ! config('marketplace.enabled')) {
             return null;
         }
 
-        if (!Str::isUuid($uuid)) {
+        if (! Str::isUuid($uuid)) {
             return null;
         }
 
@@ -142,7 +146,7 @@ class TemplateService
             ->first();
 
         // If the plugin is published, we're good. Otherwise, it's
-        if (empty($plugin) || !$plugin->renderable()) {
+        if (empty($plugin) || ! $plugin->renderable()) {
             return null;
         }
 
@@ -159,11 +163,13 @@ class TemplateService
         }
         /** @var AttributeTemplate $attributeTemplate */
         $attributeTemplate = AttributeTemplate::findOrFail($templateId);
+
         return $this->loadedTemplates[$templateId] = $attributeTemplate;
     }
 
     /**
      * Get a marketplace plugin's model based on its UUID
+     *
      * @return CampaignPlugin|null
      */
     protected function getMarketplacePlugin(string $pluginUuid, Campaign $campaign)
@@ -171,16 +177,18 @@ class TemplateService
         if (isset($this->loadedPlugins[$pluginUuid])) {
             return $this->loadedPlugins[$pluginUuid];
         }
+
         return $this->loadedPlugins[$pluginUuid] = CampaignPlugin::templates($campaign)
             ->select('campaign_plugins.*')
-            //->leftJoin('plugins as p', 'p.id', 'plugin_id')
+            // ->leftJoin('plugins as p', 'p.id', 'plugin_id')
             ->where('p.uuid', $pluginUuid)
             ->first();
     }
 
     /**
      * Map an attribute type from its string representation to an ID (as saved in the DB)
-     * @param string|null $type the string type of attribute to be converted to an int
+     *
+     * @param  string|null  $type  the string type of attribute to be converted to an int
      */
     protected function mapAttributeTypeToID(?string $type = null): AttributeType
     {
@@ -204,10 +212,10 @@ class TemplateService
         dd('missing mapping for ' . $type);
     }
 
-
     /**
      * Deprecated as of 1.30
      * Get a community template base on its name to render properly
+     *
      * @return bool|Template
      */
     public function communityTemplate(string $template)
@@ -215,8 +223,9 @@ class TemplateService
         $templates = config('attribute-templates.templates');
         if (Arr::exists($templates, $template)) {
             /** @var Template $template */
-            return new $templates[$template]();
+            return new $templates[$template];
         }
+
         return false;
     }
 
@@ -225,9 +234,10 @@ class TemplateService
         $templateIdInt = (int) $template;
         if (Str::isUuid($template)) {
             return $this->loadMarketplaceTemplate($template);
-        } elseif (is_integer($templateIdInt) && !empty($templateIdInt)) {
+        } elseif (is_int($templateIdInt) && ! empty($templateIdInt)) {
             return $this->loadCampaignTemplate($template);
         }
+
         return [];
     }
 
@@ -241,7 +251,7 @@ class TemplateService
         $attributes = [];
         foreach ($plugin->version->attributes as $attribute) {
             // If the config is simply a name, we default to a small varchar
-            if (!is_array($attribute)) {
+            if (! is_array($attribute)) {
                 continue;
             }
 
@@ -251,8 +261,7 @@ class TemplateService
             $type = $this->mapAttributeTypeToID($type);
             $value = Arr::get($attribute, 'value', '');
 
-
-            list($type, $value) = $this->randomService->randomAttribute($type, $value);
+            [$type, $value] = $this->randomService->randomAttribute($type, $value);
 
             $attributes[] = [
                 'name' => $name,
@@ -292,7 +301,7 @@ class TemplateService
         /** @var Attribute $attribute */
         foreach ($template->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
 
-            list($type, $value) = $this->randomService->randomAttribute($attribute->type_id, $attribute->value);
+            [$type, $value] = $this->randomService->randomAttribute($attribute->type_id, $attribute->value);
             $attribute->type_id = $type;
 
             $attributes[] = [
@@ -306,8 +315,8 @@ class TemplateService
                 'source_id' => $attribute->id,
 
                 'is_checkbox' => $attribute->isCheckbox(),
-                'is_multiline' => $attribute->isText() ,
-                'is_random' => $attribute->isRandom() ,
+                'is_multiline' => $attribute->isText(),
+                'is_random' => $attribute->isRandom(),
                 'is_section' => $attribute->isSection(),
                 'is_number' => $attribute->isNumber(),
             ];

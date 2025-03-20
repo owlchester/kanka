@@ -19,9 +19,11 @@ class AvatarService
     protected MiscModel $child;
 
     protected string $field = 'image';
+
     protected bool $fallback = false;
 
     protected int $width;
+
     protected int $height;
 
     protected bool $withCache = false;
@@ -29,31 +31,36 @@ class AvatarService
     public function child(MiscModel $miscModel): self
     {
         $this->child = $miscModel;
+
         return $this;
     }
 
     public function field(string $field): self
     {
         $this->field = $field;
+
         return $this;
     }
 
     public function cached(): self
     {
         $this->withCache = true;
+
         return $this;
     }
 
     public function size(int $width, int $height = 0): self
     {
         $this->width = $width;
-        $this->height = !empty($height) ? $height : $width;
+        $this->height = ! empty($height) ? $height : $width;
+
         return $this;
     }
 
     public function fallback(): self
     {
         $this->fallback = true;
+
         return $this;
     }
 
@@ -69,13 +76,14 @@ class AvatarService
 
     public function thumbnail(): string
     {
-        if (!$this->hasImage()) {
+        if (! $this->hasImage()) {
             return $this->fallbackThumbnail();
         }
 
         if ($this->onEntity()) {
             return $this->entity->image->getUrl($this->width, $this->height);
         }
+
         return $this->childThumbnail();
     }
 
@@ -84,7 +92,7 @@ class AvatarService
      */
     public function original(): string
     {
-        if (!$this->hasImage()) {
+        if (! $this->hasImage()) {
             return '';
         }
         if ($this->onEntity()) {
@@ -95,12 +103,13 @@ class AvatarService
         if ($cloudfront) {
             return Storage::disk('cloudfront')->url($path);
         }
+
         return Storage::url($path);
     }
 
     protected function onEntity(): bool
     {
-        return !empty($this->entity->image);
+        return ! empty($this->entity->image);
     }
 
     protected function childThumbnail(): string
@@ -112,11 +121,12 @@ class AvatarService
 
         $img = Img::resetCrop()->crop($this->width, $this->height);
 
-        if (!empty($this->width)) {
-            if (!empty($this->entity->focus_x) && !empty($this->entity->focus_y)) {
+        if (! empty($this->width)) {
+            if (! empty($this->entity->focus_x) && ! empty($this->entity->focus_y)) {
                 $img = $img->focus($this->entity->focus_x, $this->entity->focus_y);
             }
         }
+
         return $this->return(
             $img->url($url)
         );
@@ -124,12 +134,12 @@ class AvatarService
 
     public function hasImage(): bool
     {
-        return $this->entity->image || !empty($this->childThumbnailPath());
+        return $this->entity->image || ! empty($this->childThumbnailPath());
     }
 
     protected function fallbackThumbnail(): string
     {
-        if (!$this->fallback) {
+        if (! $this->fallback) {
             return $this->return('');
         }
 
@@ -137,8 +147,9 @@ class AvatarService
         if ($this->campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->entity->entityType->code)) {
             $url = Img::crop($this->width, $this->height)
                 ->url(CampaignCache::defaultImages()[$this->entity->entityType->code]);
+
             return $this->return($url);
-        } elseif (!$this->entity->entityType->isSpecial() && ($this->campaign->premium() || (auth()->check() && auth()->user()->isGoblin()))) {
+        } elseif (! $this->entity->entityType->isSpecial() && ($this->campaign->premium() || (auth()->check() && auth()->user()->isGoblin()))) {
             return $this->return($cloudfront . '/images/defaults/subscribers/' . $this->entity->entityType->pluralCode() . '.jpeg');
         }
 
@@ -149,6 +160,7 @@ class AvatarService
     protected function return(string $url): string
     {
         $this->reset();
+
         return $url;
     }
 
@@ -157,10 +169,11 @@ class AvatarService
         if (isset($this->child)) {
             return $this->child;
         }
+
         return $this->child = $this->entity->child;
     }
 
-    protected function childThumbnailPath(): string|null
+    protected function childThumbnailPath(): ?string
     {
         return $this->entity->image_path;
     }

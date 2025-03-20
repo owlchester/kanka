@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Maps;
 
-use App\Facades\FormCopy;
 use App\Facades\Datagrid;
+use App\Facades\FormCopy;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMapMarker;
 use App\Models\Campaign;
@@ -66,6 +66,7 @@ class MarkerController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign, Map $map)
@@ -101,7 +102,7 @@ class MarkerController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $model = new MapMarker();
+        $model = new MapMarker;
         $data = $request->only($this->fields);
         $data['map_id'] = $map->id;
         $new = $model->create($data);
@@ -126,6 +127,7 @@ class MarkerController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign, Map $map, MapMarker $mapMarker, string $from = '')
@@ -162,7 +164,7 @@ class MarkerController extends Controller
         }
 
         $data = $request->only($this->fields);
-        if (!request()->has('entity_id') && !isset($data['entity_id'])) {
+        if (! request()->has('entity_id') && ! isset($data['entity_id'])) {
             $data['entity_id'] = null;
         }
         $mapMarker->update($data);
@@ -179,6 +181,7 @@ class MarkerController extends Controller
             return redirect()
                 ->route('maps.explore', [$campaign, $map, 'focus' => $mapMarker->id]);
         }
+
         return redirect()
             ->route('maps.map_markers.index', [$campaign, $map, '#tab_form-markers'])
             ->withSuccess(__('maps/markers.edit.success', ['name' => $mapMarker->name]));
@@ -186,6 +189,7 @@ class MarkerController extends Controller
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Map $map, MapMarker $mapMarker)

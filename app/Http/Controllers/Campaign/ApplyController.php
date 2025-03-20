@@ -26,8 +26,7 @@ class ApplyController extends Controller
 
         return view('campaigns.submissions.apply')
             ->with('submission', $submission)
-            ->with('campaign', $campaign)
-        ;
+            ->with('campaign', $campaign);
     }
 
     public function save(StoreCampaignApplication $request, Campaign $campaign)
@@ -36,7 +35,7 @@ class ApplyController extends Controller
 
         /** @var ?CampaignSubmission $submission */
         $submission = auth()->user()->submissions()->first();
-        if (!empty($submission)) {
+        if (! empty($submission)) {
             $submission->update(['text' => $request->get('application')]);
             $success = __('campaigns/submissions.apply.success.update');
         } else {
@@ -59,9 +58,10 @@ class ApplyController extends Controller
 
         /** @var ?CampaignSubmission $submission */
         $submission = auth()->user()->submissions()->first();
-        if (!empty($submission)) {
+        if (! empty($submission)) {
             $submission->delete();
         }
+
         return redirect()
             ->route('dashboard', $campaign)
             ->with('success', __('campaigns/submissions.apply.success.remove'));

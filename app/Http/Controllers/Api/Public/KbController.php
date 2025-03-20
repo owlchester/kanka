@@ -14,10 +14,10 @@ class KbController extends Controller
     {
         $this->service = $service;
     }
+
     public function index()
     {
         return response()->json($this->service->api())
-            ->header('Expires', Carbon::now()->addDays(7)->toDateTimeString())
-        ;
+            ->header('Expires', Carbon::now()->addDays(7)->toDateTimeString());
     }
 }

@@ -8,7 +8,6 @@ use App\Services\Campaign\AchievementService;
 
 /**
  * Class StatController
- * @package App\Http\Controllers\Campaign
  */
 class AchievementController extends Controller
 {

@@ -20,6 +20,7 @@ class AttributeController extends Controller
     use GuestAuthTrait;
 
     protected AttributeService $service;
+
     protected TemplateService $templateService;
 
     public function __construct(AttributeService $attributeService, TemplateService $templateService)
@@ -30,11 +31,11 @@ class AttributeController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
-        if (!$campaign->enabled('entity_attributes')) {
+        if (! $campaign->enabled('entity_attributes')) {
             return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '">' . __('crud.fix-this-issue') . '</a>'
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }
@@ -46,11 +47,10 @@ class AttributeController extends Controller
         $marketplaceTemplate = null;
 
         $layout = $entity->attributes()->where(['name' => '_layout'])->first();
-        if (!empty($layout)) {
+        if (! empty($layout)) {
             $template = $this->templateService->communityTemplate($layout->value);
             $marketplaceTemplate = $this->templateService->campaign($campaign)->marketplaceTemplate($layout->value);
         }
-
 
         return view('entities.pages.attributes.index', compact(
             'entity',
@@ -62,11 +62,11 @@ class AttributeController extends Controller
 
     public function dashboard(Campaign $campaign, Entity $entity)
     {
-        if (!$campaign->enabled('entity_attributes')) {
+        if (! $campaign->enabled('entity_attributes')) {
             return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '">' . __('crud.fix-this-issue') . '</a>'
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }
@@ -94,11 +94,11 @@ class AttributeController extends Controller
 
     public function edit(Campaign $campaign, Entity $entity)
     {
-        if (!$campaign->enabled('entity_attributes')) {
+        if (! $campaign->enabled('entity_attributes')) {
             return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '">' . __('crud.fix-this-issue') . '</a>'
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#entity_attributes']) . '">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }
@@ -139,12 +139,12 @@ class AttributeController extends Controller
 
         $id = request()->get('id');
         $uid = request()->get('uid');
-        if (!is_numeric($uid)) {
+        if (! is_numeric($uid)) {
             abort(421);
         }
 
         $attribute = $entity->attributes()->where('id', $id)->first();
-        if (!$id || !$attribute) {
+        if (! $id || ! $attribute) {
             return abort(421);
         }
 

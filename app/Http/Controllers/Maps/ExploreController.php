@@ -31,7 +31,7 @@ class ExploreController extends Controller
         }
         $this->campaign($campaign)->authEntityView($map->entity);
 
-        if (!$map->explorable()) {
+        if (! $map->explorable()) {
             return redirect()
                 ->route('entities.show', [$campaign, $map->entity])
                 ->withError(__('maps.errors.explore.missing'));
@@ -39,18 +39,16 @@ class ExploreController extends Controller
         if ($map->isChunked()) {
             if ($map->chunkingError()) {
                 return redirect()
-                    ->route('entities.show', [$campaign, $map->entity])
-                ;
-            } elseif (!$map->chunkingReady()) {
+                    ->route('entities.show', [$campaign, $map->entity]);
+            } elseif (! $map->chunkingReady()) {
                 return redirect()
-                    ->route('entities.show', [$campaign, $map->entity])
-                ;
+                    ->route('entities.show', [$campaign, $map->entity]);
             }
         }
+
         return view('maps.explore')
             ->with('map', $map)
-            ->with('campaign', $campaign)
-        ;
+            ->with('campaign', $campaign);
     }
 
     /**
@@ -84,23 +82,22 @@ class ExploreController extends Controller
     public function chunks(Campaign $campaign, Map $map)
     {
         $headers = ['Expires', Carbon::now()->addDays(1)->toDateTimeString()];
-        if (!request()->has(['z', 'x', 'y'])) {
+        if (! request()->has(['z', 'x', 'y'])) {
             return response()
                 ->file(public_path('/images/map_chunks/transparent.png'), $headers);
         }
 
         $path = 'maps/' . $map->id . '/chunks/' . request()->get('z')
             . '/' . request()->get('x') . '_' . request()->get('y')
-            . '.png'
-        ;
+            . '.png';
 
-        if (!Storage::exists($path)) {
+        if (! Storage::exists($path)) {
             return response()
                 ->file(public_path('/images/map_chunks/transparent.png'), $headers);
         }
 
         return redirect()->to(Storage::url($path));
-        //return response()
+        // return response()
         //    ->file(Storage::path($path), $headers);
     }
 }

@@ -19,9 +19,13 @@ class NotifyAdmins implements ShouldQueue
     use SerializesModels;
 
     protected int $campaign;
+
     protected string $key;
+
     protected string $icon;
+
     protected string $colour;
+
     protected array $params;
 
     public function __construct(
@@ -45,7 +49,7 @@ class NotifyAdmins implements ShouldQueue
 
         /** @var Campaign|null $campaign */
         $campaign = Campaign::find($this->campaign);
-        if (!$campaign) {
+        if (! $campaign) {
             Log::warning('Notify campaign: unknown #' . $this->campaign . '.');
         }
 

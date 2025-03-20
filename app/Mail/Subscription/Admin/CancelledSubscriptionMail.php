@@ -14,8 +14,9 @@ class CancelledSubscriptionMail extends Mailable
 
     public User $user;
 
-    public string|null $reason;
-    public string|null $custom;
+    public ?string $reason;
+
+    public ?string $custom;
 
     /**
      * Create a new message instance.

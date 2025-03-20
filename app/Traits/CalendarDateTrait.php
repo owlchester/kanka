@@ -9,7 +9,6 @@ use Illuminate\Support\Arr;
 
 /**
  * Trait CalendarDateTrait
- * @package App\Traits
  *
  * @property EntityEvent $calendarReminder
  * @property EntityEvent|null $calendarDate
@@ -28,8 +27,6 @@ trait CalendarDateTrait
         static::observe(app(Remindable::class));
     }
 
-    /**
-     */
     public function hasCalendar(): bool
     {
         return $this->hasCalendarDate() && $this->entity->calendarDate->calendar !== null;
@@ -40,8 +37,6 @@ trait CalendarDateTrait
         return $this->hasCalendarDate() && $this->entity->calendarDate->calendar === null;
     }
 
-    /**
-     */
     public function getDate(): string
     {
         $reminder = $this->calendarDate;
@@ -55,89 +50,89 @@ trait CalendarDateTrait
             }
             if ($monthCount == $reminder->month) {
                 if ($monthType === 'intercalary') {
-                    return $reminder->year . '-' . $month["name"] . '-' . $reminder->day;
+                    return $reminder->year . '-' . $month['name'] . '-' . $reminder->day;
                 }
+
                 return $reminder->year . '-' . $count . '-' . $reminder->day;
             }
             $monthCount++;
         }
+
         return $reminder->year . '-' . $reminder->month . '-' . $reminder->day;
     }
 
-    /**
-     */
-    public function getCalendarIdAttribute(): int|null
+    public function getCalendarIdAttribute(): ?int
     {
-        if (!$this->hasCalendarDate()) {
+        if (! $this->hasCalendarDate()) {
             return null;
         }
+
         return $this->entity->calendarDate->calendar_id;
     }
 
-    /**
-     */
-    public function getCalendarYearAttribute(): int|null
+    public function getCalendarYearAttribute(): ?int
     {
-        if (!$this->hasCalendarDate()) {
+        if (! $this->hasCalendarDate()) {
             return null;
         }
+
         return $this->entity->calendarDate->year;
     }
 
-    /**
-     */
-    public function getCalendarMonthAttribute(): int|null
+    public function getCalendarMonthAttribute(): ?int
     {
-        if (!$this->hasCalendarDate()) {
+        if (! $this->hasCalendarDate()) {
             return null;
         }
+
         return $this->entity->calendarDate->month;
     }
 
-    /**
-     */
-    public function getCalendarDayAttribute(): int|null
+    public function getCalendarDayAttribute(): ?int
     {
-        if (!$this->hasCalendarDate()) {
+        if (! $this->hasCalendarDate()) {
             return null;
         }
+
         return $this->entity->calendarDate->day;
     }
 
-    /**
-     */
-    public function getCalendarLengthAttribute(): int|null
+    public function getCalendarLengthAttribute(): ?int
     {
-        if (!$this->hasCalendarDate()) {
+        if (! $this->hasCalendarDate()) {
             return null;
         }
+
         return (int) $this->entity->calendarDate->length;
     }
 
     /**
      * recurring_periodicity
      */
-    public function getCalendarRecurringPeriodicityAttribute(): string|null
+    public function getCalendarRecurringPeriodicityAttribute(): ?string
     {
-        if (!$this->hasCalendarDate()) {
+        if (! $this->hasCalendarDate()) {
             return null;
         }
+
         return $this->entity->calendarDate->recurring_periodicity;
     }
 
     /**
      * Calendar Colour
+     *
      * @return null|string
      */
     public function getCalendarColourAttribute()
     {
-        if (!$this->hasCalendarDate()) {
+        if (! $this->hasCalendarDate()) {
             return '#cccccc';
         }
+
         return $this->entity->calendarDate->colour;
     }
 
-    public function calendarReminder(): null|EntityEvent
+    public function calendarReminder(): ?EntityEvent
     {
         return $this->entity?->calendarDate;
     }

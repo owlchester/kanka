@@ -12,6 +12,7 @@ use App\Models\Timeline;
 class TimelineController extends CrudController
 {
     protected string $view = 'timelines';
+
     protected string $route = 'timelines';
 
     protected string $model = Timeline::class;
@@ -20,8 +21,6 @@ class TimelineController extends CrudController
 
     protected string $module = 'timelines';
 
-    /**
-     */
     public function store(StoreTimeline $request, Campaign $campaign)
     {
         return $this->campaign($campaign)->crudStore($request);

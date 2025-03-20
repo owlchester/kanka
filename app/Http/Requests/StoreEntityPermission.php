@@ -30,7 +30,7 @@ class StoreEntityPermission extends FormRequest
             '*.campaign_role_id' => ['required_without:*.user_id', 'exists:campaign_roles,id'],
             '*.user_id' => ['required_without:*.campaign_role_id', 'exists:users,id'],
             '*.access' => ['required', 'boolean'],
-            '*.action' => ['required', 'numeric']
+            '*.action' => ['required', 'numeric'],
         ];
     }
 }

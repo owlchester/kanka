@@ -14,6 +14,7 @@ class BulkService
     public function files(array $files): self
     {
         $this->files = $files;
+
         return $this;
     }
 
@@ -23,6 +24,7 @@ class BulkService
             return 0;
         }
         $count = Image::whereIn('id', $this->files)->delete();
+
         return $count;
     }
 }

@@ -16,13 +16,14 @@ class LimitServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(LimitService::class, function () {
-            $service = new LimitService();
+            $service = new LimitService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
             if (auth()->check()) {
                 $service->user(auth()->user());
             }
+
             return $service;
         });
 

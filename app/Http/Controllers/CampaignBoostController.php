@@ -31,14 +31,12 @@ class CampaignBoostController extends Controller
                 ->with('campaign', $campaign)
                 ->with('superboost', $superboost)
                 ->with('cost', $cost)
-                ->with('user', $user)
-            ;
+                ->with('user', $user);
         }
 
         return view('settings.premium.create')
             ->with('campaign', $campaign)
-            ->with('user', $user)
-        ;
+            ->with('user', $user);
     }
 
     /**
@@ -70,6 +68,7 @@ class CampaignBoostController extends Controller
                 CampaignCache::clearSidebar()->clear();
 
                 $superboost = $action == 'superboost';
+
                 return redirect()
                     ->route('settings.boost')
                     ->with('success_raw', __('settings/boosters.' . ($superboost ? 'superboost' : 'boost') . '.success', ['campaign' => $campaign->name]));
@@ -106,15 +105,14 @@ class CampaignBoostController extends Controller
     {
         $this->authorize('destroy', $campaignBoost);
 
-        if (!auth()->user()->hasBoosterNomenclature()) {
+        if (! auth()->user()->hasBoosterNomenclature()) {
             return redirect()->route('settings.premium');
         }
 
         return view('settings.boosters.update')
             ->with('boost', $campaignBoost)
             ->with('campaign', $campaignBoost->campaign)
-            ->with('cost', 2)
-        ;
+            ->with('cost', 2);
     }
 
     /**
@@ -122,7 +120,7 @@ class CampaignBoostController extends Controller
      */
     public function update(\Illuminate\Http\Request $request, CampaignBoost $campaignBoost)
     {
-        if (!auth()->user()->hasBoosterNomenclature()) {
+        if (! auth()->user()->hasBoosterNomenclature()) {
             return redirect()->route('settings.premium');
         }
         $campaign = $campaignBoost->campaign;
@@ -152,9 +150,9 @@ class CampaignBoostController extends Controller
         }
     }
 
-
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function confirm(CampaignBoost $campaignBoost)
@@ -166,6 +164,7 @@ class CampaignBoostController extends Controller
                 ->with('campaign', $campaignBoost->campaign)
                 ->with('boost', $campaignBoost);
         }
+
         return view('settings.premium.remove')
             ->with('campaign', $campaignBoost->campaign)
             ->with('boost', $campaignBoost);

@@ -14,7 +14,7 @@ class Moderator
     public function handle($request, Closure $next)
     {
         // Just want the user to be a moderator
-        if (!auth()->check() || (!auth()->user()->hasRole('moderator') && !auth()->user()->hasRole('admin'))) {
+        if (! auth()->check() || (! auth()->user()->hasRole('moderator') && ! auth()->user()->hasRole('admin'))) {
             return redirect()->route('home');
         }
 

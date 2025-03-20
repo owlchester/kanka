@@ -2,6 +2,4 @@
 
 namespace App\Observers;
 
-class CampaignSubmissionObserver
-{
-}
+class CampaignSubmissionObserver {}

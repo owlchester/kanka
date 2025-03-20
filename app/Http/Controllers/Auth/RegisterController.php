@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Rules\AccountEmail;
 use App\Rules\AccountName;
-use App\Models\User;
 use App\Rules\Recaptcha;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -43,13 +43,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $rules = [
-            'name' => ['required', 'string', 'max:255', 'min:2', new AccountName()],
-            'email' => ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users', new AccountEmail()],
+            'name' => ['required', 'string', 'max:255', 'min:2', new AccountName],
+            'email' => ['required', 'string', 'email:rfc,dns', 'max:255', 'unique:users', new AccountEmail],
             'password' => ['required', 'string', 'min:8'],
         ];
         if (config('auth.recaptcha.enabled')) {
-            $rules['g-recaptcha-response'] = ['required', 'string', new Recaptcha()];
+            $rules['g-recaptcha-response'] = ['required', 'string', new Recaptcha];
         }
+
         return Validator::make($data, $rules);
     }
 

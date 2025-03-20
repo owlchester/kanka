@@ -22,8 +22,7 @@ class Cta extends Component
         public bool $premium = false,
         public bool $minimal = false,
         public bool $max = false,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
@@ -31,6 +30,7 @@ class Cta extends Component
     public function render(): View|Closure|string
     {
         $legacy = auth()->check() && auth()->user()->hasBoosterNomenclature();
+
         return view('components.cta')
             ->with('legacy', $legacy);
     }

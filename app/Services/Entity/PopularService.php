@@ -14,16 +14,17 @@ class PopularService
 
     public function get(): Collection
     {
-        $types = new Collection();
+        $types = new Collection;
         /** @var EntityType $entityType */
         foreach (EntityType::whereIn('id', $this->popularEntityIds())->get() as $entityType) {
-            if (!$this->campaign->enabled($entityType)) {
+            if (! $this->campaign->enabled($entityType)) {
                 continue;
-            } elseif (!$this->user->can('create', [$entityType, $this->campaign])) {
+            } elseif (! $this->user->can('create', [$entityType, $this->campaign])) {
                 continue;
             }
             $types->add($entityType);
         }
+
         return $types;
     }
 

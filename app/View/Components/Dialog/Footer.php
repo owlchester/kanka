@@ -14,8 +14,7 @@ class Footer extends Component
     public function __construct(
         public bool $modal = false,
         public bool $dialog = false,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

@@ -18,11 +18,12 @@ class UpdateService
         $this->files = [];
         foreach ($ids as $id) {
             $image = Image::where('id', $id)->first();
-            if (!$image) {
+            if (! $image) {
                 continue;
             }
             $this->files[] = $image;
         }
+
         return $this;
     }
 
@@ -32,7 +33,7 @@ class UpdateService
         $home = Arr::get($data, 'folder_home');
         $visibilityId = Arr::get($data, 'visibility_id');
 
-        if (!empty($folderId)) {
+        if (! empty($folderId)) {
             // Make sure it's a folder from the current campaign
             $folder = Image::where('id', $folderId)->where('is_folder', 1)->firstOrFail();
         }
@@ -41,14 +42,15 @@ class UpdateService
             // todo: prevent loops?
             if (isset($folder)) {
                 $file->folder_id = $folder->id;
-            } elseif (!empty($home)) {
+            } elseif (! empty($home)) {
                 $file->folder_id = null;
             }
-            if (!empty($visibilityId)) {
+            if (! empty($visibilityId)) {
                 $file->visibility_id = $visibilityId;
             }
             $file->save();
         }
+
         return count($this->files);
     }
 }

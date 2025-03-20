@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\v1\Calendars;
 
 use App\Http\Controllers\Api\v1\ApiController;
-use App\Models\Campaign;
 use App\Models\Calendar;
+use App\Models\Campaign;
 use App\Services\Calendars\AdvancerService;
 
 class AdvancerApiController extends ApiController

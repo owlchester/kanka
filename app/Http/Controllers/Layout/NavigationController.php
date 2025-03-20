@@ -20,6 +20,7 @@ class NavigationController extends Controller
         $data = $this->service
             ->user(auth()->user())
             ->data();
+
         return response()->json(
             $data
         );

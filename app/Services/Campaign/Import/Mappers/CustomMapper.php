@@ -15,8 +15,11 @@ class CustomMapper
     use UserAware;
 
     protected array $mapping = [];
+
     protected array $parents = [];
+
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'parent_id', 'created_at', 'updated_at'];
+
     protected string $mappingName;
 
     public function prepare(): self
@@ -36,17 +39,15 @@ class CustomMapper
         $this
             ->loadEntity()
             ->saveEntity()
-            ->entitySecond()
-        ;
+            ->entitySecond();
     }
 
     public function third(): self
     {
         $this
             ->loadEntity()
-            ->entityThird()
-        ;
+            ->entityThird();
+
         return $this;
     }
-
 }

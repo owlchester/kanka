@@ -2,11 +2,11 @@
 
 namespace App\Observers;
 
-use App\Models\PostPermission;
-use App\Models\Post;
-use App\Services\Entity\PostLoggerService;
 use App\Facades\Identity;
 use App\Models\EntityLog;
+use App\Models\Post;
+use App\Models\PostPermission;
+use App\Services\Entity\PostLoggerService;
 
 class PostObserver
 {
@@ -17,19 +17,15 @@ class PostObserver
      */
     protected PostLoggerService $postLoggerService;
 
-    /**
-     */
     public function __construct(PostLoggerService $postLoggerService)
     {
         $this->postLoggerService = $postLoggerService;
     }
 
-    /**
-     */
     public function saving(Post $post)
     {
         // Is private hook for non-admin (who can't set is_private)
-        if (!isset($post->is_private)) {
+        if (! isset($post->is_private)) {
             $post->is_private = false;
         }
 
@@ -44,21 +40,17 @@ class PostObserver
         $post->settings = $settings;
     }
 
-    /**
-     */
     public function created(Post $post)
     {
         $this->log($post, EntityLog::ACTION_CREATE_POST);
 
-        //$entity->is_created_now = true;
+        // $entity->is_created_now = true;
     }
 
-    /**
-     */
     public function updated(Post $post)
     {
         // Don't log updates if just did one (typically when creating, restoring or bulk editing)
-        if (!$post->entity->hasUpdateLog() || $post->updated_at == $post->created_at || !empty($post->getOriginal('deleted_at'))) {
+        if (! $post->entity->hasUpdateLog() || $post->updated_at == $post->created_at || ! empty($post->getOriginal('deleted_at'))) {
             return;
         }
 
@@ -67,8 +59,6 @@ class PostObserver
         $this->log($post, EntityLog::ACTION_UPDATE_POST, $changes);
     }
 
-    /**
-     */
     public function saved(Post $post)
     {
         $this->savePermissions($post);
@@ -83,8 +73,6 @@ class PostObserver
         }
     }
 
-    /**
-     */
     public function deleted(Post $post)
     {
         $this->log($post, EntityLog::ACTION_DELETE_POST);
@@ -99,28 +87,26 @@ class PostObserver
             }
         }
     }
-    /**
-     */
+
     private function log(Post $post, int $action, array $changes = [])
     {
-        $log = new EntityLog();
+        $log = new EntityLog;
         $log->entity_id = $post->entity->id;
         $log->created_by = auth()->user()->id;
-        if ($action !=  EntityLog::ACTION_DELETE_POST) {
+        if ($action != EntityLog::ACTION_DELETE_POST) {
             $log->post_id = $post->id;
         }
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = $action;
-        if (!empty($changes)) {
+        if (! empty($changes)) {
             $log->changes = $changes;
         }
         $log->save();
     }
-    /**
-     */
+
     public function savePermissions(Post $post): bool
     {
-        if (!request()->has('permissions') || !auth()->user()->can('permissions', $post->entity)) {
+        if (! request()->has('permissions') || ! auth()->user()->can('permissions', $post->entity)) {
             return false;
         }
 
@@ -145,11 +131,11 @@ class PostObserver
                 $perm->save();
                 unset($existing[$existingKey]);
                 $parsed[] = $existingKey;
-            } elseif (!in_array($existingKey, $parsed)) {
+            } elseif (! in_array($existingKey, $parsed)) {
                 PostPermission::create([
                     'post_id' => $post->id,
                     'user_id' => $user,
-                    'permission' => $perms[$key]
+                    'permission' => $perms[$key],
                 ]);
                 $parsed[] = $existingKey;
             }
@@ -170,11 +156,11 @@ class PostObserver
                 $perm->save();
                 unset($existing[$existingKey]);
                 $parsed[] = $existingKey;
-            } elseif (!in_array($existingKey, $parsed)) {
+            } elseif (! in_array($existingKey, $parsed)) {
                 PostPermission::create([
                     'post_id' => $post->id,
                     'role_id' => $user,
-                    'permission' => $perms[$key]
+                    'permission' => $perms[$key],
                 ]);
                 $parsed[] = $existingKey;
             }
@@ -185,7 +171,7 @@ class PostObserver
             $oldPermission->delete();
         }
 
-        if (!$post->isDirty()) {
+        if (! $post->isDirty()) {
             $this->log($post, EntityLog::ACTION_UPDATE_POST);
         }
 

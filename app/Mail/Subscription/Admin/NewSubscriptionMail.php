@@ -50,10 +50,11 @@ class NewSubscriptionMail extends Mailable
         }
 
         $subject = 'Sub: ' . $action . ' ' . ucfirst($this->period->name) . ' ' . $this->user->pledge;
+
         return $this
             ->from(['address' => config('app.email'), 'name' => 'Kanka Admin'])
             ->subject($subject)
             ->tag('admin-new')
-            ->view('emails.subscriptions.new.html', ["lastCancel" => $lastCancel]);
+            ->view('emails.subscriptions.new.html', ['lastCancel' => $lastCancel]);
     }
 }

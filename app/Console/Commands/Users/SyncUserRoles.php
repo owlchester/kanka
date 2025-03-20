@@ -49,6 +49,7 @@ class SyncUserRoles extends Command
 
         if ($user->apps()->app('discord')->count() === 0) {
             $this->error('User has no discord sync.');
+
             return 0;
         }
 
@@ -59,6 +60,7 @@ class SyncUserRoles extends Command
         foreach ($logs as $log) {
             $this->info($log);
         }
+
         return 0;
     }
 }

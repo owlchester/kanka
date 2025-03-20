@@ -17,6 +17,7 @@ class VisibilityResource extends JsonResource
     {
         /** @var Visibility $model */
         $model = $this->resource;
+
         return [
             'id' => $model->id,
             'code' => $model->code,

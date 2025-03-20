@@ -9,8 +9,8 @@ use App\Models\EntityType;
 use App\Models\Relation;
 use App\Services\FilterService;
 use App\Traits\CampaignAware;
-use Illuminate\Support\Str;
 use Exception;
+use Illuminate\Support\Str;
 use ReflectionClass;
 
 class FormController extends Controller
@@ -29,11 +29,11 @@ class FormController extends Controller
 
         if ($entityType->isSpecial()) {
             $this->filterService->entityType($entityType)->build();
+
             return view('entities.index.filters')
                 ->with('campaign', $campaign)
                 ->with('entityType', $entityType)
-                ->with('filterService', $this->filterService)
-            ;
+                ->with('filterService', $this->filterService);
         }
         $model = $entityType->getClass();
 
@@ -47,7 +47,7 @@ class FormController extends Controller
     public function connection(Campaign $campaign)
     {
         $route = 'relations.index';
-        $model = new Relation();
+        $model = new Relation;
         $plural = 'relations';
 
         try {

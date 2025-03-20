@@ -38,7 +38,6 @@ class SignImageCommand extends Command
 
     /**
      * Execute the console command.
-     *
      */
     public function handle()
     {
@@ -53,7 +52,7 @@ class SignImageCommand extends Command
         $width = (int) $width;
         $height = (int) $height;
 
-        if (!empty($height)) {
+        if (! empty($height)) {
             $url = Img::console()->base($base)->crop($width, $height)->url($img);
         } else {
             $url = Img::console()->base($base)->url($img);
@@ -61,7 +60,7 @@ class SignImageCommand extends Command
 
         $this->info("Base: {$base}");
         $this->info("Size: {$width} x {$height}");
-        $this->info("" . $url);
+        $this->info('' . $url);
 
         return 0;
     }

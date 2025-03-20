@@ -24,15 +24,16 @@ class ConversationMessageController extends Controller
 
     /**
      * @return ConversationResource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreConversationMessage $request, Campaign $campaign, Conversation $conversation)
     {
         $this->authorize('update', $conversation->entity);
 
-        $participant = new ConversationMessage();
+        $participant = new ConversationMessage;
         $data = $request->only('message', 'character_id');
-        if (!$conversation->forCharacters()) {
+        if (! $conversation->forCharacters()) {
             $data['user_id'] = Auth::user()->id;
         }
         $data['conversation_id'] = $conversation->id;
@@ -58,6 +59,7 @@ class ConversationMessageController extends Controller
 
     /**
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Conversation $conversation, ConversationMessage $conversationMessage)
@@ -65,13 +67,13 @@ class ConversationMessageController extends Controller
         $this->authorize('update', $conversation->entity);
         $this->authorize('delete', $conversationMessage);
 
-        if (!$conversationMessage->delete()) {
+        if (! $conversationMessage->delete()) {
             abort(500);
         }
 
         if (request()->ajax()) {
             return response()->json([
-                'success' => true
+                'success' => true,
             ]);
         }
 
@@ -79,7 +81,7 @@ class ConversationMessageController extends Controller
             ->route('entities.show', [$campaign, $conversation->entity])
             ->with('success', trans('conversations.messages.destroy.success', [
                 'name' => $conversationMessage->author(),
-                'conversation' => $conversation->name
+                'conversation' => $conversation->name,
             ]));
     }
 }

@@ -26,7 +26,6 @@ class ChildlessEntities extends Command
 
     protected $total = 0;
 
-
     /**
      * Create a new command instance.
      *
@@ -64,12 +63,11 @@ class ChildlessEntities extends Command
                         $this->trace($model, $type);
                     }
 
-                    if (!empty($this->traces)) {
+                    if (! empty($this->traces)) {
                         $this->info(implode(', ', $this->traces));
                         $this->traces = [];
                     }
-                })
-            ;
+                });
 
             $this->info('');
         }

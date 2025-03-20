@@ -6,8 +6,6 @@ use App\Services\LimitService;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @package App\Facades
- *
  * @mixin LimitService
  */
 class Limit extends Facade

@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class FormCopyService
- * @package App\Services
  */
 class FormCopyService
 {
@@ -17,6 +16,7 @@ class FormCopyService
 
     /**
      * The requested field
+     *
      * @var string
      */
     protected $field;
@@ -26,25 +26,26 @@ class FormCopyService
     public function child(): self
     {
         $this->fromChild = true;
+
         return $this;
     }
 
     public function source(Entity|Model|null $source = null): self
     {
         $this->source = $source;
+
         return $this;
     }
 
-    /**
-     */
     public function field(string $field): self
     {
         $this->field = $field;
+
         return $this;
     }
 
     /**
-     * @param string|null $default
+     * @param  string|null  $default
      * @return string|null
      */
     public function string(mixed $default = null)
@@ -64,7 +65,7 @@ class FormCopyService
         // Only copy on MiscModel (entity) models
         if ($this->valid()) {
             $value = $this->getValues();
-            if (!empty($value) && is_object($value)) {
+            if (! empty($value) && is_object($value)) {
                 return [$value->id => $value->name];
             }
         }
@@ -72,7 +73,7 @@ class FormCopyService
         $parent = request()->get('parent_id', false);
         if ($checkForParent && $parent !== false) {
             /** @var Model $class */
-            $class = new $parentClass();
+            $class = new $parentClass;
             /** @var ?MiscModel $parent */
             $parent = $class->find($parent);
             if ($parent) {
@@ -90,10 +91,12 @@ class FormCopyService
     {
         if ($this->valid()) {
             $this->fromChild = false;
+
             // @phpstan-ignore-next-line
             return $this->source->child->characterTraits()->personality()->get();
         }
-        return new Collection();
+
+        return new Collection;
     }
 
     /**
@@ -103,10 +106,12 @@ class FormCopyService
     {
         if ($this->valid()) {
             $this->fromChild = false;
+
             // @phpstan-ignore-next-line
             return $this->source->child->characterTraits()->appearance()->get();
         }
-        return new Collection();
+
+        return new Collection;
     }
 
     /**
@@ -116,17 +121,17 @@ class FormCopyService
     {
         if ($this->valid()) {
             $this->fromChild = false;
+
             // @phpstan-ignore-next-line
             return $this->source->child->organisationMemberships()
                 ->with('organisation')
                 ->has('organisation')
                 ->get();
         }
-        return new Collection();
+
+        return new Collection;
     }
 
-    /**
-     */
     public function boolean(bool $default = false): bool
     {
         // Only copy on MiscModel (entity) models
@@ -144,9 +149,10 @@ class FormCopyService
     {
         // Only copy on MiscModel (entity) models
         if ($this->valid()) {
-            //@phpstan-ignore-next-line
+            // @phpstan-ignore-next-line
             return $this->source->child;
         }
+
         return null;
     }
 
@@ -159,16 +165,17 @@ class FormCopyService
         if ($this->valid()) {
             return $this->source->{$this->field};
         }
+
         return null;
     }
 
     /**
-     * @param bool $withNull include "none" option
+     * @param  bool  $withNull  include "none" option
      */
     public function colours(bool $withNull = true): array
     {
         $colours = $withNull ? [
-            '' => __('colours.none')
+            '' => __('colours.none'),
         ] : [];
         $colourKeys = config('colours.keys');
         foreach ($colourKeys as $colour) {
@@ -176,56 +183,51 @@ class FormCopyService
         }
 
         asort($colours);
+
         return $colours;
     }
 
-    /**
-     */
     public function __toString(): string
     {
         return (string) $this->getValue();
     }
 
-    /**
-     */
     private function valid(): bool
     {
-        return !empty($this->source);
+        return ! empty($this->source);
     }
 
-    /**
-     */
     private function getValue()
     {
-        if (!$this->valid()) {
+        if (! $this->valid()) {
             return null;
         }
 
-        if (!$this->source instanceof Entity || !$this->fromChild) {
+        if (! $this->source instanceof Entity || ! $this->fromChild) {
             return $this->source->getAttributeValue($this->field);
         }
         $this->fromChild = false;
         if ($this->source->isMissingChild()) {
             return null;
         }
+
         return $this->source->child->getAttributeValue($this->field);
     }
 
-    /**
-     */
     private function getValues()
     {
-        if (!$this->valid()) {
+        if (! $this->valid()) {
             return null;
         }
 
-        if (!$this->source instanceof Entity || !$this->fromChild) {
+        if (! $this->source instanceof Entity || ! $this->fromChild) {
             return $this->source->{$this->field};
         }
         $this->fromChild = false;
         if ($this->source->isMissingChild()) {
             return null;
         }
+
         return $this->source->child->{$this->field};
     }
 }

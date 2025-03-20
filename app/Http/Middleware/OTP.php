@@ -2,24 +2,25 @@
 
 namespace App\Http\Middleware;
 
+use App\Facades\Identity;
 use App\Models\OTPAuthentication;
 use Closure;
-use App\Facades\Identity;
 
 class OTP
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      */
     public function handle($request, Closure $next)
     {
-        if (!config('google2fa.enabled')) {
+        if (! config('google2fa.enabled')) {
             return $next($request);
         }
         if ($request->is('*/settings/security/cancel2fa')) {
             auth()->logout();
+
             return $next($request);
         }
         // If the user is impersonating someone that has 2FA, don't ask for the user's OTP
@@ -33,6 +34,7 @@ class OTP
         if ($authentication->isAuthenticated()) {
             return $next($request);
         }
+
         return $authentication->makeRequestOneTimePasswordResponse();
     }
 }

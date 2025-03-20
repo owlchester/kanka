@@ -26,10 +26,10 @@ class LiveSearchService
             $with[] = 'character.families';
         }
         $query = Entity::inTypes($this->entityType->id);
-        if (!empty($excludes)) {
+        if (! empty($excludes)) {
             $query->whereNotIn('id', [$excludes]);
         }
-        if (!$this->entityType->isSpecial()) {
+        if (! $this->entityType->isSpecial()) {
             $with[] = Str::camel($this->entityType->code);
         }
         $query->with($with);
@@ -51,7 +51,7 @@ class LiveSearchService
         $list = [];
         /** @var Entity $entity */
         foreach ($entities as $entity) {
-            if (!$this->entityType->isSpecial() && empty($entity->{$this->entityType->code})) {
+            if (! $this->entityType->isSpecial() && empty($entity->{$this->entityType->code})) {
                 continue;
             }
             $format = [
@@ -68,13 +68,14 @@ class LiveSearchService
 
             if ($this->request->filled('with-family')) {
                 $families = $entity->character->families->pluck('name')->toarray();
-                if (!empty($families)) {
+                if (! empty($families)) {
                     $format['text'] .= ' (' . implode(', ', $families) . ')';
                 }
             }
 
             $list[] = $format;
         }
+
         return $list;
     }
 }

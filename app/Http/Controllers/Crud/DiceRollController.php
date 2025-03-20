@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Auth;
 class DiceRollController extends CrudController
 {
     protected string $view = 'dice_rolls';
+
     protected string $route = 'dice_rolls';
+
     protected string $module = 'dice_rolls';
 
     protected string $model = DiceRoll::class;
@@ -39,11 +41,13 @@ class DiceRollController extends CrudController
             '',
             true
         );
+
         return parent::setNavActions();
     }
 
     /**
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Campaign $campaign, StoreDiceRoll $request)
@@ -53,6 +57,7 @@ class DiceRollController extends CrudController
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Campaign $campaign, DiceRoll $diceRoll)
@@ -62,6 +67,7 @@ class DiceRollController extends CrudController
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
@@ -72,6 +78,7 @@ class DiceRollController extends CrudController
 
     /**
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \Psr\Container\ContainerExceptionInterface
@@ -84,6 +91,7 @@ class DiceRollController extends CrudController
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, DiceRoll $diceRoll)
@@ -93,6 +101,7 @@ class DiceRollController extends CrudController
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function roll(Campaign $campaign, DiceRoll $diceRoll)
@@ -104,6 +113,7 @@ class DiceRollController extends CrudController
                 'dice_roll_id' => $diceRoll->id,
                 'created_by' => Auth::user()->id,
             ]);
+
             return redirect()->to($diceRoll->getLink())
                 ->with('success', trans('dice_rolls.results.success'));
         } catch (Exception $e) {
@@ -114,6 +124,7 @@ class DiceRollController extends CrudController
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroyRoll(Campaign $campaign, DiceRoll $diceRoll, DiceRollResult $diceRollResult)

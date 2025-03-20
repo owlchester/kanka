@@ -28,20 +28,19 @@ class Kernel extends ConsoleKernel
 
     /**
      * Define the application's command schedule.
-     *
      */
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command(CalendarAdvancer::class)->dailyAt('00:00');
         $schedule->command(VisibileEntityCountCommand::class)->dailyAt('01:00');
-        //$schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
+        // $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
         $schedule->command(EndSubscriptions::class)->dailyAt('00:05');
         $schedule->command(RegenerateDiscordToken::class)->dailyAt('00:15');
         $schedule->command(ExpiringCardCommand::class)->monthlyOn(1, '02:00');
 
         $schedule->command('backup:clean')->daily()->at('01:00');
         $schedule->command('backup:run')->twiceDaily(2, 14);
-        //$schedule->command('backup:monitor')->daily()->at('03:00');
+        // $schedule->command('backup:monitor')->daily()->at('03:00');
 
         $schedule->command('model:prune')->daily();
         $schedule->command(CleanupEntityLogs::class)->dailyAt('03:30');
@@ -53,7 +52,6 @@ class Kernel extends ConsoleKernel
 
     /**
      * Register the commands for the application.
-     *
      */
     protected function commands(): void
     {

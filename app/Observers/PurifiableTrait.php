@@ -6,17 +6,16 @@ use Stevebauman\Purify\Facades\Purify;
 
 /**
  * Trait PurifiableTrait
- * @package App\Observers
  */
 trait PurifiableTrait
 {
     /**
-     * @param string $text
+     * @param  string  $text
      * @return string
      */
     public function purify($text = '')
     {
-        //dd('help');
+        // dd('help');
         $purified = Purify::clean($text);
 
         // If it's really empty, zap it

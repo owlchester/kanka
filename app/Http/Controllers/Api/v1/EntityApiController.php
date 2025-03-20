@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Requests\API\StoreEntities;
+use App\Http\Resources\EntityResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
-use App\Http\Requests\API\StoreEntities;
-use App\Http\Resources\EntityResource as Resource;
 use App\Services\Api\BulkEntityCreatorService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +15,7 @@ class EntityApiController extends ApiController
 {
     public function __construct(
         protected BulkEntityCreatorService $bulkEntityCreatorService
-    ) {
-    }
+    ) {}
 
     public function index(Campaign $campaign)
     {
@@ -24,6 +23,7 @@ class EntityApiController extends ApiController
             DB::enableQueryLog();
         }
         $this->authorize('access', $campaign);
+
         return Resource::collection($campaign->entities()
             ->apiFilter(request()->all())
             ->lastSync(request()->get('lastSync'))
@@ -39,6 +39,7 @@ class EntityApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
         $resource = new Resource($entity);
+
         return $resource->withMisc();
     }
 
@@ -57,6 +58,7 @@ class EntityApiController extends ApiController
         foreach ($request->get('entities', []) as $entity) {
             $entities[] = $this->bulkEntityCreatorService->data($entity)->create();
         }
+
         return Resource::collection($entities);
     }
 
@@ -65,14 +67,14 @@ class EntityApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
 
-        if (!$entity->entityType->isSpecial()) {
+        if (! $entity->entityType->isSpecial()) {
             return response()->json(['error' => 'Only entities of custom modules can be deleted here'], 401);
         }
 
         $entity->update($request->all());
 
         return new Resource($entity);
-        ;
+
     }
 
     public function destroy(Request $request, Campaign $campaign, Entity $entity)
@@ -80,7 +82,7 @@ class EntityApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('delete', $entity);
 
-        if (!$entity->entityType->isSpecial()) {
+        if (! $entity->entityType->isSpecial()) {
             return response()->json(['error' => 'Only entities of custom modules can be deleted here'], 401);
         }
 

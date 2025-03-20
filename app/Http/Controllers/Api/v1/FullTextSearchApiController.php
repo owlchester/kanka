@@ -17,6 +17,7 @@ class FullTextSearchApiController extends ApiController
 
     /**
      * return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -33,6 +34,7 @@ class FullTextSearchApiController extends ApiController
         $results = $this->service
             ->campaign($campaign)
             ->search($term, $term2);
+
         return $results;
     }
 }

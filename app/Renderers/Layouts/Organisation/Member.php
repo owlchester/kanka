@@ -10,6 +10,7 @@ class Member extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -17,7 +18,7 @@ class Member extends Layout
         $columns = [
             'image' => [
                 'render' => Standard::IMAGE,
-                'with' => ['target' => 'character']
+                'with' => ['target' => 'character'],
             ],
             'character' => [
                 'key' => 'character.name',
@@ -38,8 +39,9 @@ class Member extends Layout
                     if ($model->is_private) {
                         $private = '<i class="fa-solid fa-lock" aria-hidden="true"></i> ';
                     }
+
                     return $icon . $private . $model->role;
-                }
+                },
             ],
             'superior' => [
                 'key' => 'parent_id',
@@ -56,7 +58,7 @@ class Member extends Layout
             'pinned' => [
                 'label' => '<i class="fa-solid fa-star" data-title="' . __('organisations.members.fields.pinned') . '" data-toggle="tooltip"></i>',
                 'render' => function ($model) {
-                    if (!$model->pinned()) {
+                    if (! $model->pinned()) {
                         return '';
                     }
                     if ($model->pinnedToCharacter()) {
@@ -64,10 +66,12 @@ class Member extends Layout
                     } elseif ($model->pinnedToOrganisation()) {
                         return '<i class="ra ra-hood" data-toggle="tooltip" data-title="' . __('organisations.members.pinned.organisation') . '"></i>';
                     }
+
                     return '<i class="fa-solid fa-star" data-toggle="tooltip" data-title="' . __('organisations.members.pinned.both') . '"></i>';
-                }
+                },
             ],
         ];
+
         return $columns;
     }
 
@@ -78,7 +82,7 @@ class Member extends Layout
     {
         return [
             self::ACTION_EDIT_DIALOG,
-            self::ACTION_DELETE
+            self::ACTION_DELETE,
         ];
     }
 }

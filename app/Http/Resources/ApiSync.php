@@ -21,7 +21,7 @@ trait ApiSync
             'sync' => Carbon::now(),
         ];
         if (config('app.debug')) {
-            $additional['queries'] = new ApiService();
+            $additional['queries'] = new ApiService;
         }
 
         // Make sure we have the app's url for pagination, otherwise on prod it will skip the https scheme
@@ -35,7 +35,7 @@ trait ApiSync
         } catch (Exception $e) {
             // Do nothing, this can happen for sub resources
             // being called (ex character::characterOrgsCollection)
-            //throw $e;
+            // throw $e;
         }
 
         return parent::collection($resource)

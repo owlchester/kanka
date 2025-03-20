@@ -27,7 +27,7 @@ class StorePost extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'name' => ['required', 'max:191', new \App\Rules\Lessless()],
+            'name' => ['required', 'max:191', new \App\Rules\Lessless],
             'visibility_id' => 'nullable|exists:visibilities,id',
             'is_pinned' => 'boolean',
             'position' => 'nullable|integer|min:-128|max:128',

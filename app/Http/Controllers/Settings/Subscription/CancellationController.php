@@ -26,6 +26,7 @@ class CancellationController extends Controller
                 'user',
             ));
         }
+
         return view('settings.subscription.cancellation.form', compact(
             'user',
         ));

@@ -19,11 +19,11 @@ class PermissionController extends Controller
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
         $entities = $request->get('entities');
+
         return view('cruds.datagrids.bulks.modals._permissions')
             ->with('campaign', $campaign)
             ->with('entityType', $entityType)
-            ->with('entities', $entities)
-        ;
+            ->with('entities', $entities);
     }
 
     public function apply(Request $request, Campaign $campaign, EntityType $entityType)

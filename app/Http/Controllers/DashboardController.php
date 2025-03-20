@@ -10,8 +10,6 @@ use App\Models\CampaignDashboardWidget;
 
 class DashboardController extends Controller
 {
-    /**
-     */
     public function index(Campaign $campaign)
     {
         // Determine the user's dashboard
@@ -48,7 +46,6 @@ class DashboardController extends Controller
             }
         }
 
-
         return view('home', compact(
             'campaign',
             'widgets',
@@ -58,12 +55,11 @@ class DashboardController extends Controller
             'gaTrackingEvent',
         ))
             ->with('hasMap', $hasMap)
-            ->with('hasCampaignHeader', $hasCampaignHeader)
-        ;
+            ->with('hasCampaignHeader', $hasCampaignHeader);
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      */
     public function recent(Campaign $campaign, $id)
     {
@@ -71,7 +67,7 @@ class DashboardController extends Controller
         $widget = CampaignDashboardWidget::findOrFail($id);
         if ($widget->widget != Widget::Recent) {
             return response()->json([
-                'success' => true
+                'success' => true,
             ]);
         }
 
@@ -81,12 +77,11 @@ class DashboardController extends Controller
             ->with('campaign', $campaign)
             ->with('entities', $entities)
             ->with('widget', $widget)
-            ->with('campaign', $campaign)
-        ;
+            ->with('campaign', $campaign);
     }
 
     /**
-     * @param int $id
+     * @param  int  $id
      */
     public function unmentioned(Campaign $campaign, $id)
     {
@@ -94,7 +89,7 @@ class DashboardController extends Controller
         $widget = CampaignDashboardWidget::findOrFail($id);
         if ($widget->widget != Widget::Unmentioned) {
             return response()->json([
-                'success' => true
+                'success' => true,
             ]);
         }
 
@@ -108,7 +103,6 @@ class DashboardController extends Controller
             ->with('campaign', $campaign)
             ->with('entities', $entities)
             ->with('widget', $widget)
-            ->with('campaign', $campaign)
-        ;
+            ->with('campaign', $campaign);
     }
 }

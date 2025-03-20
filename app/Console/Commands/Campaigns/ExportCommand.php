@@ -3,8 +3,8 @@
 namespace App\Console\Commands\Campaigns;
 
 use App\Models\Campaign;
-use App\Services\Campaign\ExportService;
 use App\Models\User;
+use App\Services\Campaign\ExportService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 

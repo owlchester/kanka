@@ -12,7 +12,9 @@ use App\Models\EntityType;
 class AttributeTemplateController extends CrudController
 {
     protected string $view = 'attribute_templates';
+
     protected string $route = 'attribute_templates';
+
     protected string $module = 'entity_attributes';
 
     protected string $model = AttributeTemplate::class;
@@ -29,11 +31,10 @@ class AttributeTemplateController extends CrudController
             '',
             true
         );
+
         return parent::setNavActions();
     }
 
-    /**
-     */
     public function store(StoreAttributeTemplate $request, Campaign $campaign)
     {
         return $this->campaign($campaign)->crudStore($request, true);
@@ -55,8 +56,6 @@ class AttributeTemplateController extends CrudController
         return $this->campaign($campaign)->crudEdit($attributeTemplate);
     }
 
-    /**
-     */
     public function update(StoreAttributeTemplate $request, Campaign $campaign, AttributeTemplate $attributeTemplate)
     {
         return $this->campaign($campaign)->crudUpdate($request, $attributeTemplate);

@@ -23,7 +23,7 @@ class CookieConsentController extends Controller
         $country = $this->service->getCountry();
 
         return response()->json([
-            'country' => $country
+            'country' => $country,
         ]);
     }
 }

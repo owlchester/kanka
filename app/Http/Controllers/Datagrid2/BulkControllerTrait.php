@@ -10,6 +10,7 @@ trait BulkControllerTrait
 {
     /**
      * List of valid bulk actions.
+     *
      * @return string[]
      */
     public function validBulkActions(array $values = ['delete', 'edit', 'patch']): array
@@ -27,7 +28,7 @@ trait BulkControllerTrait
         if ($action === 'patch') {
             // Clean up the request. Skip nulls
             foreach ($patch as $field => $value) {
-                if (null !== $value) {
+                if ($value !== null) {
                     continue;
                 }
                 unset($patch[$field]);
@@ -35,7 +36,7 @@ trait BulkControllerTrait
         }
         foreach ($models as $id) {
             /** @var mixed|MapGroup|Model|null $modelClass */
-            $modelClass = new $className();
+            $modelClass = new $className;
             $model = $modelClass->find($id);
             if (empty($model)) {
                 continue;

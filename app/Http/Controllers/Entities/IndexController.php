@@ -19,17 +19,16 @@ use Illuminate\Support\Facades\Session;
 class IndexController extends Controller
 {
     protected EntityType $entityType;
-    protected Request $request;
 
+    protected Request $request;
 
     public function __construct(
         protected FilterService $filterService
-    ) {
+    ) {}
 
-    }
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
-        if (!$entityType->isEnabled()) {
+        if (! $entityType->isEnabled()) {
             return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns/modules.errors.disabled', [
@@ -40,7 +39,7 @@ class IndexController extends Controller
         }
 
         // If not a special entity type, redirect to their "old" route
-        if (!$entityType->isSpecial()) {
+        if (! $entityType->isSpecial()) {
             return redirect()->route($entityType->pluralCode() . '.index', $campaign);
         }
 
@@ -55,21 +54,20 @@ class IndexController extends Controller
             ->select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
                 'entities.type_id', 'entities.parent_id',
-                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y'
+                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
             ])
             ->with(['entityType', 'image'])
             ->withCount('children')
             ->search($this->filterService->search())
             ->order($this->filterService->order())
-            ->distinct()
-        ;
+            ->distinct();
 
         $parent = null;
         if ($request->has('parent_id')) {
             $parent = Entity::select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
                 'entities.type_id', 'entities.parent_id',
-                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y'
+                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
             ])
                 ->inTypes([$entityType->id])->where('id', $request->get('parent_id'))->first();
             if ($parent) {
@@ -88,19 +86,18 @@ class IndexController extends Controller
             ->with('forceMode', 'grid')
             ->with('filterService', $this->filterService)
             ->with('nestable', $nested)
-            ->with('templates', new Collection())
-        ;
+            ->with('templates', new Collection);
     }
-
 
     protected function loadTemplates(Campaign $campaign, EntityType $entityType): Collection
     {
         // No valid user, or invalid entity type (ie relations)
         if (auth()->guest()) {
-            return new Collection();
-        } elseif (!auth()->user()->can('create', [$entityType, $campaign])) {
-            return new Collection();
+            return new Collection;
+        } elseif (! auth()->user()->can('create', [$entityType, $campaign])) {
+            return new Collection;
         }
+
         return Entity::select('id', 'name', 'entity_id')
             ->templates($entityType->id)
             ->orderBy('name')
@@ -120,21 +117,20 @@ class IndexController extends Controller
             ->select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
                 'entities.type_id', 'entities.parent_id',
-                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y'
+                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
             ])
             ->with(['entityType', 'image'])
             ->withCount('children')
             ->search($this->filterService->search())
             ->order($this->filterService->order())
-            ->distinct()
-        ;
+            ->distinct();
 
         $parent = null;
         if ($request->has('parent_id')) {
             $parent = Entity::select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
                 'entities.type_id', 'entities.parent_id',
-                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y'
+                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
             ])
                 ->inTypes([$entityType->id])->where('id', $request->get('parent_id'))->first();
             if ($parent) {
@@ -179,9 +175,9 @@ class IndexController extends Controller
             'bulkDelete' => __('crud.remove'),
         ];
 
-        $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', Bookmark::class) && !$request->has('bookmark');
+        $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', Bookmark::class) && ! $request->has('bookmark');
 
-        $toggleParams = [$campaign, $entityType, 'n' => !$nested];
+        $toggleParams = [$campaign, $entityType, 'n' => ! $nested];
         $toggleRoute = route('entities.index', $toggleParams);
 
         return response()->json([
@@ -196,7 +192,7 @@ class IndexController extends Controller
                 'create' => auth()->user()->can('create', [$entityType, $campaign]),
                 'delete' => auth()->user()->can('deleteEntities', [$entityType, $campaign]),
                 'template' => auth()->user()->can('useTemplates', $campaign),
-                'admin' => auth()->user()->isAdmin($campaign)
+                'admin' => auth()->user()->isAdmin($campaign),
             ] : null,
             'urls' => [
                 'create' => $entityType->createRoute($campaign),
@@ -218,7 +214,7 @@ class IndexController extends Controller
                     'clear' => route('entities.index', [$campaign, $entityType, 'reset-filter' => true]),
                 ],
             ],
-            'order' => $this->filterService->order()
+            'order' => $this->filterService->order(),
         ]);
 
     }
@@ -246,12 +242,14 @@ class IndexController extends Controller
                     auth()->user()->updateQuietly();
                 }
             }
+
             return $new;
         }
 
         if (auth()->guest()) {
             return (bool) Session::get($key, true);
         }
+
         // Else use the user's preferred stacking for this entity type
         return Arr::get(auth()->user()->settings, $key, true);
     }

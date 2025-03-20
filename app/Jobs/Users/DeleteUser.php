@@ -2,8 +2,8 @@
 
 namespace App\Jobs\Users;
 
-use App\Services\Users\CleanupService;
 use App\Models\User;
+use App\Services\Users\CleanupService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -18,7 +18,6 @@ class DeleteUser implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /**  */
     protected int $user;
 
     /**queue
@@ -43,6 +42,7 @@ class DeleteUser implements ShouldQueue
         if (empty($user)) {
             // User wasn't found
             Log::warning('Jobs/Users/DeleteUser', ['unknown user', 'user' => $this->user]);
+
             return;
         }
         Log::info('Jobs/Users/DeleteUser', ['start', 'user' => $user->id]);

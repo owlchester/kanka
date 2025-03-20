@@ -11,8 +11,11 @@ abstract class Layout
     public const ONLY_DESKTOP = 'hidden lg:table-cell';
 
     public const ACTION_EDIT = 'edit';
+
     public const ACTION_EDIT_DIALOG = 'edit-dialog';
+
     public const ACTION_DELETE = 'delete';
+
     public const ACTION_COPY = 'copy';
 
     /** @var bool|array */
@@ -33,8 +36,6 @@ abstract class Layout
         return [];
     }
 
-    /**
-     */
     public function visibleColumns(): array
     {
         if ($this->visibleColumns !== false) {
@@ -43,12 +44,13 @@ abstract class Layout
 
         $this->visibleColumns = [];
         foreach ($this->columns() as $key => $column) {
-            if (!isset($column['visible'])) {
+            if (! isset($column['visible'])) {
                 $this->visibleColumns[] = $column;
+
                 continue;
             }
             $condition = $column['visible']();
-            if (!$condition) {
+            if (! $condition) {
                 continue;
             }
             $this->visibleColumns[] = $column;
@@ -56,7 +58,6 @@ abstract class Layout
 
         return $this->visibleColumns;
     }
-
 
     protected function entityLink(Model|MiscModel|Entity $model): string
     {
@@ -66,6 +67,7 @@ abstract class Layout
                 new \App\View\Components\EntityLink($model, $this->campaign)
             );
         }
+
         // @phpstan-ignore-next-line
         return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
     }

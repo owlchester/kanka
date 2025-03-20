@@ -6,30 +6,33 @@ use App\Models\Attribute;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
 use ChrisKonnertz\StringCalc\StringCalc;
+use Exception;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Exception;
 
 class AttributeMentionService
 {
     use CampaignAware;
 
     protected array $loadedAttributes = [];
+
     protected Entity $loadedEntity;
+
     protected Collection $calculatedAttributes;
 
     /**
      * Replace references in an attribute name with attribute values for ranges
+     *
      * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
      * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
      */
     public function map(Attribute $attribute, string $field = 'name'): string
     {
-        if (!$this->validField((string) $attribute->$field)) {
+        if (! $this->validField((string) $attribute->$field)) {
             return (string) $attribute->$field;
         }
 
-        if (!isset($this->loadedEntity) || $this->loadedEntity->id != $attribute->entity_id) {
+        if (! isset($this->loadedEntity) || $this->loadedEntity->id != $attribute->entity_id) {
             // Referencing an attribute linked to an entity the user can't access
             if (empty($attribute->entity)) {
                 return (string) $attribute->$field;
@@ -46,21 +49,20 @@ class AttributeMentionService
                 'value' => $attribute->$field,
             ];
             $value = $this->calculateAttributeValue($data);
+
             return $value;
         } catch (Exception $e) {
             return $this->$field;
         }
     }
 
-    /**
-     */
     public function parse(Attribute $attribute, string $field = 'value'): string
     {
-        if (!$this->validField((string) $attribute->$field)) {
+        if (! $this->validField((string) $attribute->$field)) {
             return (string) $attribute->$field;
         }
 
-        if (!isset($this->loadedEntity) || $this->loadedEntity->id != $attribute->entity_id) {
+        if (! isset($this->loadedEntity) || $this->loadedEntity->id != $attribute->entity_id) {
             if (empty($attribute->entity)) {
                 return (string) $attribute->$field;
             }
@@ -69,9 +71,10 @@ class AttributeMentionService
 
         try {
             $calculated = $this->entityAttributes()->get($attribute->name);
+
             return (string) $calculated['final'];
         } catch (Exception $e) {
-            //throw $e;
+            // throw $e;
             return (string) $attribute->$field;
         }
     }
@@ -83,11 +86,13 @@ class AttributeMentionService
      */
     protected function validField(?string $value = null): bool
     {
-        if (!Str::contains($value, ['{', '}'])) {
+        if (! Str::contains($value, ['{', '}'])) {
             return false;
         }
-        return !(Str::contains($value, ['<', '>']));
+
+        return ! (Str::contains($value, ['<', '>']));
     }
+
     /**
      * Load all the entity attributes and pre-calculate the values
      */
@@ -99,7 +104,7 @@ class AttributeMentionService
 
         $baseAttributes = $this->loadedEntity->attributes()->orderBy('default_order')->pluck('value', 'name');
 
-        $this->calculatedAttributes = new Collection();
+        $this->calculatedAttributes = new Collection;
 
         // Prepare our attributes with first level references
         foreach ($baseAttributes as $name => $value) {
@@ -114,7 +119,7 @@ class AttributeMentionService
                 'loop' => false,
                 'name' => $name,
                 'final' => null,
-                'references' => !empty($references[1]) ? $references[1] : [],
+                'references' => ! empty($references[1]) ? $references[1] : [],
             ]);
         }
 
@@ -132,8 +137,10 @@ class AttributeMentionService
 
         return $this->loadedAttributes[$this->loadedEntity->id] = $this->calculatedAttributes;
     }
+
     /**
      * Replace any attribute mentions in a string and result any math calculations in the resulting string
+     *
      * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
      * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
      */
@@ -141,7 +148,7 @@ class AttributeMentionService
     {
         // If the final version is already calculated, use that
 
-        //dump('parsing ' . $data['name'] . ' value ' . $data['value']);
+        // dump('parsing ' . $data['name'] . ' value ' . $data['value']);
 
         // First detect any loops going on here
         if (in_array($data['name'], $from)) {
@@ -151,22 +158,23 @@ class AttributeMentionService
         // Replace any attribute references
         $final = preg_replace_callback('`\{(.*?)\}`i', function ($matches) use ($data, $from) {
             $text = $matches[1];
-            //dump('checking for a reference called ' . $text);
+            // dump('checking for a reference called ' . $text);
             $ref = $this->calculatedAttributes->get($text);
             if ($ref) {
-                //dump('has an attribute called it!');
-                if (!empty($ref['final'])) {
-                    //dump('has a final version too');
+                // dump('has an attribute called it!');
+                if (! empty($ref['final'])) {
+                    // dump('has a final version too');
                     return $ref['final'];
                 } elseif ($ref['loop']) {
                     return 0;
                 }
-                //dump('calculating final version for ' . $text . ' with value ' . $ref['value']);
+                // dump('calculating final version for ' . $text . ' with value ' . $ref['value']);
                 $newFrom = $from;
                 $newFrom[] = $data['name'];
 
                 $ref['final'] = $this->calculateAttributeValue($ref, $newFrom);
                 $this->calculatedAttributes[$text] = $ref;
+
                 return $ref['final'];
                 /*} catch (Exception $e) {
                     $ref['loop'] = true;
@@ -178,12 +186,14 @@ class AttributeMentionService
             if ($text == 'name') {
                 return (string) $this->loadedEntity->name;
             }
+
             return 0;
         }, $data['value']);
 
         try {
-            $calculator = new StringCalc();
-            $return = (string)$calculator->calculate($final);
+            $calculator = new StringCalc;
+            $return = (string) $calculator->calculate($final);
+
             return $return;
         } catch (Exception $e) {
             return $final;
@@ -197,17 +207,19 @@ class AttributeMentionService
     {
         if (empty($data['references'])) {
             $data['final'] = $data['value'];
+
             return $data;
         }
 
         try {
             $data['final'] = $this->calculateAttributeValue($data, []);
         } catch (Exception $e) {
-            //dump($e->getMessage());
-            //dd('oh these is a loop in here');
+            // dump($e->getMessage());
+            // dd('oh these is a loop in here');
             $data['final'] = 0;
             $data['loop'] = true;
         }
+
         return $data;
     }
 
@@ -216,13 +228,14 @@ class AttributeMentionService
      */
     public function isLoop(string $name): bool
     {
-        if (!isset($this->calculatedAttributes) || $this->calculatedAttributes->isEmpty()) {
+        if (! isset($this->calculatedAttributes) || $this->calculatedAttributes->isEmpty()) {
             return false;
         }
         $ref = $this->calculatedAttributes->get($name);
         if ($ref) {
             return $ref['loop'];
         }
+
         return false;
     }
 
@@ -233,20 +246,21 @@ class AttributeMentionService
         /** @var Attribute $attribute */
         foreach ($attributes as $attribute) {
             if ($attribute->isSection()) {
-                if (null !== $section) {
+                if ($section !== null) {
                     $sections[] = $section;
                 }
                 $section = [
                     'id' => $attribute->id,
                     'name' => $attribute->name(),
                     'is_private' => $attribute->is_private,
-                    'attributes' => []
+                    'attributes' => [],
                 ];
+
                 continue;
-            } elseif (null === $section) {
+            } elseif ($section === null) {
                 $section = [
                     'id' => 0,
-                    'attributes' => []
+                    'attributes' => [],
                 ];
             }
             $section['attributes'][] = $attribute;

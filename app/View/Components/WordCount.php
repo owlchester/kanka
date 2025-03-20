@@ -13,9 +13,7 @@ class WordCount extends Component
      */
     public function __construct(
         public ?int $count
-    ) {
-
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

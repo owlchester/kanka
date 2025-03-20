@@ -24,6 +24,7 @@ class LastCampaign
             $request->user()->last_campaign_id = $campaign->id;
             $request->user()->saveQuietly();
         }
+
         return $next($request);
     }
 }

@@ -7,7 +7,6 @@ use Illuminate\Support\ServiceProvider;
 
 /**
  * Class FormCopyServiceProvider
- * @package App\Providers
  */
 class FormCopyServiceProvider extends ServiceProvider
 {
@@ -19,9 +18,9 @@ class FormCopyServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(FormCopyService::class, function () {
-            return new FormCopyService();
+            return new FormCopyService;
         });
 
-        //$this->app->alias(FormCopyService::class, 'formcopy');
+        // $this->app->alias(FormCopyService::class, 'formcopy');
     }
 }

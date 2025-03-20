@@ -20,7 +20,7 @@ class Vanity implements ValidationRule
             $fail(__('campaigns/vanity.rule2', ['field' => $attribute]));
         }
 
-        if (!preg_match('`[a-zA-Z]+`', $value)) {
+        if (! preg_match('`[a-zA-Z]+`', $value)) {
             $fail(__('campaigns/vanity.rule', ['field' => $attribute]));
         }
     }

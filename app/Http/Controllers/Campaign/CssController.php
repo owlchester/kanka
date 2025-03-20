@@ -12,6 +12,7 @@ class CssController extends Controller
 {
     /**
      * Get the campaign css
+     *
      * @return Response
      */
     public function index(Campaign $campaign)
@@ -23,7 +24,7 @@ class CssController extends Controller
 
         $response = \Illuminate\Support\Facades\Response::make($css);
         $response->header('Content-Type', 'text/css');
-        //$response->header('Expires', Carbon::now()->addYear()->toDateTimeString());
+        // $response->header('Expires', Carbon::now()->addYear()->toDateTimeString());
         $month = 31536000;
         $response->setLastModified($campaign->updated_at->toDateTime());
         $response->header('Cache-Control', 'public, max_age=' . $month);

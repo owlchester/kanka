@@ -28,12 +28,13 @@ class Tutorial extends Component
      */
     public function render(): View|Closure|string
     {
-        if ($this->auth && !auth()->check()) {
+        if ($this->auth && ! auth()->check()) {
             return '';
         }
         if (auth()->check() && UserCache::dismissedTutorial($this->code)) {
             return '';
         }
+
         return view('components.tutorial');
     }
 }

@@ -28,7 +28,7 @@ class StoreEntityAlias extends FormRequest
     {
         return $this->clean([
             'name' => 'required|string|max:45',
-            'visibility_id' => 'nullable|integer|exists:visibilities,id'
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
         ]);
     }
 }

@@ -24,7 +24,7 @@ class BragiRequest extends FormRequest
     public function rules()
     {
         return [
-            'prompt' => 'required|string|min:10|max:' . config('bragi.limit.prompt')
+            'prompt' => 'required|string|min:10|max:' . config('bragi.limit.prompt'),
         ];
     }
 }

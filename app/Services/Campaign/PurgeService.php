@@ -11,12 +11,15 @@ use Illuminate\Support\Facades\Log;
 class PurgeService
 {
     protected int $count = 0;
+
     protected bool $dry = true;
+
     protected array $ids = [];
 
     public function real(): self
     {
         $this->dry = false;
+
         return $this;
     }
 
@@ -32,13 +35,14 @@ class PurgeService
             ->chunkById(500, function ($campaigns) {
                 /** @var Campaign $campaign */
                 foreach ($campaigns as $campaign) {
-                    if (!$this->dry) {
+                    if (! $this->dry) {
                         $campaign->forceDelete();
                         Log::info('Services\Campaigns\PurgeService', ['campaign' => $campaign->id]);
                     }
                     $this->count++;
                 }
             });
+
         return $this->count;
     }
 
@@ -60,8 +64,9 @@ class PurgeService
 
         JobLog::create([
             'name' => 'cleanup:trashed-campaigns',
-            'result' => implode('<br />', $this->ids)
+            'result' => implode('<br />', $this->ids),
         ]);
+
         return $this->count;
     }
 

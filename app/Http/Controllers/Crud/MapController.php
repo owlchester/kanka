@@ -12,13 +12,14 @@ use App\Models\Map;
 class MapController extends CrudController
 {
     protected string $view = 'maps';
+
     protected string $route = 'maps';
+
     protected string $module = 'maps';
 
     protected string $model = Map::class;
 
     protected string $filter = MapFilter::class;
-
 
     /**
      * Store a newly created resource in storage.
@@ -47,6 +48,7 @@ class MapController extends CrudController
                 ->to($map->getLink())
                 ->with('error', __('maps.errors.chunking.running.edit') . ' ' . __('maps.errors.chunking.running.time'));
         }
+
         return $this->campaign($campaign)->crudEdit($map);
     }
 

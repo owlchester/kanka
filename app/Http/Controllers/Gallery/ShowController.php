@@ -20,5 +20,4 @@ class ShowController extends Controller
 
         return new GalleryFileFull($image);
     }
-
 }

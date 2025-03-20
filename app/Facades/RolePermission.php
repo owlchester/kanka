@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Facade;
 /**
  * Class RolePermission
  * Used for the Entity object
- * @package App\Facades
  *
  * @see \App\Services\Permissions\RolePermission
+ *
  * @mixin \App\Services\Permissions\RolePermission
  */
 class RolePermission extends Facade

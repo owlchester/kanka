@@ -10,12 +10,12 @@ use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Jobs\Users\AbandonedCart;
 use App\Models\Tier;
 use App\Models\TierPrice;
+use App\Models\User;
+use App\Models\UserLog;
 use App\Services\SubscriptionService;
 use App\Services\SubscriptionUpgradeService;
 use App\Services\Users\CurrencyService;
 use App\Services\Users\EmailValidationService;
-use App\Models\User;
-use App\Models\UserLog;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -59,14 +59,14 @@ class SubscriptionController extends Controller
         $current = $this->subscription->currentPlan();
         $service = $this->subscription;
         $currency = $user->currencySymbol();
-        $invoices = !empty($user->stripe_id) ? $user->invoices(true, ['limit' => 3]) : [];
+        $invoices = ! empty($user->stripe_id) ? $user->invoices(true, ['limit' => 3]) : [];
         $tracking = session()->get('sub_tracking');
         $newSubPricingId = session()->get('sub_id');
         $tiers = Tier::with('prices')->ordered()->get();
         $isPayPal = $user->hasPayPal();
         $hasManual = $user->hasManualSubscription();
         $gaTrackingEvent = $gaPurchase = null;
-        if (!empty($tracking)) {
+        if (! empty($tracking)) {
             $gaTrackingEvent = 'TJhYCMDErpYDEOaOq7oC';
             if ($tracking === 'subscribed') {
                 DataLayer::newSubscriber();
@@ -76,7 +76,7 @@ class SubscriptionController extends Controller
             }
         }
 
-        if (!empty($newSubPricingId)) {
+        if (! empty($newSubPricingId)) {
             /** @var TierPrice $pricing */
             $pricing = TierPrice::find($newSubPricingId);
             $gaPurchase = [
@@ -115,11 +115,12 @@ class SubscriptionController extends Controller
         $period = $request->get('period') === 'yearly' ? PricingPeriod::Yearly : PricingPeriod::Monthly;
 
         // If the user has a cancelled sub still ending
-        if ($user->subscribed('kanka') && $user->subscription('kanka')->onGracePeriod() && !$user->hasPayPal()) {
+        if ($user->subscribed('kanka') && $user->subscription('kanka')->onGracePeriod() && ! $user->hasPayPal()) {
             if ($tier->isCurrent($user)) {
                 return view('settings.subscription.renew')
                     ->with('user', $user);
             }
+
             return view('settings.subscription.change_blocked')
                 ->with('user', $user);
         }
@@ -136,7 +137,7 @@ class SubscriptionController extends Controller
         $intent = $user->createSetupIntent();
         $isDowngrading = $this->subscription->downgrading();
         $isYearly = $period->isYearly();
-        $hasPromo = true; //\Carbon\Carbon::create(2023, 11, 28)->isFuture();
+        $hasPromo = true; // \Carbon\Carbon::create(2023, 11, 28)->isFuture();
         $limited = $this->subscription->isLimited();
         if ($user->hasPayPal() || $user->hasManualSubscription()) {
             $limited = true;
@@ -145,8 +146,7 @@ class SubscriptionController extends Controller
             ->user($user)
             ->tier($tier)
             ->period($period)
-            ->upgradePrice()
-        ;
+            ->upgradePrice();
         $currency = $user->currencySymbol();
 
         if ($user->isFrauding()) {
@@ -189,10 +189,10 @@ class SubscriptionController extends Controller
 
             return redirect()
                 ->route('settings.subscription', $routeOptions)
-                ->withSuccess(__('subscriptions.renew.success'))
-            ;
+                ->withSuccess(__('subscriptions.renew.success'));
         } catch (IncompletePayment $exception) {
             session()->put('subscription_callback', $request->get('payment_id'));
+
             return redirect()->route(
                 'cashier.payment',
                 // @phpstan-ignore-next-line
@@ -201,8 +201,7 @@ class SubscriptionController extends Controller
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('settings.subscription')
-                ->with('error_raw', $e->getTranslatedMessage())
-            ;
+                ->with('error_raw', $e->getTranslatedMessage());
         } catch (Exception $e) {
             // Error? json
             return response()->json([
@@ -244,10 +243,10 @@ class SubscriptionController extends Controller
                 ->with('sub_tracking', $flash)
                 ->with('sub_value', $this->subscription->subscriptionValue())
                 ->with('sub_coupon', $request->get('coupon'))
-                ->with('sub_id', $this->subscription->tierPrice()->id)
-            ;
+                ->with('sub_id', $this->subscription->tierPrice()->id);
         } catch (IncompletePayment $exception) {
             session()->put('subscription_callback', $request->get('payment_id'));
+
             return redirect()->route(
                 'cashier.payment',
                 // @phpstan-ignore-next-line
@@ -256,22 +255,22 @@ class SubscriptionController extends Controller
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('settings.subscription')
-                ->with('error_raw', $e->getTranslatedMessage())
-            ;
+                ->with('error_raw', $e->getTranslatedMessage());
         } catch (Exception $e) {
             // If they are trying to sub in another currency, let's help them understand that issue
             $error = $e->getMessage();
             if (Str::contains($error, 'expected currency')) {
                 preg_match_all('/`(\w{3})`/', $error, $currencies);
+
                 return redirect()
                     ->route('settings.subscription')
                     ->with('error_raw', __('subscription.errors.invalid_currency', [
                         'old' => mb_strtoupper($currencies[1][0]),
                         'new' => mb_strtoupper($currencies[1][1]),
-                        'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>'
-                    ]))
-                ;
+                        'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>',
+                    ]));
             }
+
             // Error? json
             return response()->json([
                 'error' => true,
@@ -286,7 +285,7 @@ class SubscriptionController extends Controller
     public function callback(Request $request)
     {
         // Not expecting a callback
-        if (!session()->has('subscription_callback')) {
+        if (! session()->has('subscription_callback')) {
             return redirect()
                 ->route('settings.subscription');
         }
@@ -299,6 +298,7 @@ class SubscriptionController extends Controller
                 ->route('settings.subscription')
                 ->withSuccess(__('settings.subscription.success.callback'));
         }
+
         return redirect()
             ->route('settings.subscription')
             ->withError(__('settings.subscription.errors.callback'));

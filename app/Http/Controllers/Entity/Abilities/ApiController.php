@@ -22,7 +22,7 @@ class ApiController extends Controller
             'data' => $this->service
                 ->campaign($campaign)
                 ->entity($entity)
-                ->get()
+                ->get(),
         ]);
     }
 }

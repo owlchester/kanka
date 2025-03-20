@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Facades\CampaignLocalization;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 class PermissionTestRequest extends FormRequest
@@ -29,7 +29,7 @@ class PermissionTestRequest extends FormRequest
             '*.entity_id' => 'required_without:*.entity_type_id|integer|exists:entities,id',
             '*.entity_type_id' => 'required_without:*.entity_id|integer|exists:entity_types,id',
             '*.action' => 'required|integer|exists:campaign_permissions,action',
-            //'*.user_id' => 'required|integer|exists:campaign_user,user_id',
+            // '*.user_id' => 'required|integer|exists:campaign_user,user_id',
             '*.user_id' => [
                 'required',
                 'integer',

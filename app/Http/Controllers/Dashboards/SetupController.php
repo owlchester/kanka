@@ -43,14 +43,14 @@ class SetupController extends Controller
         foreach ($widgets as $i => $widget) {
             $wi = CampaignDashboardWidget::findOrFail($widget);
             $wi->update([
-                'position' => $position
+                'position' => $position,
             ]);
             $position++;
         }
 
         return response()->json([
             'success' => true,
-            'message' => __('dashboard.setup.reorder.success')
+            'message' => __('dashboard.setup.reorder.success'),
         ]);
     }
 }

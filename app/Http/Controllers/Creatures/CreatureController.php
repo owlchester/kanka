@@ -30,7 +30,7 @@ class CreatureController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Creature\Creature::class)
             ->route('creatures.creatures', $options);
 
-        //@phpstan-ignore-next-line
+        // @phpstan-ignore-next-line
         $this->rows = $creature
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])

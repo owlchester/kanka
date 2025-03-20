@@ -3,8 +3,8 @@
 namespace App\Services\Campaign;
 
 use App\Traits\CampaignAware;
-use Illuminate\Support\Str;
 use Exception;
+use Illuminate\Support\Str;
 
 /**
  * Easily get access to a campaign's modules custom name and icon
@@ -20,19 +20,21 @@ class ModuleService
     public function fallback(): self
     {
         $this->fallback = true;
+
         return $this;
     }
 
-    public function singular(string|int $key, ?string $fallback = null): string|null
+    public function singular(string|int $key, ?string $fallback = null): ?string
     {
         $id = $this->id($key);
         if ($this->campaign->hasModuleName($id)) {
             return $this->campaign->moduleName($id);
         }
+
         return $fallback;
     }
 
-    public function plural(string|int $key, ?string $fallback = null): string|null
+    public function plural(string|int $key, ?string $fallback = null): ?string
     {
         $id = $this->id($key);
         if ($this->campaign->hasModuleName($id, true)) {
@@ -41,15 +43,17 @@ class ModuleService
         if (empty($fallback) && $this->fallback) {
             return $this->pluralFallback($id);
         }
+
         return $fallback;
     }
 
-    public function icon(string|int $key, ?string $fallback = null): string|null
+    public function icon(string|int $key, ?string $fallback = null): ?string
     {
         $id = $this->id($key);
         if ($this->campaign->hasModuleIcon($id)) {
             return $this->campaign->moduleIcon($id);
         }
+
         return $fallback;
     }
 
@@ -63,6 +67,7 @@ class ModuleService
         if (config('fontawesome.kit')) {
             return $fallback;
         }
+
         return Str::replace('duotone', 'solid', $fallback);
     }
 
@@ -89,12 +94,14 @@ class ModuleService
         if (empty($id)) {
             throw new Exception('Invalid entity type id key ' . $key);
         }
+
         return $this->cache[$key] = (int) $id;
     }
 
     protected function pluralFallback(int $key)
     {
         $flipped = array_flip(config('entities.ids'));
+
         return __('entities.' . Str::plural($flipped[$key]));
     }
 }

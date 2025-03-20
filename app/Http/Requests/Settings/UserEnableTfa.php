@@ -11,8 +11,8 @@ class UserEnableTfa extends FormRequest
         return [
             'otp' => [
                 'required',
-                'numeric'
-            ]
+                'numeric',
+            ],
         ];
     }
 }

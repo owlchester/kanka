@@ -20,6 +20,7 @@ class RolePermissionService
     public function type(int $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -38,7 +39,7 @@ class RolePermissionService
         $entityActions = [
             CampaignPermission::ACTION_READ, CampaignPermission::ACTION_EDIT,
             CampaignPermission::ACTION_ADD, CampaignPermission::ACTION_DELETE,
-            CampaignPermission::ACTION_POSTS, CampaignPermission::ACTION_PERMS
+            CampaignPermission::ACTION_POSTS, CampaignPermission::ACTION_PERMS,
         ];
         $icons = [
             CampaignPermission::ACTION_READ => [
@@ -69,16 +70,16 @@ class RolePermissionService
 
         // Public actions
         if ($this->role->isPublic()) {
-            //$actions = ['read'];
+            // $actions = ['read'];
             $entityActions = [CampaignPermission::ACTION_READ];
         }
 
         foreach (EntityType::exclude([config('entities.ids.bookmark')])->inCampaign($this->campaign)->get() as $entityType) {
             foreach ($entityActions as $action) {
-                if (!isset($permissions[$entityType->plural()])) {
+                if (! isset($permissions[$entityType->plural()])) {
                     $permissions[$entityType->plural()] = [
                         'entityType' => $entityType,
-                        'permissions' => []
+                        'permissions' => [],
                     ];
                 }
                 $key = "{$entityType->id}_{$action}";
@@ -104,6 +105,7 @@ class RolePermissionService
 
         return $result;
     }
+
     /**
      * Campaign Permissions
      */
@@ -116,12 +118,12 @@ class RolePermissionService
             if ($perm->entity_type_id || $perm->isGallery()) {
                 continue;
             }
-            $campaignRolePermissions["campaign_" . $perm->action] = 1;
+            $campaignRolePermissions['campaign_' . $perm->action] = 1;
         }
 
         $entityActions = [
             CampaignPermission::ACTION_MANAGE, CampaignPermission::ACTION_DASHBOARD,
-            CampaignPermission::ACTION_MEMBERS
+            CampaignPermission::ACTION_MEMBERS,
         ];
         $icons = [
             CampaignPermission::ACTION_MANAGE => [
@@ -129,7 +131,7 @@ class RolePermissionService
                 'manage',
             ],
             CampaignPermission::ACTION_DASHBOARD => [
-                'fa-solid fa-columns','dashboard',
+                'fa-solid fa-columns', 'dashboard',
             ],
             CampaignPermission::ACTION_MEMBERS => [
                 'fa-solid fa-users', 'members',
@@ -137,7 +139,7 @@ class RolePermissionService
         ];
 
         foreach ($entityActions as $action) {
-            if (!isset($permissions['campaign'])) {
+            if (! isset($permissions['campaign'])) {
                 $permissions['campaign'] = [];
             }
             $key = "campaign_{$action}";
@@ -149,6 +151,7 @@ class RolePermissionService
                 'enabled' => isset($campaignRolePermissions[$key]),
             ];
         }
+
         return $permissions;
     }
 
@@ -158,23 +161,23 @@ class RolePermissionService
 
         $campaignRolePermissions = [];
         foreach ($this->role->permissions as $perm) {
-            if ($perm->entity_type_id || !$perm->isGallery()) {
+            if ($perm->entity_type_id || ! $perm->isGallery()) {
                 continue;
             }
-            $campaignRolePermissions["campaign_" . $perm->action] = 1;
+            $campaignRolePermissions['campaign_' . $perm->action] = 1;
         }
 
         $entityActions = [
             CampaignPermission::ACTION_GALLERY,
             CampaignPermission::ACTION_GALLERY_BROWSE,
-            CampaignPermission::ACTION_GALLERY_UPLOAD
+            CampaignPermission::ACTION_GALLERY_UPLOAD,
         ];
         $icons = [
             CampaignPermission::ACTION_GALLERY => [
                 'fa-solid fa-cog', 'gallery.manage',
             ],
             CampaignPermission::ACTION_GALLERY_BROWSE => [
-                'fa-solid fa-eye','gallery.browse',
+                'fa-solid fa-eye', 'gallery.browse',
             ],
             CampaignPermission::ACTION_GALLERY_UPLOAD => [
                 'fa-solid fa-upload', 'gallery.upload',
@@ -182,7 +185,7 @@ class RolePermissionService
         ];
 
         foreach ($entityActions as $action) {
-            if (!isset($permissions['campaign'])) {
+            if (! isset($permissions['campaign'])) {
                 $permissions['campaign'] = [];
             }
             $key = "campaign_{$action}";
@@ -194,6 +197,7 @@ class RolePermissionService
                 'enabled' => isset($campaignRolePermissions[$key]),
             ];
         }
+
         return $permissions;
     }
 
@@ -203,10 +207,10 @@ class RolePermissionService
 
         $campaignRolePermissions = [];
         foreach ($this->role->permissions as $perm) {
-            if ($perm->entity_type_id || !$perm->isTemplate()) {
+            if ($perm->entity_type_id || ! $perm->isTemplate()) {
                 continue;
             }
-            $campaignRolePermissions["campaign_" . $perm->action] = 1;
+            $campaignRolePermissions['campaign_' . $perm->action] = 1;
         }
 
         $entityActions = [
@@ -224,7 +228,7 @@ class RolePermissionService
         ];
 
         foreach ($entityActions as $action) {
-            if (!isset($permissions['campaign'])) {
+            if (! isset($permissions['campaign'])) {
                 $permissions['campaign'] = [];
             }
             $key = "campaign_{$action}";
@@ -236,6 +240,7 @@ class RolePermissionService
                 'enabled' => isset($campaignRolePermissions[$key]),
             ];
         }
+
         return $permissions;
     }
 
@@ -245,10 +250,10 @@ class RolePermissionService
 
         $campaignRolePermissions = [];
         foreach ($this->role->permissions as $perm) {
-            if ($perm->entity_type_id || !$perm->isBookmark()) {
+            if ($perm->entity_type_id || ! $perm->isBookmark()) {
                 continue;
             }
-            $campaignRolePermissions["campaign_" . $perm->action] = 1;
+            $campaignRolePermissions['campaign_' . $perm->action] = 1;
         }
 
         $entityActions = [
@@ -261,7 +266,7 @@ class RolePermissionService
         ];
 
         foreach ($entityActions as $action) {
-            if (!isset($permissions['campaign'])) {
+            if (! isset($permissions['campaign'])) {
                 $permissions['campaign'] = [];
             }
             $key = "campaign_{$action}";
@@ -273,6 +278,7 @@ class RolePermissionService
                 'enabled' => isset($campaignRolePermissions[$key]),
             ];
         }
+
         return $permissions;
     }
 
@@ -283,6 +289,7 @@ class RolePermissionService
         foreach ($this->role->rolePermissions as $permission) {
             if (empty($permission->entity_type_id)) {
                 $existing['campaign_' . $permission->action] = $permission;
+
                 continue;
             }
             $existing[$permission->entity_type_id . '_' . $permission->action] = $permission;
@@ -311,7 +318,7 @@ class RolePermissionService
         // Delete existing that weren't updated
         foreach ($existing as $permission) {
             // Only delete if it's a "general" and not an entity specific permission
-            if (!is_numeric($permission->entity_id)) {
+            if (! is_numeric($permission->entity_id)) {
                 $permission->delete();
             }
         }
@@ -330,10 +337,12 @@ class RolePermissionService
 
         if ($perm) {
             $perm->delete();
+
             return false;
         }
 
         $this->add($entityType, $action);
+
         return true;
     }
 
@@ -342,7 +351,7 @@ class RolePermissionService
      * specified entity type (->type())
      */
     public function can(Permission $permission): bool
-    //int $action = CampaignPermission::ACTION_READ): bool
+    // int $action = CampaignPermission::ACTION_READ): bool
     {
         return $this->role->permissions
             ->where('entity_type_id', $this->type)
@@ -360,14 +369,15 @@ class RolePermissionService
         if ($entityType === 0) {
             $entityType = null;
         }
+
         return CampaignPermission::create([
-            //'key' => $key,
+            // 'key' => $key,
             'campaign_role_id' => $this->role->id,
-            //'table_name' => $value,
+            // 'table_name' => $value,
             'access' => true,
             'action' => $action,
-            'entity_type_id' => $entityType
-            //'campaign_id' => $campaign->id,
+            'entity_type_id' => $entityType,
+            // 'campaign_id' => $campaign->id,
         ]);
     }
 }

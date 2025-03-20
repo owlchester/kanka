@@ -9,6 +9,7 @@ class Marker extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -29,19 +30,19 @@ class Marker extends Layout
                 'label' => 'maps/markers.fields.group',
                 'render' => function ($model) {
                     return $model->group?->name;
-                }
+                },
             ],
             'type' => [
                 'label' => 'crud.fields.type',
                 'render' => function ($model) {
                     return $model->typeLabel();
-                }
+                },
             ],
             'icon' => [
                 'label' => 'maps/markers.fields.icon',
                 'render' => function ($model) {
                     return $model->datagridMarkerIcon();
-                }
+                },
             ],
             'visibility' => [
                 'label' => 'crud.fields.visibility',

@@ -28,6 +28,7 @@ trait ThumbnailCache
         foreach ($defaults as $default) {
             $data[Str::singular($default['type'])] = $default['path'];
         }
+
         return $data;
     }
 }

@@ -13,6 +13,7 @@ class ReminderService
     public function calendar(Calendar $calendar): self
     {
         $this->calendar = $calendar;
+
         return $this;
     }
 

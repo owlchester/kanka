@@ -22,7 +22,7 @@ class LayerController extends Controller
         $this->campaign = $campaign;
         $action = $request->get('action');
         $models = $request->get('model');
-        if (!in_array($action, $this->validBulkActions()) || empty($models)) {
+        if (! in_array($action, $this->validBulkActions()) || empty($models)) {
             return redirect()->back();
         }
 
@@ -37,7 +37,6 @@ class LayerController extends Controller
 
         return redirect()
             ->route('maps.map_layers.index', [$campaign, $map])
-            ->with('success', trans_choice('maps/layers.bulks.' . $action, $count, ['count' => $count]))
-        ;
+            ->with('success', trans_choice('maps/layers.bulks.' . $action, $count, ['count' => $count]));
     }
 }

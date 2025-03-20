@@ -24,7 +24,7 @@ class AssetController extends Controller
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authEntityView($entity);
-        if (!$campaign->enabled('assets')) {
+        if (! $campaign->enabled('assets')) {
             return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
@@ -163,20 +163,20 @@ class AssetController extends Controller
 
         if (request()->ajax()) {
             return response()->json([
-                'success' => true
+                'success' => true,
             ]);
         }
+
         return redirect()
             ->route('entities.entity_assets.index', [$campaign, $entity])
             ->with('success', __('entities/' . $type . '.update.success', ['name' => $entityAsset->name, 'entity' => $entity->name]));
     }
 
-
     public function destroy(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->authorize('update', $entity);
 
-        if (!$entityAsset->delete()) {
+        if (! $entityAsset->delete()) {
             abort(500);
         }
         $type = 'files';
@@ -188,9 +188,10 @@ class AssetController extends Controller
 
         if (request()->ajax()) {
             return response()->json([
-                'success' => true
+                'success' => true,
             ]);
         }
+
         return redirect()
             ->route('entities.entity_assets.index', [$campaign, $entity])
             ->with('success', __('entities/' . $type . '.destroy.success', ['name' => $entityAsset->name, 'entity' => $entity->name]));
@@ -198,6 +199,7 @@ class AssetController extends Controller
 
     /**
      * Create a new file
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     protected function createFile(Campaign $campaign, Entity $entity)
@@ -216,11 +218,12 @@ class AssetController extends Controller
 
     /**
      * Create a new link
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     protected function createLink(Campaign $campaign, Entity $entity)
     {
-        if (!$campaign->boosted()) {
+        if (! $campaign->boosted()) {
             return view('entities.pages.links.unboosted')
                 ->with('campaign', $campaign);
         }
@@ -233,11 +236,12 @@ class AssetController extends Controller
 
     /**
      * Create a new alias
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     protected function createAlias(Campaign $campaign, Entity $entity)
     {
-        if (!$campaign->boosted()) {
+        if (! $campaign->boosted()) {
             return view('entities.pages.aliases.unboosted')
                 ->with('campaign', $campaign);
         }
@@ -248,22 +252,22 @@ class AssetController extends Controller
         ));
     }
 
-
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function go(Campaign $campaign, Entity $entity, EntityAsset $entityAsset)
     {
         $this->campaign($campaign)->authEntityView($entity);
 
-        if ($entityAsset->entity_id !== $entity->id || !$entityAsset->isLink()) {
+        if ($entityAsset->entity_id !== $entity->id || ! $entityAsset->isLink()) {
             abort(404);
         }
 
         // If the link goes to the same domain, just go.
         $url = $entityAsset->metadata['url'];
-        if (Str::startsWith($url, config('app.url')) && !Str::contains($url, 'entity_links/')) {
+        if (Str::startsWith($url, config('app.url')) && ! Str::contains($url, 'entity_links/')) {
             return redirect()->to($url);
         }
 

@@ -13,7 +13,9 @@ use App\Sanitizers\CalendarSanitizer;
 class CalendarController extends CrudController
 {
     protected string $view = 'calendars';
+
     protected string $route = 'calendars';
+
     protected string $module = 'calendars';
 
     protected string $model = Calendar::class;
@@ -62,8 +64,6 @@ class CalendarController extends CrudController
         return $this->campaign($campaign)->crudDestroy($calendar);
     }
 
-    /**
-     */
     public function monthList(Campaign $campaign, Calendar $calendar)
     {
         return response()->json([
@@ -71,7 +71,7 @@ class CalendarController extends CrudController
             'current' => [
                 'year' => $calendar->currentDate('year'),
                 'month' => $calendar->currentDate('month'),
-                'day' => $calendar->currentDate('date')
+                'day' => $calendar->currentDate('date'),
             ],
             'recurring' => $calendar->recurringOptions(true),
         ]);
@@ -87,7 +87,7 @@ class CalendarController extends CrudController
         $date = request()->get('date', null);
         if ($date) {
             $calendar->update([
-                'date' => $date
+                'date' => $date,
             ]);
         }
 

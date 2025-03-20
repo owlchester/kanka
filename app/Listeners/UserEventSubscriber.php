@@ -3,12 +3,12 @@
 namespace App\Listeners;
 
 use App\Jobs\Emails\MailSettingsChangeJob;
+use App\Models\User;
 use App\Models\UserFlag;
 use App\Models\UserLog;
 use App\Services\InviteService;
 use App\Services\StarterService;
 use App\Services\Users\CampaignService;
-use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 
@@ -44,7 +44,7 @@ class UserEventSubscriber
     public function onUserLogin($event): bool
     {
         // Log the user's login
-        if (!$event->user) {
+        if (! $event->user) {
             dd('Error OSL-010');
         }
 
@@ -64,7 +64,7 @@ class UserEventSubscriber
             ->delete();
 
         // Update mailerlite for the login stuff
-        if (!session()->has('first_login') && $event->user->hasNewsletter()) {
+        if (! session()->has('first_login') && $event->user->hasNewsletter()) {
             MailSettingsChangeJob::dispatch($event->user);
         }
 
@@ -78,6 +78,7 @@ class UserEventSubscriber
                     ->user($event->user)
                     ->campaign($campaign)
                     ->set();
+
                 return true;
             } catch (Exception $e) {
                 // Silence errors here
@@ -94,6 +95,7 @@ class UserEventSubscriber
                     ->user($event->user)
                     ->campaign($campaign)
                     ->set();
+
                 return true;
             } catch (Exception $e) {
 
@@ -109,16 +111,14 @@ class UserEventSubscriber
     public function onUserLogout($event)
     {
         // Log the activity
-        if (!$event->user) {
+        if (! $event->user) {
             return;
         }
-        if (!$event->user->isBanned()) {
+        if (! $event->user->isBanned()) {
             $event->user->log(UserLog::TYPE_LOGOUT);
         }
     }
 
-    /**
-     */
     public function onUserRegistered($event)
     {
         // If the user has an invite token, we don't want to do anything else

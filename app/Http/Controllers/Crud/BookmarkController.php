@@ -5,26 +5,30 @@ namespace App\Http\Controllers\Crud;
 use App\Datagrids\Actions\BookmarkDatagridActions;
 use App\Http\Controllers\CrudController;
 use App\Http\Requests\StoreBookmark;
-use App\Models\Campaign;
 use App\Models\Bookmark;
+use App\Models\Campaign;
 use App\Models\EntityType;
 use Illuminate\Http\Request;
 
 class BookmarkController extends CrudController
 {
-    /** @var string Config for the crudController*/
+    /** @var string Config for the crudController */
     protected string $view = 'bookmarks';
+
     protected string $route = 'bookmarks';
 
     protected bool $tabPermissions = false;
+
     protected bool $tabAttributes = false;
+
     protected bool $tabBoosted = false;
+
     protected bool $tabCopy = false;
+
     protected bool $hasLimitCheck = true;
 
     protected string $model = Bookmark::class;
 
-    /**  */
     protected string $datagridActions = BookmarkDatagridActions::class;
 
     protected string $forceMode = 'table';
@@ -48,15 +52,14 @@ class BookmarkController extends CrudController
             '',
             true
         );
+
         return parent::setNavActions();
     }
 
-    /**
-     */
     public function index(Request $request, Campaign $campaign)
     {
         // Check that the user has permission to actually be here
-        if (!$this->authorize('browse', [new Bookmark(), $campaign])) {
+        if (! $this->authorize('browse', [new Bookmark, $campaign])) {
             return redirect()->route('dashboard', $campaign);
         }
 
@@ -76,9 +79,10 @@ class BookmarkController extends CrudController
      */
     public function show(Campaign $campaign, Bookmark $bookmark)
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             abort(403);
         }
+
         return redirect()->route('bookmarks.edit', [$campaign, $bookmark]);
     }
 
@@ -106,14 +110,13 @@ class BookmarkController extends CrudController
         $data = $request->all();
         $bookmark->update($data);
 
-
         $link = '<a href="' . route(
             $this->view . '.show',
             [$campaign, $bookmark->id]
         )
             . '">' . $bookmark->name . '</a>';
         $success = __('general.success.updated', [
-            'name' => $link
+            'name' => $link,
         ]);
 
         session()->flash('success_raw', $success);
@@ -130,8 +133,10 @@ class BookmarkController extends CrudController
             $route = route($this->route . '.index', [$campaign]);
         } elseif ($request->has('submit-copy')) {
             $route = route($this->route . '.create', [$campaign, 'copy' => $bookmark->id]);
+
             return response()->redirectTo($route);
         }
+
         return response()->redirectTo($route);
     }
 
@@ -143,11 +148,9 @@ class BookmarkController extends CrudController
         return $this->campaign($campaign)->crudDestroy($bookmark);
     }
 
-    /**
-     */
     protected function limitCheckReached(): bool
     {
-        return !$this->campaign->canHaveMoreBookmarks();
+        return ! $this->campaign->canHaveMoreBookmarks();
     }
 
     protected function getEntityType(): EntityType

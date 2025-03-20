@@ -28,9 +28,9 @@ class CalendarWeatherController extends Controller
         $this->authorize('update', $calendar->entity);
 
         $date = request()->get('date');
-        list($year, $month, $day) = explode('-', $date);
+        [$year, $month, $day] = explode('-', $date);
         if (str_starts_with($date, '-')) {
-            list($year, $month, $day) = explode('-', mb_trim($date, '-'));
+            [$year, $month, $day] = explode('-', mb_trim($date, '-'));
             $year = '-' . $year;
         }
 
@@ -38,7 +38,7 @@ class CalendarWeatherController extends Controller
             ->calendar($calendar)
             ->findWeather((int) $year, (int) $month, (int) $day);
 
-        return view('calendars.weather.' . (!empty($weather) ? 'edit' : 'create'), compact(
+        return view('calendars.weather.' . (! empty($weather) ? 'edit' : 'create'), compact(
             'calendar',
             'campaign',
             'day',
@@ -63,6 +63,7 @@ class CalendarWeatherController extends Controller
         if ($request->has('layout')) {
             $routeOptions['layout'] = $request->get('layout');
         }
+
         return redirect()->route('entities.show', $routeOptions)
             ->with('success', __('calendars/weather.create.success'));
     }

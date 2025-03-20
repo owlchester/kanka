@@ -22,6 +22,7 @@ class SubmissionController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -39,7 +40,7 @@ class SubmissionController extends Controller
     {
         $this->authorize('submissions', $campaign);
 
-        if (!$campaign->canHaveMoreMembers()) {
+        if (! $campaign->canHaveMoreMembers()) {
             return view('cruds.forms.limit')
                 ->with('campaign', $campaign)
                 ->with('key', 'members')
@@ -48,15 +49,14 @@ class SubmissionController extends Controller
 
         return view('campaigns.submissions.show')
             ->with('application', $campaignSubmission)
-            ->with('campaign', $campaign)
-        ;
+            ->with('campaign', $campaign);
     }
 
     public function edit(Campaign $campaign, CampaignSubmission $campaignSubmission)
     {
         $this->authorize('submissions', $campaign);
 
-        if (!$campaign->canHaveMoreMembers()) {
+        if (! $campaign->canHaveMoreMembers()) {
             return view('cruds.forms.limit')
                 ->with('campaign', $campaign)
                 ->with('key', 'members')
@@ -64,22 +64,21 @@ class SubmissionController extends Controller
         }
 
         $action = request()->get('action');
-        if (!in_array($action, ['approve', 'reject'])) {
+        if (! in_array($action, ['approve', 'reject'])) {
             return redirect()->route('campaign_submissions.index', $campaign);
         }
 
         return view('campaigns.submissions.edit')
             ->with('submission', $campaignSubmission)
             ->with('campaign', $campaign)
-            ->with('action', $action)
-        ;
+            ->with('action', $action);
     }
 
     public function update(PatchCampaignApplication $request, Campaign $campaign, CampaignSubmission $campaignSubmission)
     {
         $this->authorize('submissions', $campaign);
 
-        if (!$campaign->canHaveMoreMembers()) {
+        if (! $campaign->canHaveMoreMembers()) {
             return redirect()->back()
                 ->with('error', __('Campaign is full, please boost it.'));
         }
@@ -109,12 +108,11 @@ class SubmissionController extends Controller
         $this->authorize('submissions', $campaign);
 
         $campaign->update([
-            'is_open' => $request->get('status')
+            'is_open' => $request->get('status'),
         ]);
 
         return redirect()
             ->route('campaign_submissions.index', $campaign)
-            ->with('success', __('campaigns/submissions.toggle.success'))
-        ;
+            ->with('success', __('campaigns/submissions.toggle.success'));
     }
 }

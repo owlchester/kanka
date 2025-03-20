@@ -21,8 +21,7 @@ class CharacterObserver extends MiscObserver
             ->saveTraits($character, 'appearance')
             ->saveOrganisations($character)
             ->saveRaces($character)
-            ->saveFamilies($character)
-        ;
+            ->saveFamilies($character);
 
         EntityLogger::model($character)->entity($character->entity)->finish();
     }
@@ -34,7 +33,7 @@ class CharacterObserver extends MiscObserver
     {
         // Users who can edit the character but can't access personality traits shouldn't be allowed to
         // change those traits.
-        if ($trait == 'personality' && !auth()->user()->can('personality', $character)) {
+        if ($trait == 'personality' && ! auth()->user()->can('personality', $character)) {
             return $this;
         }
 
@@ -52,11 +51,11 @@ class CharacterObserver extends MiscObserver
                 continue;
             }
 
-            if (!empty($existing[$id])) {
+            if (! empty($existing[$id])) {
                 $model = $existing[$id];
                 unset($existing[$id]);
             } else {
-                $model = new CharacterTrait();
+                $model = new CharacterTrait;
                 $model->character_id = $character->id;
                 $model->section_id = $trait == 'personality' ?
                     CharacterTrait::SECTION_PERSONALITY : CharacterTrait::SECTION_APPEARANCE;
@@ -84,7 +83,7 @@ class CharacterObserver extends MiscObserver
     {
         // If the organisations array isn't provided, skip this feature. The crud interface will always provide one,
         // and the api calls will provide one if necessary.
-        if (!request()->has('character_save_organisations')) {
+        if (! request()->has('character_save_organisations')) {
             return $this;
         }
 
@@ -102,28 +101,28 @@ class CharacterObserver extends MiscObserver
         $privates = new Collection(request()->post('organisation_privates', []));
 
         // Prepare roles and permissions that a new (have no id) to properly map them with new organisations
-        $newRoles = new Collection();
+        $newRoles = new Collection;
         foreach ($roles as $id => $role) {
             if (empty($id)) {
                 $newRoles->push($role);
             }
         }
 
-        $newStatuses = new Collection();
+        $newStatuses = new Collection;
         foreach ($statuses as $id => $status) {
             if (empty($id)) {
                 $newStatuses->push($status);
             }
         }
 
-        $newPins = new Collection();
+        $newPins = new Collection;
         foreach ($pins as $id => $pin) {
             if (empty($id)) {
                 $newPins->push($pin);
             }
         }
 
-        $newPrivates = new Collection();
+        $newPrivates = new Collection;
         foreach ($privates as $id => $private) {
             if (empty($id)) {
                 $newPrivates->push($private);
@@ -135,11 +134,11 @@ class CharacterObserver extends MiscObserver
                 continue;
             }
 
-            if (!empty($existing[$key])) {
+            if (! empty($existing[$key])) {
                 $model = $existing[$key];
                 unset($existing[$key]);
             } else {
-                $model = new OrganisationMember();
+                $model = new OrganisationMember;
                 $model->character_id = $character->id;
                 EntityLogger::dirty('organisations', null);
             }
@@ -165,11 +164,9 @@ class CharacterObserver extends MiscObserver
         return $this;
     }
 
-    /**
-     */
     protected function saveRaces(Character $character): self
     {
-        if (!request()->has('save_races') && !request()->has('races')) {
+        if (! request()->has('save_races') && ! request()->has('races')) {
             return $this;
         }
 
@@ -178,11 +175,9 @@ class CharacterObserver extends MiscObserver
         return $this;
     }
 
-    /**
-     */
     protected function saveFamilies(Character $character): self
     {
-        if (!request()->has('save_families') && !request()->has('families')) {
+        if (! request()->has('save_families') && ! request()->has('families')) {
             return $this;
         }
         $this->saveMany($character, 'families', request()->get('families', []), Family::class);

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Models\Campaign;
-use App\Models\Entity;
 use App\Http\Requests\StoreRelation as Request;
 use App\Http\Requests\UpdateRelation as UpdateRequest;
 use App\Http\Resources\RelationResource as Resource;
-use App\Services\Entity\RelationService;
+use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\Relation;
+use App\Services\Entity\RelationService;
 
 class EntityRelationApiController extends ApiController
 {
@@ -21,27 +21,31 @@ class EntityRelationApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
+
         return Resource::collection($entity->relationships()->has('target')->paginate());
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, Entity $entity, Relation $relation)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
+
         return new Resource($relation);
     }
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Entity $entity)
@@ -55,7 +59,7 @@ class EntityRelationApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function update(UpdateRequest $request, Campaign $campaign, Entity $entity, Relation $relation)
     {
@@ -67,8 +71,9 @@ class EntityRelationApiController extends ApiController
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(

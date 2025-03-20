@@ -21,7 +21,7 @@ class StatService
     public function get(): array
     {
         $key = 'campaign_stats_' . $this->campaign->id;
-        if (Cache::has($key) && !config('app.debug')) {
+        if (Cache::has($key) && ! config('app.debug')) {
             return Cache::get($key);
         }
 
@@ -34,6 +34,7 @@ class StatService
             ->modules();
 
         Cache::put($key, $this->stats, 3600 * 6);
+
         return $this->stats;
     }
 
@@ -52,6 +53,7 @@ class StatService
         }
         arsort($stats);
         $this->stats['types'] = $stats;
+
         return $this;
     }
 
@@ -62,9 +64,9 @@ class StatService
         $this->stats['permissions']['followers'] = $this->campaign->followers()->count();
         $this->stats['permissions']['roles'] = $this->campaign->roles()->count();
         arsort($this->stats['permissions']);
+
         return $this;
     }
-
 
     protected function modules(): self
     {

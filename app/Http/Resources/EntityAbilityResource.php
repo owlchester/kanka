@@ -16,6 +16,7 @@ class EntityAbilityResource extends EntityChild
     {
         /** @var EntityAbility $model */
         $model = $this->resource;
+
         return [
             'id' => $model->id,
             'visibility_id' => $model->visibility_id,

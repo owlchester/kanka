@@ -3,13 +3,13 @@
 namespace App\Jobs;
 
 use App\Models\Campaign;
-use Meilisearch\Client;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
+use Meilisearch\Client;
 
 class DeletedCampaignCleanupJob implements ShouldQueue
 {
@@ -50,7 +50,7 @@ class DeletedCampaignCleanupJob implements ShouldQueue
             return;
         }
 
-        //Delete leftover images
+        // Delete leftover images
         if (Storage::has('/w/' . $this->campaignId)) {
             Storage::deleteDirectory('/w/' . $this->campaignId);
         }
@@ -58,7 +58,7 @@ class DeletedCampaignCleanupJob implements ShouldQueue
             Storage::deleteDirectory('/campaigns/' . $this->campaignId);
         }
 
-        //Cleanup deleted campaign entries from meilisearch
+        // Cleanup deleted campaign entries from meilisearch
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
         $client->getKeys();
 

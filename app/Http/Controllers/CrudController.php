@@ -8,17 +8,17 @@ use App\Datagrids\Sorters\DatagridSorter;
 use App\Facades\Breadcrumb;
 use App\Facades\FormCopy;
 use App\Facades\Module;
+use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\Bookmark;
 use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\AttributeService;
 use App\Services\Entity\CopyService;
-use App\Services\MultiEditingService;
 use App\Services\FilterService;
+use App\Services\MultiEditingService;
 use App\Traits\BulkControllerTrait;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
@@ -55,6 +55,7 @@ class CrudController extends Controller
     protected string $filter;
 
     protected FilterService $filterService;
+
     protected DatagridRenderer $datagrid;
 
     /** If the permissions tab and pane is enabled or not. */
@@ -107,21 +108,22 @@ class CrudController extends Controller
 
     public function crudIndex(Request $request)
     {
-        if (!$this->moduleEnabled()) {
+        if (! $this->moduleEnabled()) {
             return redirect()->route('dashboard', $this->campaign)->with(
                 'error_raw',
                 __('campaigns/modules.errors.disabled', [
-                    'name' => $this->getEntityType()->plural(), //@phpstan-ignore-line
-                    'fix' => '<a href="' . route('campaign.modules', [$this->campaign, '#' . $this->getEntityType()->code]) . '">' . __('crud.fix-this-issue') . '</a>', //@phpstan-ignore-line
+                    'name' => $this->getEntityType()->plural(), // @phpstan-ignore-line
+                    'fix' => '<a href="' . route('campaign.modules', [$this->campaign, '#' . $this->getEntityType()->code]) . '">' . __('crud.fix-this-issue') . '</a>', // @phpstan-ignore-line
                 ])
             );
         }
 
         /**
          * Prepare a lot of variables that will be shared over to the view
+         *
          * @var MiscModel $model
          */
-        $model = new $this->model();
+        $model = new $this->model;
         $campaign = $this->campaign;
         $this->request = $request;
         $this->filterService
@@ -134,13 +136,13 @@ class CrudController extends Controller
         $name = $this->view;
         $langKey = $this->langKey ?? $name;
         /** @var ?DatagridFilter $filter */
-        $filter = !empty($this->filter) ? new $this->filter() : null;
-        if (!empty($filter)) {
+        $filter = ! empty($this->filter) ? new $this->filter : null;
+        if (! empty($filter)) {
             $filter->campaign($this->campaign)->build();
         }
         $route = $this->route;
         $bulk = $this->bulkModel();
-        $datagridActions = new $this->datagridActions();
+        $datagridActions = new $this->datagridActions;
 
         // Switch between the new explore/grid mode and the old table
         $mode = $this->mode();
@@ -152,13 +154,11 @@ class CrudController extends Controller
 
         if ($mode === 'grid') {
             $base = $model
-                ->preparedGrid()
-            ;
+                ->preparedGrid();
         } else {
             $base = $model
                 ->preparedSelect()
-                ->preparedWith()
-            ;
+                ->preparedWith();
             if ($nested) {
                 $this->datagrid->nested();
             }
@@ -166,8 +166,7 @@ class CrudController extends Controller
 
         $base->search($this->filterService->search())
             ->order($this->filterService->order())
-            ->distinct()
-        ;
+            ->distinct();
 
         $parent = null;
         if (request()->has('parent_id') && method_exists($model, 'getParentKeyName')) {
@@ -176,7 +175,7 @@ class CrudController extends Controller
 
             $parent = $model->where('id', request()->get('parent_id'))->first();
             if ($mode === 'table') {
-                if (!empty($parent) && !empty($parent->parent)) {
+                if (! empty($parent) && ! empty($parent->parent)) {
                     // Go back to previous parent
                     $this->addNavAction(
                         route($this->route . '.index', [$campaign, 'parent_id' => $parent->parent->id]),
@@ -217,7 +216,7 @@ class CrudController extends Controller
             return redirect()->route($this->route . '.index', [
                 $this->campaign,
                 'page' => $models->lastPage(),
-                'order' => request()->get('order')
+                'order' => request()->get('order'),
             ]);
         }
 
@@ -298,15 +297,17 @@ class CrudController extends Controller
     {
         return $this->campaign($campaign)->crudCreate();
     }
+
     public function crudCreate($params = [])
     {
-        //@phpstan-ignore-next-line
+        // @phpstan-ignore-next-line
         $this->authorize('create', [$this->getEntityType(), $this->campaign]);
 
         if ($this->hasLimitCheck) {
             // @phpstan-ignore-next-line
             if ($this->limitCheckReached()) {
                 $key = $this->view == 'bookmarks' ? 'bookmarks' : 'entities';
+
                 return view('cruds.forms.limit')
                     ->with('campaign', $this->campaign)
                     ->with('key', $key)
@@ -314,12 +315,12 @@ class CrudController extends Controller
             }
         }
 
-        if (!isset($params['source'])) {
+        if (! isset($params['source'])) {
             $copyId = request()->input('copy');
-            if (!empty($copyId)) {
+            if (! empty($copyId)) {
                 /** @var ?Entity $model */
                 $model = Entity::find(request()->get('copy'));
-                if (!$model || $model->isMissingChild()) {
+                if (! $model || $model->isMissingChild()) {
                     abort(404);
                 }
                 $params['source'] = $model;
@@ -328,7 +329,7 @@ class CrudController extends Controller
                 $params['source'] = null;
             }
         }
-        $model = new $this->model();
+        $model = new $this->model;
 
         $params['campaign'] = $this->campaign;
         $params['tabAttributes'] = $this->tabAttributes && $this->campaign->enabled('entity_attributes');
@@ -347,18 +348,16 @@ class CrudController extends Controller
         $singular = Module::singular($entityTypeID);
         $params['entityTypeId'] = $entityTypeID;
         $params['plural'] = $plural;
-        if (!empty($singular)) {
+        if (! empty($singular)) {
             $params['title'] = __('crud.titles.new', ['module' => $singular]);
         }
 
         return view('cruds.forms.create', array_merge(['name' => $this->view], $params));
     }
 
-    /**
-     */
     public function crudStore(Request $request, bool $redirectToCreated = false)
     {
-        //@phpstan-ignore-next-line
+        // @phpstan-ignore-next-line
         $this->authorize('create', [$this->getEntityType(), $this->campaign]);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
@@ -385,7 +384,7 @@ class CrudController extends Controller
             $data['campaign_id'] = $this->campaign->id;
 
             /** @var MiscModel $model */
-            $model = new $this->model();
+            $model = new $this->model;
             /** @var MiscModel $new */
             $new = $model->create($data);
 
@@ -395,10 +394,10 @@ class CrudController extends Controller
             }
 
             // MenuLink have no entity attached to them.
-            if (!($new instanceof Bookmark) && $new->entity) {
+            if (! ($new instanceof Bookmark) && $new->entity) {
                 $new->entity->crudSaved();
                 // Weird hack for prod issues
-                if (!$new->entity->child) {
+                if (! $new->entity->child) {
                     $new->entity->child = $new;
                 }
 
@@ -421,44 +420,50 @@ class CrudController extends Controller
                 }
             }
 
-
             $link = '<a href="' . route(
                 $new->entity ? 'entities.show' : $this->view . '.show',
                 $new->entity ? [$this->campaign, $new->entity] : [$this->campaign, $new->id]
             )
                 . '">' . $new->name . '</a>';
             $success = __('general.success.created', [
-                'name' => $link
+                'name' => $link,
             ]);
 
             session()->flash('success_raw', $success);
 
             if ($request->has('submit-new')) {
                 $route = route($this->route . '.create', $this->campaign);
+
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-update')) {
                 $route = route($this->route . '.edit', [$this->campaign, $new]);
+
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-view') && $new->entity) {
                 $route = route('entities.show', [$this->campaign, $new->entity]);
+
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-copy')) {
                 $route = route($this->route . '.create', [$this->campaign, 'copy' => $new->id]);
+
                 return response()->redirectTo($route);
             }
 
             if ($new->entity) {
                 $route = route('entities.show', [$this->campaign, $new->entity]);
+
                 return response()->redirectTo($route);
             }
             $route = Breadcrumb::index($this->route);
+
             return response()->redirectTo($route);
 
         } catch (LogicException $exception) {
             if (config('app.debug')) {
                 throw $exception;
             }
-            $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));
+            $error = str_replace(' ', '_', mb_strtolower($exception->getMessage()));
+
             return redirect()
                 ->back()
                 ->withInput()
@@ -468,15 +473,17 @@ class CrudController extends Controller
 
     public function crudShow(Model|MiscModel $model)
     {
-        //@phpstan-ignore-next-line
-        if (!$model->entity) {
+        // @phpstan-ignore-next-line
+        if (! $model->entity) {
             abort(404);
         }
+
         return redirect()->route('entities.show', [$this->campaign, $model->entity]);
     }
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
@@ -516,6 +523,7 @@ class CrudController extends Controller
 
     /**
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      * @throws \Psr\Container\ContainerExceptionInterface
@@ -551,7 +559,7 @@ class CrudController extends Controller
                 $model->entity->is_private = $model->is_private;
                 $model->entity->crudSaved();
                 // If the child was changed but nothing changed on the entity, we still want to trigger an update
-                if ($model->wasChanged() && !$model->entity->wasChanged()) {
+                if ($model->wasChanged() && ! $model->entity->wasChanged()) {
                     $model->entity->touch();
                 }
 
@@ -569,7 +577,7 @@ class CrudController extends Controller
             )
                 . '">' . $model->name . '</a>';
             $success = __('general.success.updated', [
-                'name' => $link
+                'name' => $link,
             ]);
 
             if ($model->entity) {
@@ -604,11 +612,14 @@ class CrudController extends Controller
                 $route = route($this->route . '.index', [$this->campaign]);
             } elseif ($request->has('submit-copy')) {
                 $route = route($this->route . '.create', [$this->campaign, 'copy' => $model->id]);
+
                 return response()->redirectTo($route);
             }
+
             return response()->redirectTo($route);
         } catch (LogicException $exception) {
-            $error =  str_replace(' ', '_', mb_strtolower(mb_rtrim($exception->getMessage(), '.')));
+            $error = str_replace(' ', '_', mb_strtolower(mb_rtrim($exception->getMessage(), '.')));
+
             return redirect()->back()->withInput()->with('error', __('crud.errors.' . $error));
         }
     }
@@ -630,7 +641,7 @@ class CrudController extends Controller
             ->with('success_raw', __('general.success.deleted-cancel', [
                 'name' => $model->name,
                 // @phpstan-ignore-next-line
-                'cancel' => '<a href="' . route('recovery', $model->campaign) . '">' . __('crud.cancel') . '</a>'
+                'cancel' => '<a href="' . route('recovery', $model->campaign) . '">' . __('crud.cancel') . '</a>',
             ]));
     }
 
@@ -641,21 +652,24 @@ class CrudController extends Controller
     {
         $data = $request->all();
         foreach ($model->nullableForeignKeys as $field) {
-            if (!request()->has($field) && !isset($data[$field])) {
+            if (! request()->has($field) && ! isset($data[$field])) {
                 $data[$field] = null;
             }
         }
+
         return $data;
     }
 
     /**
      * Set the datagrid sorter for sub views
+     *
      * @return $this
      */
     protected function datagridSorter(string $datagridSorter): self
     {
-        $this->datagridSorter = new $datagridSorter();
+        $this->datagridSorter = new $datagridSorter;
         $this->datagridSorter->request(request()->all());
+
         return $this;
     }
 
@@ -664,12 +678,13 @@ class CrudController extends Controller
      */
     protected function moduleEnabled(): bool
     {
-        return !isset($this->module) || $this->campaign->enabled($this->module);
+        return ! isset($this->module) || $this->campaign->enabled($this->module);
     }
 
     /**
      * Add a button to the top of a datagrid
-     * @param string $route
+     *
+     * @param  string  $route
      * @return $this
      */
     protected function addNavAction($route, string $label, string $class = '', bool $blank = false): self
@@ -680,6 +695,7 @@ class CrudController extends Controller
             'label' => $label,
             'blank' => $blank,
         ];
+
         return $this;
     }
 
@@ -690,11 +706,13 @@ class CrudController extends Controller
 
     /**
      * Set the controller as having a limit check
+     *
      * @return $this
      */
     protected function hasLimitCheck(bool $value = true): self
     {
         $this->hasLimitCheck = $value;
+
         return $this;
     }
 
@@ -705,10 +723,11 @@ class CrudController extends Controller
     {
         // No valid user, or invalid entity type (ie relations)
         if (auth()->guest()) {
-            return new Collection();
-        } elseif (!auth()->user()->can('create', [$entityType, $this->campaign])) {
-            return new Collection();
+            return new Collection;
+        } elseif (! auth()->user()->can('create', [$entityType, $this->campaign])) {
+            return new Collection;
         }
+
         return Entity::select('id', 'name', 'entity_id')
             ->templates($entityType->id)
             ->orderBy('name')
@@ -720,13 +739,13 @@ class CrudController extends Controller
      */
     protected function mode(): string
     {
-        if (!isset($this->module)) {
+        if (! isset($this->module)) {
             return 'table';
         }
         $key = $this->module . '_mode';
         if ($this->request->has('m')) {
             $mode = $this->request->get('m');
-            if (!in_array($mode, ['grid', 'table'])) {
+            if (! in_array($mode, ['grid', 'table'])) {
                 return 'grid';
             }
             $newMode = $mode;
@@ -746,22 +765,25 @@ class CrudController extends Controller
                     auth()->user()->updateQuietly();
                 }
             }
+
             return $newMode;
         }
 
         if (auth()->guest()) {
             return Session::get($key, 'grid');
         }
+
         // Else use the user's preferred stacking for this entity type
         return Arr::get(auth()->user()->settings, $key, 'grid');
     }
+
     /**
      * Determine if the current layout should be nested or not
      */
     protected function isNested(): bool
     {
         // Model isn't nested, not an option to start with
-        if (!isset($this->module) || !method_exists($this->model, 'getParentKeyName')) {
+        if (! isset($this->module) || ! method_exists($this->model, 'getParentKeyName')) {
             return false;
         }
         $key = $this->module . '_nested';
@@ -782,12 +804,14 @@ class CrudController extends Controller
                     auth()->user()->updateQuietly();
                 }
             }
+
             return $new;
         }
 
         if (auth()->guest()) {
             return (bool) Session::get($key, true);
         }
+
         // Else use the user's preferred stacking for this entity type
         return Arr::get(auth()->user()->settings, $key, true);
     }

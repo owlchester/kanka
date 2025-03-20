@@ -8,8 +8,8 @@ trait HasJobLog
 {
     protected function log(mixed $data)
     {
-        if (!config('app.log_jobs')) {
-            return ;
+        if (! config('app.log_jobs')) {
+            return;
         }
 
         JobLog::create([

@@ -4,13 +4,13 @@ namespace App\Services\Caches;
 
 use App\Models\Campaign;
 use App\Models\CampaignRole;
+use App\Models\User;
 use App\Services\Caches\Traits\PrimaryCache;
 use App\Services\Caches\Traits\User\CampaignCache;
 use App\Services\Caches\Traits\User\RoleCache;
 use App\Services\Caches\Traits\User\TutorialCache;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class UserCacheService extends BaseCache
@@ -25,6 +25,7 @@ class UserCacheService extends BaseCache
     public function user(User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
@@ -38,7 +39,8 @@ class UserCacheService extends BaseCache
 
     /**
      * Get the username
-     * @param int $userId the user id
+     *
+     * @param  int  $userId  the user id
      */
     public function name(int $userId): string
     {
@@ -63,6 +65,7 @@ class UserCacheService extends BaseCache
     {
         $key = $this->nameKey($this->user->id);
         $this->forget($key);
+
         return $this;
     }
 
@@ -80,8 +83,6 @@ class UserCacheService extends BaseCache
         return $data;
     }
 
-    /**
-     */
     protected function nameKey(int $userId): string
     {
         return 'user_' . $userId . '_name';
@@ -127,7 +128,7 @@ class UserCacheService extends BaseCache
             'name' => $campaign->name,
             'route' => route('dashboard', $campaign),
             'image' => $campaign->image,
-            'boosted' => $campaign->boosted()
+            'boosted' => $campaign->boosted(),
         ];
     }
 

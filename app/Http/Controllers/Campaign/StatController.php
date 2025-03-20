@@ -11,8 +11,7 @@ class StatController extends Controller
 {
     public function __construct(
         protected StatService $statService
-    ) {
-    }
+    ) {}
 
     public function index(Campaign $campaign)
     {
@@ -23,10 +22,10 @@ class StatController extends Controller
         foreach (EntityType::inCampaign($campaign)->get() as $entityType) {
             $entityTypes[$entityType->id] = $entityType;
         }
+
         return view('campaigns.stats.index')
             ->with('campaign', $campaign)
             ->with('stats', $stats)
-            ->with('entityTypes', $entityTypes)
-        ;
+            ->with('entityTypes', $entityTypes);
     }
 }

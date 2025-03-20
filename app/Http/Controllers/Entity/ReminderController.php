@@ -25,6 +25,7 @@ class ReminderController extends Controller
     use HasSubview;
 
     protected string $view = 'entity_event';
+
     protected string $route = 'entity_event';
 
     protected CalendarService $calendarService;
@@ -33,20 +34,18 @@ class ReminderController extends Controller
 
     public function __construct(CalendarService $calendarService)
     {
-        //parent::__construct();
+        // parent::__construct();
         $this->calendarService = $calendarService;
     }
 
-    /**
-     */
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authEntityView($entity);
-        if (!$campaign->enabled('calendars')) {
+        if (! $campaign->enabled('calendars')) {
             return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#calendars']) . '">' . __('crud.fix-this-issue') . '</a>'
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#calendars']) . '">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }
@@ -70,20 +69,15 @@ class ReminderController extends Controller
         return view('entities.pages.reminders.index')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
-            ->with('rows', $this->rows)
-        ;
+            ->with('rows', $this->rows);
     }
 
-    /**
-     */
     public function show(Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
         return redirect()
             ->route('entities.entity_events.index', [$campaign, $entity]);
     }
 
-    /**
-     */
     public function create(Campaign $campaign, Entity $entity)
     {
         $this->authorize('reminders', $entity);
@@ -106,8 +100,6 @@ class ReminderController extends Controller
         ));
     }
 
-    /**
-     */
     public function store(AddCalendarEvent $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('reminders', $entity);
@@ -132,8 +124,6 @@ class ReminderController extends Controller
             ->with('success', __('calendars.event.create.success'));
     }
 
-    /**
-     */
     public function edit(Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
         $this->authorize('reminders', $entityEvent->entity);
@@ -144,7 +134,7 @@ class ReminderController extends Controller
         $calendar = $entityEvent->calendar;
         $next = request()->get('next', null);
         $from = request()->get('from', null);
-        if (!empty($from)) {
+        if (! empty($from)) {
             if ($from !== 'calendar') {
                 $from = Calendar::find($from);
             }
@@ -163,8 +153,6 @@ class ReminderController extends Controller
         ));
     }
 
-    /**
-     */
     public function update(UpdateCalendarEvent $request, Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
         $this->authorize('reminders', $entityEvent->entity);
@@ -207,8 +195,6 @@ class ReminderController extends Controller
             ->with('success', __('calendars.event.edit.success'));
     }
 
-    /**
-     */
     public function destroy(Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
     {
         $this->authorize('reminders', $entity);
@@ -229,6 +215,7 @@ class ReminderController extends Controller
                 ->route('entities.show', [$campaign, $entityEvent->calendar->entity])
                 ->with('success', $success);
         }
+
         return redirect()
             ->route('entities.entity_events.index', [$campaign, $entity])
             ->with('success', $success);

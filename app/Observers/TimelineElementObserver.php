@@ -8,8 +8,6 @@ class TimelineElementObserver
 {
     use ReorderTrait;
 
-    /**
-     */
     public function saving(TimelineElement $timelineElement)
     {
 
@@ -27,8 +25,6 @@ class TimelineElementObserver
         }
     }
 
-    /**
-     */
     public function saved(TimelineElement $timelineElement)
     {
         $this->reorder($timelineElement);

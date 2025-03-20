@@ -30,7 +30,7 @@ class StoreAttribute extends FormRequest
             'name' => 'required|max:191',
             'value' => 'nullable|string',
             'type' => 'nullable|string',
-            'api_key' => 'nullable|string|max:20'
+            'api_key' => 'nullable|string|max:20',
         ]);
     }
 }

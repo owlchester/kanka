@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class PaymentMethodController extends Controller
 {
     protected CurrencyService $currencyService;
+
     /**
      * PaymentMethodController constructor.
      */
@@ -54,14 +55,12 @@ class PaymentMethodController extends Controller
     {
         $content = auth()->user()->subscribed('kanka') ?
             '_blocked' : '_form';
+
         return view('settings.subscription.currency.edit')
             ->with('content', $content)
-            ->with('currencies', $this->currencyService->availableCurrencies())
-        ;
+            ->with('currencies', $this->currencyService->availableCurrencies());
     }
 
-    /**
-     */
     public function save(UserBillingStore $request)
     {
         $user = $request->user();

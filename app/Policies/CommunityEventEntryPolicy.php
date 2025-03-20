@@ -9,7 +9,6 @@ class CommunityEventEntryPolicy
 {
     /**
      * Determine whether the user can delete the entry.
-     *
      */
     public function delete(User $user, CommunityEventEntry $communityEventEntry): bool
     {

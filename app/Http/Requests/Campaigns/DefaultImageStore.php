@@ -28,6 +28,7 @@ class DefaultImageStore extends FormRequest
             'entity_type' => 'required|integer|exists:entity_types,id',
             'default_entity_image' => 'required|mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
         ];
+
         return $rules;
     }
 }

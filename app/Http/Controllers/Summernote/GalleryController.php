@@ -34,7 +34,7 @@ class GalleryController extends Controller
 
         // Has folder? Go back option
         $folderId = request()->get('folder_id');
-        if (!empty($folderId) && !request()->has('page')) {
+        if (! empty($folderId) && ! request()->has('page')) {
             $image = Image::where('is_folder', true)->where('id', $folderId)->firstOrFail();
 
             $response['data'][] = [
@@ -72,7 +72,7 @@ class GalleryController extends Controller
         if ($offset + $perPage < $total) {
             $params = ['page' => $start + 1];
             $params[] = $campaign;
-            if (!empty($folderId)) {
+            if (! empty($folderId)) {
                 $params['folder_id'] = $folderId;
             }
             $response['links']['next'] = route('campaign.gallery.summernote', $params);
@@ -80,6 +80,7 @@ class GalleryController extends Controller
 
         return response()->json($response);
     }
+
     /**
      * Called when adding an image from the text editor
      */

@@ -21,8 +21,6 @@ class ExpiringCardAlert implements ShouldQueue
     /** @var int user id */
     protected $user;
 
-    /**
-     */
     public function __construct(User $user)
     {
         $this->user = $user->id;

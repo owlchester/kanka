@@ -33,7 +33,7 @@ class StoreBookmark extends FormRequest
             'entity_type_id' => 'required_without_all:entity_id,random_entity_type,dashboard_id|nullable|exists:entity_types,id',
             'random_entity_type' => 'required_without_all:entity_id,entity_type_id,dashboard_id',
             'dashboard_id' => 'required_without_all:entity_id,entity_type_id,random_entity_type',
-            'icon' => ['nullable', new FontAwesomeIcon()],
+            'icon' => ['nullable', new FontAwesomeIcon],
             'tab' => 'nullable',
             'parent' => 'nullable|string|max:25',
             'css' => 'nullable|string|max:45',

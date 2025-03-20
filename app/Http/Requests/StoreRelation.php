@@ -35,7 +35,7 @@ class StoreRelation extends FormRequest
             'visibility_id' => 'nullable|exists:visibilities,id',
             'attitude' => 'min:-100|max:100',
             'colour' => 'nullable|max:7',
-            'is_pinned' => 'boolean'
+            'is_pinned' => 'boolean',
         ]);
     }
 }

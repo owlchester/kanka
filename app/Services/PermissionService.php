@@ -13,7 +13,6 @@ use Illuminate\Support\Arr;
 
 /**
  * Class PermissionService
- * @package App\Services
  */
 class PermissionService
 {
@@ -35,29 +34,30 @@ class PermissionService
 
     /**
      * Set the entity type
+     *
      * @return $this
      */
     public function type(int $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
     public function action(Permission $action): self
     {
         $this->action = $action->value;
+
         return $this;
     }
 
-    /**
-     */
     public function saveEntity(array $request, Entity $entity): void
     {
         // First, let's get all the stuff for this entity
         $permissions = $this->entityPermissions($entity);
 
         // Next, start looping the data
-        if (!empty($request['role'])) {
+        if (! empty($request['role'])) {
             foreach ($request['role'] as $roleId => $data) {
                 foreach ($data as $perm => $action) {
                     if ($action === 'allow') {
@@ -92,14 +92,14 @@ class PermissionService
                         }
                     } else {
                         // Inherit? Remove it if it exists
-                        if (!empty($permissions['role'][$roleId][$perm])) {
+                        if (! empty($permissions['role'][$roleId][$perm])) {
                             $permissions['role'][$roleId][$perm]->delete();
                         }
                     }
                 }
             }
         }
-        if (!empty($request['user'])) {
+        if (! empty($request['user'])) {
             foreach ($request['user'] as $userId => $data) {
                 foreach ($data as $perm => $action) {
                     if ($action === 'allow') {
@@ -134,7 +134,7 @@ class PermissionService
                         }
                     } else {
                         // Inherit? Remove it if it exists
-                        if (!empty($permissions['user'][$userId][$perm])) {
+                        if (! empty($permissions['user'][$userId][$perm])) {
                             $permissions['user'][$userId][$perm]->delete();
                         }
                     }
@@ -163,7 +163,6 @@ class PermissionService
         }
     }
 
-
     /**
      * Get the permissions of an entity
      */
@@ -176,42 +175,38 @@ class PermissionService
         $permissions = ['user' => [], 'role' => []];
         /** @var CampaignPermission $perm */
         foreach (CampaignPermission::where('entity_id', $entity->id)->get() as $perm) {
-            $key = (!empty($perm->user_id) ? 'user' : 'role');
-            $subkey = (!empty($perm->user_id) ? $perm->user_id : $perm->campaign_role_id);
+            $key = (! empty($perm->user_id) ? 'user' : 'role');
+            $subkey = (! empty($perm->user_id) ? $perm->user_id : $perm->campaign_role_id);
             $permissions[$key][$subkey][$perm->action] = $perm;
         }
 
         return $this->cachedPermissions = $permissions;
     }
 
-    /**
-     */
     public function clearEntityPermissions(): self
     {
         unset($this->cachedPermissions);
+
         return $this;
     }
 
-    /**
-     */
     public function inherited(): bool
     {
         if (empty($this->type)) {
             return false;
         }
 
-        if (!isset($this->basePermissions)) {
+        if (! isset($this->basePermissions)) {
             $this->basePermissions = [
                 'roles' => [],
-                'users' => []
+                'users' => [],
             ];
 
             /** @var CampaignRole $campaignRole */
             foreach ($this->campaign->roles()->with(['users', 'permissions'])->get() as $campaignRole) {
                 $campaignPermissions = $campaignRole->permissions
                     ->whereNull('entity_id')
-                    ->whereNull('user_id')
-                ;
+                    ->whereNull('user_id');
                 $users = $campaignRole->users->pluck('user_id');
                 /** @var CampaignPermission $campaignPermission */
                 foreach ($campaignPermissions as $campaignPermission) {
@@ -220,7 +215,7 @@ class PermissionService
                     foreach ($users as $permissionUser) {
                         $this->basePermissions['users'][$permissionUser][$key] = [
                             'role' => $campaignRole->name,
-                            'access' => $campaignPermission->access
+                            'access' => $campaignPermission->access,
                         ];
                     }
                 }
@@ -231,30 +226,27 @@ class PermissionService
         if (isset($this->role)) {
             return Arr::has($this->basePermissions, "roles.{$this->role->id}.{$key}");
         }
+
         return Arr::has($this->basePermissions, "users.{$this->user->id}.{$key}");
     }
 
-    /**
-     */
     public function inheritedRoleName(): string
     {
         $key = $this->type . '_' . $this->action;
+
         return $this->basePermissions['users'][$this->user->id][$key]['role'];
     }
 
-    /**
-     */
     public function inheritedRoleAccess(): bool
     {
         $key = $this->type . '_' . $this->action;
+
         return $this->basePermissions['users'][$this->user->id][$key]['access'];
     }
 
-    /**
-     */
     public function selected(string $type): string
     {
-        if (!isset($this->cachedPermissions)) {
+        if (! isset($this->cachedPermissions)) {
             return 'inherit';
         }
         $user = isset($this->user) ? $this->user->id : $this->role->id;
@@ -262,12 +254,14 @@ class PermissionService
         if ($value === null) {
             return 'inherit';
         }
+
         return $value->access ? 'allow' : 'deny';
     }
 
     public function reset(): self
     {
         unset($this->user, $this->role, $this->action);
+
         return $this;
     }
 }

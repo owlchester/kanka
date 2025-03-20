@@ -42,11 +42,13 @@ class MapChunk extends Command
         $map = Map::find($mapID);
         if (empty($map)) {
             $this->error('Unknown map #' . $mapID);
+
             return 0;
         }
 
         $this->dispatch($mapID);
         $this->info('ChunkMapJob queues for map #' . $mapID);
+
         return 0;
     }
 

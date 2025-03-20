@@ -10,13 +10,14 @@ class Character extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'character_id' => [
                 'key' => 'name',
@@ -35,8 +36,8 @@ class Character extends Layout
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
                 'render' => Standard::LOCATION,
                 'visible' => function () {
-                    return !request()->has('location_id');
-                }
+                    return ! request()->has('location_id');
+                },
             ],
             'families' => [
                 'label' => Module::plural(config('entities.ids.family'), 'entities.families'),
@@ -50,8 +51,8 @@ class Character extends Layout
                 'with' => ['characterRaces', 'race'],
             ],
             'tags' => [
-                'render' => Standard::TAGS
-            ]
+                'render' => Standard::TAGS,
+            ],
         ];
 
         return $columns;

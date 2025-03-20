@@ -8,9 +8,9 @@ use App\Models\MiscModel;
 use App\Models\Post;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Exception;
 
 class PostLoggerService
 {
@@ -43,8 +43,9 @@ class PostLoggerService
             }
 
             // If it's not an array, easy work
-            if (!is_array($value)) {
+            if (! is_array($value)) {
                 $this->changes[$attribute] = $value;
+
                 continue;
             }
 
@@ -53,6 +54,7 @@ class PostLoggerService
                 $this->changes[$k] = $v;
             }
         }
+
         return $this->changes;
     }
 
@@ -65,9 +67,10 @@ class PostLoggerService
         try {
             if ($attribute == 'location_id') {
                 $originalLocation = Location::where('id', $original)->first();
-                if (!empty($originalLocation)) {
+                if (! empty($originalLocation)) {
                     return (string) $originalLocation->name;
                 }
+
                 return '';
             }
 
@@ -78,7 +81,7 @@ class PostLoggerService
             $relationClass = 'App\Models\\' . ucfirst($relationName);
 
             /** @var MiscModel $relationModel */
-            $relationModel = new $relationClass();
+            $relationModel = new $relationClass;
             /** @var MiscModel $result */
             $result = $relationModel->where('id', $original)->firstOrFail();
             if ($result->name) {
@@ -89,6 +92,7 @@ class PostLoggerService
             }
         } catch (Exception $e) {
             Log::error('Issue with Logger', ['e' => $e->getMessage()]);
+
             return '';
         }
     }

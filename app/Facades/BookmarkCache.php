@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class BookmarkCache
- * @package App\Facades
  *
  * @see \App\Services\Caches\BookmarkCacheService
+ *
  * @mixin \App\Services\Caches\BookmarkCacheService
  */
 class BookmarkCache extends Facade

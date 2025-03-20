@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class EntityLogger
- * @package App\Facades
  *
  * @see \App\Services\Entity\LoggerService
+ *
  * @mixin \App\Services\Entity\LoggerService
  */
 class EntityLogger extends Facade

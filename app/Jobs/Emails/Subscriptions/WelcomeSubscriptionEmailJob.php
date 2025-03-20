@@ -35,9 +35,6 @@ class WelcomeSubscriptionEmailJob implements ShouldQueue
         $this->tierId = $tier->id;
     }
 
-    /**
-     *
-     */
     public function handle()
     {
         // User deleted their account already? Sure thing

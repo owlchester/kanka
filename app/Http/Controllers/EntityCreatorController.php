@@ -6,14 +6,14 @@ use App\Facades\Module;
 use App\Http\Requests\StoreCharacter;
 use App\Http\Requests\StorePost;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\EntityType;
+use App\Models\Family;
 use App\Models\Location;
 use App\Models\MiscModel;
-use App\Models\Entity;
-use App\Models\Family;
-use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Race;
+use App\Models\Tag;
 use App\Services\Entity\PopularService;
 use App\Services\Entity\TagService;
 use App\Services\EntityService;
@@ -45,6 +45,7 @@ class EntityCreatorController extends Controller
     {
         $this->campaign = $campaign;
         $orderedEntityTypes = $this->orderedEntityTypes();
+
         return view('entities.creator.selection', [
             'campaign' => $campaign,
             'entityTypes' => $orderedEntityTypes,
@@ -68,7 +69,6 @@ class EntityCreatorController extends Controller
         $this->campaign = $campaign;
         $this->request = $request;
 
-
         $names = explode(PHP_EOL, str_replace("\r", '', $this->request->get('name')));
         $values = $this->request->all();
 
@@ -77,7 +77,7 @@ class EntityCreatorController extends Controller
 
         // Remove target as we need that for something else
 
-        if (!empty($values['entry'])) {
+        if (! empty($values['entry'])) {
             $values['entry'] = nl2br($values['entry']);
         } elseif ($entityType->id == config('entities.ids.note')) {
             $values['entry'] = '';
@@ -89,7 +89,7 @@ class EntityCreatorController extends Controller
             $requestValidator = '\App\Http\Requests\StoreCustomEntity';
         }
         /** @var StoreCharacter $validator */
-        $validator = new $requestValidator();
+        $validator = new $requestValidator;
 
         // Now loop on each name and create entities
         $createdEntities = $links = [];
@@ -147,6 +147,7 @@ class EntityCreatorController extends Controller
         // Have a target? Return json for the js to handle it instead
         if ($this->request->has('_target')) {
             $first = $createdEntities[0];
+
             return response()->json([
                 '_target' => $this->request->get('_target'),
                 '_id' => $first->id,
@@ -159,6 +160,7 @@ class EntityCreatorController extends Controller
         if ($this->request->get('action') === 'edit' && isset($new)) {
             $entity = $entityType->isSpecial() ? $createdEntities[0] : $createdEntities[0]->entity;
             $editUrl = route('entities.edit', [$campaign, $entity]);
+
             return response()->json([
                 'redirect' => $editUrl,
             ]);
@@ -174,7 +176,7 @@ class EntityCreatorController extends Controller
 
         // Continue creating more of the same kind
         if ($this->request->get('action') === 'more') {
-            return $this->renderForm(new Request(), $campaign, $entityType, $success);
+            return $this->renderForm(new Request, $campaign, $entityType, $success);
         }
         // Content for the selector
         $orderedEntityTypes = $this->orderedEntityTypes();
@@ -204,12 +206,12 @@ class EntityCreatorController extends Controller
 
         // Remove target as we need that for something else
 
-        if (!empty($values['entry'])) {
+        if (! empty($values['entry'])) {
             $values['entry'] = nl2br($values['entry']);
         }
 
         // Prepare the validator
-        $validator = new StorePost();
+        $validator = new StorePost;
 
         // Now loop on each name and create entities
         $createdEntities = $links = [];
@@ -224,7 +226,7 @@ class EntityCreatorController extends Controller
             }
 
             $values['name'] = $name;
-            //If position = 0 the post's position is last, else the post's position is first.
+            // If position = 0 the post's position is last, else the post's position is first.
             $rules = $validator->rules();
             $rules['entity_id'] = 'required|integer|exists:entities,id';
             $this->validateEntity($values, $rules);
@@ -249,6 +251,7 @@ class EntityCreatorController extends Controller
         // Have a target? Return json for the js to handle it instead
         if ($this->request->has('_target')) {
             $first = $createdEntities[0];
+
             return response()->json([
                 '_target' => $this->request->get('_target'),
                 '_id' => $first->id,
@@ -275,7 +278,7 @@ class EntityCreatorController extends Controller
 
         // Continue creating more of the same kind
         if ($this->request->get('action') === 'more') {
-            return $this->renderForm(new Request(), $campaign, null, $success);
+            return $this->renderForm(new Request, $campaign, null, $success);
         }
         // Content for the selector
         $orderedEntityTypes = $this->orderedEntityTypes();
@@ -284,7 +287,7 @@ class EntityCreatorController extends Controller
             'campaign' => $this->campaign,
             'entityTypes' => $orderedEntityTypes,
             'new' => $success,
-            'popular' => new Collection(), //$this->popularService->get(),
+            'popular' => new Collection, // $this->popularService->get(),
         ]);
     }
 
@@ -306,7 +309,7 @@ class EntityCreatorController extends Controller
         $this->campaign = $campaign;
         // Make sure the user is allowed to create this kind of entity
         $model = null;
-        if (!isset($entityType)) {
+        if (! isset($entityType)) {
             $this->authorize('recover', $campaign);
         } else {
             $this->authorize('create', [$entityType, $campaign]);
@@ -334,7 +337,7 @@ class EntityCreatorController extends Controller
             if ($entityType->isSpecial()) {
                 $singular = $entityType->name();
             }
-            if (!empty($singular)) {
+            if (! empty($singular)) {
                 $newLabel = __('crud.titles.new', ['module' => $singular]);
             }
         } else {
@@ -381,7 +384,7 @@ class EntityCreatorController extends Controller
 
     protected function dynamicLocation(): self
     {
-        if (!request()->has('location_id')) {
+        if (! request()->has('location_id')) {
             return $this;
         }
         $canCreate = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $this->campaign]);
@@ -389,7 +392,7 @@ class EntityCreatorController extends Controller
         $location = $this->request->get('location_id');
         if (is_numeric($location)) {
             $location = (int) $location;
-        } elseif (!is_numeric($location) && !empty(mb_trim($location)) && $canCreate) {
+        } elseif (! is_numeric($location) && ! empty(mb_trim($location)) && $canCreate) {
             $model = Location::create(['name' => $location, 'campaign_id' => $this->campaign->id]);
             $location = (int) $model->id;
         } else {
@@ -397,12 +400,13 @@ class EntityCreatorController extends Controller
         }
 
         $this->inputFields['location_id'] = $location;
+
         return $this;
     }
 
     protected function dynamicTags(): self
     {
-        if (!$this->request->has('tags') && !$this->request->has('save-tags')) {
+        if (! $this->request->has('tags') && ! $this->request->has('save-tags')) {
             return $this;
         }
         $canCreateTags = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.tag'))->first(), $this->campaign]);
@@ -422,17 +426,18 @@ class EntityCreatorController extends Controller
             if (empty($tag) && $tagService->isAllowed()) {
                 $tag = $tagService->create($id);
                 $tags[$number] = (int) $tag->id;
-            } elseif (empty($tag) && !$canCreateTags) {
+            } elseif (empty($tag) && ! $canCreateTags) {
                 unset($tags[$number]);
             }
         }
         $this->inputFields['tags'] = $tags;
+
         return $this;
     }
 
     protected function dynamicLocations(): self
     {
-        if (!$this->request->has('locations') && !$this->request->has('save_locations')) {
+        if (! $this->request->has('locations') && ! $this->request->has('save_locations')) {
             return $this;
         }
         $canCreate = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $this->campaign]);
@@ -441,7 +446,7 @@ class EntityCreatorController extends Controller
         $locations = $this->request->get('locations', []);
         foreach ($locations as $number => $id) {
             // Create the location if the user has permission to do so
-            if (!is_numeric($id) && !empty(mb_trim($id))) {
+            if (! is_numeric($id) && ! empty(mb_trim($id))) {
                 if ($canCreate) {
                     $model = Location::create(['name' => $id, 'campaign_id' => $this->campaign->id]);
                     $location = (int) $model->id;
@@ -452,12 +457,13 @@ class EntityCreatorController extends Controller
             }
         }
         $this->inputFields['locations'] = $locations;
+
         return $this;
     }
 
     protected function dynamicRaces(): self
     {
-        if (!$this->request->has('races') && !$this->request->has('save_races')) {
+        if (! $this->request->has('races') && ! $this->request->has('save_races')) {
             return $this;
         }
         $canCreate = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.race'))->first(), $this->campaign]);
@@ -466,7 +472,7 @@ class EntityCreatorController extends Controller
         $races = $this->request->get('races', []);
         foreach ($races as $number => $id) {
             // Create the race if the user has permission to do so
-            if (!is_numeric($id) && !empty(mb_trim($id))) {
+            if (! is_numeric($id) && ! empty(mb_trim($id))) {
                 if ($canCreate) {
                     $model = Race::create(['name' => $id, 'campaign_id' => $this->campaign->id]);
                     $race = (string) $model->id;
@@ -477,12 +483,13 @@ class EntityCreatorController extends Controller
             }
         }
         $this->inputFields['races'] = $races;
+
         return $this;
     }
 
     protected function dynamicFamilies(): self
     {
-        if (!$this->request->has('families') && !$this->request->has('save_families')) {
+        if (! $this->request->has('families') && ! $this->request->has('save_families')) {
             return $this;
         }
         $canCreate = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.family'))->first(), $this->campaign]);
@@ -491,7 +498,7 @@ class EntityCreatorController extends Controller
         $families = $this->request->get('families', []);
         foreach ($families as $number => $id) {
             // Create the family if the user has permission to do so
-            if (!is_numeric($id) && !empty(mb_trim($id))) {
+            if (! is_numeric($id) && ! empty(mb_trim($id))) {
                 if ($canCreate) {
                     $model = Family::create(['name' => $id, 'campaign_id' => $this->campaign->id]);
                     $family = (string) $model->id;
@@ -502,18 +509,19 @@ class EntityCreatorController extends Controller
             }
         }
         $this->inputFields['families'] = $families;
+
         return $this;
     }
 
     protected function dynamicParent(EntityType $entityType): self
     {
-        if (!$this->request->has($entityType->code . '_id')) {
+        if (! $this->request->has($entityType->code . '_id')) {
             return $this;
         }
 
         $value = $this->request->get($entityType->code . '_id', null);
-        //Handle parent.
-        if (!is_numeric($value)) {
+        // Handle parent.
+        if (! is_numeric($value)) {
             /** @var MiscModel $new */
             $new = $entityType->getClass();
             $new->name = $value;

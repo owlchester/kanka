@@ -2,22 +2,22 @@
 
 namespace App\Jobs;
 
-use App\Http\Resources\EntityResource;
-use App\Models\Entity;
-use App\Models\Webhook;
-use App\Models\Campaign;
-use App\Models\User;
+use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
+use App\Http\Resources\EntityResource;
+use App\Models\Campaign;
+use App\Models\Entity;
+use App\Models\User;
+use App\Models\Webhook;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use App\Facades\Avatar;
-use Exception;
 
 class EntityWebhookJob implements ShouldQueue
 {
@@ -27,9 +27,13 @@ class EntityWebhookJob implements ShouldQueue
     use SerializesModels;
 
     public Campaign $campaign;
+
     public Entity $entity;
+
     public int $action;
+
     public string $username;
+
     public int $tries = 1;
 
     /**
@@ -55,7 +59,7 @@ class EntityWebhookJob implements ShouldQueue
     public function handle()
     {
         Log::info('EntityWebhookJob for entity #' . $this->entity->id);
-        if (!$this->campaign->premium()) {
+        if (! $this->campaign->premium()) {
             return;
         }
 
@@ -91,12 +95,12 @@ class EntityWebhookJob implements ShouldQueue
                     $data = json_encode($data);
                 }
                 $embeds = [
-                    'title'         => $this->entity->name,
-                    'description'   => strval($data),
-                    'color'         => config('discord.color'),
-                    'url'           => route('entities.show', [$this->campaign->id, $this->entity]),
-                    'author'        => [
-                        'name'  => 'Kanka Webhooks',
+                    'title' => $this->entity->name,
+                    'description' => strval($data),
+                    'color' => config('discord.color'),
+                    'url' => route('entities.show', [$this->campaign->id, $this->entity]),
+                    'author' => [
+                        'name' => 'Kanka Webhooks',
                     ],
                 ];
 
@@ -128,7 +132,7 @@ class EntityWebhookJob implements ShouldQueue
 
     protected function isInvalid(Webhook $webhook, array $entityTags): bool
     {
-        //Check if the entity is private or the webhook supports private entities.
+        // Check if the entity is private or the webhook supports private entities.
         if ($this->entity->is_private && $webhook->skipPrivate()) {
             return true;
         }
@@ -138,9 +142,7 @@ class EntityWebhookJob implements ShouldQueue
             return false;
         }
         $tags = $webhook->tags()->pluck('tags.id')->all();
-        return (bool) (empty(array_intersect($entityTags, $tags)))
 
-
-        ;
+        return (bool) (empty(array_intersect($entityTags, $tags)));
     }
 }

@@ -16,6 +16,7 @@ class Header
     protected $data;
 
     protected $orderField;
+
     protected $orderDir;
 
     public function __construct(array|string $data)
@@ -36,10 +37,10 @@ class Header
                 return __('entities.tags');
             }
 
-            return !isset($this->data['label']) ? '<i>no label</i>' : '';
+            return ! isset($this->data['label']) ? '<i>no label</i>' : '';
         }
 
-        if (!$this->sortable()) {
+        if (! $this->sortable()) {
             return __($this->data['label']);
         }
 
@@ -54,11 +55,11 @@ class Header
                 ->render();
         } catch (Exception $e) {
             throw $e;
-            //return $e->getMessage();
+            // return $e->getMessage();
         }
     }
 
-    public function css(): string|null
+    public function css(): ?string
     {
         $default = null;
         if (Arr::get($this->data, 'render') === Standard::IMAGE) {
@@ -73,19 +74,15 @@ class Header
 
     public function bulk(): bool
     {
-        return !is_array($this->data) && $this->data === 'bulk';
+        return ! is_array($this->data) && $this->data === 'bulk';
     }
 
-    /**
-     */
     public function sortable(): bool
     {
-        return !empty($this->data['key']) && auth()->check() && !empty(request()->route());
+        return ! empty($this->data['key']) && auth()->check() && ! empty(request()->route());
     }
 
-    /**
-     */
-    public function icon(): null|string
+    public function icon(): ?string
     {
         if ($this->orderField != $this->data['key']) {
             return '';
@@ -94,18 +91,17 @@ class Header
         if ($this->orderDir == 'asc') {
             return 'fa-solid fa-arrow-up-a-z';
         }
+
         return 'fa-solid fa-arrow-down-z-a';
     }
 
-    /**
-     */
     public function route(): string
     {
         $route = Datagrid::routeName();
         $options = [
             'campaign' => $this->campaign,
             'k' => $this->data['key'],
-            'o' => 'asc'
+            'o' => 'asc',
         ];
         if ($this->orderField == $this->data['key']) {
             // Already desc? we want to reset
@@ -124,12 +120,10 @@ class Header
             return route($route, $options);
         } catch (Exception $e) {
             throw $e;
-            //return 'invalid';
+            // return 'invalid';
         }
     }
 
-    /**
-     */
     public function label(): string
     {
         return $this->data['label'];

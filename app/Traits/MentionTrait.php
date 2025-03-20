@@ -34,6 +34,7 @@ trait MentionTrait
                     $subSegments = explode(':', $option);
                     if (count($subSegments) === 1) {
                         $data['text'] = Arr::first($subSegments);
+
                         continue;
                     }
 
@@ -62,10 +63,11 @@ trait MentionTrait
 
         foreach ($segments[0] as $key => $type) {
             $id = mb_substr($type, 17, -1);
-            if (!in_array($id, $images)) {
+            if (! in_array($id, $images)) {
                 $images[$key] = $id;
             }
         }
+
         return $images;
     }
 
@@ -97,6 +99,7 @@ trait MentionTrait
             if (count($subSegments) === 1) {
                 $data['text'] = Arr::first($subSegments);
                 $data['custom'] = true;
+
                 continue;
             }
 
@@ -109,7 +112,7 @@ trait MentionTrait
                 $data[$type] = $value;
                 $data['custom'] = true;
             } elseif ($type == 'alias') {
-                $data['alias'] = (int)$value;
+                $data['alias'] = (int) $value;
                 $data['custom'] = true;
             }
         }

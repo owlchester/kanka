@@ -14,8 +14,7 @@ class Tooltip extends Component
     public function __construct(
         public string $title,
         public bool $html = false
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

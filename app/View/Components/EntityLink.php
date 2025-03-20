@@ -14,14 +14,12 @@ class EntityLink extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public Entity|null $entity,
+        public ?Entity $entity,
         public Campaign $campaign,
         public ?string $name = null,
         public ?string $post = null,
         public bool $bottom = false,
-    ) {
-
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
@@ -31,22 +29,25 @@ class EntityLink extends Component
         if (empty($this->entity)) {
             return '';
         }
+
         return view('components.entity-link');
     }
 
     public function name(): string
     {
-        if (!empty($this->name)) {
+        if (! empty($this->name)) {
             return $this->name;
         }
+
         return $this->entity->name;
     }
 
     public function post(): string
     {
-        if (!empty($this->post)) {
+        if (! empty($this->post)) {
             return '#post-' . $this->post;
         }
+
         return '';
     }
 }

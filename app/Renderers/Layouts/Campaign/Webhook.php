@@ -9,6 +9,7 @@ class Webhook extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -27,7 +28,7 @@ class Webhook extends Layout
                 'label' => 'campaigns/webhooks.fields.type',
                 'render' => function ($model) {
                     return $model->typeKey();
-                }
+                },
             ],
             'message' => [
                 'label' => 'campaigns/webhooks.fields.message',
@@ -54,6 +55,7 @@ class Webhook extends Layout
                     if ($model->status) {
                         return '<i class="fa-solid fa-check" aria-hidden="true"></i>';
                     }
+
                     return '';
                 },
             ],

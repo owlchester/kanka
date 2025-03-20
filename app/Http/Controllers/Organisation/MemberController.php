@@ -21,8 +21,6 @@ class MemberController extends Controller
     use HasDatagrid;
     use HasSubview;
 
-    /**
-     */
     protected string $view = 'organisations.members';
 
     public function index(Campaign $campaign, Organisation $organisation)
@@ -62,6 +60,7 @@ class MemberController extends Controller
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();
         }
+
         return $this
             ->campaign($campaign)
             ->subview('organisations.members', $organisation);
@@ -76,7 +75,7 @@ class MemberController extends Controller
 
         return view($this->view . '.create', [
             'model' => $organisation,
-            'campaign' => $campaign
+            'campaign' => $campaign,
         ]);
     }
 
@@ -94,6 +93,7 @@ class MemberController extends Controller
             $relation = OrganisationMember::create(['character_id' => $character] + $request->except('characters'));
             $count++;
         }
+
         return redirect()->route('entities.show', [$campaign, $organisation->entity])
             ->with('success', trans_choice($this->view . '.create.success_multiple', $count, ['name' => $organisation->name, 'count' => $count]));
     }
@@ -108,7 +108,7 @@ class MemberController extends Controller
         return view($this->view . '.show', [
             'campaign' => $campaign,
             'model' => $organisation,
-            'member' => $organisationMember
+            'member' => $organisationMember,
         ]);
     }
 
@@ -122,7 +122,7 @@ class MemberController extends Controller
         return view($this->view . '.edit', [
             'model' => $organisation,
             'member' => $organisationMember,
-            'campaign' => $campaign
+            'campaign' => $campaign,
         ]);
     }
 
@@ -141,6 +141,7 @@ class MemberController extends Controller
         }
 
         $organisationMember->update($request->all());
+
         return redirect()->route('entities.show', [$campaign, $organisation->entity])
             ->with('success', trans($this->view . '.edit.success'));
     }
@@ -153,6 +154,7 @@ class MemberController extends Controller
         $this->authorize('member', $organisation);
 
         $organisationMember->delete();
+
         return redirect()->route('entities.show', [$campaign, $organisationMember->organisation->entity])
             ->with('success', trans($this->view . '.destroy.success'));
     }

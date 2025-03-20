@@ -16,23 +16,24 @@ class AttributeSearchController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index(Request $request, Campaign $campaign, Entity $entity)
     {
         $attributes = $entity->attributes()
             ->where('name', 'LIKE', '%' . $request->get('q') . '%')
-            //->whereNotIn('type', ['section'])
+            // ->whereNotIn('type', ['section'])
             ->get();
         $data = [];
         foreach ($attributes as $attribute) {
             $data[] = [
                 'id' => $attribute->id,
                 'name' => $attribute->name,
-                'value' => $attribute->value
+                'value' => $attribute->value,
             ];
         }
+
         return response()->json(
             $data
         );

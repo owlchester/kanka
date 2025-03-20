@@ -13,10 +13,7 @@ class ImagePolicy
     /**
      * Create a new policy instance.
      */
-    public function __construct()
-    {
-
-    }
+    public function __construct() {}
 
     public function browse(?User $user, Campaign $campaign): bool
     {
@@ -45,6 +42,7 @@ class ImagePolicy
                 ($this->checkPermission(CampaignPermission::ACTION_GALLERY_UPLOAD, $user, $campaign) && $image->created_by === $user->id)
         );
     }
+
     public function edit(?User $user, Image $image, Campaign $campaign): bool
     {
         return $user && (

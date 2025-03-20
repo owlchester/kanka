@@ -4,10 +4,10 @@ namespace App\Services\Entity;
 
 use App\Facades\CharacterCache;
 use App\Facades\EntityCache;
+use App\Facades\Images;
 use App\Models\Entity;
 use App\Models\Location;
 use App\Models\MiscModel;
-use App\Facades\Images;
 use Exception;
 
 class PurgeService
@@ -21,8 +21,6 @@ class PurgeService
     /** @var int Number of total deleted entities */
     protected int $count = 0;
 
-    /**
-     */
     public function count(): int
     {
         return $this->count;
@@ -93,13 +91,12 @@ class PurgeService
             $child->refresh();
         }
 
-
         $this->childIds[$entity->entityType->code][] = $child->id;
 
         // Cleanup any images attached to the child.
         Images::cleanup($child);
 
-        if ($child instanceof Location && !empty($child->map)) {
+        if ($child instanceof Location && ! empty($child->map)) {
             Images::cleanup($child, 'map');
         }
 

@@ -12,9 +12,9 @@ use App\Models\Post;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Exception;
 
 class TransformService
 {
@@ -23,13 +23,16 @@ class TransformService
     use EntityTypeAware;
 
     protected MiscModel $child;
+
     protected MiscModel|Entity $new;
+
     protected array $fillable;
 
     public function child(MiscModel $child): self
     {
         $this->child = $child;
         $this->entity = $child->entity;
+
         return $this;
     }
 
@@ -41,13 +44,14 @@ class TransformService
             $this->entity->type_id = $this->entityType->id;
             $this->entity->parent_id = null;
             $this->entity->save();
+
             return $this->entity;
         }
 
         // Custom to child
-        if ($this->entity->entityType->isSpecial() && !$this->entityType->isSpecial()) {
+        if ($this->entity->entityType->isSpecial() && ! $this->entityType->isSpecial()) {
             return $this->specialToMisc();
-        } elseif (!$this->entity->entityType->isSpecial() && $this->entityType->isSpecial()) {
+        } elseif (! $this->entity->entityType->isSpecial() && $this->entityType->isSpecial()) {
             return $this->miscToSpecial();
         }
 
@@ -60,8 +64,7 @@ class TransformService
         $this
             ->attributes()
             ->location()
-            ->removePosts()
-        ;
+            ->removePosts();
 
         // Finally, we can save. Should be all good.
         $this->new->campaign_id = $this->child->campaign_id;
@@ -80,11 +83,11 @@ class TransformService
     protected function location(): self
     {
         // Special import for location location_id
-        if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && !empty($this->child->location_id)) {
+        if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && ! empty($this->child->location_id)) {
             // @phpstan-ignore-next-line
             $this->new->location_id = $this->child->{$this->child->getParentKeyName()};
         }
-        if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && !empty($this->child->location_id)) {
+        if (in_array('location_id', $this->fillable) && empty($this->new->location_id) && ! empty($this->child->location_id)) {
             // @phpstan-ignore-next-line
             $this->new->setParentId($this->child->location_id);
         }
@@ -94,7 +97,7 @@ class TransformService
         $organisationID = config('entities.ids.organisation');
 
         // @phpstan-ignore-next-line
-        if (in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) && !in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID]) && !empty($this->child->locations()->first())) {
+        if (in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) && ! in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID]) && ! empty($this->child->locations()->first())) {
             if (in_array('location_id', $this->fillable)) {
                 // @phpstan-ignore-next-line
                 $this->new->location_id = $this->child->locations()->first()->id;
@@ -116,26 +119,28 @@ class TransformService
         $creatureID = config('entities.ids.creature');
         $organisationID = config('entities.ids.organisation');
 
-        //If the entity is switched from one location to multiple locations
-        if (!in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) && in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID])) {
-            if (in_array('location_id', $this->child->getFillable()) && !empty($this->child->location_id)) {
+        // If the entity is switched from one location to multiple locations
+        if (! in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) && in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID])) {
+            if (in_array('location_id', $this->child->getFillable()) && ! empty($this->child->location_id)) {
                 // @phpstan-ignore-next-line
                 $this->new->locations()->attach($this->child->location_id);
-            } elseif (in_array('location_id', $this->child->getFillable()) && !empty($this->child->location_id)) {
+            } elseif (in_array('location_id', $this->child->getFillable()) && ! empty($this->child->location_id)) {
                 // @phpstan-ignore-next-line
                 $this->new->locations()->attach($this->child->location_id);
             }
+
             return $this;
         }
 
         if (
-            !in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) ||
-            !in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID])
+            ! in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) ||
+            ! in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID])
         ) {
             if (property_exists($this->child, 'locations')) {
                 // @phpstan-ignore-next-line
                 $this->child->locations()->sync([]);
             }
+
             return $this;
         }
 
@@ -146,6 +151,7 @@ class TransformService
         }
         // @phpstan-ignore-next-line
         $this->child->locations()->sync([]);
+
         return $this;
     }
 
@@ -170,21 +176,24 @@ class TransformService
                 $this->new->{$attribute} = $value;
             }
         }
+
         return $this;
     }
 
     protected function removePosts(): self
     {
-        //Delete non compatible posts.
+        // Delete non compatible posts.
         Post::where('entity_id', $this->entity->id)
             ->leftJoin('post_layouts', 'posts.layout_id', '=', 'post_layouts.id')
             ->whereNotNull('post_layouts.entity_type_id')
             ->delete();
+
         return $this;
     }
 
     /**
      * If switching from an organisation to a family, we need to move the members?
+     *
      * @return $this
      */
     protected function members(): self
@@ -205,7 +214,7 @@ class TransformService
         ) {
             // @phpstan-ignore-next-line
             foreach ($this->child->members as $character) {
-                $orgMember = new OrganisationMember();
+                $orgMember = new OrganisationMember;
                 $orgMember->character_id = $character->id;
                 $orgMember->organisation_id = $this->new->id;
                 $orgMember->role = '';
@@ -219,17 +228,19 @@ class TransformService
                 foreach ($this->child->members as $member) {
                     // We make sure this isn't a character, because a family has members which are
                     // directly characters while orgs have members which are an in between entity.
-                    if (!$member instanceof Character) {
+                    if (! $member instanceof Character) {
                         $member->delete();
                     }
                 }
             }
         }
+
         return $this;
     }
 
     /**
      * Remove the old participants from a convo
+     *
      * @return $this
      */
     protected function participants(): self
@@ -241,6 +252,7 @@ class TransformService
         foreach ($this->child->conversationParticipants as $conPar) {
             $conPar->delete();
         }
+
         return $this;
     }
 
@@ -296,7 +308,6 @@ class TransformService
         $this->new->save();
 
         $this->finish();
-
 
         return $this->entity;
     }

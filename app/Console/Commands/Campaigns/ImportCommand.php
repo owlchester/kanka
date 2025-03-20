@@ -34,8 +34,9 @@ class ImportCommand extends Command
 
         $job = CampaignImport::where('campaign_id', $campaign->id)->orderBy('created_at', 'DESC')->
         where('status_id', '<>', 1)->first();
-        if (!$job) {
+        if (! $job) {
             $this->info('No job for campaign ' . $campaign->id);
+
             return;
         }
 

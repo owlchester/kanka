@@ -52,11 +52,10 @@ class FollowerCountCommand extends Command
         });
 
         $this->info('Updated ' . $this->count . ' campaign followers.');
+
         return 0;
     }
 
-    /**
-     */
     protected function processCampaign(Campaign $campaign): void
     {
         $campaign->follower = $campaign->followers->count();

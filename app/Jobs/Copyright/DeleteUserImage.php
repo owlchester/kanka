@@ -36,7 +36,7 @@ class DeleteUserImage implements ShouldQueue
     {
         $user = User::where('id', $this->userId)->first();
 
-        if (empty($user) || !(Storage::exists($user->avatar))) {
+        if (empty($user) || ! (Storage::exists($user->avatar))) {
             // Image was deleted
             return;
         }

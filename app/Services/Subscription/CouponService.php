@@ -13,6 +13,7 @@ class CouponService
     use UserAware;
 
     protected string $code;
+
     protected \App\Models\Tier $tier;
 
     /**
@@ -21,6 +22,7 @@ class CouponService
     public function code(string $code): self
     {
         $this->code = strip_tags(mb_trim($code, ' '));
+
         return $this;
     }
 
@@ -30,11 +32,10 @@ class CouponService
     public function tier(\App\Models\Tier $tier): self
     {
         $this->tier = $tier;
+
         return $this;
     }
 
-    /**
-     */
     public function check(): array
     {
         if (empty($this->code)) {
@@ -56,7 +57,7 @@ class CouponService
 
             /** @var PromotionCode $promo */
             $promo = $promos->first();
-            if (!$promo->active) {
+            if (! $promo->active) {
                 return $this->error(__('subscriptions/promos.errors.inactive'));
             }
 
@@ -78,7 +79,7 @@ class CouponService
                 'promotion' => $promo->id,
                 'coupon' => $promo->coupon->id,
                 'discount' => __('settings.subscription.coupon.percent_off', ['percent' => $promo->coupon->percent_off]),
-                'price' => $this->price($promo)
+                'price' => $this->price($promo),
             ];
         } catch (Exception $e) {
             return $this->error($e->getMessage());
@@ -91,16 +92,15 @@ class CouponService
 
         $discount = round($price * ($promo->coupon->percent_off / 100), 2);
         $newPrice = $price - $discount;
+
         return '<del>' . number_format($price, 2) . '</del> ' . number_format($newPrice, 2);
     }
 
-    /**
-     */
     protected function error(mixed $error): array
     {
         return [
             'valid' => false,
-            'error' => $error
+            'error' => $error,
         ];
     }
 }

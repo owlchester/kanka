@@ -20,23 +20,27 @@ class FamilyTreeService
     protected array $entityIds = [];
 
     protected array $entities = [];
+
     protected array $missingIds = [];
 
     protected array $config = [];
 
     protected array $configEntityIds = [];
+
     protected array $characterSuggestions = [];
 
     public function family(Family $family): self
     {
         $this->family = $family;
+
         return $this;
     }
 
-    public function api()//: array
+    public function api()// : array
     {
         $this->loadSetup();
-        //return $this->fake();
+
+        // return $this->fake();
         return $this->tree();
     }
 
@@ -60,16 +64,17 @@ class FamilyTreeService
 
     /**
      * Get an entity's representation for the rendering engine
+     *
      * @return array|string[]
      */
     public function entity(Entity $entity): array
     {
-        if (!$entity->isCharacter()) {
+        if (! $entity->isCharacter()) {
             return ['error' => 'invalid-character'];
         }
+
         return $this->formatEntity($entity);
     }
-
 
     protected function loadSetup(): void
     {
@@ -81,7 +86,7 @@ class FamilyTreeService
             return;
         }
         $this->prepareEntities();
-        //foreach ()
+        // foreach ()
     }
 
     protected function loadFamily(): void
@@ -95,8 +100,8 @@ class FamilyTreeService
     protected function loadFamilyTree(): void
     {
         $familyTree = $this->family->familyTree;
-        if (!$familyTree) {
-            $familyTree = new FamilyTree();
+        if (! $familyTree) {
+            $familyTree = new FamilyTree;
             $familyTree->family_id = $this->family->id;
             $familyTree->save();
         }
@@ -125,7 +130,7 @@ class FamilyTreeService
         }
 
         $this->entityIds = array_unique(array_values($this->configEntityIds));
-        //dump($this->entityIds);
+        // dump($this->entityIds);
 
         // Prepare entities
         $entities = Entity::inTypes([config('entities.ids.character')])
@@ -142,18 +147,18 @@ class FamilyTreeService
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $this->formatEntity($entity);
         }
-        //dump($this->entities);
-        if (!empty($this->entities)) {
+        // dump($this->entities);
+        if (! empty($this->entities)) {
             $this->missingIds = array_diff($this->entityIds, array_keys($this->entities));
             $this->cleanupMissingEntities();
             $this->visibilityCheck();
         } else {
             $this->entities = [];
             $this->familyTree->config = [];
-            //$this->generatePlaceholder();
+            // $this->generatePlaceholder();
         }
-        //dd($this->characterSuggestions);
-        //dump($this->missingIds);
+        // dd($this->characterSuggestions);
+        // dump($this->missingIds);
     }
 
     /**
@@ -172,9 +177,9 @@ class FamilyTreeService
         $birth = null;
         $death = null;
         foreach ($elapsed as $event) {
-            if ($event->isBirth() && null === $birth) {
+            if ($event->isBirth() && $birth === null) {
                 $birth = $event->year;
-            } elseif ($event->isDeath() && null === $death) {
+            } elseif ($event->isDeath() && $death === null) {
                 $death = $event->year;
             }
         }
@@ -184,7 +189,7 @@ class FamilyTreeService
             'name' => $entity->name,
             'url' => $entity->url(),
             'thumb' => Avatar::entity($entity)->size(40)->fallback()->thumbnail(),
-            'is_dead' => (bool)$entity->character->is_dead,
+            'is_dead' => (bool) $entity->character->is_dead,
             'death' => $death,
             'birth' => $birth,
             'tags' => $tags,
@@ -204,15 +209,16 @@ class FamilyTreeService
     {
         if (isset($node['relations'])) {
             foreach ($node['relations'] as $k => $rel) {
-                if (!isset($rel['children'])) {
+                if (! isset($rel['children'])) {
                     $relations[] = $rel;
+
                     continue;
                 }
 
                 $children = [];
                 foreach ($rel['children'] as $ck => $child) {
                     $child = $this->cleanInvisible($child, $ck);
-                    if (!$child) {
+                    if (! $child) {
                         continue;
                     }
                     if ($this->isVisible($child)) {
@@ -220,7 +226,7 @@ class FamilyTreeService
                     }
                 }
                 unset($rel['children']);
-                if (!empty($children)) {
+                if (! empty($children)) {
                     $rel['children'] = $children;
                 }
                 if ($this->isVisible($rel)) {
@@ -228,7 +234,7 @@ class FamilyTreeService
                 }
             }
             unset($node['relations']);
-            if (!empty($relations)) {
+            if (! empty($relations)) {
                 $node['relations'] = $relations;
             }
         }
@@ -238,8 +244,8 @@ class FamilyTreeService
 
     protected function isVisible($relation): bool
     {
-        return (bool)(
-            !isset($relation['visibility']) ||
+        return (bool) (
+            ! isset($relation['visibility']) ||
             $relation['visibility'] == \App\Enums\Visibility::All->value ||
             ($relation['visibility'] == \App\Enums\Visibility::Admin->value && auth()->user()->isAdmin()) ||
             ($relation['visibility'] == \App\Enums\Visibility::Member->value && $this->campaign->userIsMember())
@@ -250,6 +256,7 @@ class FamilyTreeService
     {
         if (empty($this->missingIds)) {
             $this->config = $this->familyTree->config;
+
             return;
         }
 
@@ -268,7 +275,7 @@ class FamilyTreeService
         if (in_array($node['entity_id'], $this->missingIds) && $node['entity_id'] != null) {
             return null;
         }
-        if (!isset($node['relations'])) {
+        if (! isset($node['relations'])) {
             return null;
         }
         $relations = [];
@@ -276,26 +283,26 @@ class FamilyTreeService
             if (in_array($rel['entity_id'], $this->missingIds) && $rel['entity_id'] != null) {
                 continue;
             }
-            if (!isset($rel['children'])) {
+            if (! isset($rel['children'])) {
                 continue;
             }
             $children = [];
             foreach ($rel['children'] as $ck => $child) {
                 $child = $this->cleanupNode($child, $ck);
-                if (!$child) {
+                if (! $child) {
                     continue;
                 }
                 $children[] = $child;
             }
             unset($rel['children']);
-            if (!empty($children)) {
+            if (! empty($children)) {
                 $rel['children'] = $children;
             }
 
             $relations[] = $rel;
         }
         unset($node['relations']);
-        if (!empty($relations)) {
+        if (! empty($relations)) {
             $node['relations'] = $relations;
         }
 
@@ -320,12 +327,13 @@ class FamilyTreeService
     {
         return [
             'error' => true,
-            'code' => __($code)
+            'code' => __($code),
         ];
     }
 
     /**
      * Save a new tree config to the database
+     *
      * @return $this
      */
     public function save(array $data = []): self
@@ -334,10 +342,11 @@ class FamilyTreeService
         if (empty($data)) {
             $this->familyTree->config = [];
             $this->familyTree->save();
+
             return $this;
         }
 
-        //$data = json_decode($data);
+        // $data = json_decode($data);
         $data = $this->prepareForSave($data);
 
         $this->familyTree->config = $data;
@@ -348,20 +357,22 @@ class FamilyTreeService
 
     /**
      * Prepare a new config for the database by adding a uuid everywhere
+     *
      * @return array
      */
-    protected function prepareForSave(array $data)//: array
+    protected function prepareForSave(array $data)// : array
     {
         $assingUuid = function (&$value, $key) {
-            if ($key == 'uuid' && (!is_string($value) || !Str::isUuid($value))) {
-                $value = (string)Str::uuid();
+            if ($key == 'uuid' && (! is_string($value) || ! Str::isUuid($value))) {
+                $value = (string) Str::uuid();
             }
-            //echo "The key $key has the value $value <br>";
+            // echo "The key $key has the value $value <br>";
         };
 
         array_walk_recursive($data, $assingUuid);
+
         // Loop on the data, adding a uuid on each element that is missing one
-        //dd('ended recursive', $data);
+        // dd('ended recursive', $data);
         return $data;
     }
 
@@ -371,14 +382,15 @@ class FamilyTreeService
         if (empty($nodes)) {
             return [];
         }
-        //dd($nodes);
-        if (!isset($nodes[0]['relations'])) {
+        // dd($nodes);
+        if (! isset($nodes[0]['relations'])) {
             return $nodes;
         }
 
         foreach ($nodes[0]['relations'] as $i => $relation) {
             $nodes[0]['relations'][$i] = $this->informRelation($relation);
         }
+
         return $nodes;
     }
 
@@ -387,6 +399,7 @@ class FamilyTreeService
         // No children, single relation
         if (empty($relation['children'])) {
             $relation['width'] = 1;
+
             return $relation;
         }
 
@@ -395,6 +408,7 @@ class FamilyTreeService
             $count++;
         }
         $relation['width'] = $count;
+
         return $relation;
     }
 
@@ -423,7 +437,7 @@ class FamilyTreeService
                 ],
                 'entity' => [
                     'add' => [
-                        'title' => __('families/trees.modals.entity.add.title')
+                        'title' => __('families/trees.modals.entity.add.title'),
                     ],
                     'edit' => [
                         'title' => __('families/trees.modals.entity.edit.title'),
@@ -475,7 +489,7 @@ class FamilyTreeService
                 'reseted' => __('families/trees.success.reseted'),
             ],
             'tooltips' => [
-                'is_dead' => __('characters.hints.is_dead')
+                'is_dead' => __('characters.hints.is_dead'),
             ],
             'unknown' => __('families/trees.unknown'),
         ];

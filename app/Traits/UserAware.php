@@ -9,18 +9,19 @@ use App\Models\User;
  */
 trait UserAware
 {
-    /**  */
     public User $user;
 
     public function user(User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
     public function userless(): self
     {
         unset($this->user);
+
         return $this;
     }
 

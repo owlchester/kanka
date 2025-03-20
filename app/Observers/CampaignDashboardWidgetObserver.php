@@ -6,8 +6,6 @@ use App\Models\CampaignDashboardWidget;
 
 class CampaignDashboardWidgetObserver
 {
-    /**
-     */
     public function creating(CampaignDashboardWidget $model)
     {
         // Get position
@@ -16,7 +14,7 @@ class CampaignDashboardWidgetObserver
             ->with('entity')
             ->orderBy('position', 'desc')
             ->first();
-        if (!empty($last)) {
+        if (! empty($last)) {
             $model->position = $last->position + 1;
         }
     }

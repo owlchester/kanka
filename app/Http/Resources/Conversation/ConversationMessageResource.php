@@ -13,6 +13,7 @@ class ConversationMessageResource extends JsonResource
         $campaign = CampaignLocalization::getCampaign();
         /** @var ConversationMessage $resource */
         $resource = $this->resource;
+
         return [
             'id' => $resource->id,
             'from_id' => $resource->user_id ?: $resource->character_id,

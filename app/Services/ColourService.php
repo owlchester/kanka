@@ -23,7 +23,7 @@ class ColourService
         $B1 = hexdec(mb_substr($hexColour, 5, 2));
 
         // Black RGB
-        $blackColour = "#000000";
+        $blackColour = '#000000';
         $R2BlackColour = hexdec(mb_substr($blackColour, 1, 2));
         $G2BlackColour = hexdec(mb_substr($blackColour, 3, 2));
         $B2BlackColour = hexdec(mb_substr($blackColour, 5, 2));
@@ -39,9 +39,9 @@ class ColourService
 
         $contrastRatio = 0;
         if ($L1 > $L2) {
-            $contrastRatio = (int)(($L1 + 0.05) / ($L2 + 0.05));
+            $contrastRatio = (int) (($L1 + 0.05) / ($L2 + 0.05));
         } else {
-            $contrastRatio = (int)(($L2 + 0.05) / ($L1 + 0.05));
+            $contrastRatio = (int) (($L2 + 0.05) / ($L1 + 0.05));
         }
 
         // If contrast is more than 5, return black colour

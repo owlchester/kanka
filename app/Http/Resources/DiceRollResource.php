@@ -16,10 +16,11 @@ class DiceRollResource extends EntityResource
     {
         /** @var DiceRoll $model */
         $model = $this->resource;
+
         return $this->entity([
             'system' => $model->system,
             'parameters' => $model->parameters,
-            'rolls' => $model->diceRollResults()->pluck('results')->toArray()
+            'rolls' => $model->diceRollResults()->pluck('results')->toArray(),
         ]);
     }
 }

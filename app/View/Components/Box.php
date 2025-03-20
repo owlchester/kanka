@@ -12,14 +12,13 @@ class Box extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public null|string $id = null,
-        public null|string $url = null,
-        public null|string $href = null,
+        public ?string $id = null,
+        public ?string $url = null,
+        public ?string $href = null,
         public array $extra = [],
         public string $css = '',
         public bool $padding = true,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

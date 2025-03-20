@@ -2,20 +2,20 @@
 
 namespace App\Observers;
 
+use App\Facades\Images;
 use App\Facades\Mentions;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
-use App\Models\CampaignUser;
 use App\Models\CampaignRole;
-use App\Models\Genre;
 use App\Models\CampaignRoleUser;
-use App\Models\GameSystem;
 use App\Models\CampaignSetting;
+use App\Models\CampaignUser;
+use App\Models\GameSystem;
+use App\Models\Genre;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\Campaign\SearchCleanupService;
-use App\Facades\Images;
 use App\Services\Users\CampaignService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -31,9 +31,6 @@ class CampaignObserver
         $this->campaignService = $campaignService;
     }
 
-    /**
-     *
-     */
     public function saving(Campaign $campaign)
     {
         // Purity text
@@ -45,7 +42,7 @@ class CampaignObserver
         if (request()->has('is_public')) {
             $previousVisibility = $campaign->getOriginal('visibility_id');
             $isPublic = request()->get('is_public', null);
-            if (!empty($isPublic) && $previousVisibility == Campaign::VISIBILITY_PRIVATE) {
+            if (! empty($isPublic) && $previousVisibility == Campaign::VISIBILITY_PRIVATE) {
                 $campaign->visibility_id = Campaign::VISIBILITY_PUBLIC;
                 // Default to public for now. Later will have REVIEW mode.
             } elseif (empty($isPublic) && $previousVisibility != Campaign::VISIBILITY_PRIVATE) {
@@ -54,18 +51,14 @@ class CampaignObserver
         }
     }
 
-    /**
-     */
     public function creating(Campaign $campaign)
     {
-        //$campaign->is_featured = false;
+        // $campaign->is_featured = false;
         $campaign->entity_visibility = false;
         $campaign->entity_personality_visibility = false;
         $campaign->follower = 0;
     }
 
-    /**
-     */
     public function created(Campaign $campaign)
     {
         $role = new CampaignUser([
@@ -118,8 +111,6 @@ class CampaignObserver
         auth()->user()->log(UserLog::TYPE_CAMPAIGN_NEW);
     }
 
-    /**
-     */
     public function saved(Campaign $campaign)
     {
         $this->saveGenres($campaign);
@@ -139,8 +130,6 @@ class CampaignObserver
         }
     }
 
-    /**
-     */
     public function deleted(Campaign $campaign)
     {
         if ($campaign->isForceDeleting()) {
@@ -158,7 +147,6 @@ class CampaignObserver
 
     /**
      * Deleting the campaign
-     *
      */
     public function deleting(Campaign $campaign)
     {
@@ -191,7 +179,7 @@ class CampaignObserver
      */
     protected function saveGenres(Campaign $campaign)
     {
-        if (!request()->has('campaign_genre')) {
+        if (! request()->has('campaign_genre')) {
             return;
         }
 
@@ -205,11 +193,11 @@ class CampaignObserver
         $new = [];
 
         foreach ($ids as $id) {
-            if (!empty($existing[$id])) {
+            if (! empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
                 $genre = Genre::find($id);
-                if (!empty($genre)) {
+                if (! empty($genre)) {
                     $new[] = $genre->id;
                 }
             }
@@ -217,7 +205,7 @@ class CampaignObserver
         $campaign->genres()->attach($new);
 
         // Detatch the remaining
-        if (!empty($existing)) {
+        if (! empty($existing)) {
             $campaign->genres()->detach(array_keys($existing));
         }
     }
@@ -227,7 +215,7 @@ class CampaignObserver
      */
     protected function saveSystems(Campaign $campaign)
     {
-        if (!request()->has('systems')) {
+        if (! request()->has('systems')) {
             return;
         }
 
@@ -240,11 +228,11 @@ class CampaignObserver
         $new = [];
 
         foreach ($ids as $id) {
-            if (!empty($existing[$id])) {
+            if (! empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
                 $genre = GameSystem::find($id);
-                if (!empty($genre)) {
+                if (! empty($genre)) {
                     $new[] = $genre->id;
                 }
             }
@@ -252,7 +240,7 @@ class CampaignObserver
         $campaign->systems()->attach($new);
 
         // Detatch the remaining
-        if (!empty($existing)) {
+        if (! empty($existing)) {
             $campaign->systems()->detach(array_keys($existing));
         }
     }

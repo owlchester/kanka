@@ -8,9 +8,9 @@ use App\Http\Requests\API\UpdateUserRole;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
+use App\Models\User;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use App\Models\User;
 
 class MemberService
 {
@@ -19,12 +19,12 @@ class MemberService
 
     protected CampaignRole $campaignRole;
 
-    /**  */
     protected ?CampaignRoleUser $userCampaignRole;
 
     public function element(CampaignRoleUser $campaignRoleUser): self
     {
         $this->userCampaignRole = $campaignRoleUser;
+
         return $this;
     }
 
@@ -40,8 +40,6 @@ class MemberService
         return $this;
     }
 
-    /**
-     */
     public function update(CampaignUser $user, array $roles): bool
     {
         $currentRoles = $user->roles->pluck('id')->toArray();
@@ -59,7 +57,7 @@ class MemberService
                 CampaignCache::campaign($this->campaign)->clear();
             }
             // When trying to delete an admin role check if it was created recently
-            if ($role->campaignRole->isAdmin() && !$role->recentlyCreated()) {
+            if ($role->campaignRole->isAdmin() && ! $role->recentlyCreated()) {
                 throw (new TranslatableException(
                     'campaigns.roles.users.errors.cant_kick_admins'
                 ))->setOptions([
@@ -70,7 +68,7 @@ class MemberService
             }
         }
 
-        //Now actually delete the roles
+        // Now actually delete the roles
         foreach ($roleUsers as $role) {
             $deletedRoles[] = $role->id;
             $role->delete();
@@ -80,9 +78,10 @@ class MemberService
         foreach ($rolesToCreate as $role) {
             CampaignRoleUser::create([
                 'campaign_role_id' => $role,
-                'user_id' => $user->user_id
+                'user_id' => $user->user_id,
             ]);
         }
+
         return true;
     }
 
@@ -92,15 +91,15 @@ class MemberService
     public function add(): bool
     {
         if (
-            !$this->checkUserInCampaign() ||
-            !$this->checkRoleInCampaign() ||
+            ! $this->checkUserInCampaign() ||
+            ! $this->checkRoleInCampaign() ||
             $this->userIsInRole()
         ) {
             return false;
         }
 
         // If both are valid, add the user to the role
-        $userRole = new CampaignRoleUser();
+        $userRole = new CampaignRoleUser;
         $userRole->user_id = $this->user->id;
         $userRole->campaign_role_id = $this->campaignRole->id;
         $userRole->save();
@@ -114,9 +113,9 @@ class MemberService
     public function remove(): bool
     {
         if (
-            !$this->checkUserInCampaign() ||
-            !$this->checkRoleInCampaign() ||
-            !$this->userIsInRole()
+            ! $this->checkUserInCampaign() ||
+            ! $this->checkRoleInCampaign() ||
+            ! $this->userIsInRole()
         ) {
             return false;
         }
@@ -126,14 +125,13 @@ class MemberService
         return true;
     }
 
-
     /**
      * @throws TranslatableException
      */
     public function delete(): bool
     {
         // If the role isn't an admin, we can safely delete
-        if (!$this->userCampaignRole->campaignRole->isAdmin()) {
+        if (! $this->userCampaignRole->campaignRole->isAdmin()) {
             return $this->userCampaignRole->delete();
         }
 
@@ -151,7 +149,7 @@ class MemberService
                     'campaigns.roles.users.errors.needs_more_roles'
                 ))->setOptions(['admin' => $this->userCampaignRole->campaignRole->name]);
             }
-        } elseif (!$this->userCampaignRole->recentlyCreated()) {
+        } elseif (! $this->userCampaignRole->recentlyCreated()) {
             // If the user wasn't added to the admin role recently (ex by mistake), allow removing them
             throw (new TranslatableException(
                 'campaigns.roles.users.errors.cant_kick_admins'
@@ -167,21 +165,25 @@ class MemberService
 
     /**
      * Load a user
+     *
      * @return $this
      */
     protected function loadUser(int $userID): self
     {
         $this->user = User::find($userID);
+
         return $this;
     }
 
     /**
      * Load a campaign role
+     *
      * @return $this
      */
     protected function loadCampaignRole(int $roleID): self
     {
         $this->campaignRole = CampaignRole::find($roleID);
+
         return $this;
     }
 
@@ -210,6 +212,7 @@ class MemberService
             ->userCampaignRole = CampaignRoleUser::where('user_id', $this->user->id)
             ->where('campaign_role_id', $this->campaignRole->id)
             ->first();
-        return !empty($this->userCampaignRole);
+
+        return ! empty($this->userCampaignRole);
     }
 }

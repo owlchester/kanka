@@ -14,7 +14,7 @@ class ItemSubmenu extends BaseSubmenu implements EntitySubmenu
         $items['second']['items'] = [
             'name' => $item->entity->entityType->plural(),
             'route' => 'items.items',
-            'count' => $item->descendants()->has('entity')->count()
+            'count' => $item->descendants()->has('entity')->count(),
         ];
 
         $inventoryCount = $item->inventories()->with('item')->has('entity')->count();
@@ -22,7 +22,7 @@ class ItemSubmenu extends BaseSubmenu implements EntitySubmenu
             $items['second']['inventories'] = [
                 'name' => 'items.show.tabs.inventories',
                 'route' => 'items.inventories',
-                'count' => $inventoryCount
+                'count' => $inventoryCount,
             ];
         }
 

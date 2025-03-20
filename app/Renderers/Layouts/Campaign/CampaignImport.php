@@ -9,6 +9,7 @@ class CampaignImport extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -35,10 +36,11 @@ class CampaignImport extends Layout
                 'key' => 'user.name',
                 'label' => 'campaigns.members.fields.name',
                 'render' => function ($model) {
-                    if (!$model->user_id) {
+                    if (! $model->user_id) {
                         return '';
                     }
                     $html = '<a class="block break-all truncate" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
+
                     return $html;
                 },
             ],
@@ -47,6 +49,7 @@ class CampaignImport extends Layout
                 'label' => 'campaigns/import.fields.updated',
                 'render' => function ($model) {
                     $html = '<span data-title="' . $model->updated_at . 'UTC" data-toggle="tooltip">' . $model->updated_at->diffForHumans() . '</span>';
+
                     return $html;
                 },
             ],

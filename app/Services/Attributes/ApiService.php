@@ -19,17 +19,20 @@ class ApiService
     protected Collection $attributes;
 
     protected bool $copy = false;
+
     protected bool $template = false;
 
     public function copy(): self
     {
         $this->copy = true;
+
         return $this;
     }
 
     public function build(): array
     {
         $this->buildAttributes();
+
         return [
             'attributes' => $this->attributes->toArray(),
             'i18n' => $this->i18n(),
@@ -66,7 +69,7 @@ class ApiService
             ],
             'filters' => [
                 'show_hidden' => __('entities/attributes.actions.show_hidden'),
-                'no_results' => __('No results.')
+                'no_results' => __('No results.'),
             ],
             'placeholders' => [
                 'name' => __('entities/attributes.labels.name'),
@@ -82,8 +85,8 @@ class ApiService
                 'toggled_privacy' => __('entities/attributes.toasts.bulk_privacy'),
                 'template' => __('entities/attributes.template.load.success'),
                 'max_reached' => __('entities/attributes.errors.too_many_v2', [
-                    'max' => number_format($this->maxFields())
-                ])
+                    'max' => number_format($this->maxFields()),
+                ]),
             ],
             'templates' => [
                 'title' => __('entities/attributes.template.load.title'),
@@ -106,7 +109,7 @@ class ApiService
 
     protected function buildAttributes(): void
     {
-        $this->attributes = new Collection();
+        $this->attributes = new Collection;
         if (isset($this->entity)) {
             foreach ($this->entity->attributes()->ordered()->get() as $attribute) {
                 $this->parseAttribute($attribute);
@@ -117,7 +120,7 @@ class ApiService
 
     protected function buildAutoTemplates(): void
     {
-        if (!isset($this->entityType)) {
+        if (! isset($this->entityType)) {
             return;
         }
         $templates = $this->entityType
@@ -141,7 +144,7 @@ class ApiService
 
     protected function addTemplate(AttributeTemplate $template): void
     {
-        if (!$template->entity) {
+        if (! $template->entity) {
             return;
         }
         $first = true;
@@ -196,7 +199,7 @@ class ApiService
                         'link' => '<a href="' . $template->getLink() . '">' . $template->name . '</a>',
                         'count' => "<strong>{$templateTotalAttributes}</strong>",
                     ]
-                )
+                ),
             ];
         }
 
@@ -217,7 +220,7 @@ class ApiService
         }
 
         // If the campaign isn't boosted, or the marketplace isn't enable, end here
-        if (!$this->campaign->boosted() || !config('marketplace.enabled')) {
+        if (! $this->campaign->boosted() || ! config('marketplace.enabled')) {
             return $templates;
         }
 
@@ -229,7 +232,7 @@ class ApiService
             }
             $templates[$key][$plugin->plugin->uuid] = __('campaigns/plugins.templates.name', [
                 'name' => $plugin->name,
-                'user' => $plugin->plugin->author()
+                'user' => $plugin->plugin->author(),
             ]);
         }
 

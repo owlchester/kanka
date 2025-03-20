@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class EntityFile implements ValidationRule
 {
     protected string $formats = 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json, csv';
+
     /**
      * Run the validation rule.
      *
@@ -17,7 +18,7 @@ class EntityFile implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         // Not a valid file, don't go further
-        if ($value instanceof UploadedFile && !$value->isValid()) {
+        if ($value instanceof UploadedFile && ! $value->isValid()) {
             $fail(__('validation.mimes', ['values' => $this->formats]));
         }
 
@@ -33,7 +34,7 @@ class EntityFile implements ValidationRule
         $validExtensions = explode(',', 'jpeg,png,jpg,gif,webp,pdf,xls,xlsx,mp3');
         if (in_array($value->guessExtension(), $validExtensions)) {
             return;
-            //$fail(__('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']));
+            // $fail(__('validation.mimes', ['values' => 'jpg, jpeg, png, gif, webp, pdf, xls(x), csv, mp3, ogg, json']));
         }
 
         // It wasn't an image, maybe it's an audio file

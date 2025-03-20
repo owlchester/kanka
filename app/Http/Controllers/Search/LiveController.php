@@ -13,9 +13,7 @@ use Illuminate\Http\Request;
 
 class LiveController extends Controller
 {
-    public function __construct(protected SearchService $searchService)
-    {
-    }
+    public function __construct(protected SearchService $searchService) {}
 
     public function index(Request $request, Campaign $campaign)
     {
@@ -27,7 +25,7 @@ class LiveController extends Controller
         if (request()->has('new')) {
             $this->searchService->new(true);
         }
-        if ($request->get('v2') === "true") {
+        if ($request->get('v2') === 'true') {
             $this->searchService->v2();
         }
         if ($request->has('posts')) {
@@ -60,7 +58,7 @@ class LiveController extends Controller
                     config('entities.ids.calendar'),
                     config('entities.ids.tag'),
                     config('entities.ids.map'),
-                    config('entities.ids.timeline')
+                    config('entities.ids.timeline'),
                 ])
                 ->find()
         );
@@ -172,7 +170,7 @@ class LiveController extends Controller
                 ->has('character')
                 ->leftJoin('characters as c', 'c.id', 'organisation_member.character_id')
                 ->orderBy('c.name');
-            if (!empty($term)) {
+            if (! empty($term)) {
                 $members
                     ->whereLike('c.name', '%' . $term . '%');
             }
@@ -180,7 +178,7 @@ class LiveController extends Controller
             foreach ($members->get() as $member) {
                 $data[] = [
                     'id' => $member->id,
-                    'text' => $member->character->name . (!empty($member->role) ? ' (' . $member->role . ')' : null)
+                    'text' => $member->character->name . (! empty($member->role) ? ' (' . $member->role . ')' : null),
                 ];
             }
         }

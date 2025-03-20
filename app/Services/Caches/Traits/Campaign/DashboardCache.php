@@ -37,6 +37,7 @@ trait DashboardCache
             }
             $available[$key] = $dashboards;
         }
+
         return $available;
     }
 }

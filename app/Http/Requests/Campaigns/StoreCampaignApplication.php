@@ -26,6 +26,7 @@ class StoreCampaignApplication extends FormRequest
         $rules = [
             'application' => 'required|string',
         ];
+
         return $rules;
     }
 }

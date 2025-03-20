@@ -9,6 +9,7 @@ class Plugin extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -33,12 +34,12 @@ class Plugin extends Layout
                             . __('campaigns/plugins.fields.obsolete')
                             . '"></i>';
                     }
-                    if (!$model->has_update) {
+                    if (! $model->has_update) {
                         return $base;
                     }
 
                     $campaign = CampaignLocalization::getCampaign();
-                    if (!auth()->check() || !auth()->user()->can('recover', $campaign)) {
+                    if (! auth()->check() || ! auth()->user()->can('recover', $campaign)) {
                         return $base;
                     }
 
@@ -47,9 +48,8 @@ class Plugin extends Layout
                             . 'data-target="plugin-update" data-url="'
                             . route('campaign_plugins.update-info', [$campaign, $model]) . '">'
                             . __('campaigns/plugins.actions.update_available')
-                            . '</a> ' . $base
-                    ;
-                }
+                            . '</a> ' . $base;
+                },
             ],
             'type' => [
                 'key' => 'type_id',
@@ -62,7 +62,7 @@ class Plugin extends Layout
                 'key' => 'pivot_is_active',
                 'label' => 'campaigns/plugins.fields.status',
                 'render' => function ($model) {
-                    if (!$model->isTheme()) {
+                    if (! $model->isTheme()) {
                         return '<i class="fa-solid fa-infinity" data-title="' .
                             __('campaigns/plugins.status.always') .
                             '" data-toggle="tooltip"></i>';
@@ -78,7 +78,7 @@ class Plugin extends Layout
                         '<i class="fa-solid fa-ban" data-title="' .
                         __('campaigns/plugins.status.disabled') .
                         '" data-toggle="tooltip"></i>';
-                }
+                },
             ],
         ];
 

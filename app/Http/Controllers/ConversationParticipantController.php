@@ -9,15 +9,11 @@ use App\Models\ConversationParticipant;
 
 class ConversationParticipantController extends Controller
 {
-    /**
-     */
     public function index(Campaign $campaign, Conversation $conversation)
     {
         return view('conversations.participants', ['campaign' => $campaign, 'model' => $conversation]);
     }
 
-    /**
-     */
     public function store(StoreConversationParticipant $request, Campaign $campaign, Conversation $conversation)
     {
         $this->authorize('update', $conversation->entity);
@@ -25,20 +21,17 @@ class ConversationParticipantController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $participant = new ConversationParticipant();
+        $participant = new ConversationParticipant;
         $participant = $participant->create($request->all());
 
         return redirect()
             ->route('entities.show', [$campaign, $conversation->entity])
             ->with('success', __('conversations.participants.create.success', [
                 'name' => $conversation->name,
-                'entity' => $participant->name()
+                'entity' => $participant->name(),
             ]));
     }
 
-
-    /**
-     */
     public function edit(Campaign $campaign, Conversation $conversation, ConversationParticipant $conversationParticipant)
     {
         $this->authorize('update', $conversation->entity);
@@ -46,8 +39,6 @@ class ConversationParticipantController extends Controller
         dd('CPC 055');
     }
 
-    /**
-     */
     public function update(
         StoreConversationParticipant $request,
         Campaign $campaign,
@@ -61,17 +52,15 @@ class ConversationParticipantController extends Controller
         return redirect()
             ->to($conversation->getLink())
             ->with('success', trans('crud.notes.edit.success', [
-                'name' => $conversationParticipant->entity()->name, 'entity' => $conversation->name
+                'name' => $conversationParticipant->entity()->name, 'entity' => $conversation->name,
             ]));
     }
 
-    /**
-     */
     public function destroy(Campaign $campaign, Conversation $conversation, ConversationParticipant $conversationParticipant)
     {
         $this->authorize('update', $conversation->entity);
 
-        if (!$conversationParticipant->delete()) {
+        if (! $conversationParticipant->delete()) {
             abort(500);
         }
 
@@ -79,7 +68,7 @@ class ConversationParticipantController extends Controller
             ->to($conversation->getLink())
             ->with('success', trans('conversations.participants.destroy.success', [
                 'name' => $conversation->name,
-                'entity' => $conversationParticipant->entity()->name
+                'entity' => $conversationParticipant->entity()->name,
             ]));
     }
 }

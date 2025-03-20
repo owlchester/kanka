@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Models\Campaign;
-use App\Models\Conversation;
 use App\Http\Requests\StoreConversation as Request;
 use App\Http\Resources\ConversationResource as Resource;
+use App\Models\Campaign;
+use App\Models\Conversation;
 use App\Models\EntityType;
 
 class ConversationApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+
         return Resource::collection($campaign
             ->conversations()
             ->filter(request()->all())
@@ -26,17 +28,19 @@ class ConversationApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, Conversation $conversation)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $conversation->entity);
+
         return new Resource($conversation);
     }
 
     /**
-     * @return Resource
+     * @return resource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
@@ -49,11 +53,12 @@ class ConversationApiController extends ApiController
         /** @var Conversation $model */
         $model = Conversation::create($data);
         $this->crudSave($model);
+
         return new Resource($model);
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function update(Request $request, Campaign $campaign, Conversation $conversation)
     {
@@ -67,6 +72,7 @@ class ConversationApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Conversation $conversation)

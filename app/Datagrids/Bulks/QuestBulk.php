@@ -18,6 +18,6 @@ class QuestBulk extends Bulk
     ];
 
     protected array $booleans = [
-        'is_completed'
+        'is_completed',
     ];
 }

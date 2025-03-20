@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class PostCache
- * @package App\Facades
  *
  * @see PostCacheService
+ *
  * @mixin PostCacheService
  */
 class PostCache extends Facade

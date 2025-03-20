@@ -3,8 +3,8 @@
 namespace App\Console\Commands\Subscriptions;
 
 use App\Jobs\Emails\Subscriptions\ExpiringCardAlert;
-use App\Traits\HasJobLog;
 use App\Models\User;
+use App\Traits\HasJobLog;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
@@ -66,14 +66,13 @@ class ExpiringCardCommand extends Command
         return 0;
     }
 
-    /**
-     */
     protected function notify(User $user): void
     {
         // Check the user has a card
-        if (!$user->subscribed('kanka')) {
+        if (! $user->subscribed('kanka')) {
             // Has a card but isn't subbed, ignore
             $this->warn('Expired card but unsubbed user');
+
             return;
         }
 

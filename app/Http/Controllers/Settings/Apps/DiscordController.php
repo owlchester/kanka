@@ -4,14 +4,12 @@ namespace App\Http\Controllers\Settings\Apps;
 
 use App\Http\Controllers\Controller;
 use App\Services\DiscordService;
-use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class DiscordController extends Controller
 {
-    /**
-     */
     protected DiscordService $discord;
 
     public function __construct(DiscordService $discord)
@@ -20,8 +18,6 @@ class DiscordController extends Controller
         $this->discord = $discord;
     }
 
-    /**
-     */
     public function callback(Request $request)
     {
         try {
@@ -36,14 +32,13 @@ class DiscordController extends Controller
             );
         } catch (Exception $e) {
             Log::error('Discord sync error for ' . $request->user()->id . ': ' . $e->getMessage());
+
             return response()->redirectToRoute('settings.apps')->withError(
                 __('settings.apps.discord.errors.add')
             );
         }
     }
 
-    /**
-     */
     public function destroy(Request $request)
     {
         try {

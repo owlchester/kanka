@@ -16,6 +16,7 @@ class MapMarkerResource extends ModelResource
     {
         /** @var MapMarker $model */
         $model = $this->resource;
+
         return $this->entity([
             'map_id' => $model->map_id,
             'name' => $model->name,
@@ -35,7 +36,7 @@ class MapMarkerResource extends ModelResource
             'opacity' => $model->opacity,
             'circle_radius' => $model->circle_radius,
             'polygon_style' => $model->polygon_style,
-            'visibility_id' => $model->visibility_id
+            'visibility_id' => $model->visibility_id,
         ]);
     }
 }

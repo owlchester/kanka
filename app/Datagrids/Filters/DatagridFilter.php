@@ -26,9 +26,7 @@ abstract class DatagridFilter
     /** @var array Filters to be rendered */
     protected array $filters = [];
 
-    public function build()
-    {
-    }
+    public function build() {}
 
     /**
      * Get the filters
@@ -39,24 +37,26 @@ abstract class DatagridFilter
     }
 
     /**
-     * @param string|array $name
+     * @param  string|array  $name
      * @return $this
      */
     protected function add($name): self
     {
         $this->filters[] = $name;
+
         return $this;
     }
 
     /**
      * Add the location filters
+     *
      * @return $this
      */
     protected function location(): self
     {
         $name = Module::singular(config('entities.ids.location'));
         $placeholder = __('crud.placeholders.location');
-        if (!empty($name)) {
+        if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
         $this->filters[] = [
@@ -64,22 +64,24 @@ abstract class DatagridFilter
             'label' => Module::singular(config('entities.ids.location'), __('entities.location')),
             'type' => 'select2',
             'route' => route('search-list', [$this->campaign, config('entities.ids.location')]),
-            'placeholder' =>  $placeholder,
+            'placeholder' => $placeholder,
             'model' => Location::class,
             'withChildren' => true,
         ];
+
         return $this;
     }
 
     /**
      * Add the locations filters
+     *
      * @return $this
      */
     protected function locations(): self
     {
         $name = Module::plural(config('entities.ids.location'));
         $placeholder = __('crud.placeholders.multiple');
-        if (!empty($name)) {
+        if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
         $this->filters[] = [
@@ -87,23 +89,25 @@ abstract class DatagridFilter
             'label' => Module::plural(config('entities.ids.location'), __('entities.locations')),
             'type' => 'selectMultiple',
             'route' => route('search-list', [$this->campaign, config('entities.ids.location')]),
-            'placeholder' =>  $placeholder,
+            'placeholder' => $placeholder,
             'model' => Location::class,
             'multiple' => true,
             'withChildren' => true,
         ];
+
         return $this;
     }
 
     /**
      * Add the races filters
+     *
      * @return $this
      */
     protected function races(): self
     {
         $name = Module::plural(config('entities.ids.race'));
         $placeholder = __('crud.placeholders.multiple');
-        if (!empty($name)) {
+        if (! empty($name)) {
             $placeholder = __('crud.placeholders.multiple', ['module' => $name]);
         }
         $this->filters[] = [
@@ -111,23 +115,25 @@ abstract class DatagridFilter
             'label' => Module::plural(config('entities.ids.race'), __('entities.races')),
             'type' => 'selectMultiple',
             'route' => route('search-list', [$this->campaign, config('entities.ids.race')]),
-            'placeholder' =>  $placeholder,
+            'placeholder' => $placeholder,
             'model' => Race::class,
             'multiple' => true,
             'withChildren' => true,
         ];
+
         return $this;
     }
 
     /**
      * Add the organisations filters
+     *
      * @return $this
      */
     protected function organisations(): self
     {
         $name = Module::plural(config('entities.ids.organisation'));
         $placeholder = __('crud.placeholders.multiple');
-        if (!empty($name)) {
+        if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
         $this->filters[] = [
@@ -135,23 +141,25 @@ abstract class DatagridFilter
             'label' => Module::plural(config('entities.ids.organisation'), __('entities.organisations')),
             'type' => 'selectMultiple',
             'route' => route('search-list', [$this->campaign, config('entities.ids.organisation')]),
-            'placeholder' =>  $placeholder,
+            'placeholder' => $placeholder,
             'model' => Organisation::class,
             'multiple' => true,
             'withChildren' => true,
         ];
+
         return $this;
     }
 
     /**
      * Add the families filters
+     *
      * @return $this
      */
     protected function families(): self
     {
         $name = Module::plural(config('entities.ids.family'));
         $placeholder = __('crud.placeholders.multiple');
-        if (!empty($name)) {
+        if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
         $this->filters[] = [
@@ -159,23 +167,25 @@ abstract class DatagridFilter
             'label' => Module::plural(config('entities.ids.family'), __('entities.families')),
             'type' => 'selectMultiple',
             'route' => route('search-list', [$this->campaign, config('entities.ids.family')]),
-            'placeholder' =>  $placeholder,
+            'placeholder' => $placeholder,
             'model' => Family::class,
             'multiple' => true,
             'withChildren' => true,
         ];
+
         return $this;
     }
 
     /**
      * Add the character filters
+     *
      * @return $this
      */
     protected function character(string $field = 'character_id'): self
     {
         $name = Module::singular(config('entities.ids.character'));
         $placeholder = __('crud.placeholders.character');
-        if (!empty($name)) {
+        if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
         $this->filters[] = [
@@ -183,21 +193,23 @@ abstract class DatagridFilter
             'label' => Module::singular(config('entities.ids.character'), __('entities.character')),
             'type' => 'select2',
             'route' => route('search-list', [$this->campaign, config('entities.ids.character')]),
-            'placeholder' =>  $placeholder,
+            'placeholder' => $placeholder,
             'model' => Character::class,
         ];
+
         return $this;
     }
 
     /**
      * Add the character filters
+     *
      * @return $this
      */
     protected function journal(): self
     {
         $name = Module::singular(config('entities.ids.journal'));
         $placeholder = __('crud.placeholders.journal');
-        if (!empty($name)) {
+        if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
         $this->filters[] = [
@@ -205,21 +217,23 @@ abstract class DatagridFilter
             'label' => Module::singular(config('entities.ids.journal'), __('entities.journal')),
             'type' => 'select2',
             'route' => route('search-list', [$this->campaign, config('entities.ids.journal')]),
-            'placeholder' =>  $placeholder,
+            'placeholder' => $placeholder,
             'model' => Journal::class,
         ];
+
         return $this;
     }
 
     /**
      * Add the tags filters
+     *
      * @return $this
      */
     protected function tags(): self
     {
         $name = Module::singular(config('entities.ids.tag'));
         $placeholder = __('crud.placeholders.tag');
-        if (!empty($name)) {
+        if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
         $this->filters[] = [
@@ -227,14 +241,16 @@ abstract class DatagridFilter
             'label' => Module::plural(config('entities.ids.tag'), __('entities.tags')),
             'type' => 'tag',
             'route' => route('search-list', [$this->campaign, config('entities.ids.tag')]),
-            'placeholder' =>  $placeholder,
+            'placeholder' => $placeholder,
             'model' => Tag::class,
         ];
+
         return $this;
     }
 
     /**
      * Add the is_private
+     *
      * @return $this
      */
     protected function isPrivate(): self
@@ -249,91 +265,109 @@ abstract class DatagridFilter
 
     /**
      * Add the entity has an image
+     *
      * @return $this
      */
     protected function hasImage(): self
     {
         $this->filters[] = 'has_image';
+
         return $this;
     }
 
     /**
      * Add the entity has posts
+     *
      * @return $this
      */
     protected function hasPosts(): self
     {
         $this->filters[] = 'has_posts';
+
         return $this;
     }
 
     /**
      * Add the entity has attributes
+     *
      * @return $this
      */
     protected function hasAttributes(): self
     {
         $this->filters[] = 'has_attributes';
+
         return $this;
     }
 
     /**
      * Add the has image
+     *
      * @return $this
      */
     protected function hasEntityFiles(): self
     {
         $this->filters[] = 'has_entity_files';
+
         return $this;
     }
 
     /**
      * Add the (real) date filter
+     *
      * @return $this
      */
     protected function date(): self
     {
         $this->filters[] = 'date';
+
         return $this;
     }
 
     /**
      * Add the attributes selector
+     *
      * @return $this
      */
     protected function attributes(): self
     {
         $this->filters[] = 'attributes';
+
         return $this;
     }
 
     /**
      * Add the connection selector
+     *
      * @return $this
      */
     protected function connections(): self
     {
         $this->filters[] = 'connections';
+
         return $this;
     }
 
     /**
      * Add the date range filter
+     *
      * @return $this
      */
     protected function dateRange(): self
     {
         $this->filters[] = 'date_range';
+
         return $this;
     }
 
     /**
      * Add the is template filter
+     *
      * @return $this
      */
     protected function template(): self
     {
         $this->filters[] = 'template';
+
         return $this;
     }
 }

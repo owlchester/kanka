@@ -35,12 +35,13 @@ class AbandonedCart implements ShouldQueue
         $user = User::find($this->user);
         if (empty($user)) {
             Log::warning('Jobs/Users/AbandonedCart', ['unknown user', 'user' => $this->user]);
+
             return;
         }
         Log::info('Jobs/Users/AbandonedCart', ['start', 'user' => $this->user]);
 
         // If the user subbed, we don't do anything
-        if (!$user->hasNewsletter() || $user->subscribed('kanka')) {
+        if (! $user->hasNewsletter() || $user->subscribed('kanka')) {
             return;
         }
 
@@ -54,9 +55,9 @@ class AbandonedCart implements ShouldQueue
 
         $options = [
             'releases' => true,
-            'new' => false
+            'new' => false,
         ];
-        //Log::warning('Jobs/Users/AbandonnedCard', ['fields' => $fields]);
+        // Log::warning('Jobs/Users/AbandonnedCard', ['fields' => $fields]);
 
         $service->user($user)->fields($fields)->update($options);
     }

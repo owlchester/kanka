@@ -40,17 +40,17 @@ class StoreRace extends FormRequest
             'template_id' => 'nullable',
             'locations' => 'array',
             'locations.*' => 'distinct|exists:locations,id',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Race $self */
         $self = request()->route('race');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['race_id'] = [
                 'nullable',
                 'integer',
                 'exists:races,id',
-                new Nested(Race::class, $self)
+                new Nested(Race::class, $self),
             ];
         }
 

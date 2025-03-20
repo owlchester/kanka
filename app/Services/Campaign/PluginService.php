@@ -17,6 +17,7 @@ class PluginService
     public function plugin(Plugin $plugin): self
     {
         $this->plugin = $plugin;
+
         return $this;
     }
 
@@ -26,8 +27,10 @@ class PluginService
         if ($plugin->canEnable()) {
             $plugin->is_active = true;
             $plugin->save();
+
             return true;
         }
+
         return false;
     }
 
@@ -38,8 +41,10 @@ class PluginService
         if ($plugin->canDisable()) {
             $plugin->is_active = false;
             $plugin->save();
+
             return true;
         }
+
         return false;
     }
 
@@ -70,9 +75,6 @@ class PluginService
             ->first();
     }
 
-    /**
-     *
-     */
     public function update(): bool
     {
         // Get latest
@@ -98,6 +100,7 @@ class PluginService
         $campaignPlugin->save();
 
         CampaignCache::clearTheme();
+
         return true;
     }
 }

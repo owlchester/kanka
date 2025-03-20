@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Requests\StoreTimeline as Request;
+use App\Http\Resources\TimelineResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Timeline;
-use App\Http\Requests\StoreTimeline as Request;
-use App\Http\Resources\TimelineResource as Resource;
 
 class TimelineApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+
         return Resource::collection($campaign
             ->timelines()
             ->filter(request()->all())
@@ -26,17 +28,19 @@ class TimelineApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, Timeline $timeline)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $timeline->entity);
+
         return new Resource($timeline);
     }
 
     /**
-     * @return Resource
+     * @return resource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
@@ -48,11 +52,12 @@ class TimelineApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         $model = Timeline::create($data);
         $this->crudSave($model);
+
         return new Resource($model);
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function update(Request $request, Campaign $campaign, Timeline $timeline)
     {
@@ -66,6 +71,7 @@ class TimelineApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Timeline $timeline)

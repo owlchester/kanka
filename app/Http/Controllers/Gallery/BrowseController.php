@@ -15,6 +15,7 @@ class BrowseController extends Controller
     {
         $this->service = $browseService;
     }
+
     public function index(Request $request, Campaign $campaign)
     {
         $this->authorize('galleryBrowse', $campaign);

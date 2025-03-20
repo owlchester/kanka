@@ -43,19 +43,20 @@ class StoreItem extends FormRequest
             'price' => 'nullable|string|max:191',
             'size' => 'nullable|string|max:191',
             'weight' => 'nullable|string|max:191',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Item $self */
         $self = request()->route('item');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['item_id'] = [
                 'nullable',
                 'integer',
                 'exists:items,id',
-                new Nested(Item::class, $self)
+                new Nested(Item::class, $self),
             ];
         }
+
         return $this->clean($rules);
     }
 }

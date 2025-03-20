@@ -37,12 +37,12 @@ class LiveAttributeResource extends JsonResource
         $formatted['apis'] = [
             'update' => [
                 'method' => 'POST',
-                'url' => route('entities.attributes.live-api.update', [$attribute->entity->campaign, $attribute->entity, $attribute])
+                'url' => route('entities.attributes.live-api.update', [$attribute->entity->campaign, $attribute->entity, $attribute]),
             ],
             'delete' => [
                 'method' => 'POST',
-                'url' => route('entities.attributes.live-api.delete', [$attribute->entity->campaign, $attribute->entity, $attribute])
-            ]
+                'url' => route('entities.attributes.live-api.delete', [$attribute->entity->campaign, $attribute->entity, $attribute]),
+            ],
         ];
 
         return $formatted;

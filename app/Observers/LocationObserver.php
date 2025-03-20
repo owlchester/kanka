@@ -2,6 +2,4 @@
 
 namespace App\Observers;
 
-class LocationObserver extends MiscObserver
-{
-}
+class LocationObserver extends MiscObserver {}

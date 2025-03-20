@@ -37,7 +37,7 @@ class JournalController extends Controller
             ->with([
                 'entity', 'entity.visibleTags', 'entity.image',
                 'parent', 'parent.entity',
-                'author'
+                'author',
             ])
             ->paginate();
 

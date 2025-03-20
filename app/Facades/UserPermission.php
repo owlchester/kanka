@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Facade;
 /**
  * Class UserPermission
  * Used for the Entity object
- * @package App\Facades
  *
  * @see \App\Services\Permissions\UserPermission
  */

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Abilities;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAbilityEntity;
-use App\Models\Campaign;
 use App\Models\Ability;
+use App\Models\Campaign;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -53,7 +53,7 @@ class EntityController extends Controller
         return view('abilities.entities.create', [
             'campaign' => $campaign,
             'model' => $ability,
-            'formOptions' => $formOptions
+            'formOptions' => $formOptions,
         ]);
     }
 
@@ -68,7 +68,7 @@ class EntityController extends Controller
         $count = $ability->attachEntity($request->only('entities', 'visibility_id'));
 
         return redirect()->route('abilities.entities', [$campaign, 'ability' => $ability->id])
-            //->with('success', __('abilities.children.create.success', ['name' => $ability->name]));
+            // ->with('success', __('abilities.children.create.success', ['name' => $ability->name]));
             ->with('success', trans_choice('abilities.children.create.attach_success', $count, ['count' => $count, 'name' => $ability->name]));
 
     }

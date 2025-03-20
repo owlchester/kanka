@@ -13,8 +13,7 @@ class Helper extends Component
      */
     public function __construct(
         public ?string $text = null,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

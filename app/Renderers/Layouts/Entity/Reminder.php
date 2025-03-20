@@ -10,6 +10,7 @@ class Reminder extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -26,8 +27,9 @@ class Reminder extends Layout
                 'label' => 'events.fields.date',
                 'render' => function (EntityEvent $reminder) {
                     $params = '?year=' . $reminder->year . '&month=' . $reminder->month;
+
                     return '<a href="' . $reminder->calendar->getLink() . $params . '">' . $reminder->readableDate() . '</a>';
-                }
+                },
             ],
             'length' => [
                 'key' => 'length',
@@ -70,7 +72,7 @@ class Reminder extends Layout
     {
         return [
             self::ACTION_EDIT_DIALOG,
-            self::ACTION_DELETE
+            self::ACTION_DELETE,
         ];
     }
 }

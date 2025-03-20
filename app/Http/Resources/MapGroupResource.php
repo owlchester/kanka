@@ -16,6 +16,7 @@ class MapGroupResource extends ModelResource
     {
         /** @var MapGroup $model */
         $model = $this->resource;
+
         return $this->entity([
             'map_id' => $model->map_id,
             'name' => $model->name,

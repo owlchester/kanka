@@ -7,33 +7,30 @@ use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Sanitizers\SvgAllowedAttributes;
 use App\Traits\CampaignAware;
+use enshrined\svgSanitize\Sanitizer;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use enshrined\svgSanitize\Sanitizer;
-use Exception;
-use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
-/**
- */
 class ImagesService
 {
     use CampaignAware;
 
-    /**
-     */
     public function handle(MiscModel|Model|Entity $model, string $folder = '', string $field = 'image')
     {
         // Remove the old image
         if (request()->post('remove-' . $field) == '1') {
             $this->cleanup($model, $field);
+
             return;
         }
 
         // No new image
-        if (!request()->has($field) && !request()->filled($field . '_url')) {
+        if (! request()->has($field) && ! request()->filled($field . '_url')) {
             return;
         }
 
@@ -51,7 +48,7 @@ class ImagesService
 
                 $file = $tempImage;
                 // Clean up the file name because weird letters can confuse thumbor
-                //$cleanImageName = Str::replace('&', '', $externalFile);
+                // $cleanImageName = Str::replace('&', '', $externalFile);
                 $cleanImageName = Str::slug(
                     Str::before(
                         Str::before($externalFile, '%3F'),
@@ -59,7 +56,7 @@ class ImagesService
                     )
                 );
                 $cleanImageName = str_replace(['.', '/'], ['', ''], $cleanImageName);
-                $path = "{$folder}/" . uniqid() . "_" . Str::limit($cleanImageName, 20, '');
+                $path = "{$folder}/" . uniqid() . '_' . Str::limit($cleanImageName, 20, '');
 
                 // Check if file is too big
                 $copiedFileSize = ceil(filesize($tempImage) / 1000);
@@ -71,7 +68,7 @@ class ImagesService
 
                 // Add back the extension if it's missing after trimming long names
                 $imageUrlExt = '.' . str_replace('image/', '', $file->getMimeType());
-                if (!Str::endsWith($path, $imageUrlExt)) {
+                if (! Str::endsWith($path, $imageUrlExt)) {
                     $path = $path . mb_strtolower($imageUrlExt);
                 }
             } else {
@@ -81,10 +78,10 @@ class ImagesService
 
             // Sanitize SVGs to avoid any XSS attacks
             if ($file->getMimeType() == 'image/svg+xml') {
-                $sanitizer = new Sanitizer();
+                $sanitizer = new Sanitizer;
 
                 // Custom allowed attributes for AFMG
-                $allowedAttributes = new SvgAllowedAttributes();
+                $allowedAttributes = new SvgAllowedAttributes;
                 $sanitizer->setAllowedAttrs($allowedAttributes);
 
                 $dirtySVG = file_get_contents($file);
@@ -92,7 +89,7 @@ class ImagesService
                 file_put_contents($file, $cleanSVG);
             }
 
-            if (!empty($path)) {
+            if (! empty($path)) {
                 // Remove old
                 $this->cleanup($model, $field);
 
@@ -103,10 +100,10 @@ class ImagesService
                         Storage::put($path, $cleanSVG, 'public');
                     } else {
                         $manager = new ImageManager(
-                            new Driver()
+                            new Driver
                         );
                         $image = $manager->read($file);
-                        Storage::put($path, (string)$image->toJpeg(), 'public');
+                        Storage::put($path, (string) $image->toJpeg(), 'public');
                     }
                 } else {
                     $path = request()->file($field)->storePublicly($folder);
@@ -118,7 +115,7 @@ class ImagesService
                 }
             }
         } catch (Exception $e) {
-            //throw $e;
+            // throw $e;
             // There was an error getting the image. Could be the url, could be the request.
             session()->flash('warning', trans('crud.image.error', ['size' => Limit::readable()->upload()]));
         }
@@ -126,7 +123,8 @@ class ImagesService
 
     /**
      * Delete old image and thumb
-     * @param MiscModel|Entity|Model $model
+     *
+     * @param  MiscModel|Entity|Model  $model
      */
     public function cleanup($model, $field = 'image')
     {

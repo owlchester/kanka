@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Models\Campaign;
-use App\Http\Requests\Campaigns\StoreDefaultThumbnail;
 use App\Http\Requests\Campaigns\DestroyDefaultThumbnail;
+use App\Http\Requests\Campaigns\StoreDefaultThumbnail;
 use App\Http\Resources\EntityDefaultThumbnailResource as Resource;
+use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\Campaign\DefaultImageService;
 
@@ -18,6 +18,7 @@ class DefaultThumbnailApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -29,6 +30,7 @@ class DefaultThumbnailApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function upload(StoreDefaultThumbnail $request, Campaign $campaign)
@@ -38,7 +40,7 @@ class DefaultThumbnailApiController extends ApiController
         $entityType = EntityType::inCampaign($campaign)->find($request->post('entity_type_id'));
         if ($this->defaultImageService->campaign($campaign)->entityType($entityType)->save($request)) {
             return response()->json([
-                'data' => 'Default thumbnail successfully uploaded'
+                'data' => 'Default thumbnail successfully uploaded',
             ]);
         }
 
@@ -57,7 +59,7 @@ class DefaultThumbnailApiController extends ApiController
 
         if ($result) {
             return response()->json([
-                'data' => 'Default thumbnail successfully deleted'
+                'data' => 'Default thumbnail successfully deleted',
             ]);
         }
 

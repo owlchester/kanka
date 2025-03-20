@@ -12,7 +12,9 @@ use Illuminate\View\Component;
 class Body extends Component
 {
     public Campaign $campaign;
+
     public CampaignDashboardWidget $widget;
+
     public Entity $entity;
 
     /**

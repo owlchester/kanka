@@ -30,7 +30,6 @@ class LogController extends Controller
             ->recent()
             ->paginate(config('limits.pagination'));
 
-
         $transKey = $entity->entityType->pluralCode();
 
         $q = request()->get('q');

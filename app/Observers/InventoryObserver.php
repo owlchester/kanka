@@ -6,8 +6,6 @@ use App\Models\Inventory;
 
 class InventoryObserver
 {
-    /**
-     */
     public function saving(Inventory $inventory)
     {
         if ($inventory->copy_item_entry && empty($inventory->item)) {
@@ -15,8 +13,6 @@ class InventoryObserver
         }
     }
 
-    /**
-     */
     public function saved(Inventory $inventory)
     {
         // When adding or changing an inventory to an entity, we want to update the
@@ -26,8 +22,6 @@ class InventoryObserver
         }
     }
 
-    /**
-     */
     public function deleted(Inventory $inventory)
     {
         // When deleting an inventory, we want to update the entity's last update

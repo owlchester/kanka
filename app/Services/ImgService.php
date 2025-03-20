@@ -7,7 +7,6 @@ use Illuminate\Support\Str;
 
 class ImgService
 {
-    /**  */
     protected string $crop = '';
 
     /** @var bool If true, running locally with docker/minio */
@@ -25,15 +24,15 @@ class ImgService
     /** @var string s3 url */
     protected string $s3;
 
-    /**  */
     protected bool $enabled;
 
     protected ?int $focusX;
+
     protected ?int $focusY;
 
     public function __construct()
     {
-        $this->enabled = !empty(config('thumbor.key'));
+        $this->enabled = ! empty(config('thumbor.key'));
         $this->local = config('thumbor.key') === 'local';
     }
 
@@ -43,6 +42,7 @@ class ImgService
     public function console(): self
     {
         $this->console = true;
+
         return $this;
     }
 
@@ -52,6 +52,7 @@ class ImgService
     public function new(): self
     {
         $this->new = true;
+
         return $this;
     }
 
@@ -66,6 +67,7 @@ class ImgService
             }
             $this->crop = "{$width}x{$height}/";
         }
+
         return $this;
     }
 
@@ -76,6 +78,7 @@ class ImgService
     {
         $this->focusX = $x;
         $this->focusY = $y;
+
         return $this;
     }
 
@@ -85,6 +88,7 @@ class ImgService
     public function resetCrop(): self
     {
         $this->crop = '';
+
         return $this;
     }
 
@@ -96,13 +100,14 @@ class ImgService
         $this->crop = '';
         $this->focusX = null;
         $this->focusY = null;
+
         return $this;
     }
 
     /**
      * @return $this
      */
-    public function base(string|null $base = 'user'): self
+    public function base(?string $base = 'user'): self
     {
         //        if (!empty($this->s3)) {
         //            return $this;w
@@ -113,27 +118,26 @@ class ImgService
         } else {
             $this->s3 = config('thumbor.bases.user');
         }
+
         return $this;
     }
 
-    /**
-     */
     public function url(string $img): string
     {
         // Self-hosted with no s3/minio instance or SVG files load directly from the storage
-        if (!$this->enabled || Str::contains($img, '?') || Str::endsWith($img, '.svg')) {
+        if (! $this->enabled || Str::contains($img, '?') || Str::endsWith($img, '.svg')) {
             return Storage::url($img);
         }
 
         // Default base
-        if (!$this->console) {
+        if (! $this->console) {
             $this->base();
         }
 
         $img = Str::before($img, '?');
         $full = $this->s3 . $img;
         $filter = 'smart/';
-        if (!empty($this->focusX)) {
+        if (! empty($this->focusX)) {
             // left x top:right x bottom
             $filter = 'filters:focal(' . ($this->focusX - 10) . 'x' . ($this->focusY - 10) . ':' . ($this->focusX + 10) . 'x' . ($this->focusY + 10) . ')/';
             $this->focusX = $this->focusY = null;
@@ -147,27 +151,26 @@ class ImgService
                 . app()->environment() . '/' . urlencode($img);
         } elseif (Str::contains(config('thumbor.url'), 'th.kanka.io')) {
             // New server
-            if (!app()->isProduction()) {
+            if (! app()->isProduction()) {
                 $img = app()->environment() . '/' . $img;
                 $full = $this->s3 . $img;
             }
             $thumborUrl = $this->crop . $filter . $full;
             $sign = $this->sign($thumborUrl);
+
             return config('thumbor.url') . $sign . '/' . $this->crop . $filter
-                . 'src/' . $img
-            ;
+                . 'src/' . $img;
         }
+
         // Old system
         return config('thumbor.url') . $this->base . '/' . $sign . '/' . $this->crop . $filter
-            . 'src/' . urlencode($img)
-        ;
+            . 'src/' . urlencode($img);
     }
 
-    /**
-     */
     protected function sign(string $url): string
     {
         $signature = hash_hmac('sha1', $url, config('thumbor.key'), true);
+
         return strtr(base64_encode($signature), '/+', '_-');
     }
 }

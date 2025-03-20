@@ -14,7 +14,7 @@ class TimelineFilter extends DatagridFilter
     {
         $name = Module::singular(config('entities.ids.timeline'));
         $placeholder = __('crud.placeholders.timeline');
-        if (!empty($name)) {
+        if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
         $this
@@ -25,7 +25,7 @@ class TimelineFilter extends DatagridFilter
                 'label' => Module::singular(config('entities.ids.timeline'), __('entities.timeline')),
                 'type' => 'select2',
                 'route' => route('search-list', [$this->campaign, config('entities.ids.timeline')]),
-                'placeholder' =>  $placeholder,
+                'placeholder' => $placeholder,
                 'model' => Timeline::class,
             ])
             ->isPrivate()
@@ -36,7 +36,6 @@ class TimelineFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
-            ->connections()
-        ;
+            ->connections();
     }
 }

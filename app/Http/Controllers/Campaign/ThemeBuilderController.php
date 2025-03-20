@@ -27,6 +27,7 @@ class ThemeBuilderController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -35,6 +36,7 @@ class ThemeBuilderController extends Controller
 
         $style = CampaignStyle::theme()->first();
         $config = $style?->content;
+
         return view('campaigns.styles.builder', compact('campaign', 'config'));
     }
 
@@ -52,7 +54,6 @@ class ThemeBuilderController extends Controller
             ->route('campaign_styles.index', $campaign)
             ->with('success', __('campaigns/builder.success'));
     }
-
 
     public function reset(Campaign $campaign)
     {

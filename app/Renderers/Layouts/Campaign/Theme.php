@@ -9,6 +9,7 @@ class Theme extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -19,13 +20,14 @@ class Theme extends Layout
                 'label' => 'campaigns/styles.fields.order',
                 'render' => function ($model) {
                     return $model->order ? '#' . $model->order : null;
-                }
+                },
             ],
             'name' => [
                 'key' => 'name',
                 'label' => 'campaigns/styles.fields.name',
                 'render' => function ($model) {
                     $campaign = CampaignLocalization::getCampaign();
+
                     return '<a href="' . route('campaign_styles.edit', [$campaign, $model]) . '">' . $model->name . '</a>';
                 },
             ],
@@ -40,14 +42,14 @@ class Theme extends Layout
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($model) {
                     return $model->updated_at->diffForHumans();
-                }
+                },
             ],
             'enabled' => [
                 'key' => 'is_enabled',
                 'label' => 'campaigns/styles.fields.is_enabled',
                 'render' => function ($model) {
                     return $model->is_enabled ? '<i class="fa-solid fa-check-circle"></i>' : null;
-                }
+                },
             ],
         ];
 
@@ -61,7 +63,7 @@ class Theme extends Layout
     {
         return [
             self::ACTION_EDIT,
-            self::ACTION_DELETE
+            self::ACTION_DELETE,
         ];
     }
 
@@ -71,7 +73,7 @@ class Theme extends Layout
             [
                 'action' => 'enable',
                 'label' => 'campaigns/styles.actions.enable',
-                'icon' => 'fa-solid fa-check'
+                'icon' => 'fa-solid fa-check',
             ],
             [
                 'action' => 'disable',

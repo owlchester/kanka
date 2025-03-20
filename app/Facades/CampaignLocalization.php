@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class CampaignLocalization
- * @package App\Facades
  *
  * @mixin \App\Services\Campaign\LocalisationService
+ *
  * @see \App\Services\Campaign\LocalisationService
  */
 class CampaignLocalization extends Facade

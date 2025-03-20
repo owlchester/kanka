@@ -16,7 +16,9 @@ class DowngradedSubscriptionMail extends Mailable
      * @var User
      */
     public $user;
+
     public $reason;
+
     public $custom;
 
     /**

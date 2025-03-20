@@ -2,9 +2,9 @@
 
 namespace App\Jobs\Emails;
 
-use App\Notifications\Header;
 use App\Models\User;
 use App\Models\UserLog;
+use App\Notifications\Header;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -19,13 +19,8 @@ class SubscriptionDeletedEmailJob implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /**
-     */
     public int $userId;
 
-    /**
-     *
-     */
     public $tries = 1;
 
     /**
@@ -43,12 +38,14 @@ class SubscriptionDeletedEmailJob implements ShouldQueue
         $user = User::find($this->userId);
         if (empty($user)) {
             Log::warning('Subscription Deleted Email Job: unknown user id', ['userId' => $this->userId]);
+
             return;
         }
 
         // Don't notify if the user was banned
         if ($user->isBanned()) {
             Log::warning('Subscription Deleted Email Job: banned user id', ['userId' => $this->userId]);
+
             return;
         }
 

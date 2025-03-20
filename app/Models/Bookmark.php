@@ -423,7 +423,7 @@ class Bookmark extends Model
             return true;
         }
 
-return (bool) ($this->isRandom());
+        return (bool) ($this->isRandom());
     }
 
     public function activeModule(Campaign $campaign, Entity|EntityType|null $current = null): ?string

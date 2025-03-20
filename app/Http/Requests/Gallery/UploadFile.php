@@ -29,12 +29,13 @@ class UploadFile extends FormRequest
             Limit::map();
             $types[] = 'svg';
         }
+
         return [
             'file' => [
                 'required',
                 File::types($types),
                 'max:' . Limit::upload(),
-                new GallerySize(),
+                new GallerySize,
             ],
         ];
     }

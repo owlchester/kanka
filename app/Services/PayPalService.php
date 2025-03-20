@@ -3,11 +3,11 @@
 namespace App\Services;
 
 use App\Models\Tier;
-use App\Traits\UserAware;
-use Laravel\Cashier\Subscription;
-use Carbon\Carbon;
-use Srmklive\PayPal\Services\PayPal;
 use App\Models\UserLog;
+use App\Traits\UserAware;
+use Carbon\Carbon;
+use Laravel\Cashier\Subscription;
+use Srmklive\PayPal\Services\PayPal;
 
 class PayPalService
 {
@@ -18,20 +18,19 @@ class PayPalService
     public function tier(Tier $tier): self
     {
         $this->tier = $tier;
+
         return $this;
     }
 
-    /**
-     */
     public function process(): mixed
     {
-        if ($this->user->isSubscriber() && !$this->user->hasPayPal()) {
+        if ($this->user->isSubscriber() && ! $this->user->hasPayPal()) {
             return [];
         }
         $oldPrice = '';
-        $currency = "USD";
+        $currency = 'USD';
         if ($this->user->billedInEur()) {
-            $currency = "EUR";
+            $currency = 'EUR';
         }
         $price = $this->tier->yearly;
 
@@ -50,35 +49,33 @@ class PayPalService
         }
         $price = max(0, $price);
 
-        $provider = new PayPal();
+        $provider = new PayPal;
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
 
         $response = $provider->createOrder([
-            "intent" => "CAPTURE",
-            "application_context" => [
-                "return_url" => route('paypal.transaction-success'),
-                "cancel_url" => route('paypal.cancel-transaction'),
+            'intent' => 'CAPTURE',
+            'application_context' => [
+                'return_url' => route('paypal.transaction-success'),
+                'cancel_url' => route('paypal.cancel-transaction'),
             ],
-            "purchase_units" => [
+            'purchase_units' => [
                 0 => [
-                    "reference_id" => $this->tier->name,
-                    "amount" => [
-                        "currency_code" => $currency,
-                        "value" => $price
+                    'reference_id' => $this->tier->name,
+                    'amount' => [
+                        'currency_code' => $currency,
+                        'value' => $price,
                     ],
-                ]
-            ]
+                ],
+            ],
         ]);
 
         return $response;
     }
 
-    /**
-     */
     public function subscribe(string $pledge): void
     {
-        if (!$this->user->isSubscriber()) {
+        if (! $this->user->isSubscriber()) {
             // Add the subscriber role
             $this->user->roles()->syncWithoutDetaching([5]);
 
@@ -86,7 +83,7 @@ class PayPalService
             $this->user->pledge = $pledge;
             $this->user->save();
 
-            $sub = new Subscription();
+            $sub = new Subscription;
             $sub->user_id = $this->user->id;
             $sub->type = 'kanka';
             $sub->stripe_id = 'paypal_' . uniqid();

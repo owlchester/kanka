@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreOrganisationMember;
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\CharacterOrganisation;
 use App\Models\OrganisationMember;
-use App\Http\Requests\StoreOrganisationMember;
 
 class CharacterOrganisationController extends Controller
 {
-    /**
-     */
     protected string $view = 'characters.organisations';
 
     /**
@@ -34,6 +32,7 @@ class CharacterOrganisationController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign, Character $character)
@@ -54,15 +53,17 @@ class CharacterOrganisationController extends Controller
         }
 
         $relation = OrganisationMember::create($request->all());
+
         return redirect()->route('characters.organisations', [$campaign, $character->id])
             ->with('success', __($this->view . '.create.success', [
                 'character' => $character->name,
-                'organisation' => $relation->organisation->name
+                'organisation' => $relation->organisation->name,
             ]));
     }
 
     /**
      * @return void
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Campaign $campaign, Character $character, OrganisationMember $organisationMember)
@@ -73,6 +74,7 @@ class CharacterOrganisationController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign, Character $character, CharacterOrganisation $characterOrganisation)
@@ -103,12 +105,14 @@ class CharacterOrganisationController extends Controller
             return redirect()->route('entities.show', [$campaign, $characterOrganisation->organisation->entity])
                 ->with('success', __($this->view . '.edit.success'));
         }
+
         return redirect()->route('characters.organisations', [$campaign, $character->id])
             ->with('success', __($this->view . '.edit.success'));
     }
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface

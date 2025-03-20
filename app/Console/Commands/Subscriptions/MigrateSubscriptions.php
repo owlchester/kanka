@@ -23,6 +23,7 @@ class MigrateSubscriptions extends Command
     protected $description = 'Update subscribers to the new sub pricing';
 
     protected int $count = 0;
+
     protected int $limit = 400;
 
     /**
@@ -55,6 +56,7 @@ class MigrateSubscriptions extends Command
                         $new = $this->map($old);
                         if ($new === 'error' || empty($new)) {
                             $this->error('Invalid old price ' . $old . ' to ' . $new);
+
                             continue;
                         }
                         $s->user->subscription('kanka')->noProrate()->swap($new);
@@ -70,7 +72,7 @@ class MigrateSubscriptions extends Command
 
     protected function map(string $price): string
     {
-        return match($price) {
+        return match ($price) {
             config('subscription.old.oe') => config('subscription.owlbear.eur.monthly'),
             config('subscription.old.oey') => config('subscription.owlbear.eur.yearly'),
             config('subscription.old.ou') => config('subscription.owlbear.usd.monthly'),

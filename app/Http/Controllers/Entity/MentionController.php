@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Entity;
 
-use App\Http\Controllers\Controller;
 use App\Facades\Datagrid;
+use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
@@ -77,6 +77,7 @@ class MentionController extends Controller
         }
 
         $rows = $this->rows;
+
         return view('entities.pages.mentions.mentions', compact(
             'entity',
             'rows',

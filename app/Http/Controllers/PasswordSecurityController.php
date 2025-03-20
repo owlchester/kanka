@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Settings\UserEnableTfa;
+use App\Models\PasswordSecurity;
 use App\Models\User;
 use Illuminate\Http\Request;
 use PragmaRX\Google2FA\Google2FA;
-use App\Models\PasswordSecurity;
 
 class PasswordSecurityController extends Controller
 {
@@ -28,14 +28,15 @@ class PasswordSecurityController extends Controller
         /** @var User $user */
         $user = $request->user();
 
-        $otp = new Google2FA();
+        $otp = new Google2FA;
 
         // Generate a new Google2FA code for User
         PasswordSecurity::create([
             'user_id' => $user->id,
             'google2fa_enable' => 0,
-            'google2fa_secret' => $otp->generateSecretKey()
+            'google2fa_secret' => $otp->generateSecretKey(),
         ]);
+
         return redirect()->route('settings.account')->with('success', __('settings.account.2fa.success_key'));
     }
 
@@ -48,7 +49,7 @@ class PasswordSecurityController extends Controller
         $user = $request->user();
 
         // Enable OTP if the Authenticator code matches secret
-        $otp = new Google2FA();
+        $otp = new Google2FA;
         $secret = $request->input('otp');
         $valid = $otp->verifyKey($user->passwordSecurity->google2fa_secret, $secret);
 
@@ -58,8 +59,10 @@ class PasswordSecurityController extends Controller
             // 2FA is enabled, log out the user and ask them to set up.
             auth()->logout();
             session()->flush();
+
             return redirect()->route('login')->with('success', __('settings.account.2fa.success_enable'));
         }
+
         return redirect()->route('settings.account')->with('error', __('settings.account.2fa.error_enable'));
     }
 

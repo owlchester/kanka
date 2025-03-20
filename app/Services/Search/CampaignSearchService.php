@@ -11,7 +11,8 @@ class CampaignSearchService
 
     /**
      * List of roles in a campaign
-     * @param string|null $query Search term
+     *
+     * @param  string|null  $query  Search term
      */
     public function roles(?string $query = null): array
     {
@@ -23,7 +24,8 @@ class CampaignSearchService
 
     /**
      * List of members in a campaign
-     * @param string|null $query Search term
+     *
+     * @param  string|null  $query  Search term
      */
     public function members(?string $query = null): array
     {
@@ -35,7 +37,7 @@ class CampaignSearchService
             $result[] = [
                 'id' => $member->user->id,
                 'name' => $member->user->name,
-                'avatar' => $member->user->hasAvatar() ? $member->user->getAvatarUrl() : null
+                'avatar' => $member->user->hasAvatar() ? $member->user->getAvatarUrl() : null,
             ];
         }
 

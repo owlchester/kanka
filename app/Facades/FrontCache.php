@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class CampaignLocalization
- * @package App\Facades
  *
  * @see \App\Services\Caches\FrontCacheService
+ *
  * @mixin \App\Services\Caches\FrontCacheService
  */
 class FrontCache extends Facade

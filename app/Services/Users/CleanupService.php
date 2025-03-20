@@ -2,6 +2,7 @@
 
 namespace App\Services\Users;
 
+use App\Facades\Images;
 use App\Facades\UserCache;
 use App\Jobs\Users\UnsubscribeUser;
 use App\Models\CampaignFollower;
@@ -9,7 +10,6 @@ use App\Models\CampaignUser;
 use App\Models\CommunityEventEntry;
 use App\Models\Feature;
 use App\Services\Campaign\SearchCleanupService;
-use App\Facades\Images;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Log;
 
@@ -26,15 +26,14 @@ class CleanupService
             ->removeWorldbuilding()
             ->removeAvatar()
             ->cleanCache()
-            ->removeNewsletter()
-        ;
+            ->removeNewsletter();
 
         return $this;
     }
 
     protected function removeCampaigns(): self
     {
-        //Log::info('Services/Users/CleanupService', ['deleting', ['user' => $this->user->id]]);
+        // Log::info('Services/Users/CleanupService', ['deleting', ['user' => $this->user->id]]);
 
         $members = CampaignUser::where('user_id', $this->user->id)
             ->with(['campaign', 'campaign.members'])
@@ -50,6 +49,7 @@ class CleanupService
                 $member->campaign->forceDelete();
             }
         }
+
         return $this;
     }
 
@@ -57,21 +57,24 @@ class CleanupService
     {
         $followers = CampaignFollower::where('user_id', $this->user->id)->with('campaign')->get();
         foreach ($followers as $follower) {
-            //Log::info('Removing follower', ['follower' => $follower->id]);
+            // Log::info('Removing follower', ['follower' => $follower->id]);
             $follower->delete();
         }
+
         return $this;
     }
 
     protected function removeFeatureRequests(): self
     {
         Feature::where('created_by', $this->user->id)->where('upvote_count', '<', 10)->where('status_id', \App\Enums\FeatureStatus::Approved)->delete();
+
         return $this;
     }
 
     protected function removeWorldbuilding(): self
     {
         CommunityEventEntry::where('created_by', $this->user->id)->delete();
+
         return $this;
     }
 
@@ -80,6 +83,7 @@ class CleanupService
         if ($this->user->hasAvatar()) {
             Images::cleanup($this->user, 'avatar');
         }
+
         return $this;
     }
 
@@ -88,15 +92,17 @@ class CleanupService
         UserCache::user($this->user)
             ->clearName()
             ->clear();
+
         return $this;
     }
 
     protected function removeNewsletter(): self
     {
         // If the user was subscribed to the newsletter, unsubscribe them
-        if (app()->isProduction() && !empty($this->user->hasNewsletter())) {
+        if (app()->isProduction() && ! empty($this->user->hasNewsletter())) {
             UnsubscribeUser::dispatch($this->user->email);
         }
+
         return $this;
     }
 }

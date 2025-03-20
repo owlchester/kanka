@@ -23,6 +23,7 @@ class ChunkMapJob implements ShouldQueue
     public $tries = 1;
 
     protected $mapID;
+
     /**
      * Create a new job instance.
      *
@@ -48,6 +49,7 @@ class ChunkMapJob implements ShouldQueue
         $map = Map::find($this->mapID);
         if (empty($map)) {
             Log::error('Chunking map: unknown map #' . $this->mapID);
+
             return;
         }
 
@@ -71,11 +73,13 @@ class ChunkMapJob implements ShouldQueue
         $map = Map::find($this->mapID);
         if (empty($map)) {
             Log::error('No map #' . $this->mapID);
+
             return;
         }
 
         if ($map->chunkingError()) {
             Log::error('Already error #' . $this->mapID);
+
             return;
         }
         $map->chunking_status = Map::CHUNKING_ERROR;

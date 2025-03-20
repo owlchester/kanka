@@ -13,7 +13,6 @@ class DiceRollFilter extends DatagridFilter
             ->add('name')
             ->character()
             ->isPrivate()
-            ->tags()
-        ;
+            ->tags();
     }
 }

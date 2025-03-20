@@ -6,7 +6,6 @@ use enshrined\svgSanitize\data\AttributeInterface;
 
 /**
  * Class AllowedAttributes
- * @package App\Sanitizers\Svg
  */
 class SvgAllowedAttributes implements AttributeInterface
 {

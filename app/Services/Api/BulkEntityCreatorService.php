@@ -4,8 +4,8 @@ namespace App\Services\Api;
 
 use App\Models\Entity;
 use App\Models\MiscModel;
-use App\Traits\CampaignAware;
 use App\Services\Entity\TagService;
+use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
@@ -17,6 +17,7 @@ class BulkEntityCreatorService
     use UserAware;
 
     protected MiscModel $new;
+
     protected Entity $entity;
 
     protected array $data;
@@ -24,11 +25,10 @@ class BulkEntityCreatorService
     public function data(array $data): self
     {
         $this->data = $data;
+
         return $this;
     }
 
-    /**
-     */
     public function create(): Entity
     {
         if ($this->entityType->isSpecial()) {
@@ -54,6 +54,7 @@ class BulkEntityCreatorService
         $this->entity->save();
         $this->entity->crudSaved();
         $this->saveTags();
+
         return $this->entity;
     }
 
@@ -62,14 +63,13 @@ class BulkEntityCreatorService
      */
     protected function saveTags(): void
     {
-        if (!Arr::has($this->data, 'tags')) {
+        if (! Arr::has($this->data, 'tags')) {
             return;
         }
         /** @var TagService $tagService */
         $tagService = app()->make(TagService::class);
         $tagService->user($this->user)
             ->entity($this->entity)
-            ->sync($this->data['tags'])
-        ;
+            ->sync($this->data['tags']);
     }
 }

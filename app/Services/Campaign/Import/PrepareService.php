@@ -22,7 +22,7 @@ class PrepareService
             return $token;
         }
 
-        $token = new CampaignImport();
+        $token = new CampaignImport;
         $token->user_id = $this->user->id;
         $token->campaign_id = $this->campaign->id;
         $token->status_id = CampaignImportStatus::PREPARED;

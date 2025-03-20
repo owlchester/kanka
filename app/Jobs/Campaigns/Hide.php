@@ -40,7 +40,7 @@ class Hide implements ShouldQueue
         /** @var HideService $service */
         $service = app()->make(HideService::class);
         $campaign = Campaign::find($this->campaign);
-        if (!$campaign) {
+        if (! $campaign) {
             // Campaign wasn't found
             Log::warning('Hide Campaign: unknown #' . $this->campaign . '.');
         }

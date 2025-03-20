@@ -18,7 +18,7 @@ class LocationSubmenu extends BaseSubmenu implements EntitySubmenu
             $items['second']['locations'] = [
                 'name' => Module::plural($location->entityTypeId(), 'entities.locations'),
                 'route' => 'locations.locations',
-                'count' => $count
+                'count' => $count,
             ];
         }
 
@@ -27,9 +27,10 @@ class LocationSubmenu extends BaseSubmenu implements EntitySubmenu
             $items['second']['characters'] = [
                 'name' => Module::plural(config('entities.ids.character'), 'entities.characters'),
                 'route' => 'locations.characters',
-                'count' => $count
+                'count' => $count,
             ];
         }
+
         return $items;
     }
 }

@@ -19,8 +19,7 @@ class LiveController extends Controller
             ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('attribute', $attribute)
-            ->with('uid', request()->get('uid'))
-        ;
+            ->with('uid', request()->get('uid'));
     }
 
     public function save(UpdateEntityAttribute $request, Campaign $campaign, Entity $entity, Attribute $attribute)
@@ -32,7 +31,7 @@ class LiveController extends Controller
         }
 
         $attribute->update([
-            'value' => Purify::clean($request->get('value'))
+            'value' => Purify::clean($request->get('value')),
         ]);
         // Track that the entity was updated
         $entity->touch();
@@ -40,7 +39,7 @@ class LiveController extends Controller
             $entity->child->touchSilently();
         }
 
-        if (!request()->ajax()) {
+        if (! request()->ajax()) {
             return redirect()->route('entities.attributes', [$campaign, $entity]);
         }
 
@@ -57,12 +56,13 @@ class LiveController extends Controller
                 'aria-label="' . ($attribute->value ? 'checked' : 'unchecked') . '"></i>';
             $attributeValue = $attribute->value ? 'true' : 'false';
         }
+
         return response()->json([
             'value' => $result,
             'attribute' => $attributeValue,
             'id' => $attribute->id,
             'uid' => $request->get('uid'),
-            'success' => __('entities/attributes.live.success', ['attribute' => $attribute->name()])
+            'success' => __('entities/attributes.live.success', ['attribute' => $attribute->name()]),
         ]);
     }
 }

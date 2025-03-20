@@ -16,9 +16,10 @@ class CalendarSubmenu extends BaseSubmenu implements EntitySubmenu
             $items['second']['events'] = [
                 'name' => 'crud.tabs.reminders',
                 'route' => 'calendars.events',
-                'count' => $count
+                'count' => $count,
             ];
         }
+
         return $items;
     }
 }

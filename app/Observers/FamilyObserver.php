@@ -20,7 +20,7 @@ class FamilyObserver extends MiscObserver
     protected function saveMembers(Family $family): self
     {
         // Only execute this if a proper post attribute is in the body
-        if (!request()->has('sync_family_members')) {
+        if (! request()->has('sync_family_members')) {
             return $this;
         }
 
@@ -36,12 +36,12 @@ class FamilyObserver extends MiscObserver
         $new = [];
 
         foreach ($ids as $id) {
-            if (!empty($existing[$id])) {
+            if (! empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
                 /** @var ?Character $character */
                 $character = Character::find($id);
-                if (!empty($character)) {
+                if (! empty($character)) {
                     $new[] = $character->id;
 
                     $character->families()->attach($family->id);
@@ -55,6 +55,7 @@ class FamilyObserver extends MiscObserver
             $k->families()->detach($family->id);
             EntityLogger::dirty('members', null);
         }
+
         return $this;
     }
 }

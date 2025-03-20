@@ -15,18 +15,16 @@ class AchievementService
     use CampaignAware;
 
     protected array $primaryTargets = [25, 50, 100, 250, 500];
-    //protected $primaryTargets = [2, 5, 10, 25, 40];
+    // protected $primaryTargets = [2, 5, 10, 25, 40];
 
     protected array $secondaryTargets = [10, 20, 45, 100, 200];
 
     protected array $tertiaryTargets = [1, 2, 5, 10, 20];
-    //protected $secondaryTargets = [1, 2, 3, 4, 5];
+    // protected $secondaryTargets = [1, 2, 3, 4, 5];
 
-    /**
-     */
     public function stats(): array|false
     {
-        if (!$this->campaign->superboosted()) {
+        if (! $this->campaign->superboosted()) {
             return false;
         }
 
@@ -54,7 +52,7 @@ class AchievementService
         $events = $this->campaign->events()->withInvisible()->count() + $this->random();
 
         $tags = $this->taggedEntities() + $this->random();
-        $plugins = $this->plugins()  + $this->random(2, 9);
+        $plugins = $this->plugins() + $this->random(2, 9);
         $connections = $this->connections() + $this->random(30, 60);
         $markers = $this->markers() + $this->random(30, 60);
 
@@ -155,6 +153,7 @@ class AchievementService
             if ($a['level'] == $b['level']) {
                 return 0;
             }
+
             return ($a['level'] < $b['level']) ? 1 : -1;
         });
 
@@ -163,8 +162,6 @@ class AchievementService
         return $stats;
     }
 
-    /**
-     */
     public function target(int $amount, int $level = 1): int
     {
         $targets = $level == 1 ? $this->primaryTargets : ($level == 2 ? $this->secondaryTargets : $this->tertiaryTargets);
@@ -180,8 +177,6 @@ class AchievementService
         return $last;
     }
 
-    /**
-     */
     public function level(int $amount, int $level = 1): int
     {
         $targets = $level == 1 ? $this->primaryTargets : ($level == 2 ? $this->secondaryTargets : $this->tertiaryTargets);
@@ -195,8 +190,6 @@ class AchievementService
         return $level;
     }
 
-    /**
-     */
     public function title(int $amount, int $level = 1): string
     {
         $targets = $level == 1 ? $this->primaryTargets : ($level == 2 ? $this->secondaryTargets : $this->tertiaryTargets);
@@ -209,8 +202,6 @@ class AchievementService
         return __('campaigns/stats.titles.' . ($level == 1 ? 'primary' : ($level == 2 ? 'secondary' : 'tertiary')) . '.' . $level);
     }
 
-    /**
-     */
     public function achievements(): array
     {
         $dead = $this->campaign->characters()->where('is_dead', true)->count();
@@ -229,7 +220,7 @@ class AchievementService
                 'goal' => __('campaigns/stats.achievements.calendars.goal'),
                 'amount' => $calendars,
                 'target' => 3,
-                'icon' => 'fa-solid fa-calendar'
+                'icon' => 'fa-solid fa-calendar',
             ],
         ];
 
@@ -251,23 +242,20 @@ class AchievementService
         return EntityTag::leftJoin('entities as e', 'e.id', 'entity_tags.entity_id')
             ->where('e.campaign_id', $this->campaign->id)
             ->whereNull('e.deleted_at')
-            ->count()
-        ;
+            ->count();
     }
 
     protected function plugins(): int
     {
         return CampaignPlugin::where('campaign_id', $this->campaign->id)
-            ->count()
-        ;
+            ->count();
     }
 
     protected function connections(): int
     {
         return Relation::where('campaign_id', $this->campaign->id)
             ->whereNull('mirror_id')
-            ->count()
-        ;
+            ->count();
     }
 
     protected function markers(): int
@@ -275,8 +263,7 @@ class AchievementService
         return MapMarker::leftJoin('maps as m', 'm.id', 'map_markers.map_id')
             ->where('m.campaign_id', $this->campaign->id)
             ->whereNull('m.deleted_at')
-            ->count()
-        ;
+            ->count();
     }
 
     protected function moduleName(string $singular, string $plural): array

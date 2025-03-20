@@ -9,13 +9,14 @@ class Entity extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'name' => [
                 'key' => 'name',
@@ -27,10 +28,10 @@ class Entity extends Layout
                 'label' => 'crud.fields.entity_type',
                 'render' => function ($model) {
                     return $model->entityType->name();
-                }
+                },
             ],
             'tags' => [
-                'render' => Standard::TAGS
+                'render' => Standard::TAGS,
             ],
 
         ];

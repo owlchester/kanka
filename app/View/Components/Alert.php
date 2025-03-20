@@ -13,12 +13,11 @@ class Alert extends Component
      */
     public function __construct(
         public string $type,
-        public null|string $id = null,
-        public null|string $class = null,
+        public ?string $id = null,
+        public ?string $class = null,
         public bool $dismissible = false,
         public bool $hidden = false,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

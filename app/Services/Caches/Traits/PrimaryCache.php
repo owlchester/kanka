@@ -25,6 +25,7 @@ trait PrimaryCache
         $data = $this->primaryData();
 
         $this->forever($key, $data);
+
         return $this->primary[$cache] = new Collection($data);
     }
 
@@ -34,6 +35,7 @@ trait PrimaryCache
     public function clear(): self
     {
         $this->forget($this->primaryKey());
+
         return $this;
     }
 
@@ -44,6 +46,7 @@ trait PrimaryCache
     {
         $this->primary[$key][$property] = $data;
         $this->forever($this->primaryKey(), $this->primary[$key]);
+
         return $data;
     }
 }

@@ -12,7 +12,9 @@ use App\Models\Family;
 class FamilyController extends CrudController
 {
     protected string $view = 'families';
+
     protected string $route = 'families';
+
     protected string $module = 'families';
 
     protected string $model = Family::class;

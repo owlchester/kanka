@@ -9,13 +9,14 @@ class Post extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'entity' => [
                 'key' => 'entity.name',
@@ -27,11 +28,11 @@ class Post extends Layout
                 'label' => 'crud.fields.entity_type',
                 'render' => function ($model) {
                     return $model->entity->entityType->name();
-                }
+                },
             ],
             'tags' => [
-                'render' => Standard::TAGS
-            ]
+                'render' => Standard::TAGS,
+            ],
 
         ];
 

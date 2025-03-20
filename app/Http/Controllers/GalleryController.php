@@ -18,7 +18,7 @@ class GalleryController extends Controller
 
         $folder = null;
         $folderId = request()->get('folder_id');
-        if (!empty($folderId)) {
+        if (! empty($folderId)) {
             $folder = Image::where('is_folder', '1')->where('id', $folderId)->firstOrFail();
         }
 

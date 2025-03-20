@@ -13,14 +13,14 @@ class DeleteRelationController extends Controller
     ) {
         $this->middleware('auth');
     }
+
     public function index(Campaign $campaign)
     {
-        $datagrid = new \App\Datagrids\Actions\RelationDatagridActions();
+        $datagrid = new \App\Datagrids\Actions\RelationDatagridActions;
 
         return view('cruds.datagrids.bulks.modals.delete.relation')
             ->with('campaign', $campaign)
-            ->with('datagrid', $datagrid)
-        ;
+            ->with('datagrid', $datagrid);
     }
 
     public function apply(Campaign $campaign)

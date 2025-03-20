@@ -15,11 +15,12 @@ class Roadmap extends Component
 
     #[Url]
     public int $idea;
+
     public Feature $feature;
 
     public function mount()
     {
-        if (isset($this->idea) && !empty($this->idea)) {
+        if (isset($this->idea) && ! empty($this->idea)) {
             $feat = Feature::approved()->where('id', $this->idea)->first();
             if ($feat) {
                 $this->feature = $feat;
@@ -41,7 +42,6 @@ class Roadmap extends Component
     {
         $this->status = 'done';
     }
-
 
     #[On('open-idea')]
     public function openIdea($idea)
@@ -73,6 +73,7 @@ class Roadmap extends Component
             $with[] = 'done.uservote';
         }
         $categories = FeatureCategory::with($with)->get();
+
         return view('livewire.roadmap', ['categories' => $categories]);
     }
 }

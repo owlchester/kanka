@@ -24,6 +24,7 @@ class DateService
         $this->loadUserFormat();
         try {
             $original = new Carbon($date);
+
             return $original->isoFormat($this->format);
         } catch (Exception $e) {
             return (string) $date;

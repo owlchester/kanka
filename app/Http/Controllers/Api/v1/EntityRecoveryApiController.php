@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Models\Campaign;
-use App\Http\Resources\EntityResource as Resource;
 use App\Http\Requests\RecoverEntity as Request;
+use App\Http\Resources\EntityResource as Resource;
+use App\Models\Campaign;
 use App\Services\Entity\RecoveryService;
 
 class EntityRecoveryApiController extends ApiController
@@ -20,11 +20,13 @@ class EntityRecoveryApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
         $this->authorize('recover', $campaign);
+
         return Resource::collection($campaign
             ->entities()->onlyTrashed()
             ->paginate());
@@ -37,7 +39,7 @@ class EntityRecoveryApiController extends ApiController
     {
         $this->authorize('recover', $campaign);
 
-        if (!$campaign->boosted()) {
+        if (! $campaign->boosted()) {
             return response()->json(null, 204);
         }
         $this->service->recover($request->entities);

@@ -14,10 +14,11 @@ class SearchController extends Controller
     public function search(Request $request, Campaign $campaign): RedirectResponse
     {
         $term = $request->get('q');
-        if (empty($term) || !is_string($term)) {
+        if (empty($term) || ! is_string($term)) {
             return redirect()->route('search.fulltext', [$campaign]);
         }
         $term = mb_trim($term);
+
         return redirect()->route('search.fulltext', [$campaign, 'term' => mb_trim($term)]);
     }
 }

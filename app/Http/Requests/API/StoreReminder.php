@@ -38,7 +38,7 @@ class StoreReminder extends FormRequest
             'colour' => 'nullable|string|max:7',
             'comment' => 'nullable|max:191',
             'type_id' => 'nullable|integer|exists:entity_event_types,id',
-            'visibility_id' => 'nullable|integer|exists:visibilities,id'
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
         ]);
     }
 }

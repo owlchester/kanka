@@ -40,17 +40,17 @@ class StoreOrganisation extends FormRequest
             'template_id' => 'nullable',
             'locations' => 'array',
             'locations.*' => 'distinct|exists:locations,id',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Organisation $self */
         $self = request()->route('organisation');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['organisation_id'] = [
                 'nullable',
                 'integer',
                 'exists:organisations,id',
-                new Nested(Organisation::class, $self)
+                new Nested(Organisation::class, $self),
             ];
         }
 

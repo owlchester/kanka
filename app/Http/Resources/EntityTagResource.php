@@ -17,10 +17,11 @@ class EntityTagResource extends JsonResource
     {
         /** @var EntityTag $model */
         $model = $this->resource;
+
         return [
             'id' => $model->id,
             'entity_id' => $model->entity_id,
-            'tag_id' => $model->tag_id
+            'tag_id' => $model->tag_id,
         ];
     }
 }

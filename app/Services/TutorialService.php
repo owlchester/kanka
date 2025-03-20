@@ -5,9 +5,9 @@ namespace App\Services;
 use App\Facades\UserCache;
 use App\Models\Users\Tutorial;
 use App\Traits\UserAware;
+use Exception;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
-use Exception;
 
 class TutorialService
 {
@@ -39,6 +39,7 @@ class TutorialService
             ->delete();
 
         UserCache::user($this->user)->clear();
+
         return $this;
     }
 
@@ -53,12 +54,12 @@ class TutorialService
 
         $code = Purify::clean($code);
 
-        if (!$this->valid($code) && !Str::startsWith($code, ['releases_', 'banner_'])) {
+        if (! $this->valid($code) && ! Str::startsWith($code, ['releases_', 'banner_'])) {
             return $this;
         }
 
         try {
-            $tutorial = new Tutorial();
+            $tutorial = new Tutorial;
             $tutorial->user_id = $this->user->id;
             $tutorial->code = $code;
             $tutorial->save();

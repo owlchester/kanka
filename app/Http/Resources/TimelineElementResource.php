@@ -18,6 +18,7 @@ class TimelineElementResource extends JsonResource
     {
         /** @var TimelineElement $model */
         $model = $this->resource;
+
         return [
             'id' => $model->id,
             'era_id' => $model->era_id,

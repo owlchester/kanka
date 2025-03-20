@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use App\Models\Entity;
 use App\Models\Campaign;
+use App\Models\Entity;
+use App\Models\EntityUser;
 use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
-use App\Models\EntityUser;
 use App\Traits\UserAware;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +22,7 @@ class MultiEditingService
     public function model(Model $model): self
     {
         $this->model = $model;
+
         return $this;
     }
 
@@ -61,11 +62,12 @@ class MultiEditingService
 
     /**
      * Set the user as editing an entity
+     *
      * @return $this
      */
     public function edit(): self
     {
-        $model = new EntityUser();
+        $model = new EntityUser;
         if ($this->model instanceof Post) {
             $model->post_id = $this->model->id;
         } elseif ($this->model instanceof Campaign) {
@@ -80,11 +82,13 @@ class MultiEditingService
         $model->user_id = $this->user->id;
         $model->type_id = EntityUser::TYPE_KEEPALIVE;
         $model->save();
+
         return $this;
     }
 
     /**
      * Remove the user as editing the entity
+     *
      * @return $this
      */
     public function finish(): self
@@ -116,6 +120,7 @@ class MultiEditingService
 
     /**
      * Touch the editing entry in the db
+     *
      * @return $this
      */
     public function keepAlive(): self
@@ -135,7 +140,7 @@ class MultiEditingService
 
     public function confirm(): void
     {
-        if (!$this->isEditing()) {
+        if (! $this->isEditing()) {
             $this->edit();
         }
     }

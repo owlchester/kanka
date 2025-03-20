@@ -31,7 +31,7 @@ class Location implements ValidationRule
         }
 
         $campaign = CampaignLocalization::getCampaign();
-        if (!auth()->user()->can('create', [$module, $campaign])) {
+        if (! auth()->user()->can('create', [$module, $campaign])) {
             $fail(__('crud.dynamic.permission', ['module' => $module->name()]));
         }
     }

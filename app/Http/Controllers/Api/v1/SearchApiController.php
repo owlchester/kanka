@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 
 class SearchApiController extends ApiController
 {
-    /**
-     */
     protected EntityService $entity;
 
     /**
@@ -25,6 +23,7 @@ class SearchApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request, Campaign $campaign, ?string $search = null)

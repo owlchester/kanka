@@ -19,7 +19,7 @@ class EntityLink implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         // Validate that tue url is for Kanka
-        if (!Str::startsWith($value, config('app.url'))) {
+        if (! Str::startsWith($value, config('app.url'))) {
             $fail(__('validation.entity_link'));
         }
 
@@ -37,13 +37,13 @@ class EntityLink implements ValidationRule
             $fail(__('validation.entity_link'));
         }
 
-        if ($segments[1] !== 'campaign' || !is_numeric($segments[2])) {
+        if ($segments[1] !== 'campaign' || ! is_numeric($segments[2])) {
             $fail(__('validation.entity_link'));
         }
 
         // Check that the campaign is public
         $campaign = Campaign::where('id', $segments[2])->first();
-        if (empty($campaign) || !$campaign->isPublic()) {
+        if (empty($campaign) || ! $campaign->isPublic()) {
             $fail(__('validation.entity_link'));
         }
 

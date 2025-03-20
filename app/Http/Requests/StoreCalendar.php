@@ -4,8 +4,8 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Calendar;
-use App\Rules\CalendarMoonOffset;
 use App\Rules\CalendarFormat;
+use App\Rules\CalendarMoonOffset;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -49,8 +49,8 @@ class StoreCalendar extends FormRequest
             'season_name' => 'nullable|array',
             'show_birthdays' => 'boolean',
             'template_id' => 'nullable',
-            'attribute' => ['array', new UniqueAttributeNames()],
-            'format'      => ['nullable', new CalendarFormat(), 'string', 'max:20'],
+            'attribute' => ['array', new UniqueAttributeNames],
+            'format' => ['nullable', new CalendarFormat, 'string', 'max:20'],
             //            'moon_offset' => [
             //                '*' => new CalendarMoonOffset()
             //            ],
@@ -60,7 +60,7 @@ class StoreCalendar extends FormRequest
             $rules = [
                 'name' => 'required|max:191',
                 'type' => 'nullable|max:191',
-                'calendar_id' => 'nullable|integer|exists:calendars,id'
+                'calendar_id' => 'nullable|integer|exists:calendars,id',
             ];
         }
 
@@ -73,12 +73,12 @@ class StoreCalendar extends FormRequest
 
         /** @var Calendar $self */
         $self = request()->route('calendar');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['calendar_id'] = [
                 'nullable',
                 'integer',
                 'exists:calendars,id',
-                new Nested(Calendar::class, $self)
+                new Nested(Calendar::class, $self),
             ];
         }
 

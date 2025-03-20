@@ -28,6 +28,7 @@ class StyleController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -43,6 +44,7 @@ class StyleController extends Controller
         if (request()->ajax()) {
             $html = view('layouts.datagrid._table')->with('rows', $styles)->with('campaign', $campaign)->render();
             $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->with('campaign', $campaign)->render();
+
             return response()->json([
                 'success' => true,
                 'html' => $html,
@@ -72,6 +74,7 @@ class StyleController extends Controller
         }
 
         $theme = CampaignStyle::theme()->first();
+
         return view('campaigns.styles.create', compact('campaign', 'theme'));
     }
 
@@ -97,6 +100,7 @@ class StyleController extends Controller
                 ->route('campaign_styles.edit', [$campaign, $style])
                 ->with('success', __('campaigns/styles.create.success', ['name' => $style->name]));
         }
+
         return redirect()
             ->route('campaign_styles.index', $campaign)
             ->with('success', __('campaigns/styles.create.success'));
@@ -111,6 +115,7 @@ class StyleController extends Controller
         }
 
         $style = $campaignStyle;
+
         return view('campaigns.styles.edit', compact('campaign', 'style'));
     }
 
@@ -126,6 +131,7 @@ class StyleController extends Controller
                 ->route('campaign_styles.edit', [$campaign, $campaignStyle])
                 ->with('success', __('campaigns/styles.update.success', ['name' => $campaignStyle->name]));
         }
+
         return redirect()
             ->route('campaign_styles.index', $campaign)
             ->with('success', __('campaigns/styles.update.success', ['name' => $campaignStyle->name]));
@@ -160,17 +166,17 @@ class StyleController extends Controller
         $this->authorize('update', $campaign);
 
         $campaign->update([
-            'theme_id' => $request->get('theme_id')
+            'theme_id' => $request->get('theme_id'),
         ]);
 
         return redirect()
             ->route('campaign_styles.index', $campaign)
-            ->with('success', __('campaigns/styles.theme.success'))
-        ;
+            ->with('success', __('campaigns/styles.theme.success'));
     }
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
@@ -178,7 +184,7 @@ class StyleController extends Controller
     {
         $action = request()->get('action');
         $models = request()->get('model');
-        if (!in_array($action, ['enable', 'disable', 'delete']) || empty($models)) {
+        if (! in_array($action, ['enable', 'disable', 'delete']) || empty($models)) {
             return redirect()
                 ->route('campaign_styles.index', $campaign);
         }
@@ -190,7 +196,7 @@ class StyleController extends Controller
             if ($style === null) {
                 continue;
             }
-            if ($action === 'enable' && !$style->is_enabled) {
+            if ($action === 'enable' && ! $style->is_enabled) {
                 $style->is_enabled = true;
                 $style->update();
                 $count++;
@@ -207,8 +213,7 @@ class StyleController extends Controller
 
         return redirect()
             ->route('campaign_styles.index', $campaign)
-            ->with('success', trans_choice('campaigns/styles.bulks.' . $action, $count, ['count' => $count]))
-        ;
+            ->with('success', trans_choice('campaigns/styles.bulks.' . $action, $count, ['count' => $count]));
     }
 
     public function reorder(ReorderStyles $request, Campaign $campaign)
@@ -228,9 +233,9 @@ class StyleController extends Controller
         CampaignCache::clearStyles()->clear();
 
         $order--;
+
         return redirect()
             ->route('campaign_styles.index', $campaign)
-            ->with('success', trans_choice('campaigns/styles.reorder.success', $order, ['count' => $order]))
-        ;
+            ->with('success', trans_choice('campaigns/styles.reorder.success', $order, ['count' => $order]));
     }
 }

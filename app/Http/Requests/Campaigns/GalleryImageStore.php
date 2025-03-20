@@ -27,13 +27,13 @@ class GalleryImageStore extends FormRequest
      */
     public function rules()
     {
-        //opentype,ttf,woff,woff2 not working for some reason.
+        // opentype,ttf,woff,woff2 not working for some reason.
         $rules = [
             'file' => 'required|array',
             'file.*' => [
                 File::types(['jpeg', 'jpg', 'gif', 'png', 'webp', 'woff2', 'svg']),
                 'max:' . Limit::upload(),
-                new GallerySize(),
+                new GallerySize,
             ],
             'folder_id' => [
                 'nullable',

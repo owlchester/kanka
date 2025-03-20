@@ -26,17 +26,17 @@ class InventoryController extends Controller
         'visibility_id',
         'is_equipped',
         'copy_item_entry',
-        'image_uuid'
+        'image_uuid',
     ];
 
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authEntityView($entity);
-        if (!$campaign->enabled('inventories')) {
+        if (! $campaign->enabled('inventories')) {
             return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#inventories']) . '">' . __('crud.fix-this-issue') . '</a>'
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#inventories']) . '">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }
@@ -52,6 +52,7 @@ class InventoryController extends Controller
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign, Entity $entity)
@@ -63,6 +64,7 @@ class InventoryController extends Controller
         foreach ($positions as $position) {
             $positionOptions[$position] = $position;
         }
+
         return view('entities.pages.inventory.create', compact(
             'campaign',
             'entity',
@@ -71,8 +73,6 @@ class InventoryController extends Controller
         ));
     }
 
-    /**
-     */
     public function store(StoreInventory $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity);
@@ -86,7 +86,7 @@ class InventoryController extends Controller
             foreach ($itemIds as $id) {
                 $data = $request->only($this->fillable);
                 $data['item_id'] = $id;
-                $inventory = new Inventory();
+                $inventory = new Inventory;
                 $inventory = $inventory->create($data);
                 $count++;
             }
@@ -96,11 +96,11 @@ class InventoryController extends Controller
             ]);
         } else {
             $data = $request->only($this->fillable);
-            $inventory = new Inventory();
+            $inventory = new Inventory;
             $inventory = $inventory->create($data);
             $success = __('entities/inventories.create.success', [
                 'item' => $inventory->itemName(),
-                'entity' => $entity->name
+                'entity' => $entity->name,
             ]);
         }
 
@@ -115,11 +115,10 @@ class InventoryController extends Controller
     public function show(Campaign $campaign, Entity $entity, Inventory $inventory)
     {
         $this->authorize('update', $entity);
+
         return redirect()->route('entities.inventory', [$campaign, $entity]);
     }
 
-    /**
-     */
     public function edit(Campaign $campaign, Entity $entity, Inventory $inventory)
     {
         $this->authorize('update', $entity);
@@ -137,8 +136,6 @@ class InventoryController extends Controller
         ));
     }
 
-    /**
-     */
     public function update(UpdateInventory $request, Campaign $campaign, Entity $entity, Inventory $inventory)
     {
         $this->authorize('update', $entity);
@@ -152,12 +149,10 @@ class InventoryController extends Controller
             ->route('entities.inventory', [$campaign, $entity])
             ->with('success_raw', __('entities/inventories' . '.update.success', [
                 'item' => $inventory->itemName(),
-                'entity' => $entity->name
+                'entity' => $entity->name,
             ]));
     }
 
-    /**
-     */
     public function destroy(Campaign $campaign, Entity $entity, Inventory $inventory)
     {
         $this->authorize('update', $entity);
@@ -168,7 +163,7 @@ class InventoryController extends Controller
             ->route('entities.inventory', [$campaign, $entity])
             ->with('success_raw', __('entities/inventories.destroy.success', [
                 'item' => $inventory->itemName(),
-                'entity' => $entity->name
+                'entity' => $entity->name,
             ]));
     }
 }

@@ -15,11 +15,13 @@ class VoteController extends Controller
     {
         $this->service = $service;
     }
+
     public function index()
     {
         $votes = CommunityVote::published()
             ->orderBy('visible_at', 'DESC')
             ->paginate();
+
         return VoteResource::collection($votes);
     }
 

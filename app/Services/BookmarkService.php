@@ -7,8 +7,6 @@ use App\Models\Bookmark;
 
 class BookmarkService
 {
-    /**
-     */
     public function reorder(ReorderBookmarks $request): bool
     {
         $ids = $request->get('bookmark');

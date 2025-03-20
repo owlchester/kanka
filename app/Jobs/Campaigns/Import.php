@@ -40,6 +40,7 @@ class Import implements ShouldQueue
 
     /**
      * Execute the job
+     *
      * @throws Exception
      */
     public function handle()
@@ -47,12 +48,14 @@ class Import implements ShouldQueue
         Log::info('Campaign import', ['init', 'id' => $this->jobID]);
         /** @var CampaignImport $job */
         $job = CampaignImport::find($this->jobID);
-        if (!$job) {
+        if (! $job) {
             Log::info('Campaign import', ['empty', 'id' => $this->jobID]);
+
             return 0;
         }
-        if (!$job->campaign || !$job->user) {
+        if (! $job->campaign || ! $job->user) {
             Log::info('Campaign import', ['empty_campaign_or_user', 'id' => $this->jobID]);
+
             return 0;
         }
         Log::info('Campaign import', ['running', 'id' => $this->jobID]);
@@ -67,14 +70,12 @@ class Import implements ShouldQueue
         return 1;
     }
 
-    /**
-     *
-     */
     public function failed(Throwable $exception)
     {
         $job = CampaignImport::find($this->jobID);
-        if (!$job) {
+        if (! $job) {
             Log::info('Campaign import', ['empty', 'id' => $this->jobID]);
+
             return 0;
         }
 

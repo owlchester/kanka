@@ -13,7 +13,7 @@ class CreateService
 
     public function create(CreateFolder $request): GalleryFile
     {
-        $folder = new Image();
+        $folder = new Image;
         $folder->campaign_id = $this->campaign->id;
         $folder->folder_id = $request->get('folder_id');
         $folder->name = $request->get('name');

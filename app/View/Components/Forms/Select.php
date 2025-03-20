@@ -10,6 +10,7 @@ use Illuminate\View\Component;
 class Select extends Component
 {
     protected string $autoId;
+
     /**
      * Create a new component instance.
      */
@@ -26,8 +27,7 @@ class Select extends Component
         public string $placeholder = '',
         public mixed $selected = null,
         public array $extra = [],
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
@@ -36,20 +36,22 @@ class Select extends Component
     {
         // Form submitted? Re-load the value
         $old = old($this->name);
-        if (null !== $old) {
+        if ($old !== null) {
             $this->selected = $old;
-        } elseif (!empty($this->placeholder)) {
+        } elseif (! empty($this->placeholder)) {
             $this->selected = '';
             $this->options = ['' => $this->placeholder] + $this->options;
         }
+
         return view('components.forms.select');
     }
 
     public function fieldId(): string
     {
-        if (!empty($this->id)) {
+        if (! empty($this->id)) {
             return $this->id;
         }
+
         return $this->autoId ?? $this->autoId = uniqid($this->name);
     }
 
@@ -64,6 +66,7 @@ class Select extends Component
         if (is_int($this->selected)) {
             return $value == $this->selected;
         }
+
         // Always force values to lower to avoid thinking
         return mb_strtolower($value) == mb_strtolower($this->selected);
     }

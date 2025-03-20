@@ -38,17 +38,17 @@ class StoreLocation extends FormRequest
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Location $self */
         $self = request()->route('location');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['location_id'] = [
                 'nullable',
                 'integer',
                 'exists:locations,id',
-                new Nested(Location::class, $self)
+                new Nested(Location::class, $self),
             ];
         }
 

@@ -38,17 +38,17 @@ class StoreNote extends FormRequest
             'image_url' => 'nullable|url|active_url',
             'template_id' => 'nullable',
             'note_id' => 'nullable|integer|exists:notes,id',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Note $self */
         $self = request()->route('note');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['note_id'] = [
                 'nullable',
                 'integer',
                 'exists:notes,id',
-                new Nested(Note::class, $self)
+                new Nested(Note::class, $self),
             ];
         }
 

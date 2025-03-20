@@ -35,7 +35,7 @@ class ChildrenController extends Controller
         Datagrid::layout($layout)
             ->route('entities.children', $options);
 
-        //@phpstan-ignore-next-line
+        // @phpstan-ignore-next-line
         $this->rows = $entity
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])

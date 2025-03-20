@@ -13,39 +13,39 @@ use Illuminate\Database\Eloquent\Model;
  */
 trait SaveLocations
 {
-    /**
-     */
     protected function saveLocations(Model $model, array $locations = [])
     {
         /** @var Creature $model */
         $existing = $unique = $recreate = [];
         foreach ($model->locations as $location) {
             // If it already exists, we have an issue
-            if (!empty($existing[$location->id])) {
+            if (! empty($existing[$location->id])) {
                 $recreate[$location->id] = $location->id;
                 $model->locations()->detach($location->id);
+
                 continue;
             }
             $existing[$location->id] = $location->id;
             $unique[$location->id] = $location->id;
         }
 
-        if (!empty($recreate)) {
+        if (! empty($recreate)) {
             $model->locations()->attach($recreate);
         }
-        if (!$locations) {
+        if (! $locations) {
             $locations = request()->get('locations', []);
             $detach = true;
         }
         $newLocations = [];
         foreach ($locations as $id) {
             // Existing location, do nothing
-            if (!empty($existing[$id])) {
+            if (! empty($existing[$id])) {
                 unset($existing[$id]);
+
                 continue;
             }
             // If already managed, again, ignore
-            if (!empty($unique[$id])) {
+            if (! empty($unique[$id])) {
                 continue;
             }
 
@@ -59,7 +59,7 @@ trait SaveLocations
         $model->locations()->attach($newLocations);
 
         // Detach the remaining
-        if (!empty($existing) && isset($detach)) {
+        if (! empty($existing) && isset($detach)) {
             $model->locations()->detach($existing);
             EntityLogger::dirty('locations', null);
         }

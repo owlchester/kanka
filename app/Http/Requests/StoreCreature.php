@@ -40,17 +40,17 @@ class StoreCreature extends FormRequest
             'template_id' => 'nullable',
             'locations' => 'array',
             'locations.*' => 'distinct|exists:locations,id',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Creature $self */
         $self = request()->route('creature');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['creature_id'] = [
                 'nullable',
                 'integer',
                 'exists:creatures,id',
-                new Nested(Creature::class, $self)
+                new Nested(Creature::class, $self),
             ];
         }
 

@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Services\DiscordService;
 use App\Models\User;
+use App\Services\DiscordService;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,7 +26,7 @@ class DiscordRoleJob implements ShouldQueue
      */
     public $tries = 3;
 
-    /** @var User  */
+    /** @var User */
     public $user;
 
     /** @var bool if to add or remove roles */
@@ -46,6 +46,7 @@ class DiscordRoleJob implements ShouldQueue
 
     /**
      * Execute the job
+     *
      * @throws Exception
      */
     public function handle()
@@ -58,7 +59,7 @@ class DiscordRoleJob implements ShouldQueue
                 $this->discord->user($this->user)->removeRoles();
             }
         } catch (Exception $e) {
-            Log::error("DiscordRoleJob:: " . $e->getMessage());
+            Log::error('DiscordRoleJob:: ' . $e->getMessage());
             // Silence errors and ignore
         }
     }

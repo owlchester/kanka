@@ -9,7 +9,6 @@ use App\Services\Entity\PrivacyService;
 
 /**
  * Class PrivacyController
- * @package App\Http\Controllers\Entity
  */
 class PrivacyController extends Controller
 {
@@ -22,6 +21,7 @@ class PrivacyController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)
@@ -33,8 +33,7 @@ class PrivacyController extends Controller
         return view('entities.pages.privacy.index')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
-            ->with('visibility', $visibility)
-        ;
+            ->with('visibility', $visibility);
     }
 
     /**
@@ -45,20 +44,20 @@ class PrivacyController extends Controller
         $this->authorize('privacy', $entity);
 
         if ($entity->entityType->isSpecial()) {
-            $entity->update(['is_private' => !$entity->is_private]);
+            $entity->update(['is_private' => ! $entity->is_private]);
         } else {
             $misc = $entity->child;
-            $misc->is_private = !$misc->is_private;
+            $misc->is_private = ! $misc->is_private;
             $misc->update(['is_private' => $misc->is_private]);
             $entity->update(['is_private' => $misc->is_private]);
         }
 
         return response()->json([
             'toast' => __('entities/permissions.quick.success.' . ($entity->is_private ? 'private' : 'public'), [
-                'entity' => $entity->name
+                'entity' => $entity->name,
             ]),
             'success' => true,
-            'status' => $entity->is_private
+            'status' => $entity->is_private,
         ]);
     }
 }

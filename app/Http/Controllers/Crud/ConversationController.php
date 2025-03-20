@@ -13,7 +13,9 @@ use App\Models\EntityType;
 class ConversationController extends CrudController
 {
     protected string $view = 'conversations';
+
     protected string $route = 'conversations';
+
     protected string $module = 'conversations';
 
     protected string $model = Conversation::class;
@@ -32,39 +34,30 @@ class ConversationController extends CrudController
             '',
             true
         );
+
         return parent::setNavActions();
     }
 
-    /**
-     */
     public function store(StoreConversation $request, Campaign $campaign)
     {
         return $this->campaign($campaign)->crudStore($request);
     }
 
-    /**
-     */
     public function show(Campaign $campaign, Conversation $conversation)
     {
         return $this->campaign($campaign)->crudShow($conversation);
     }
 
-    /**
-     */
     public function edit(Campaign $campaign, Conversation $conversation)
     {
         return $this->campaign($campaign)->crudEdit($conversation);
     }
 
-    /**
-     */
     public function update(StoreConversation $request, Campaign $campaign, Conversation $conversation)
     {
         return $this->campaign($campaign)->crudUpdate($request, $conversation);
     }
 
-    /**
-     */
     public function destroy(Campaign $campaign, Conversation $conversation)
     {
         return $this->campaign($campaign)->crudDestroy($conversation);

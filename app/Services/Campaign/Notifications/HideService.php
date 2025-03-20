@@ -30,7 +30,7 @@ class HideService
             $colour,
             [
                 'campaign' => $this->campaign->name,
-                'link' => route('dashboard', $this->campaign)
+                'link' => route('dashboard', $this->campaign),
             ]
         );
     }

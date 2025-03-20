@@ -25,11 +25,9 @@ class ShowController extends Controller
             $entity->child->setRelation('entity', $entity);
         }
 
-
         return view('cruds.show')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
-            ->with('entityType', $entity->entityType)
-        ;
+            ->with('entityType', $entity->entityType);
     }
 }

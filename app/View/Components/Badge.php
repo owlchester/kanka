@@ -13,10 +13,9 @@ class Badge extends Component
      */
     public function __construct(
         public string $type = 'default',
-        public string|null $css = null,
-        public string|null $title = null,
-    ) {
-    }
+        public ?string $css = null,
+        public ?string $title = null,
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
@@ -32,6 +31,7 @@ class Badge extends Component
         if ($this->type === 'default') {
             return '';
         }
+
         return 'badge-' . $this->type;
     }
 }

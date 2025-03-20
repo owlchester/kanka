@@ -35,7 +35,7 @@ class StoreCharacter extends FormRequest
             'type' => 'nullable|string|max:191',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
-            'location_id' => ['nullable', new Location()],
+            'location_id' => ['nullable', new Location],
             'age' => 'nullable|max:25',
             'sex' => 'nullable|max:45',
             'pronouns' => 'nullable|max:45',
@@ -45,7 +45,7 @@ class StoreCharacter extends FormRequest
             'families.*' => 'distinct|exists:families,id',
             'races' => 'array',
             'races.*' => 'distinct|exists:races,id',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         return $this->clean($rules);

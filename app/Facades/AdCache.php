@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class AdCache
- * @package App\Facades
  *
  * @see AdCacheService
+ *
  * @mixin AdCacheService
  */
 class AdCache extends Facade

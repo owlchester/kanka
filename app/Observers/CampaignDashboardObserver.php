@@ -7,8 +7,6 @@ use App\Models\CampaignDashboardWidget;
 
 class CampaignDashboardObserver
 {
-    /**
-     */
     public function saved(CampaignDashboard $model)
     {
         $sourceId = request()->post('source');

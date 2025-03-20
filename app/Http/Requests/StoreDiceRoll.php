@@ -33,7 +33,7 @@ class StoreDiceRoll extends FormRequest
             'parameters' => 'required|max:191',
             'character_id', 'integer|exists:character,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         if (request()->has('quick-creator')) {

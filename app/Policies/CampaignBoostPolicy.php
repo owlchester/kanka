@@ -15,12 +15,8 @@ class CampaignBoostPolicy
      *
      * @return void
      */
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
-    /**
-     */
     public function destroy(User $user, CampaignBoost $campaignBoost): bool
     {
         return $campaignBoost->user_id === $user->id;

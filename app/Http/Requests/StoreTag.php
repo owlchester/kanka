@@ -42,19 +42,19 @@ class StoreTag extends FormRequest
             'template_id' => 'nullable',
             'colour' => [
                 'nullable',
-                Rule::in($colours)
+                Rule::in($colours),
             ],
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Tag $self */
         $self = request()->route('tag');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['tag_id'] = [
                 'nullable',
                 'integer',
                 'exists:tags,id',
-                new Nested(Tag::class, $self)
+                new Nested(Tag::class, $self),
             ];
         }
 

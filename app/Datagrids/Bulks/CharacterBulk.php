@@ -22,16 +22,16 @@ class CharacterBulk extends Bulk
     ];
 
     protected array $booleans = [
-        'is_dead'
+        'is_dead',
     ];
 
     protected array $maths = [
-        'age'
+        'age',
     ];
 
     protected array $foreignRelations = [
         'races',
         'families',
-        'organisations'
+        'organisations',
     ];
 }

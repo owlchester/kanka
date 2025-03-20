@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Campaign;
 use App\Facades\EntityPermission;
+use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\User;
@@ -14,7 +14,7 @@ class MiscPolicy
     use HandlesAuthorization;
 
     /**
-     * @param Entity|MiscModel|null $entity
+     * @param  Entity|MiscModel|null  $entity
      */
     protected function checkPermission(int $action, User $user, mixed $entity = null, ?Campaign $campaign = null): bool
     {

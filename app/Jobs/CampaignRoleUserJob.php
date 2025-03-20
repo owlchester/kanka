@@ -56,13 +56,13 @@ class CampaignRoleUserJob implements ShouldQueue
         }
 
         $notification = new Header(
-            //'campaign.role.add',
+            // 'campaign.role.add',
             'campaign.role.' . ($this->new ? 'add' : 'remove'),
             'user',
             'green',
             [
                 'role' => e($campaignRoleUser->campaignRole->name),
-                'campaign' => e($campaignRoleUser->campaignRole->campaign->name)
+                'campaign' => e($campaignRoleUser->campaignRole->campaign->name),
             ]
         );
 

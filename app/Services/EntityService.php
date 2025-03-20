@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
+use App\Facades\CampaignLocalization;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
-use App\Facades\CampaignLocalization;
 
 class EntityService
 {
@@ -52,8 +52,10 @@ class EntityService
     public function exclude(array $exclude): self
     {
         $this->exclude = $exclude;
+
         return $this;
     }
+
     /**
      * Get the entities
      */
@@ -70,11 +72,10 @@ class EntityService
             }
             $entities[$name] = $class;
         }
+
         return $entities;
     }
 
-    /**
-     */
     public function singular(string $entity): string
     {
         $singular = mb_rtrim($entity, 's');
@@ -83,35 +84,38 @@ class EntityService
         } elseif ($entity == 'abilities') {
             $singular = 'ability';
         }
+
         return $singular;
     }
 
-
     /**
-     * @param string $name
-     * @param string $target
+     * @param  string  $name
+     * @param  string  $target
      * @return MiscModel
+     *
      * @throws \Exception
      */
     public function create($name, $target)
     {
         // Create new model
-        if (!isset($this->entities[$target])) {
+        if (! isset($this->entities[$target])) {
             throw new \Exception("Unknown entity type '{$target}' for creating entity");
         }
 
         /**
          * @var MiscModel $new
          */
-        $new = new $this->entities[$target]();
+        $new = new $this->entities[$target];
         $new->name = $name;
         $new->is_private = Auth::user()->isAdmin() ? CampaignLocalization::getCampaign()->entity_visibility : false;
         $new->save();
+
         return $new;
     }
 
     /**
      * Get an entity object string based on the entity type
+     *
      * @return string|bool
      */
     public function getClass(string $entity)
@@ -121,6 +125,7 @@ class EntityService
 
     /**
      * Get a list of enabled entities of a campaign
+     *
      * @return array
      */
     public function getEnabledEntities(Campaign $campaign, array $except = [])
@@ -134,11 +139,10 @@ class EntityService
                 $entityTypes[] = $this->singular($element);
             }
         }
+
         return $entityTypes;
     }
 
-    /**
-     */
     public function getEnabledEntitiesID(array $except = []): array
     {
         $types = $this->getEnabledEntities($this->campaign, $except);

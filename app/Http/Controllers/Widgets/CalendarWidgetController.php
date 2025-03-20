@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Widgets;
 
+use App\Enums\Widget;
 use App\Http\Controllers\Controller;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
-use App\Enums\Widget;
 use App\Services\Calendars\AdvancerService;
 use App\Services\Calendars\ReminderService;
 
 class CalendarWidgetController extends Controller
 {
     protected AdvancerService $service;
+
     protected ReminderService $reminderService;
 
     public function __construct(AdvancerService $advancerService, ReminderService $reminderService)
@@ -25,7 +26,7 @@ class CalendarWidgetController extends Controller
     {
         if ($campaignDashboardWidget->widget != Widget::Calendar) {
             return response()->json([
-                'success' => false
+                'success' => false,
             ]);
         }
 
@@ -43,7 +44,7 @@ class CalendarWidgetController extends Controller
     {
         if ($campaignDashboardWidget->widget != Widget::Calendar) {
             return response()->json([
-                'success' => false
+                'success' => false,
             ]);
         }
 
@@ -61,7 +62,7 @@ class CalendarWidgetController extends Controller
     {
         if ($campaignDashboardWidget->widget != Widget::Calendar) {
             return response()->json([
-                'success' => false
+                'success' => false,
             ]);
         }
 

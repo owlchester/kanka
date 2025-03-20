@@ -16,10 +16,11 @@ class AvatarServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(AvatarService::class, function () {
-            $service = new AvatarService();
+            $service = new AvatarService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
 

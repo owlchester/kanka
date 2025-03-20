@@ -65,13 +65,10 @@ class AbilityService extends BaseAbilityService
             'user_id' => auth()->check() ? auth()->user()->id : 0,
             'is_admin' => auth()->check() && auth()->user()->isAdmin(),
         ];
+
         return $this->abilities;
     }
 
-
-
-    /**
-     */
     protected function add(EntityAbility $entityAbility): void
     {
         $ability = $entityAbility->ability;
@@ -120,13 +117,13 @@ class AbilityService extends BaseAbilityService
                 $classes[] = ' kanka-tag-' . $tag->tag_id;
             }
         }
-        //implode(' ', $classes);
+        // implode(' ', $classes);
 
         $note = nl2br((string) $this->mapAttributes(
             Mentions::mapAny($entityAbility, 'note'),
             false
         ));
-        if (!empty($note)) {
+        if (! empty($note)) {
             $note = '<strong>' . __('entities/abilities.fields.note') . ':</strong> ' . $note;
         }
 
@@ -146,7 +143,7 @@ class AbilityService extends BaseAbilityService
             'created_by' => $entityAbility->created_by,
             'attributes' => $this->attributes($entityAbility->ability->entity),
             'images' => [
-                'has' => !empty($entityAbility->ability->entity->image_path) || $entityAbility->ability->entity->image,
+                'has' => ! empty($entityAbility->ability->entity->image_path) || $entityAbility->ability->entity->image,
                 'thumb' => Avatar::entity($entityAbility->ability->entity)->size(192)->thumbnail(),
                 'url' => Avatar::entity($entityAbility->ability->entity)->original(),
             ],
@@ -158,7 +155,7 @@ class AbilityService extends BaseAbilityService
             ],
             'i18n' => [
                 'edit' => __('crud.update'),
-                'left' => __('entities/abilities.charges.left')
+                'left' => __('entities/abilities.charges.left'),
             ],
             'entity' => [
                 'id' => $entityAbility->ability->entity->id,
@@ -166,15 +163,13 @@ class AbilityService extends BaseAbilityService
             ],
         ];
 
-        if (!empty($entityAbility->ability->charges)) {
+        if (! empty($entityAbility->ability->charges)) {
             $data['actions']['use'] = route('entities.entity_abilities.use', [$this->campaign, $this->entity, $entityAbility]);
         }
 
         return $data;
     }
 
-    /**
-     */
     protected function attributes(Entity $entity): array
     {
         $attributes = [];
@@ -187,6 +182,7 @@ class AbilityService extends BaseAbilityService
                 'type' => $attr->type,
             ];
         }
+
         return $attributes;
     }
 

@@ -18,12 +18,14 @@ class SubscriptionUpgradeService
     public function tier(Tier $tier): self
     {
         $this->tier = $tier;
+
         return $this;
     }
 
     public function period(PricingPeriod $pricingPeriod): self
     {
         $this->period = $pricingPeriod;
+
         return $this;
     }
 
@@ -33,7 +35,7 @@ class SubscriptionUpgradeService
 
         $price = $this->tier->price($this->user->currency(), $this->period);
 
-        if (!$this->user->subscribed('kanka') || $this->user->hasManualSubscription()) {
+        if (! $this->user->subscribed('kanka') || $this->user->hasManualSubscription()) {
             return $price;
         }
         if ($this->user->isStripeYearly() || $this->user->hasPayPal()) {
@@ -44,7 +46,7 @@ class SubscriptionUpgradeService
         $code = 'owlbear';
         if ($this->user->isElemental()) {
             $code = 'elemental';
-            if (!$monthly) {
+            if (! $monthly) {
                 return 0;
             }
         } elseif ($this->user->isWyvern()) {
@@ -82,7 +84,7 @@ class SubscriptionUpgradeService
     protected function endPeriod(): Carbon
     {
         // Stripe provides us with this information easily
-        if (!$this->user->hasPayPal()) {
+        if (! $this->user->hasPayPal()) {
             return Carbon::createFromTimestamp($this->user->subscription('kanka')->asStripeSubscription()->current_period_end);
         }
 

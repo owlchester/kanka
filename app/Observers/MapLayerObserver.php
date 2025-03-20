@@ -2,18 +2,16 @@
 
 namespace App\Observers;
 
-use App\Models\MapLayer;
 use App\Facades\Images;
+use App\Models\MapLayer;
 
 class MapLayerObserver
 {
     use ReorderTrait;
 
-    /**
-     */
     public function saving(MapLayer $mapLayer)
     {
-        if (!empty($mapLayer->position)) {
+        if (! empty($mapLayer->position)) {
             $mapLayer->position = (int) $mapLayer->position;
         } else {
             /** @var ?MapLayer $lastLayer */
@@ -31,16 +29,12 @@ class MapLayerObserver
         }
     }
 
-    /**
-     */
     public function deleted(MapLayer $mapLayer)
     {
         Images::cleanup($mapLayer);
         $mapLayer->map->touch();
     }
 
-    /**
-     */
     public function saved(MapLayer $mapLayer)
     {
         $this->reorder($mapLayer);

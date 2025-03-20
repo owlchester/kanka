@@ -26,7 +26,6 @@ class AnonymiseUserLogs extends Command
 
     protected UserLogService $service;
 
-
     /**
      * Create a new command instance.
      *
@@ -45,9 +44,10 @@ class AnonymiseUserLogs extends Command
     {
         $this->service->deleteOldLogs();
 
-        $log = "Cleaned up user logs PII.";
+        $log = 'Cleaned up user logs PII.';
         $this->info($log);
         $this->log($log);
+
         return 0;
     }
 }

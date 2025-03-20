@@ -10,6 +10,7 @@ class CampaignRole extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -32,14 +33,14 @@ class CampaignRole extends Layout
                 'label' => 'campaigns.roles.fields.users',
                 'render' => function ($model) {
                     return number_format($model->users_count);
-                }
+                },
             ],
             'type' => [
                 'key' => 'is_admin',
                 'label' => 'campaigns.roles.fields.type',
                 'render' => function ($model) {
                     /** @var \App\Models\CampaignRole $model */
-                    $html =  __('campaigns.roles.types.' . ($model->isAdmin() ? 'owner' : ($model->isPublic() ? 'public' : 'standard')));
+                    $html = __('campaigns.roles.types.' . ($model->isAdmin() ? 'owner' : ($model->isPublic() ? 'public' : 'standard')));
 
                     return $html;
                 },

@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class MapMarkerCache
- * @package App\Facades
  *
  * @see \App\Services\Caches\MapMarkerCacheService
+ *
  * @mixin \App\Services\Caches\MapMarkerCacheService
  */
 class MapMarkerCache extends Facade

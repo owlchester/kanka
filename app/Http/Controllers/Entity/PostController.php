@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePost;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\MiscModel;
-use App\Services\MultiEditingService;
 use App\Models\Post;
+use App\Services\MultiEditingService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
-use App\Models\Entity;
 
 class PostController extends Controller
 {
@@ -20,6 +20,7 @@ class PostController extends Controller
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('browse', [$entity]);
+
         return redirect()->to($entity->url());
     }
 
@@ -30,7 +31,7 @@ class PostController extends Controller
         $templates = Post::postTemplates($campaign)->orderBy('name')->pluck('name', 'id')->all();
 
         $template = request()->input('template');
-        if (!empty($template) && $this->authorize('useTemplates', $campaign)) {
+        if (! empty($template) && $this->authorize('useTemplates', $campaign)) {
             $template = Post::postTemplates($campaign)->where('posts.id', $template)->first();
         }
 
@@ -47,15 +48,14 @@ class PostController extends Controller
     public function show(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->campaign($campaign)->authEntityView($entity);
-        if (!request()->json()) {
+        if (! request()->json()) {
             return redirect()->to($entity->url());
         }
 
         return view('entities.pages.posts.show')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
-            ->with('post', $post)
-        ;
+            ->with('post', $post);
     }
 
     public function store(StorePost $request, Campaign $campaign, Entity $entity)
@@ -73,16 +73,18 @@ class PostController extends Controller
 
         if ($request->has('submit-new')) {
             $route = route('entities.posts.create', [$campaign, $entity]);
+
             return response()->redirectTo($route);
         } elseif ($request->has('submit-update')) {
             $route = route('entities.posts.edit', [$campaign, $entity, $post]);
+
             return response()->redirectTo($route);
         }
 
         return redirect()
             ->to($entity->url())
             ->with('success', __('entities/notes.create.success', [
-                'name' => $post->name, 'entity' => $entity->name
+                'name' => $post->name, 'entity' => $entity->name,
             ]));
     }
 
@@ -139,18 +141,19 @@ class PostController extends Controller
             ->user($request->user())
             ->finish();
 
-
         if ($request->has('submit-new')) {
             $route = route('entities.posts.create', [$campaign, $entity]);
+
             return response()->redirectTo($route);
         } elseif ($request->has('submit-update')) {
             $route = route('entities.posts.edit', [$campaign, $entity, $post]);
+
             return response()->redirectTo($route);
         }
 
         return redirect()->route('entities.show', [$campaign, $entity, '#post-' . $post->id])
             ->with('success', __('entities/notes.edit.success', [
-                'name' => $post->name, 'entity' => $entity->name
+                'name' => $post->name, 'entity' => $entity->name,
             ]));
     }
 
@@ -163,7 +166,7 @@ class PostController extends Controller
         return redirect()
             ->route('entities.show', [$campaign, $entity])
             ->with('success', __('entities/notes.destroy.success', [
-                'name' => $post->name, 'entity' => $entity->name
+                'name' => $post->name, 'entity' => $entity->name,
             ]));
     }
 }

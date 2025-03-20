@@ -18,6 +18,7 @@ class VoteService
 
             ];
         }
+
         return $data;
     }
 }

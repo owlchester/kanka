@@ -2,9 +2,9 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\Identity;
 use App\Http\Requests\ReorderStories;
 use App\Models\Entity;
-use App\Facades\Identity;
 use App\Models\EntityLog;
 use App\Models\Post;
 use App\Traits\EntityAware;
@@ -13,8 +13,6 @@ class StoryService
 {
     use EntityAware;
 
-    /**
-     */
     public function reorder(ReorderStories $request): bool
     {
         $posts = $request->get('posts');
@@ -29,7 +27,7 @@ class StoryService
 
         foreach ($posts as $id => $data) {
             // We only want to process posts
-            if (!is_array($data) || $data == 'story' || $id === 'story') {
+            if (! is_array($data) || $data == 'story' || $id === 'story') {
                 continue;
             }
             $id = $data['id'];
@@ -73,7 +71,7 @@ class StoryService
      */
     private function log()
     {
-        $log = new EntityLog();
+        $log = new EntityLog;
         $log->entity_id = $this->entity->id;
         $log->created_by = auth()->user()->id;
         $log->impersonated_by = Identity::getImpersonatorId();

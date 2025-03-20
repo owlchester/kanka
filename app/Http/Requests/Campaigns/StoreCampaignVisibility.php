@@ -26,6 +26,7 @@ class StoreCampaignVisibility extends FormRequest
         $rules = [
             'is_public' => 'required|boolean',
         ];
+
         return $rules;
     }
 }

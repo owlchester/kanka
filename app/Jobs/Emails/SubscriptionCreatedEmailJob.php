@@ -32,7 +32,8 @@ class SubscriptionCreatedEmailJob implements ShouldQueue
 
     /**
      * WelcomeEmailJob constructor.
-     * @param bool $new if it's a new sub or a changed sub
+     *
+     * @param  bool  $new  if it's a new sub or a changed sub
      */
     public function __construct(User $user, PricingPeriod $period, bool $new = true)
     {
@@ -41,9 +42,6 @@ class SubscriptionCreatedEmailJob implements ShouldQueue
         $this->period = $period;
     }
 
-    /**
-     *
-     */
     public function handle()
     {
         // User deleted their account already? Sure thing

@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class QuestCache
- * @package App\Facades
  *
  * @see \App\Services\Caches\QuestCacheService
+ *
  * @mixin \App\Services\Caches\QuestCacheService
  */
 class QuestCache extends Facade

@@ -2,6 +2,4 @@
 
 namespace App\Observers;
 
-class ItemObserver extends MiscObserver
-{
-}
+class ItemObserver extends MiscObserver {}

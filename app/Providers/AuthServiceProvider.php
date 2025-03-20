@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (!app()->runningInConsole()) {
+        if (! app()->runningInConsole()) {
             // We don't have api grants so allow anyone with a token to do everything
             // Todo: this might not actually be needed?
             Passport::enableImplicitGrant();

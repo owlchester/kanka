@@ -15,7 +15,7 @@ class DomainServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(DomainService::class, function () {
-            return new DomainService();
+            return new DomainService;
         });
 
         $this->app->alias(DomainService::class, 'domain');

@@ -10,13 +10,14 @@ class Quest extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'name' => [
                 'key' => 'name',
@@ -39,9 +40,10 @@ class Quest extends Layout
                 'key' => 'is_complete',
                 'label' => 'quests.fields.is_completed',
                 'render' => function ($model) {
-                    if (!$model->is_completed) {
+                    if (! $model->is_completed) {
                         return '';
                     }
+
                     return '<i class="fa-solid fa-check-circle" data-title="' . __('quests.fields.is_completed') . '" aria-hidden="true"></i>';
                 },
             ],
@@ -50,12 +52,12 @@ class Quest extends Layout
                 'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
                 'render' => Standard::LOCATION,
                 'visible' => function () {
-                    return !request()->has('location_id');
-                }
+                    return ! request()->has('location_id');
+                },
             ],
             'tags' => [
-                'render' => Standard::TAGS
-            ]
+                'render' => Standard::TAGS,
+            ],
         ];
 
         return $columns;

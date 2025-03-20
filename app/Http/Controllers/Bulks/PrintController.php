@@ -29,7 +29,6 @@ class PrintController extends Controller
         return view('entities.pages.print.print-bulk')
             ->with('campaign', $campaign)
             ->with('entities', $entities)
-            ->with('printing', true)
-        ;
+            ->with('printing', true);
     }
 }

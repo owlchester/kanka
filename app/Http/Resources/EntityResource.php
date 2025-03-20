@@ -21,11 +21,13 @@ class EntityResource extends JsonResource
 
     /**
      * Get related objects for this entity
+     *
      * @return $this
      */
     public function withRelated(): self
     {
         $this->withRelated = true;
+
         return $this;
     }
 
@@ -35,11 +37,12 @@ class EntityResource extends JsonResource
     public function withMisc(): self
     {
         $this->withMisc = true;
+
         return $this;
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function toArray($request)
@@ -83,7 +86,7 @@ class EntityResource extends JsonResource
             'urls' => [
                 'view' => $url,
                 'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$entity->campaign_id, $entity->entity_id]) : null,
-            ]
+            ],
         ];
 
         if ($entity->entityType->isSpecial()) {
@@ -107,12 +110,12 @@ class EntityResource extends JsonResource
             if ($entity->isMissingChild()) {
                 $data['child'] = 'Invalid child, please contact us on Discord with the following: EntityResource for #' . $entity->id;
             } else {
-                $image = !empty($entity->image);
+                $image = ! empty($entity->image);
                 $data['child'] = [
                     'image' => $image ? $entity->image->path : $entity->image_path,
                     'image_full' => Avatar::entity($entity)->original(),
                     'image_thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
-                    'has_custom_image' => $image || !empty($entity->image_path),
+                    'has_custom_image' => $image || ! empty($entity->image_path),
                 ];
             }
         }
@@ -140,7 +143,7 @@ class EntityResource extends JsonResource
     {
         /** @var mixed|MiscModel|Item $misc */
         $misc = $this->resource;
-        if (!$misc->entity) {
+        if (! $misc->entity) {
             return 'permission issue';
         }
 
@@ -162,7 +165,7 @@ class EntityResource extends JsonResource
             // Image
             'image_full' => Avatar::entity($misc->entity)->original(),
             'image_thumb' => Avatar::size(40)->fallback()->thumbnail(),
-            'has_custom_image' => !empty($misc->entity->image_path) || !empty($galleryImage),
+            'has_custom_image' => ! empty($misc->entity->image_path) || ! empty($galleryImage),
             'image_uuid' => $misc->entity->image ? $misc->entity->image->id : null,
 
             // Header
@@ -193,7 +196,7 @@ class EntityResource extends JsonResource
             'urls' => [
                 'view' => $url,
                 'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$misc->campaign_id, $misc->id]) : null,
-            ]
+            ],
         ];
 
         // Foreign elements
@@ -231,8 +234,8 @@ class EntityResource extends JsonResource
         }
 
         $final = array_merge($merged, $prepared);
-        //ksort($final);
+
+        // ksort($final);
         return $final;
     }
-
 }

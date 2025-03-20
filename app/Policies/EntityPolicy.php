@@ -22,31 +22,34 @@ class EntityPolicy
         } else {
             EntityPermission::userless();
         }
+
         return EntityPermission::entity($entity)->can(Permission::View);
     }
+
     public function update(User $user, Entity $entity): bool
     {
         return EntityPermission::entity($entity)->user($user)->can(Permission::Update);
     }
-
 
     public function attributes(?User $user, Entity $entity): bool
     {
         if ($entity->exists === false) {
             return true;
         }
-        return !$entity->is_attributes_private || $user && $user->isAdmin();
+
+        return ! $entity->is_attributes_private || $user && $user->isAdmin();
     }
 
     public function viewAttributes(?User $user, Entity $entity, Campaign $campaign): bool
     {
-        if (!$campaign->enabled('entity_attributes')) {
+        if (! $campaign->enabled('entity_attributes')) {
             return false;
         }
 
-        if (!$entity->is_attributes_private) {
+        if (! $entity->is_attributes_private) {
             return true;
         }
+
         return $user && $user->isAdmin();
     }
 
@@ -57,7 +60,7 @@ class EntityPolicy
 
     public function history(User $user, Entity $entity, Campaign $campaign): bool
     {
-        return $user->isAdmin() || !($campaign->boosted() && $campaign->hide_history);
+        return $user->isAdmin() || ! ($campaign->boosted() && $campaign->hide_history);
     }
 
     public function move(User $user, Entity $entity): bool
@@ -82,16 +85,15 @@ class EntityPolicy
 
     public function post(User $user, Entity $entity, ?string $action = null, ?Post $post = null): bool
     {
-        return (
+        return
             $this->update($user, $entity) ||
             EntityPermission::entity($entity)->user($user)->can(Permission::Posts) ||
-            ($action == 'edit' ? $this->checkPostPermission($user, $post) : false)
-        ) ;
+            ($action == 'edit' ? $this->checkPostPermission($user, $post) : false);
     }
 
     public function delete(User $user, Entity $entity): bool
     {
-        return  EntityPermission::entity($entity)->user($user)->can(Permission::Delete);
+        return EntityPermission::entity($entity)->user($user)->can(Permission::Delete);
     }
 
     public function reminders(User $user, Entity $entity): bool
@@ -99,16 +101,13 @@ class EntityPolicy
         return $this->update($user, $entity);
     }
 
-
-    /**
-     */
     protected function checkPostPermission(User $user, Post $post): bool
     {
         $roleIds = UserCache::roles()->pluck('id')->toArray();
         $perms = $post->permissions->where('permission', 1);
+
         return $perms->where('user_id', $user->id)->count() == 1
             ||
-            $perms->whereIn('role_id', $roleIds)->count() == 1
-        ;
+            $perms->whereIn('role_id', $roleIds)->count() == 1;
     }
 }

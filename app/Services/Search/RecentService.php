@@ -4,8 +4,8 @@ namespace App\Services\Search;
 
 use App\Facades\Avatar;
 use App\Facades\Breadcrumb;
-use App\Models\Entity;
 use App\Models\Bookmark;
+use App\Models\Entity;
 use App\Services\EntityTypeService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -19,11 +19,9 @@ class RecentService
     use CampaignAware;
     use UserAware;
 
-
     public function __construct(
         protected EntityTypeService $entityTypeService
-    ) {
-    }
+    ) {}
 
     public function recent(): array
     {
@@ -64,7 +62,6 @@ class RecentService
         ];
     }
 
-
     public function logView(Entity $entity): void
     {
         $recents = $original = $this->recentEntityIds();
@@ -84,9 +81,10 @@ class RecentService
     protected function recentEntityIds(): array
     {
         $key = $this->recentEntityCacheKey();
-        if (!cache()->has($key)) {
+        if (! cache()->has($key)) {
             return [];
         }
+
         return (array) cache()->get($key);
     }
 
@@ -101,7 +99,7 @@ class RecentService
         $links = Bookmark::active()->with(['entity', 'dashboard', 'target', 'entityType'])->ordered()->get();
         /** @var Bookmark $link */
         foreach ($links as $link) {
-            if (!$link->valid($this->campaign)) {
+            if (! $link->valid($this->campaign)) {
                 continue;
             }
             $bookmarks[] = $this->formatBookmark($link);

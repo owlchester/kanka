@@ -3,13 +3,14 @@
 namespace App\Livewire\Roadmap;
 
 use App\Models\Feature;
-use Livewire\Component;
 use Livewire\Attributes\Url;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 class Ideas extends Component
 {
     use WithPagination;
+
     #[Url]
     public string $search;
 
@@ -30,8 +31,9 @@ class Ideas extends Component
         } else {
             $ideasQuery = $ideas->paginate(15);
         }
+
         return view('livewire.roadmap.ideas', [
-            'ideas' => $ideasQuery
+            'ideas' => $ideasQuery,
         ]);
     }
 }

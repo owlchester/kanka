@@ -28,7 +28,6 @@ class CleanupTrashedCampaigns extends Command
 
     /**
      * The recovery service
-     *
      */
     protected PurgeService $service;
 
@@ -45,7 +44,6 @@ class CleanupTrashedCampaigns extends Command
 
     /**
      * Execute the console command.
-     *
      */
     public function handle()
     {

@@ -16,6 +16,7 @@ class MapLayerResource extends ModelResource
     {
         /** @var MapLayer $model */
         $model = $this->resource;
+
         return $this->entity([
             'map_id' => (int) $model->map_id,
             'name' => $model->name,

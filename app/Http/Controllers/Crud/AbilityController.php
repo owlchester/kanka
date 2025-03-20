@@ -12,7 +12,9 @@ use App\Models\EntityType;
 class AbilityController extends CrudController
 {
     protected string $view = 'abilities';
+
     protected string $route = 'abilities';
+
     protected string $module = 'abilities';
 
     protected string $model = Ability::class;
@@ -27,8 +29,6 @@ class AbilityController extends CrudController
         return $this->campaign($campaign)->crudStore($request);
     }
 
-    /**
-     */
     public function show(Campaign $campaign, Ability $ability)
     {
         return $this->campaign($campaign)->crudShow($ability);
@@ -42,15 +42,11 @@ class AbilityController extends CrudController
         return $this->campaign($campaign)->crudEdit($ability);
     }
 
-    /**
-     */
     public function update(StoreAbility $request, Campaign $campaign, Ability $ability)
     {
         return $this->campaign($campaign)->crudUpdate($request, $ability);
     }
 
-    /**
-     */
     public function destroy(Campaign $campaign, Ability $ability)
     {
         return $this->campaign($campaign)->crudDestroy($ability);

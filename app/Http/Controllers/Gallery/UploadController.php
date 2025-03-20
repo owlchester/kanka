@@ -14,6 +14,7 @@ use App\Services\Gallery\UploadService;
 class UploadController extends Controller
 {
     protected UploadService $service;
+
     protected StorageService $storage;
 
     public function __construct(UploadService $uploadService, StorageService $storageService)
@@ -52,9 +53,10 @@ class UploadController extends Controller
                 ->folder($request->get('folder_id', ''))
                 ->files($request->file('files'));
             $this->storage->campaign($campaign)->clearCache();
+
             return response()->json([
                 'files' => $files,
-                'used' => $this->storage->uncachedUsedSpace()
+                'used' => $this->storage->uncachedUsedSpace(),
             ]);
         } catch (TranslatableException $e) {
             return response()->json(

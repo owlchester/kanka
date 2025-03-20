@@ -31,7 +31,7 @@ class TimelineController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Timeline\Timeline::class)
             ->route('timelines.timelines', $options);
 
-        //@phpstan-ignore-next-line
+        // @phpstan-ignore-next-line
         $this->rows = $timeline
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])

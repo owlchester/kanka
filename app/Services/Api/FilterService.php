@@ -16,7 +16,7 @@ class FilterService
         foreach ($types as $type) {
             $endpoints[] = [
                 'code' => $type->code,
-                'url' => url('/filters/' . $type->id)
+                'url' => url('/filters/' . $type->id),
             ];
         }
 
@@ -29,6 +29,7 @@ class FilterService
         if (method_exists($model, 'getFilterableColumns')) {
             return $model->getFilterableColumns();
         }
+
         return [];
     }
 }

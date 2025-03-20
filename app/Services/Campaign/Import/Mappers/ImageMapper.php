@@ -9,7 +9,7 @@ trait ImageMapper
 {
     protected function image(string $field): void
     {
-        if (empty($this->data[$field]) && !empty($this->model->$field)) {
+        if (empty($this->data[$field]) && ! empty($this->model->$field)) {
             return;
         }
 
@@ -18,11 +18,12 @@ trait ImageMapper
         if (Storage::exists($this->data['image'])) {
             Storage::copy($this->data['image'], $destination);
             $this->campaign->image = $destination;
+
             return;
         }
 
         $path = $this->path . '/' . $this->data[$field];
-        if (!Storage::disk('local')->exists($path)) {
+        if (! Storage::disk('local')->exists($path)) {
             return;
         }
 

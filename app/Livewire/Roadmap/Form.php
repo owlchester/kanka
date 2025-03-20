@@ -3,13 +3,13 @@
 namespace App\Livewire\Roadmap;
 
 use App\Enums\FeatureStatus;
+use App\Jobs\Emails\NewFeatureEmailJob;
 use App\Models\Feature;
-use App\Models\FeatureVote;
 use App\Models\FeatureFile;
+use App\Models\FeatureVote;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use App\Jobs\Emails\NewFeatureEmailJob;
 
 class Form extends Component
 {
@@ -35,7 +35,7 @@ class Form extends Component
         $this->authorize('create', Feature::class);
         $this->validate();
 
-        $feat = new Feature();
+        $feat = new Feature;
         $feat->created_by = auth()->user()->id;
         $feat->name = $this->title;
         $feat->description = $this->description;
@@ -44,7 +44,7 @@ class Form extends Component
 
         if (auth()->user()->can('vote', $feat)) {
             /** @var FeatureVote $vote */
-            $vote = new FeatureVote();
+            $vote = new FeatureVote;
             $vote->feature_id = $feat->id;
             $vote->user_id = auth()->user()->id;
             $vote->save();
@@ -56,7 +56,7 @@ class Form extends Component
 
         if ($this->file) {
             $file = $this->file->storeAs('features/' . $feat->id, uniqid() . '.' . $this->file->getClientOriginalExtension(), 's3');
-            $featFile = new FeatureFile();
+            $featFile = new FeatureFile;
             $featFile->feature_id = $feat->id;
             $featFile->path = $file;
             $featFile->save();
@@ -92,6 +92,7 @@ class Form extends Component
             foreach ($words as $word) {
                 $sub->orWhere('name', 'like', '%' . $word . '%');
             }
+
             return $sub;
         });
 

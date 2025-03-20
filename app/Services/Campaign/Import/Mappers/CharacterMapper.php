@@ -12,6 +12,7 @@ class CharacterMapper extends MiscMapper
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'created_at', 'location_id', 'updated_at', 'race_id', 'family_id'];
 
     protected string $className = Character::class;
+
     protected string $mappingName = 'characters';
 
     public function first(): void
@@ -41,7 +42,7 @@ class CharacterMapper extends MiscMapper
             return $this;
         }
         foreach ($this->data['characterTraits'] as $data) {
-            $trait = new CharacterTrait();
+            $trait = new CharacterTrait;
             $trait->character_id = $this->model->id;
             $trait->name = $data['name'];
             $trait->entry = $data['entry'];
@@ -50,6 +51,7 @@ class CharacterMapper extends MiscMapper
             $trait->default_order = $data['default_order'];
             $trait->save();
         }
+
         return $this;
     }
 
@@ -60,20 +62,21 @@ class CharacterMapper extends MiscMapper
         }
         $parents = [];
         foreach ($this->data['organisationMemberships'] as $data) {
-            $member = new CharacterOrganisation();
+            $member = new CharacterOrganisation;
             $member->character_id = $this->model->id;
             $member->organisation_id = ImportIdMapper::get('organisations', $data['organisation_id']);
             $member->role = $data['role'];
             $member->is_private = $data['is_private'];
             $member->pin_id = $data['pin_id'];
             $member->status_id = $data['status_id'];
-            if (!empty($data['parent_id']) && isset($parents[$data['parent_id']])) {
+            if (! empty($data['parent_id']) && isset($parents[$data['parent_id']])) {
                 $member->parent_id = $parents[$data['parent_id']];
             }
             $member->save();
 
             $parents[$data['id']] = $member->id;
         }
+
         return $this;
     }
 }

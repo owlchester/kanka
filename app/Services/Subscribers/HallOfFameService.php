@@ -11,20 +11,21 @@ class HallOfFameService
 {
     /**
      * Get a list of subscribers for the hall of fame
+     *
      * @return array list of subscribers by pledge
      */
     public function subscribers(): array
     {
         $cacheKey = 'about_subscribers';
         if (cache()->has($cacheKey)) {
-            //return cache()->get($cacheKey);
+            // return cache()->get($cacheKey);
         }
         $subscribers = [
             'elemental' => [],
             'wyvern' => [],
-            'owlbear' =>  [],
+            'owlbear' => [],
             'goblin' => [],
-            'kobold' => []
+            'kobold' => [],
         ];
 
         /** @var ?Role $role */

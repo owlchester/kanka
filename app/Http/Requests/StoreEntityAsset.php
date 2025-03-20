@@ -37,10 +37,10 @@ class StoreEntityAsset extends FormRequest
                 'required_if:type_id,' . EntityAsset::TYPE_FILE,
                 'file',
                 'max:' . Limit::upload(),
-                new EntityFile()
+                new EntityFile,
             ],
             'metadata.url' => 'required_if:type_id,' . EntityAsset::TYPE_LINK . '|string|url',
-            'metadata.icon' => ['max:45', new FontAwesomeIcon()],
+            'metadata.icon' => ['max:45', new FontAwesomeIcon],
         ]);
     }
 }

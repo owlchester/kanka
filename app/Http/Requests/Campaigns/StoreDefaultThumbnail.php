@@ -28,6 +28,7 @@ class StoreDefaultThumbnail extends FormRequest
             'entity_type_id' => 'required|exists:entity_types,id',
             'default_entity_image' => 'required|mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
         ];
+
         return $rules;
     }
 }

@@ -19,14 +19,14 @@ class BragiController extends Controller
      */
     public function index()
     {
-        if (!auth()->user()->hasTokens()) {
+        if (! auth()->user()->hasTokens()) {
             abort(401);
         }
         $logs = auth()->user()->bragiLogs()->orderByDesc('created_at')->paginate();
         $isAdmin = auth()->user()->hasRole('admin');
+
         return view('settings.bragi')
             ->with('logs', $logs)
-            ->with('isAdmin', $isAdmin)
-        ;
+            ->with('isAdmin', $isAdmin);
     }
 }

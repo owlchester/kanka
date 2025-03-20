@@ -17,6 +17,7 @@ class MigrateLayerService
     public function layer(MapLayer $layer): self
     {
         $this->layer = $layer;
+
         return $this;
     }
 
@@ -29,7 +30,7 @@ class MigrateLayerService
         $path = $this->layer->image_path;
         $ext = Str::afterLast('.', $path);
 
-        $this->image = new Image();
+        $this->image = new Image;
         $this->image->campaign_id = $this->layer->map->campaign_id;
         $this->image->created_by = $this->layer->created_by;
         $this->image->name = $this->layer->name;

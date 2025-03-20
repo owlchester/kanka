@@ -10,8 +10,6 @@ class PurgeService
     /** @var int Number of total deleted posts */
     protected int $count = 0;
 
-    /**
-     */
     public function count(): int
     {
         return $this->count;

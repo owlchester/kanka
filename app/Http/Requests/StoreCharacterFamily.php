@@ -29,7 +29,7 @@ class StoreCharacterFamily extends FormRequest
         return $this->clean([
             'family_id' => 'required|exists:families,id',
             'members' => [
-                '*' => 'exists:characters,id'
+                '*' => 'exists:characters,id',
             ],
         ]);
     }

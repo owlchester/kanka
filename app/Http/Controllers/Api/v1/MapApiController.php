@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Requests\StoreMap as Request;
+use App\Http\Resources\MapResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Map;
-use App\Http\Requests\StoreMap as Request;
-use App\Http\Resources\MapResource as Resource;
 
 class MapApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+
         return Resource::collection($campaign
             ->maps()
             ->filter(request()->all())
@@ -26,17 +28,19 @@ class MapApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, Map $map)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $map->entity);
+
         return new Resource($map);
     }
 
     /**
-     * @return Resource
+     * @return resource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
@@ -48,11 +52,12 @@ class MapApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         $model = Map::create($data);
         $this->crudSave($model);
+
         return new Resource($model);
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function update(Request $request, Campaign $campaign, Map $map)
     {
@@ -66,6 +71,7 @@ class MapApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Map $map)

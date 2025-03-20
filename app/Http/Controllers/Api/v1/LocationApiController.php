@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Requests\StoreLocation as Request;
+use App\Http\Resources\LocationResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Location;
-use App\Http\Requests\StoreLocation as Request;
-use App\Http\Resources\LocationResource as Resource;
 
 class LocationApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+
         return Resource::collection($campaign
             ->locations()
             ->filter(request()->all())
@@ -26,7 +28,7 @@ class LocationApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, Location $location)
     {
@@ -37,7 +39,8 @@ class LocationApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
@@ -54,7 +57,7 @@ class LocationApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function update(Request $request, Campaign $campaign, Location $location)
     {
@@ -68,6 +71,7 @@ class LocationApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Location $location)

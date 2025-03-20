@@ -9,6 +9,7 @@ class ItemMapper extends MiscMapper
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'item_id', 'character_id', 'created_at', 'updated_at', 'location_id'];
 
     protected string $className = Item::class;
+
     protected string $mappingName = 'items';
 
     public function first(): void
@@ -31,7 +32,7 @@ class ItemMapper extends MiscMapper
     public function tree(): self
     {
         foreach ($this->parents as $parent => $children) {
-            if (!isset($this->mapping[$parent])) {
+            if (! isset($this->mapping[$parent])) {
                 continue;
             }
             // We need the nested trait to trigger for this, so it's going to be inefficient

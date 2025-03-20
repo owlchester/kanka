@@ -12,13 +12,14 @@ class Children extends Layout
 
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'race_id' => [
                 'key' => 'name',
@@ -38,11 +39,11 @@ class Children extends Layout
                 'label' => __('tags.fields.children'),
                 'render' => function ($model) {
                     return $model->children->count();
-                }
+                },
             ],
             'tags' => [
-                'render' => Standard::TAGS
-            ]
+                'render' => Standard::TAGS,
+            ],
         ];
 
         return $columns;

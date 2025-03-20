@@ -12,9 +12,7 @@ class EntityController extends Controller
     /**
      * LiveController constructor.
      */
-    public function __construct(protected SearchService $searchService)
-    {
-    }
+    public function __construct(protected SearchService $searchService) {}
 
     /**
      * Only find calendar entities

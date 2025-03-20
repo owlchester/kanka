@@ -27,6 +27,7 @@ class TemplateController extends Controller
         }
 
         $this->service->entity($entity)->toggle();
+
         return redirect()->back()
             ->with(
                 'success',

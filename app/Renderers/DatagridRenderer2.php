@@ -3,29 +3,27 @@
 namespace App\Renderers;
 
 use App\Models\Entity;
-use App\Traits\EntityTypeAware;
-use UnitEnum;
 use App\Renderers\Layouts\Columns\Action;
-use App\Renderers\Layouts\Columns\Column;
 use App\Renderers\Layouts\Columns\Checkbox;
+use App\Renderers\Layouts\Columns\Column;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Header;
 use App\Renderers\Layouts\Layout;
 use App\Traits\CampaignAware;
+use App\Traits\EntityTypeAware;
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
-use Closure;
+use UnitEnum;
 
 class DatagridRenderer2
 {
     use CampaignAware;
     use EntityTypeAware;
 
-    /**  */
     protected Layout $layout;
 
-    /**  */
     protected array $deleteForms = [];
 
     /** Action params for the edit/delete */
@@ -35,6 +33,7 @@ class DatagridRenderer2
     protected bool $permissions = true;
 
     protected $routeName = null;
+
     protected array $routeOptions = [];
 
     protected array $bulks;
@@ -44,9 +43,10 @@ class DatagridRenderer2
     public function layout(string|Layout $layout): self
     {
         if (is_string($layout)) {
-            $layout = new $layout();
+            $layout = new $layout;
         }
         $this->layout = $layout;
+
         return $this;
     }
 
@@ -54,12 +54,14 @@ class DatagridRenderer2
     {
         $this->routeName = $route;
         $this->routeOptions = $options;
+
         return $this;
     }
 
     public function actionParams(?array $options = null): self
     {
         $this->actionParams = $options;
+
         return $this;
     }
 
@@ -69,11 +71,10 @@ class DatagridRenderer2
     public function highlight(Closure $highlight): self
     {
         $this->highlight = $highlight;
+
         return $this;
     }
 
-    /**
-     */
     public function getActionParams(): array
     {
         return $this->actionParams;
@@ -128,15 +129,11 @@ class DatagridRenderer2
         return $columns;
     }
 
-    /**
-     */
     public function hasBulks(): bool
     {
-        return !empty($this->layout->bulks()) && auth()->check() && auth()->user()->isAdmin();
+        return ! empty($this->layout->bulks()) && auth()->check() && auth()->user()->isAdmin();
     }
 
-    /**
-     */
     public function bulks(): array
     {
         if (isset($this->bulks)) {
@@ -149,6 +146,7 @@ class DatagridRenderer2
             if (is_array($bulk)) {
                 if (empty($bulk['can'])) {
                     $this->bulks[] = $bulk;
+
                     continue;
                 }
                 $can = $bulk['can'];
@@ -159,6 +157,7 @@ class DatagridRenderer2
                     if (auth()->check() && auth()->user()->can($action, $this->campaign)) {
                         $this->bulks[] = $bulk;
                     }
+
                     continue;
                 }
                 // More specific use cases?
@@ -174,15 +173,11 @@ class DatagridRenderer2
         return $this->bulks;
     }
 
-    /**
-     */
     public function hasActions(): bool
     {
-        return !empty($this->layout->actions());
+        return ! empty($this->layout->actions());
     }
 
-    /**
-     */
     public function deleteForms(): array
     {
         return $this->deleteForms;
@@ -194,6 +189,7 @@ class DatagridRenderer2
     public function permissions(bool $permissions): self
     {
         $this->permissions = $permissions;
+
         return $this;
     }
 
@@ -208,11 +204,10 @@ class DatagridRenderer2
 
         /** @var Route $route */
         $route = request()->route();
+
         return $route->getName();
     }
 
-    /**
-     */
     public function routeOptions(): array
     {
         return $this->routeOptions;
@@ -242,11 +237,13 @@ class DatagridRenderer2
         if (request()->has('m')) {
             $options['m'] = request()->get('m');
         }
+
         return $options;
     }
 
     /**
      * Allow the ajax init to have custom ordering
+     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
@@ -258,6 +255,7 @@ class DatagridRenderer2
         if (request()->has('k')) {
             $config['k'] = request()->get('k');
         }
+
         return $config;
     }
 
@@ -266,9 +264,10 @@ class DatagridRenderer2
      */
     public function isHighlighted(mixed $row): bool
     {
-        if (!isset($this->highlight) || !$this->highlight instanceof Closure) {
+        if (! isset($this->highlight) || ! $this->highlight instanceof Closure) {
             return false;
         }
+
         return $this->highlight->call($row);
     }
 
@@ -285,6 +284,7 @@ class DatagridRenderer2
             }
             $attributes[] = 'data-' . $attr . '="' . $val . '"';
         }
+
         return implode(' ', $attributes);
     }
 
@@ -295,6 +295,7 @@ class DatagridRenderer2
                 new \App\View\Components\EntityLink($model, $this->campaign)
             );
         }
+
         // @phpstan-ignore-next-line
         return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
     }

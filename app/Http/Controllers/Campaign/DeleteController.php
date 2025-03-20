@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
-use App\Services\Campaign\DeletionService;
 use App\Http\Requests\DeleteCampaign;
 use App\Models\Campaign;
+use App\Services\Campaign\DeletionService;
 
 class DeleteController extends Controller
 {
     protected DeletionService $deletionService;
+
     public function __construct(DeletionService $deletionService)
     {
         $this->middleware('auth');

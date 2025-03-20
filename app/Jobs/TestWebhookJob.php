@@ -2,10 +2,11 @@
 
 namespace App\Jobs;
 
-use App\Models\Entity;
-use App\Models\Webhook;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\User;
+use App\Models\Webhook;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -13,7 +14,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
-use Exception;
 
 class TestWebhookJob implements ShouldQueue
 {
@@ -99,7 +99,7 @@ class TestWebhookJob implements ShouldQueue
                             "type": "Kingdom"
                         }
                     ]
-                },'
+                },',
             ];
         }
 
@@ -108,12 +108,12 @@ class TestWebhookJob implements ShouldQueue
                 $data = json_encode($data);
             }
             $embeds = [
-                'title'         => 'Thaelia',
-                'description'   => strval($data),
-                'color'         => config('discord.color'),
-                'url'           => route('locations.index', [$campaign]),
-                'author'        => [
-                    'name'  => 'Kanka Webhooks',
+                'title' => 'Thaelia',
+                'description' => strval($data),
+                'color' => config('discord.color'),
+                'url' => route('locations.index', [$campaign]),
+                'author' => [
+                    'name' => 'Kanka Webhooks',
                 ],
             ];
 

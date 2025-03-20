@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Requests\StoreRace as Request;
+use App\Http\Resources\RaceResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Race;
-use App\Http\Requests\StoreRace as Request;
-use App\Http\Resources\RaceResource as Resource;
 
 class RaceApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+
         return Resource::collection($campaign
             ->races()
             ->filter(request()->all())
@@ -27,17 +29,19 @@ class RaceApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, Race $race)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $race->entity);
+
         return new Resource($race);
     }
 
     /**
-     * @return Resource
+     * @return resource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
@@ -49,11 +53,12 @@ class RaceApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         $model = Race::create($data);
         $this->crudSave($model);
+
         return new Resource($model);
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function update(Request $request, Campaign $campaign, Race $race)
     {
@@ -67,6 +72,7 @@ class RaceApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Race $race)

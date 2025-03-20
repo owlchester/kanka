@@ -11,16 +11,16 @@ class RelationService
     use CampaignAware;
 
     protected array $entities;
+
     protected Relation $new;
+
     protected int $count;
 
-    /**
-     */
     public function createRelations(StoreRelation $request): self
     {
         $this->count = 0;
         $data = $request->only([
-            'owner_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id'
+            'owner_id', 'attitude', 'relation', 'colour', 'is_pinned', 'two_way', 'visibility_id',
         ]);
         $data['campaign_id'] = $this->campaign->id;
 
@@ -32,10 +32,10 @@ class RelationService
         $new = null;
         foreach ($this->entities as $entity_id) {
             $data['target_id'] = $entity_id;
-            $relation = new Relation();
+            $relation = new Relation;
             $relation = $relation->create($data);
             $this->count++;
-            if (!isset($new)) {
+            if (! isset($new)) {
                 $new = $relation;
             }
             if ($request->has('two_way')) {

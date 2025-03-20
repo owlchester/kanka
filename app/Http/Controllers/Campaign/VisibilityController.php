@@ -25,6 +25,7 @@ class VisibilityController extends Controller
     {
         $this->authorize('update', $campaign);
         $from = request()->get('from');
+
         return view('campaigns.forms.modals.public', compact('campaign', 'from'));
     }
 
@@ -33,7 +34,7 @@ class VisibilityController extends Controller
         $this->authorize('update', $campaign);
 
         $campaign->update([
-            'is_public' => $request->get('is_public')
+            'is_public' => $request->get('is_public'),
         ]);
 
         $success = __('campaigns/public.update.' . ($campaign->isPublic() ? 'public' : 'private'), [
@@ -43,18 +44,17 @@ class VisibilityController extends Controller
         if ($request->get('from') === 'overview') {
             return redirect()
                 ->route('overview', $campaign)
-                ->with('success_raw', $success)
-            ;
+                ->with('success_raw', $success);
         }
 
         return redirect()
             ->back()
-            ->with('success_raw', $success)
-        ;
+            ->with('success_raw', $success);
     }
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
@@ -62,7 +62,7 @@ class VisibilityController extends Controller
     {
         $action = request()->get('action');
         $models = request()->get('model');
-        if (!in_array($action, ['enable', 'disable', 'delete']) || empty($models)) {
+        if (! in_array($action, ['enable', 'disable', 'delete']) || empty($models)) {
             return redirect()
                 ->route('campaign_styles.index', $campaign);
         }
@@ -74,7 +74,7 @@ class VisibilityController extends Controller
             if (empty($style)) {
                 continue;
             }
-            if ($action === 'enable' && !$style->is_enabled) {
+            if ($action === 'enable' && ! $style->is_enabled) {
                 $style->is_enabled = true;
                 $style->update();
                 $count++;
@@ -91,8 +91,7 @@ class VisibilityController extends Controller
 
         return redirect()
             ->route('campaign_styles.index', $campaign)
-            ->with('success', trans_choice('campaigns/styles.bulks.' . $action, $count, ['count' => $count]))
-        ;
+            ->with('success', trans_choice('campaigns/styles.bulks.' . $action, $count, ['count' => $count]));
     }
 
     public function reorder(ReorderStyles $request, Campaign $campaign)
@@ -112,9 +111,9 @@ class VisibilityController extends Controller
         CampaignCache::clearStyles()->clear();
 
         $order--;
+
         return redirect()
             ->route('campaign_styles.index', $campaign)
-            ->with('success', trans_choice('campaigns/styles.reorder.success', $order, ['count' => $order]))
-        ;
+            ->with('success', trans_choice('campaigns/styles.reorder.success', $order, ['count' => $order]));
     }
 }

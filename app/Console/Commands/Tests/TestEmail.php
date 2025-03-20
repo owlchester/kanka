@@ -57,6 +57,7 @@ class TestEmail extends Command
         } else {
             $this->warn('Unknown template ' . $template);
         }
+
         return 0;
     }
 }

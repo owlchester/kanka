@@ -10,5 +10,4 @@ class RoadmapController extends Controller
     {
         return view('roadmap.index');
     }
-
 }

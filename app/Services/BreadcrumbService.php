@@ -12,8 +12,6 @@ class BreadcrumbService
     use EntityAware;
     use EntityTypeAware;
 
-    /**
-     */
     public function index(?string $name = null): string
     {
         // Determine the "mode" for logged-in users who prefer the old table view
@@ -27,6 +25,7 @@ class BreadcrumbService
                 (isset($this->entity) && $this->entity->entityType->isSpecial())
         ) {
             $params['entityType'] = $this->entityType ?? $this->entity->entityType;
+
             return route('entities.index', $params);
         }
         if (isset($this->entityType)) {
@@ -52,7 +51,7 @@ class BreadcrumbService
     {
         return [
             'url' => route('entities.show', [$this->campaign, $this->entity]),
-            'label' => $this->entity->name
+            'label' => $this->entity->name,
         ];
     }
 }

@@ -12,7 +12,9 @@ use App\Models\Note;
 class NoteController extends CrudController
 {
     protected string $view = 'notes';
+
     protected string $route = 'notes';
+
     protected string $module = 'notes';
 
     protected string $model = Note::class;
@@ -27,29 +29,21 @@ class NoteController extends CrudController
         return $this->campaign($campaign)->crudStore($request);
     }
 
-    /**
-     */
     public function show(Campaign $campaign, Note $note)
     {
         return $this->campaign($campaign)->crudShow($note);
     }
 
-    /**
-     */
     public function edit(Campaign $campaign, Note $note)
     {
         return $this->campaign($campaign)->crudEdit($note);
     }
 
-    /**
-     */
     public function update(StoreNote $request, Campaign $campaign, Note $note)
     {
         return $this->campaign($campaign)->crudUpdate($request, $note);
     }
 
-    /**
-     */
     public function destroy(Campaign $campaign, Note $note)
     {
         return $this->campaign($campaign)->crudDestroy($note);
