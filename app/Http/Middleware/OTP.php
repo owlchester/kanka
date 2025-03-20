@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Google2FAAuthentication;
+use App\Models\OTPAuthentication;
 use Closure;
 use App\Facades\Identity;
 
-class OTPMiddleware
+class OTP
 {
     /**
      * Handle an incoming request.
@@ -26,9 +26,9 @@ class OTPMiddleware
         if ($request->user() && Identity::isImpersonating()) {
             return $next($request);
         }
-        // Send requested logging User to Google2FA Authentication Support
-        /** @var Google2FAAuthentication $authentication */
-        $authentication = app(Google2FAAuthentication::class)->boot($request);
+        // Send requested logging User to OTP Authentication Support
+        /** @var OTPAuthentication $authentication */
+        $authentication = app(OTPAuthentication::class)->boot($request);
 
         if ($authentication->isAuthenticated()) {
             return $next($request);

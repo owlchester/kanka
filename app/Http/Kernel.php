@@ -42,7 +42,7 @@ class Kernel extends HttpKernel
             Middleware\LocaleChange::class, // Save language changing
             Tracking::class,
             Middleware\CheckIfUserBanned::class,
-            Middleware\OTPMiddleware::class,
+            Middleware\OTP::class,
         ],
 
         'api' => [
@@ -90,7 +90,7 @@ class Kernel extends HttpKernel
         'password.confirm' => PasswordConfirm::class,
         'subscriptions' => Middleware\Subscriptions::class,
         'fullsetup' => FullSetup::class,
-        '2fa' => Middleware\OTPMiddleware::class,
+        '2fa' => Middleware\OTP::class,
         'adless' => Middleware\Adless::class,
     ];
 }

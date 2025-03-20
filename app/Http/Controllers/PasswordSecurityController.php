@@ -28,13 +28,13 @@ class PasswordSecurityController extends Controller
         /** @var User $user */
         $user = $request->user();
 
-        $google2Fa = new Google2FA();
+        $otp = new Google2FA();
 
         // Generate a new Google2FA code for User
         PasswordSecurity::create([
             'user_id' => $user->id,
             'google2fa_enable' => 0,
-            'google2fa_secret' => $google2Fa->generateSecretKey()
+            'google2fa_secret' => $otp->generateSecretKey()
         ]);
         return redirect()->route('settings.account')->with('success', __('settings.account.2fa.success_key'));
     }
@@ -47,12 +47,12 @@ class PasswordSecurityController extends Controller
         /** @var User $user */
         $user = $request->user();
 
-        // Enable Google2FA if Google Authenticator code matches secret
-        $google2Fa = new Google2FA();
+        // Enable OTP if the Authenticator code matches secret
+        $otp = new Google2FA();
         $secret = $request->input('otp');
-        $valid = $google2Fa->verifyKey($user->passwordSecurity->google2fa_secret, $secret);
+        $valid = $otp->verifyKey($user->passwordSecurity->google2fa_secret, $secret);
 
-        // If Google2FA code is valid enable Google2FA
+        // If OTP code is valid enable OTP
         if ($valid) {
             $user->passwordSecurity->update(['google2fa_enable' => 1]);
             // 2FA is enabled, log out the user and ask them to set up.
@@ -71,7 +71,7 @@ class PasswordSecurityController extends Controller
         /** @var User $user */
         $user = $request->user();
 
-        // Update disabling Google2FA
+        // Update disabling OTP
         $user->passwordSecurity->google2fa_enable = 0;
         $user->passwordSecurity->save();
 

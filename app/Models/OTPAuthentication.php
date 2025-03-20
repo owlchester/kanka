@@ -5,7 +5,7 @@ namespace App\Models;
 use Exception;
 use PragmaRX\Google2FALaravel\Support\Authenticator;
 
-class Google2FAAuthentication extends Authenticator
+class OTPAuthentication extends Authenticator
 {
     // If User does not have Google2FA Setup yet
     protected function canPassWithoutCheckingOTP()
@@ -27,7 +27,7 @@ class Google2FAAuthentication extends Authenticator
         }
 
         // If User is not Authenticated through 2FA
-        if (null === $secret || empty($secret)) {
+        if (empty($secret)) {
             // return Action
             return redirect()->action('PasswordSecurityController@generate2faSecretCode');
         }
