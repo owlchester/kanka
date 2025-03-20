@@ -12,7 +12,6 @@ use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
 use App\Traits\MentionTrait;
-use App\View\Components\Helpers\Tooltip;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
