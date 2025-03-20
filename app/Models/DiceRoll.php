@@ -39,7 +39,7 @@ class DiceRoll extends MiscModel
     /**
      * Searchable fields
      */
-    protected array $searchableColumns  = ['name'];
+    protected array $searchableColumns = ['name'];
 
     /**
      * Fields that can be sorted on
@@ -51,6 +51,7 @@ class DiceRoll extends MiscModel
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -98,6 +99,7 @@ class DiceRoll extends MiscModel
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
@@ -106,6 +108,7 @@ class DiceRoll extends MiscModel
             'character_id',
         ];
     }
+
     /**
      * Performance with for datagrids
      */

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * Class CampaignSystem
- * @package App\Models
  *
  * @property int $user_id
  * @property string $text

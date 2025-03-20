@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\HasCampaign;
-use App\Models\Concerns\SortableTrait;
-use App\Models\Concerns\Paginatable;
 use App\Enums\WebhookAction;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Arr;
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\HasCampaign;
+use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\SortableTrait;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Arr;
 
 /**
  * @property int $id
@@ -63,6 +63,7 @@ class Webhook extends Model
         if ($this->type == 2) {
             return __('campaigns/webhooks.fields.types.payload');
         }
+
         return __('campaigns/webhooks.fields.types.custom');
     }
 
@@ -87,6 +88,7 @@ class Webhook extends Model
         if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
             return mb_strstr($regs['domain'], '.', true);
         }
+
         return $this->url;
     }
 

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CampaignPlugin
- * @package App\Models
  *
  * @property int $campaign_id
  * @property int $created_by
@@ -49,15 +48,11 @@ class CampaignPlugin extends Model
             ->orderBy('p.name');
     }
 
-    /**
-     */
     public function canEnable(): bool
     {
-        return $this->plugin->isTheme() && !$this->is_active;
+        return $this->plugin->isTheme() && ! $this->is_active;
     }
 
-    /**
-     */
     public function canDisable(): bool
     {
         return $this->plugin->isTheme() && $this->is_active;
@@ -69,12 +64,13 @@ class CampaignPlugin extends Model
      */
     public function renderable(): bool
     {
-        if (!$this->plugin->isAttributeTemplate()) {
+        if (! $this->plugin->isAttributeTemplate()) {
             return false;
         } elseif ($this->version->status_id === 3) {
             // Published version? We good
             return true;
         }
+
         // The user needs to be an author
         return $this->isAuthor();
     }
@@ -87,6 +83,7 @@ class CampaignPlugin extends Model
         if (auth()->guest()) {
             return false;
         }
+
         return $this->plugin->created_by === auth()->user()->id;
     }
 }

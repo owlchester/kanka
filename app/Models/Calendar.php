@@ -18,7 +18,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Calendar
- * @package App\Models
  *
  * @property string $date
  * @property int $start_offset
@@ -83,7 +82,7 @@ class Calendar extends MiscModel
 
     /** @var array<string, string> */
     public $casts = [
-        'parameters' => 'array'
+        'parameters' => 'array',
     ];
 
     protected array $foreignExport = [
@@ -108,8 +107,6 @@ class Calendar extends MiscModel
 
     protected array $cachedCurrentDate;
 
-    /**
-     */
     public function scopePreparedWith(Builder $query): Builder
     {
         return parent::scopePreparedWith($query);
@@ -136,7 +133,8 @@ class Calendar extends MiscModel
         if (isset($this->loadedMonths)) {
             return $this->loadedMonths;
         }
-        return (array) $this->loadedMonths = !empty($this->months) ?
+
+        return (array) $this->loadedMonths = ! empty($this->months) ?
             json_decode(strip_tags($this->months), true) : [];
     }
 
@@ -145,12 +143,13 @@ class Calendar extends MiscModel
      */
     public function weekdays(): array
     {
-        if (!isset($this->loadedWeekdays)) {
+        if (! isset($this->loadedWeekdays)) {
             $this->loadedWeekdays = [];
-            if (!empty($this->months)) {
+            if (! empty($this->months)) {
                 $this->loadedWeekdays = json_decode(strip_tags($this->weekdays), true);
             }
         }
+
         return $this->loadedWeekdays;
     }
 
@@ -159,12 +158,13 @@ class Calendar extends MiscModel
      */
     public function years(): array
     {
-        if (!isset($this->loadedYears)) {
+        if (! isset($this->loadedYears)) {
             $this->loadedYears = [];
-            if (!empty($this->years)) {
+            if (! empty($this->years)) {
                 $this->loadedYears = json_decode(strip_tags($this->years), true);
             }
         }
+
         return $this->loadedYears;
     }
 
@@ -173,9 +173,10 @@ class Calendar extends MiscModel
      */
     public function moons(): array
     {
-        if (!isset($this->loadedMoons)) {
+        if (! isset($this->loadedMoons)) {
             $this->loadedMoons = json_decode(empty($this->moons) ? '[]' : strip_tags($this->moons), true);
         }
+
         return $this->loadedMoons;
     }
 
@@ -184,9 +185,10 @@ class Calendar extends MiscModel
      */
     public function seasons(): array
     {
-        if (!isset($this->loadedSeasons)) {
+        if (! isset($this->loadedSeasons)) {
             $this->loadedSeasons = json_decode(empty($this->seasons) ? '[]' : strip_tags($this->seasons), true);
         }
+
         return $this->loadedSeasons;
     }
 
@@ -195,9 +197,10 @@ class Calendar extends MiscModel
      */
     public function weeks(): array
     {
-        if (!isset($this->loadedWeeks)) {
+        if (! isset($this->loadedWeeks)) {
             $this->loadedWeeks = json_decode(empty($this->week_names) ? '[]' : strip_tags($this->week_names), true);
         }
+
         return $this->loadedWeeks;
     }
 
@@ -206,15 +209,14 @@ class Calendar extends MiscModel
      */
     public function monthAliases(): array
     {
-        if (!isset($this->loadedMonthAliases)) {
+        if (! isset($this->loadedMonthAliases)) {
             $this->loadedMonthAliases = json_decode(empty($this->month_aliases) ? '[]' :
                 strip_tags($this->month_aliases), true);
         }
+
         return $this->loadedMonthAliases;
     }
 
-    /**
-     */
     public function currentDate(?string $value = null): mixed
     {
         // If we have no date saved at all, skip this part. This happens when an entity was changed to the calendar
@@ -230,6 +232,7 @@ class Calendar extends MiscModel
         } elseif ($value == 'date') {
             return $this->cacheCurrentDate()[2] ?? 1;
         }
+
         return null;
     }
 
@@ -269,7 +272,7 @@ class Calendar extends MiscModel
             return '';
         }
 
-        list($year, $month, $day) = $this->dateArray($date);
+        [$year, $month, $day] = $this->dateArray($date);
 
         // Replace month with real month, and year maybe
         $months = $this->months();
@@ -280,6 +283,7 @@ class Calendar extends MiscModel
                 (isset($months[$month - 1]) ? $months[$month - 1]['name'] : $month) . ', ' .
                 ($years[$year] ?? $year) . ' ' .
                 $this->suffix;
+
             return $return;
         } catch (Exception $e) { // @phpstan-ignore-line
             return $this->date;
@@ -297,6 +301,7 @@ class Calendar extends MiscModel
             $months[$i] = $month['name'];
             $i++;
         }
+
         return $months;
     }
 
@@ -311,6 +316,7 @@ class Calendar extends MiscModel
             $monthData[$i] = ['data-length' => $month['length']];
             $i++;
         }
+
         return $monthData;
     }
 
@@ -329,9 +335,8 @@ class Calendar extends MiscModel
             $days[$i] = $i;
         }
 
-
         // No leaps days, or not on this month
-        if (!$this->has_leap_year || $this->leap_year_month != $month) {
+        if (! $this->has_leap_year || $this->leap_year_month != $month) {
             return $days;
         }
         // We might be on a year with leap years, but the js is too complex so let's just assume
@@ -408,12 +413,10 @@ class Calendar extends MiscModel
         return [
             $isNegativeYear ? '-' . $date[0] : $date[0],
             max($date[1], 1),
-            max($date[2], 1)
+            max($date[2], 1),
         ];
     }
 
-    /**
-     */
     public function recurringOptions(bool $flat = false): array
     {
         $options = [
@@ -428,6 +431,7 @@ class Calendar extends MiscModel
             if ($flat) {
                 $options[$moon['id'] . '_f'] = __('calendars.options.events.recurring_periodicity.fullmoon_name', ['moon' => $moon['name']]);
                 $options[$moon['id'] . '_n'] = __('calendars.options.events.recurring_periodicity.newmoon_name', ['moon' => $moon['name']]);
+
                 continue;
             }
             $name = $moon['name'];
@@ -453,6 +457,7 @@ class Calendar extends MiscModel
         foreach ($this->months() as $month) {
             $days += Arr::get($month, 'length', 1);
         }
+
         return $days;
     }
 
@@ -474,6 +479,7 @@ class Calendar extends MiscModel
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
@@ -488,6 +494,6 @@ class Calendar extends MiscModel
      */
     public function hasYearZero(): bool
     {
-        return !$this->skip_year_zero;
+        return ! $this->skip_year_zero;
     }
 }
