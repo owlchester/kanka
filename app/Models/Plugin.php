@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
 
 /**
  * Class Plugin
- * @package App\Models
  *
  * @property int $id
  * @property string $uuid
@@ -23,7 +22,6 @@ use Illuminate\Support\Str;
  * @property ?int $created_by
  * @property string $name
  * @property bool|int $is_obsolete
- *
  * @property PluginVersion[]|Collection $versions
  * @property PluginVersion $version
  *
@@ -43,11 +41,9 @@ class Plugin extends Model
         'name',
         'type_id',
         'pivot_is_active',
-        'has_update'
+        'has_update',
     ];
 
-    /**
-     */
     public function type(): string
     {
         if ($this->type_id == 1) {
@@ -55,11 +51,10 @@ class Plugin extends Model
         } elseif ($this->type_id == 2) {
             return 'attribute';
         }
+
         return 'pack';
     }
 
-    /**
-     */
     public function hasUpdate(): bool
     {
         if (isset($this->cachedHasUpdate)) {
@@ -70,6 +65,7 @@ class Plugin extends Model
         if ($this->created_by === auth()->user()->id) {
             $statuses[] = 1;
         }
+
         return $this->cachedHasUpdate = $this
             ->versions
             ->whereIn('status_id', $statuses)
@@ -100,60 +96,49 @@ class Plugin extends Model
             ->distinct()
             ->select([
                 $this->getTable() . '.*',
-                DB::raw($update)
-            ])
-        ;
+                DB::raw($update),
+            ]);
     }
 
-    /**
-     */
     public function author(): string
     {
         if (empty($this->user)) {
             return __('crud.users.unknown');
         }
-        if (!empty($this->user->settings['marketplace_name'])) {
+        if (! empty($this->user->settings['marketplace_name'])) {
             return e($this->user->settings['marketplace_name']);
         }
+
         return e($this->user->name);
     }
 
-    /**
-     */
     public function isContentPack(): bool
     {
         return $this->type_id == PluginType::TYPE_PACK;
     }
 
-    /**
-     */
     public function isTheme(): bool
     {
         return $this->type_id == PluginType::TYPE_THEME;
     }
 
-    /**
-     */
     public function isAttributeTemplate(): bool
     {
         return $this->type_id == PluginType::TYPE_ATTRIBUTE;
     }
 
-    /**
-     */
     public function scopeHighlighted(Builder $query, ?string $uuid = null): Builder
     {
-        if (empty($uuid) || !Str::isUuid($uuid)) {
+        if (empty($uuid) || ! Str::isUuid($uuid)) {
             return $query;
         }
 
         return $query->orderByRaw(
-            $this->getTable() . ".uuid = ? DESC",
+            $this->getTable() . '.uuid = ? DESC',
             [$uuid]
         );
     }
-    /**
-     */
+
     public function url(string $sub): string
     {
         return 'campaign_plugins.' . $sub;

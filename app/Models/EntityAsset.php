@@ -15,10 +15,10 @@ use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property int $id
@@ -31,7 +31,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Carbon $updated_at
  * @property ?Entity $entity
  * @property ?Image $image
- *
  */
 class EntityAsset extends Model
 {
@@ -44,7 +43,9 @@ class EntityAsset extends Model
     use Sanitizable;
 
     public const int TYPE_FILE = 1;
+
     public const int TYPE_LINK = 2;
+
     public const int TYPE_ALIAS = 3;
 
     public $fillable = [
@@ -134,14 +135,16 @@ class EntityAsset extends Model
         if (empty($this->metadata['icon'])) {
             return 'fa-solid fa-link';
         }
+
         return (string) $this->metadata['icon'];
     }
 
     public function previewIcon(): string
     {
-        if (!$this->image) {
+        if (! $this->image) {
             return 'fa-regular fa-file';
         }
+
         return match ($this->image->ext) {
             'pdf' => 'fa-regular fa-file-pdf',
             'json' => 'fa-regular fa-brackets-curly',
@@ -162,7 +165,7 @@ class EntityAsset extends Model
      */
     public function getImagePathAttribute(): string
     {
-        if ($this->image && !$this->image->isUsed()) {
+        if ($this->image && ! $this->image->isUsed()) {
             return (string) $this->image->path;
         }
 
@@ -176,6 +179,7 @@ class EntityAsset extends Model
     {
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;
+
         return $new->save();
     }
 
@@ -187,6 +191,7 @@ class EntityAsset extends Model
         $url = $this->metadata['url'];
         try {
             $params = parse_url($url);
+
             return $params['host'];
         } catch (Exception $e) {
             return '';
@@ -204,6 +209,7 @@ class EntityAsset extends Model
         if ($cloudfront) {
             return Storage::disk('cloudfront')->url($path);
         }
+
         return Storage::url($path);
     }
 
@@ -212,6 +218,6 @@ class EntityAsset extends Model
      */
     public function hiddenImage(): bool
     {
-        return !empty($this->image_uuid) && !$this->image;
+        return ! empty($this->image_uuid) && ! $this->image;
     }
 }

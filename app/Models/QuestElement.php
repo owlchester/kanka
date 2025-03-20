@@ -18,7 +18,7 @@ use Laravel\Scout\Searchable;
 
 /**
  * Class QuestCharacter
- * @package App\Models
+ *
  * @property int $entity_id
  * @property string $name
  * @property int $quest_id
@@ -27,7 +27,6 @@ use Laravel\Scout\Searchable;
  * @property string $colour
  * @property Quest|null $quest
  * @property ?Entity $entity
- *
  */
 class QuestElement extends Model
 {
@@ -49,7 +48,7 @@ class QuestElement extends Model
         'description',
         'role',
         'colour',
-        'visibility_id'
+        'visibility_id',
     ];
 
     public $casts = [
@@ -59,7 +58,7 @@ class QuestElement extends Model
     protected array $sanitizable = [
         'name',
         'role',
-        'colour'
+        'colour',
     ];
 
     protected array $suggestions = [
@@ -76,8 +75,6 @@ class QuestElement extends Model
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
 
-    /**
-     */
     public function colourClass(): string
     {
         if (empty($this->colour)) {
@@ -87,8 +84,6 @@ class QuestElement extends Model
         return $this->colour == 'grey' ? 'bg-gray' : 'bg-' . $this->colour;
     }
 
-    /**
-     */
     public function name(): string
     {
         if (empty($this->name) && $this->entity) {
@@ -114,8 +109,6 @@ class QuestElement extends Model
         return $this->hasMany('App\Models\EntityMention', 'quest_element_id', 'id');
     }
 
-    /**
-     */
     public function editingUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'entity_user')
@@ -125,7 +118,6 @@ class QuestElement extends Model
 
     /**
      * Get the value used to index the model.
-     *
      */
     public function getScoutKey()
     {
@@ -159,7 +151,7 @@ class QuestElement extends Model
             'campaign_id' => $this->quest->entity->campaign_id,
             'entity_id' => $this->quest->entity->id,
             'name' => $this->name,
-            'type'  => 'quest_element',
+            'type' => 'quest_element',
             'entry' => strip_tags($this->description),
         ];
     }

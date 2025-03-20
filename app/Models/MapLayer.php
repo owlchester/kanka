@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class MapLayer
- * @package App\Models
  *
  * @property int $id
  * @property int $map_id
@@ -30,7 +29,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $height
  * @property int $width
  * @property ?int $type_id
- *
  * @property Map $map
  * @property Image $image
  *
@@ -97,11 +95,10 @@ class MapLayer extends Model
         if ($this->image) {
             return $this->image->getUrl($width, $height);
         }
-        return Img::crop($width, (!empty($height) ? $height : $width))->url($this->image_path);
+
+        return Img::crop($width, (! empty($height) ? $height : $width))->url($this->image_path);
     }
 
-    /**
-     */
     public function typeName(): string
     {
         if (empty($this->type_id)) {
@@ -109,6 +106,7 @@ class MapLayer extends Model
         } elseif ($this->type_id == 1) {
             return 'overlay';
         }
+
         return 'overlay_shown';
     }
 
@@ -119,6 +117,7 @@ class MapLayer extends Model
     {
         return 'maps.map_layers.' . $where;
     }
+
     public function routeParams(array $options = []): array
     {
         return $options + ['map' => $this->map_id, 'map_layer' => $this->id];
@@ -138,16 +137,15 @@ class MapLayer extends Model
     public function getLink(): string
     {
         $campaign = CampaignLocalization::getCampaign();
+
         return route('maps.map_layers.edit', [$campaign, 'map' => $this->map_id, $this->id]);
     }
 
     public function hasImage(): bool
     {
-        return $this->image || !empty($this->image_path);
+        return $this->image || ! empty($this->image_path);
     }
 
-    /**
-     */
     public function getEntryForEditionAttribute()
     {
         return Mentions::parseForEdit($this);

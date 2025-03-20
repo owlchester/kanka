@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class EntityAbility
- * @package App\Models
  *
  * @property int $id
  * @property int $entity_id
@@ -74,8 +73,7 @@ class EntityAbility extends Model
         return $query
             ->orderBy('position')
             ->orderBy('a.type')
-            ->orderBy('a.name')
-        ;
+            ->orderBy('a.name');
     }
 
     /**
@@ -85,6 +83,7 @@ class EntityAbility extends Model
     {
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;
+
         return $new->save();
     }
 

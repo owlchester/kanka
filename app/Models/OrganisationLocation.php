@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * Class OrganisationLocation
- * @package App\Models
  *
  * @property int $organisation_id
  * @property int $location_id

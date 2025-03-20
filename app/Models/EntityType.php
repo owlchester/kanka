@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Facades\Module;
 use App\Models\Concerns\Sanitizable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -9,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
-use App\Facades\Module;
 
 /**
  * @property int $id
@@ -52,6 +52,7 @@ class EntityType extends Model
         if ($campaign instanceof Campaign) {
             $campaign = $campaign->id;
         }
+
         return $query->where(function ($sub) use ($campaign) {
             return $sub->where('campaign_id', $campaign)
                 ->orWhereNull('campaign_id');
@@ -63,8 +64,6 @@ class EntityType extends Model
         return $query->whereNull('campaign_id');
     }
 
-    /**
-     */
     public function scopeEnabled(Builder $query): Builder
     {
         return $query
@@ -103,6 +102,7 @@ class EntityType extends Model
     public function getClass(): MiscModel|Model
     {
         $className = 'App\Models\\' . Str::studly($this->code);
+
         return app()->make($className);
     }
 
@@ -112,6 +112,7 @@ class EntityType extends Model
     public function getMiscClass(): MiscModel
     {
         $className = 'App\Models\\' . Str::studly($this->code);
+
         return app()->make($className);
     }
 
@@ -120,9 +121,10 @@ class EntityType extends Model
      */
     public function name(): string
     {
-        if (!empty($this->singular)) {
+        if (! empty($this->singular)) {
             return $this->singular;
         }
+
         return Module::singular($this->id, __('entities.' . $this->code));
     }
 
@@ -131,9 +133,10 @@ class EntityType extends Model
      */
     public function plural(): string
     {
-        if (!empty($this->plural)) {
+        if (! empty($this->plural)) {
             return $this->plural;
         }
+
         return Module::plural($this->id, __('entities.' . $this->pluralCode()));
     }
 
@@ -142,9 +145,10 @@ class EntityType extends Model
      */
     public function icon(): string
     {
-        if (!empty($this->icon)) {
+        if (! empty($this->icon)) {
             return $this->icon;
         }
+
         return Module::duoIcon($this->code);
     }
 
@@ -156,11 +160,10 @@ class EntityType extends Model
         if (isset($this->cachedPluralCode)) {
             return $this->cachedPluralCode;
         }
+
         return $this->cachedPluralCode = Str::plural($this->code);
     }
 
-    /**
-     */
     public function getNameAttribute(): string
     {
         return $this->name();
@@ -186,6 +189,7 @@ class EntityType extends Model
         if ($this->isSpecial()) {
             return route('entities.create', [$campaign, $this] + $params);
         }
+
         return route($this->pluralCode() . '.create', [$campaign] + $params);
     }
 
@@ -208,6 +212,7 @@ class EntityType extends Model
             return true;
         }
         $model = $this->getClass();
+
         return method_exists($model, 'getParentKeyName');
     }
 }

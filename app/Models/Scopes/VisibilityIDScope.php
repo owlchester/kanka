@@ -4,9 +4,9 @@ namespace App\Models\Scopes;
 
 use App\Enums\Visibility;
 use App\Facades\CampaignLocalization;
-use Illuminate\Database\Eloquent\Scope;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
 
 class VisibilityIDScope implements Scope
 {
@@ -22,7 +22,7 @@ class VisibilityIDScope implements Scope
     protected function addWithPrivate(Builder $builder)
     {
         $builder->macro('withPrivate', function (Builder $builder, $withInvisible = true) {
-            if (!$withInvisible) {
+            if (! $withInvisible) {
                 // Sends the default scope
                 return $builder;
             }
@@ -45,13 +45,15 @@ class VisibilityIDScope implements Scope
         }
 
         // If we aren't authenticated, just see what is set to all
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             $builder->where($model->getTable() . '.visibility_id', Visibility::All);
+
             return;
         }
         $campaign = CampaignLocalization::getCampaign();
-        if (!$campaign->userIsMember()) {
+        if (! $campaign->userIsMember()) {
             $builder->where($model->getTable() . '.visibility_id', Visibility::All);
+
             return;
         }
 

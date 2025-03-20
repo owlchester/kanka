@@ -17,7 +17,7 @@ class BragiLog extends Model
     use HasUser;
 
     public $casts = [
-        'data' => 'array'
+        'data' => 'array',
     ];
 
     public function scopeRecent(Builder $query, $cutoffDate): Builder

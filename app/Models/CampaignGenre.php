@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * Class CampaignGenre
- * @package App\Models
  *
  * @property int $genre_id
  * @property int $campaign_id

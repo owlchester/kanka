@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Trait Taggable
- * @package App\Models\Concerns
  *
  * @property Tag[]|Collection $tags
  * @property Tag[]|Collection $visibleTags
@@ -29,8 +28,7 @@ trait Taggable
     {
         return $this->belongsToMany(Tag::class, $this->getTagPivotTableName())
             ->with('entity')
-            ->has('entity')
-        ;
+            ->has('entity');
     }
 
     protected function getTagPivotTableName(): ?string
@@ -38,6 +36,7 @@ trait Taggable
         if (property_exists($this, 'tagPivotName')) {
             return $this->tagPivotName;
         }
+
         return null;
     }
 

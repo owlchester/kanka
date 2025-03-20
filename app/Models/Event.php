@@ -18,7 +18,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Event
- * @package App\Models
  *
  * @property ?int $event_id
  * @property string $date
@@ -68,6 +67,7 @@ class Event extends MiscModel
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -110,8 +110,6 @@ class Event extends MiscModel
         return ['location_id', 'event_id', 'date'];
     }
 
-    /**
-     */
     public function scopeFilteredEvents(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
@@ -143,18 +141,20 @@ class Event extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if (!empty($this->type)) {
+        if (! empty($this->type)) {
             return true;
         }
 
-        if ($this->location || !empty($this->calendarReminder())) {
+        if ($this->location || ! empty($this->calendarReminder())) {
             return true;
         }
+
         return parent::showProfileInfo();
     }
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
@@ -180,6 +180,7 @@ class Event extends MiscModel
         if (auth()->check() && auth()->user()->isAdmin()) {
             $columns['is_private'] = __('crud.fields.is_private');
         }
+
         return $columns;
     }
 }

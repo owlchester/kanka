@@ -27,8 +27,6 @@ trait CalendarWeatherScopes
         return $builder->where('month', $month);
     }
 
-    /**
-     */
     public function scopeDated(Builder $builder, int $calendarId, int $year, int $month, int $day)
     {
         // @phpstan-ignore-next-line

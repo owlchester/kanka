@@ -4,13 +4,12 @@ namespace App\Models;
 
 use App\Models\Concerns\HasUser;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CampaignPermission
- * @package App\Models
  *
  * @property int $entity_id
  * @property int $campaign_role_id
@@ -23,7 +22,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $misc_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
- *
  * @property Campaign $campaign
  * @property CampaignRole $campaignRole
  * @property Entity $entity
@@ -35,23 +33,35 @@ class CampaignPermission extends Model
     use HasUser;
 
     public const ACTION_READ = 1;
+
     public const ACTION_EDIT = 2;
+
     public const ACTION_ADD = 3;
+
     public const ACTION_DELETE = 4;
+
     public const ACTION_POSTS = 5;
+
     public const ACTION_PERMS = 6;
 
     public const ACTION_MANAGE = 10;
+
     public const ACTION_DASHBOARD = 11;
+
     public const ACTION_MEMBERS = 12;
+
     public const ACTION_GALLERY = 13;
+
     public const ACTION_CAMPAIGN = 14;
 
     public const ACTION_GALLERY_BROWSE = 15;
+
     public const ACTION_GALLERY_UPLOAD = 16;
 
     public const ACTION_TEMPLATES = 17;
+
     public const ACTION_POST_TEMPLATES = 18;
+
     public const ACTION_BOOKMARKS = 19;
 
     protected $fillable = [
@@ -81,15 +91,11 @@ class CampaignPermission extends Model
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
 
-    /**
-     */
     public function scopeRoleIDs(Builder $query, array $roleIds): Builder
     {
         return $query->whereIn('campaign_role_id', $roleIds);
     }
 
-    /**
-     */
     public function scopeAction(Builder $query, int $action): Builder
     {
         return $query->whereIn('action', $action);
@@ -103,6 +109,7 @@ class CampaignPermission extends Model
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;
         $new->misc_id = $target->entity_id;
+
         return $new->save();
     }
 
@@ -125,9 +132,10 @@ class CampaignPermission extends Model
         }
 
         // If there is no entity attached, just go entity type + action
-        if (!$this->entity_id) {
+        if (! $this->entity_id) {
             return $this->entity_type_id . '_' . $this->action;
         }
+
         // Jul 2022: Found out a bug that if the entity_type_id isn't set even on user perms, denying misc_id 2 would
         // deny all (families, orgs, tags) with ID 2. Due to Kanka's size, very low collusion size, but still
         /*if ($this->entity_type_id) {
@@ -143,6 +151,7 @@ class CampaignPermission extends Model
             self::ACTION_GALLERY_BROWSE,
             self::ACTION_GALLERY_UPLOAD,
         ];
+
         return in_array($this->action, $galleryPermissions);
     }
 
@@ -152,6 +161,7 @@ class CampaignPermission extends Model
             self::ACTION_TEMPLATES,
             self::ACTION_POST_TEMPLATES,
         ];
+
         return in_array($this->action, $templatePermissions);
     }
 
@@ -160,6 +170,7 @@ class CampaignPermission extends Model
         $templatePermissions = [
             self::ACTION_BOOKMARKS,
         ];
+
         return in_array($this->action, $templatePermissions);
     }
 }

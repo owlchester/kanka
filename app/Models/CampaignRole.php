@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\SortableTrait;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class Attribute
- * @package App\Models
  *
  * @property int $id
  * @property int $campaign_id
@@ -40,6 +39,7 @@ class CampaignRole extends Model
         'is_public',
         'name',
     ];
+
     /**
      * @var array
      */
@@ -47,6 +47,7 @@ class CampaignRole extends Model
         'name',
         'is_admin',
     ];
+
     /**
      * Determine if the campaign role is the campaign's public role
      */
@@ -103,8 +104,6 @@ class CampaignRole extends Model
         return $query->where('is_admin', $with);
     }
 
-    /**
-     */
     public function permissions(): HasMany
     {
         return $this->hasMany('App\Models\CampaignPermission', 'campaign_role_id');
@@ -119,16 +118,12 @@ class CampaignRole extends Model
             ->whereNull('entity_id');
     }
 
-    /**
-     */
     public function scopeSearch(Builder $builder, ?string $search = null): Builder
     {
         return $builder
             ->where('name', 'like', "%{$search}%");
     }
 
-    /**
-     */
     public function url(string $sub): string
     {
         return 'campaign_roles.' . $sub;
@@ -141,6 +136,7 @@ class CampaignRole extends Model
             $newPermission->campaign_role_id = $campaignRole->id;
             $newPermission->save();
         }
+
         return $this;
     }
 }

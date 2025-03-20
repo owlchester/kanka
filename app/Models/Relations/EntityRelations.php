@@ -38,7 +38,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Trait EntityRelations
- * @package App\Models\Relations
  *
  * @property EntityType $entityType
  * @property Conversation $conversation
@@ -102,8 +101,7 @@ trait EntityRelations
     {
         return $this->attributes()
             ->with('entity')
-            ->ordered()
-        ;
+            ->ordered();
     }
 
     public function attributeTemplate(): HasOne
@@ -236,18 +234,15 @@ trait EntityRelations
         return $this->hasMany('App\Models\Relation', 'owner_id', 'id');
     }
 
-    /**
-     */
     public function allRelationships()
     {
         return
             $this
                 ->relationships()
                 ->select('relations.*')
-                ->with(['target', 'target.entityType', 'owner',])
+                ->with(['target', 'target.entityType', 'owner'])
                 ->has('target')
-                ->leftJoin('entities as t', 't.id', '=', 'relations.target_id')
-        ;
+                ->leftJoin('entities as t', 't.id', '=', 'relations.target_id');
     }
 
     public function targetRelationships(): HasMany
@@ -263,30 +258,28 @@ trait EntityRelations
     public function files(): HasMany
     {
         return $this->assets()
-            ->where('type_id', 1)
-        ;
+            ->where('type_id', 1);
     }
 
     public function pinnedFiles(): HasMany
     {
         return $this->files()
             ->where('is_pinned', 1)
-            ->with('image')
-        ;
+            ->with('image');
     }
 
     public function pinnedAliases(): HasMany
     {
         return $this->assets()
             ->where('is_pinned', 1)
-            ->where('type_id', 3)
-        ;
+            ->where('type_id', 3);
     }
 
     public function events(): HasMany
     {
         return $this->hasMany('App\Models\EntityEvent', 'entity_id', 'id');
     }
+
     public function reminders(): HasMany
     {
         return $this->hasMany('App\Models\EntityEvent', 'entity_id', 'id');
@@ -325,7 +318,6 @@ trait EntityRelations
     {
         return $this->hasMany('App\Models\CampaignPermission', 'entity_id', 'id');
     }
-
 
     public function mapMarkers(): HasMany
     {
@@ -368,8 +360,6 @@ trait EntityRelations
             ->with('image');
     }
 
-    /**
-     */
     public function starredAttributes()
     {
         return $this->entityAttributes->where('is_pinned', 1);

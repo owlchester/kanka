@@ -36,7 +36,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Entity
- * @package App\Models
  *
  * @property int $id
  * @property int $entity_id
@@ -58,11 +57,9 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property ?int $focus_x
  * @property ?int $focus_y
  * @property ?string $image_path
- *
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
- *
  */
 class Entity extends Model
 {
@@ -124,6 +121,7 @@ class Entity extends Model
 
     /**
      * Array of our custom model events declared under model property $observables
+     *
      * @var array
      */
     protected $observables = [
@@ -132,6 +130,7 @@ class Entity extends Model
 
     /**
      * Get the child entity
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne|MiscModel
      */
     public function child()
@@ -141,11 +140,13 @@ class Entity extends Model
         } elseif ($this->isDiceRoll()) {
             return $this->diceRoll();
         }
+
         return $this->{$this->entityType->code}();
     }
 
     /**
      * Child attribute
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany|\Illuminate\Database\Eloquent\Relations\HasOne|MiscModel
      */
     public function getChildAttribute()
@@ -164,6 +165,7 @@ class Entity extends Model
         } elseif ($this->isDiceRoll()) {
             return $this->load('diceRoll');
         }
+
         return $this->load($this->entityType->code);
     }
 
@@ -186,17 +188,18 @@ class Entity extends Model
         $campaign = CampaignLocalization::getCampaign();
         if ($campaign->boosted()) {
             $boostedTooltip = strip_tags($this->tooltip);
-            if (!empty(mb_trim($boostedTooltip))) {
+            if (! empty(mb_trim($boostedTooltip))) {
                 $text = Mentions::mapEntity($this);
-                return (string)strip_tags($text);
+
+                return (string) strip_tags($text);
             }
         }
-        if (!$this->hasEntry()) {
+        if (! $this->hasEntry()) {
             return '';
         }
+
         return Str::limit(strip_tags($this->parsedEntry()), 500);
     }
-
 
     /**
      * @return string
@@ -213,6 +216,7 @@ class Entity extends Model
                 return route('entities.edit', [$campaign, $this] + $options);
             }
             $routeOptions = array_merge([$campaign, $this->entity_id], $options);
+
             return route($this->entityType->code . '.' . $action, $routeOptions);
         } catch (Exception $e) {
             return route('dashboard', $campaign);
@@ -227,11 +231,9 @@ class Entity extends Model
         return $this->type_id;
     }
 
-    /**
-     */
     public function isType(array|int $types): bool
     {
-        if (!is_array($types)) {
+        if (! is_array($types)) {
             $types = [$types];
         }
 
@@ -240,7 +242,8 @@ class Entity extends Model
 
     /**
      * Get the image (or default image) of an entity
-     * @param int $width = 200
+     *
+     * @param  int  $width  = 200
      */
     public function thumbnail(int $width = 400, ?int $height = null, string $field = 'header_image'): string
     {
@@ -267,19 +270,18 @@ class Entity extends Model
         return static::withoutEvents(function () {
             // Still log who edited the entity
             $this->updated_by = auth()->user()->id;
+
             return $this->touch();
         });
     }
 
-    /**
-     */
     public function hasHeaderImage(): bool
     {
-        if (!empty($this->header_image)) {
+        if (! empty($this->header_image)) {
             return true;
         }
 
-        return !empty($this->header_uuid) && !empty($this->header);
+        return ! empty($this->header_uuid) && ! empty($this->header);
     }
 
     /**
@@ -288,11 +290,9 @@ class Entity extends Model
      */
     public function hasImage(bool $boosted = false): bool
     {
-        return !empty($this->image_path) || !empty($this->image);
+        return ! empty($this->image_path) || ! empty($this->image);
     }
 
-    /**
-     */
     public function hasLinks(): bool
     {
         return $this->links()->count() > 0;
@@ -301,9 +301,9 @@ class Entity extends Model
     /**
      * Get the entity background header image
      */
-    public function getHeaderUrl(): string|null
+    public function getHeaderUrl(): ?string
     {
-        if (!empty($this->header_image)) {
+        if (! empty($this->header_image)) {
             return $this->thumbnail(1200, 400, 'header_image');
         }
 
@@ -325,6 +325,7 @@ class Entity extends Model
         if ($this->starredAttributes()->isNotEmpty()) {
             return true;
         }
+
         return (bool) ($this->pinnedFiles->isNotEmpty());
     }
 
@@ -340,7 +341,7 @@ class Entity extends Model
         $layers = $this->posts->sortBy('position');
         $hasFirst = false;
         foreach ($layers as $layer) {
-            if (!$hasFirst) {
+            if (! $hasFirst) {
                 $hasFirst = true;
                 $options[$layer->position < 0 ? $layer->position - 1 : 1] = __('posts.position.first');
             }
@@ -353,11 +354,11 @@ class Entity extends Model
         }
 
         // Didn't have a first option added, add one now
-        if (!$hasFirst) {
+        if (! $hasFirst) {
             $options[1] = __('posts.position.first');
         }
 
-        //If is the last position remove last+1 position from the options array
+        // If is the last position remove last+1 position from the options array
         /*if ($position == array_key_last($options) - 1 && count($options) > 1) {
             array_pop($options);
         }*/
@@ -398,7 +399,7 @@ class Entity extends Model
         // Entity relations
         $relations = [
             'entityTags', 'relationships', 'posts', 'abilities', 'events',
-            'entityAttributes', 'assets', 'mentions', 'inventories'
+            'entityAttributes', 'assets', 'mentions', 'inventories',
         ];
         foreach ($relations as $relation) {
             foreach ($this->$relation as $model) {
@@ -408,7 +409,7 @@ class Entity extends Model
                 if ($relation === 'inventories' && empty($model->item)) {
                     continue;
                 }
-                //here
+                // here
                 if (method_exists($model, 'exportFields')) {
                     $export = [];
                     foreach ($model->exportFields() as $field) {
@@ -422,6 +423,7 @@ class Entity extends Model
                 }
             }
         }
+
         return $data;
     }
 
@@ -459,12 +461,12 @@ class Entity extends Model
 
     public function hasChild(): bool
     {
-        return !$this->entityType->isSpecial();
+        return ! $this->entityType->isSpecial();
     }
 
     public function isMissingChild(): bool
     {
-        return !$this->entityType->isSpecial() && empty($this->child);
+        return ! $this->entityType->isSpecial() && empty($this->child);
     }
 
     /**
@@ -478,7 +480,6 @@ class Entity extends Model
         ];
 
         $classes[] = 'kanka-type-' . Str::slug($this->type);
-
 
         foreach ($this->tags as $tag) {
             $classes[] = 'kanka-tag-' . $tag->id;
@@ -511,7 +512,6 @@ class Entity extends Model
 
     /**
      * Get the value used to index the model.
-     *
      */
     public function getScoutKey()
     {
@@ -532,8 +532,8 @@ class Entity extends Model
             'campaign_id' => $this->campaign_id,
             'entity_id' => $this->id,
             'name' => $this->name,
-            'type'  => $this->type,
-            'entry'  => strip_tags($this->entry),
+            'type' => $this->type,
+            'entry' => strip_tags($this->entry),
         ];
     }
 }

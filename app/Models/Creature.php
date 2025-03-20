@@ -19,10 +19,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Creature
- * @package App\Models
  *
  * @property Creature[]|Collection $descendants
- *
  * @property ?int $creature_id
  * @property bool|int $is_extinct
  * @property bool|int $is_dead
@@ -61,6 +59,7 @@ class Creature extends MiscModel
     ];
 
     protected string $locationPivot = 'creature_location';
+
     protected string $locationPivotKey = 'creature_id';
 
     protected array $sortable = [
@@ -73,6 +72,7 @@ class Creature extends MiscModel
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -137,6 +137,7 @@ class Creature extends MiscModel
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array

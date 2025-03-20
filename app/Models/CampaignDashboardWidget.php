@@ -19,7 +19,6 @@ use Illuminate\Support\Str;
 
 /**
  * Class CampaignDashboardWidget
- * @package App\Models
  *
  * @property int $id
  * @property int $entity_id
@@ -75,7 +74,6 @@ class CampaignDashboardWidget extends Model
         return $this->belongsTo(CampaignDashboard::class, 'dashboard_id', 'id');
     }
 
-
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -101,9 +99,10 @@ class CampaignDashboardWidget extends Model
         if ($this->widget == Widget::Campaign) {
             return 12;
         }
-        if (!empty($this->width)) {
+        if (! empty($this->width)) {
             return $this->width;
         }
+
         return ($this->widget == Widget::Preview || $this->widget == Widget::Random ||
             ($this->widget == Widget::Recent && $this->conf('singular')))
             ? 4 : 6;
@@ -117,16 +116,15 @@ class CampaignDashboardWidget extends Model
         if ($this->widget == Widget::Campaign) {
             return 12;
         }
-        if (!empty($this->width)) {
+        if (! empty($this->width)) {
             return max(6, $this->width);
         }
+
         return ($this->widget == Widget::Preview || $this->widget == Widget::Random ||
             ($this->widget == Widget::Recent && $this->conf('singular')))
             ? 6 : 6;
     }
 
-    /**
-     */
     public function scopePositioned(Builder $query): Builder
     {
         return $query->with([
@@ -138,8 +136,6 @@ class CampaignDashboardWidget extends Model
             ->orderBy('position');
     }
 
-    /**
-     */
     public function scopeOnDashboard(Builder $query, ?CampaignDashboard $dashboard = null): Builder
     {
         if (empty($dashboard)) {
@@ -150,7 +146,7 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @param string $value
+     * @param  string  $value
      */
     public function conf($value)
     {
@@ -170,52 +166,45 @@ class CampaignDashboardWidget extends Model
             $newTag->widget_id = $new->id;
             $newTag->save();
         }
-        return;
+
     }
 
-    /**
-     */
     public function hasAdvancedOptions(): bool
     {
         return $this->conf('attributes') == 1 ||
             $this->conf('members') == '1' ||
             $this->conf('entity-header') == '1' ||
-            $this->conf('relations') == '1'
-        ;
+            $this->conf('relations') == '1';
     }
 
-    /**
-     */
     public function showAttributes(): bool
     {
         if ($this->conf('attributes') != '1') {
             return false;
         }
-        if (!in_array($this->widget, [Widget::Preview, Widget::Recent, Widget::Random])) {
+        if (! in_array($this->widget, [Widget::Preview, Widget::Recent, Widget::Random])) {
             return false;
         }
         if ($this->widget == Widget::Recent) {
             return true;
         }
 
-        return !empty($this->entity);
+        return ! empty($this->entity);
     }
 
-    /**
-     */
     public function showRelations(): bool
     {
         if ($this->conf('relations') != '1') {
             return false;
         }
-        if (!in_array($this->widget, [Widget::Preview, Widget::Recent, Widget::Random])) {
+        if (! in_array($this->widget, [Widget::Preview, Widget::Recent, Widget::Random])) {
             return false;
         }
         if ($this->widget == Widget::Recent) {
             return true;
         }
 
-        return !empty($this->entity);
+        return ! empty($this->entity);
     }
 
     /*
@@ -228,7 +217,7 @@ class CampaignDashboardWidget extends Model
         if ($this->conf('members') !== '1') {
             return false;
         }
-        if (!in_array($this->widget, [Widget::Preview, Widget::Recent, Widget::Random])) {
+        if (! in_array($this->widget, [Widget::Preview, Widget::Recent, Widget::Random])) {
             return false;
         }
         $types = [
@@ -237,7 +226,8 @@ class CampaignDashboardWidget extends Model
         ];
 
         // Preview, check the linked entity
-        $entity = !empty($entity) ? $entity : $this->entity;
+        $entity = ! empty($entity) ? $entity : $this->entity;
+
         return $entity !== null && in_array($entity->typeId(), $types);
     }
 
@@ -246,18 +236,16 @@ class CampaignDashboardWidget extends Model
      */
     public function entities(int $page = 1)
     {
-        $base = new Entity();
+        $base = new Entity;
 
         $excludedTypes = [];
 
         if ($this->filterUnmentioned()) {
             $base = $base->unmentioned()
-                ->whereNotIn($base->getTable() . '.type_id', $excludedTypes)
-            ;
+                ->whereNotIn($base->getTable() . '.type_id', $excludedTypes);
         } elseif ($this->filterMentionless()) {
             $base = $base->mentionless()
-                ->whereNotIn($base->getTable() . '.type_id', $excludedTypes)
-            ;
+                ->whereNotIn($base->getTable() . '.type_id', $excludedTypes);
         }
 
         // Ordering
@@ -267,13 +255,13 @@ class CampaignDashboardWidget extends Model
         } elseif ($order == 'oldest') {
             $base = $base->oldestModified();
         } else {
-            list($field, $order) = explode('_', $order);
+            [$field, $order] = explode('_', $order);
             $base = $base->orderBy($field, $order);
         }
 
         // If an entity type is provided, we can combine that with filters. We need to get the list of the misc
         // ids first to pass on to the entity query.
-        if ($this->entityType && !empty($this->config['filters']) && !$this->entityType->isSpecial()) {
+        if ($this->entityType && ! empty($this->config['filters']) && ! $this->entityType->isSpecial()) {
             /** @var Character|mixed $model */
             $model = $this->entityType->getClass();
 
@@ -301,18 +289,18 @@ class CampaignDashboardWidget extends Model
             ->inTags($this->tags->pluck('id')->toArray())
             ->inTypes($this->entityType?->id)
             ->with(['image:campaign_id,id,ext,focus_x,focus_y', 'entityType:id,code,is_special', 'mentions', 'mentions.target', 'mentions.target.tags'])
-            ->paginate(10, ['*'], 'page', $page)
-        ;
+            ->paginate(10, ['*'], 'page', $page);
     }
 
     /**
      * Get a random entity
      * Todo: refactor this code with the code from the quick link?
+     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function randomEntity()
     {
-        $base = new Entity();
+        $base = new Entity;
 
         if ($this->entityType) {
             if ($this->entityType->isSpecial()) {
@@ -377,6 +365,7 @@ class CampaignDashboardWidget extends Model
                 $name = $params[0];
                 if (Str::endsWith($name, '[]')) {
                     $filters[mb_substr($name, 0, -2)][] = $params[1];
+
                     continue;
                 }
                 $filters[$params[0]] = $params[1];
@@ -384,23 +373,23 @@ class CampaignDashboardWidget extends Model
 
             return $filters;
         } catch (Exception $e) {
-            //Log::error('Widget error:' . $e->getMessage());
+            // Log::error('Widget error:' . $e->getMessage());
             return [];
         }
     }
 
     /**
      * A way to set the entity, typically for the random widget
+     *
      * @return $this
      */
     public function setEntity(Entity $entity): self
     {
         $this->entity = $entity;
+
         return $this;
     }
 
-    /**
-     */
     public function widgetIcon(): string
     {
         if ($this->widget === Widget::Recent) {
@@ -416,14 +405,13 @@ class CampaignDashboardWidget extends Model
         } elseif ($this->widget === Widget::Campaign) {
             return 'fa-solid fa-th-list';
         }
+
         return 'fa-solid fa-question-circle';
     }
 
-    /**
-     */
     public function customClass(Campaign $campaign): string
     {
-        if (!$campaign->boosted()) {
+        if (! $campaign->boosted()) {
             return '';
         }
         if (empty($this->conf('class'))) {
@@ -433,8 +421,6 @@ class CampaignDashboardWidget extends Model
         return (string) $this->conf('class');
     }
 
-    /**
-     */
     public function customSize(): string
     {
         if (empty($this->conf('size'))) {
@@ -444,15 +430,11 @@ class CampaignDashboardWidget extends Model
         return (string) $this->conf('size');
     }
 
-    /**
-     */
     protected function filterUnmentioned(): bool
     {
         return Arr::get($this->config, 'adv_filter') === 'unmentioned';
     }
 
-    /**
-     */
     protected function filterMentionless(): bool
     {
         return Arr::get($this->config, 'adv_filter') === 'mentionless';
@@ -467,7 +449,8 @@ class CampaignDashboardWidget extends Model
         if (empty($this->entity_id)) {
             return true;
         }
+
         // Linked but no entity or no child? Permission issue or deleted entity
-        return !empty($this->entity);
+        return ! empty($this->entity);
     }
 }

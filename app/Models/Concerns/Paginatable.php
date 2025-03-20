@@ -11,8 +11,6 @@ trait Paginatable
 
     private int $pageSizeMinimum = 15;
 
-    /**
-     */
     public function getPerPage()
     {
         $pageSize = 15;
@@ -26,7 +24,7 @@ trait Paginatable
         // Currently exporting single or bulk? Rise limit to 100.
         // @phpstan-ignore-next-line
         $request = request()->route()->getAction();
-        if (!empty($request['as']) && in_array($request['as'], ['bulk.process'])) {
+        if (! empty($request['as']) && in_array($request['as'], ['bulk.process'])) {
             return 100;
         }
 

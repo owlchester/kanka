@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property string $name
  * @property array $config
- *
  * @property int $type_id
  * @property PresetType $type
  *

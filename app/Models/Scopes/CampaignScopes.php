@@ -12,7 +12,6 @@ use Illuminate\Support\Arr;
 
 /**
  * Trait CampaignScopes
- * @package App\Models\Scopes
  *
  * @method static self|Builder visibility(int $visibility)
  * @method static self|Builder admin()
@@ -72,26 +71,20 @@ trait CampaignScopes
     public function scopeSlug(Builder $query, string|int $slug): Builder
     {
         $key = is_numeric($slug) ? 'id' : 'slug';
+
         return $query->where($this->getTable() . '.' . $key, '=', $slug);
     }
 
-    /**
-     */
     public function scopeVisibility(Builder $query, int $visibility): Builder
     {
         return $query->where($this->getTable() . '.visibility_id', $visibility);
     }
 
-    /**
-     */
     public function scopeOpen(Builder $query, bool $open = true): Builder
     {
         return $query->where('is_open', $open);
     }
 
-
-    /**
-     */
     public function scopeDiscreet(Builder $query, bool $discreet = true): Builder
     {
         return $query->where('is_discreet', $discreet);
@@ -117,6 +110,7 @@ trait CampaignScopes
                         ->orWhereDate('featured_until', '>=', Carbon::today()->toDateString());
                 });
         }
+
         // Not featured, or featured in the past
         return $query->where('is_featured', $featured)
             ->orWhere(function ($sub) {
@@ -139,7 +133,7 @@ trait CampaignScopes
      */
     public function scopeFront(Builder $query, ?int $sort = null): Builder
     {
-        if (!config('app.debug')) {
+        if (! config('app.debug')) {
             $query
                 ->where('visible_entity_count', '>', 0);
         }
@@ -153,18 +147,16 @@ trait CampaignScopes
         return $query;
     }
 
-    /**
-     */
     public function scopeFilterPublic(Builder $query, array $options): Builder
     {
         $language = Arr::get($options, 'language');
         $genre = Arr::get($options, 'genre');
         $system = Arr::get($options, 'system');
-        if (!empty($language)) {
+        if (! empty($language)) {
             $query->where('locale', $language);
         }
 
-        if (!empty($genre)) {
+        if (! empty($genre)) {
             $query
                 ->select('campaigns.*')
                 ->leftJoin('campaign_genre as cg', function ($join) {
@@ -172,7 +164,7 @@ trait CampaignScopes
                 })->where('cg.genre_id', $genre);
         }
 
-        if (!empty($system)) {
+        if (! empty($system)) {
             $query
                 ->select('campaigns.*')
                 ->leftJoin('campaign_system as cs', function ($join) {
@@ -182,9 +174,9 @@ trait CampaignScopes
                 ->distinct();
         }
         $boosted = Arr::get($options, 'is_boosted');
-        if ($boosted === "1") {
+        if ($boosted === '1') {
             $query->where('boost_count', '>=', 1);
-        } elseif ($boosted === "0") {
+        } elseif ($boosted === '0') {
             $query->where(function ($sub) {
                 return $sub->where('boost_count', 0)->orWhereNull('boost_count');
             });
@@ -192,9 +184,9 @@ trait CampaignScopes
 
         $open = Arr::get($options, 'is_open');
         if ($open === '1') {
-            $query->open();// @phpstan-ignore-line
+            $query->open(); // @phpstan-ignore-line
         } elseif ($open === '0') {
-            $query->open(false);// @phpstan-ignore-line
+            $query->open(false); // @phpstan-ignore-line
         }
 
         $featured = Arr::get($options, 'featured_until');
@@ -207,8 +199,6 @@ trait CampaignScopes
         return $query;
     }
 
-    /**
-     */
     public function scopePreparedWith(Builder $query): Builder
     {
         return $query;
@@ -224,8 +214,7 @@ trait CampaignScopes
                 ->orWhereNull('boost_count');
         });
     }
-    /**
-     */
+
     public function scopeHidden(Builder $query, int $hidden = 1): Builder
     {
         return $query->where(['is_hidden' => $hidden]);
@@ -252,6 +241,7 @@ trait CampaignScopes
                 $query->orderBy('created_at', 'desc');
                 break;
         }
+
         return $query;
     }
 }

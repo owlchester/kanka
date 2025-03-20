@@ -20,7 +20,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Item
- * @package App\Models
  *
  * @property string $type
  * @property string $price
@@ -81,14 +80,16 @@ class Item extends MiscModel
 
     /**
      * Casting for order by
+     *
      * @var array
      */
     protected $orderCasting = [
-        'price' => 'unsigned'
+        'price' => 'unsigned',
     ];
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -96,7 +97,6 @@ class Item extends MiscModel
         'character_id',
         'item_id',
     ];
-
 
     /**
      * Foreign relations to add to export
@@ -112,7 +112,7 @@ class Item extends MiscModel
         'size',
         'weight',
         'location_id',
-        'character_id'
+        'character_id',
     ];
 
     /**
@@ -121,21 +121,21 @@ class Item extends MiscModel
     public function tooltipSubtitle(): string
     {
         $extra = [];
-        if (!empty($this->price)) {
+        if (! empty($this->price)) {
             $extra[] = __('items.fields.price') . ': ' . e($this->price);
         }
-        if (!empty($this->size)) {
+        if (! empty($this->size)) {
             $extra[] = __('items.fields.size') . ': ' . e($this->size);
         }
-        if (!empty($this->weight)) {
+        if (! empty($this->weight)) {
             $extra[] = __('items.fields.weight') . ': ' . e($this->weight);
         }
         if (empty($extra)) {
             return '';
         }
+
         return implode('<br />', $extra);
     }
-
 
     public function getParentKeyName(): string
     {
@@ -144,6 +144,7 @@ class Item extends MiscModel
 
     /**
      * Performance with for datagrids
+     *
      * @return Builder mixed
      */
     public function scopePreparedWith(Builder $query): Builder
@@ -171,6 +172,7 @@ class Item extends MiscModel
     {
         return ['character_id', 'location_id', 'price', 'size', 'item_id', 'weight'];
     }
+
     public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id', 'id');
@@ -206,17 +208,19 @@ class Item extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if (!empty($this->price) || !empty($this->size) || !empty($this->weight)) {
+        if (! empty($this->price) || ! empty($this->size) || ! empty($this->weight)) {
             return true;
         }
         if ($this->character || $this->location) {
             return true;
         }
+
         return parent::showProfileInfo();
     }
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
@@ -248,6 +252,7 @@ class Item extends MiscModel
         if (auth()->check() && auth()->user()->isAdmin()) {
             $columns['is_private'] = __('crud.fields.is_private');
         }
+
         return $columns;
     }
 }

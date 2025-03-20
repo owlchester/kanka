@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Trait Pinnable
- * @package App\Models\Scopes
+ *
  * @property bool|int $is_pinned
+ *
  * @method static self|Builder pinnable(bool $is_pinned = true)
  */
 trait Pinnable
 {
     /**
-     * @param int $pin
+     * @param  int  $pin
      */
     public function scopePinned(Builder $query, $pin = 1)
     {

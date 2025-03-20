@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- *
  * @property string $token
  * @property int $campaign_id
  * @property int $created_by
@@ -27,8 +26,6 @@ class AdminInvite extends Model
         return $this->belongsTo(Campaign::class);
     }
 
-    /**
-     */
     public function scopeCheck(Builder $query, int $campaignId): Builder
     {
         return $query->where('campaign_id', $campaignId)

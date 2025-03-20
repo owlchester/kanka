@@ -4,12 +4,11 @@ namespace App\Models;
 
 use App\Models\Concerns\HasUser;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class UserApp
- * @package App\Models
  *
  * @property int $id
  * @property string $type
@@ -18,7 +17,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @property Carbon $expires_at
  * @property string $identifier
  * @property string|array $settings
- *
  *
  * @method static self|Builder app(string $app)
  * @method static self|Builder discord()
@@ -39,18 +37,14 @@ class UserApp extends Model
 
     public $casts = [
         'expires_at' => 'date',
-        'settings' => 'array'
+        'settings' => 'array',
     ];
 
-    /**
-     */
     public function scopeApp(Builder $query, string $type): Builder
     {
         return $query->where('app', $type);
     }
 
-    /**
-     */
     public function scopeDiscord(Builder $query): Builder
     {
         return $this->app('discord');

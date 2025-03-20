@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class ImageMention
- * @package App\Models
  *
  * @property string $image_id
  * @property int $post_id
@@ -50,7 +49,7 @@ class ImageMention extends Model
      */
     public function isPost(): bool
     {
-        return !empty($this->post_id);
+        return ! empty($this->post_id);
     }
 
     /**
@@ -75,15 +74,12 @@ class ImageMention extends Model
                 });
         });
     }
-    /**
-     */
+
     public function scopeEntity(Builder $query): Builder
     {
         return $query->whereNotNull('image_mentions.entity_id');
     }
 
-    /**
-     */
     public function scopePost(Builder $query): Builder
     {
         return $query->whereNotNull('image_mentions.post_id');

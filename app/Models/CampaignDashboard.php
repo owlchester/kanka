@@ -11,12 +11,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class CampaignDashboard
- * @package App\Models
  *
  * @property int $id
  * @property string $name
  * @property int $created_by
- *
  * @property CampaignDashboardWidget[]|Collection $widgets
  * @property CampaignDashboardRole[]|Collection $roles
  *
@@ -30,7 +28,7 @@ class CampaignDashboard extends Model
     public $fillable = [
         'name',
         'campaign_id',
-        'created_by'
+        'created_by',
     ];
 
     protected array $sanitizable = [
@@ -74,6 +72,7 @@ class CampaignDashboard extends Model
         if ($default) {
             return $dashboardRole->is_default;
         }
+
         return $dashboardRole->is_visible;
     }
 }

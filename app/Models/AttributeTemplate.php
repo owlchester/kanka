@@ -14,7 +14,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class AttributeTemplate
- * @package App\Models
  *
  * @property ?int $attribute_template_id
  * @property ?int $entity_type_id
@@ -45,7 +44,7 @@ class AttributeTemplate extends MiscModel
     /**
      * Searchable fields
      */
-    protected array $searchableColumns  = ['name'];
+    protected array $searchableColumns = ['name'];
 
     /**
      * Fields that can be sorted on
@@ -53,11 +52,12 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Fields that can be set to null (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
         'attribute_template_id',
-        'entity_type_id'
+        'entity_type_id',
     ];
 
     /** @var bool Attribute templates don't have inventory, relations or abilities */
@@ -70,6 +70,7 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Parent ID field for the Node trait
+     *
      * @return string
      */
     public function getParentKeyName()
@@ -98,10 +99,9 @@ class AttributeTemplate extends MiscModel
                 'entity' => function ($sub) {
                     $sub->select('id', 'name', 'entity_id', 'type_id', 'type', 'image_path', 'image_uuid', 'focus_x', 'focus_y')
                         ->withCount('attributes');
-                }
+                },
             ]);
     }
-
 
     /**
      * Apply a template to an entity
@@ -116,7 +116,7 @@ class AttributeTemplate extends MiscModel
         $lastOrder = 0;
         if ($startingOrder == 0) {
             $lastExisting = $entity->attributes()->orderByDesc('default_order')->first();
-            if (!empty($lastExisting)) {
+            if (! empty($lastExisting)) {
                 $lastOrder = $lastExisting->default_order + 1;
             }
         }
@@ -131,8 +131,7 @@ class AttributeTemplate extends MiscModel
                 continue;
             }
 
-
-            list($type, $value) = $randomService->randomAttribute($attribute->type_id, $attribute->value);
+            [$type, $value] = $randomService->randomAttribute($attribute->type_id, $attribute->value);
 
             Attribute::create([
                 'entity_id' => $entity->id,
@@ -154,7 +153,7 @@ class AttributeTemplate extends MiscModel
                 if (in_array($attribute->name, $existing)) {
                     continue;
                 }
-                list($type, $value) = $randomService->randomAttribute($attribute->type_id, $attribute->value);
+                [$type, $value] = $randomService->randomAttribute($attribute->type_id, $attribute->value);
 
                 Attribute::create([
                     'entity_id' => $entity->id,
@@ -170,6 +169,7 @@ class AttributeTemplate extends MiscModel
         }
 
         $entity->touch();
+
         return $order;
     }
 
@@ -186,15 +186,16 @@ class AttributeTemplate extends MiscModel
      */
     public function hasVisibleAttributes(array $names = []): bool
     {
-        if (!$this->entity) {
+        if (! $this->entity) {
             return false;
         }
         $visible = false;
         foreach ($this->entity->attributes()->get() as $attribute) {
-            if (!in_array($attribute->name, $names)) {
+            if (! in_array($attribute->name, $names)) {
                 $visible = true;
             }
         }
+
         return $visible;
     }
 
@@ -208,6 +209,7 @@ class AttributeTemplate extends MiscModel
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
@@ -229,6 +231,7 @@ class AttributeTemplate extends MiscModel
         if (auth()->check() && auth()->user()->isAdmin()) {
             $columns['is_private'] = __('crud.fields.is_private');
         }
+
         return $columns;
     }
 

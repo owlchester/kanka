@@ -28,7 +28,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Trait UserRelations
- * @package App\Models\Relations
  *
  * @property Collection|CampaignBoost[] $boosts
  * @property Collection|CampaignRole[] $campaignRoles
@@ -76,8 +75,6 @@ trait UserRelations
             ->using('App\Models\CampaignFollower');
     }
 
-    /**
-     */
     public function campaignRoles(): HasManyThrough
     {
         return $this->hasManyThrough(
@@ -155,8 +152,6 @@ trait UserRelations
             ->using(EntityUser::class);
     }
 
-    /**
-     */
     public function plugins(): HasMany
     {
         return $this->hasMany(Plugin::class, 'created_by');

@@ -7,13 +7,12 @@ use App\Models\Concerns\Paginatable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Prunable;
 
 /**
  * Class CampaignBoost
- * @package App\Models
  *
  * @property int $campaign_id
  * @property Campaign $campaign
@@ -35,7 +34,7 @@ class CampaignBoost extends Model
 
     public function inCooldown(): bool
     {
-        return app()->isProduction() && !$this->created_at->isBefore(Carbon::now()->subDays(7));
+        return app()->isProduction() && ! $this->created_at->isBefore(Carbon::now()->subDays(7));
     }
 
     /**

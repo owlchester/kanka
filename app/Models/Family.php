@@ -22,7 +22,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Family
- * @package App\Models
+ *
  * @property ?int $family_id
  * @property bool|int $is_extinct
  * @property Collection|Character[] $members
@@ -88,6 +88,7 @@ class Family extends MiscModel
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -106,6 +107,7 @@ class Family extends MiscModel
 
     /**
      * Parent ID used for the Node Trait
+     *
      * @return string
      */
     public function getParentKeyName()
@@ -131,11 +133,11 @@ class Family extends MiscModel
     /**
      * Filter for family with specific member
      */
-    public function scopeMember(Builder $query, string|null $value, FilterOption $filter): Builder
+    public function scopeMember(Builder $query, ?string $value, FilterOption $filter): Builder
     {
         if ($filter === FilterOption::NONE) {
             // If called with a param, it's being called too early and will be called later in the process
-            if (!empty($value)) {
+            if (! empty($value)) {
                 return $query;
             }
             $query
@@ -145,7 +147,7 @@ class Family extends MiscModel
                 })
                 ->where('memb.character_id', null);
 
-            if (auth()->guest() || !auth()->user()->isAdmin()) {
+            if (auth()->guest() || ! auth()->user()->isAdmin()) {
                 $query->where('memb.is_private', 0);
             }
 
@@ -164,8 +166,7 @@ class Family extends MiscModel
             })
             ->whereIn('memb.character_id', $ids);
 
-
-        if (auth()->guest() || !auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->isAdmin()) {
             $query->where('memb.is_private', 0);
         }
 
@@ -185,12 +186,10 @@ class Family extends MiscModel
         return $this->hasOne(FamilyTree::class);
     }
 
-    /**
-     */
     public function members(): BelongsToMany
     {
         $query = $this->belongsToMany('App\Models\Character', 'character_family');
-        if (auth()->guest() || !auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->isAdmin()) {
             $query->wherePivot('is_private', false);
         }
 
@@ -212,7 +211,7 @@ class Family extends MiscModel
         $familyId = [$this->id];
         foreach ($this->descendants as $descendant) {
             $familyId[] = $descendant->id;
-        };
+        }
 
         $query = Character::select('characters.*')
             ->distinct('characters.id')
@@ -222,7 +221,7 @@ class Family extends MiscModel
             ->has('entity')
             ->whereIn('cf.family_id', $familyId);
 
-        if (auth()->guest() || !auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->isAdmin()) {
             $query->where('cf.is_private', false);
         }
 
@@ -237,7 +236,8 @@ class Family extends MiscModel
         $familyIDs = [$this->id];
         foreach ($this->descendants as $descendant) {
             $familyIDs[] = $descendant->id;
-        };
+        }
+
         return CharacterFamily::groupBy('character_id')->distinct('character_id')->whereIn('character_family.family_id', $familyIDs)->with('character');
     }
 
@@ -271,20 +271,22 @@ class Family extends MiscModel
     public function showProfileInfo(): bool
     {
         // Test text fields first
-        if (!empty($this->type)) {
+        if (! empty($this->type)) {
             return true;
         }
-        if (!empty($this->parent)) {
+        if (! empty($this->parent)) {
             return true;
         }
         if ($this->entity->elapsedEvents->isNotEmpty()) {
             return true;
         }
+
         return parent::showProfileInfo();
     }
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
@@ -294,7 +296,7 @@ class Family extends MiscModel
             'family_id',
             'member_id',
             'is_extinct',
-            'parent'
+            'parent',
         ];
     }
 }

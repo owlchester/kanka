@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class SubscriptionCancellation
- * @package App\Models
  *
  * @property int $id
  * @property string $reason

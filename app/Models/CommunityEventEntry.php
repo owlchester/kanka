@@ -8,13 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CommunityEventEntry
- * @package App\Models
  *
  * @property int $id
  * @property int $community_event_id
  * @property string $vote
  * @property int $created_by
- *
  * @property CommunityEvent $event
  */
 class CommunityEventEntry extends Model

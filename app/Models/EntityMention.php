@@ -3,15 +3,14 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 
 /**
  * Class EntityMention
- * @package App\Models
  *
  * @property int $entity_id
  * @property ?int $post_id
@@ -38,50 +37,38 @@ class EntityMention extends Model
         'timeline_element_id',
         'quest_element_id',
         'campaign_id',
-        'target_id'
+        'target_id',
     ];
 
     protected array $sortable = [
         'name',
     ];
 
-    /**
-     */
     public function target(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'target_id', 'id');
     }
 
-    /**
-     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
     }
 
-    /**
-     */
     public function post(): BelongsTo
     {
         return $this->belongsTo('App\Models\Post', 'post_id', 'id');
     }
 
-    /**
-     */
     public function timelineElement(): BelongsTo
     {
         return $this->belongsTo('App\Models\TimelineElement', 'timeline_element_id', 'id');
     }
 
-    /**
-     */
     public function questElement(): BelongsTo
     {
         return $this->belongsTo('App\Models\QuestElement', 'quest_element_id', 'id');
     }
 
-    /**
-     */
     public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
@@ -92,7 +79,7 @@ class EntityMention extends Model
      */
     public function isPost(): bool
     {
-        return !empty($this->post_id);
+        return ! empty($this->post_id);
     }
 
     /**
@@ -100,7 +87,7 @@ class EntityMention extends Model
      */
     public function isEntity(): bool
     {
-        return !empty($this->entity_id);
+        return ! empty($this->entity_id);
     }
 
     /**
@@ -108,7 +95,7 @@ class EntityMention extends Model
      */
     public function isTimelineElement(): bool
     {
-        return !empty($this->timeline_element_id);
+        return ! empty($this->timeline_element_id);
     }
 
     /**
@@ -116,7 +103,7 @@ class EntityMention extends Model
      */
     public function isQuestElement(): bool
     {
-        return !empty($this->quest_element_id);
+        return ! empty($this->quest_element_id);
     }
 
     /**
@@ -124,7 +111,7 @@ class EntityMention extends Model
      */
     public function isCampaign(): bool
     {
-        return !empty($this->campaign_id);
+        return ! empty($this->campaign_id);
     }
 
     /**
@@ -166,56 +153,42 @@ class EntityMention extends Model
         });
     }
 
-    /**
-     */
     public function scopeOnEntity(Builder $query): Builder
     {
         return $query->where(function ($sub) {
             $sub->whereNotNull('entity_mentions.entity_id')
                 ->whereNull('entity_mentions.post_id')
                 ->whereNull('entity_mentions.timeline_element_id')
-                ->whereNull('entity_mentions.quest_element_id')
-            ;
+                ->whereNull('entity_mentions.quest_element_id');
         });
     }
 
-    /**
-     */
     public function scopeOnPost(Builder $query): Builder
     {
         return $query->whereNotNull('entity_mentions.post_id');
     }
 
-    /**
-     */
     public function scopeOnTimelineElement(Builder $query): Builder
     {
         return $query->whereNotNull('entity_mentions.timeline_element_id');
     }
 
-    /**
-     */
     public function scopeOnQuestElement(Builder $query): Builder
     {
         return $query->whereNotNull('entity_mentions.quest_element_id');
     }
 
-    /**
-     */
     public function scopeOnCampaign(Builder $query): Builder
     {
         return $query->whereNotNull('entity_mentions.campaign_id');
     }
 
-    /**
-     */
     public function scopeDatagridElements(Builder $query, array $options): Builder
     {
         $column = Arr::get($options, 'k', 'name');
         $order = Arr::get($options, 'o', 'ASC');
         $query->select('entity_mentions.*')
-            ->leftJoin('entities as e', 'e.id', 'entity_mentions.entity_id')
-        ;
+            ->leftJoin('entities as e', 'e.id', 'entity_mentions.entity_id');
 
         if ($column == 'name') {
             $query->orderByRaw('CASE WHEN e.name IS NULL THEN 1 ELSE 0 END');
@@ -224,9 +197,9 @@ class EntityMention extends Model
             $query->orderByRaw('CASE WHEN e.type_id IS NULL THEN 1 ELSE 0 END');
             $query->orderBy('e.type_id', $order);
         }
+
         return $query
-            ->orderBy('campaign_id')
-        ;
+            ->orderBy('campaign_id');
     }
 
     /**
@@ -242,6 +215,7 @@ class EntityMention extends Model
         } elseif ($this->isPost()) {
             return route('entities.show', [$campaign, $this->entity, '#post-' . $this->post_id]);
         }
+
         return '#';
     }
 
@@ -251,7 +225,7 @@ class EntityMention extends Model
      */
     public function hasEntity(): bool
     {
-        return !empty($this->entity_id) && !empty($this->entity);
+        return ! empty($this->entity_id) && ! empty($this->entity);
     }
 
     public function exportFields(): array
@@ -262,7 +236,7 @@ class EntityMention extends Model
             'post_id',
             'timeline_element_id',
             'quest_element_id',
-            'target_id'
+            'target_id',
         ];
     }
 }

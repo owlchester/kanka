@@ -15,7 +15,9 @@ use Illuminate\Database\Eloquent\Model;
 class Ad extends Model
 {
     public const int SECTION_SIDEBAR = 1;
+
     public const int SECTION_BANNER = 2;
+
     public const int SECTION_FOOTER = 3;
 
     public function scopeSection(Builder $query, int $section)

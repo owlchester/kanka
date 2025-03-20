@@ -15,7 +15,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Note
- * @package App\Models
  *
  * @property ?int $note_id
  */
@@ -84,6 +83,7 @@ class Note extends MiscModel
 
     /**
      * Parent ID field for the Node trait
+     *
      * @return string
      */
     public function getParentKeyName()
@@ -93,6 +93,7 @@ class Note extends MiscModel
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array

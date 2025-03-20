@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class EntityTag
- * @package App\Models
  *
  * @property int $entity_id
  * @property int $tag_id

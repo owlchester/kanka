@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 
 /**
  * Class EntityLog
- * @package App\Models
  *
  * @property int $entity_id
  * @property int $campaign_id
@@ -21,7 +20,7 @@ use Illuminate\Support\Str;
  * @property int $impersonated_by
  * @property int $action
  * @property int $post_id
- * @property null|string|array  $changes
+ * @property null|string|array $changes
  * @property ?Entity $entity
  * @property User|null $impersonator
  * @property Post|null $post
@@ -34,12 +33,19 @@ class EntityLog extends Model
     use MassPrunable;
 
     public const ACTION_CREATE = 1;
+
     public const ACTION_UPDATE = 2;
+
     public const ACTION_DELETE = 3;
+
     public const ACTION_RESTORE = 4;
+
     public const ACTION_DELETE_POST = 5;
+
     public const ACTION_REORDER_POST = 6;
+
     public const ACTION_CREATE_POST = 7;
+
     public const ACTION_UPDATE_POST = 8;
 
     public $fillable = [
@@ -51,7 +57,7 @@ class EntityLog extends Model
     ];
 
     public $casts = [
-        'changes' => 'array'
+        'changes' => 'array',
     ];
 
     protected array $custom = [
@@ -83,8 +89,6 @@ class EntityLog extends Model
         return $this->belongsTo('App\Models\Post', 'post_id');
     }
 
-    /**
-     */
     public function actionCode(): string
     {
         if ($this->action == self::ACTION_CREATE) {
@@ -104,6 +108,7 @@ class EntityLog extends Model
         } elseif ($this->action == self::ACTION_REORDER_POST) {
             return 'reorder_post';
         }
+
         return 'unknown';
     }
 
@@ -120,6 +125,7 @@ class EntityLog extends Model
         } elseif ($this->action == self::ACTION_RESTORE) {
             return 'fa-history';
         }
+
         return 'fa-question-circle';
     }
 
@@ -136,6 +142,7 @@ class EntityLog extends Model
         } elseif ($this->action == self::ACTION_RESTORE) {
             return 'bg-orange-300';
         }
+
         return 'bg-gray';
     }
 
@@ -195,6 +202,7 @@ class EntityLog extends Model
         if (app()->isProduction()) {
             return '<i data-key="' . $transKey . '" data-attr="' . $name . '">' . __('crud.users.unknown') . '</i>';
         }
+
         return '<i data-key="' . $transKey . '" data-attr="' . $name . '">' . $name . '</i>';
     }
 
@@ -204,6 +212,7 @@ class EntityLog extends Model
     public function prunable(): Builder
     {
         $delay = config('entities.logs_delete');
+
         return static::where('updated_at', '<=', now()->subDays($delay));
     }
 
@@ -214,9 +223,10 @@ class EntityLog extends Model
 
     public function userLink(): string
     {
-        if (!$this->user) {
+        if (! $this->user) {
             return '<i>' . __('crud.users.unknown') . '</i>';
         }
+
         return '<strong>' . $this->user->name . '</strong>';
     }
 
@@ -233,19 +243,18 @@ class EntityLog extends Model
         } elseif ($action == self::ACTION_REORDER_POST) {
             return [self::ACTION_REORDER_POST];
         }
+
         return [];
     }
 
-    /**
-     */
     public function scopeFilter(Builder $builder, array $filters): Builder
     {
         $user = Arr::get($filters, 'user');
-        if (!empty($user)) {
+        if (! empty($user)) {
             $builder->where($this->getTable() . '.created_by', (int) $user);
         }
         $action = Arr::get($filters, 'action');
-        if (!empty($action)) {
+        if (! empty($action)) {
             $actions = $this->actions($action);
             $builder->whereIn($this->getTable() . '.action', $actions);
         }
@@ -253,6 +262,7 @@ class EntityLog extends Model
             $q = mb_trim(Arr::get($filters, 'q'));
             $builder->whereLike('changes', '%' . $q . '%');
         }
+
         return $builder;
     }
 }

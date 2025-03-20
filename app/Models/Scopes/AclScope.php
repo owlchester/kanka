@@ -3,15 +3,15 @@
 namespace App\Models\Scopes;
 
 use App\Enums\Permission;
+use App\Enums\Visibility;
 use App\Facades\CampaignLocalization;
 use App\Facades\Permissions;
 use App\Models\Entity;
-use App\Models\Post;
 use App\Models\MiscModel;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Scope;
-use App\Enums\Visibility;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -46,7 +46,7 @@ class AclScope implements Scope
     protected function addWithInvisible(Builder $builder)
     {
         $builder->macro('withInvisible', function (Builder $builder, $withInvisible = true) {
-            if (!$withInvisible) {
+            if (! $withInvisible) {
                 // Sends the default scope
                 return $builder;
             }
@@ -58,13 +58,14 @@ class AclScope implements Scope
 
     /**
      * Our main logic for this scope: filtering on elements the user has access to.
+     *
      * @return Builder|void
      */
     public function apply(Builder $query, Model $model)
     {
         // No permission engine on console for the time being. In the future, we might want
         // to build a system to limit exposing private stuff on a campaign export.
-        if (app()->runningInConsole() && (!app()->environment('testing') || config('app.skip_permissions') === true)) {
+        if (app()->runningInConsole() && (! app()->environment('testing') || config('app.skip_permissions') === true)) {
             return $query;
         }
 
@@ -91,7 +92,7 @@ class AclScope implements Scope
         if ($model instanceof Entity) {
             return $this->applyToEntity($query, $model);
         } elseif ($model instanceof MiscModel) {
-            //return $this->applyToMisc($query, $model);
+            // return $this->applyToMisc($query, $model);
         }
 
         return $query;
@@ -103,9 +104,10 @@ class AclScope implements Scope
     protected function applyToEntity(Builder $query, Entity $model): Builder
     {
         Permissions::createTemporaryTable();
+
         // @phpstan-ignore-next-line
         return $query
-            //->leftJoin('tmp_permissions as per', 'entities.id', 'per.id')
+            // ->leftJoin('tmp_permissions as per', 'entities.id', 'per.id')
             ->private(false)
             ->where(function ($subquery) {
                 return $subquery
@@ -114,8 +116,7 @@ class AclScope implements Scope
                             ->whereRaw(DB::raw('EXISTS (SELECT * FROM tmp_permissions as perm WHERE perm.id = entities.id)'))
                             ->orWhereIn('entities.type_id', Permissions::allowedEntityTypes());
                     })
-                    ->whereNotIn('entities.id', Permissions::deniedEntities())
-                ;
+                    ->whereNotIn('entities.id', Permissions::deniedEntities());
             });
     }
 
@@ -138,8 +139,7 @@ class AclScope implements Scope
         // If the user has a role which can read all entities, only check on denied elements
         if (Permissions::canRole()) {
             return $query->private(false) // @phpstan-ignore-line
-                ->whereNotIn($table . '.' . $primaryKey, Permissions::deniedModels())
-            ;
+                ->whereNotIn($table . '.' . $primaryKey, Permissions::deniedModels());
         }
 
         /*if (request()->has('_debug_perm')) {
@@ -164,7 +164,7 @@ class AclScope implements Scope
         }
 
         $denied = Permissions::deniedModels();
-        if (!empty($denied)) {
+        if (! empty($denied)) {
             $query->whereNotIn($table . '.' . $primaryKey, $denied);
         }
 
@@ -181,6 +181,7 @@ class AclScope implements Scope
 
     /**
      * Apply the ACL scope to posts.
+     *
      * @return Builder
      */
     protected function applyToPost(Builder $query, Model $model)
@@ -188,7 +189,7 @@ class AclScope implements Scope
         $campaign = CampaignLocalization::getCampaign();
         $table = $model->getTable();
         // Guest, or not part of the campaign either, just get the all visibility
-        if (auth()->guest() || !$campaign->userIsMember()) {
+        if (auth()->guest() || ! $campaign->userIsMember()) {
             return $query->where($table . '.visibility_id', Visibility::All);
         }
 

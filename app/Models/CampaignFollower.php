@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * Class CampaignFollower
- * @package App\Models
  *
  * @property int $campaign_id
  * @property Campaign $campaign

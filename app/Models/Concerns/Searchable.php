@@ -11,7 +11,6 @@ trait Searchable
 {
     /**
      * Scope a query to only include users of a given type.
-     *
      */
     public function scopeSearch(Builder $query, ?string $term = null): Builder
     {
@@ -20,6 +19,7 @@ trait Searchable
         }
 
         $searchFields = $this->searchableFields();
+
         return $query->where(function ($q) use ($term, $searchFields) {
             foreach ($searchFields as $field) {
                 $q->orWhere($this->getTable() . '.' . $field, 'like', "%{$term}%");
@@ -27,8 +27,6 @@ trait Searchable
         });
     }
 
-    /**
-     */
     public function hasSearchableFields(): bool
     {
         return true;
@@ -36,6 +34,7 @@ trait Searchable
 
     /**
      * Available searchable fields. Defaults to name, type and type
+     *
      * @return string[]
      */
     protected function searchableFields(): array

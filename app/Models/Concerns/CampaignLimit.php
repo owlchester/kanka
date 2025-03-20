@@ -7,33 +7,36 @@ trait CampaignLimit
     /**
      * Get the member limit for the campaign
      */
-    public function memberLimit(): null|int
+    public function memberLimit(): ?int
     {
         if ($this->boosted()) {
             return null;
         }
+
         return config('limits.campaigns.members');
     }
 
     /**
      * Get the role limit for the campaign
      */
-    public function roleLimit(): null|int
+    public function roleLimit(): ?int
     {
         if ($this->boosted()) {
             return null;
         }
+
         return config('limits.campaigns.roles');
     }
 
     /**
      * Get the quick link limit for the campaign
      */
-    public function bookmarkLimit(): null|int
+    public function bookmarkLimit(): ?int
     {
         if ($this->boosted()) {
             return null;
         }
+
         return config('limits.campaigns.bookmarks');
     }
 
@@ -46,6 +49,7 @@ trait CampaignLimit
         if (empty($limit)) {
             return true;
         }
+
         return $this->roles()->count() < $limit;
     }
 
@@ -58,6 +62,7 @@ trait CampaignLimit
         if (empty($limit)) {
             return true;
         }
+
         return $this->members()->count() < $limit;
     }
 
@@ -70,6 +75,7 @@ trait CampaignLimit
         if (empty($limit)) {
             return true;
         }
+
         return $this->bookmarks()->count() < $limit;
     }
 }

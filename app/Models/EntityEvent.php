@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
 
 /**
  * Class EntityEvent
- * @package App\Models
  *
  * @property int $id
  * @property int $entity_id
@@ -31,7 +30,6 @@ use Illuminate\Support\Str;
  * @property string $recurring_periodicity
  * @property int $type_id
  * @property ?int $elapsed
- *
  * @property ?Entity $entity *
  * @property ?Calendar $calendar
  * @property ?EntityEvent $death
@@ -74,7 +72,7 @@ class EntityEvent extends Model
         'date',
         'is_recurring',
         'visibility_id',
-        'comment'
+        'comment',
     ];
 
     /** Last occurrence of the reminder */
@@ -98,11 +96,9 @@ class EntityEvent extends Model
         return $this->belongsTo(EntityEventType::class, 'type_id');
     }
 
-    /**
-     */
     public function readableDate(): string
     {
-        if (!isset($this->readableDate)) {
+        if (! isset($this->readableDate)) {
             // Replace month with real month, and year maybe
             $months = $this->calendar->months();
             $years = $this->calendar->years();
@@ -124,6 +120,7 @@ class EntityEvent extends Model
                 $this->readableDate = $this->date();
             }
         }
+
         return $this->readableDate;
     }
 
@@ -135,32 +132,25 @@ class EntityEvent extends Model
         return trans_choice('calendars.fields.length_days', $this->length, ['count' => $this->length]);
     }
 
-    /**
-     */
     public function isToday(Calendar $calendar): bool
     {
         return $this->date() === $calendar->date;
     }
 
-    /**
-     */
     public function date(): string
     {
         return $this->year . '-' . $this->month . '-' . $this->day;
     }
 
-    /**
-     */
     public function getLabelColour(): string
     {
         if (empty($this->colour) || in_array($this->colour, ['default', 'grey', '#cccccc'])) {
             return 'colour-pallet bg-gray';
         }
+
         return 'colour-pallet ' . (Str::startsWith($this->colour, '#') ? '' : 'bg-' . $this->colour);
     }
 
-    /**
-     */
     public function getLabelBackgroundColour(): string
     {
         if (Str::startsWith($this->colour, '#')) {
@@ -213,8 +203,6 @@ class EntityEvent extends Model
         return $this->day < $calendar->currentDate('date');
     }
 
-    /**
-     */
     public function isPastDate(int $year, int $month, int $day): bool
     {
         if ($this->year < $year) {
@@ -234,16 +222,17 @@ class EntityEvent extends Model
 
     /**
      * Calculate the elapsed time since the event happened
+     *
      * @return int years
      */
     public function calcElapsed(?EntityEvent $event = null): int
     {
         // Have the value cached? Don't bother with more work
-        if (empty($event) && !empty($this->elapsed)) {
+        if (empty($event) && ! empty($this->elapsed)) {
             return $this->elapsed;
         }
 
-        if (!empty($event)) {
+        if (! empty($event)) {
             $year = $event->year;
             $month = $event->month;
             $day = $event->day;
@@ -255,7 +244,7 @@ class EntityEvent extends Model
 
         // Current reminder is pre 0, calendar is > 0
         $baseYear = $this->year;
-        if ($this->year < 0 && $year > 0 && !$this->calendar->hasYearZero()) {
+        if ($this->year < 0 && $year > 0 && ! $this->calendar->hasYearZero()) {
             $baseYear++;
         }
         $years = $year - $baseYear;
@@ -274,11 +263,12 @@ class EntityEvent extends Model
     protected function saveElapsed(int $number, bool $save): int
     {
         // If comparing two days, don't save the "elapsed" part, we need to re-calc those one each page load
-        if (!$save || $number < 0) {
+        if (! $save || $number < 0) {
             return $number;
         }
         $this->elapsed = $number;
         $this->saveQuietly();
+
         return $this->elapsed;
     }
 
@@ -289,10 +279,12 @@ class EntityEvent extends Model
     {
         return (string) $this->entity->name;
     }
+
     public function url(string $where): string
     {
         return 'entities.entity_events.' . $where;
     }
+
     public function routeParams(array $options = []): array
     {
         return $options + ['entity' => $this->entity_id, 'entity_event' => $this->id, 'next' => 'entity.events'];
@@ -308,19 +300,19 @@ class EntityEvent extends Model
      */
     public function mostRecentOccurrence(int $year, int $month, int $day, array $months, int $daysInYear): int
     {
-        //dump($this->entity->name);
+        // dump($this->entity->name);
         $reminderYear = $this->year;
         $reminderMonth = $this->month;
         $reminderDay = $this->day;
 
         // Recurring? We need to switch around the data a bit to figure out the most recent date
-        if (!empty($this->is_recurring)) {
+        if (! empty($this->is_recurring)) {
             if ($this->recurringMonthly()) {
-                //dump('monthly');
+                // dump('monthly');
                 $reminderMonth = $month;
                 $reminderYear = $year;
                 // If it repeats monthly, we need to see if it happened "last month" or "this month".
-                //dump('Reminder ' . $reminderDay . ' > ' . $day);
+                // dump('Reminder ' . $reminderDay . ' > ' . $day);
                 if ($reminderDay > $day) {
                     $reminderMonth--;
                     // Switched to previous month?
@@ -331,14 +323,14 @@ class EntityEvent extends Model
                 }
             } else {
                 // Yearly is easy
-                //dump('yearly recurring');
+                // dump('yearly recurring');
                 $reminderYear = $year;
                 $reminderMonth = $month;
             }
         }
         // Diff in years between current year and reminder's year
 
-        if (!$this->calendar->hasYearZero() && $year > 0 && $reminderYear < 0) {
+        if (! $this->calendar->hasYearZero() && $year > 0 && $reminderYear < 0) {
             $days = ($year - 1 - $reminderYear) * $daysInYear;
         } else {
             $days = ($year - $reminderYear) * $daysInYear;
@@ -346,34 +338,34 @@ class EntityEvent extends Model
 
         // Not the same month? We need to do some math
         if ($month != $reminderMonth) {
-            //dump('month diff ' . $month . ' (current) vs ' . $reminderMonth . '(reminder)');
-            //dump('amount of months ' . count($months));
+            // dump('month diff ' . $month . ' (current) vs ' . $reminderMonth . '(reminder)');
+            // dump('amount of months ' . count($months));
             $totalMonths = count($months);
 
             // If the reminder a month in the future, meaning it was another year
             if ($reminderMonth > $month) {
-                //dump('last year');
+                // dump('last year');
                 $days -= $daysInYear;
 
                 // Loop through the beginning of the year
                 for ($m = 1; $m < $month; $m++) {
-                    //dump('beginning of the year');
+                    // dump('beginning of the year');
                     // Month status
                     $previousMonth = $this->previousMonth($m, $totalMonths);
                     $monthData = $months[$previousMonth];
                     $days += $monthData['length'];
                 }
                 for ($m = $reminderMonth; $m <= $totalMonths; $m++) {
-                    //dump('end of previous year');
+                    // dump('end of previous year');
                     $previousMonth = $this->previousMonth($m, $totalMonths);
                     $monthData = $months[$previousMonth];
                     $days += $monthData['length'];
-                    //dump('days increase by ' . $monthData['length']);
+                    // dump('days increase by ' . $monthData['length']);
                 }
             } else {
                 // The event happened earlier this year
                 for ($m = $reminderMonth; $m < $month; $m++) {
-                    //dump('previous month');
+                    // dump('previous month');
                     $previousMonth = $this->previousMonth($m, $totalMonths);
                     $monthData = $months[$previousMonth];
                     $days += $monthData['length'];
@@ -388,7 +380,7 @@ class EntityEvent extends Model
             $days -= $this->length - 1;
         }
 
-        //dump($days);
+        // dump($days);
         return $this->cachedLast = $days;
     }
 
@@ -402,21 +394,21 @@ class EntityEvent extends Model
         if (isset($this->cachedNext)) {
             return $this->cachedNext;
         }
-        //dump($this->entity->name);
+        // dump($this->entity->name);
         $reminderYear = $this->year;
         $reminderMonth = $this->month;
         $reminderDay = $this->day;
 
-        //dump("Event #" . $this->id . " " . $this->entity->name . ": " . $this->year . "-" . $this->month . "-" . $this->day);
+        // dump("Event #" . $this->id . " " . $this->entity->name . ": " . $this->year . "-" . $this->month . "-" . $this->day);
 
         // Recurring? We need to switch around the data a bit to figure out the most recent date
-        if (!empty($this->is_recurring)) {
+        if (! empty($this->is_recurring)) {
             if ($this->recurringMonthly()) {
                 $reminderMonth = $calendarMonth;
                 // Max to properly track reminders starting in the future
                 $reminderYear = max($reminderYear, $calendarYear);
                 // If it repeats monthly, we need to see if it happened "last month" or "this month".
-                //dump('Reminder ' . $reminderDay . ' > ' . $day);
+                // dump('Reminder ' . $reminderDay . ' > ' . $day);
                 if ($reminderDay < $day) {
                     $reminderMonth++;
                     // Switched to previous month?
@@ -441,37 +433,37 @@ class EntityEvent extends Model
         // We loop on every extra year, ex 2000 to 2004
         for ($y = $calendarYear; $y < $reminderYear; $y++) {
             $days += $daysInYear;
-            //dump("Add a year");
+            // dump("Add a year");
         }
-        if (!$this->calendar->hasYearZero() && $calendarYear < 0 && $reminderYear > 0) {
+        if (! $this->calendar->hasYearZero() && $calendarYear < 0 && $reminderYear > 0) {
             $days -= $daysInYear;
         }
         // If the reminder happens "before" the same month / same date, we need to reduce the days by one year
         // current: 2004-05-01 and reminder is 2005-03-15
         if ($days > 0 && ($reminderMonth < $calendarMonth)) {
             $days -= $daysInYear;
-            //dump("Remove a year");
+            // dump("Remove a year");
         }
 
         // Now we need to loop on the remaining months.
         $monthStart = $calendarMonth; // ex August
         $monthEnd = $reminderMonth; // ex September
         $totalMonths = count($months);
-        //dump("Comparing $reminderMonth < $calendarMonth");
+        // dump("Comparing $reminderMonth < $calendarMonth");
         if ($reminderMonth < $calendarMonth) {
             // The reminder's month is before the current calendar month, so we jumped a year.
             // ex reminder is in April and calendar is currently in August
             $monthStart = 1;
             // We still need to add days to the end of the current year before switching to the next one
-            //dump("Backfilling $calendarMonth to $totalMonths");
+            // dump("Backfilling $calendarMonth to $totalMonths");
             for ($m = $calendarMonth; $m <= $totalMonths; $m++) {
                 $previousMonth = $this->previousMonth($m, $totalMonths);
                 $monthData = $months[$previousMonth];
                 $days += $monthData['length'];
             }
-            //$monthEnd = $reminderMonth;
+            // $monthEnd = $reminderMonth;
         }
-        //dump("Month start $monthStart and $monthEnd");
+        // dump("Month start $monthStart and $monthEnd");
         for ($m = $monthStart; $m < $monthEnd; $m++) {
             $previousMonth = $this->previousMonth($m, $totalMonths);
             $monthData = $months[$previousMonth];
@@ -479,6 +471,7 @@ class EntityEvent extends Model
         }
 
         $days += ($reminderDay - $day);
+
         return $this->cachedNext = $days;
     }
 
@@ -554,6 +547,7 @@ class EntityEvent extends Model
         if ($month >= $min) {
             return $min - 1;
         }
+
         return $month--;
     }
 
@@ -599,6 +593,7 @@ class EntityEvent extends Model
         $new->entity_id = $target->id;
         $new->created_by = auth()->user()->id;
         $new->saveQuietly();
+
         return $new;
     }
 }

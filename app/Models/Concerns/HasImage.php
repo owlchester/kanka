@@ -23,14 +23,14 @@ trait HasImage
     /**
      * Get the campaign's thumbnail url
      */
-    public function thumbnail(int $width = 400, int $height = null, string $field = 'image'): string
+    public function thumbnail(int $width = 400, ?int $height = null, string $field = 'image'): string
     {
         if (empty($this->$field)) {
             return '';
         }
+
         return Img::resetCrop()
-            ->crop($width, (!empty($height) ? $height : $width))
+            ->crop($width, (! empty($height) ? $height : $width))
             ->url($this->$field);
     }
-
 }

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Visibility
- * @package App\Models
  *
  * @property int $id
  * @property string $code
@@ -14,6 +13,6 @@ use Illuminate\Database\Eloquent\Model;
 class Visibility extends Model
 {
     public $fillable = [
-        'code'
+        'code',
     ];
 }

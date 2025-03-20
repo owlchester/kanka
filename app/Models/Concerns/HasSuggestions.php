@@ -8,12 +8,12 @@ trait HasSuggestions
 {
     public static function bootHasSuggestions()
     {
-        static::observe(new SuggestionObserver());
+        static::observe(new SuggestionObserver);
     }
 
     public function getSuggestions(): array
     {
-        if (!property_exists($this, 'suggestions')) {
+        if (! property_exists($this, 'suggestions')) {
             return [];
         }
 

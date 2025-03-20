@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Relation
- * @package App\Models
+ *
  * @property int $id
  * @property string $relation
  * @property int $attitude
@@ -30,7 +30,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property bool|int $is_pinned
  * @property string $colour
  * @property string $marketplace_uuid
- *
  * @property Relation|null $mirror
  * @property ?Entity $target
  * @property Entity $owner
@@ -94,9 +93,6 @@ class Relation extends Model
         'relation',
     ];
 
-    /**
-     *
-     */
     public function scopeOrdered(Builder $query, string $order = 'asc'): Builder
     {
         return $query
@@ -124,7 +120,7 @@ class Relation extends Model
      */
     public function isMirrored(): bool
     {
-        return !empty($this->mirror_id);
+        return ! empty($this->mirror_id);
     }
 
     /**
@@ -137,7 +133,7 @@ class Relation extends Model
             'owner_id' => $this->target_id,
             'target_id' => $this->owner_id,
             'campaign_id' => $this->campaign_id,
-            'relation' => !empty($target) ? $target : $this->relation,
+            'relation' => ! empty($target) ? $target : $this->relation,
             'attitude' => $this->attitude,
             'colour' => $this->colour,
             'visibility_id' => $this->visibility_id,
@@ -162,8 +158,7 @@ class Relation extends Model
                 'target.entityType',
             ])
             ->has('owner')
-            ->has('target')
-        ;
+            ->has('target');
     }
 
     /**
@@ -172,13 +167,13 @@ class Relation extends Model
     public function scopePreparedSelect(Builder $query): Builder
     {
         return $query
-            ->select(['id', 'target_id', 'owner_id', 'relation', 'mirror_id', 'is_pinned', 'attitude', 'visibility_id', 'colour'])
-        ;
+            ->select(['id', 'target_id', 'owner_id', 'relation', 'mirror_id', 'is_pinned', 'attitude', 'visibility_id', 'colour']);
     }
 
     /**
      * When setting the colour, remove the '#' from the db
-     * @param string $colour
+     *
+     * @param  string  $colour
      */
     public function setColourAttribute($colour)
     {
@@ -193,6 +188,7 @@ class Relation extends Model
         if (empty($this->attributes['colour'])) {
             return '';
         }
+
         return '#' . $this->attributes['colour'];
     }
 
@@ -217,14 +213,17 @@ class Relation extends Model
     {
         return (string) $this->relation;
     }
+
     public function url(string $where): string
     {
         return 'entities.relations.' . $where;
     }
+
     public function routeParams(array $options = []): array
     {
         return $options + ['entity' => $this->owner_id, 'relation' => $this->id, 'mode' => 'table'];
     }
+
     public function actionDeleteConfirmOptions(): array
     {
         return ['mirrored' => $this->isMirrored()];
@@ -240,6 +239,7 @@ class Relation extends Model
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
@@ -284,6 +284,7 @@ class Relation extends Model
         $attributes = [];
         $attributes['attitude'] = $this->attitude;
         $attributes['visibility'] = $this->visibility_id;
+
         return $attributes;
     }
 }

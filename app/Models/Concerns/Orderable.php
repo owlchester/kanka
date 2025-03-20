@@ -11,15 +11,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 trait Orderable
 {
-    /**
-     */
-    public function scopeOrder(Builder $query, array|null $data)
+    public function scopeOrder(Builder $query, ?array $data)
     {
         // Default values can be defined on the model, or default
         $field = $this->defaultOrderField ?: 'name';
         $direction = $this->defaultOrderDirection ?: 'asc';
 
-        if (!empty($data) && auth()->check()) {
+        if (! empty($data) && auth()->check()) {
             foreach ($data as $key => $value) {
                 $field = $key;
                 $direction = $value;
@@ -43,7 +41,7 @@ trait Orderable
                 ->joinEntity()
                 ->orderBy('e.type', $direction);
         }
-        if (!empty($field)) {
+        if (! empty($field)) {
             $segments = explode('.', $field);
             if (count($segments) > 1) {
                 $relationName = $segments[0];
@@ -51,6 +49,7 @@ trait Orderable
                 /** @var BelongsTo $relation */
                 $relation = $this->{$relationName}();
                 $foreignName = $relation->getQuery()->getQuery()->from;
+
                 return $query
                     ->with($relationName)
                     ->leftJoin(
@@ -75,15 +74,17 @@ trait Orderable
                 //                }
 
                 // If the field has a casting
-                if (property_exists($this, 'orderCasting') && !empty($this->orderCasting[$field])) {
+                if (property_exists($this, 'orderCasting') && ! empty($this->orderCasting[$field])) {
                     return $query->orderByRaw(
                         'cast(' . $this->getTable() . '.' . $field . ' as ' . $this->orderCasting[$field] . ')'
                         . $direction
                     );
                 }
+
                 return $query->orderBy($this->getTable() . '.' . $field, $direction);
             }
         }
+
         return $query;
     }
 }

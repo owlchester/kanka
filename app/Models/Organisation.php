@@ -20,7 +20,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Organisation
- * @package App\Models
  *
  * @property ?int $organisation_id
  * @property ?int $location_id
@@ -85,10 +84,12 @@ class Organisation extends MiscModel
     protected array $exploreGridFields = ['is_defunct'];
 
     protected string $locationPivot = 'organisation_location';
+
     protected string $locationPivotKey = 'organisation_id';
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -117,11 +118,11 @@ class Organisation extends MiscModel
     /**
      * Filter for organisations with specific member
      */
-    public function scopeMember(Builder $query, string|null $value, FilterOption $filter): Builder
+    public function scopeMember(Builder $query, ?string $value, FilterOption $filter): Builder
     {
         if ($filter === FilterOption::NONE) {
             // If called with a param, it's being called too early and will be called later in the process
-            if (!empty($value)) {
+            if (! empty($value)) {
                 return $query;
             }
             $query
@@ -130,7 +131,7 @@ class Organisation extends MiscModel
                     $join->on('memb.organisation_id', '=', $this->getTable() . '.id');
                 })
                 ->where('memb.character_id', null);
-            if (auth()->guest() || !auth()->user()->isAdmin()) {
+            if (auth()->guest() || ! auth()->user()->isAdmin()) {
                 $query->where('memb.is_private', 0);
             }
 
@@ -150,7 +151,7 @@ class Organisation extends MiscModel
             })
             ->whereIn('memb.character_id', $ids);
 
-        if (auth()->guest() || !auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->isAdmin()) {
             $query->where('memb.is_private', 0);
         }
 
@@ -165,8 +166,6 @@ class Organisation extends MiscModel
         return ['organisation_id', 'is_defunct', 'location_id'];
     }
 
-    /**
-     */
     public function pinnedMembers()
     {
         return $this
@@ -174,8 +173,7 @@ class Organisation extends MiscModel
             ->has('character')
             ->with(['character', 'character.entity'])
             ->whereIn('pin_id', [OrganisationMember::PIN_ORGANISATION, OrganisationMember::PIN_BOTH])
-            ->orderBy('role')
-        ;
+            ->orderBy('role');
     }
 
     /**
@@ -191,8 +189,6 @@ class Organisation extends MiscModel
         return $this->hasMany('App\Models\OrganisationLocation');
     }
 
-    /**
-     */
     public function members(): HasMany
     {
         return $this->hasMany('App\Models\OrganisationMember', 'organisation_id', 'id');
@@ -213,12 +209,13 @@ class Organisation extends MiscModel
      */
     public function organisationAndDescendantIds(): array
     {
-        if (!isset($this->organisationAndDescendantIds)) {
+        if (! isset($this->organisationAndDescendantIds)) {
             $this->organisationAndDescendantIds = [$this->id];
             foreach ($this->descendants as $descendant) {
                 $this->organisationAndDescendantIds[] = $descendant->id;
             }
         }
+
         return $this->organisationAndDescendantIds;
     }
 
@@ -248,6 +245,7 @@ class Organisation extends MiscModel
         if ($this->entity->elapsedEvents->isNotEmpty() || $this->locations->isNotEmpty()) {
             return true;
         }
+
         return parent::showProfileInfo();
     }
 
@@ -261,6 +259,7 @@ class Organisation extends MiscModel
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array

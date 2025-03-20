@@ -27,7 +27,6 @@ use Laravel\Scout\Searchable;
 
 /**
  * Class Post
- * @package App\Models
  *
  * @property int $id
  * @property int $entity_id
@@ -80,7 +79,7 @@ class Post extends Model
         'settings',
         'location_id',
         'layout_id',
-        'is_template'
+        'is_template',
     ];
 
     /** @var string[] Fields that can be used to order by */
@@ -89,7 +88,7 @@ class Post extends Model
         'deleted_at',
     ];
 
-    /** @var array<string, string>  */
+    /** @var array<string, string> */
     public $casts = [
         'settings' => 'array',
         'visibility_id' => \App\Enums\Visibility::class,
@@ -99,22 +98,16 @@ class Post extends Model
         'name',
     ];
 
-    /**
-     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
 
-    /**
-     */
     public function layout(): BelongsTo
     {
         return $this->belongsTo('App\Models\PostLayout', 'layout_id');
     }
 
-    /**
-     */
     public function permissions(): HasMany
     {
         return $this->hasMany(PostPermission::class, 'post_id', 'id');
@@ -150,7 +143,7 @@ class Post extends Model
     public function copyTo(Entity $target, bool $sameCampaign): Post
     {
         $without = ['entity_id', 'created_by', 'updated_by', 'is_template'];
-        if (!$sameCampaign) {
+        if (! $sameCampaign) {
             $without[] = 'location_id';
         }
         $new = $this->replicate($without);
@@ -163,7 +156,7 @@ class Post extends Model
         $new->entry = $newEntry;
         $new->saveQuietly();
 
-        if (!$sameCampaign) {
+        if (! $sameCampaign) {
             return $new;
         }
         foreach ($this->permissions as $perm) {
@@ -176,6 +169,7 @@ class Post extends Model
             $newTag->post_id = $new->id;
             $newTag->save();
         }
+
         return $new;
     }
 
@@ -193,27 +187,21 @@ class Post extends Model
             }
             unset($post['post_tags']);
         }
+
         return $post;
     }
 
-    /**
-     */
     public function scopeOrdered(Builder $query): Builder
     {
         return $query
             ->orderBy('position');
     }
 
-
-    /**
-     */
     public function collapsed(): bool
     {
         return Arr::get($this->settings, 'collapsed', false);
     }
 
-    /**
-     */
     public function editingUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'entity_user', 'post_id')
@@ -223,7 +211,6 @@ class Post extends Model
 
     /**
      * Get the value used to index the model.
-     *
      */
     public function getScoutKey()
     {
@@ -253,7 +240,7 @@ class Post extends Model
             'campaign_id' => $this->entity->campaign_id,
             'entity_id' => $this->entity_id,
             'name' => $this->name,
-            'type'  => 'post',
+            'type' => 'post',
             'entry' => strip_tags($this->entry),
         ];
     }

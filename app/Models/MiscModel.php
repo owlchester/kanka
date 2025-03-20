@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Copiable;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
-use App\Models\Concerns\Copiable;
 use App\Models\Scopes\SubEntityScopes;
 use Carbon\Carbon;
 use Exception;
@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Class MiscModel
- * @package App\Models
  *
  * @property int $id
  * @property int $campaign_id
@@ -57,6 +56,7 @@ abstract class MiscModel extends Model
 
     /**
      * Fields that can be set to null (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [];
@@ -65,10 +65,12 @@ abstract class MiscModel extends Model
      * Default ordering
      */
     protected string $defaultOrderField = 'name';
+
     protected string $defaultOrderDirection = 'asc';
 
     /**
      * Array of our custom model events declared under model property $observables
+     *
      * @var array
      */
     protected $observables = [
@@ -85,6 +87,7 @@ abstract class MiscModel extends Model
 
     /**
      * Every misc model has an attached entity
+     *
      * @return HasOne
      */
     public function entity()
@@ -102,7 +105,7 @@ abstract class MiscModel extends Model
         return method_exists($this, 'entityTypeID');
     }
 
-    public function getEntityType(): string|null
+    public function getEntityType(): ?string
     {
         return $this->entityType;
     }
@@ -117,6 +120,7 @@ abstract class MiscModel extends Model
             if (in_array($action, ['show', 'update'])) {
                 return route('entities.' . $action, [$campaign, $this->entity]);
             }
+
             return route($this->entity->entityType->pluralCode() . '.' . $action, [$campaign, $this->id]);
         } catch (Exception $e) {
             return '#';
@@ -128,7 +132,7 @@ abstract class MiscModel extends Model
      */
     public function createEntity(): Entity
     {
-        $entity = new Entity();
+        $entity = new Entity;
         $entity->entity_id = $this->id;
         $entity->name = $this->name;
         $entity->campaign_id = $this->campaign_id;
@@ -153,6 +157,7 @@ abstract class MiscModel extends Model
     /**
      * Available datagrid actions
      * Todo: move this out of the model
+     *
      * @throws Exception
      */
     public function datagridActions(Campaign $campaign): array
@@ -160,30 +165,30 @@ abstract class MiscModel extends Model
         $actions = [];
 
         // Relations & Inventory
-        if (!isset($this->hasRelations)) {
+        if (! isset($this->hasRelations)) {
             $actions[] = [
                 'route' => route('entities.relations.index', [$campaign, $this->entity]),
                 'icon' => 'fa-solid fa-users',
-                'label' => 'crud.tabs.connections'
+                'label' => 'crud.tabs.connections',
             ];
 
             if ($campaign->enabled('inventories')) {
                 $actions[] = [
                     'route' => route('entities.inventory', [$campaign, $this->entity]),
                     'icon' => 'fa-solid fa-gem',
-                    'label' => 'crud.tabs.inventory'
+                    'label' => 'crud.tabs.inventory',
                 ];
             }
         }
 
         if (auth()->check() && auth()->user()->can('update', $this->entity)) {
-            if (!empty($actions)) {
+            if (! empty($actions)) {
                 $actions[] = null;
             }
             $actions[] = [
                 'route' => $this->getLink('edit'),
                 'icon' => 'fa-solid fa-edit',
-                'label' => 'crud.edit'
+                'label' => 'crud.edit',
             ];
         }
 
@@ -195,7 +200,7 @@ abstract class MiscModel extends Model
      */
     public function showProfileInfo(): bool
     {
-        return !empty($this->entity->type);
+        return ! empty($this->entity->type);
     }
 
     /**
@@ -203,9 +208,10 @@ abstract class MiscModel extends Model
      */
     public function rowClasses(): string
     {
-        if (!$this->is_private) {
+        if (! $this->is_private) {
             return '';
         }
+
         return 'entity-private';
     }
 
@@ -230,6 +236,7 @@ abstract class MiscModel extends Model
         if (auth()->check() && auth()->user()->isAdmin()) {
             $columns['is_private'] = __('crud.fields.is_private');
         }
+
         return $columns;
     }
 

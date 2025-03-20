@@ -78,6 +78,7 @@ class Feature extends Model
             \App\Enums\FeatureStatus::Now,
             \App\Enums\FeatureStatus::Done,
         ];
+
         return $builder->whereIn('status_id', $statuses)
             ->orderBy('upvote_count', 'DESC');
     }
@@ -87,6 +88,7 @@ class Feature extends Model
         if (empty($search) | mb_strlen($search) < 3) {
             return $builder;
         }
+
         return $builder->where('name', 'like', '%' . $search . '%');
     }
 

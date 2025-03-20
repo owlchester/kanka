@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Trait SubEntityScopes
- * @package App\Models\Scopes
  *
  * @method static self|Builder preparedWith()
  * @method static self|Builder preparedSelect()
@@ -35,7 +34,7 @@ trait SubEntityScopes
                 $sub->select('id', 'code');
             },
         ];
-        if (!method_exists($this, 'getParentKeyName')) {
+        if (! method_exists($this, 'getParentKeyName')) {
             return $query->with($with)->has('entity');
         }
 
@@ -73,6 +72,7 @@ trait SubEntityScopes
         foreach ($defaultFields as $field) {
             $prefixedFields[] = $tableName . '.' . $field;
         }
+
         return $prefixedFields;
     }
 
@@ -95,9 +95,10 @@ trait SubEntityScopes
 
     protected function exploreGridWithCount(): array
     {
-        if (!method_exists($this, 'getParentKeyName')) {
+        if (! method_exists($this, 'getParentKeyName')) {
             return [];
         }
+
         return ['children'];
     }
 
@@ -112,7 +113,7 @@ trait SubEntityScopes
      */
     public function scopePreparedSelect(Builder $query): Builder
     {
-        if (!method_exists($this, 'datagridSelectFields')) {
+        if (! method_exists($this, 'datagridSelectFields')) {
             return $query;
         }
         $defaults = ['id', 'name', 'type', 'is_private'];
@@ -123,19 +124,15 @@ trait SubEntityScopes
         foreach ($fields as $field) {
             $prefixedFields[] = $tableName . '.' . $field;
         }
+
         return $query->select($prefixedFields);
     }
 
-    /**
-     */
     public function scopeRecent(Builder $query): Builder
     {
         return $query->orderBy('updated_at', 'desc');
     }
 
-
-    /**
-     */
     public function scopeWithApi(Builder $query): Builder
     {
         $relations = [
@@ -155,7 +152,7 @@ trait SubEntityScopes
             $relations[] = 'ancestors';
             $relations[] = 'children';
         }
-        $with = !empty($this->apiWith) ? $this->apiWith : [];
+        $with = ! empty($this->apiWith) ? $this->apiWith : [];
         foreach ($with as $relation) {
             $relations[] = $relation;
         }

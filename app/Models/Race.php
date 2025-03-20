@@ -20,10 +20,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Race
- * @package App\Models
  *
  * @property Race[]|Collection $descendants
- *
  * @property ?int $race_id
  * @property bool|int $is_extinct
  * @property Collection|CharacterRace[] $characterRaces
@@ -69,6 +67,7 @@ class Race extends MiscModel
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -95,6 +94,7 @@ class Race extends MiscModel
     ];
 
     protected string $locationPivot = 'race_location';
+
     protected string $locationPivotKey = 'race_id';
 
     /**
@@ -131,9 +131,10 @@ class Race extends MiscModel
     public function characters(): BelongsToMany
     {
         $query = $this->belongsToMany('App\Models\Character', 'character_race');
-        if (auth()->guest() || !auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->isAdmin()) {
             $query->wherePivot('is_private', false);
         }
+
         return $query;
     }
 
@@ -153,7 +154,6 @@ class Race extends MiscModel
             $raceIds[] = $descendant->id;
         }
 
-
         $query = Character::select('characters.*')
             ->distinct('characters.id')
             ->leftJoin('character_race as cr', function ($join) {
@@ -161,9 +161,10 @@ class Race extends MiscModel
             })
             ->whereIn('cr.race_id', $raceIds);
 
-        if (auth()->guest() || !auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->isAdmin()) {
             $query->where('cr.is_private', false);
         }
+
         return $query;
     }
 
@@ -175,8 +176,9 @@ class Race extends MiscModel
         $raceIds = [$this->id];
         foreach ($this->descendants as $descendant) {
             $raceIds[] = $descendant->id;
-        };
-        $model = new CharacterRace();
+        }
+        $model = new CharacterRace;
+
         return CharacterRace::groupBy('character_id')
             ->distinct('character_id')
             ->whereIn($model->getTable() . '.race_id', $raceIds)->with('character');
@@ -192,6 +194,7 @@ class Race extends MiscModel
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
@@ -220,7 +223,6 @@ class Race extends MiscModel
 
         return parent::showProfileInfo();
     }
-
 
     /**
      * Determine if the model is extinct.

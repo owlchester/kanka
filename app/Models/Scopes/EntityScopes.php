@@ -8,7 +8,6 @@ use Illuminate\Support\Str;
 
 /**
  * Trait EntityScopes
- * @package App\Models\Scopes
  *
  * @method static self|Builder recentlyModified()
  * @method static self|Builder inTags(array $tags)
@@ -57,8 +56,7 @@ trait EntityScopes
             $v = (int) $tag;
             $query
                 ->leftJoin('entity_tags as et' . $v, "et{$v}.entity_id", $this->getTable() . '.id')
-                ->where("et{$v}.tag_id", $v)
-            ;
+                ->where("et{$v}.tag_id", $v);
         }
 
         return $query;
@@ -82,7 +80,7 @@ trait EntityScopes
     {
         $related = Arr::get($request, 'related', false);
         $types = Arr::get($request, 'types');
-        if (!empty($types)) {
+        if (! empty($types)) {
             $typeNames = explode(',', $types);
             $typeIds = [];
             foreach ($typeNames as $type) {
@@ -105,7 +103,7 @@ trait EntityScopes
             'tags',
         ];
         foreach ($request as $field => $value) {
-            if (!in_array($field, $filterableFields)) {
+            if (! in_array($field, $filterableFields)) {
                 continue;
             }
             if (Str::startsWith($field, ['is_'])) {
@@ -115,7 +113,7 @@ trait EntityScopes
                 $query->where($field, (int) $value);
             } elseif ($field === 'tags') {
                 // Something something tags
-                if (!is_array($value)) {
+                if (! is_array($value)) {
                     $value = [$value];
                 }
                 $query
@@ -135,9 +133,8 @@ trait EntityScopes
                 'inventories', 'inventories.entity',
                 'relationships', 'abilities',
                 'tags', 'image', 'assets',
-                'entityType'
-            ] : ['tags', 'image', 'entityType'])
-        ;
+                'entityType',
+            ] : ['tags', 'image', 'entityType']);
     }
 
     /**
@@ -149,7 +146,7 @@ trait EntityScopes
         if (empty($types)) {
             return $query;
         }
-        if (!is_array($types)) {
+        if (! is_array($types)) {
             $types = [$types];
         }
 
@@ -166,16 +163,18 @@ trait EntityScopes
         foreach ($config as $field => $order) {
             $query->orderBy($field, $order);
         }
+
         return $query;
     }
 
     public function scopeFilter(Builder $query, array $filters = []): Builder
     {
         foreach ($filters as $name => $values) {
-            if (!is_array($values) && $values === null) {
+            if (! is_array($values) && $values === null) {
                 continue;
             } elseif (in_array($name, ['name', 'type', 'is_private', 'parent_id'])) {
                 $query->where($name, $values);
+
                 continue;
             } elseif (in_array($name, ['has_image', 'template'])) {
                 $property = 'is_template';
@@ -201,6 +200,7 @@ trait EntityScopes
             // @phpstan-ignore-next-line
             $query->filterTags(Arr::get($filters, 'tags', []), Arr::get($filters, 'tags_option'));
         }
+
         return $query;
     }
 
@@ -219,7 +219,6 @@ trait EntityScopes
             $query->whereNull('entity_assets.id');
         }
     }
-
 
     /**
      * Filter on entities with posts
@@ -246,13 +245,14 @@ trait EntityScopes
             $query
                 ->leftJoin('entity_tags as no_tags', 'no_tags.entity_id', 'entities.id')
                 ->whereNull('no_tags.tag_id');
+
             return;
         } elseif ($type === 'exclude') {
             $tagIds = [];
             foreach ($tags as $v) {
                 $tagIds[] = (int) $v;
             }
-            //$query->leftJoin('entity_tags as et_tags', "et_tags.entity_id", 'e.id')
+            // $query->leftJoin('entity_tags as et_tags', "et_tags.entity_id", 'e.id')
             $query->whereRaw('(
                 select count(*) from entity_tags as et
                 where et.entity_id = entities.id and et.tag_id in (' . implode(', ', $tagIds) . ')
@@ -262,14 +262,13 @@ trait EntityScopes
         }
 
         foreach ($tags as $v) {
-            if (!is_numeric($v)) {
+            if (! is_numeric($v)) {
                 continue;
             }
             $v = (int) $v;
             $query
                 ->leftJoin('entity_tags as et' . $v, "et{$v}.entity_id", 'entities.id')
-                ->where("et{$v}.tag_id", $v)
-            ;
+                ->where("et{$v}.tag_id", $v);
         }
     }
 }

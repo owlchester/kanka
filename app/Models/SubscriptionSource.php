@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class SubscriptionSource
- * @package App\Models
  *
  * @property int $id
  * @property string $source_id
@@ -30,29 +29,27 @@ class SubscriptionSource extends Model
         'period',
         'user_id',
         'status',
-        'method'
+        'method',
     ];
 
-    /**
-     */
     public function currency(): string
     {
         return in_array($this->method, ['giropay', 'sofort', 'ideal']) ? 'eur' : 'eur';
     }
 
-    /**
-     */
     public function plan(): string
     {
         if ($this->tier === Pledge::ELEMENTAL) {
             if ($this->period === 'yearly') {
                 return config('subscription.elemental.eur.yearly');
             }
+
             return config('subscription.elemental.eur.monthly');
         }
         if ($this->period === 'yearly') {
             return config('subscription.owlbear.eur.yearly');
         }
+
         return config('subscription.owlbear.eur.monthly');
     }
 }

@@ -9,11 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Attribute
- * @package App\Models
  *
  * @property int $id
  * @property int $campaign_role_id
- *
  * @property Campaign $campaign
  * @property CampaignRole $campaignRole
  * @property Carbon $created_at

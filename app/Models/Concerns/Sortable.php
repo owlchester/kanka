@@ -18,11 +18,9 @@ trait Sortable
         return array_merge($this->customSortableColumns(), $base);
     }
 
-    /**
-     */
     protected function customSortableColumns(): array
     {
-        if (!property_exists($this, 'sortableColumns')) {
+        if (! property_exists($this, 'sortableColumns')) {
             return [];
         }
 

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class PostPermission
- * @package App\Models
  *
  * @property int $id
  * @property int $post_id
@@ -24,7 +23,7 @@ class PostPermission extends Model
         'user_id',
         'role_id',
         'post_id',
-        'permission'
+        'permission',
     ];
 
     public function role(): BelongsTo
@@ -37,8 +36,6 @@ class PostPermission extends Model
         return $this->belongsTo(Post::class, 'post_id', 'id');
     }
 
-    /**
-     */
     public function permText(): string
     {
         if ($this->permission == 0) {
@@ -46,6 +43,7 @@ class PostPermission extends Model
         } elseif ($this->permission == 2) {
             return __('crud.permissions.actions.bulk.deny');
         }
+
         return __('crud.update');
     }
 
@@ -59,10 +57,8 @@ class PostPermission extends Model
         return $query->whereNotNull('role_id');
     }
 
-    /**
-     */
     public function isUser(): bool
     {
-        return !empty($this->user_id);
+        return ! empty($this->user_id);
     }
 }

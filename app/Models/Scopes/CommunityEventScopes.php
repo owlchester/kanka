@@ -7,13 +7,11 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Trait CommunityVoteScopes
- * @package App\Models\Scopes
  *
  * @method static self|Builder ongoing()
  * @method static self|Builder finished()
  * @method static self|Builder recent()
  * @method static self|Builder visible()
- *
  */
 trait CommunityEventScopes
 {
@@ -27,15 +25,11 @@ trait CommunityEventScopes
             ->where('start_at', '<=', Carbon::now());
     }
 
-    /**
-     */
     public function scopeFinished(Builder $builder)
     {
         return $builder->where('end_at', '<=', Carbon::now());
     }
 
-    /**
-     */
     public function scopeVoting(Builder $builder)
     {
         // @phpstan-ignore-next-line
@@ -44,8 +38,6 @@ trait CommunityEventScopes
             ->visible();
     }
 
-    /**
-     */
     public function scopeRecent(Builder $builder)
     {
         // @phpstan-ignore-next-line
