@@ -54,7 +54,7 @@ class WordCount extends Command
     {
         $model = app()->make($className);
 
-        DB::statement('UPDATE ' . $model->getTable() . ' SET words = null');
+        //DB::statement('UPDATE ' . $model->getTable() . ' SET words = null');
         $this->info($className);
         $total = $model::whereNull('words')->whereNotNull($field)->count();
         $progressBar = $this->output->createProgressBar($total);

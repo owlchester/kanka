@@ -1,49 +1,49 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Campaigns;
 
-use App\Models\Ability;
-use App\Models\Attribute;
-use App\Models\Location;
-use App\Models\Family;
-use App\Models\Note;
-use App\Models\Character;
-use App\Models\Calendar;
-use App\Models\Organisation;
-use App\Models\Event;
-use App\Models\Item;
-use App\Models\Tag;
-use App\Models\Quest;
-use App\Models\QuestElement;
-use App\Models\Relation;
-use App\Models\Journal;
-use App\Models\Race;
-use App\Models\Campaign;
-use App\Observers\AbilityObserver;
-use App\Observers\QuestObserver;
-use App\Observers\LocationObserver;
-use App\Observers\CharacterObserver;
-use App\Observers\FamilyObserver;
-use App\Observers\OrganisationObserver;
-use App\Observers\EventObserver;
-use App\Observers\ItemObserver;
-use App\Observers\TagObserver;
-use App\Observers\RaceObserver;
-use App\Observers\NoteObserver;
-use App\Observers\QuestElementObserver;
-use App\Observers\EntityAbilityObserver;
-use App\Observers\JournalObserver;
-use App\Observers\CalendarObserver;
-use App\Observers\RelationObserver;
-use App\Facades\CampaignLocalization;
-use App\Models\EntityAbility;
 use App\Facades\CampaignCache;
+use App\Facades\CampaignLocalization;
 use App\Facades\CharacterCache;
 use App\Facades\EntityCache;
 use App\Facades\QuestCache;
+use App\Models\Ability;
+use App\Models\Attribute;
+use App\Models\Calendar;
+use App\Models\Campaign;
+use App\Models\Character;
+use App\Models\EntityAbility;
+use App\Models\Event;
+use App\Models\Family;
+use App\Models\Item;
+use App\Models\Journal;
+use App\Models\Location;
+use App\Models\Note;
+use App\Models\Organisation;
+use App\Models\Quest;
+use App\Models\QuestElement;
+use App\Models\Race;
+use App\Models\Relation;
+use App\Models\Tag;
+use App\Observers\AbilityObserver;
+use App\Observers\CalendarObserver;
+use App\Observers\CharacterObserver;
+use App\Observers\EntityAbilityObserver;
+use App\Observers\EventObserver;
+use App\Observers\FamilyObserver;
+use App\Observers\ItemObserver;
+use App\Observers\JournalObserver;
+use App\Observers\LocationObserver;
+use App\Observers\NoteObserver;
+use App\Observers\OrganisationObserver;
+use App\Observers\QuestElementObserver;
+use App\Observers\QuestObserver;
+use App\Observers\RaceObserver;
+use App\Observers\RelationObserver;
+use App\Observers\TagObserver;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class DummyEntities extends Command
 {
@@ -52,7 +52,7 @@ class DummyEntities extends Command
      *
      * @var string
      */
-    protected $signature = 'campaign:populate {campaign}';
+    protected $signature = 'campaigns:populate {campaign}';
 
     /**
      * The console command description.

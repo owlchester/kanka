@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Entities;
 
 use App\Jobs\CalendarsClearElapsed;
 use App\Models\Calendar;

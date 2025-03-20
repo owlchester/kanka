@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Cleanup;
 
+use App\Services\Users\UserLogService;
 use App\Traits\HasJobLog;
 use Illuminate\Console\Command;
-use App\Services\Users\UserLogService;
 
 class AnonymiseUserLogs extends Command
 {

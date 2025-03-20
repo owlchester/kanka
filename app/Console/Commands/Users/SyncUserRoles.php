@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Users;
 
-use App\Services\DiscordService;
 use App\Models\User;
+use App\Services\DiscordService;
 use Illuminate\Console\Command;
 
 class SyncUserRoles extends Command

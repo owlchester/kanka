@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Users;
 
-use App\Models\UserLog;
 use App\Models\User;
+use App\Models\UserLog;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;

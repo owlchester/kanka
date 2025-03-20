@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Users;
 
-use App\Services\DiscordService;
-use App\Models\User;
-use Carbon\Carbon;
 use App\Models\UserApp;
+use App\Services\DiscordService;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class RegenerateDiscordToken extends Command

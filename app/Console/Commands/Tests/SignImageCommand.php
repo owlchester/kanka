@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Tests;
 
 use App\Facades\Img;
 use Illuminate\Console\Command;

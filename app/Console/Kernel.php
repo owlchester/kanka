@@ -2,17 +2,16 @@
 
 namespace App\Console;
 
-use App\Console\Commands\AnonymiseUserLogs;
-use App\Console\Commands\CalendarAdvancer;
 use App\Console\Commands\Campaigns\VisibileEntityCountCommand;
+use App\Console\Commands\Cleanup\AnonymiseUserLogs;
 use App\Console\Commands\Cleanup\CleanupEntityLogs;
 use App\Console\Commands\Cleanup\CleanupTrashed;
 use App\Console\Commands\Cleanup\CleanupTrashedCampaigns;
 use App\Console\Commands\Cleanup\CleanupUsers;
-use App\Console\Commands\RegenerateDiscordToken;
+use App\Console\Commands\Entities\CalendarAdvancer;
 use App\Console\Commands\Subscriptions\EndSubscriptions;
 use App\Console\Commands\Subscriptions\ExpiringCardCommand;
-use App\Console\Commands\Subscriptions\UpcomingYearlyCommand;
+use App\Console\Commands\Users\RegenerateDiscordToken;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Tests;
 
-use App\Notifications\Header;
 use App\Models\User;
+use App\Notifications\Header;
 use Illuminate\Console\Command;
 
 class SendNotification extends Command

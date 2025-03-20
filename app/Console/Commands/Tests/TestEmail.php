@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Tests;
 
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\Emails\SubscriptionFailedEmailJob;
