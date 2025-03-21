@@ -38,6 +38,8 @@ class StoreMap extends FormRequest
             'location_id' => 'nullable|integer|exists:locations,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp,svg|max:' . Limit::map()->upload(),
             'image_url' => 'nullable|url|active_url',
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
             'center_x' => 'nullable|numeric',
             'center_y' => 'nullable|numeric',

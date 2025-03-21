@@ -62,6 +62,15 @@ class EditController extends Controller
             return response()->json(['success' => true]);
         }
 
+        // We need to validate the request
+        if ($entity->entityType->isStandard()) {
+            $validationClass = 'App\Http\Requests\Store' . Str::studly($entity->entityType->code);
+            if (class_exists($validationClass)) {
+                $validator = app()->make($validationClass);
+                $this->validate($request, $validator->rules());
+            }
+        }
+
         try {
             // Sanitize the data
             $sanitizerClassName = 'App\Sanitizers\\' . Str::studly($entity->entityType->code) . 'Sanitizer';

@@ -36,6 +36,8 @@ class StoreCharacter extends FormRequest
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
             'location_id' => ['nullable', new Location],
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
             'age' => 'nullable|max:25',
             'sex' => 'nullable|max:45',
             'pronouns' => 'nullable|max:45',

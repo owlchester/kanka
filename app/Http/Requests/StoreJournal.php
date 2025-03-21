@@ -38,6 +38,8 @@ class StoreJournal extends FormRequest
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'character_id' => 'nullable|exists:characters,id',
             'image_url' => 'nullable|url|active_url',
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
             'journal_id' => 'nullable|integer|exists:journals,id',
             'attribute' => ['array', new UniqueAttributeNames],
