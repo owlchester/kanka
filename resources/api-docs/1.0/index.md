@@ -38,7 +38,7 @@
     - [Posts](/api-docs/{{version}}/posts)
     - [Attributes](/api-docs/{{version}}/attributes)
     - [Entity Events](/api-docs/{{version}}/entity-events)
-    - [Entity Inventory](/api-docs/{{version}}/inventory)
+    - [Entity Inventory](/api-docs/{{version}}/entity-inventory)
     - [Entity Mentions](/api-docs/{{version}}/entity-mentions)
     - [Entity Tags](/api-docs/{{version}}/entity-tags)
     - [Entity Permissions](/api-docs/{{version}}/entity-permissions)
