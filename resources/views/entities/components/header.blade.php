@@ -239,16 +239,24 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         @php
             $headerHelper = __('entities/image.gallery_permissions.' . strtolower($entity->header->visibility_id->name), ['admin' => \Illuminate\Support\Arr::get($adminRole, 'name', __('campaigns.roles.admin_role')), 'creator' => $entity->header->creator?->name]);
         @endphp
-        <span role="button"
-              tabindex="0"
-              class="header-visibility absolute top-2 right-2 rounded cursor-pointer"
-              data-toggle="dialog"
-              data-url="{{ route('gallery.file.visibility', [$campaign, $entity->header]) }}"
-              data-target="primary-dialog"
-              aria-haspopup="dialog"
+        @can('visibility', $entity->header)
+        <span
+            role="button"
+            tabindex="0"
+            class="header-visibility absolute top-2 right-2 rounded cursor-pointer"
+            data-toggle="dialog"
+            data-url="{{ route('gallery.file.visibility', [$campaign, $entity->header]) }}"
+            data-target="primary-dialog"
+            aria-haspopup="dialog"
         >
             <x-icon :class="$entity->header->visibilityIcon()['class']" :title="$headerHelper" tooltip />
         </span>
+        @else
+            <span
+                class="header-visibility absolute top-2 right-2 rounded">
+                <x-icon :class="$entity->header->visibilityIcon()['class']" :title="$headerHelper" tooltip />
+            </span>
+        @endcan
     @endif
 </div>
 
