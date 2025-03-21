@@ -39,6 +39,8 @@ class StoreTag extends FormRequest
             'tag_id' => 'nullable|integer|exists:tags,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
             'colour' => [
                 'nullable',

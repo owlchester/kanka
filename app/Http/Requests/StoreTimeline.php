@@ -36,6 +36,8 @@ class StoreTimeline extends FormRequest
             'calendar_id' => 'nullable|integer|exists:calendars,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp,svg|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
             'revert_order' => 'nullable',
             'attribute' => ['array', new UniqueAttributeNames()],
