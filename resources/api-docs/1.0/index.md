@@ -43,7 +43,6 @@
     - [Entity Tags](/api-docs/{{version}}/entity-tags)
     - [Entity Permissions](/api-docs/{{version}}/entity-permissions)
     - [Relations](/api-docs/{{version}}/relations)
-    - [Inventory](/api-docs/{{version}}/entity-inventory)
     - [Entity Abilities](/api-docs/{{version}}/entity-abilities)
     - [Entity Image](/api-docs/{{version}}/entity-image)
     - [Entity Assets](/api-docs/{{version}}/entity-assets)
