@@ -66,7 +66,6 @@ To create an entity-tag, use the following endpoint.
 
 | Parameter | Type | Detail |
 | :- |   :-   |  :-  |
-| `entity_id` | `integer` (Required) | The entity-tag's parent entity |
 | `tag_id` | `integer` (Required) | The entity-tag's parent tag |
 
 
