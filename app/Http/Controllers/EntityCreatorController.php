@@ -106,7 +106,7 @@ class EntityCreatorController extends Controller
         }
 
         $values = $this->inputFields;
-        //To prevent observer from creating duplicate tags.
+        // To prevent observer from creating duplicate tags.
         request()->replace(['tags' => $values['tags']]);
 
         foreach ($names as $name) {
