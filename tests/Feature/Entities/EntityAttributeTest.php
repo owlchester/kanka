@@ -5,8 +5,7 @@ it('POSTS an invalid attributes form')
     ->withCampaign()
     ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/entities/1/attributes', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new attribute')
     ->asUser()
@@ -24,9 +23,8 @@ it('POSTS a new attribute')
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all attributes')
     ->asUser()
@@ -42,10 +40,9 @@ it('GETS all attributes')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific attribute')
     ->asUser()
@@ -59,9 +56,8 @@ it('GETS a specific attribute')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid attribute')
     ->asUser()
@@ -70,8 +66,7 @@ it('UPDATES a valid attribute')
     ->withAttributes()
     ->putJson('/api/1.0/campaigns/1/entities/1/attributes/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('UPDATES a valid attribute without a name')
     ->asUser()
@@ -80,8 +75,7 @@ it('UPDATES a valid attribute without a name')
     ->withAttributes()
     ->putJson('/api/1.0/campaigns/1/entities/1/attributes/1', ['value' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['value' => 'Magic'])
-;
+    ->assertJsonFragment(['value' => 'Magic']);
 
 it('DELETES an attribute')
     ->asUser()
@@ -89,8 +83,7 @@ it('DELETES an attribute')
     ->withCharacters()
     ->withAttributes()
     ->delete('/api/1.0/campaigns/1/entities/1/attributes/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid attribute')
     ->asUser()
@@ -98,5 +91,4 @@ it('DELETES an invalid attribute')
     ->withCharacters()
     ->withAttributes()
     ->delete('/api/1.0/campaigns/1/entities/1/attributes/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);

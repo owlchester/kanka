@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\Bookmark;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BookmarkFactory extends Factory
 {
@@ -14,6 +14,7 @@ class BookmarkFactory extends Factory
      * @var string
      */
     protected $model = Bookmark::class;
+
     /**
      * Define the model's default state.
      *

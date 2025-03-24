@@ -14,9 +14,8 @@ it('POSTS a new campaign_style')
         'data' => [
             'campaign_id',
             'name',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all campaign_styles')
     ->asUser(true)
@@ -29,10 +28,9 @@ it('GETS all campaign_styles')
             [
                 'campaign_id',
                 'name',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific campaign_style')
     ->asUser(true)
@@ -44,9 +42,8 @@ it('GETS a specific campaign_style')
         'data' => [
             'campaign_id',
             'name',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid campaign_style')
     ->asUser(true)
@@ -54,24 +51,21 @@ it('UPDATES a valid campaign_style')
     ->withCampaignStyles()
     ->putJson('/api/1.0/campaigns/1/campaign_styles/1', ['name' => 'bob', 'content' => 'content', 'is_enabled' => true])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'bob'])
-;
+    ->assertJsonFragment(['name' => 'bob']);
 
 it('DELETES a campaign_style')
     ->asUser(true)
     ->withCampaign(['boost_count' => 4])
     ->withCampaignStyles()
     ->delete('/api/1.0/campaigns/1/campaign_styles/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid campaign_style')
     ->asUser(true)
     ->withCampaign(['boost_count' => 4])
     ->withCampaignStyles()
     ->delete('/api/1.0/campaigns/1/campaign_styles/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('cant GET a campaign_style as a player')
     ->asUser(true)
@@ -79,5 +73,4 @@ it('cant GET a campaign_style as a player')
     ->withCampaignStyles()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/campaign_styles/1')
-    ->assertStatus(403)
-;
+    ->assertStatus(403);

@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\Ability;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AbilityFactory extends Factory
 {
@@ -14,6 +14,7 @@ class AbilityFactory extends Factory
      * @var string
      */
     protected $model = Ability::class;
+
     /**
      * Define the model's default state.
      *

@@ -6,23 +6,21 @@ it('POSTS an invalid timeline form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/timelines', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new timeline')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/timelines', [
-        'name' => fake()->name()
+        'name' => fake()->name(),
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all timelines')
     ->asUser()
@@ -37,10 +35,9 @@ it('GETS all timelines')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific timeline')
     ->asUser()
@@ -53,9 +50,8 @@ it('GETS a specific timeline')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid timeline')
     ->asUser()
@@ -63,8 +59,7 @@ it('UPDATES a valid timeline')
     ->withTimelines()
     ->putJson('/api/1.0/campaigns/1/timelines/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('UPDATES a valid timeline without a name')
     ->asUser()
@@ -72,24 +67,21 @@ it('UPDATES a valid timeline without a name')
     ->withTimelines()
     ->putJson('/api/1.0/campaigns/1/timelines/1', ['type' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['type' => 'Magic'])
-;
+    ->assertJsonFragment(['type' => 'Magic']);
 
 it('DELETES a timeline')
     ->asUser()
     ->withCampaign()
     ->withTimelines()
     ->delete('/api/1.0/campaigns/1/timelines/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid timeline')
     ->asUser()
     ->withCampaign()
     ->withTimelines()
     ->delete('/api/1.0/campaigns/1/timelines/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a timeline as a player')
     ->asUser()
@@ -97,8 +89,7 @@ it('can GET a timeline as a player')
     ->withTimelines()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/timelines/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
@@ -117,5 +108,4 @@ it('can\'t GET a private timeline as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/timelines/1');
     expect($response->status())
         ->toBe(404);
-})
-;
+});

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateRealEntitiesTable extends Migration
 {
@@ -36,7 +36,6 @@ class CreateRealEntitiesTable extends Migration
             $table->unsignedInteger('created_by')->nullable();
             $table->unsignedInteger('updated_by')->nullable();
             $table->unsignedInteger('deleted_by')->nullable();
-
 
             $table->timestamps();
 

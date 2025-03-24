@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Visibility;
+use Illuminate\Database\Seeder;
 
 class VisibilitiesTableSeeder extends Seeder
 {
@@ -18,7 +18,7 @@ class VisibilitiesTableSeeder extends Seeder
             $type = Visibility::firstOrNew([
                 'code' => $theme,
             ]);
-            if (!$type->exists) {
+            if (! $type->exists) {
                 $type->fill([
                     'code' => $theme,
                 ])->save();

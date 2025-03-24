@@ -3,8 +3,7 @@
 it('campaigns POST invalid')
     ->asUser()
     ->postJson('/api/1.0/campaigns', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('campaigns POST valid')
     ->asUser()
@@ -13,8 +12,7 @@ it('campaigns POST valid')
         'entry' => fake()->text(500),
         'excerpt' => fake()->text(100),
     ])
-    ->assertStatus(201)
-;
+    ->assertStatus(201);
 
 it('campaigns GET')
     ->asUser()
@@ -30,10 +28,9 @@ it('campaigns GET')
                 'superboosted',
                 'premium',
                 'members',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('campaign GET')
     ->asUser()
@@ -42,10 +39,9 @@ it('campaign GET')
     ->assertStatus(200)
     ->assertJson([
         'data' => [
-            'id' => 1
-        ]
-    ])
-;
+            'id' => 1,
+        ],
+    ]);
 
 it('campaign PATCH')
     ->asUser()
@@ -56,7 +52,6 @@ it('campaign PATCH')
     ->assertJson([
         'data' => [
             'id' => 1,
-            'name' => 'New name'
-        ]
-    ])
-;
+            'name' => 'New name',
+        ],
+    ]);

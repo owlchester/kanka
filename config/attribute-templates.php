@@ -6,5 +6,5 @@ return [
      */
     'templates' => [
         'dnd5emonster' => Kanka\Dnd5eMonster\Template::class,
-    ]
+    ],
 ];

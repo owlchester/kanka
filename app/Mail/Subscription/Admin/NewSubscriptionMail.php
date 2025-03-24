@@ -6,6 +6,9 @@ use App\Enums\PricingPeriod;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Laravel\Cashier\Subscription;
 
@@ -32,14 +35,11 @@ class NewSubscriptionMail extends Mailable
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * Get the message envelope.
      */
-    public function build()
+    public function envelope(): Envelope
     {
         $action = 'New';
-        $lastCancel = $this->user->cancellations()->orderByDesc('id')->first();
         // Check if user was previously subbed
 
         // Auto-cancelled subs due to credit card issues don't trigger a cancellation, so we need to check previous
@@ -51,10 +51,23 @@ class NewSubscriptionMail extends Mailable
 
         $subject = 'Sub: ' . $action . ' ' . ucfirst($this->period->name) . ' ' . $this->user->pledge;
 
-        return $this
-            ->from(['address' => config('app.email'), 'name' => 'Kanka Admin'])
-            ->subject($subject)
-            ->tag('admin-new')
-            ->view('emails.subscriptions.new.html', ['lastCancel' => $lastCancel]);
+        return new Envelope(
+            subject: $subject,
+            tags: ['admin-new'],
+            from: new Address(config('app.email'), 'Kanka Admin'),
+        );
+    }
+
+    /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        $lastCancel = $this->user->cancellations()->orderByDesc('id')->first();
+
+        return new Content(
+            markdown: 'emails.subscriptions.new.md',
+            with: ['lastCancel' => $lastCancel, 'user' => $this->user, 'period' => $this->period],
+        );
     }
 }

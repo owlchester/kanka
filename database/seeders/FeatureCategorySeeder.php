@@ -26,7 +26,7 @@ class FeatureCategorySeeder extends Seeder
         ];
         foreach ($cats as $cat) {
             $c = FeatureCategory::firstOrNew([
-                'name' => $cat
+                'name' => $cat,
             ]);
             $c->save();
         }

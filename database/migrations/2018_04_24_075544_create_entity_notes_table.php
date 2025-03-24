@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateEntityNotesTable extends Migration
 {
@@ -17,7 +17,7 @@ class CreateEntityNotesTable extends Migration
 
         Schema::create('entity_notes', function (Blueprint $table) {
             $table->increments('id');
-            ;
+
             $table->string('name');
             $table->longText('entry')->nullable();
             $table->boolean('is_private')->default(0);

@@ -19,7 +19,7 @@ class EntityEventTypeSeeder extends Seeder
             $type = \App\Models\EntityEventType::firstOrNew([
                 'name' => $name,
             ]);
-            if (!$type->exists) {
+            if (! $type->exists) {
                 $type->fill([
                     'name' => $name,
                 ])->save();

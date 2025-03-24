@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\QuestElement;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class QuestElementFactory extends Factory
 {
@@ -14,6 +14,7 @@ class QuestElementFactory extends Factory
      * @var string
      */
     protected $model = QuestElement::class;
+
     /**
      * Define the model's default state.
      *

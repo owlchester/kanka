@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 
 Illuminate\Support\Facades\Auth::routes(['register' => config('auth.register_enabled')]);
 
-
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/login-as-user/{user}', [LoginController::class, 'loginAsUser'])->name('login-as-user');
 Route::get('/login-as', [LoginController::class, 'loginAs'])->name('login-as');

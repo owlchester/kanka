@@ -10,10 +10,9 @@ it('POSTS a new permission test')
             'user_id' => 2,
             'entity_type_id' => 1,
             'action' => 1,
-        ]
+        ],
     ])
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 it('POSTS a new permission')
     ->asUser()
@@ -24,18 +23,17 @@ it('POSTS a new permission')
         [
             'campaign_role_id' => 2,
             'access' => 1,
-            'action' => 1
-        ]
+            'action' => 1,
+        ],
     ])
     ->assertJsonStructure([
         'data' => [
             [
-                'access'
-            ]
-        ]
+                'access',
+            ],
+        ],
     ])
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 it('DELETES a permission')
     ->asUser()
@@ -43,5 +41,4 @@ it('DELETES a permission')
     ->withCharacters()
     ->withPermissions()
     ->delete('/api/1.0/campaigns/1/entities/1/entity_permissions/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);

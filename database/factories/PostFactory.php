@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\Post;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
 {
@@ -14,6 +14,7 @@ class PostFactory extends Factory
      * @var string
      */
     protected $model = Post::class;
+
     /**
      * Define the model's default state.
      *
@@ -24,7 +25,7 @@ class PostFactory extends Factory
         return [
             'name' => fake()->text(10),
             'entry' => '<p>' . fake()->text(500) . '<p>',
-            'position' => 1
+            'position' => 1,
         ];
     }
 }

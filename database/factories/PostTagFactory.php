@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\PostTag;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostTagFactory extends Factory
 {
@@ -14,6 +14,7 @@ class PostTagFactory extends Factory
      * @var string
      */
     protected $model = PostTag::class;
+
     /**
      * Define the model's default state.
      *

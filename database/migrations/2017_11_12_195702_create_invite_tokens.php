@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateInviteTokens extends Migration
 {
@@ -21,15 +21,14 @@ class CreateInviteTokens extends Migration
             $table->boolean('is_active')->default(true);
 
             $table->integer('validity')->unsigned()->nullable();
-            //$table->integer('role_id')->unsigned()->nullable();
+            // $table->integer('role_id')->unsigned()->nullable();
 
             $table->timestamps();
-
 
             // Foreign
             $table->foreign('created_by')->references('id')->on('users')->nullOnDelete();
             $table->foreign('campaign_id')->references('id')->on('campaigns')->cascadeOnDelete();
-            //$table->foreign('role_id')->references('id')->on('campaign_roles')->onDelete('set null');
+            // $table->foreign('role_id')->references('id')->on('campaign_roles')->onDelete('set null');
 
             $table->index(['token', 'is_active']);
         });

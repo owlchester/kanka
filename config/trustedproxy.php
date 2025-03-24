@@ -2,5 +2,5 @@
 
 return [
     'defined' => env('TRUSTED_PROXIES', false),
-    'proxies' => explode(',', env('TRUSTED_PROXIES', ''))
+    'proxies' => explode(',', env('TRUSTED_PROXIES', '')),
 ];

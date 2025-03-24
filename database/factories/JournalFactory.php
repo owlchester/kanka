@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\Journal;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class JournalFactory extends Factory
 {
@@ -14,6 +14,7 @@ class JournalFactory extends Factory
      * @var string
      */
     protected $model = Journal::class;
+
     /**
      * Define the model's default state.
      *

@@ -6,10 +6,10 @@ it('POSTS a new image')
     ->asUser(true)
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/images', [
-        //'folder_id' => 1,
+        // 'folder_id' => 1,
         'file' => [
-            UploadedFile::fake()->image('avatar.jpg')
-        ]
+            UploadedFile::fake()->image('avatar.jpg'),
+        ],
     ])
     ->assertStatus(200)
     ->assertJsonStructure([
@@ -17,11 +17,10 @@ it('POSTS a new image')
             '*' => [
                 'id',
                 'name',
-                'path'
-            ]
-        ]
-    ])
-;
+                'path',
+            ],
+        ],
+    ]);
 
 it('GETS all images')
     ->asUser(true)
@@ -34,10 +33,9 @@ it('GETS all images')
             [
                 'id',
                 'name',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific image')
     ->asUser(true)
@@ -49,9 +47,8 @@ it('GETS a specific image')
         'data' => [
             'id',
             'name',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid image')
     ->asUser(true)
@@ -59,24 +56,21 @@ it('UPDATES a valid image')
     ->withImages()
     ->putJson('/api/1.0/campaigns/1/images/16598f1b-7d93-36d9-bea5-212bfa1e354b', ['name' => 'bob', 'content' => 'content', 'is_enabled' => true])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'bob'])
-;
+    ->assertJsonFragment(['name' => 'bob']);
 
 it('DELETES a image')
     ->asUser(true)
     ->withCampaign()
     ->withImages()
     ->delete('/api/1.0/campaigns/1/images/16598f1b-7d93-36d9-bea5-212bfa1e354b')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid image')
     ->asUser(true)
     ->withCampaign()
     ->withImages()
     ->delete('/api/1.0/campaigns/1/images/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('cant GET a image as a player')
     ->asUser(true)
@@ -84,5 +78,4 @@ it('cant GET a image as a player')
     ->withImages()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/images/16598f1b-7d93-36d9-bea5-212bfa1e354b')
-    ->assertStatus(403)
-;
+    ->assertStatus(403);
