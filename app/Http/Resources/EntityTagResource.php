@@ -19,7 +19,7 @@ class EntityTagResource extends JsonResource
         $model = $this->resource;
 
         return [
-            'id' => $model->pivot->id,
+            'id' => $model->pivot->id, // @phpstan-ignore-line
             'tag_id' => $model->id,
         ];
     }

@@ -588,7 +588,7 @@ class CalendarRenderer
                         if (! isset($this->recurring[$key])) {
                             continue;
                         }
-                        /** @var $reminder $event */
+                        /** @var Reminder $event */
                         // dump('found events for ' . $key);
                         foreach ($this->recurring[$key] as $event) {
                             if (! $event->isPastDate($this->getYear(), $this->getMonth(), $day)) {
@@ -786,8 +786,9 @@ class CalendarRenderer
      */
     protected function getReminders(Calendar $calendar)
     {
+        // @phpstan-ignore-next-line
         return $calendar->calendarEvents()
-            ->has('remindable')
+            ->whereHas('remindable')
             ->with(['remindable', 'remindable.tags', 'remindable.image', 'death', 'remindable.entityType'])
             ->where(function ($query) {
                 $query
@@ -848,7 +849,7 @@ class CalendarRenderer
         if (! $this->isYearlyLayout()) {
             $totalMonths = $this->getMonth();
         }
-        /** @var $reminder $event */
+        /** @var Reminder $event */
         foreach ($reminders as $event) {
             if ($event->isBirth() && $event->death && $event->death->isPastDate($this->getYear(), $event->month, $event->day)) {
                 continue;

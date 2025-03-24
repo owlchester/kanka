@@ -34,6 +34,8 @@ use Illuminate\Support\Str;
  * @property ?Calendar $calendar
  * @property ?Reminder $death
  * @property ?EntityEventType $type
+ * @property-read Entity|null $remindable
+ * @method static \Illuminate\Database\Eloquent\Builder|Reminder has($relation)
  */
 class Reminder extends Model
 {

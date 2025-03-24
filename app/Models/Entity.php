@@ -398,7 +398,7 @@ class Entity extends Model
 
         // Entity relations
         $relations = [
-            'entityTags', 'relationships', 'posts', 'abilities', 'events',
+            'entityTags', 'relationships', 'posts', 'abilities', 'reminders',
             'entityAttributes', 'assets', 'mentions', 'inventories',
         ];
         foreach ($relations as $relation) {

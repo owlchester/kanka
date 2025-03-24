@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Requests\API\StoreReminder as Request;
-use App\Http\Resources\EntityEventResource as Resource;
+use App\Http\Resources\ReminderResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Reminder;

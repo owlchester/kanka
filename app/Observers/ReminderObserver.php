@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Models\Entity;
 use App\Models\Reminder;
 
 class ReminderObserver
@@ -25,14 +26,18 @@ class ReminderObserver
     public function updated(Reminder $reminder)
     {
         // Go touch linked entity and its child
-        $reminder->entity->touchSilently();
-        $reminder->entity->child?->touchQuietly();
+        $reminder->remindable->touchSilently();
+        if ($reminder->remindable instanceof Entity) {
+            $reminder->remindable->child?->touchQuietly();
+        }
     }
 
     public function deleted(Reminder $reminder)
     {
         // Go touch linked entity and its child
-        $reminder->entity->touchSilently();
-        $reminder->entity->child?->touchQuietly();
+        $reminder->remindable->touchSilently();
+        if ($reminder->remindable instanceof Entity) {
+            $reminder->remindable->child?->touchQuietly();
+        }
     }
 }

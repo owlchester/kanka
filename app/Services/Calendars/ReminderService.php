@@ -23,9 +23,10 @@ class ReminderService
      */
     public function upcoming(int $needle = 10): Collection
     {
+        // @phpstan-ignore-next-line
         $reminders = $this->calendar->calendarEvents()
-            ->with(['entity', 'calendar'])
-            ->has('entity')
+            ->with(['remindable', 'calendar'])
+            ->whereHas('remindable')
             ->where(function ($primary) {
                 $primary->where(function ($sub) {
                     $sub->where(function ($recurring) {
@@ -90,9 +91,10 @@ class ReminderService
      */
     public function past(int $needle = 10): Collection
     {
+        // @phpstan-ignore-next-line
         $reminders = $this->calendar->calendarEvents()
-            ->with(['entity', 'calendar'])
-            ->has('entity')
+            ->with(['remindable', 'calendar'])
+            ->whereHas('remindable')
             ->where(function ($primary) {
                 $primary->where(function ($sub) {
                     $sub->where(function ($recurring) {

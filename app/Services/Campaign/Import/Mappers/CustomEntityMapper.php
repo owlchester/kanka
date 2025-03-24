@@ -17,6 +17,7 @@ use App\Models\Inventory;
 use App\Models\Post;
 use App\Models\PostTag;
 use App\Models\Relation;
+use App\Models\Reminder;
 use App\Services\EntityMappingService;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
@@ -410,8 +411,9 @@ trait CustomEntityMapper
             if (! ImportIdMapper::has('calendars', $data['calendar_id'])) {
                 continue;
             }
-            $rem = new EntityEvent;
-            $rem->entity_id = $this->entity->id;
+            $rem = new Reminder;
+            $rem->remindable_id = $this->entity->id;
+            $rem->remindable_type = Entity::class;
             $rem->calendar_id = ImportIdMapper::get('calendars', $data['calendar_id']);
             foreach ($fields as $field) {
                 $rem->$field = $data[$field];

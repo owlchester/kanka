@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Reminder;
 
-class EntityEventResource extends EntityChild
+class ReminderResource extends EntityChild
 {
     /**
      * Transform the resource into an array.
