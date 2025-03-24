@@ -432,7 +432,6 @@ class EntityCreatorController extends Controller
                 unset($tags[$number]);
             }
         }
-        //dd($tags);
 
         $this->inputFields['tags'] = $tags;
 
