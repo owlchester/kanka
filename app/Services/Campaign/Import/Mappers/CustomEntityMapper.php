@@ -9,7 +9,6 @@ use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
-use App\Models\EntityEvent;
 use App\Models\EntityMention;
 use App\Models\EntityTag;
 use App\Models\Image;
