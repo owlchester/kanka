@@ -106,6 +106,8 @@ class EntityCreatorController extends Controller
         }
 
         $values = $this->inputFields;
+        //To prevent observer from creating duplicate tags.
+        request()->replace(['tags' => $values['tags']]);
 
         foreach ($names as $name) {
             if (empty($name)) {
@@ -425,11 +427,13 @@ class EntityCreatorController extends Controller
             // Create the tag if the user has permission to do so
             if (empty($tag) && $tagService->isAllowed()) {
                 $tag = $tagService->create($id);
-                $tags[$number] = (int) $tag->id;
+                $tags[$number] = (string) $tag->id;
             } elseif (empty($tag) && ! $canCreateTags) {
                 unset($tags[$number]);
             }
         }
+        //dd($tags);
+
         $this->inputFields['tags'] = $tags;
 
         return $this;
