@@ -8,7 +8,7 @@ return [
     |
     | This value tells the app if the marketplace is available or not.
      */
-    'enabled' => !empty(env('APP_MARKETPLACE_URL', null)),
+    'enabled' => ! empty(env('APP_MARKETPLACE_URL', null)),
 
     /*
     |-------------------------------------------

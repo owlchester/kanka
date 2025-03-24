@@ -5,8 +5,7 @@ it('POSTS an invalid map layer form')
     ->withCampaign()
     ->withMaps()
     ->postJson('/api/1.0/campaigns/1/maps/1/map_layers', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new map layer')
     ->asUser()
@@ -23,9 +22,8 @@ it('POSTS a new map layer')
         'data' => [
             'id',
             'map_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all maps layers')
     ->asUser()
@@ -40,10 +38,9 @@ it('GETS all maps layers')
                 'id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific map layer')
     ->asUser()
@@ -57,9 +54,8 @@ it('GETS a specific map layer')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid map layer')
     ->asUser()
@@ -68,8 +64,7 @@ it('UPDATES a valid map layer')
     ->withMapLayers()
     ->putJson('/api/1.0/campaigns/1/maps/1/map_layers/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('DELETES a map layer')
     ->asUser()
@@ -77,8 +72,7 @@ it('DELETES a map layer')
     ->withMaps()
     ->withMapLayers()
     ->delete('/api/1.0/campaigns/1/maps/1/map_layers/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid map layer')
     ->asUser()
@@ -86,8 +80,7 @@ it('DELETES an invalid map layer')
     ->withMaps()
     ->withMapLayers()
     ->delete('/api/1.0/campaigns/1/maps/1/map_layers/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a map layer as a player')
     ->asUser()
@@ -96,5 +89,4 @@ it('can GET a map layer as a player')
     ->withMapLayers()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/maps/1/map_layers/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);

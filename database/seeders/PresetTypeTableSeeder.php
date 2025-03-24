@@ -19,7 +19,7 @@ class PresetTypeTableSeeder extends Seeder
             $type = \App\Models\PresetType::firstOrNew([
                 'code' => $name,
             ]);
-            if (!$type->exists) {
+            if (! $type->exists) {
                 $type->fill([
                     'code' => $name,
                 ])->save();

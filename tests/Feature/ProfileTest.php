@@ -9,8 +9,8 @@ it('profile GET')
             'id',
             'name',
             'is_subscriber',
-            'rate_limit'
-        ]
+            'rate_limit',
+        ],
     ])
     ->assertJson(['data' => ['id' => 1]])
     ->assertJsonMissingPath('data.password');

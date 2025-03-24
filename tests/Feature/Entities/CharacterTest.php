@@ -6,23 +6,21 @@ it('POSTS an invalid character form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/characters', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new character')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/characters', [
-        'name' => fake()->name()
+        'name' => fake()->name(),
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all characters')
     ->asUser()
@@ -37,10 +35,9 @@ it('GETS all characters')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific character')
     ->asUser()
@@ -53,10 +50,8 @@ it('GETS a specific character')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
-
+        ],
+    ]);
 
 it('UPDATES a valid character')
     ->asUser()
@@ -64,8 +59,7 @@ it('UPDATES a valid character')
     ->withCharacters()
     ->putJson('/api/1.0/campaigns/1/characters/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('UPDATES a valid character without a name')
     ->asUser()
@@ -73,24 +67,21 @@ it('UPDATES a valid character without a name')
     ->withCharacters()
     ->putJson('/api/1.0/campaigns/1/characters/1', ['type' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['type' => 'Magic'])
-;
+    ->assertJsonFragment(['type' => 'Magic']);
 
 it('DELETES a character')
     ->asUser()
     ->withCampaign()
     ->withCharacters()
     ->delete('/api/1.0/campaigns/1/characters/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid character')
     ->asUser()
     ->withCampaign()
     ->withCharacters()
     ->delete('/api/1.0/campaigns/1/characters/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a character as a player')
     ->asUser()
@@ -98,8 +89,7 @@ it('can GET a character as a player')
     ->withCharacters()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/characters/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
@@ -118,5 +108,4 @@ it('can\'t GET a private character as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/characters/1');
     expect($response->status())
         ->toBe(404);
-})
-;
+});

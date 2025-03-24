@@ -11,7 +11,7 @@ it('setup GET')
             'system[]',
             'is_boosted',
             'is_open',
-            'genre'
+            'genre',
         ],
         'featured' => [
             [
@@ -23,10 +23,9 @@ it('setup GET')
                 'followers',
                 'locale',
                 'system',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('public campaigns GET')
     ->asUser()
@@ -44,11 +43,9 @@ it('public campaigns GET')
                 'followers',
                 'locale',
                 'system',
-            ]
-        ]
-    ])
-;
-
+            ],
+        ],
+    ]);
 
 it('filtering GET 0 results')
     ->asUser()
@@ -56,7 +53,6 @@ it('filtering GET 0 results')
     ->get('/api/public/campaigns?is_boosted=1')
     ->assertStatus(200)
     ->assertJsonCount(0, 'campaigns');
-;
 
 it('filtering premium GET')
     ->asUser()
@@ -74,22 +70,19 @@ it('filtering premium GET')
                 'followers',
                 'locale',
                 'system',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 it('filtering locale GET')
     ->asUser()
     ->withCampaign(['visibility_id' => App\Models\Campaign::VISIBILITY_PUBLIC, 'boost_count' => 3, 'locale' => 'fr'])
     ->get('/api/public/campaigns?language=fr')
     ->assertStatus(200)
     ->assertJsonCount(1, 'campaigns');
-;
 
 it('public campaigns GET buut no results due to is_discreet')
     ->asUser()
     ->withCampaign(['is_discreet' => true])
     ->get('/api/public/campaigns')
     ->assertStatus(200)
-    ->assertJsonCount(0, 'campaigns')
-;
+    ->assertJsonCount(0, 'campaigns');

@@ -6,23 +6,21 @@ it('POSTS an invalid note form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/notes', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new note')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/notes', [
-        'name' => fake()->name()
+        'name' => fake()->name(),
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all notes')
     ->asUser()
@@ -37,10 +35,9 @@ it('GETS all notes')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific note')
     ->asUser()
@@ -53,9 +50,8 @@ it('GETS a specific note')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid note')
     ->asUser()
@@ -63,8 +59,7 @@ it('UPDATES a valid note')
     ->withNotes()
     ->putJson('/api/1.0/campaigns/1/notes/1', ['name' => 'Shopping List'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Shopping List'])
-;
+    ->assertJsonFragment(['name' => 'Shopping List']);
 
 it('UPDATES a valid note without a name')
     ->asUser()
@@ -72,24 +67,21 @@ it('UPDATES a valid note without a name')
     ->withNotes()
     ->putJson('/api/1.0/campaigns/1/notes/1', ['type' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['type' => 'Magic'])
-;
+    ->assertJsonFragment(['type' => 'Magic']);
 
 it('DELETES a note')
     ->asUser()
     ->withCampaign()
     ->withNotes()
     ->delete('/api/1.0/campaigns/1/notes/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid note')
     ->asUser()
     ->withCampaign()
     ->withNotes()
     ->delete('/api/1.0/campaigns/1/notes/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a note as a player')
     ->asUser()
@@ -97,8 +89,7 @@ it('can GET a note as a player')
     ->withNotes()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/notes/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
@@ -117,5 +108,4 @@ it('can\'t GET a private note as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/notes/1');
     expect($response->status())
         ->toBe(404);
-})
-;
+});

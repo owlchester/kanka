@@ -6,8 +6,7 @@ it('POSTS an invalid conversation form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/conversations', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new conversation')
     ->asUser()
@@ -21,9 +20,8 @@ it('POSTS a new conversation')
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all conversations')
     ->asUser()
@@ -38,10 +36,9 @@ it('GETS all conversations')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific conversation')
     ->asUser()
@@ -54,9 +51,8 @@ it('GETS a specific conversation')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid conversation')
     ->asUser()
@@ -64,8 +60,7 @@ it('UPDATES a valid conversation')
     ->withConversations()
     ->putJson('/api/1.0/campaigns/1/conversations/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('UPDATES a valid conversation without a name')
     ->asUser()
@@ -73,24 +68,21 @@ it('UPDATES a valid conversation without a name')
     ->withConversations()
     ->putJson('/api/1.0/campaigns/1/conversations/1', ['type' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['type' => 'Magic'])
-;
+    ->assertJsonFragment(['type' => 'Magic']);
 
 it('DELETES a conversation')
     ->asUser()
     ->withCampaign()
     ->withConversations()
     ->delete('/api/1.0/campaigns/1/conversations/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid conversation')
     ->asUser()
     ->withCampaign()
     ->withConversations()
     ->delete('/api/1.0/campaigns/1/conversations/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a conversation as a player')
     ->asUser()
@@ -98,8 +90,7 @@ it('can GET a conversation as a player')
     ->withConversations()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/conversations/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
@@ -118,5 +109,4 @@ it('can\'t GET a private conversation as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/conversations/1');
     expect($response->status())
         ->toBe(404);
-})
-;
+});

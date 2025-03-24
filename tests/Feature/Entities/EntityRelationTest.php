@@ -5,8 +5,7 @@ it('POSTS an invalid relations form')
     ->withCampaign()
     ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/entities/1/relations', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new relation')
     ->asUser()
@@ -26,10 +25,9 @@ it('POSTS a new relation')
             [
                 'id',
                 'owner_id',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS all relations')
     ->asUser()
@@ -43,10 +41,9 @@ it('GETS all relations')
             [
                 'id',
                 'owner_id',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific relation')
     ->asUser()
@@ -59,9 +56,8 @@ it('GETS a specific relation')
         'data' => [
             'id',
             'owner_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid relation')
     ->asUser()
@@ -70,8 +66,7 @@ it('UPDATES a valid relation')
     ->withRelations()
     ->putJson('/api/1.0/campaigns/1/entities/1/relations/1', ['attitude' => 100])
     ->assertStatus(200)
-    ->assertJsonFragment(['attitude' => 100])
-;
+    ->assertJsonFragment(['attitude' => 100]);
 
 it('DELETES a relation')
     ->asUser()
@@ -79,8 +74,7 @@ it('DELETES a relation')
     ->withCharacters()
     ->withRelations()
     ->delete('/api/1.0/campaigns/1/entities/1/relations/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid relation')
     ->asUser()
@@ -88,5 +82,4 @@ it('DELETES an invalid relation')
     ->withCharacters()
     ->withRelations()
     ->delete('/api/1.0/campaigns/1/entities/1/relations/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);

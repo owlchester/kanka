@@ -104,8 +104,7 @@ return [
                 . 'tfoot[class|style|id],'
                 . 'tr[class|style|id],'
                 . 'td[class|style|abbr|colspan|rowspan|title|align],'
-                . 'th[class|style|abbr|colspan|rowspan|title|align],'
-            ,
+                . 'th[class|style|abbr|colspan|rowspan|title|align],',
 
             /*
             |--------------------------------------------------------------------------
@@ -139,7 +138,7 @@ return [
             'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,' .
                 'color,background-color,text-align,width,height,border,border-collapse,max-width,max-height,' .
                 'border-style,border-color,margin-left,margin-right,margin,padding,' .
-                //'background-image,background-repeat,' .
+                // 'background-image,background-repeat,' .
                 'list-style-type',
 
             /*
@@ -171,11 +170,11 @@ return [
             */
 
             'AutoFormat.RemoveEmpty' => false,
-            //'AutoFormat.RemoveEmpty.Predicate' => ['iframe' => false],
+            // 'AutoFormat.RemoveEmpty.Predicate' => ['iframe' => false],
 
             // To allow max-width and max-height on images. This might cause imageattacks?
-            'HTML.MaxImgLength'   => null,
-            'CSS.MaxImgLength'   => null,
+            'HTML.MaxImgLength' => null,
+            'CSS.MaxImgLength' => null,
 
             // Allow links that target blank
             'Attr.AllowedFrameTargets' => ['_blank'],
@@ -184,43 +183,42 @@ return [
             'Attr.EnableID' => true,
 
             // Iframes to vimeo and youtube
-            //'HTML.SafeIframe' => true,
-            //'URI.SafeIframeRegexp' => '%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
+            // 'HTML.SafeIframe' => true,
+            // 'URI.SafeIframeRegexp' => '%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
             'Filter.YouTube' => true,
 
-            "HTML.SafeIframe" => true,
-            "URI.SafeIframeRegexp" => "%^(https?:)?//("
+            'HTML.SafeIframe' => true,
+            'URI.SafeIframeRegexp' => '%^(https?:)?//('
                 . "www\.youtube(?:-nocookie)?\.com/embed/|"
                 . "player\.vimeo\.com/video/|"
                 . "open\.spotify\.com/embed|"
-                . "docs.google.com/|"
-                . "drive.google.com/|"
-                . "www.google.com/maps/embed|"
-                . "calendar.google.com/calendar/embed|"
-                . "snazzymaps.com/embed|"
-                . "w.soundcloud.com/player/|"
+                . 'docs.google.com/|'
+                . 'drive.google.com/|'
+                . 'www.google.com/maps/embed|'
+                . 'calendar.google.com/calendar/embed|'
+                . 'snazzymaps.com/embed|'
+                . 'w.soundcloud.com/player/|'
                 . "www\.dndbeyond\.com/|"
                 . "www\.aonprd\.com/|"
                 . "2e\.aonprd\.com/|"
                 . "www\.aonsrd\.com/|"
                 . "p3d\.in/e/|"
                 . "api\.mapbox\.com/|"
-                . "app.box.com/embed/"
+                . 'app.box.com/embed/'
                 . "discord\.com/|"
                 . "discord\.gg/|"
                 . "bardly\.io/|"
-                . ")%",
+                . ')%',
         ],
 
-
         'tooltips' => [
-            //<p>', '<table>', '<tr>', '<th>', '<td>', '<i>', '<span>', '<div>', '<img>
+            // <p>', '<table>', '<tr>', '<th>', '<td>', '<i>', '<span>', '<div>', '<img>
             'allowed' => [
                 'a',
                 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'table', 'tr', 'th', 'td',
-                'i', 'span', 'b', 'strong', 'div', 'img'
+                'i', 'span', 'b', 'strong', 'div', 'img',
             ],
-        ]
+        ],
     ],
 
     /*

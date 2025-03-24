@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\TimelineEra;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TimelineEraFactory extends Factory
 {
@@ -14,6 +14,7 @@ class TimelineEraFactory extends Factory
      * @var string
      */
     protected $model = TimelineEra::class;
+
     /**
      * Define the model's default state.
      *

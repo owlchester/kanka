@@ -5,24 +5,22 @@ it('POSTS an invalid quest element form')
     ->withCampaign()
     ->withQuests()
     ->postJson('/api/1.0/campaigns/1/quests/1/quest_elements', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new quest element')
     ->asUser()
     ->withCampaign()
     ->withQuests()
     ->postJson('/api/1.0/campaigns/1/quests/1/quest_elements', [
-        'name' => fake()->name()
+        'name' => fake()->name(),
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all quest elements')
     ->asUser()
@@ -37,10 +35,9 @@ it('GETS all quest elements')
                 'id',
                 'entity_id',
                 'name',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific quest element')
     ->asUser()
@@ -53,9 +50,8 @@ it('GETS a specific quest element')
         'data' => [
             'id',
             'name',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid quest element')
     ->asUser()
@@ -64,8 +60,7 @@ it('UPDATES a valid quest element')
     ->withQuestElements()
     ->putJson('/api/1.0/campaigns/1/quests/1/quest_elements/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('UPDATES a valid quest element without a name')
     ->asUser()
@@ -74,8 +69,7 @@ it('UPDATES a valid quest element without a name')
     ->withQuestElements()
     ->putJson('/api/1.0/campaigns/1/quests/1/quest_elements/1', ['entity_id' => 2, 'role' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['role' => 'Magic'])
-;
+    ->assertJsonFragment(['role' => 'Magic']);
 
 it('UPDATES a valid quest element without a name and fails')
     ->asUser()
@@ -83,8 +77,7 @@ it('UPDATES a valid quest element without a name and fails')
     ->withQuests()
     ->withQuestElements()
     ->putJson('/api/1.0/campaigns/1/quests/1/quest_elements/1', ['role' => 'Magic'])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('DELETES a quest element')
     ->asUser()
@@ -92,9 +85,7 @@ it('DELETES a quest element')
     ->withQuests()
     ->withQuestElements()
     ->delete('/api/1.0/campaigns/1/quests/1/quest_elements/1')
-    ->assertStatus(204)
-;
-
+    ->assertStatus(204);
 
 it('DELETES an invalid quest element')
     ->asUser()
@@ -102,8 +93,7 @@ it('DELETES an invalid quest element')
     ->withQuests()
     ->withQuestElements()
     ->delete('/api/1.0/campaigns/1/quests/1/quest_elements/1000')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a quest element as a player')
     ->asUser()
@@ -112,5 +102,4 @@ it('can GET a quest element as a player')
     ->withQuestElements()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/quests/1/quest_elements/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);

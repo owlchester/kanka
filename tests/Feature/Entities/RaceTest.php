@@ -6,23 +6,21 @@ it('POSTS an invalid race form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/races', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new race')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/races', [
-        'name' => fake()->name()
+        'name' => fake()->name(),
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all races')
     ->asUser()
@@ -37,10 +35,9 @@ it('GETS all races')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific race')
     ->asUser()
@@ -53,9 +50,8 @@ it('GETS a specific race')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid race')
     ->asUser()
@@ -63,8 +59,7 @@ it('UPDATES a valid race')
     ->withRaces()
     ->putJson('/api/1.0/campaigns/1/races/1', ['name' => 'Goblin'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Goblin'])
-;
+    ->assertJsonFragment(['name' => 'Goblin']);
 
 it('UPDATES a valid race without a name')
     ->asUser()
@@ -72,24 +67,21 @@ it('UPDATES a valid race without a name')
     ->withRaces()
     ->putJson('/api/1.0/campaigns/1/races/1', ['type' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['type' => 'Magic'])
-;
+    ->assertJsonFragment(['type' => 'Magic']);
 
 it('DELETES a race')
     ->asUser()
     ->withCampaign()
     ->withRaces()
     ->delete('/api/1.0/campaigns/1/races/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid race')
     ->asUser()
     ->withCampaign()
     ->withRaces()
     ->delete('/api/1.0/campaigns/1/races/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a race as a player')
     ->asUser()
@@ -97,8 +89,7 @@ it('can GET a race as a player')
     ->withRaces()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/races/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
@@ -117,5 +108,4 @@ it('can\'t GET a private race as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/races/1');
     expect($response->status())
         ->toBe(404);
-})
-;
+});

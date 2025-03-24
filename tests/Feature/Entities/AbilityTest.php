@@ -6,16 +6,15 @@ it('POSTS a new ability')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/abilities', [
-        'name' => fake()->name()
+        'name' => fake()->name(),
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all abilities')
     ->asUser()
@@ -30,10 +29,9 @@ it('GETS all abilities')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific ability')
     ->asUser()
@@ -46,9 +44,8 @@ it('GETS a specific ability')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid ability')
     ->asUser()
@@ -56,8 +53,7 @@ it('UPDATES a valid ability')
     ->withAbilities()
     ->putJson('/api/1.0/campaigns/1/abilities/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('UPDATES a valid ability without a name')
     ->asUser()
@@ -65,24 +61,21 @@ it('UPDATES a valid ability without a name')
     ->withAbilities()
     ->putJson('/api/1.0/campaigns/1/abilities/1', ['type' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['type' => 'Magic'])
-;
+    ->assertJsonFragment(['type' => 'Magic']);
 
 it('DELETES a ability')
     ->asUser()
     ->withCampaign()
     ->withAbilities()
     ->delete('/api/1.0/campaigns/1/abilities/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid ability')
     ->asUser()
     ->withCampaign()
     ->withAbilities()
     ->delete('/api/1.0/campaigns/1/abilities/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a ability as a player')
     ->asUser()
@@ -90,8 +83,7 @@ it('can GET a ability as a player')
     ->withAbilities()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/abilities/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
@@ -110,5 +102,4 @@ it('can\'t GET a private ability as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/abilities/1');
     expect($response->status())
         ->toBe(404);
-})
-;
+});

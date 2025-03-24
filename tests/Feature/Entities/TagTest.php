@@ -6,24 +6,22 @@ it('POSTS an invalid tag form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/tags', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new tag')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/tags', [
         'name' => fake()->name(),
-        'is_hidden' => 0
+        'is_hidden' => 0,
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all tags')
     ->asUser()
@@ -38,10 +36,9 @@ it('GETS all tags')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific tag')
     ->asUser()
@@ -54,9 +51,8 @@ it('GETS a specific tag')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid tag')
     ->asUser()
@@ -64,8 +60,7 @@ it('UPDATES a valid tag')
     ->withTags()
     ->putJson('/api/1.0/campaigns/1/tags/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('UPDATES a valid tag without a name')
     ->asUser()
@@ -73,24 +68,21 @@ it('UPDATES a valid tag without a name')
     ->withTags()
     ->putJson('/api/1.0/campaigns/1/tags/1', ['type' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['type' => 'Magic'])
-;
+    ->assertJsonFragment(['type' => 'Magic']);
 
 it('DELETES a tag')
     ->asUser()
     ->withCampaign()
     ->withTags()
     ->delete('/api/1.0/campaigns/1/tags/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid tag')
     ->asUser()
     ->withCampaign()
     ->withTags()
     ->delete('/api/1.0/campaigns/1/tags/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a tag as a player')
     ->asUser()
@@ -98,8 +90,7 @@ it('can GET a tag as a player')
     ->withTags()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/tags/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
@@ -118,5 +109,4 @@ it('can\'t GET a private tag as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/tags/1');
     expect($response->status())
         ->toBe(404);
-})
-;
+});

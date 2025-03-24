@@ -6,8 +6,7 @@ it('POSTS an invalid conversation participant form')
     ->withConversations()
     ->postJson('/api/1.0/campaigns/1/conversations/1/conversation_participants', [
     ])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new conversation participant')
     ->asUser()
@@ -23,9 +22,8 @@ it('POSTS a new conversation participant')
         'data' => [
             'character_id',
             'conversation_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all conversation participants')
     ->asUser()
@@ -40,10 +38,9 @@ it('GETS all conversation participants')
             [
                 'character_id',
                 'conversation_id',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific conversation participant')
     ->asUser()
@@ -57,9 +54,8 @@ it('GETS a specific conversation participant')
         'data' => [
             'character_id',
             'conversation_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid conversation participant')
     ->asUser()
@@ -69,8 +65,7 @@ it('UPDATES a valid conversation participant')
     ->withConversationParticipants()
     ->putJson('/api/1.0/campaigns/1/conversations/1/conversation_participants/1', ['character_id' => 2])
     ->assertStatus(200)
-    ->assertJsonFragment(['character_id' => 2])
-;
+    ->assertJsonFragment(['character_id' => 2]);
 
 it('DELETES a conversation participant')
     ->asUser()
@@ -79,16 +74,14 @@ it('DELETES a conversation participant')
     ->withCharacters()
     ->withConversationParticipants()
     ->delete('/api/1.0/campaigns/1/conversations/1/conversation_participants/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid conversation participant')
     ->asUser()
     ->withCampaign()
     ->withConversations()
     ->delete('/api/1.0/campaigns/1/conversations/1/conversation_participants/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a conversation as a player')
     ->asUser()
@@ -98,5 +91,4 @@ it('can GET a conversation as a player')
     ->withConversationParticipants()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/conversations/1/conversation_participants/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);

@@ -19,11 +19,11 @@ return [
     'webhooks' => [
         'features' => env('DISCORD_WEBHOOK_FEATURES', null),
     ],
-    'color'   => env('DISCORD_COLOR', '7506394'),
+    'color' => env('DISCORD_COLOR', '7506394'),
 
     'roles' => [
         'owlbear' => 435813101506527233,
         'wyvern' => 805183678153621514,
         'elemental' => 501452722273386496,
-    ]
+    ],
 ];

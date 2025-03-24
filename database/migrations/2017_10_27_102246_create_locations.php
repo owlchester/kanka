@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateLocations extends Migration
 {
@@ -42,7 +42,6 @@ class CreateLocations extends Migration
             $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
             $table->foreign('parent_location_id')->references('id')->on('locations')->nullOnDelete();
         });
-
 
         Schema::create('location_attributes', function (Blueprint $table) {
             $table->increments('id');
