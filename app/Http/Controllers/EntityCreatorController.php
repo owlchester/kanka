@@ -427,7 +427,7 @@ class EntityCreatorController extends Controller
             // Create the tag if the user has permission to do so
             if (empty($tag) && $tagService->isAllowed()) {
                 $tag = $tagService->create($id);
-                $tags[$number] = (string) $tag->id;
+                $tags[$number] = (int) $tag->id;
             } elseif (empty($tag) && ! $canCreateTags) {
                 unset($tags[$number]);
             }
