@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Api;
 
 use App\Models\EntityTag;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityTagResource extends JsonResource
@@ -10,17 +11,15 @@ class EntityTagResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return array<string, mixed>
      */
-    public function toArray($request)
+    public function toArray(Request $request): array
     {
         /** @var EntityTag $model */
         $model = $this->resource;
-
         return [
-            'id' => $model->pivot->id,
-            'tag_id' => $model->id,
+            'id' => $model->id,
+            'tag_id' => $model->tag_id,
         ];
     }
 }

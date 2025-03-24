@@ -26,8 +26,7 @@ You can get a list of all the entity-tags of an entity by using the following en
     "data": [
         {
             "id": 1,
-            "entity_id": 34,
-            "tag_id": 12
+            "tag_id": 12,
         }
     ]
 }
@@ -48,8 +47,7 @@ To get the details of a single entity-tag, use the following endpoint.
 {
     "data": {
         "id": 1,
-        "entity_id": 34,
-        "tag_id": 12
+        "tag_id": "12"
     }
 }
 ```

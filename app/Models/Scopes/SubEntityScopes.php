@@ -142,7 +142,7 @@ trait SubEntityScopes
             'entity.entityType',
             'entity.tags',
             'entity.posts', 'entity.posts.permissions',
-            'entity.events',
+            'entity.reminders',
             'entity.relationships', 'entity.attributes', 'entity.inventories', 'entity.inventories',
             'entity.assets',
             'entity.abilities',
