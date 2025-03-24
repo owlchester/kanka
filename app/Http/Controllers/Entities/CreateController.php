@@ -101,7 +101,7 @@ class CreateController extends Controller
                 $route = route('entities.show', [$campaign, $entity]);
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-copy')) {
-                $route = route('entities..create', [$campaign, $entityType, 'copy' => $entity->id]);
+                $route = route('entities.create', [$campaign, $entityType, 'copy' => $entity->id]);
                 return response()->redirectTo($route);
             }
 

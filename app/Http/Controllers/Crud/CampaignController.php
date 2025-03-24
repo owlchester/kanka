@@ -61,7 +61,7 @@ class CampaignController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-                ->to(app()->getLocale() . '/campaign/' . $campaign->id . '/campaigns/' . $campaign->id . '/edit')
+                ->route('campaigns.edit', $campaign)
                 ->with('success', __($this->view . '.create.success', ['name' => $campaign->name]));
         } elseif ($request->has('submit-new')) {
             return redirect()
