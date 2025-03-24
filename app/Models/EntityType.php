@@ -181,7 +181,7 @@ class EntityType extends Model
 
     public function isStandard(): bool
     {
-        return !$this->isSpecial();
+        return ! $this->isSpecial();
     }
 
     public function isEnabled(): bool

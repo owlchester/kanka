@@ -32,13 +32,13 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Journal extends MiscModel
 {
     use Acl;
-    use HasReminder;
     use ExportableTrait;
     use HasCampaign;
     use HasFactory;
     use HasFilters;
     use HasLocation;
     use HasRecursiveRelationships;
+    use HasReminder;
     use Nested;
     use Sanitizable;
     use SoftDeletes;

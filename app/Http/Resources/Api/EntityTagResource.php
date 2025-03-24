@@ -17,6 +17,7 @@ class EntityTagResource extends JsonResource
     {
         /** @var EntityTag $model */
         $model = $this->resource;
+
         return [
             'id' => $model->id,
             'tag_id' => $model->tag_id,

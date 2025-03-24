@@ -28,7 +28,6 @@ use App\Models\DiceRollResult;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
-use App\Models\EntityEvent;
 use App\Models\Event;
 use App\Models\Family;
 use App\Models\Image;

@@ -125,9 +125,9 @@ class ReminderController extends Controller
         ];
         $entity->reminders()->create($data);
 
-//        $reminder = new Reminder($request->all());
-//        $reminder->entity_id = $entity->id;
-//        $reminder->save();
+        //        $reminder = new Reminder($request->all());
+        //        $reminder->entity_id = $entity->id;
+        //        $reminder->save();
 
         $next = request()->post('next', '0');
         if ($next == 'entity.events') {

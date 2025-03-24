@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Requests\StoreEntityTag as Request;
-use App\Http\Resources\EntityTagResource as Resource;
 use App\Http\Resources\Api\EntityTagResource as ApiResource;
+use App\Http\Resources\EntityTagResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityTag;

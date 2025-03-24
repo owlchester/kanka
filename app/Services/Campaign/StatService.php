@@ -5,7 +5,6 @@ namespace App\Services\Campaign;
 use App\Models\Attribute;
 use App\Models\Bookmark;
 use App\Models\EntityAbility;
-use App\Models\EntityEvent;
 use App\Models\Inventory;
 use App\Models\Post;
 use App\Models\Reminder;

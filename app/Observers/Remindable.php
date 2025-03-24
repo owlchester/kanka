@@ -4,9 +4,9 @@ namespace App\Observers;
 
 use App\Models\Calendar;
 use App\Models\Entity;
-use App\Models\Reminder;
 use App\Models\EntityEventType;
 use App\Models\Quest;
+use App\Models\Reminder;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 

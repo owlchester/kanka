@@ -2,7 +2,6 @@
 
 namespace App\Models\Concerns;
 
-use App\Models\EntityEvent;
 use App\Models\Reminder;
 use App\Observers\Remindable;
 use Illuminate\Support\Arr;
