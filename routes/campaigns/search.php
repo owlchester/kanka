@@ -23,7 +23,6 @@ Route::get('/w/{campaign}/search/ability-entities', 'Search\LiveController@abili
 Route::get('/w/{campaign}/search/organisation-member', 'Search\LiveController@organisationMembers')->name('search.organisation-member');
 Route::get('/w/{campaign}/search/months', 'Search\CalendarController@months')->name('search.calendar-months');
 
-
 Route::get('/w/{campaign}/search/type/{entity_type}', [App\Http\Controllers\Search\ListController::class, 'index'])->name('search-list');
 
 Route::get('/w/{campaign}/search/live', [App\Http\Controllers\Search\LiveController::class, 'index'])->name('search.live');

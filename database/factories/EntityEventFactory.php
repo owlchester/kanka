@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
+// use Faker\Generator as Faker;
 use App\Models\Reminder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,6 +14,7 @@ class EntityEventFactory extends Factory
      * @var string
      */
     protected $model = Reminder::class;
+
     /**
      * Define the model's default state.
      *

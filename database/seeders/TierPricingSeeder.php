@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Enums\PricingPeriod;
 use App\Models\Tier;
 use App\Models\TierPrice;
 use Illuminate\Database\Seeder;
-use App\Enums\PricingPeriod;
 
 class TierPricingSeeder extends Seeder
 {
@@ -19,6 +19,7 @@ class TierPricingSeeder extends Seeder
         $this->owlbear()->wyvern()->elemental();
 
     }
+
     protected function owlbear(): self
     {
         /** @var Tier $tier */
@@ -53,8 +54,10 @@ class TierPricingSeeder extends Seeder
             'tier_id' => $tier->id,
             'stripe_id' => config('subscription.owlbear.brl.yearly'),
         ]);
+
         return $this;
     }
+
     protected function wyvern(): self
     {
         /** @var Tier $tier */
@@ -89,6 +92,7 @@ class TierPricingSeeder extends Seeder
             'tier_id' => $tier->id,
             'stripe_id' => config('subscription.wyvern.brl.yearly'),
         ]);
+
         return $this;
     }
 
@@ -126,6 +130,7 @@ class TierPricingSeeder extends Seeder
             'tier_id' => $tier->id,
             'stripe_id' => config('subscription.elemental.brl.yearly'),
         ]);
+
         return $this;
     }
 }

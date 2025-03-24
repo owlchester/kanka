@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\CampaignStyle;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CampaignStyleFactory extends Factory
 {
@@ -14,6 +14,7 @@ class CampaignStyleFactory extends Factory
      * @var string
      */
     protected $model = CampaignStyle::class;
+
     /**
      * Define the model's default state.
      *
@@ -25,7 +26,7 @@ class CampaignStyleFactory extends Factory
             'name' => fake()->text(10),
             'content' => fake()->text(50),
             'is_enabled' => false,
-            'is_theme' => false
+            'is_theme' => false,
         ];
     }
 }

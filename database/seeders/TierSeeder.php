@@ -14,7 +14,7 @@ class TierSeeder extends Seeder
     public function run()
     {
         $tier = Tier::firstOrNew(['name' => Pledge::KOBOLD]);
-        if (!$tier->exists) {
+        if (! $tier->exists) {
             $tier->fill([
                 'code' => 'kobold',
                 'name' => Pledge::KOBOLD,
@@ -25,7 +25,7 @@ class TierSeeder extends Seeder
         }
 
         $tier = Tier::firstOrNew(['name' => Pledge::OWLBEAR]);
-        if (!$tier->exists) {
+        if (! $tier->exists) {
             $tier->fill([
                 'code' => 'owlbear',
                 'name' => Pledge::OWLBEAR,
@@ -36,7 +36,7 @@ class TierSeeder extends Seeder
         }
 
         $tier = Tier::firstOrNew(['name' => Pledge::WYVERN]);
-        if (!$tier->exists) {
+        if (! $tier->exists) {
             $tier->fill([
                 'code' => 'wyvern',
                 'name' => Pledge::WYVERN,
@@ -47,7 +47,7 @@ class TierSeeder extends Seeder
         }
 
         $tier = Tier::firstOrNew(['name' => Pledge::ELEMENTAL]);
-        if (!$tier->exists) {
+        if (! $tier->exists) {
             $tier->fill([
                 'code' => 'elemental',
                 'name' => Pledge::ELEMENTAL,

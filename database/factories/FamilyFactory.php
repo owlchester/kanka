@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\Family;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class FamilyFactory extends Factory
 {
@@ -14,6 +14,7 @@ class FamilyFactory extends Factory
      * @var string
      */
     protected $model = Family::class;
+
     /**
      * Define the model's default state.
      *

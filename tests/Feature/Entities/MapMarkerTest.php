@@ -5,8 +5,7 @@ it('POSTS an invalid map marker form')
     ->withCampaign()
     ->withMaps()
     ->postJson('/api/1.0/campaigns/1/maps/1/map_markers', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new map marker')
     ->asUser()
@@ -25,9 +24,8 @@ it('POSTS a new map marker')
         'data' => [
             'id',
             'map_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all maps markers')
     ->asUser()
@@ -42,10 +40,9 @@ it('GETS all maps markers')
                 'id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific map marker')
     ->asUser()
@@ -59,9 +56,8 @@ it('GETS a specific map marker')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid map marker')
     ->asUser()
@@ -70,8 +66,7 @@ it('UPDATES a valid map marker')
     ->withMapMarkers()
     ->putJson('/api/1.0/campaigns/1/maps/1/map_markers/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('DELETES a map marker')
     ->asUser()
@@ -79,8 +74,7 @@ it('DELETES a map marker')
     ->withMaps()
     ->withMapMarkers()
     ->delete('/api/1.0/campaigns/1/maps/1/map_markers/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid map marker')
     ->asUser()
@@ -88,8 +82,7 @@ it('DELETES an invalid map marker')
     ->withMaps()
     ->withMapMarkers()
     ->delete('/api/1.0/campaigns/1/maps/1/map_markers/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a map marker as a player')
     ->asUser()
@@ -98,5 +91,4 @@ it('can GET a map marker as a player')
     ->withMapMarkers()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/maps/1/map_markers/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);

@@ -19,7 +19,7 @@ class ThemesTableSeeder extends Seeder
             $type = \App\Models\Theme::firstOrNew([
                 'name' => $theme,
             ]);
-            if (!$type->exists) {
+            if (! $type->exists) {
                 $type->fill([
                     'name' => $theme,
                 ])->save();

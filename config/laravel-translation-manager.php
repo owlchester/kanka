@@ -15,7 +15,7 @@ return [
      * @type array of strings
      */
     'locales' => [
-        //'ca',
+        // 'ca',
         'en',
         'en-US',
         'de',
@@ -27,15 +27,15 @@ return [
         'pt-BR',
         'ru',
         'sk',
-        //'he',
-        //'hr',
+        // 'he',
+        // 'hr',
         'pl',
-        //'el',
-        //'tr',
-        //'gl',
-        //'nb',
-        //'sv',
-        //'zh-CN',
+        // 'el',
+        // 'tr',
+        // 'gl',
+        // 'nb',
+        // 'sv',
+        // 'zh-CN',
         'uk',
     ],
     /**
@@ -60,13 +60,13 @@ return [
     /**
      * Enable management of translations beyond just editing and command line manipulations
      *
-     * @type boolean
+     * @type bool
      */
     'admin_enabled' => true,
     /**
      * use cookies to store user locale
      *
-     * @type boolean
+     * @type bool
      */
     'use_cookies' => false,
     /**
@@ -83,7 +83,7 @@ return [
      * If not defined then by locale access is disabled and all locales can be
      * modified by any editor.
      *
-     * @type boolean
+     * @type bool
      */
     'user_locales_enabled' => true,
     /**
@@ -118,9 +118,8 @@ return [
      * if the user can manage per locale access with an array of objects with: id, email,
      * and name fields that correspond to the list of users to be displayed in the web UI
      * to allow the current admin user to manage per locale access.
-     *
      */
-    //'user_list_provider' => null,
+    // 'user_list_provider' => null,
     /**
      * Specify export formatting options:
      *
@@ -134,7 +133,7 @@ return [
      */
     'export_format' => [
         'PRESERVE_EMPTY_ARRAYS',
-        //'USE_QUOTES',
+        // 'USE_QUOTES',
         'USE_HEREDOC',
         'USE_SHORT_ARRAY',
         'SORT_KEYS',
@@ -142,7 +141,7 @@ return [
     /**
      * Enable mismatch dashboard
      *
-     * @type boolean
+     * @type bool
      */
     'mismatch_enabled' => false,
     /**
@@ -164,7 +163,7 @@ return [
         'tutorials.home',
         'tutorials.characters',
         'openai',
-        'front.testimonials'
+        'front.testimonials',
     ],
     /**
      * Exclude specific groups from Laravel Translation Manager in page edit mode.
@@ -173,7 +172,7 @@ return [
      * @type array
      */
     'exclude_page_edit_groups' => [
-        //'page-titles',
+        // 'page-titles',
         'reminders',
         'validation',
         'pagination',
@@ -182,14 +181,14 @@ return [
     /**
      * determines whether missing keys are logged
      *
-     * @type boolean
+     * @type bool
      */
     'log_missing_keys' => false,
 
     /**
      * determines whether usage of keys is logged, requires missing keys to be logged too
      *
-     * @type boolean
+     * @type bool
      */
     'log_key_usage_info' => false,
 
@@ -204,12 +203,11 @@ return [
      * 10 - means 1 in 10 users
      * 100 - 1 in a 100 users
      * 1000 ....
-     *
      */
     'missing_keys_lottery' => 0, // 1 in 100 of users will have the missing translation keys logged.
 
     /**
-     * @type int        0 - as usual, write out files and set status for translations to SAVED,
+     * @type int 0 - as usual, write out files and set status for translations to SAVED,
      *
      *                  1 - on publish will only copy value to saved_value in the database and set the status to SAVED_CACHED
      *                  and add the changed keys to the translator cache so that the correct translation will be used. Used to
@@ -226,8 +224,8 @@ return [
     'indatabase_publish' => 0,
 
     /**
-     * @type array      list of alternate database connections and their properties indexed by app()->environment() value,
-     *                  default connection settings are taken from config, so only add alternate connections
+     * @type array list of alternate database connections and their properties indexed by app()->environment() value,
+     *             default connection settings are taken from config, so only add alternate connections
      *
      *                  If user_list_connection is missing, null or empty then the connection will also be used
      *                  to obtain the user list for user locale management, otherwise the given connection name will be user
@@ -244,35 +242,31 @@ return [
      *                      they would be after publishing only to cache.
      */
     'db_connections' => [
-        //'local' => array(
+        // 'local' => array(
         //    'mysql_prd' => array(
         //        'description' => 'production',
         //        'indatabase_publish' => 2,
         //    ),
-        //),
+        // ),
     ],
 
     /**
      * used to provide an alternate default connection name for translation
      * tables
      *
-     * @type string     connection name to use for the default connection
+     * @type string connection name to use for the default connection
      *
      * if blank, null or not defined then default connection will be used.
-     *
      */
-
     'default_connection' => null,
 
     /**
      * used to provide the Yandex key for use in automatic Yandex translations
      *
-     * @type string     Yandex translation key
+     * @type string Yandex translation key
      *
      * This key is free to obtain and use but is required to enable Yandex translations. Visit: https://tech.yandex.com/translate/
-     *
      */
-
     'yandex_translator_key' => '',
     /**
      * used to provide configuration on where the translation files are stored and where to write them out.
@@ -403,7 +397,7 @@ return [
          * place from the rest of the packages. So there is a way to just hard code the group to any string.
          */
         'nesbot/carbon' => [
-            '__merge' => ['vendor', 'workbench',],
+            '__merge' => ['vendor', 'workbench'],
             'files' => 'src/Carbon/Lang/{locale}',
             'vars' => [
                 '{group}' => 'carbon',
@@ -411,12 +405,10 @@ return [
         ],
     ],
     /**
-     *
      * Provide the prefix for the root of the zip file
      * if a path from language_dirs does not start with this prefix then language files exported
      * for that part will include the full path. Therefore define the most common root path
      * / means application root.
-     *
      */
     'zip_root' => '/resources',
 

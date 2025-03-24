@@ -4,13 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        if (!config('logging.enabled')) {
+        if (! config('logging.enabled')) {
             return;
         }
         if (Schema::connection('logs')->hasTable('user_logs')) {
@@ -33,7 +34,7 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        if (!config('logging.enabled')) {
+        if (! config('logging.enabled')) {
             return;
         }
         Schema::dropIfExists('user_logs');

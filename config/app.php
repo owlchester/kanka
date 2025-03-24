@@ -151,13 +151,9 @@ return [
     | version on the routes, so it will take this as the default, or current.
      */
 
-    'api_latest'  => '1',
+    'api_latest' => '1',
 
-    /**
-     *
-     */
     'force_https' => env('APP_FORCE_HTTPS', false),
-
 
     'lazy' => env('APP_LAZY', false),
 
@@ -169,7 +165,6 @@ return [
     /**
      * Leaflet version.
      */
-
     'leaflet_source' => env('LEAFLET_SOURCE', '1.9.4'),
     'leaflet_css' => env('LEAFLET_CSS', 'sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY='),
     'leaflet_js' => env('LEAFLET_JS', 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo='),
@@ -209,7 +204,7 @@ return [
         Illuminate\Redis\RedisServiceProvider::class,
         Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
         Illuminate\Session\SessionServiceProvider::class,
-        //Illuminate\Translation\TranslationServiceProvider::class,
+        // Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
@@ -221,9 +216,9 @@ return [
 
         Vsch\TranslationManager\ManagerServiceProvider::class,
         Vsch\TranslationManager\TranslationServiceProvider::class,
-        //Illuminate\Translation\TranslationServiceProvider::class,
+        // Illuminate\Translation\TranslationServiceProvider::class,
 
-        //RichanFongdasen\EloquentBlameable\ServiceProvider::class,
+        // RichanFongdasen\EloquentBlameable\ServiceProvider::class,
         PragmaRX\Google2FALaravel\ServiceProvider::class,
 
         /*

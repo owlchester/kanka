@@ -5,8 +5,7 @@ it('POSTS an invalid timeline element element form')
     ->withCampaign()
     ->withTimelines()
     ->postJson('/api/1.0/campaigns/1/timelines/1/timeline_elements', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new timeline element')
     ->asUser()
@@ -24,9 +23,8 @@ it('POSTS a new timeline element')
         'data' => [
             'id',
             'name',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all timeline elements')
     ->asUser()
@@ -41,10 +39,9 @@ it('GETS all timeline elements')
             [
                 'id',
                 'name',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific timeline element')
     ->asUser()
@@ -58,9 +55,8 @@ it('GETS a specific timeline element')
         'data' => [
             'id',
             'name',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid timeline element')
     ->asUser()
@@ -70,8 +66,7 @@ it('UPDATES a valid timeline element')
     ->withTimelineElements()
     ->putJson('/api/1.0/campaigns/1/timelines/1/timeline_elements/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('DELETES a timeline element')
     ->asUser()
@@ -80,8 +75,7 @@ it('DELETES a timeline element')
     ->withTimelineEras()
     ->withTimelineElements()
     ->delete('/api/1.0/campaigns/1/timelines/1/timeline_elements/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid timeline')
     ->asUser()
@@ -90,8 +84,7 @@ it('DELETES an invalid timeline')
     ->withTimelineEras()
     ->withTimelineElements()
     ->delete('/api/1.0/campaigns/1/timelines/1/timeline_elements/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a timeline as a player')
     ->asUser()
@@ -101,5 +94,4 @@ it('can GET a timeline as a player')
     ->withTimelineElements()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/timelines/1/timeline_elements/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);

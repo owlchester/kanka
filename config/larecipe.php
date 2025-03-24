@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'docs'        => [
-        'route'   => '/api-docs',
-        'path'    => '/resources/api-docs',
+    'docs' => [
+        'route' => '/api-docs',
+        'path' => '/resources/api-docs',
         'landing' => 'overview',
     ],
 
@@ -31,11 +31,11 @@ return [
     |
     */
 
-    'versions'      => [
-        'default'   => '1.0',
+    'versions' => [
+        'default' => '1.0',
         'published' => [
-            '1.0'
-        ]
+            '1.0',
+        ],
     ],
 
     /*
@@ -54,8 +54,8 @@ return [
     */
 
     'settings' => [
-        'auth'  => false,
-        'ga_id' => config('tracking.ga')
+        'auth' => false,
+        'ga_id' => config('tracking.ga'),
     ],
 
     /*
@@ -71,9 +71,9 @@ return [
     |
     */
 
-    'cache'       => [
+    'cache' => [
         'enabled' => false,
-        'period'  => 60
+        'period' => 60,
     ],
 
     /*
@@ -89,18 +89,18 @@ return [
     |
     */
 
-    'search'            => [
-        'enabled'       => false,
-        'default'       => 'algolia',
-        'engines'       => [
-            'internal'  => [
-                'index' => ['h2', 'h3']
+    'search' => [
+        'enabled' => false,
+        'default' => 'algolia',
+        'engines' => [
+            'internal' => [
+                'index' => ['h2', 'h3'],
             ],
-            'algolia'   => [
-                'key'   => '',
-                'index' => ''
-            ]
-        ]
+            'algolia' => [
+                'key' => '',
+                'index' => '',
+            ],
+        ],
     ],
 
     /*
@@ -115,9 +115,9 @@ return [
     |
     */
 
-    'repository'   => [
+    'repository' => [
         'provider' => 'github',
-        'url'      => 'https://github.com/owlchester/kanka'
+        'url' => 'https://github.com/owlchester/kanka',
     ],
 
     /*
@@ -133,13 +133,13 @@ return [
     |
     */
 
-    'ui'                 => [
-        'fav'            => '/favicon.ico', // e.g.: /fav.png
-        'code_theme'     => 'dark',
-        'show_side_bar'  => true,
-        'colors'         => [
-            'primary'    => '#787AF6',
-            'secondary'  => '#2b9cf2',
+    'ui' => [
+        'fav' => '/favicon.ico', // e.g.: /fav.png
+        'code_theme' => 'dark',
+        'show_side_bar' => true,
+        'colors' => [
+            'primary' => '#787AF6',
+            'secondary' => '#2b9cf2',
         ],
     ],
 
@@ -155,17 +155,17 @@ return [
     |
     */
 
-    'seo'                 => [
-        'author'          => 'Kanka',
-        'description'     => 'Free online worldbuilding and campaign management tool',
-        'keywords'        => 'Kanka api documentation integration discord app',
-        'og'              => [
-            'title'       => 'Kanka API Docs',
-            'type'        => 'article',
-            'url'         => 'kanka.io',
-            'image'       => '',
+    'seo' => [
+        'author' => 'Kanka',
+        'description' => 'Free online worldbuilding and campaign management tool',
+        'keywords' => 'Kanka api documentation integration discord app',
+        'og' => [
+            'title' => 'Kanka API Docs',
+            'type' => 'article',
+            'url' => 'kanka.io',
+            'image' => '',
             'description' => 'Kanka\'s API documentation',
-        ]
+        ],
     ],
 
     /*
@@ -181,14 +181,14 @@ return [
    |
    */
 
-    'forum'                 => [
-        'enabled'           => false,
-        'default'           => 'disqus',
-        'services'          => [
-            'disqus'        => [
+    'forum' => [
+        'enabled' => false,
+        'default' => 'disqus',
+        'services' => [
+            'disqus' => [
                 'site_name' => '', // yoursite.disqus.com
-            ]
-        ]
+            ],
+        ],
     ],
 
     /*
@@ -204,5 +204,5 @@ return [
     */
     'packages' => [
         'path' => 'larecipe-components',
-    ]
+    ],
 ];

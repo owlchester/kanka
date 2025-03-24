@@ -18,7 +18,6 @@ Route::post(
     '\App\Http\Controllers\WebhookController@handleWebhook'
 )->name('cashier.webhook');
 
-
 Route::get('users/{user}', [App\Http\Controllers\User\ProfileController::class, 'show'])->name('users.profile');
 
 Route::get('/_ccapi/country', [App\Http\Controllers\CookieConsentController::class, 'index'])
@@ -28,7 +27,6 @@ Route::get('/frontend-prepare', [App\Http\Controllers\FrontendPrepareController:
 
 Route::get('/_setup', [App\Http\Controllers\SetupController::class, 'index']);
 
-
 Route::model('feature', App\Models\Feature::class);
 Route::get('roadmap', [App\Http\Controllers\Roadmap\RoadmapController::class, 'index'])->name('roadmap');
 Route::get('roadmap/{feature}', [App\Http\Controllers\Roadmap\FeatureController::class, 'show'])->name('roadmap.feature.show');
@@ -37,5 +35,5 @@ Route::post('roadmap/submit', [App\Http\Controllers\Roadmap\FeatureController::c
 
 Route::get('/validation/{userValidation}', [App\Http\Controllers\User\EmailValidationController::class, 'validateEmail'])->name('validation.email');
 
-//Game System Search
+// Game System Search
 Route::get('/search/systems', [App\Http\Controllers\Search\GameSystemSearchController::class, 'index'])->name('search.systems');

@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\MapGroup;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MapGroupFactory extends Factory
 {
@@ -14,6 +14,7 @@ class MapGroupFactory extends Factory
      * @var string
      */
     protected $model = MapGroup::class;
+
     /**
      * Define the model's default state.
      *

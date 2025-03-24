@@ -6,23 +6,21 @@ it('POSTS an invalid item form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/items', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new item')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/items', [
-        'name' => fake()->name()
+        'name' => fake()->name(),
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all items')
     ->asUser()
@@ -37,10 +35,9 @@ it('GETS all items')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific item')
     ->asUser()
@@ -53,9 +50,8 @@ it('GETS a specific item')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid item')
     ->asUser()
@@ -63,8 +59,7 @@ it('UPDATES a valid item')
     ->withItems()
     ->putJson('/api/1.0/campaigns/1/items/1', ['name' => 'Estus Flask'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Estus Flask'])
-;
+    ->assertJsonFragment(['name' => 'Estus Flask']);
 
 it('UPDATES a valid item without a name')
     ->asUser()
@@ -72,24 +67,21 @@ it('UPDATES a valid item without a name')
     ->withItems()
     ->putJson('/api/1.0/campaigns/1/items/1', ['type' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['type' => 'Magic'])
-;
+    ->assertJsonFragment(['type' => 'Magic']);
 
 it('DELETES a item')
     ->asUser()
     ->withCampaign()
     ->withItems()
     ->delete('/api/1.0/campaigns/1/items/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid item')
     ->asUser()
     ->withCampaign()
     ->withItems()
     ->delete('/api/1.0/campaigns/1/items/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a item as a player')
     ->asUser()
@@ -97,8 +89,7 @@ it('can GET a item as a player')
     ->withItems()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/items/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
@@ -117,5 +108,4 @@ it('can\'t GET a private item as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/items/1');
     expect($response->status())
         ->toBe(404);
-})
-;
+});

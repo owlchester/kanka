@@ -36,5 +36,4 @@ class AddUiSettingsToLtmUserLocales extends Migration
             $table->index(['user_id'], 'ix_ltm_user_locales_user_id');
         });
     }
-
 }

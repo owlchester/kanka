@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\Event;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EventFactory extends Factory
 {
@@ -14,6 +14,7 @@ class EventFactory extends Factory
      * @var string
      */
     protected $model = Event::class;
+
     /**
      * Define the model's default state.
      *

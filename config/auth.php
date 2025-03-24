@@ -99,7 +99,6 @@ return [
         ],
     ],
 
-
     /**
      * If set to false, no users can register
      */
@@ -110,14 +109,13 @@ return [
      */
     'user_list' => env('APP_LOGIN_LIST', false),
 
-
     /**
      * If set to true user registration will be prefilled with random data.
      */
     'fast_registration' => env('ACCOUNT_FAST_REGISTRATION', false),
 
     'recaptcha' => [
-        'enabled' => !empty(env('RECAPTCHA_KEY')),
+        'enabled' => ! empty(env('RECAPTCHA_KEY')),
         'key' => env('RECAPTCHA_KEY'),
         'secret' => env('RECAPTCHA_SECRET'),
     ],

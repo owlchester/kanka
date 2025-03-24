@@ -61,7 +61,7 @@ return [
             'engine' => null,
             'dump' => [
                 'dump_binary_path' => env('DB_BINARY_DUMP_PATH', '/usr/bin/'),
-                'add_extra_option' => env('DB_BINARY_DUMP_OPTIONS', '--single-transaction --skip-lock-tables --column-statistics=0')
+                'add_extra_option' => env('DB_BINARY_DUMP_OPTIONS', '--single-transaction --skip-lock-tables --column-statistics=0'),
             ],
         ],
 
@@ -86,7 +86,7 @@ return [
             'engine' => null,
             'dump' => [
                 'dump_binary_path' => env('DB_BINARY_DUMP_PATH'),
-                'add_extra_option' => '--single-transaction --skip-lock-tables'
+                'add_extra_option' => '--single-transaction --skip-lock-tables',
             ],
         ],
 
@@ -158,7 +158,7 @@ return [
             'port' => env('REDIS_PORT', 6379),
             'database' => 1,
             'read_write_timeout' => -1,
-        ]
+        ],
 
     ],
 

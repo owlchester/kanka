@@ -4,62 +4,62 @@ namespace Tests;
 
 use App\Facades\Avatar;
 use App\Facades\CampaignCache;
-use App\Facades\EntityCache;
-use App\Facades\Permissions;
-use App\Facades\UserCache;
-use App\Models\Ability;
-use App\Models\CampaignDashboardWidget;
-use App\Models\CampaignRole;
-use App\Models\Attribute;
-use App\Models\Bookmark;
-use App\Models\Campaign;
-use App\Services\Permissions\RolePermissionService;
-use Illuminate\Support\Facades\Storage;
-use App\Models\CampaignRoleUser;
-use App\Models\CampaignUser;
-use App\Models\Creature;
-use App\Models\Character;
-use App\Models\Calendar;
-use App\Models\Conversation;
-use App\Models\ConversationParticipant;
-use App\Models\ConversationMessage;
-use App\Models\Family;
-use App\Models\Location;
-use App\Models\Map;
-use App\Models\MapLayer;
-use App\Models\MapMarker;
-use App\Models\MapGroup;
-use App\Models\Organisation;
-use App\Models\Item;
-use App\Models\Note;
-use App\Models\Event;
-use App\Models\EntityAsset;
-use App\Models\EntityEvent;
-use App\Models\Race;
-use App\Models\Quest;
-use App\Models\QuestElement;
-use App\Models\Journal;
-use App\Models\Tag;
-use App\Models\Relation;
-use App\Models\EntityTag;
-use App\Models\Timeline;
-use App\Models\TimelineEra;
-use App\Models\TimelineElement;
-use App\Models\DiceRoll;
 use App\Facades\CampaignLocalization;
 use App\Facades\CharacterCache;
-use App\Facades\QuestCache;
-use App\Facades\TimelineElementCache;
-use App\Models\Post;
+use App\Facades\EntityCache;
 use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
+use App\Facades\Permissions;
+use App\Facades\QuestCache;
+use App\Facades\TimelineElementCache;
+use App\Facades\UserCache;
+use App\Models\Ability;
+use App\Models\Attribute;
+use App\Models\Bookmark;
+use App\Models\Calendar;
+use App\Models\Campaign;
+use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignRole;
+use App\Models\CampaignRoleUser;
 use App\Models\CampaignStyle;
+use App\Models\CampaignUser;
+use App\Models\Character;
+use App\Models\Conversation;
+use App\Models\ConversationMessage;
+use App\Models\ConversationParticipant;
+use App\Models\Creature;
+use App\Models\DiceRoll;
+use App\Models\EntityAsset;
+use App\Models\EntityEvent;
+use App\Models\EntityTag;
+use App\Models\Event;
+use App\Models\Family;
 use App\Models\Image;
-use Laravel\Passport\Passport;
+use App\Models\Item;
+use App\Models\Journal;
+use App\Models\Location;
+use App\Models\Map;
+use App\Models\MapGroup;
+use App\Models\MapLayer;
+use App\Models\MapMarker;
+use App\Models\Note;
+use App\Models\Organisation;
+use App\Models\Post;
+use App\Models\Quest;
+use App\Models\QuestElement;
+use App\Models\Race;
+use App\Models\Relation;
+use App\Models\Tag;
+use App\Models\Timeline;
+use App\Models\TimelineElement;
+use App\Models\TimelineEra;
+use App\Services\Permissions\RolePermissionService;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Cashier\Subscription;
+use Laravel\Passport\Passport;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -70,9 +70,9 @@ abstract class TestCase extends BaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        //putenv(LaravelLocalization::ENV_ROUTE_KEY . '=' . 'en');
+        // putenv(LaravelLocalization::ENV_ROUTE_KEY . '=' . 'en');
 
-        //putenv(LaravelLocalization::ENV_ROUTE_KEY . '=' . 'en');
+        // putenv(LaravelLocalization::ENV_ROUTE_KEY . '=' . 'en');
     }
 
     public function asUser(bool $subscribed = false): self
@@ -90,7 +90,7 @@ abstract class TestCase extends BaseTestCase
             $user->pledge = 'Elemental';
             $user->save();
 
-            $sub = new Subscription();
+            $sub = new Subscription;
             $sub->user_id = $user->id;
             $sub->type = 'kanka';
             $sub->stripe_id = 'manual_sub_' . uniqid();
@@ -100,12 +100,13 @@ abstract class TestCase extends BaseTestCase
             $sub->ends_at = Carbon::now()->addYear();
             $sub->save();
         }
+
         return $this;
     }
 
     public function asPlayer(): self
     {
-        $user2 =  \App\Models\User::factory()->create();
+        $user2 = \App\Models\User::factory()->create();
         Passport::actingAs(
             $user2,
             ['*']
@@ -134,7 +135,7 @@ abstract class TestCase extends BaseTestCase
 
     public function withMember(): self
     {
-        $user3 =  \App\Models\User::factory()->create();
+        $user3 = \App\Models\User::factory()->create();
 
         CampaignUser::create([
             'campaign_id' => 1,
@@ -178,6 +179,7 @@ abstract class TestCase extends BaseTestCase
     public function withCampaigns(array $extra = []): self
     {
         Campaign::factory()->create($extra);
+
         return $this;
     }
 
@@ -197,6 +199,7 @@ abstract class TestCase extends BaseTestCase
         CampaignStyle::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -205,6 +208,7 @@ abstract class TestCase extends BaseTestCase
         Creature::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -213,6 +217,7 @@ abstract class TestCase extends BaseTestCase
         Character::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -221,6 +226,7 @@ abstract class TestCase extends BaseTestCase
         Family::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -229,6 +235,7 @@ abstract class TestCase extends BaseTestCase
         Location::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -237,6 +244,7 @@ abstract class TestCase extends BaseTestCase
         Organisation::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -245,6 +253,7 @@ abstract class TestCase extends BaseTestCase
         Item::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -253,6 +262,7 @@ abstract class TestCase extends BaseTestCase
         Note::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -261,6 +271,7 @@ abstract class TestCase extends BaseTestCase
         Event::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -269,6 +280,7 @@ abstract class TestCase extends BaseTestCase
         Calendar::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -277,6 +289,7 @@ abstract class TestCase extends BaseTestCase
         Race::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -285,15 +298,16 @@ abstract class TestCase extends BaseTestCase
         QuestElement::factory()
             ->count(5)
             ->create(['quest_id' => 1] + $extra);
+
         return $this;
     }
-
 
     public function withQuests(array $extra = []): self
     {
         Quest::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -302,6 +316,7 @@ abstract class TestCase extends BaseTestCase
         Journal::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -310,6 +325,7 @@ abstract class TestCase extends BaseTestCase
         Tag::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -318,6 +334,7 @@ abstract class TestCase extends BaseTestCase
         Ability::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -326,6 +343,7 @@ abstract class TestCase extends BaseTestCase
         Timeline::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -334,6 +352,7 @@ abstract class TestCase extends BaseTestCase
         TimelineEra::factory()
             ->count(5)
             ->create(['timeline_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -342,6 +361,7 @@ abstract class TestCase extends BaseTestCase
         TimelineElement::factory()
             ->count(5)
             ->create(['timeline_id' => 1, 'era_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -350,6 +370,7 @@ abstract class TestCase extends BaseTestCase
         DiceRoll::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -358,6 +379,7 @@ abstract class TestCase extends BaseTestCase
         Conversation::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -366,6 +388,7 @@ abstract class TestCase extends BaseTestCase
         ConversationParticipant::factory()
             ->count(5)
             ->create(['conversation_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -374,6 +397,7 @@ abstract class TestCase extends BaseTestCase
         ConversationMessage::factory()
             ->count(5)
             ->create(['conversation_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -382,6 +406,7 @@ abstract class TestCase extends BaseTestCase
         Bookmark::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -390,6 +415,7 @@ abstract class TestCase extends BaseTestCase
         Map::factory()
             ->count(5)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -398,6 +424,7 @@ abstract class TestCase extends BaseTestCase
         MapLayer::factory()
             ->count(5)
             ->create(['map_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -406,6 +433,7 @@ abstract class TestCase extends BaseTestCase
         MapGroup::factory()
             ->count(5)
             ->create(['map_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -414,6 +442,7 @@ abstract class TestCase extends BaseTestCase
         MapMarker::factory()
             ->count(5)
             ->create(['map_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -422,6 +451,7 @@ abstract class TestCase extends BaseTestCase
         Attribute::factory()
             ->count(5)
             ->create(['entity_id' => 1, 'type_id' => 1, 'api_key' => 1] + $extra);
+
         return $this;
     }
 
@@ -430,6 +460,7 @@ abstract class TestCase extends BaseTestCase
         EntityAsset::factory()
             ->count(5)
             ->create(['entity_id' => 1, 'type_id' => 3] + $extra);
+
         return $this;
     }
 
@@ -438,6 +469,7 @@ abstract class TestCase extends BaseTestCase
         EntityEvent::factory()
             ->count(5)
             ->create(['entity_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -446,6 +478,7 @@ abstract class TestCase extends BaseTestCase
         Post::factory()
             ->count(5)
             ->create(['entity_id' => 1, 'is_template' => false] + $extra);
+
         return $this;
     }
 
@@ -454,6 +487,7 @@ abstract class TestCase extends BaseTestCase
         Relation::factory()
             ->count(5)
             ->create(['owner_id' => 1, 'target_id' => 2, 'campaign_id' => 1] + $extra);
+
         return $this;
     }
 
@@ -462,6 +496,7 @@ abstract class TestCase extends BaseTestCase
         EntityTag::factory()
             ->count(5)
             ->create($extra);
+
         return $this;
     }
 
@@ -470,6 +505,7 @@ abstract class TestCase extends BaseTestCase
         CampaignDashboardWidget::factory()
             ->count(5)
             ->create(['campaign_id' => 1]);
+
         return $this;
     }
 
@@ -478,6 +514,7 @@ abstract class TestCase extends BaseTestCase
         Image::factory()
             ->count(1)
             ->create(['campaign_id' => 1, 'id' => '16598f1b-7d93-36d9-bea5-212bfa1e354b'] + $extra);
+
         return $this;
     }
 
@@ -486,6 +523,7 @@ abstract class TestCase extends BaseTestCase
         Image::factory()
             ->count(1)
             ->create(['campaign_id' => 1] + $extra);
+
         return $this;
     }
 

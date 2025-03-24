@@ -35,6 +35,6 @@ class CreateCampaignGalleryFolders extends Migration
             $table->dropColumn('folder_id');
             $table->dropColumn('is_folder');
         });
-        //Schema::dropIfExists('image_folders');
+        // Schema::dropIfExists('image_folders');
     }
 }

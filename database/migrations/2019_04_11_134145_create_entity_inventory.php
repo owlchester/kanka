@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateEntityInventory extends Migration
 {
@@ -31,7 +31,6 @@ class CreateEntityInventory extends Migration
 
             // Index
             $table->index(['position']);
-
 
             // If we delete the entity or target, remove mentions
             $table->foreign('entity_id')->references('id')->on('entities')->onDelete('cascade');

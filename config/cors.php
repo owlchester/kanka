@@ -48,7 +48,7 @@ return [
      */
     'exposed_headers' => [
         'X-RateLimit-Remaining',
-        'X-RateLimit-Limit'
+        'X-RateLimit-Limit',
     ],
 
     /*

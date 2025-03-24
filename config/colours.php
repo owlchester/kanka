@@ -18,10 +18,10 @@ return [
         'brown',
     ],
     'mappings' => [
-        //'blue' => 'primary',
-        //'lightblue' => 'info',
-        //'green' => 'success',
-        //'red' => 'danger',
-        'grey' => 'gray'
-    ]
+        // 'blue' => 'primary',
+        // 'lightblue' => 'info',
+        // 'green' => 'success',
+        // 'red' => 'danger',
+        'grey' => 'gray',
+    ],
 ];

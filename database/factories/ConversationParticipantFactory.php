@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\ConversationParticipant;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ConversationParticipantFactory extends Factory
 {
@@ -14,6 +14,7 @@ class ConversationParticipantFactory extends Factory
      * @var string
      */
     protected $model = ConversationParticipant::class;
+
     /**
      * Define the model's default state.
      *

@@ -39,7 +39,6 @@ class CreateAbilitiesTable extends Migration
             $table->index(['name', 'type']);
         });
 
-
         Schema::table('campaign_settings', function (Blueprint $table) {
             $table->boolean('abilities')->default(true);
         });

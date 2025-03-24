@@ -41,7 +41,7 @@ return [
     |
     */
 
-    //SET TO TRUE TO USE QUEUE
+    // SET TO TRUE TO USE QUEUE
     'queue' => env('SCOUT_QUEUE', false),
 
     /*

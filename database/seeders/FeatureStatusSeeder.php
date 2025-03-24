@@ -25,7 +25,7 @@ class FeatureStatusSeeder extends Seeder
         ];
         foreach ($stats as $stat) {
             $s = FeatureStatus::firstOrNew([
-                'name' => $stat
+                'name' => $stat,
             ]);
             $s->save();
         }

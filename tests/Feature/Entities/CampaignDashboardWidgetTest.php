@@ -4,8 +4,7 @@ it('POSTS an invalid widget form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/campaign_dashboard_widgets', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new widget')
     ->asUser()
@@ -14,8 +13,7 @@ it('POSTS a new widget')
     ->postJson('/api/1.0/campaigns/1/campaign_dashboard_widgets', [
         'widget' => 'header',
     ])
-    ->assertStatus(201)
-;
+    ->assertStatus(201);
 
 it('GETS all dashboard widgets')
     ->asUser()
@@ -28,10 +26,9 @@ it('GETS all dashboard widgets')
             '*' => [
                 'id',
                 'widget',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific dashboard widget')
     ->asUser()
@@ -43,25 +40,22 @@ it('GETS a specific dashboard widget')
         'data' => [
             'id',
             'widget',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('DELETES a dashboard widget')
     ->asUser()
     ->withCampaign()
     ->withDashboardWidgets()
     ->delete('/api/1.0/campaigns/1/campaign_dashboard_widgets/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid user role')
     ->asUser()
     ->withCampaign()
     ->withDashboardWidgets()
     ->delete('/api/1.0/campaigns/1/campaign_dashboard_widgets/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('UPDATES a valid dashboard widget')
     ->asUser()
@@ -69,5 +63,4 @@ it('UPDATES a valid dashboard widget')
     ->withDashboardWidgets()
     ->putJson('/api/1.0/campaigns/1/campaign_dashboard_widgets/1', ['position' => 2, 'widget' => 'header'])
     ->assertStatus(200)
-    ->assertJsonFragment(['position' => 2])
-;
+    ->assertJsonFragment(['position' => 2]);

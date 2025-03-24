@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\Relation;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RelationFactory extends Factory
 {
@@ -14,6 +14,7 @@ class RelationFactory extends Factory
      * @var string
      */
     protected $model = Relation::class;
+
     /**
      * Define the model's default state.
      *
