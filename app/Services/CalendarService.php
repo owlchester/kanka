@@ -7,7 +7,7 @@ use App\Http\Requests\AddCalendarWeather;
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\Entity;
-use App\Models\EntityEvent;
+use App\Models\Reminder;
 use App\Models\EntityType;
 use App\Models\Event;
 use App\Traits\CampaignAware;
@@ -32,12 +32,13 @@ class CalendarService
     /**
      * Add an event to a calendar, and return the new calendar_event model
      */
-    public function addEvent(array $data = []): EntityEvent
+    public function addEvent(array $data = []): Reminder
     {
         $entity = $this->entity($data);
-        $link = new EntityEvent;
+        $link = new Reminder;
+        $link->remindable_type = Entity::class;
+        $link->remindable_id = $entity->id;
         $link->calendar_id = $this->calendar->id;
-        $link->entity_id = $entity->id;
         $link->year = $data['year'];
         $link->month = $data['month'];
         $link->day = $data['day'];

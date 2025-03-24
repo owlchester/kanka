@@ -203,7 +203,7 @@ class DatagridRenderer
                     '<i class="fa-solid fa-lock" data-title="' . __('crud.fields.is_private') . '" aria-hidden="true" data-toggle="tooltip"></i> <span class="sr-only">' . __('crud.fields.is_private') . '</span>'
                 );
                 $class = 'w-14 text-center';
-            } elseif ($type == 'calendar_date') {
+            } elseif ($type == 'reminder') {
                 $class .= ' ' . $this->hidden;
                 $html = $this->route('calendar_date', __('crud.fields.calendar_date'));
             } else {
@@ -476,7 +476,7 @@ class DatagridRenderer
                     '<i class="fa-solid fa-lock" data-title="' . __('crud.is_private') . '" aria-hidden="true" data-toggle="tooltip"></i> <span class="sr-only">' . __('crud.is_private') . '</span>' :
                     null;
                 $class = ' text-center';
-            } elseif ($type == 'calendar_date') {
+            } elseif ($type == 'reminder') {
                 $class = $this->hidden . ' col-calendar-date';
                 /** @var Journal $model */
                 if ($model->entity->calendarDate && $model->entity->calendarDate->calendar && $model->entity->calendarDate->calendar->entity) {

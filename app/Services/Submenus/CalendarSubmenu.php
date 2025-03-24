@@ -10,7 +10,7 @@ class CalendarSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         /** @var Calendar $calendar */
         $calendar = $this->entity->child;
-        $count = $calendar->calendarEvents()->has('entity')->count();
+        $count = $calendar->calendarEvents()->has('remindable')->count();
         $items = [];
         if ($count > 0) {
             $items['second']['events'] = [

@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Calendar;
-use App\Models\EntityEvent;
+use App\Models\Reminder;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -33,7 +33,7 @@ class CalendarsClearElapsed implements ShouldQueue
      */
     public function handle(): void
     {
-        $model = new EntityEvent;
+        $model = new Reminder;
         DB::update(
             'UPDATE ' . $model->getTable() . ' SET elapsed = NULL ' .
             'WHERE calendar_id = \'' . $this->calendar->id . '\''

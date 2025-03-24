@@ -18,7 +18,7 @@
             }
         ],
         [
-            'type' => 'calendar_date',
+            'type' => 'reminder',
         ],
         [
             'field' => 'author.name',

@@ -48,6 +48,7 @@ use App\Models\Preset;
 use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Models\Race;
+use App\Models\Reminder;
 use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
@@ -197,7 +198,7 @@ class AppServiceProvider extends ServiceProvider
         Note::observe(NoteObserver::class);
         Tag::observe(TagObserver::class);
         Post::observe('App\Observers\PostObserver');
-        EntityEvent::observe('App\Observers\EntityEventObserver');
+        Reminder::observe('App\Observers\ReminderObserver');
         Family::observe(FamilyObserver::class);
         Image::observe('App\Observers\ImageObserver');
         Inventory::observe('App\Observers\InventoryObserver');

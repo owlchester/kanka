@@ -3,7 +3,7 @@
 namespace App\Services\Calendars;
 
 use App\Models\Calendar;
-use App\Models\EntityEvent;
+use App\Models\Reminder;
 use Illuminate\Support\Collection;
 
 class ReminderService
@@ -73,7 +73,7 @@ class ReminderService
             ->get();
 
         // Order the past events in descending date to get the closest ones to the current date first
-        return $reminders->sortBy(function (EntityEvent $reminder) {
+        return $reminders->sortBy(function (Reminder $reminder) {
             return $reminder->nextUpcomingOccurrence(
                 $this->calendar->currentYear(),
                 $this->calendar->currentMonth(),
@@ -141,7 +141,7 @@ class ReminderService
             ->get();
 
         // Order the past events in descending date to get the closest ones to the current date first
-        return $reminders->sortBy(function (EntityEvent $reminder) {
+        return $reminders->sortBy(function (Reminder $reminder) {
             return $reminder->mostRecentOccurrence(
                 $this->calendar->currentYear(),
                 $this->calendar->currentMonth(),

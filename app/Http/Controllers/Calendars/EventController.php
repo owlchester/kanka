@@ -60,8 +60,8 @@ class EventController extends Controller
         }
 
         $this->rows = $rows
-            ->with(['entity', 'calendar', 'entity.image', 'entity.entityType'])
-            ->has('entity')
+            ->with(['remindable', 'calendar', 'calendar.entity', 'remindable.image', 'remindable.entityType'])
+            ->has('remindable')
             ->sort(request()->only(['o', 'k']))
             ->paginate();
 

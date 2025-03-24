@@ -43,7 +43,7 @@
             'field' => 'is_completed',
         ],
         [
-            'type' => 'calendar_date',
+            'type' => 'reminder',
         ],
         [
             'type' => 'is_private',

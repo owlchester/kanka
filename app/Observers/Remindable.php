@@ -3,7 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Calendar;
-use App\Models\EntityEvent;
+use App\Models\Entity;
+use App\Models\Reminder;
 use App\Models\EntityEventType;
 use App\Models\Quest;
 use Exception;
@@ -46,8 +47,9 @@ class Remindable
                 return;
             }
         } else {
-            $reminder = new EntityEvent;
-            $reminder->entity_id = $entity->id;
+            $reminder = new Reminder;
+            $reminder->remindable_type = Entity::class;
+            $reminder->remindable_id = $entity->id;
         }
 
         // Validate the calendar

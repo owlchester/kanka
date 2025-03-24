@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 //use Faker\Generator as Faker;
+use App\Models\Reminder;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\EntityEvent;
 
 class EntityEventFactory extends Factory
 {
@@ -13,7 +13,7 @@ class EntityEventFactory extends Factory
      *
      * @var string
      */
-    protected $model = EntityEvent::class;
+    protected $model = Reminder::class;
     /**
      * Define the model's default state.
      *

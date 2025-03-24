@@ -9,7 +9,7 @@ use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
-use App\Models\EntityEvent;
+use App\Models\Reminder;
 use App\Models\EntityMention;
 use App\Models\EntityTag;
 use App\Models\Image;
@@ -462,8 +462,9 @@ trait EntityMapper
             if (! ImportIdMapper::has('calendars', $data['calendar_id'])) {
                 continue;
             }
-            $rem = new EntityEvent;
-            $rem->entity_id = $this->entity->id;
+            $rem = new Reminder;
+            $rem->remindable_type = Entity::class;
+            $rem->remindable_id = $this->entity->id;
             $rem->calendar_id = ImportIdMapper::get('calendars', $data['calendar_id']);
             foreach ($fields as $field) {
                 $rem->$field = $data[$field];

@@ -4,14 +4,14 @@
     </x-alert>
 @endif
 
-@if (!empty($entityEvent))
+@if (!empty($reminder) && $reminder->remindable instanceof \App\Models\Entity)
     <x-grid type="1/1">
-        @include('cruds.fields.entity', ['route' => null, 'preset' => $entityEvent->entity, 'name' => 'entity_id', 'dropdownParent' => $dropdownParent ?? '#primary-dialog', 'allowClear' => false])
+        @include('cruds.fields.entity', ['route' => null, 'preset' => $reminder->remindable, 'name' => 'entity_id', 'dropdownParent' => $dropdownParent ?? '#primary-dialog', 'allowClear' => false])
     </x-grid>
 @endif
 
 <div id="calendar-event-subform" class="flex flex-col gap-5">
-    @if (empty($entityEvent))
+    @if (empty($reminder))
         <div class="flex gap-2 md:gap-4 items-center">
             <div class="grow calendar-existing-event-field">
                 @php $eventModule = \App\Models\EntityType::find(config('entities.ids.event')) @endphp
@@ -24,5 +24,5 @@
             </div>
         </div>
     @endif
-    @include('calendars.events._subform')
+    @include('calendars.reminders._subform')
 </div>

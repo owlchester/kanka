@@ -61,7 +61,7 @@ class SubmenuService
         if ($this->campaign->enabled('calendars')) {
             $this->items['third']['reminders'] = [
                 'name' => 'crud.tabs.reminders',
-                'route' => 'entities.entity_events.index',
+                'route' => 'entities.reminders.index',
                 'count' => 0, // $this->entity->abilities()->has('ability')->count(),
                 'entity' => true,
                 'icon' => 'ra ra-sun-moon',

@@ -16,8 +16,9 @@ use Illuminate\Support\Str;
  * Class EntityEvent
  *
  * @property int $id
- * @property int $entity_id
  * @property int $calendar_id
+ * @property int $remindable_id
+ * @property string $remindable_type
  * @property string $date
  * @property int $length
  * @property string $comment
@@ -30,12 +31,11 @@ use Illuminate\Support\Str;
  * @property string $recurring_periodicity
  * @property int $type_id
  * @property ?int $elapsed
- * @property ?Entity $entity *
  * @property ?Calendar $calendar
- * @property ?EntityEvent $death
+ * @property ?Reminder $death
  * @property ?EntityEventType $type
  */
-class EntityEvent extends Model
+class Reminder extends Model
 {
     use Blameable;
     use EntityEventScopes;
@@ -43,15 +43,11 @@ class EntityEvent extends Model
     use HasVisibility;
     use SortableTrait;
 
-    /** @var string */
-    public $table = 'entity_events';
-
     /** @var string Cached readable date */
     protected string $readableDate;
 
     protected $fillable = [
         'calendar_id',
-        'entity_id',
         'date',
         'length',
         'comment',
@@ -67,13 +63,18 @@ class EntityEvent extends Model
     ];
 
     protected array $sortable = [
-        'entity.name',
+        'remindable.name',
         'length',
         'date',
         'is_recurring',
         'visibility_id',
         'comment',
     ];
+
+    public function remindable()
+    {
+        return $this->morphTo();
+    }
 
     /** Last occurrence of the reminder */
     protected int $cachedLast;
@@ -84,11 +85,6 @@ class EntityEvent extends Model
     public function calendar(): BelongsTo
     {
         return $this->belongsTo(Calendar::class, 'calendar_id');
-    }
-
-    public function entity(): BelongsTo
-    {
-        return $this->belongsTo(Entity::class, 'entity_id');
     }
 
     public function type(): BelongsTo
@@ -225,7 +221,7 @@ class EntityEvent extends Model
      *
      * @return int years
      */
-    public function calcElapsed(?EntityEvent $event = null): int
+    public function calcElapsed(?Reminder $event = null): int
     {
         // Have the value cached? Don't bother with more work
         if (empty($event) && ! empty($this->elapsed)) {
@@ -277,17 +273,17 @@ class EntityEvent extends Model
      */
     public function deleteName(): string
     {
-        return (string) $this->entity->name;
+        return (string) $this->remindable->name;
     }
 
     public function url(string $where): string
     {
-        return 'entities.entity_events.' . $where;
+        return 'entities.reminders.' . $where;
     }
 
     public function routeParams(array $options = []): array
     {
-        return $options + ['entity' => $this->entity_id, 'entity_event' => $this->id, 'next' => 'entity.events'];
+        return $options + ['entity' => $this->remindable_id, 'reminder' => $this->id, 'next' => 'entity.reminders'];
     }
 
     public function getNameAttribute(): string
@@ -300,7 +296,6 @@ class EntityEvent extends Model
      */
     public function mostRecentOccurrence(int $year, int $month, int $day, array $months, int $daysInYear): int
     {
-        // dump($this->entity->name);
         $reminderYear = $this->year;
         $reminderMonth = $this->month;
         $reminderDay = $this->day;
@@ -394,12 +389,11 @@ class EntityEvent extends Model
         if (isset($this->cachedNext)) {
             return $this->cachedNext;
         }
-        // dump($this->entity->name);
         $reminderYear = $this->year;
         $reminderMonth = $this->month;
         $reminderDay = $this->day;
 
-        // dump("Event #" . $this->id . " " . $this->entity->name . ": " . $this->year . "-" . $this->month . "-" . $this->day);
+        // dump("Event #" . $this->id . " " . $this->remindable->name . ": " . $this->year . "-" . $this->month . "-" . $this->day);
 
         // Recurring? We need to switch around the data a bit to figure out the most recent date
         if (! empty($this->is_recurring)) {
@@ -553,7 +547,7 @@ class EntityEvent extends Model
 
     public function death()
     {
-        return $this->hasOne(EntityEvent::class, 'entity_id', 'entity_id')->whereColumn('calendar_id', 'entity_events.calendar_id')->where('type_id', EntityEventType::DEATH);
+        return $this->hasOne(Reminder::class, 'entity_id', 'entity_id')->whereColumn('calendar_id', 'reminders.calendar_id')->where('type_id', EntityEventType::DEATH);
     }
 
     /**
@@ -587,10 +581,10 @@ class EntityEvent extends Model
     /**
      * Copy a reminder to another target
      */
-    public function copyTo(Entity $target): EntityEvent
+    public function copyTo(Entity $target): Reminder
     {
-        $new = $this->replicate(['entity_id', 'created_by']);
-        $new->entity_id = $target->id;
+        $new = $this->replicate(['remindable_id', 'created_by']);
+        $new->remindable_id = $target->id;
         $new->created_by = auth()->user()->id;
         $new->saveQuietly();
 

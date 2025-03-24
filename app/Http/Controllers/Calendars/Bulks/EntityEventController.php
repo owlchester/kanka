@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Datagrid2\BulkControllerTrait;
 use App\Models\Calendar;
 use App\Models\Campaign;
-use App\Models\EntityEvent;
+use App\Models\Reminder;
 use App\Traits\CampaignAware;
 use Illuminate\Http\Request;
 
@@ -32,7 +32,7 @@ class EntityEventController extends Controller
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
-        $count = $this->campaign($campaign)->bulkProcess($request, EntityEvent::class);
+        $count = $this->campaign($campaign)->bulkProcess($request, Reminder::class);
 
         return redirect()
             ->route('calendars.events', [$campaign, 'calendar' => $calendar])

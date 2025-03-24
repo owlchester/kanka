@@ -1,28 +1,28 @@
 <?php
 
-namespace App\Traits;
+namespace App\Models\Concerns;
 
-use App\Models\Calendar;
 use App\Models\EntityEvent;
+use App\Models\Reminder;
 use App\Observers\Remindable;
 use Illuminate\Support\Arr;
 
 /**
- * Trait CalendarDateTrait
+ * Trait HasReminder
  *
- * @property EntityEvent $calendarReminder
- * @property EntityEvent|null $calendarDate
+ * @property Reminder $calendarReminder
+ * @property Reminder|null $calendarDate
  * @property int|null $calendar_id
  * @property int|null $calendar_year
  * @property int|null $calendar_month
  * @property int|null $calendar_day
  */
-trait CalendarDateTrait
+trait HasReminder
 {
     /**
      * On boot of the trait, inject the fillable fields.
      */
-    public static function bootCalendarDateTrait()
+    public static function bootHasReminder()
     {
         static::observe(app(Remindable::class));
     }
@@ -132,7 +132,7 @@ trait CalendarDateTrait
         return $this->entity->calendarDate->colour;
     }
 
-    public function calendarReminder(): ?EntityEvent
+    public function calendarReminder(): ?Reminder
     {
         return $this->entity?->calendarDate;
     }
