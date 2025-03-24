@@ -64,7 +64,8 @@ class CleanupTrashed extends Command
             Entity::onlyTrashed()
                 ->where('deleted_at', '<=', $delay)
                 ->allCampaigns()
-                ->with('campaign')
+                ->with(['campaign', 'entityType'])
+                ->has('campaign')
                 ->chunkById(1000, function ($entities): void {
                     $this->info('Chunk deleting ' . count($entities) . ' entities.');
                     foreach ($entities as $entity) {
