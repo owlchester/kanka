@@ -15,7 +15,7 @@
 
     @include('partials.forms.form', [
         'title' => __('calendars.event.create.title', ['name' => $calendar->name]),
-        'content' => 'calendars.events._form',
+        'content' => 'calendars.reminders._form',
         'dialog' => true,
         'dropdownParent' => '#primary-dialog',
     ])

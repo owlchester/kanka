@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Requests\API\StoreReminder as Request;
-use App\Http\Resources\EntityEventResource as Resource;
+use App\Http\Resources\ReminderResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\EntityEvent;
+use App\Models\Reminder;
 
 class EntityEventApiController extends ApiController
 {
@@ -26,7 +26,7 @@ class EntityEventApiController extends ApiController
     /**
      * @return resource
      */
-    public function show(Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
+    public function show(Campaign $campaign, Entity $entity, Reminder $entityEvent)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
@@ -45,7 +45,7 @@ class EntityEventApiController extends ApiController
         $this->authorize('update', $entity);
         $data = $request->all();
         $data['entity_id'] = $entity->id;
-        $model = EntityEvent::create($data);
+        $model = Reminder::create($data);
         $model->refresh();
 
         return new Resource($model);
@@ -54,7 +54,7 @@ class EntityEventApiController extends ApiController
     /**
      * @return resource
      */
-    public function update(Request $request, Campaign $campaign, Entity $entity, EntityEvent $entityEvent)
+    public function update(Request $request, Campaign $campaign, Entity $entity, Reminder $entityEvent)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
@@ -73,7 +73,7 @@ class EntityEventApiController extends ApiController
         \Illuminate\Http\Request $request,
         Campaign $campaign,
         Entity $entity,
-        EntityEvent $entityEvent
+        Reminder $entityEvent
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);

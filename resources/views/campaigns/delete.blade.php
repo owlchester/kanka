@@ -38,7 +38,7 @@
                     <x-grid type="1/1">
                         <p class="">
                             {!! __('campaigns/delete.confirm', [
-                                'name' => '<strong>' . $campaign->name . '</strong>',
+                                'campaign' => '<strong>' . $campaign->name . '</strong>',
                                 'code' => '<code>delete</code>'
                             ]) !!}
                         </p>

@@ -23,7 +23,7 @@
 
         ],
         [
-            'label' => '',
+            'label' => __('bookmarks.fields.target'),
             'render' => function ($model) {
                 if ($model->isDashboard()) {
                     return '<a href="' . $model->getRoute() . '">' . $model->name . '</a>';

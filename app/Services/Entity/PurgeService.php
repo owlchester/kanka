@@ -33,15 +33,19 @@ class PurgeService
     {
         EntityCache::campaign($entity->campaign);
 
-        /** @var MiscModel $child */
-        // @phpstan-ignore-next-line
-        $child = $entity->child()->onlyTrashed()->first();
-        $this->trashChild($entity, $child);
+        if ($entity->hasChild()) {
+            /** @var MiscModel $child */
+            // @phpstan-ignore-next-line
+            $child = $entity->child()->onlyTrashed()->first();
+            $this->trashChild($entity, $child);
+        }
 
         $this->entityIds[] = $entity->id;
         $entity->forceDelete();
 
-        Images::cleanup($child);
+        if (isset($child)) {
+            Images::cleanup($child);
+        }
 
         $this->count++;
     }

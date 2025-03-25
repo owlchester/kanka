@@ -12,7 +12,6 @@ use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
-use App\Models\EntityEvent;
 use App\Models\EntityEventType;
 use App\Models\EntityTag;
 use App\Models\EntityType;
@@ -27,6 +26,7 @@ use App\Models\Post;
 use App\Models\Quest;
 use App\Models\Race;
 use App\Models\Relation;
+use App\Models\Reminder;
 use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\User;
@@ -35,6 +35,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 /**
  * Trait EntityRelations
@@ -65,10 +67,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property EntityAsset[]|Collection $pinnedFiles
  * @property EntityAsset[]|Collection $pinnedAssets
  * @property Relation[]|Collection $relations
- * @property EntityEvent[]|Collection $elapsedEvents
- * @property EntityEvent[]|Collection $calendarDateEvents
- * @property EntityEvent[]|Collection $reminders
- * @property EntityEvent|null $calendarDate
+ * @property Reminder[]|Collection $elapsedEvents
+ * @property Reminder[]|Collection $calendarDateEvents
+ * @property Reminder[]|Collection $reminders
+ * @property Reminder|null $calendarDate
  * @property Image|null $image
  * @property Image|null $header
  * @property User[]|Collection $users
@@ -275,20 +277,15 @@ trait EntityRelations
             ->where('type_id', 3);
     }
 
-    public function events(): HasMany
+    public function reminders(): MorphMany
     {
-        return $this->hasMany('App\Models\EntityEvent', 'entity_id', 'id');
-    }
-
-    public function reminders(): HasMany
-    {
-        return $this->hasMany('App\Models\EntityEvent', 'entity_id', 'id');
+        return $this->morphMany(Reminder::class, 'remindable');
     }
 
     /**
      * Calendar Date Events are used by Journals and Quests to link them directly to a calendar
      */
-    public function calendarDateEvents(): HasMany
+    public function calendarDateEvents(): MorphMany
     {
         return $this->reminders()
             ->with('calendar')
@@ -296,15 +293,15 @@ trait EntityRelations
             ->calendarDate();
     }
 
-    public function calendarDate(): HasOne
+    public function calendarDate(): MorphOne
     {
-        return $this->hasOne('App\Models\EntityEvent', 'entity_id', 'id')
+        return $this->morphOne(Reminder::class, 'remindable')
             ->with('calendar')
             ->has('calendar')
             ->where('type_id', EntityEventType::CALENDAR_DATE);
     }
 
-    public function elapsedEvents(): HasMany
+    public function elapsedEvents(): MorphMany
     {
         return $this->reminders()->with('calendar')->whereNotNull('type_id');
     }

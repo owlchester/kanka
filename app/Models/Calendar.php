@@ -109,7 +109,7 @@ class Calendar extends MiscModel
 
     public function scopePreparedWith(Builder $query): Builder
     {
-        return parent::scopePreparedWith($query);
+        return parent::scopePreparedWith($query)->withCount('calendarEvents');
     }
 
     /**

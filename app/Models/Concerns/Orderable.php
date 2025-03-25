@@ -29,7 +29,7 @@ trait Orderable
         if ($field === 'calendar_date') {
             return $query
                 ->joinEntity()
-                ->leftJoin('entity_events as cd', function ($on) {
+                ->leftJoin('reminders as cd', function ($on) {
                     return $on->on('cd.entity_id', 'e.id')
                         ->where('cd.type_id', EntityEventType::CALENDAR_DATE);
                 })

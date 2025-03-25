@@ -4,8 +4,9 @@ namespace App\Renderers;
 
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
-use App\Models\EntityEvent;
+use App\Models\Entity;
 use App\Models\EntityEventType;
+use App\Models\Reminder;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -414,7 +415,7 @@ class CalendarRenderer
                         if (! isset($this->recurring[$key])) {
                             continue;
                         }
-                        /** @var EntityEvent $event */
+                        /** @var Reminder $event */
                         // dump'found events for ' . $key);
                         foreach ($this->recurring[$key] as $event) {
                             if (! $event->isPastDate($this->getYear(), $this->getMonth(), $day)) {
@@ -587,7 +588,7 @@ class CalendarRenderer
                         if (! isset($this->recurring[$key])) {
                             continue;
                         }
-                        /** @var EntityEvent $event */
+                        /** @var Reminder $event */
                         // dump('found events for ' . $key);
                         foreach ($this->recurring[$key] as $event) {
                             if (! $event->isPastDate($this->getYear(), $this->getMonth(), $day)) {
@@ -785,9 +786,10 @@ class CalendarRenderer
      */
     protected function getReminders(Calendar $calendar)
     {
+        // @phpstan-ignore-next-line
         return $calendar->calendarEvents()
-            ->has('entity')
-            ->with(['entity', 'entity.tags', 'entity.image', 'death', 'entity.entityType'])
+            ->whereHas('remindable')
+            ->with(['remindable', 'remindable.tags', 'remindable.image', 'death', 'remindable.entityType'])
             ->where(function ($query) {
                 $query
                     // Where it's the current year , or current year and current month
@@ -847,7 +849,7 @@ class CalendarRenderer
         if (! $this->isYearlyLayout()) {
             $totalMonths = $this->getMonth();
         }
-        /** @var EntityEvent $event */
+        /** @var Reminder $event */
         foreach ($reminders as $event) {
             if ($event->isBirth() && $event->death && $event->death->isPastDate($this->getYear(), $event->month, $event->day)) {
                 continue;
@@ -872,7 +874,7 @@ class CalendarRenderer
             }
 
             // Make sure the user can actually see the requested event
-            if (empty($event->entity) || $event->entity->isMissingChild()) {
+            if (empty($event->remindable) || ($event->remindable instanceof Entity && $event->remindable->isMissingChild())) {
                 continue;
             }
             // If the event reoccurs each month, let's add it everywhere
@@ -907,7 +909,7 @@ class CalendarRenderer
     /**
      * For multi-day event, add it to each day the event lasts
      */
-    protected function addMultidayEvent(EntityEvent $reminder, string $date)
+    protected function addMultidayEvent(Reminder $reminder, string $date)
     {
         // Does the day go over a few days?
         if ($reminder->length == 1) {
@@ -1347,16 +1349,16 @@ class CalendarRenderer
     /**
      * Checks if date is the start of an event
      */
-    public function isEventStartDate(EntityEvent $event, string $date): bool
+    public function isEventStartDate(Reminder $reminder, string $date): bool
     {
-        return isset($this->eventStart[$event->id]) && in_array($date, $this->eventStart[$event->id]);
+        return isset($this->eventStart[$reminder->id]) && in_array($date, $this->eventStart[$reminder->id]);
     }
 
     /**
      * Checks if date is the end of an event
      */
-    public function isEventEndDate(EntityEvent $event, string $date): bool
+    public function isEventEndDate(Reminder $reminder, string $date): bool
     {
-        return isset($this->eventEnd[$event->id]) && in_array($date, $this->eventEnd[$event->id]);
+        return isset($this->eventEnd[$reminder->id]) && in_array($date, $this->eventEnd[$reminder->id]);
     }
 }

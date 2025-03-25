@@ -21,7 +21,7 @@ $onlyOneCalendar = count($calendars) == 1;
 
 
 <div class="entity-calendar-subform {{ $onlyOneCalendar ? '' : 'hidden' }}">
-    @include('calendars.events._subform')
+    @include('calendars.reminders._subform')
 </div>
 
 <div class="entity-calendar-loading hidden">

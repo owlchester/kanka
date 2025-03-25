@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Models\EntityEvent;
+use App\Models\Reminder;
 
-class EntityEventResource extends EntityChild
+class ReminderResource extends EntityChild
 {
     /**
      * Transform the resource into an array.
@@ -14,7 +14,7 @@ class EntityEventResource extends EntityChild
      */
     public function toArray($request)
     {
-        /** @var EntityEvent $model */
+        /** @var Reminder $model */
         $model = $this->resource;
 
         return $this->onEntity([

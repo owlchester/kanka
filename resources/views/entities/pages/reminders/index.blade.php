@@ -17,9 +17,9 @@
             <a href="https://docs.kanka.io/en/latest/features/reminders.html" target="_blank" class="btn2 btn-ghost btn-sm">
                 <x-icon class="question" /> {{ __('crud.actions.help') }}
             </a>
-            <a href="{{ route('entities.entity_events.create', [$campaign, $entity, 'next' => 'entity.events']) }}" id="entity-calendar-modal-add"
+            <a href="{{ route('entities.reminders.create', [$campaign, $entity, 'next' => 'entity.reminders']) }}" id="entity-calendar-modal-add"
                class="btn2 btn-sm" data-toggle="dialog" data-target="primary-dialog"
-               data-url="{{ route('entities.entity_events.create', [$campaign, $entity, 'next' => 'entity.events']) }}">
+               data-url="{{ route('entities.reminders.create', [$campaign, $entity, 'next' => 'entity.reminders']) }}">
                 <x-icon class="plus" /> {{ __('entities/events.show.actions.add') }}
             </a>
         @endcan

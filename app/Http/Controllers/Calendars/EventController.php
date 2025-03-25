@@ -59,9 +59,10 @@ class EventController extends Controller
             $rows->before($calendar);
         }
 
+        // @phpstan-ignore-next-line
         $this->rows = $rows
-            ->with(['entity', 'calendar', 'entity.image', 'entity.entityType'])
-            ->has('entity')
+            ->with(['remindable', 'calendar', 'calendar.entity', 'remindable.image', 'remindable.entityType'])
+            ->whereHas('remindable')
             ->sort(request()->only(['o', 'k']))
             ->paginate();
 
@@ -117,7 +118,7 @@ class EventController extends Controller
                 ->addEvent($request->all());
 
             return redirect()->route('entities.show', $routeOptions)
-                ->with('success', __('calendars.event.success', ['event' => $link->entity->name]));
+                ->with('success', __('calendars.event.success', ['event' => $link->remindable->name]));
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('entities.show', $routeOptions)

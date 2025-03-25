@@ -44,7 +44,7 @@ class LiveController extends Controller
     }
 
     /**
-     * Filter on entities which have reminders (entity_events)
+     * Filter on entities which have reminders
      */
     public function reminderEntities(Request $request, Campaign $campaign)
     {

@@ -10,6 +10,8 @@ return [
     // When left empty or `null` the Laravel environment will be used
     'environment' => env('SENTRY_ENVIRONMENT'),
 
+    'max_breadcrumbs' => 25,
+
     'breadcrumbs' => [
         // Capture Laravel logs in breadcrumbs
         'logs' => true,

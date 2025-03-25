@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Resources\EntityEventResource as Resource;
+use App\Http\Resources\ReminderResource as Resource;
 use App\Models\Calendar;
 use App\Models\Campaign;
 
