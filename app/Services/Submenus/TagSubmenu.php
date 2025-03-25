@@ -21,6 +21,7 @@ class TagSubmenu extends BaseSubmenu implements EntitySubmenu
                 'count' => $count,
             ];
         }
+
         return $items;
     }
 }

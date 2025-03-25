@@ -46,7 +46,7 @@ class RecentController extends Controller
                 'fulltext' => __('search.fulltext'),
                 'keyboard' => __('search.lookup.keyboard', [
                     'k' => '<strong>k</strong>',
-                    'esc' => '<strong>esc</strong>'
+                    'esc' => '<strong>esc</strong>',
                 ]),
                 'empty_results' => __('search.lookup.empty'),
             ],

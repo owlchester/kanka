@@ -8,6 +8,7 @@ class PostRecovery extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -23,7 +24,7 @@ class PostRecovery extends Layout
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($post) {
                     return $post->deleted_at->diffForHumans();
-                }
+                },
             ],
         ];
 

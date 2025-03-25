@@ -25,8 +25,8 @@ class ReorderBookmarks extends FormRequest
     {
         return [
             'bookmark' => [
-                '*' => 'exists:bookmarks,id'
-            ]
+                '*' => 'exists:bookmarks,id',
+            ],
         ];
     }
 }

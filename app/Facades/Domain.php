@@ -6,8 +6,6 @@ use App\Services\DomainService;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @package App\Facades
- *
  * @mixin DomainService
  */
 class Domain extends Facade

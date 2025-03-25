@@ -26,7 +26,7 @@ class Form extends Component
         // Guarantee uppercase method for the tests in the blade file
         $this->method = mb_strtoupper($method);
         foreach ($config as $k => $v) {
-            if (!property_exists($this, $k)) {
+            if (! property_exists($this, $k)) {
                 continue;
             }
             $this->$k = $v;
@@ -41,7 +41,7 @@ class Form extends Component
         return view('components.form');
     }
 
-    public function extra(): string|null
+    public function extra(): ?string
     {
         if (empty($this->extra)) {
             return null;
@@ -50,12 +50,13 @@ class Form extends Component
         foreach ($this->extra as $k => $v) {
             $extra[] = $k . '="' . $v . '"';
         }
+
         return implode(' ', $extra);
     }
 
     public function action(): string
     {
-        if (!is_array($this->action)) {
+        if (! is_array($this->action)) {
             return route($this->action);
         }
         $parameters = array_slice($this->action, 1);

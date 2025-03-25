@@ -4,20 +4,21 @@ namespace App\Models\Relations;
 
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
-use App\Models\EntityEvent;
+use App\Models\Reminder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
 
 /**
- * @property EntityEvent[] $calendarEvents
- * @property CalendarWeather[] $calendarWeather
- * @property Calendar|null $calendar
+ * @property Collection|Reminder[] $calendarEvents
+ * @property Collection|CalendarWeather[] $calendarWeather
+ * @property ?Calendar $calendar
  */
 trait CalendarRelations
 {
     public function calendarEvents(): HasMany
     {
-        return $this->hasMany(EntityEvent::class, 'calendar_id');
+        return $this->hasMany(Reminder::class, 'calendar_id');
     }
 
     public function calendarWeather(): HasMany

@@ -9,6 +9,7 @@ class Recovery extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -22,6 +23,7 @@ class Recovery extends Layout
                     if (empty($child)) {
                         return '';
                     }
+
                     return '<div style="background-image: url(' . Avatar::entity($entity)->size(40)->thumbnail() . ');" class="entity-image w-10 h-10"></div>';
                 },
             ],
@@ -42,7 +44,7 @@ class Recovery extends Layout
                 'class' => self::ONLY_DESKTOP,
                 'render' => function ($model) {
                     return $model->deleted_at->diffForHumans();
-                }
+                },
             ],
         ];
 

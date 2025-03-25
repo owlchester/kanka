@@ -3,24 +3,24 @@
 use App\Http\Controllers\Billing\HistoryController;
 use App\Http\Controllers\Billing\PaymentMethodController;
 use App\Http\Controllers\CampaignBoostController;
-use App\Http\Controllers\Settings\NewsletterApiController;
-use App\Http\Controllers\Settings\ProfileController;
-use App\Http\Controllers\Settings\BoostController;
-use App\Http\Controllers\Settings\PremiumController;
-use App\Http\Controllers\Settings\ReleaseController;
-use App\Http\Controllers\Settings\AccountController;
-use App\Http\Controllers\Settings\AppearanceController;
+use App\Http\Controllers\Layout\NavigationController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\Settings\NewsletterController;
-use App\Http\Controllers\Settings\PatreonController;
-use App\Http\Controllers\Settings\ApiController;
-use App\Http\Controllers\Settings\SubscriptionController;
-use App\Http\Controllers\Settings\AppsController;
-use App\Http\Controllers\Settings\Apps\DiscordController;
 use App\Http\Controllers\PasswordSecurityController;
 use App\Http\Controllers\PayPalController;
-use App\Http\Controllers\Layout\NavigationController;
+use App\Http\Controllers\Settings\AccountController;
+use App\Http\Controllers\Settings\ApiController;
+use App\Http\Controllers\Settings\AppearanceController;
+use App\Http\Controllers\Settings\Apps\DiscordController;
+use App\Http\Controllers\Settings\AppsController;
+use App\Http\Controllers\Settings\BoostController;
+use App\Http\Controllers\Settings\NewsletterApiController;
+use App\Http\Controllers\Settings\NewsletterController;
+use App\Http\Controllers\Settings\PatreonController;
+use App\Http\Controllers\Settings\PremiumController;
+use App\Http\Controllers\Settings\ProfileController;
+use App\Http\Controllers\Settings\ReleaseController;
 use App\Http\Controllers\Settings\Subscription\CancellationController;
+use App\Http\Controllers\Settings\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'index'])->name('settings');
@@ -39,7 +39,6 @@ Route::get('/switch-back', [PremiumController::class, 'back'])
 Route::get('/premium', [PremiumController::class, 'index'])->name('settings.premium');
 Route::get('/boosters/premium/{campaign}', [PremiumController::class, 'premium'])->name('settings.campaign-premium');
 Route::get('/boosters/unpremium/{campaign}', [PremiumController::class, 'unpremium'])->name('settings.campaign-unpremium');
-
 
 Route::post('/release/{app_release}', [ReleaseController::class, 'read'])->name('settings.release');
 
@@ -95,11 +94,11 @@ Route::post('/marketplace', 'Settings\MarketplaceController@save')
     ->name('settings.marketplace.save');*/
 
 // Tutorial
-//Route::get('/tutorial/{tutorial}/done/{next?}', 'Settings\TutorialController@done')
+// Route::get('/tutorial/{tutorial}/done/{next?}', 'Settings\TutorialController@done')
 //    ->name('settings.tutorial.done');
-//Route::get('/tutorial/disable', 'Settings\TutorialController@disable')
+// Route::get('/tutorial/disable', 'Settings\TutorialController@disable')
 //    ->name('settings.tutorial.disable');
-//Route::get('/tutorial/reset', 'Settings\TutorialController@reset')
+// Route::get('/tutorial/reset', 'Settings\TutorialController@reset')
 //    ->name('settings.tutorial.reset');
 Route::post('/tutorials/{code}/dismiss', [App\Http\Controllers\Settings\TutorialController::class, 'dismiss'])->name('tutorials.dismiss');
 Route::patch('/tutorials/reset', [App\Http\Controllers\Settings\TutorialController::class, 'reset'])->name('tutorials.reset');
@@ -120,7 +119,6 @@ Google2FA
 */
 Route::post('/security/cancel2fa', [PasswordSecurityController::class, 'cancel2FA'])->name('auth.cancel-2fa');
 
-
 // Generate a new Google2FA code if a User does not already have one
 Route::post('/security/generate2faSecret', [PasswordSecurityController::class, 'generate2faSecretCode'])
     ->name('settings.security.generate-2fa');
@@ -137,7 +135,6 @@ Route::post('/security/disable2fa', [PasswordSecurityController::class, 'disable
 Route::post('/security/verify2fa', function () {
     return redirect()->route('home');
 })->name('auth.verify-2fa')->middleware('2fa');
-
 
 /*Route::get('/security/verify2fa', function() {
     return redirect(URL()->previous());

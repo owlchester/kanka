@@ -37,14 +37,13 @@ class RestoreEntities extends Command
 
     /**
      * Execute the console command.
-     *
      */
     public function handle()
     {
         $type = 'attribute_template';
         $plural = Str::plural($type);
 
-        $max =  Entity::where('type', $type)->doesnthave($type)->count();
+        $max = Entity::where('type', $type)->doesnthave($type)->count();
 
         $blocks = 5000;
         $count = 0;

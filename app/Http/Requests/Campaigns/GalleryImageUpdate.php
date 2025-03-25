@@ -33,6 +33,7 @@ class GalleryImageUpdate extends FormRequest
                 }),
             ],
         ];
+
         return $rules;
     }
 }

@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUser;
-use Illuminate\Database\Eloquent\Model;
-use PragmaRX\Google2FA\Google2FA;
-use Illuminate\Support\Facades\Auth;
-use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
+use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use PragmaRX\Google2FA\Google2FA;
 
 class PasswordSecurity extends Model
 {
@@ -38,10 +38,10 @@ class PasswordSecurity extends Model
 
         // If User has 2FA current disabled generate QR code
         if (isset($user->passwordSecurity)) {
-            $google2Fa = new Google2FA();
-            //$google2Fa->setAllowInsecureCallToGoogleApis(true);
+            $google2Fa = new Google2FA;
+            // $google2Fa->setAllowInsecureCallToGoogleApis(true);
             $appName = config('app.name');
-            if (!app()->isProduction()) {
+            if (! app()->isProduction()) {
                 $appName .= ':' . app()->environment();
             }
             $google2FaUrl = $google2Fa->getQRCodeUrl(
@@ -52,7 +52,7 @@ class PasswordSecurity extends Model
         }
         $renderer = new ImageRenderer(
             new RendererStyle(200),
-            new SvgImageBackEnd()
+            new SvgImageBackEnd
         );
         $writer = new Writer($renderer);
 

@@ -32,8 +32,7 @@ class TransformController extends Controller
             ->with('campaign', $campaign)
             ->with('entityTypes', $entityTypes)
             ->with('entities', $entities)
-            ->with('entityType', $entityType)
-        ;
+            ->with('entityType', $entityType);
     }
 
     public function apply(TransformEntityRequest $request, Campaign $campaign, EntityType $entityType)

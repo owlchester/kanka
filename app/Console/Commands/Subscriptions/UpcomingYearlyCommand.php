@@ -66,11 +66,10 @@ class UpcomingYearlyCommand extends Command
             ->where('stripe_status', 'active')
             ->whereRaw('month(updated_at) = ' . $now->month)
             ->whereRaw('day(updated_at) = ' . $now->day)
-            //->whereRaw('year(created_at) <> ' . $now->year)
+            // ->whereRaw('year(created_at) <> ' . $now->year)
             ->whereNull('ends_at')
             ->with('user')
-            ->get()
-        ;
+            ->get();
 
         $count = 0;
         foreach ($subscriptions as $subscription) {

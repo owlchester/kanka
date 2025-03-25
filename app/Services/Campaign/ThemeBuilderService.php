@@ -29,6 +29,7 @@ class ThemeBuilderService
         ]);
         $style->is_theme = true;
         $style->campaign_id = $this->campaign->id;
+
         return $style;
     }
 }

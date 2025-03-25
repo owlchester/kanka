@@ -7,16 +7,15 @@ use App\Facades\Mentions;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class TimelineEra
- * @package App\Models
  *
  * @property int $id
  * @property ?int $timeline_id
@@ -27,7 +26,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string|int $end_year
  * @property bool|int $is_collapsed
  * @property ?int $position
- *
  * @property Timeline $timeline
  * @property TimelineElement[]|Collection $elements
  * @property TimelineElement[]|Collection $orderedElements
@@ -59,6 +57,7 @@ class TimelineEra extends Model
         'end_year',
         'is_collapsed',
     ];
+
     protected array $sanitizable = [
         'name',
         'abbreviation',
@@ -66,30 +65,22 @@ class TimelineEra extends Model
         'end_year',
     ];
 
-    /**
-     */
     public function timeline(): BelongsTo
     {
         return $this->belongsTo(Timeline::class, 'timeline_id');
     }
 
-    /**
-     */
     public function elements(): HasMany
     {
         return $this->hasMany(TimelineElement::class, 'era_id');
     }
-    /**
-     */
+
     public function orderedElements(): HasMany
     {
         return $this->elements()
-            ->ordered()
-        ;
+            ->ordered();
     }
 
-    /**
-     */
     public function scopeOrdered(Builder $query): Builder
     {
         return $query
@@ -99,8 +90,6 @@ class TimelineEra extends Model
             ->orderBy('name');
     }
 
-    /**
-     */
     public function collapsed(): bool
     {
         return $this->is_collapsed;
@@ -128,8 +117,6 @@ class TimelineEra extends Model
         return $a->format($this->start_year) . ' &mdash; ' . $a->format($this->end_year);
     }
 
-    /**
-     */
     public function hasEntity(): bool
     {
         return false;
@@ -142,6 +129,7 @@ class TimelineEra extends Model
     {
         return 'timelines.timeline_eras.' . $where;
     }
+
     public function routeParams(array $options = []): array
     {
         return $options + ['timeline' => $this->timeline_id, 'timeline_era' => $this->id];
@@ -153,14 +141,14 @@ class TimelineEra extends Model
     public function getLink(): string
     {
         $campaign = CampaignLocalization::getCampaign();
+
         return route('timelines.timeline_eras.edit', [$campaign, 'timeline' => $this->timeline_id, $this->id]);
     }
 
-    /**
-     */
     public function getEntryForEditionAttribute()
     {
         $text = Mentions::parseForEdit($this);
+
         return $text;
     }
 
@@ -174,10 +162,10 @@ class TimelineEra extends Model
         $elements = $this->orderedElements;
         $hasFirst = false;
         foreach ($elements as $element) {
-            if (!$element->visible()) {
+            if (! $element->visible()) {
                 continue;
             }
-            if (!$hasFirst) {
+            if (! $hasFirst) {
                 $hasFirst = true;
                 $options[1] = __('posts.position.first');
             }
@@ -186,13 +174,13 @@ class TimelineEra extends Model
             if (config('app.debug')) {
                 $lang .= ' (' . $key . ')';
             }
-            if (!($position == $key)) {
+            if (! ($position == $key)) {
                 $options[$key + 1] = $lang;
             }
         }
 
         // Didn't have a first option added, add one now
-        if (!$hasFirst) {
+        if (! $hasFirst) {
             $options[1] = __('posts.position.first');
         }
 

@@ -19,6 +19,7 @@ class RelationResource extends JsonResource
     {
         /** @var Relation $model */
         $model = $this->resource;
+
         return [
             'id' => $model->id,
             'owner_id' => $model->owner_id,
@@ -26,7 +27,7 @@ class RelationResource extends JsonResource
             'relation' => $model->relation,
             'attitude' => $model->attitude,
             'colour' => $model->colour,
-            //'is_private' => (bool) $this->is_private,
+            // 'is_private' => (bool) $this->is_private,
             'visibility_id' => $model->visibility_id,
             'is_star' => (bool) $model->isPinned(),
             'is_pinned' => (bool) $model->isPinned(),

@@ -9,18 +9,21 @@ class BrowseService
 {
     use CampaignAware;
 
-    protected null|string $folder;
+    protected ?string $folder;
 
-    protected null|string $term;
+    protected ?string $term;
 
-    public function term(null|string $term): self
+    public function term(?string $term): self
     {
         $this->term = $term;
+
         return $this;
     }
-    public function folder(null|string $folder): self
+
+    public function folder(?string $folder): self
     {
         $this->folder = $folder;
+
         return $this;
     }
 
@@ -30,13 +33,13 @@ class BrowseService
 
         $canBrowse = auth()->user()->can('galleryBrowse', $this->campaign);
 
-        if (!empty($this->folder)) {
+        if (! empty($this->folder)) {
             $image = Image::where('is_folder', true)->where('id', $this->folder)->firstOrFail();
             $results['images'][] = [
                 'name' => __('crud.actions.back'),
                 'folder' => true,
                 'icon' => 'fa-regular fa-arrow-left',
-                'url' => route('gallery.browse', [$this->campaign, 'folder' => $image->folder_id])
+                'url' => route('gallery.browse', [$this->campaign, 'folder' => $image->folder_id]),
             ];
         }
 

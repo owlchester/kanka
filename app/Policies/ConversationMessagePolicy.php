@@ -14,11 +14,10 @@ class ConversationMessagePolicy
     public function delete(?User $user, ConversationMessage $message): bool
     {
         $elapsedHours = $message->created_at->diffInHours(Carbon::now());
+
         return $message->created_by === $user->id && ($elapsedHours < 1);
     }
 
-    /**
-     */
     public function edit(?User $user, ConversationMessage $message): bool
     {
         return $this->delete($user, $message);

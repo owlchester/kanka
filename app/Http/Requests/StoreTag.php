@@ -39,22 +39,24 @@ class StoreTag extends FormRequest
             'tag_id' => 'nullable|integer|exists:tags,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
             'colour' => [
                 'nullable',
-                Rule::in($colours)
+                Rule::in($colours),
             ],
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Tag $self */
         $self = request()->route('tag');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['tag_id'] = [
                 'nullable',
                 'integer',
                 'exists:tags,id',
-                new Nested(Tag::class, $self)
+                new Nested(Tag::class, $self),
             ];
         }
 

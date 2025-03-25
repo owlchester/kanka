@@ -19,6 +19,7 @@ class StoreSettingsLayout extends FormRequest
     {
         $this->pagination = $paginationService;
     }
+
     /**
      * Determine if the user is authorized to make this request.
      *

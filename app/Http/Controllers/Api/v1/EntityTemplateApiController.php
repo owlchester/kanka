@@ -19,6 +19,7 @@ class EntityTemplateApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -27,6 +28,7 @@ class EntityTemplateApiController extends ApiController
             DB::enableQueryLog();
         }
         $this->authorize('access', $campaign);
+
         return Resource::collection($campaign->entities()
             ->apiFilter(request()->all())
             ->lastSync(request()->get('lastSync'))
@@ -36,7 +38,8 @@ class EntityTemplateApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function switch(Campaign $campaign, Entity $entity)
@@ -47,6 +50,7 @@ class EntityTemplateApiController extends ApiController
         $this->service->entity($entity)->toggle();
 
         $resource = new Resource($entity);
+
         return $resource->withMisc();
     }
 }

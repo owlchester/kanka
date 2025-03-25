@@ -13,14 +13,12 @@ use Illuminate\Support\Facades\Auth;
 
 /**
  * Class ConversationMessage
- * @package App\Models
  *
  * @property int $id
  * @property int $conversation_id
  * @property int $character_id
  * @property int $user_id
  * @property string $message
- *
  * @property ?Character $character
  * @property Conversation $conversation
  */
@@ -43,6 +41,7 @@ class ConversationMessage extends Model
 
     /**
      * Fields that can be filtered on
+     *
      * @var array
      */
     protected $filterableColumns = [
@@ -71,8 +70,8 @@ class ConversationMessage extends Model
      */
     public function target()
     {
-        return (!empty($this->character_id) ? Conversation::TARGET_CHARACTERS :
-            (!empty($this->user_id) ? Conversation::TARGET_USERS : null));
+        return ! empty($this->character_id) ? Conversation::TARGET_CHARACTERS :
+            (! empty($this->user_id) ? Conversation::TARGET_USERS : null);
     }
 
     /**
@@ -80,42 +79,39 @@ class ConversationMessage extends Model
      */
     public function author()
     {
-        if (!empty($this->user_id)) {
+        if (! empty($this->user_id)) {
             return $this->user;
-        } elseif (!empty($this->character_id)) {
+        } elseif (! empty($this->character_id)) {
             return $this->character;
         }
-        return null;
-    }
-    /**
-     */
-    public function authorID(): int|null
-    {
-        if (!empty($this->user_id)) {
-            return $this->user_id;
-        } elseif (!empty($this->character_id)) {
-            return $this->character_id;
-        }
+
         return null;
     }
 
-    /**
-     */
+    public function authorID(): ?int
+    {
+        if (! empty($this->user_id)) {
+            return $this->user_id;
+        } elseif (! empty($this->character_id)) {
+            return $this->character_id;
+        }
+
+        return null;
+    }
+
     public function scopeDefault(Builder $query, ?int $oldestId = null, ?int $newestId = null)
     {
         $query->with(['user', 'character'])
             ->latest()
             ->take(20);
 
-        if (!empty($oldestId)) {
+        if (! empty($oldestId)) {
             $query->where('id', '<', $oldestId);
-        } elseif (!empty($newestId)) {
+        } elseif (! empty($newestId)) {
             $query->where('id', '>', $newestId);
         }
     }
 
-    /**
-     */
     public function isMine(): bool
     {
         return Auth::check() && $this->created_by == Auth::user()->id;
@@ -142,6 +138,7 @@ class ConversationMessage extends Model
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array

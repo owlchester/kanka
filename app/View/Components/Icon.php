@@ -20,19 +20,19 @@ class Icon extends Component
         public ?string $link = null,
         public ?string $size = null,
         public ?string $label = null,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): View|Closure|string
     {
-        if (empty($this->class) && !empty($this->entity)) {
+        if (empty($this->class) && ! empty($this->entity)) {
             $this->class = $this->mapEntity($this->entity);
-        } elseif (!empty($this->class)) {
+        } elseif (! empty($this->class)) {
             $this->class = $this->map($this->class);
         }
+
         return view('components.icon');
     }
 
@@ -69,6 +69,7 @@ class Icon extends Component
         if (config('fontawesome.kit')) {
             return $class;
         }
+
         return Str::replace('fa-duotone', 'fa-solid', $class);
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Bookmarks;
 
 use App\Http\Controllers\Controller;
-use App\Models\Campaign;
 use App\Models\Bookmark;
+use App\Models\Campaign;
 
 class RandomController extends Controller
 {
@@ -20,6 +20,7 @@ class RandomController extends Controller
                     __('bookmarks.random_no_entity')
                 );
         }
+
         return redirect()->to($route);
     }
 }

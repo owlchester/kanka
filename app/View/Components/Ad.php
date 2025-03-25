@@ -18,11 +18,10 @@ class Ad extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string|null $section = null,
-        public Campaign|null $campaign = null,
+        public ?string $section = null,
+        public ?Campaign $campaign = null,
         public bool $script = false,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
@@ -32,9 +31,10 @@ class Ad extends Component
         if (auth()->check()) {
             $this->user = auth()->user();
         }
-        if (!$this->hasAd()) {
+        if (! $this->hasAd()) {
             return '';
         }
+
         return view('components.ad');
     }
 
@@ -51,11 +51,11 @@ class Ad extends Component
 
         // If requesting a section that isn't set up, don't show
         $key = 'ads.' . $provider . '.tags.' . $this->section;
-        if (!empty($this->section) && empty(config($key))) {
-            //dump("Unknown ad tag " . $key);
+        if (! empty($this->section) && empty(config($key))) {
+            // dump("Unknown ad tag " . $key);
             return false;
         }
-        if (!AdCache::canHaveAds()) {
+        if (! AdCache::canHaveAds()) {
             // Using the adless middleware to define routes that have no ads (ie settings)
             return false;
         }
@@ -77,6 +77,6 @@ class Ad extends Component
         }
 
         // Premium campaigns don't have ads displayed to their members
-        return !empty($this->campaign) && !$this->campaign->boosted();
+        return ! empty($this->campaign) && ! $this->campaign->boosted();
     }
 }

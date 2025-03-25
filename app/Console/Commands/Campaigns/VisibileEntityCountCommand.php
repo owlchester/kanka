@@ -43,7 +43,6 @@ class VisibileEntityCountCommand extends Command
 
     /**
      * Execute the console command.
-     *
      */
     public function handle(): void
     {
@@ -53,7 +52,7 @@ class VisibileEntityCountCommand extends Command
                 $this->count++;
                 $count = $this->campaignCount($campaign);
 
-                //$this->info('Campaign ' . $campaign->id . ' has ' . $count . ' public entities.');
+                // $this->info('Campaign ' . $campaign->id . ' has ' . $count . ' public entities.');
 
                 $campaign->visible_entity_count = $count;
                 $campaign->saveQuietly();
@@ -80,14 +79,13 @@ class VisibileEntityCountCommand extends Command
         /** @var CampaignPermission $permission */
         foreach ($public->permissions as $permission) {
             if ($permission->isAction(Permission::View->value)) {
-                if (!empty($permission->entity_id)) {
+                if (! empty($permission->entity_id)) {
                     $ids[] = $permission->entity_id;
                 } else {
                     $types[] = $permission->entity_type_id;
                 }
             }
         }
-
 
         // Now that we have the types and ids, we can count the number of visible entities in this campaign
         return Entity::where(['campaign_id' => $campaign->id])

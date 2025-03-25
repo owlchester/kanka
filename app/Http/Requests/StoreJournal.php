@@ -38,12 +38,14 @@ class StoreJournal extends FormRequest
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'character_id' => 'nullable|exists:characters,id',
             'image_url' => 'nullable|url|active_url',
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
             'journal_id' => 'nullable|integer|exists:journals,id',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
-        if (request()->has('calendar_id') && request()->post('calendar_id') !== null && !request()->has('calendar_skip')) {
+        if (request()->has('calendar_id') && request()->post('calendar_id') !== null && ! request()->has('calendar_skip')) {
             $rules['calendar_day'] = 'required_with:calendar_id|min:1';
             $rules['calendar_year'] = 'required_with:calendar_id';
 
@@ -54,12 +56,12 @@ class StoreJournal extends FormRequest
 
         /** @var Journal $self */
         $self = request()->route('journal');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['journal_id'] = [
                 'nullable',
                 'integer',
                 'exists:journals,id',
-                new Nested(Journal::class, $self)
+                new Nested(Journal::class, $self),
             ];
         }
 

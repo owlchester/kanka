@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Enums\PricingPeriod;
+use App\Http\Requests\ValidatePledge;
 use App\Models\Tier;
 use App\Models\TierPrice;
-use Illuminate\Http\Request;
 use App\Services\PayPalService;
-use App\Http\Requests\ValidatePledge;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
@@ -43,6 +43,7 @@ class PayPalController extends Controller
                     return redirect()->away($links['href']);
                 }
             }
+
             return redirect()
                 ->route('settings.subscription')
                 ->with('error', __('settings.subscription.errors.failed', ['email' => config('app.email')]));
@@ -58,7 +59,7 @@ class PayPalController extends Controller
      */
     public function successTransaction(Request $request)
     {
-        $provider = new PayPalClient();
+        $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $provider->getAccessToken();
         $response = $provider->capturePaymentOrder($request['token']);
@@ -80,14 +81,12 @@ class PayPalController extends Controller
                 ->where('period', PricingPeriod::Yearly)
                 ->first();
 
-
             return redirect()
                 ->route('settings.subscription', $routeOptions)
                 ->with('success', __('settings.subscription.success.subscribed'))
                 ->with('sub_tracking', $flash)
                 ->with('sub_id', $tierPrice?->id)
-                ->with('sub_value', $response['purchase_units']['0']['payments']['captures'][0]['amount']['value'])
-            ;
+                ->with('sub_value', $response['purchase_units']['0']['payments']['captures'][0]['amount']['value']);
         } else {
             return redirect()
                 ->route('settings.subscription')

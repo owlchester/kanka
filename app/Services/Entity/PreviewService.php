@@ -28,7 +28,7 @@ class PreviewService
             // @phpstan-ignore-next-line
             'title' => $this->entity->isCharacter() ? $this->entity->child?->title : null,
             'link' => $this->entity->url(),
-            'image' => $this->image()
+            'image' => $this->image(),
         ];
 
         $this->data['is_dead'] = false;
@@ -37,12 +37,12 @@ class PreviewService
         $this->data['attributes'] = $this->attributes();
         $this->data['profile'] = $this->profile();
         $this->data['connections'] = $this->connections();
-        $this->data['access'] = []; //$this->access();
+        $this->data['access'] = []; // $this->access();
 
         $this->data['texts'] = [
             'profile' => __('crud.tabs.profile'),
             'connections' => __('search.preview.links'),
-            'no-connections' => __('search.preview.no-connections')
+            'no-connections' => __('search.preview.no-connections'),
         ];
 
         return $this->data;
@@ -54,19 +54,19 @@ class PreviewService
     protected function profile(): array
     {
         if ($this->entity->entityType->isSpecial()) {
-            if (!empty($this->entity->type)) {
+            if (! empty($this->entity->type)) {
                 $this->addProfile('crud.fields.type', 'type', $this->entity->type);
             }
         } else {
             /** @var MiscModel|Character $child */
             $child = $this->entity->child;
-            if (!empty($this->entity->type)) {
+            if (! empty($this->entity->type)) {
                 $this->addProfile('crud.fields.type', 'type', $this->entity->type);
             }
         }
 
         // Entity-specific content?
-        if ($this->entity->isCharacter() && !$this->entity->isMissingChild()) {
+        if ($this->entity->isCharacter() && ! $this->entity->isMissingChild()) {
             /** @var Character $child */
             // @phpstan-ignore-next-line
             $this->characterProfile($child);
@@ -95,12 +95,13 @@ class PreviewService
                     'name' => $attr->name(),
                     'value' => $val,
                 ];
+
                 continue;
             }
             $attributes[] = [
                 'id' => $attr->id,
                 'name' => $attr->name(),
-                'value' => $attr->mappedValue()
+                'value' => $attr->mappedValue(),
             ];
         }
 
@@ -122,6 +123,7 @@ class PreviewService
 
         return $tags;
     }
+
     protected function location(): mixed
     {
         if ($this->entity->entityType->isSpecial()) {
@@ -129,16 +131,17 @@ class PreviewService
         }
         /** @var ?Location $loc */
         $loc = null;
-        if (method_exists($this->entity->child, 'location') && !empty($this->entity->child->location)) {
+        if (method_exists($this->entity->child, 'location') && ! empty($this->entity->child->location)) {
             $loc = $this->entity->child->location;
         }
-        if (method_exists($this->entity->child, 'parent_location') && !empty($this->entity->child->parent_location)) {
+        if (method_exists($this->entity->child, 'parent_location') && ! empty($this->entity->child->parent_location)) {
             $loc = $this->entity->child->parent_location;
         }
 
         if (empty($loc)) {
             return null;
         }
+
         return [
             'name' => $loc->name,
             'link' => $loc->getLink(),
@@ -150,7 +153,7 @@ class PreviewService
         $relations = [];
 
         foreach ($this->entity->pinnedRelations as $relation) {
-            if (!$relation->target) {
+            if (! $relation->target) {
                 continue;
             }
             $rel = [

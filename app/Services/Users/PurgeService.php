@@ -5,8 +5,8 @@ namespace App\Services\Users;
 use App\Jobs\Emails\Purge\FirstWarningJob;
 use App\Jobs\Emails\Purge\SecondWarningJob;
 use App\Jobs\Users\DeleteUser;
-use App\Models\UserFlag;
 use App\Models\User;
+use App\Models\UserFlag;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -23,18 +23,21 @@ class PurgeService
     public function date(string $date): self
     {
         $this->date = $date;
+
         return $this;
     }
 
     public function real(): self
     {
         $this->dry = false;
+
         return $this;
     }
 
     public function limit(int $limit): self
     {
         $this->limit = $limit;
+
         return $this;
     }
 
@@ -68,11 +71,12 @@ class PurgeService
                         return false;
                     }
                     $this->count++;
-                    if (!$this->dry) {
+                    if (! $this->dry) {
                         DeleteUser::dispatch($user);
                     }
                 }
             });
+
         return $this->count;
     }
 
@@ -81,7 +85,7 @@ class PurgeService
      */
     public function example(): int
     {
-        //$this->reset();
+        // $this->reset();
 
         if ($this->count >= $this->limit) {
             return 0;
@@ -122,7 +126,7 @@ class PurgeService
                         return false;
                     }
                     $this->count++;
-                    if (!$this->dry) {
+                    if (! $this->dry) {
                         DeleteUser::dispatch($user);
                     }
                 }
@@ -176,8 +180,8 @@ class PurgeService
                     }
 
                     // Add a flag for this user
-                    if (!$this->dry) {
-                        $flag = new UserFlag();
+                    if (! $this->dry) {
+                        $flag = new UserFlag;
                         $flag->user_id = $user->id;
                         $flag->flag = UserFlag::FLAG_INACTIVE_1;
                         $flag->save();
@@ -188,9 +192,9 @@ class PurgeService
                     $this->count++;
                 }
             });
+
         return $this->count;
     }
-
 
     public function secondWarning(): int
     {
@@ -233,8 +237,8 @@ class PurgeService
                     }
 
                     // Add a flag for this user
-                    if (!$this->dry) {
-                        $flag = new UserFlag();
+                    if (! $this->dry) {
+                        $flag = new UserFlag;
                         $flag->user_id = $user->id;
                         $flag->flag = UserFlag::FLAG_INACTIVE_2;
                         $flag->save();
@@ -245,6 +249,7 @@ class PurgeService
                     $this->count++;
                 }
             });
+
         return $this->count;
     }
 
@@ -286,13 +291,14 @@ class PurgeService
                     }
 
                     // Add a flag for this user
-                    if (!$this->dry) {
+                    if (! $this->dry) {
                         DeleteUser::dispatch($user);
                     }
 
                     $this->count++;
                 }
             }, 'users.id', 'id');
+
         return $this->count;
     }
 }

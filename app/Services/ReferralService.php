@@ -15,13 +15,13 @@ class ReferralService
      */
     public function validate(Request $request): void
     {
-        if (!$request->has($this->key)) {
+        if (! $request->has($this->key)) {
             return;
         }
 
         $code = $request->get($this->key);
         $referral = Referral::where('code', $code)->where('is_valid', true)->first();
-        if (!$referral) {
+        if (! $referral) {
             return;
         }
 
@@ -29,16 +29,15 @@ class ReferralService
         session()->put('referral_id', $referral->id);
     }
 
-    /**
-     */
     public function referralId()
     {
-        if (!session()->has('referral_id')) {
+        if (! session()->has('referral_id')) {
             return null;
         }
 
         $referral = session()->get('referral_id', null);
         session()->forget('referral_id');
+
         return $referral;
     }
 }

@@ -28,7 +28,7 @@ class TableController extends Controller
             ->sort(request()->only(['o', 'k']))
             ->paginate();
 
-        //$this->campaign($campaign)->datagrid();
+        // $this->campaign($campaign)->datagrid();
 
         $html = view('layouts.datagrid._table')
             ->with('rows', $this->rows)

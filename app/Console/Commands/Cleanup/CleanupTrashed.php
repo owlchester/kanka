@@ -32,9 +32,9 @@ class CleanupTrashed extends Command
 
     /**
      * The recovery service
-     *
      */
     protected PurgeService $service;
+
     protected PostPurgeService $postService;
 
     /**
@@ -51,7 +51,6 @@ class CleanupTrashed extends Command
 
     /**
      * Execute the console command.
-     *
      */
     public function handle()
     {
@@ -64,11 +63,12 @@ class CleanupTrashed extends Command
             Entity::onlyTrashed()
                 ->where('deleted_at', '<=', $delay)
                 ->allCampaigns()
-                ->with('campaign')
+                ->with(['campaign', 'entityType'])
+                ->has('campaign')
                 ->chunkById(1000, function ($entities): void {
                     $this->info('Chunk deleting ' . count($entities) . ' entities.');
                     foreach ($entities as $entity) {
-                        //dump($entity->name . ' (' . $entity->entityType->code . ')');
+                        // dump($entity->name . ' (' . $entity->entityType->code . ')');
                         $this->service->trash($entity);
                     }
                 });

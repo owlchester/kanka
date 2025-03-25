@@ -23,7 +23,7 @@ class HistoryController extends Controller
     {
         /** @var User $user */
         $user = $request->user();
-        $invoices = !empty($user->stripe_id) ? $user->invoicesIncludingPending() : [];
+        $invoices = ! empty($user->stripe_id) ? $user->invoicesIncludingPending() : [];
 
         return view('billing.history', compact(
             'invoices'
@@ -31,16 +31,17 @@ class HistoryController extends Controller
     }
 
     /**
-     * @param string $invoice
+     * @param  string  $invoice
      */
     public function download(Request $request, $invoice)
     {
         /** @var User $user */
         $user = $request->user();
         $billing = '';
-        if ($user->profile && !empty($user->profile['billing'])) {
+        if ($user->profile && ! empty($user->profile['billing'])) {
             $billing = $user->profile['billing'];
         }
+
         return $user->downloadInvoice($invoice, [
             'vendor' => 'Owlchester SNC',
             'product' => 'Kanka Subscription',

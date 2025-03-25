@@ -21,7 +21,7 @@ class GroupController extends Controller
 
         $action = $request->get('action');
         $models = $request->get('model');
-        if (!in_array($action, $this->validBulkActions()) || empty($models)) {
+        if (! in_array($action, $this->validBulkActions()) || empty($models)) {
             return redirect()->back();
         }
 
@@ -36,7 +36,6 @@ class GroupController extends Controller
 
         return redirect()
             ->route('maps.map_groups.index', [$campaign, 'map' => $map])
-            ->with('success', trans_choice('maps/groups.bulks.' . $action, $count, ['count' => $count]))
-        ;
+            ->with('success', trans_choice('maps/groups.bulks.' . $action, $count, ['count' => $count]));
     }
 }

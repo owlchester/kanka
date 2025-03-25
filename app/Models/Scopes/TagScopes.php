@@ -12,6 +12,7 @@ trait TagScopes
 {
     /**
      * Performance with for datagrids
+     *
      * @return mixed
      */
     public function scopePreparedWith(Builder $query): Builder

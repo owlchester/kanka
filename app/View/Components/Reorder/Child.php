@@ -13,8 +13,7 @@ class Child extends Component
      */
     public function __construct(
         public mixed $id
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

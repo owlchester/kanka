@@ -7,10 +7,10 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
+use App\Models\Concerns\HasReminder;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
-use App\Traits\CalendarDateTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,7 +22,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Quest
- * @package App\Models
+ *
  * @property ?int $quest_id
  * @property ?int $instigator_id
  * @property ?int $location_id
@@ -35,13 +35,13 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Quest extends MiscModel
 {
     use Acl;
-    use CalendarDateTrait;
     use ExportableTrait;
     use HasCampaign;
     use HasFactory;
     use HasFilters;
     use HasLocation;
     use HasRecursiveRelationships;
+    use HasReminder;
     use Nested;
     use Sanitizable;
     use SoftDeletes;
@@ -89,6 +89,7 @@ class Quest extends MiscModel
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -141,13 +142,11 @@ class Quest extends MiscModel
             ->withCount('elements');
     }
 
-    /**
-     */
     public function scopeFilteredQuests(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'name', 'type','location_id', 'is_completed', 'is_private'])
+            ->select(['id', 'name', 'type', 'location_id', 'is_completed', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'location', 'location.entity',
@@ -159,13 +158,14 @@ class Quest extends MiscModel
     /**
      * Filter quests on specific elements (entities)
      */
-    public function scopeElement(Builder $query, string|null $value, FilterOption $filter): Builder
+    public function scopeElement(Builder $query, ?string $value, FilterOption $filter): Builder
     {
         // "none" filter keys is handled later
         if ($filter === FilterOption::NONE) {
-            if (!empty($value)) {
+            if (! empty($value)) {
                 return $query;
             }
+
             return $query
                 ->select($this->getTable() . '.*')
                 ->leftJoin('quest_elements as qe2', function ($join) {
@@ -178,6 +178,7 @@ class Quest extends MiscModel
                     $this->getTable() . '.id and qe.entity_id = ' . ((int) $value) . ') = 0');
         }
         $ids = [$value];
+
         return $query
             ->select($this->getTable() . '.*')
             ->leftJoin('quest_elements as qe', function ($join) {
@@ -196,6 +197,7 @@ class Quest extends MiscModel
                 ->whereRaw('(select count(*) from quest_elements as qe where qe.quest_id =' . $this->getTable() . '.id and qe.role = \''
                     . mb_ltrim($value, '!') . '\') = 0');
         }
+
         return $query
             ->select($this->getTable() . '.*')
             ->leftJoin('quest_elements as qe', function ($join) {
@@ -212,8 +214,6 @@ class Quest extends MiscModel
         return ['quest_id', 'instigator_id', 'location_id', 'is_completed', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
     }
 
-    /**
-     */
     public function shortDescription()
     {
         return $this->name;
@@ -221,6 +221,7 @@ class Quest extends MiscModel
 
     /**
      * Parent ID field for the Node trait
+     *
      * @return string
      */
     public function getParentKeyName()
@@ -278,14 +279,16 @@ class Quest extends MiscModel
     public function showProfileInfo(): bool
     {
         if ($this->instigator ||
-            !empty($this->date) || !empty($this->calendarReminder()) || !empty($this->location)) {
+            ! empty($this->date) || ! empty($this->calendarReminder()) || ! empty($this->location)) {
             return true;
         }
+
         return parent::showProfileInfo();
     }
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
@@ -326,6 +329,7 @@ class Quest extends MiscModel
         if (auth()->check() && auth()->user()->isAdmin()) {
             $columns['is_private'] = __('crud.fields.is_private');
         }
+
         return $columns;
     }
 }

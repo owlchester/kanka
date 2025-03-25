@@ -21,17 +21,15 @@ class TocSlugify implements SluggerInterface
 
     /**
      * Constructor
-     *
      */
     public function __construct(?SymfonyStringSluggerInterface $slugger = null)
     {
         $this->used = [];
-        $this->slugger = $slugger ?: new AsciiSlugger();
+        $this->slugger = $slugger ?: new AsciiSlugger;
     }
 
     /**
      * Slugify
-     *
      */
     public function makeSlug(string $string): string
     {
@@ -45,6 +43,7 @@ class TocSlugify implements SluggerInterface
         }
 
         $this->used[] = $slugged;
+
         return $slugged;
     }
 

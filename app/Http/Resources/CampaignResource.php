@@ -18,8 +18,10 @@ class CampaignResource extends JsonResource
     public function withMentions(): self
     {
         $this->withMentions = true;
+
         return $this;
     }
+
     /**
      * Transform the resource into an array.
      *
@@ -59,7 +61,7 @@ class CampaignResource extends JsonResource
             'urls' => [
                 'view' => $url,
                 'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$campaign]) : null,
-            ]
+            ],
         ];
 
         CampaignCache::campaign($campaign)->user(auth()->user());

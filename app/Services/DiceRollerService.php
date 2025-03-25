@@ -29,6 +29,7 @@ class DiceRollerService
         $query = str_replace('+-', '-', $query);
 
         $calc = new Calc($query);
+
         return $calc();
     }
 }

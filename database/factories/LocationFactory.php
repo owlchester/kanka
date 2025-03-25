@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\Location;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LocationFactory extends Factory
 {
@@ -14,6 +14,7 @@ class LocationFactory extends Factory
      * @var string
      */
     protected $model = Location::class;
+
     /**
      * Define the model's default state.
      *

@@ -3,9 +3,9 @@
 namespace App\Policies;
 
 use App\Enums\Permission;
+use App\Facades\EntityPermission;
 use App\Models\Bookmark;
 use App\Models\User;
-use App\Facades\EntityPermission;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class BookmarkPolicy

@@ -23,6 +23,7 @@ class NewsletterController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
+
         return view('settings.notifications', compact('user'));
     }
 }

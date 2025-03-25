@@ -3,11 +3,12 @@
 namespace App\Observers;
 
 use App\Models\Calendar;
-use App\Models\EntityEvent;
+use App\Models\Entity;
 use App\Models\EntityEventType;
 use App\Models\Quest;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Reminder;
 use Exception;
+use Illuminate\Database\Eloquent\Model;
 
 class Remindable
 {
@@ -30,7 +31,7 @@ class Remindable
         // Previously, this lookup was only triggered when the calendar_id or date was dirty. However, this excludes just
         // changing the colour or periodicity. To support the API not overriding the values, we still check to make
         // sure that the calendar_id property is set.
-        if (!request()->has('calendar_id')) {
+        if (! request()->has('calendar_id')) {
             return;
         }
         $calendarID = request()->post('calendar_id');
@@ -42,11 +43,13 @@ class Remindable
             // We no longer have a calendar attached to this model
             if ($calendarID === null) {
                 $reminder->delete();
+
                 return;
             }
         } else {
-            $reminder = new EntityEvent();
-            $reminder->entity_id = $entity->id;
+            $reminder = new Reminder;
+            $reminder->remindable_type = Entity::class;
+            $reminder->remindable_id = $entity->id;
         }
 
         // Validate the calendar

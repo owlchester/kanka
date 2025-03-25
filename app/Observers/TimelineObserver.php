@@ -2,6 +2,4 @@
 
 namespace App\Observers;
 
-class TimelineObserver extends MiscObserver
-{
-}
+class TimelineObserver extends MiscObserver {}

@@ -15,27 +15,20 @@ abstract class Column
 
     protected Model $model;
 
-    /**  */
     protected array $config;
 
-    /**
-     */
     public function __construct(Model $model, array $config)
     {
         $this->model = $model;
         $this->config = $config;
     }
 
-    /**
-     */
     public function __toString(): string
     {
         return '';
     }
 
-    /**
-     */
-    public function css(): string|null
+    public function css(): ?string
     {
         $default = null;
         if (Arr::get($this->config, 'render') === Standard::IMAGE) {

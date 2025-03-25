@@ -19,7 +19,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Location
- * @package App\Models
+ *
  * @property string $name
  * @property string $type
  * @property string $image
@@ -59,7 +59,6 @@ class Location extends MiscModel
         'is_private',
         'is_destroyed',
     ];
-
 
     protected array $sortable = [
         'name',
@@ -162,9 +161,10 @@ class Location extends MiscModel
         $locationIds = [$this->id];
         foreach ($this->descendants as $descendant) {
             $locationIds[] = $descendant->id;
-        };
+        }
 
-        $table = new Event();
+        $table = new Event;
+
         return Event::whereIn($table->getTable() . '.location_id', $locationIds)
             ->with('location')
             ->has('entity');
@@ -178,9 +178,10 @@ class Location extends MiscModel
         $locationIds = [$this->id];
         foreach ($this->descendants as $descendant) {
             $locationIds[] = $descendant->id;
-        };
+        }
 
-        $table = new Character();
+        $table = new Character;
+
         return Character::whereIn($table->getTable() . '.location_id', $locationIds)
             ->with('location')
             ->has('entity');
@@ -194,9 +195,10 @@ class Location extends MiscModel
         $locationIds = [$this->id];
         foreach ($this->descendants as $descendant) {
             $locationIds[] = $descendant->id;
-        };
+        }
 
-        $table = new Quest();
+        $table = new Quest;
+
         return Quest::whereIn($table->getTable() . '.location_id', $locationIds)
             ->with('location')
             ->has('entity');
@@ -215,9 +217,10 @@ class Location extends MiscModel
         $locationIds = [$this->id];
         foreach ($this->descendants as $descendant) {
             $locationIds[] = $descendant->id;
-        };
+        }
 
-        $table = new Family();
+        $table = new Family;
+
         return Family::whereIn($table->getTable() . '.location_id', $locationIds)->with('location');
     }
 
@@ -273,6 +276,7 @@ class Location extends MiscModel
         if ($this->maps->isNotEmpty() || $this->entity->elapsedEvents->isNotEmpty()) {
             return true;
         }
+
         return parent::showProfileInfo();
     }
 
@@ -286,13 +290,14 @@ class Location extends MiscModel
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
     {
         return [
             'location_id',
-            'is_destroyed'
+            'is_destroyed',
         ];
     }
 }

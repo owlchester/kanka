@@ -29,7 +29,7 @@ class TimelineEraResource extends JsonResource
             'end_year' => $era->end_year,
             'elements' => $era->elements ? TimelineElementResource::collection($era->elements) : [],
             'is_collapsed' => $era->collapsed(),
-            'position'  => $era->position,
+            'position' => $era->position,
         ];
     }
 }

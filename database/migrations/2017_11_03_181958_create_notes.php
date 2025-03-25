@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateNotes extends Migration
 {
@@ -21,7 +21,6 @@ class CreateNotes extends Migration
 
             $table->integer('campaign_id')->unsigned();
             $table->unsignedInteger('note_id')->nullable();
-
 
             // Overview
             $table->longText('entry')->nullable();

@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class UserCache
- * @package App\Facades
  *
  * @see UserCacheService
+ *
  * @mixin UserCacheService
  */
 class UserCache extends Facade

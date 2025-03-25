@@ -4,8 +4,6 @@ namespace App\Traits;
 
 use App\Models\Entity;
 
-/**
- */
 trait EntityAware
 {
     public Entity $entity;
@@ -13,6 +11,7 @@ trait EntityAware
     public function entity(Entity $entity): self
     {
         $this->entity = $entity;
+
         return $this;
     }
 }

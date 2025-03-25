@@ -45,6 +45,7 @@ class SingleUserCacheService
         Log::info(class_basename($this), [
             'forever' => $key,
         ]);
+
         return Cache::put($key, $data, $days * 86400);
     }
 

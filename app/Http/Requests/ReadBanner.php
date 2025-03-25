@@ -25,7 +25,7 @@ class ReadBanner extends FormRequest
     {
         return [
             'code' => 'required|string|max:20',
-            'type' => 'nullable|string|max:10'
+            'type' => 'nullable|string|max:10',
         ];
     }
 }

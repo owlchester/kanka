@@ -26,7 +26,7 @@ class ChargeController extends Controller
             'success' => $this->service
                 ->entity($entity)
                 ->ability($entityAbility)
-                ->use((int) $request->post('used'))
+                ->use((int) $request->post('used')),
         ]);
     }
 

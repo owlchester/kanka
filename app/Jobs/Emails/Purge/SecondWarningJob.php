@@ -3,8 +3,8 @@
 namespace App\Jobs\Emails\Purge;
 
 use App\Mail\Purge\SecondWarning;
-use App\Models\UserLog;
 use App\Models\User;
+use App\Models\UserLog;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -24,6 +24,7 @@ class SecondWarningJob implements ShouldQueue
     public $tries = 1;
 
     protected int $userId;
+
     /**
      * Create a new job instance.
      */

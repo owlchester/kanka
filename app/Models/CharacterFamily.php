@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\Privatable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Concerns\Privatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**

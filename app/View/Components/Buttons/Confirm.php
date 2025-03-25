@@ -22,8 +22,7 @@ class Confirm extends Component
         public ?string $size = null,
         public ?string $dismiss = null,
         public ?string $id = null,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
@@ -33,8 +32,7 @@ class Confirm extends Component
         return view('components.buttons.confirm')
             ->with('colours', $this->colour())
             ->with('sizes', $this->size())
-            ->with('element', $this->dismiss == 'dialog' ? 'a' : 'button')
-        ;
+            ->with('element', $this->dismiss == 'dialog' ? 'a' : 'button');
     }
 
     protected function size(): string
@@ -42,6 +40,7 @@ class Confirm extends Component
         if ($this->size === 'sm') {
             return 'btn-sm';
         }
+
         return '';
     }
 }

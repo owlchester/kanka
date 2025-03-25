@@ -12,7 +12,7 @@ trait Acl
      */
     public static function bootAcl(): void
     {
-        static::addGlobalScope(new AclScope());
+        static::addGlobalScope(new AclScope);
     }
 
     /**

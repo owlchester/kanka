@@ -27,9 +27,9 @@ class ReorderStories extends FormRequest
             'posts' => [
                 '*' => [
                     'id' => 'exists:posts,id',
-                    'visibility_id' => 'exists:visibilities,id'
+                    'visibility_id' => 'exists:visibilities,id',
                 ],
-            ]
+            ],
         ];
     }
 }

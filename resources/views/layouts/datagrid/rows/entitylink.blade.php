@@ -37,4 +37,11 @@
     <x-entity-link
         :entity="$model->entity"
         :campaign="$campaign" />
+@elseif($model->remindable)
+    @if ($model->remindable->is_private)
+        <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')" tooltip />
+    @endif
+    <x-entity-link
+        :entity="$model->remindable"
+        :campaign="$campaign" />
 @endif

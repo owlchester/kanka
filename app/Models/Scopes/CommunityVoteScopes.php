@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Trait CommunityVoteScopes
- * @package App\Models\Scopes
  *
  * @method static self|Builder published()
  * @method static self|Builder voting()
@@ -16,23 +15,17 @@ use Illuminate\Database\Eloquent\Builder;
  */
 trait CommunityVoteScopes
 {
-    /**
-     */
     public function scopeVisible(Builder $builder): Builder
     {
         return $builder
             ->where('visible_at', '<=', Carbon::now());
     }
 
-    /**
-     */
     public function scopePublished(Builder $builder): Builder
     {
         return $builder->where('published_at', '<=', Carbon::now());
     }
 
-    /**
-     */
     public function scopeVoting(Builder $builder): Builder
     {
         // @phpstan-ignore-next-line
@@ -41,8 +34,6 @@ trait CommunityVoteScopes
             ->visible();
     }
 
-    /**
-     */
     public function scopeRecent(Builder $builder): Builder
     {
         // @phpstan-ignore-next-line

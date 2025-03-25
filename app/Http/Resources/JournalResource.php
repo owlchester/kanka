@@ -16,6 +16,7 @@ class JournalResource extends EntityResource
     {
         /** @var Journal $model */
         $model = $this->resource;
+
         return $this->entity([
             'journal_id' => $model->journal_id,
             'date' => $model->date,

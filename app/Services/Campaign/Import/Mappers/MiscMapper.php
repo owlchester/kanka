@@ -15,14 +15,16 @@ abstract class MiscMapper
     use UserAware;
 
     protected array $mapping = [];
+
     protected array $parents = [];
 
     protected string $className;
+
     protected string $mappingName;
 
     public function prepare(): self
     {
-        //$this->campaign->{$this->mappingName}()->forceDelete();
+        // $this->campaign->{$this->mappingName}()->forceDelete();
         return $this;
     }
 
@@ -30,8 +32,8 @@ abstract class MiscMapper
     {
         $this
             ->loadModel()
-            ->entityThird()
-        ;
+            ->entityThird();
+
         return $this;
     }
 

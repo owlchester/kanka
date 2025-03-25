@@ -13,8 +13,6 @@ use Illuminate\Support\Str;
  */
 trait SortableTrait
 {
-    /**
-     */
     public function scopeSort(Builder $query, array $filters, array $defaultOrder = []): Builder
     {
         if (empty($filters)) {
@@ -25,6 +23,7 @@ trait SortableTrait
             foreach ($defaultOrder as $field => $order) {
                 $query->orderBy($field, $order);
             }
+
             return $query;
         }
 
@@ -39,13 +38,13 @@ trait SortableTrait
         }
 
         $key = Arr::get($filters, 'k');
-        if (!in_array($key, $this->sortable)) {
+        if (! in_array($key, $this->sortable)) {
             return $query;
         }
 
         // Force the order to be valid
         $order = mb_strtolower(Arr::get($filters, 'o', 'asc'));
-        if (!in_array($order, ['asc', 'desc'])) {
+        if (! in_array($order, ['asc', 'desc'])) {
             $order = 'asc';
         }
 
@@ -65,8 +64,7 @@ trait SortableTrait
                         ->whereRaw('e.campaign_id = ' . $this->getTable() . '.campaign_id');
                 })
                 ->groupBy($this->getTable() . '.id')
-                ->orderBy('e.type', $order)
-            ;
+                ->orderBy('e.type', $order);
         }
 
         // Custom sort method?
@@ -78,11 +76,9 @@ trait SortableTrait
         return $query->orderBy($key, $order);
     }
 
-    /**
-     */
     public function scopeDefaultOrder(Builder $query): Builder
     {
-        if (!isset($this->defaultSort)) {
+        if (! isset($this->defaultSort)) {
             return $query;
         }
 
@@ -91,10 +87,12 @@ trait SortableTrait
             if (is_array($default)) {
                 $key = array_key_first($default);
                 $query->orderBy($key, $default[$key]);
+
                 continue;
             }
             $query->orderBy($default);
         }
+
         return $query;
     }
 
@@ -112,6 +110,7 @@ trait SortableTrait
         }
         $relation = $this->{$relationName}();
         $foreignName = $relation->getQuery()->getQuery()->from;
+
         return $query
             ->select($this->getTable() . '.*')
             ->leftJoin(

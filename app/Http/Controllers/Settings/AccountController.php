@@ -31,6 +31,7 @@ class AccountController extends Controller
     public function index()
     {
         $user = auth()->user();
+
         return view('settings.account')
             ->with(compact('user'));
     }
@@ -96,6 +97,7 @@ class AccountController extends Controller
         $this->deletionService
             ->user($request->user())
             ->delete();
+
         return redirect()->to(Domain::toFront('goodbye') . '?deleted=true');
     }
 }

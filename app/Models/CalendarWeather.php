@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CalendarWeather
- * @package App\Models
  *
  * @property int $id
  * @property int $calendar_id
@@ -66,16 +65,15 @@ class CalendarWeather extends Model
     public function tooltip(): string
     {
         return
-            (!empty($this->temperature) ? __('calendars/weather.fields.temperature') . ': ' . e($this->temperature) . "<br />\n" : null) .
-            (!empty($this->precipitation) ? __('calendars/weather.fields.precipitation') . ': ' . e($this->precipitation) . "<br />\n" : null) .
-            (!empty($this->wind) ? __('calendars/weather.fields.wind') . ': ' . e($this->wind) . "<br />\n" : null) .
-            (!empty($this->effect) ? __('calendars/weather.fields.effect') . ': ' . e($this->effect) . "<br />\n" : null)
-        ;
+            (! empty($this->temperature) ? __('calendars/weather.fields.temperature') . ': ' . e($this->temperature) . "<br />\n" : null) .
+            (! empty($this->precipitation) ? __('calendars/weather.fields.precipitation') . ': ' . e($this->precipitation) . "<br />\n" : null) .
+            (! empty($this->wind) ? __('calendars/weather.fields.wind') . ': ' . e($this->wind) . "<br />\n" : null) .
+            (! empty($this->effect) ? __('calendars/weather.fields.effect') . ': ' . e($this->effect) . "<br />\n" : null);
     }
 
     public function weatherName(): string
     {
-        if (!empty($this->name)) {
+        if (! empty($this->name)) {
             return $this->name;
         }
 

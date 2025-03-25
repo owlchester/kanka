@@ -18,7 +18,7 @@ class KankaCollection extends ResourceCollection
         return [
             'data' => $this->collection,
             // Add the sync object to the result for caching when the api was last called
-            'sync' => Carbon::now()
+            'sync' => Carbon::now(),
         ];
     }
 }

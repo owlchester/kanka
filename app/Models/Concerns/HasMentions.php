@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- *
  * @property EntityMention[]|Collection $mentions
  * @property EntityMention[]|Collection $targetMentions
+ *
  * @method static self|Builder unmentioned()
  * @method static self|Builder mentionless()
  */
@@ -39,6 +39,7 @@ trait HasMentions
     {
         return $this->hasMany('App\Models\EntityMention', 'target_id', 'id');
     }
+
     /**
      * Get entities that are unmentioned
      */

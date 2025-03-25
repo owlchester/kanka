@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class FormCopy
- * @package App\Facades
  *
  * @see FormCopyService
+ *
  * @mixin \App\Services\FormCopyService
  */
 class FormCopy extends Facade

@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\EntityAbility;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class EntityAbilityFactory extends Factory
 {
@@ -14,6 +14,7 @@ class EntityAbilityFactory extends Factory
      * @var string
      */
     protected $model = EntityAbility::class;
+
     /**
      * Define the model's default state.
      *

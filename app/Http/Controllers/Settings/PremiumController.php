@@ -6,8 +6,8 @@ use App\Exceptions\TranslatableException;
 use App\Facades\CampaignCache;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Services\Campaign\BoostService;
 use App\Models\User;
+use App\Services\Campaign\BoostService;
 
 class PremiumController extends Controller
 {
@@ -39,9 +39,9 @@ class PremiumController extends Controller
         $premiums = $user->boosts()->with(['campaign', 'campaign.boosts', 'campaign.boosts.user'])->groupBy('campaign_id')->get();
         $userCampaigns = $user->campaigns()->with(['boosts', 'boosts.user'])->unboosted()->whereNotIn('campaigns.id', $premiums->pluck('campaign_id'))->get();
 
-        if (!empty($campaignId)) {
+        if (! empty($campaignId)) {
             /** @var Campaign $campaign */
-            $campaign = Campaign::where(['id' => (int)$campaignId])->firstOrFail();
+            $campaign = Campaign::where(['id' => (int) $campaignId])->firstOrFail();
             CampaignCache::campaign($campaign);
             $this->authorize('access', $campaign);
 
@@ -56,12 +56,12 @@ class PremiumController extends Controller
         return view('settings.premium.index')
             ->with('campaigns', $userCampaigns)
             ->with('premiums', $premiums)
-            ->with('focus', $campaign)
-        ;
+            ->with('focus', $campaign);
     }
 
     /**
      * Migrate a user to the new system
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function migrate()
@@ -82,11 +82,12 @@ class PremiumController extends Controller
 
     /**
      * For local debugging
+     *
      * @return \Illuminate\Http\RedirectResponse|void
      */
     public function back()
     {
-        if (!config('app.debug')) {
+        if (! config('app.debug')) {
             return redirect()->route('settings.premium');
         }
 

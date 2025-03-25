@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum Widget: String
+enum Widget: string
 {
     case Preview = 'preview';
     case Recent = 'recent';

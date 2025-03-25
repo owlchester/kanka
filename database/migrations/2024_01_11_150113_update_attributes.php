@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -12,7 +13,7 @@ return new class () extends Migration {
     {
         Schema::table('attributes', function (Blueprint $table) {
             $table->string('api_key', 20)->nullable()->change();
-            //$table->tinyInteger('is_hidden')->default(0)->change();
+            // $table->tinyInteger('is_hidden')->default(0)->change();
         });
 
         Illuminate\Support\Facades\DB::raw('ALTER TABLE `attributes` MODIFY `is_hidden` tinyint(1) DEFAULT 0 NOT NULL;');
@@ -23,8 +24,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::table('attributes', function (Blueprint $table) {
-
-        });
+        Schema::table('attributes', function (Blueprint $table) {});
     }
 };

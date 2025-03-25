@@ -36,11 +36,11 @@ class StoreCampaign extends FormRequest
             'entity_visibility' => 'nullable',
             'entity_personality_visibility' => 'nullable',
             'is_public' => 'nullable',
-            'css' =>  'nullable|string',
+            'css' => 'nullable|string',
             'theme_id' => 'nullable|exists:themes,id',
         ];
 
-        if ((request()->is('api/*') || Domain::isApi()) && !request()->isMethod('POST')) {
+        if ((request()->is('api/*') || Domain::isApi()) && ! request()->isMethod('POST')) {
             $rules['name'] = 'string|min:4';
         }
 

@@ -17,7 +17,7 @@ class FamilyTree extends Model
     use HasFactory;
 
     public $casts = [
-        'config' => 'array'
+        'config' => 'array',
     ];
 
     public function family(): BelongsTo

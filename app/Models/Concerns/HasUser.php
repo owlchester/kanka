@@ -18,9 +18,10 @@ trait HasUser
 
     protected function getUserFieldName(): string
     {
-        if (!property_exists($this, 'userField')) {
+        if (! property_exists($this, 'userField')) {
             return 'user_id';
         }
+
         return $this->userField;
     }
 }

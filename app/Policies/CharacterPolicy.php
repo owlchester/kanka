@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\User;
 use App\Models\Character;
+use App\Models\User;
 
 class CharacterPolicy extends MiscPolicy
 {

@@ -10,16 +10,19 @@ trait Colours
             if ($this->outline) {
                 return 'btn2 btn-error btn-outline';
             }
+
             return 'btn2 btn-error';
         } elseif ($this->type === 'primary') {
             if ($this->outline) {
                 return 'btn2 btn-primary btn-outline';
             }
+
             return 'btn2 btn-primary';
         } elseif ($this->type === 'secondary') {
             if ($this->outline) {
                 return 'btn2 btn-secondary btn-outline';
             }
+
             return 'btn2 btn-secondary';
         } elseif ($this->type === 'ghost') {
             return 'btn2 btn-ghost';

@@ -12,6 +12,7 @@ class TimelineMapper extends MiscMapper
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'timeline_id', 'created_at', 'updated_at', 'calendar_id'];
 
     protected string $className = Timeline::class;
+
     protected string $mappingName = 'timelines';
 
     protected array $eras;
@@ -29,14 +30,13 @@ class TimelineMapper extends MiscMapper
         $this->loadModel()
             ->eras()
             ->elements()
-            ->entitySecond()
-        ;
+            ->entitySecond();
     }
 
     public function tree(): self
     {
         foreach ($this->parents as $parent => $children) {
-            if (!isset($this->mapping[$parent])) {
+            if (! isset($this->mapping[$parent])) {
                 continue;
             }
             // We need the nested trait to trigger for this so it's going to be inefficient
@@ -54,11 +54,11 @@ class TimelineMapper extends MiscMapper
     protected function eras(): self
     {
         $fields = [
-            'name', 'abbreviation', 'start_year', 'end_year', 'entry', 'is_collapsed', 'position'
+            'name', 'abbreviation', 'start_year', 'end_year', 'entry', 'is_collapsed', 'position',
         ];
         $this->eras = [];
         foreach ($this->data['eras'] as $data) {
-            $er = new TimelineEra();
+            $er = new TimelineEra;
             $er->timeline_id = $this->model->id;
             foreach ($fields as $field) {
                 $er->$field = $data[$field];
@@ -67,20 +67,21 @@ class TimelineMapper extends MiscMapper
             $er->save();
             $this->eras[$data['id']] = $er->id;
         }
+
         return $this;
     }
 
     protected function elements(): self
     {
         $fields = [
-            'position', 'name', 'date', 'entry', 'colour', 'visibility_id', 'icon', 'is_collapsed', 'use_entity_entry', 'use_event_date'
+            'position', 'name', 'date', 'entry', 'colour', 'visibility_id', 'icon', 'is_collapsed', 'use_entity_entry', 'use_event_date',
         ];
         foreach ($this->data['elements'] as $data) {
-            $el = new TimelineElement();
+            $el = new TimelineElement;
             $el->timeline_id = $this->model->id;
             $el->era_id = $this->eras[$data['era_id']];
-            if (!empty($data['entity_id'])) {
-                if (!ImportIdMapper::hasEntity($data['entity_id'])) {
+            if (! empty($data['entity_id'])) {
+                if (! ImportIdMapper::hasEntity($data['entity_id'])) {
                     continue;
                 }
                 $el->entity_id = ImportIdMapper::getEntity($data['entity_id']);
@@ -93,6 +94,7 @@ class TimelineMapper extends MiscMapper
 
             ImportIdMapper::putTimelineElement($data['id'], $el->id);
         }
+
         return $this;
     }
 }

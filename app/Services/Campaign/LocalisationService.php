@@ -12,7 +12,7 @@ use App\Models\Campaign;
 class LocalisationService
 {
     /** @var Campaign|null The current campaign contact */
-    protected Campaign|null $campaign;
+    protected ?Campaign $campaign;
 
     /** @var int console campaign id */
     protected int $consoleCampaignId = 0;
@@ -20,7 +20,8 @@ class LocalisationService
     public function hasCampaign(): bool
     {
         $campaign = request()->route('campaign');
-        return !empty($campaign) && $campaign instanceof Campaign;
+
+        return ! empty($campaign) && $campaign instanceof Campaign;
     }
 
     /**
@@ -44,8 +45,6 @@ class LocalisationService
         $this->campaign = $campaign;
     }
 
-    /**
-     */
     public function getConsoleCampaign(): int
     {
         return $this->consoleCampaignId;
@@ -57,6 +56,7 @@ class LocalisationService
     public function setConsoleCampaign(int $campaignId): self
     {
         $this->consoleCampaignId = $campaignId;
+
         return $this;
     }
 }

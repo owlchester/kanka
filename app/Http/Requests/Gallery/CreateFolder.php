@@ -24,7 +24,7 @@ class CreateFolder extends FormRequest
         return [
             'name' => 'required|string|max:191',
             'visibility_id' => 'integer|exists:visibilities,id',
-            'folder_id' => 'nullable|exists:images,id'
+            'folder_id' => 'nullable|exists:images,id',
         ];
     }
 }

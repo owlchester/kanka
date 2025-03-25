@@ -4,10 +4,10 @@ namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
+use App\Models\CampaignExport;
 use App\Models\Entity;
 use App\Models\EntityAsset;
 use App\Models\Image;
-use App\Models\CampaignExport;
 use App\Models\Map;
 use App\Models\MiscModel;
 use App\Notifications\Header;
@@ -28,6 +28,7 @@ class ExportService
     protected string $exportPath;
 
     protected string $path;
+
     protected string $file;
 
     protected $archive;
@@ -35,6 +36,7 @@ class ExportService
     protected bool $assets = false;
 
     protected int $files = 0;
+
     protected int $filesize = 0;
 
     protected string $version = '3.0.0';
@@ -42,6 +44,7 @@ class ExportService
     protected CampaignExport $log;
 
     protected int $totalElements;
+
     protected int $currentElements;
 
     public function exportPath(): string
@@ -52,12 +55,14 @@ class ExportService
     public function log(CampaignExport $campaignExport): self
     {
         $this->log = $campaignExport;
+
         return $this;
     }
 
     public function assets(bool $assets): self
     {
         $this->assets = $assets;
+
         return $this;
     }
 
@@ -116,7 +121,6 @@ class ExportService
         return $this->filesize;
     }
 
-
     protected function campaignModules(): self
     {
         $modules = [];
@@ -142,7 +146,7 @@ class ExportService
             $modules[$name] = $module;
 
         }
-        $this->archive->add(json_encode($modules), 'settings/modules.json', );
+        $this->archive->add(json_encode($modules), 'settings/modules.json');
         $this->files++;
 
         return $this;
@@ -151,7 +155,7 @@ class ExportService
     protected function customCampaignModules(): self
     {
         $settings = $this->campaign->entityTypes->where('is_special', 1)->select('id', 'code', 'is_enabled', 'singular', 'plural', 'icon')->toArray();
-        $this->archive->add(json_encode($settings), 'settings/custom-modules.json', );
+        $this->archive->add(json_encode($settings), 'settings/custom-modules.json');
         $this->files++;
 
         return $this;
@@ -173,8 +177,7 @@ class ExportService
         $this->totalElements =
             Entity::where('campaign_id', $this->campaign->id)->count() +
             Image::where('campaign_id', $this->campaign->id)->count() +
-            1 // Campaign json;
-        ;
+            1; // Campaign json;
         $this->currentElements = 0;
 
         return $this;
@@ -188,24 +191,26 @@ class ExportService
             'started' => date('Y-m-d H:i:s'),
         ];
         $this->archive->addRaw(json_encode($info), 'info.json');
+
         return $this;
     }
+
     protected function campaignJson(): self
     {
         // We don't want the whole model to be available to the export.
         // It would probably make more sense to have a resource for this.
         $hidden = [
             'boost_count', 'export_date', 'is_featured', 'featured_until',
-            'featured_reason', 'visible_entity_count', 'system', 'follower', 'is_hidden'
+            'featured_reason', 'visible_entity_count', 'system', 'follower', 'is_hidden',
         ];
         $this->archive->addRaw($this->campaign->makeHidden($hidden)->toJson(), 'campaign.json');
         $this->files++;
-        //Log::info("wat", ['path' => 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image)]);
-        if (!$this->assets) {
-            //return $this;
+        // Log::info("wat", ['path' => 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image)]);
+        if (! $this->assets) {
+            // return $this;
         }
         $image = $this->campaign->image;
-        if (!empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
+        if (! empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image), $image);
                 $this->files++;
@@ -215,7 +220,7 @@ class ExportService
 
         }
         $image = $this->campaign->header_image;
-        if (!empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
+        if (! empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image), $image);
                 $this->files++;
@@ -247,7 +252,7 @@ class ExportService
         ];
         $entities = config('entities.classes-plural');
         foreach ($entities as $entity => $class) {
-            if (!$this->campaign->enabled($entity) || !method_exists($class, 'export')) {
+            if (! $this->campaign->enabled($entity) || ! method_exists($class, 'export')) {
                 continue;
             }
             try {
@@ -267,6 +272,7 @@ class ExportService
                 );
             }
         }
+
         return $this;
     }
 
@@ -289,7 +295,7 @@ class ExportService
         $entityTypes = $this->campaign->entityTypes->where('is_special', 1)->all();
 
         foreach ($entityTypes as $entityType) {
-            if (!$entityType->isEnabled()) {
+            if (! $entityType->isEnabled()) {
                 continue;
             }
 
@@ -314,6 +320,7 @@ class ExportService
                 );
             }
         }
+
         return $this;
     }
 
@@ -325,6 +332,7 @@ class ExportService
         foreach ($class->exportRelations() as $rel) {
             $with[] = $rel;
         }
+
         return $with;
     }
 
@@ -343,22 +351,24 @@ class ExportService
                 );
             }
         }
+
         return $this;
     }
 
     protected function processImage(Image $image): self
     {
-        if (!$this->assets) {
+        if (! $this->assets) {
             $this->archive->add($image->export(), 'gallery/' . $image->id . '.json');
             $this->files++;
-            //return $this;
+            // return $this;
         }
 
-        if (!$image->isFolder()) {
+        if (! $image->isFolder()) {
             $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image->path), 'gallery/' . $image->id . '.' . $image->ext);
             $this->files++;
         }
         $this->progress();
+
         return $this;
     }
 
@@ -377,9 +387,8 @@ class ExportService
         }
         $this->files++;
 
-
         $path = $entity->image_path;
-        if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
+        if (! empty($path) && ! Str::contains($path, '?') && Storage::exists($path)) {
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
                 $this->files++;
@@ -388,7 +397,7 @@ class ExportService
             }
         }
         $path = $entity->header_image;
-        if (!empty($path) && !Str::contains($path, '?') && Storage::exists($path)) {
+        if (! empty($path) && ! Str::contains($path, '?') && Storage::exists($path)) {
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
                 $this->files++;
@@ -399,11 +408,11 @@ class ExportService
 
         /** @var EntityAsset $file */
         foreach ($entity->files as $file) {
-            if (!isset($file->metadata['path'])) {
+            if (! isset($file->metadata['path'])) {
                 continue;
             }
             $path = $file->metadata['path'];
-            if (!Storage::exists($path)) {
+            if (! Storage::exists($path)) {
                 continue;
             }
             try {
@@ -416,7 +425,7 @@ class ExportService
         if ($model instanceof Map) {
             foreach ($model->layers as $layer) {
                 $path = $layer->image;
-                if (!$path || !Storage::exists($path)) {
+                if (! $path || ! Storage::exists($path)) {
                     continue;
                 }
                 try {
@@ -428,6 +437,7 @@ class ExportService
         }
 
         $this->progress();
+
         return $this;
     }
 
@@ -443,6 +453,7 @@ class ExportService
                 'campaign' => $this->campaign->name,
             ]
         ));
+
         return $this;
     }
 
@@ -473,11 +484,12 @@ class ExportService
 
     /**
      * Track that the export had an issue
+     *
      * @return $this
      */
     public function fail(): self
     {
-        if (!$this->assets) {
+        if (! $this->assets) {
             $this->campaign->updateQuietly([
                 'export_date' => null,
             ]);

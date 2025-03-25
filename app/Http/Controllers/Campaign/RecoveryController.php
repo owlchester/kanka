@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Campaign;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Entity\RecoveryService as EntityRecoveryService;
-use App\Services\Posts\RecoveryService;
 use App\Services\Entity\RecoverySetupService;
+use App\Services\Posts\RecoveryService;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -41,11 +41,10 @@ class RecoveryController extends Controller
 
     public function recover(Request $request, Campaign $campaign)
     {
-        if (!$campaign->boosted()) {
+        if (! $campaign->boosted()) {
             return redirect()
                 ->route('recovery', $campaign)
-                ->with('boosted-pitch', true)
-            ;
+                ->with('boosted-pitch', true);
         }
 
         $this->authorize('recover', $campaign);

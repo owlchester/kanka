@@ -19,8 +19,6 @@ class MoveController extends Controller
         $this->service = $service;
     }
 
-    /**
-     */
     public function index(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('update', $entity);
@@ -32,8 +30,6 @@ class MoveController extends Controller
         ));
     }
 
-    /**
-     */
     public function move(MovePostRequest $request, Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('update', $entity);
@@ -44,9 +40,9 @@ class MoveController extends Controller
         $newEntity = Entity::where(['id' => $request['entity']])->first();
         $this->authorize('update', $newEntity);
         try {
-            //Check if the post has a layout and if said layout is compatible with the new entity
+            // Check if the post has a layout and if said layout is compatible with the new entity
             if ($post->layout_id) {
-                if ($post->layout->entity_type_id !== null && $post->layout->entity_type_id  != $newEntity->type_id) {
+                if ($post->layout->entity_type_id !== null && $post->layout->entity_type_id != $newEntity->type_id) {
                     throw new TranslatableException(__('errors.post_layout'));
                 }
             }
@@ -57,10 +53,11 @@ class MoveController extends Controller
             if (isset($request['copy'])) {
                 $success = 'copy_success';
             }
+
             return redirect()
                 ->route('entities.show', [$campaign, $newEntity, '#post-' . $newPost->id])
                 ->with('success', __('entities/notes.move.' . $success, ['name' => $newPost->name,
-                    'entity' => $newEntity->name
+                    'entity' => $newEntity->name,
                 ]));
         } catch (TranslatableException $ex) {
             return redirect()

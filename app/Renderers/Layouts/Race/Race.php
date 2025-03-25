@@ -10,13 +10,14 @@ class Race extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'race_id' => [
                 'key' => 'name',
@@ -39,11 +40,11 @@ class Race extends Layout
                 'label' => Module::plural(config('entities.ids.character'), 'entities.characters'),
                 'render' => function ($model) {
                     return $model->characters->count();
-                }
+                },
             ],
             'tags' => [
-                'render' => Standard::TAGS
-            ]
+                'render' => Standard::TAGS,
+            ],
         ];
 
         return $columns;

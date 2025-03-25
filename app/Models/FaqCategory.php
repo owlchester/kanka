@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class FaqCategory
- * @package App\Models
  *
  *
  * @property int $id
@@ -19,7 +18,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $title
  * @property int $order
  * @property bool|int $is_visible
- *
  * @property Faq[]|Collection $faqs
  */
 class FaqCategory extends Model
@@ -28,21 +26,22 @@ class FaqCategory extends Model
     use Sortable;
 
     public $searchableColumns = ['name'];
+
     public $sortableColumns = [];
 
     public $fillable = [
         'title',
         'order',
         'is_visible',
-        'locale'
+        'locale',
     ];
 
     protected $_locale;
+
     protected $_faqCount = false;
 
-
     /**
-     * @param bool $visible
+     * @param  bool  $visible
      */
     public function scopeVisible(Builder $query, $visible = true)
     {
@@ -50,7 +49,7 @@ class FaqCategory extends Model
     }
 
     /**
-     * @param string $locale
+     * @param  string  $locale
      */
     public function scopeLocale(Builder $query, $locale = 'en')
     {
@@ -58,7 +57,7 @@ class FaqCategory extends Model
     }
 
     /**
-     * @param string $order
+     * @param  string  $order
      * @return Builder
      */
     public function scopeOrdered(Builder $query, $order = 'ASC')
@@ -89,13 +88,12 @@ class FaqCategory extends Model
             ->sortBy('order');
     }
 
-    /**
-     */
     public function faqCount()
     {
         if ($this->_faqCount === false) {
             $this->_faqCount = $this->faqs->count();
         }
+
         return $this->_faqCount;
     }
 }

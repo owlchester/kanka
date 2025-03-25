@@ -16,10 +16,11 @@ class DatagridRendererProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(DatagridRenderer2::class, function () {
-            $service = new DatagridRenderer2();
+            $service = new DatagridRenderer2;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
 

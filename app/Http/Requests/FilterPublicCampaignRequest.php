@@ -30,7 +30,7 @@ class FilterPublicCampaignRequest extends FormRequest
             'is_open' => 'nullable|boolean',
             'system' => 'nullable|string|max:25',
             'language' => 'nullable|string|max:5',
-            'genre' => 'nullable|integer'
+            'genre' => 'nullable|integer',
         ];
     }
 }

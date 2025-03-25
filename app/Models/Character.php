@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Character
- * @package App\Models
+ *
  * @property string $title
  * @property string $age
  * @property string $sex
@@ -80,7 +80,7 @@ class Character extends MiscModel
         'location.name',
         'age',
         'sex',
-        'is_dead'
+        'is_dead',
     ];
 
     protected array $sortable = [
@@ -103,7 +103,7 @@ class Character extends MiscModel
     protected array $searchableColumns = ['name', 'title', 'type', 'entry'];
 
     protected array $suggestions = [
-        CharacterCache::class => 'clearSuggestion'
+        CharacterCache::class => 'clearSuggestion',
     ];
 
     protected array $sanitizable = [
@@ -117,24 +117,25 @@ class Character extends MiscModel
 
     /**
      * Casting for order by
+     *
      * @var array
      */
     protected $orderCasting = [
-        'age' => 'unsigned'
+        'age' => 'unsigned',
     ];
 
     /**
      * Explicit filters
      */
     protected array $explicitFilters = [
-        'sex'
+        'sex',
     ];
 
     /**
      * Foreign relations to add to export
      */
     protected array $foreignExport = [
-        'characterTraits', 'characterFamilies', 'characterRaces', 'organisationMemberships'
+        'characterTraits', 'characterFamilies', 'characterRaces', 'organisationMemberships',
     ];
 
     /**
@@ -144,6 +145,7 @@ class Character extends MiscModel
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -168,14 +170,15 @@ class Character extends MiscModel
             },
         ]));
     }
+
     /**
      * Filter for characters in a specific list of organisations
      */
-    public function scopeMember(Builder $query, string|null $value, FilterOption $filter): Builder
+    public function scopeMember(Builder $query, ?string $value, FilterOption $filter): Builder
     {
         if ($filter === FilterOption::NONE) {
             // If called with a param, it's being called too early and will be called later in the process
-            if (!empty($value)) {
+            if (! empty($value)) {
                 return $query;
             }
             $query
@@ -185,9 +188,10 @@ class Character extends MiscModel
                 })
                 ->where('memb.organisation_id', null);
 
-            if (auth()->guest() || !auth()->user()->isAdmin()) {
+            if (auth()->guest() || ! auth()->user()->isAdmin()) {
                 $query->where('memb.is_private', 0);
             }
+
             return $query;
         } elseif ($filter === FilterOption::EXCLUDE) {
             return $query
@@ -199,7 +203,7 @@ class Character extends MiscModel
         if ($filter === FilterOption::CHILDREN) {
             /** @var ?Organisation $model */
             $model = Organisation::find($value);
-            if (!empty($model)) {
+            if (! empty($model)) {
                 $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
             }
         }
@@ -210,7 +214,7 @@ class Character extends MiscModel
             })
             ->whereIn('memb.organisation_id', $ids);
 
-        if (auth()->guest() || !auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->isAdmin()) {
             $query->where('memb.is_private', 0);
         }
 
@@ -232,7 +236,7 @@ class Character extends MiscModel
             ->with([
                 'entity' => function ($sub) {
                     $sub->select('id', 'name', 'entity_id', 'type_id');
-                }
+                },
             ]);
     }
 
@@ -246,11 +250,10 @@ class Character extends MiscModel
                 'family' => function ($sub) {
                     $sub->select('id', 'name', 'is_private');
                 },
-                'family.entity' =>  function ($sub) {
+                'family.entity' => function ($sub) {
                     $sub->select('id', 'name', 'entity_id', 'type_id');
                 },
-            ])
-        ;
+            ]);
     }
 
     public function characterRaces(): HasMany
@@ -263,11 +266,10 @@ class Character extends MiscModel
                 'race' => function ($sub) {
                     $sub->select('id', 'name', 'is_private');
                 },
-                'race.entity' =>  function ($sub) {
+                'race.entity' => function ($sub) {
                     $sub->select('id', 'name', 'entity_id', 'type_id');
                 },
-            ])
-        ;
+            ]);
     }
 
     public function races(): BelongsToMany
@@ -277,7 +279,7 @@ class Character extends MiscModel
             ->with([
                 'entity' => function ($sub) {
                     $sub->select('id', 'name', 'entity_id', 'type_id');
-                }
+                },
             ]);
     }
 
@@ -293,7 +295,7 @@ class Character extends MiscModel
             ->with([
                 'entity' => function ($sub) {
                     $sub->select('id', 'name', 'entity_id', 'type_id');
-                }
+                },
             ]);
     }
 
@@ -333,13 +335,12 @@ class Character extends MiscModel
     {
         return $this->characterTraits()->appearance()->orderBy('default_order');
     }
+
     public function personality()
     {
         return $this->characterTraits()->personality()->orderBy('default_order');
     }
 
-    /**
-     */
     public function pinnedMembers()
     {
         return $this
@@ -347,8 +348,7 @@ class Character extends MiscModel
             ->has('organisation')
             ->with(['organisation', 'organisation.entity'])
             ->whereIn('pin_id', [OrganisationMember::PIN_CHARACTER, OrganisationMember::PIN_BOTH])
-            ->orderBy('role')
-        ;
+            ->orderBy('role');
     }
 
     /**
@@ -378,6 +378,7 @@ class Character extends MiscModel
         if (empty($this->title)) {
             return '';
         }
+
         return strip_tags($this->title);
     }
 
@@ -395,7 +396,7 @@ class Character extends MiscModel
     public function showProfileInfo(): bool
     {
         // Test text fields first
-        if (!empty($this->age) || !empty($this->sex) || !empty($this->pronouns)) {
+        if (! empty($this->age) || ! empty($this->sex) || ! empty($this->pronouns)) {
             return true;
         }
         if ($this->characterRaces->isNotEmpty() || $this->characterFamilies->isNotEmpty()) {
@@ -413,7 +414,7 @@ class Character extends MiscModel
      */
     public function hasAge(): bool
     {
-        return !empty($this->age) || $this->age === "0";
+        return ! empty($this->age) || $this->age === '0';
     }
 
     /**
@@ -422,14 +423,16 @@ class Character extends MiscModel
     public function rowClasses(): string
     {
         $classes = parent::rowClasses();
-        if (!$this->isDead()) {
+        if (! $this->isDead()) {
             return $classes;
         }
+
         return $classes . ' character-dead';
     }
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
@@ -471,6 +474,7 @@ class Character extends MiscModel
         if (auth()->check() && auth()->user()->isAdmin()) {
             $columns['is_private'] = __('crud.fields.is_private');
         }
+
         return $columns;
     }
 
@@ -482,13 +486,11 @@ class Character extends MiscModel
         return (bool) $this->is_dead;
     }
 
-    /**
-     */
     public function scopeFilteredCharacters(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'name', 'title','location_id', 'is_dead', 'is_private'])
+            ->select(['id', 'name', 'title', 'location_id', 'is_dead', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'location', 'location.entity',

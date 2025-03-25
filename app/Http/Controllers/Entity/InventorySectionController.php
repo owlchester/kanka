@@ -12,8 +12,6 @@ class InventorySectionController extends Controller
 {
     use GuestAuthTrait;
 
-    /**
-     */
     public function delete(Campaign $campaign, Entity $entity, Inventory $inventory)
     {
         $this->authorize('update', $entity);
@@ -27,7 +25,7 @@ class InventorySectionController extends Controller
             ->route('entities.inventory', [$campaign, $entity])
             ->with('success_raw', __('entities/inventories.destroy.success_position', [
                 'position' => $inventory->position,
-                'entity' => $entity->name
+                'entity' => $entity->name,
             ]));
     }
 }

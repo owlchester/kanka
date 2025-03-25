@@ -22,6 +22,7 @@ trait Boosted
         if (request()->get('_boosted') === '0') {
             return false;
         }
+
         return $this->boost_count > ($superboosted ? 2 : 0);
     }
 
@@ -46,6 +47,7 @@ trait Boosted
         if (request()->get('_boosted') === '0') {
             return false;
         }
+
         return $this->boost_count >= 4;
     }
 }

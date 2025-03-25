@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Mentions
- * @package App\Facades
  *
  * @see \App\Services\MentionsService
+ *
  * @mixin \App\Services\MentionsService
  */
 class Mentions extends Facade

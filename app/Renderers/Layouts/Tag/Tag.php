@@ -10,13 +10,14 @@ class Tag extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'name' => [
                 'key' => 'name',
@@ -37,6 +38,7 @@ class Tag extends Layout
                     if (empty($tag->colour)) {
                         return '';
                     }
+
                     return '<div class="rounded-full w-6 h-6 bg-base-200 ' . $tag->colourClass() . '"></div>';
                 },
             ],
@@ -45,8 +47,8 @@ class Tag extends Layout
                 'label' => 'crud.fields.parent',
                 'render' => Standard::ParentLink,
                 'visible' => function () {
-                    return !request()->has('tag_id');
-                }
+                    return ! request()->has('tag_id');
+                },
             ],
         ];
 

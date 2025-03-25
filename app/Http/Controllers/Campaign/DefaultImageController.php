@@ -15,11 +15,11 @@ class DefaultImageController extends Controller
     public function __construct(
         protected EntityTypeService $entityTypeService,
         protected DefaultImageService $service
-    ) {
-    }
+    ) {}
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -28,6 +28,7 @@ class DefaultImageController extends Controller
         foreach (EntityType::inCampaign($campaign)->get() as $entityType) {
             $entityTypes[$entityType->pluralCode()] = $entityType;
         }
+
         return view('campaigns.default-images.index')
             ->with('campaign', $campaign)
             ->with('entityTypes', $entityTypes);
@@ -35,6 +36,7 @@ class DefaultImageController extends Controller
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign)
@@ -47,8 +49,7 @@ class DefaultImageController extends Controller
             ->campaign($campaign)
             ->exclude(config('entities.ids.bookmark'))
             ->skip($ignore)
-            ->toSelect()
-        ;
+            ->toSelect();
 
         return view('campaigns.default-images.create', compact(
             'campaign',
@@ -56,8 +57,6 @@ class DefaultImageController extends Controller
         ));
     }
 
-    /**
-     */
     public function store(DefaultImageStore $request, Campaign $campaign)
     {
         $this->authorize('recover', $campaign);
@@ -74,6 +73,7 @@ class DefaultImageController extends Controller
                     __('campaigns/default-images.create.success', ['type' => $entityType->plural()])
                 );
         }
+
         return redirect()->route('campaign.default-images', $campaign)
             ->with(
                 'error',
@@ -83,6 +83,7 @@ class DefaultImageController extends Controller
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(DefaultImageDestroy $request, Campaign $campaign)

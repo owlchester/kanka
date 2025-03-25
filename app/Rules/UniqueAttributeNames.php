@@ -18,8 +18,8 @@ class UniqueAttributeNames implements ValidationRule
         foreach ($value as $att) {
             $attributes[] = json_decode($att, true);
         }
-        $names = array_column($attributes, "name");
-        if (!(count($names) === count(array_flip($names)))) {
+        $names = array_column($attributes, 'name');
+        if (! (count($names) === count(array_flip($names)))) {
             $fail(__('validation.attribute_unique'));
         }
     }

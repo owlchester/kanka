@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CampaignInvite
- * @package App\Models
  *
  * @property int $id
  * @property int $role_id

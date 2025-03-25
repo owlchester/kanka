@@ -3,8 +3,8 @@
 namespace App\Jobs\Emails\Subscriptions;
 
 use App\Mail\Subscription\User\ValidationEmail;
-use App\Models\UserValidation;
 use App\Models\User;
+use App\Models\UserValidation;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -20,10 +20,9 @@ class EmailValidationJob implements ShouldQueue
     use SerializesModels;
 
     protected int $user;
+
     protected int $token;
 
-    /**
-     */
     public function __construct(User $user, UserValidation $token)
     {
         $this->user = $user->id;

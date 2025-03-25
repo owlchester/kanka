@@ -5,8 +5,8 @@ namespace App\Jobs\Campaigns;
 use App\Jobs\FileCleanup;
 use App\Models\Campaign;
 use App\Models\CampaignExport;
-use App\Services\Campaign\ExportService;
 use App\Models\User;
+use App\Services\Campaign\ExportService;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -51,14 +51,16 @@ class Export implements ShouldQueue
 
     /**
      * Execute the job
+     *
      * @throws Exception
      */
     public function handle()
     {
         Log::info('Campaign export', ['init', 'id' => $this->campaignExportId]);
         $campaignExport = CampaignExport::find($this->campaignExportId);
-        if (!$campaignExport) {
+        if (! $campaignExport) {
             Log::info('Campaign export', ['empty', 'id' => $this->campaignExportId]);
+
             return 0;
         }
         Log::info('Campaign export', ['running', 'id' => $this->campaignExportId]);
@@ -66,13 +68,13 @@ class Export implements ShouldQueue
 
         /** @var Campaign|null $campaign */
         $campaign = Campaign::find($this->campaignId);
-        if (!$campaign) {
+        if (! $campaign) {
             return 0;
         }
 
         /** @var User|null $user */
         $user = User::find($this->userId);
-        if (!$user) {
+        if (! $user) {
             return 0;
         }
 
@@ -90,16 +92,14 @@ class Export implements ShouldQueue
         if ($queue !== 'sync') {
             FileCleanup::dispatch($service->exportPath())->delay(now()->addDay());
         }
+
         return 1;
     }
 
-    /**
-     *
-     */
     public function failed(Throwable $exception)
     {
         $campaignExport = CampaignExport::find($this->campaignExportId);
-        if (!$campaignExport) {
+        if (! $campaignExport) {
             return;
         }
         $campaignExport->update(['status' => CampaignExport::STATUS_FAILED]);
@@ -109,13 +109,13 @@ class Export implements ShouldQueue
         // them to report the error.
         /** @var Campaign|null $campaign */
         $campaign = Campaign::find($this->campaignId);
-        if (!$campaign) {
+        if (! $campaign) {
             return;
         }
 
         /** @var User|null $user */
         $user = User::find($this->userId);
-        if (!$user) {
+        if (! $user) {
             return;
         }
 

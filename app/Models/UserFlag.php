@@ -15,6 +15,8 @@ class UserFlag extends Model
     use HasUser;
 
     public const string FLAG_INACTIVE_1 = 'inactive_1';
+
     public const string FLAG_INACTIVE_2 = 'inactive_2';
+
     public const string FLAG_EMAIL = 'email';
 }

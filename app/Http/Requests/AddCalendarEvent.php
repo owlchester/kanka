@@ -36,13 +36,13 @@ class AddCalendarEvent extends FormRequest
             'colour' => 'nullable|string|max:7',
             'comment' => 'nullable|max:191',
             'type_id' => 'nullable|integer|exists:entity_event_types,id',
-            'visibility_id' => 'nullable|exists:visibilities,id'
+            'visibility_id' => 'nullable|exists:visibilities,id',
         ];
     }
 
     public function prepareForValidation()
     {
-        if ($this->entity_id && !is_numeric($this->entity_id)) {
+        if ($this->entity_id && ! is_numeric($this->entity_id)) {
             $this->merge([
                 'name' => $this->entity_id,
             ]);

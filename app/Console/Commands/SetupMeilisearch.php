@@ -23,7 +23,6 @@ class SetupMeilisearch extends Command
         {--c|chunk= : The number of records to import at a time (Defaults to configuration value: `scout.chunk.searchable`)}
     ';
 
-
     /**
      * The console command description.
      *
@@ -39,10 +38,11 @@ class SetupMeilisearch extends Command
         if (config('app.lazy')) {
             $this->error('Config error:');
             $this->error('Temporarily remove APP_LAZY=true from your .env file.');
+
             return;
         }
 
-        //Update Non Separator Tokens for entity mentions
+        // Update Non Separator Tokens for entity mentions
         $start = Carbon::now();
         $this->info('Meilisearch import started at ' . date('H:i:s'));
         $client = new Client(config('scout.meilisearch.host'), config('scout.meilisearch.key'));
@@ -51,7 +51,6 @@ class SetupMeilisearch extends Command
         $client->index('entities')->resetSeparatorTokens();
         $client->index('entities')->updateNonSeparatorTokens([':']);
         $client->index('entities')->updateFilterableAttributes(['campaign_id']);
-
 
         $models = [
             Attribute::class,
@@ -62,14 +61,13 @@ class SetupMeilisearch extends Command
         ];
         foreach ($models as $model) {
             $time = Carbon::now();
-            $object = new $model();
+            $object = new $model;
             $this->info('Importing ' . number_format($object->count()) . ' [' . $model . '] at ' . date('H:i:s'));
             $object::makeAllSearchable($this->option('chunk'));
             $this->info('- Done in ' . round($time->diffInMinutes(), 4) . ' min');
             Log::info('Meilisearch', ['model' => $model]);
         }
         $this->info('Ended at ' . date('H:i:s') . ' after ' . round($start->diffInMinutes(), 3) . ' min');
-
 
         if (config('scout.queue')) {
             $this->newLine();

@@ -13,7 +13,6 @@ use Illuminate\Support\Str;
 
 /**
  * Class CommunityVote
- * @package App\Models
  *
  * @property int $id
  * @property string $name
@@ -23,7 +22,6 @@ use Illuminate\Support\Str;
  * @property Carbon $published_at
  * @property Carbon $visible_at
  * @property Carbon $updated_at
- *
  * @property Collection $ballots
  * @property string $link
  */
@@ -32,11 +30,15 @@ class CommunityVote extends Model
     use CommunityVoteScopes;
 
     public const string STATUS_DRAFT = 'draft';
+
     public const string STATUS_SCHEDULED = 'scheduled';
+
     public const string STATUS_VOTING = 'voting';
+
     public const string STATUS_PUBLISHED = 'published';
 
     protected $cachedStatus = false;
+
     protected $cachedResults = false;
 
     public $casts = [
@@ -69,9 +71,6 @@ class CommunityVote extends Model
         return $this->cachedStatus;
     }
 
-
-    /**
-     */
     public function getSlug(): string
     {
         return $this->id . '-' . Str::slug($this->name);
@@ -94,15 +93,11 @@ class CommunityVote extends Model
         return [];
     }
 
-    /**
-     */
     public function ballotWidth(string $option): int
     {
         return Arr::get($this->voteStats(), $option, 0);
     }
 
-    /**
-     */
     public function isVoting(): bool
     {
         return $this->status() === self::STATUS_VOTING;
@@ -118,13 +113,12 @@ class CommunityVote extends Model
         }
 
         $user = Auth::user();
+
         return $this->ballots->contains(function ($ballot) use ($user, $option) {
             return $ballot->user_id === $user->id && $ballot->vote === $option;
         });
     }
 
-    /**
-     */
     public function voteStats(): array
     {
         if ($this->cachedResults === false) {
@@ -142,6 +136,7 @@ class CommunityVote extends Model
                 $this->cachedResults[$vote->vote] = floor(($vote->total / $totalBallots) * 100);
             }
         }
+
         return $this->cachedResults;
     }
 }

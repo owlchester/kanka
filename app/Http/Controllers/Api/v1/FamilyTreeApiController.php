@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Middleware\PremiumCampaign;
-use App\Models\Campaign;
-use App\Models\Family;
 use App\Http\Requests\StoreFamilyTree as Request;
 use App\Http\Resources\FamilyTreeResource as Resource;
+use App\Models\Campaign;
+use App\Models\Family;
 use App\Services\Families\FamilyTreeService;
 
 class FamilyTreeApiController extends ApiController
 {
     protected FamilyTreeService $treeService;
-
 
     public function __construct(FamilyTreeService $treeService)
     {
@@ -21,7 +20,7 @@ class FamilyTreeApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, Family $family)
     {
@@ -32,7 +31,8 @@ class FamilyTreeApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Family $family)
@@ -49,6 +49,7 @@ class FamilyTreeApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Family $family)

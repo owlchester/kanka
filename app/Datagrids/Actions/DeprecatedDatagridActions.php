@@ -9,5 +9,6 @@ namespace App\Datagrids\Actions;
 class DeprecatedDatagridActions extends DatagridActions
 {
     public $bulkCopyToCampaign = false;
+
     public $bulkTransform = false;
 }

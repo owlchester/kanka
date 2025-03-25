@@ -28,6 +28,7 @@ class BoostService
     public function action(string $action = 'boost'): self
     {
         $this->action = $action;
+
         return $this;
     }
 
@@ -37,6 +38,7 @@ class BoostService
     public function upgrade(): self
     {
         $this->upgrade = true;
+
         return $this;
     }
 
@@ -46,14 +48,14 @@ class BoostService
      */
     public function boost(): void
     {
-        if ($this->campaign->boosted() && !$this->upgrade) {
+        if ($this->campaign->boosted() && ! $this->upgrade) {
             throw new AlreadyBoostedException($this->campaign);
         } elseif ($this->user->availableBoosts() === 0) {
             throw new TranslatableException('settings/premium.exceptions.out-of-stock');
         }
 
         if ($this->action == 'superboost' && $this->user->availableBoosts() < ($this->upgrade ? 2 : 3)) {
-            throw new ExhaustedSuperboostsException();
+            throw new ExhaustedSuperboostsException;
         }
 
         $amount = 1;
@@ -72,7 +74,7 @@ class BoostService
         for ($i = 0; $i < $amount; $i++) {
             CampaignBoost::create([
                 'campaign_id' => $this->campaign->id,
-                'user_id' => $this->user->id
+                'user_id' => $this->user->id,
             ]);
         }
         $this->campaign->boost_count = $this->campaign->boosts()->count();
@@ -96,7 +98,7 @@ class BoostService
         for ($i = 0; $i < $amount; $i++) {
             CampaignBoost::create([
                 'campaign_id' => $this->campaign->id,
-                'user_id' => $this->user->id
+                'user_id' => $this->user->id,
             ]);
         }
         $this->campaign->boost_count = $this->campaign->boosts()->count();
@@ -107,7 +109,9 @@ class BoostService
 
     /**
      * Unboost a campaign
+     *
      * @return $this
+     *
      * @throws \Exception
      */
     public function unboost(CampaignBoost $campaignBoost): self
@@ -146,7 +150,7 @@ class BoostService
 
         $settings = $this->user->settings;
 
-        if (!isset($settings['grandfathered_boost'])) {
+        if (! isset($settings['grandfathered_boost'])) {
             throw new TranslatableException('Your account has already switched to the premium campaign system.');
         }
         unset($settings['grandfathered_boost']);
@@ -177,6 +181,7 @@ class BoostService
 
     /**
      * Dispatch a job to notify all campaign admins
+     *
      * @return $this
      */
     protected function notify(string $key): self
@@ -189,7 +194,7 @@ class BoostService
             [
                 'user' => $this->user->name,
                 'campaign' => $this->campaign->name,
-                'link' => route('dashboard', $this->campaign)
+                'link' => route('dashboard', $this->campaign),
             ]
         );
 

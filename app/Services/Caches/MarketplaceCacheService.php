@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\DB;
 
 class MarketplaceCacheService extends BaseCache
 {
-    /**
-     */
     public function counts(): array
     {
         $key = $this->countKey();
@@ -33,6 +31,7 @@ class MarketplaceCacheService extends BaseCache
         }
 
         Cache::put($key, $data, 24 * 3600);
+
         return $data;
     }
 
@@ -44,9 +43,9 @@ class MarketplaceCacheService extends BaseCache
         $this->forget(
             $this->countKey()
         );
+
         return $this;
     }
-
 
     /**
      * Type suggestion cache key

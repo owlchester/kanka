@@ -4,10 +4,11 @@ namespace App\Renderers\Layouts\Columns;
 
 class Checkbox extends Column
 {
-    public function css(): string|null
+    public function css(): ?string
     {
         return 'w-8';
     }
+
     public function __toString(): string
     {
         // @phpstan-ignore-next-line

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Abilities;
 
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
-use App\Models\Campaign;
 use App\Models\Ability;
+use App\Models\Campaign;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
@@ -30,13 +30,13 @@ class AbilityController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Ability\Ability::class)
             ->route('abilities.abilities', $options);
 
-        //@phpstan-ignore-next-line
+        // @phpstan-ignore-next-line
         $this->rows = $ability
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'entity', 'entity.image', 'entity.entityType', 'entity.visibleTags',
-                'parent', 'parent.entity'
+                'parent', 'parent.entity',
             ])
             ->has('entity')
             ->filter($filters)

@@ -27,7 +27,7 @@ class NavigationService
             'marketplace' => $this->marketplace(),
             'releases' => $this->releasesData(),
             'has_unread' => $this->user->hasUnread(),
-            'fontawesome_pro' => !empty(config('fontawesome.kit'))
+            'fontawesome_pro' => ! empty(config('fontawesome.kit')),
         ];
     }
 
@@ -37,7 +37,7 @@ class NavigationService
             'name' => $this->user->name,
             'created' => __('users/profile.fields.member_since', ['date' => $this->user->created_at->format('M d, Y')]),
             'is_impersonating' => false,
-            'your_profile' => __('header.user.your-profile')
+            'your_profile' => __('header.user.your-profile'),
         ];
 
         if (Identity::isImpersonating()) {
@@ -46,7 +46,7 @@ class NavigationService
             // Get the campaign linked to the impersonation
             $campaign = Campaign::findOrFail(Identity::getCampaignId());
 
-            //\App\Facades\CampaignLocalization::setCampaign(Identity::getCampaignId());
+            // \App\Facades\CampaignLocalization::setCampaign(Identity::getCampaignId());
             $returnUrl = route('identity.back', $campaign);
             $campaignUrl = 'campaign/' . $campaign->id;
             $returnUrl = str_replace('campaign/navigation', $campaignUrl, $returnUrl);
@@ -54,32 +54,33 @@ class NavigationService
                 'url' => $returnUrl,
                 'name' => __('campaigns.members.actions.switch-back'),
             ];
+
             return $data;
         }
-        if (!empty($this->user->pledge) && $this->user->subscribed('kanka')) {
+        if (! empty($this->user->pledge) && $this->user->subscribed('kanka')) {
             $data['subscription'] = [
                 'tier' => $this->user->pledge,
                 'created' => __('users/profile.fields.subscriber_since', ['date' => $this->user->subscription('kanka')->created_at->format('M d, Y')]),
                 'image' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/' . mb_strtolower($this->user->pledge) . '-325.png',
                 'boosters' => __('settings/boosters.available', [
                     'amount' => $this->user->availableBoosts(),
-                    'total' => $this->user->maxBoosts()
+                    'total' => $this->user->maxBoosts(),
                 ]),
             ];
         } else {
             $data['subscription'] = [
                 'tier' => Pledge::KOBOLD,
                 'image' => 'https://th.kanka.io/A6VJUbyTGHLiGhEat30RzpLGBsY=/64x64/smart/src/app/tiers/kobold.png',
-                //'call_to_action' => __('Subscriptions start at USD 5.00 per month')
+                // 'call_to_action' => __('Subscriptions start at USD 5.00 per month')
                 'call_to_action' => __('settings/boosters.available', [
                     'amount' => $this->user->availableBoosts(),
-                    'total' => $this->user->maxBoosts()
+                    'total' => $this->user->maxBoosts(),
                 ]),
-                'call_to_action_2' => __('header.user.upgrade')
+                'call_to_action_2' => __('header.user.upgrade'),
             ];
         }
         $data['subscription']['title'] = __('settings.menu.subscription');
-        if (!config('services.stripe.enabled')) {
+        if (! config('services.stripe.enabled')) {
             unset($data['subscription']);
         }
 
@@ -90,6 +91,7 @@ class NavigationService
             'logout' => ['url' => route('logout'), 'name' => __('header.user.sign-out')],
             'subscription' => route('settings.subscription'),
         ];
+
         return $data;
     }
 
@@ -100,7 +102,7 @@ class NavigationService
             'following' => [],
             'texts' => [
                 'campaigns' => __('sidebar.campaign_switcher.created_campaigns'),
-            ]
+            ],
         ];
         if (Identity::isImpersonating()) {
             return $data;
@@ -138,10 +140,11 @@ class NavigationService
             'featured' => __('front.campaigns.featured.title'),
             'reorder' => __('sidebar.campaign_switcher.reorder'),
             'count' => __('sidebar.campaign_switcher.count', [
-                'member' => $member
+                'member' => $member,
             ]),
-            'follow' => __('sidebar.campaign_switcher.follow_more')
+            'follow' => __('sidebar.campaign_switcher.follow_more'),
         ];
+
         return $data;
     }
 
@@ -154,12 +157,13 @@ class NavigationService
             'title' => __('settings.menu.notifications'),
             'all' => [
                 'url' => route('notifications'),
-                'text' => __('header.notifications.read_all')
+                'text' => __('header.notifications.read_all'),
             ],
-            'none' => __('header.notifications.no-unread')
+            'none' => __('header.notifications.no-unread'),
         ];
 
         $data['messages'] = $this->notifications();
+
         return $data;
     }
 
@@ -173,26 +177,27 @@ class NavigationService
             if (\Illuminate\Support\Arr::has($not->data['params'], 'link')) {
                 // @phpstan-ignore-next-line
                 $url = $not->data['params']['link'];
-                if (!\Illuminate\Support\Str::startsWith($url, 'http')) {
+                if (! \Illuminate\Support\Str::startsWith($url, 'http')) {
                     $url = url(app()->getLocale() . '/' . $url);
                 }
             }
             $notifications[] = [
                 'id' => $not->id,
-                'icon' => $not->data['icon'],// @phpstan-ignore-line
-                'text' => __('notifications.' . $not->data['key'], $not->data['params']),// @phpstan-ignore-line
+                'icon' => $not->data['icon'], // @phpstan-ignore-line
+                'text' => __('notifications.' . $not->data['key'], $not->data['params']), // @phpstan-ignore-line
                 'url' => $url,
                 'dismiss' => route('notifications.read', $not->id),
                 'dismiss_text' => __('header.notifications.dismiss'),
                 'is_read' => $not->read(), // @phpstan-ignore-line
             ];
         }
+
         return $notifications;
     }
 
     protected function marketplace(): array
     {
-        if (!config('marketplace.enabled')) {
+        if (! config('marketplace.enabled')) {
             return [];
         }
         $counts = MarketplaceCache::counts();
@@ -230,7 +235,7 @@ class NavigationService
 
         $data = [
             'title' => __('header.news.title'),
-            'news' => []
+            'news' => [],
         ];
 
         $data['releases'] = $this->releases();
@@ -256,6 +261,7 @@ class NavigationService
                 'dismiss_text' => __('header.notifications.dismiss'),
             ];
         }
+
         return $unreadReleases;
     }
 
@@ -268,6 +274,7 @@ class NavigationService
                 'notifications' => [],*/
             ];
         }
+
         return [
             'has_alerts' => $this->user->hasUnread(),
             /*'releases' => $this->releases(),

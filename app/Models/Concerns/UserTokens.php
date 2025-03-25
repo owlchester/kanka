@@ -31,6 +31,7 @@ trait UserTokens
         } elseif ($this->id === 158800) {
             return 20;
         }
+
         return config('bragi.tokens.' . $key);
     }
 
@@ -42,13 +43,14 @@ trait UserTokens
         $subDay = $this->tokenRenewalDay();
         $currentDay = date('d');
 
-        $date = new Carbon();
+        $date = new Carbon;
         $date->setDay($subDay);
 
         // If the sub was on the 7th, and we're the 3rd, move the cutoff to a month ago
         if ($subDay >= $currentDay) {
             $date->subMonth();
         }
+
         return $this->bragiLogs()->recent($date->format('Y-m-d'))->count();
     }
 
@@ -60,7 +62,7 @@ trait UserTokens
         $subDay = $this->tokenRenewalDay();
         $currentDay = date('d');
 
-        $date = new Carbon();
+        $date = new Carbon;
         $date->setDay($subDay);
 
         // If the sub was on the 7th, and we're the 11th, move the next date to the following month
@@ -81,6 +83,7 @@ trait UserTokens
             return $this->created_at->format('d');
         }
         $data = $this->subscription('kanka');
-        return !empty($data) ? $data->created_at->format('d') : 1;
+
+        return ! empty($data) ? $data->created_at->format('d') : 1;
     }
 }

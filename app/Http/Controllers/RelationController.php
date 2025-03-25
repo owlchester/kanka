@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Datagrids\Actions\RelationDatagridActions;
 use App\Datagrids\Filters\RelationFilter;
 use App\Http\Requests\StoreRelation;
+use App\Models\Campaign;
+use App\Models\Relation;
 use App\Renderers\DatagridRenderer;
 use App\Services\AttributeService;
 use App\Services\Entity\RelationService;
-use App\Models\Campaign;
-use App\Models\Relation;
 use App\Services\FilterService;
 
 class RelationController extends CrudController
@@ -17,12 +17,17 @@ class RelationController extends CrudController
     protected RelationService $relationService;
 
     protected string $view = 'relations';
+
     protected string $route = 'relations';
+
     protected $langKey = 'entities/relations';
 
     protected bool $tabPermissions = false;
+
     protected bool $tabAttributes = false;
+
     protected bool $tabBoosted = false;
+
     protected bool $tabCopy = false;
 
     protected string $forceMode = 'table';
@@ -36,7 +41,6 @@ class RelationController extends CrudController
     protected string $sanitizer = '';
 
     protected string $filter = RelationFilter::class;
-
 
     public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, AttributeService $attributeService, RelationService $relationService)
     {
@@ -54,13 +58,14 @@ class RelationController extends CrudController
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign)
     {
         $this->authorize('relations', $campaign);
 
-        $model = new $this->model();
+        $model = new $this->model;
 
         $params['campaign'] = $campaign;
         $params['entityAttributeTemplates'] = [];
@@ -72,6 +77,7 @@ class RelationController extends CrudController
 
     /**
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(StoreRelation $request, Campaign $campaign)
@@ -96,25 +102,32 @@ class RelationController extends CrudController
 
             if ($request->has('submit-new')) {
                 $route = route($this->route . '.create', $campaign);
+
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-update')) {
                 $route = route($this->route . '.edit', [$campaign, $new]);
+
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-view')) {
                 $route = route($this->route . '.show', [$campaign, $new]);
+
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-copy')) {
                 $route = route($this->route . '.create', [$campaign, 'copy' => $new->id]);
+
                 return response()->redirectTo($route);
             } elseif (auth()->user()->new_entity_workflow == 'created') {
                 $route = route($this->route . '.show', [$campaign, $new]);
+
                 return response()->redirectTo($route);
             }
 
             $route = route($this->route . '.index', $campaign);
+
             return response()->redirectTo($route);
         } catch (\LogicException $exception) {
-            $error =  str_replace(' ', '_', mb_strtolower($exception->getMessage()));
+            $error = str_replace(' ', '_', mb_strtolower($exception->getMessage()));
+
             return redirect()
                 ->back()
                 ->withInput()
@@ -133,6 +146,7 @@ class RelationController extends CrudController
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign, Relation $relation)
@@ -153,6 +167,7 @@ class RelationController extends CrudController
 
     /**
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(StoreRelation $request, Campaign $campaign, Relation $relation)
@@ -172,7 +187,7 @@ class RelationController extends CrudController
             ->route('relations.index', $campaign)
             ->with('success', __('entities/relations' . '.update.success', [
                 'target' => $relation->target->name,
-                'entity' => $relation->owner->name
+                'entity' => $relation->owner->name,
             ]));
     }
 }

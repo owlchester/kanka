@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class AppRelease
- * @package App\Models
  *
  * @property int $id
  * @property string $name
@@ -24,9 +23,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class AppRelease extends Model
 {
     public const int CATEGORY_RELEASE = 1;
+
     public const int CATEGORY_EVENT = 2;
+
     public const int CATEGORY_VOTE = 3;
+
     public const int CATEGORY_OTHER = 4;
+
     public const int CATEGORY_LIVESTREAM = 5;
 
     public $table = 'releases';
@@ -57,6 +60,7 @@ class AppRelease extends Model
         } elseif ($this->category_id == self::CATEGORY_LIVESTREAM) {
             return __('releases.categories.livestream');
         }
+
         return '';
     }
 
@@ -66,11 +70,12 @@ class AppRelease extends Model
     public function alreadyRead(): bool
     {
         // Don't show announcements that are older than the account itself
-        $firstVisibility = !empty($this->published_at) ? $this->published_at : $this->created_at;
+        $firstVisibility = ! empty($this->published_at) ? $this->published_at : $this->created_at;
         if ($firstVisibility->isBefore(auth()->user()->created_at)) {
             return true;
         }
-        //Check if the user has the release tutorial entry on the db.
+
+        // Check if the user has the release tutorial entry on the db.
         return UserCache::user(auth()->user())->dismissedTutorial('releases_' . $this->category_id . '_' . $this->id);
     }
 
@@ -79,6 +84,6 @@ class AppRelease extends Model
      */
     public function isPast(): bool
     {
-        return !empty($this->end_at) && $this->end_at->isPast();
+        return ! empty($this->end_at) && $this->end_at->isPast();
     }
 }

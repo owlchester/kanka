@@ -82,13 +82,13 @@ To create an entity-ability, use the following endpoint.
 
 ### Body
 
-| Parameter | Type | Detail |
-| :- |   :-   |  :-  |
-| `ability_id` | `int` (Required) | The ability id |
-| `visibility_id` | `int` | The visibility ID: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
-| `charges` | `int` | How many times the ability was used. |
-| `note` | `string` | Custom note attached to the ability. |
-| `position` | `int` | Position of the ability in the list |
+| Parameter       | Type               | Detail                                                                              |
+|:----------------|:-------------------|:------------------------------------------------------------------------------------|
+| `abilities`     | `array` (Required) | An array containing ability ids                                                     |
+| `visibility_id` | `int`              | The visibility ID: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |
+| `charges`       | `int`              | How many times the ability was used.                                                |
+| `note`          | `string`           | Custom note attached to the ability.                                                |
+| `position`      | `int`              | Position of the ability in the list                                                 |
 
 ### Results
 

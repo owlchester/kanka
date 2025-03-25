@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Log;
 
 /**
  * Class BaseCache
- * @package App\Services\Caches
  */
 abstract class BaseCache
 {
@@ -38,6 +37,7 @@ abstract class BaseCache
         Log::info(class_basename($this), [
             'put' => $key,
         ]);
+
         return Cache::put($key, $data, $ttl);
     }
 
@@ -50,6 +50,7 @@ abstract class BaseCache
         Log::info(class_basename($this), [
             'forever' => $key,
         ]);
+
         return Cache::put($key, $data, $days * 86400);
     }
 
@@ -58,6 +59,6 @@ abstract class BaseCache
      */
     protected function has(string $key): bool
     {
-        return Cache::has($key) && !app()->environment('testing');
+        return Cache::has($key) && ! app()->environment('testing');
     }
 }

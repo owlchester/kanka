@@ -11,8 +11,6 @@ class MapMarkerCacheService extends BaseCache
 {
     use CampaignAware;
 
-    /**
-     */
     public function iconSuggestion(): array
     {
         $key = $this->iconSuggestionKey();
@@ -30,7 +28,7 @@ class MapMarkerCacheService extends BaseCache
             'fa-solid fa-map-marker-alt',
             'fa-solid fa-thumbtack',
             'ra ra-wooden-sign',
-            'fa-solid fa-map-pin'
+            'fa-solid fa-map-pin',
         ];
 
         $data = MapMarker::leftJoin('maps as m', 'm.id', 'map_markers.map_id')
@@ -44,7 +42,7 @@ class MapMarkerCacheService extends BaseCache
             ->all();
 
         foreach ($default as $value) {
-            if (!in_array($value, $data)) {
+            if (! in_array($value, $data)) {
                 $data[] = $value;
             }
         }
@@ -52,6 +50,7 @@ class MapMarkerCacheService extends BaseCache
         $data = array_slice($data, 0, 10);
 
         Cache::put($key, $data, 24 * 3600);
+
         return $data;
     }
 
@@ -63,9 +62,9 @@ class MapMarkerCacheService extends BaseCache
         $this->forget(
             $this->iconSuggestionKey()
         );
+
         return $this;
     }
-
 
     /**
      * Type suggestion cache key

@@ -24,10 +24,8 @@ class StoreEntityTag extends FormRequest
     public function rules()
     {
         $rules = [
-            'entity_id', 'integer|exists:entities,id',
-            'tag_id', 'integer|exists:tags,id',
+            'tag_id' => 'required|integer|exists:tags,id',
         ];
-
 
         return $rules;
     }

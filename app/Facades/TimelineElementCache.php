@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class TimelineElementCache
- * @package App\Facades
  *
  * @see \App\Services\Caches\TimelineElementCacheService
+ *
  * @mixin \App\Services\Caches\TimelineElementCacheService
  */
 class TimelineElementCache extends Facade

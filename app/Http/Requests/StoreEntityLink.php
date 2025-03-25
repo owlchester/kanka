@@ -31,7 +31,7 @@ class StoreEntityLink extends FormRequest
             'url' => 'required|string|url',
             'icon' => 'nullable|string|max:45',
             'position' => 'nullable|integer',
-            'visibility_id' => 'nullable|integer|exists:visibilities,id'
+            'visibility_id' => 'nullable|integer|exists:visibilities,id',
         ]);
     }
 }

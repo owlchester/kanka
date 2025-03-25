@@ -44,7 +44,7 @@ class DashboardWidgetController extends Controller
         $this->authorize('dashboard', $campaign);
 
         $widget = request()->get('widget', 'preview');
-        if (!view()->exists('dashboard.widgets.forms._' . $widget)) {
+        if (! view()->exists('dashboard.widgets.forms._' . $widget)) {
             abort(404);
         }
         $entities = $this->buildEntities($campaign);
@@ -56,12 +56,10 @@ class DashboardWidgetController extends Controller
             'campaign' => $campaign,
             'widget' => $widget,
             'entities' => $entities,
-            'dashboard' => $dashboard
+            'dashboard' => $dashboard,
         ]);
     }
 
-    /**
-     */
     public function store(StoreCampaignDashboardWidget $request, Campaign $campaign)
     {
         $this->authorize('dashboard', $campaign);
@@ -79,15 +77,11 @@ class DashboardWidgetController extends Controller
             ->with('success', __('dashboard.widgets.create.success'));
     }
 
-    /**
-     */
     public function show(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         return redirect()->route('dashboard', $campaign);
     }
 
-    /**
-     */
     public function edit(Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('dashboard', $campaign);
@@ -107,8 +101,6 @@ class DashboardWidgetController extends Controller
         ]);
     }
 
-    /**
-     */
     public function update(StoreCampaignDashboardWidget $request, Campaign $campaign, CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('dashboard', $campaign);
@@ -116,9 +108,9 @@ class DashboardWidgetController extends Controller
             return response()->json(['success' => true]);
         }
 
-        //get all request data
+        // get all request data
         $input = $request->all();
-        //force entity_id to take null if not present in data
+        // force entity_id to take null if not present in data
         $input['entity_id'] = $request->input('entity_id');
 
         $campaignDashboardWidget->update($input);

@@ -5,8 +5,7 @@ it('POSTS an invalid timeline era form')
     ->withCampaign()
     ->withTimelines()
     ->postJson('/api/1.0/campaigns/1/timelines/1/timeline_eras', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new timeline era')
     ->asUser()
@@ -20,9 +19,8 @@ it('POSTS a new timeline era')
         'data' => [
             'id',
             'name',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all timeline eras')
     ->asUser()
@@ -36,10 +34,9 @@ it('GETS all timeline eras')
             [
                 'id',
                 'name',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific timeline era')
     ->asUser()
@@ -52,9 +49,8 @@ it('GETS a specific timeline era')
         'data' => [
             'id',
             'name',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid timeline era')
     ->asUser()
@@ -63,8 +59,7 @@ it('UPDATES a valid timeline era')
     ->withTimelineEras()
     ->putJson('/api/1.0/campaigns/1/timelines/1/timeline_eras/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('UPDATES a valid timeline era without a name')
     ->asUser()
@@ -73,8 +68,7 @@ it('UPDATES a valid timeline era without a name')
     ->withTimelineEras()
     ->putJson('/api/1.0/campaigns/1/timelines/1/timeline_eras/1', ['entry' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['entry' => 'Magic'])
-;
+    ->assertJsonFragment(['entry' => 'Magic']);
 
 it('DELETES a timeline era')
     ->asUser()
@@ -82,8 +76,7 @@ it('DELETES a timeline era')
     ->withTimelines()
     ->withTimelineEras()
     ->delete('/api/1.0/campaigns/1/timelines/1/timeline_eras/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid timeline')
     ->asUser()
@@ -91,8 +84,7 @@ it('DELETES an invalid timeline')
     ->withTimelines()
     ->withTimelineEras()
     ->delete('/api/1.0/campaigns/1/timelines/1/timeline_eras/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a timeline as a player')
     ->asUser()
@@ -101,5 +93,4 @@ it('can GET a timeline as a player')
     ->withTimelineEras()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/timelines/1/timeline_eras/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);

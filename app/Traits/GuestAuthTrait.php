@@ -13,7 +13,7 @@ trait GuestAuthTrait
         if (empty($entity)) {
             abort(403);
         }
-        if (!$entity->entityType->isSpecial() && $entity->isMissingChild()) {
+        if (! $entity->entityType->isSpecial() && $entity->isMissingChild()) {
             abort(403);
         }
         if (auth()->check()) {
@@ -25,6 +25,7 @@ trait GuestAuthTrait
 
     /**
      * Secondary Authentication for Guest users
+     *
      * @return void
      */
     protected function authorizeEntityForGuest(Permission $permission, ?Entity $entity)
@@ -38,7 +39,7 @@ trait GuestAuthTrait
         $permission = EntityPermission::entity($entity)->campaign($this->campaign)->can($permission);
 
         // @phpstan-ignore-next-line
-        if ($this->campaign->id != $entity->campaign_id || !$permission) {
+        if ($this->campaign->id != $entity->campaign_id || ! $permission) {
             // Raise an error
             abort(403);
         }

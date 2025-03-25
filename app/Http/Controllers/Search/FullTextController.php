@@ -27,7 +27,7 @@ class FullTextController extends Controller
             'campaign' => $campaign,
             'models' => [],
             'term' => $term,
-            'route' => 'search.fulltext'
+            'route' => 'search.fulltext',
         ];
 
         if (empty($term)) {
@@ -44,8 +44,7 @@ class FullTextController extends Controller
         $results = $this->service
             ->campaign($campaign)
             ->limit(100)
-            ->search($term, $term2)
-        ;
+            ->search($term, $term2);
         $results = array_column($results, 'id');
 
         // Then get the actual entities from the campaign
@@ -63,6 +62,7 @@ class FullTextController extends Controller
         }
 
         $data['models'] = $models;
+
         return view('search.fulltext')->with($data);
     }
 }

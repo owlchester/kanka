@@ -14,7 +14,7 @@ class TagFilter extends DatagridFilter
     {
         $name = Module::singular(config('entities.ids.tag'));
         $placeholder = __('crud.placeholders.tag');
-        if (!empty($name)) {
+        if (! empty($name)) {
             $placeholder = __('crud.placeholders.fallback', ['module' => $name]);
         }
         $this
@@ -25,7 +25,7 @@ class TagFilter extends DatagridFilter
                 'label' => Module::singular(config('entities.ids.tag'), __('entities.tag')),
                 'type' => 'select2',
                 'route' => route('search-list', [$this->campaign, config('entities.ids.tag')]),
-                'placeholder' =>  $placeholder,
+                'placeholder' => $placeholder,
                 'model' => Tag::class,
             ])
             ->add('is_auto_applied')
@@ -36,7 +36,6 @@ class TagFilter extends DatagridFilter
             ->hasEntityFiles()
             ->hasAttributes()
             ->attributes()
-            ->connections()
-        ;
+            ->connections();
     }
 }

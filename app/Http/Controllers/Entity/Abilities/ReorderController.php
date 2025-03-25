@@ -12,6 +12,7 @@ use App\Services\Abilities\ReorderService;
 class ReorderController extends Controller
 {
     protected AbilityService $service;
+
     protected ReorderService $reorderService;
 
     public function __construct(AbilityService $abilityService, ReorderService $reorderService)
@@ -30,7 +31,7 @@ class ReorderController extends Controller
                 // entity
                 'ability.entity', 'ability.entity.image', 'ability.entity.attributes',
                 // parent
-                'ability.parent', 'ability.parent.entity'
+                'ability.parent', 'ability.parent.entity',
             ])
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
             ->defaultOrder()

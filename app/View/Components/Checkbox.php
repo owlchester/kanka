@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 class Checkbox extends Component
 {
     public string $text;
+
     public ?array $dataProperties;
 
     /**

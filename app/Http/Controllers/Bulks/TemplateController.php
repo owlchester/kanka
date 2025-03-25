@@ -29,8 +29,7 @@ class TemplateController extends Controller
             ->with('campaign', $campaign)
             ->with('templates', $templates)
             ->with('entityType', $entityType)
-            ->with('entities', $entities)
-        ;
+            ->with('entities', $entities);
     }
 
     public function apply(Request $request, Campaign $campaign, EntityType $entityType)

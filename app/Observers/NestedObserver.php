@@ -6,7 +6,7 @@ class NestedObserver
 {
     public function saving($model)
     {
-        if (!$model->parent) {
+        if (! $model->parent) {
             return;
         }
         // If we have a parent, we make the current model isn't a parent of itself

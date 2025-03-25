@@ -4,16 +4,15 @@ namespace App\Models;
 
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Paginatable;
-use Carbon\Carbon;
 use App\Models\Concerns\SortableTrait;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class CampaignUser
- * @package App\Models
  *
  * @property int $id
  * @property int $campaign_id
@@ -84,7 +83,7 @@ class CampaignUser extends Pivot
                 $on->on('cr.id', 'cru.campaign_role_id')
                     ->whereRaw('cr.campaign_id = ' . $this->getTable() . '.campaign_id');
             })
-            //->whereRaw('cr.campaign_id = ' . $this->getTable() . '.campaign_id')
+            // ->whereRaw('cr.campaign_id = ' . $this->getTable() . '.campaign_id')
             ->where(function ($sub) {
                 $sub->where('is_admin', false)
                     ->orWhereNull('is_admin');

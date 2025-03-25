@@ -33,33 +33,36 @@ class TagService
     public function withNew(): self
     {
         $this->withNew = true;
+
         return $this;
     }
 
     public function model(Model $model): self
     {
         $this->model = $model;
+
         return $this;
     }
 
     public function add(array $ids): self
     {
         $this->withDetach = false;
+
         return $this->sync($ids);
     }
 
     public function isAllowed(): bool
     {
-        if (!empty($this->canCreate)) {
+        if (! empty($this->canCreate)) {
             return $this->canCreate;
         }
         $campaign = $this->campaign ?? $this->entity->campaign;
+
         return $this->canCreate = $this->user->can('create', [
             $campaign->getEntityTypes()->firstWhere('id', config('entities.ids.tag')),
-            $campaign
+            $campaign,
         ]);
     }
-
 
     public function create(mixed $name): Tag
     {
@@ -93,7 +96,7 @@ class TagService
         $new = [];
 
         foreach ($ids as $id) {
-            if (!empty($existing[$id])) {
+            if (! empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
                 $tag = $this->fetch($id);
@@ -108,7 +111,7 @@ class TagService
         $model->tags()->attach($new);
 
         // Detach previously existing tags that were not requested
-        if (empty($existing) || !$this->withDetach) {
+        if (empty($existing) || ! $this->withDetach) {
             return $this;
         }
         $this->dirty = true;
@@ -126,7 +129,7 @@ class TagService
         return $this->dirty;
     }
 
-    protected function fetch(mixed $id): Tag|null
+    protected function fetch(mixed $id): ?Tag
     {
         /** @var ?Tag $tag */
         $tag = Tag::select(['id', 'name'])->find($id);

@@ -9,11 +9,12 @@ use Illuminate\Http\Request;
  */
 trait RequestAware
 {
-    public Request|null $request;
+    public ?Request $request;
 
     public function request(Request $request): self
     {
         $this->request = $request;
+
         return $this;
     }
 }

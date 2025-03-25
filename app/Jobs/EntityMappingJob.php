@@ -6,10 +6,10 @@ use App\Services\EntityMappingService;
 use App\Traits\MentionTrait;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Database\Eloquent\Model;
 
 class EntityMappingJob implements ShouldQueue
 {
@@ -22,6 +22,7 @@ class EntityMappingJob implements ShouldQueue
     public Model $model;
 
     public int $modelId;
+
     public string $class;
 
     /**
@@ -40,7 +41,7 @@ class EntityMappingJob implements ShouldQueue
     {
         // @phpstan-ignore-next-line
         $this->modelId = $model->id;
-        $this->class =  get_class($model);
+        $this->class = get_class($model);
     }
 
     /**
@@ -50,9 +51,9 @@ class EntityMappingJob implements ShouldQueue
      */
     public function handle()
     {
-        //Get the model
+        // Get the model
         $model = $this->class::find($this->modelId);
-        if (!$model) {
+        if (! $model) {
             return;
         }
 

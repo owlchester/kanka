@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Models\Campaign;
-use App\Models\CampaignStyle;
 use App\Http\Requests\StoreCampaignStyle as Request;
 use App\Http\Resources\CampaignStyleResource as Resource;
+use App\Models\Campaign;
+use App\Models\CampaignStyle;
 
 class CampaignStyleApiController extends ApiController
 {
@@ -16,11 +16,13 @@ class CampaignStyleApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+
         return Resource::collection(
             $campaign
                 ->styles()
@@ -29,17 +31,19 @@ class CampaignStyleApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, CampaignStyle $campaignStyle)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);
+
         return new Resource($campaignStyle);
     }
 
     /**
-     * @return Resource
+     * @return resource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
@@ -55,7 +59,7 @@ class CampaignStyleApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function update(Request $request, Campaign $campaign, CampaignStyle $campaignStyle)
     {
@@ -68,6 +72,7 @@ class CampaignStyleApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, CampaignStyle $campaignStyle)

@@ -24,7 +24,7 @@ class FollowController extends Controller
             'following' => $this->service
                 ->campaign($campaign)
                 ->user(auth()->user())
-                ->update()
+                ->update(),
         ]);
     }
 }

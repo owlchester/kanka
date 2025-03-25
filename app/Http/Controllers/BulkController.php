@@ -22,15 +22,10 @@ class BulkController extends Controller
 
     protected array $routeParams = [];
 
-    /**  */
-    protected null|string $entity = null;
+    protected ?string $entity = null;
 
-    public function __construct(protected BulkService $bulkService)
-    {
-    }
+    public function __construct(protected BulkService $bulkService) {}
 
-    /**
-     */
     public function index(BulkRequest $request, Campaign $campaign)
     {
         $this->request = $request;
@@ -38,7 +33,7 @@ class BulkController extends Controller
         $models = $request->get('model', []);
         $action = $request->get('datagrid-action');
         $page = $request->get('page');
-        if (!empty($page)) {
+        if (! empty($page)) {
             $this->routeParams = ['page' => $page];
         }
 
@@ -57,6 +52,7 @@ class BulkController extends Controller
             if (config('app.debug')) {
                 throw $e;
             }
+
             return redirect()
                 ->back()
                 ->with('error', __('crud.bulk.errors.general', ['hint' => $e->getTranslatedMessage()]));
@@ -64,6 +60,7 @@ class BulkController extends Controller
             if (config('app.debug')) {
                 throw $e;
             }
+
             return redirect()
                 ->back()
                 ->with('error', __('crud.bulk.errors.general', ['hint' => $e->getMessage()]));
@@ -75,6 +72,7 @@ class BulkController extends Controller
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws Exception
      */
     protected function batch()
@@ -84,7 +82,7 @@ class BulkController extends Controller
             $this->bulkService->entityType($this->entityType);
         } else {
             $classes = config('entities.classes-plural');
-            $entityObj = new $classes[$this->entity]();
+            $entityObj = new $classes[$this->entity];
         }
 
         $langFile = $this->entity === 'relations' ? 'entities/relations.bulk.success.' : 'crud.bulk.success.';

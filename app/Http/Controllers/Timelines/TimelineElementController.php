@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Timelines;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTimelineElement;
 use App\Models\Campaign;
-use App\Models\TimelineEra;
-use App\Services\MultiEditingService;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
+use App\Models\TimelineEra;
+use App\Services\MultiEditingService;
 use App\Services\TimelineService;
 use Illuminate\Http\Request;
 
@@ -29,7 +29,7 @@ class TimelineElementController extends Controller
         'icon',
         'is_collapsed',
         'use_entity_entry',
-        'use_event_date'
+        'use_event_date',
     ];
 
     /**
@@ -44,6 +44,7 @@ class TimelineElementController extends Controller
     {
         return redirect()->route('entities.show', [$campaign, $timeline->entity]);
     }
+
     public function index(Campaign $campaign, Timeline $timeline)
     {
         return redirect()->route('entities.show', [$campaign, $timeline->entity]);
@@ -51,6 +52,7 @@ class TimelineElementController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Request $request, Campaign $campaign, Timeline $timeline)
@@ -79,7 +81,7 @@ class TimelineElementController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $model = new TimelineElement();
+        $model = new TimelineElement;
         $data = $request->only($this->fields);
         $data['timeline_id'] = $timeline->id;
         $new = $model->create($data);
@@ -92,6 +94,7 @@ class TimelineElementController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign, Timeline $timeline, TimelineElement $timelineElement)
@@ -136,7 +139,7 @@ class TimelineElementController extends Controller
         }
 
         $data = $request->only($this->fields);
-        if (!$request->has('entity_id')) {
+        if (! $request->has('entity_id')) {
             $data['entity_id'] = null;
         }
 

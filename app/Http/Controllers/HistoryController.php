@@ -26,7 +26,6 @@ class HistoryController extends Controller
             ->where('e.campaign_id', '=', $campaign->id)
             ->paginate($pagnation);
 
-
         $previous = null;
         $superboosted = $campaign->superboosted();
 
@@ -47,10 +46,10 @@ class HistoryController extends Controller
         ];
 
         $filters = [];
-        if (!empty($user)) {
+        if (! empty($user)) {
             $filters['user'] = (int) $user;
         }
-        if (!empty($action)) {
+        if (! empty($action)) {
             $filters['action'] = (int) $action;
         }
 

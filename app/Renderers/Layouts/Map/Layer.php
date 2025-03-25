@@ -9,13 +9,14 @@ class Layer extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'name' => [
                 'key' => 'name',
@@ -32,7 +33,7 @@ class Layer extends Layout
                 'label' => 'maps/layers.fields.type',
                 'render' => function ($model) {
                     return __('maps/layers.short_types.' . $model->typeName());
-                }
+                },
             ],
             'visibility' => [
                 'label' => 'crud.fields.visibility',
@@ -50,9 +51,10 @@ class Layer extends Layout
     {
         return [
             self::ACTION_EDIT,
-            self::ACTION_DELETE
+            self::ACTION_DELETE,
         ];
     }
+
     public function bulks(): array
     {
         return [

@@ -41,8 +41,9 @@ class GalleryFileFull extends JsonResource
                 ];
             }
         }
+
         return [
-            'mentions' => $mentions
+            'mentions' => $mentions,
         ];
     }
 }

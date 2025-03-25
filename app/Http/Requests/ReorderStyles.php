@@ -25,8 +25,8 @@ class ReorderStyles extends FormRequest
     {
         return [
             'styles' => [
-                '*' => 'exists:campaign_styles,id'
-            ]
+                '*' => 'exists:campaign_styles,id',
+            ],
         ];
     }
 }

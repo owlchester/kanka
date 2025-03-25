@@ -10,6 +10,7 @@ class CampaignUser extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -21,8 +22,9 @@ class CampaignUser extends Layout
                     if ($model->user->hasAvatar()) {
                         return '<div class="rounded-full h-8 w-8 cover-background" style="background-image: url(' . $model->user->getAvatarUrl() . ')" data-title="' . $model->user->name . '"></div>';
                     }
+
                     return '<div class="rounded-full h-8 w-8 flex items-center justify-center bg-neutral text-neutral-content uppercase">' . $model->user->initials() . '</div>';
-                }
+                },
             ],
             'name' => [
                 'key' => 'user.name',
@@ -32,11 +34,12 @@ class CampaignUser extends Layout
                     if ($model->user->isBanned()) {
                         $html .= '<i class="fa-solid fa-ban" aria-hidden="true" data-toggle="tooltip" data-title = "' . __('campaigns.members.fields.banned') . '"></i>';
                     }
+
                     return $html;
                 },
             ],
             'roles' => [
-                'key'   => 'user.roles',
+                'key' => 'user.roles',
                 'label' => 'campaigns.members.fields.roles',
                 'render' => function (\App\Models\CampaignUser $model) {
                     $campaign = CampaignLocalization::getCampaign();
@@ -50,15 +53,16 @@ class CampaignUser extends Layout
                             $roleLinks[] = $role->name;
                         }
                     }
-                    $html = (string)implode(', ', $roleLinks);
+                    $html = (string) implode(', ', $roleLinks);
 
                     if (auth()->user()->can('update', $model)) {
                         $html .= ' <i href="' . route('campaign.members.roles', [$campaign, $model->id]) . '" class="fa-regular fa-pencil cursor-pointer"
                             data-toggle="dialog-ajax" data-target="new-invite" data-url="' . route('campaign.members.roles', [$campaign, $model->id]) . '" data-tooltip data-title="' . __('campaigns/members.roles.title') . '" aria-label="' . __('campaigns/members.roles.title') . '">
                         </i>';
                     }
+
                     return $html;
-                }
+                },
             ],
             'created_at' => [
                 'key' => 'created_at',
@@ -66,9 +70,10 @@ class CampaignUser extends Layout
                 'render' => function (\App\Models\CampaignUser $model) {
                     $html = '';
 
-                    if (!empty($model->created_at)) {
+                    if (! empty($model->created_at)) {
                         $html = '<span data-title="' . $model->created_at . 'UTC" data-toggle="tooltip">' . $model->created_at->diffForHumans() . '</span>';
                     }
+
                     return $html;
                 },
             ],
@@ -77,9 +82,10 @@ class CampaignUser extends Layout
                 'label' => 'campaigns.members.fields.last_login',
                 'render' => function (\App\Models\CampaignUser $model) {
                     $html = '';
-                    if ($model->user->has_last_login_sharing && !empty($model->user->last_login_at)) {
+                    if ($model->user->has_last_login_sharing && ! empty($model->user->last_login_at)) {
                         $html = '<span data-title="' . $model->user->last_login_at . 'UTC" data-toggle="tooltip">' . $model->user->last_login_at->diffForHumans() . '</span>';
                     }
+
                     return $html;
                 },
             ],

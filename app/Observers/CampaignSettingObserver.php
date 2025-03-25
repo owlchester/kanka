@@ -6,7 +6,6 @@ use App\Facades\CampaignCache;
 
 /**
  * Class CampaignSettingObserver
- * @package App\Observers
  */
 class CampaignSettingObserver
 {

@@ -20,7 +20,7 @@ class AbilityController extends Controller
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authEntityView($entity);
-        if (!$campaign->enabled('abilities')) {
+        if (! $campaign->enabled('abilities')) {
             return redirect()->route('entities.show', [$campaign, $entity])->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
@@ -84,17 +84,17 @@ class AbilityController extends Controller
             }
             $success = __('entities/abilities.create.success_multiple', [
                 'abilities' => implode(', ', $abilities),
-                'entity' => $entity->name
+                'entity' => $entity->name,
             ]);
-        } elseif (!empty($data['ability_id'])) {
+        } elseif (! empty($data['ability_id'])) {
             // Allow adding a single ability through the API
-            $entityAbility = new EntityAbility();
+            $entityAbility = new EntityAbility;
             unset($data['abilities']);
             $entityAbility = $entityAbility->create($data);
 
             $success = trans('entities/abilities.create.success', [
                 'ability' => $entityAbility->ability->name,
-                'entity' => $entity->name
+                'entity' => $entity->name,
             ]);
         }
 
@@ -137,7 +137,7 @@ class AbilityController extends Controller
 
         if (request()->ajax()) {
             return response()->json([
-                'success' => true
+                'success' => true,
             ]);
         }
 
@@ -150,13 +150,13 @@ class AbilityController extends Controller
     {
         $this->authorize('update', $entity);
 
-        if (!$entityAbility->delete()) {
+        if (! $entityAbility->delete()) {
             abort(500);
         }
 
         if (request()->ajax()) {
             return response()->json([
-                'success' => true
+                'success' => true,
             ]);
         }
 

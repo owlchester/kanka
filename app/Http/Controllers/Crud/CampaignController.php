@@ -34,7 +34,7 @@ class CampaignController extends Controller
 
     public function store(StoreCampaign $request)
     {
-        $campaign = new Campaign();
+        $campaign = new Campaign;
         $this->authorize('create', $campaign);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
@@ -42,7 +42,7 @@ class CampaignController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $first = !auth()->user()->hasCampaigns();
+        $first = ! auth()->user()->hasCampaigns();
         $data = $request->all();
 
         $data['entry'] = Arr::get($data, 'entry');
@@ -61,7 +61,7 @@ class CampaignController extends Controller
 
         if ($request->has('submit-update')) {
             return redirect()
-                ->to(app()->getLocale() . '/campaign/' . $campaign->id . '/campaigns/' . $campaign->id . '/edit')
+                ->route('campaigns.edit', $campaign)
                 ->with('success', __($this->view . '.create.success', ['name' => $campaign->name]));
         } elseif ($request->has('submit-new')) {
             return redirect()
@@ -70,6 +70,7 @@ class CampaignController extends Controller
         } elseif ($first) {
             $user = auth()->user();
             $user->save();
+
             return redirect()->route('dashboard', $campaign);
         }
 
@@ -92,11 +93,12 @@ class CampaignController extends Controller
                 $editingService->edit();
             }
         }
+
         return view($this->view . '.forms.edit', [
             'campaign' => $campaign,
             'model' => $campaign,
             'start' => false,
-            'editingUsers' => $editingUsers
+            'editingUsers' => $editingUsers,
         ]);
     }
 
@@ -111,7 +113,7 @@ class CampaignController extends Controller
 
         $data = $request->all();
         // Missing sidebar config? Because we shouldn't have used the same array...
-        if (!empty($campaign->ui_settings['sidebar'])) {
+        if (! empty($campaign->ui_settings['sidebar'])) {
             $data['ui_settings']['sidebar'] = $campaign->ui_settings['sidebar'];
         }
         // Also, let's unset ui_settings that are set to true
@@ -121,7 +123,7 @@ class CampaignController extends Controller
             }
         }
         // Same mumbo jumbo for module settings...
-        if (!empty($campaign->settings['modules'])) {
+        if (! empty($campaign->settings['modules'])) {
             $data['settings']['modules'] = $campaign->settings['modules'];
         }
 

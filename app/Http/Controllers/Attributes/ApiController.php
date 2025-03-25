@@ -30,8 +30,10 @@ class ApiController extends Controller
             $this->apiService
                 ->copy()
                 ->entityType($entityType);
+
             return $this->entity($campaign, $source);
         }
+
         return response()->json(
             $this->apiService
                 ->campaign($campaign)

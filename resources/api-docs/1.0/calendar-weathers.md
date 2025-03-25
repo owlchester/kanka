@@ -16,9 +16,9 @@ You can get a list of all the weather effects of a calendar by using the followi
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| GET/HEAD | `calendars/{calendar.id}/calendar_weathers` | Default |
+| Method | URI                                        | Headers |
+| :- |:-------------------------------------------|  :-  |
+| GET/HEAD | `calendars/{calendar.id}/calendar_weather` | Default |
 
 ### Results
 ```json
@@ -42,8 +42,8 @@ You can get a list of all the weather effects of a calendar by using the followi
         }
     ],
     "links": {
-        "first": "https://api.kanka.io/{{version}}/campaigns/1/calendars/1/calendar_weathers?page=1",
-        "last": "https://api.kanka.io/{{version}}/campaigns/1/calendars/1/calendar_weathers?page=1",
+        "first": "https://api.kanka.io/{{version}}/campaigns/1/calendars/1/calendar_weather?page=1",
+        "last": "https://api.kanka.io/{{version}}/campaigns/1/calendars/1/calendar_weather?page=1",
         "prev": null,
         "next": null
     },
@@ -51,7 +51,7 @@ You can get a list of all the weather effects of a calendar by using the followi
         "current_page": 1,
         "from": 1,
         "last_page": 1,
-        "path": "https://api.kanka.io/{{version}}/campaigns/1/calendars/1/calendar_weathers",
+        "path": "https://api.kanka.io/{{version}}/campaigns/1/calendars/1/calendar_weather",
         "per_page": 15,
         "to": 1,
         "total": 1
@@ -65,9 +65,9 @@ You can get a list of all the weather effects of a calendar by using the followi
 
 To get the details of a single weather effect, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| GET/HEAD | `calendars/{calendar.id}/calendar_weathers/{calendar_weather.id}` | Default |
+| Method | URI                                                              | Headers |
+| :- |:-----------------------------------------------------------------|  :-  |
+| GET/HEAD | `calendars/{calendar.id}/calendar_weather/{calendar_weather.id}` | Default |
 
 ### Results
 ```json
@@ -98,9 +98,9 @@ To get the details of a single weather effect, use the following endpoint.
 
 To create a calendar weather, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| POST | `calendars/{calendar.id}/calendar_weathers` | Default |
+| Method | URI                                        | Headers |
+| :- |:-------------------------------------------|  :-  |
+| POST | `calendars/{calendar.id}/calendar_weather` | Default |
 
 ### Body
 
@@ -126,9 +126,9 @@ To create a calendar weather, use the following endpoint.
 
 To update a calendar, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| PUT/PATCH | `calendars/{calendar.id}/calendar_weathers/{calendar_weather.id}` | Default |
+| Method | URI                                                              | Headers |
+| :- |:-----------------------------------------------------------------|  :-  |
+| PUT/PATCH | `calendars/{calendar.id}/calendar_weather/{calendar_weather.id}` | Default |
 
 ### Body
 
@@ -144,9 +144,9 @@ The same body parameters are available as for when creating a calendar weather.
 
 To delete a calendar weather, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| DELETE | `calendars/{calendar.id}/calendar_weathers/{calendar_weather.id}` | Default |
+| Method | URI                                                              | Headers |
+| :- |:-----------------------------------------------------------------|  :-  |
+| DELETE | `calendars/{calendar.id}/calendar_weather/{calendar_weather.id}` | Default |
 
 ### Results
 

@@ -14,6 +14,7 @@ trait CampaignAware
     public function campaign(Campaign $campaign): self
     {
         $this->campaign = $campaign;
+
         return $this;
     }
 }

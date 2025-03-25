@@ -21,7 +21,7 @@ class DeleteController extends Controller
     {
         $datagrid = null;
         if ($entityType->id === config('entities.ids.bookmark')) {
-            $datagrid = new BookmarkDatagridActions();
+            $datagrid = new BookmarkDatagridActions;
         }
         $entities = $request->get('entities');
 
@@ -29,8 +29,7 @@ class DeleteController extends Controller
             ->with('campaign', $campaign)
             ->with('entityType', $entityType)
             ->with('datagrid', $datagrid)
-            ->with('entities', $entities)
-        ;
+            ->with('entities', $entities);
     }
 
     public function apply(Request $request, Campaign $campaign, EntityType $entityType)

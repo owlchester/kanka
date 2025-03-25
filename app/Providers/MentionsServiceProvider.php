@@ -25,6 +25,7 @@ class MentionsServiceProvider extends ServiceProvider
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
 

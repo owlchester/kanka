@@ -3,7 +3,9 @@
 namespace App\Jobs\Copyright;
 
 use App\Facades\Avatar;
+use App\Facades\Images;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Services\Campaign\Notifications\ImageRemoveService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,8 +13,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use App\Facades\Images;
-use App\Models\Entity;
 
 class DeleteEntityImage implements ShouldQueue
 {
@@ -22,7 +22,9 @@ class DeleteEntityImage implements ShouldQueue
     use SerializesModels;
 
     protected $entityId;
+
     protected $removeHeader;
+
     protected $removeImage;
 
     /**
@@ -71,14 +73,14 @@ class DeleteEntityImage implements ShouldQueue
 
         if ($campaign->superboosted() && $entity->image && $field == 'image') {
             $entity->image->delete();
-        } elseif (!empty($entity->image_path) && $field == 'image') {
+        } elseif (! empty($entity->image_path) && $field == 'image') {
             Images::cleanup($entity, $field);
             $entity->updateQuietly(['image_path' => '']);
         }
 
         if ($campaign->superboosted() && $entity->header && $field == 'header_image') {
             $entity->header->delete();
-        } elseif (!empty($entity->header_image) && $field == 'header_image') {
+        } elseif (! empty($entity->header_image) && $field == 'header_image') {
             Images::cleanup($entity, $field);
             $entity->update(['header_image' => $entity->header_image]);
         }

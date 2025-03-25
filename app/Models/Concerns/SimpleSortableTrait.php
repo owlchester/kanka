@@ -8,12 +8,11 @@ use Illuminate\Support\Str;
 
 /**
  * Trait SimpleSortableTrait
- * @package App\Models\Concerns
  */
 trait SimpleSortableTrait
 {
     /**
-     * @param DatagridSorter|string $datagridSorter
+     * @param  DatagridSorter|string  $datagridSorter
      * @return Builder
      */
     public function scopeSimpleSort(Builder $builder, mixed $datagridSorter = null)
@@ -23,12 +22,12 @@ trait SimpleSortableTrait
             return $builder;
         }
         if (is_string($datagridSorter)) {
-            $datagridSorter = new $datagridSorter();
+            $datagridSorter = new $datagridSorter;
             $datagridSorter->request(request()->all());
         }
 
         $columns = $datagridSorter->column();
-        if (!is_array($columns)) {
+        if (! is_array($columns)) {
             $columns = [$columns];
         }
         $order = $datagridSorter->order();
@@ -50,6 +49,7 @@ trait SimpleSortableTrait
                             $this->getTable() . '.' . $relation->getForeignKeyName()
                         )
                         ->orderBy(str_replace($relationName, 'f', $column), $order);
+
                     continue;
                 }
             }

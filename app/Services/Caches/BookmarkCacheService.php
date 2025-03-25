@@ -11,8 +11,6 @@ class BookmarkCacheService extends BaseCache
 {
     use CampaignAware;
 
-    /**
-     */
     public function iconSuggestion(): array
     {
         $key = $this->iconSuggestionKey();
@@ -32,6 +30,7 @@ class BookmarkCacheService extends BaseCache
         $data = array_slice($data, 0, 10);
 
         Cache::put($key, $data, 24 * 3600);
+
         return $data;
     }
 
@@ -43,9 +42,9 @@ class BookmarkCacheService extends BaseCache
         $this->forget(
             $this->iconSuggestionKey()
         );
+
         return $this;
     }
-
 
     /**
      * Type suggestion cache key

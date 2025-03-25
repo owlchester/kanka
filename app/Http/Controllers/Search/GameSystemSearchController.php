@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
 use App\Models\GameSystem;
+use Illuminate\Http\JsonResponse;
 
 /**
  * Controller that loads popular game systems
@@ -38,7 +38,7 @@ class GameSystemSearchController extends Controller
             $other = GameSystem::where('name', 'Other')->first();
             $formatted[] = [
                 'id' => $other->id,
-                'text' => __('sidebar.other')
+                'text' => __('sidebar.other'),
             ];
         }
 

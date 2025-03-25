@@ -20,7 +20,7 @@ class JournalFilter extends DatagridFilter
                 'label' => __('journals.fields.author'),
                 'type' => 'select2',
                 'route' => route('search.entities-with-relations', $this->campaign),
-                'placeholder' =>  __('journals.placeholders.author'),
+                'placeholder' => __('journals.placeholders.author'),
                 'model' => Entity::class,
             ])
             ->location()
@@ -32,7 +32,6 @@ class JournalFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
-            ->connections()
-        ;
+            ->connections();
     }
 }

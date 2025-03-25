@@ -13,7 +13,7 @@ class ApiLogService
 
     public function log()
     {
-        if (!config('logging.enabled')) {
+        if (! config('logging.enabled')) {
             return;
         }
 
@@ -26,7 +26,7 @@ class ApiLogService
             'campaign_id' => isset($this->campaign) ? $this->campaign->id : null,
             'user_id' => auth()->user()->id,
             'uri' => $this->request->path(),
-            'params' => $this->request->all()
+            'params' => $this->request->all(),
         ]);
     }
 }

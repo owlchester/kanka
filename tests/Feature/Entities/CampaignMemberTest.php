@@ -4,8 +4,7 @@ it('POSTS an invalid user role form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/users', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new user role')
     ->asUser()
@@ -16,10 +15,9 @@ it('POSTS a new user role')
         'role_id' => 1,
     ])
     ->assertJsonFragment([
-        'role successfully added to user'
+        'role successfully added to user',
     ])
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 it('GETS all campaign members')
     ->asUser()
@@ -32,10 +30,9 @@ it('GETS all campaign members')
             [
                 'id',
                 'name',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific campaign member')
     ->asUser()
@@ -48,10 +45,9 @@ it('GETS a specific campaign member')
             [
                 'id',
                 'name',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('DELETES a user role')
     ->asUser()
@@ -59,21 +55,19 @@ it('DELETES a user role')
     ->withMember()
     ->delete('/api/1.0/campaigns/1/users', [
         'user_id' => 2,
-        'role_id' => 3
+        'role_id' => 3,
     ])
     ->assertJsonFragment([
-        'role successfully removed from the user'
+        'role successfully removed from the user',
     ])
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 it('DELETES an invalid user role')
     ->asUser()
     ->withCampaign()
     ->withMember()
     ->delete('/api/1.0/campaigns/1/users')
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('GETS all campaign roles')
     ->asUser()
@@ -86,7 +80,6 @@ it('GETS all campaign roles')
             [
                 'id',
                 'name',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);

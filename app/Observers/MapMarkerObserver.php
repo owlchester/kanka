@@ -10,8 +10,6 @@ class MapMarkerObserver
 {
     use PurifiableTrait;
 
-    /**
-     */
     public function saving(MapMarker $mapMarker)
     {
         $mapMarker->opacity = round($mapMarker->opacity, 1);
@@ -22,15 +20,11 @@ class MapMarkerObserver
         }
     }
 
-    /**
-     */
     public function saved(MapMarker $mapMarker)
     {
         $mapMarker->map->touch();
     }
 
-    /**
-     */
     public function deleted(MapMarker $mapMarker)
     {
         $mapMarker->map->touch();
@@ -38,6 +32,7 @@ class MapMarkerObserver
 
     /**
      * Sanitize the custom icon (i or svg html element)
+     *
      * @return string|null
      */
     protected function sanitizeCustomIcon(MapMarker $mapMarker)
@@ -47,7 +42,7 @@ class MapMarkerObserver
         }
 
         if (Str::startsWith($mapMarker->custom_icon, ['<svg', '<?xml'])) {
-            $sanitizer = new Sanitizer();
+            $sanitizer = new Sanitizer;
             $cleanSvg = $sanitizer->sanitize($mapMarker->custom_icon);
             if ($cleanSvg !== false) {
                 return $cleanSvg;

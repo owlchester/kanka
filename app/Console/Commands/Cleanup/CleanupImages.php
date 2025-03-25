@@ -26,6 +26,7 @@ class CleanupImages extends Command
     protected $description = 'Delete old images from s3';
 
     protected int $count = 0;
+
     protected int $max = 0;
 
     /**
@@ -54,10 +55,10 @@ class CleanupImages extends Command
             }
 
             // Get ids where a left join on the campaigns table has no result
-            $select = "with u(id) as (values (" . implode('), (', $ids) . ")) " .
-                "select u.id from u " .
-                "left join campaigns as c on c.id = u.id " .
-                "where c.id is null";
+            $select = 'with u(id) as (values (' . implode('), (', $ids) . ')) ' .
+                'select u.id from u ' .
+                'left join campaigns as c on c.id = u.id ' .
+                'where c.id is null';
             $db = DB::select($select);
             $nullCampaigns = [];
             foreach ($db as $campaign) {
@@ -71,7 +72,7 @@ class CleanupImages extends Command
                 if (empty($id)) {
                     continue;
                 }
-                if (!$this->dry) {
+                if (! $this->dry) {
                     Storage::deleteDirectory($folder . '/' . $id);
                 }
                 $this->count++;
@@ -81,6 +82,7 @@ class CleanupImages extends Command
             }
             if ($this->count > $this->max) {
                 $this->info('Reached max amount of ' . $this->max);
+
                 return;
             }
         }

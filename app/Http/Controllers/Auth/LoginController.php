@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Rules\SocialLogin;
 use App\Services\UserAuthenticatedService;
-use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +26,6 @@ class LoginController extends Controller
 
     public UserAuthenticatedService $userAuthService;
 
-
     /**
      * Create a new controller instance.
      *
@@ -43,11 +42,12 @@ class LoginController extends Controller
      */
     public function loginAsUser(Request $request, User $user)
     {
-        if (!config('auth.user_list')) {
+        if (! config('auth.user_list')) {
             return redirect()->route('login');
         }
 
         Auth::login($user, true);
+
         return $this->sendLoginResponse($request);
     }
 
@@ -56,18 +56,20 @@ class LoginController extends Controller
      */
     public function loginAs(Request $request)
     {
-        if (!config('auth.user_list')) {
+        if (! config('auth.user_list')) {
             return redirect()->route('login');
         }
 
         $user = User::where('id', $request->get('user'))->first();
         Auth::login($user, true);
+
         return $this->sendLoginResponse($request);
     }
 
     protected function authenticated(Request $request, $user)
     {
         $response = $this->userAuthService->authenticated($user);
+
         return $response;
     }
 
@@ -85,7 +87,7 @@ class LoginController extends Controller
             $this->username() => [
                 'required',
                 'string',
-                new SocialLogin()
+                new SocialLogin,
             ],
             'password' => 'required|string',
         ]);

@@ -8,12 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Referral
- * @package App\Models
  *
  * @property int $id
  * @property string $code
  * @property bool|int $is_valid
- *
  * @property User[] $users
  */
 class Referral extends Model

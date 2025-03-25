@@ -16,6 +16,7 @@ class OrganisationMemberResource extends ModelResource
     {
         /** @var OrganisationMember $model */
         $model = $this->resource;
+
         return $this->entity([
             'role' => $model->role,
             'organisation_id' => $model->organisation_id,

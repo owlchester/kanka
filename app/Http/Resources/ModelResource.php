@@ -31,6 +31,7 @@ class ModelResource extends JsonResource
 
         $final = array_merge($prepared, $merged);
         ksort($final);
+
         return $final;
     }
 }

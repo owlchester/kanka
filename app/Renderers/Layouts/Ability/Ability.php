@@ -10,13 +10,14 @@ class Ability extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'name' => [
                 'key' => 'name',
@@ -35,11 +36,11 @@ class Ability extends Layout
                 'label' => 'crud.fields.parent',
                 'render' => Standard::ParentLink,
                 'visible' => function () {
-                    return !request()->has('parent_id');
-                }
+                    return ! request()->has('parent_id');
+                },
             ],
             'tags' => [
-                'render' => Standard::TAGS
+                'render' => Standard::TAGS,
             ],
         ];
 

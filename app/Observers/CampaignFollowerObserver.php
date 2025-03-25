@@ -7,8 +7,6 @@ use App\Models\CampaignFollower;
 
 class CampaignFollowerObserver
 {
-    /**
-     */
     public function created(CampaignFollower $campaignFollower)
     {
         UserCache::clear();
@@ -16,8 +14,6 @@ class CampaignFollowerObserver
         $campaignFollower->campaign->save();
     }
 
-    /**
-     */
     public function deleted(CampaignFollower $campaignFollower)
     {
         UserCache::clear();

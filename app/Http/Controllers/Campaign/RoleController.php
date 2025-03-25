@@ -20,6 +20,7 @@ class RoleController extends Controller
 
     /**
      * Create a new controller instance.
+     *
      * @return void
      */
     public function __construct(RolePermissionService $rolePermissionService, protected EntityTypeService $entityTypeService)
@@ -30,6 +31,7 @@ class RoleController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -51,6 +53,7 @@ class RoleController extends Controller
         if (request()->ajax()) {
             $html = view('layouts.datagrid._table')->with('rows', $rows)->with('campaign', $campaign)->render();
             $deletes = view('layouts.datagrid.delete-forms')->with('models', Datagrid::deleteForms())->with('campaign', $campaign)->render();
+
             return response()->json([
                 'success' => true,
                 'html' => $html,
@@ -63,12 +66,13 @@ class RoleController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign)
     {
         $this->authorize('create', CampaignRole::class);
-        if (!$campaign->canHaveMoreRoles()) {
+        if (! $campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('key', 'roles')
                 ->with('campaign', $campaign)
@@ -80,12 +84,13 @@ class RoleController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function duplicate(Campaign $campaign, CampaignRole $campaignRole)
     {
         $this->authorize('create', CampaignRole::class);
-        if (!$campaign->canHaveMoreRoles()) {
+        if (! $campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('key', 'roles')
                 ->with('campaign', $campaign)
@@ -101,7 +106,7 @@ class RoleController extends Controller
         if ($request->ajax()) {
             return response()->json();
         }
-        if (!$campaign->canHaveMoreRoles()) {
+        if (! $campaign->canHaveMoreRoles()) {
             return view('cruds.forms.limit')
                 ->with('key', 'roles')
                 ->with('campaign', $campaign)
@@ -116,6 +121,7 @@ class RoleController extends Controller
                 $copy->duplicate($role);
             }
         }
+
         return redirect()->route('campaign_roles.index', $campaign)
             ->with('success_raw', __($this->view . '.create.success', ['name' => $role->name]));
     }
@@ -140,7 +146,7 @@ class RoleController extends Controller
             'campaign' => $campaign,
             'members' => $members,
             'modules' => $modules,
-            'permissionService' => $this->service->campaign($campaign)->role($campaignRole)
+            'permissionService' => $this->service->campaign($campaign)->role($campaignRole),
         ]);
     }
 
@@ -162,6 +168,7 @@ class RoleController extends Controller
         $this->authorize('update', $campaignRole);
 
         $campaignRole->update($request->only('name'));
+
         return redirect()->route('campaign_roles.index', $campaign)
             ->with('success_raw', __($this->view . '.edit.success', ['name' => $campaignRole->name]));
     }
@@ -178,6 +185,7 @@ class RoleController extends Controller
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function savePermissions(Request $request, Campaign $campaign, CampaignRole $campaignRole)
@@ -193,7 +201,9 @@ class RoleController extends Controller
 
     /**
      * campaign/<id>/campaign_roles/admin fast url
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function admin(Campaign $campaign)
@@ -207,7 +217,9 @@ class RoleController extends Controller
 
     /**
      * campaign/<id>/campaign_roles/admin fast url
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function public(Campaign $campaign)
@@ -221,6 +233,7 @@ class RoleController extends Controller
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function search(Request $request, Campaign $campaign)
@@ -240,7 +253,7 @@ class RoleController extends Controller
         foreach ($members as $member) {
             $results[] = [
                 'id' => $member->id,
-                'text' => $member->name
+                'text' => $member->name,
             ];
         }
 
@@ -249,6 +262,7 @@ class RoleController extends Controller
 
     /**
      * Toggle a permission on a role
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function toggle(Campaign $campaign, CampaignRole $campaignRole, int $entityType, int $action)
@@ -256,31 +270,30 @@ class RoleController extends Controller
         $this->authorize('view', [$campaignRole, $campaign]);
         $this->authorize('update', $campaignRole);
 
-        if (!$campaignRole->is_public) {
+        if (! $campaignRole->is_public) {
             abort(404);
         }
 
         $enabled = $this->service->role($campaignRole)->toggle($entityType, $action);
+
         return response()->json([
             'success' => true,
             'status' => $enabled,
             'toast' => __('campaigns/roles.toggle.' . ($enabled ? 'enabled' : 'disabled'), [
                 'role' => $campaignRole->name,
                 'action' => __('crud.permissions.actions.read'),
-                'entities' => EntitySetup::plural($entityType)
+                'entities' => EntitySetup::plural($entityType),
             ]),
         ]);
     }
 
-    /**
-     */
     public function bulk(Campaign $campaign)
     {
         $this->authorize('roles', $campaign);
 
         $action = request()->get('action');
         $models = request()->get('model');
-        if (!in_array($action, ['edit', 'delete']) || empty($models)) {
+        if (! in_array($action, ['edit', 'delete']) || empty($models)) {
             return redirect()
                 ->route('campaign_roles.index', $campaign);
         }
@@ -292,7 +305,7 @@ class RoleController extends Controller
                 continue;
             }
 
-            if ($action === 'delete' && !$role->isAdmin() && !$role->isPublic()) {
+            if ($action === 'delete' && ! $role->isAdmin() && ! $role->isPublic()) {
                 $role->delete();
                 $count++;
             }

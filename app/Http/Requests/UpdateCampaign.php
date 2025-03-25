@@ -27,7 +27,7 @@ class UpdateCampaign extends FormRequest
     {
         $rules = [
             'name' => 'string|min:4',
-            'vanity' => ['nullable', 'string', 'min:4', 'max:45', 'unique:campaigns,slug', new Vanity()],
+            'vanity' => ['nullable', 'string', 'min:4', 'max:45', 'unique:campaigns,slug', new Vanity],
             'entry' => 'nullable|string',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'header_image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
@@ -37,10 +37,10 @@ class UpdateCampaign extends FormRequest
             'entity_visibility' => 'nullable',
             'entity_personality_visibility' => 'nullable',
             'is_public' => 'nullable',
-            'css' =>  'nullable|string',
+            'css' => 'nullable|string',
             'theme_id' => 'nullable|exists:themes,id',
             'genres' => 'array',
-            'genres.*' => 'distinct|exists:genres,id'
+            'genres.*' => 'distinct|exists:genres,id',
         ];
 
         return $rules;

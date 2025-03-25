@@ -17,11 +17,12 @@ class PostLayoutResource extends JsonResource
     {
         /** @var PostLayout $model */
         $model = $this->resource;
+
         return [
             'id' => $model->id,
             'code' => $model->code,
             'entity_type_id' => $model->entity_type_id,
-            'config' => $model->config
+            'config' => $model->config,
         ];
     }
 }

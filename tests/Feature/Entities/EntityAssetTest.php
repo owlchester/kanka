@@ -7,8 +7,7 @@ it('POSTS an invalid entity_assets form')
     ->withCampaign()
     ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/entities/1/entity_assets', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new Alias')
     ->asUser()
@@ -25,9 +24,8 @@ it('POSTS a new Alias')
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('POSTS a new File')
     ->asUser()
@@ -35,19 +33,18 @@ it('POSTS a new File')
     ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/entities/1/entity_assets', [
         'name' => fake()->name(),
-        //'entity_id' => 1,
+        // 'entity_id' => 1,
         'type_id' => 1,
         'visibility_id' => 1,
-        'file' => UploadedFile::fake()->image('avatar.jpg')
+        'file' => UploadedFile::fake()->image('avatar.jpg'),
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('POSTS a new Link')
     ->asUser()
@@ -68,9 +65,8 @@ it('POSTS a new Link')
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all entity_assets')
     ->asUser()
@@ -86,10 +82,9 @@ it('GETS all entity_assets')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific asset')
     ->asUser()
@@ -103,9 +98,8 @@ it('GETS a specific asset')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid asset')
     ->asUser()
@@ -114,8 +108,7 @@ it('UPDATES a valid asset')
     ->withAssets()
     ->putJson('/api/1.0/campaigns/1/entities/1/entity_assets/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('DELETES an asset')
     ->asUser()
@@ -123,8 +116,7 @@ it('DELETES an asset')
     ->withCharacters()
     ->withAssets()
     ->delete('/api/1.0/campaigns/1/entities/1/entity_assets/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid asset')
     ->asUser()
@@ -132,5 +124,4 @@ it('DELETES an invalid asset')
     ->withCharacters()
     ->withAssets()
     ->delete('/api/1.0/campaigns/1/entities/1/entity_assets/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);

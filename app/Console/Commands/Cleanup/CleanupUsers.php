@@ -22,7 +22,6 @@ class CleanupUsers extends Command
      */
     protected $description = 'Purge accounts';
 
-
     /**
      * Execute the console command.
      */

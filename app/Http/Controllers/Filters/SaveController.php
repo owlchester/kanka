@@ -36,7 +36,7 @@ class SaveController extends Controller
         }
 
         // Check limit
-        if (Bookmark::count() >= config('limits.campaigns.bookmarks') && !$campaign->boosted()) {
+        if (Bookmark::count() >= config('limits.campaigns.bookmarks') && ! $campaign->boosted()) {
             return redirect()->back()->withErrors(__('filters.bookmark.premium'));
         }
 
@@ -53,8 +53,7 @@ class SaveController extends Controller
             $filters = 'm=' . request()->get('m') . '&' . $this->filterService->clipboardFilters();
         }
 
-
-        $bookmark = new Bookmark();
+        $bookmark = new Bookmark;
         $bookmark->campaign_id = $campaign->id;
         $bookmark->name = request()->get('name', __('filters.bookmark.name', ['module' => $entityType->plural()]));
         $bookmark->icon = request()->get('icon', null);

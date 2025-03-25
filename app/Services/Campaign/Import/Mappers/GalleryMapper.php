@@ -15,14 +15,16 @@ class GalleryMapper
     use ImportMapper;
 
     protected array $mapping = [];
+
     protected array $parents = [];
 
     protected Image $image;
+
     protected array $reset = ['created_at', 'updated_at', 'created_by', 'campaign_id', 'id', 'folder_id', 'image_folder'];
 
     public function has(string $uuid): bool
     {
-        return !empty($this->mapping[$uuid]);
+        return ! empty($this->mapping[$uuid]);
     }
 
     public function get(string $uuid): string
@@ -37,20 +39,20 @@ class GalleryMapper
 
     public function prepare(): self
     {
-        //$this->campaign->images()->delete();
+        // $this->campaign->images()->delete();
         return $this;
     }
 
     public function import(): void
     {
-        $this->image = new Image();
+        $this->image = new Image;
         $this->image->campaign_id = $this->campaign->id;
-        //Need to save to set the id otherwise it stores wrong data.
+        // Need to save to set the id otherwise it stores wrong data.
         $this->image->save();
         $this->mapping[$this->data['id']] = $this->image->id;
         ImportIdMapper::putGallery($this->data['id'], $this->image->id);
 
-        if (!empty($this->data['folder_id'])) {
+        if (! empty($this->data['folder_id'])) {
             $this->parents[$this->data['folder_id']][] = $this->image->id;
         }
 
@@ -68,6 +70,7 @@ class GalleryMapper
             $newParent = $this->mapping[$parent];
             DB::update('UPDATE images SET folder_id = \'' . $newParent . '\' where id in (\'' . implode('\', \'', $children) . '\') limit ' . count($children));
         }
+
         return $this;
     }
 
@@ -92,13 +95,13 @@ class GalleryMapper
         $imagePath = $this->path . '/' . $this->data['id'] . '.' . $this->data['ext'];
         $destination = 'campaigns/' . $this->campaign->id . '/' . $this->image->id . '.' . $this->data['ext'];
 
-        if (!Storage::disk('local')->exists($imagePath)) {
+        if (! Storage::disk('local')->exists($imagePath)) {
             Log::info('image ' . $imagePath . ' doesnt exist');
+
             return;
         }
 
         // Upload the file to s3 using streams
         Storage::writeStream($destination, Storage::disk('local')->readStream($imagePath));
     }
-
 }

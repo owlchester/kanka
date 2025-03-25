@@ -7,14 +7,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CampaignDashboardRole
- * @package App\Models
  *
  * @property int $id
  * @property bool|int $is_default
  * @property bool|int $is_visible
  * @property int $campaign_role_id
  * @property int $campaign_dashboard_id
- *
  * @property CampaignDashboard $dashboard
  * @property CampaignRole $role
  */
@@ -24,7 +22,7 @@ class CampaignDashboardRole extends Model
         'is_default',
         'is_visible',
         'campaign_role_id',
-        'campaign_dashboard_id'
+        'campaign_dashboard_id',
     ];
 
     public function role(): BelongsTo

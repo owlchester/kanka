@@ -2,12 +2,9 @@
 
 namespace App\Observers;
 
-use App\Models\EntityAsset;
 use App\Facades\Images;
+use App\Models\EntityAsset;
 
-/**
- *
- */
 class EntityAssetObserver
 {
     public function saved(EntityAsset $entityAsset): void
@@ -21,7 +18,7 @@ class EntityAssetObserver
 
     public function deleting(EntityAsset $entityAsset): void
     {
-        if ($entityAsset->isFile() && !$entityAsset->image) {
+        if ($entityAsset->isFile() && ! $entityAsset->image) {
             Images::cleanup($entityAsset, 'imagePath');
         }
     }

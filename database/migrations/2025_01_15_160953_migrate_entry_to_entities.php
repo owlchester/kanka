@@ -5,7 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -19,7 +20,7 @@ return new class () extends Migration {
             config('entities.ids.conversation'),
         ];
         foreach (App\Models\EntityType::default()->exclude($exclude)->get() as $entityType) {
-            DB::statement("UPDATE entities JOIN " . $entityType->pluralCode() . " as s ON entities.entity_id = s.id SET entities.entry = s.entry, entities.type = s.type WHERE entities.type_id = " . $entityType->id);
+            DB::statement('UPDATE entities JOIN ' . $entityType->pluralCode() . ' as s ON entities.entity_id = s.id SET entities.entry = s.entry, entities.type = s.type WHERE entities.type_id = ' . $entityType->id);
         }
     }
 
@@ -28,8 +29,6 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::table('entities', function (Blueprint $table) {
-
-        });
+        Schema::table('entities', function (Blueprint $table) {});
     }
 };

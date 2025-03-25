@@ -10,8 +10,6 @@ class ReorderService
 {
     use EntityAware;
 
-    /**
-     */
     public function reorder(ReorderAbility $request): bool
     {
         $ids = $request->get('ability');
@@ -32,6 +30,7 @@ class ReorderService
             $ability->saveQuietly();
             $position++;
         }
+
         return true;
     }
 }

@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUser;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Class EntityUser
- * @package App\Models
  *
  * @property int $id
  * @property int $entity_id
@@ -19,7 +18,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @property int $timeline_element_id
  * @property int $quest_element_id
  * @property int $type_id
- *
  * @property Entity $entity
  *
  * @method static self|Builder keepAlive()

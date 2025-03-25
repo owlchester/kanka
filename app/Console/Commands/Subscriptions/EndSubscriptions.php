@@ -33,8 +33,9 @@ class EndSubscriptions extends Command
 
         $fake = $this->argument('fake');
 
-        $count = $service->run($fake === "false");
+        $count = $service->run($fake === 'false');
         $this->info('Ended ' . $count . ' subscriptions.');
+
         return 0;
     }
 }

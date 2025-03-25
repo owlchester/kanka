@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Campaign;
 use App\Http\Requests\StoreCampaign;
+use App\Models\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,11 +23,12 @@ class StartController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request)
     {
-        $campaign = new Campaign();
+        $campaign = new Campaign;
         $this->authorize('create', $campaign);
 
         // A user with campaigns doesn't need this process.
@@ -36,6 +37,7 @@ class StartController extends Controller
             session()->remove('user_registered');
             $tracking = 'pa10CJTvrssBEOaOq7oC';
         }
+
         return view($this->view . '.forms.create', [
             'start' => auth()->user()->campaigns->count() === 0,
             'gaTrackingEvent' => $tracking,
@@ -52,7 +54,7 @@ class StartController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $first = !Auth::user()->hasCampaigns();
+        $first = ! Auth::user()->hasCampaigns();
         $options = $request->all();
         $options['entry'] = '';
         $options['excerpt'] = '';

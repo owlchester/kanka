@@ -19,6 +19,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Timeline
+ *
  * @property TimelineEra[]|Collection $eras
  * @property ?int $timeline_id
  * @property int|bool $revert_order
@@ -53,6 +54,7 @@ class Timeline extends MiscModel
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -138,6 +140,7 @@ class Timeline extends MiscModel
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array

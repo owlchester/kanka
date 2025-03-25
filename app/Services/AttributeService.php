@@ -12,11 +12,11 @@ use App\Services\Attributes\RandomService;
 use App\Services\Attributes\TemplateService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
-use Exception;
 
 class AttributeService
 {
@@ -26,17 +26,25 @@ class AttributeService
     protected array $purifyConfig;
 
     protected array $existing = [];
+
     protected int $order = 0;
 
     protected array $names;
+
     protected array $values;
+
     protected array $types;
+
     protected array $privates;
+
     protected array $stars;
+
     protected array $hidden;
+
     protected bool $touched = false;
 
     protected RandomService $randomService;
+
     protected TemplateService $templateService;
 
     protected string $templateName;
@@ -49,7 +57,8 @@ class AttributeService
 
     /**
      * Apply a template to an entity
-     * @param int|string $templateId
+     *
+     * @param  int|string  $templateId
      */
     public function apply(Entity $entity, mixed $templateId): void
     {
@@ -60,6 +69,7 @@ class AttributeService
 
     /**
      * Add form attributes to an entity
+     *
      * @throws Exception
      */
     public function save(array $attributes): self
@@ -74,7 +84,6 @@ class AttributeService
         }
 
         $this->purifyConfig();
-
 
         foreach ($attributes as $attribute) {
             $this->saveAttribute($attribute);
@@ -95,13 +104,14 @@ class AttributeService
      */
     public function touch(): self
     {
-        if (!$this->touched) {
+        if (! $this->touched) {
             return $this;
         }
         $this->entity->touch();
         if ($this->entity->hasChild()) {
             $this->entity->child->touchSilently();
         }
+
         return $this;
     }
 
@@ -121,12 +131,12 @@ class AttributeService
             /** @var Attribute $attribute */
             $attribute = Arr::get($this->existing, $attr->id);
             if (empty($attribute)) {
-                $attribute = new Attribute();
+                $attribute = new Attribute;
             }
 
             // If the linked entity isn't an attribute template, we might be dealing with a random value
-            if (!$this->entity->isAttributeTemplate()) {
-                list($attr->type, $value) =
+            if (! $this->entity->isAttributeTemplate()) {
+                [$attr->type, $value] =
                     $this->randomService->randomAttribute(AttributeType::from($attr->type), $value);
             }
 
@@ -136,13 +146,13 @@ class AttributeService
             $attribute->is_pinned = $attr->is_pinned;
             $attribute->type_id = $attr->type; // @phpstan-ignore-line
             // Some fields can only be defined on creation
-            if (!$attribute->exists) {
+            if (! $attribute->exists) {
                 $attribute->entity_id = $this->entity->id;
                 $attribute->is_hidden = $attr->is_hidden;
                 $attribute->origin_attribute_id = $attr->source_id ?? null;
             }
             $attribute->default_order = $this->order;
-            if ($attribute->isDirty() || !$attribute->exists) {
+            if ($attribute->isDirty() || ! $attribute->exists) {
                 $this->touched = true;
             }
             $attribute->save();
@@ -167,7 +177,7 @@ class AttributeService
     public function updateVisibility(bool $privateAttributes): self
     {
         // Only admins can update this value
-        if (!auth()->user()->isAdmin()) {
+        if (! auth()->user()->isAdmin()) {
             return $this;
         }
         $this->entity->is_attributes_private = $privateAttributes ? 1 : 0;
@@ -175,6 +185,7 @@ class AttributeService
         if ($this->entity->isDirty('is_attributes_private')) {
             $this->touched = true;
         }
+
         return $this;
     }
 
@@ -189,6 +200,7 @@ class AttributeService
         foreach ($templates as $template) {
             $order = $template->apply($entity, $order);
         }
+
         return $order;
     }
 
@@ -200,7 +212,7 @@ class AttributeService
         $templates = [];
 
         foreach (config('attribute-templates.templates') as $code => $class) {
-            $template = new $class();
+            $template = new $class;
             $templates[$code] = $template->name();
         }
         // Get templates from the plugins
@@ -211,7 +223,7 @@ class AttributeService
                 }
                 $templates[$plugin->plugin->uuid] = __('campaigns/plugins.templates.name', [
                     'name' => $plugin->name,
-                    'user' => $plugin->plugin->author()
+                    'user' => $plugin->plugin->author(),
                 ]);
             }
         }
@@ -245,7 +257,7 @@ class AttributeService
         //        }
 
         // If the campaign isn't boosted, or the marketplace isn't enable, end here
-        if (!$this->campaign->boosted() || !config('marketplace.enabled')) {
+        if (! $this->campaign->boosted() || ! config('marketplace.enabled')) {
             return $templates;
         }
 
@@ -257,16 +269,12 @@ class AttributeService
             }
             $templates[$key][$plugin->plugin->uuid] = __('campaigns/plugins.templates.name', [
                 'name' => $plugin->name,
-                'user' => $plugin->plugin->author()
+                'user' => $plugin->plugin->author(),
             ]);
         }
 
         return $templates;
     }
-
-
-
-
 
     /**
      * Prepare a custom HTML purifying config for attributes. We remove all custom fields that are added to purify.php
@@ -284,6 +292,7 @@ class AttributeService
         $purifyConfig['HTML.Allowed'] = preg_replace('`,figcaption\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
 
         $this->purifyConfig = $purifyConfig;
+
         return $this;
     }
 
@@ -298,7 +307,7 @@ class AttributeService
         $searchAttributes = $replaceAttributes = [];
         foreach ($this->entity->attributes as $attribute) {
             $slug = Str::slug($attribute->name);
-            if (!isset($sourceAttributes[$slug])) {
+            if (! isset($sourceAttributes[$slug])) {
                 continue;
             }
             $searchAttributes[] = '{attribute:' . $sourceAttributes[$slug] . '}';
@@ -312,6 +321,7 @@ class AttributeService
             $post->entry = Str::replace($searchAttributes, $replaceAttributes, $post->entry);
             $post->updateQuietly();
         }
+
         return $this;
     }
 }

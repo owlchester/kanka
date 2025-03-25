@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Requests\Campaigns\GalleryImageStore;
 use App\Http\Requests\Campaigns\GalleryImageUpdate;
+use App\Http\Resources\ImageResource as Resource;
 use App\Models\Campaign;
 use App\Models\Image;
-use App\Http\Resources\ImageResource as Resource;
 use App\Services\Gallery\SummernoteService;
 
 class CampaignImageApiController extends ApiController
@@ -18,11 +18,10 @@ class CampaignImageApiController extends ApiController
         $this->service = $summernoteService;
     }
 
-    /**
-     */
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+
         return Resource::collection(
             $campaign
                 ->images()
@@ -33,17 +32,14 @@ class CampaignImageApiController extends ApiController
         );
     }
 
-    /**
-     */
     public function show(Campaign $campaign, Image $image)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $campaign);
+
         return new Resource($image);
     }
 
-    /**
-     */
     public function store(GalleryImageStore $request, Campaign $campaign)
     {
         $this->authorize('access', $campaign);
@@ -52,11 +48,10 @@ class CampaignImageApiController extends ApiController
             ->user($request->user())
             ->campaign($campaign)
             ->store($request);
+
         return Resource::collection($images);
     }
 
-    /**
-     */
     public function update(GalleryImageUpdate $request, Campaign $campaign, Image $image)
     {
         $this->authorize('access', $campaign);
@@ -68,6 +63,7 @@ class CampaignImageApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Image $image)

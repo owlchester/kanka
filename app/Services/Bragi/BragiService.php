@@ -29,7 +29,7 @@ class BragiService
                 'here' => '<a href="https://docs.kanka.io/en/latest/features/bragi.html" target="_blank">' . __('bragi.here') . '</a>',
             ]),
         ];
-        if (!$this->user->hasTokens()) {
+        if (! $this->user->hasTokens()) {
             return $this->renderError($data, 'invalid-sub');
         } elseif ($this->user->availableTokens() <= 0) {
             return $this->renderError($data, 'out-of-tokens', ['date' => $this->user->tokenRenewalDate()]);
@@ -44,9 +44,10 @@ class BragiService
         ];
 
         $data['limits'] = [
-            'prompt' => config('bragi.limit.prompt')
+            'prompt' => config('bragi.limit.prompt'),
         ];
         $data['tokens'] = $this->user->availableTokens();
+
         return $data;
     }
 
@@ -55,7 +56,7 @@ class BragiService
      */
     public function generate(BragiRequest $request): array
     {
-        if (!$this->user->hasTokens()) {
+        if (! $this->user->hasTokens()) {
             return $this->renderError([], 'invalid-sub');
         } elseif ($this->user->availableTokens() <= 0) {
             return $this->renderError([], 'out-of-tokens', ['date' => $this->user->tokenRenewalDate()]);
@@ -82,7 +83,7 @@ class BragiService
             $data['result'] = $this->openAI->result();
 
             $logs = [];
-            $logs = $openAI["usage"];
+            $logs = $openAI['usage'];
 
             // Log the result into the db for admins
             $this->log($prompt, $data['result'], $logs);
@@ -90,7 +91,6 @@ class BragiService
             $data['result'] = 'API error, please try again';
             Log::warning('OpenAI error', $e->getContext());
         }
-
 
         $data['tokens'] = $this->user->availableTokens();
         if ($data['tokens'] <= 0) {
@@ -102,11 +102,12 @@ class BragiService
 
     /**
      * Log what was generated into the db
+     *
      * @return void
      */
     protected function log(string $prompt, string $result, array $data = [])
     {
-        $log = new BragiLog();
+        $log = new BragiLog;
         $log->user_id = $this->user->id;
         $log->campaign_id = $this->campaign->id;
         $log->prompt = $prompt;
@@ -122,6 +123,7 @@ class BragiService
     {
         $data['error'] = $error;
         $data['message'] = __('bragi.errors.' . $error, $params);
+
         return $data;
     }
 }

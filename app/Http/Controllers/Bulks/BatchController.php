@@ -20,12 +20,12 @@ class BatchController extends Controller
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
         $entities = $request->get('entities');
+
         return view('cruds.datagrids.bulks.modals._batch')
             ->with('campaign', $campaign)
-            ->with('bulk', new EntityBulk())
+            ->with('bulk', new EntityBulk)
             ->with('entityType', $entityType)
-            ->with('entities', $entities)
-        ;
+            ->with('entities', $entities);
     }
 
     public function apply(Request $request, Campaign $campaign, EntityType $entityType)
@@ -40,7 +40,7 @@ class BatchController extends Controller
             ->entityType($entityType)
             ->campaign($campaign)
             ->entities($models)
-            ->editing($request->all(), new EntityBulk());
+            ->editing($request->all(), new EntityBulk);
 
         $total = $this->bulkService->total();
 

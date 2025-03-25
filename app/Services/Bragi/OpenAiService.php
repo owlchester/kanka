@@ -8,18 +8,16 @@ use Orhanerday\OpenAi\OpenAi;
 
 class OpenAiService
 {
-    /**  */
     protected string $prompt;
 
-    /**  */
     protected ?string $name;
+
     protected ?string $pronouns = null;
+
     protected ?string $gender = null;
 
     protected mixed $output;
 
-    /**
-     */
     public function input(string $prompt, array $context = []): self
     {
         $this->prompt = $prompt;
@@ -30,8 +28,6 @@ class OpenAiService
         return $this;
     }
 
-    /**
-     */
     public function generate(): array
     {
         $token = config('openai.secret');
@@ -39,14 +35,14 @@ class OpenAiService
 
         $openAi->setCustomURL(config('openai.custom_url'));
 
-        //Creating prompt
+        // Creating prompt
         $prompt = $this->preparePrompt();
 
-        //Choosing model
+        // Choosing model
         $engine = config('openai.engine');
 
-        //Defining max tokens
-        //1 token is almost 0.75 word
+        // Defining max tokens
+        // 1 token is almost 0.75 word
         $maxTokens = config('openai.tokens');
 
         $complete = $openAi->chat([
@@ -70,21 +66,21 @@ class OpenAiService
     {
         $prompts = [
             [
-                "role" => "system",
-                "content" => __('openai.intro')
+                'role' => 'system',
+                'content' => __('openai.intro'),
             ],
         ];
 
         $roles = [];
-        if (!empty($this->name)) {
+        if (! empty($this->name)) {
             $roles[] = __('openai.intro-named', ['name' => $this->name]);
         }
 
-        if (!empty($this->pronouns)) {
+        if (! empty($this->pronouns)) {
             $roles[] = __('openai.intro-gender', ['gender' => $this->gender]);
         }
 
-        if (!empty($this->gender)) {
+        if (! empty($this->gender)) {
             $roles[] = __('openai.intro-pronouns', ['pronouns' => $this->pronouns]);
         }
 
@@ -102,18 +98,19 @@ class OpenAiService
         foreach ($roles as $role) {
             $prompts[] = ['role' => 'user', 'content' => $role];
         }
+
         return $prompts;
     }
 
     public function result(): string
     {
-        if (!Arr::has($this->output, 'choices')) {
-            $excep = new OpenAiException();
+        if (! Arr::has($this->output, 'choices')) {
+            $excep = new OpenAiException;
             $excep->setContext($this->output);
             throw $excep;
         }
         $return = '';
-        $texts = explode("\n", $this->output["choices"][0]["message"]["content"]);
+        $texts = explode("\n", $this->output['choices'][0]['message']['content']);
         foreach ($texts as $text) {
             $striped = mb_trim(htmlentities($text));
             if (empty($striped) || $striped == '.') {
@@ -126,6 +123,7 @@ class OpenAiService
         if (mt_rand(1, 1000) <= config('bragi.kankappy')) {
             $return .= '<p>' . __('bragi.kankappy') . '</p>';
         }
+
         return $return;
     }
 }

@@ -8,6 +8,6 @@ trait Nested
 {
     public static function bootNested()
     {
-        static::observe(new NestedObserver());
+        static::observe(new NestedObserver);
     }
 }

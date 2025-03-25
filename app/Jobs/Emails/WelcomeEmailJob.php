@@ -30,9 +30,6 @@ class WelcomeEmailJob implements ShouldQueue
      */
     public $language;
 
-    /**
-     *
-     */
     public $tries = 3;
 
     /**
@@ -57,7 +54,7 @@ class WelcomeEmailJob implements ShouldQueue
         }
         Log::info('WelcomeEmailJob', ['user' => $this->userId]);
 
-        //try {
+        // try {
         Mail::to($user->email)
             ->locale($this->language)
             ->send(

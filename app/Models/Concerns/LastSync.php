@@ -18,7 +18,8 @@ trait LastSync
             return $query;
         }
         // @phpstan-ignore-next-line
-        $tableName = (with(new static()))->getTable();
+        $tableName = (with(new static))->getTable();
+
         return $query->where($tableName . '.updated_at', '>', $lastSync);
     }
 }

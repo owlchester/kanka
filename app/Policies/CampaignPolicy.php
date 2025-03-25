@@ -5,10 +5,10 @@ namespace App\Policies;
 use App\Facades\CampaignCache;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
-use App\Models\CampaignPermission;
-use App\Traits\AdminPolicyTrait;
-use App\Models\User;
 use App\Models\Campaign;
+use App\Models\CampaignPermission;
+use App\Models\User;
+use App\Traits\AdminPolicyTrait;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignPolicy
@@ -18,7 +18,6 @@ class CampaignPolicy
 
     /**
      * Determine whether the user can view the campaign.
-     *
      */
     public function view(User $user, Campaign $campaign): bool
     {
@@ -27,7 +26,6 @@ class CampaignPolicy
 
     /**
      * Determine whether the user can access the campaign
-     *
      */
     public function access(User $user, Campaign $campaign): bool
     {
@@ -39,12 +37,11 @@ class CampaignPolicy
      */
     public function create(): bool
     {
-        return !Identity::isImpersonating();
+        return ! Identity::isImpersonating();
     }
 
     /**
      * Determine whether the user can update the campaign.
-     *
      */
     public function update(User $user, Campaign $campaign): bool
     {
@@ -56,7 +53,6 @@ class CampaignPolicy
 
     /**
      * Determine whether the user can manage the roles of the campaign.
-     *
      */
     public function roles(User $user, Campaign $campaign): bool
     {
@@ -76,7 +72,6 @@ class CampaignPolicy
 
     /**
      * Determine whether the user can delete the campaign.
-     *
      */
     public function delete(User $user, Campaign $campaign): bool
     {
@@ -86,8 +81,6 @@ class CampaignPolicy
             CampaignCache::members()->count() == 1;
     }
 
-    /**
-     */
     public function invite(User $user, Campaign $campaign): bool
     {
         return $campaign->userIsMember($user) && (
@@ -95,43 +88,31 @@ class CampaignPolicy
         );
     }
 
-    /**
-     */
     public function setting(User $user, Campaign $campaign): bool
     {
         return $user->isAdmin();
     }
 
-    /**
-     */
     public function recover(User $user, Campaign $campaign): bool
     {
         return $user->isAdmin();
     }
 
-    /**
-     */
     public function history(User $user, Campaign $campaign): bool
     {
         return $this->recover($user, $campaign);
     }
 
-    /**
-     */
     public function dashboard(User $user, Campaign $campaign): bool
     {
         return $user->isAdmin() || $this->checkPermission(CampaignPermission::ACTION_DASHBOARD, $user, $campaign);
     }
 
-    /**
-     */
     public function stats(User $user, Campaign $campaign): bool
     {
-        return ($user->isAdmin() || $campaign->userIsMember());
+        return $user->isAdmin() || $campaign->userIsMember();
     }
 
-    /**
-     */
     public function search(User $user, Campaign $campaign): bool
     {
         return $user->isAdmin();
@@ -150,11 +131,12 @@ class CampaignPolicy
         if (Identity::isImpersonating()) {
             return false;
         }
-        if (!$campaign->userIsMember()) {
+        if (! $campaign->userIsMember()) {
             return false;
         }
+
         // If we are not the owner, or that we are an owner but there are other owners
-        return (!$user->isAdmin() || $campaign->adminCount() > 1);
+        return ! $user->isAdmin() || $campaign->adminCount() > 1;
     }
 
     /**
@@ -166,15 +148,14 @@ class CampaignPolicy
             return false;
         }
 
-        if (!$campaign->isPublic()) {
+        if (! $campaign->isPublic()) {
             return false;
         }
 
-        return !$campaign->userIsMember();
+        return ! $campaign->userIsMember();
     }
 
     /**
-     *
      * Determine if a user can apply to a campaign
      */
     public function apply(?User $user, Campaign $campaign): bool
@@ -183,11 +164,11 @@ class CampaignPolicy
             return false;
         }
 
-        if (!$campaign->isPublic() || !$campaign->is_open) {
+        if (! $campaign->isPublic() || ! $campaign->is_open) {
             return false;
         }
 
-        return !$campaign->userIsMember();
+        return ! $campaign->userIsMember();
     }
 
     /**
@@ -195,11 +176,12 @@ class CampaignPolicy
      */
     public function members(?User $user, Campaign $campaign): bool
     {
-        if (!$user) {
+        if (! $user) {
             return false;
         }
+
         return ($user->isAdmin($campaign) || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)) ||
-            !($campaign->boosted() && $campaign->hide_members);
+            ! ($campaign->boosted() && $campaign->hide_members);
     }
 
     /**
@@ -210,8 +192,6 @@ class CampaignPolicy
         return $user && $user->isAdmin();
     }
 
-    /**
-     */
     public function gallery(?User $user, Campaign $campaign): bool
     {
         return $user && (
@@ -221,16 +201,11 @@ class CampaignPolicy
         );
     }
 
-    /**
-     */
     public function relations(?User $user): bool
     {
         return $user && $user->isAdmin();
     }
 
-
-    /**
-     */
     public function mapPresets(?User $user): bool
     {
         return $user && $user->isAdmin();
@@ -242,6 +217,7 @@ class CampaignPolicy
     public function unboost(?User $user, Campaign $campaign): bool
     {
         $boost = $campaign->boosts->first();
+
         return $user && $boost && $boost->user_id === $user->id;
     }
 
@@ -271,9 +247,6 @@ class CampaignPolicy
         );
     }
 
-    /**
-     *
-     */
     protected function checkPermission(int $action, User $user, ?Campaign $campaign = null): bool
     {
         return EntityPermission::campaign($campaign)->user($user)->hasPermission(0, $action, null);

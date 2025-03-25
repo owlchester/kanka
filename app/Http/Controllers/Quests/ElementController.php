@@ -25,7 +25,7 @@ class ElementController extends Controller
         // Policies will always fail if they can't resolve the user.
         $this->campaign($campaign)->authEntityView($quest->entity);
 
-        $datagridSorter = new QuestElementSorter();
+        $datagridSorter = new QuestElementSorter;
         $datagridSorter->request(request()->all());
 
         $model = $quest;
@@ -64,30 +64,31 @@ class ElementController extends Controller
         }
 
         $data = $request->only([
-            'entity_id', 'name', 'role', 'description', 'colour', 'visibility_id'
+            'entity_id', 'name', 'role', 'description', 'colour', 'visibility_id',
         ]);
         $data['quest_id'] = $quest->id;
 
-        $element = new QuestElement();
+        $element = new QuestElement;
         $element = $element->create($data);
 
         if ($request->has('submit-update')) {
             return redirect()
                 ->route('quests.quest_elements.edit', [$campaign, 'quest_element' => $element, 'quest' => $quest])
                 ->with('success', __('quests.elements.create.success', [
-                    'entity' => $element->name()
+                    'entity' => $element->name(),
                 ]));
         } elseif ($request->has('submit-new')) {
             return redirect()
                 ->route('quests.quest_elements.create', [$campaign, $quest])
                 ->with('success', __('quests.elements.create.success', [
-                    'entity' => $element->name()
+                    'entity' => $element->name(),
                 ]));
         }
+
         return redirect()
             ->route('quests.quest_elements.index', [$campaign, $quest])
             ->with('success', __('quests.elements.create.success', [
-                'entity' => $element->name()
+                'entity' => $element->name(),
             ]));
     }
 
@@ -140,24 +141,24 @@ class ElementController extends Controller
             ->user($request->user())
             ->finish();
 
-
         if ($request->has('submit-update')) {
             return redirect()
                 ->route('quests.quest_elements.edit', [$campaign, 'quest_element' => $questElement, 'quest' => $quest])
                 ->with('success', __('quests.elements.edit.success', [
-                    'entity' => $questElement->name()
+                    'entity' => $questElement->name(),
                 ]));
         } elseif ($request->has('submit-new')) {
             return redirect()
                 ->route('quests.quest_elements.create', [$campaign, $quest])
                 ->with('success', __('quests.elements.create.success', [
-                    'entity' => $questElement->name()
+                    'entity' => $questElement->name(),
                 ]));
         }
+
         return redirect()
             ->route('quests.quest_elements.index', [$campaign, $quest])
             ->with('success', __('quests.elements.edit.success', [
-                'entity' => $questElement->name()
+                'entity' => $questElement->name(),
             ]));
     }
 
@@ -170,7 +171,7 @@ class ElementController extends Controller
         return redirect()
             ->route('quests.quest_elements.index', [$campaign, $quest])
             ->with('success', __('quests.elements.destroy.success', [
-                'entity' => $questElement->name()
+                'entity' => $questElement->name(),
             ]));
     }
 }

@@ -15,12 +15,13 @@ class DeleteService
         $count = 0;
         foreach ($ids as $id) {
             $image = Image::where('id', $id)->first();
-            if (!$image) {
+            if (! $image) {
                 continue;
             }
             $image->delete();
             $count++;
         }
+
         return $count;
     }
 }

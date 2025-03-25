@@ -16,12 +16,13 @@ class ConversationMessageResource extends ModelResource
     {
         /** @var ConversationMessage $resource */
         $resource = $this->resource;
+
         return [
             'conversation_id' => $resource->conversation_id,
             'created_by' => $resource->created_by,
             'character_id' => $resource->character_id,
             'user_id' => $resource->user_id,
-            'message' => $resource->message
+            'message' => $resource->message,
         ];
     }
 }

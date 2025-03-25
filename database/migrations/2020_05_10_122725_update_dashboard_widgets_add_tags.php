@@ -31,8 +31,6 @@ class UpdateDashboardWidgetsAddTags extends Migration
      */
     public function down()
     {
-        Schema::table('campaign_dashboard_widget_tags', function (Blueprint $table) {
-
-        });
+        Schema::table('campaign_dashboard_widget_tags', function (Blueprint $table) {});
     }
 }

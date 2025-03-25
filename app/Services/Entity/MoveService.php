@@ -12,9 +12,9 @@ use App\Services\MentionsService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use Exception;
 use Illuminate\Support\Str;
 
 class MoveService
@@ -23,11 +23,12 @@ class MoveService
     use EntityAware;
     use UserAware;
 
-
     protected Campaign $to;
 
     protected StorageService $storageService;
+
     protected CopyService $copyService;
+
     protected MentionsService $mentionsService;
 
     protected bool $copy = false;
@@ -48,12 +49,14 @@ class MoveService
         } else {
             $this->to = Campaign::findOrFail($campaign);
         }
+
         return $this;
     }
 
     public function copy(bool $copy): self
     {
         $this->copy = $copy;
+
         return $this;
     }
 
@@ -91,17 +94,17 @@ class MoveService
         }
 
         // Can the user create an entity of that type on the new campaign?
-        //UserCache::campaign($campaign);
-        if (!$this->user->can('create', [$this->entity->entityType, $campaign])) {
+        // UserCache::campaign($campaign);
+        if (! $this->user->can('create', [$this->entity->entityType, $campaign])) {
             throw (new TranslatableException('entities/move.errors.permission'))->setOptions([
                 'type' => $this->entity->entityType->name(),
                 'target' => '<a href="' . route('dashboard', $campaign) . '">' . $campaign->name . '</a>',
             ]);
         }
 
-        //UserCache::campaign($this->entity->campaign);
+        // UserCache::campaign($this->entity->campaign);
         // Trying to move (not copy) but can't update the original entity
-        if (!$this->copy && !$this->user->can('update', $this->entity)) {
+        if (! $this->copy && ! $this->user->can('update', $this->entity)) {
             throw new TranslatableException('entities/move.errors.permission_update');
         }
 
@@ -121,7 +124,7 @@ class MoveService
                     }
                 }
             } else {
-                $newModel = new Note();
+                $newModel = new Note;
                 $newModel->name = $this->entity->name;
                 $newModel->is_private = $this->entity->is_private;
             }
@@ -138,7 +141,7 @@ class MoveService
 
             $newModel->entity->entry = $newEntry;
             // Copy the gallery image over
-            if (!empty($image)) {
+            if (! empty($image)) {
                 // If there is enough space in the target campaign gallery
                 $available = $this->storageService->campaign($this->campaign)->available();
                 if ($available > $image->size) {
@@ -162,8 +165,7 @@ class MoveService
                 ->attributes()
                 ->character()
                 ->timeline()
-                ->map()
-            ;
+                ->map();
 
             DB::commit();
             $success = true;
@@ -173,6 +175,7 @@ class MoveService
         }
 
         CampaignLocalization::forceCampaign($this->campaign);
+
         return $success;
     }
 
@@ -205,7 +208,7 @@ class MoveService
             CampaignLocalization::forceCampaign($this->to);
             $this->entity->campaign_id = $this->to->id;
             $this->entity->parent_id = null;
-            if (!empty($this->entity->image_path)) {
+            if (! empty($this->entity->image_path)) {
                 $oldImagePath = $this->entity->image_path;
                 $this->entity->image_path = Str::replace(
                     'w/' . $this->campaign->id . '/',
@@ -232,6 +235,7 @@ class MoveService
         }
 
         CampaignLocalization::forceCampaign($this->campaign);
+
         return $success;
     }
 
@@ -240,7 +244,7 @@ class MoveService
         // Loop on children attributes and detach.
         $attributes = $model->getAttributes();
         foreach ($attributes as $attribute => $value) {
-            if (Str::endsWith($attribute, '_id')  && $attribute != 'campaign_id') {
+            if (Str::endsWith($attribute, '_id') && $attribute != 'campaign_id') {
                 $model->$attribute = null;
             }
         }

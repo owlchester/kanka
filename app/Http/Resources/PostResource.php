@@ -16,6 +16,7 @@ class PostResource extends EntityChild
     {
         /** @var Post $model */
         $model = $this->resource;
+
         return $this->onEntity([
             'name' => $model->name,
             'visibility_id' => (int) $model->visibility_id->value,

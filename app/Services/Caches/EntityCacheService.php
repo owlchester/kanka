@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 
 /**
  * Class EntityCacheService
- * @package App\Services\Caches
  */
 class EntityCacheService extends BaseCache
 {
@@ -22,8 +21,6 @@ class EntityCacheService extends BaseCache
      */
     protected array $entities = [];
 
-    /**
-     */
     public function typeSuggestion(EntityType $entityType): array
     {
         $key = $this->typeSuggestionKey($entityType->code);
@@ -40,8 +37,8 @@ class EntityCacheService extends BaseCache
             ->pluck('type')
             ->all();
 
-
         Cache::put($key, $data, 24 * 3600);
+
         return $data;
     }
 
@@ -55,6 +52,7 @@ class EntityCacheService extends BaseCache
                 $entityType->code
             )
         );
+
         return $this;
     }
 

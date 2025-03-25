@@ -17,17 +17,15 @@ class ResultsController extends Controller
             'diceRoll.entity.image',
             'user',
             'diceRoll.character',
-            'diceRoll.character.entity'
+            'diceRoll.character.entity',
         ])
             ->orderByDesc('updated_at')
             ->has('diceRoll.entity')
             ->has('diceRoll.character.entity')
-            ->paginate()
-        ;
+            ->paginate();
 
         return view('dice_rolls.results')
             ->with('campaign', $campaign)
-            ->with('models', $models)
-        ;
+            ->with('models', $models);
     }
 }

@@ -20,6 +20,7 @@ class SidebarController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
@@ -39,6 +40,7 @@ class SidebarController extends Controller
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function save(Campaign $campaign)
@@ -51,12 +53,12 @@ class SidebarController extends Controller
 
         return redirect()
             ->route('campaign-sidebar', $campaign)
-            ->with('success', __('campaigns/sidebar.success'))
-        ;
+            ->with('success', __('campaigns/sidebar.success'));
     }
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function reset(Campaign $campaign)
@@ -67,7 +69,6 @@ class SidebarController extends Controller
 
         return redirect()
             ->route('campaign-sidebar', $campaign)
-            ->with('success', __('campaigns/sidebar.reset.success'))
-        ;
+            ->with('success', __('campaigns/sidebar.reset.success'));
     }
 }

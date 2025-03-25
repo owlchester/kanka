@@ -12,8 +12,8 @@ use App\Notifications\Header;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Illuminate\Support\Arr;
 use Exception;
+use Illuminate\Support\Arr;
 
 class SubmissionService
 {
@@ -26,12 +26,13 @@ class SubmissionService
     public function submission(CampaignSubmission $submission): self
     {
         $this->submission = $submission;
+
         return $this;
     }
 
     public function apply(?string $reason = null): self
     {
-        $submission = new CampaignSubmission();
+        $submission = new CampaignSubmission;
         $submission->text = $reason;
         $submission->user_id = $this->user->id;
         $submission->campaign_id = $this->campaign->id;
@@ -46,7 +47,7 @@ class SubmissionService
             'yellow',
             [
                 'link' => route('campaign_submissions.index', $this->campaign),
-                'campaign' => $this->campaign->name
+                'campaign' => $this->campaign->name,
             ]
         );
 
@@ -74,7 +75,7 @@ class SubmissionService
                 ->notify(
                     new Header($key, 'user', 'red', [
                         'campaign' => $this->campaign->name,
-                        'reason' => $rejection
+                        'reason' => $rejection,
                     ])
                 );
         } else {
@@ -101,9 +102,9 @@ class SubmissionService
         // Add the user to the role
         CampaignRoleUser::create([
             'user_id' => $this->submission->user_id,
-            'campaign_role_id' => $roleID
+            'campaign_role_id' => $roleID,
         ]);
-        //$message = $this->purify(Arr::get($data, 'message'));
+        // $message = $this->purify(Arr::get($data, 'message'));
         if ($message == '') {
             $key = 'campaign.application.approved';
         } else {
@@ -119,19 +120,17 @@ class SubmissionService
                     'green',
                     [
                         'campaign' => $this->campaign->name,
-                        'reason'   => $message,
+                        'reason' => $message,
                         'link' => route('dashboard', $this->campaign),
                     ]
                 )
             );
-
 
         // Update the campaign members cache when a user was added
         CampaignCache::campaign($this->campaign)->clear();
 
         // Clear the user's campaign cache
         UserCache::user($this->submission->user)->clear();
-
 
         return $this;
     }

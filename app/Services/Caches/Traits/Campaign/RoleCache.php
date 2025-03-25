@@ -14,6 +14,7 @@ trait RoleCache
 
     /**
      * Build a list of dashboards setup for the campaign
+     *
      * @return array[]
      */
     public function adminRole(): array
@@ -24,9 +25,10 @@ trait RoleCache
     protected function formatAdminRole(): array
     {
         $role = $this->campaign->roles->where('is_admin', 1)->first();
+
         return [
             'id' => $role->id,
-            'name' => $role->name
+            'name' => $role->name,
         ];
     }
 }

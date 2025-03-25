@@ -11,8 +11,8 @@ use App\Models\EntityType;
 use App\Models\Plugin;
 use App\Models\Tier;
 use App\Models\UserValidation;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -26,7 +26,6 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'App\Http\Controllers';
 
     public const HOME = '/';
-
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -129,6 +128,7 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware(['web', LastCampaign::class])
             ->namespace($this->namespace)
             ->group(base_path('routes/campaigns/search.php'));
+
         return $this;
     }
 
@@ -141,6 +141,7 @@ class RouteServiceProvider extends ServiceProvider
             ->prefix('settings')
             ->namespace($this->namespace)
             ->group(base_path('routes/settings.php'));
+
         return $this;
     }
 
@@ -151,8 +152,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware(['web', 'adless'])
             ->namespace('App\Http\Controllers')
-            ->group(base_path('routes/auth.php'))
-        ;
+            ->group(base_path('routes/auth.php'));
+
         return $this;
     }
 
@@ -160,8 +161,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware(['minimum'])
             ->namespace('\App\Http\Controllers')
-            ->group(base_path('routes/vendor.php'))
-        ;
+            ->group(base_path('routes/vendor.php'));
 
         return $this;
     }

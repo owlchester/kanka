@@ -16,8 +16,9 @@ class EntityPermissionResource extends EntityChild
     {
         /** @var CampaignPermission $model */
         $model = $this->resource;
+
         return [
-            'id'   => $model->id,
+            'id' => $model->id,
             'campaign_role_id' => $model->campaign_role_id,
             'user_id' => $model->user_id,
             'action' => $model->action,

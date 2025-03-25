@@ -5,7 +5,6 @@ namespace App\Models\Concerns;
 use App\Observers\SanitizedObserver;
 
 /**
- * @package App\Models\Concerns
  * @property array $sanitizable
  */
 trait Sanitizable
@@ -20,9 +19,10 @@ trait Sanitizable
 
     public function getSanitizable(): array
     {
-        if (!property_exists($this, 'sanitizable')) {
+        if (! property_exists($this, 'sanitizable')) {
             return [];
         }
+
         return $this->sanitizable;
     }
 }

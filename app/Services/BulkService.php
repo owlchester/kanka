@@ -7,6 +7,7 @@ use App\Exceptions\TranslatableException;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
+use App\Models\MiscModel;
 use App\Models\Relation;
 use App\Observers\Concerns\SaveLocations;
 use App\Services\Entity\MoveService;
@@ -16,15 +17,11 @@ use App\Services\Permissions\BulkPermissionService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
-use Illuminate\Support\Arr;
-use App\Models\MiscModel;
 use Exception;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
 
-/**
- *
- */
 class BulkService
 {
     use CampaignAware;
@@ -46,8 +43,7 @@ class BulkService
         protected BulkPermissionService $permissionService,
         protected TransformService $transformService,
         protected MoveService $moveService
-    ) {
-    }
+    ) {}
 
     /**
      * @return $this
@@ -55,6 +51,7 @@ class BulkService
     public function entities(array $ids = []): self
     {
         $this->ids = $ids;
+
         return $this;
     }
 
@@ -68,13 +65,14 @@ class BulkService
 
     /**
      * Delete several entities
+     *
      * @throws Exception
      */
     public function delete(): int
     {
         $model = $this->getEntity();
         if (isset($this->entityType)) {
-            if (!$this->entityType->isSpecial()) {
+            if (! $this->entityType->isSpecial()) {
                 $with = ['entity', 'entity.entityType', 'entity.campaign'];
                 if ($this->entityType->isNested()) {
                     $with[] = 'children';
@@ -88,7 +86,7 @@ class BulkService
         }
         /** @var Entity|Relation $entity */
         foreach ($entities as $entity) {
-            if (!$this->can('delete', $entity)) {
+            if (! $this->can('delete', $entity)) {
                 continue;
             }
             if (request()->delete_mirrored && $entity->mirror) {
@@ -112,11 +110,13 @@ class BulkService
         foreach ($this->ids as $id) {
             $entities[] = $model->findOrFail($id);
         }
+
         return $entities;
     }
 
     /**
      * Set permissions for several entities
+     *
      * @return int number of updated entities
      */
     public function permissions(array $permissions = [], bool $override = true): int
@@ -124,15 +124,15 @@ class BulkService
         $model = $this->getEntity();
 
         $with = [];
-        if (!$this->entityType->isSpecial()) {
+        if (! $this->entityType->isSpecial()) {
             $with = ['entity'];
         }
         $entities = $model->with($with)->whereIn('id', $this->ids)->get();
         foreach ($entities as $entity) {
-            if (!$entity instanceof Entity) {
+            if (! $entity instanceof Entity) {
                 $entity = $entity->entity;
             }
-            if (!$this->can('update', $entity)) {
+            if (! $this->can('update', $entity)) {
                 continue;
             }
             $this->permissionService
@@ -169,17 +169,17 @@ class BulkService
             'entity.entityType',
             'entity.image',
             'entity.inventories',
-            'entity.attributes'
+            'entity.attributes',
         ] : [
-            'entityType', 'image', 'inventories', 'attributes'
+            'entityType', 'image', 'inventories', 'attributes',
         ];
         $entities = $model->with($with)->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
-            if (!$entity instanceof Entity) {
+            if (! $entity instanceof Entity) {
                 $entity = $entity->entity;
             }
-            if (!$this->can('update', $entity)) {
+            if (! $this->can('update', $entity)) {
                 continue;
             }
             if ($this->moveService->entity($entity)->process()) {
@@ -200,11 +200,11 @@ class BulkService
             ->campaign($this->campaign);
 
         $model = $this->getEntity();
-        $with = !$this->entityType->isSpecial() ? ['entity'] : [];
+        $with = ! $this->entityType->isSpecial() ? ['entity'] : [];
 
         foreach ($this->ids as $id) {
             $entity = $model->with($with)->findOrFail($id);
-            if (!$this->can('update', $entity)) {
+            if (! $this->can('update', $entity)) {
                 continue;
             }
 
@@ -232,9 +232,9 @@ class BulkService
         $filledFields = [];
         $filledForeigns = [];
         foreach ($fillableFields as $field => $value) {
-            if (is_array($value) && !empty($value)) {
+            if (is_array($value) && ! empty($value)) {
                 $filledFields[$field] = $value;
-            } elseif (!empty($value)) {
+            } elseif (! empty($value)) {
                 $filledFields[$field] = mb_trim($value);
             }
         }
@@ -247,7 +247,7 @@ class BulkService
         // Loop on boolean fields that can be true, false or null
         foreach ($bulk->booleans() as $field) {
             // Field wasn't provided in request, ignore
-            if (!Arr::has($fields, $field)) {
+            if (! Arr::has($fields, $field)) {
                 continue;
             }
             $value = Arr::get($fields, $field);
@@ -263,11 +263,11 @@ class BulkService
         // Loop on all the bulk fields that are foreign relations
         foreach ($bulk->foreignRelations() as $relation) {
             // Field wasn't provided in request, ignore
-            if (!Arr::has($fields, $relation)) {
+            if (! Arr::has($fields, $relation)) {
                 continue;
             }
             foreach ($fields[$relation] as $foreignID) {
-                if (!isset($filledForeigns[$relation])) {
+                if (! isset($filledForeigns[$relation])) {
                     $filledForeigns[$relation] = [];
                 }
                 $filledForeigns[$relation][] = $foreignID;
@@ -276,12 +276,12 @@ class BulkService
 
         // Private
         if (isset($fields['is_private']) && $fields['is_private'] !== null) {
-            $filledFields['is_private'] = $fields['is_private'] === "0";
+            $filledFields['is_private'] = $fields['is_private'] === '0';
         }
 
         // Active
         if (isset($fields['is_active']) && $fields['is_active'] !== null) {
-            $filledFields['is_active'] = $fields['is_active'] === "1";
+            $filledFields['is_active'] = $fields['is_active'] === '1';
         }
 
         // List of fields that can have +/- math operations, like a character's age
@@ -309,10 +309,11 @@ class BulkService
             unset($filledFields['type']);
         }
 
-        if (!isset($this->entityType)) {
+        if (! isset($this->entityType)) {
             $mirrorOptions = [];
             $mirrorOptions['unmirror'] = (bool) Arr::get($fields, 'unmirror', '0');
             $mirrorOptions['update_mirrored'] = (bool) Arr::get($fields, 'update_mirrored', '0');
+
             return $this->updateRelations($filledFields, $mirrorOptions);
         }
 
@@ -321,10 +322,10 @@ class BulkService
         // Todo: move model fetch above to actually use with()
         foreach ($this->ids as $id) {
             /** @var MiscModel|Entity $entity */
-            $with = !$this->entityType->isSpecial() ? ['entity', 'entity.tags'] : ['tags'];
+            $with = ! $this->entityType->isSpecial() ? ['entity', 'entity.tags'] : ['tags'];
             $entity = $model->with($with)->findOrFail($id);
             $this->total++;
-            if (!$this->can('update', $entity)) {
+            if (! $this->can('update', $entity)) {
                 continue;
             }
             $entityFields = $filledFields;
@@ -356,7 +357,7 @@ class BulkService
             if ($this->entityType->isSpecial()) {
                 $realEntity = $entity;
                 // @phpstan-ignore-next-line
-            } elseif (!$this->entityType->isSpecial() && !empty($entity->entity)) {
+            } elseif (! $this->entityType->isSpecial() && ! empty($entity->entity)) {
                 $realEntity = $entity->entity;
             }
             // Todo: refactor into a trait or function
@@ -385,7 +386,7 @@ class BulkService
             $locationsAction = Arr::get($fields, 'bulk-locations', 'add');
             if ($locationsAction === 'remove') {
                 $entity->locations()->detach($locationIds);
-            } elseif (!empty($locationIds)) {
+            } elseif (! empty($locationIds)) {
                 $this->saveLocations($entity, $locationIds);
             }
 
@@ -414,7 +415,9 @@ class BulkService
 
     /**
      * Bulk apply attribute templates
-     * @param string $template
+     *
+     * @param  string  $template
+     *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function templates($template): int
@@ -428,10 +431,10 @@ class BulkService
         $entities = $model->with($with)->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
-            if (!$entity instanceof Entity) {
+            if (! $entity instanceof Entity) {
                 $entity = $entity->entity;
             }
-            if (!$this->can('update', $entity)) {
+            if (! $this->can('update', $entity)) {
                 continue;
             }
             $service->apply($entity, $template);
@@ -449,15 +452,17 @@ class BulkService
     {
         if (isset($this->entityType)) {
             if ($this->entityType->isSpecial()) {
-                return new Entity();
+                return new Entity;
             }
+
             return $this->entityType->getClass();
         }
-        return new Relation();
+
+        return new Relation;
     }
 
     /**
-     * @param array $mirrorOptions
+     * @param  array  $mirrorOptions
      * @return int
      */
     protected function updateRelations(array $filledFields, $mirrorOptions)
@@ -472,7 +477,7 @@ class BulkService
         /** @var Relation $relation */
         foreach ($relations as $relation) {
             $this->total++;
-            if (!auth()->user()->can('update', $relation)) {
+            if (! auth()->user()->can('update', $relation)) {
                 // Can't update this? Technically not possible since bulk editing is only available
                 // for admins, but better safe than sorry
                 continue;
@@ -490,7 +495,7 @@ class BulkService
             if ($mirrorOptions['unmirror'] && $relation->mirror) {
                 $relation->mirror->update(['mirror_id' => null]);
                 $filledFields['mirror_id'] = null;
-                if (!$mirrorOptions['update_mirrored']) {
+                if (! $mirrorOptions['update_mirrored']) {
                     $this->count++;
                     $this->total++;
                 }
@@ -498,14 +503,16 @@ class BulkService
             $relation->update($filledFields);
             $this->count++;
         }
+
         return $this->count;
     }
 
     protected function can(string $action, $entity): bool
     {
-        if (!isset($this->entityType) || !$this->entityType->hasEntity() || $entity instanceof Entity) {
+        if (! isset($this->entityType) || ! $this->entityType->hasEntity() || $entity instanceof Entity) {
             return auth()->user()->can($action, $entity);
         }
+
         return auth()->user()->can($action, $entity->entity);
     }
 }

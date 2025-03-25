@@ -17,7 +17,6 @@ Route::delete('/w/{campaign}/entities/{entity}/delete', [App\Http\Controllers\En
 
 Route::get('/w/{campaign}/entities/{entity}/children', [App\Http\Controllers\Entities\ChildrenController::class, 'index'])->name('entities.children');
 
-
 // Abilities
 Route::get('/w/{campaign}/abilities/{ability}/abilities', 'Abilities\AbilityController@index')->name('abilities.abilities');
 Route::get('/w/{campaign}/abilities/{ability}/entities', 'Abilities\EntityController@index')->name('abilities.entities');
@@ -25,7 +24,7 @@ Route::get('/w/{campaign}/abilities/{ability}/entities', 'Abilities\EntityContro
 Route::get('/w/{campaign}/abilities/{ability}/entity-add', 'Abilities\EntityController@create')->name('abilities.entity-add');
 Route::post('/w/{campaign}/abilities/{ability}/entity-add', 'Abilities\EntityController@store')->name('abilities.entity-add.save');
 
-//Ability reorder
+// Ability reorder
 Route::get('/w/{campaign}/entities/{entity}/entity_abilities/reorder', [App\Http\Controllers\Entity\Abilities\ReorderController::class, 'index'])
     ->name('entities.entity_abilities.reorder');
 Route::post('/w/{campaign}/entities/{entity}/entity_abilities/reorder', [App\Http\Controllers\Entity\Abilities\ReorderController::class, 'save'])
@@ -123,7 +122,6 @@ Route::post('/w/{campaign}/entities/{entity}/tags/add', 'Entity\TagController@st
 Route::post('/w/{campaign}/bulk/process', 'BulkController@index')->name('bulk.process');
 Route::get('/w/{campaign}/bulk/modal', 'BulkController@modal')->name('bulk.modal');
 
-
 // Calendar
 Route::get('/w/{campaign}/calendars/{calendar}/event', 'Calendars\EventController@create')->name('calendars.event.create');
 Route::post('/w/{campaign}/calendars/{calendar}/event', 'Calendars\EventController@store')->name('calendars.event.store');
@@ -160,7 +158,6 @@ Route::post('/w/{campaign}/entities/{entity}/attributes/live-api/{attribute}/del
 
 Route::model('attribute', App\Models\Attribute::class);
 
-
 Route::get('/w/{campaign}/entities/{entity}/story-reorder', [App\Http\Controllers\Entity\StoryController::class, 'edit'])->name('entities.story.reorder');
 Route::post('/w/{campaign}/entities/{entity}/story-reorder', [App\Http\Controllers\Entity\StoryController::class, 'save'])->name('entities.story.reorder-save');
 Route::get('/w/{campaign}/entities/{entity}/story-more', [App\Http\Controllers\Entity\StoryController::class, 'more'])->name('entities.story.load-more');
@@ -175,8 +172,7 @@ Route::post('/w/{campaign}/entities/{entity}/image-replace', [App\Http\Controlle
 // Quick privacy toggle
 Route::get('/w/{campaign}/entities/{entity}/privacy', [App\Http\Controllers\Entity\PrivacyController::class, 'index'])->name('entities.quick-privacy');
 Route::post('/w/{campaign}/entities/{entity}/privacy', [App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.quick-privacy.toggle');
-//Route::post('/w/{campaign}/entities/{entity}/toggle-privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.privacy.toggle');
-
+// Route::post('/w/{campaign}/entities/{entity}/toggle-privacy', [\App\Http\Controllers\Entity\PrivacyController::class, 'toggle'])->name('entities.privacy.toggle');
 
 // Entity update entry
 Route::get('/w/{campaign}/entities/{entity}/entry', [App\Http\Controllers\Entity\EntryController::class, 'edit'])->name('entities.entry.edit');
@@ -203,7 +199,6 @@ Route::post('/w/{campaign}/editing/quest-elements/{quest_element}/keep-alive', '
 Route::post('/w/{campaign}/editing/timeline-elements/{timeline_element}/confirm-editing', 'EditingController@confirmTimelineElement')->name('timeline-elements.confirm-editing');
 Route::post('/w/{campaign}/editing/timeline-elements/{timeline_element}/keep-alive', 'EditingController@keepAliveTimelineElement')->name('timeline-elements.keep-alive');
 Route::get('/w/{campaign}/timeline/{timeline}/era/{timeline_era}/list', 'Timelines\TimelineEraController@positionList')->name('timelines.era-list');
-
 
 Route::get('/w/{campaign}/bookmarks/{bookmark}/random', 'Bookmarks\RandomController@index')
     ->name('bookmarks.random');
@@ -232,14 +227,12 @@ Route::get('/w/{campaign}/entities/{entity}/entity_assets/{entity_asset}/go', 'E
 Route::get('/w/{campaign}/entities/{entity}/profile', 'Entity\ProfileController@index')
     ->name('entities.profile');
 
-
 Route::get('/w/{campaign}/entity_types/{entity_type}/filter-form', [App\Http\Controllers\Filters\FormController::class, 'index'])->name('filters.form');
 Route::get('/w/{campaign}/connection/filter-form', [App\Http\Controllers\Filters\FormController::class, 'connection'])->name('filters.form-connection');
 
 Route::get('/w/{campaign}/filters/{entity_type}/save', [App\Http\Controllers\Filters\SaveController::class, 'save'])->name('save-filters');
 
-
-//Route::get('/w/{campaign}/my-campaigns', 'CampaignController@index')->name('campaign');
+// Route::get('/w/{campaign}/my-campaigns', 'CampaignController@index')->name('campaign');
 Route::resources([
     '/w/{campaign}/abilities' => 'Crud\AbilityController',
     '/w/{campaign}/calendars' => 'Crud\CalendarController',
@@ -274,16 +267,16 @@ Route::resources([
     '/w/{campaign}/relations' => 'RelationController',
 
     // Entities
-    //'entities.attributes' => 'AttributeController',
+    // 'entities.attributes' => 'AttributeController',
     '/w/{campaign}/entities.entity_abilities' => 'Entity\AbilityController',
     '/w/{campaign}/entities.posts' => 'Entity\PostController',
-    '/w/{campaign}/entities.entity_events' => 'Entity\ReminderController',
+    '/w/{campaign}/entities.reminders' => 'Entity\ReminderController',
     '/w/{campaign}/entities.entity_assets' => 'Entity\AssetController',
     '/w/{campaign}/entities.inventories' => 'Entity\InventoryController',
     '/w/{campaign}/entities.relations' => 'Entity\RelationController',
 
     '/w/{campaign}/attribute_templates' => 'Crud\AttributeTemplateController',
-    //'presets' => 'PresetController',
+    // 'presets' => 'PresetController',
 ]);
 
 Route::get('/w/{campaign}/redirect', 'RedirectController@index')->name('redirect');
@@ -299,7 +292,6 @@ Route::get('/w/{campaign}/entities/{entity}/transform', 'Entity\TransformControl
 Route::post('/w/{campaign}/entities/{entity}/transform', 'Entity\TransformController@transform')->name('entities.transform-process');
 
 Route::get('/w/{campaign}/entities/{entity}/tooltip', 'Entity\TooltipController@show')->name('entities.tooltip');
-
 
 // Entity files
 Route::get('/w/{campaign}/entities/{entity}/logs', 'Entity\LogController@index')->name('entities.logs');
@@ -318,16 +310,13 @@ Route::get('/w/{campaign}/entities/{entity}/inventory/{inventory}/details', 'Ent
 Route::delete('/w/{campaign}/entities/{entity}/inventory/{inventory}/delete_section', 'Entity\InventorySectionController@delete')
     ->name('entities.inventory.delete.section');
 
-
 // Export
 Route::get('/w/{campaign}/entities/{entity}/html-export', 'Entity\ExportController@html')->name('entities.html-export');
 Route::get('/w/{campaign}/entities/{entity}.json', 'Entity\ExportController@json')->name('entities.json.export');
 Route::get('/w/{campaign}/entities/{entity}.md', 'Entity\ExportController@markdown')->name('entities.markdown.export');
 
-
 Route::get('/w/{campaign}/entities/{entity}/template', 'Entity\TemplateController@update')->name('entities.template');
 Route::get('/w/{campaign}/posts/{post}/template', 'Entity\Posts\TemplateController@update')->name('posts.template');
-
 
 // Attribute template
 Route::get('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@index')->name('entities.attributes.template');
@@ -335,7 +324,6 @@ Route::post('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\Attrib
 
 Route::get('/w/{campaign}/entities/{entity}/permissions', 'Entity\PermissionController@view')->name('entities.permissions');
 Route::post('/w/{campaign}/entities/{entity}/permissions', 'Entity\PermissionController@store')->name('entities.permissions-process');
-
 
 Route::get('/w/{campaign}/entities/{entity}/preview', 'Entity\PreviewController@index')->name('entities.preview');
 

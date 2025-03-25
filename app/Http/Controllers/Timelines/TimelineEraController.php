@@ -50,9 +50,9 @@ class TimelineEraController extends Controller
             ->with('rows', $this->rows)
             ->with('campaign', $campaign)
             ->with('model', $timeline)
-            ->with('entity', $timeline->entity)
-        ;
+            ->with('entity', $timeline->entity);
     }
+
     public function show(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
     {
         return redirect()->to($timeline->getLink());
@@ -60,6 +60,7 @@ class TimelineEraController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign, Timeline $timeline)
@@ -85,7 +86,7 @@ class TimelineEraController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $model = new TimelineEra();
+        $model = new TimelineEra;
         $data = $request->only($this->fields);
         $data['timeline_id'] = $timeline->id;
         $new = $model->create($data);
@@ -95,6 +96,7 @@ class TimelineEraController extends Controller
                 ->route('entities.show', [$campaign, $timeline->entity, '#era' . $new->id])
                 ->withSuccess(__('timelines/eras.create.success', ['name' => $new->name]));
         }
+
         return redirect()
             ->route('timelines.timeline_eras.index', [$campaign, $timeline])
             ->withSuccess(__('timelines/eras.create.success', ['name' => $new->name]));
@@ -102,6 +104,7 @@ class TimelineEraController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
@@ -116,6 +119,7 @@ class TimelineEraController extends Controller
             compact('campaign', 'timeline', 'model', 'from')
         );
     }
+
     /**
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -147,7 +151,6 @@ class TimelineEraController extends Controller
 
         $timelineEra->delete();
 
-
         if (request()->get('from') == 'view') {
             return redirect()
                 ->route('entities.show', [$campaign, $timeline->entity])
@@ -164,7 +167,7 @@ class TimelineEraController extends Controller
         $this->authorize('update', $timeline->entity);
         $action = $request->get('action');
         $models = $request->get('model');
-        if (!in_array($action, $this->validBulkActions()) || empty($models)) {
+        if (! in_array($action, $this->validBulkActions()) || empty($models)) {
             return redirect()->back();
         }
 
@@ -179,8 +182,7 @@ class TimelineEraController extends Controller
 
         return redirect()
             ->route('timelines.timeline_eras.index', [$campaign, 'timeline' => $timeline])
-            ->with('success', trans_choice('timelines/eras.bulks.' . $action, $count, ['count' => $count]))
-        ;
+            ->with('success', trans_choice('timelines/eras.bulks.' . $action, $count, ['count' => $count]));
     }
 
     public function positionList(Campaign $campaign, Timeline $timeline, TimelineEra $timelineEra)
@@ -192,6 +194,7 @@ class TimelineEraController extends Controller
         }
 
         $new = (bool) request()->get('new');
+
         return response()->json([
             'positions' => $timelineEra->positionOptions(null, $new),
         ]);

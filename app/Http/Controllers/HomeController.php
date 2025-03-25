@@ -12,6 +12,7 @@ class HomeController extends Controller
         if (auth()->guest()) {
             return redirect()->route('login');
         }
+
         return $this->back();
     }
 
@@ -26,7 +27,7 @@ class HomeController extends Controller
 
         // Go to the user's last campaign, if any
         $last = auth()->user()->last_campaign_id;
-        if (!empty($last)) {
+        if (! empty($last)) {
             /** @var ?Campaign $lastCampaign */
             $lastCampaign = Campaign::acl($last)->first();
             if ($lastCampaign) {

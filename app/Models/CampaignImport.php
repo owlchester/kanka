@@ -6,8 +6,8 @@ use App\Enums\CampaignImportStatus;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +27,7 @@ class CampaignImport extends Model
     public $fillable = [
         'user_id',
         'campaign_id',
-        'status_id'
+        'status_id',
     ];
 
     public $casts = [
@@ -52,7 +52,7 @@ class CampaignImport extends Model
     public function prunable(): Builder
     {
         return static::/*where('updated_at', '<=', now()->subDays(1))
-            ->*/whereIn('status_id', [CampaignImportStatus::PREPARED, CampaignImportStatus::QUEUED]);
+            ->*/ whereIn('status_id', [CampaignImportStatus::PREPARED, CampaignImportStatus::QUEUED]);
     }
 
     public function isPrepared(): bool
@@ -64,6 +64,7 @@ class CampaignImport extends Model
     {
         return $this->status_id == CampaignImportStatus::FAILED;
     }
+
     protected function pruning(): void
     {
         $files = Arr::get($this->config, 'files');

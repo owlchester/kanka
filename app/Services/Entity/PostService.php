@@ -26,6 +26,7 @@ class PostService
     public function post(Post $post): self
     {
         $this->post = $post;
+
         return $this;
     }
 
@@ -38,6 +39,7 @@ class PostService
         if ($request->has('copy')) {
             return $this->copy();
         }
+
         return $this->move();
     }
 
@@ -59,7 +61,6 @@ class PostService
 
     /**
      * Move the post to another entity
-     *
      */
     protected function move(): Post
     {
@@ -70,7 +71,7 @@ class PostService
         $this->post->entity_id = $this->entityId;
         $this->post->save();
 
-        //Transfer post logs to new entity too.
+        // Transfer post logs to new entity too.
         $this->post->logs()->update(['entity_id' => $this->entityId]);
 
         $this->log($this->post, EntityLog::ACTION_UPDATE_POST);
@@ -80,7 +81,7 @@ class PostService
 
     private function log(Post $post, int $action)
     {
-        $log = new EntityLog();
+        $log = new EntityLog;
         $log->entity_id = $post->entity->id;
         $log->created_by = auth()->user()->id;
         $log->post_id = $post->id;

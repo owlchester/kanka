@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands\Tests;
 
-use App\Services\NewsletterService;
 use App\Models\User;
+use App\Services\NewsletterService;
 use Illuminate\Console\Command;
 
 class Mailerlite extends Command
@@ -38,11 +38,12 @@ class Mailerlite extends Command
             $newsletter->remove();
         } else {
             $options = [
-                'releases' => (bool) $user->mail_release
+                'releases' => (bool) $user->mail_release,
             ];
 
             $newsletter->update($options);
         }
+
         return Command::SUCCESS;
     }
 }

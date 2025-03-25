@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Img
- * @package App\Facades
  *
  * @see ImgService
+ *
  * @mixin ImgService
  */
 class Img extends Facade

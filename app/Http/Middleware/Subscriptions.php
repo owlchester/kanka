@@ -13,9 +13,10 @@ class Subscriptions
      */
     public function handle($request, Closure $next)
     {
-        if (!config('services.stripe.enabled')) {
+        if (! config('services.stripe.enabled')) {
             return redirect()->route('home');
         }
+
         return $next($request);
     }
 }

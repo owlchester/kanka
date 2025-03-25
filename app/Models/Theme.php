@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Theme
- * @package App\Models
  *
  * @property string $name
  */
@@ -21,8 +20,6 @@ class Theme extends Model
         return $this->hasMany('App\Models\Campaign', 'theme_id');
     }
 
-    /**
-     */
     public function __toString(): string
     {
         return __('profiles.theme.themes.' . $this->name);

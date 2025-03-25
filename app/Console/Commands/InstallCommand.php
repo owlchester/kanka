@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\EntityType;
-use Illuminate\Console\Command;
 use Exception;
+use Illuminate\Console\Command;
 
 class InstallCommand extends Command
 {
@@ -30,6 +30,7 @@ class InstallCommand extends Command
         try {
             if (EntityType::find(1)) {
                 $this->error('Kanka has already been installed.');
+
                 return;
             }
         } catch (Exception) {

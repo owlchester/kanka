@@ -25,8 +25,8 @@ class ReorderAbility extends FormRequest
     {
         return [
             'entity_ability' => [
-                '*' => 'exists:entity_abilities,id'
-            ]
+                '*' => 'exists:entity_abilities,id',
+            ],
         ];
     }
 }

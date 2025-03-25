@@ -7,9 +7,9 @@ use App\Http\Requests\UpdateModuleName;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
+use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
-use Exception;
 
 class ModuleEditService
 {
@@ -35,13 +35,13 @@ class ModuleEditService
             $icon = $this->purify(mb_trim($request->get('icon')));
         }
 
-        if (!empty($singular)) {
+        if (! empty($singular)) {
             $settings['modules'][$key]['s'] = $singular;
         }
-        if (!empty($plural)) {
+        if (! empty($plural)) {
             $settings['modules'][$key]['p'] = $plural;
         }
-        if (!empty($icon)) {
+        if (! empty($icon)) {
             $settings['modules'][$key]['i'] = $icon;
         }
 
@@ -55,6 +55,7 @@ class ModuleEditService
 
     /**
      * Remove the custom modules setup from the campaign
+     *
      * @return $this
      */
     public function reset(): self
@@ -72,6 +73,7 @@ class ModuleEditService
         $this->campaign->saveQuietly();
         CampaignCache::clear();
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
+
         return $this;
     }
 
@@ -79,14 +81,15 @@ class ModuleEditService
     {
         // Validate module
         $fillable = $this->campaign->setting->getFillable();
-        if (!in_array($this->entityType->pluralCode(), $fillable)) {
-            throw new Exception();
+        if (! in_array($this->entityType->pluralCode(), $fillable)) {
+            throw new Exception;
         }
 
-        $this->campaign->setting->{$this->entityType->pluralCode()} = !$this->campaign->setting->{$this->entityType->pluralCode()};
+        $this->campaign->setting->{$this->entityType->pluralCode()} = ! $this->campaign->setting->{$this->entityType->pluralCode()};
         $this->campaign->setting->saveQuietly();
         CampaignCache::clear();
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
+
         return (bool) $this->campaign->setting->{$this->entityType->pluralCode()};
     }
 
@@ -94,14 +97,15 @@ class ModuleEditService
     {
         // Validate module
         $fillable = $this->campaign->setting->getFillable();
-        if (empty($module) || !in_array($module, $fillable)) {
-            throw new Exception();
+        if (empty($module) || ! in_array($module, $fillable)) {
+            throw new Exception;
         }
 
-        $this->campaign->setting->{$module} = !$this->campaign->setting->{$module};
+        $this->campaign->setting->{$module} = ! $this->campaign->setting->{$module};
         $this->campaign->setting->saveQuietly();
         CampaignCache::clear();
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
+
         return (bool) $this->campaign->setting->{$module};
     }
 }

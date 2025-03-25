@@ -3,21 +3,17 @@
 namespace App\Observers;
 
 use App\Facades\EntityLogger;
-use App\Models\MiscModel;
 use App\Facades\Images;
+use App\Models\MiscModel;
 
 abstract class MiscObserver
 {
-    /**
-     */
     public function created(MiscModel $model)
     {
         // Created a new sub entity? Create the parent entity.
         $model->createEntity();
     }
 
-    /**
-     */
     public function deleted(MiscModel $model)
     {
         // Soft-delete the entity
@@ -34,8 +30,6 @@ abstract class MiscObserver
         Images::cleanup($model);
     }
 
-    /**
-     */
     public function saved(MiscModel $model)
     {
         EntityLogger::model($model);

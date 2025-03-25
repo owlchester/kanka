@@ -16,6 +16,7 @@ class InventoryResource extends EntityChild
     {
         /** @var Inventory $model */
         $model = $this->resource;
+
         return $this->onEntity([
             'item_id' => $model->item_id,
             'name' => $model->name,
@@ -24,7 +25,7 @@ class InventoryResource extends EntityChild
             'visibility_id' => $model->visibility_id,
             'is_equipped' => (bool) $model->is_equipped,
             'copy_item_entry' => (bool) $model->copy_item_entry,
-            'description' => $model->description
+            'description' => $model->description,
         ]);
     }
 }

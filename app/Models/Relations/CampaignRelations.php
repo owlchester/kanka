@@ -3,12 +3,13 @@
 namespace App\Models\Relations;
 
 use App\Models\Ability;
+use App\Models\Bookmark;
 use App\Models\Calendar;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignExport;
 use App\Models\CampaignFollower;
-use App\Models\EntityType;
-use App\Models\Genre;
+use App\Models\CampaignImport;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
@@ -21,29 +22,28 @@ use App\Models\Creature;
 use App\Models\DiceRoll;
 use App\Models\Entity;
 use App\Models\EntityMention;
+use App\Models\EntityType;
+use App\Models\EntityUser;
 use App\Models\Event;
 use App\Models\Family;
 use App\Models\GameSystem;
+use App\Models\Genre;
 use App\Models\Image;
 use App\Models\Item;
 use App\Models\Journal;
 use App\Models\Location;
 use App\Models\Map;
-use App\Models\Bookmark;
-use App\Models\CampaignExport;
 use App\Models\Note;
 use App\Models\Organisation;
 use App\Models\Plugin;
+use App\Models\Post;
 use App\Models\Quest;
 use App\Models\Race;
-use App\Models\EntityUser;
 use App\Models\Tag;
 use App\Models\Theme;
 use App\Models\Timeline;
-use App\Models\CampaignImport;
-use App\Models\Post;
-use App\Models\Webhook;
 use App\Models\User;
+use App\Models\Webhook;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -52,26 +52,21 @@ use Illuminate\Support\Collection;
 
 /**
  * Trait CampaignRelations
- * @package App\Models\Relations
  *
  * @property Collection|User[] $users
  * @property Collection|User[] $followers
  * @property Collection|CampaignRole[] $roles
- *
  * @property Collection|EntityMention[] $mentions
  * @property Collection|CampaignSetting $setting
  * @property Collection|CampaignUser[] $members
  * @property Collection|Theme[] $theme
  * @property Collection|Webhook[] $webhooks
- *
  * @property Collection|Entity[] $entities
  * @property Collection|Character[] $characters
  * @property Collection|Location[] $locations
- *
  * @property Collection|Image[] $images
  * @property Collection|Plugin[] $plugins
  * @property Collection|CampaignPlugin[] $campaignPlugins
- *
  * @property Collection|CampaignDashboardWidget[] $widgets
  * @property Collection|CampaignDashboard[] $dashboards
  * @property Collection|CampaignSubmission[] $submissions
@@ -113,14 +108,14 @@ trait CampaignRelations
         if (isset($this->nonAdmins)) {
             return $this->nonAdmins;
         }
-        $this->nonAdmins = new Collection();
+        $this->nonAdmins = new Collection;
         // We can't exclude admins through pure SQL as some members might be role-less in weird edge cases
         foreach ($this->members()->with(['user', 'user.campaignRoles', 'user.tutorials'])->get() as $member) {
             $isAdmin = false;
             /** @var CampaignRole $campaignRole */
             foreach ($member->user->campaignRoles as $campaignRole) {
                 // Skip roles from other campaigns. This can probably be improved?
-                if ($campaignRole->campaign_id !==  $this->id) {
+                if ($campaignRole->campaign_id !== $this->id) {
                     continue;
                 }
                 if ($campaignRole->isAdmin()) {
@@ -282,15 +277,12 @@ trait CampaignRelations
         return $this->hasManyThrough(Post::class, Entity::class);
     }
 
-    /**
-     */
     public function plugins(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Plugin', 'campaign_plugins', 'campaign_id', 'plugin_id')
-            //->using('App\Models\CampaignPlugin')
+            // ->using('App\Models\CampaignPlugin')
             ->withPivot('is_active')
-            ->withPivot('plugin_version_id')
-        ;
+            ->withPivot('plugin_version_id');
     }
 
     public function campaignPlugins(): HasMany
@@ -329,8 +321,6 @@ trait CampaignRelations
         return $this->hasMany(CampaignStyle::class);
     }
 
-    /**
-     */
     public function editingUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'entity_user')

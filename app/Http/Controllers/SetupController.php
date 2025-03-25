@@ -6,9 +6,10 @@ class SetupController extends Controller
 {
     public function index()
     {
-        if (!config('app.debug')) {
+        if (! config('app.debug')) {
             return abort(404);
         }
+
         return view('setup');
     }
 }

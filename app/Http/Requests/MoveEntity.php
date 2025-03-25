@@ -27,7 +27,7 @@ class MoveEntity extends FormRequest
             'entities' => 'array|required',
             'entities.*' => 'distinct|exists:entities,id',
             'campaign_id' => 'required|exists:campaigns,id',
-            'copy' => 'boolean'
+            'copy' => 'boolean',
         ];
 
         return $rules;

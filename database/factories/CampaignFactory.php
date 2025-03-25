@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
+// use Faker\Generator as Faker;
 use App\Models\Campaign;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -14,6 +14,7 @@ class CampaignFactory extends Factory
      * @var string
      */
     protected $model = Campaign::class;
+
     /**
      * Define the model's default state.
      *

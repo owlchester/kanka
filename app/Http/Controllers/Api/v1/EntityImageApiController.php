@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Facades\Avatar;
+use App\Facades\Images;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\UploadEntityImage;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Facades\Images;
 
 class EntityImageApiController extends Controller
 {
@@ -30,6 +30,7 @@ class EntityImageApiController extends Controller
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Entity $entity)

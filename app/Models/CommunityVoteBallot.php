@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CommunityVoteBallot
- * @package App\Models
  *
  * @property int $id
  * @property int $community_vote_id
@@ -25,7 +24,7 @@ class CommunityVoteBallot extends Model
     public $fillable = [
         'community_vote_id',
         'user_id',
-        'vote'
+        'vote',
     ];
 
     public function vote(): BelongsTo

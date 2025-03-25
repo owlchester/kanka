@@ -9,6 +9,7 @@ class CampaignExport extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -48,10 +49,11 @@ class CampaignExport extends Layout
                 'key' => 'user.name',
                 'label' => 'campaigns.members.fields.name',
                 'render' => function ($model) {
-                    if (!$model->created_by) {
+                    if (! $model->created_by) {
                         return '';
                     }
                     $html = '<a class="block break-all truncate" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
+
                     return $html;
                 },
             ],
@@ -60,6 +62,7 @@ class CampaignExport extends Layout
                 'label' => 'campaigns.invites.fields.created',
                 'render' => function ($model) {
                     $html = '<span data-title="' . $model->created_at . 'UTC" data-toggle="tooltip">' . $model->created_at->diffForHumans() . '</span>';
+
                     return $html;
                 },
             ],
@@ -68,40 +71,44 @@ class CampaignExport extends Layout
                 'render' => function ($model) {
                     if ($model->finished()) {
                         return '100%';
-                    } elseif (!$model->running()) {
+                    } elseif (! $model->running()) {
                         return '';
                     } elseif (empty($model->progress)) {
                         return '<i>' . __('Calculating') . '</i>';
                     }
+
                     return $model->progress . '%';
-                }
+                },
             ],
             'size' => [
                 'label' => 'campaigns/export.size',
                 'render' => function ($model) {
-                    if (!$model->finished()) {
+                    if (! $model->finished()) {
                         return '';
                     }
                     if (empty($model->size)) {
                         return '<1 MB';
                     }
+
                     return number_format($model->size) . ' MB';
-                }
+                },
             ],
             'download' => [
                 'label' => 'campaigns/export.actions.download',
                 'render' => function ($model) {
-                    if (!$model->finished()) {
+                    if (! $model->finished()) {
                         return '';
                     }
                     if ($model->path && Storage::exists($model->path)) {
                         $html = '<a class="block break-all truncate" href="' . Storage::url($model->path) . '" target="_blank">' . __('campaigns/export.actions.download') . '</a>';
+
                         return $html;
                     } elseif ($model->path) {
                         return '<span class="text-neutral-content">' . __('campaigns/export.expired') . '</span>';
                     }
+
                     return '';
-                }
+                },
             ],
         ];
 

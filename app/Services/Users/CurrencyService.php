@@ -32,6 +32,7 @@ class CurrencyService
         if ($this->countryService->getCountry() === 'BR' || auth()->user()->currency() === 'brl') {
             $currencies['brl'] = __('settings.subscription.currencies.brl');
         }
+
         return $currencies;
     }
 
@@ -47,6 +48,7 @@ class CurrencyService
             $price = TierPrice::stripe($id)->first();
             if ($price) {
                 $this->save($price->currency);
+
                 return;
             }
         }

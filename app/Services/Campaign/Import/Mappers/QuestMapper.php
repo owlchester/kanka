@@ -3,14 +3,15 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Facades\ImportIdMapper;
-use App\Models\QuestElement;
 use App\Models\Quest;
+use App\Models\QuestElement;
 
 class QuestMapper extends MiscMapper
 {
     protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'quest_id', 'created_at', 'updated_at', 'location_id', 'instigator_id'];
 
     protected string $className = Quest::class;
+
     protected string $mappingName = 'quests';
 
     public function first(): void
@@ -28,14 +29,13 @@ class QuestMapper extends MiscMapper
             ->foreign('entities', 'instigator_id')
             ->saveModel()
             ->elements()
-            ->entitySecond()
-        ;
+            ->entitySecond();
     }
 
     public function tree(): self
     {
         foreach ($this->parents as $parent => $children) {
-            if (!isset($this->mapping[$parent])) {
+            if (! isset($this->mapping[$parent])) {
                 continue;
             }
             // We need the nested trait to trigger for this so it's going to be inefficient
@@ -53,13 +53,13 @@ class QuestMapper extends MiscMapper
     protected function elements(): self
     {
         $fields = [
-            'role', 'description', 'visibility_id', 'colour', 'name'
+            'role', 'description', 'visibility_id', 'colour', 'name',
         ];
         foreach ($this->data['elements'] as $data) {
-            $el = new QuestElement();
+            $el = new QuestElement;
             $el->quest_id = $this->model->id;
-            if (!empty($data['entity_id'])) {
-                if (!ImportIdMapper::hasEntity($data['entity_id'])) {
+            if (! empty($data['entity_id'])) {
+                if (! ImportIdMapper::hasEntity($data['entity_id'])) {
                     continue;
                 }
                 $el->entity_id = ImportIdMapper::getEntity($data['entity_id']);
@@ -71,6 +71,7 @@ class QuestMapper extends MiscMapper
             $el->save();
             ImportIdMapper::putQuestElement($data['id'], $el->id);
         }
+
         return $this;
     }
 }

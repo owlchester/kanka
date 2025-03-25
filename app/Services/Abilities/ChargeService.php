@@ -19,6 +19,7 @@ class ChargeService extends BaseAbilityService
     public function ability(EntityAbility $ability): self
     {
         $this->ability = $ability;
+
         return $this;
     }
 

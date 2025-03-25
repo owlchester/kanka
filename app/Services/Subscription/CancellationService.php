@@ -22,12 +22,13 @@ class CancellationService
     public function request(SubscriptionCancel $request): self
     {
         $this->request = $request;
+
         return $this;
     }
 
     public function cancel(): void
     {
-        if (!$this->user->subscribed('kanka')) {
+        if (! $this->user->subscribed('kanka')) {
             throw new TranslatableException('subscription/cancellation.errors.not_subscribed');
         }
 
@@ -46,7 +47,7 @@ class CancellationService
             'user_id' => $this->user->id,
             'reason' => $this->request->reason,
             'custom' => $this->request->reason_custom,
-            'tier'  => $this->user->pledge ?? 'Owlbear',
+            'tier' => $this->user->pledge ?? 'Owlbear',
             'duration' => $this->user->subscription('kanka')->created_at->diffInDays(Carbon::now()),
         ]);
 

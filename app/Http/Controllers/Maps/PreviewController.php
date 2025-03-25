@@ -13,14 +13,13 @@ class PreviewController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
 
-
     public function index(Campaign $campaign, Map $map)
     {
-        if (!$campaign->enabled('maps')) {
+        if (! $campaign->enabled('maps')) {
             return redirect()->route('dashboard', $campaign)->with(
                 'error_raw',
                 __('campaigns.settings.errors.module-disabled', [
-                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#maps']) . '">' . __('crud.fix-this-issue') . '</a>'
+                    'fix' => '<a href="' . route('campaign.modules', [$campaign, '#maps']) . '">' . __('crud.fix-this-issue') . '</a>',
                 ])
             );
         }
@@ -29,7 +28,6 @@ class PreviewController extends Controller
 
         return view('maps.preview')
             ->with('campaign', $campaign)
-            ->with('entity', $map->entity)
-        ;
+            ->with('entity', $map->entity);
     }
 }

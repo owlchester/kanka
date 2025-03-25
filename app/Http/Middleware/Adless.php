@@ -18,6 +18,7 @@ class Adless
     {
         // Use this middleware to define routes that won't display ads
         AdCache::adless();
+
         return $next($request);
     }
 }

@@ -8,6 +8,7 @@ class Era extends Layout
 {
     /**
      * Available column names
+     *
      * @return array[]
      */
     public function columns(): array
@@ -43,6 +44,7 @@ class Era extends Layout
                     if ($model->is_collapsed) {
                         return '<i class="fa-solid fa-check-circle" aria-hidden="true"></i>';
                     }
+
                     return '';
                 },
             ],
@@ -58,9 +60,10 @@ class Era extends Layout
     {
         return [
             self::ACTION_EDIT,
-            self::ACTION_DELETE
+            self::ACTION_DELETE,
         ];
     }
+
     public function bulks(): array
     {
         return [

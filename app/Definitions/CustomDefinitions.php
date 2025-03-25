@@ -38,7 +38,7 @@ class CustomDefinitions implements Definition
             'Flow',
             'Common',
             [
-                'open' => new \HTMLPurifier_AttrDef_HTML_Bool(true)
+                'open' => new \HTMLPurifier_AttrDef_HTML_Bool(true),
             ]
         );
         $def->addElement(

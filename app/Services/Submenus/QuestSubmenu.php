@@ -15,8 +15,9 @@ class QuestSubmenu extends BaseSubmenu implements EntitySubmenu
         $items['second']['elements'] = [
             'name' => 'quests.show.tabs.elements',
             'route' => 'quests.quest_elements.index',
-            'count' => $count
+            'count' => $count,
         ];
+
         return $items;
     }
 }

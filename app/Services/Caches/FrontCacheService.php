@@ -24,6 +24,7 @@ class FrontCacheService
             ->get();
 
         cache()->put($key, $campaigns, 3600 * 24);
+
         return $campaigns;
     }
 }

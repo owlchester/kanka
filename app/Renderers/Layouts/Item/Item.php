@@ -10,13 +10,14 @@ class Item extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'name' => [
                 'key' => 'name',

@@ -22,12 +22,13 @@ class CampaignBoosted
                 ->withErrors(__('You\'ve been banned'));
         }
 
-        if (!$campaign->boosted()) {
+        if (! $campaign->boosted()) {
             if ($request->is('api/*') || Domain::isApi()) {
                 return response()->json([
-                    'error' => 'This feature is reserved to boosted campaigns.'
+                    'error' => 'This feature is reserved to boosted campaigns.',
                 ]);
             }
+
             return redirect()->route('dashboard', $campaign)->withErrors(__('crud.errors.boosted_campaigns', ['boosted' => __('concept.premium-campaigns')]));
         }
 

@@ -20,12 +20,12 @@ class CopyController extends Controller
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
         $entities = $request->get('entities');
+
         return view('cruds.datagrids.bulks.modals._copy_campaign')
             ->with('campaign', $campaign)
             ->with('entityType', $entityType)
             ->with('type', $entityType->code)
-            ->with('entities', $entities)
-        ;
+            ->with('entities', $entities);
     }
 
     public function apply(Copy $request, Campaign $campaign, EntityType $entityType)
@@ -46,6 +46,7 @@ class CopyController extends Controller
             ->copyToCampaign($target);
 
         $link = '<a href="' . route('dashboard', $target) . '">' . $target->name . '</a>';
+
         return redirect()
             ->back()
             ->with('success_raw', trans_choice('crud.bulk.success.copy_to_campaign', $count, ['count' => $count, 'campaign' => $link]));

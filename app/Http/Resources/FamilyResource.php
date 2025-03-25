@@ -16,10 +16,11 @@ class FamilyResource extends EntityResource
     {
         /** @var Family $model */
         $model = $this->resource;
+
         return $this->entity([
             'family_id' => $model->family_id,
             'is_extinct' => $model->isExtinct(),
-            'members' => $model->members()->pluck('character_id')->toArray()
+            'members' => $model->members()->pluck('character_id')->toArray(),
         ]);
     }
 }

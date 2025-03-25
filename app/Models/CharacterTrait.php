@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CharacterTrait
- * @package App\Models
  *
  * @property int $id
  * @property int $character_id
@@ -26,6 +25,7 @@ class CharacterTrait extends Model
     use Paginatable;
 
     public const int SECTION_APPEARANCE = 1;
+
     public const int SECTION_PERSONALITY = 2;
 
     protected $fillable = [
@@ -38,23 +38,16 @@ class CharacterTrait extends Model
         'default_order',
     ];
 
-
-    /**
-     */
     public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
-    /**
-     */
     public function scopePersonality(Builder $query): Builder
     {
         return $query->where('section_id', self::SECTION_PERSONALITY);
     }
 
-    /**
-     */
     public function scopeAppearance(Builder $query): Builder
     {
         return $query->where('section_id', self::SECTION_APPEARANCE);

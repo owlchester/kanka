@@ -19,6 +19,7 @@ class RelationController extends Controller
     use GuestAuthTrait;
 
     protected RelatedService $connectionService;
+
     protected RelationService $relationService;
 
     public function __construct(RelatedService $connectionService, RelationService $relationService)
@@ -32,12 +33,12 @@ class RelationController extends Controller
         $this->campaign($campaign)->authEntityView($entity);
 
         $mode = request()->get('mode', null);
-        if (!in_array($mode, ['map', 'table'])) {
+        if (! in_array($mode, ['map', 'table'])) {
             $mode = null;
         }
 
         $option = request()->get('option', null);
-        if (!in_array($option, ['related', 'mentions', 'only_relations'])) {
+        if (! in_array($option, ['related', 'mentions', 'only_relations'])) {
             $option = null;
         }
 
@@ -45,7 +46,7 @@ class RelationController extends Controller
 
         $rows = $connections = $connectionService = [];
         // @phpstan-ignore-next-line
-        $defaultToTable = !$campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnection());
+        $defaultToTable = ! $campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnection());
         if ($mode == 'table' || (empty($mode) && $defaultToTable)) {
             $mode = 'table';
 
@@ -67,7 +68,7 @@ class RelationController extends Controller
             $connectionService = $this->connectionService;
         }
         // @phpstan-ignore-next-line
-        $defaultToMap = !$campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnectionMode());
+        $defaultToMap = ! $campaign->boosted() || ($campaign->boosted() && $campaign->defaultToConnectionMode());
         if ($mode != 'table' && empty($option) && $defaultToMap) {
             if ($campaign->defaultToConnectionMode() == 1) {
                 $option = 'only_relations';
@@ -94,6 +95,7 @@ class RelationController extends Controller
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign, Entity $entity)
@@ -120,7 +122,7 @@ class RelationController extends Controller
 
         $mode = $this->getModeOption(true);
         $redirect = [$campaign, $entity];
-        if (!empty($mode)) {
+        if (! empty($mode)) {
             $redirect['mode'] = $mode;
         }
 
@@ -138,8 +140,6 @@ class RelationController extends Controller
         abort(404);
     }
 
-    /**
-     */
     public function edit(Campaign $campaign, Entity $entity, Relation $relation)
     {
         $this->authorize('update', $entity);
@@ -156,8 +156,6 @@ class RelationController extends Controller
         ));
     }
 
-    /**
-     */
     public function update(StoreRelation $request, Campaign $campaign, Entity $entity, Relation $relation)
     {
         $this->authorize('update', $entity);
@@ -174,9 +172,9 @@ class RelationController extends Controller
 
         if (request()->has('from')) {
             $from = (int) request()->post('from');
-            if (!empty($from)) {
+            if (! empty($from)) {
                 $redirect = [$campaign, $from];
-                if (!empty($mode)) {
+                if (! empty($mode)) {
                     $redirect['mode'] = $mode;
                 }
                 if (request()->has('option')) {
@@ -187,28 +185,27 @@ class RelationController extends Controller
                     ->route('entities.relations.index', $redirect)
                     ->with('success', trans('entities/relations' . '.update.success', [
                         'target' => $relation->target->name,
-                        'entity' => $entity->name
+                        'entity' => $entity->name,
                     ]));
             }
         }
 
         $redirect = [$campaign, $entity];
-        if (!empty($mode)) {
+        if (! empty($mode)) {
             $redirect['mode'] = $mode;
         }
         if (request()->has('option')) {
             $redirect['option'] = request()->get('option');
         }
+
         return redirect()
             ->route('entities.relations.index', $redirect)
             ->with('success', __('entities/relations' . '.update.success', [
                 'target' => $relation->target->name,
-                'entity' => $entity->name
+                'entity' => $entity->name,
             ]));
     }
 
-    /**
-     */
     public function destroy(Campaign $campaign, Entity $entity, Relation $relation)
     {
         $this->authorize('update', $entity);
@@ -222,7 +219,7 @@ class RelationController extends Controller
         $deletedMirror = false;
         if (request()->get('remove_mirrored') === '1' && $relation->isMirrored()) {
             $mirror = $relation->mirror;
-            if (!empty($mirror) && auth()->user()->can('relation', [$relation->target, 'delete'])) {
+            if (! empty($mirror) && auth()->user()->can('relation', [$relation->target, 'delete'])) {
                 $mirror->delete();
                 $deletedMirror = true;
             }
@@ -232,23 +229,24 @@ class RelationController extends Controller
         if ($deletedMirror === false && $relation->isMirrored()) {
             $mirror = $relation->mirror;
             $mirror->update([
-                'mirror_id' => null
+                'mirror_id' => null,
             ]);
         }
 
         $relation->delete();
         $redirect = [$campaign, $entity];
-        if (!empty($mode)) {
+        if (! empty($mode)) {
             $redirect['mode'] = $mode;
         }
         if (request()->has('option')) {
             $redirect['option'] = request()->get('option');
         }
+
         return redirect()
             ->route('entities.relations.index', $redirect)
             ->with('success', trans('entities/relations.destroy.success', [
                 'target' => $relation->target->name,
-                'entity' => $entity->name
+                'entity' => $entity->name,
             ]));
     }
 
@@ -261,6 +259,7 @@ class RelationController extends Controller
         if (in_array($mode, ['mode', 'table'])) {
             return $mode;
         }
+
         return null;
     }
 }

@@ -45,7 +45,9 @@ class DiceRollResult extends Model
     ];
 
     protected string $defaultOrderField = 'created_at';
+
     protected string $defaultOrderDirection = 'DESC';
+
     protected string $userField = 'created_by';
 
     /**
@@ -61,8 +63,6 @@ class DiceRollResult extends Model
         return $this->belongsTo('App\Models\DiceRoll', 'dice_roll_id');
     }
 
-    /**
-     */
     public function character()
     {
         return $this->diceRoll->character();
@@ -70,6 +70,7 @@ class DiceRollResult extends Model
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array

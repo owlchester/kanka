@@ -47,12 +47,12 @@ class ManagementController extends Controller
         $races = $character->races()->pluck('races.id')->toArray();
         $privates = $request->get('race_privates');
 
-        //We need to delete the old ones to make way for the new ones.
+        // We need to delete the old ones to make way for the new ones.
         CharacterRace::where('character_id', $character->id)->delete();
         foreach ($request->get('character_race') as $newRace) {
-            //We just want to reorder, not add whatever the user sends as a request.
+            // We just want to reorder, not add whatever the user sends as a request.
             if (in_array($newRace, $races)) {
-                $characterRace = new CharacterRace();
+                $characterRace = new CharacterRace;
                 $characterRace->race_id = $newRace;
                 $characterRace->character_id = $character->id;
                 $characterRace->is_private = $privates[$newRace];

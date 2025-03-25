@@ -44,6 +44,7 @@ trait HasSubview
                 return $this->descendantsMode = Descendants::Direct;
             }
         }
+
         return $this->descendantsMode = $this->campaign->defaultDescendantsMode();
     }
 }

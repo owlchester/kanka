@@ -27,8 +27,8 @@ class Vanity extends FormRequest
                 'min:4',
                 'max:45',
                 'unique:campaigns,slug',
-                new \App\Rules\Vanity(),
-            ]
+                new \App\Rules\Vanity,
+            ],
         ];
     }
 }

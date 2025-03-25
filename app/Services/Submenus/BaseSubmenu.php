@@ -15,6 +15,7 @@ class BaseSubmenu
     public function items(array $items): self
     {
         $this->items = $items;
+
         return $this;
     }
 }

@@ -36,6 +36,7 @@ class VoteResource extends JsonResource
             $ballots[$key] = $model->ballotWidth($key);
         }
         $data['ballots'] = $ballots;
+
         return $data;
     }
 }

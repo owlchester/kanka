@@ -15,7 +15,7 @@ Route::apiResources([
     'campaigns' => 'CampaignApiController',
     'campaigns.abilities' => 'AbilityApiController',
     'campaigns.bookmarks' => 'BookmarkApiController',
-    //'campaigns.campaign_users' => 'CampaignUserApiController',
+    // 'campaigns.campaign_users' => 'CampaignUserApiController',
     'campaigns.calendars' => 'CalendarApiController',
     'campaigns.calendars.calendar_weather' => 'CalendarWeatherApiController',
     'campaigns.characters' => 'CharacterApiController',
@@ -43,12 +43,12 @@ Route::apiResources([
     'campaigns.conversations' => 'ConversationApiController',
     'campaigns.conversations.conversation_participants' => 'ConversationParticipantApiController',
     'campaigns.conversations.conversation_messages' => 'ConversationMessageApiController',
-    //'campaigns.' => 'ApiController',
+    // 'campaigns.' => 'ApiController',
 
     // Entity elements
     'campaigns.entities.attributes' => 'EntityAttributeApiController',
     'campaigns.entities.posts' => 'PostApiController',
-    'campaigns.entities.entity_events' => 'EntityEventApiController',
+    'campaigns.entities.reminders' => 'ReminderApiController',
     'campaigns.entities.relations' => 'EntityRelationApiController',
     'campaigns.entities.entity_tags' => 'EntityTagApiController',
     'campaigns.entities.inventory' => 'EntityInventoryApiController',

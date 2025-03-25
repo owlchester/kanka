@@ -37,7 +37,7 @@ class TooltipController extends Controller
             ->render();
 
         return response()->json([
-            $tooltip
+            $tooltip,
         ]);
     }
 }

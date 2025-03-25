@@ -2,13 +2,13 @@
 
 namespace App\Jobs\Discord;
 
-use Illuminate\Support\Facades\Http;
 use App\Models\Feature;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class SendNewFeature implements ShouldQueue
@@ -18,7 +18,6 @@ class SendNewFeature implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /**  */
     protected int $feature;
 
     /**
@@ -33,7 +32,6 @@ class SendNewFeature implements ShouldQueue
 
     /**
      * Execute the job.
-     *
      */
     public function handle(): void
     {
@@ -42,12 +40,14 @@ class SendNewFeature implements ShouldQueue
         if (empty($feature)) {
             // Feature wasn't found
             Log::warning('Jobs/Discord/SendNewFeature', ['unknown feature', 'feature' => $this->feature]);
+
             return;
         }
 
         $webhook = config('discord.webhooks.features');
         if (empty($webhook)) {
             Log::warning('Jobs/Discord/SendNewFeature', ['no webhook defined']);
+
             return;
         }
         Log::info('Jobs/Discord/SendNewFeature', ['start', 'feature' => $feature->id]);
@@ -62,13 +62,13 @@ class SendNewFeature implements ShouldQueue
                     'title' => $title,
                     'description' => strip_tags($feature->description),
                     'color' => config('discord.color'),
-                    'url'   => route('roadmap', ['status' => 'ideas', 'idea' => $feature->id]),
+                    'url' => route('roadmap', ['status' => 'ideas', 'idea' => $feature->id]),
                     'author' => [
-                        'name'  => $feature->user->name,
-                        'url'   => route('users.profile', $feature->created_by),
-                        'icon_url' => $feature->user->hasAvatar() ? $feature->user->getAvatarUrl() : null
-                    ]
-                ]
+                        'name' => $feature->user->name,
+                        'url' => route('users.profile', $feature->created_by),
+                        'icon_url' => $feature->user->hasAvatar() ? $feature->user->getAvatarUrl() : null,
+                    ],
+                ],
             ],
             'wait' => true,
         ]);

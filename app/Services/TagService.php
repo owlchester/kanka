@@ -6,8 +6,6 @@ use App\Models\Tag;
 
 class TagService
 {
-    /**
-     */
     public function transfer(Tag $tag, Tag $newTag): void
     {
         foreach ($tag->entities as $entity) {

@@ -15,6 +15,7 @@ class LoadController extends Controller
     {
         $this->templateService = $templateService;
     }
+
     public function index(Request $request, Campaign $campaign)
     {
 

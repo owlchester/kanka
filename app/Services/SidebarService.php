@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Facades\Module;
-use App\Models\Entity;
 use App\Models\Bookmark;
+use App\Models\Entity;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
@@ -114,7 +114,7 @@ class SidebarService
     protected $layout = [
         'dashboard' => null,
         'bookmarks' => null,
-        'world' => [ //world
+        'world' => [ // world
             'characters',
             'locations',
             'maps',
@@ -145,7 +145,7 @@ class SidebarService
         'gallery' => null,
         'history' => null,
         'settings' => null,
-        //'search' => null,
+        // 'search' => null,
     ];
 
     public function __construct()
@@ -344,11 +344,10 @@ class SidebarService
     public function withDisabled(): self
     {
         $this->withDisabled = true;
+
         return $this;
     }
 
-    /**
-     */
     public function active(string $menu = '', string $class = 'active'): string
     {
         if (empty($this->rules[$menu])) {
@@ -377,8 +376,6 @@ class SidebarService
         return '';
     }
 
-    /**
-     */
     public function activeBookmark(Bookmark $bookmark): string
     {
         $request = request()->get('bookmark');
@@ -389,14 +386,15 @@ class SidebarService
         return 'active';
     }
 
-    public function activeCampaign(mixed $options): string|null
+    public function activeCampaign(mixed $options): ?string
     {
-        if (!is_array($options)) {
+        if (! is_array($options)) {
             $options = [$options];
         }
         if (in_array(request()->segment(3), $options)) {
-            return " active";
+            return ' active';
         }
+
         return null;
     }
 
@@ -409,11 +407,12 @@ class SidebarService
         if ($current == $menu) {
             return ' active';
         }
+
         return '';
     }
 
     /**
-     * @param string $css
+     * @param  string  $css
      * @return null|string
      */
     public function open(string $menu = '', $css = 'menu-open')
@@ -427,6 +426,7 @@ class SidebarService
                 return $css;
             }
         }
+
         return null;
     }
 
@@ -436,7 +436,7 @@ class SidebarService
     public function layout(): array
     {
         $key = $this->cacheKey();
-        if (!$this->withDisabled && Cache::has($key)) {
+        if (! $this->withDisabled && Cache::has($key)) {
             return Cache::get($key);
         }
         $layout = [];
@@ -456,24 +456,25 @@ class SidebarService
                 $name = 'game';
                 $rewrite[] = 'game';
             }
-            if (!isset($this->elements[$name])) {
+            if (! isset($this->elements[$name])) {
                 dd('E601 - cant find element ' . $name);
             }
             $element = $this->customElement($name);
             // Add route if it should have one
-            if (!isset($element['route'])) {
+            if (! isset($element['route'])) {
                 $element['route'] = $name . '.index';
             }
 
             // No children? Nothing more to do
             if (empty($children)) {
                 // If this is a level 0 element like "Notes", the module still needs to be checked
-                if (!isset($element['module']) && !$this->withDisabled) {
-                    if (!$this->campaign->enabled($name)) {
+                if (! isset($element['module']) && ! $this->withDisabled) {
+                    if (! $this->campaign->enabled($name)) {
                         continue;
                     }
                 }
                 $layout[$name] = $element;
+
                 continue;
             }
             $layout[$name] = $element;
@@ -481,8 +482,8 @@ class SidebarService
             foreach ($children as $childName) {
                 $child = $this->customElement($childName);
                 // Child has a module, check that the campaign has it enabled
-                if (!isset($child['module'])) {
-                    if (!$this->campaign->enabled($childName)) {
+                if (! isset($child['module'])) {
+                    if (! $this->campaign->enabled($childName)) {
                         if ($this->withDisabled) {
                             $child['disabled'] = true;
                         } else {
@@ -496,7 +497,7 @@ class SidebarService
                 }
 
                 // Add route when none is set
-                if (!isset($child['route'])) {
+                if (! isset($child['route'])) {
                     $child['route'] = $childName . '.index';
                 }
 
@@ -505,9 +506,10 @@ class SidebarService
             }
         }
 
-        if (!$this->withDisabled) {
+        if (! $this->withDisabled) {
             Cache::put($key, $layout, 7 * 86400);
         }
+
         return $layout;
     }
 
@@ -526,13 +528,15 @@ class SidebarService
             if (Str::endsWith($field, '_start')) {
                 $parent = Str::before($field, '_start');
                 $order[$parent] = [];
+
                 continue;
             } elseif (Str::endsWith($field, '_end')) {
                 $parent = null;
+
                 continue;
             }
 
-            if (!empty($parent)) {
+            if (! empty($parent)) {
                 $order[$parent][$field] = $field;
             } else {
                 $order[$field] = null;
@@ -553,22 +557,24 @@ class SidebarService
             }
             if (Str::endsWith($field, '_label')) {
                 $labels[Str::before($field, '_label')] = Purify::clean(strip_tags($value));
+
                 continue;
             } elseif (Str::endsWith($field, '_icon')) {
                 $icons[Str::before($field, '_icon')] = Purify::clean(strip_tags($value));
+
                 continue;
             }
             // Nothing of value
         }
 
         // Save the new data to the campaign config
-        if (!empty($labels)) {
+        if (! empty($labels)) {
             $ui['sidebar']['labels'] = $labels;
         } elseif (isset($ui['sidebar']['labels'])) { // @phpstan-ignore-line
             unset($ui['sidebar']['labels']);
         }
 
-        if (!empty($icons)) {
+        if (! empty($icons)) {
             $ui['sidebar']['icons'] = $icons;
         } elseif (isset($ui['sidebar']['icons'])) { // @phpstan-ignore-line
             unset($ui['sidebar']['icons']);
@@ -598,7 +604,7 @@ class SidebarService
     protected function customLayout(): array
     {
         // Only boosted campaigns can change the layout
-        if (!$this->campaign->boosted()) {
+        if (! $this->campaign->boosted()) {
             return $this->layout;
         }
         $layout = Arr::get($this->campaign->ui_settings, 'sidebar.order');
@@ -610,7 +616,7 @@ class SidebarService
         $definedElements = [];
         foreach ($layout as $name => $values) {
             $definedElements[] = $name;
-            if (!is_array($values)) {
+            if (! is_array($values)) {
                 continue;
             }
             foreach ($values as $key) {
@@ -624,29 +630,31 @@ class SidebarService
         // Loop through the missing elements and inject them where they are "expected"
         foreach ($missing as $element) {
             $found = false;
-            //dump('Missing: ' . $element);
+            // dump('Missing: ' . $element);
             // If it's a base level, add it there
             if (array_key_exists($element, $this->layout)) {
                 $layout[$element] = null;
+
                 continue;
             }
             foreach ($this->layout as $name => $children) {
-                if (!is_array($children)) {
+                if (! is_array($children)) {
                     continue;
                 }
                 $values = array_values($children);
-                //dump(!in_array($element, $values));
-                if (!in_array($element, $values)) {
+                // dump(!in_array($element, $values));
+                if (! in_array($element, $values)) {
                     continue;
                 }
                 $layout[$name][$element] = $element;
-                //dump('Added it to ' . $name);
+                // dump('Added it to ' . $name);
 
                 $found = true;
+
                 continue;
             }
 
-            if (!$found) {
+            if (! $found) {
                 dd('E637: Couldn\'t place sidebar element ' . $element);
             }
         }
@@ -663,37 +671,35 @@ class SidebarService
         $element['label_key'] = $element['label'];
         unset($element['label']);
 
-        if (!$this->campaign->boosted()) {
+        if (! $this->campaign->boosted()) {
             return $element;
         }
 
         // Module custom name
-        if (!empty($element['type_id']) && !$this->withDisabled) {
+        if (! empty($element['type_id']) && ! $this->withDisabled) {
             $type = $element['type_id'];
             $label = Module::plural($type);
-            if (!empty($label)) {
+            if (! empty($label)) {
                 $element['custom_label'] = $label;
             }
             $icon = Module::icon($type);
-            if (!empty($icon)) {
+            if (! empty($icon)) {
                 $element['custom_icon'] = $icon;
             }
         }
 
         $label = Arr::get($this->campaign->ui_settings, 'sidebar.labels.' . $key);
         $icon = Arr::get($this->campaign->ui_settings, 'sidebar.icons.' . $key);
-        if (!empty($label)) {
+        if (! empty($label)) {
             $element['custom_label'] = $label;
         }
-        if (!empty($icon)) {
+        if (! empty($icon)) {
             $element['custom_icon'] = $icon;
         }
 
         return $element;
     }
 
-    /**
-     */
     protected function cacheKey(): string
     {
         return 'campaign_' . $this->campaign->id . '_sidebar';
@@ -708,6 +714,7 @@ class SidebarService
         foreach ($this->elements as $key => $element) {
             $labels[$key] = __($element['label']);
         }
+
         return $labels;
     }
 
@@ -719,7 +726,7 @@ class SidebarService
         $this->bookmarks = [];
 
         // Quick menu module not activated on the campaign, no need to go further
-        if (!$this->campaign->enabled('bookmarks')) {
+        if (! $this->campaign->enabled('bookmarks')) {
             return;
         }
         $bookmarks = $this->campaign->bookmarks()->active()->ordered()->with(['target' => function ($sub) {
@@ -727,11 +734,11 @@ class SidebarService
         }, 'entityType', 'target.entityType'])->get();
         /** @var Bookmark $bookmark */
         foreach ($bookmarks as $bookmark) {
-            if ($bookmark->entityType && $bookmark->entityType->isSpecial() && !$bookmark->entityType->isEnabled()) {
+            if ($bookmark->entityType && $bookmark->entityType->isSpecial() && ! $bookmark->entityType->isEnabled()) {
                 continue;
             }
             $parent = 'bookmarks';
-            if (!empty($bookmark->parent)) {
+            if (! empty($bookmark->parent)) {
                 $parent = $bookmark->parent;
             }
             $this->bookmarks[$parent][] = $bookmark;
@@ -743,9 +750,10 @@ class SidebarService
      */
     public function bookmarks(?string $parent = null): array
     {
-        if (!$this->hasBookmarks($parent)) {
+        if (! $this->hasBookmarks($parent)) {
             return [];
         }
+
         return $this->bookmarks[$parent];
     }
 
@@ -754,6 +762,6 @@ class SidebarService
      */
     public function hasBookmarks(string $parent): bool
     {
-        return array_key_exists($parent, $this->bookmarks) && !empty($this->bookmarks[$parent]);
+        return array_key_exists($parent, $this->bookmarks) && ! empty($this->bookmarks[$parent]);
     }
 }

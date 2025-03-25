@@ -16,7 +16,7 @@ class ImportService
      */
     public function import(): int
     {
-        if (!$this->entity->isCharacter()) {
+        if (! $this->entity->isCharacter()) {
             throw new Exception('not_character');
         }
         /** @var Character $character */

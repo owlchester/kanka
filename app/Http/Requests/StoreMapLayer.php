@@ -39,7 +39,7 @@ class StoreMapLayer extends FormRequest
         // If editing, don't need a new image
         /** @var MapLayer $self */
         $self = request()->route('map_layer');
-        if ($self && !empty($self->image_path)) {
+        if ($self && ! empty($self->image_path)) {
             unset($rules['image_uuid']);
         }
 

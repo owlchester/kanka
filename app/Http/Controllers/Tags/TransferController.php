@@ -38,6 +38,7 @@ class TransferController extends Controller
         $newTag = Tag::where('id', $request->tag_id)->first();
         try {
             $this->service->transfer($tag, $newTag);
+
             return redirect()
                 ->route('entities.show', [$campaign, $tag->entity])
                 ->with('success_raw', __('tags.transfer.success', ['tag' => $tag->name, 'newTag' => $newTag->name]));
@@ -54,6 +55,7 @@ class TransferController extends Controller
         $newTag = Tag::where('id', $request->tag_id)->first();
         try {
             $this->service->transferPosts($tag, $newTag);
+
             return redirect()
                 ->route('entities.show', [$campaign, $tag->entity])
                 ->with('success_raw', __('tags.transfer.success_post', ['tag' => $tag->name, 'newTag' => $newTag->name]));

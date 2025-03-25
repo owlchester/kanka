@@ -12,7 +12,9 @@ use App\Models\EntityType;
 class CreatureController extends CrudController
 {
     protected string $view = 'creatures';
+
     protected string $route = 'creatures';
+
     protected string $module = 'creatures';
 
     protected string $model = Creature::class;
@@ -27,29 +29,21 @@ class CreatureController extends CrudController
         return $this->campaign($campaign)->crudStore($request);
     }
 
-    /**
-     */
     public function show(Campaign $campaign, Creature $creature)
     {
         return $this->campaign($campaign)->crudShow($creature);
     }
 
-    /**
-     */
     public function edit(Campaign $campaign, Creature $creature)
     {
         return $this->campaign($campaign)->crudEdit($creature);
     }
 
-    /**
-     */
     public function update(Campaign $campaign, StoreCreature $request, Creature $creature)
     {
         return $this->campaign($campaign)->crudUpdate($request, $creature);
     }
 
-    /**
-     */
     public function destroy(Campaign $campaign, Creature $creature)
     {
         return $this->campaign($campaign)->crudDestroy($creature);

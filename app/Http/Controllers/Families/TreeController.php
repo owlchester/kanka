@@ -20,7 +20,6 @@ class TreeController extends Controller
         return view('families.trees.index')
             ->with('family', $family)
             ->with('campaign', $campaign)
-            ->with('mode', 'vue')
-        ;
+            ->with('mode', 'vue');
     }
 }

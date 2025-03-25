@@ -5,8 +5,7 @@ it('POSTS an invalid posts form')
     ->withCampaign()
     ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/entities/1/posts', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new post')
     ->asUser()
@@ -24,9 +23,8 @@ it('POSTS a new post')
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all posts')
     ->asUser()
@@ -42,10 +40,9 @@ it('GETS all posts')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific post')
     ->asUser()
@@ -59,9 +56,8 @@ it('GETS a specific post')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid post')
     ->asUser()
@@ -70,8 +66,7 @@ it('UPDATES a valid post')
     ->withPosts()
     ->putJson('/api/1.0/campaigns/1/entities/1/posts/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('UPDATES a valid post without a name')
     ->asUser()
@@ -80,8 +75,7 @@ it('UPDATES a valid post without a name')
     ->withPosts()
     ->putJson('/api/1.0/campaigns/1/entities/1/posts/1', ['position' => 2])
     ->assertStatus(200)
-    ->assertJsonFragment(['position' => 2])
-;
+    ->assertJsonFragment(['position' => 2]);
 
 it('DELETES an post')
     ->asUser()
@@ -89,8 +83,7 @@ it('DELETES an post')
     ->withCharacters()
     ->withPosts()
     ->delete('/api/1.0/campaigns/1/entities/1/posts/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid post')
     ->asUser()
@@ -98,5 +91,4 @@ it('DELETES an invalid post')
     ->withCharacters()
     ->withPosts()
     ->delete('/api/1.0/campaigns/1/entities/1/posts/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);

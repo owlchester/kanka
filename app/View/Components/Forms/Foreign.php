@@ -12,7 +12,7 @@ use Illuminate\View\Component;
 
 class Foreign extends Component
 {
-    //public mixed $model;
+    // public mixed $model;
     public array $options = [];
 
     protected EntityType $entityType;
@@ -40,7 +40,7 @@ class Foreign extends Component
         public ?int $entityTypeID = null,
         public ?string $dynamicTag = null,
     ) {
-        $this->id = !empty($id) ? $id : $name . '_' . uniqid();
+        $this->id = ! empty($id) ? $id : $name . '_' . uniqid();
     }
 
     /**
@@ -50,7 +50,7 @@ class Foreign extends Component
     {
         $canNew = $this->createPermission();
 
-        if (!empty($this->selected)) {
+        if (! empty($this->selected)) {
             if (is_array($this->selected)) {
                 $this->options = $this->selected;
             } elseif ($this->selected instanceof Model) {
@@ -62,18 +62,18 @@ class Foreign extends Component
         if ($this->parent) {
             $this->label = __('crud.fields.parent');
             $this->placeholder = __('crud.placeholders.parent');
-        } elseif (!empty($this->key)) {
+        } elseif (! empty($this->key)) {
             if (empty($this->label)) {
-                $this->label = !empty($this->entityTypeID) ? __('entities.' . $this->key) : __('crud.fields.' . $this->key);
-                if (!empty($this->entityTypeID)) {
+                $this->label = ! empty($this->entityTypeID) ? __('entities.' . $this->key) : __('crud.fields.' . $this->key);
+                if (! empty($this->entityTypeID)) {
                     $this->label = Module::singular($this->entityTypeID, $this->label);
                 }
             }
             if (empty($this->placeholder)) {
                 $this->placeholder = __('crud.placeholders.' . $this->key);
-                if (!empty($this->entityTypeID)) {
+                if (! empty($this->entityTypeID)) {
                     $mod = Module::singular($this->entityTypeID);
-                    if (!empty($mod)) {
+                    if (! empty($mod)) {
                         $this->placeholder = __('crud.placeholders.fallback', ['module' => Module::singular($this->entityTypeID, $this->label)]);
                     }
                 }
@@ -86,21 +86,23 @@ class Foreign extends Component
                 $this->placeholder = '';
             }
         }
+
         return view('components.forms.foreign')
             ->with('canNew', $canNew);
     }
 
     protected function createPermission(): bool
     {
-        if (!$this->allowNew || auth()->guest()) {
+        if (! $this->allowNew || auth()->guest()) {
             return false;
         }
 
-        if (!empty($this->entityType)) {
+        if (! empty($this->entityType)) {
             return auth()->user()->can('create', [$this->entityType, $this->campaign]);
         }
 
         $this->entityType = $this->campaign->getEntityTypes()->where('id', $this->entityTypeID)->first();
+
         return auth()->user()->can('create', [$this->entityType, $this->campaign]);
     }
 }

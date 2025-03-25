@@ -18,8 +18,6 @@ trait Templatable
         return (bool) $this->is_template;
     }
 
-    /**
-     */
     public function scopeTemplate(Builder $query, bool $template = true): Builder
     {
         return $query->select($this->getTable() . '.*')

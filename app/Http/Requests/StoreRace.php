@@ -37,20 +37,22 @@ class StoreRace extends FormRequest
             'race_id' => 'nullable|integer|exists:races,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
             'locations' => 'array',
             'locations.*' => 'distinct|exists:locations,id',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Race $self */
         $self = request()->route('race');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['race_id'] = [
                 'nullable',
                 'integer',
                 'exists:races,id',
-                new Nested(Race::class, $self)
+                new Nested(Race::class, $self),
             ];
         }
 

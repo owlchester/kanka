@@ -2,13 +2,13 @@
 
 namespace App\Jobs\Discord;
 
-use Illuminate\Support\Facades\Http;
 use App\Models\Feature;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class UpdateFeatureUpvotes implements ShouldQueue
@@ -18,7 +18,6 @@ class UpdateFeatureUpvotes implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
-    /**  */
     protected int $feature;
 
     /**
@@ -33,7 +32,6 @@ class UpdateFeatureUpvotes implements ShouldQueue
 
     /**
      * Execute the job.
-     *
      */
     public function handle(): void
     {
@@ -42,12 +40,14 @@ class UpdateFeatureUpvotes implements ShouldQueue
         if (empty($feature) || empty($feature->message_id)) {
             // Feature wasn't found
             Log::warning('Jobs/Discord/UpdateFeatureUpvotes', ['unknown feature or no message_id', 'feature' => $this->feature]);
+
             return;
         }
 
         $webhook = config('discord.webhooks.features');
         if (empty($webhook)) {
             Log::warning('Jobs/Discord/UpdateFeatureUpvotes', ['no webhook defined']);
+
             return;
         }
         Log::info('Jobs/Discord/UpdateFeatureUpvotes', ['start', 'feature' => $feature->id]);

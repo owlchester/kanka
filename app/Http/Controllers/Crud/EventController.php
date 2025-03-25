@@ -12,7 +12,9 @@ use App\Models\Event;
 class EventController extends CrudController
 {
     protected string $view = 'events';
+
     protected string $route = 'events';
+
     protected string $module = 'events';
 
     protected string $model = Event::class;

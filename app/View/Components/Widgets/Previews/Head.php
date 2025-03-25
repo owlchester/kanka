@@ -13,7 +13,9 @@ use Illuminate\View\Component;
 class Head extends Component
 {
     public Campaign $campaign;
+
     public CampaignDashboardWidget $widget;
+
     public Entity $entity;
 
     /**
@@ -39,7 +41,7 @@ class Head extends Component
             ->with('customName', $this->customName());
     }
 
-    protected function headerImage(): null|array
+    protected function headerImage(): ?array
     {
         if ($this->widget->conf('entity-header') && $this->campaign->boosted() && $this->entity->header_image) {
             return [
@@ -60,6 +62,7 @@ class Head extends Component
                 'square' => Avatar::entity($this->entity)->size(800, 800)->thumbnail(),
             ];
         }
+
         return null;
     }
 
@@ -68,6 +71,7 @@ class Head extends Component
         if (empty($this->widget->conf('text'))) {
             return '';
         }
+
         return str_replace('{name}', $this->entity->name, $this->widget->conf('text'));
     }
 }

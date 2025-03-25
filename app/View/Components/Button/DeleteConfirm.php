@@ -13,12 +13,11 @@ class DeleteConfirm extends Component
      */
     public function __construct(
         public string $target,
-        public null|string $size = null,
-        public null|string $text = null,
-        public null|string $css = null,
+        public ?string $size = null,
+        public ?string $text = null,
+        public ?string $css = null,
         public bool $iconOnly = false,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

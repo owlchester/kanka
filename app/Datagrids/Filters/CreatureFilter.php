@@ -19,7 +19,7 @@ class CreatureFilter extends DatagridFilter
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('search-list', [$this->campaign, config('entities.ids.creature')]),
-                'placeholder' =>  __('crud.placeholders.parent'),
+                'placeholder' => __('crud.placeholders.parent'),
                 'model' => Creature::class,
             ])
             ->location()
@@ -33,7 +33,6 @@ class CreatureFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
-            ->connections()
-        ;
+            ->connections();
     }
 }

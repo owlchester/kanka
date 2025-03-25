@@ -19,7 +19,7 @@ class MapFilter extends DatagridFilter
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('search-list', [$this->campaign, config('entities.ids.map')]),
-                'placeholder' =>  __('crud.placeholders.parent'),
+                'placeholder' => __('crud.placeholders.parent'),
                 'model' => Map::class,
             ])
             ->location()
@@ -31,7 +31,6 @@ class MapFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
-            ->connections()
-        ;
+            ->connections();
     }
 }

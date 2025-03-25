@@ -16,10 +16,11 @@ class SubmenuServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(SubmenuService::class, function () {
-            $service = new SubmenuService();
+            $service = new SubmenuService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
         $this->app->alias(SubmenuService::class, 'submenu');

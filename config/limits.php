@@ -30,7 +30,7 @@ return [
     'gallery' => [
         'standard' => env('APP_GALLERY_STANDARD', 150 * 1024),
         'premium' => env('APP_GALLERY_PREMIUM', 3 * 1024 * 1024),
-        //'premium' => 20 * 1024,
+        // 'premium' => 20 * 1024,
     ],
 
     'pagination' => env('APP_PAGINATION', 15),

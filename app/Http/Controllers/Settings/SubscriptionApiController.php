@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Settings;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ValidateCoupon;
 use App\Models\Tier;
+use App\Models\User;
 use App\Services\Subscription\CouponService;
 use App\Services\SubscriptionService;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Laravel\Cashier\PaymentMethod;
 use Stripe\Card;
 
@@ -33,7 +33,7 @@ class SubscriptionApiController extends Controller
      * Creates an intent for payment so we can capture the payment
      * method for the user.
      *
-     * @param Request $request The request data from the user.
+     * @param  Request  $request  The request data from the user.
      */
     public function setupIntent(Request $request)
     {
@@ -42,7 +42,9 @@ class SubscriptionApiController extends Controller
 
     /**
      * Adds a payment method to the current user.
+     *
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Laravel\Cashier\Exceptions\CustomerAlreadyCreated
      */
     public function paymentMethods(Request $request)
@@ -79,7 +81,7 @@ class SubscriptionApiController extends Controller
     /**
      * Returns the payment methods the user has saved
      *
-     * @param Request $request The request data from the user.
+     * @param  Request  $request  The request data from the user.
      */
     public function getPaymentMethods(Request $request)
     {
@@ -105,7 +107,7 @@ class SubscriptionApiController extends Controller
     /**
      * Removes a payment method for the current user.
      *
-     * @param Request $request The request data from the user.
+     * @param  Request  $request  The request data from the user.
      */
     public function removePaymentMethod(Request $request)
     {

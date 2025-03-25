@@ -11,8 +11,6 @@ class CharacterCacheService extends BaseCache
 {
     use CampaignAware;
 
-    /**
-     */
     public function genderSuggestion(): array
     {
         $key = $this->genderSuggestionKey();
@@ -29,11 +27,10 @@ class CharacterCacheService extends BaseCache
             ->all();
 
         Cache::put($key, $data, 24 * 3600);
+
         return $data;
     }
 
-    /**
-     */
     public function pronounSuggestion(): array
     {
         $key = $this->pronounSuggestionKey();
@@ -50,6 +47,7 @@ class CharacterCacheService extends BaseCache
             ->all();
 
         Cache::put($key, $data, 24 * 3600);
+
         return $data;
     }
 
@@ -65,6 +63,7 @@ class CharacterCacheService extends BaseCache
         $this->forget(
             $this->pronounSuggestionKey()
         );
+
         return $this;
     }
 

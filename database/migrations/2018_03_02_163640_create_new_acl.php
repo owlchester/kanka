@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateNewAcl extends Migration
 {
@@ -60,13 +60,12 @@ class CreateNewAcl extends Migration
             // A key is a simple concept that allows us to easily get everything
             // browse_characters => Allow browsing characters
             // edit_locations_4 => Allow editing location id 4
-            //$table->string('key', 191);
+            // $table->string('key', 191);
 
             // The table name
-            //$table->string('table_name', 191);
+            // $table->string('table_name', 191);
 
             $table->boolean('access')->default(true);
-
 
             $table->timestamps();
 
@@ -75,7 +74,7 @@ class CreateNewAcl extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             // Indexes
-            //$table->index(['key', 'table_name']);
+            // $table->index(['key', 'table_name']);
         });
     }
 
@@ -84,8 +83,5 @@ class CreateNewAcl extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-
-    }
+    public function down() {}
 }

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Faq
- * @package App\Models
  *
  * @property int $id
  * @property int $faq_id
@@ -19,14 +18,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class FaqTranslation extends Model
 {
-    //public $table = 'faq_translations';
-
+    // public $table = 'faq_translations';
 
     public $fillable = [
         'faq_id',
         'question',
         'answer',
-        'locale'
+        'locale',
     ];
 
     public function faq(): BelongsTo
@@ -34,15 +32,11 @@ class FaqTranslation extends Model
         return $this->belongsTo('App\Models\Faq', 'faq_id', 'id');
     }
 
-    /**
-     */
     public function scopeLocale(Builder $query, string $locale = 'en'): Builder
     {
         return $query->where('locale', $locale);
     }
 
-    /**
-     */
     public function scopeFaqID(Builder $query, int $faq): Builder
     {
         return $query->where('faq_id', $faq);

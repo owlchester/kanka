@@ -27,8 +27,9 @@ class DeleteSettingsAccount extends FormRequest
     {
         $user = Auth::user();
         $rules = [
-            'goodbye' => ['string', new GoodBye()],
+            'goodbye' => ['string', new GoodBye],
         ];
+
         return $rules;
     }
 }

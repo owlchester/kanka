@@ -6,23 +6,21 @@ it('POSTS an invalid map form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/maps', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new map')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/maps', [
-        'name' => fake()->name()
+        'name' => fake()->name(),
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all maps')
     ->asUser()
@@ -37,10 +35,9 @@ it('GETS all maps')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific map')
     ->asUser()
@@ -53,9 +50,8 @@ it('GETS a specific map')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid map')
     ->asUser()
@@ -63,8 +59,7 @@ it('UPDATES a valid map')
     ->withMaps()
     ->putJson('/api/1.0/campaigns/1/maps/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('UPDATES a valid map without a name')
     ->asUser()
@@ -72,24 +67,21 @@ it('UPDATES a valid map without a name')
     ->withMaps()
     ->putJson('/api/1.0/campaigns/1/maps/1', ['type' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['type' => 'Magic'])
-;
+    ->assertJsonFragment(['type' => 'Magic']);
 
 it('DELETES a map')
     ->asUser()
     ->withCampaign()
     ->withMaps()
     ->delete('/api/1.0/campaigns/1/maps/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid map')
     ->asUser()
     ->withCampaign()
     ->withMaps()
     ->delete('/api/1.0/campaigns/1/maps/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a map as a player')
     ->asUser()
@@ -97,8 +89,7 @@ it('can GET a map as a player')
     ->withMaps()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/maps/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
@@ -117,5 +108,4 @@ it('can\'t GET a private map as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/maps/1');
     expect($response->status())
         ->toBe(404);
-})
-;
+});

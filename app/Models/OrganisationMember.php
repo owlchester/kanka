@@ -7,13 +7,12 @@ use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class OrganisationMember
- * @package App\Models
  *
  * @property int $id
  * @property int $character_id
@@ -26,7 +25,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property ?Character $character
  * @property ?Organisation $organisation
  * @property ?OrganisationMember $parent
- *
  */
 class OrganisationMember extends Model
 {
@@ -37,14 +35,19 @@ class OrganisationMember extends Model
     use SortableTrait;
 
     public const int PIN_CHARACTER = 1;
+
     public const int PIN_ORGANISATION = 2;
+
     public const int PIN_BOTH = 3;
 
     public const int STATUS_ACTIVE = 0;
+
     public const int STATUS_INACTIVE = 1;
+
     public const int STATUS_UNKNOWN = 2;
 
     public $entityType = 'character';
+
     public $aclFieldName = 'character_id';
 
     public $table = 'organisation_member';
@@ -66,7 +69,7 @@ class OrganisationMember extends Model
         'character.name',
         'parent_id',
         'role',
-        //'character.location.name',
+        // 'character.location.name',
     ];
 
     protected array $sanitizable = [
@@ -78,8 +81,6 @@ class OrganisationMember extends Model
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
-    /**
-     */
     public function organisation(): BelongsTo
     {
         return $this->belongsTo('App\Models\Organisation', 'organisation_id');
@@ -97,7 +98,7 @@ class OrganisationMember extends Model
 
     public function pinned(): bool
     {
-        return !empty($this->pin_id);
+        return ! empty($this->pin_id);
     }
 
     /**
@@ -140,8 +141,6 @@ class OrganisationMember extends Model
         return $this->status_id === self::STATUS_UNKNOWN;
     }
 
-    /**
-     */
     public function scopePinned(Builder $query, int $pin): Builder
     {
         return $query->where('pin_id', $pin);
@@ -179,8 +178,6 @@ class OrganisationMember extends Model
         return $options + ['character' => $this->character, 'character_organisation' => $this];
     }
 
-    /**
-     */
     public function scopeRows(Builder $query): Builder
     {
         // @phpstan-ignore-next-line

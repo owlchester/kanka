@@ -8,8 +8,12 @@ namespace App\Datagrids\Actions;
 class BookmarkDatagridActions extends DatagridActions
 {
     public $bulkPermissions = false;
+
     public $bulkCopyToCampaign = false;
+
     public $bulkTransform = false;
+
     public $bulkPrint = false;
+
     public $bulkTemplate = false;
 }

@@ -2,16 +2,17 @@
 
 namespace App\Models;
 
+use App\Facades\CampaignLocalization;
 use App\Facades\Identity;
 use App\Facades\PostCache;
 use App\Facades\SingleUserCache;
 use App\Facades\UserCache;
-use App\Facades\CampaignLocalization;
 use App\Models\Concerns\HasImage;
+use App\Models\Concerns\LastSync;
 use App\Models\Concerns\UserBoosters;
 use App\Models\Concerns\UserTokens;
-use App\Models\Scopes\UserScope;
 use App\Models\Relations\UserRelations;
+use App\Models\Scopes\UserScope;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -20,11 +21,9 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Billable;
 use Laravel\Passport\HasApiTokens;
-use App\Models\Concerns\LastSync;
 
 /**
  * Class User
- * @package App
  *
  * @property int $id
  * @property string $name
@@ -48,7 +47,6 @@ use App\Models\Concerns\LastSync;
  * @property Collection|array $settings
  * @property Collection|array $profile
  * @property Campaign $campaign
- *
  * @property ?string $stripe_id
  */
 class User extends \Illuminate\Foundation\Auth\User
@@ -96,6 +94,7 @@ class User extends \Illuminate\Foundation\Auth\User
 
     /**
      * Casted variables
+     *
      * @var array<string, string>
      */
     protected $casts = [
@@ -120,11 +119,10 @@ class User extends \Illuminate\Foundation\Auth\User
         foreach ($this->campaigns()->whereNotIn('campaign_id', [$campaign->id])->get() as $campaign) {
             $campaigns[$campaign->id] = $campaign->name;
         }
+
         return $campaigns;
     }
 
-    /**
-     */
     public function getAvatarUrl(int $size = 40): string
     {
         if ($this->hasAvatar()) {
@@ -136,7 +134,7 @@ class User extends \Illuminate\Foundation\Auth\User
 
     public function hasAvatar(): bool
     {
-        return !empty($this->avatar) && $this->avatar != 'users/default.png';
+        return ! empty($this->avatar) && $this->avatar != 'users/default.png';
     }
 
     /**
@@ -162,6 +160,7 @@ class User extends \Illuminate\Foundation\Auth\User
         if (empty($campaign)) {
             return false;
         }
+
         return $this->isAdmin = $this->campaignRoles
             ->where('campaign_id', $campaign->id)
             ->where('is_admin', 1)
@@ -182,6 +181,7 @@ class User extends \Illuminate\Foundation\Auth\User
     public function hasOtherCampaigns(int $campaignId): bool
     {
         $campaigns = UserCache::campaigns();
+
         return $campaigns->where('campaign_id', '<>', $campaignId)->count() > 0;
     }
 
@@ -198,7 +198,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isLegacyPatron(): bool
     {
-        return $this->hasRole(Pledge::ROLE) && !empty($this->patreon_email);
+        return $this->hasRole(Pledge::ROLE) && ! empty($this->patreon_email);
     }
 
     /**
@@ -206,7 +206,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isGoblin(): bool
     {
-        return !empty($this->pledge) && $this->pledge !== Pledge::KOBOLD;
+        return ! empty($this->pledge) && $this->pledge !== Pledge::KOBOLD;
     }
 
     /**
@@ -214,21 +214,17 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isElemental(): bool
     {
-        return (bool)(!empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL);
+        return (bool) (! empty($this->pledge) && $this->pledge == Pledge::ELEMENTAL);
     }
 
-    /**
-     */
     public function isOwlbear(): bool
     {
-        return !empty($this->pledge) && $this->pledge == Pledge::OWLBEAR;
+        return ! empty($this->pledge) && $this->pledge == Pledge::OWLBEAR;
     }
 
-    /**
-     */
     public function isWyvern(): bool
     {
-        return !empty($this->pledge) && $this->pledge == Pledge::WYVERN;
+        return ! empty($this->pledge) && $this->pledge == Pledge::WYVERN;
     }
 
     /**
@@ -249,6 +245,7 @@ class User extends \Illuminate\Foundation\Auth\User
         } elseif ($this->billedInBrl()) {
             return 'R$';
         }
+
         return 'US$';
     }
 
@@ -268,8 +265,6 @@ class User extends \Illuminate\Foundation\Auth\User
         return $this->currency() === 'brl';
     }
 
-    /**
-     */
     public function adminCampaigns(): array
     {
         $campaigns = [];
@@ -289,8 +284,7 @@ class User extends \Illuminate\Foundation\Auth\User
     /**
      * Check if User has a Role(s) associated.
      *
-     * @param string|array $name The role(s) to check.
-     *
+     * @param  string|array  $name  The role(s) to check.
      */
     public function hasRole($name): bool
     {
@@ -310,7 +304,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isSocialLogin(): bool
     {
-        return !empty($this->provider);
+        return ! empty($this->provider);
     }
 
     /**
@@ -318,7 +312,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function createdEntitiesCount(): string
     {
-        return (string)number_format(SingleUserCache::user($this)->entitiesCreatedCount());
+        return (string) number_format(SingleUserCache::user($this)->entitiesCreatedCount());
     }
 
     /**
@@ -350,13 +344,14 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function log(int $type): self
     {
-        if (!config('logging.enabled')) {
+        if (! config('logging.enabled')) {
             return $this;
         }
         UserLog::create([
             'user_id' => $this->id,
             'type_id' => $type,
         ]);
+
         return $this;
     }
 
@@ -365,7 +360,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function isBanned(): bool
     {
-        return !empty($this->banned_until) && $this->banned_until->isFuture();
+        return ! empty($this->banned_until) && $this->banned_until->isFuture();
     }
 
     /**
@@ -395,7 +390,7 @@ class User extends \Illuminate\Foundation\Auth\User
     /**
      * When auto-login is enabled, the code to check if the user needs to input their 2FA code checks for this property
      */
-    public function getGoogle2faSecretAttribute(): string|null
+    public function getGoogle2faSecretAttribute(): ?string
     {
         return $this->passwordSecurity?->google2fa_secret;
     }
@@ -406,10 +401,11 @@ class User extends \Illuminate\Foundation\Auth\User
     public function initials(): string
     {
         // If the username has no spaces, use the two first letters of the name
-        if (!Str::contains(' ', $this->name)) {
+        if (! Str::contains(' ', $this->name)) {
             return Str::limit($this->name, 2, '');
         }
         $explode = explode(' ', $this->name);
+
         return $explode[0] . $explode[1];
     }
 
@@ -426,7 +422,7 @@ class User extends \Illuminate\Foundation\Auth\User
         $releases = PostCache::latest();
         /** @var AppRelease $release */
         foreach ($releases as $release) {
-            if (!$release->alreadyRead()) {
+            if (! $release->alreadyRead()) {
                 return true;
             }
         }
@@ -440,11 +436,11 @@ class User extends \Illuminate\Foundation\Auth\User
     public function isFrauding(): bool
     {
         // Fraud detection can be turned on or off
-        if (!config('subscription.fraud_detection')) {
+        if (! config('subscription.fraud_detection')) {
             return false;
         }
         // Someone with a provider (twitter, fb) login is always considered safe
-        if (!empty($this->provider)) {
+        if (! empty($this->provider)) {
             return false;
         }
 
@@ -483,7 +479,7 @@ class User extends \Illuminate\Foundation\Auth\User
         foreach ($userCampaigns as $campaign) {
             /** @var ?CampaignRole $adminRole */
             $adminRole = $campaign->roles->where('is_admin', true)->first();
-            if (!$adminRole) {
+            if (! $adminRole) {
                 continue;
             }
 
@@ -495,7 +491,7 @@ class User extends \Illuminate\Foundation\Auth\User
                 }
             }
 
-            if (!$isAdmin || $adminRole->users->count() > 1) {
+            if (! $isAdmin || $adminRole->users->count() > 1) {
                 continue;
             }
 
@@ -536,6 +532,7 @@ class User extends \Illuminate\Foundation\Auth\User
             config('subscription.wyvern.yearly'),
             config('subscription.elemental.yearly'),
         );
+
         return $this->subscribedToPrice($prices, 'kanka');
     }
 

@@ -17,8 +17,10 @@ class TimelineReorderController extends Controller
     {
         $this->service = $timelineService;
     }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Timeline $timeline)
@@ -34,7 +36,7 @@ class TimelineReorderController extends Controller
         $hasNothing = true;
         /** @var TimelineEra $era */
         foreach ($eras as $era) {
-            if (!$era->orderedElements->isEmpty()) {
+            if (! $era->orderedElements->isEmpty()) {
                 $hasNothing = false;
             }
         }
@@ -57,6 +59,7 @@ class TimelineReorderController extends Controller
         $this->service
             ->timeline($timeline)
             ->reorder($request);
+
         return redirect()
             ->route('entities.show', [$campaign, $timeline->entity])
             ->withSuccess(__('timelines.reorder.success', ['name' => $timeline->name]));

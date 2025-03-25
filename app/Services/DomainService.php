@@ -9,7 +9,7 @@ class DomainService
      */
     public function isApp(): bool
     {
-        return request()->host() ===  $this->app();
+        return request()->host() === $this->app();
     }
 
     /**

@@ -24,7 +24,7 @@ class StoreMarketplaceProfile extends FormRequest
     public function rules()
     {
         return [
-            'marketplace_name' => 'nullable|string|min:4'
+            'marketplace_name' => 'nullable|string|min:4',
         ];
     }
 }

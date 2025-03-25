@@ -15,6 +15,7 @@ class CampaignController extends Controller
     {
         $this->service = $service;
     }
+
     public function index(Request $request)
     {
         return response()
@@ -23,9 +24,9 @@ class CampaignController extends Controller
                     ->request($request)
                     ->search()
             )
-            ->header('Expires', Carbon::now()->addDays(1)->toDateTimeString())
-        ;
+            ->header('Expires', Carbon::now()->addDays(1)->toDateTimeString());
     }
+
     public function setup()
     {
         return response()
@@ -33,7 +34,6 @@ class CampaignController extends Controller
                 $this->service
                     ->setup()
             )
-            ->header('Expires', Carbon::now()->addDays(1)->toDateTimeString())
-        ;
+            ->header('Expires', Carbon::now()->addDays(1)->toDateTimeString());
     }
 }

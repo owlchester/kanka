@@ -4,8 +4,8 @@ namespace App\Services;
 
 use App\Models\UserLog;
 use App\Traits\UserAware;
-use Illuminate\Support\Arr;
 use Exception;
+use Illuminate\Support\Arr;
 use Laravel\Cashier\Subscription;
 use MailerLite\MailerLite;
 
@@ -32,14 +32,14 @@ class NewsletterService
     public function fields(array $fields): self
     {
         $this->fields = $fields;
+
         return $this;
     }
 
-    /**
-     */
     public function email(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -51,6 +51,7 @@ class NewsletterService
         try {
             $email = isset($this->user) ? $this->user->email : $this->email;
             $this->userID = $this->fetch($email);
+
             return true;
         } catch (Exception $e) {
             return false;
@@ -63,6 +64,7 @@ class NewsletterService
     public function remove()
     {
         $this->mailerlite->subscribers->delete($this->userID);
+
         return true;
     }
 
@@ -71,15 +73,14 @@ class NewsletterService
      */
     public function delete()
     {
-        if (!$this->isSubscribed()) {
+        if (! $this->isSubscribed()) {
             return false;
         }
         $this->mailerlite->subscribers->delete($this->userID);
+
         return true;
     }
 
-    /**
-     */
     public function update(array $options): bool
     {
         try {
@@ -100,17 +101,20 @@ class NewsletterService
             $data = [
                 'email' => $email,
                 'fields' => $this->buildFields(),
-                'groups' => $interests
+                'groups' => $interests,
             ];
             if (empty($this->userID)) {
                 $this->mailerlite->subscribers->create($data);
+
                 return true;
             } else {
                 $this->mailerlite->subscribers->update($this->userID, $data);
+
                 return true;
             }
         } catch (Exception $e) {
             $this->error = $e;
+
             return false;
         }
     }
@@ -126,6 +130,7 @@ class NewsletterService
     protected function fetch(string $email): int
     {
         $response = $this->mailerlite->subscribers->find($email);
+
         return (int) Arr::get($response, 'body.data.id');
     }
 
@@ -134,11 +139,12 @@ class NewsletterService
      */
     protected function guessCountry(): ?string
     {
-        if (!isset($this->user)) {
+        if (! isset($this->user)) {
             return null;
         }
         /** @var ?UserLog $latest */
         $latest = $this->user->logs()->whereNotNull('country')->latest()->first();
+
         return $latest?->country;
     }
 
@@ -147,9 +153,9 @@ class NewsletterService
         $fields = [
             'name' => $this->user->name,
             'language' => $this->user->locale ?? app()->getLocale(),
-            'country' => $this->guessCountry()
+            'country' => $this->guessCountry(),
         ];
-        if (!empty($this->user)) {
+        if (! empty($this->user)) {
             /** @var ?Subscription $first */
             $first = $this->user->subscriptions->where('type', 'kanka')->last();
             /** @var ?Subscription $latest */

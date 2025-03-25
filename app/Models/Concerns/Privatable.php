@@ -15,7 +15,7 @@ trait Privatable
      */
     public static function bootPrivatable()
     {
-        static::addGlobalScope(new PrivateScope());
+        static::addGlobalScope(new PrivateScope);
     }
 
     public function scopeOnPrivate(Builder $query): Builder
@@ -26,9 +26,10 @@ trait Privatable
         }
 
         // Only admins have access to private models
-        if (auth()->guest() || !auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->isAdmin()) {
             $query->where($this->getTable() . '.is_private', false);
         }
+
         return $query;
     }
 }

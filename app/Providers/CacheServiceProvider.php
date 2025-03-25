@@ -8,15 +8,15 @@ use App\Services\Caches\BookmarkCacheService;
 use App\Services\Caches\CampaignCacheService;
 use App\Services\Caches\CharacterCacheService;
 use App\Services\Caches\EntityAssetCacheService;
-use App\Services\Caches\MarketplaceCacheService;
-use App\Services\Caches\QuestCacheService;
-use App\Services\Caches\MapMarkerCacheService;
-use App\Services\Caches\TimelineElementCacheService;
 use App\Services\Caches\EntityCacheService;
 use App\Services\Caches\FrontCacheService;
+use App\Services\Caches\MapMarkerCacheService;
+use App\Services\Caches\MarketplaceCacheService;
 use App\Services\Caches\PostCacheService;
-use App\Services\Caches\UserCacheService;
+use App\Services\Caches\QuestCacheService;
 use App\Services\Caches\SingleUserCacheService;
+use App\Services\Caches\TimelineElementCacheService;
+use App\Services\Caches\UserCacheService;
 use Illuminate\Support\ServiceProvider;
 
 class CacheServiceProvider extends ServiceProvider
@@ -29,77 +29,86 @@ class CacheServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(EntityCacheService::class, function () {
-            $service = new EntityCacheService();
+            $service = new EntityCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
         $this->app->singleton(CampaignCacheService::class, function () {
-            $service = new CampaignCacheService();
+            $service = new CampaignCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
         $this->app->singleton(UserCacheService::class, function () {
 
-            $service = new UserCacheService();
+            $service = new UserCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
         $this->app->singleton(SingleUserCacheService::class, function () {
-            return new SingleUserCacheService();
+            return new SingleUserCacheService;
         });
         $this->app->singleton(PostCacheService::class, function () {
-            return new PostCacheService();
+            return new PostCacheService;
         });
         $this->app->singleton(CharacterCacheService::class, function () {
-            $service = new CharacterCacheService();
+            $service = new CharacterCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
         $this->app->singleton(QuestCacheService::class, function () {
-            $service = new QuestCacheService();
+            $service = new QuestCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
         $this->app->singleton(MapMarkerCacheService::class, function () {
-            $service = new MapMarkerCacheService();
+            $service = new MapMarkerCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
         $this->app->singleton(EntityAssetCacheService::class, function () {
-            $service = new EntityAssetCacheService();
+            $service = new EntityAssetCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
         $this->app->singleton(BookmarkCacheService::class, function () {
-            $service = new BookmarkCacheService();
+            $service = new BookmarkCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
         $this->app->singleton(TimelineElementCacheService::class, function () {
-            $service = new TimelineElementCacheService();
+            $service = new TimelineElementCacheService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
         $this->app->singleton(MarketplaceCacheService::class, function () {
-            return new MarketplaceCacheService();
+            return new MarketplaceCacheService;
         });
 
         $this->app->alias(EntityCacheService::class, 'entitycache');

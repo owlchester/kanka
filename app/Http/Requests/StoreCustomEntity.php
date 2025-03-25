@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\UniqueAttributeNames;
 
 class StoreCustomEntity extends FormRequest
 {
@@ -22,7 +22,8 @@ class StoreCustomEntity extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */public function rules()
+     */
+    public function rules()
     {
         $rules = [
             'name' => 'required|max:191',
@@ -30,7 +31,7 @@ class StoreCustomEntity extends FormRequest
             'type' => 'nullable|string|max:191',
             'image_uuid' => 'nullable|integer|exists:images,id',
             'parent_id' => 'nullable|integer|exists:entities,id',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         return $this->clean($rules);

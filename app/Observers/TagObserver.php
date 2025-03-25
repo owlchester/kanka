@@ -2,6 +2,4 @@
 
 namespace App\Observers;
 
-class TagObserver extends MiscObserver
-{
-}
+class TagObserver extends MiscObserver {}

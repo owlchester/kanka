@@ -26,6 +26,7 @@ class DestroyDefaultThumbnail extends FormRequest
         $rules = [
             'entity_type_id' => 'required|exists:entity_types,id',
         ];
+
         return $rules;
     }
 }

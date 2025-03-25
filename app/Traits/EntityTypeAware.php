@@ -11,6 +11,7 @@ trait EntityTypeAware
     public function entityType(EntityType $entityType): self
     {
         $this->entityType = $entityType;
+
         return $this;
     }
 }

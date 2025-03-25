@@ -9,6 +9,7 @@ class Group extends Layout
 {
     /**
      * Available columnsname
+     *
      * @return array[]
      */
     public function columns(): array
@@ -31,8 +32,9 @@ class Group extends Layout
                     if ($model->is_shown) {
                         return '<i class="fa-solid fa-check"></i>';
                     }
+
                     return '';
-                }
+                },
             ],
             'visibility' => [
                 'label' => 'crud.fields.visibility',
@@ -50,9 +52,10 @@ class Group extends Layout
     {
         return [
             self::ACTION_EDIT_DIALOG,
-            self::ACTION_DELETE
+            self::ACTION_DELETE,
         ];
     }
+
     public function bulks(): array
     {
         return [

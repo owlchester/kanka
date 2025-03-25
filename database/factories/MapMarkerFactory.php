@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\MapMarker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MapMarkerFactory extends Factory
 {
@@ -14,6 +14,7 @@ class MapMarkerFactory extends Factory
      * @var string
      */
     protected $model = MapMarker::class;
+
     /**
      * Define the model's default state.
      *

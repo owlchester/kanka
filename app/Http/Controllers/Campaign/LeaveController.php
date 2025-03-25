@@ -11,6 +11,7 @@ use Exception;
 class LeaveController extends Controller
 {
     protected LeaveService $leaveService;
+
     protected CampaignService $campaignService;
 
     public function __construct(LeaveService $leaveService, CampaignService $campaignService)
@@ -41,12 +42,14 @@ class LeaveController extends Controller
             $this->campaignService
                 ->user(auth()->user())
                 ->next();
+
             return redirect()->route('home')
                 ->with('success', __('campaigns.leave.success', ['name' => $campaign->name]));
         } catch (Exception $e) {
             $this->campaignService
                 ->user(auth()->user())
                 ->next();
+
             return redirect()->route('overview', $campaign)->withErrors($e->getMessage());
         }
     }

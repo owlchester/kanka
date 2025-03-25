@@ -3,13 +3,13 @@
 namespace App\Models\Concerns;
 
 use App\Enums\FilterOption;
+use App\Models\Family;
+use App\Models\Location;
+use App\Models\Organisation;
+use App\Models\Race;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use App\Models\Location;
-use App\Models\Family;
-use App\Models\Organisation;
-use App\Models\Race;
 
 /**
  * HasFilters
@@ -17,6 +17,7 @@ use App\Models\Race;
  * This trait adds support on models to call the filter() scope.
  * This takes parameters passed by the controller and only includes fields that are whitelisted. Whitelisted filters
  * are combined between
+ *
  * @method static self|Builder filter(?array $params = null)
  */
 trait HasFilters
@@ -24,7 +25,7 @@ trait HasFilters
     protected string|array|null $filterValue;
 
     /** @var string|null Some filters have a fellow _option field that can define more in detail what is needed */
-    protected string|null $filterOption;
+    protected ?string $filterOption;
 
     /** @var string The operator for the SQL search. For example <>, %%, %{term}, etc */
     protected string $filterOperator;
@@ -42,11 +43,13 @@ trait HasFilters
             $custom = $this->filterableColumns();
         }
         $default = $this->defaultFilterableColumns();
+
         return array_unique(array_merge($custom, $default));
     }
 
     /**
      * Default available filterable columns to every model using the HasFilters trait.
+     *
      * @return string[]
      */
     protected function defaultFilterableColumns(): array
@@ -72,12 +75,10 @@ trait HasFilters
         ];
     }
 
-    /**
-     */
     public function scopeFilter(Builder $query, array $params = []): Builder
     {
         $fields = $this->getFilterableColumns();
-        if (!is_array($params) || empty($params) || empty($fields)) {
+        if (! is_array($params) || empty($params) || empty($fields)) {
             return $query;
         }
 
@@ -86,16 +87,17 @@ trait HasFilters
         foreach ($this->filterParams as $key => $value) {
             if (isset($value) && in_array($key, $fields)) {
                 // The requested field is an array, which we don't support for anything other than tags, and locations ("or" searches)
-                if (is_array($value) && !in_array($key, ['tags', 'locations', 'organisations', 'races', 'families'])) {
+                if (is_array($value) && ! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families'])) {
                     continue;
                 }
-                $this->filterOption = !empty($params[$key . '_option']) ? $params[$key . '_option'] : null;
+                $this->filterOption = ! empty($params[$key . '_option']) ? $params[$key . '_option'] : null;
                 $this->extractSearchOperator($value, $key);
 
                 // Foreign key search
                 $segments = explode('-', $key);
                 if (count($segments) > 1) {
                     $this->foreign($query, $segments[0], $key);
+
                     return $query;
                 }
 
@@ -120,7 +122,7 @@ trait HasFilters
                     $this->filterRaces($query, $value);
                 } elseif ($key == 'families') {
                     $this->filterFamilies($query, $value);
-                } elseif (in_array($key, ['date_start' , 'date_end'])) {
+                } elseif (in_array($key, ['date_start', 'date_end'])) {
                     $this->filterDateRange($query, $key, $params);
                 } elseif ($key == 'races') {
                     $this->filterRaces($query, $value);
@@ -178,17 +180,18 @@ trait HasFilters
                 $this->filterNoneOptions($query, $key, $fields);
             }
         }
+
         return $query;
     }
 
     /**
-     * @param string|array $value (array for tags)
+     * @param  string|array  $value  (array for tags)
      */
     protected function extractSearchOperator($value, string $key): void
     {
         $operator = 'like';
         $filterValue = $value;
-        if (!in_array($key, ['tags', 'locations', 'organisations', 'races', 'families'])) {
+        if (! in_array($key, ['tags', 'locations', 'organisations', 'races', 'families'])) {
             if ($value == '!!') {
                 $operator = 'IS NULL';
                 $filterValue = null;
@@ -231,7 +234,7 @@ trait HasFilters
      */
     protected function filterOption(string $condition): bool
     {
-        return !empty($this->filterOption) && $this->filterOption === $condition;
+        return ! empty($this->filterOption) && $this->filterOption === $condition;
     }
 
     /**
@@ -249,6 +252,7 @@ trait HasFilters
             $query
                 ->whereRaw('(select count(*) from attributes as att where att.entity_id = e.id and att.name = \''
                     . ($this->filterValue) . '\') = 0');
+
             return;
         }
         $query
@@ -273,7 +277,7 @@ trait HasFilters
      */
     protected function filterConnections(Builder $query, string $key): void
     {
-        if ($key == 'connection_target' &&  Arr::get($this->filterParams, 'connection_name')) {
+        if ($key == 'connection_target' && Arr::get($this->filterParams, 'connection_name')) {
             return;
         }
 
@@ -324,7 +328,7 @@ trait HasFilters
                 continue;
             }
             // If it isn't the first term, we need to re-extract the search operators
-            if (!$firstTerm) {
+            if (! $firstTerm) {
                 $this->extractSearchOperator($searchTerm, $key);
                 $searchTerm = $this->filterValue;
             }
@@ -406,7 +410,7 @@ trait HasFilters
                 continue;
             }
             // If it isn't the first term, we need to re-extract the search operators
-            if (!$firstTerm) {
+            if (! $firstTerm) {
                 $this->extractSearchOperator($searchTerm, 'type');
                 $searchTerm = $this->filterValue;
             }
@@ -477,11 +481,10 @@ trait HasFilters
             return;
         }
         $query
-            ->joinEntity()
-        ;
+            ->joinEntity();
 
         // Make sure we always have an array
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             $value = [$value];
         }
         $raceIds = [];
@@ -492,6 +495,7 @@ trait HasFilters
         if ($this->filterOption('exclude')) {
             $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' .
                 $this->getTable() . '.id and cr.race_id in (' . implode(', ', $raceIds) . ')) = 0');
+
             return;
         }
 
@@ -515,10 +519,11 @@ trait HasFilters
     /**
      * Filter characters in location
      */
-    protected function filterLocation(Builder $query, string $value = null, string $key = null): void
+    protected function filterLocation(Builder $query, ?string $value = null, ?string $key = null): void
     {
         if (method_exists($this, 'scopeLocation')) {
             $query->location($value, $this->getFilterOption());
+
             return;
         }
         if ($this->filterOption('children')) {
@@ -539,7 +544,7 @@ trait HasFilters
     /**
      * Filter on characters on multiple locations
      */
-    protected function filterLocations(Builder $query, null|string|array $value = null, string $key = null): void
+    protected function filterLocations(Builder $query, null|string|array $value = null, ?string $key = null): void
     {
         // "none" filter keys is handled later
         if ($this->filterOption('none')) {
@@ -547,10 +552,9 @@ trait HasFilters
         }
 
         $query
-            ->joinEntity()
-        ;
+            ->joinEntity();
         // Make sure we always have an array
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             $value = [$value];
         }
         $locationIds = [];
@@ -560,6 +564,7 @@ trait HasFilters
 
         if ($this->filterOption('exclude')) {
             $query->whereNotIn($this->getTable() . '.location_id', $locationIds)->distinct();
+
             return;
         }
 
@@ -580,18 +585,17 @@ trait HasFilters
     /**
      * Filter on characters on multiple organisations
      */
-    protected function filterOrganisations(Builder $query, null|string|array $value = null, string $key = null): void
+    protected function filterOrganisations(Builder $query, null|string|array $value = null, ?string $key = null): void
     {
         // "none" filter keys is handled later
         if ($this->filterOption('none')) {
             return;
         }
         $query
-            ->joinEntity()
-        ;
+            ->joinEntity();
 
         // Make sure we always have an array
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             $value = [$value];
         }
         $orgIds = [];
@@ -602,6 +606,7 @@ trait HasFilters
         if ($this->filterOption('exclude')) {
             $query->whereRaw('(select count(*) from organisation_member as cr where cr.character_id = ' .
                 $this->getTable() . '.id and cr.organisation_id in (' . implode(', ', $orgIds) . ')) = 0');
+
             return;
         }
 
@@ -625,18 +630,17 @@ trait HasFilters
     /**
      * Filter on characters on multiple families
      */
-    protected function filterFamilies(Builder $query, null|string|array $value = null, string $key = null): void
+    protected function filterFamilies(Builder $query, null|string|array $value = null, ?string $key = null): void
     {
         // "none" filter keys is handled later
         if ($this->filterOption('none')) {
             return;
         }
         $query
-            ->joinEntity()
-        ;
+            ->joinEntity();
 
         // Make sure we always have an array
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             $value = [$value];
         }
 
@@ -648,6 +652,7 @@ trait HasFilters
         if ($this->filterOption('exclude')) {
             $query->whereRaw('(select count(*) from character_family as cr where cr.character_id = ' .
                 $this->getTable() . '.id and cr.family_id in (' . implode(', ', $familyIds) . ')) = 0');
+
             return;
         }
 
@@ -682,12 +687,13 @@ trait HasFilters
                 $query->whereRaw('(select count(*) from character_race as cr where cr.character_id = ' .
                     $this->getTable() . '.id and cr.race_id = ' . ((int) $value) . ' and cr.is_private = 0) = 0');
             }
+
             return;
 
         } elseif ($this->filterOption('children')) {
             /** @var Race|null $race */
             $race = Race::find($value);
-            if (!empty($race)) {
+            if (! empty($race)) {
                 $raceIds = $race->descendants->pluck('id')->toArray();
                 array_push($raceIds, $race->id);
                 $ids = $raceIds;
@@ -699,7 +705,7 @@ trait HasFilters
                 $join->on('cr.character_id', '=', $this->getTable() . '.id');
             })->whereIn('cr.race_id', $ids);
 
-        if (auth()->guest() || !auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->isAdmin()) {
             $query->where('cr.is_private', false);
         }
         $query->distinct();
@@ -714,13 +720,14 @@ trait HasFilters
         if ($this->filterOption('exclude')) {
             $query->whereRaw('(select count(*) from character_family as cf where cf.character_id = ' .
                 $this->getTable() . '.id and cf.family_id = ' . ((int) $value)
-                . ' ' . /*$this->subPrivacy('and cf.is_private') .*/ ') = 0');
+                . ' ' . /* $this->subPrivacy('and cf.is_private') . */ ') = 0');
+
             return;
 
         } elseif ($this->filterOption('children')) {
             /** @var Family|null $family */
             $family = Family::find($value);
-            if (!empty($family)) {
+            if (! empty($family)) {
                 $familyIds = $family->descendants->pluck('id')->toArray();
                 array_push($familyIds, $family->id);
                 $ids = $familyIds;
@@ -749,11 +756,10 @@ trait HasFilters
             return;
         }
         $query
-            ->joinEntity()
-        ;
+            ->joinEntity();
 
         // Make sure we always have an array
-        if (!is_array($value)) {
+        if (! is_array($value)) {
             $value = [$value];
         }
 
@@ -762,7 +768,7 @@ trait HasFilters
             foreach ($value as $v) {
                 $tagIds[] = (int) $v;
             }
-            //$query->leftJoin('entity_tags as et_tags', "et_tags.entity_id", 'e.id')
+            // $query->leftJoin('entity_tags as et_tags', "et_tags.entity_id", 'e.id')
             $query->whereRaw('(
                 select count(*) from entity_tags as et
                 where et.entity_id = e.id and et.tag_id in (' . implode(', ', $tagIds) . ')
@@ -772,14 +778,13 @@ trait HasFilters
         }
 
         foreach ($value as $v) {
-            if (!is_numeric($v)) {
+            if (! is_numeric($v)) {
                 continue;
             }
             $v = (int) $v;
             $query
                 ->leftJoin('entity_tags as et' . $v, "et{$v}.entity_id", 'e.id')
-                ->where("et{$v}.tag_id", $v)
-            ;
+                ->where("et{$v}.tag_id", $v);
         }
     }
 
@@ -789,7 +794,7 @@ trait HasFilters
     protected function filterDateRange(Builder $query, string $key, array $params = []): void
     {
         // Don't apply twice if both fields are set
-        if ($key === 'date_end' && !empty($params['date_start'])) {
+        if ($key === 'date_end' && ! empty($params['date_start'])) {
             return;
         }
         $start = Arr::get($params, 'date_start');
@@ -825,11 +830,11 @@ trait HasFilters
             $key = $names[$key];
         }
         // Validate the key is a filter
-        if (!in_array($key, $fields)) {
+        if (! in_array($key, $fields)) {
             return;
         }
         // Left join shenanigans
-        if (!in_array($key, ['race_id', 'family_id', 'tags', 'quest_element_id', 'member_id'])) {
+        if (! in_array($key, ['race_id', 'family_id', 'tags', 'quest_element_id', 'member_id'])) {
             if ($key === 'location_id' && method_exists($this, 'scopeLocation')) {
                 $query->location(null, FilterOption::NONE);
             } else {
@@ -872,6 +877,7 @@ trait HasFilters
             'children' => $filter = FilterOption::CHILDREN,
             default => $filter = FilterOption::INCLUDE,
         };
+
         return $filter;
     }
 
@@ -885,10 +891,11 @@ trait HasFilters
         if (property_exists($this, 'explicitFilters')) {
             return $this->explicitFilters;
         }
+
         return [];
     }
 
-    protected function subPrivacy(string $field): string|null
+    protected function subPrivacy(string $field): ?string
     {
         // Campaign admins don't have private data hidden from them
         if (auth()->check() && auth()->user()->isAdmin()) {

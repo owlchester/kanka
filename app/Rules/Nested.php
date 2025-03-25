@@ -9,6 +9,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 class Nested implements ValidationRule
 {
     protected string $className;
+
     protected mixed $self;
 
     public function __construct(string $className, mixed $self)
@@ -29,10 +30,10 @@ class Nested implements ValidationRule
             return;
         }
 
-        $model = new $this->className();
+        $model = new $this->className;
         /** @var ?Quest $parent */
         $parent = $model->where('id', $value)->first();
-        if (!$parent) {
+        if (! $parent) {
             return;
         }
 

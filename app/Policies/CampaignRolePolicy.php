@@ -3,8 +3,8 @@
 namespace App\Policies;
 
 use App\Models\Campaign;
-use App\Models\User;
 use App\Models\CampaignRole;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CampaignRolePolicy
@@ -28,7 +28,7 @@ class CampaignRolePolicy
 
     public function delete(User $user, CampaignRole $campaignRole)
     {
-        return !$campaignRole->isAdmin() && !$campaignRole->isPublic()
+        return ! $campaignRole->isAdmin() && ! $campaignRole->isPublic()
             && $user->isAdmin();
     }
 
@@ -42,17 +42,17 @@ class CampaignRolePolicy
      */
     public function removeUser(User $user, CampaignRole $campaignRole)
     {
-        if (!$this->user($user, $campaignRole)) {
+        if (! $this->user($user, $campaignRole)) {
             return false;
         }
 
         // Non-admin role? Yep the user can modify the member
-        return (bool) (!$campaignRole->isAdmin());
+        return (bool) (! $campaignRole->isAdmin());
     }
 
     public function permission(User $user, CampaignRole $campaignRole)
     {
-        return !$campaignRole->isAdmin()
+        return ! $campaignRole->isAdmin()
             && $user->isAdmin();
     }
 }

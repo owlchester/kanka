@@ -7,8 +7,8 @@ use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\ValidateReminderLength;
-use App\Models\Campaign;
 use App\Models\Calendar;
+use App\Models\Campaign;
 use App\Services\CalendarService;
 use App\Services\LengthValidatorService;
 use App\Traits\CampaignAware;
@@ -26,6 +26,7 @@ class EventController extends Controller
     use HasSubview;
 
     protected CalendarService $service;
+
     protected LengthValidatorService $lengthValidatorService;
 
     public function __construct(CalendarService $calendarService, LengthValidatorService $lengthValidatorService)
@@ -49,7 +50,7 @@ class EventController extends Controller
         }
         Datagrid::layout(\App\Renderers\Layouts\Calendar\Reminder::class)
             ->route('calendars.events', $options)
-            ->permissions(!(auth()->check() && auth()->user()->can('update', $calendar)));
+            ->permissions(! (auth()->check() && auth()->user()->can('update', $calendar)));
 
         $rows = $calendar->calendarEvents();
         if ($after) {
@@ -58,9 +59,10 @@ class EventController extends Controller
             $rows->before($calendar);
         }
 
+        // @phpstan-ignore-next-line
         $this->rows = $rows
-            ->with(['entity', 'calendar', 'entity.image', 'entity.entityType'])
-            ->has('entity')
+            ->with(['remindable', 'calendar', 'calendar.entity', 'remindable.image', 'remindable.entityType'])
+            ->whereHas('remindable')
             ->sort(request()->only(['o', 'k']))
             ->paginate();
 
@@ -73,15 +75,14 @@ class EventController extends Controller
             ->subview('calendars.events', $calendar);
     }
 
-
     public function create(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('update', $calendar->entity);
 
         $date = request()->get('date', '1-1-1');
-        list($year, $month, $day) = explode('-', $date);
+        [$year, $month, $day] = explode('-', $date);
         if (Str::startsWith($date, '-')) {
-            list($year, $month, $day) = explode('-', mb_trim($date, '-'));
+            [$year, $month, $day] = explode('-', mb_trim($date, '-'));
             $year = "-{$year}";
         }
 
@@ -117,7 +118,7 @@ class EventController extends Controller
                 ->addEvent($request->all());
 
             return redirect()->route('entities.show', $routeOptions)
-                ->with('success', __('calendars.event.success', ['event' => $link->entity->name]));
+                ->with('success', __('calendars.event.success', ['event' => $link->remindable->name]));
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('entities.show', $routeOptions)
@@ -129,11 +130,13 @@ class EventController extends Controller
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function eventLength(Campaign $campaign, Calendar $calendar, ValidateReminderLength $request)
     {
         $this->authorize('view', $calendar->entity);
+
         return response()->json($this->lengthValidatorService->validateLength($calendar, $request));
     }
 }

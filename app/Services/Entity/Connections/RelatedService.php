@@ -23,16 +23,17 @@ class RelatedService
     protected string $order = 'name';
 
     /**
-     * @param string|null $order
+     * @param  string|null  $order
      * @return $this
      */
     public function order($order): self
     {
-        if (!in_array($order, ['name', 'type'])) {
+        if (! in_array($order, ['name', 'type'])) {
             return $this;
         }
 
         $this->order = $order;
+
         return $this;
     }
 
@@ -63,8 +64,7 @@ class RelatedService
                 ->loadLocation()
                 ->loadTimelines()
                 ->loadQuests()
-                ->loadAuthoredJournals()
-            ;
+                ->loadAuthoredJournals();
         }
     }
 
@@ -78,8 +78,7 @@ class RelatedService
             ->loadItems()
             ->loadTimelines()
             ->loadDicerolls()
-            ->loadAuthoredJournals()
-        ;
+            ->loadAuthoredJournals();
     }
 
     /**
@@ -96,8 +95,7 @@ class RelatedService
             ->loadFamilies()
             ->loadTimelines()
             ->loadAuthoredJournals()
-            ->loadRaces()
-        ;
+            ->loadRaces();
     }
 
     protected function initMap()
@@ -108,17 +106,14 @@ class RelatedService
             ->loadLocation()
             ->loadTimelines()
             ->loadAuthoredJournals()
-            ->loadQuests()
-        ;
+            ->loadQuests();
     }
-
 
     protected function initRace()
     {
         $this
             ->loadChildRaces()
-            ->loadLocations()
-        ;
+            ->loadLocations();
     }
 
     protected function initOrganisation()
@@ -128,8 +123,7 @@ class RelatedService
             ->loadLocations()
             ->loadTimelines()
             ->loadQuests()
-            ->loadAuthoredJournals()
-        ;
+            ->loadAuthoredJournals();
     }
 
     /**
@@ -146,6 +140,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities/relations.connections.quest_element');
         }
+
         return $this;
     }
 
@@ -160,6 +155,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities/relations.connections.timeline_element');
         }
+
         return $this;
     }
 
@@ -174,6 +170,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities/relations.connections.map_point');
         }
+
         return $this;
     }
 
@@ -187,6 +184,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.map');
         }
+
         return $this;
     }
 
@@ -200,6 +198,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('maps.fields.map');
         }
+
         return $this;
     }
 
@@ -213,6 +212,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.dice_roll');
         }
+
         return $this;
     }
 
@@ -227,6 +227,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.conversation');
         }
+
         return $this;
     }
 
@@ -240,6 +241,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.item');
         }
+
         return $this;
     }
 
@@ -253,6 +255,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.journal');
         }
+
         return $this;
     }
 
@@ -264,6 +267,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('journals.fields.author');
         }
+
         return $this;
     }
 
@@ -277,6 +281,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.family');
         }
+
         return $this;
     }
 
@@ -290,6 +295,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.organisation');
         }
+
         return $this;
     }
 
@@ -303,6 +309,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.race');
         }
+
         return $this;
     }
 
@@ -316,6 +323,7 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.race');
         }
+
         return $this;
     }
 
@@ -329,11 +337,13 @@ class RelatedService
             $this->ids[] = $entity->id;
             $this->reasons[$entity->id][] = __('entities.location');
         }
+
         return $this;
     }
 
     /**
      * Load the entity's location if it has one
+     *
      * @return $this
      */
     protected function loadLocation(): self
@@ -342,7 +352,7 @@ class RelatedService
             return $this;
         }
         if (
-            !isset($this->entity->child->location) ||
+            ! isset($this->entity->child->location) ||
             empty($this->entity->child->location) ||
             empty($this->entity->child->location->entity)
         ) {

@@ -18,6 +18,7 @@ class Identity
         if (IdentityFacade::isImpersonating()) {
             return redirect()->route('home');
         }
+
         return $next($request);
     }
 }

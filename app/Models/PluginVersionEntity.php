@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class PluginVersionEntity
- * @package App\Models
  *
  * @property int $id
  * @property string $name
@@ -19,7 +18,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property array $related
  * @property array $posts
  * @property string $uuid
- *
  * @property EntityType $type
  * @property PluginVersion $version
  */

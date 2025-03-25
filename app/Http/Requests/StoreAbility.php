@@ -38,18 +38,20 @@ class StoreAbility extends FormRequest
             'charges' => 'nullable|max:120',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Ability $self */
         $self = request()->route('ability');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['ability_id'] = [
                 'nullable',
                 'integer',
                 'exists:abilities,id',
-                new Nested(Ability::class, $self)
+                new Nested(Ability::class, $self),
             ];
         }
 

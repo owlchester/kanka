@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class DataLayer
- * @package App\Facades
  *
  * @see \App\Services\Tracking\DatalayerService
+ *
  * @mixin \App\Services\Tracking\DatalayerService
  */
 class DataLayer extends Facade

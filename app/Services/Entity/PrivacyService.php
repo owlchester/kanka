@@ -13,11 +13,10 @@ class PrivacyService
 
     protected Entity $entity;
 
-    /**
-     */
     public function entity(Entity $entity): self
     {
         $this->entity = $entity;
+
         return $this;
     }
 
@@ -44,6 +43,7 @@ class PrivacyService
                     ->where('access', 0);
                 if ($subPerm->count() === 0) {
                     $this->data['roles'][] = $role;
+
                     continue;
                 }
             }
@@ -58,7 +58,6 @@ class PrivacyService
         }
 
         $this->members();
-
 
         return $this->data;
     }
@@ -83,6 +82,7 @@ class PrivacyService
                 $this->data['users'][] = $user;
             }
         }
+
         return $this;
     }
 }

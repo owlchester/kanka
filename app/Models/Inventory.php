@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Class Inventory
- * @package App\Models
  *
  * @property int $entity_id
  * @property ?int $item_id
@@ -85,8 +84,7 @@ class Inventory extends Model
             ->leftJoin('entities as e', 'e.id', 'inventories.entity_id')
             ->where('e.campaign_id', $campaign->id)
             ->orderBy('position', 'ASC')
-            ->limit(50)
-        ;
+            ->limit(50);
     }
 
     /**
@@ -94,9 +92,10 @@ class Inventory extends Model
      */
     public function itemName(): string
     {
-        if (empty($this->name) && !empty($this->item)) {
+        if (empty($this->name) && ! empty($this->item)) {
             return $this->item->name;
         }
+
         return (string) $this->name;
     }
 
@@ -114,6 +113,7 @@ class Inventory extends Model
         if (empty($new->name)) {
             return false;
         }
+
         return $new->save();
 
     }

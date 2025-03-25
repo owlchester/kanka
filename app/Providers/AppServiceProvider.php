@@ -2,11 +2,16 @@
 
 namespace App\Providers;
 
+use App\Http\Validators\HashValidator;
 use App\Models\Ability;
+use App\Models\AttributeTemplate;
+use App\Models\Bookmark;
+use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignFollower;
+use App\Models\CampaignInvite;
 use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
@@ -14,8 +19,6 @@ use App\Models\CampaignSetting;
 use App\Models\CampaignStyle;
 use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
-use App\Models\AttributeTemplate;
-use App\Models\Calendar;
 use App\Models\Character;
 use App\Models\Conversation;
 use App\Models\ConversationMessage;
@@ -25,50 +28,47 @@ use App\Models\DiceRollResult;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
-use App\Models\EntityEvent;
+use App\Models\Event;
 use App\Models\Family;
-use App\Http\Validators\HashValidator;
 use App\Models\Image;
 use App\Models\Inventory;
 use App\Models\Item;
 use App\Models\Journal;
 use App\Models\Location;
-use App\Models\CampaignInvite;
-use App\Models\Event;
 use App\Models\Map;
 use App\Models\MapGroup;
 use App\Models\MapLayer;
 use App\Models\MapMarker;
 use App\Models\Note;
-use App\Models\Bookmark;
+use App\Models\Organisation;
+use App\Models\OrganisationMember;
 use App\Models\Post;
 use App\Models\Preset;
 use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Models\Race;
+use App\Models\Reminder;
 use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
 use App\Models\TimelineEra;
+use App\Models\User;
 use App\Models\UserLog;
+use App\Models\Webhook;
 use App\Observers\CalendarObserver;
 use App\Observers\CampaignObserver;
 use App\Observers\CampaignUserObserver;
 use App\Observers\CharacterObserver;
-use App\Observers\FamilyObserver;
-use App\Observers\OrganisationMemberObserver;
-use App\Observers\OrganisationObserver;
-use App\Observers\TagObserver;
-use App\Observers\UserObserver;
 use App\Observers\EventObserver;
+use App\Observers\FamilyObserver;
 use App\Observers\ItemObserver;
 use App\Observers\JournalObserver;
 use App\Observers\LocationObserver;
 use App\Observers\NoteObserver;
-use App\Models\Organisation;
-use App\Models\OrganisationMember;
-use App\Models\Webhook;
-use App\Models\User;
+use App\Observers\OrganisationMemberObserver;
+use App\Observers\OrganisationObserver;
+use App\Observers\TagObserver;
+use App\Observers\UserObserver;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -111,13 +111,11 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
-    }
+    public function register() {}
 
     protected function registerDevelopWarning()
     {
-        if (!app()->runningInConsole()) {
+        if (! app()->runningInConsole()) {
             return;
         }
         if (config('app.ignore_develop_warning')) {
@@ -141,7 +139,7 @@ class AppServiceProvider extends ServiceProvider
             }
         }
 
-        if (!empty($output) && Str::startsWith($output, 'develop')) {
+        if (! empty($output) && Str::startsWith($output, 'develop')) {
             throw new InvalidOptionException(
                 "CONFIGURATION WARNING\n" .
                 "You are currently running Kanka on the unstable @develop branch. This is unstable and WILL RESULT IN DATA LOSS.\n" .
@@ -158,7 +156,7 @@ class AppServiceProvider extends ServiceProvider
     protected function registerWebObservers()
     {
         // When in console (queue, commands), we don't want observers to trigger
-        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+        if (app()->runningInConsole() && ! app()->runningUnitTests()) {
             return;
         }
 
@@ -199,7 +197,7 @@ class AppServiceProvider extends ServiceProvider
         Note::observe(NoteObserver::class);
         Tag::observe(TagObserver::class);
         Post::observe('App\Observers\PostObserver');
-        EntityEvent::observe('App\Observers\EntityEventObserver');
+        Reminder::observe('App\Observers\ReminderObserver');
         Family::observe(FamilyObserver::class);
         Image::observe('App\Observers\ImageObserver');
         Inventory::observe('App\Observers\InventoryObserver');
@@ -223,7 +221,7 @@ class AppServiceProvider extends ServiceProvider
         Race::observe('App\Observers\RaceObserver');
 
         // Tell laravel that we are using bootstrap 3 to style the paginators
-        //Paginator::useTailwind();
+        // Paginator::useTailwind();
 
         if (request()->has('_debug_perm') && config('app.debug')) {
             // Add in boot function

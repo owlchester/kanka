@@ -10,13 +10,14 @@ class Journal extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'journal' => [
                 'key' => 'name',
@@ -35,7 +36,7 @@ class Journal extends Layout
                 'label' => 'journals.fields.date',
                 'render' => function ($model) {
                     return \App\Facades\UserDate::format($model->date);
-                }
+                },
             ],
             'author' => [
                 'key' => 'author.name',
@@ -48,12 +49,12 @@ class Journal extends Layout
                 'label' => 'crud.fields.parent',
                 'render' => Standard::ParentLink,
                 'visible' => function () {
-                    return !request()->has('parent_id');
-                }
+                    return ! request()->has('parent_id');
+                },
             ],
             'tags' => [
-                'render' => Standard::TAGS
-            ]
+                'render' => Standard::TAGS,
+            ],
         ];
 
         return $columns;

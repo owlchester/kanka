@@ -29,9 +29,10 @@ class CharacterSubmenu extends BaseSubmenu implements EntitySubmenu
             $items['second']['organisations'] = [
                 'name' => Module::plural(config('entities.ids.organisation'), 'entities.organisations'),
                 'route' => 'characters.organisations',
-                'count' => $count
+                'count' => $count,
             ];
         }
+
         return $items;
     }
 }

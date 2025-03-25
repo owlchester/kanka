@@ -3,9 +3,9 @@
 namespace App\Jobs\Emails;
 
 use App\Mail\Subscription\User\FailedUserSubscriptionMail;
-use App\Notifications\Header;
 use App\Models\User;
 use App\Models\UserLog;
+use App\Notifications\Header;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -26,9 +26,6 @@ class SubscriptionFailedEmailJob implements ShouldQueue
      */
     public $userId;
 
-    /**
-     *
-     */
     public $tries = 1;
 
     /**
@@ -45,6 +42,7 @@ class SubscriptionFailedEmailJob implements ShouldQueue
         $user = User::find($this->userId);
         if (empty($user)) {
             Log::warning('Subscription Failed Email Job: unknown user id', ['userId' => $this->userId]);
+
             return;
         }
 
@@ -62,7 +60,7 @@ class SubscriptionFailedEmailJob implements ShouldQueue
 
         // Send an email to the user
         Mail::to($user->email)
-            //->bcc('hello@kanka.io')
+            // ->bcc('hello@kanka.io')
             ->send(
                 new FailedUserSubscriptionMail($user)
             );

@@ -17,13 +17,14 @@ trait RoleCache
     /**
      * Get the user's admin role in a current campaign
      */
-    public function adminRole(): array|null
+    public function adminRole(): ?array
     {
         foreach ($this->roles() as $role) {
             if ($role['is_admin']) {
                 return $role;
             }
         }
+
         return null;
     }
 
@@ -37,8 +38,10 @@ trait RoleCache
             if ($campaignId !== $this->campaign->id) {
                 continue;
             }
+
             return new Collection($campaignRoles);
         }
-        return new Collection();
+
+        return new Collection;
     }
 }

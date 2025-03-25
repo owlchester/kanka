@@ -14,6 +14,7 @@ class CopyInventoryController extends Controller
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)
@@ -26,8 +27,6 @@ class CopyInventoryController extends Controller
         ));
     }
 
-    /**
-     */
     public function store(CopyInventory $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity);
@@ -52,5 +51,4 @@ class CopyInventoryController extends Controller
                 'count' => $count,
             ]));
     }
-
 }

@@ -13,8 +13,8 @@ class ValidationEmail extends Mailable
     use SerializesModels;
 
     public User $user;
-    public string $url;
 
+    public string $url;
 
     public $date;
 

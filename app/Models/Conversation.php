@@ -14,14 +14,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Conversation
- * @package App\Models
+ *
  * @property string $name
  * @property string $image
  * @property string $type
  * @property int $target_id
  * @property bool|int $is_private
  * @property bool|int $is_closed
- *
  * @property ConversationParticipant[]|Collection $participants
  * @property ConversationMessage[]|Collection $messages
  */
@@ -39,10 +38,11 @@ class Conversation extends MiscModel
         'campaign_id',
         'target_id',
         'is_private',
-        'is_closed'
+        'is_closed',
     ];
 
     public const int TARGET_USERS = 1;
+
     public const int TARGET_CHARACTERS = 2;
 
     /**
@@ -53,7 +53,7 @@ class Conversation extends MiscModel
     /**
      * Searchable fields
      */
-    protected array $searchableColumns  = ['name'];
+    protected array $searchableColumns = ['name'];
 
     /**
      * Fields that can be sorted on
@@ -90,13 +90,14 @@ class Conversation extends MiscModel
 
     /**
      * Get a list of participants
+     *
      * @return array
      */
     public function participantsList(bool $withNames = true, bool $users = false)
     {
         $participants = [];
         foreach ($this->participants as $participant) {
-            if (!$participant->character) {
+            if (! $participant->character) {
                 continue;
             }
             if (auth()->check() && auth()->user()->can('update', $participant->character->entity)) {
@@ -106,7 +107,7 @@ class Conversation extends MiscModel
             }
         }
 
-        if (!$withNames) {
+        if (! $withNames) {
             return array_keys($participants);
         }
 
@@ -129,8 +130,6 @@ class Conversation extends MiscModel
         return (int) config('entities.ids.conversation');
     }
 
-    /**
-     */
     public function forCharacters(): bool
     {
         return $this->target_id == self::TARGET_CHARACTERS;
@@ -151,6 +150,7 @@ class Conversation extends MiscModel
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array

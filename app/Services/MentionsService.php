@@ -81,16 +81,15 @@ class MentionsService
     public function __construct(
         protected MarkupFixer $markupFixer,
         protected NewService $newService,
-    ) {
-
-    }
+    ) {}
 
     /**
      * Map the mentions in an entity
      */
     public function map(MiscModel $model, string $field = 'entry'): string
     {
-        $this->text = !empty($model->$field) ? $model->$field : '';
+        $this->text = ! empty($model->$field) ? $model->$field : '';
+
         return $this->extractAndReplace();
     }
 
@@ -100,6 +99,7 @@ class MentionsService
     public function mapText(?string $text = null): string
     {
         $this->text = $text;
+
         return $this->extractAndReplace();
     }
 
@@ -109,6 +109,7 @@ class MentionsService
     public function mapCopiedEntry(?string $text = null): string
     {
         $this->text = $text;
+
         return $this->extractAndLink();
     }
 
@@ -117,34 +118,38 @@ class MentionsService
      */
     public function mapEntity(Entity $entity, string $field = 'tooltip'): string
     {
-        $this->text = !empty($entity->$field) ? $entity->$field : '';
+        $this->text = ! empty($entity->$field) ? $entity->$field : '';
+
         return $this->extractAndReplace();
     }
 
     /**
      * Map the mentions in any model
+     *
      * @return string|string[]|null
      */
     public function mapAny(Model $model, string $field = 'entry')
     {
         $this->text = (string) $model->{$field};
+
         return $this->extractAndReplace();
     }
 
     /**
      * Map the mentions in an attribute
+     *
      * @return string|string[]|null
      */
     public function mapAttribute(Attribute $attribute, ?string $text = null)
     {
         // If the attribute mentions itself in the value, don't do any parsing, it would cause an endless loop.
         // The first check is for unchecked checkboxes
-        if (!empty($attribute->value) && Str::contains($attribute->value, $attribute->mentionName())) {
+        if (! empty($attribute->value) && Str::contains($attribute->value, $attribute->mentionName())) {
             return Attributes::parse($attribute);
         }
 
-        //Called in this order to avoid a bug that would render an attribute mention inside an attribute wrong.
-        if (!$text) {
+        // Called in this order to avoid a bug that would render an attribute mention inside an attribute wrong.
+        if (! $text) {
             $this->text = Attributes::parse($attribute);
         } else {
             $this->text = $text;
@@ -156,6 +161,7 @@ class MentionsService
     public function onlyName(bool $option = true): self
     {
         $this->onlyName = $option;
+
         return $this;
     }
 
@@ -176,24 +182,23 @@ class MentionsService
         return $this->editEntity($model, $field);
     }
 
-    /**
-     */
     protected function editEntity(Model $model, string $field): string
     {
         // We have to cast to a string for when the entity was created in the API with a NULL entry
         $this->text = (string) $model->$field;
+
         return $this->replaceForEdit();
     }
 
     /**
      * Replace span mentions into [entity:123] blocks
      */
-    public function codify(string|null $text): string
+    public function codify(?string $text): string
     {
         if (empty($text)) {
             $text = '';
         }
-        //dump($text);
+        // dump($text);
         // New entities
         $text = preg_replace_callback(
             '`\[new:([a-z_]+)\|(.*?)\]`i',
@@ -201,6 +206,7 @@ class MentionsService
                 if (count($data) !== 3) {
                     return $data[0];
                 }
+
                 // check type is valid
                 return $this->newEntityMention($data[1], $data[2]);
             },
@@ -223,20 +229,21 @@ class MentionsService
             }
 
             // Advanced attribute [attribute:123], use that
-            if (!empty($advancedAttribute)) {
+            if (! empty($advancedAttribute)) {
                 return $advancedAttribute;
             }
 
             // If the name isn't the target name, transform it into an advanced mention
             $originalName = Arr::get($attributes, 'data-name');
-            if (!empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
+            if (! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
                 return Str::replace(']', '|' . $mentionName . ']', $advancedMention);
             }
+
             return $advancedMention;
         }, $text);
 
         // Remove advanced mention name blocks
-        //dump($text);
+        // dump($text);
         $text = preg_replace(
             '`<ins class="' . self::ADVANCED_MENTION_CLASS . '" data-name="([^"]*)"></ins>`',
             '',
@@ -258,12 +265,14 @@ class MentionsService
     public function advancedMentionHelper(string $name): string
     {
         $cleanEntityName = Str::replace(['"', '&amp;'], ['\'', '&'], $name);
+
         return '<ins class="' . self::ADVANCED_MENTION_CLASS . '" data-name="'
             . $cleanEntityName . '"></ins>';
     }
 
     /**
      * Search mentions in a text and replace them with tooltiped links
+     *
      * @return string|string[]|null
      */
     protected function extractAndReplace()
@@ -336,9 +345,9 @@ class MentionsService
                 } else {
                     // An alias was used for this mention, so let's try and find it. ACL is handled directly
                     // on the EntityAlias object.
-                    if (!empty($data['alias'])) {
+                    if (! empty($data['alias'])) {
                         $alias = $hiddenEntity->assets()->alias()->where('id', $data['alias'])->first();
-                        if (!empty($alias)) {
+                        if (! empty($alias)) {
                             $data['text'] = $alias->name;
                         }
                     }
@@ -352,7 +361,7 @@ class MentionsService
 
             } else {
                 $routeOptions = [];
-                if (!empty($data['params'])) {
+                if (! empty($data['params'])) {
                     $routeParams = explode('&amp;', $data['params']);
                     foreach ($routeParams as $routeParam) {
                         // Do we whitelist? or have a max length to avoid shenanigans?
@@ -368,7 +377,7 @@ class MentionsService
                 }
 
                 $url = $entity->url('show', $routeOptions);
-                if (!empty($data['page'])) {
+                if (! empty($data['page'])) {
                     // Let's validate this new url first. Maybe we need to map to entities/id (ex inventory)
                     $entityPages = ['inventory', 'abilities', 'relations', 'attributes', 'assets'];
                     if (in_array($data['page'], $entityPages)) {
@@ -385,18 +394,18 @@ class MentionsService
                 }
                 // An alias was used for this mention, so let's try and find it. ACL is handled directly
                 // on the EntityAlias object.
-                if (!empty($data['alias'])) {
+                if (! empty($data['alias'])) {
                     $alias = $entity->assets()->alias()->where('id', $data['alias'])->first();
-                    if (!empty($alias)) {
+                    if (! empty($alias)) {
                         $data['text'] = $alias->name;
                     }
                 }
-                if (!empty($data['anchor'])) {
+                if (! empty($data['anchor'])) {
                     $url .= '#' . $data['anchor'];
                 }
 
                 $dataUrl = route('entities.tooltip', [$this->campaign, $entity]);
-                if (!empty($data['tooltip']) && $data['tooltip'] === 'attributes') {
+                if (! empty($data['tooltip']) && $data['tooltip'] === 'attributes') {
                     $dataUrl = route('entities.tooltip', [$this->campaign, $entity, 'render' => 'attributes']);
                 }
 
@@ -412,20 +421,20 @@ class MentionsService
                     $tagClasses[] = $tag->slug;
                 }
                 // Referencing a custom field on the entity
-                if (!empty($data['field'])) {
+                if (! empty($data['field'])) {
                     $field = $data['field'];
                     // Mapping
                     if ($field == 'gender') {
                         $field = 'sex';
                     }
 
-                    if (!$entity->isMissingChild()) {
+                    if (! $entity->isMissingChild()) {
                         /** @var Character|Map|Quest $child */
                         $child = $entity->child;
-                        if ($field == 'family' && !$child->families->isEmpty()) {
+                        if ($field == 'family' && ! $child->families->isEmpty()) {
                             $data['text'] = $child->characterFamilies()->first()->family->name;
                         }
-                        if ($field == 'race' && !$child->characterRaces->isEmpty()) {
+                        if ($field == 'race' && ! $child->characterRaces->isEmpty()) {
                             $data['text'] = $child->characterRaces->first()->race->name;
                         }
                         if ($field == 'calendar_date' && $child->calendar_id) {
@@ -449,6 +458,7 @@ class MentionsService
                             . '>'
                             . Arr::get($data, 'text', $entity->name)
                             . '</a>';
+
                         return '<span class="' . implode(' ', $cssClasses) . '"'
                             . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
                             . '>'
@@ -473,11 +483,12 @@ class MentionsService
                         if (isset($routeOptions['width']) && is_numeric($routeOptions['width'])) {
                             $width = $routeOptions['width'];
                         }
+
                         return '<iframe src="' . route('maps.preview', [$this->campaign, $child]) . '" class="map-preview" data-map="{{ $entity->id }}" width="' . $width . '" height="' . $height . '"></iframe>';
-                    } elseif (!$entity->isMissingChild() && isset($entity->child->$field)) {
+                    } elseif (! $entity->isMissingChild() && isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {
-                            if (isset($foreign->name) && !empty($foreign->name)) {
+                            if (isset($foreign->name) && ! empty($foreign->name)) {
                                 $data['text'] = $foreign->name;
                             }
                         } elseif (is_string($foreign)) {
@@ -525,6 +536,7 @@ class MentionsService
      * The gallery injects images as a thumbnail, instead of the final URL.
      * Meaning that when we switched from images.kanka.io to th.kanka.io,
      * all the gallery images in text were broken.
+     *
      * @return $this
      */
     protected function fixGalleryUrls(): self
@@ -537,11 +549,10 @@ class MentionsService
             config('thumbor.url'),
             $this->text
         );
+
         return $this;
     }
 
-    /**
-     */
     protected function replaceForEdit(): string
     {
         // Extract links from the entry to foreign
@@ -574,7 +585,7 @@ class MentionsService
                 }
 
                 $advancedName = $this->advancedMentionHelper($entity->name);
-                if (!Arr::has($data, 'alias')) {
+                if (! Arr::has($data, 'alias')) {
                     return Str::replaceLast(']', $advancedName . ']', $matches[0]);
                 }
 
@@ -587,6 +598,7 @@ class MentionsService
 
                 $mention = Str::replaceLast(']', $aliasName . ']', $matches[0]);
                 $replaceId = ':' . $data['id'] . '|';
+
                 return Str::replaceFirst($replaceId, ':' . $data['id'] . $advancedName . '|', $mention);
             }
 
@@ -605,6 +617,7 @@ class MentionsService
                 $name = $entity->name;
                 $dataName = Str::replace('"', '&quot;', $entity->name);
             }
+
             return '<a href="#" class="mention" data-name="' . $dataName . '" data-mention="' . $matches[0]
                 . '">' . $name . '</a>';
         }, $this->text);
@@ -614,6 +627,7 @@ class MentionsService
 
     /**
      * Replace mentions of attributes to a visual representation for the text editor
+     *
      * @return $this
      */
     protected function parseAttributesForEdit(): self
@@ -638,6 +652,7 @@ class MentionsService
             if (str_contains($matches[1], '|')) {
                 return $matches[0];
             }
+
             return '<a href="#" class="attribute attribute-mention" data-attribute="' . $matches[0]
                 . '">{' . $name . '}</a>';
         }, $this->text);
@@ -651,10 +666,11 @@ class MentionsService
 
         $hasCustom = Arr::has($data, 'custom');
         if ($hasCustom || auth()->user()->alwaysAdvancedMentions()) {
-            if (!$post) {
+            if (! $post) {
                 return $mention;
             }
             $advancedName = $this->advancedMentionHelper($post->name);
+
             return Str::replaceLast(']', $advancedName . ']', $mention);
         }
 
@@ -671,11 +687,9 @@ class MentionsService
             . '">' . $name . '</a>';
     }
 
-    /**
-     */
-    protected function entity(int $id): Entity|null
+    protected function entity(int $id): ?Entity
     {
-        if (!Arr::has($this->entities, (string) $id) && !Arr::has($this->privateEntities, (string) $id)) {
+        if (! Arr::has($this->entities, (string) $id) && ! Arr::has($this->privateEntities, (string) $id)) {
             if ($this->isCopying) {
                 CampaignLocalization::forceCampaign($this->campaign);
             }
@@ -685,9 +699,9 @@ class MentionsService
         return Arr::get($this->entities, $id);
     }
 
-    protected function post(int $id): Post|null
+    protected function post(int $id): ?Post
     {
-        if (!Arr::has($this->posts, (string) $id)) {
+        if (! Arr::has($this->posts, (string) $id)) {
             $this->posts[$id] = Post::with(['entity', 'entity.tags', 'entity.entityType'])
                 ->has('entity')
                 ->find($id);
@@ -696,15 +710,13 @@ class MentionsService
         return Arr::get($this->posts, $id);
     }
 
-    /**
-     */
-    protected function hiddenEntity(int $id): Entity|null
+    protected function hiddenEntity(int $id): ?Entity
     {
-        if (!$this->campaign->showPrivateEntityMentions()) {
+        if (! $this->campaign->showPrivateEntityMentions()) {
             return null;
         }
 
-        if (!Arr::has($this->entities, (string) $id) && !Arr::has($this->privateEntities, (string) $id)) {
+        if (! Arr::has($this->entities, (string) $id) && ! Arr::has($this->privateEntities, (string) $id)) {
             // @phpstan-ignore-next-line
             $this->privateEntities[$id] = Entity::where(['id' => $id])->withInvisible()->first();
         }
@@ -720,22 +732,18 @@ class MentionsService
         $this->entities[$entity->id] = $entity;
     }
 
-    /**
-     */
-    protected function alias(int $id): EntityAsset|null
+    protected function alias(int $id): ?EntityAsset
     {
-        if (!Arr::has($this->aliases, (string) $id)) {
+        if (! Arr::has($this->aliases, (string) $id)) {
             $this->aliases[$id] = EntityAsset::alias()->where(['id' => $id])->first();
         }
 
         return Arr::get($this->aliases, $id);
     }
 
-    /**
-     */
-    protected function attribute(int $id): Attribute|null
+    protected function attribute(int $id): ?Attribute
     {
-        if (!Arr::has($this->attributes, (string) $id)) {
+        if (! Arr::has($this->attributes, (string) $id)) {
             $this->attributes[$id] = Attribute::where(['id' => $id])->first();
         }
 
@@ -753,9 +761,10 @@ class MentionsService
             $segments = explode('|', $matches[2]);
             $id = (int) $segments[0];
 
-            if (!in_array($id, $this->mentionedEntities)) {
+            if (! in_array($id, $this->mentionedEntities)) {
                 $this->mentionedEntities[] = $id;
             }
+
             return $matches[0];
         }, $this->text);
 
@@ -763,7 +772,7 @@ class MentionsService
         $ids = [];
         // @phpstan-ignore-next-line
         foreach ($this->mentionedEntities as $id) {
-            if (!Arr::has($this->entities, $id)) {
+            if (! Arr::has($this->entities, $id)) {
                 $ids[] = $id;
             }
         }
@@ -776,7 +785,7 @@ class MentionsService
         // Directly get with the mentioned entity types (provided they are valid)
         // @phpstan-ignore-next-line
         $entities = Entity::whereIn('id', $ids)->with(['tags:id,name,slug', 'entityType:id,code,is_special'])->get();
-        //dump(count($ids));
+        // dump(count($ids));
         foreach ($entities as $entity) {
             $this->entities[$entity->id] = $entity;
             $findKey = array_search($entity->id, $ids);
@@ -791,17 +800,17 @@ class MentionsService
     protected function prepareHiddenEntities(): void
     {
         // For some reason this is sometimes false
-        if (!isset($this->campaign)) {
+        if (! isset($this->campaign)) {
             $this->campaign = CampaignLocalization::getCampaign();
         }
-        if (!$this->campaign->showPrivateEntityMentions()) {
+        if (! $this->campaign->showPrivateEntityMentions()) {
             return;
         }
 
         // Remove those already cached in memory
         $ids = [];
         foreach ($this->hiddenEntities as $id) {
-            if (!Arr::has($this->privateEntities, $id)) {
+            if (! Arr::has($this->privateEntities, $id)) {
                 $ids[] = $id;
             }
         }
@@ -813,7 +822,7 @@ class MentionsService
         // Directly get with the mentioned entity types (provided they are valid)
         // @phpstan-ignore-next-line
         $entities = Entity::whereIn('id', $ids)->with(['entityType:id,code,is_special'])->withInvisible()->get();
-        //dump(count($ids));
+        // dump(count($ids));
         foreach ($entities as $entity) {
             $this->privateEntities[$entity->id] = $entity;
         }
@@ -827,7 +836,7 @@ class MentionsService
         // Remove those already cached in memory
         $ids = [];
         foreach ($this->mentionedAttributes as $id) {
-            if (!Arr::has($this->attributes, $id)) {
+            if (! Arr::has($this->attributes, $id)) {
                 $ids[] = $id;
             }
         }
@@ -855,11 +864,12 @@ class MentionsService
      */
     protected function validEntityTypes(): array
     {
-        if (!empty($this->validEntityTypes)) {
+        if (! empty($this->validEntityTypes)) {
             return $this->validEntityTypes;
         }
 
         $validEntityTypes = array_keys(config('entities.ids'));
+
         return $this->validEntityTypes = $validEntityTypes;
     }
 
@@ -871,9 +881,10 @@ class MentionsService
         $this->mentionedAttributes = [];
         preg_replace_callback('`\{attribute:(.*?)\}`i', function ($matches) {
             $id = (int) $matches[1];
-            if (!in_array($id, $this->mentionedAttributes)) {
+            if (! in_array($id, $this->mentionedAttributes)) {
                 $this->mentionedAttributes[] = $id;
             }
+
             return $matches[0];
         }, $this->text);
 
@@ -890,7 +901,7 @@ class MentionsService
             }
             // No entity found, the user might not be allowed to see it, if theres a fallback, apply it
             if (empty($attribute)) {
-                if (!$fallback) {
+                if (! $fallback) {
                     $replace = '<i class="unknown-mention unknown-attribute">' . __('crud.history.unknown') . '</i>';
                 } else {
                     $replace = '<i class="unknown-mention unknown-attribute">' . $fallback . '</i>';
@@ -899,6 +910,7 @@ class MentionsService
                 $replace = '<span class="attribute attribute-mention" data-title="' . e($attribute->name)
                     . '" data-toggle="tooltip">' . $attribute->mappedValue() . '</span>';
             }
+
             return $replace;
         }, $this->text);
     }
@@ -906,23 +918,24 @@ class MentionsService
     /**
      * Replace any table-of-content blocks with a real HTML table of content, adding unique ids to each heading
      * so that links can work.
+     *
      * @return void
      */
     protected function mapCodes()
     {
         // Re-use the same markupFixer to keep references of previously generated slugs on this page
-        if (!isset($this->markupFixer)) {
-            $this->markupFixer = new MarkupFixer(null, new TocSlugify());
+        if (! isset($this->markupFixer)) {
+            $this->markupFixer = new MarkupFixer(null, new TocSlugify);
         }
-        //$markupFixer = new MarkupFixer(null, new TocSlugify());
-        $tocGenerator = new \TOC\TocGenerator();
+        // $markupFixer = new MarkupFixer(null, new TocSlugify());
+        $tocGenerator = new \TOC\TocGenerator;
         $this->text = $this->markupFixer->fix($this->text);
 
-        if (!Str::contains($this->text, '{table-of-contents}')) {
+        if (! Str::contains($this->text, '{table-of-contents}')) {
             return;
         }
 
-        //$this->text = $this->markupFixer->fix($this->text);
+        // $this->text = $this->markupFixer->fix($this->text);
         $toc = $tocGenerator->getHtmlMenu($this->text);
         $this->text = Str::replaceFirst(
             '{table-of-contents}',
@@ -944,7 +957,7 @@ class MentionsService
 
         /** @var ?EntityType $entityType */
         $entityType = $types->where('code', $type)->first();
-        if (!$entityType) {
+        if (! $entityType) {
             return $name;
         }
 
@@ -988,11 +1001,11 @@ class MentionsService
     protected function linkAttributes(string $html): array
     {
         // Don't waste time on the expensive DOMDocument call if there is no mention
-        if (!Str::contains($html, ['"mention"', '"post-mention"', '"attribute attribute-mention"'])) {
+        if (! Str::contains($html, ['"mention"', '"post-mention"', '"attribute attribute-mention"'])) {
             return [];
         }
         $attributes = [];
-        $dom = new \DOMDocument();
+        $dom = new \DOMDocument;
         try {
             $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html);
 
@@ -1001,7 +1014,7 @@ class MentionsService
 
             $validAttributes = ['class', 'data-name', 'data-mention', 'data-attribute'];
             foreach ($validAttributes as $attribute) {
-                if (!$link->hasAttribute($attribute)) {
+                if (! $link->hasAttribute($attribute)) {
                     continue;
                 }
                 $attributes[$attribute] = $link->getAttribute($attribute);
@@ -1017,10 +1030,11 @@ class MentionsService
     {
         $post = $this->post($data['id']);
         $isTranscluding = Arr::get($data, 'text') === 'transclude';
-        if (!$post) {
+        if (! $post) {
             if ($this->onlyName || $isTranscluding) {
                 return __('crud.history.unknown');
             }
+
             return Arr::get(
                 $data,
                 'text',
@@ -1056,6 +1070,7 @@ class MentionsService
                 . '>'
                 . $post->name
                 . '</a>';
+
             return '<span class="' . implode(' ', $cssClasses) . '"'
                 . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'
                 . '>'
@@ -1069,6 +1084,7 @@ class MentionsService
         if ($this->onlyName) {
             return Arr::get($data, 'text', $post->name);
         }
+
         return '<a href="' . $url . '"'
             . ' class="' . implode(' ', $cssClasses) . '"'
             . ' data-entity-tags="' . implode(' ', $tagClasses) . '"'

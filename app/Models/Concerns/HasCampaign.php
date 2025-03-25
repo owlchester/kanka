@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Trait HasCampaign
- * @package App\Models\concerns
  *
  * @property int $campaign_id
  * @property Campaign $campaign
@@ -21,11 +20,10 @@ trait HasCampaign
     /** @var bool Determine if the query context is limited to the current campaign */
     protected bool $withCampaignLimit = true;
 
-    /**
-     */
     public function scopeAllCampaigns(Builder $builder): Builder
     {
         $this->withCampaignLimit = false;
+
         return $builder;
     }
 
@@ -42,7 +40,7 @@ trait HasCampaign
      */
     public static function bootHasCampaign()
     {
-        static::addGlobalScope(new CampaignScope());
+        static::addGlobalScope(new CampaignScope);
     }
 
     public function campaign(): BelongsTo

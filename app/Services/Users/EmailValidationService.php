@@ -2,10 +2,10 @@
 
 namespace App\Services\Users;
 
-use App\Traits\UserAware;
+use App\Jobs\Emails\Subscriptions\EmailValidationJob;
 use App\Models\UserFlag;
 use App\Models\UserValidation;
-use App\Jobs\Emails\Subscriptions\EmailValidationJob;
+use App\Traits\UserAware;
 use Illuminate\Support\Str;
 
 class EmailValidationService
@@ -27,12 +27,12 @@ class EmailValidationService
             return;
         }
 
-        $flag = new UserFlag();
+        $flag = new UserFlag;
         $flag->user_id = $this->user->id;
         $flag->flag = UserFlag::FLAG_EMAIL;
         $flag->save();
 
-        $token = new UserValidation();
+        $token = new UserValidation;
         $token->token = Str::uuid();
         $token->user_id = $this->user->id;
         $token->is_valid = false;

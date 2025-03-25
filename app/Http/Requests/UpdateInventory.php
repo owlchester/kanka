@@ -28,6 +28,7 @@ class UpdateInventory extends StoreInventory
         $rules = parent::rules();
         unset($rules['item_id.*']);
         $rules['item_id'] = 'nullable|required_without:name|exists:items,id';
+
         return $this->clean($rules);
     }
 }

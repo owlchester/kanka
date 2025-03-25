@@ -29,6 +29,7 @@ class ImageController extends Controller
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function saveFocus(StoreImageFocus $request, Campaign $campaign, Entity $entity)

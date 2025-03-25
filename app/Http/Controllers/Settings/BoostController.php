@@ -21,13 +21,14 @@ class BoostController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function index()
     {
-        if (!auth()->user()->hasBoosterNomenclature()) {
+        if (! auth()->user()->hasBoosterNomenclature()) {
             return redirect()->route('settings.premium');
         }
         // If a campaign was provided, make sure we have access to it
@@ -40,9 +41,9 @@ class BoostController extends Controller
         $boosts = $user->boosts()->with('campaign')->groupBy('campaign_id')->get();
         $userCampaigns = $user->campaigns()->unboosted()->whereNotIn('campaigns.id', $boosts->pluck('campaign_id'))->get();
 
-        if (!empty($campaignId)) {
+        if (! empty($campaignId)) {
             /** @var Campaign $campaign */
-            $campaign = Campaign::where(['id' => (int)$campaignId])->firstOrFail();
+            $campaign = Campaign::where(['id' => (int) $campaignId])->firstOrFail();
             CampaignCache::campaign($campaign);
             $this->authorize('access', $campaign);
 
@@ -59,7 +60,6 @@ class BoostController extends Controller
             ->with('campaigns', $userCampaigns)
             ->with('boosts', $boosts)
             ->with('focus', $campaign)
-            ->with('superboost', $superboost)
-        ;
+            ->with('superboost', $superboost);
     }
 }

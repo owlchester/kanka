@@ -11,7 +11,6 @@ use App\Observers\VisibilityObserver;
  *
  * Add a visibility permission to subelements, using the Visibility enum
  *
- * @package App\Traits
  *
  * @property ?Visibility $visibility_id
  */
@@ -24,13 +23,14 @@ trait HasVisibility
      */
     public static function bootHasVisibility()
     {
-        static::addGlobalScope(new VisibilityIDScope());
+        static::addGlobalScope(new VisibilityIDScope);
         static::observe(app(VisibilityObserver::class));
     }
 
     public function skipAllIcon(): self
     {
         $this->skipAllIcon = true;
+
         return $this;
     }
 
@@ -44,6 +44,7 @@ trait HasVisibility
         if ($this->visibility_id === Visibility::All) {
             if ($this->skipAllIcon) {
                 $icon['skip'] = true;
+
                 return $icon;
             }
             $icon['class'] = 'fa-solid fa-eye';
@@ -73,6 +74,7 @@ trait HasVisibility
             if ($this->skipAllIcon) {
                 return '';
             }
+
             return __('crud.visibilities.all');
         } elseif ($this->visibility_id === Visibility::Admin->value) {
             return __('crud.visibilities.admin');
@@ -105,9 +107,9 @@ trait HasVisibility
         }
 
         // If it's a visibility self & admin, and we're not the creator, we can't change this
-        if ($this->visibility_id === Visibility::AdminSelf->value && !$this->isCreator()) {
+        if ($this->visibility_id === Visibility::AdminSelf->value && ! $this->isCreator()) {
             $options = [Visibility::AdminSelf->value => __('crud.visibilities.admin-self')];
-        } elseif ($this->visibility_id === Visibility::Self->value && !$this->isCreator()) {
+        } elseif ($this->visibility_id === Visibility::Self->value && ! $this->isCreator()) {
             $options = [Visibility::Self->value => __('crud.visibilities.self')];
         }
 

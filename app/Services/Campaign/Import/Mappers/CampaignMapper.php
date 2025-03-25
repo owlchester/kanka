@@ -18,11 +18,11 @@ class CampaignMapper
         $forbidden = ['slug', 'name', 'image', 'export_date', 'visibility_id'];
         $fillable = $this->campaign->getFillable();
         foreach ($this->data as $property => $value) {
-            if (in_array($property, $forbidden) && !empty($this->campaign->$property)) {
+            if (in_array($property, $forbidden) && ! empty($this->campaign->$property)) {
                 continue;
             }
-            if (!is_array($value)) {
-                if (!in_array($property, $fillable)) {
+            if (! is_array($value)) {
+                if (! in_array($property, $fillable)) {
                     continue;
                 }
                 $this->campaign->$property = $value;
@@ -41,6 +41,7 @@ class CampaignMapper
         }
 
         $this->campaign->save();
+
         return $this->campaign;
     }
 
@@ -55,11 +56,12 @@ class CampaignMapper
         if (Storage::exists($this->data['image'])) {
             Storage::copy($this->data['image'], $destination);
             $this->campaign->$field = $destination;
+
             return;
         }
 
         $path = $this->path . '/' . $this->data[$field];
-        if (!Storage::disk('local')->exists($path)) {
+        if (! Storage::disk('local')->exists($path)) {
             return;
         }
 

@@ -18,7 +18,6 @@ use Laravel\Scout\Searchable;
 
 /**
  * Class TimelineElement
- * @package App\Models
  *
  * @property int $id
  * @property int $timeline_id
@@ -32,7 +31,6 @@ use Laravel\Scout\Searchable;
  * @property bool|int $use_entity_entry
  * @property bool|int $is_collapsed
  * @property bool|int $use_event_date
- *
  * @property Timeline $timeline
  * @property TimelineEra $era
  * @property Entity $entity
@@ -76,7 +74,7 @@ class TimelineElement extends Model
     protected array $sanitizable = [
         'name',
         'date',
-        'icon'
+        'icon',
     ];
 
     public function timeline(): BelongsTo
@@ -94,8 +92,6 @@ class TimelineElement extends Model
         return $this->belongsTo(Entity::class, 'entity_id');
     }
 
-    /**
-     */
     public function scopeOrdered(Builder $query): Builder
     {
         return $query
@@ -103,19 +99,18 @@ class TimelineElement extends Model
             ->orderBy('position');
     }
 
-    /**
-     */
     public function elementName(): string
     {
-        if (!empty($this->entity_id)) {
+        if (! empty($this->entity_id)) {
             return $this->entity?->name ?? __('crud.history.unknown');
         }
+
         return $this->name;
     }
 
     public function mentionName(): string
     {
-        if (!empty($this->name)) {
+        if (! empty($this->name)) {
             return strip_tags(htmlentities($this->name));
         }
 
@@ -144,11 +139,10 @@ class TimelineElement extends Model
         if (empty($this->entity_id)) {
             return false;
         }
+
         return empty($this->entity);
     }
 
-    /**
-     */
     public function editingUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'entity_user')
@@ -169,12 +163,12 @@ class TimelineElement extends Model
         if (empty($this->entity_id)) {
             return true;
         }
-        return $this->entity && !$this->entity->isMissingChild();
+
+        return $this->entity && ! $this->entity->isMissingChild();
     }
 
     /**
      * Get the value used to index the model.
-     *
      */
     public function getScoutKey()
     {
@@ -208,7 +202,7 @@ class TimelineElement extends Model
             'campaign_id' => $this->timeline->entity->campaign_id,
             'entity_id' => $this->timeline->entity->id,
             'name' => $this->name,
-            'type'  => 'timeline_element',
+            'type' => 'timeline_element',
             'entry' => strip_tags($this->entry),
         ];
     }

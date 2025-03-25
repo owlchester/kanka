@@ -23,7 +23,7 @@ class DeleteEntityType extends FormRequest
     public function rules(): array
     {
         return [
-            'delete' => ['required', 'string', new Confirm()]
+            'delete' => ['required', 'string', new Confirm],
         ];
     }
 }

@@ -19,6 +19,7 @@ trait MemberCache
                 'id' => $member->user_id,
             ];
         }
+
         return $data;
     }
 }

@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\Storage;
 
 /**
  * Class Image
- * @package App\Models
  *
  * @property string $id
  * @property string $name
@@ -36,7 +35,6 @@ use Illuminate\Support\Facades\Storage;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Image $imageFolder
- *
  * @property Image[] $folders
  * @property Image[] $images
  * @property Entity[] $entities
@@ -45,12 +43,9 @@ use Illuminate\Support\Facades\Storage;
  * @property MapLayer[] $mapLayers
  * @property Inventory[] $inventories
  * @property Entity[] $headers
- *
  * @property string $path
  * @property string $file
  * @property string $folder
- *
- *
  * @property int $_usageCount
  *
  * @method static Builder|self acl(bool $browse)
@@ -76,7 +71,7 @@ class Image extends Model
         'folder_id',
         'visibility_id',
         'focus_x',
-        'focus_y'
+        'focus_y',
     ];
 
     public $casts = [
@@ -124,8 +119,7 @@ class Image extends Model
     {
         return $this->hasMany(EntityAsset::class, 'image_uuid', 'id')
             ->with('entity')
-            ->has('entity')
-        ;
+            ->has('entity');
     }
 
     public function headers(): HasMany
@@ -138,8 +132,7 @@ class Image extends Model
         return $this->hasMany(ImageMention::class, 'image_id', 'id')
             ->with('entity')
             ->with('post')
-            ->has('entity')
-        ;
+            ->has('entity');
     }
 
     public function inEntities(): array
@@ -202,29 +195,21 @@ class Image extends Model
         return 'string';
     }
 
-    /**
-     */
     public function getPathAttribute(): string
     {
         return $this->folder . '/' . $this->file;
     }
 
-    /**
-     */
     public function getFileAttribute(): string
     {
         return $this->id . '.' . $this->ext;
     }
 
-    /**
-     */
     public function getFolderAttribute(): string
     {
         return 'campaigns/' . $this->campaign_id;
     }
 
-    /**
-     */
     public function niceSize(): string
     {
         if ($this->size > 1000) {
@@ -234,8 +219,6 @@ class Image extends Model
         return $this->size . ' KB';
     }
 
-    /**
-     */
     public function scopeImageFolder(Builder $query, ?string $folder = null): Builder
     {
         if (empty($folder)) {
@@ -245,19 +228,14 @@ class Image extends Model
         return $query->where('folder_id', $folder);
     }
 
-    /**
-     */
     public function scopeDefaultOrder(Builder $query): Builder
     {
         return $query
             ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')
-            ->orderBy('name', 'asc')
-        ;
+            ->orderBy('name', 'asc');
     }
 
-    /**
-     */
     public function scopeFolders(Builder $query): Builder
     {
         return $query
@@ -267,17 +245,19 @@ class Image extends Model
 
     public function scopeAcl(Builder $query, bool $browse): Builder
     {
-        if (!$browse) {
+        if (! $browse) {
             return $query->where('created_by', auth()->user()->id);
         }
+
         return $query;
     }
 
-    public function scopeNamed(Builder $query, string|null $term): Builder
+    public function scopeNamed(Builder $query, ?string $term): Builder
     {
         if (empty($term)) {
             return $query;
         }
+
         return $query->where('name', 'like', '%' . $term . '%');
     }
 
@@ -287,19 +267,16 @@ class Image extends Model
             // @phpstan-ignore-next-line
             return $query->imageFolder($folder);
         }
+
         // @phpstan-ignore-next-line
         return $query->named($term);
     }
 
-    /**
-     */
     public function hasNoFolders(): bool
     {
         return $this->images()->where('is_folder', '1')->count() == 0;
     }
 
-    /**
-     */
     public function getImagePath($width = 40, $height = 40): string
     {
         return Img::resetCrop()->crop($width, $height)->url($this->path);
@@ -327,15 +304,16 @@ class Image extends Model
         }
         Img::reset();
 
-        if (!$sizeY && $sizeX) {
+        if (! $sizeY && $sizeX) {
             $sizeY = $sizeX;
-        } elseif (!$sizeX && $sizeY) {
+        } elseif (! $sizeX && $sizeY) {
             $sizeX = $sizeY;
         }
         if ($sizeX && $sizeY) {
-            if (!$this->focus_x && !$this->focus_y) {
+            if (! $this->focus_x && ! $this->focus_y) {
                 return Img::crop($sizeX, $sizeY)->url($this->path);
             }
+
             return Img::focus($this->focus_x, $this->focus_y)->crop($sizeX, $sizeY)->url($this->path);
         }
 
@@ -358,6 +336,7 @@ class Image extends Model
         if ($cloudfront) {
             return Storage::disk('cloudfront')->url($path);
         }
+
         return Storage::url($path);
     }
 }

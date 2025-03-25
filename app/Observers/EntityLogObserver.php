@@ -9,7 +9,6 @@ use App\Models\Entity;
  * Class EntityLogObserver
  *
  * Added as an observer to the Entity model
- * @package App\Observers
  */
 class EntityLogObserver
 {
@@ -21,7 +20,7 @@ class EntityLogObserver
     public function updated(Entity $entity)
     {
         // Don't log updates if just did one (typically when creating, restoring or bulk editing)
-        if (!empty($entity->getOriginal('deleted_at'))) {
+        if (! empty($entity->getOriginal('deleted_at'))) {
             return;
         }
 
@@ -31,7 +30,7 @@ class EntityLogObserver
     public function deleted(Entity $entity)
     {
         // Not soft deleting? Nothing more to do
-        if (!$entity->trashed()) {
+        if (! $entity->trashed()) {
             return;
         }
         EntityLogger::entity($entity)->delete();

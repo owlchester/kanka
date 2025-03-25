@@ -15,8 +15,6 @@ class RecoveryService
     /** @var array Child IDs to be deleted */
     protected array $childIds = [];
 
-    /**
-     */
     public function recover(array $ids): array
     {
         $posts = [];
@@ -37,7 +35,7 @@ class RecoveryService
     {
         /** @var ?Post $post */
         $post = Post::onlyTrashed()->find($id);
-        if (!$post) {
+        if (! $post) {
             return null;
         }
         if ($post->entity->deleted_at) {
@@ -45,6 +43,7 @@ class RecoveryService
         }
         $post->restore();
         $options = ['#post-' . $post->id];
+
         return $post->entity->url('show', $options);
     }
 }

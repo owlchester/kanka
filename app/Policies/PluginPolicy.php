@@ -3,8 +3,8 @@
 namespace App\Policies;
 
 use App\Models\Plugin;
-use App\Traits\AdminPolicyTrait;
 use App\Models\User;
+use App\Traits\AdminPolicyTrait;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PluginPolicy
@@ -24,13 +24,13 @@ class PluginPolicy
 
     public function changelog(User $user, Plugin $plugin): bool
     {
-        return $user->isAdmin() && !$plugin->hasUpdate();
+        return $user->isAdmin() && ! $plugin->hasUpdate();
     }
 
     public function enable(User $user, Plugin $plugin): bool
     {
         // @phpstan-ignore-next-line
-        return $user->isAdmin() && $plugin->isTheme() && !$plugin->pivot->is_active;
+        return $user->isAdmin() && $plugin->isTheme() && ! $plugin->pivot->is_active;
     }
 
     public function disable(User $user, Plugin $plugin): bool

@@ -18,7 +18,7 @@ class PremiumCampaign
     public function handle(Request $request, Closure $next)
     {
         $campaign = $request->route('campaign');
-        if (!$campaign instanceof Campaign) {
+        if (! $campaign instanceof Campaign) {
             return $next($request);
         }
         if ($campaign->premium()) {
@@ -27,7 +27,7 @@ class PremiumCampaign
 
         if ($request->is('api/*') || Domain::isApi()) {
             return response()->json([
-                'error' => __('Required premium features to be enabled.')
+                'error' => __('Required premium features to be enabled.'),
             ], 401);
         }
     }

@@ -3,8 +3,8 @@
 namespace App\Services\Account;
 
 use App\Jobs\Users\DeleteUser;
-use App\Traits\UserAware;
 use App\Models\User;
+use App\Traits\UserAware;
 
 class DeletionService
 {
@@ -22,6 +22,7 @@ class DeletionService
         // We also need to flush the session (campaign_id and other things) since this could cause
         // weird behaviour if the user registers a new account.
         request()->session()->flush();
+
         return true;
     }
 
@@ -30,7 +31,7 @@ class DeletionService
      */
     protected function subscription(): void
     {
-        if (!$this->user->hasStripeId()) {
+        if (! $this->user->hasStripeId()) {
             return;
         }
 

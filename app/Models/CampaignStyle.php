@@ -16,7 +16,6 @@ use Illuminate\Support\Str;
 
 /**
  * Class CampaignStyle
- * @package App\Models
  *
  * @property int $id
  * @property string $name
@@ -69,15 +68,11 @@ class CampaignStyle extends Model
         return $query->where('is_theme', $theme);
     }
 
-    /**
-     */
     public function length(): string
     {
         return (string) number_format(mb_strlen($this->content));
     }
 
-    /**
-     */
     public function url(string $sub): string
     {
         return 'campaign_styles.' . $sub;
@@ -88,10 +83,9 @@ class CampaignStyle extends Model
         return $this->is_theme;
     }
 
-
-    public function content(): string|null
+    public function content(): ?string
     {
-        if (!$this->isTheme()) {
+        if (! $this->isTheme()) {
             return $this->content;
         }
 
@@ -102,6 +96,7 @@ class CampaignStyle extends Model
                 $theme[] = '  --' . $k . ': ' . $v . ';';
             }
             $theme[] = '}';
+
             return implode("\n", $theme);
         } catch (Exception $e) {
             return '/** Issue with the theme, please contact us */' . "\n\n";

@@ -11,8 +11,6 @@ class QuestCacheService extends BaseCache
 {
     use CampaignAware;
 
-    /**
-     */
     public function roleSuggestion(): array
     {
         $key = $this->roleSuggestionKey();
@@ -28,8 +26,8 @@ class QuestCacheService extends BaseCache
             ->pluck('role')
             ->all();
 
-
         Cache::put($key, $data, 24 * 3600);
+
         return $data;
     }
 
@@ -41,9 +39,9 @@ class QuestCacheService extends BaseCache
         $this->forget(
             $this->roleSuggestionKey()
         );
+
         return $this;
     }
-
 
     /**
      * Type suggestion cache key

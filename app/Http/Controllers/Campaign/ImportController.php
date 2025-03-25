@@ -11,6 +11,7 @@ use App\Services\Campaign\Import\PrepareService;
 class ImportController extends Controller
 {
     protected PrepareService $service;
+
     public function __construct(PrepareService $prepareService)
     {
         $this->middleware('auth');
@@ -33,6 +34,7 @@ class ImportController extends Controller
         // Ajax Datagrid
         if (request()->ajax()) {
             $html = view('layouts.datagrid._table')->with('rows', $rows)->render();
+
             return response()->json([
                 'success' => true,
                 'html' => $html,
@@ -47,12 +49,9 @@ class ImportController extends Controller
                 ->token();
         }
 
-
-
         return view('campaigns.import.index')
             ->with('campaign', $campaign)
             ->with('token', $token)
-            ->with('rows', $rows)
-        ;
+            ->with('rows', $rows);
     }
 }

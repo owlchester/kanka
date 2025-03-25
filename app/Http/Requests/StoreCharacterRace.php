@@ -29,7 +29,7 @@ class StoreCharacterRace extends FormRequest
         return $this->clean([
             'race_id' => 'required|exists:races,id',
             'members' => [
-                '*' => 'exists:characters,id'
+                '*' => 'exists:characters,id',
             ],
         ]);
     }

@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\SubscriptionEndJob;
+use App\Models\User;
 use App\Models\UserLog;
 use App\Services\Subscription\PaymentMethodService;
 use App\Services\SubscriptionService;
-use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Http\Controllers\WebhookController as CashierController;
@@ -36,12 +36,13 @@ class WebhookController extends CashierController
             // If the status is past_due, we need to remind the user to update their credit card info.
             // Also if the user is cancelling, we've already handled that in Kanka, we don't need to handle it here, but
             // stripe will still tell us about it.
-            if ($status != 'past_due' && !$this->isCancelling($payload)) {
+            if ($status != 'past_due' && ! $this->isCancelling($payload)) {
                 $service->user($user)->webhook()
                     ->plan($payload['data']['object']['plan']['id'])
                     ->finish();
             }
         }
+
         return $response;
     }
 
@@ -72,11 +73,11 @@ class WebhookController extends CashierController
      */
     protected function isCancelling(array $data): bool
     {
-        //Log::debug('data', $data);
+        // Log::debug('data', $data);
         $cancel = Arr::get($data, 'object.canceled_at', null);
         $previousCancel = Arr::get($data, 'previous_attributes.canceled_at', null);
 
-        return !empty($cancel) && empty($previousCancel);
+        return ! empty($cancel) && empty($previousCancel);
     }
 
     /**

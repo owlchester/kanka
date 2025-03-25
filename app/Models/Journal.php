@@ -6,10 +6,10 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
+use App\Models\Concerns\HasReminder;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
-use App\Traits\CalendarDateTrait;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +19,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Journal
- * @package App\Models
  *
  * @property int $id
  * @property string $date
@@ -33,13 +32,13 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 class Journal extends MiscModel
 {
     use Acl;
-    use CalendarDateTrait;
     use ExportableTrait;
     use HasCampaign;
     use HasFactory;
     use HasFilters;
     use HasLocation;
     use HasRecursiveRelationships;
+    use HasReminder;
     use Nested;
     use Sanitizable;
     use SoftDeletes;
@@ -76,16 +75,17 @@ class Journal extends MiscModel
         'character.name',
         'parent.name',
         'type',
-        //'character.name',
+        // 'character.name',
     ];
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
         'location_id',
-        //'character_id',
+        // 'character_id',
         'calendar_id',
         'journal_id',
         'author_id',
@@ -146,9 +146,10 @@ class Journal extends MiscModel
         $locationIds = [$this->id];
         foreach ($this->descendants as $descendant) {
             $locationIds[] = $descendant->id;
-        };
+        }
 
-        $table = new Journal();
+        $table = new Journal;
+
         return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)->with('parent');
     }
 
@@ -172,6 +173,7 @@ class Journal extends MiscModel
 
     /**
      * Parent ID field for the Node trait
+     *
      * @return string
      */
     public function getParentKeyName()
@@ -184,21 +186,23 @@ class Journal extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if (!empty($this->date)) {
+        if (! empty($this->date)) {
             return true;
         }
 
-        if (!empty($this->author) || !empty($this->location)) {
+        if (! empty($this->author) || ! empty($this->location)) {
             return true;
         }
-        if (!empty($this->calendarReminder())) {
+        if (! empty($this->calendarReminder())) {
             return true;
         }
+
         return parent::showProfileInfo();
     }
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
@@ -229,6 +233,7 @@ class Journal extends MiscModel
         if (auth()->check() && auth()->user()->isAdmin()) {
             $columns['is_private'] = __('crud.fields.is_private');
         }
+
         return $columns;
     }
 }

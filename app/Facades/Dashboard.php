@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Dashboard
- * @package App\Facades
  *
  * @mixin DashboardService
+ *
  * @see DashboardService
  */
 class Dashboard extends Facade

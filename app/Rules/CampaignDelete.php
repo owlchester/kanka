@@ -15,7 +15,7 @@ class CampaignDelete implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (!Str::is(mb_strtolower($value), 'delete')) {
+        if (! Str::is(mb_strtolower($value), 'delete')) {
             $fail(__('validation.delete_campaign', ['code' => 'delete']));
         }
     }

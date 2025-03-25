@@ -40,6 +40,7 @@ class UserApiController extends ApiController
 
     /**
      * Add a single user to a role
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function add(UpdateUserRole $request, Campaign $campaign)
@@ -51,7 +52,7 @@ class UserApiController extends ApiController
 
         if ($result) {
             return response()->json([
-                'data' => 'role successfully added to user'
+                'data' => 'role successfully added to user',
             ]);
         }
 
@@ -60,6 +61,7 @@ class UserApiController extends ApiController
 
     /**
      * Remove a role from a user
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function remove(UpdateUserRole $request, Campaign $campaign)
@@ -71,7 +73,7 @@ class UserApiController extends ApiController
 
         if ($result) {
             return response()->json([
-                'data' => 'role successfully removed from the user'
+                'data' => 'role successfully removed from the user',
             ]);
         }
 

@@ -14,6 +14,7 @@ class TimelineEraPolicy
     {
         return $user && $user->can('update', $timelineEra->timeline);
     }
+
     public function delete(?User $user, TimelineEra $timelineEra)
     {
         return $user && $user->can('update', $timelineEra->timeline);

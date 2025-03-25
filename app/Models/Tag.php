@@ -21,7 +21,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Tag
- * @package App\Models
  *
  * @property string $name
  * @property string $type
@@ -29,7 +28,6 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property ?int $tag_id
  * @property bool|int $is_auto_applied
  * @property bool|int $is_hidden
- *
  * @property Entity[]|Collection $entities
  */
 class Tag extends MiscModel
@@ -90,6 +88,7 @@ class Tag extends MiscModel
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -108,8 +107,6 @@ class Tag extends MiscModel
         return 'tag_id';
     }
 
-    /**
-     */
     public function scopePreparedWith(Builder $query): Builder
     {
         return parent::scopePreparedWith($query)
@@ -121,7 +118,7 @@ class Tag extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['tag_id', 'colour', 'is_auto_applied','is_hidden'];
+        return ['tag_id', 'colour', 'is_auto_applied', 'is_hidden'];
     }
 
     /**
@@ -141,6 +138,7 @@ class Tag extends MiscModel
 
     /**
      * Get all the children
+     *
      * @return Builder
      */
     public function allChildren(bool $withTags = false)
@@ -158,6 +156,7 @@ class Tag extends MiscModel
         if ($withTags) {
             return Entity::whereIn('id', $children);
         }
+
         return Entity::whereIn('id', $children)
             ->whereNotIn('type_id', [config('entities.ids.tag')]);
     }
@@ -206,11 +205,12 @@ class Tag extends MiscModel
 
     /**
      * Get the tag's colour class
+     *
      * @return string colour css class
      */
     public function colourClass(): string
     {
-        if (!$this->hasColour()) {
+        if (! $this->hasColour()) {
             return '!border-0';
         }
 
@@ -227,11 +227,9 @@ class Tag extends MiscModel
         return 'bg-' . $colour . ' color-palette color-tag !border-0 ' . $text . ' ';
     }
 
-    /**
-     */
     public function hasColour(): bool
     {
-        return !empty($this->colour);
+        return ! empty($this->colour);
     }
 
     /**
@@ -240,6 +238,7 @@ class Tag extends MiscModel
     public function attachEntities(array $entityIds): int
     {
         $data = $this->entities()->syncWithoutDetaching($entityIds);
+
         return count($data['attached']);
     }
 
@@ -248,9 +247,10 @@ class Tag extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if (!empty($this->colour)) {
+        if (! empty($this->colour)) {
             return true;
         }
+
         return parent::showProfileInfo();
     }
 
@@ -272,6 +272,7 @@ class Tag extends MiscModel
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array

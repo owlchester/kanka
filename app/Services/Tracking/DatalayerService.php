@@ -25,8 +25,6 @@ class DatalayerService
 
     protected ?Campaign $campaign;
 
-    /**
-     */
     public function base(): string
     {
         $data = array_merge([
@@ -42,8 +40,8 @@ class DatalayerService
 
         if (auth()->check()) {
             $data['userType'] = 'registered';
-            $data['userTier'] = !empty(auth()->user()->pledge) ? auth()->user()->pledge : null;
-            $data['userSubbed'] = !empty(auth()->user()->pledge) ? 'true' : 'false';
+            $data['userTier'] = ! empty(auth()->user()->pledge) ? auth()->user()->pledge : null;
+            $data['userSubbed'] = ! empty(auth()->user()->pledge) ? 'true' : 'false';
             $data['userID'] = auth()->user()->id;
 
             if ($this->newCancelledSubscriber) {
@@ -58,12 +56,14 @@ class DatalayerService
         if (AdCache::canHaveAds()) {
             $data['showAds'] = $this->showAds();
         }
+
         return json_encode($data);
     }
 
     public function campaign(?Campaign $campaign)
     {
         $this->campaign = $campaign;
+
         return $this;
     }
 
@@ -78,11 +78,10 @@ class DatalayerService
         } elseif (auth()->user()->isSubscriber()) {
             return false;
         }
+
         return auth()->user()->created_at->diffInHours(Carbon::now()) > 24;
     }
 
-    /**
-     */
     public function userGroup(): string
     {
         if (isset($this->group)) {
@@ -91,22 +90,23 @@ class DatalayerService
         // Set in session? Use that
         if (session()->has('user_group')) {
             $this->group = session()->get('user_group');
+
             return $this->group;
         }
 
         if (auth()->check()) {
             $this->group = auth()->user()->id % 2 == 0 ? 'a' : 'b';
+
             return $this->group;
         }
 
         // Unlogged user, use one from the session
         $this->group = mt_rand(0, 1) === 0 ? 'a' : 'b';
         session()->put('user_group', $this->group);
+
         return $this->group;
     }
 
-    /**
-     */
     public function groupB(): bool
     {
         return $this->userGroup() === 'b';
@@ -118,46 +118,52 @@ class DatalayerService
     public function add(string $key, mixed $value): self
     {
         $this->additional[$key] = $value;
+
         return $this;
     }
 
-    /**
-     */
     protected function route(): string
     {
         if (empty(request()->route())) {
             return '';
         }
+
         return (string) request()->route()->getName();
     }
 
     /**
      * Set the new subscriber as true
+     *
      * @return $this
      */
     public function newSubscriber(): self
     {
         $this->newSubscriber = true;
+
         return $this;
     }
 
     /**
      * Trigger the user as being newly cancelled
+     *
      * @return $this
      */
     public function newCancelledSubscriber(): self
     {
         $this->newCancelledSubscriber = true;
+
         return $this;
     }
 
     /**
      * Set the new account as true
+     *
      * @return $this
      */
     public function newAccount(): self
     {
         $this->newAccount = true;
+
         return $this;
     }
 }

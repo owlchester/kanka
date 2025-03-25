@@ -17,7 +17,6 @@ use Illuminate\Support\Str;
 
 /**
  * Class PluginVersion
- * @package App\Models
  *
  * @property int $plugin_id
  * @property string $uuid
@@ -34,7 +33,6 @@ use Illuminate\Support\Str;
  */
 class PluginVersion extends Model
 {
-    /**  */
     protected Entity $entity;
 
     /** @var Collection|Attribute[] */
@@ -47,7 +45,7 @@ class PluginVersion extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'json' => 'array'
+        'json' => 'array',
     ];
 
     /**
@@ -87,15 +85,15 @@ class PluginVersion extends Model
         $this->entityAttributes = $entity->allAttributes;
         $html = preg_replace_callback('`\{(.*?)\}`i', function ($matches) {
             $name = (string) $matches[1];
+
             return $this->attribute($name);
         }, $this->content);
 
-
         // Replace < and > in logical blocks
-        //$html = str_replace(['&lt;', '&gt;'], ['<', '>'], $html);
+        // $html = str_replace(['&lt;', '&gt;'], ['<', '>'], $html);
 
-        //dump($html);
-        //return $html;
+        // dump($html);
+        // return $html;
 
         // If-Else condition
 
@@ -111,22 +109,22 @@ class PluginVersion extends Model
             return (string) $this->emptyBlock($matches);
         }, $html);
         $html = preg_replace_callback('`@notempty\((.*?)\)(.*?)@endnotempty`si', function ($matches) {
-            return (string) !$this->emptyBlock($matches);
+            return (string) ! $this->emptyBlock($matches);
         }, $html);
 
         return $html;
     }
 
-    /**
-     */
     public function css(): string
     {
         $css = (string) $this->css;
+
         return $css;
     }
 
     /**
      * The new rendering engine using Blade
+     *
      * @return false|string
      */
     protected function renderBlade(Entity $entity)
@@ -145,6 +143,7 @@ class PluginVersion extends Model
             // Flag this as an attribute that is referenced
             $name = Str::after($attribute, '$');
             $this->templateAttributes[$name] = null;
+
             return '{{ ' . $attribute . ' }}';
         }, $html);
 
@@ -153,17 +152,17 @@ class PluginVersion extends Model
             $name = Str::after($attribute, '$');
             // Flag this as an attribute that is referenced
             $this->templateAttributes[$name] = null;
+
             return '{!! ' . $attribute . ' !!}';
         }, $html);
-
 
         // Blacklisted commands
         $html = str_replace([
             '@php', '@dd', '@inject', '@yield', '@section', '@session', '@env', '@once', '@push', '@csrf',
             '@use',
-            '@include', '\Illuminate\\'
+            '@include', '\Illuminate\\',
         ], [
-            '', '', '', '', '', '', '', '', '', '', '', '', ''
+            '', '', '', '', '', '', '', '', '', '', '', '', '',
         ], $html);
 
         // Remove more blacklisted stuff than can go unnoticed
@@ -186,11 +185,11 @@ class PluginVersion extends Model
 
         $html = Blade::compileString($html);
 
-        list($data, $ids, $checkboxes) = $this->prepareBladeData($entity);
+        [$data, $ids, $checkboxes] = $this->prepareBladeData($entity);
 
         $html = preg_replace_callback('`\@liveAttribute\(\'(.*?[^)])\'\)`i', function ($matches) use ($data, $ids, $checkboxes) {
             $attr = mb_trim((string) $matches[1]);
-            if (!isset($data[$attr])) {
+            if (! isset($data[$attr])) {
                 return $matches[0];
             }
             $value = $data[$attr];
@@ -201,6 +200,7 @@ class PluginVersion extends Model
                     $value = '<i class="fa-solid fa-times" aria-hidden="true" aria-label="unchecked"></i>';
                 }
             }
+
             return '<span class="live-edit" data-id="' . $ids[$attr] . '">' . $value . '</span>';
         }, $html);
 
@@ -212,29 +212,32 @@ class PluginVersion extends Model
         try {
             eval('?' . '>' . $html);
             $blade = ob_get_clean();
+
             return $blade;
         } catch (Exception $e) {
             while (ob_get_level() > $obLevel) {
                 ob_end_clean();
             }
             $errors = $e->getMessage();
-            //throw $e;
+            // throw $e;
         } catch (\Throwable $e) {
             while (ob_get_level() > $obLevel) {
                 ob_end_clean();
             }
             $errors = $e->getMessage();
 
-            //throw new FatalThrowableError($e);
+            // throw new FatalThrowableError($e);
         }
+
         return '<div class="alert alert-danger">
-            ' . __('attributes/templates.errors.marketplace.rendering') . (!empty($errors) ?
+            ' . __('attributes/templates.errors.marketplace.rendering') . (! empty($errors) ?
                 '<br /><br />' . __('attributes/templates.errors.marketplace.hint') . ': ' . $errors . ' (line ' . $e->getLine() . ')' : null) . '
         </div>' . $this->debug($data);
     }
 
     /**
      * Build a html list of all variables
+     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
@@ -245,7 +248,7 @@ class PluginVersion extends Model
             ';
 
         foreach ($data as $key => $val) {
-            if (!is_array($val) && !is_object($val)) {
+            if (! is_array($val) && ! is_object($val)) {
                 $html .= '<dtk>$' . $key . '</dtk> <code>' . (empty($val) ? null : e($val)) . '</code><br />';
             } elseif (is_array($val)) {
                 $html .= '<dtk class="">$' . $key . '</dtk>';
@@ -256,6 +259,7 @@ class PluginVersion extends Model
                     foreach ($val as $k => $v) {
                         if (is_array($v)) {
                             $html .= '<li><dtk>' . $k . '</dtk></li>';
+
                             continue;
                         }
                         $html .= '<li><dtk>' . $k . '</dtk> <code>' . $v . '</code></li>';
@@ -264,19 +268,19 @@ class PluginVersion extends Model
                 }
             }
         }
+
         return $html . '</div>';
     }
 
-    /**
-     */
     protected function attribute(string $name): string
     {
         /** @var Attribute|null $attr */
         $attr = $this->entityAttributes->where('name', $name)->first();
-        if (!empty($attr)) {
+        if (! empty($attr)) {
             if ($attr->isText()) {
                 return nl2br($attr->mappedValue());
             }
+
             return $attr->mappedValue();
         }
 
@@ -300,9 +304,10 @@ class PluginVersion extends Model
             if ($this->evaluateCondition($condition)) {
                 return $matches[2];
             }
+
             return null;
         }
-        if (!empty($condition)) {
+        if (! empty($condition)) {
             return $matches[2];
         } else {
             return $matches[3];
@@ -311,6 +316,7 @@ class PluginVersion extends Model
 
     /**
      * If block
+     *
      * @return mixed|null
      */
     protected function ifBlock(array $matches)
@@ -331,11 +337,13 @@ class PluginVersion extends Model
             if ($this->evaluateCondition($condition)) {
                 return $matches[2];
             }
+
             return null;
         }
-        if (!empty($condition)) {
+        if (! empty($condition)) {
             return $matches[2];
         }
+
         return null;
     }
 
@@ -347,20 +355,26 @@ class PluginVersion extends Model
         // >=
         if (Str::contains($condition, '&gt;=')) {
             $segments = explode('&gt;=', $condition);
+
             return (int) mb_trim($segments[0]) >= (int) mb_trim($segments[1]);
         } elseif (Str::contains($condition, '&lt;=')) {
             $segments = explode('&lt;=', $condition);
+
             return (int) mb_trim($segments[0]) <= (int) mb_trim($segments[1]);
         } elseif (Str::contains($condition, '&gt;')) {
             $segments = explode('&gt;', $condition);
+
             return (int) mb_trim($segments[0]) > (int) mb_trim($segments[1]);
         } elseif (Str::contains($condition, '&lt;')) {
             $segments = explode('&lt;', $condition);
+
             return (int) mb_trim($segments[0]) < (int) mb_trim($segments[1]);
         } elseif (Str::contains($condition, '=')) {
             $segments = explode('=', $condition);
+
             return mb_trim($segments[0]) == mb_trim($segments[1]);
         }
+
         return false;
     }
 
@@ -370,7 +384,8 @@ class PluginVersion extends Model
         if (Str::contains($condition, '<i class="missing">')) {
             return false;
         }
-        return !(empty($condition));
+
+        return ! (empty($condition));
     }
 
     /**
@@ -383,7 +398,7 @@ class PluginVersion extends Model
         $locales = [$userLocale, 'en'];
 
         foreach ($this->getTranslationsAttribute() as $translation) {
-            if (!in_array($translation['locale'], $locales)) {
+            if (! in_array($translation['locale'], $locales)) {
                 continue;
             }
             $lines['*.' . $translation['base']] = $translation['translation'];
@@ -411,7 +426,7 @@ class PluginVersion extends Model
             } elseif ($attr->isCheckbox()) {
                 $checkboxes[] = $name;
             }
-            //dump('mapping ' . $name . ' to ' . $attr->mappedValue());
+            // dump('mapping ' . $name . ' to ' . $attr->mappedValue());
 
             // Cleanup the name for ranged values
             $allAttributes[$name] = $data[$name];
@@ -461,22 +476,22 @@ class PluginVersion extends Model
             $data[$name] = $val;
         }
 
-        if (!isset($data['openLI'])) {
+        if (! isset($data['openLI'])) {
             $data['openLI'] = '<li>';
         }
-        if (!isset($data['closeLI'])) {
+        if (! isset($data['closeLI'])) {
             $data['closeLI'] = '</li>';
         }
-        if (!isset($data['openOL'])) {
+        if (! isset($data['openOL'])) {
             $data['openOL'] = '<ol>';
         }
-        if (!isset($data['closeOL'])) {
+        if (! isset($data['closeOL'])) {
             $data['closeOL'] = '</ol>';
         }
-        if (!isset($data['openUL'])) {
+        if (! isset($data['openUL'])) {
             $data['openUL'] = '<ul>';
         }
-        if (!isset($data['closeUL'])) {
+        if (! isset($data['closeUL'])) {
             $data['closeUL'] = '</ul>';
         }
 
@@ -485,6 +500,7 @@ class PluginVersion extends Model
 
     /**
      * Load abilities of the entity and make them available to blade
+     *
      * @throws Exception
      */
     protected function abilities(Entity $entity): array
@@ -504,7 +520,7 @@ class PluginVersion extends Model
             }
 
             $parent = null;
-            if (!empty($abi->ability->parent)) {
+            if (! empty($abi->ability->parent)) {
                 $parent = [
                     'name' => $abi->ability->parent->name,
                     'slug' => Str::slug($abi->ability->parent->name),
@@ -541,6 +557,7 @@ class PluginVersion extends Model
         if ($pluginCreator === auth()->user()->id) {
             return $query->whereIn('status_id', [1, 3]);
         }
+
         return $query->where('status_id', 3);
     }
 

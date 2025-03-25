@@ -9,8 +9,12 @@ namespace App\Datagrids\Actions;
 class NoDatagridActions extends DatagridActions
 {
     public $bulkCopyToCampaign = false;
+
     public $bulkTransform = false;
+
     public $bulkPermissions = false;
+
     public $bulkPrint = false;
+
     public $bulkEditing = false;
 }

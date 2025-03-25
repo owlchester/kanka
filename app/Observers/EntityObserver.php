@@ -3,17 +3,17 @@
 namespace App\Observers;
 
 use App\Enums\Permission;
+use App\Enums\WebhookAction;
+use App\Facades\Domain;
 use App\Facades\EntityLogger;
-use App\Facades\Permissions;
 use App\Facades\Images;
+use App\Facades\Permissions;
 use App\Jobs\EntityUpdatedJob;
 use App\Jobs\EntityWebhookJob;
-use App\Enums\WebhookAction;
 use App\Models\CampaignPermission;
 use App\Models\Entity;
 use App\Services\Entity\TagService;
 use App\Services\PermissionService;
-use App\Facades\Domain;
 
 class EntityObserver
 {
@@ -25,8 +25,7 @@ class EntityObserver
     public function __construct(
         protected PermissionService $permissionService,
         protected TagService $tagService
-    ) {
-    }
+    ) {}
 
     /**
      * An entity has been saved from the crud
@@ -77,19 +76,18 @@ class EntityObserver
     protected function saveTags(Entity $entity)
     {
         // HTML forms will have 'save-tags', while the api will have a tag array if they want to make changes.
-        if (!request()->has('tags') && !request()->has('save-tags')) {
+        if (! request()->has('tags') && ! request()->has('save-tags')) {
             return;
         }
         $ids = request()->post('tags', []);
-        if (!is_array($ids)) { // People sent weird stuff through the API
+        if (! is_array($ids)) { // People sent weird stuff through the API
             $ids = [];
         }
         $this->tagService
             ->user(auth()->user())
             ->entity($entity)
             ->withNew()
-            ->sync($ids)
-        ;
+            ->sync($ids);
     }
 
     /**
@@ -97,7 +95,7 @@ class EntityObserver
      */
     public function savePermissions(Entity $entity)
     {
-        if (!auth()->user()->can('permissions', $entity)) {
+        if (! auth()->user()->can('permissions', $entity)) {
             return;
         } elseif (request()->has('copy_permissions') && request()->filled('copy_permissions')) {
             return;
@@ -109,12 +107,12 @@ class EntityObserver
 
         // If the user granted/assigned themselves read/write permissions on the entity, we need to make sure they
         // still have them even if not checked in the UI.
-        if (Permissions::granted() && !empty($data['user'])) {
+        if (Permissions::granted() && ! empty($data['user'])) {
             $user = auth()->user()->id;
-            if (!in_array(Permission::Update->value, $data['user'][$user])) {
+            if (! in_array(Permission::Update->value, $data['user'][$user])) {
                 $data['user'][$user][Permission::Update->value] = 'allow';
             }
-            if (!in_array(Permission::View->value, $data['user'][$user])) {
+            if (! in_array(Permission::View->value, $data['user'][$user])) {
                 $data['user'][$user][Permission::View->value] = 'allow';
             }
         }
@@ -122,16 +120,14 @@ class EntityObserver
         $this->permissionService->saveEntity($data, $entity);
     }
 
-    /**
-     */
     public function created(Entity $entity)
     {
         // If the user has created a new entity but doesn't have the permission to read or edit it,
         // automatically create said permission.
-        if (!auth()->user()->can('view', $entity)) {
+        if (! auth()->user()->can('view', $entity)) {
             $this->grant($entity, Permission::View->value);
         }
-        if (!auth()->user()->can('update', $entity)) {
+        if (! auth()->user()->can('update', $entity)) {
             $this->grant($entity, Permission::Update->value);
         }
         // Refresh the model because adding permissions to the child means we have a new relation
@@ -145,9 +141,9 @@ class EntityObserver
 
     protected function grant(Entity $entity, int $action): CampaignPermission
     {
-        $permission = new CampaignPermission();
+        $permission = new CampaignPermission;
         $permission->entity_id = $entity->id;
-        if (!$entity->entityType->isSpecial()) {
+        if (! $entity->entityType->isSpecial()) {
             $permission->misc_id = $entity->entity_id;
         }
         $permission->entity_type_id = $entity->type_id;
@@ -157,6 +153,7 @@ class EntityObserver
         $permission->access = true;
         $permission->save();
         Permissions::grant($entity);
+
         return $permission;
     }
 
@@ -174,8 +171,6 @@ class EntityObserver
         }
     }
 
-    /**
-     */
     public function savePremium(Entity $entity): void
     {
         // Gallery is now available to all
@@ -185,7 +180,7 @@ class EntityObserver
             $entity->image_uuid = null;
         }
         // No changed for non-boosted campaigns
-        if (!$entity->campaign->boosted()) {
+        if (! $entity->campaign->boosted()) {
             return;
         }
 
@@ -207,6 +202,7 @@ class EntityObserver
         // not actually delete the entity and its image.
         if ($entity->trashed()) {
             EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value);
+
             return;
         }
 

@@ -10,13 +10,14 @@ class Event extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'name' => [
                 'key' => 'name',
@@ -35,8 +36,8 @@ class Event extends Layout
                 'label' => 'events.fields.date',
             ],
             'tags' => [
-                'render' => Standard::TAGS
-            ]
+                'render' => Standard::TAGS,
+            ],
         ];
 
         return $columns;

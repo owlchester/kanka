@@ -5,8 +5,7 @@ it('POSTS an invalid entity_events form')
     ->withCampaign()
     ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/entities/1/entity_events', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new entity event')
     ->asUser()
@@ -26,9 +25,8 @@ it('POSTS a new entity event')
         'data' => [
             'id',
             'calendar_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all entity_events')
     ->asUser()
@@ -42,10 +40,9 @@ it('GETS all entity_events')
             [
                 'id',
                 'calendar_id',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific entity event')
     ->asUser()
@@ -58,9 +55,8 @@ it('GETS a specific entity event')
         'data' => [
             'id',
             'calendar_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid entity event')
     ->asUser()
@@ -69,8 +65,7 @@ it('UPDATES a valid entity event')
     ->withEntityEvents()
     ->putJson('/api/1.0/campaigns/1/entities/1/entity_events/1', ['length' => 2])
     ->assertStatus(200)
-    ->assertJsonFragment(['length' => 2])
-;
+    ->assertJsonFragment(['length' => 2]);
 
 it('DELETES an entity event')
     ->asUser()
@@ -78,8 +73,7 @@ it('DELETES an entity event')
     ->withCharacters()
     ->withEntityEvents()
     ->delete('/api/1.0/campaigns/1/entities/1/entity_events/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid entity event')
     ->asUser()
@@ -87,5 +81,4 @@ it('DELETES an invalid entity event')
     ->withCharacters()
     ->withEntityEvents()
     ->delete('/api/1.0/campaigns/1/entities/1/entity_events/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);

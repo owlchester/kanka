@@ -25,8 +25,8 @@ class ReorderTimeline extends FormRequest
     {
         return [
             'timeline_era' => [
-                '*' => 'exists:timeline_eras,id'
-            ]
+                '*' => 'exists:timeline_eras,id',
+            ],
         ];
     }
 }

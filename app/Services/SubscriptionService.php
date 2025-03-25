@@ -28,8 +28,11 @@ class SubscriptionService
     use UserAware;
 
     public const STATUS_UNSUBSCRIBED = 0;
+
     public const STATUS_SUBSCRIBED = 1;
+
     public const STATUS_GRACE = 2;
+
     public const STATUS_CANCELLED = 3;
 
     protected Tier $tier;
@@ -58,33 +61,39 @@ class SubscriptionService
 
     /**
      * @return $this
+     *
      * @throws Exception
      */
     public function tier(Tier $tier): self
     {
         $this->tier = $tier;
+
         return $this;
     }
 
     /**
      * @return $this
+     *
      * @throws Exception
      */
     public function period(PricingPeriod $period): self
     {
         $this->period = $period;
+
         return $this;
     }
 
     public function yearly(): self
     {
         $this->period = PricingPeriod::Yearly;
+
         return $this;
     }
 
     public function monthly(): self
     {
         $this->period = PricingPeriod::Monthly;
+
         return $this;
     }
 
@@ -94,6 +103,7 @@ class SubscriptionService
     public function webhook(): self
     {
         $this->webhook = true;
+
         return $this;
     }
 
@@ -103,6 +113,7 @@ class SubscriptionService
     public function request(array $request): self
     {
         $this->request = $request;
+
         return $this;
     }
 
@@ -111,9 +122,10 @@ class SubscriptionService
      */
     public function coupon(?string $coupon = null): self
     {
-        if ($this->period === PricingPeriod::Yearly && !empty($coupon)) {
+        if ($this->period === PricingPeriod::Yearly && ! empty($coupon)) {
             $this->coupon = $coupon;
         }
+
         return $this;
     }
 
@@ -131,12 +143,12 @@ class SubscriptionService
         /** @var ?TierPrice $price */
         $price = TierPrice::where('stripe_id', $plan)->first();
         $this->tier = $price->tier;
+
         return $this;
     }
 
     /**
      * Change plans
-     *
      */
     public function change(): self
     {
@@ -160,20 +172,21 @@ class SubscriptionService
             }
         }
 
-
         // Subscribe
         $this->subscribe($paymentMethodID);
+
         return $this;
     }
 
     /**
      * @return $this
+     *
      * @throws \Laravel\Cashier\Exceptions\IncompletePayment
      */
     public function subscribe(string $paymentID): self
     {
         // New subscriber
-        if (!$this->user->subscribed('kanka')) {
+        if (! $this->user->subscribed('kanka')) {
             $this->user->newSubscription('kanka', $this->tierPrice()->stripe_id)
                 ->withCoupon($this->coupon ?? null)
                 ->create($paymentID);
@@ -200,9 +213,9 @@ class SubscriptionService
         $this->user->subscription('kanka')->resume();
     }
 
-
     /**
      * Setup the user's pledge, role, discord
+     *
      * @return $this
      */
     public function finish(): self
@@ -215,19 +228,19 @@ class SubscriptionService
 
         // If downgrading, send admins an email, and let stripe deal with the rest. A user update hook will be thrown
         // when the user really changes. Probably?
-        if (!$this->webhook && $this->downgrading()) {
+        if (! $this->webhook && $this->downgrading()) {
             SubscriptionDowngradedEmailJob::dispatch(
                 $this->user,
                 Arr::get($this->request, 'reason'),
                 Arr::get($this->request, 'reason_custom')
             );
             $this->user->log(UserLog::TYPE_SUB_DOWNGRADE);
+
             return $this;
         }
 
-
         // Determine if the pledge was changed or not
-        $new = !$this->upgrading();
+        $new = ! $this->upgrading();
 
         // Add the necessary roles and pledge data
         $this->user->pledge = $this->tier->name;
@@ -235,7 +248,7 @@ class SubscriptionService
 
         // We're so far, good. Let's add the user to the subscriber group
         $role = Role::where('name', '=', Pledge::ROLE)->first();
-        if ($role && !$this->user->hasRole(Pledge::ROLE)) {
+        if ($role && ! $this->user->hasRole(Pledge::ROLE)) {
             $this->user->roles()->attach($role->id);
         }
 
@@ -249,7 +262,7 @@ class SubscriptionService
         }
 
         // Don't send emails when called from the webhook
-        if (!$this->webhook) {
+        if (! $this->webhook) {
             SubscriptionCreatedEmailJob::dispatch($this->user, $this->period, $new);
             WelcomeSubscriptionEmailJob::dispatch($this->user, $this->tier);
 
@@ -259,7 +272,6 @@ class SubscriptionService
             }
         }
 
-
         return $this;
     }
 
@@ -268,7 +280,7 @@ class SubscriptionService
      */
     public function status(): int
     {
-        if (!$this->user->subscribed('kanka')) {
+        if (! $this->user->subscribed('kanka')) {
             return self::STATUS_UNSUBSCRIBED;
         } elseif ($this->user->subscription('kanka')->onGracePeriod()) {
             return self::STATUS_GRACE;
@@ -285,15 +297,16 @@ class SubscriptionService
     public function amount(): string
     {
         $amount = $this->tierPrice()->cost;
+
         return number_format($amount, 2);
     }
 
     /**
      * Get the user's current plan
      */
-    public function currentPlan(): TierPrice|null
+    public function currentPlan(): ?TierPrice
     {
-        if (!$this->user->subscribed('kanka')) {
+        if (! $this->user->subscribed('kanka')) {
             return null;
         }
         $price = $this->user->subscription('kanka')->stripe_price;
@@ -302,14 +315,12 @@ class SubscriptionService
         if (empty($tier)) {
             return null;
         }
+
         return $tier;
     }
 
     /**
      * Cancel the user's subscription to Kanka
-     */
-
-    /**
      */
     public function canceled(): bool
     {
@@ -351,6 +362,7 @@ class SubscriptionService
         if ($this->user->pledge == Pledge::OWLBEAR && in_array($this->tier->name, [Pledge::WYVERN, Pledge::ELEMENTAL])) {
             return true;
         }
+
         return (bool) ($this->user->pledge == Pledge::WYVERN && $this->tier->name == Pledge::ELEMENTAL);
     }
 
@@ -360,7 +372,7 @@ class SubscriptionService
     protected function renewal(): bool
     {
         // If we're not in a webhook, it's not possible to be an auto-renewal
-        if (!$this->webhook) {
+        if (! $this->webhook) {
             return false;
         }
 
@@ -370,6 +382,7 @@ class SubscriptionService
         if ($sub === null) {
             return false;
         }
+
         return $sub->created_at->lessThan(Carbon::yesterday());
     }
 
@@ -387,6 +400,7 @@ class SubscriptionService
     public function isLimited(): bool
     {
         $countries = ['EG'];
+
         return $this->user->logs()
             ->where('type_id', UserLog::TYPE_LOGIN)
             ->whereIn('country', $countries)

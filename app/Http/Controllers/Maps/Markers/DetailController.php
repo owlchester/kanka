@@ -17,13 +17,13 @@ class DetailController extends Controller
     public function index(Campaign $campaign, Map $map, MapMarker $mapMarker)
     {
         $this->campaign($campaign)->authEntityView($map->entity);
-        if (!empty($mapMarker->entity_id)) {
+        if (! empty($mapMarker->entity_id)) {
             $this->campaign($campaign)->authEntityView($mapMarker->entity);
         }
 
         $name = $mapMarker->name;
         if ($mapMarker->entity) {
-            $name = !empty($mapMarker->name) ? $mapMarker->name : $mapMarker->entity->name;
+            $name = ! empty($mapMarker->name) ? $mapMarker->name : $mapMarker->entity->name;
             $name = '<a href="' . $mapMarker->entity->url() . '" target="_blank">' . $name . '</a>';
         }
         if (request()->has('mobile')) {
@@ -34,13 +34,12 @@ class DetailController extends Controller
             ]);
         }
 
-
         return response()->json([
             'body' => view('maps.markers.details', [
                 'marker' => $mapMarker,
                 'campaign' => $campaign,
             ])->render(),
-            'name' => $name
+            'name' => $name,
         ]);
     }
 }

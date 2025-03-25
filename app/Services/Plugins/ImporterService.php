@@ -7,23 +7,23 @@ use App\Models\CampaignPlugin;
 use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
-use App\Models\Post;
 use App\Models\EntityTag;
 use App\Models\Image;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
 use App\Models\Plugin;
 use App\Models\PluginVersionEntity;
+use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\Race;
 use App\Models\Relation;
 use App\Traits\CampaignAware;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Exception;
 
 class ImporterService
 {
@@ -31,13 +31,10 @@ class ImporterService
 
     protected Plugin $plugin;
 
-    /**  */
     protected array $loadedRelations = [];
 
-    /**  */
     protected array $loadedPosts = [];
 
-    /** */
     protected Collection $importedEntities;
 
     /** updated entities */
@@ -50,6 +47,7 @@ class ImporterService
     protected array $skippedEntities = [];
 
     protected bool $forcePrivate = false;
+
     protected bool $skipUpdates = false;
 
     protected array $entityIds = [];
@@ -68,6 +66,7 @@ class ImporterService
     public function plugin(Plugin $plugin): self
     {
         $this->plugin = $plugin;
+
         return $this;
     }
 
@@ -82,6 +81,7 @@ class ImporterService
         if (Arr::get($options, 'only_new', false)) {
             $this->skipUpdates = true;
         }
+
         return $this;
     }
 
@@ -90,7 +90,7 @@ class ImporterService
      */
     public function import()
     {
-        if (!$this->plugin->isContentPack()) {
+        if (! $this->plugin->isContentPack()) {
             throw new Exception('not_content_pack');
         }
 
@@ -123,8 +123,6 @@ class ImporterService
         return $count;
     }
 
-    /**
-     */
     protected function importModel(PluginVersionEntity $pluginEntity)
     {
         // Updating?
@@ -141,10 +139,10 @@ class ImporterService
             $this->entityIds[$pluginEntity->id] = $entity->id;
             $this->miscIds[$pluginEntity->id] = $entity->entity_id;
             $this->entityTypes[$pluginEntity->id] = $entity->entityType->code;
-            //dump('existing ' . $pluginEntity->uuid);
+            // dump('existing ' . $pluginEntity->uuid);
             $model = $entity->child;
 
-            if (!$this->skipUpdates) {
+            if (! $this->skipUpdates) {
                 $this->updated[] = '<a href="' . $entity->url() . '">' . $entity->name . '</a>';
             } else {
                 $this->skippedEntities[] = $pluginEntity->id;
@@ -155,12 +153,12 @@ class ImporterService
                 $modifiedEntity->save();
             }
             $className = '\App\Models\\' . Str::studly($pluginEntity->type->code);
-            //dump('new ' . $className);
+            // dump('new ' . $className);
 
             /** @var MiscModel $model */
-            $model = new $className();
+            $model = new $className;
             $model->name = $pluginEntity->name;
-            //$model->entry = $this->$pluginEntity->entry;
+            // $model->entry = $this->$pluginEntity->entry;
             $model->campaign_id = $this->campaign->id;
             $model->save();
 
@@ -177,17 +175,15 @@ class ImporterService
         $this->models[$pluginEntity->id] = $model;
     }
 
-    /**
-     */
     protected function importFields(PluginVersionEntity $pluginEntity): void
     {
         if (in_array($pluginEntity->id, $this->skippedEntities)) {
             return;
         }
-        //dump('Parsing entity ' . $pluginEntity->name . ' #' . $pluginEntity->id . '');
+        // dump('Parsing entity ' . $pluginEntity->name . ' #' . $pluginEntity->id . '');
         $this->model = $this->models[$pluginEntity->id];
         $entityId = $this->getEntityId($pluginEntity->id);
-        //dump("entityId: $entityId");
+        // dump("entityId: $entityId");
         foreach ($pluginEntity->fields as $field => $value) {
             $this->importField($field, $value, $pluginEntity);
         }
@@ -201,19 +197,18 @@ class ImporterService
         // Mentions
         $this->model->entity->entry = preg_replace_callback('`\[entity:(.*?)\]`i', function ($matches) {
             $id = (int) $matches[1];
-            if (empty($id) || !isset($this->entityIds[$id])) {
+            if (empty($id) || ! isset($this->entityIds[$id])) {
                 return 'wat';
             }
 
             return '[' . $this->entityTypes[$id] . ':' . $this->entityIds[$id] . ']';
         }, $pluginEntity->entry);
 
-
         $this->model->save();
         $this->model->entity->save();
 
         // Relations
-        if (!empty($pluginEntity->related)) {
+        if (! empty($pluginEntity->related)) {
             $this->importRelations($pluginEntity, $entityId);
         }
 
@@ -222,7 +217,7 @@ class ImporterService
 
     protected function importField(string $field, mixed $value, PluginVersionEntity $pluginEntity): void
     {
-        //dump("field $field => $value");
+        // dump("field $field => $value");
         // parent mapping
         if ($field == 'gender') {
             $field = 'sex';
@@ -249,6 +244,7 @@ class ImporterService
     {
         if ($field == 'race_id' && $this->model instanceof Character) {
             $this->importCharacterRace($value);
+
             return;
         }
         if (empty($value)) {
@@ -262,6 +258,7 @@ class ImporterService
     {
         $this->model->entity->tooltip = $value;
     }
+
     protected function importEntityType(mixed $value): void
     {
         $this->model->entity->type = $value;
@@ -297,13 +294,14 @@ class ImporterService
             }
         }
     }
+
     /**
      * Create or update a relation
      */
     protected function saveRelation(array $data, string $uuid, int $ownerId): void
     {
-        //dump("New relation for $ownerId");
-        //dump($data);
+        // dump("New relation for $ownerId");
+        // dump($data);
 
         $targetId = $this->getEntityId($data['target']);
         if (empty($targetId) || empty($data['relation'])) {
@@ -313,7 +311,7 @@ class ImporterService
         try {
             $relation = $this->loadedRelations[$uuid] ?? null;
             if (empty($relation)) {
-                $relation = new Relation();
+                $relation = new Relation;
                 $relation->owner_id = $ownerId;
                 $relation->marketplace_uuid = $uuid;
             }
@@ -328,12 +326,10 @@ class ImporterService
         }
     }
 
-    /**
-     */
     protected function saveOrganisationMember(array $data, string $uuid, int $characterId, PluginVersionEntity $pluginEntity): void
     {
         // Check the target org
-        //dump('adding org member for ' . $characterId);
+        // dump('adding org member for ' . $characterId);
         $organisation = $this->miscIds[$data['target']];
         if (empty($organisation)) {
             return;
@@ -344,8 +340,8 @@ class ImporterService
             $member = OrganisationMember::where('character_id', $characterId)
                 ->where('organisation_id', $organisation)
                 ->first();
-            if (!$member) {
-                $member = new OrganisationMember();
+            if (! $member) {
+                $member = new OrganisationMember;
                 $member->character_id = $characterId;
                 $member->organisation_id = $organisation;
             }
@@ -358,22 +354,20 @@ class ImporterService
         }
     }
 
-    /**
-     */
     protected function saveQuestElement(array $data, string $uuid, int $questId, PluginVersionEntity $pluginEntity): void
     {
-        //dump('importing a quest element.');
+        // dump('importing a quest element.');
 
         // Determine what we're adding
         $target = $this->entityIds[$data['target']];
 
-        //dump("want to add target $target ($targetType) as a $class to $questId");
+        // dump("want to add target $target ($targetType) as a $class to $questId");
 
         // Does it exist?
         try {
             $element = QuestElement::where('quest_id', $questId)->where('entity_id', $target)->first();
             if (empty($element)) {
-                $element = new QuestElement();
+                $element = new QuestElement;
                 $element->quest_id = $questId;
                 $element->entity_id = $target;
             }
@@ -393,7 +387,7 @@ class ImporterService
     protected function importImage(PluginVersionEntity $entity): self
     {
         // Don't do anything if no image or replacing an image (too many false positives)
-        if (empty($entity->image_path) || !empty($this->model->entity->image_path) || !empty($this->model->entity->image_uuid)) {
+        if (empty($entity->image_path) || ! empty($this->model->entity->image_path) || ! empty($this->model->entity->image_uuid)) {
             return $this;
         }
 
@@ -403,7 +397,7 @@ class ImporterService
 
             // We need to create a new Image to migrate to the new system. Maybe in the future
             // we can store the marketplace's uuid here and avoid duplicates.
-            $image = new Image();
+            $image = new Image;
             $image->campaign_id = $this->campaign->id;
             $image->ext = $imageExt;
             $image->name = $entity->name;
@@ -421,8 +415,6 @@ class ImporterService
         return $this;
     }
 
-    /**
-     */
     protected function importBlock(string $block, ?array $values = null): void
     {
         if (empty($values)) {
@@ -444,12 +436,11 @@ class ImporterService
                     'section_id' => $block == 'appearance' ?
                         CharacterTrait::SECTION_APPEARANCE : CharacterTrait::SECTION_PERSONALITY,
                     'name' => $name,
-                    'entry' => $value
+                    'entry' => $value,
                 ]);
             }
         }
     }
-
 
     protected function importTags(?array $values = null): void
     {
@@ -458,7 +449,7 @@ class ImporterService
         }
         $real = [];
         foreach ($values as $val) {
-            if (!empty($val)) {
+            if (! empty($val)) {
                 $real[] = $val;
             }
         }
@@ -473,7 +464,7 @@ class ImporterService
 
         foreach ($real as $tag) {
             // Tag doesn't properly exist, skip
-            if (!isset($this->miscIds[$tag])) {
+            if (! isset($this->miscIds[$tag])) {
                 continue;
             }
             $target = $this->miscIds[$tag];
@@ -481,14 +472,13 @@ class ImporterService
                 continue;
             }
 
-            $new = new EntityTag();
+            $new = new EntityTag;
             $new->entity_id = $this->model->entity->id;
             $new->tag_id = $target;
             $new->save();
         }
     }
-    /**
-     */
+
     protected function getEntityId(int $id)
     {
         return $this->entityIds[$id];
@@ -509,8 +499,6 @@ class ImporterService
         }
     }
 
-    /**
-     */
     protected function loadPosts(int $entityId): void
     {
         $this->loadedPosts = [];
@@ -524,13 +512,11 @@ class ImporterService
         }
     }
 
-    /**
-     */
     protected function mentions(string $text): string
     {
         return preg_replace_callback('`\[entity:(.*?)\]`i', function ($matches) {
             $id = (int) $matches[1];
-            if (empty($id) || !isset($this->entityIds[$id])) {
+            if (empty($id) || ! isset($this->entityIds[$id])) {
                 return 'wat';
             }
 
@@ -546,7 +532,6 @@ class ImporterService
         return (string) implode(', ', $this->created);
     }
 
-
     /**
      * List of created entities
      */
@@ -555,8 +540,6 @@ class ImporterService
         return (string) implode(', ', $this->updated);
     }
 
-    /**
-     */
     protected function importPosts(PluginVersionEntity $entity, int $entityId): void
     {
         if (empty($entity->posts)) {
@@ -568,7 +551,7 @@ class ImporterService
         foreach ($entity->posts as $uuid => $data) {
             $post = $this->loadedPosts[$uuid] ?? null;
             if (empty($post)) {
-                $post = new Post();
+                $post = new Post;
                 $post->entity_id = $entityId;
                 $post->marketplace_uuid = $uuid;
             }
@@ -592,9 +575,7 @@ class ImporterService
         }
     }
 
-    /**
-     */
-    protected function campaignPlugin(): CampaignPlugin|null
+    protected function campaignPlugin(): ?CampaignPlugin
     {
         return CampaignPlugin::where('campaign_id', $this->campaign->id)
             ->where('plugin_id', $this->plugin->id)

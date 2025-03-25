@@ -10,7 +10,8 @@ use Illuminate\Support\Str;
 trait ImportMentions
 {
     protected array $imageMentions = [];
-    protected function mentions(string|null $text): string|null
+
+    protected function mentions(?string $text): ?string
     {
         if (empty($text)) {
             return $text;
@@ -23,7 +24,7 @@ trait ImportMentions
                 $oldEntityID = (int) $segments[0];
                 $entityType = $matches[1];
 
-                if (!ImportIdMapper::hasEntity($oldEntityID)) {
+                if (! ImportIdMapper::hasEntity($oldEntityID)) {
                     return $matches[0];
                 }
                 $entityID = ImportIdMapper::getEntity($oldEntityID);
@@ -31,6 +32,7 @@ trait ImportMentions
                 if (Str::contains($matches[2], '|')) {
                     return '[' . $entityType . ':' . Str::replace($oldEntityID . '|', $entityID . '|', $matches[2] . ']');
                 }
+
                 return '[' . $entityType . ':' . $entityID . ']';
             },
             $text
@@ -40,13 +42,13 @@ trait ImportMentions
         preg_match_all('/data-gallery-id="[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}"/i', $text, $segments);
         foreach ($segments[0] as $key => $type) {
             $id = mb_substr($type, 17, -1);
-            if (!in_array($id, $images)) {
+            if (! in_array($id, $images)) {
                 $images[$key] = $id;
             }
         }
         $this->imageMentions = [];
         foreach ($images as $uuid) {
-            if (!ImportIdMapper::hasGallery($uuid)) {
+            if (! ImportIdMapper::hasGallery($uuid)) {
                 continue;
             }
             $newUuid = ImportIdMapper::getGallery($uuid);
@@ -83,7 +85,7 @@ trait ImportMentions
         }
 
         foreach ($this->imageMentions as $uuid) {
-            $men = new ImageMention();
+            $men = new ImageMention;
             // @phpstan-ignore-next-line
             $men->entity_id = $this->entity->id;
             $men->image_id = $uuid;
@@ -93,6 +95,7 @@ trait ImportMentions
 
             $men->save();
         }
+
         return $this;
     }
 }

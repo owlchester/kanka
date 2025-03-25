@@ -47,6 +47,7 @@ class SubCleanupCommand extends Command
         SubscriptionEndJob::dispatch($user);
 
         $this->info('Sub cleaned up for user ' . $user->name . '#' . $user->id . '.');
+
         return 0;
     }
 }

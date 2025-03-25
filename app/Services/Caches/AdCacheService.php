@@ -17,6 +17,7 @@ class AdCacheService
     public function adless(): self
     {
         $this->ads = false;
+
         return $this;
     }
 
@@ -25,18 +26,19 @@ class AdCacheService
         return $this->ads;
     }
 
-    public function get(): Ad|null
+    public function get(): ?Ad
     {
         return $this->ad;
     }
 
     public function newId(bool $reset = false): self
     {
-        if (!$reset && isset($this->currentId)) {
+        if (! $reset && isset($this->currentId)) {
             $this->currentId++;
         } else {
             $this->currentId = 1;
         }
+
         return $this;
     }
 
@@ -45,13 +47,15 @@ class AdCacheService
         if ($this->currentId === 1) {
             return $key;
         }
+
         return $key . '_' . $this->currentId;
     }
 
     public function test(int $section, int $id): bool
     {
         $this->ad = Ad::select(['id', 'html'])->section($section)->where('id', $id)->first();
-        return !empty($this->ad);
+
+        return ! empty($this->ad);
     }
 
     public function show(): string
@@ -65,7 +69,8 @@ class AdCacheService
     public function has(int $section): bool
     {
         $this->load($section);
-        return (bool) (!empty($this->ad));
+
+        return (bool) (! empty($this->ad));
     }
 
     /**
@@ -73,12 +78,13 @@ class AdCacheService
      */
     protected function load(int $section): self
     {
-        if (!config('app.admin')) {
+        if (! config('app.admin')) {
             return $this;
         }
         $key = $this->cacheKey($section);
         if (cache()->has($key)) {
             $this->ad = cache()->get($key);
+
             return $this;
         }
         $this->ad = Ad::select(['id', 'html'])->section($section)->where('is_active', true)->first();

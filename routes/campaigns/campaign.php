@@ -32,7 +32,6 @@ Route::post('/w/{campaign}/gallery/{image}/update', [App\Http\Controllers\Galler
 Route::delete('/w/{campaign}/gallery/{image}/delete', [App\Http\Controllers\Gallery\DeleteController::class, 'file'])->name('gallery.file.delete');
 Route::post('/w/{campaign}/gallery/{image}/update-focus', [App\Http\Controllers\Gallery\UpdateController::class, 'focus'])->name('gallery.file.update-focus');
 
-
 Route::get('/w/{campaign}/gallery/{image}/visibility', [App\Http\Controllers\Gallery\VisibilityController::class, 'index'])->name('gallery.file.visibility');
 Route::patch('/w/{campaign}/gallery/{image}/visibility', [App\Http\Controllers\Gallery\VisibilityController::class, 'save'])->name('gallery.file.visibility-save');
 
@@ -51,7 +50,6 @@ Route::get('/w/{campaign}/members/switch/{campaign_user}', 'Campaign\MemberContr
 Route::get('/w/{campaign}/members/back', 'Campaign\MemberController@back')->name('identity.back');
 Route::get('/w/{campaign}/members/switch/{campaign_user}/{entity}', 'Campaign\MemberController@switch')->name('identity.switch-entity');
 
-
 Route::get('/w/{campaign}/campaign_users/{campaign_user}/delete', [App\Http\Controllers\Campaign\MemberController::class, 'delete'])->name('campaign_users.delete');
 Route::get('/w/{campaign}/campaign_user_roles/{campaign_user}', [App\Http\Controllers\Campaign\Members\RoleController::class, 'index'])->name('campaign.members.roles');
 Route::post('/w/{campaign}/campaign_user_roles/{campaign_user}', [App\Http\Controllers\Campaign\Members\RoleController::class, 'save'])->name('campaign_users.update-roles');
@@ -67,7 +65,6 @@ Route::get('/w/{campaign}/achievements', 'Campaign\AchievementController@index')
 // User search
 Route::get('/w/{campaign}/users/search', 'Campaign\UserController@search')->name('users.find');
 Route::get('/w/{campaign}/roles/search', 'Campaign\RoleController@search')->name('roles.find');
-
 
 Route::get('/w/{campaign}/default-images', 'Campaign\DefaultImageController@index')
     ->name('campaign.default-images');
@@ -103,7 +100,6 @@ Route::post('/w/{campaign}/leave-for-real', 'Campaign\LeaveController@process')-
 Route::get('/w/{campaign}/edit', [App\Http\Controllers\Crud\CampaignController::class, 'edit'])->name('campaigns.edit');
 Route::patch('/w/{campaign}/update', [App\Http\Controllers\Crud\CampaignController::class, 'update'])->name('campaigns.update');
 
-
 Route::post('/w/{campaign}/campaign_styles/bulk', 'Campaign\StyleController@bulk')->name('campaign_styles.bulk');
 Route::post('/w/{campaign}/campaign_styles/reorder', 'Campaign\StyleController@reorder')->name('campaign_styles.reorder-save');
 Route::get('/w/{campaign}/theme-builder', [App\Http\Controllers\Campaign\ThemeBuilderController::class, 'index'])->name('campaign_styles.builder');
@@ -118,7 +114,6 @@ Route::get('/w/{campaign}/campaign-roles/admin', 'Campaign\RoleController@admin'
 Route::get('/w/{campaign}/campaign-roles/public', 'Campaign\RoleController@public')->name('campaigns.campaign_roles.public');
 Route::get('/w/{campaign}/campaign-roles/{campaign_role}/duplicate', 'Campaign\RoleController@duplicate')->name('campaign_roles.duplicate');
 
-
 // Marketplace plugin route
 if (config('marketplace.enabled')) {
     Route::get('/w/{campaign}/plugins', 'Campaign\PluginController@index')->name('campaign_plugins.index');
@@ -131,7 +126,6 @@ if (config('marketplace.enabled')) {
     Route::post('/w/{campaign}/plugins/{plugin}/update', 'Campaign\PluginController@update')->name('campaign_plugins.update');
     Route::post('/w/{campaign}/plugins/bulk', 'Campaign\PluginController@bulk')->name('campaign_plugins.bulk');
 }
-
 
 Route::get('/w/{campaign}/redirect', 'RedirectController@index')->name('redirect');
 
@@ -150,14 +144,13 @@ Route::get('/w/{campaign}/modules', 'Campaign\ModuleController@index')->name('ca
 Route::post('/w/{campaign}/modules/toggle/{entity_type}', [App\Http\Controllers\Campaign\ModuleController::class, 'toggle'])->name('campaign.modules.toggle');
 Route::post('/w/{campaign}/features/toggle/{module}', [App\Http\Controllers\Campaign\ModuleController::class, 'toggleFeature'])->name('campaign.features.toggle');
 
-
-//Route::get('/w/{campaign}/entity_types/create', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'create'])->name('campaign.entity_types.create');
-//Route::post('/w/{campaign}/entity_types/create', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'store'])->name('campaign.entity_types.store');
+// Route::get('/w/{campaign}/entity_types/create', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'create'])->name('campaign.entity_types.create');
+// Route::post('/w/{campaign}/entity_types/create', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'store'])->name('campaign.entity_types.store');
 //
-//Route::get('/w/{campaign}/entity_types/{entity_type}/edit', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'edit'])->name('campaign.entity_types.edit');
-//Route::patch('/w/{campaign}/entity_types/{entity_type}/update', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'update'])->name('campaign.entity_types.update');
+// Route::get('/w/{campaign}/entity_types/{entity_type}/edit', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'edit'])->name('campaign.entity_types.edit');
+// Route::patch('/w/{campaign}/entity_types/{entity_type}/update', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'update'])->name('campaign.entity_types.update');
 Route::post('/w/{campaign}/entity_types/{entity_type}/toggle', [App\Http\Controllers\Campaign\EntityTypeController::class, 'toggle'])->name('entity_types.toggle');
-//Route::delete('/w/{campaign}/entity_types/{entity_type}/delete', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'delete'])->name('campaign.entity_types.destroy');
+// Route::delete('/w/{campaign}/entity_types/{entity_type}/delete', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'delete'])->name('campaign.entity_types.destroy');
 Route::get('/w/{campaign}/entity_types/{entity_type}/confirm', [App\Http\Controllers\Campaign\EntityTypeController::class, 'confirm'])->name('entity_types.confirm');
 
 Route::get('/w/{campaign}/campaign-theme', 'Campaign\StyleController@theme')->name('campaign-theme');
@@ -194,7 +187,6 @@ Route::get('/w/{campaign}/history', [App\Http\Controllers\HistoryController::cla
 
 Route::get('/w/{campaign}/bragi', [App\Http\Controllers\Bragi\BragiController::class, 'index'])->name('bragi');
 Route::post('/w/{campaign}/bragi', [App\Http\Controllers\Bragi\BragiController::class, 'generate'])->name('bragi.generate');
-
 
 Route::get('/w/{campaign}/confirm-delete', [App\Http\Controllers\ConfirmController::class, 'index'])->name('confirm-delete');
 Route::post('/w/{campaign}/vanity-validate', [App\Http\Controllers\Campaign\VanityController::class, 'index'])->name('campaign.vanity-validate');

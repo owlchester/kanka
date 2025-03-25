@@ -10,15 +10,14 @@ use App\Models\Concerns\Privatable;
 use App\Models\Scopes\Pinnable;
 use App\Traits\OrderableTrait;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 
 /**
  * Class Attribute
- * @package App\Models
  *
  * @property int $id
  * @property int $entity_id
@@ -68,14 +67,17 @@ class Attribute extends Model
      * Searchable fields
      */
     protected array $searchableColumns = [
-        'name'
+        'name',
     ];
 
     protected string $numberRange = '`\[range:(-?[0-9]+),(-?[0-9]+)\]`i';
+
     protected int|bool $numberMax;
+
     protected int|bool $numberMin;
 
     protected string $listRegexp = '`\[range:(.+)\]`i';
+
     protected array|bool $listRange;
 
     protected string $mappedName;
@@ -85,8 +87,6 @@ class Attribute extends Model
         return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
     }
 
-    /**
-     */
     public function origin(): BelongsTo
     {
         return $this->belongsTo('App\Models\Attribute', 'origin_attribute_id', 'id');
@@ -100,6 +100,7 @@ class Attribute extends Model
         if ($this->type_id == AttributeType::Section) {
             return $this->name;
         }
+
         return Mentions::mapAttribute($this);
     }
 
@@ -121,6 +122,7 @@ class Attribute extends Model
         if (Str::contains($name, '[range:')) {
             $name = Str::before($name, '[range:');
         }
+
         return $slug ? Str::slug($name) : $name;
     }
 
@@ -187,25 +189,20 @@ class Attribute extends Model
     {
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;
+
         return $new->save();
     }
 
-    /**
-     */
     public function scopeOrdered(Builder $query, string $order = 'asc'): Builder
     {
         return $query->orderBy('default_order', $order);
     }
 
-    /**
-     */
     public function scopeHidden(Builder $query, bool $hidden = false): Builder
     {
         return $query->where(['is_hidden' => $hidden]);
     }
 
-    /**
-     */
     public function name(): string
     {
         $name = preg_replace('`\[icon:(.*?)\]`si', '<i class="$1"></i>', $this->name);
@@ -221,14 +218,14 @@ class Attribute extends Model
     {
         $this->value = $value;
         // Check if there is a constraint
-        if (!$this->validConstraints()) {
+        if (! $this->validConstraints()) {
             return $this;
         }
 
         if ($this->isNumber()) {
             $this->value = min($this->numberMax, max($this->numberMin, $value));
-        } elseif (!empty($this->listRange)) {
-            if (!in_array($this->value, $this->listRange())) {
+        } elseif (! empty($this->listRange)) {
+            if (! in_array($this->value, $this->listRange())) {
                 $this->value = null;
             }
         }
@@ -236,19 +233,17 @@ class Attribute extends Model
         return $this;
     }
 
-    /**
-     */
     public function numberMax(): int
     {
         $this->calculateConstraints();
+
         return $this->numberMax;
     }
 
-    /**
-     */
     public function numberMin(): int
     {
         $this->calculateConstraints();
+
         return $this->numberMin;
     }
 
@@ -269,6 +264,7 @@ class Attribute extends Model
         if ($this->isNumber()) {
             return $this->numberMax !== false && $this->numberMin !== false;
         }
+
         return isset($this->listRange) && $this->listRange !== false;
     }
 
@@ -298,13 +294,13 @@ class Attribute extends Model
         $this->numberMax = false;
         $this->numberMin = false;
 
-        //dump('checking ' . $this->name . '(' . $this->mappedName() . ')');
+        // dump('checking ' . $this->name . '(' . $this->mappedName() . ')');
 
-        if (!Str::contains($this->mappedName(), '[range:')) {
+        if (! Str::contains($this->mappedName(), '[range:')) {
             return $this;
         }
 
-        //dump('check regexp');
+        // dump('check regexp');
         preg_match($this->numberRange, $this->mappedName(), $constraints);
         if (count($constraints) !== 3) {
             return $this;
@@ -313,8 +309,8 @@ class Attribute extends Model
         $this->numberMin = (int) $constraints[1];
         $this->numberMax = (int) $constraints[2];
 
-        //dump($this->numberMin);
-        //dd($this->numberMax);
+        // dump($this->numberMin);
+        // dd($this->numberMax);
 
         return $this;
     }
@@ -330,8 +326,8 @@ class Attribute extends Model
 
         $this->listRange = false;
 
-        if (!Str::contains($this->mappedName(), '[range:')) {
-            //dd('Missing range syntax');
+        if (! Str::contains($this->mappedName(), '[range:')) {
+            // dd('Missing range syntax');
             return $this;
         }
 
@@ -341,24 +337,21 @@ class Attribute extends Model
         }
         $this->listRange = explode(',', $constraints[1]);
 
-        //dump($constraints);
-        //dd($this->listRange);
+        // dump($constraints);
+        // dd($this->listRange);
 
         return $this;
     }
 
-    /**
-     */
     public function listRange(): array
     {
-        if (!is_array($this->listRange)) {
+        if (! is_array($this->listRange)) {
             return [];
         }
+
         return $this->listRange;
     }
 
-    /**
-     */
     public function listRangeText(): string
     {
         return implode(', ', $this->listRange);
@@ -380,7 +373,6 @@ class Attribute extends Model
 
     /**
      * Get the value used to index the model.
-     *
      */
     public function getScoutKey()
     {
@@ -395,8 +387,6 @@ class Attribute extends Model
         return 'entities';
     }
 
-    /**
-     */
     protected function makeAllSearchableUsing($query)
     {
         return $query
@@ -415,8 +405,8 @@ class Attribute extends Model
             'campaign_id' => $this->entity->campaign_id,
             'entity_id' => $this->entity_id,
             'name' => $this->name,
-            'type'  => 'attribute',
-            'entry'  => strip_tags($this->value),
+            'type' => 'attribute',
+            'entry' => strip_tags($this->value),
         ];
     }
 }

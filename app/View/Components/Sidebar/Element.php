@@ -16,8 +16,7 @@ class Element extends Component
         public ?string $icon = null,
         public ?string $url = null,
         public ?string $class = null,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
@@ -28,6 +27,7 @@ class Element extends Component
         if (empty($this->url)) {
             $view = 'text';
         }
+
         return view('components.sidebar.element-' . $view);
     }
 }

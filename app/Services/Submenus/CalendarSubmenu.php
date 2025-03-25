@@ -10,15 +10,17 @@ class CalendarSubmenu extends BaseSubmenu implements EntitySubmenu
     {
         /** @var Calendar $calendar */
         $calendar = $this->entity->child;
-        $count = $calendar->calendarEvents()->has('entity')->count();
+        // @phpstan-ignore-next-line
+        $count = $calendar->calendarEvents()->whereHas('remindable')->count();
         $items = [];
         if ($count > 0) {
             $items['second']['events'] = [
                 'name' => 'crud.tabs.reminders',
                 'route' => 'calendars.events',
-                'count' => $count
+                'count' => $count,
             ];
         }
+
         return $items;
     }
 }

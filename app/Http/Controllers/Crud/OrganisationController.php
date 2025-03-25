@@ -12,7 +12,9 @@ use App\Models\Organisation;
 class OrganisationController extends CrudController
 {
     protected string $view = 'organisations';
+
     protected string $route = 'organisations';
+
     protected string $module = 'organisations';
 
     protected string $model = Organisation::class;

@@ -21,11 +21,13 @@ class EntityResource extends JsonResource
 
     /**
      * Get related objects for this entity
+     *
      * @return $this
      */
     public function withRelated(): self
     {
         $this->withRelated = true;
+
         return $this;
     }
 
@@ -35,11 +37,12 @@ class EntityResource extends JsonResource
     public function withMisc(): self
     {
         $this->withMisc = true;
+
         return $this;
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function toArray($request)
@@ -83,7 +86,7 @@ class EntityResource extends JsonResource
             'urls' => [
                 'view' => $url,
                 'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$entity->campaign_id, $entity->entity_id]) : null,
-            ]
+            ],
         ];
 
         if ($entity->entityType->isSpecial()) {
@@ -97,7 +100,8 @@ class EntityResource extends JsonResource
         if (request()->get('related', false)) {
             $data['attributes'] = AttributeResource::collection($entity->attributes);
             $data['posts'] = PostResource::collection($entity->posts);
-            $data['entity_events'] = EntityEventResource::collection($entity->reminders);
+            $data['entity_events'] = ReminderResource::collection($entity->reminders);
+            $data['reminders'] = ReminderResource::collection($entity->reminders);
             $data['relations'] = RelationResource::collection($entity->relationships);
             $data['inventory'] = InventoryResource::collection($entity->inventories);
             $data['entity_abilities'] = EntityAbilityResource::collection($entity->abilities);
@@ -107,12 +111,12 @@ class EntityResource extends JsonResource
             if ($entity->isMissingChild()) {
                 $data['child'] = 'Invalid child, please contact us on Discord with the following: EntityResource for #' . $entity->id;
             } else {
-                $image = !empty($entity->image);
+                $image = ! empty($entity->image);
                 $data['child'] = [
                     'image' => $image ? $entity->image->path : $entity->image_path,
                     'image_full' => Avatar::entity($entity)->original(),
                     'image_thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
-                    'has_custom_image' => $image || !empty($entity->image_path),
+                    'has_custom_image' => $image || ! empty($entity->image_path),
                 ];
             }
         }
@@ -140,7 +144,7 @@ class EntityResource extends JsonResource
     {
         /** @var mixed|MiscModel|Item $misc */
         $misc = $this->resource;
-        if (!$misc->entity) {
+        if (! $misc->entity) {
             return 'permission issue';
         }
 
@@ -162,7 +166,7 @@ class EntityResource extends JsonResource
             // Image
             'image_full' => Avatar::entity($misc->entity)->original(),
             'image_thumb' => Avatar::size(40)->fallback()->thumbnail(),
-            'has_custom_image' => !empty($misc->entity->image_path) || !empty($galleryImage),
+            'has_custom_image' => ! empty($misc->entity->image_path) || ! empty($galleryImage),
             'image_uuid' => $misc->entity->image ? $misc->entity->image->id : null,
 
             // Header
@@ -193,7 +197,7 @@ class EntityResource extends JsonResource
             'urls' => [
                 'view' => $url,
                 'api' => Route::has($apiViewUrl) ? route($apiViewUrl, [$misc->campaign_id, $misc->id]) : null,
-            ]
+            ],
         ];
 
         // Foreign elements
@@ -208,7 +212,8 @@ class EntityResource extends JsonResource
         if (request()->get('related', false) || $this->withRelated) {
             $merged['attributes'] = AttributeResource::collection($misc->entity->attributes);
             $merged['posts'] = PostResource::collection($misc->entity->posts);
-            $merged['entity_events'] = EntityEventResource::collection($misc->entity->reminders);
+            $merged['entity_events'] = ReminderResource::collection($misc->entity->reminders);
+            $merged['reminders'] = ReminderResource::collection($misc->entity->reminders);
             $merged['relations'] = RelationResource::collection($misc->entity->relationships);
             $merged['inventory'] = InventoryResource::collection($misc->entity->inventories);
             $merged['entity_abilities'] = EntityAbilityResource::collection($misc->entity->abilities);
@@ -231,8 +236,8 @@ class EntityResource extends JsonResource
         }
 
         $final = array_merge($merged, $prepared);
-        //ksort($final);
+
+        // ksort($final);
         return $final;
     }
-
 }

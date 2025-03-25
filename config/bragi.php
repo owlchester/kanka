@@ -5,7 +5,7 @@ return [
         'admin' => env('BRAGI_ADMIN_LIMIT', 99),
         'elemental' => env('BRAGI_ELEMENTAL_LIMIT', 50),
         'wyvern' => env('BRAGI_WYVERN_LIMIT', 25),
-        'all' => 0
+        'all' => 0,
     ],
     'limit' => [
         'prompt' => 180,

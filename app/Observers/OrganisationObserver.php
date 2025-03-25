@@ -22,7 +22,7 @@ class OrganisationObserver extends MiscObserver
     protected function saveMembers(Organisation $organisation): self
     {
         // Only execute this if a proper post attribute is in the body
-        if (!request()->has('sync_org_members')) {
+        if (! request()->has('sync_org_members')) {
             return $this;
         }
 
@@ -38,17 +38,17 @@ class OrganisationObserver extends MiscObserver
         $new = [];
 
         foreach ($ids as $id) {
-            if (!empty($existing[$id])) {
+            if (! empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
                 /** @var ?Character $character */
                 $character = Character::find($id);
-                if (!empty($character)) {
+                if (! empty($character)) {
                     $new[] = $character->id;
 
                     $member = OrganisationMember::create([
                         'organisation_id' => $organisation->id,
-                        'character_id' => $character->id
+                        'character_id' => $character->id,
                     ]);
                     EntityLogger::dirty('members', null);
                 }
@@ -61,6 +61,6 @@ class OrganisationObserver extends MiscObserver
             EntityLogger::dirty('members', null);
         }
 
-        return  $this;
+        return $this;
     }
 }

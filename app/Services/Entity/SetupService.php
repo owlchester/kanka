@@ -66,8 +66,10 @@ class SetupService
         $type = array_search($entity, config('entities.ids'));
         if ($type) {
             $type = Str::plural($type);
+
             return __('entities.' . $type);
         }
+
         return __('Unknown');
     }
 
@@ -80,6 +82,7 @@ class SetupService
         if ($type) {
             return __('entities.' . $type);
         }
+
         return __('Unknown');
     }
 }

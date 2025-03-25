@@ -11,13 +11,14 @@ class DashboardHeaderController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign, ?CampaignDashboardWidget $campaignDashboardWidget)
     {
         $this->authorize('update', $campaign);
 
-        if (!empty($campaignDashboardWidget) && !empty($campaignDashboardWidget->campaign_id)) {
+        if (! empty($campaignDashboardWidget) && ! empty($campaignDashboardWidget->campaign_id)) {
             if ($campaignDashboardWidget->campaign_id != $campaign->id) {
                 abort(404);
             }
@@ -32,6 +33,7 @@ class DashboardHeaderController extends Controller
 
     /**
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(UpdateCampaignHeader $request, Campaign $campaign, ?CampaignDashboardWidget $campaignDashboardWidget)

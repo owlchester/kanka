@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Requests\StoreCampaign as Request;
 use App\Http\Resources\CampaignResource;
 use App\Models\Campaign;
-use App\Http\Requests\StoreCampaign as Request;
 
 class CampaignApiController extends ApiController
 {
@@ -16,6 +16,7 @@ class CampaignApiController extends ApiController
             ->with(['members', 'setting', 'roles', 'submissions', 'members.user'])
             ->lastSync(request()->get('lastSync'))
             ->paginate();
+
         return CampaignResource::collection($campaigns);
     }
 
@@ -31,6 +32,7 @@ class CampaignApiController extends ApiController
     {
         $model = Campaign::create($request->all());
         $model->refresh();
+
         return new CampaignResource($model);
     }
 

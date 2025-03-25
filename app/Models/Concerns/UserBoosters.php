@@ -7,7 +7,6 @@ use Illuminate\Support\Arr;
 
 /**
  * @property
- *
  * @property int $booster_count
  */
 trait UserBoosters
@@ -21,9 +20,9 @@ trait UserBoosters
         if (request()->get('_booster') === '0') {
             return false;
         }
+
         return $this->isGoblin();
     }
-
 
     /**
      * Get available boosts for the user
@@ -41,6 +40,7 @@ trait UserBoosters
         if ($this->hasBoosterNomenclature()) {
             return $this->boosts->count();
         }
+
         return $this->boosts->groupBy('campaign_id')->count();
     }
 
@@ -51,11 +51,11 @@ trait UserBoosters
     {
         // Allows admins to give boosters to members of the community
         $base = 0;
-        if (!empty($this->booster_count)) {
+        if (! empty($this->booster_count)) {
             $base += $this->booster_count;
         }
 
-        if (!$this->isSubscriber()) {
+        if (! $this->isSubscriber()) {
             return $base;
         }
 

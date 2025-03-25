@@ -15,15 +15,11 @@ class CampaignRoleObserver
         CampaignCache::clear();
     }
 
-    /**
-     */
     public function deleted(CampaignRole $campaignRole)
     {
         CampaignCache::clear();
     }
 
-    /**
-     */
     public function updated(CampaignRole $campaignRole)
     {
         if ($campaignRole->isAdmin()) {

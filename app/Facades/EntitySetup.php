@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class EntitySetup
- * @package App\Facades
  *
  * @see \App\Services\Entity\SetupService
+ *
  * @mixin \App\Services\Entity\SetupService
  */
 class EntitySetup extends Facade

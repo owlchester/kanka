@@ -22,7 +22,9 @@ class MemberController extends Controller
 
     /**
      * Switch to another member
+     *
      * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function switch(Campaign $campaign, CampaignUser $campaignUser, ?Entity $entity = null)
@@ -34,15 +36,18 @@ class MemberController extends Controller
                 return redirect()
                     ->to($entity->url());
             }
+
             return redirect()
                 ->route('dashboard', $campaign);
         }
+
         return redirect()
             ->route('dashboard', $campaign);
     }
 
     /**
      * Switch back to the original user
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function back(Campaign $campaign)
@@ -52,6 +57,7 @@ class MemberController extends Controller
                 ->route('dashboard', $campaign)
                 ->with('success', __('campaigns.members.switch_back_success'));
         }
+
         return redirect()
             ->route('dashboard', $campaign);
     }

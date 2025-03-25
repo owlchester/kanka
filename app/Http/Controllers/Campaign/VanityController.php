@@ -15,7 +15,7 @@ class VanityController extends Controller
 
         return response([
             'success' => true,
-            'vanity' => Str::slug($request->post('vanity'))
+            'vanity' => Str::slug($request->post('vanity')),
         ]);
     }
 }

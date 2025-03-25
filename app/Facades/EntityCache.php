@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class EntityCache
- * @package App\Facades
  *
  * @see \App\Services\Caches\EntityCacheService
+ *
  * @mixin \App\Services\Caches\EntityCacheService
  */
 class EntityCache extends Facade

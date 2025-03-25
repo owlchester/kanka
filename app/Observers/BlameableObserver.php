@@ -7,8 +7,6 @@ use Illuminate\Support\Arr;
 
 class BlameableObserver
 {
-    /**
-     */
     public function creating(Model $model): void
     {
         // We need the auth check because of workers having no user
@@ -18,8 +16,6 @@ class BlameableObserver
         }
     }
 
-    /**
-     */
     public function updating(Model $model): void
     {
         // Some models don't have an updated_by.

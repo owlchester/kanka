@@ -14,7 +14,6 @@ use Illuminate\Support\Str;
 
 /**
  * Class CommunityEvent
- * @package App\Models
  *
  * @property int $id
  * @property string $uuid
@@ -24,7 +23,6 @@ use Illuminate\Support\Str;
  * @property string $image
  * @property Carbon $start_at
  * @property Carbon $end_at
- *
  * @property CommunityEventEntry[]|Collection $entries
  * @property CommunityEventEntry[]|Collection $rankedResults
  * @property User $jury
@@ -63,7 +61,8 @@ class CommunityEvent extends Model
         if (empty($this->$field)) {
             return '';
         }
-        return Img::crop($width, (!empty($height) ? $height : $width))->url($this->$field);
+
+        return Img::crop($width, (! empty($height) ? $height : $width))->url($this->$field);
     }
 
     public function entries(): HasMany
@@ -71,8 +70,6 @@ class CommunityEvent extends Model
         return $this->hasMany(CommunityEventEntry::class);
     }
 
-    /**
-     */
     public function getSlug(): string
     {
         return $this->uuid . '-' . Str::slug($this->name);
@@ -86,8 +83,6 @@ class CommunityEvent extends Model
         return $this->entries()->where('created_by', $userId)->first();
     }
 
-    /**
-     */
     public function rankedResults()
     {
         return $this->entries()
@@ -107,7 +102,7 @@ class CommunityEvent extends Model
      */
     public function hasRankedResults(): bool
     {
-        return !$this->rankedResults->where('rank', 1)->isEmpty();
+        return ! $this->rankedResults->where('rank', 1)->isEmpty();
     }
 
     public function jury(): BelongsTo

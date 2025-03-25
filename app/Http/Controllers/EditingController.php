@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Entity;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\Post;
 use App\Models\QuestElement;
 use App\Models\TimelineElement;
@@ -27,7 +27,7 @@ class EditingController extends Controller
             $model = $campaign;
         } else {
             $modelName = app()->make('App\Models\\' . $model);
-            $model = new $modelName();
+            $model = new $modelName;
             $model = $model->findOrFail($id);
         }
 
@@ -77,7 +77,7 @@ class EditingController extends Controller
 
         return response()
             ->json([
-                'success' => true
+                'success' => true,
             ]);
     }
 

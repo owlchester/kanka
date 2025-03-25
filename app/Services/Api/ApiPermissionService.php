@@ -2,12 +2,12 @@
 
 namespace App\Services\Api;
 
-use App\Models\CampaignPermission;
-use App\Models\MiscModel;
-use App\Models\User;
 use App\Facades\EntityPermission;
 use App\Models\Campaign;
+use App\Models\CampaignPermission;
 use App\Models\Entity;
+use App\Models\MiscModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ApiPermissionService
@@ -19,15 +19,15 @@ class ApiPermissionService
      */
     protected function entityPermissions(Entity $entity): array
     {
-        if (!empty($this->cachedPermissions)) {
+        if (! empty($this->cachedPermissions)) {
             return $this->cachedPermissions;
         }
 
         $permissions = ['user' => [], 'role' => []];
         /** @var CampaignPermission $perm */
         foreach (CampaignPermission::where('entity_id', $entity->id)->get() as $perm) {
-            $key = (!empty($perm->user_id) ? 'user' : 'role');
-            $subkey = (!empty($perm->user_id) ? $perm->user_id : $perm->campaign_role_id);
+            $key = (! empty($perm->user_id) ? 'user' : 'role');
+            $subkey = (! empty($perm->user_id) ? $perm->user_id : $perm->campaign_role_id);
             $permissions[$key][$subkey][$perm->action] = $perm;
         }
 
@@ -35,7 +35,7 @@ class ApiPermissionService
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      */
     public function saveEntity($request, Entity $entity)
     {
@@ -44,7 +44,7 @@ class ApiPermissionService
         $model = [];
         // Next, start looping the data
         foreach ($request->all() as $permission) {
-            if (!empty($permission['campaign_role_id'])) {
+            if (! empty($permission['campaign_role_id'])) {
                 $key = 'role';
                 $key2 = 'campaign_role_id';
             } else {
@@ -59,11 +59,12 @@ class ApiPermissionService
                 array_push($model, CampaignPermission::create($permission));
             }
         }
+
         return $model;
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      */
     public function entityPermissionTest($request, Campaign $campaign): array
     {
@@ -74,7 +75,7 @@ class ApiPermissionService
             /** @var Entity|MiscModel|null $entity */
             $entity = null;
             $entityId = null;
-            if (!isset($user) || $user != $previousUser) {
+            if (! isset($user) || $user != $previousUser) {
                 $user = User::find($test['user_id']);
                 EntityPermission::resetPermissions();
             }
@@ -93,11 +94,12 @@ class ApiPermissionService
                 'entity_type_id' => $entityTypeId,
                 'entity_id' => $entityId,
                 'user_id' => $test['user_id'],
-                'action'  => $test['action'],
-                'can'     => $permission,
+                'action' => $test['action'],
+                'can' => $permission,
             ]);
             $previousUser = $user;
         }
+
         return $permissionTest;
     }
 }

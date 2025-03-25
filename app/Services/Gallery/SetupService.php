@@ -5,11 +5,11 @@ namespace App\Services\Gallery;
 use App\Enums\Visibility;
 use App\Facades\Limit;
 use App\Http\Resources\GalleryFile;
+use App\Models\Image;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use App\Models\Image;
 
 class SetupService
 {
@@ -17,9 +17,13 @@ class SetupService
     use UserAware;
 
     protected Collection $files;
+
     protected Image $image;
+
     protected ?string $term;
+
     protected ?string $nextPage;
+
     protected array $filters;
 
     protected StorageService $storage;
@@ -32,18 +36,21 @@ class SetupService
     public function image(Image $image): self
     {
         $this->image = $image;
+
         return $this;
     }
 
     public function term(?string $term): self
     {
         $this->term = $term;
+
         return $this;
     }
 
     public function filters(array $filters): self
     {
         $this->filters = $filters;
+
         return $this;
     }
 
@@ -53,7 +60,7 @@ class SetupService
             'acl' => [
                 'manage' => $this->user->can('galleryManage', $this->campaign),
                 'upload' => $this->user->can('galleryUpload', $this->campaign),
-                'premium' => $this->campaign->boosted()
+                'premium' => $this->campaign->boosted(),
             ],
             'files' => $this->files(),
             'i18n' => $this->i18n(),
@@ -70,7 +77,7 @@ class SetupService
             'bulkVisibilities' => $this->visibilities(true),
             'url' => route('gallery', $this->campaign),
             'space' => $this->space(),
-            'upgrade' => $this->upgradeLink()
+            'upgrade' => $this->upgradeLink(),
         ];
     }
 
@@ -84,7 +91,7 @@ class SetupService
             'files' => $this->files(),
             'breadcrumbs' => $this->breadcrumbs(),
             'next' => $this->nextPage ?? null,
-            'url' => route('gallery', [$this->campaign, 'folder' => $this->image->id])
+            'url' => route('gallery', [$this->campaign, 'folder' => $this->image->id]),
         ];
     }
 
@@ -98,7 +105,7 @@ class SetupService
 
     protected function files(): array
     {
-        $this->files = new Collection();
+        $this->files = new Collection;
         $query = $this
             ->campaign
             ->images()
@@ -113,8 +120,7 @@ class SetupService
                 ->leftJoin('entities as e', 'e.image_uuid', 'images.id')
                 ->whereNull('im.id')
                 ->whereNull('e.id')
-                ->where('is_folder', false)
-            ;
+                ->where('is_folder', false);
         }
 
         if (isset($this->term)) {
@@ -122,7 +128,6 @@ class SetupService
         } else {
             $query->imageFolder(isset($this->image) ? $this->image->id : null);
         }
-
 
         $files = $query->paginate(25);
         /** @var Image $file */
@@ -134,6 +139,7 @@ class SetupService
         if ($files->hasMorePages()) {
             $this->nextPage = $files->appends($this->filters ?? null)->nextPageUrl();
         }
+
         return $this->files->toArray();
     }
 
@@ -193,7 +199,7 @@ class SetupService
     {
         $folders = [
             '' => '',
-            0 => __('gallery.update.home')
+            0 => __('gallery.update.home'),
         ];
         $query = $this
             ->campaign
@@ -212,7 +218,7 @@ class SetupService
     protected function breadcrumbs(): array
     {
         $crumbs = [];
-        if (!$this->image->imageFolder) {
+        if (! $this->image->imageFolder) {
             return $crumbs;
         }
         $parent = $this->image->imageFolder;
@@ -263,6 +269,7 @@ class SetupService
         if ($this->campaign->boosted()) {
             return null;
         }
+
         return route('settings.premium');
     }
 }

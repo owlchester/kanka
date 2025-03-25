@@ -9,13 +9,14 @@ class Reminder extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'entity' => [
                 'key' => 'entity.name',
@@ -26,8 +27,8 @@ class Reminder extends Layout
                 'key' => 'type_id',
                 'label' => 'crud.fields.entity_type',
                 'render' => function ($model) {
-                    return $model->entity->entityType->name();
-                }
+                    return $model->remindable->entityType->name();
+                },
             ],
             'date' => [
                 'key' => 'date',
@@ -45,8 +46,9 @@ class Reminder extends Layout
                     if (empty($model->comment)) {
                         return '';
                     }
+
                     return '<i class="fa-solid fa-comment" data-title="' . $model->comment . '" data-toggle="tooltip"></i>';
-                }
+                },
             ],
             'recurring' => [
                 'label' => '',
@@ -54,8 +56,9 @@ class Reminder extends Layout
                     if (empty($model->is_recurring)) {
                         return '';
                     }
+
                     return '<i class="fa-solid fa-refresh" data-title="' . __('calendars.fields.is_recurring') . '" data-toggle="tooltip"></i>';
-                }
+                },
             ],
 
         ];
@@ -70,7 +73,7 @@ class Reminder extends Layout
     {
         return [
             self::ACTION_EDIT_DIALOG,
-            self::ACTION_DELETE
+            self::ACTION_DELETE,
         ];
     }
 

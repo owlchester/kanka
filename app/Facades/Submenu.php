@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Module
- * @package App\Facades
  *
  * @see \App\Services\Submenus\SubmenuService
+ *
  * @mixin \App\Services\Submenus\SubmenuService
  */
 class Submenu extends Facade

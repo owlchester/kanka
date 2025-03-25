@@ -7,9 +7,9 @@ use App\Http\Requests\AddCalendarWeather;
 use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\Entity;
-use App\Models\EntityEvent;
 use App\Models\EntityType;
 use App\Models\Event;
+use App\Models\Reminder;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
@@ -25,18 +25,20 @@ class CalendarService
     public function calendar(Calendar $calendar): self
     {
         $this->calendar = $calendar;
+
         return $this;
     }
 
     /**
      * Add an event to a calendar, and return the new calendar_event model
      */
-    public function addEvent(array $data = []): EntityEvent
+    public function addEvent(array $data = []): Reminder
     {
         $entity = $this->entity($data);
-        $link = new EntityEvent();
+        $link = new Reminder;
+        $link->remindable_type = Entity::class;
+        $link->remindable_id = $entity->id;
         $link->calendar_id = $this->calendar->id;
-        $link->entity_id = $entity->id;
         $link->year = $data['year'];
         $link->month = $data['month'];
         $link->day = $data['day'];
@@ -48,6 +50,7 @@ class CalendarService
         $link->recurring_periodicity = Arr::get($data, 'recurring_periodicity', null);
         $link->visibility_id = Arr::get($data, 'visibility_id', 1);
         $link->save();
+
         return $link;
     }
 
@@ -63,7 +66,7 @@ class CalendarService
             (int) $request->post('day')
         );
 
-        if (!$weather) {
+        if (! $weather) {
             $weather = new CalendarWeather([
                 'calendar_id' => $this->calendar->id,
                 'year' => $request->post('year'),
@@ -103,24 +106,25 @@ class CalendarService
 
     /**
      * Create a new event if it's just a name and no entity id. Otherwise, validate the entity
+     *
      * @throws TranslatableException
      */
     protected function entity(array $data = []): Entity
     {
-        if (empty($data['entity_id']) && !empty($data['name'])) {
+        if (empty($data['entity_id']) && ! empty($data['name'])) {
             $entityType = EntityType::find(config('entities.ids.event'));
-            if (!$this->user->can('create', [$entityType, $this->campaign])) {
+            if (! $this->user->can('create', [$entityType, $this->campaign])) {
                 throw new TranslatableException(__('calendars.event.errors.missing_permissions'));
             }
             // Create an event
-            $event = new Event();
+            $event = new Event;
             $event->name = $data['name'];
             $event->date = $data['year'] . '-' . $data['month'] . '-' . $data['day'];
             $event->campaign_id = $this->campaign->id;
             if ($event->save()) {
                 return $event->entity;
             }
-        } elseif (!empty($data['entity_id'])) {
+        } elseif (! empty($data['entity_id'])) {
             return Entity::findOrFail($data['entity_id']);
         }
 

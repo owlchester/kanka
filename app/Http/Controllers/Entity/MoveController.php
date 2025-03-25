@@ -28,6 +28,7 @@ class MoveController extends Controller
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)
@@ -63,8 +64,7 @@ class MoveController extends Controller
                 ->to($request->get('campaign'))
                 ->copy($copied)
                 ->validate()
-                ->process()
-            ;
+                ->process();
 
             return redirect()
                 ->route($entity->entityType->isSpecial() ? 'entities.index' : $entity->entityType->pluralCode() . '.index', [$campaign, $entity->entityType])

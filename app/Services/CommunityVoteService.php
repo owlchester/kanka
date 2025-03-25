@@ -8,8 +8,6 @@ use App\Models\User;
 
 class CommunityVoteService
 {
-    /**
-     */
     public function cast(CommunityVote $communityVote, User $user, ?string $option = null): array
     {
         if (empty($option)) {
@@ -20,11 +18,10 @@ class CommunityVoteService
 
         // Return the new % values
         $communityVote->refresh();
+
         return $communityVote->voteStats();
     }
 
-    /**
-     */
     protected function remove(CommunityVote $communityVote, User $user): void
     {
         CommunityVoteBallot::where([
@@ -33,13 +30,11 @@ class CommunityVoteService
         ])->delete();
     }
 
-    /**
-     */
     protected function add(CommunityVote $communityVote, User $user, string $option): void
     {
         // Validate the option
         $options = $communityVote->options();
-        if (!isset($options[$option])) {
+        if (! isset($options[$option])) {
             return;
         }
 

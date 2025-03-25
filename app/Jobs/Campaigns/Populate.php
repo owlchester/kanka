@@ -36,7 +36,7 @@ class Populate implements ShouldQueue
     {
         /** @var Campaign|null $campaign */
         $campaign = Campaign::find($this->campaign);
-        if (!$campaign) {
+        if (! $campaign) {
             return;
         }
 

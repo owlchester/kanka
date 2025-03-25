@@ -2,33 +2,26 @@
 
 namespace App\Services;
 
-use App\Models\UserApp;
-use App\Models\User;
-use Carbon\Carbon;
-use GuzzleHttp\Client;
 use App\Models\JobLog;
+use App\Models\User;
+use App\Models\UserApp;
+use Carbon\Carbon;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 
 /**
  * Class DiscordService
- * @package App\Services
- *
- * To set up your discord bot, access the following:
- * https://discord.com/api/oauth2/authorize?client_id=<DISCORD_ID>&scope=bot&permissions=268443657
  */
 class DiscordService
 {
-    /**  */
     protected User $user;
 
     /** @var UserApp|null */
     protected $app;
 
-    /**  */
     protected string $url = 'https://discord.com/api/v6/';
 
-    /**  */
     protected $me = false;
 
     protected array $logs = [];
@@ -40,11 +33,10 @@ class DiscordService
     {
         $this->user = $user;
         $this->app = $user->apps()->app('discord')->first();
+
         return $this;
     }
 
-    /**
-     */
     public function validate(string $code): self
     {
         $body = [
@@ -53,7 +45,7 @@ class DiscordService
             'grant_type' => 'authorization_code',
             'code' => $code,
             'redirect_uri' => url('/settings/discord-callback'),
-            'scope' => 'identify guilds guilds.join'
+            'scope' => 'identify guilds guilds.join',
         ];
         $headers = [
             'Content-Type' => 'application/x-www-form-urlencoded',
@@ -86,8 +78,6 @@ class DiscordService
         return $this;
     }
 
-    /**
-     */
     public function me()
     {
         // Cache the response during a single process
@@ -96,7 +86,7 @@ class DiscordService
         }
 
         $this->refresh();
-        $client = new Client();
+        $client = new Client;
         $url = $this->url . 'users/@me';
         $headers = [
             'Authorization' => 'Bearer ' . $this->app->access_token,
@@ -110,11 +100,12 @@ class DiscordService
 
     /**
      * Save the user app
-     * @param object $data
+     *
+     * @param  object  $data
      */
     protected function saveUserApp($data): self
     {
-        if (!$this->app) {
+        if (! $this->app) {
             $this->app = new UserApp([
                 'user_id' => $this->user->id,
                 'app' => 'discord',
@@ -136,12 +127,13 @@ class DiscordService
 
     /**
      * Refresh the user's access token
+     *
      * @return $this
      */
     public function refresh()
     {
         // Don't refresh a valid token
-        if (!$this->app->expires_at->isPast()) {
+        if (! $this->app->expires_at->isPast()) {
             return $this;
         }
 
@@ -151,7 +143,7 @@ class DiscordService
             'grant_type' => 'refresh_token',
             'refresh_token' => $this->app->refresh_token,
             'redirect_uri' => url('/settings/discord-callback'),
-            'scope' => 'identify guilds guilds.join'
+            'scope' => 'identify guilds guilds.join',
         ];
         $content = $this->post('oauth2/token', $body);
         $this->saveUserApp($content);
@@ -164,6 +156,7 @@ class DiscordService
 
     /**
      * Add the user to the discord roles
+     *
      * @return $this
      */
     public function addRoles(): self
@@ -171,12 +164,14 @@ class DiscordService
         // Don't add roles if the user isn't connected
         if (empty($this->app)) {
             $this->logs[] = 'User isn\'t synced with Discord';
+
             return $this;
         }
 
         // Only add roles if the user is a subscriber
-        if (!$this->user->subscribed('kanka')) {
+        if (! $this->user->subscribed('kanka')) {
             $this->logs[] = 'User isn\'t subbed to Kanka';
+
             return $this;
         }
 
@@ -236,6 +231,7 @@ class DiscordService
 
     /**
      * Remove a user's discord integration
+     *
      * @throws Exception
      */
     public function remove(): self
@@ -262,7 +258,7 @@ class DiscordService
      */
     protected function post(string $api, array $body = [], ?array $headers = null)
     {
-        $client = new Client();
+        $client = new Client;
         if ($headers === null) {
             $headers = [
                 'Content-Type' => 'application/x-www-form-urlencoded',
@@ -276,11 +272,11 @@ class DiscordService
     }
 
     /**
-     * @param string $action post, get, put, delete
+     * @param  string  $action  post, get, put, delete
      */
     protected function call(string $action, string $api, array $body = [], ?array $headers = null)
     {
-        $client = new Client();
+        $client = new Client;
         if ($headers === null) {
             $headers = [
                 'Content-Type' => 'application/x-www-form-urlencoded',
@@ -298,8 +294,6 @@ class DiscordService
         return json_decode($response->getBody());
     }
 
-    /**
-     */
     public function logs(): array
     {
         return $this->logs;
@@ -307,17 +301,18 @@ class DiscordService
 
     /**
      * Save an job log for the admin interface
+     *
      * @return void
      */
     public function log()
     {
-        if (!config('app.log_jobs')) {
+        if (! config('app.log_jobs')) {
             return;
         }
 
         JobLog::create([
             'name' => 'users:renew-discord-tokens',
-            'result' => implode('<br />', $this->logs)
+            'result' => implode('<br />', $this->logs),
         ]);
     }
 }

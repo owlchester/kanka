@@ -16,6 +16,7 @@ class MiscSanitizer
     public function request(Request $request): self
     {
         $this->request = $request;
+
         return $this;
     }
 

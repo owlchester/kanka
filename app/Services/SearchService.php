@@ -61,8 +61,7 @@ class SearchService
     public function __construct(
         protected EntityTypeService $entityTypeService,
         protected NewService $newService
-    ) {
-    }
+    ) {}
 
     /**
      * The search term as requested by the user
@@ -70,6 +69,7 @@ class SearchService
     public function term(?string $term = null): self
     {
         $this->term = $term;
+
         return $this;
     }
 
@@ -79,6 +79,7 @@ class SearchService
     public function v2(): self
     {
         $this->v2 = true;
+
         return $this;
     }
 
@@ -87,68 +88,65 @@ class SearchService
      */
     public function type(?int $type = null): self
     {
-        if (!empty($type)) {
+        if (! empty($type)) {
             $this->onlyTypes = [$type];
         }
+
         return $this;
     }
 
-    /**
-     */
     public function new(bool $new = false): self
     {
         $this->new = $new;
+
         return $this;
     }
 
-    /**
-     */
     public function posts(bool $posts = true): self
     {
         $this->posts = $posts;
+
         return $this;
     }
 
-    /**
-     */
     public function limit(int $limit = 10): self
     {
         $this->limit = $limit;
+
         return $this;
     }
 
-    /**
-     */
     public function exclude($types): self
     {
         $this->excludedTypes = is_array($types) ? $types : [$types];
+
         return $this;
     }
 
-    /**
-     */
     public function excludeIds($ids): self
     {
         if (empty($ids)) {
             $this->excludeIds = [];
+
             return $this;
         }
-        if (!is_array($ids)) {
+        if (! is_array($ids)) {
             $ids = [$ids];
         }
         $this->excludeIds = $ids;
+
         return $this;
     }
 
-    /**
-     */
     public function only(null|array|string $types = null): self
     {
         if (empty($types)) {
             $this->onlyTypes = [];
+
             return $this;
         }
         $this->onlyTypes = is_array($types) ? $types : [$types];
+
         return $this;
     }
 
@@ -158,6 +156,7 @@ class SearchService
     public function full(): self
     {
         $this->full = true;
+
         return $this;
     }
 
@@ -174,11 +173,11 @@ class SearchService
             ->toArray();
 
         // If a list of types are provided, use those
-        if (!empty($this->onlyTypes)) {
+        if (! empty($this->onlyTypes)) {
             $availableEntityTypes = $this->onlyTypes;
         }
         // If a list of excluded types are provided, remove them from the results
-        if (!empty($this->excludedTypes)) {
+        if (! empty($this->excludedTypes)) {
             $availableEntityTypes = array_diff($availableEntityTypes, $this->excludedTypes);
         }
 
@@ -203,12 +202,10 @@ class SearchService
                     ->where(function ($sub) use ($cleanTerm) {
                         if (Str::startsWith($this->term, '=')) {
                             $sub->where('entities.name', $cleanTerm)
-                                ->orWhere('ea.name', $cleanTerm)
-                            ;
+                                ->orWhere('ea.name', $cleanTerm);
                         } else {
                             $sub->where('entities.name', 'like', '%' . $this->term . '%')
-                                ->orWhere('ea.name', 'like', '%' . $this->term . '%')
-                            ;
+                                ->orWhere('ea.name', 'like', '%' . $this->term . '%');
                         }
                     });
             } else {
@@ -221,7 +218,7 @@ class SearchService
 
             // Exact name match comes first
             // Only do this when the input string is utf8
-            $cleanTerm = preg_replace("/[^a-zA-Z0-9_\-\.\s]/", "", $cleanTerm);
+            $cleanTerm = preg_replace("/[^a-zA-Z0-9_\-\.\s]/", '', $cleanTerm);
             if (mb_strlen($cleanTerm, 'UTF-8') === mb_strlen($cleanTerm)) {
                 $escapedTerm = preg_replace('/&/', '\\&', preg_quote($cleanTerm));
                 $query->orderByRaw('FIELD(entities.name, ?) DESC', [$cleanTerm]);
@@ -241,7 +238,7 @@ class SearchService
             }
         }
 
-        if (!empty($this->excludeIds)) {
+        if (! empty($this->excludeIds)) {
             $query->whereNotIn('entities.id', $this->excludeIds);
         }
 
@@ -258,7 +255,7 @@ class SearchService
         foreach ($query->get() as $model) {
             /** @var ?MiscModel $child */
             // Force having a child for "ghost" entities.
-            if (!$model->entityType->isSpecial()) {
+            if (! $model->entityType->isSpecial()) {
                 $child = $model->child;
                 if ($child === null || in_array($model->id, $foundEntityIds)) {
                     continue;
@@ -267,6 +264,7 @@ class SearchService
 
             if ($this->v2) {
                 $searchResults[] = $this->formatForLookup($model);
+
                 continue;
             }
             $img = '';
@@ -283,11 +281,12 @@ class SearchService
                 $parsedNameAlias = $parsedName . ' - ' . str_replace(['&#039;', '&amp;'], ['\'', '&'], e($model->alias_name));
             }
 
-            if (!$this->full) {
+            if (! $this->full) {
                 $searchResults[] = [
                     'id' => $model->id,
                     'text' => $parsedName . ' (' . $model->entityType->name() . ')',
                 ];
+
                 continue;
             }
 
@@ -305,9 +304,9 @@ class SearchService
             ];
             $foundEntityIds[] = $model->id;
 
-            //If the result is a map, also add its explore page as a result.
+            // If the result is a map, also add its explore page as a result.
             // @phpstan-ignore-next-line
-            if (!$this->posts && !$this->new && $model->isMap() && $model->child->explorable()) {
+            if (! $this->posts && ! $this->new && $model->isMap() && $model->child->explorable()) {
                 $searchResults[] = [
                     'id' => $model->id,
                     'fullname' => $parsedName,
@@ -322,7 +321,7 @@ class SearchService
                 ];
             }
 
-            if (!$this->posts) {
+            if (! $this->posts) {
                 continue;
             }
             foreach ($model->posts as $post) {
@@ -341,13 +340,14 @@ class SearchService
                 ];
             }
         }
-        if (!$this->new) {
+        if (! $this->new) {
             if ($this->v2) {
                 return [
                     'entities' => $searchResults,
                     'pages' => $this->pages(),
                 ];
             }
+
             return $searchResults;
         } elseif (empty($searchResults)) {
             return $this->newOptions();
@@ -376,7 +376,7 @@ class SearchService
             $months = $calendar->months();
 
             foreach ($months as $month) {
-                if ((!empty($this->term) && str_contains($month['name'], $this->term)) || empty($this->term)) {
+                if ((! empty($this->term) && str_contains($month['name'], $this->term)) || empty($this->term)) {
                     $searchResults[] = [
                         'fullname' => $month['name'],
                         'name' => $month['name'] . ' (' . $calendar->name . ')',
@@ -399,7 +399,7 @@ class SearchService
 
         // Re-order alphabetically and in groups of custom vs default
 
-        $available = $available->sortBy(fn (EntityType $a) => !$a->isSpecial() . '.' . $a->name());
+        $available = $available->sortBy(fn (EntityType $a) => ! $a->isSpecial() . '.' . $a->name());
 
         foreach ($available as $entityType) {
             $options[] = [
@@ -434,7 +434,7 @@ class SearchService
 
     protected function pages(): Collection
     {
-        $this->pages = new Collection();
+        $this->pages = new Collection;
         if (empty($this->term)) {
             return $this->pages;
         }
@@ -464,8 +464,7 @@ class SearchService
             ->add(['name' => __('Dark mode'), 'url' => route('settings.appearance', ['highlight' => 'dark'])])
             ->add(['name' => __('settings.menu.premium'), 'url' => route('settings.premium')])
             ->add(['name' => __('billing/menu.payment-method'), 'url' => route('billing.payment-method')])
-            ->add(['name' => __('billing/menu.history'), 'url' => route('billing.history')])
-        ;
+            ->add(['name' => __('billing/menu.history'), 'url' => route('billing.history')]);
 
         $this->addCampaignRoles();
 
@@ -476,16 +475,17 @@ class SearchService
 
     protected function addCampaignPage(string $name, string $route, ?string $perm = null): self
     {
-        if (!empty($perm) && (auth()->guest() || !auth()->user()->can($perm, $this->campaign))) {
+        if (! empty($perm) && (auth()->guest() || ! auth()->user()->can($perm, $this->campaign))) {
             return $this;
         }
         $this->pages->add(['name' => __($name), 'url' => route($route, [$this->campaign])]);
+
         return $this;
     }
 
     protected function addCampaignRoles(): self
     {
-        if (auth()->guest() || !auth()->user()->can('roles', $this->campaign)) {
+        if (auth()->guest() || ! auth()->user()->can('roles', $this->campaign)) {
             return $this;
         }
 
@@ -495,6 +495,4 @@ class SearchService
 
         return $this;
     }
-
-
 }

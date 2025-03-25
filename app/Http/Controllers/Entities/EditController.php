@@ -21,8 +21,7 @@ class EditController extends Controller
     public function __construct(
         protected AttributeService $attributeService,
         protected MultiEditingService $multiEditingService
-    ) {
-    }
+    ) {}
 
     public function index(Campaign $campaign, Entity $entity)
     {
@@ -49,7 +48,7 @@ class EditController extends Controller
             'entityType' => $entity->entityType,
             'editingUsers' => $editingUsers,
         ];
-        if (!$entity->entityType->isSpecial()) {
+        if (! $entity->entityType->isSpecial()) {
             $params['model'] = $entity->child;
         }
 
@@ -61,6 +60,15 @@ class EditController extends Controller
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {
             return response()->json(['success' => true]);
+        }
+
+        // We need to validate the request
+        if ($entity->entityType->isStandard()) {
+            $validationClass = 'App\Http\Requests\Store' . Str::studly($entity->entityType->code);
+            if (class_exists($validationClass)) {
+                $validator = app()->make($validationClass);
+                $this->validate($request, $validator->rules());
+            }
         }
 
         try {
@@ -83,7 +91,7 @@ class EditController extends Controller
                 $entity->crudSaved();
 
                 // If the child was changed but nothing changed on the entity, we still want to trigger an update
-                if ($entity->child->wasChanged() && !$entity->wasChanged()) {
+                if ($entity->child->wasChanged() && ! $entity->wasChanged()) {
                     $entity->touch();
                 }
             } else {
@@ -104,7 +112,7 @@ class EditController extends Controller
             )
                 . '">' . $entity->name . '</a>';
             $success = __('general.success.updated', [
-                'name' => $link
+                'name' => $link,
             ]);
 
             $this->multiEditingService->model($entity)
@@ -131,12 +139,15 @@ class EditController extends Controller
             } elseif ($request->has('submit-close')) {
                 $route = route('entities.index', [$campaign, $entity->entityType]);
             } elseif ($request->has('submit-copy')) {
-                $route = route('entities.index', [$campaign, $entity->entityType, 'copy' => $entity]);
+                $route = route('entities.create', [$campaign, $entity->entityType, 'copy' => $entity]);
+
                 return response()->redirectTo($route);
             }
+
             return response()->redirectTo($route);
         } catch (\LogicException $exception) {
-            $error =  str_replace(' ', '_', mb_strtolower(mb_rtrim($exception->getMessage(), '.')));
+            $error = str_replace(' ', '_', mb_strtolower(mb_rtrim($exception->getMessage(), '.')));
+
             return redirect()->back()->withInput()->with('error', __('crud.errors.' . $error));
         }
     }
@@ -148,10 +159,11 @@ class EditController extends Controller
     {
         $data = $request->all();
         foreach ($model->nullableForeignKeys as $field) {
-            if (!request()->has($field) && !isset($data[$field])) {
+            if (! request()->has($field) && ! isset($data[$field])) {
                 $data[$field] = null;
             }
         }
+
         return $data;
     }
 }

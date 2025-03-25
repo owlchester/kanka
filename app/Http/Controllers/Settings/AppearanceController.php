@@ -43,8 +43,6 @@ class AppearanceController extends Controller
             ->with('textEditorSelect', $textEditorSelect);
     }
 
-    /**
-     */
     public function update(StoreSettingsLayout $request)
     {
         if ($request->ajax()) {
@@ -55,19 +53,20 @@ class AppearanceController extends Controller
         $settingFields = $request->only([
             'editor', 'advanced_mentions', 'new_entity_workflow',
             'campaign_switcher_order_by', 'pagination', 'date_format',
-            'entity_explore'
+            'entity_explore',
         ]);
         $user
             ->saveSettings($settingFields)
             ->update($request->only(['theme']));
 
-        //refresh user campaigns in cache if order by has changed
+        // refresh user campaigns in cache if order by has changed
         if ($request->has('campaign_switcher_order_by')) {
             \App\Facades\UserCache::clear();
         }
 
         if ($request->filled('from')) {
             $from = base64_decode($request->get('from'));
+
             return redirect()
                 ->to($from)
                 ->with('success', __('settings/appearance.success'));

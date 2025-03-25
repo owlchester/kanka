@@ -44,12 +44,13 @@ trait HasLocations
     /**
      * Filter on models tied to a specific location or its descendants
      */
-    public function scopeLocation(Builder $query, int|null $location, FilterOption $filter): Builder
+    public function scopeLocation(Builder $query, ?int $location, FilterOption $filter): Builder
     {
         if ($filter === FilterOption::NONE) {
-            if (!empty($location)) {
+            if (! empty($location)) {
                 return $query;
             }
+
             return $query
                 ->whereRaw('(select count(*) from ' . $this->getLocationPivotTableName() . ' as lp where lp.' . $this->getLocationPivotKey() . ' = ' .
                     $this->getTable() . '.id and lp.location_id = ' . ((int) $location) . ') = 0');
@@ -63,10 +64,11 @@ trait HasLocations
         if ($filter === FilterOption::CHILDREN) {
             /** @var ?Location $model */
             $model = Location::find($location);
-            if (!empty($model)) {
+            if (! empty($model)) {
                 $ids = [...$model->descendants->pluck('id')->toArray(), $model->id];
             }
         }
+
         return $query
             ->select($this->getTable() . '.*')
             ->leftJoin($this->getLocationPivotTableName() . ' as lp', function ($join) {

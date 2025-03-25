@@ -32,7 +32,7 @@ class UpdateRelation extends FormRequest
             'visibility_id' => 'exists:visibilities,id',
             'attitude' => 'min:-100|max:100',
             'colour' => 'max:7',
-            'is_pinned' => 'boolean'
+            'is_pinned' => 'boolean',
         ]);
     }
 }

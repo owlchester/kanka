@@ -67,6 +67,7 @@ class CalendarSanitizer extends MiscSanitizer
             $weekdays[] = $this->purify($name);
         }
         $this->data['weekdays'] = json_encode($weekdays);
+
         return $this;
     }
 
@@ -76,7 +77,7 @@ class CalendarSanitizer extends MiscSanitizer
         $yearCount = 0;
         $yearValues = $this->request->post('year_number', []);
         $yearNames = $this->request->post('year_name', []);
-        if (!empty($yearValues)) {
+        if (! empty($yearValues)) {
             foreach ($yearValues as $year) {
                 if (empty($year)) {
                     continue;
@@ -87,6 +88,7 @@ class CalendarSanitizer extends MiscSanitizer
             }
         }
         $this->data['years'] = json_encode($years);
+
         return $this;
     }
 
@@ -96,7 +98,7 @@ class CalendarSanitizer extends MiscSanitizer
         $weekCount = 0;
         $weekValues = $this->request->post('week_number', []);
         $weekNames = $this->request->post('week_name', []);
-        if (!empty($weekValues)) {
+        if (! empty($weekValues)) {
             foreach ($weekValues as $week) {
                 if (empty($week)) {
                     continue;
@@ -107,6 +109,7 @@ class CalendarSanitizer extends MiscSanitizer
             }
         }
         $this->data['week_names'] = json_encode($weeks);
+
         return $this;
     }
 
@@ -123,7 +126,7 @@ class CalendarSanitizer extends MiscSanitizer
         // Get the highest moon id
         $autoMoonId = 0;
         foreach ($moonIds as $id) {
-            if (!empty($id) && $id > $autoMoonId) {
+            if (! empty($id) && $id > $autoMoonId) {
                 $autoMoonId = $id;
             }
         }
@@ -152,6 +155,7 @@ class CalendarSanitizer extends MiscSanitizer
             }
         }
         $this->data['moons'] = json_encode($moons);
+
         return $this;
     }
 
@@ -178,6 +182,7 @@ class CalendarSanitizer extends MiscSanitizer
             $seasonCount++;
         }
         $this->data['seasons'] = json_encode($seasons);
+
         return $this;
     }
 
@@ -216,7 +221,7 @@ class CalendarSanitizer extends MiscSanitizer
 
     protected function cleanLeap(array $months): self
     {
-        if (!$this->request->filled('has_leap_year')) {
+        if (! $this->request->filled('has_leap_year')) {
             return $this;
         }
 
@@ -225,6 +230,7 @@ class CalendarSanitizer extends MiscSanitizer
         } elseif ($this->request->leap_year_month > count($months)) {
             $this->data['leap_year_month'] = count($months);
         }
+
         return $this;
     }
 }

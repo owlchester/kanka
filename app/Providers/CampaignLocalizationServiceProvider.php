@@ -12,9 +12,7 @@ class CampaignLocalizationServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
-    }
+    public function boot() {}
 
     /**
      * Get the services provided by the provider.
@@ -34,7 +32,7 @@ class CampaignLocalizationServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(LocalisationService::class, function () {
-            return new LocalisationService();
+            return new LocalisationService;
         });
 
         $this->app->alias(LocalisationService::class, 'campaignlocalization');

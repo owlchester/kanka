@@ -4,8 +4,7 @@ it('POSTS an invalid bookmark form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/bookmarks', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new bookmark')
     ->asUser()
@@ -19,9 +18,8 @@ it('POSTS a new bookmark')
         'data' => [
             'id',
             'type',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all bookmarks')
     ->asUser()
@@ -36,10 +34,9 @@ it('GETS all bookmarks')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific bookmark')
     ->asUser()
@@ -52,9 +49,8 @@ it('GETS a specific bookmark')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid bookmark')
     ->asUser()
@@ -62,21 +58,18 @@ it('UPDATES a valid bookmark')
     ->withBookmarks()
     ->putJson('/api/1.0/campaigns/1/bookmarks/1', ['name' => 'Bob', 'type' => 'character'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('DELETES a bookmark')
     ->asUser()
     ->withCampaign()
     ->withBookmarks()
     ->delete('/api/1.0/campaigns/1/bookmarks/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid bookmark')
     ->asUser()
     ->withCampaign()
     ->withBookmarks()
     ->delete('/api/1.0/campaigns/1/bookmarks/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);

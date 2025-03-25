@@ -20,9 +20,9 @@ class Recaptcha implements ValidationRule
             'response' => $value,
         ];
         $res = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify', $data);
-        //Log::info('Recaptcha request', $data);
-        if (!$res->json('success')) {
-            //Log::info('Recaptcha request', $res->json());
+        // Log::info('Recaptcha request', $data);
+        if (! $res->json('success')) {
+            // Log::info('Recaptcha request', $res->json());
             $fail(__('Invalid request, please try again.'));
         }
     }

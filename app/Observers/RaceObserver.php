@@ -2,6 +2,4 @@
 
 namespace App\Observers;
 
-class RaceObserver extends MiscObserver
-{
-}
+class RaceObserver extends MiscObserver {}

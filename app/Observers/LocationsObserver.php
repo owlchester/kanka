@@ -9,11 +9,9 @@ class LocationsObserver
 {
     use SaveLocations;
 
-    /**
-     */
     public function crudSaved(Model $model)
     {
-        if (!request()->has('save_locations') && !request()->has('locations')) {
+        if (! request()->has('save_locations') && ! request()->has('locations')) {
             return;
         }
         $this->saveLocations($model);

@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands\Migrations;
 
-use App\Services\NewsletterService;
 use App\Models\User;
+use App\Services\NewsletterService;
 use Illuminate\Console\Command;
 
 class NewsletterSubCommand extends Command
@@ -37,14 +37,15 @@ class NewsletterSubCommand extends Command
             ->where('settings', 'like', '%mail_release%')
             ->chunk(100, function ($users) {
                 foreach ($users as $user) {
-                    if (!$user->mail_release) {
+                    if (! $user->mail_release) {
                         continue;
                     }
                     $options = [
-                        'releases' => (bool) $user->mail_release
+                        'releases' => (bool) $user->mail_release,
                     ];
                     if ($this->service->user($user)->update($options)) {
                         $this->count++;
+
                         continue;
                     }
                     $this->error($this->service->error()->getMessage());

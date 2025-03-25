@@ -24,7 +24,7 @@ class TemplateResource extends JsonResource
         return [
             'id' => $entity->id,
             'name' => $entity->name,
-            'url' => route('entities.create', [$campaign, $entity->entityType, 'copy' => $entity, 'template' => true])
+            'url' => route('entities.create', [$campaign, $entity->entityType, 'copy' => $entity, 'template' => true]),
         ];
     }
 }

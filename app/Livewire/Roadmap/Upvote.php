@@ -10,9 +10,13 @@ use Livewire\Component;
 class Upvote extends Component
 {
     public Feature $feature;
+
     public int $count;
+
     public bool $isGuest = false;
+
     public bool $isUnsubbed = false;
+
     public bool $col;
 
     public function mount(Feature $feature, bool $col = true)
@@ -26,9 +30,11 @@ class Upvote extends Component
     {
         if (auth()->guest()) {
             $this->isGuest = true;
+
             return;
-        } elseif (!auth()->user()->can('vote', $this->feature)) {
+        } elseif (! auth()->user()->can('vote', $this->feature)) {
             $this->isUnsubbed = true;
+
             return;
         }
 
@@ -52,6 +58,7 @@ class Upvote extends Component
 
         UpdateFeatureUpvotes::dispatch($this->feature->id);
     }
+
     public function render()
     {
         return view('livewire.roadmap.upvote');

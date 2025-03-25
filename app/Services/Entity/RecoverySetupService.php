@@ -17,8 +17,11 @@ class RecoverySetupService
     use UserAware;
 
     protected array $elements;
+
     protected ?string $term;
+
     protected ?string $nextPage;
+
     protected array $filters;
 
     protected StorageService $storage;
@@ -31,12 +34,14 @@ class RecoverySetupService
     public function term(?string $term): self
     {
         $this->term = $term;
+
         return $this;
     }
 
     public function filters(array $filters): self
     {
         $this->filters = $filters;
+
         return $this;
     }
 
@@ -44,7 +49,7 @@ class RecoverySetupService
     {
         return [
             'acl' => [
-                'premium' => $this->campaign->boosted()
+                'premium' => $this->campaign->boosted(),
             ],
             'elements' => $this->elements(),
             'i18n' => $this->i18n(),
@@ -52,14 +57,14 @@ class RecoverySetupService
                 'search' => route('gallery.search', [$this->campaign]),
                 'recovery' => route('recovery.save', [$this->campaign]),
             ],
-            'upgrade' => $this->upgradeLink()
+            'upgrade' => $this->upgradeLink(),
         ];
     }
 
     public function search(): array
     {
         return [
-            'elements' => $this->elements()
+            'elements' => $this->elements(),
         ];
     }
 
@@ -70,7 +75,7 @@ class RecoverySetupService
         foreach (EntityType::inCampaign($this->campaign)->get() as $entityType) {
             $moduleNames[$entityType->id] = $entityType->name();
         }
-        //Query yields array of objects
+        // Query yields array of objects
         $elements = DB::select(
             'select e.id, e.name, e.deleted_at, e.deleted_by, e.type_id, t.code as type
                 from entities as e
@@ -84,8 +89,8 @@ class RecoverySetupService
                 ' order by deleted_at DESC'
         );
 
-        //We fill the rest of the data needed into the objects
-        $data = new Collection();
+        // We fill the rest of the data needed into the objects
+        $data = new Collection;
         $users = $this->campaign->users()->pluck('users.name', 'users.id')->toArray();
         foreach ($elements as $key => $element) {
             // Cast the object to an array for simplicity
@@ -108,6 +113,7 @@ class RecoverySetupService
 
             $data->add($row);
         }
+
         return $data->toArray();
     }
 
@@ -120,14 +126,14 @@ class RecoverySetupService
             'order_by_type' => __('campaigns/recovery.order.type'),
             'select_all' => __('general.select_all'),
             'deselect_all' => __('general.deselect_all'),
-            'recover'       => __('campaigns/recovery.actions.recover'),
+            'recover' => __('campaigns/recovery.actions.recover'),
             'restore_selected' => __('campaigns/recovery.actions.recover_selected'),
-            'newest'  => __('campaigns/recovery.order.newest_first'),
-            'oldest'  => __('campaigns/recovery.order.oldest_first'),
-            'type'  => __('campaigns/recovery.order.type_order'),
-            'premium_title' =>  __('callouts.premium.title'),
+            'newest' => __('campaigns/recovery.order.newest_first'),
+            'oldest' => __('campaigns/recovery.order.oldest_first'),
+            'type' => __('campaigns/recovery.order.type_order'),
+            'premium_title' => __('callouts.premium.title'),
             'premium' => __('campaigns/recovery.premium'),
-            'upgrade'  => __('cookieconsent.link'),
+            'upgrade' => __('cookieconsent.link'),
             'confirm' => __('crud.actions.confirm'),
             'deleted_at' => __('campaigns/recovery.fields.deleted_at', ['date' => 'placeholder', 'user' => 'placeholder']),
             'recovery_success' => __('campaigns/recovery.name_link', ['name' => '<a href="placeholder">placeholder</a>']),
@@ -142,6 +148,7 @@ class RecoverySetupService
             }
             $translations['model_' . $id] = $moduleName;
         }
+
         return $translations;
     }
 
@@ -150,6 +157,7 @@ class RecoverySetupService
         if ($this->campaign->boosted()) {
             return null;
         }
+
         return route('settings.premium');
     }
 }

@@ -2,34 +2,43 @@
 
 namespace App\Renderers\Layouts\Columns;
 
+use Closure;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Closure;
 
 class Standard extends Column
 {
     public const CHARACTER = 'character';
+
     public const IMAGE = 'image';
+
     public const ENTITYLINK = 'entitylink';
+
     public const ENTITYLIST = 'entitylist';
+
     public const ParentLink = 'parentlink';
+
     public const VIEW = 'view';
+
     public const LOCATION = 'location';
+
     public const MENTION_LINK = 'mention-link';
+
     public const VISIBILITY = 'visibility';
+
     public const VISIBILITY_PIVOT = 'visibility_pivot';
+
     public const DATE = 'date';
+
     public const TAGS = 'tags';
 
-    /**
-     */
     public function __toString(): string
     {
-        if (!isset($this->config['render']) && isset($this->config['renter'])) {
+        if (! isset($this->config['render']) && isset($this->config['renter'])) {
             return 'Misspelled _render_';
         }
-        if (!isset($this->config['render'])) {
-            return (string)$this->model->{$this->config['key']};
+        if (! isset($this->config['render'])) {
+            return (string) $this->model->{$this->config['key']};
         }
 
         $render = $this->config['render'];
@@ -43,6 +52,7 @@ class Standard extends Column
         if (Str::endsWith($render, '()') && method_exists($this->model, $method)) {
             return (string) $this->model->$method();
         }
+
         return $render . '???';
     }
 

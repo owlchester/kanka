@@ -20,6 +20,7 @@ class OrganisationSubmenu extends BaseSubmenu implements EntitySubmenu
                 'count' => $count,
             ];
         }
+
         return $items;
     }
 }

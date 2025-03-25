@@ -7,12 +7,12 @@ use App\Enums\Permission;
 use App\Enums\Visibility;
 use App\Facades\CampaignCache;
 use App\Facades\Mentions;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Boosted;
 use App\Models\Concerns\CampaignLimit;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasImage;
 use App\Models\Concerns\LastSync;
-use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
@@ -26,7 +26,6 @@ use Illuminate\Support\Collection;
 
 /**
  * Class Campaign
- * @package App
  *
  * @property int $id
  * @property string $name
@@ -62,7 +61,6 @@ use Illuminate\Support\Collection;
  * @property bool|int $tooltip_image
  * @property bool|int $hide_members
  * @property bool|int $hide_history
- *
  */
 class Campaign extends Model
 {
@@ -82,10 +80,13 @@ class Campaign extends Model
      * Visibility of a campaign
      */
     public const int VISIBILITY_PRIVATE = 1;
+
     public const int VISIBILITY_REVIEW = 2;
+
     public const int VISIBILITY_PUBLIC = 3;
 
     public const int LAYER_COUNT_MIN = 1;
+
     public const int LAYER_COUNT_MAX = 10;
 
     protected $fillable = [
@@ -139,7 +140,7 @@ class Campaign extends Model
      */
     public function hasPreview(): bool
     {
-        return !empty($this->preview());
+        return ! empty($this->preview());
     }
 
     /**
@@ -147,23 +148,22 @@ class Campaign extends Model
      */
     public function preview(): string
     {
-        if (!empty(strip_tags($this->excerpt))) {
+        if (! empty(strip_tags($this->excerpt))) {
             return $this->excerpt();
         }
-        if (!empty(strip_tags($this->entry))) {
+        if (! empty(strip_tags($this->entry))) {
             return strip_tags(mb_substr($this->parsedEntry(), 0, 1000)) . ' ...';
         }
+
         return '';
     }
 
-    /**
-     */
     public function membersList($removedIds = []): array
     {
         $members = [];
 
         foreach ($this->members()->with('user')->get() as $m) {
-            if (!in_array($m->user->id, $removedIds)) {
+            if (! in_array($m->user->id, $removedIds)) {
                 $members[$m->user->id] = $m->user->name;
             }
         }
@@ -173,6 +173,7 @@ class Campaign extends Model
 
     /**
      * Get a list of users who are admins of the campaign
+     *
      * @return User[]|array|Collection
      */
     public function admins()
@@ -184,11 +185,12 @@ class Campaign extends Model
             ->get();
         foreach ($roles as $role) {
             foreach ($role->users as $user) {
-                if (!isset($users[$user->id])) {
+                if (! isset($users[$user->id])) {
                     $users[$user->user->id] = $user->user;
                 }
             }
         }
+
         return $users;
     }
 
@@ -218,7 +220,6 @@ class Campaign extends Model
 
     /**
      * Determine if a campaign has a module enabled or not
-     *
      */
     public function enabled(string|EntityType $module): bool
     {
@@ -265,7 +266,6 @@ class Campaign extends Model
     }
 
     /**
-     *
      * Determine if a campaign is open to submissions
      */
     public function isOpen(): bool
@@ -281,15 +281,11 @@ class Campaign extends Model
         return $this->is_hidden;
     }
 
-    /**
-     */
     public function excerpt()
     {
         return Mentions::mapAny($this, 'excerpt');
     }
 
-    /**
-     */
     public function getExcerptForEditionAttribute()
     {
         return Mentions::parseForEdit($this, 'excerpt');
@@ -303,44 +299,31 @@ class Campaign extends Model
         return Arr::get($this->ui_settings, 'tooltip_image', false);
     }
 
-    /**
-     */
     public function defaultToNested(): bool
     {
         return (bool) Arr::get($this->ui_settings, 'nested', false) == 'all';
     }
 
-    /**
-     */
     public function defaultDescendantsMode(): Descendants
     {
         return Descendants::from(Arr::get($this->ui_settings, 'descendants', 0));
     }
 
-    /**
-     */
     public function defaultToConnection(): bool
     {
         return (bool) Arr::get($this->ui_settings, 'connections', false);
     }
 
-    /**
-     */
     public function defaultToConnectionMode(): int
     {
         return (int) Arr::get($this->ui_settings, 'connections_mode', 0);
     }
 
-    /**
-     */
     public function getHideMembersAttribute()
     {
         return Arr::get($this->ui_settings, 'hide_members', false);
     }
 
-
-    /**
-     */
     public function getHideHistoryAttribute()
     {
         return Arr::get($this->ui_settings, 'hide_history', false);
@@ -354,21 +337,19 @@ class Campaign extends Model
         if ($this->boosted()) {
             return self::LAYER_COUNT_MAX;
         }
+
         return self::LAYER_COUNT_MIN;
     }
 
-    /**
-     */
     public function maxEntityFiles(): int
     {
         if ($this->boosted()) {
             return config('limits.campaigns.files.premium');
         }
+
         return config('limits.campaigns.files.standard');
     }
 
-    /**
-     */
     public function existingDefaultImages(): array
     {
         if (empty($this->default_images)) {
@@ -413,25 +394,19 @@ class Campaign extends Model
      */
     public function hasPluginTheme(): bool
     {
-        return !empty(CampaignCache::themes());
+        return ! empty(CampaignCache::themes());
     }
 
-    /**
-     */
     public function getDefaultVisibilityAttribute(): mixed
     {
         return Arr::get($this->settings, 'default_visibility', 'all');
     }
 
-    /**
-     */
     public function getDefaultGalleryVisibilityAttribute(): mixed
     {
         return Arr::get($this->settings, 'gallery_visibility', 'all');
     }
 
-    /**
-     */
     public function showPrivateEntityMentions(): bool
     {
         return Arr::get($this->settings, 'private_mention_visibility', 0);
@@ -486,6 +461,7 @@ class Campaign extends Model
             ->where('action', Permission::View->value)
             ->where('access', 1)
             ->count();
+
         return $permissionCount == 0;
     }
 
@@ -496,6 +472,7 @@ class Campaign extends Model
     public function hasEditingWarning(): bool
     {
         $members = CampaignCache::members();
+
         return $members !== null && $members->count() > 1;
     }
 
@@ -507,6 +484,7 @@ class Campaign extends Model
         foreach ($this->admins() as $user) {
             $user->notify($notification);
         }
+
         return $this;
     }
 
@@ -515,11 +493,11 @@ class Campaign extends Model
      */
     public function exportable(): bool
     {
-        if (!app()->isProduction()) {
-            return true; //$this->queuedCampaignExports->count() === 0;
+        if (! app()->isProduction()) {
+            return true; // $this->queuedCampaignExports->count() === 0;
         }
 
-        return empty($this->export_date) || !$this->export_date->isToday() && $this->queuedCampaignExports->count() === 0;
+        return empty($this->export_date) || ! $this->export_date->isToday() && $this->queuedCampaignExports->count() === 0;
     }
 
     /**
@@ -530,32 +508,37 @@ class Campaign extends Model
         if (config('app.debug') && request()->has('_followers')) {
             return request()->get('_followers');
         }
+
         return (int) $this->follower;
     }
 
     public function hasModuleName(int $type, bool $plural = false): bool
     {
         $key = 'modules.' . $type . '.' . ($plural ? 'p' : 's');
+
         return Arr::has($this->settings, $key);
     }
 
-    public function moduleName(int $type, bool $plural = false): string|null
+    public function moduleName(int $type, bool $plural = false): ?string
     {
         $key = 'modules.' . $type . '.' . ($plural ? 'p' : 's');
         $val = Arr::get($this->settings, $key);
+
         return $val;
     }
 
     public function hasModuleIcon(int $type): bool
     {
         $key = 'modules.' . $type . '.i';
+
         return Arr::has($this->settings, $key);
     }
 
-    public function moduleIcon(int $type): string|null
+    public function moduleIcon(int $type): ?string
     {
         $key = 'modules.' . $type . '.i';
         $val = Arr::get($this->settings, $key);
+
         return $val;
     }
 
@@ -573,6 +556,7 @@ class Campaign extends Model
             }
             $systems .= $system->name;
         }
+
         return $systems;
     }
 
@@ -591,6 +575,7 @@ class Campaign extends Model
         }
 
         $this->cachedEntityTypes = EntityType::inCampaign($this)->enabled()->get();
+
         return $this->cachedEntityTypes;
     }
 }

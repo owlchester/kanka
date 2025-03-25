@@ -23,17 +23,19 @@ class DashboardService
     public function dashboard(CampaignDashboard $dashboard): self
     {
         $this->dashboard = $dashboard;
+
         return $this;
     }
 
     /**
      * Get the current or default dashboard for the user
+     *
      * @return null|CampaignDashboard
      */
     public function getDashboard(?int $dashboard = null)
     {
         // Only available for boosted campaigns
-        if (!$this->campaign->boosted()) {
+        if (! $this->campaign->boosted()) {
             return null;
         }
 
@@ -50,28 +52,29 @@ class DashboardService
 
         // Dashboard given, make sure the user has access
 
-
         return $this->validateDashboard($available, $dashboard);
     }
 
     /**
      * Get the available dashboards for the user
+     *
      * @return array[]
      */
     public function getDashboards(): array
     {
         // Only available for boosted campaigns
-        if (!$this->campaign->boosted()) {
+        if (! $this->campaign->boosted()) {
             return [];
         }
 
         $available = $this->availableDashboards();
         $dashboards = [];
 
-        if (!auth()->check() || !$this->campaign->userIsMember()) {
+        if (! auth()->check() || ! $this->campaign->userIsMember()) {
             foreach ($available['public'] as $role) {
                 $dashboards[] = $role->dashboard;
             }
+
             return $dashboards;
         }
 
@@ -80,6 +83,7 @@ class DashboardService
             foreach ($available['admin'] as $role) {
                 $dashboards[] = $role->dashboard;
             }
+
             return $dashboards;
         }
 
@@ -88,7 +92,7 @@ class DashboardService
         $dashboards = [];
         foreach ($roles as $role) {
             $key = 'role_' . $role['id'];
-            if (!isset($available[$key])) {
+            if (! isset($available[$key])) {
                 continue;
             }
             foreach ($available[$key] as $r) {
@@ -105,11 +109,10 @@ class DashboardService
     public function add(Entity $entity): self
     {
         $this->displayedEntities[] = $entity->id;
+
         return $this;
     }
 
-    /**
-     */
     public function excluding(): array
     {
         return $this->displayedEntities;
@@ -123,7 +126,7 @@ class DashboardService
         $dashboard = CampaignDashboard::create([
             'campaign_id' => $this->campaign->id,
             'created_by' => auth()->user()->id,
-            'name' => $request->post('name')
+            'name' => $request->post('name'),
         ]);
 
         // Loop through the permissions
@@ -144,7 +147,7 @@ class DashboardService
                 'campaign_dashboard_id' => $dashboard->id,
                 'campaign_role_id' => $role->id,
                 'is_visible' => true,
-                'is_default' => $setting == 'default'
+                'is_default' => $setting == 'default',
             ]);
         }
 
@@ -159,7 +162,7 @@ class DashboardService
     public function update(StoreCampaignDashboard $request): CampaignDashboard
     {
         $this->dashboard->update([
-            'name' => $request->post('name')
+            'name' => $request->post('name'),
         ]);
 
         // Existing roles
@@ -185,7 +188,7 @@ class DashboardService
             if (isset($roles[$roleId])) {
                 $role = $roles[$roleId];
                 $role->update([
-                    'is_default' => $setting == 'default'
+                    'is_default' => $setting == 'default',
                 ]);
                 unset($roles[$roleId]);
             } else {
@@ -194,7 +197,7 @@ class DashboardService
                     'campaign_dashboard_id' => $this->dashboard->id,
                     'campaign_role_id' => $role->id,
                     'is_visible' => true,
-                    'is_default' => $setting == 'default'
+                    'is_default' => $setting == 'default',
                 ]);
             }
         }
@@ -223,12 +226,13 @@ class DashboardService
     protected function defaultDashboard(array $available)
     {
         // Unlogged or not a member
-        if (!auth()->check() || !$this->campaign->userIsMember()) {
+        if (! auth()->check() || ! $this->campaign->userIsMember()) {
             foreach ($available['public'] as $role) {
                 if ($role->is_default) {
                     return $role->dashboard;
                 }
             }
+
             return null;
         }
 
@@ -239,6 +243,7 @@ class DashboardService
                     return $role->dashboard;
                 }
             }
+
             return null;
         }
 
@@ -246,7 +251,7 @@ class DashboardService
         $roles = UserCache::roles();
         foreach ($roles as $role) {
             $key = 'role_' . $role['id'];
-            if (!isset($available[$key])) {
+            if (! isset($available[$key])) {
                 continue;
             }
             foreach ($available[$key] as $r) {
@@ -261,12 +266,13 @@ class DashboardService
 
     /**
      * Validate that a requested dashboard is available to the user
+     *
      * @return null|CampaignDashboard
      */
     protected function validateDashboard(array $available, int $dashboard)
     {
         $filtered = false;
-        if (!auth()->check() || !$this->campaign->userIsMember()) {
+        if (! auth()->check() || ! $this->campaign->userIsMember()) {
             $filtered = $available['public'];
         } elseif (auth()->user()->isAdmin()) {
             $filtered = $available['admin'];
@@ -278,6 +284,7 @@ class DashboardService
                     return $role->dashboard;
                 }
             }
+
             return null;
         }
 

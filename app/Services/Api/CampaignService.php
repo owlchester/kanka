@@ -27,6 +27,7 @@ class CampaignService
     public function request(Request $request): self
     {
         $this->request = $request;
+
         return $this;
     }
 
@@ -34,12 +35,14 @@ class CampaignService
     {
         $this->filters()
             ->featured();
+
         return $this->data;
     }
 
     public function search(): array
     {
         $this->campaigns();
+
         return $this->data;
     }
 
@@ -58,29 +61,30 @@ class CampaignService
                     'it' => 'Italian',
                     'pl' => 'Polish',
                     'sk' => 'Slovak',
-                ]
+                ],
             ],
             'system[]' => [
                 'title' => 'System',
-                'options' => CampaignCache::systems()
+                'options' => CampaignCache::systems(),
             ],
             'is_boosted' => [
                 'title' => 'Premium campaigns',
                 'options' => [
                     '1' => 'Only premium campaigns',
-                ]
+                ],
             ],
             'is_open' => [
                 'title' => 'Open campaigns',
                 'options' => [
                     '1' => 'Only open campaigns',
-                ]
+                ],
             ],
             'genre' => [
                 'title' => 'Genre',
-                'options' => $this->genreService->getGenres()
+                'options' => $this->genreService->getGenres(),
             ],
         ];
+
         return $this;
     }
 
@@ -95,6 +99,7 @@ class CampaignService
         foreach ($campaigns as $campaign) {
             $this->data['featured'][] = new CampaignResource($campaign);
         }
+
         return $this;
     }
 
@@ -109,7 +114,7 @@ class CampaignService
             $this->data['campaigns'] = $this->cachedCampaigns();
         } else {
             $campaigns = Campaign::public()
-                ->front((int)$this->request->get('sort_field_name'))
+                ->front((int) $this->request->get('sort_field_name'))
                 ->featured(false)
                 ->filterPublic($this->request->only(['language', 'system', 'is_boosted', 'is_open', 'genre']))
                 ->discreet(false)
@@ -127,7 +132,7 @@ class CampaignService
      */
     protected function isDefaultRequest(): bool
     {
-        return !$this->request->anyFilled('sort_field_name', 'language', 'system', 'is_boosted', 'is_open', 'genre', 'page');
+        return ! $this->request->anyFilled('sort_field_name', 'language', 'system', 'is_boosted', 'is_open', 'genre', 'page');
     }
 
     /**
@@ -136,7 +141,7 @@ class CampaignService
     protected function cachedCampaigns(int $hours = 24): AnonymousResourceCollection
     {
         $cacheKey = 'public-campaigns-page-1';
-        if (!app()->environment('testing') && cache()->has($cacheKey)) {
+        if (! app()->environment('testing') && cache()->has($cacheKey)) {
             return cache()->get($cacheKey);
         }
         $campaigns = Campaign::public()
@@ -148,6 +153,7 @@ class CampaignService
 
         Log::info('Create new cache', ['key' => $cacheKey, 'hours' => $hours]);
         cache()->put($cacheKey, $cached, $hours * 3600);
+
         return $cached;
     }
 

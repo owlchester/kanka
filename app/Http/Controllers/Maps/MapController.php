@@ -31,13 +31,12 @@ class MapController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Map\Map::class)
             ->route('maps.maps', $options);
 
-
         $this->rows = $map
             ->{$base}()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'parent', 'parent.entity',
-                'entity', 'entity.image', 'entity.entityType', 'entity.visibleTags'
+                'entity', 'entity.image', 'entity.entityType', 'entity.visibleTags',
             ])
             ->paginate();
 

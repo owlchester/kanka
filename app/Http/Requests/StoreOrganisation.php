@@ -37,20 +37,22 @@ class StoreOrganisation extends FormRequest
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'organisation_id' => 'nullable|exists:organisations,id',
             'image_url' => 'nullable|url|active_url',
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
             'locations' => 'array',
             'locations.*' => 'distinct|exists:locations,id',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Organisation $self */
         $self = request()->route('organisation');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['organisation_id'] = [
                 'nullable',
                 'integer',
                 'exists:organisations,id',
-                new Nested(Organisation::class, $self)
+                new Nested(Organisation::class, $self),
             ];
         }
 

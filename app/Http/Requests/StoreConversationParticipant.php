@@ -27,6 +27,7 @@ class StoreConversationParticipant extends FormRequest
             'character_id' => 'integer|exists:characters,id|required_without_all:user_id',
             'user_id' => 'integer|exists:users,id|required_without_all:character_id',
         ];
+
         return $rules;
     }
 }

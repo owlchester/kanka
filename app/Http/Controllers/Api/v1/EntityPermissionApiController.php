@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Models\Campaign;
-use App\Models\Entity;
-use App\Http\Requests\StoreEntityPermission as Request;
 use App\Http\Requests\PermissionTestRequest;
+use App\Http\Requests\StoreEntityPermission as Request;
 use App\Http\Resources\EntityPermissionResource as Resource;
+use App\Models\Campaign;
 use App\Models\CampaignPermission;
+use App\Models\Entity;
 use App\Services\Api\ApiPermissionService;
 
 class EntityPermissionApiController extends ApiController
@@ -26,27 +26,31 @@ class EntityPermissionApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
+
         return Resource::collection($entity->permissions);
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, Entity $entity, CampaignPermission $permission)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
+
         return new Resource($permission);
     }
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign, Entity $entity)
@@ -55,11 +59,12 @@ class EntityPermissionApiController extends ApiController
         $this->authorize('update', $entity);
 
         $model = $this->apiPermissionService->saveEntity($request, $entity);
+
         return Resource::collection($model);
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function update(Request $request, Campaign $campaign, Entity $entity, CampaignPermission $permission)
     {
@@ -72,6 +77,7 @@ class EntityPermissionApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Entity $entity, CampaignPermission $permission)
@@ -89,6 +95,7 @@ class EntityPermissionApiController extends ApiController
     public function test(PermissionTestRequest $request, Campaign $campaign)
     {
         $permissionTest = $this->apiPermissionService->entityPermissionTest($request, $campaign);
+
         return response()->json($permissionTest);
     }
 }

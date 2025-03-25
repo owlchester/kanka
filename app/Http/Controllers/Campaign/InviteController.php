@@ -29,14 +29,16 @@ class InviteController extends Controller
 
     /**
      * Create a new invitation link form
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign)
     {
         $this->authorize('invite', $campaign);
 
-        if (!$campaign->canHaveMoreMembers()) {
+        if (! $campaign->canHaveMoreMembers()) {
             return view('cruds.forms.limit')
                 ->with('campaign', $campaign)
                 ->with('key', 'members')
@@ -56,7 +58,7 @@ class InviteController extends Controller
             return response()->json();
         }
 
-        if (!$campaign->canHaveMoreMembers()) {
+        if (! $campaign->canHaveMoreMembers()) {
             return view('cruds.forms.limit')
                 ->with('campaign', $campaign)
                 ->with('key', 'members')
@@ -70,7 +72,6 @@ class InviteController extends Controller
 
         $link = route('campaigns.join', [$invitation->token]);
         $copy = '<a href="#" data-clipboard="' . $link . '" data-toggle="tooltip" data-toast="' . __('crud.alerts.copy_invite') . '" title="' . __('campaigns.invites.actions.copy') . '"><i class="fa-solid fa-copy"></i> ' . __('campaigns.invites.actions.copy') . '</a>';
-
 
         return redirect()->route('campaign_users.index', $campaign)
             ->with(
@@ -90,6 +91,7 @@ class InviteController extends Controller
         $this->authorize('invite', $campaignInvite->campaign);
 
         $campaignInvite->delete();
+
         return redirect()->route('campaign_users.index', $campaign)
             ->with('success', __('campaigns.invites.destroy.success'));
     }

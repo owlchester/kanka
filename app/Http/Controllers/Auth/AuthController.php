@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Services\ReferralService;
 use App\Models\User;
+use App\Services\ReferralService;
 use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -36,11 +36,12 @@ class AuthController extends Controller
 
     /**
      * Redirect the user to the service authentication page.
-     * @param string $provider
+     *
+     * @param  string  $provider
      */
     public function redirectToProvider($provider)
     {
-        if (!in_array($provider, ['facebook', 'twitter', 'google'])) {
+        if (! in_array($provider, ['facebook', 'twitter', 'google'])) {
             return redirect()->route('login');
         }
         try {
@@ -56,7 +57,7 @@ class AuthController extends Controller
      * If the user exists, log them in. Otherwise, create a new user then log them in. After that
      * redirect them to the authenticated user's homepage.
      *
-     * @param string $provider
+     * @param  string  $provider
      */
     public function handleProviderCallback($provider)
     {
@@ -71,6 +72,7 @@ class AuthController extends Controller
 
             $authUser = $this->findOrCreateUser($user, $provider);
             Auth::login($authUser, true);
+
             return redirect()->route('home');
         } catch (Exception $ex) {
             if ($ex->getCode() == '1') {
@@ -84,9 +86,10 @@ class AuthController extends Controller
     /**
      * If a user has registered before using social auth, return the user
      * else, create a new user object.
-     * @param mixed $user Socialite user object
-     * @param mixed $provider Social auth provider
-     * @return  User
+     *
+     * @param  mixed  $user  Socialite user object
+     * @param  mixed  $provider  Social auth provider
+     * @return User
      */
     public function findOrCreateUser(mixed $user, mixed $provider)
     {
@@ -102,13 +105,13 @@ class AuthController extends Controller
         }
 
         // Only allow creating if it's set that way
-        if (!config('auth.register_enabled')) {
+        if (! config('auth.register_enabled')) {
             throw new AccessDeniedHttpException('ACCOUNT REGISTRATION DISABLED');
         }
 
         $authUser = User::create([
-            'name'     => $user->name,
-            'email'    => $user->email,
+            'name' => $user->name,
+            'email' => $user->email,
             'password' => $user->email,
             'provider' => $provider,
             'provider_id' => $user->id,
@@ -135,6 +138,7 @@ class AuthController extends Controller
         // weird behaviour if the user registers a new account.
 
         $request->session()->flush();
+
         return redirect()->route('login');
     }
 }

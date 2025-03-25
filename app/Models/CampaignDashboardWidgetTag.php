@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
  * Class CampaignDashboardWidgetTag
- * @package App\Models
  *
  * @property int $widget_id
  * @property int $tag_id
@@ -17,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class CampaignDashboardWidgetTag extends Pivot
 {
     public $timestamps = false;
+
     public $table = 'campaign_dashboard_widget_tags';
 
     public function tag(): BelongsTo

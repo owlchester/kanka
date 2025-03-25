@@ -24,6 +24,7 @@ class RoleController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign, CampaignUser $campaignUser)
@@ -31,6 +32,7 @@ class RoleController extends Controller
         $this->authorize('members', $campaign);
 
         $roles = $campaign->roles->where('is_public', false)->all();
+
         return view('campaigns.members.update', [
             'campaign' => $campaign,
             'roles' => $roles,

@@ -13,7 +13,7 @@ trait CompositeKey
     protected function setKeysForSaveQuery($query)
     {
         $keys = $this->getKeyName();
-        if (!is_array($keys)) {
+        if (! is_array($keys)) {
             return parent::setKeysForSaveQuery($query);
         }
 
@@ -26,11 +26,10 @@ trait CompositeKey
 
     /**
      * Get the primary key value for a save query.
-     *
      */
     protected function getKeyForSaveQuery(?string $keyName = null)
     {
-        if (null === $keyName) {
+        if ($keyName === null) {
             $keyName = $this->getKeyName();
         }
 

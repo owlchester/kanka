@@ -13,9 +13,6 @@ class ImageSearchController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     *
-     */
     public function index(Campaign $campaign)
     {
         /** @var Image[] $images */
@@ -31,7 +28,7 @@ class ImageSearchController extends Controller
             $format = [
                 'id' => $image->id,
                 'text' => $image->name,
-                'image' => $image->getUrl(40)
+                'image' => $image->getUrl(40),
             ];
 
             $formatted[] = $format;

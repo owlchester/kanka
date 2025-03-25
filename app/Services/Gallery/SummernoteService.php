@@ -2,8 +2,8 @@
 
 namespace App\Services\Gallery;
 
-use App\Models\Image;
 use App\Http\Requests\Campaigns\GalleryImageStore;
+use App\Models\Image;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Str;
@@ -24,7 +24,7 @@ class SummernoteService
     {
         $images = [];
         $files = $request->file($field);
-        if (!is_array($files)) {
+        if (! is_array($files)) {
             $files = [$files];
         }
         $available = $this->storage->campaign($this->campaign)->available();
@@ -36,7 +36,7 @@ class SummernoteService
             $name = $source->getClientOriginalName();
             $name = Str::beforeLast($name, '.');
 
-            $image = new Image();
+            $image = new Image;
             $image->campaign_id = $this->campaign->id;
             $image->ext = $source->extension();
             $image->size = (int) ceil($source->getSize() / 1024); // kb
@@ -64,6 +64,7 @@ class SummernoteService
         }
 
         $this->storage->clearCache();
+
         return $images;
     }
 }

@@ -25,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 
 /**
  * Class Bookmark
- * @package App\Models
  *
  * @property string $name
  * @property ?string $tab
@@ -87,6 +86,7 @@ class Bookmark extends Model
 
     /**
      * The attributes that should be cast.
+     *
      * @var array<string, string>
      */
     protected $casts = [
@@ -96,23 +96,23 @@ class Bookmark extends Model
     protected array $sanitizable = [
         'name',
         'icon',
-        'css'
+        'css',
     ];
 
     /**
      * Custom options array key filter
      * Used in the Menu link observer
-     *
      */
     public array $optionsAllowedKeys = ['is_nested', 'default_dashboard', 'subview_filter'];
 
     /**
      * Searchable fields
      */
-    protected array $searchableColumns  = ['name'];
+    protected array $searchableColumns = ['name'];
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -140,7 +140,7 @@ class Bookmark extends Model
         'position',
         'menu',
         'tab',
-        'is_active'
+        'is_active',
     ];
 
     /** @var string Default order for lists */
@@ -202,18 +202,16 @@ class Bookmark extends Model
         return $this->belongsTo(EntityType::class);
     }
 
-    /**
-     */
     public function getRouteParams(bool $entity): array
     {
         $campaign = CampaignLocalization::getCampaign();
         $parameters = [
             $campaign,
             $entity ? $this->target : $this->target->entity_id,
-            'bookmark' => $this->id
+            'bookmark' => $this->id,
         ];
 
-        if (!empty($this->menu)) {
+        if (! empty($this->menu)) {
             if ($this->menu == 'all-members') {
                 $parameters['all_members'] = 1;
             }
@@ -236,11 +234,13 @@ class Bookmark extends Model
             if (Arr::get($this->options, 'default_dashboard') === '1') {
                 $dashboard = 'default';
             }
+
             return route('dashboard', [$campaign, 'dashboard' => $dashboard, 'bookmark' => $this->id]);
         } elseif ($this->isRandom()) {
             return route('bookmarks.random', [$campaign, $this->id]);
         }
-        return !empty($this->entity_id) ? $this->getEntityRoute() : $this->getIndexRoute();
+
+        return ! empty($this->entity_id) ? $this->getEntityRoute() : $this->getIndexRoute();
     }
 
     /**
@@ -255,7 +255,7 @@ class Bookmark extends Model
         }
         $route = 'entities.show';
         $entity = true;
-        if (!empty($this->menu)) {
+        if (! empty($this->menu)) {
             $menuRoute = $this->target->entityType->pluralCode() . '.' . $this->menu;
             $entity = false;
 
@@ -268,13 +268,15 @@ class Bookmark extends Model
             } elseif ($this->menu === 'abilities') {
                 if ($this->target->isAbility()) {
                     $routeOptions = [$campaign, $this->target->entity_id, 'bookmark' => $this->id];
+
                     return route('abilities.abilities', $routeOptions);
                 }
+
                 return route('entities.entity_abilities.index', $routeOptions);
             } elseif ($this->menu === 'assets') {
                 return route('entities.entity_assets.index', $routeOptions);
             } elseif ($this->menu === 'reminders') {
-                return route('entities.entity_events.index', $routeOptions);
+                return route('entities.reminders.index', $routeOptions);
             } elseif ($this->menu === 'attributes') {
                 return route('entities.attributes', $routeOptions);
             }
@@ -292,7 +294,7 @@ class Bookmark extends Model
     protected function getIndexRoute(): string
     {
         $filters = $this->filters . '&_clean=true&_from=bookmark&bookmark=' . $this->id;
-        if (!empty($this->options['is_nested']) && $this->options['is_nested'] == '1') {
+        if (! empty($this->options['is_nested']) && $this->options['is_nested'] == '1') {
             $filters .= '&n=1';
         }
         try {
@@ -314,6 +316,7 @@ class Bookmark extends Model
     public function getLink(string $route = 'show'): string
     {
         $campaign = CampaignLocalization::getCampaign();
+
         return route('bookmarks.' . $route, [$campaign, $this->id]);
     }
 
@@ -327,31 +330,29 @@ class Bookmark extends Model
 
     public function isRandom(): bool
     {
-        return !empty($this->random_entity_type);
+        return ! empty($this->random_entity_type);
     }
 
     public function isEntity(): bool
     {
-        return !empty($this->entity_id);
+        return ! empty($this->entity_id);
     }
 
     public function isDashboard(): bool
     {
-        return !empty($this->dashboard_id);
+        return ! empty($this->dashboard_id);
     }
 
     public function isList(): bool
     {
-        return !empty($this->entity_type_id);
+        return ! empty($this->entity_type_id);
     }
 
-    /**
-     */
     public function randomEntity()
     {
         $entityType = $this->random_entity_type != 'any' ? $this->random_entity_type : null;
         $entityTypeID = null;
-        if (!empty($entityType)) {
+        if (! empty($entityType)) {
             $entityTypeID = config('entities.ids.' . $entityType);
         }
 
@@ -375,16 +376,17 @@ class Bookmark extends Model
     public function iconClass(): string
     {
         $campaign = CampaignLocalization::getCampaign();
-        if (!empty($this->icon) && $campaign->boosted()) {
+        if (! empty($this->icon) && $campaign->boosted()) {
             return e($this->icon);
         } elseif ($this->target) {
             return 'fa-solid fa-arrow-circle-right';
         } elseif ($this->isRandom()) {
             return 'fa-solid fa-question';
         }
-        if (!empty($this->entityType->icon)) {
+        if (! empty($this->entityType->icon)) {
             return $this->entityType->icon;
         }
+
         return 'fa-solid fa-th-list';
     }
 
@@ -396,11 +398,9 @@ class Bookmark extends Model
         return Dashboard::getDashboard($this->dashboard_id) !== null;
     }
 
-    /**
-     */
     public function customClass(Campaign $campaign): string
     {
-        if (!$campaign->boosted()) {
+        if (! $campaign->boosted()) {
             return '';
         }
         if (empty($this->css)) {
@@ -421,8 +421,9 @@ class Bookmark extends Model
             return true;
         } elseif ($this->entityType) {
             return true;
-        } return (bool) ($this->isRandom())
-        ;
+        }
+
+        return (bool) ($this->isRandom());
     }
 
     public function activeModule(Campaign $campaign, Entity|EntityType|null $current = null): ?string
@@ -430,15 +431,23 @@ class Bookmark extends Model
         if (empty($current) || request()->has('bookmark')) {
             return null;
         }
-        if ($current instanceof EntityType) {
-            if (!$current->isSpecial() || $current->id != $this->entity_type_id) {
-                return null;
-            }
-            return 'active';
-        }
-        if ($current instanceof Entity && (!$current->entityType->isSpecial() || $current->type_id != $this->entity_type_id)) {
+        // We have no way of having a bookmark set "just to the custom module", so in cases where the campaign has a
+        // bookmark to the module with no filters, and one with, we assume we want the one without filters to be
+        // highlighted.
+        if (! empty($this->filters)) {
             return null;
         }
+        if ($current instanceof EntityType) {
+            if (! $current->isSpecial() || $current->id != $this->entity_type_id) {
+                return null;
+            }
+
+            return 'active';
+        }
+        if ($current instanceof Entity && (! $current->entityType->isSpecial() || $current->type_id != $this->entity_type_id)) {
+            return null;
+        }
+
         return 'active';
     }
 }

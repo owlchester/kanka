@@ -16,10 +16,11 @@ class DashboardServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(DashboardService::class, function () {
-            $service = new DashboardService();
+            $service = new DashboardService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+
             return $service;
         });
 

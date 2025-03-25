@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -18,7 +19,7 @@ return new class () extends Migration {
             if (Schema::hasColumn('subscription_items', 'stripe_plan')) {
                 $table->renameColumn('stripe_plan', 'stripe_price');
             }
-            if (!Schema::hasColumn('subscription_items', 'stripe_product')) {
+            if (! Schema::hasColumn('subscription_items', 'stripe_product')) {
                 $table->string('stripe_product')->nullable()->after('stripe_id');
             }
         });

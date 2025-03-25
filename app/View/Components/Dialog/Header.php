@@ -16,8 +16,7 @@ class Header extends Component
         public ?string $title = null,
         public ?string $class = null,
         public bool $dismissible = true,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

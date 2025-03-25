@@ -74,6 +74,7 @@ class ChildController extends Controller
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign, Tag $tag)
@@ -87,7 +88,7 @@ class ChildController extends Controller
         return view('tags.entities.create', [
             'campaign' => $campaign,
             'model' => $tag,
-            'formOptions' => $formOptions
+            'formOptions' => $formOptions,
         ]);
     }
 
@@ -106,6 +107,7 @@ class ChildController extends Controller
         }
 
         $count = $tag->attachEntities($request->get('entities'));
+
         return redirect()->route('entities.show', $redirectUrlOptions)
             ->with('success', trans_choice('tags.children.create.attach_success', $count, ['name' => $tag->name, 'count' => $count]));
     }

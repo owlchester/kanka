@@ -51,6 +51,7 @@ class LayerController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function create(Campaign $campaign, Map $map)
@@ -89,14 +90,13 @@ class LayerController extends Controller
                 ->with('max', Campaign::LAYER_COUNT_MAX);
         }
 
-        $model = new MapLayer();
+        $model = new MapLayer;
         $data = $request->only('name', 'position', 'entry', 'visibility_id', 'type_id', 'image_uuid');
         if (Arr::exists($data, 'position')) {
             $map->layers()->where('position', '>', $data['position'] - 1)->increment('position');
         }
         $data['map_id'] = $map->id;
         $new = $model->create($data);
-
 
         if ($request->has('submit-update')) {
             return redirect()
@@ -119,6 +119,7 @@ class LayerController extends Controller
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Campaign $campaign, Map $map, MapLayer $mapLayer)
@@ -169,6 +170,7 @@ class LayerController extends Controller
                 ->route('maps.explore', [$campaign, $map])
                 ->withSuccess(__('maps/layers.create.success', ['name' => $mapLayer->name]));
         }
+
         return redirect()
             ->route('maps.map_layers.index', [$campaign, $map])
             ->withSuccess(__('maps/layers.edit.success', ['name' => $mapLayer->name]));

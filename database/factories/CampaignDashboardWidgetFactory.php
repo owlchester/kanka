@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\CampaignDashboardWidget;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CampaignDashboardWidgetFactory extends Factory
 {
@@ -14,6 +14,7 @@ class CampaignDashboardWidgetFactory extends Factory
      * @var string
      */
     protected $model = CampaignDashboardWidget::class;
+
     /**
      * Define the model's default state.
      *
@@ -22,7 +23,7 @@ class CampaignDashboardWidgetFactory extends Factory
     public function definition(): array
     {
         return [
-            'widget' => 'header'
+            'widget' => 'header',
         ];
     }
 }

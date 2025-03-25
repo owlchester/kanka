@@ -16,8 +16,7 @@ class Thumbnail extends Component
         public Entity $entity,
         public ?string $title = null,
         public int $size = 40
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

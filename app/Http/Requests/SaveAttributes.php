@@ -29,7 +29,7 @@ class SaveAttributes extends FormRequest
     {
 
         return $this->clean([
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ]);
     }
 }

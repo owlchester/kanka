@@ -22,7 +22,7 @@ class OrganisationFilter extends DatagridFilter
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('search-list', [$this->campaign, config('entities.ids.organisation')]),
-                'placeholder' =>  __('crud.placeholders.parent'),
+                'placeholder' => __('crud.placeholders.parent'),
                 'model' => Organisation::class,
             ])
             ->character('member_id')
@@ -35,7 +35,6 @@ class OrganisationFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
-            ->connections()
-        ;
+            ->connections();
     }
 }

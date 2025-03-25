@@ -33,6 +33,7 @@ class Tracking
             }
             session()->put('tracking', $data);
         }
+
         //        dump(session()->all());
         return $next($request);
     }

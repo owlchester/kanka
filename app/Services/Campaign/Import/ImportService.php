@@ -8,10 +8,10 @@ use App\Facades\CampaignCache;
 use App\Facades\CharacterCache;
 use App\Facades\EntityAssetCache;
 use App\Facades\EntityCache;
+use App\Facades\ImportIdMapper;
 use App\Facades\MapMarkerCache;
 use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
-use App\Facades\ImportIdMapper;
 use App\Models\Bookmark;
 use App\Models\CampaignImport;
 use App\Models\EntityType;
@@ -38,12 +38,12 @@ use App\Services\Campaign\Import\Mappers\TimelineMapper;
 use App\Services\EntityMappingService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use ZipArchive;
-use Exception;
 use Throwable;
+use ZipArchive;
 
 class ImportService
 {
@@ -81,6 +81,7 @@ class ImportService
         $this
             ->campaign($job->campaign)
             ->user($job->user);
+
         return $this;
     }
 
@@ -99,6 +100,7 @@ class ImportService
     {
         $this->job->status_id = CampaignImportStatus::RUNNING;
         $this->job->save();
+
         return $this;
     }
 
@@ -122,16 +124,17 @@ class ImportService
             'maps' => MapMapper::class,
             'locations' => LocationMapper::class,
             'characters' => CharacterMapper::class,
-            'custom'     => CustomMapper::class
+            'custom' => CustomMapper::class,
         ];
         foreach ($setup as $model => $mapperClass) {
-            $this->logs[]  = 'Init mapper ' . $model;
+            $this->logs[] = 'Init mapper ' . $model;
             $mapper = app()->make($mapperClass);
             $this->mappers[$model] = $mapper
                 ->campaign($this->campaign)
                 ->user($this->user)
                 ->prepare();
         }
+
         return $this;
     }
 
@@ -148,7 +151,7 @@ class ImportService
             $local = $path . uniqid() . '.zip';
             Storage::disk('local')->put($local, $s3);
 
-            $this->archive = new ZipArchive();
+            $this->archive = new ZipArchive;
             $zipPath = storage_path('app/' . $local);
             Log::info('Want to open ' . $zipPath);
             $this->archive->open($zipPath);
@@ -175,12 +178,11 @@ class ImportService
                 ->customModules()
                 ->gallery()
                 ->entities()
-                ->secondCampaign()
-            ;
+                ->secondCampaign();
             $this->job->status_id = CampaignImportStatus::FINISHED;
         } catch (Exception $e) {
-            //dump($e->getMessage());
-            //dump($e->getTrace());
+            // dump($e->getMessage());
+            // dump($e->getTrace());
             $this->logs[] = $e->getMessage();
             Log::error('Import', ['error' => $e->getMessage()]);
             $this->job->status_id = CampaignImportStatus::FAILED;
@@ -201,7 +203,7 @@ class ImportService
 
         $key = 'failed';
         $colour = 'red';
-        if (!$this->job->isFailed()) {
+        if (! $this->job->isFailed()) {
             $key = 'success';
             $colour = 'green';
         }
@@ -216,6 +218,7 @@ class ImportService
                 ]
             )
         );
+
         return $this;
     }
 
@@ -233,6 +236,7 @@ class ImportService
             ->import();
 
         $this->originalCampaignID = (int) $data['id'];
+
         return $this;
     }
 
@@ -243,14 +247,15 @@ class ImportService
             ->prepare();
 
         $path = $this->dataPath . '/gallery';
-        if (!Storage::disk('local')->exists($path)) {
+        if (! Storage::disk('local')->exists($path)) {
             $this->logs[] = 'No gallery';
+
             return $this;
         }
 
         $files = Storage::disk('local')->files($path);
         foreach ($files as $file) {
-            if (!Str::endsWith($file, '.json')) {
+            if (! Str::endsWith($file, '.json')) {
                 continue;
             }
             $filePath = Str::replace($this->dataPath, '', $file);
@@ -258,8 +263,7 @@ class ImportService
             $this->gallery
                 ->path($path)
                 ->data($data)
-                ->import()
-            ;
+                ->import();
             unset($data);
         }
         $this->gallery->tree()->clear();
@@ -272,7 +276,7 @@ class ImportService
         // Open the campaign settings file
         $data = $this->open('settings/modules.json');
 
-        if (!$data) {
+        if (! $data) {
             return $this;
         }
 
@@ -303,13 +307,13 @@ class ImportService
         // Open the campaign settings file
         $data = $this->open('settings/custom-modules.json');
 
-        if (!$data || !$this->campaign->premium()) {
+        if (! $data || ! $this->campaign->premium()) {
             return $this;
         }
 
         foreach ($data as $module) {
-            //Create Custom Module
-            $newModule = new EntityType();
+            // Create Custom Module
+            $newModule = new EntityType;
             $newModule->campaign_id = $this->campaign->id;
             $newModule->is_special = true;
             $newModule->is_enabled = $module['is_enabled'];
@@ -318,8 +322,8 @@ class ImportService
             $newModule->icon = $module['icon'];
             $newModule->code = $module['code'];
             $newModule->save();
-            //Create its corresponding bookmark
-            $bookmark = new Bookmark();
+            // Create its corresponding bookmark
+            $bookmark = new Bookmark;
             $bookmark->campaign_id = $this->campaign->id;
             $bookmark->entity_type_id = $newModule->id;
             $bookmark->name = $newModule->singular;
@@ -343,12 +347,12 @@ class ImportService
          */
         foreach ($this->mappers as $model => $mapper) {
             if ($model == 'custom') {
-                //We handle custom models differently.
+                // We handle custom models differently.
                 foreach ($fileNames as $fileName => $newID) {
                     $this->logs[] = 'Processing ' . $fileName;
                     $count = 0;
                     foreach ($this->files($fileName) as $file) {
-                        if (!Str::endsWith($file, '.json')) {
+                        if (! Str::endsWith($file, '.json')) {
                             continue;
                         }
                         $filePath = Str::replace($this->dataPath, '', $file);
@@ -359,8 +363,7 @@ class ImportService
                         $mapper
                             ->path($this->dataPath . '/')
                             ->data($data)
-                            ->first()
-                        ;
+                            ->first();
                         $count++;
                         unset($data);
                     }
@@ -371,7 +374,7 @@ class ImportService
                 $this->logs[] = 'Processing ' . $model;
                 $count = 0;
                 foreach ($this->files($model) as $file) {
-                    if (!Str::endsWith($file, '.json')) {
+                    if (! Str::endsWith($file, '.json')) {
                         continue;
                     }
                     $filePath = Str::replace($this->dataPath, '', $file);
@@ -379,8 +382,7 @@ class ImportService
                     $mapper
                         ->path($this->dataPath . '/')
                         ->data($data)
-                        ->first()
-                    ;
+                        ->first();
                     $count++;
                     unset($data);
                 }
@@ -393,13 +395,13 @@ class ImportService
         foreach ($this->mappers as $model => $mapper) {
             if ($model == 'custom') {
                 foreach ($fileNames as $fileName => $newId) {
-                    if (!method_exists($mapper, 'second')) {
+                    if (! method_exists($mapper, 'second')) {
                         continue;
                     }
                     $this->logs[] = 'Second round ' . $fileName;
                     $count = 0;
                     foreach ($this->files($fileName) as $file) {
-                        if (!Str::endsWith($file, '.json')) {
+                        if (! Str::endsWith($file, '.json')) {
                             continue;
                         }
                         $filePath = Str::replace($this->dataPath, '', $file);
@@ -410,8 +412,7 @@ class ImportService
                         $mapper
                             ->path($this->dataPath . '/')
                             ->data($data)
-                            ->second()
-                        ;
+                            ->second();
                         $count++;
                         unset($data);
                     }
@@ -419,13 +420,13 @@ class ImportService
                 }
 
             } else {
-                if (!method_exists($mapper, 'second')) {
+                if (! method_exists($mapper, 'second')) {
                     continue;
                 }
                 $this->logs[] = 'Second round ' . $model;
                 $count = 0;
                 foreach ($this->files($model) as $file) {
-                    if (!Str::endsWith($file, '.json')) {
+                    if (! Str::endsWith($file, '.json')) {
                         continue;
                     }
                     $filePath = Str::replace($this->dataPath, '', $file);
@@ -436,8 +437,7 @@ class ImportService
                     $mapper
                         ->path($this->dataPath . '/')
                         ->data($data)
-                        ->second()
-                    ;
+                        ->second();
                     $count++;
                     unset($data);
                 }
@@ -448,13 +448,13 @@ class ImportService
         foreach ($this->mappers as $model => $mapper) {
             if ($model == 'custom') {
                 foreach ($fileNames as $fileName => $newId) {
-                    if (!method_exists($mapper, 'third')) {
+                    if (! method_exists($mapper, 'third')) {
                         continue;
                     }
                     $this->logs[] = 'Third round ' . $fileName;
                     $count = 0;
                     foreach ($this->files($fileName) as $file) {
-                        if (!Str::endsWith($file, '.json')) {
+                        if (! Str::endsWith($file, '.json')) {
                             continue;
                         }
                         $filePath = Str::replace($this->dataPath, '', $file);
@@ -466,21 +466,20 @@ class ImportService
                         $mapper
                             ->path($this->dataPath . '/')
                             ->data($data)
-                            ->third()
-                        ;
+                            ->third();
                         $count++;
                         unset($data);
                     }
                     $this->logs[] = '- ' . $count;
                 }
             } else {
-                if (!method_exists($mapper, 'third')) {
+                if (! method_exists($mapper, 'third')) {
                     continue;
                 }
                 $this->logs[] = 'Third round ' . $model;
                 $count = 0;
                 foreach ($this->files($model) as $file) {
-                    if (!Str::endsWith($file, '.json')) {
+                    if (! Str::endsWith($file, '.json')) {
                         continue;
                     }
                     $filePath = Str::replace($this->dataPath, '', $file);
@@ -492,8 +491,7 @@ class ImportService
                     $mapper
                         ->path($this->dataPath . '/')
                         ->data($data)
-                        ->third()
-                    ;
+                        ->third();
                     $count++;
                     unset($data);
                 }
@@ -507,8 +505,9 @@ class ImportService
     protected function files(string $model): array
     {
         $path = $this->dataPath . '/' . $model;
-        if (!Storage::disk('local')->exists($path)) {
+        if (! Storage::disk('local')->exists($path)) {
             $this->logs[] = 'No ' . $model;
+
             return [];
         }
 
@@ -518,14 +517,16 @@ class ImportService
     protected function open(string $file): array
     {
         $path = $this->dataPath . '/' . $file;
-        if (!Storage::disk('local')->exists($path)) {
+        if (! Storage::disk('local')->exists($path)) {
             $this->logs[] = 'file ' . $path . ' doesnt exist';
+
             return [];
         }
 
         $fullpath = Storage::disk('local')->path($path);
         $content = file_get_contents($fullpath);
         $data = json_decode($content, true);
+
         return $data;
     }
 
@@ -536,6 +537,7 @@ class ImportService
         $this->campaign->save();
 
         $this->entityMappingService->silent()->with($this->campaign)->map();
+
         return $this;
     }
 
@@ -550,13 +552,14 @@ class ImportService
         if (isset($this->exception)) {
             throw $this->exception;
         }
+
         return $this;
     }
 
     public function fail(Throwable $e): self
     {
         $config = $this->job->config;
-        if (!isset($config['logs'])) {
+        if (! isset($config['logs'])) {
             $config['logs'] = [];
         }
         $config['logs'][] = $e->getMessage();

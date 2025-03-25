@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Attributes
- * @package App\Facades
  *
  * @see AttributeMentionService
+ *
  * @mixin AttributeMentionService
  */
 class Attributes extends Facade

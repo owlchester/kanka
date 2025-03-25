@@ -16,7 +16,7 @@ class GoodBye implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
 
-        if (!Str::is(mb_strtolower($value), 'goodbye')) {
+        if (! Str::is(mb_strtolower($value), 'goodbye')) {
             $fail(__('validation.goodbye', ['code' => 'goodbye']));
         }
     }

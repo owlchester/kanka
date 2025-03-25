@@ -3,6 +3,8 @@
     <x-entities.thumbnail :entity="$model" :title="$model->name"></x-entities.thumbnail>
 @elseif ($model instanceof \App\Models\MiscModel || $model instanceof \App\Models\Post)
     <x-entities.thumbnail :entity="$model->entity" :title="$model->name"></x-entities.thumbnail>
+@elseif ($model instanceof \App\Models\Reminder)
+    <x-entities.thumbnail :entity="$model->remindable" :title="$model->remindable->name"></x-entities.thumbnail>
 @elseif ($model instanceof \App\Models\MapLayer && $model->hasImage())
     <a class="w-10 h-10 entity-image cover-background"
        style="background-image: url('{{ $model->thumbnail(40) }}');"

@@ -11,9 +11,9 @@ use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Exception;
 
 class LoggerService
 {
@@ -40,13 +40,14 @@ class LoggerService
     {
         $this->model = $model;
         $this->modelDirty();
+
         return $this;
     }
 
     public function finish(): void
     {
         // If the model isn't dirty, or was created right now, there is no need for logging
-        if (!$this->dirty || $this->created) {
+        if (! $this->dirty || $this->created) {
             return;
         }
 
@@ -76,6 +77,7 @@ class LoggerService
     {
         $this->changes[$key] = $values;
         $this->dirty = true;
+
         return $this;
     }
 
@@ -96,7 +98,7 @@ class LoggerService
         if (empty($this->changes)) {
             return;
         }
-        if (!empty($this->log->changes)) {
+        if (! empty($this->log->changes)) {
             $changes = $this->log->changes + $this->changes;
             $this->log->changes = $changes;
         } else {
@@ -104,7 +106,7 @@ class LoggerService
         }
 
         // Only save for superboosted and premium campaigns
-        if (isset($this->campaign) && !$this->campaign->superboosted()) {
+        if (isset($this->campaign) && ! $this->campaign->superboosted()) {
             $this->log->changes = null;
         }
         $this->log->save();
@@ -127,7 +129,7 @@ class LoggerService
 
     protected function log(int $action)
     {
-        $this->log = new EntityLog();
+        $this->log = new EntityLog;
         $this->log->entity_id = $this->entity->id;
         $this->log->created_by = isset($this->user) ? $this->user->id : null;
         $this->log->action = $action;
@@ -149,18 +151,20 @@ class LoggerService
             return true;
         }
         $this->logged[] = $this->entity->id;
+
         return false;
     }
 
     protected function buildDirty(): self
     {
         $this->entityDirty();
+
         return $this;
     }
 
     protected function modelDirty(): void
     {
-        if (!isset($this->model)) {
+        if (! isset($this->model)) {
             return;
         }
         $ignoredAttributes = [
@@ -182,8 +186,9 @@ class LoggerService
             }
 
             // If it's not an array, easy work
-            if (!is_array($value)) {
+            if (! is_array($value)) {
                 $this->changes[$attribute] = $value;
+
                 continue;
             }
 
@@ -196,7 +201,7 @@ class LoggerService
 
     protected function entityDirty(): void
     {
-        if (!isset($this->entity)) {
+        if (! isset($this->entity)) {
             return;
         }
         $dirty = $this->entity->getDirty();
@@ -214,8 +219,9 @@ class LoggerService
             }
 
             // If it's not an array, easy work
-            if (!is_array($value)) {
+            if (! is_array($value)) {
                 $this->changes[$attribute] = $value;
+
                 continue;
             }
 
@@ -235,27 +241,30 @@ class LoggerService
         try {
             if ($attribute == 'location_id') {
                 $originalLocation = Location::where('id', $original)->first();
-                if (!empty($originalLocation)) {
+                if (! empty($originalLocation)) {
                     return (string) $originalLocation->name;
                 }
+
                 return '';
             } elseif ($attribute == 'center_marker_id') {
                 // Maps can have a "centered marker" which gets tricky
                 $originalMarker = \App\Models\MapMarker::where('id', $original)->first();
-                if (!empty($originalMarker)) {
+                if (! empty($originalMarker)) {
                     return (string) $originalMarker->name;
                 }
+
                 return '';
             } elseif (in_array($attribute, ['author_id', 'instigator_id'])) {
                 // Journals have an author, which can be any entity type. In the future, quests might have this too
                 $originalAuthor = Entity::where('id', $original)->first();
-                if (!empty($originalAuthor)) {
+                if (! empty($originalAuthor)) {
                     return (string) $originalAuthor->name;
                 }
+
                 return '';
-            } elseif ($attribute === 'parent_id' && !isset($this->model)) {
+            } elseif ($attribute === 'parent_id' && ! isset($this->model)) {
                 $originalAuthor = Entity::where('id', $original)->first();
-                if (!empty($originalAuthor)) {
+                if (! empty($originalAuthor)) {
                     return (string) $originalAuthor->name;
                 }
             }
@@ -274,12 +283,14 @@ class LoggerService
             $relationClass = 'App\Models\\' . ucfirst($relationName);
 
             /** @var MiscModel $relationModel */
-            $relationModel = new $relationClass();
+            $relationModel = new $relationClass;
             /** @var MiscModel $result */
             $result = $relationModel->where('id', $original)->firstOrFail();
+
             return $result->name;
         } catch (Exception $e) {
             Log::error('Issue with Logger', ['e' => $e->getMessage()]);
+
             return '';
         }
     }

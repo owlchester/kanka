@@ -16,9 +16,7 @@ class Tags extends Component
     public function __construct(
         public Post $post,
         public Campaign $campaign
-    ) {
-
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

@@ -45,6 +45,7 @@ class StarterService
     public function bind(): self
     {
         Character::observe(CharacterObserver::class);
+
         return $this;
     }
 

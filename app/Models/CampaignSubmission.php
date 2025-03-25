@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class CampaignSubmission
- * @package App\Models
  *
  * @property string $text
  */

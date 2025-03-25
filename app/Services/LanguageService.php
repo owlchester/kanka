@@ -18,6 +18,7 @@ class LanguageService
         foreach (LaravelLocalization::getSupportedLocales() as $langKey => $langData) {
             $languages[$langKey] = trans('languages.codes.' . $langKey);
         }
+
         return $languages;
     }
 }

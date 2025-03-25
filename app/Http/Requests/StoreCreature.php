@@ -37,20 +37,22 @@ class StoreCreature extends FormRequest
             'creature_id' => 'nullable|integer|exists:creatures,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
             'locations' => 'array',
             'locations.*' => 'distinct|exists:locations,id',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Creature $self */
         $self = request()->route('creature');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['creature_id'] = [
                 'nullable',
                 'integer',
                 'exists:creatures,id',
-                new Nested(Creature::class, $self)
+                new Nested(Creature::class, $self),
             ];
         }
 

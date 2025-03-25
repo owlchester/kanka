@@ -16,8 +16,7 @@ class Bubble extends Component
     public function __construct(
         public Tag $tag,
         public Campaign $campaign,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
@@ -25,8 +24,7 @@ class Bubble extends Component
     public function render(): View|Closure|string
     {
         return view('components.tags.bubble')
-            ->with('css', $this->css())
-        ;
+            ->with('css', $this->css());
     }
 
     protected function css(): string
@@ -39,6 +37,7 @@ class Bubble extends Component
         } else {
             $classes[] = 'color-tag';
         }
+
         return implode(' ', $classes);
     }
 }

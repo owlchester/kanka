@@ -36,7 +36,7 @@ class DeleteCampaignImage implements ShouldQueue
     {
         $campaign = Campaign::find($this->campaignId);
 
-        if (empty($campaign) || !(Storage::exists($campaign->image))) {
+        if (empty($campaign) || ! (Storage::exists($campaign->image))) {
             // Image was deleted
             return;
         }

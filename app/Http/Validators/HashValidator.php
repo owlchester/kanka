@@ -8,9 +8,9 @@ use Illuminate\Validation\Validator;
 class HashValidator extends Validator
 {
     /**
-     * @param string $attribute
-     * @param string $value
-     * @param array $parameters
+     * @param  string  $attribute
+     * @param  string  $value
+     * @param  array  $parameters
      */
     public function validateHash($attribute, $value, $parameters)
     {

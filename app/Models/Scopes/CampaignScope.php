@@ -2,24 +2,25 @@
 
 namespace App\Models\Scopes;
 
-use App\Models\Location;
-use Illuminate\Database\Eloquent\Scope;
-use Illuminate\Database\Eloquent\Builder;
 use App\Facades\CampaignLocalization;
+use App\Models\Location;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Scope;
 
 class CampaignScope implements Scope
 {
     /**
-     * @param Location $model
+     * @param  Location  $model
      * @return Builder
      */
     public function apply(Builder $builder, $model)
     {
-        if (!app()->runningInConsole()) {
+        if (! app()->runningInConsole()) {
             $campaign = CampaignLocalization::getCampaign();
             if ($campaign && $model->withCampaignLimit()) {
                 $builder->where($model->getTable() . '.campaign_id', '=', $campaign->id);
             }
+
             return $builder;
         }
 
@@ -29,6 +30,7 @@ class CampaignScope implements Scope
         if ($campaignId && $model->withCampaignLimit()) {
             $builder->where($model->getTable() . '.campaign_id', '=', $campaignId);
         }
+
         return $builder;
     }
 }

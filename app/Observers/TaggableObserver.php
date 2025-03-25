@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class TaggableObserver
 {
-    /**
-     */
     public function saved(Model $model)
     {
         $this->saveTags($model);
@@ -21,7 +19,7 @@ class TaggableObserver
     protected function saveTags(Model $model)
     {
         /** @var Bookmark $model */
-        if (!request()->has('save_tags')) {
+        if (! request()->has('save_tags')) {
             return;
         }
 
@@ -37,7 +35,7 @@ class TaggableObserver
         $new = [];
 
         foreach ($ids as $id) {
-            if (!empty($existing[$id])) {
+            if (! empty($existing[$id])) {
                 unset($existing[$id]);
             } else {
                 /** @var Tag $tag */
@@ -48,7 +46,7 @@ class TaggableObserver
         $model->tags()->attach($new);
 
         // Detach the remaining
-        if (!empty($existing)) {
+        if (! empty($existing)) {
             $model->tags()->detach(array_keys($existing));
         }
     }

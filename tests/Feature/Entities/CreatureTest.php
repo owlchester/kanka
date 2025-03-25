@@ -6,9 +6,7 @@ it('POSTS an invalid creature form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/creatures', [])
-    ->assertStatus(422)
-;
-
+    ->assertStatus(422);
 
 it('POSTS a new creature')
     ->asUser()
@@ -23,9 +21,8 @@ it('POSTS a new creature')
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all creatures')
     ->asUser()
@@ -40,10 +37,9 @@ it('GETS all creatures')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific creature')
     ->asUser()
@@ -56,10 +52,8 @@ it('GETS a specific creature')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
-
+        ],
+    ]);
 
 it('UPDATES a valid creature')
     ->asUser()
@@ -67,8 +61,7 @@ it('UPDATES a valid creature')
     ->withCreatures()
     ->putJson('/api/1.0/campaigns/1/creatures/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('UPDATES a valid creature without a name')
     ->asUser()
@@ -76,25 +69,21 @@ it('UPDATES a valid creature without a name')
     ->withCreatures()
     ->putJson('/api/1.0/campaigns/1/creatures/1', ['type' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['type' => 'Magic'])
-;
+    ->assertJsonFragment(['type' => 'Magic']);
 
 it('DELETES a creature')
     ->asUser()
     ->withCampaign()
     ->withCreatures()
     ->delete('/api/1.0/campaigns/1/creatures/1')
-    ->assertStatus(204)
-;
-
+    ->assertStatus(204);
 
 it('DELETES an invalid creature')
     ->asUser()
     ->withCampaign()
     ->withCreatures()
     ->delete('/api/1.0/campaigns/1/creatures/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a creature as a player')
     ->asUser()
@@ -102,8 +91,7 @@ it('can GET a creature as a player')
     ->withCreatures()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/creatures/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
@@ -122,6 +110,4 @@ it('can\'t GET a private creature as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/creatures/1');
     expect($response->status())
         ->toBe(404);
-})
-
-;
+});

@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $conversation_id
  * @property ?int $character_id
  * @property ?Character $character
- *
  */
 class ConversationParticipant extends Model
 {
@@ -55,21 +54,22 @@ class ConversationParticipant extends Model
         return $this->entity()->name ?? __('conversations.messages.author_unknown');
     }
 
-    public function target(): int|null
+    public function target(): ?int
     {
-        return (!empty($this->character_id) ? Conversation::TARGET_CHARACTERS :
-            (!empty($this->user_id) ? Conversation::TARGET_USERS : null));
+        return ! empty($this->character_id) ? Conversation::TARGET_CHARACTERS :
+            (! empty($this->user_id) ? Conversation::TARGET_USERS : null);
     }
 
     public function isMember(): bool
     {
-        return !empty($this->user_id);
+        return ! empty($this->user_id);
     }
 
     public function id()
     {
         $entity = $this->loadEntity();
-        return !empty($entity) ? $entity->id : null;
+
+        return ! empty($entity) ? $entity->id : null;
     }
 
     /**
@@ -88,14 +88,16 @@ class ConversationParticipant extends Model
         if (isset($this->loadedEntity)) {
             return $this->loadedEntity;
         }
-        if (!empty($this->user_id)) {
+        if (! empty($this->user_id)) {
             return $this->loadedEntity = $this->user;
         }
+
         return $this->loadedEntity = $this->character;
     }
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array

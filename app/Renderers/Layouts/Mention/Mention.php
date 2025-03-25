@@ -10,6 +10,7 @@ class Mention extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
@@ -39,6 +40,7 @@ class Mention extends Layout
                     } elseif ($model->isPost()) {
                         return $base . ' (' . __('entities.post') . ')';
                     }
+
                     return $base;
                 },
             ],

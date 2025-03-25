@@ -16,6 +16,7 @@ class PreviewController extends Controller
     use GuestAuthTrait;
 
     protected PreviewService $service;
+
     protected RecentService $recentService;
 
     public function __construct(PreviewService $service, RecentService $recentService)

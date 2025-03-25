@@ -39,23 +39,26 @@ class StoreItem extends FormRequest
             'item_id' => 'nullable|integer|exists:items,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
+            'entity_image_uuid' => 'nullable|exists:images,id',
+            'entity_header_uuid' => 'nullable|exists:images,id',
             'template_id' => 'nullable',
             'price' => 'nullable|string|max:191',
             'size' => 'nullable|string|max:191',
             'weight' => 'nullable|string|max:191',
-            'attribute' => ['array', new UniqueAttributeNames()],
+            'attribute' => ['array', new UniqueAttributeNames],
         ];
 
         /** @var Item $self */
         $self = request()->route('item');
-        if (!empty($self)) {
+        if (! empty($self)) {
             $rules['item_id'] = [
                 'nullable',
                 'integer',
                 'exists:items,id',
-                new Nested(Item::class, $self)
+                new Nested(Item::class, $self),
             ];
         }
+
         return $this->clean($rules);
     }
 }

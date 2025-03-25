@@ -18,7 +18,6 @@ use App\Traits\UserAware;
 
 /**
  * Class CampaignCacheService
- * @package App\Services\Caches
  */
 class CampaignCacheService extends BaseCache
 {
@@ -54,6 +53,7 @@ class CampaignCacheService extends BaseCache
         }
 
         $this->put($key, $data, 24 * 3600);
+
         return $data;
     }
 
@@ -77,6 +77,7 @@ class CampaignCacheService extends BaseCache
     public function clearSidebar(): self
     {
         $this->forget('campaign_' . $this->campaign->id . '_sidebar');
+
         return $this;
     }
 }

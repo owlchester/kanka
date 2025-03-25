@@ -12,12 +12,11 @@ class Grid extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public null|string $id = null,
-        public null|string $type = null,
-        public null|string $css = null,
+        public ?string $id = null,
+        public ?string $type = null,
+        public ?string $css = null,
         public bool $hidden = false,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

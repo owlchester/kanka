@@ -5,6 +5,9 @@ namespace App\Mail\Subscription\Admin;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class CancelledSubscriptionMail extends Mailable
@@ -14,8 +17,9 @@ class CancelledSubscriptionMail extends Mailable
 
     public User $user;
 
-    public string|null $reason;
-    public string|null $custom;
+    public ?string $reason;
+
+    public ?string $custom;
 
     /**
      * Create a new message instance.
@@ -30,16 +34,26 @@ class CancelledSubscriptionMail extends Mailable
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * Get the message envelope.
      */
-    public function build()
+    public function envelope(): Envelope
     {
-        return $this
-            ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
-            ->subject('Sub: Cancelled ' . $this->user->pledge)
-            ->tag('admin-cancelled')
-            ->view('emails.subscriptions.cancelled.html');
+
+        return new Envelope(
+            subject: 'Sub: Cancelled ' . $this->user->pledge,
+            tags: ['admin-cancelled'],
+            from: new Address(config('app.email'), 'Kanka Admin'),
+        );
+    }
+
+    /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        return new Content(
+            markdown: 'emails.subscriptions.cancelled.md',
+            with: ['user' => $this->user, 'reason' => $this->reason, 'custom' => $this->custom],
+        );
     }
 }

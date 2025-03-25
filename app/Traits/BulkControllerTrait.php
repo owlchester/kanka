@@ -16,22 +16,22 @@ trait BulkControllerTrait
      */
     protected function bulkModel(MiscModel|Relation|Bookmark|null $modelClass = null): Bulk
     {
-        if (isset($this->bulk) && !empty($this->bulk)) {
-            return new $this->bulk();
+        if (isset($this->bulk) && ! empty($this->bulk)) {
+            return new $this->bulk;
         }
 
         if ($modelClass !== null) {
             $bulkClass = 'App\Datagrids\Bulks\\' . Str::studly(Str::singular($modelClass->getTable())) . 'Bulk';
         } else {
             // @phpstan-ignore-next-line
-            $model = new $this->model();
+            $model = new $this->model;
             $bulkClass = 'App\Datagrids\Bulks\\' . Str::studly(Str::singular($model->getTable())) . 'Bulk';
         }
 
         if (class_exists($bulkClass)) {
-            return new $bulkClass();
+            return new $bulkClass;
         }
 
-        return new DefaultBulk();
+        return new DefaultBulk;
     }
 }

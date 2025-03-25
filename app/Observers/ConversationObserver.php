@@ -7,8 +7,6 @@ use App\Models\MiscModel;
 
 class ConversationObserver extends MiscObserver
 {
-    /**
-     */
     public function updated(MiscModel $model)
     {
         // Changed the target? Remove participants.

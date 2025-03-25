@@ -7,7 +7,6 @@ namespace App\Datagrids\Bulks;
  *
  * This abstract class allows each sub object to define which fields are available in the
  * bulk edit interface from the main entity type's datagrid.
- * @package App\Datagrids\Bulks
  */
 abstract class Bulk
 {

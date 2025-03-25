@@ -11,6 +11,7 @@ trait EntityLogs
     public function withoutUpdateLog(): self
     {
         $this->hasUpdateLog = false;
+
         return $this;
     }
 

@@ -20,7 +20,7 @@ class EntityTypesTableSeeder extends Seeder
             $type = \App\Models\EntityType::firstOrNew([
                 'id' => $id,
             ]);
-            if (!$type->exists) {
+            if (! $type->exists) {
                 $type->fill([
                     'code' => $name,
                     'is_enabled' => true,

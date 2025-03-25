@@ -20,7 +20,7 @@ class MarkerController extends Controller
         $this->authorize('update', $map->entity);
         $action = $request->get('action');
         $models = $request->get('model');
-        if (!in_array($action, $this->validBulkActions()) || empty($models)) {
+        if (! in_array($action, $this->validBulkActions()) || empty($models)) {
             return redirect()->back();
         }
 
@@ -36,7 +36,6 @@ class MarkerController extends Controller
 
         return redirect()
             ->route('maps.map_markers.index', [$campaign, 'map' => $map])
-            ->with('success', trans_choice('maps/markers.bulks.' . $action, $count, ['count' => $count]))
-        ;
+            ->with('success', trans_choice('maps/markers.bulks.' . $action, $count, ['count' => $count]));
     }
 }

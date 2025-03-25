@@ -5,9 +5,9 @@ namespace App\Services\Campaign;
 use App\Models\Attribute;
 use App\Models\Bookmark;
 use App\Models\EntityAbility;
-use App\Models\EntityEvent;
 use App\Models\Inventory;
 use App\Models\Post;
+use App\Models\Reminder;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +21,7 @@ class StatService
     public function get(): array
     {
         $key = 'campaign_stats_' . $this->campaign->id;
-        if (Cache::has($key) && !config('app.debug')) {
+        if (Cache::has($key) && ! config('app.debug')) {
             return Cache::get($key);
         }
 
@@ -34,6 +34,7 @@ class StatService
             ->modules();
 
         Cache::put($key, $this->stats, 3600 * 6);
+
         return $this->stats;
     }
 
@@ -52,6 +53,7 @@ class StatService
         }
         arsort($stats);
         $this->stats['types'] = $stats;
+
         return $this;
     }
 
@@ -62,9 +64,9 @@ class StatService
         $this->stats['permissions']['followers'] = $this->campaign->followers()->count();
         $this->stats['permissions']['roles'] = $this->campaign->roles()->count();
         arsort($this->stats['permissions']);
+
         return $this;
     }
-
 
     protected function modules(): self
     {
@@ -76,7 +78,7 @@ class StatService
         // @phpstan-ignore-next-line
         $this->stats['modules']['abilities'] = EntityAbility::withPrivate()->leftJoin('entities', 'entities.id', 'entity_abilities.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
         // @phpstan-ignore-next-line
-        $this->stats['modules']['reminders'] = EntityEvent::withPrivate()->leftJoin('entities', 'entities.id', 'entity_events.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
+        $this->stats['modules']['reminders'] = Reminder::withPrivate()->leftJoin('entities', 'entities.id', 'reminders.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
         // @phpstan-ignore-next-line
         $this->stats['modules']['inventories'] = Inventory::withPrivate()->leftJoin('entities', 'entities.id', 'inventories.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
         // @phpstan-ignore-next-line

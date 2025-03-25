@@ -25,7 +25,7 @@ class RenameEntityFile extends FormRequest
     {
         return [
             'name' => 'sometimes|required|min:3',
-            'visibility' => 'sometimes|required|string|in:all,admin,self,members,admin-self'
+            'visibility' => 'sometimes|required|string|in:all,admin,self,members,admin-self',
         ];
     }
 }

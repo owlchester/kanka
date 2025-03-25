@@ -10,13 +10,14 @@ class Quest extends Layout
 {
     /**
      * Available columns
+     *
      * @return array[]
      */
     public function columns(): array
     {
         $columns = [
             'image' => [
-                'render' => Standard::IMAGE
+                'render' => Standard::IMAGE,
             ],
             'name' => [
                 'key' => 'name',
@@ -39,15 +40,16 @@ class Quest extends Layout
                 'key' => 'is_completed',
                 'label' => 'quests.fields.is_completed',
                 'render' => function ($model) {
-                    if (!$model->is_completed) {
+                    if (! $model->is_completed) {
                         return '';
                     }
+
                     return '<i class="fa-solid fa-check-circle" data-title="' . __('quests.fields.is_completed') . '" aria-hidden="true"></i>';
                 },
             ],
             'tags' => [
-                'render' => Standard::TAGS
-            ]
+                'render' => Standard::TAGS,
+            ],
         ];
 
         return $columns;

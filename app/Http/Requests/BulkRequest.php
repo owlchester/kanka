@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class BulkRequest
- * @package app\Http\Requests
  */
 class BulkRequest extends FormRequest
 {

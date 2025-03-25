@@ -24,7 +24,6 @@ class TrustProxies extends Middleware
         Request::HEADER_X_FORWARDED_PROTO |
         Request::HEADER_X_FORWARDED_AWS_ELB;
 
-
     /**
      * Get the trusted proxies.
      *
@@ -35,6 +34,7 @@ class TrustProxies extends Middleware
         if (config('trustedproxy.defined') === false) {
             return [];
         }
+
         return config('trustedproxy.proxies');
     }
 }

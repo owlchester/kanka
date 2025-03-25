@@ -16,6 +16,7 @@ class QuestResource extends EntityResource
     {
         /** @var Quest $model */
         $model = $this->resource;
+
         return $this->entity([
             'date' => $model->date,
             'is_completed' => $model->isCompleted(),
@@ -27,7 +28,7 @@ class QuestResource extends EntityResource
             'calendar_month' => $model->entity->calendarDate?->month,
             'calendar_day' => $model->entity->calendarDate?->day,
             'elements_count' => $model->elements->count(),
-            'elements' => QuestElementResource::collection($model->elements)
+            'elements' => QuestElementResource::collection($model->elements),
         ]);
     }
 }

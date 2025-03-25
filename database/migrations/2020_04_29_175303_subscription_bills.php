@@ -21,7 +21,7 @@ class SubscriptionBills extends Migration
             $table->string('period', 10);
             $table->string('method', 10);
             $table->unsignedInteger('user_id');
-            $table->string('status', 12); //pending, charged, failed
+            $table->string('status', 12); // pending, charged, failed
             $table->timestamps();
 
             $table->index(['source_id', 'charge_id', 'status']);

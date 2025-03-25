@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Facades\Img;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityDefaultThumbnailResource extends JsonResource
 {

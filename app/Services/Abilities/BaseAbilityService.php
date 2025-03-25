@@ -49,6 +49,7 @@ abstract class BaseAbilityService
 
     /**
      * @return float|int|string|null
+     *
      * @throws \ChrisKonnertz\StringCalc\Exceptions\ContainerException
      * @throws \ChrisKonnertz\StringCalc\Exceptions\NotFoundException
      */
@@ -56,21 +57,24 @@ abstract class BaseAbilityService
     {
         // Replace {} with entity attributes
         $mappedText = preg_replace_callback('`\{(.*?)\}`i', function ($matches) {
-            //dd($matches);
+            // dd($matches);
             $text = $matches[1];
             if ($this->entityAttributes()->has($text)) {
                 return $this->entityAttributes()->get($text);
             }
+
             return 0;
         }, $haystack);
 
-        if (!$calc) {
+        if (! $calc) {
             return $mappedText;
         }
 
-        $calculator = new StringCalc();
+        $calculator = new StringCalc;
+
         return $calculator->calculate($mappedText);
     }
+
     /**
      * @return array|Collection
      */
@@ -80,7 +84,7 @@ abstract class BaseAbilityService
             return $this->attributes;
         }
 
-        $this->attributes = new Collection();
+        $this->attributes = new Collection;
 
         /** @var Attribute $attribute */
         foreach ($this->entity->attributes as $attribute) {

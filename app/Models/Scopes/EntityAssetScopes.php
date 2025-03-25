@@ -6,7 +6,6 @@ use App\Models\EntityAsset;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
- *
  * @method static self|Builder type(int $type)
  * @method static self|Builder filtered(bool $premium)
  * @method static self|Builder alias()
@@ -23,12 +22,13 @@ trait EntityAssetScopes
     public function scopeFiltered(Builder $query, bool $premium = false): Builder
     {
         $types = [
-            EntityAsset::TYPE_FILE
+            EntityAsset::TYPE_FILE,
         ];
         if ($premium) {
             $types[] = EntityAsset::TYPE_LINK;
             $types[] = EntityAsset::TYPE_ALIAS;
         }
+
         return $query->whereIn('type_id', $types);
     }
 
@@ -37,11 +37,13 @@ trait EntityAssetScopes
         // @phpstan-ignore-next-line
         return $query->type(EntityAsset::TYPE_FILE);
     }
+
     public function scopeLink(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
         return $query->type(EntityAsset::TYPE_LINK);
     }
+
     public function scopeAlias(Builder $query)
     {
         // @phpstan-ignore-next-line

@@ -13,30 +13,35 @@ abstract class DatagridSorter
 
     /**
      * The default field for sorting
+     *
      * @var string|array
      */
     public $default = 'name';
 
     /**
      * The default order
+     *
      * @var string
      */
     public $order = 'asc';
 
     /**
      * The current selected option
+     *
      * @var string
      */
     public $selected = '';
 
     /**
      * Field name for the request key
+     *
      * @var string
      */
     protected $fieldname = 'dg-sort';
 
     /**
      * The column to order by
+     *
      * @var string
      */
     protected $column = '';
@@ -52,7 +57,7 @@ abstract class DatagridSorter
     public function __construct()
     {
         $session = session()->get($this->sessionkey());
-        if (!empty($session)) {
+        if (! empty($session)) {
             $this->parse($session);
         }
     }
@@ -69,14 +74,14 @@ abstract class DatagridSorter
                 $options[$key] = $option;
             }
         }
+
         return $options;
     }
 
-    /**
-     */
     public function isSelected(string $key, bool $asc = true): bool
     {
         $key .= $this->direction($asc);
+
         return $this->selected === $key;
     }
 
@@ -88,15 +93,11 @@ abstract class DatagridSorter
         return $asc ? '_asc' : '_desc';
     }
 
-    /**
-     */
     public function fieldname(): string
     {
         return $this->fieldname;
     }
 
-    /**
-     */
     public function request(array $data): self
     {
         $selected = mb_strtolower(Arr::get($data, $this->fieldname()));
@@ -114,37 +115,33 @@ abstract class DatagridSorter
 
     /**
      * The field to perform the order by on
+     *
      * @return string|array
      */
     public function column()
     {
-        if (!empty($this->column)) {
+        if (! empty($this->column)) {
             return $this->column;
         }
 
         return $this->default;
     }
 
-    /**
-     */
     public function order(): string
     {
         return (string) $this->order;
     }
 
-    /**
-     */
     protected function sessionkey(): string
     {
         // ReflectionClass is cheap but let's still avoid extra calls
         if ($this->sessionKey === false) {
             $this->sessionKey = 'dg-sorter-' . Str::kebab((new ReflectionClass($this))->getShortName());
         }
+
         return (string) $this->sessionKey;
     }
 
-    /**
-     */
     protected function parse(string $selected): self
     {
         $this->selected = $selected;
@@ -153,7 +150,6 @@ abstract class DatagridSorter
         $segments = explode('_', $selected);
         $order = array_pop($segments);
 
-
         // Validate fields. We can have "abc_asc" and "other.is_abs_desc" as fields
         $field = implode('_', $segments);
         if (in_array($field, array_keys($this->options))) {
@@ -161,19 +157,17 @@ abstract class DatagridSorter
         }
 
         // Validate order
-        if (!empty($order) && in_array($order, ['asc', 'desc'])) {
+        if (! empty($order) && in_array($order, ['asc', 'desc'])) {
             $this->order = $order;
         }
 
         return $this;
     }
 
-    /**
-     */
     protected function validOption(string $key, ?Campaign $campaign = null)
     {
         $whitelist = ['tag.name', 'target.name'];
-        if (!str_contains($key, '.name')   || in_array($key, $whitelist)) {
+        if (! str_contains($key, '.name') || in_array($key, $whitelist)) {
             return true;
         }
         if ($key == 'entity.name') {

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Maps;
 
+use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMapGroup;
-use App\Facades\Datagrid;
 use App\Models\Campaign;
 use App\Models\Map;
 use App\Models\MapGroup;
@@ -49,8 +49,6 @@ class GroupController extends Controller
         return redirect()->route('entities.show', [$campaign, $map->entity]);
     }
 
-    /**
-     */
     public function create(Campaign $campaign, Map $map)
     {
         $this->authorize('update', $map->entity);
@@ -68,8 +66,6 @@ class GroupController extends Controller
         );
     }
 
-    /**
-     */
     public function store(Campaign $campaign, Map $map, StoreMapGroup $request)
     {
         $this->authorize('update', $map->entity);
@@ -85,7 +81,7 @@ class GroupController extends Controller
                 ->with('map', $map)
                 ->with('max', Campaign::LAYER_COUNT_MAX);
         }
-        $model = new MapGroup();
+        $model = new MapGroup;
         $data = $request->only('name', 'position', 'entry', 'visibility_id', 'is_shown');
         if (Arr::exists($data, 'position')) {
             $map->groups()->where('position', '>', $data['position'] - 1)->increment('position');
@@ -112,8 +108,6 @@ class GroupController extends Controller
             ->withSuccess(__('maps/groups.create.success', ['name' => $new->name]));
     }
 
-    /**
-     */
     public function edit(Campaign $campaign, Map $map, MapGroup $mapGroup)
     {
         $this->authorize('update', $map->entity);
@@ -125,8 +119,6 @@ class GroupController extends Controller
         );
     }
 
-    /**
-     */
     public function update(StoreMapGroup $request, Campaign $campaign, Map $map, MapGroup $mapGroup)
     {
         $this->authorize('update', $map->entity);
@@ -157,8 +149,6 @@ class GroupController extends Controller
             ->withSuccess(__('maps/groups.edit.success', ['name' => $mapGroup->name]));
     }
 
-    /**
-     */
     public function destroy(Campaign $campaign, Map $map, MapGroup $mapGroup)
     {
         $this->authorize('update', $map->entity);

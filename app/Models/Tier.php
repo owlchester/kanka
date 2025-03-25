@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Enums\PricingPeriod;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
@@ -14,7 +14,6 @@ use Illuminate\Support\Collection;
  * @property string $name
  * @property float $monthly
  * @property float $yearly
- *
  * @property Collection|TierPrice[] $prices
  */
 class Tier extends Model
@@ -40,6 +39,7 @@ class Tier extends Model
     {
         return $this->name === Pledge::KOBOLD;
     }
+
     public function isPopular(): bool
     {
         return $this->name === Pledge::OWLBEAR;
@@ -66,7 +66,9 @@ class Tier extends Model
             return true;
         } elseif ($this->name === Pledge::WYVERN && $user->isWyvern()) {
             return true;
-        } return (bool) ($this->name === Pledge::ELEMENTAL && $user->isElemental());
+        }
+
+        return (bool) ($this->name === Pledge::ELEMENTAL && $user->isElemental());
     }
 
     public function monthlyPlans(): array

@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Datagrid
- * @package App\Facades
  *
  * @see DatagridRenderer2
+ *
  * @mixin \App\Renderers\DatagridRenderer2
  */
 class Datagrid extends Facade

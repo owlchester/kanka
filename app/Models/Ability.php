@@ -18,7 +18,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Ability
- * @package App\Models
+ *
  * @property ?int $ability_id
  * @property mixed|null $charges
  * @property ?Ability $parent
@@ -46,7 +46,7 @@ class Ability extends MiscModel
         'name',
         'ability_id',
         'is_private',
-        'charges'
+        'charges',
     ];
 
     protected array $sortable = [
@@ -57,6 +57,7 @@ class Ability extends MiscModel
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
@@ -70,7 +71,7 @@ class Ability extends MiscModel
 
     protected array $exportFields = [
         'base',
-        'charges'
+        'charges',
     ];
 
     protected array $sanitizable = [
@@ -80,6 +81,7 @@ class Ability extends MiscModel
 
     /**
      * Parent ID used for the Node Trait
+     *
      * @return string
      */
     public function getParentKeyName()
@@ -151,14 +153,16 @@ class Ability extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if (!empty($this->charges)) {
+        if (! empty($this->charges)) {
             return true;
         }
+
         return parent::showProfileInfo();
     }
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array

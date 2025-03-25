@@ -2,9 +2,9 @@
 
 namespace App\Models\Scopes;
 
-use Illuminate\Database\Eloquent\Scope;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Scope;
 
 class PrivateScope implements Scope
 {
@@ -20,7 +20,7 @@ class PrivateScope implements Scope
     protected function addWithPrivate(Builder $builder)
     {
         $builder->macro('withPrivate', function (Builder $builder, $withInvisible = true) {
-            if (!$withInvisible) {
+            if (! $withInvisible) {
                 // Sends the default scope
                 return $builder;
             }
@@ -43,7 +43,7 @@ class PrivateScope implements Scope
         }
 
         // If we aren't authenticated, just see what is set to all
-        if (auth()->guest() || !auth()->user()->isAdmin()) {
+        if (auth()->guest() || ! auth()->user()->isAdmin()) {
             $builder->where($model->getTable() . '.is_private', false);
         }
     }

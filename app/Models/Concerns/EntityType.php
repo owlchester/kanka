@@ -11,6 +11,7 @@ trait EntityType
     {
         return $this->type_id === config('entities.ids.ability');
     }
+
     public function isCharacter(): bool
     {
         return $this->type_id === config('entities.ids.character');

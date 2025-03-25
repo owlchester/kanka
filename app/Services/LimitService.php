@@ -17,11 +17,14 @@ class LimitService
     public function map(): self
     {
         $this->map = true;
+
         return $this;
     }
+
     public function readable(): self
     {
         $this->readable = true;
+
         return $this;
     }
 
@@ -29,7 +32,7 @@ class LimitService
     {
         // Default for Owlbears and legacy Goblins/Kobolds, or members of a campaign
         $size = $this->map ? 10240 : 8192;
-        if (!$this->user->isSubscriber() && (!isset($this->campaign) || !$this->campaign->boosted())) {
+        if (! $this->user->isSubscriber() && (! isset($this->campaign) || ! $this->campaign->boosted())) {
             $min = config('limits.filesize.image');
             if ($this->map) {
                 $min = config('limits.filesize.map');
@@ -47,15 +50,17 @@ class LimitService
         }
 
         $this->map = false;
+
         return $this->finalize($size);
     }
 
     protected function finalize(int $size): string|int
     {
-        if (!$this->readable) {
+        if (! $this->readable) {
             return $size;
         }
         $this->readable = false;
+
         return ceil($size / 1024) . 'MiB';
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @mixin \App\Services\Users\DateService
+ *
  * @see \App\Services\Users\DateService
  */
 class UserDate extends Facade

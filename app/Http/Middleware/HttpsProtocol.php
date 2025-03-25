@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Request;
 use Closure;
+use Illuminate\Http\Request;
 
 class HttpsProtocol
 {
@@ -12,7 +12,7 @@ class HttpsProtocol
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->secure() && config('app.force_https') === true) {
+        if (! $request->secure() && config('app.force_https') === true) {
             return redirect()->secure($request->getRequestUri());
         }
 

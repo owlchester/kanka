@@ -18,7 +18,7 @@ trait HasLocation
             ->with([
                 'entity' => function ($sub) {
                     $sub->select('id', 'name', 'entity_id', 'type_id');
-                }
+                },
             ]);
     }
 }

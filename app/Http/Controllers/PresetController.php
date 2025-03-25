@@ -23,8 +23,7 @@ class PresetController extends Controller
             ->with('campaign', $campaign)
             ->with('presets', $presets)
             ->with('presetType', $presetType)
-            ->with('from', request()->get('from'))
-        ;
+            ->with('from', request()->get('from'));
     }
 
     public function show(Campaign $campaign, PresetType $presetType, Preset $preset)
@@ -38,6 +37,7 @@ class PresetController extends Controller
         $this->authorize('mapPresets', $campaign);
 
         $from = request()->get('from', 'dashboard');
+
         return view('presets.forms.create')
             ->with('campaign', $campaign)
             ->with('presetType', $presetType)
@@ -51,11 +51,11 @@ class PresetController extends Controller
         $data = $request->only('name', 'config', 'visibility_id');
         $data['type_id'] = $presetType->id;
         $data['campaign_id'] = $campaign->id;
-        $preset = new Preset();
+        $preset = new Preset;
         $preset = $preset->create($data);
 
-        list($route, $params) = $this->parseFrom($request);
-        if (!is_array($params)) {
+        [$route, $params] = $this->parseFrom($request);
+        if (! is_array($params)) {
             $params = [$params];
         }
         $params['campaign'] = $campaign;
@@ -70,12 +70,12 @@ class PresetController extends Controller
         $this->authorize('mapPresets', $campaign);
 
         $from = request()->get('from', 'dashboard');
+
         return view('presets.forms.edit')
             ->with('campaign', $campaign)
             ->with('presetType', $presetType)
             ->with('preset', $preset)
-            ->with('from', $from)
-        ;
+            ->with('from', $from);
     }
 
     public function update(StorePreset $request, Campaign $campaign, PresetType $presetType, Preset $preset)
@@ -85,8 +85,8 @@ class PresetController extends Controller
         $data = $request->only('name', 'config', 'visibility_id');
         $preset->update($data);
 
-        list($route, $params) = $this->parseFrom($request);
-        if (!is_array($params)) {
+        [$route, $params] = $this->parseFrom($request);
+        if (! is_array($params)) {
             $params = [$params];
         }
         $params['campaign'] = $campaign;
@@ -101,8 +101,8 @@ class PresetController extends Controller
         $this->authorize('mapPresets', $campaign);
         $preset->delete();
 
-        list($route, $params) = $this->parseFrom($request);
-        if (!is_array($params)) {
+        [$route, $params] = $this->parseFrom($request);
+        if (! is_array($params)) {
             $params = [$params];
         }
         $params['campaign'] = $campaign;
@@ -124,6 +124,7 @@ class PresetController extends Controller
         if (count($from) !== 2) {
             return ['dashboard', null];
         }
+
         return [$from[0], $from[1]];
     }
 }

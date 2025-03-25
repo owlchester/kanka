@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Models\Campaign;
-use App\Models\Character;
 use App\Http\Requests\StoreCharacter as Request;
 use App\Http\Resources\CharacterResource;
+use App\Models\Campaign;
+use App\Models\Character;
 use App\Models\EntityType;
 
 class CharacterApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+
         return CharacterResource::collection($campaign
             ->characters()
             ->withApi()
@@ -27,17 +29,20 @@ class CharacterApiController extends ApiController
 
     /**
      * @return CharacterResource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Campaign $campaign, Character $character)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $character->entity);
+
         return new CharacterResource($character);
     }
 
     /**
      * @return CharacterResource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
@@ -56,6 +61,7 @@ class CharacterApiController extends ApiController
 
     /**
      * @return CharacterResource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(Request $request, Campaign $campaign, Character $character)
@@ -70,6 +76,7 @@ class CharacterApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Character $character)

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Models\Campaign;
-use App\Models\Calendar;
 use App\Http\Requests\StoreCalendar as Request;
 use App\Http\Resources\CalendarResource as Resource;
+use App\Models\Calendar;
+use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Sanitizers\CalendarSanitizer;
 
@@ -20,11 +20,13 @@ class CalendarApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+
         return Resource::collection($campaign
             ->calendars()
             ->filter(request()->all())
@@ -34,17 +36,19 @@ class CalendarApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, Calendar $calendar)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $calendar->entity);
+
         return new Resource($calendar);
     }
 
     /**
-     * @return Resource
+     * @return resource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
@@ -63,7 +67,7 @@ class CalendarApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function update(Request $request, Campaign $campaign, Calendar $calendar)
     {
@@ -78,6 +82,7 @@ class CalendarApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Calendar $calendar)

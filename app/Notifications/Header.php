@@ -13,17 +13,22 @@ class Header extends Notification
     use Queueable;
 
     public $key;
+
     public $colour;
+
     public $icon;
+
     public $params;
+
     public $url;
 
     /**
      * Header constructor.
-     * @param string $key
-     * @param string $colour
-     * @param string $icon
-     * @param array $params
+     *
+     * @param  string  $key
+     * @param  string  $colour
+     * @param  string  $icon
+     * @param  array  $params
      */
     public function __construct($key = '', $icon = '', $colour = '', $params = [])
     {
@@ -42,7 +47,6 @@ class Header extends Notification
     {
         return ['database'];
     }
-
 
     /**
      * Get the array representation of the notification.

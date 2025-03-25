@@ -12,7 +12,7 @@ class UserAltSubscribeStore extends FormRequest
             'method' => 'required|in:giropay,sofort,ideal',
             'period' => 'required|in:yearly',
             'accountholder-name' => 'required_if:method,giropay',
-            'sofort-country' => 'required_if:method,sofort'
+            'sofort-country' => 'required_if:method,sofort',
         ];
     }
 }

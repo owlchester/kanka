@@ -16,8 +16,7 @@ class Tab extends Component
         public string $title,
         public ?string $icon = null,
         public bool $default = false,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

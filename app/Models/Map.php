@@ -22,7 +22,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class Map
- * @package App\Models
+ *
  * @property ?int $map_id
  * @property ?int $width
  * @property ?int $height
@@ -58,14 +58,21 @@ class Map extends MiscModel
     use SortableTrait;
 
     public const MAX_ZOOM = 10;
+
     public const MIN_ZOOM = -10;
+
     public const MAX_ZOOM_REAL = 15;
+
     public const MIN_ZOOM_REAL = 2;
+
     public const MIN_ZOOM_CHUNK = 8;
+
     public const MAX_ZOOM_CHUNK = 13;
 
     public const CHUNKING_RUNNING = 1;
+
     public const CHUNKING_FINISHED = 2;
+
     public const CHUNKING_ERROR = 3;
 
     protected $fillable = [
@@ -100,12 +107,13 @@ class Map extends MiscModel
 
     /**
      * Nullable values (foreign keys)
+     *
      * @var string[]
      */
     public array $nullableForeignKeys = [
         'map_id',
         'location_id',
-        'center_marker_id'
+        'center_marker_id',
     ];
 
     /**
@@ -114,7 +122,7 @@ class Map extends MiscModel
     protected array $foreignExport = [
         'layers',
         'groups',
-        'markers'
+        'markers',
     ];
 
     protected array $exportFields = [
@@ -145,6 +153,7 @@ class Map extends MiscModel
 
     /**
      * Extra relations loaded for the API endpoint
+     *
      * @var string[]
      */
     public array $apiWith = ['groups', 'layers'];
@@ -153,13 +162,13 @@ class Map extends MiscModel
 
     /**
      * Parent ID used for the Node Trait
+     *
      * @return string
      */
     public function getParentKeyName()
     {
         return 'map_id';
     }
-
 
     /**
      * Performance with for datagrids
@@ -214,8 +223,6 @@ class Map extends MiscModel
         return (int) config('entities.ids.map');
     }
 
-    /**
-     */
     public function grids(): array
     {
         $lines = [];
@@ -244,6 +251,7 @@ class Map extends MiscModel
         foreach ($groups as $group) {
             $options[$group->id] = $group->name;
         }
+
         return $options;
     }
 
@@ -258,7 +266,7 @@ class Map extends MiscModel
             $options[$group->position + 1] = __('maps/groups.placeholders.position_list', ['name' => $group->name]);
         }
 
-        //If is the last position remove last+1 position from the options array
+        // If is the last position remove last+1 position from the options array
         if ($position == array_key_last($options) - 1 && count($options) > 1) {
             array_pop($options);
         }
@@ -277,19 +285,18 @@ class Map extends MiscModel
             $options[$layer->position + 1] = __('maps/layers.placeholders.position_list', ['name' => $layer->name]);
         }
 
-        //If is the last position remove last+1 position from the options array
+        // If is the last position remove last+1 position from the options array
         if ($position == array_key_last($options) - 1 && count($options) > 1) {
             array_pop($options);
         }
+
         return $options;
     }
 
-    /**
-     */
     public function activeLayers(bool $groups = true): string
     {
         $layers = [];
-        if (!$this->isReal()) {
+        if (! $this->isReal()) {
             $layers = ['baseLayer' . $this->id];
         }
         if ($groups) {
@@ -309,20 +316,20 @@ class Map extends MiscModel
      */
     public function legendMarkers(bool $link = true): array
     {
-        $markers = new Collection();
+        $markers = new Collection;
         $groups = [];
 
         foreach ($this->markers as $marker) {
-            if (!$marker->visible()) {
+            if (! $marker->visible()) {
                 continue;
             }
-            if (!empty($marker->group)) {
+            if (! empty($marker->group)) {
                 if (empty($groups[$marker->group_id])) {
                     $groups[$marker->group_id] = [
                         'name' => $marker->group->name,
                         'lower_name' => mb_strtolower($marker->group->name),
                         'id' => $marker->group_id,
-                        'markers' => new Collection()
+                        'markers' => new Collection,
                     ];
                 }
                 $groups[$marker->group_id]['markers']->add([
@@ -332,6 +339,7 @@ class Map extends MiscModel
                     'name' => str_replace("\\'", "'", $marker->markerTitle($link)),
                     'lower_name' => mb_strtolower($marker->markerTitle(false)),
                 ]);
+
                 continue;
             }
             $markers->add([
@@ -368,10 +376,11 @@ class Map extends MiscModel
      */
     public function minZoom(): int
     {
-        if (!is_numeric($this->min_zoom)) {
+        if (! is_numeric($this->min_zoom)) {
             if ($this->isReal() || $this->isChunked()) {
                 return self::MIN_ZOOM_REAL;
             }
+
             return -2;
         }
 
@@ -384,6 +393,7 @@ class Map extends MiscModel
             return $this->min_zoom;
         }
         $min = $this->isReal() ? self::MIN_ZOOM_REAL : self::MIN_ZOOM;
+
         return (int) max($this->min_zoom, $min);
     }
 
@@ -392,13 +402,14 @@ class Map extends MiscModel
      */
     public function maxZoom(): float
     {
-        if (!is_numeric($this->max_zoom)) {
+        if (! is_numeric($this->max_zoom)) {
             if ($this->isChunked()) {
                 return 13;
             }
             if ($this->isReal()) {
                 return self::MAX_ZOOM_REAL;
             }
+
             return 2.75;
         }
         // The max zoom is based on the chunked image so we trust this.
@@ -406,6 +417,7 @@ class Map extends MiscModel
             return $this->max_zoom;
         }
         $max = $this->isReal() ? self::MAX_ZOOM_REAL : self::MAX_ZOOM;
+
         return (float) min($this->max_zoom, $max);
     }
 
@@ -414,10 +426,11 @@ class Map extends MiscModel
      */
     public function initialZoom(): int
     {
-        if (!is_numeric($this->initial_zoom)) {
+        if (! is_numeric($this->initial_zoom)) {
             if ($this->isReal() || $this->isChunked()) {
                 return 12;
             }
+
             return 0;
         }
 
@@ -427,11 +440,10 @@ class Map extends MiscModel
         if ($this->initial_zoom < self::MIN_ZOOM) {
             return self::MIN_ZOOM;
         }
+
         return (int) $this->initial_zoom;
     }
 
-    /**
-     */
     public function centerFocus(): string
     {
         // Init position in the middle of the map
@@ -449,19 +461,20 @@ class Map extends MiscModel
 
         // If we have a center marker
         if ($this->center_marker != null) {
-            //use his position
+            // use his position
             $latitude = $this->center_marker->latitude;
             $longitude = $this->center_marker->longitude;
         } else {
             // Use the center positions if they exist
-            if (!empty($this->center_y)) {
+            if (! empty($this->center_y)) {
                 $latitude = $this->center_y;
             }
 
-            if (!empty($this->center_x)) {
+            if (! empty($this->center_x)) {
                 $longitude = $this->center_x;
             }
         }
+
         return "{$latitude}, {$longitude}";
     }
 
@@ -480,6 +493,7 @@ class Map extends MiscModel
         $width = floor(($width) / 1) + $extra;
 
         $min = $extend ? -50 : 0;
+
         return "[[{$min}, {$min}], [{$height}, {$width}]]";
     }
 
@@ -489,12 +503,12 @@ class Map extends MiscModel
      */
     protected function prepareBounds(): void
     {
-        if (!empty($this->height)) {
+        if (! empty($this->height)) {
             return;
         }
 
         // Prioritize the gallery image, and fall back on the uploaded image
-        if (!empty($this->entity->image)) {
+        if (! empty($this->entity->image)) {
             $path = $this->entity->image->path;
         } elseif ($this->entity->image_path) {
             $path = $this->entity->image_path;
@@ -527,10 +541,11 @@ class Map extends MiscModel
         if ($this->isReal()) {
             return true;
         }
-        if (!$this->entity->hasImage()) {
+        if (! $this->entity->hasImage()) {
             return false;
         }
-        return !($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()));
+
+        return ! ($this->isChunked() && ($this->chunkingError() || $this->chunkingRunning()));
     }
 
     /**
@@ -562,7 +577,7 @@ class Map extends MiscModel
      */
     public function isChunked(): bool
     {
-        return !empty($this->chunking_status);
+        return ! empty($this->chunking_status);
     }
 
     /**
@@ -570,7 +585,7 @@ class Map extends MiscModel
      */
     public function chunkingReady(): bool
     {
-        return !$this->chunkingError() && !$this->chunkingRunning();
+        return ! $this->chunkingError() && ! $this->chunkingRunning();
     }
 
     /**
@@ -580,6 +595,7 @@ class Map extends MiscModel
     {
         return $this->chunking_status == self::CHUNKING_ERROR;
     }
+
     /**
      * Check if a map encountered a chunking error
      */
@@ -598,6 +614,7 @@ class Map extends MiscModel
 
     /**
      * Define the fields unique to this model that can be used on filters
+     *
      * @return string[]
      */
     public function filterableColumns(): array
@@ -610,8 +627,8 @@ class Map extends MiscModel
 
     public function hasDistanceUnit(): bool
     {
-        //return false;
-        return !empty($this->config['distance_measure']);
+        // return false;
+        return ! empty($this->config['distance_measure']);
     }
 
     /**

@@ -6,23 +6,21 @@ it('POSTS an invalid family form')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/families', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new family')
     ->asUser()
     ->withCampaign()
     ->postJson('/api/1.0/campaigns/1/families', [
-        'name' => fake()->name()
+        'name' => fake()->name(),
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
             'id',
             'entity_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all families')
     ->asUser()
@@ -37,10 +35,9 @@ it('GETS all families')
                 'entity_id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific family')
     ->asUser()
@@ -53,9 +50,8 @@ it('GETS a specific family')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid family')
     ->asUser()
@@ -63,8 +59,7 @@ it('UPDATES a valid family')
     ->withFamilies()
     ->putJson('/api/1.0/campaigns/1/families/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('UPDATES a valid family without a name')
     ->asUser()
@@ -72,24 +67,21 @@ it('UPDATES a valid family without a name')
     ->withFamilies()
     ->putJson('/api/1.0/campaigns/1/families/1', ['type' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['type' => 'Magic'])
-;
+    ->assertJsonFragment(['type' => 'Magic']);
 
 it('DELETES a family')
     ->asUser()
     ->withCampaign()
     ->withFamilies()
     ->delete('/api/1.0/campaigns/1/families/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid family')
     ->asUser()
     ->withCampaign()
     ->withFamilies()
     ->delete('/api/1.0/campaigns/1/families/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a family as a player')
     ->asUser()
@@ -97,8 +89,7 @@ it('can GET a family as a player')
     ->withFamilies()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/families/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);
 
 /**
  * This example showcases building a custom function in the test to avoid polluting the TestCase file with lots of
@@ -117,5 +108,4 @@ it('can\'t GET a private family as a player', function () {
     $response = $this->get('/api/1.0/campaigns/1/families/1');
     expect($response->status())
         ->toBe(404);
-})
-;
+});

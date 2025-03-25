@@ -16,14 +16,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class MapGroup
- * @package App\Models
  *
  * @property int $id
  * @property int $map_id
  * @property string $name
  * @property int $position
  * @property bool|int $is_shown
- *
  * @property Map $map
  *
  * @method static self|Builder ordered()
@@ -57,6 +55,7 @@ class MapGroup extends Model
     protected array $sanitizable = [
         'name',
     ];
+
     public function map(): BelongsTo
     {
         return $this->belongsTo(Map::class, 'map_id');
@@ -77,8 +76,6 @@ class MapGroup extends Model
         return $this->hasMany(MapMarker::class, 'group_id');
     }
 
-    /**
-     */
     public function markerGroupHtml(): string
     {
         $data = [];
@@ -100,6 +97,7 @@ class MapGroup extends Model
     {
         return 'maps.map_groups.' . $where;
     }
+
     public function routeParams(array $options = []): array
     {
         return $options + ['map' => $this->map_id, 'map_group' => $this->id];
@@ -119,6 +117,7 @@ class MapGroup extends Model
     public function getLink(): string
     {
         $campaign = CampaignLocalization::getCampaign();
+
         return route('maps.map_groups.edit', [$campaign, 'map' => $this->map_id, $this->id]);
     }
 }

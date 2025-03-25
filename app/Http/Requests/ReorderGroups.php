@@ -25,8 +25,8 @@ class ReorderGroups extends FormRequest
     {
         return [
             'groups' => [
-                '*' => 'exists:map_groups,id'
-            ]
+                '*' => 'exists:map_groups,id',
+            ],
         ];
     }
 }

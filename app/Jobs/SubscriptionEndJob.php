@@ -5,17 +5,17 @@ namespace App\Jobs;
 use App\Models\CampaignBoost;
 use App\Models\Pledge;
 use App\Models\Role;
+use App\Models\User;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\DiscordService;
-use App\Models\User;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
-use Exception;
 
 class SubscriptionEndJob implements ShouldQueue
 {
@@ -70,7 +70,7 @@ class SubscriptionEndJob implements ShouldQueue
                 ->campaign($boost->campaign)
                 ->user($boost->user)
                 ->unboost($boost);
-            if (!in_array($boost->campaign_id, $unboostedCampaigns)) {
+            if (! in_array($boost->campaign_id, $unboostedCampaigns)) {
                 $boost->user->log(UserLog::TYPE_CAMPAIGN_UNBOOST_AUTO);
                 $unboostedCampaigns[] = $boost->campaign_id;
             }
@@ -96,7 +96,7 @@ class SubscriptionEndJob implements ShouldQueue
         try {
             $discord->user($user)->removeRoles();
         } catch (Exception $e) {
-            Log::error("DiscordRoleJob:: " . $e->getMessage());
+            Log::error('DiscordRoleJob:: ' . $e->getMessage());
             // Silence errors and ignore
         }
     }

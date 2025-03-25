@@ -26,6 +26,7 @@ class StoreCampaignApplicationStatus extends FormRequest
         $rules = [
             'status' => 'required',
         ];
+
         return $rules;
     }
 }

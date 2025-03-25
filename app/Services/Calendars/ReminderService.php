@@ -3,7 +3,7 @@
 namespace App\Services\Calendars;
 
 use App\Models\Calendar;
-use App\Models\EntityEvent;
+use App\Models\Reminder;
 use Illuminate\Support\Collection;
 
 class ReminderService
@@ -13,6 +13,7 @@ class ReminderService
     public function calendar(Calendar $calendar): self
     {
         $this->calendar = $calendar;
+
         return $this;
     }
 
@@ -22,9 +23,10 @@ class ReminderService
      */
     public function upcoming(int $needle = 10): Collection
     {
+        // @phpstan-ignore-next-line
         $reminders = $this->calendar->calendarEvents()
-            ->with(['entity', 'calendar'])
-            ->has('entity')
+            ->with(['remindable', 'calendar'])
+            ->whereHas('remindable')
             ->where(function ($primary) {
                 $primary->where(function ($sub) {
                     $sub->where(function ($recurring) {
@@ -72,7 +74,7 @@ class ReminderService
             ->get();
 
         // Order the past events in descending date to get the closest ones to the current date first
-        return $reminders->sortBy(function (EntityEvent $reminder) {
+        return $reminders->sortBy(function (Reminder $reminder) {
             return $reminder->nextUpcomingOccurrence(
                 $this->calendar->currentYear(),
                 $this->calendar->currentMonth(),
@@ -89,9 +91,10 @@ class ReminderService
      */
     public function past(int $needle = 10): Collection
     {
+        // @phpstan-ignore-next-line
         $reminders = $this->calendar->calendarEvents()
-            ->with(['entity', 'calendar'])
-            ->has('entity')
+            ->with(['remindable', 'calendar'])
+            ->whereHas('remindable')
             ->where(function ($primary) {
                 $primary->where(function ($sub) {
                     $sub->where(function ($recurring) {
@@ -140,7 +143,7 @@ class ReminderService
             ->get();
 
         // Order the past events in descending date to get the closest ones to the current date first
-        return $reminders->sortBy(function (EntityEvent $reminder) {
+        return $reminders->sortBy(function (Reminder $reminder) {
             return $reminder->mostRecentOccurrence(
                 $this->calendar->currentYear(),
                 $this->calendar->currentMonth(),

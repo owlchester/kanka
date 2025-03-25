@@ -1,4 +1,7 @@
-<?php /** @var \App\Models\Calendar $model */ ?>
+<?php
+/** @var \App\Models\Calendar $model */
+use \App\Models\Calendar;
+?>
 {!! $datagrid
     ->columns([
         // Avatar
@@ -13,8 +16,15 @@
         ],
         [
             'label' => __('calendars.fields.date'),
-            'render' => function($model) {
+            'render' => function(Calendar $model) {
                 return $model->date;
+            },
+            'disableSort' => true,
+        ],
+        [
+            'label' => '<i class="fa-solid fa-cake" title="' . trans('crud.tabs.reminders') . '"></i>',
+            'render' => function(Calendar $model) {
+                return number_format($model->calendar_events_count);
             },
             'disableSort' => true,
         ],

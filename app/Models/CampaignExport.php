@@ -11,14 +11,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class CampaignExport
- * @package App\Models
  *
  * @property int $id
  * @property int $campaign_id
  * @property int $status
  * @property string $path
  * @property float $progress
- *
  */
 class CampaignExport extends Model
 {
@@ -27,11 +25,15 @@ class CampaignExport extends Model
     use SortableTrait;
 
     public const int TYPE_ENTITIES = 1;
+
     public const int TYPE_ASSETS = 2;
 
     public const int STATUS_SCHEDULED = 1;
+
     public const int STATUS_RUNNING = 2;
+
     public const int STATUS_FINISHED = 3;
+
     public const int STATUS_FAILED = 4;
 
     public $fillable = [
@@ -69,14 +71,17 @@ class CampaignExport extends Model
     {
         return $this->status === CampaignExport::STATUS_FINISHED;
     }
+
     public function running(): bool
     {
         return $this->status === CampaignExport::STATUS_RUNNING;
     }
+
     public function scheduled(): bool
     {
         return $this->status === CampaignExport::STATUS_SCHEDULED;
     }
+
     public function failed(): bool
     {
         return $this->status === CampaignExport::STATUS_FAILED;

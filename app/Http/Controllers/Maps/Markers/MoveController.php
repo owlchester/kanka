@@ -18,7 +18,7 @@ class MoveController extends Controller
 
         return response()->json([
             'success' => true,
-            'marker_id' => $mapMarker->id
+            'marker_id' => $mapMarker->id,
         ]);
     }
 }

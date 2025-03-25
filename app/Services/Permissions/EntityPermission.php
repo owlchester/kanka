@@ -67,7 +67,7 @@ class EntityPermission
         //        dump('module permission');
         //        dump($key);
         //        dump($this->cached);
-        if (!isset($this->entity)) {
+        if (! isset($this->entity)) {
             //            dd('no entity');
             return $perm;
         }
@@ -79,12 +79,14 @@ class EntityPermission
         if (isset($this->cached[$entityKey])) {
             return $this->cached[$entityKey];
         }
+
         return $perm;
     }
 
     /**
      * Determine the permission for a user to interact with an entity
-     * @param MiscModel|Entity|null $entity
+     *
+     * @param  MiscModel|Entity|null  $entity
      */
     public function hasPermission(
         int $entityType,
@@ -106,7 +108,6 @@ class EntityPermission
         }
         $key = $entityType . '_' . $action;
 
-
         //        if ($action === Permission::Bookmarks->value) {
         //            dump($key = $entityType . '_' . $action);
         //            dump($this->cached);
@@ -118,15 +119,15 @@ class EntityPermission
         }
 
         // Check if we have permission to do this action for exactly this entity
-        if (!empty($entity)) {
+        if (! empty($entity)) {
             //            dump('i have an entity?');
             //            dump($entity);
 
-            //Check if $entity is an entity type.
+            // Check if $entity is an entity type.
             if (isset($entity->type_id)) {
                 $entityKey = '_' . $action . '_' . $entity->entity_id;
             } else {
-                //dump('misc object');
+                // dump('misc object');
                 $entityKey = '_' . $action . '_' . $entity->id;
             }
             //            dump('entity key ' . $entityKey);
@@ -135,7 +136,7 @@ class EntityPermission
             }
         }
 
-        //dump('have access? ' . ($perm ? 'yes' : 'no'));
+        // dump('have access? ' . ($perm ? 'yes' : 'no'));
         return $perm;
     }
 
@@ -166,10 +167,12 @@ class EntityPermission
         foreach ($this->roles as $role) {
             if ($role['is_admin']) {
                 $this->roleIds = true;
+
                 return true;
             }
             $this->roleIds[] = $role['id'];
         }
+
         return $this->roleIds;
     }
 
@@ -196,10 +199,11 @@ class EntityPermission
     protected function loadAllPermissions(): void
     {
         // If no campaign was provided, get the one in the url. One is provided when moving entities between campaigns
-        if (!isset($this->campaign)) {
+        if (! isset($this->campaign)) {
             // Before we do that, we need to check if we're in a factory for unit tests
             if (app()->environment('testing')) {
                 $this->userIsAdmin = true;
+
                 return;
             } else {
                 abort(404);
@@ -219,6 +223,7 @@ class EntityPermission
         if ($roleIds === true) {
             // If the role ids is simply true, it means the user is an admin
             $this->userIsAdmin = true;
+
             return;
         }
 
@@ -227,36 +232,36 @@ class EntityPermission
         foreach ($this->roles as $role) {
             $campaignRoleIDs[] = $role['id'];
         }
-        //dump('roles');
-        if (!empty($campaignRoleIDs)) {
+        // dump('roles');
+        if (! empty($campaignRoleIDs)) {
             $permissions = \App\Facades\RolePermission::rolesPermissions($campaignRoleIDs);
             /** @var CampaignPermission $permission */
             foreach ($permissions as $permission) {
-                //dump($permission->id . ' - ' . $permission->key());
+                // dump($permission->id . ' - ' . $permission->key());
                 $this->cached[$permission->key()] = $permission->access;
-                if (!empty($permission->entity_id)) {
+                if (! empty($permission->entity_id)) {
                     $this->cachedEntityIds[$permission->entity_type_id][$permission->entity_id][$permission->action] = (bool) $permission->access;
                 }
             }
         }
 
         // If a user is provided, get their permissions too
-        //dump('user');
+        // dump('user');
         if (isset($this->user)) {
             $userPermissions = $this->user->permissions()->where('campaign_id', $this->campaign->id)->get();
             /** @var CampaignPermission $permission */
             foreach ($userPermissions as $permission) {
                 $this->cached[$permission->key()] = $permission->access;
-                //dump($permission->id . ' - ' . $permission->key());
-                if (!empty($permission->entity_id)) {
+                // dump($permission->id . ' - ' . $permission->key());
+                if (! empty($permission->entity_id)) {
                     $this->cachedEntityIds[$permission->entity_type_id][$permission->entity_id][$permission->action] = (bool) $permission->access;
                 }
             }
             unset($userPermissions);
         }
 
-        //dump('finished loading entities:');
-        //dump($this->cachedEntityIds);
+        // dump('finished loading entities:');
+        // dump($this->cachedEntityIds);
     }
 
     /**

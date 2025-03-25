@@ -6,8 +6,6 @@ use App\Models\Entity;
 
 class RecoveryService
 {
-    /**
-     */
     public function recover(array $ids): array
     {
         $entities = [];
@@ -28,7 +26,7 @@ class RecoveryService
     {
         /** @var ?Entity $entity */
         $entity = Entity::onlyTrashed()->find($id);
-        if (!$entity) {
+        if (! $entity) {
             return null;
         }
 
@@ -41,7 +39,7 @@ class RecoveryService
         // Honestly we shouldn't have soft-deleted children and just rely on the entity to reduce complexity.
         // @phpstan-ignore-next-line
         $child = $entity->child()->onlyTrashed()->first();
-        if (!$child) {
+        if (! $child) {
             return $entity->url();
         }
         // Refresh the child first to not re-trigger the entity creation on save

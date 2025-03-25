@@ -22,7 +22,7 @@ class GalleryBulkDelete extends FormRequest
     public function rules(): array
     {
         return [
-            'file.*' => 'exists:images,id'
+            'file.*' => 'exists:images,id',
         ];
     }
 }

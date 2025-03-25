@@ -13,8 +13,11 @@ class ExportsTable extends Component
     use WithPagination;
 
     public $sortColumn = 'created_at'; // Default column to sort by
+
     public $sortDirection = 'desc'; // Default sort direction (asc/desc)
+
     public $updateInterval = 15; // Update interval in seconds
+
     protected $listeners = ['refreshTable' => '$refresh']; // Listen for table refresh event
 
     public Campaign $campaign;
@@ -41,12 +44,12 @@ class ExportsTable extends Component
 
     public function render()
     {
-        //$campaignExports = CampaignExport::orderBy($this->sortColumn, $this->sortDirection)->paginate(10);
+        // $campaignExports = CampaignExport::orderBy($this->sortColumn, $this->sortDirection)->paginate(10);
 
         $campaignExports = $this->campaign->campaignExports()
             ->with(['user'])
             ->orderBy($this->sortColumn, $this->sortDirection)
-            //->orderBy('updated_at', 'DESC')
+            // ->orderBy('updated_at', 'DESC')
             ->paginate();
 
         return view('livewire.campaigns.exports-table', [
@@ -72,33 +75,35 @@ class ExportsTable extends Component
     {
         if ($model->finished()) {
             return '100%';
-        } elseif (!$model->running()) {
+        } elseif (! $model->running()) {
             return '';
         } elseif (empty($model->progress)) {
             return '<i>' . __('Calculating') . '</i>';
         }
+
         return $model->progress . '%';
     }
 
-
     public function size(CampaignExport $model): string
     {
-        if (!$model->finished()) {
+        if (! $model->finished()) {
             return '';
         }
         if (empty($model->size)) {
             return '<1 MB';
         }
+
         return number_format($model->size) . ' MB';
     }
 
     public function download(CampaignExport $model): string
     {
-        if (!$model->finished()) {
+        if (! $model->finished()) {
             return '';
         }
         if ($model->path && Storage::exists($model->path)) {
             $html = '<a class="block break-all truncate" href="' . Storage::url($model->path) . '" target="_blank">' . __('campaigns/export.actions.download') . '</a>';
+
             return $html;
         }
 

@@ -25,7 +25,7 @@ class StoreCommunityEventEntry extends FormRequest
     public function rules()
     {
         return [
-            'link' => ['required', 'url', new EntityLink()],
+            'link' => ['required', 'url', new EntityLink],
             'comment' => 'nullable|string',
         ];
     }
@@ -33,6 +33,7 @@ class StoreCommunityEventEntry extends FormRequest
     protected function getRedirectUrl()
     {
         $url = $this->redirector->getUrlGenerator();
+
         return $url->previous() . '#event-form';
     }
 }

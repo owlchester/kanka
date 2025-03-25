@@ -31,7 +31,7 @@ class EntityFileService
 
         // Prepare the file for the journey
         $uploadedFiles = $request->file($field);
-        if (!is_array($uploadedFiles)) {
+        if (! is_array($uploadedFiles)) {
             $uploadedFiles = [$uploadedFiles];
         }
         $files = [];
@@ -55,7 +55,7 @@ class EntityFileService
                 $name = Str::beforeLast($name, '.');
             }
 
-            $image = new Image();
+            $image = new Image;
             $image->campaign_id = $this->campaign->id;
             $image->ext = $uploadedFile->extension();
             $image->size = (int) ceil($uploadedFile->getSize() / 1024); // kb
@@ -70,7 +70,7 @@ class EntityFileService
                     ['disk' => 's3']
                 );
 
-            $file = new EntityAsset();
+            $file = new EntityAsset;
             $file->type_id = EntityAsset::TYPE_FILE;
             $file->entity_id = $this->entity->id;
             $file->metadata = [

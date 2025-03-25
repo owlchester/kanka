@@ -12,10 +12,10 @@ class LocationBulk extends Bulk
         'private_choice',
         'entity_image',
         'entity_header',
-        'destroyed_choice'
+        'destroyed_choice',
     ];
 
     protected $booleans = [
-        'is_destroyed'
+        'is_destroyed',
     ];
 }

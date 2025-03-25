@@ -10,7 +10,7 @@
 <a name="all-entity-inventory"></a>
 ## All Entity Inventories
 
-You can get a list of all items of an entity's inventory by using the following endpoint.
+You can get a list of all objects of an entity's inventory by using the following endpoint.
 
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
@@ -51,15 +51,15 @@ To create an inventory, use the following endpoint.
 
 ### Body
 
-| Parameter | Type | Detail |
-| :- |   :-   |  :-  |
-| `entity_id` | `integer` (Required) | The inventory's parent entity |
-| `item_id` | `integer` (Required without `name`) | The inventory's item id |
-| `name` | `string` (Required without `item_id`) | The inventory's item name |
-| `amount` | `string` (Required) | The amount of times the item is in the inventory |
-| `position` | `string` | Where the item is being stored |
-| `visiblity` | `string` | `all`, `admin`, `self` Who can view |
-| `is_equipped` | `boolean` | If the item is equipped |
+| Parameter | Type | Detail                                           |
+| :- |   :-   |:-------------------------------------------------|
+| `entity_id` | `integer` (Required) | The inventory's parent entity                    |
+| `item_id` | `integer` (Required without `name`) | The inventory's object id                          |
+| `name` | `string` (Required without `item_id`) | The inventory's object name                        |
+| `amount` | `string` (Required) | The amount of times the object is in the inventory |
+| `position` | `string` | Where the object is being stored                 |
+| `visiblity` | `string` | `all`, `admin`, `self` Who can view              |
+| `is_equipped` | `boolean` | If the object is equipped                          |
 
 
 ### Results

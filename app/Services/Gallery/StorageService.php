@@ -11,6 +11,7 @@ class StorageService
     use CampaignAware;
 
     protected int $used;
+
     protected int $total;
 
     /**
@@ -27,6 +28,7 @@ class StorageService
         }
         $this->used = Image::sum('size');
         Cache::put($key, $this->used, 24 * 3600);
+
         return $this->used;
     }
 
@@ -51,6 +53,7 @@ class StorageService
         if ($this->campaign->boosted()) {
             return config('limits.gallery.premium');
         }
+
         return config('limits.gallery.standard');
     }
 
@@ -59,10 +62,10 @@ class StorageService
         return 'campaign_' . $this->campaign->id . '_gallery';
     }
 
-
     public function clearCache(): self
     {
         Cache::forget($this->cacheKey());
+
         return $this;
     }
 }

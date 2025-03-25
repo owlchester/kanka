@@ -2,15 +2,15 @@
 
 namespace App\Livewire;
 
+use App\Facades\Avatar;
+use App\Facades\CampaignCache;
+use App\Facades\CampaignLocalization;
+use App\Facades\UserCache;
+use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Campaign;
-use App\Facades\CampaignLocalization;
-use App\Facades\UserCache;
-use App\Facades\Avatar;
-use App\Facades\CampaignCache;
 
 class EntityListing extends Component
 {
@@ -28,13 +28,13 @@ class EntityListing extends Component
 
     public function mount(Campaign $campaign, CampaignDashboardWidget $widget)
     {
-        $this->entities = new Collection();
+        $this->entities = new Collection;
         $this->campaign = $campaign;
         $this->widget = $widget;
         $entities = $widget->entities();
         $this->entities->push(...$entities->items());
         $this->hasMorePages = $entities->hasMorePages();
-        //$this->loadEntities();
+        // $this->loadEntities();
     }
 
     public function loadEntities()

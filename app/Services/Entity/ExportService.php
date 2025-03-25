@@ -17,6 +17,7 @@ class ExportService
     public function entity(Entity $entity): self
     {
         $this->entity = $entity;
+
         return $this;
     }
 
@@ -30,6 +31,7 @@ class ExportService
 
         if (class_exists($className)) {
             $resource = new $className($this->entity->child);
+
             return $resource->withRelated();
         } elseif ($this->entity->entityType->isSpecial()) {
             return new EntityResource($this->entity);

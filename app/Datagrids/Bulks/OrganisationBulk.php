@@ -17,6 +17,6 @@ class OrganisationBulk extends Bulk
     ];
 
     protected array $booleans = [
-        'is_defunct'
+        'is_defunct',
     ];
 }

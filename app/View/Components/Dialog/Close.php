@@ -15,8 +15,7 @@ class Close extends Component
         public string $dismiss = 'modal',
         public ?string $id = null,
         public bool $modal = false,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

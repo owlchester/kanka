@@ -45,12 +45,13 @@ class RoleUserController extends Controller
         }
 
         $relation = CampaignRoleUser::create($request->all());
+
         return redirect()->route('campaign_roles.show', [
             $campaign,
             'campaign_role' => $campaignRole])
             ->with('success', __($this->view . '.create.success', [
                 'user' => $relation->user->name,
-                'role' => $relation->campaignRole->name
+                'role' => $relation->campaignRole->name,
             ]));
     }
 
@@ -79,7 +80,7 @@ class RoleUserController extends Controller
         return redirect()->route('campaign_roles.show', [$campaign, $campaignRole])
             ->with('success', __($this->view . '.destroy.success', [
                 'user' => $campaignRoleUser->user->name,
-                'role' => $campaignRoleUser->campaignRole->name
+                'role' => $campaignRoleUser->campaignRole->name,
             ]));
     }
 }

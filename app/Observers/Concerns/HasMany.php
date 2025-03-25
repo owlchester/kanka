@@ -15,29 +15,31 @@ trait HasMany
         $relationID = $pivotId ?? 'id';
         foreach ($model->$relationName as $rel) {
             // If it already exists, we have an issue
-            if (!empty($existing[$rel->$relationID])) {
+            if (! empty($existing[$rel->$relationID])) {
                 $recreate[$rel->$relationID] = $rel->$relationID;
                 $model->$relation()->detach($rel->$relationID);
+
                 continue;
             }
             $existing[$rel->$relationID] = $rel->$relationID;
             $unique[$rel->$relationID] = $rel->$relationID;
         }
 
-        if (!empty($recreate)) {
+        if (! empty($recreate)) {
             $model->$relation()->attach($recreate);
         }
 
         $newModels = [];
-        $find = new $classname();
+        $find = new $classname;
         foreach ($values as $id) {
             // Existing race, do nothing
-            if (!empty($existing[$id])) {
+            if (! empty($existing[$id])) {
                 unset($existing[$id]);
+
                 continue;
             }
             // If already managed, again, ignore
-            if (!empty($unique[$id])) {
+            if (! empty($unique[$id])) {
                 continue;
             }
 
@@ -51,7 +53,7 @@ trait HasMany
         $model->$relation()->attach($newModels);
 
         // Detach the remaining
-        if (!empty($existing)) {
+        if (! empty($existing)) {
             $model->$relation()->detach($existing);
             EntityLogger::dirty($relation, null);
         }

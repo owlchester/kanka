@@ -22,7 +22,7 @@ class KbService
                     'id' => $faq->id,
                     'q' => $faq->question(),
                     'a' => $faq->answer(),
-                    'slug' => $faq->slug()
+                    'slug' => $faq->slug(),
                 ];
             }
 
@@ -33,9 +33,10 @@ class KbService
             $data[] = [
                 'id' => $category->id,
                 'name' => $category->title,
-                'questions' => $questions
+                'questions' => $questions,
             ];
         }
+
         return $data;
     }
 }

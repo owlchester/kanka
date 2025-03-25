@@ -20,7 +20,7 @@ class EventFilter extends DatagridFilter
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('search-list', [$this->campaign, config('entities.ids.event')]),
-                'placeholder' =>  __('crud.placeholders.parent'),
+                'placeholder' => __('crud.placeholders.parent'),
                 'model' => Event::class,
             ])
             ->isPrivate()
@@ -31,7 +31,6 @@ class EventFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
-            ->connections()
-        ;
+            ->connections();
     }
 }

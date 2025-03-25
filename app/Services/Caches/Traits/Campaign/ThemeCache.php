@@ -11,7 +11,7 @@ trait ThemeCache
      */
     public function themes(): string|bool
     {
-        if (!config('marketplace.enabled')) {
+        if (! config('marketplace.enabled')) {
             return false;
         }
 
@@ -33,16 +33,17 @@ trait ThemeCache
         /** @var CampaignPlugin $plugin */
         foreach ($plugins as $plugin) {
             if ($plugin->version->fonts) {
-                $theme .= "/** plugin: " . e($plugin->name) . " #" . e($plugin->version->version) . " fonts **/\n";
+                $theme .= '/** plugin: ' . e($plugin->name) . ' #' . e($plugin->version->version) . " fonts **/\n";
                 $theme .= $plugin->version->fonts . "\n\n";
             }
         }
         foreach ($plugins as $plugin) {
-            $theme .= "/** plugin: " . e($plugin->name) . " #" . e($plugin->version->version) . " code **/\n";
+            $theme .= '/** plugin: ' . e($plugin->name) . ' #' . e($plugin->version->version) . " code **/\n";
             $theme .= $plugin->version->content . "\n\n";
         }
 
         $this->forever($key, $theme);
+
         return (string) $theme;
     }
 
@@ -51,6 +52,7 @@ trait ThemeCache
         $this->forget(
             $this->themeKey()
         );
+
         return $this;
     }
 

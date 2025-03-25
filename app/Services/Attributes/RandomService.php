@@ -3,16 +3,19 @@
 namespace App\Services\Attributes;
 
 use App\Enums\AttributeType;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Exception;
 
 class RandomService
 {
     protected AttributeType $type;
+
     protected mixed $value;
+
     /**
      * Rewrite an attribute if it's a random value
+     *
      * @return array[AttributeType, string]
      */
     public function randomAttribute(AttributeType $type, mixed $value): array
@@ -32,6 +35,7 @@ class RandomService
                 return $this->fromList();
             } elseif (Str::contains($this->value, '-')) {
                 $this->type = AttributeType::Number;
+
                 return $this->fromRange();
             }
         } catch (Exception $e) {
@@ -51,7 +55,7 @@ class RandomService
         $validValues = [];
         foreach ($values as $val) {
             $val = mb_trim($val);
-            if (!empty($val)) {
+            if (! empty($val)) {
                 $validValues[] = $val;
             }
         }

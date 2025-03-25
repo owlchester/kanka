@@ -12,8 +12,10 @@ use Illuminate\View\Component;
 class FilteredLink extends Component
 {
     public Campaign $campaign;
+
     public CampaignDashboardWidget $widget;
-    public string|null $entityString;
+
+    public ?string $entityString;
 
     /**
      * Create a new component instance.
@@ -36,37 +38,38 @@ class FilteredLink extends Component
         return view('components.widgets.filtered-link')
             ->with('isLink', $this->isLink())
             ->with('title', $this->title())
-            ->with('url', $this->url())
-        ;
+            ->with('url', $this->url());
     }
 
     protected function title(): string
     {
-        if (!empty($this->widget->conf('text'))) {
+        if (! empty($this->widget->conf('text'))) {
             return $this->widget->conf('text');
         }
         $title = '';
-        if (!empty($this->entityString)) {
+        if (! empty($this->entityString)) {
             $title = __($this->entityString) . ' - ';
         }
         $title .= __('dashboard.widgets.recent.title');
+
         return $title;
     }
 
-    protected function url(): string|null
+    protected function url(): ?string
     {
-        if (!$this->isLink()) {
+        if (! $this->isLink()) {
             return null;
         }
         $parameters = [
             'campaign' => $this->campaign,
-            'tags' => $this->widget->tags->pluck('id')->toArray()
+            'tags' => $this->widget->tags->pluck('id')->toArray(),
         ] + $this->widget->filterOptions();
+
         return route(Str::plural($this->widget->conf('entity')) . '.index', $parameters);
     }
 
     protected function isLink(): bool
     {
-        return !empty($this->widget->conf('entity'));
+        return ! empty($this->widget->conf('entity'));
     }
 }

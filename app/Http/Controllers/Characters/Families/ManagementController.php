@@ -47,12 +47,12 @@ class ManagementController extends Controller
         $families = $character->families()->pluck('families.id')->toArray();
         $privates = $request->get('family_privates');
 
-        //We need to delete the old ones to make way for the new ones.
+        // We need to delete the old ones to make way for the new ones.
         CharacterFamily::where('character_id', $character->id)->delete();
         foreach ($request->get('character_family') as $newFamily) {
-            //We just want to reorder, not add whatever the user sends as a request.
+            // We just want to reorder, not add whatever the user sends as a request.
             if (in_array($newFamily, $families)) {
-                $characterFamily = new CharacterFamily();
+                $characterFamily = new CharacterFamily;
                 $characterFamily->family_id = $newFamily;
                 $characterFamily->character_id = $character->id;
                 $characterFamily->is_private = $privates[$newFamily];

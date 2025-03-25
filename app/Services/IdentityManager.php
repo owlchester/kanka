@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Models\CampaignUser;
+use App\Models\User;
 use App\Models\UserLog;
 use App\Traits\CampaignAware;
-use App\Models\User;
 use Exception;
 use Illuminate\Foundation\Application;
 
@@ -20,15 +20,12 @@ class IdentityManager
 
     /**
      * IdentityManager constructor.
-     *
      */
     public function __construct(Application $app)
     {
         $this->app = $app;
     }
 
-    /**
-     */
     public function switch(CampaignUser $campaignUser): bool
     {
         try {
@@ -49,17 +46,15 @@ class IdentityManager
         return true;
     }
 
-    /**
-     */
     public function back(): bool
     {
         // Not actually impersonating anyone? Sure.
-        if (!$this->isImpersonating()) {
+        if (! $this->isImpersonating()) {
             return false;
         }
 
         try {
-            //$impersonated = $this->app['auth']->user();
+            // $impersonated = $this->app['auth']->user();
             $impersonator = $this->findUserById($this->getImpersonatorId());
 
             session()->put('kanka.userLog', UserLog::TYPE_USER_REVERT);
@@ -83,8 +78,6 @@ class IdentityManager
         return session()->has($this->getSessionKey());
     }
 
-    /**
-     */
     protected function findUserById(int $id): User
     {
         return User::findOrFail($id);
@@ -106,15 +99,11 @@ class IdentityManager
         return 'kanka.originalCampaignID';
     }
 
-    /**
-     */
     public function getImpersonatorId()
     {
         return session($this->getSessionKey(), null);
     }
 
-    /**
-     */
     public function getCampaignId()
     {
         return session($this->getSessionCampaignKey(), null);
@@ -127,6 +116,7 @@ class IdentityManager
     {
         session()->forget($this->getSessionKey());
         session()->forget($this->getSessionCampaignKey());
+
         return true;
     }
 }

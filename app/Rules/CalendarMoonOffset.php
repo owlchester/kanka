@@ -16,7 +16,7 @@ class CalendarMoonOffset implements ValidationRule
     {
         // Max value
         $lengths = request()->get('month_length');
-        if (!is_array($lengths) || count($lengths) === 0) {
+        if (! is_array($lengths) || count($lengths) === 0) {
             $fail(__('calendars.validators.moon_offset'));
         }
         $max = $lengths[0];

@@ -17,7 +17,7 @@ class HistoryFilter extends DatagridFilter
                 'label' => __('crud.fields.entity'),
                 'type' => 'select2',
                 'route' => route('search.entities-with-relations', $this->campaign),
-                'placeholder' =>  __('crud.placeholders.entity'),
+                'placeholder' => __('crud.placeholders.entity'),
                 'model' => Entity::class,
             ])
             ->add([
@@ -25,9 +25,8 @@ class HistoryFilter extends DatagridFilter
                 'label' => __('crud.permissions.fields.member'),
                 'type' => 'select2',
                 'route' => route('users.find', $this->campaign),
-                'placeholder' =>  __('crud.permissions.fields.member'),
+                'placeholder' => __('crud.permissions.fields.member'),
                 'model' => Entity::class,
-            ])
-        ;
+            ]);
     }
 }

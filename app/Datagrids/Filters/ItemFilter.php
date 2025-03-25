@@ -23,7 +23,7 @@ class ItemFilter extends DatagridFilter
                 'label' => __('crud.fields.parent'),
                 'type' => 'select2',
                 'route' => route('search-list', [$this->campaign, config('entities.ids.item')]),
-                'placeholder' =>  __('crud.placeholders.parent'),
+                'placeholder' => __('crud.placeholders.parent'),
                 'model' => Item::class,
             ])
             ->location()
@@ -36,7 +36,6 @@ class ItemFilter extends DatagridFilter
             ->hasAttributes()
             ->tags()
             ->attributes()
-            ->connections()
-        ;
+            ->connections();
     }
 }

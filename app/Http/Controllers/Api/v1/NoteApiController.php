@@ -2,21 +2,23 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Requests\StoreNote as Request;
+use App\Http\Resources\NoteResource as Resource;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Models\Note;
-use App\Http\Requests\StoreNote as Request;
-use App\Http\Resources\NoteResource as Resource;
 
 class NoteApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Campaign $campaign)
     {
         $this->authorize('access', $campaign);
+
         return Resource::collection($campaign
             ->notes()
             ->filter(request()->all())
@@ -26,17 +28,19 @@ class NoteApiController extends ApiController
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function show(Campaign $campaign, Note $note)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $note->entity);
+
         return new Resource($note);
     }
 
     /**
-     * @return Resource
+     * @return resource
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Campaign $campaign)
@@ -48,11 +52,12 @@ class NoteApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         $model = Note::create($data);
         $this->crudSave($model);
+
         return new Resource($model);
     }
 
     /**
-     * @return Resource
+     * @return resource
      */
     public function update(Request $request, Campaign $campaign, Note $note)
     {
@@ -66,6 +71,7 @@ class NoteApiController extends ApiController
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function destroy(Campaign $campaign, Note $note)

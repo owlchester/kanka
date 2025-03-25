@@ -20,7 +20,7 @@ class FeatureCategory extends Model
     {
         return $this->features()
             ->whereIn('features.status_id', [
-                \App\Enums\FeatureStatus::Later, \App\Enums\FeatureStatus::Next, \App\Enums\FeatureStatus::Now
+                \App\Enums\FeatureStatus::Later, \App\Enums\FeatureStatus::Next, \App\Enums\FeatureStatus::Now,
             ]);
     }
 

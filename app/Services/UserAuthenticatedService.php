@@ -13,10 +13,12 @@ class UserAuthenticatedService
     {
         // If the user is login in from a 403 page, go there now first
         $redirectTo = session()->get('login_redirect');
-        if (!empty($redirectTo)) {
+        if (! empty($redirectTo)) {
             session()->remove('login_redirect');
+
             return redirect()->to($redirectTo);
         }
+
         return redirect()->route('home');
     }
 }

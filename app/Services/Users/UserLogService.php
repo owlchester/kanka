@@ -10,6 +10,7 @@ class UserLogService
     {
         UserLog::where('created_at', '<=', \Carbon\Carbon::today()->subDays(30)->format('Y-m-d'))
             ->update(['ip' => null, 'country' => null]);
+
         return $this;
     }
 }

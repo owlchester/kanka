@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum Tier: String
+enum Tier: string
 {
     case Owlbear = 'owlbear';
     case Wyvern = 'wyvern';

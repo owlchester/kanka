@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-//use Faker\Generator as Faker;
-use Illuminate\Database\Eloquent\Factories\Factory;
+// use Faker\Generator as Faker;
 use App\Models\Organisation;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrganisationFactory extends Factory
 {
@@ -14,6 +14,7 @@ class OrganisationFactory extends Factory
      * @var string
      */
     protected $model = Organisation::class;
+
     /**
      * Define the model's default state.
      *

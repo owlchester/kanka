@@ -8,6 +8,7 @@ namespace App\Datagrids;
  * This abstract class controls parameters that are available to the datagrid bulk actions.
  * For example, to disable the bulk setting of permissions, set $bulkPermissions to false.
  * You can also add custom fields in the bulk delete modal by then testing on
+ *
  * @if (isset($datagrid) && $datagrid instanceof \App\Datagrids\RelationDatagrid)
  */
 abstract class Datagrid

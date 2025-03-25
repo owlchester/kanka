@@ -5,8 +5,7 @@ it('POSTS an invalid map group form')
     ->withCampaign()
     ->withMaps()
     ->postJson('/api/1.0/campaigns/1/maps/1/map_groups', [])
-    ->assertStatus(422)
-;
+    ->assertStatus(422);
 
 it('POSTS a new map group')
     ->asUser()
@@ -21,9 +20,8 @@ it('POSTS a new map group')
         'data' => [
             'id',
             'map_id',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('GETS all maps groups')
     ->asUser()
@@ -38,10 +36,9 @@ it('GETS all maps groups')
                 'id',
                 'name',
                 'is_private',
-            ]
-        ]
-    ])
-;
+            ],
+        ],
+    ]);
 
 it('GETS a specific map group')
     ->asUser()
@@ -55,9 +52,8 @@ it('GETS a specific map group')
             'id',
             'name',
             'is_private',
-        ]
-    ])
-;
+        ],
+    ]);
 
 it('UPDATES a valid map group')
     ->asUser()
@@ -66,8 +62,7 @@ it('UPDATES a valid map group')
     ->withMapGroups()
     ->putJson('/api/1.0/campaigns/1/maps/1/map_groups/1', ['name' => 'Bob'])
     ->assertStatus(200)
-    ->assertJsonFragment(['name' => 'Bob'])
-;
+    ->assertJsonFragment(['name' => 'Bob']);
 
 it('DELETES a map group')
     ->asUser()
@@ -75,8 +70,7 @@ it('DELETES a map group')
     ->withMaps()
     ->withMapGroups()
     ->delete('/api/1.0/campaigns/1/maps/1/map_groups/1')
-    ->assertStatus(204)
-;
+    ->assertStatus(204);
 
 it('DELETES an invalid map group')
     ->asUser()
@@ -84,8 +78,7 @@ it('DELETES an invalid map group')
     ->withMaps()
     ->withMapGroups()
     ->delete('/api/1.0/campaigns/1/maps/1/map_groups/100')
-    ->assertStatus(404)
-;
+    ->assertStatus(404);
 
 it('can GET a map group as a player')
     ->asUser()
@@ -94,5 +87,4 @@ it('can GET a map group as a player')
     ->withMapGroups()
     ->asPlayer()
     ->get('/api/1.0/campaigns/1/maps/1/map_groups/1')
-    ->assertStatus(200)
-;
+    ->assertStatus(200);

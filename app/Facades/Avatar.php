@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * Class Avatar
- * @package App\Facades
  *
  * @see AvatarService
+ *
  * @mixin AvatarService
  */
 class Avatar extends Facade

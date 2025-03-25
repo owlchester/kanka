@@ -10,12 +10,13 @@ class CalcStyleDefinition extends HTMLPurifier_AttrDef
 {
     /**
      * Bool indicating whether enumeration is case-sensitive.
+     *
      * @note In general this is always case-insensitive.
      */
     protected bool $caseSensitive = false; // values according to W3C spec
 
     /**
-     * @param bool $caseSensitive Whether case-sensitive
+     * @param  bool  $caseSensitive  Whether case-sensitive
      */
     public function __construct(bool $caseSensitive = false)
     {
@@ -23,15 +24,15 @@ class CalcStyleDefinition extends HTMLPurifier_AttrDef
     }
 
     /**
-     * @param string $string
-     * @param \HTMLPurifier_Config $config
-     * @param \HTMLPurifier_Context $context
+     * @param  string  $string
+     * @param  \HTMLPurifier_Config  $config
+     * @param  \HTMLPurifier_Context  $context
      * @return bool|string
      */
     public function validate($string, $config, $context)
     {
         $string = mb_trim($string);
-        if (!$this->caseSensitive) {
+        if (! $this->caseSensitive) {
             // we may want to do full case-insensitive libraries
             $string = ctype_lower($string) ? $string : mb_strtolower($string);
         }
@@ -46,9 +47,9 @@ class CalcStyleDefinition extends HTMLPurifier_AttrDef
     /**
      * I have no idea what this is for, sorry.
      *
-     * @param string $string In form of comma-delimited list of case-insensitive
-     *      valid values. Example: "foo,bar,baz". Prepend "s:" to make
-     *      case-sensitive
+     * @param  string  $string  In form of comma-delimited list of case-insensitive
+     *                          valid values. Example: "foo,bar,baz". Prepend "s:" to make
+     *                          case-sensitive
      * @return HTMLPurifier_AttrDef_Enum
      */
     public function make($string)
@@ -60,6 +61,7 @@ class CalcStyleDefinition extends HTMLPurifier_AttrDef
             $sensitive = false;
         }
         $values = explode(',', $string);
+
         return new HTMLPurifier_AttrDef_Enum($values, $sensitive);
     }
 }

@@ -36,7 +36,7 @@ class StoreInventory extends FormRequest
             'description' => 'nullable|string|max:191',
             'visibility_id' => 'nullable|exists:visibilities,id',
             'image_uuid' => 'nullable|exists:images,id',
-            'is_equipped' => 'boolean'
+            'is_equipped' => 'boolean',
         ];
 
     }

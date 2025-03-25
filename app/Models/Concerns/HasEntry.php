@@ -6,7 +6,6 @@ use App\Facades\Mentions;
 use App\Observers\EntryObserver;
 
 /**
- *
  * @property ?string $entry
  * @property ?int $words
  */
@@ -14,7 +13,7 @@ trait HasEntry
 {
     public static function bootHasEntry(): void
     {
-        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+        if (app()->runningInConsole() && ! app()->runningUnitTests()) {
             return;
         }
         static::observe(app(EntryObserver::class));
@@ -53,6 +52,7 @@ trait HasEntry
     {
         // If all that's in the entry is two \n, then there is no real content
         $stripped = mb_trim(preg_replace('/\s\s+/', ' ', $this->{$this->entryFieldName()}));
-        return !empty($stripped);
+
+        return ! empty($stripped);
     }
 }
