@@ -7,10 +7,10 @@
 ])
 
 @section('content')
+    <x-hero>
+        <x-slot name="title">{{ __('settings.patreon.title') }}</x-slot>
+    </x-hero>
     <x-grid type="1/1">
-        <h1 class="">
-            {{ __('settings.patreon.title') }}
-        </h1>
         @include('partials.errors')
 
     @if(auth()->user()->isLegacyPatron())

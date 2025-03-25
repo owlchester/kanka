@@ -20,43 +20,40 @@ if (!isset($user)) {
             <li class="px-2 {{ $sidebar->settings('profile') }}">
                 <x-sidebar.element
                     :url="route('settings.profile')"
-                    icon="fa-solid fa-user"
+                    icon="fa-regular fa-user"
                     :text="__('settings.menu.profile')"
                 ></x-sidebar.element>
             </li>
             <li class="px-2 {{ $sidebar->settings('account') }}">
                 <x-sidebar.element
                     :url="route('settings.account')"
-                    icon="fa-solid fa-cog"
+                    icon="fa-regular fa-lock"
                     :text="__('settings.menu.account')"
                 ></x-sidebar.element>
             </li>
             <li class="px-2 {{ $sidebar->settings('appearance') }}">
                 <x-sidebar.element
                     :url="route('settings.appearance')"
-                    icon="fa-solid fa-brush"
+                    icon="fa-regular fa-swatchbook"
                     :text="__('settings.menu.appearance')"
                 ></x-sidebar.element>
             </li>
             <li class="px-2 {{ $sidebar->settings('newsletter') }}">
                 <x-sidebar.element
                     :url="route('settings.newsletter')"
-                    icon="fa-solid fa-bell"
+                    icon="fa-regular fa-bell"
                     :text="__('settings.menu.notifications')"
                 ></x-sidebar.element>
             </li>
 
-            <li class="px-2 ">
-                <x-sidebar.element
-                    icon="fa-solid fa-bolt"
-                    :text="__('settings.menu.subscription')"
-                ></x-sidebar.element>
-                <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
+            <li class="px-2 pt-4">
+                <x-sidebar.section :text="__('settings.menu.subscription')" />
+                <ul class="sidebar-submenu list-none p-0 m-0">
                     @if (config('services.stripe.enabled'))
                         <li class="p-0 m-0 {{ $sidebar->settings('subscription') }} subsection">
                             <x-sidebar.element
                                 :url="route('settings.subscription')"
-                                icon="fa-solid fa-heart"
+                                icon="fa-regular fa-heart"
                                 :text="__('billing/menu.overview')"
                             ></x-sidebar.element>
                         </li>
@@ -64,7 +61,7 @@ if (!isset($user)) {
                             <li class="{{ $sidebar->settings('boosters') }} subsection">
                                 <x-sidebar.element
                                     :url="route('settings.boost')"
-                                    icon="fa-solid fa-rocket"
+                                    icon="fa-regular fa-rocket"
                                     :text="__('settings.menu.boosters')"
                                 ></x-sidebar.element>
                             </li>
@@ -72,7 +69,7 @@ if (!isset($user)) {
                             <li class="{{ $sidebar->settings('premium') }} subsection">
                                 <x-sidebar.element
                                     :url="route('settings.premium')"
-                                    icon="fa-solid fa-gem"
+                                    icon="fa-regular fa-gem"
                                     :text="__('settings.menu.premium')"
                                 ></x-sidebar.element>
                             </li>
@@ -83,14 +80,14 @@ if (!isset($user)) {
                         <li class="{{ $sidebar->settings('payment-method', 3) }} subsection">
                             <x-sidebar.element
                                 :url="route('billing.payment-method')"
-                                icon="fa-solid fa-credit-card"
+                                icon="fa-regular fa-credit-card"
                                 :text="__('billing/menu.payment-method')"
                             ></x-sidebar.element>
                         </li>
                         <li class="{{ $sidebar->settings('history', 3) }} subsection">
                             <x-sidebar.element
                                 :url="route('billing.history')"
-                                icon="fa-solid fa-receipt"
+                                icon="fa-regular fa-receipt"
                                 :text="__('billing/menu.history')"
                             ></x-sidebar.element>
                         </li>
@@ -98,13 +95,10 @@ if (!isset($user)) {
                 </ul>
             </li>
 
-            <li class="px-2">
-                <div class="flex items-center gap-2 my-0.5 px-2 py-1.5 rounded">
-                    <i class="w-6 flex-shrink-0 text-base fa-solid fa-cubes"></i>
-                    <span>{{ __('settings.menu.other') }}</span>
-                </div>
+            <li class="px-2 pt-4">
+                <x-sidebar.section :text="__('settings.menu.other')" />
 
-                <ul class="sidebar-submenu list-none p-0 pl-4 m-0">
+                <ul class="sidebar-submenu list-none p-0 m-0">
                     @if (auth()->user()->isLegacyPatron())<li class="{{ $sidebar->settings('patreon') }} subsection">
                         <x-sidebar.element
                             :url="route('settings.patreon')"
@@ -123,7 +117,7 @@ if (!isset($user)) {
                     <li class="p-0 m-0 {{ $sidebar->settings('api') }} subsection">
                         <x-sidebar.element
                             :url="route('settings.api')"
-                            icon="fa-solid fa-code"
+                            icon="fa-regular fa-code"
                             :text="__('settings.menu.api')"
                         ></x-sidebar.element>
                     </li>

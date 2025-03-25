@@ -8,7 +8,7 @@ $modelMenuItems = \App\Facades\Submenu::campaign($campaign)->entity($entity)->it
 ?>
 <div class="hidden md:flex flex-col gap-5">
 @foreach ($modelMenuItems as $section => $menuItems)
-    <x-box css="entity-menu{{ $section }}" :padding="0">
+    <x-box class="entity-menu{{ $section }}" :padding="0">
         <x-menu>
             @foreach ($menuItems as $key => $menuItem)
                 @if (Arr::has($menuItem, 'perm'))

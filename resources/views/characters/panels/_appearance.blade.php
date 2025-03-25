@@ -15,7 +15,7 @@ $appearances = $entity->child->appearances;
         </div>
         <div class="bg-box rounded" id="character-appearance">
             <div class="entity-content overflow-hidden" id="character-appearance-body">
-                <x-grid css="p-4">
+                <x-grid class="p-4">
         @foreach ($appearances as $trait)
                 <p class="entity-appearance-{{ \Illuminate\Support\Str::slug($trait->name) }}" data-word-count="{{ $trait->words }}">
                     <b>{{ $trait->name }}</b><br />

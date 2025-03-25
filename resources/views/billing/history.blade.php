@@ -8,15 +8,17 @@
 ])
 
 @section('content')
-    <x-grid type="1/1">
-        <h1 class="">
+    <x-hero>
+        <x-slot name="title">
             {{ __('billing/invoices.title') }}
-        </h1>
-        <p class="text-lg">
+        </x-slot>
+        <x-slot name="subtitle">
             {{ __('billing/invoices.description') }}
             {{ __('billing/invoices.paypal') }}
-        </p>
+        </x-slot>
+    </x-hero>
 
+    <x-grid type="1/1">
         <table class="table table-default table-borderless table-hover">
             <thead>
             <tr>
@@ -27,7 +29,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($invoices as $invoice)
+            @forelse ($invoices as $invoice)
                 <tr>
                     <td>{{ $invoice->date()->toFormattedDateString() }}</td>
                     <td>{{ $invoice->total() }}</td>
@@ -39,7 +41,13 @@
 
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="4">
+                    <em>No invoices found.</em>
+                    </td>
+                </tr>
+            @endforelse
             </tbody>
         </table>
     </x-grid>

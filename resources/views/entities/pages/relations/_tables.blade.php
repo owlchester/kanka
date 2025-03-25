@@ -4,7 +4,7 @@
 <h3 class="">
     {{ __('sidebar.relations') }}
 </h3>
-<x-box css="box-entity-relations box-entity-relations-table" id="entity-relations-table" :padding="$rows->count() === 0">
+<x-box class="box-entity-relations box-entity-relations-table" id="entity-relations-table" :padding="$rows->count() === 0">
     @if ($rows->count() === 0)
         <x-helper :text="__('entities/relations.helpers.no_relations')" />
         @can('relation', $entity)

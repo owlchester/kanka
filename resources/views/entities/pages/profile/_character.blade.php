@@ -4,7 +4,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
 
 ?>
     <x-grid type="1/1">
-        <x-box css="box-entity-profile grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-5">
+        <x-box class="box-entity-profile grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-5">
             @if ($model->title)
                 <p class="entity-character-title">
                     <b>{{ __('characters.fields.title') }}</b><br />
@@ -74,7 +74,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
         </x-box>
 
         @if (count($appearances) > 0)
-        <x-box css="character-appearances grid grid-cols-2 gap-5">
+        <x-box class="character-appearances grid grid-cols-2 gap-5">
             <h4 class="grow col-span-2">{{ __('characters.sections.appearance') }}</h4>
             @foreach ($appearances as $trait)
                 <p class="entity-appearance-{{ \Illuminate\Support\Str::slug($trait->name) }}">
@@ -86,7 +86,7 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
         @endif
 
         @if (((auth()->check() && auth()->user()->can('personality', $model)) || $model->is_personality_visible) && count($traits) > 0)
-            <x-box css="character-personalities flex flex-col gap-5">
+            <x-box class="character-personalities flex flex-col gap-5">
 
                 @if(auth()->check() && auth()->user()->can('personality', $model))
                     <div class="flex gap-2">

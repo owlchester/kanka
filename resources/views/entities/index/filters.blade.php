@@ -14,7 +14,7 @@
         @if (auth()->guest())
             <x-helper :text="__('filters.helpers.guest')" />
         @else
-            <x-grid css="max-w-3xl">
+            <x-grid class="max-w-3xl">
                 <div class="field flex flex-col gap-1 field-name">
                     <label>{!! __('crud.fields.name') !!}</label>
                     <input type="text" class="w-full entity-list-filter" name="name" value="{{ $filterService->single('name') }}" data-1p-ignore="true" />

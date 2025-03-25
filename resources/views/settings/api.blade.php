@@ -6,19 +6,19 @@
 ])
 
 @section('content')
+    <x-hero>
+        <x-slot name="title">{{ __('settings.api.title') }}</x-slot>
+        <x-slot name="subtitle">{{ __('settings.api.helper') }}</x-slot>
+        <x-slot name="link">
+            <a href="{{ route('larecipe.index') }}" class="" target="_blank">
+                <x-icon class="fa-regular fa-external-link-square" />
+                {{ __('front.features.api.link') }}
+            </a>
+        </x-slot>
+    </x-hero>
+
     <x-grid type="1/1" id="api">
         @include('partials.errors')
-        <h1 class="">
-            {{ __('settings.api.title') }}
-        </h1>
-
-        <p class="text-lg">
-            {{ __('settings.api.helper') }}
-            <a href="{{ route('larecipe.index') }}" class="" target="_blank">
-                <x-icon class="fa-solid fa-external-link-square" />
-                {{ __('front.features.api.link') }}
-            </a>.
-        </p>
 
         <div class="flex flex-col xl:grid xl:grid-cols-2 gap-5">
             <passport-personal-access-tokens></passport-personal-access-tokens>

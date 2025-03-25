@@ -3,7 +3,7 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
 ?>
 
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-    <x-box css="flex items-center gap-5">
+    <x-box class="flex items-center gap-5">
         @if ($campaign->boosted())
             @php
                 $booster = $campaign->boosts()->first();

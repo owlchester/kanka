@@ -8,6 +8,7 @@ use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\UnsubscribeUser;
 use App\Jobs\Users\UpdateEmail;
 use App\Models\User;
+use App\Models\UserLog;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -16,12 +17,6 @@ class UserObserver
 {
     public function saving(User $user)
     {
-        // Setting a new password
-        $new = request()->post('password_new');
-        if (! empty($new)) {
-            $user->password = Hash::make(request()->post('password_new'));
-        }
-
         // Purify the bio
         if (! empty($user->profile['bio'])) {
             $profile = $user->profile;
@@ -57,6 +52,14 @@ class UserObserver
         }
         if ($user->isDirty('name')) {
             UserCache::user($user)->clearName();
+        }
+
+        if ($user->isDirty('email')) {
+            $user->log(UserLog::TYPE_EMAIL_UPDATE);
+        } elseif ($user->isDirty('provider')) {
+            $user->log(UserLog::TYPE_SOCIAL_SWITCH);
+        } elseif ($user->isDirty('password')) {
+            $user->log(UserLog::TYPE_PASSWORD_UPDATE);
         }
     }
 

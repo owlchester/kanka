@@ -7,11 +7,12 @@
 ])
 
 @section('content')
-    <x-grid type="1/1">
-        @include('partials.errors')
-        <h1 class="">
+    @include('partials.errors')
+
+    <x-box class="mb-12">
+        <x-slot name="title">
             {{ __('settings.profile.title') }}
-        </h1>
+        </x-slot>
 
         <x-form :action="['settings.profile-process']" method="PATCH" files>
             <div class="flex flex-col md:flex-row gap-5">
@@ -68,17 +69,19 @@
                 </x-buttons.confirm>
             </div>
         </x-form>
+    </x-box>
+
         @if (!app()->isProduction())
-            <x-form :action="['tutorials.reset']" method="PATCH">
-            <div class="flex gap-2 my-5">
-                <h1 class="grow">
+            <x-box class="border-error border">
+                <x-slot name="title">
                     Reset Tutorials
-                </h1>
-                <x-buttons.confirm type="danger" outline="true">
-                    Reset tutorials
-                </x-buttons.confirm>
-            </div>
-            </x-form>
+                </x-slot>
+                <x-form :action="['tutorials.reset']" method="PATCH">
+                    <p>This will reset all tutorials, and make all the dismissible helper texts reappear.</p>
+                    <x-buttons.confirm type="danger">
+                        Reset all tutorials
+                    </x-buttons.confirm>
+                </x-form>
+            </x-box>
         @endif
-    </x-grid>
 @endsection

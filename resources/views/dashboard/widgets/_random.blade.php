@@ -19,7 +19,7 @@ $specificPreview = 'dashboard.widgets.previews.' . $entity->entityType->code;
 $customName = !empty($widget->conf('text')) ? str_replace('{name}', $entity->name, $widget->conf('text')) : null;
 $widget->setEntity($entity);
 ?>
-<x-box padding="0" css="widget-random {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
+<x-box padding="0" class="widget-random {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
 @if(view()->exists($specificPreview))
     @include($specificPreview, ['entity' => $entity, 'customName' => $customName])
 @else

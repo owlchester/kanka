@@ -1,6 +1,6 @@
 @if (!empty($datagridUrl))
         <table class="table table-hover" data-render="datagrid2-onload" data-url="{!! $datagridUrl !!}"></table>
-        <x-box css="text-center">
+        <x-box class="text-center">
             <x-icon class="load" />
         </x-box>
 <?php return; ?>

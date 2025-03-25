@@ -12,7 +12,7 @@ $loadedElements = [];
     $position = 1;
     @endphp
 
-    <x-box css="flex gap-2 flex-col p-2 timeline-era post entity-note" :padding="0" id="era{{ $era->id }}" data-word-count="{{ $era->words }}">
+    <x-box class="flex gap-2 flex-col p-2 timeline-era post entity-note" :padding="0" id="era{{ $era->id }}" data-word-count="{{ $era->words }}">
         <div class="timeline-era-head flex gap-2 items-center">
             <h3 class="grow cursor-pointer flex gap-2 items-center element-toggle text-base m-0 {{ $era->collapsed() ? 'animate-collapsed' : null }}" data-animate="collapse" data-target="#era-items-{{ $era->id }}">
 

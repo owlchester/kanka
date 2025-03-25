@@ -9,7 +9,7 @@
     @include('timelines.elements._icon')
 
     <div class="timeline-item p-0 pb-2 relative rounded-sm ml-16 mr-4" data-word-count="{{ $element->words }}">
-        <x-box css="flex gap-2 flex-col p-2" :padding="0">
+        <x-box class="flex gap-2 flex-col p-2" :padding="0">
             <div class="timeline-item-head flex gap-2 items-center">
                 <h3 class="grow flex gap-2 items-center cursor-pointer element-toggle m-0 overflow-hidden {{ $element->collapsed() ? 'animate-collapsed' : null }} text-base" data-animate="collapse" data-target="#timeline-element-body-{{ $element->id }}">
                     <x-icon class="fa-solid fa-chevron-up icon-show" />

@@ -41,7 +41,7 @@ $entityTags = $post->visibleTags;
         @endphp
         @include('entities.pages.inventory._grid', ['inventory' => $inventory, 'isPost' => true, 'entity' => $entity, 'ajax' => null])
     @elseif ($post->layout?->code == 'attributes')
-        <x-box css="box-entity-attributes">
+        <x-box class="box-entity-attributes">
             @include('entities.pages.attributes.render', ['isPost' => true])
         </x-box>
         <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', [$campaign, $entity]) }}" />

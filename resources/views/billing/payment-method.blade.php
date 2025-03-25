@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Arr; @endphp
 <?php /**
  * @var \App\Models\CampaignBoost $boost
  * @var \App\Models\Campaign $campaign
@@ -10,27 +11,33 @@
     'centered' => true,
 ])
 @section('content')
-    <x-grid type="1/1">
-        @include('partials.errors')
-
-        <h1 class="">
+    <x-hero>
+        <x-slot name="title">
             {{ __('billing/payment_methods.title') }}
-        </h1>
-        <p class="text-lg">
+        </x-slot>
+        <x-slot name="subtitle">
             {!! __('settings.subscription.billing.helper', [
                 'stripe' => '<a href="https://www.stripe.com" target="_blank">Stripe</a>'
             ]) !!}
-        </p>
+        </x-slot>
+    </x-hero>
 
-        <h3 class="">
-            {{ __('settings.subscription.billing.saved' )}}
-        </h3>
-        <div id="billing">
-            <billing-management
-                    api_token="{{ $stripeApiToken }}"
-                    trans="{{ $translations }}"
-            ></billing-management>
-        </div>
+    @include('partials.errors')
+
+    <x-box class="mb-12" id="billing">
+        <x-slot name="title">
+            {{ __('settings.subscription.billing.saved') }}
+        </x-slot>
+
+        <billing-management
+                api_token="{{ $stripeApiToken }}"
+                trans="{{ $translations }}"
+        ></billing-management>
+    </x-box>
+
+    <x-box class="mb-12" id="currency">
+        <x-slot name="title">{{ __('settings.subscription.fields.currency') }}
+        </x-slot>
 
         <x-form :action="['billing.payment-method.save']" method="PATCH" direct>
             <x-grid type="1/1">
@@ -52,7 +59,7 @@
                         </x-forms.field>
                     @endif
                     <div class="text-right">
-                        <x-buttons.confirm type="primary" outline="true">
+                        <x-buttons.confirm type="primary">
                             <x-icon class="save" />
                             <span>
                         {{ __('settings.subscription.actions.update_currency') }}</span>
@@ -61,24 +68,31 @@
                 @endif
             </x-grid>
         </x-form>
+    </x-box>
 
 
-        <h3 class="">
+    <x-box class="mb-12">
+        <x-slot name="title">
             {{ __('settings.billing.title') }}
-        </h3>
-        <x-form :action="['settings.billing-info']" method="PATCH" direct>
-            <p class="help-block">
-                {{ __('settings.billing.placeholder') }}
-            </p>
-        <textarea name="profile[billing]" placeholder="" class="w-full rounded border p-2 mb-2" rows="5" maxlength="1024">{!! old('profile[billing]', \Illuminate\Support\Arr::get($user->profile, 'billing')) !!}</textarea>
-            <div class="text-right">
-                <x-buttons.confirm type="primary"  outline="true">
-                    <x-icon class="save" />
-                    <span>{{ __('settings.billing.save') }}</span>
-                </x-buttons.confirm>
+        </x-slot>
+
+        <div class="flex flex-col gap-4">
+            <div class="flex gap-2 justify-between">
+                @if (\Illuminate\Support\Arr::exists($user->profile, 'billing'))
+                    <x-helper>
+                        {!! nl2br($user->profile['billing']) !!}
+                    </x-helper>
+                @else
+                    <x-helper>{{ __('billing/information.helper') }}</x-helper>
+                @endif
+                <div class="">
+                    <button class="btn2" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('account.billing.info') }}">
+                        {{ __('billing/information.actions.update') }}
+                    </button>
+                </div>
             </div>
-        </x-form>
-    </x-grid>
+        </div>
+    </x-box>
 @endsection
 
 

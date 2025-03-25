@@ -1,6 +1,8 @@
-<h3 class="mb-3">
-    {{ __('settings.account.2fa.title') }}
-</h3>
+<x-box class="mb-12">
+    <x-slot name="title">
+        {{ __('settings.account.2fa.title') }}
+    </x-slot>
+
     @if ($user->passwordSecurity?->google2fa_enable)
         <p class="hep-block">{{ __('settings.account.2fa.enabled') }}</p>
 
@@ -36,22 +38,20 @@
                     <x-forms.field field="qr-code" required :label="__('settings.account.2fa.fields.qrcode')">
                         {!! $user->passwordSecurity->getGoogleQR() !!}
                     </x-forms.field>
-
+                </x-grid>
+                <div class="flex flex-wrap gap-2 justify-between items-end">
                     <x-forms.field field="otp" required :label="__('settings.account.2fa.fields.otp')">
                         <input type="password" name="otp" maxlength="12" />
                     </x-forms.field>
 
-                    <div class="text-right">
                         <x-buttons.confirm type="primary">
                             {{ __('settings.account.2fa.actions.finish') }}
                         </x-buttons.confirm>
-                    </div>
-                </x-grid>
+                </div>
             </x-form>
        @endif
   @endif
-
-<hr />
+</x-box>
 
 @section('modals')
     @parent

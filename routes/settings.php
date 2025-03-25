@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Account\EmailController;
+use App\Http\Controllers\Account\PasswordController;
+use App\Http\Controllers\Account\SocialController;
+use App\Http\Controllers\Account\DeleteController;
+use App\Http\Controllers\Account\Billing\InformationController;
 use App\Http\Controllers\Billing\HistoryController;
 use App\Http\Controllers\Billing\PaymentMethodController;
 use App\Http\Controllers\CampaignBoostController;
@@ -26,7 +31,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ProfileController::class, 'index'])->name('settings');
 Route::get('/profile', [ProfileController::class, 'index'])->name('settings.profile');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('settings.profile-process');
-Route::patch('/billing-info', [ProfileController::class, 'saveBillingInfo'])->name('settings.billing-info');
+
+Route::get('/account/billing/info', [InformationController::class, 'index'])->name('account.billing.info');
+Route::patch('/account/billing/info', [InformationController::class, 'save'])->name('account.billing.info-save');
 
 Route::get('/boosters', [BoostController::class, 'index'])->name('settings.boost');
 Route::get('/boosters/boost/{campaign}', [BoostController::class, 'boost'])->name('settings.campaign-boost');
@@ -43,10 +50,17 @@ Route::get('/boosters/unpremium/{campaign}', [PremiumController::class, 'unpremi
 Route::post('/release/{app_release}', [ReleaseController::class, 'read'])->name('settings.release');
 
 Route::get('/account', [AccountController::class, 'index'])->name('settings.account');
-Route::patch('/account/password', [AccountController::class, 'password'])->name('settings.account.password');
-Route::patch('/account/email', [AccountController::class, 'email'])->name('settings.account.email');
-Route::patch('/account/destroy', [AccountController::class, 'destroy'])->name('settings.account.destroy');
-Route::patch('/account/social', [AccountController::class, 'social'])->name('settings.account.social');
+
+Route::get('/account/password', [PasswordController::class, 'index'])->name('account.password');
+Route::patch('/account/password', [PasswordController::class, 'save'])->name('account.password-save');
+Route::get('/account/email', [EmailController::class, 'index'])->name('account.email');
+Route::patch('/account/email', [EmailController::class, 'save'])->name('account.email-save');
+
+Route::patch('/account/destroy', [DeleteController::class, 'destroy'])->name('settings.account.destroy');
+
+Route::get('/account/social', [SocialController::class, 'index'])->name('account.social');
+Route::patch('/account/social', [SocialController::class, 'save'])->name('account.social-save');
+
 
 Route::get('/patreon', [PatreonController::class, 'index'])->name('settings.patreon');
 Route::delete('/patreon-unlink', [PatreonController::class, 'unlink'])->name('settings.patreon.unlink');

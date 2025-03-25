@@ -10,7 +10,7 @@
     @if (auth()->guest())
         <x-helper :text="__('filters.helpers.guest')" />
     @else
-        <x-grid css="max-w-3xl">
+        <x-grid class="max-w-3xl">
             @foreach ($filters as $field)
                 @php $count++ @endphp
 
@@ -24,7 +24,7 @@
             <div class="field flex flex-col gap-1 field-">
                 @if (is_array($field))
                     <label>{!! Arr::get($field, 'label', __('crud.fields.' . $field['field'])) !!}</label>
-                    <?php 
+                    <?php
                         $model = $models = null;
                         $value = $filterService->single($field['field']);
                         if (!empty($value) && $field['type'] == 'select2') {

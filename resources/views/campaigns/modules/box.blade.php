@@ -8,7 +8,7 @@ if (isset($id) && $campaign->superboosted() && $campaign->hasModuleIcon($id)) {
 }
 $enabled = $campaign->enabled($module);
 @endphp
-<x-box css="box-module overflow-hidden flex flex-wrap flex-col select-none {{ $enabled ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} " id="{{ $module }}" :padding="false">
+<x-box class="box-module overflow-hidden flex flex-wrap flex-col select-none {{ $enabled ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} " id="{{ $module }}" :padding="false">
     <div class="header p-2 bg-neutral text-neutral-content flex items-center gap-2 transition-all duration-300">
         <i class="flex-0 text-lg {{ $icon }}" aria-hidden="true"></i>
         <span class="text-lg grow break-all">

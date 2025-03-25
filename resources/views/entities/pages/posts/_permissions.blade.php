@@ -2,7 +2,7 @@
     <div class="max-w-4xl flex flex-col gap-2">
         @if(!empty($model))
             @foreach ($model->permissions()->onlyRoles()->with('role')->get() as $perm)
-                <x-grid css="perm-row">
+                <x-grid class="perm-row">
                     <div class="join">
                         <span class="join-item flex items-center bg-base-200 p-2 rounded">
                             <i class="fa-solid fa-users" aria-hidden="true"></i>
@@ -21,7 +21,7 @@
                 </x-grid>
             @endforeach
             @foreach ($model->permissions()->onlyUsers()->with('user')->get() as $perm)
-                <x-grid css="perm-row">
+                <x-grid class="perm-row">
                     <div class="join">
                         <span class="join-item flex items-center bg-base-200 p-2 rounded">
                             <i class="fa-solid fa-user" aria-hidden="true"></i>
@@ -59,7 +59,7 @@
         <x-grid type="1/1">
             <x-forms.field field="user" :label="__('crud.permissions.fields.member')">
                 @include('components.form.user', ['options' => [
-                    'dropdownParent' => '#post-new-user', 
+                    'dropdownParent' => '#post-new-user',
                     'multiple' => true
                 ]])
             </x-forms.field>
@@ -77,7 +77,7 @@
     </x-dialog>
 
     <div class="hidden" id="post-perm-templates">
-        <x-grid id="post-perm-user-template" css="perm-row">
+        <x-grid id="post-perm-user-template" class="perm-row">
             <div class="join">
                 <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
                 <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="w-full join-item" />
@@ -91,7 +91,7 @@
             </div>
             <input type="hidden" name="perm_user[]" value="$SELECTEDID$" />
         </x-grid>
-        <x-grid id="post-perm-role-template" css="perm-row">
+        <x-grid id="post-perm-role-template" class="perm-row">
             <div class="join">
                 <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-users" aria-hidden="true"></i></span>
                 <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="w-full join-item" />

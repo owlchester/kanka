@@ -2,7 +2,7 @@
 /** @var \App\Models\Campaign $campaign */
 @endphp
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-    <x-box css="flex items-center gap-5">
+    <x-box class="flex items-center gap-5">
         <div class="rounded {{ $campaign->isOpen() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center">
             <x-icon class="fa-solid {{ $campaign->isOpen() ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
         </div>
@@ -18,7 +18,7 @@
             <x-icon class="fa-solid fa-angle-right" />
         </div>
     </x-box>
-    <x-box css="flex items-center gap-5">
+    <x-box class="flex items-center gap-5">
         <div class="rounded {{ $campaign->isPublic() ? 'bg-green-200' : 'bg-red-200' }} w-12 h-12 flex items-center justify-center">
             <x-icon class="fa-solid {{ $campaign->isPublic() ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
         </div>

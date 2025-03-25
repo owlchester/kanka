@@ -1,4 +1,4 @@
-<x-box css="flex items-center gap-5">
+<x-box class="flex items-center gap-5">
     <div class="rounded {{ $background }} w-12 h-12 flex items-center justify-center">
         <x-icon class="{{ $icon }}" />
     </div>

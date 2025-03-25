@@ -4,7 +4,7 @@
 
 <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-4 xl:gap-5">
     @foreach($submissions as $application)
-        <x-box css="flex items-center justify-center gap-3">
+        <x-box class="flex items-center justify-center gap-3">
             @if ($application->user->hasAvatar())
                 <div class="rounded-full h-10 w-10 cover-background flex-none" style="background-image: url('{!! $application->user->getAvatarUrl() !!}')" data-title="{{ $application->user->name }}"></div>
             @else

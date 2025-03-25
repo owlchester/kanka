@@ -17,7 +17,7 @@
     <x-grid type="1/1">
         <h1>{{ __('settings.subscription.manage_subscription') }}</h1>
 
-        <p class="text-lg">
+        <p class="">
             {!! __('subscription.benefits.main', [
                 'more' => '<a href="https://kanka.io/pricingp" target="_blank">' . __('footer.public-campaigns') . '</a>',
                 'boosters' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaigns') . '</a>',

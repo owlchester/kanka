@@ -8,11 +8,12 @@
 ])
 
 @section('content')
+    <x-hero>
+        <x-slot name="title">{{ __('Bragi Logs') }}</x-slot>
+        <x-slot name="subtitle">{{ __('Find info about your available Bragi tokens.') }}</x-slot>
+    </x-hero>
     <x-grid type="1/1">
         @include('partials.errors')
-        <h1 class="">
-            Bragi Logs
-        </h1>
 
         <div class="rounded p-2 bg-info text-slate-800">
             <p><strong>Tokens</strong> {{ auth()->user()->availableTokens() }} / {{ auth()->user()->maxTokens() }}</p>

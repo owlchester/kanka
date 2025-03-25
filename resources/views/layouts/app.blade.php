@@ -78,7 +78,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
 </a>
     <div id="app" class="wrapper h-full min-h-screen relative mt-12">
         @include('layouts.header', ['toggle' => $showSidebar])
-        @includeWhen(isset($campaign) || isset($sidebar) && $sidebar == 'settings', 'layouts.sidebars.' . ($sidebar ?? 'app'))
+        @includeWhen(isset($campaign) || isset($sidebar), 'layouts.sidebars.' . ($sidebar ?? 'app'))
 
         <div class="content-wrapper transition-all duration-150" id="{{ isset($contentId) ? $contentId : "main-content" }}">
             @include('layouts.banner')

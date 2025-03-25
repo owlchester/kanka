@@ -29,8 +29,8 @@
             <p class="help-block text-neutral-content grow">
                 {{ translate('add_one') }}
             </p>
-            <a href="#" v-on:click.close="toggleShowNewPaymentMethod" class="btn2 btn-secondary btn-sm">
-                <i class="far fa-credit-card" aria-hidden="true"></i> {{ translate('actions.add_new') }}
+            <a href="#" v-on:click.close="toggleShowNewPaymentMethod" class="btn2 btn-sm">
+                <i class="fa-regular fa-credit-card" aria-hidden="true"></i> {{ translate('actions.add_new') }}
             </a>
         </div>
         <dialog class="dialog rounded-2xl text-center" id="modal-card" ref="cardModal" aria-modal="true" aria-labelledby="modal-card-label">

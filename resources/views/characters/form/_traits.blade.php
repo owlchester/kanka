@@ -8,7 +8,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             :label="__('characters.sections.appearance')">
             <div class="flex flex-col gap-2 character-appearance sortable-elements" data-handle=".sortable-handler">
                 @foreach ((isset($model) ? $model->characterTraits()->appearance()->orderBy('default_order', 'ASC')->get() : FormCopy::characterAppearance()) as $trait)
-                    <x-grid css="parent-delete-row">
+                    <x-grid class="parent-delete-row">
                         <div class="flex gap-1 items-center">
                             <div class="sortable-handler px-2 cursor-move">
                                 <x-icon class="fa-solid fa-grip-vertical" />
@@ -123,7 +123,7 @@ $role = \App\Facades\CampaignCache::adminRole();
 @section('modals')
     @parent
     <template id="template_appearance">
-        <x-grid css="parent-delete-row gap-1">
+        <x-grid class="parent-delete-row gap-1">
             <div class="flex gap-1 items-center">
                 @if(!isset($model))
                     <div class="sortable-handler px-2 cursor-move">

@@ -14,7 +14,6 @@ class Alert extends Component
     public function __construct(
         public string $type,
         public ?string $id = null,
-        public ?string $class = null,
         public bool $dismissible = false,
         public bool $hidden = false,
     ) {}

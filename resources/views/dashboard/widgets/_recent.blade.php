@@ -27,7 +27,7 @@ if (($widget->conf('singular'))) {
     $entityString = !empty($entityType) ? ($widget->conf('singular') ? $entityType : $moduleService->plural($entityType, 'entities.' . Str::plural($entityType))) : null;
 }
 ?>
-<x-box padding="0" css="widget-list {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
+<x-box padding="0" class="widget-list {{ $widget->customClass($campaign) }}" id="dashboard-widget-{{ $widget->id }}">
     <h4 class="text-lg mb-3 px-4 pt-4 flex gap-2">
         <span class="grow">
             <x-widgets.filteredLink :campaign="$campaign" :widget="$widget" :entityString="$entityString" />

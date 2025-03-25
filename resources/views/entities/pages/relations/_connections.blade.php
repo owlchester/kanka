@@ -6,7 +6,7 @@
 <h3 class="">
     {{ __('entities/relations.panels.related') }}
 </h3>
-<x-box css="box-entity-connections" id="entity-related" :padding="false">
+<x-box class="box-entity-connections" id="entity-related" :padding="false">
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>

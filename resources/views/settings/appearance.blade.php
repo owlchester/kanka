@@ -5,28 +5,26 @@
     'centered' => true,
 ])
 @php
-$boxClass = "rounded p-4 bg-box flex flex-col gap-2";
-$highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500';
+$boxClass = "rounded p-4 bg-box flex flex-col gap-2 hover:shadow-sm";
+$highlightClass = 'shadow-sm border-primary border-solid border-2';
 @endphp
 
 @section('content')
+    <x-hero>
+        <x-slot name="title">{{ __('settings.menu.appearance') }}</x-slot>
+        <x-slot name="subtitle">{{ __('settings/appearance.dismissible.main') }}</x-slot>
+    </x-hero>
     <x-grid type="1/1">
-        <h1 class="">{{ __('settings.menu.appearance') }}</h1>
-        <p class="text-lg">
-            {{ __('settings/appearance.dismissible.main') }}
-        </p>
-
         <x-form :action="['settings.appearance.update']" method="PATCH">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-8">
                 <div class="{{ $boxClass }} {{ $highlight === 'dark' ? $highlightClass : '' }}">
                     <div class="flex gap-2 justify-between">
-                        <h2 class="text-base">
+                        <h2 class="text-base flex items-center gap-2">
                             <x-icon class="fa-regular fa-moon-over-sun" />
                             {{ __('settings/appearance.fields.theme') }}
                         </h2>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#theme" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="question" />
-                            <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
+                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#theme" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
+                            <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                         </a>
                     </div>
                     <p class="text-sm grow">
@@ -45,13 +43,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
 
                 <div class="{{ $boxClass }} {{ $highlight === 'pagination' ? $highlightClass : '' }}">
                     <div class="flex gap-2 justify-between">
-                        <h2 class="text-base">
-                            <x-icon class="fa-solid fa-list" />
+                        <h2 class="text-base flex items-center gap-2">
+                            <x-icon class="fa-regular fa-list" />
                             {{ __('settings/appearance.fields.pagination') }}
                         </h2>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#results-per-page" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="question" />
-                            <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
+                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#results-per-page" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
+                            <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                         </a>
                     </div>
                     <p class="text-sm grow">
@@ -63,13 +60,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
 
                 <div class="{{ $boxClass }}">
                     <div class="flex gap-2 justify-between">
-                        <h2 class="text-base">
-                            <x-icon class="fa-solid fa-calendar" />
+                        <h2 class="text-base flex items-center gap-2">
+                            <x-icon class="fa-regular fa-calendar" />
                             {{ __('settings/appearance.fields.date-format') }}
                         </h2>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#date-formatting" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="question" />
-                            <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
+                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#date-formatting" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
+                            <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                         </a>
                     </div>
 
@@ -88,13 +84,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
 
                 <div class="{{ $boxClass }} {{ $highlight === 'campaign-switcher' ? $highlightClass : '' }}">
                     <div class="flex gap-2 justify-between">
-                        <h2 class="text-base">
-                            <x-icon class="fa-solid fa-arrow-down-a-z" />
+                        <h2 class="text-base flex items-center gap-2">
+                            <x-icon class="fa-regular fa-arrow-down-a-z" />
                             {{ __('settings/appearance.fields.campaign-order') }}
                         </h2>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#campaign-order" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="question" />
-                            <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
+                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#campaign-order" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
+                            <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                         </a>
                     </div>
 
@@ -115,13 +110,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                 @if ($textEditorSelect)
                     <div class="{{ $boxClass }}">
                         <div class="flex gap-2 justify-between">
-                            <h2 class="text-base ">
+                            <h2 class="text-base flex items-center gap-2">
                                 <x-icon class="pencil" />
                                 {{ __('settings/appearance.fields.editor') }}
                             </h2>
-                            <a href="https://docs.kanka.io/en/latest/account/appearance.html#text-editor" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
-                                <x-icon class="question" />
-                                <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
+                            <a href="https://docs.kanka.io/en/latest/account/appearance.html#text-editor" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
+                                <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                             </a>
                         </div>
                         <p class="text-sm grow">{{ __('settings/appearance.helpers.editor') }}</p>
@@ -134,13 +128,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
 
                 <div class="{{ $boxClass }} {{ $highlight === 'explore' ? $highlightClass : '' }}">
                     <div class="flex gap-2 justify-between">
-                        <h2 class="text-base">
+                        <h2 class="text-base flex items-center gap-2">
                             <x-icon class="fa-solid fa-grid" />
                             {{ __('settings/appearance.fields.entity-explore') }}
                         </h2>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#entity-explore" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="question" />
-                            <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
+                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#entity-explore" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
+                            <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                         </a>
                     </div>
                     <p class="text-sm grow">
@@ -155,13 +148,12 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
 
                 <div class="{{ $boxClass }}">
                     <div class="flex gap-2 justify-between">
-                        <h2 class="text-base">
-                            <x-icon class="fa-solid fa-at" />
+                        <h2 class="text-base flex items-center gap-2">
+                            <x-icon class="fa-regular fa-at" />
                             {{ __('settings/appearance.fields.mentions') }}
                         </h2>
-                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#mentions" target="_blank" class="" title="{{ __('settings/appearance.actions.learn-more') }}">
-                            <x-icon class="question" />
-                            <span class="sr-only">{{ __('settings/appearance.actions.learn-more') }}</span>
+                        <a href="https://docs.kanka.io/en/latest/account/appearance.html#mentions" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
+                            <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                         </a>
                     </div>
                     <p class="text-sm grow">
@@ -175,10 +167,14 @@ $highlightClass = 'shadow-xs border-accent border-solid border-2 border-blue-500
                     </div>
                 </div>
 
-                <x-buttons.confirm type="primary" full="true">
+            </div>
+
+            <div class="text-center py-4">
+                <x-buttons.confirm type="primary" >
                     <x-icon class="save" />
                     <span>{{ __('settings/appearance.actions.save') }}</span>
                 </x-buttons.confirm>
+            </div>
             @if (!empty($from))
                 <input type="hidden" name="from" value="{{ $from }}" />
             @endif

@@ -25,7 +25,6 @@ return [
         'theme'                     => 'Theme',
     ],
     'helpers'       => [
-        'new-password'  => 'Changing your password will log you out from all other devices.',
         'profile-name'  => 'Change the way your name appears on your :profile and the :marketplace. If left blank, your account name will be used instead.',
     ],
     'newsletter'    => [

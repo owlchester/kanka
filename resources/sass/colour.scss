@@ -137,6 +137,11 @@
     background: linear-gradient(transparent 0px, var(--dashboard-preview-gradient, hsl(var(--b1)/1)));
 }
 
+
+.border-error {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--er)/var(--tw-border-opacity));
+}
 .border-primary {
     --tw-border-opacity: 1;
     border-color: hsl(var(--p)/var(--tw-border-opacity));

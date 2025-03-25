@@ -1,4 +1,4 @@
-<x-box css="widget-welcome" id="dashboard-widget-{{ $widget->id }}">
+<x-box class="widget-welcome" id="dashboard-widget-{{ $widget->id }}">
     <h4 class="text-lg mb-3">
         {{ __('dashboards/widgets/welcome.title', ['kanka' => config('app.name')]) }}
     </h4>

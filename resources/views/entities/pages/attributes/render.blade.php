@@ -16,7 +16,7 @@ if (!empty($layout)) {
 ?>
 
 @if (!empty($template) && $entity->hasChild())
-    <x-box css="box-entity-attributes">
+    <x-box class="box-entity-attributes">
         @include($template->view(), ['model' => $model ?? $entity->child])
     </x-box>
 @elseif (!empty($marketplaceTemplate))

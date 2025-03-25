@@ -8,22 +8,20 @@
 ])
 
 @section('content')
+    <x-hero>
+        <x-slot name="title">{{ __('settings.apps.title') }}</x-slot>
+        <x-slot name="subtitle">{{ __('settings.apps.benefits') }}</x-slot>
+    </x-hero>
+
     <x-grid type="1/1">
-        <h1>
-            {{ __('settings.apps.title') }}
-        </h1>
-        <p class="text-lg">
-            {!! __('settings.apps.benefits') !!}
-        </p>
         @include('partials.errors')
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             <x-box>
                 <x-grid type="1/1">
                     <div class="flex gap-2 items-center ">
                         <div class="flex-0">
-                            <x-icon class="fa-brands fa-discord fa-3x text-indigo-400" />
+                            <x-icon class="fa-brands fa-discord fa-2x text-indigo-400" />
                         </div>
-                        <div class="grow text-lg font-extrabold truncate">
+                        <div class="grow text-xl truncate">
                             Discord
                         </div>
                         <div class="flex-0">
@@ -38,7 +36,7 @@
                                     </span>
                                 </x-buttons.confirm>
                             @else
-                                <a href="https://discord.com/api/oauth2/authorize?client_id={{ config('discord.client_id') }}&redirect_uri={{ url('/settings/discord-callback') }}&response_type=code&scope=identify+guilds+guilds.join" class="btn2 btn-primary btn-outline btn-sm">
+                                <a href="https://discord.com/api/oauth2/authorize?client_id={{ config('discord.client_id') }}&redirect_uri={{ url('/settings/discord-callback') }}&response_type=code&scope=identify+guilds+guilds.join" class="btn2 btn-primary btn-sm">
                                     {{ __('settings.apps.actions.connect') }}
                                 </a>
                             @endif
@@ -50,7 +48,6 @@
                     </p>
                 </x-grid>
             </x-box>
-        </div>
     </x-grid>
 @endsection
 

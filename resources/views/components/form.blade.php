@@ -6,7 +6,7 @@
 @if ($files) enctype="multipart/form-data" @endif
 @if ($unsaved) data-unload="1" @endif
 @if ($shortcut && $method !== 'DELETE') data-shortcut="1" @endif
-class="w-full {{ $class }}"
+{{ $attributes->merge(['class' => 'w-full flex flex-col gap-4']) }}
 @if (!empty($id)) id="{{ $id }}" @endif
 
 {!! $extra() !!}

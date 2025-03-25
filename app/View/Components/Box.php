@@ -16,7 +16,6 @@ class Box extends Component
         public ?string $url = null,
         public ?string $href = null,
         public array $extra = [],
-        public string $css = '',
         public bool $padding = true,
     ) {}
 
