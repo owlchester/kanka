@@ -40,7 +40,7 @@ class EntryObserver
     public function saved(Model $model)
     {
         // @phpstan-ignore-next-line
-        if (! $model->isDirty($model->entryFieldName()) && ! $model->isDirty($model->tooltipFieldName())) {
+        if ($model->isClean([$model->entryFieldName(), $model->tooltipFieldName()])) {
             return;
         }
         if (method_exists($model, 'mentions')) {
