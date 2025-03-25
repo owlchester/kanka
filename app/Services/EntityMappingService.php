@@ -197,8 +197,10 @@ class EntityMappingService
         }
 
         // @phpstan-ignore-next-line
-        $mentions = $this->extract($this->model->{$this->model->entryFieldName()});
-
+        $entryMentions = $this->extract($this->model->{$this->model->entryFieldName()});
+        // @phpstan-ignore-next-line
+        $tooltipMentions = $this->extract($this->model->{$this->model->tooltipFieldName()});
+        $mentions = array_merge($tooltipMentions, $entryMentions);
         foreach ($mentions as $data) {
             $type = $data['type'];
             $id = $data['id'];

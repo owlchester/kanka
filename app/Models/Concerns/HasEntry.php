@@ -24,6 +24,11 @@ trait HasEntry
         return $this->entryField ?? 'entry';
     }
 
+    public function tooltipFieldName(): string
+    {
+        return $this->tooltipField ?? 'tooltip';
+    }
+
     /**
      * Get the entry where mentions are parsed to html links
      */
