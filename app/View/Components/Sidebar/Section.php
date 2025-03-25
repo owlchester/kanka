@@ -13,8 +13,7 @@ class Section extends Component
      */
     public function __construct(
         public string $text
-    )
-    {
+    ) {
         //
     }
 

@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\Account\Billing\InformationController;
+use App\Http\Controllers\Account\DeleteController;
 use App\Http\Controllers\Account\EmailController;
 use App\Http\Controllers\Account\PasswordController;
 use App\Http\Controllers\Account\SocialController;
-use App\Http\Controllers\Account\DeleteController;
-use App\Http\Controllers\Account\Billing\InformationController;
 use App\Http\Controllers\Billing\HistoryController;
 use App\Http\Controllers\Billing\PaymentMethodController;
 use App\Http\Controllers\CampaignBoostController;
@@ -60,7 +60,6 @@ Route::patch('/account/destroy', [DeleteController::class, 'destroy'])->name('se
 
 Route::get('/account/social', [SocialController::class, 'index'])->name('account.social');
 Route::patch('/account/social', [SocialController::class, 'save'])->name('account.social-save');
-
 
 Route::get('/patreon', [PatreonController::class, 'index'])->name('settings.patreon');
 Route::delete('/patreon-unlink', [PatreonController::class, 'unlink'])->name('settings.patreon.unlink');

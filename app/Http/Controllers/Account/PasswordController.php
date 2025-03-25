@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsAccount;
-use App\Http\Requests\StoreSettingsAccountEmail;
 use App\Jobs\Users\NewPassword;
-use App\Models\UserLog;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,7 +27,7 @@ class PasswordController extends Controller
         }
 
         $data = [
-            'password' => Hash::make($request->post('password_new'))
+            'password' => Hash::make($request->post('password_new')),
         ];
         auth()->user()->update($data);
         NewPassword::dispatch(auth()->user());

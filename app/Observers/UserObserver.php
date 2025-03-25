@@ -10,7 +10,6 @@ use App\Jobs\Users\UpdateEmail;
 use App\Models\User;
 use App\Models\UserLog;
 use Exception;
-use Illuminate\Support\Facades\Hash;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class UserObserver

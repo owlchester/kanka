@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Account;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSettingsAccount;
-use App\Http\Requests\StoreSettingsAccountEmail;
-use App\Http\Requests\StoreSettingsAccountSocial;
-use App\Models\UserLog;
 use Illuminate\Support\Facades\Auth;
 
 class SocialController extends Controller
