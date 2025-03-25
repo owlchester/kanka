@@ -186,7 +186,7 @@ abstract class MiscModel extends Model
                 $actions[] = null;
             }
             $actions[] = [
-                'route' => $this->getLink('edit'),
+                'route' => route('entities.edit', [$campaign, $this->entity]),
                 'icon' => 'fa-solid fa-edit',
                 'label' => 'crud.edit',
             ];

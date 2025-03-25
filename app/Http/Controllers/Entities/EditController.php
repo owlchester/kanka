@@ -139,7 +139,7 @@ class EditController extends Controller
             } elseif ($request->has('submit-close')) {
                 $route = route('entities.index', [$campaign, $entity->entityType]);
             } elseif ($request->has('submit-copy')) {
-                $route = route('entities.index', [$campaign, $entity->entityType, 'copy' => $entity]);
+                $route = route('entities.create', [$campaign, $entity->entityType, 'copy' => $entity]);
 
                 return response()->redirectTo($route);
             }
