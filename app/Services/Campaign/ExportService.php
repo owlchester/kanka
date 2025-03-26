@@ -31,7 +31,7 @@ class ExportService
 
     protected string $file;
 
-    protected $archive;
+    protected \STS\ZipStream\Builder $archive;
 
     protected bool $assets = false;
 
@@ -168,9 +168,11 @@ class ExportService
         File::ensureDirectoryExists($saveFolder);
 
         // We want the full path for jobs running in the queue.
-        $this->file = $this->campaign->id . '_' . date('Ymd_His') . ($this->assets ? '_assets' : null) . '.zip';
+        $this->file =
+            Str::slug($this->campaign->name) . '_' .
+            date('Ymd_His') . '.zip';
         CampaignCache::campaign($this->campaign);
-        $this->path = $saveFolder . $this->file;
+        //$this->path = $saveFolder . $this->file;
         $this->archive = Zip::create($this->file);
 
         // Count the number of elements to export to get a rough idea of progress
@@ -240,7 +242,7 @@ class ExportService
             'entity',
             'entity.entityTags', 'entity.relationships',
             'entity.posts', 'entity.posts.postTags', 'entity.abilities', 'entity.abilities.ability',
-            'entity.events',
+            'entity.reminders',
             'entity.image',
             'entity.header',
             'entity.assets',
@@ -263,9 +265,8 @@ class ExportService
                 }
             } catch (Exception $e) {
                 Log::error('Campaign export', ['err' => $e->getMessage()]);
-                $saveFolder = storage_path($this->exportPath);
-                $this->archive->saveTo($saveFolder);
-                unlink($this->path);
+                //$saveFolder = storage_path($this->exportPath);
+                //$this->archive->saveTo($saveFolder);
                 throw new Exception(
                     'Missing campaign entity relation: ' . $entity . '-' . $class . '? '
                     . $e->getMessage()
@@ -281,7 +282,7 @@ class ExportService
         $entityWith = [
             'entityTags', 'relationships',
             'posts', 'posts.postTags', 'abilities', 'abilities.ability',
-            'events',
+            'reminders',
             'image',
             'header',
             'assets',
@@ -311,9 +312,8 @@ class ExportService
                 }
             } catch (Exception $e) {
                 Log::error('Campaign export', ['err' => $e->getMessage()]);
-                $saveFolder = storage_path($this->exportPath);
-                $this->archive->saveTo($saveFolder);
-                unlink($this->path);
+//                $saveFolder = storage_path($this->exportPath);
+//                $this->archive->saveTo($saveFolder);
                 throw new Exception(
                     'Missing campaign entity relation: ' . $entityType->singular . '? '
                     . $e->getMessage()
@@ -343,9 +343,8 @@ class ExportService
                 /** @var Image $image */
                 $this->processImage($image);
             } catch (Exception $e) {
-                $saveFolder = storage_path($this->exportPath);
-                $this->archive->saveTo($saveFolder);
-                unlink($this->path);
+//                $saveFolder = storage_path($this->exportPath);
+//                $this->archive->saveTo($saveFolder);
                 throw new Exception(
                     $e->getMessage()
                 );
@@ -461,31 +460,24 @@ class ExportService
     {
         // Save all the content.
         try {
-            $saveFolder = storage_path($this->exportPath);
-            Log::info('Campaign export', ['path' => $saveFolder, 'exportPath' => $this->exportPath]);
-            $this->archive->saveTo($saveFolder);
-            $this->filesize = (int) floor(filesize($this->path) / pow(1024, 2));
+            $path = 'exports/campaigns/' . $this->campaign->id . '/';
+            $this->exportPath =  $path . $this->file;
+            Log::info('Campaign export finished', ['exportPath' => $this->exportPath]);
+            $this->archive->saveToDisk('s3', $path);
+            Storage::disk('s3')->setVisibility($this->exportPath, 'public');
+            $this->filesize = (int) floor($this->archive->getFinalSize() / pow(1024, 2));
         } catch (Exception $e) {
             Log::error('Campaign export', ['action' => 'finish', 'err' => $e->getMessage()]);
             // The export might fail if the zip is too big.
             $this->files = 0;
             throw new Exception($e->getMessage());
         }
-        if ($this->files === 0) {
-            return $this;
-        }
-
-        // Move to ?
-        $this->exportPath = Storage::putFileAs('exports/campaigns/' . $this->campaign->id, $this->path, $this->file, 'public');
-        unlink($this->path);
 
         return $this;
     }
 
     /**
      * Track that the export had an issue
-     *
-     * @return $this
      */
     public function fail(): self
     {
