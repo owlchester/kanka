@@ -172,7 +172,7 @@ class ExportService
             Str::slug($this->campaign->name) . '_' .
             date('Ymd_His') . '.zip';
         CampaignCache::campaign($this->campaign);
-        //$this->path = $saveFolder . $this->file;
+        // $this->path = $saveFolder . $this->file;
         $this->archive = Zip::create($this->file);
 
         // Count the number of elements to export to get a rough idea of progress
@@ -265,8 +265,8 @@ class ExportService
                 }
             } catch (Exception $e) {
                 Log::error('Campaign export', ['err' => $e->getMessage()]);
-                //$saveFolder = storage_path($this->exportPath);
-                //$this->archive->saveTo($saveFolder);
+                // $saveFolder = storage_path($this->exportPath);
+                // $this->archive->saveTo($saveFolder);
                 throw new Exception(
                     'Missing campaign entity relation: ' . $entity . '-' . $class . '? '
                     . $e->getMessage()
@@ -312,8 +312,8 @@ class ExportService
                 }
             } catch (Exception $e) {
                 Log::error('Campaign export', ['err' => $e->getMessage()]);
-//                $saveFolder = storage_path($this->exportPath);
-//                $this->archive->saveTo($saveFolder);
+                //                $saveFolder = storage_path($this->exportPath);
+                //                $this->archive->saveTo($saveFolder);
                 throw new Exception(
                     'Missing campaign entity relation: ' . $entityType->singular . '? '
                     . $e->getMessage()
@@ -343,8 +343,8 @@ class ExportService
                 /** @var Image $image */
                 $this->processImage($image);
             } catch (Exception $e) {
-//                $saveFolder = storage_path($this->exportPath);
-//                $this->archive->saveTo($saveFolder);
+                //                $saveFolder = storage_path($this->exportPath);
+                //                $this->archive->saveTo($saveFolder);
                 throw new Exception(
                     $e->getMessage()
                 );
@@ -461,7 +461,7 @@ class ExportService
         // Save all the content.
         try {
             $path = 'exports/campaigns/' . $this->campaign->id . '/';
-            $this->exportPath =  $path . $this->file;
+            $this->exportPath = $path . $this->file;
             Log::info('Campaign export finished', ['exportPath' => $this->exportPath]);
             $this->archive->saveToDisk('s3', $path);
             Storage::disk('s3')->setVisibility($this->exportPath, 'public');
