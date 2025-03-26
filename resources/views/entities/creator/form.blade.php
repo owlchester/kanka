@@ -114,7 +114,7 @@
 
 @if (isset($origin))
     </article>
-    <footer class="bg-base-200 flex flex-wrap gap-3 justify-center items-center p-3">
+    <footer class="flex flex-wrap gap-3 justify-center items-center p-4 md:p-6">
         <button class="btn2 btn-primary quick-creator-submit" data-entity-type="{{ $entityType->code }}">
             <span>
                 <x-icon class="plus" /> {{ __('entities.creator.actions.create', ['type' => $entityType->name()]) }}

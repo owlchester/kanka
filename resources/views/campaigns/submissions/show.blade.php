@@ -2,7 +2,7 @@
 <x-dialog.header>
 
 </x-dialog.header>
-<article>
+<x-dialog.article>
     <x-form :action="['campaign_submissions.update', $campaign, $application->id]" method="PATCH" class="entity-form w-full max-w-lg text-left" direct>
 
         <div class="flex flex-col gap-4">
@@ -48,5 +48,5 @@
         </div>
 
     </x-form>
-</article>
+</x-dialog.article>
 

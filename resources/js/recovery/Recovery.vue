@@ -58,8 +58,8 @@
     </div>
 
     <dialog ref="premiumDialog" class="dialog rounded-2xl text-center" v-if="initiated">
-        <header class="bg-base-200 sm:rounded-t">
-            <h4 v-html="trans('premium_title')"></h4>
+        <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+            <h4 v-html="trans('premium_title')" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeModal(premiumDialog)" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>

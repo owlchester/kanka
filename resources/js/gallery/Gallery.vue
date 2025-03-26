@@ -140,8 +140,8 @@
     </div>
 
     <dialog ref="newDialog" class="dialog rounded-2xl text-center" v-if="initiated">
-        <header class="bg-base-200 sm:rounded-t">
-            <h4 v-html="trans('new_folder')"></h4>
+        <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+            <h4 v-html="trans('new_folder')" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeModal(newDialog)" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>
@@ -168,8 +168,8 @@
     </dialog>
 
     <dialog ref="updateDialog" class="dialog rounded-2xl text-center" v-if="initiated">
-        <header class="bg-base-200 sm:rounded-t">
-            <h4 v-html="trans('update')"></h4>
+        <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+            <h4 v-html="trans('update')" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeModal(updateDialog)" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>

@@ -3,7 +3,7 @@
         {!! $entity->name !!}
         @if (isset($post)) - {!! $post->name !!} @endif
     </x-dialog.header>
-    <article>
+    <x-dialog.article>
         <div class="modal-loading text-center text-xl p-5 hidden">
             <x-icon class="load" />
         </div>
@@ -93,6 +93,6 @@
             {{--                    </tbody>--}}
             {{--                </table>--}}
         </div>
-    </article>
+    </x-dialog.article>
 
 </form>

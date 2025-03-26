@@ -34,8 +34,8 @@
             </a>
         </div>
         <dialog class="dialog rounded-2xl text-center" id="modal-card" ref="cardModal" aria-modal="true" aria-labelledby="modal-card-label">
-            <header>
-                <h4 id="modal-card-label">
+            <header class="flex gap-6 items-center p-4 md:p-6 justify-between  w-full">
+                <h4 id="modal-card-label" class="text-lg font-normal">
                     {{ translate('new_card') }}
                 </h4>
                 <button type="button" class="rounded-full" @click="closeModal('cardModal')" title="Close">
@@ -62,7 +62,7 @@
                     {{ translate('helper') }}
                 </p>
 
-                <div class="grid grid-cols-2 gap-2">
+                <div class="flex justify-between items-center gap-2 w-full">
                     <button type="button" class="btn2 btn-ghost" @click="closeModal('cardModal')">Close</button>
 
                     <button type="button" v-bind:class="saveBtnClass()" @click="submitPaymentMethod" ref="formBtn">

@@ -4,11 +4,11 @@
     @endif
     {!! $title !!}
 </x-dialog.header>
-<article class="max-w-2xl {{ $articleClass ?? null }}">
+<article class="max-w-2xl py-4 px-4 md:px-6 {{ $articleClass ?? null }}">
     @include('partials.errors')
     @include($content)
 </article>
-<footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3 md:rounded-b">
+<footer class="flex flex-wrap gap-2 justify-between items-start p-4 md:p-6">
     @if (isset($footer))
         @include($footer)
     @else

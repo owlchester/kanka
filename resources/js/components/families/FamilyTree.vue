@@ -75,13 +75,13 @@
     </div>
 
   <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="family-tree-modal" aria-modal="true" v-if="!isLoading">
-    <header class="bg-base-200 sm:rounded-t">
-      <h4 v-if="isAddingChild">{{ this.texts.modals.entity.child.title }}</h4>
-      <h4 v-else-if="isAddingCharacter">{{ this.texts.modals.entity.add.title }}</h4>
-      <h4 v-else-if="isEditingEntity">{{ this.texts.modals.entity.edit.title }}</h4>
-      <h4 v-else-if="isAddingRelation">{{ this.texts.modals.relation.add.title }}</h4>
-      <h4 v-else-if="isEditingRelation">{{ this.texts.modals.relation.edit.title }}</h4>
-      <h4 v-else-if="isAddingNewFounder">{{ this.texts.modals.entity.founder.title }}</h4>
+    <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+      <h4 v-if="isAddingChild" class="text-lg font-normal">{{ this.texts.modals.entity.child.title }}</h4>
+      <h4 v-else-if="isAddingCharacter" class="text-lg font-normal">{{ this.texts.modals.entity.add.title }}</h4>
+      <h4 v-else-if="isEditingEntity" class="text-lg font-normal">{{ this.texts.modals.entity.edit.title }}</h4>
+      <h4 v-else-if="isAddingRelation" class="text-lg font-normal">{{ this.texts.modals.relation.add.title }}</h4>
+      <h4 v-else-if="isEditingRelation" class="text-lg font-normal">{{ this.texts.modals.relation.edit.title }}</h4>
+      <h4 v-else-if="isAddingNewFounder" class="text-lg font-normal">{{ this.texts.modals.entity.founder.title }}</h4>
 
       <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="closeModal()">
         <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>

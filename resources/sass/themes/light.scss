@@ -65,7 +65,7 @@
         --sic: 0 0% 90%;
 
         // Border radius for buttons
-        --rounded-btn: .25rem;
+        --rounded-btn: .5rem;
         // Border radius for badges (tags)
         --rounded-badge: .25rem;
         // Animation duration when a button is focused
@@ -74,9 +74,9 @@
         --btn-focus-scale: 1;
 
         // Button border width
-        //--border-btn: 1px;
+        --border-btn: 1px;
         // Button text transform
-        --btn-text-case: uppercase;
+        --btn-text-case: inherit;
 
         // Border radius for tabs
         --tab-radius: .25rem;

@@ -74,8 +74,8 @@
 
         <!-- Create Client Modal -->
         <dialog class="dialog rounded-2xl text-center" id="modal-create-client" ref="createModal" aria-modal="true" aria-labelledby="modal-create-client-label">
-            <header>
-                <h4 id="modal-create-client-label">
+            <header class="flex gap-6 items-center p-4 md:p-6 justify-between w-full">
+                <h4 id="modal-create-client-label" class="text-lg font-normal">
                     Create Client
                 </h4>
                 <button type="button" class="rounded-full" @click="closeModal('createModal')" title="Close">
@@ -125,7 +125,7 @@
 
                 </form>
 
-                <div class="grid grid-cols-2 gap-2 w-full">
+                <div class="flex justify-between items-center gap-2 w-full">
                     <button type="button" class="btn2 btn-ghost" @click="closeModal('createModal')">Close</button>
 
                     <button type="button" class="btn2 btn-primary" @click="store">
@@ -137,8 +137,8 @@
 
         <!-- Edit Client Modal -->
         <dialog class="dialog rounded-2xl text-center" id="modal-edit-client" ref="editModal" aria-modal="true" aria-labelledby="modal-edit-client-label">
-            <header>
-                <h4 id="modal-edit-client-label">
+            <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+                <h4 id="modal-edit-client-label" class="text-lg font-normal">
                     Create Client
                 </h4>
                 <button type="button" class="rounded-full" @click="closeModal('editModal')" title="Close">
@@ -189,7 +189,7 @@
                     </div>
                 </form>
 
-                <div class="grid grid-cols-2 gap-2 w-full">
+                <div class="flex justify-between items-center gap-2 w-full">
                     <button type="button" class="btn2 btn-ghost" @click="closeModal('editModal')">Close</button>
 
                     <button type="button" class="btn2 btn-primary" @click="update">

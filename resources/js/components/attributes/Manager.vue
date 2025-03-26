@@ -89,8 +89,8 @@
     </div>
 
     <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="templates-dialog" aria-modal="true" v-if="!loading">
-        <header class="bg-base-200 sm:rounded-t">
-            <h4 v-html="trans('templates.title')"></h4>
+        <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+            <h4 v-html="trans('templates.title')" class="text-lg font-normal"></h4>
 
             <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="closeModal()">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>

@@ -1,7 +1,7 @@
 <x-dialog.header>
     {{ __('entities/files.max.title') }}
 </x-dialog.header>
-<article>
+<x-dialog.article>
     @if ($campaign->superboosted())
         <p>{{ __('entities/files.call-to-action.error') }}</p>
     @else
@@ -9,4 +9,4 @@
         <p>{{ __('entities/files.call-to-action.error') }}</p>
     </x-cta>
     @endif
-</article>
+</x-dialog.article>
