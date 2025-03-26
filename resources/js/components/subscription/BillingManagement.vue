@@ -29,7 +29,7 @@
             <p class="help-block text-neutral-content grow">
                 {{ translate('add_one') }}
             </p>
-            <a href="#" v-on:click.close="toggleShowNewPaymentMethod" class="btn2 btn-sm">
+            <a href="#" v-on:click.close="toggleShowNewPaymentMethod" class="btn2 btn-outline">
                 <i class="fa-regular fa-credit-card" aria-hidden="true"></i> {{ translate('actions.add_new') }}
             </a>
         </div>

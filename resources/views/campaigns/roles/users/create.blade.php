@@ -12,11 +12,10 @@
 
     <x-form :action="['campaign_roles.campaign_role_users.store', $campaign, 'campaign_role' => $role]">
 
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
         'title' => __('campaigns.roles.users.actions.add'),
         'content' => 'campaigns.roles.users._form',
         'submit' => __('campaigns.roles.users.actions.add'),
-        'dialog' => true,
     ])
     <input type="hidden" name="campaign_role_id" value="{{ $role->id }}"/>
     </x-form>

@@ -1,9 +1,8 @@
 
 <x-form :action="['campaign-visibility.save', $campaign]">
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
         'title' => __('campaigns/public.title'),
         'content' => 'campaigns.forms.modals._public-form',
-        'dialog' => true,
         'save' => __('crud.actions.apply')
     ])
     @if (isset($from) && $from === 'overview')

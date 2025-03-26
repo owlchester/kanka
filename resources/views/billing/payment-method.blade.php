@@ -78,7 +78,7 @@
 
         <div class="flex flex-col gap-4">
             <div class="flex gap-2 justify-between">
-                @if (\Illuminate\Support\Arr::exists($user->profile, 'billing'))
+                @if (\Illuminate\Support\Arr::exists($user->profile ?? [], 'billing'))
                     <x-helper>
                         {!! nl2br($user->profile['billing']) !!}
                     </x-helper>
@@ -86,7 +86,7 @@
                     <x-helper>{{ __('billing/information.helper') }}</x-helper>
                 @endif
                 <div class="">
-                    <button class="btn2" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('account.billing.info') }}">
+                    <button class="btn2 btn-outline" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('account.billing.info') }}">
                         {{ __('billing/information.actions.update') }}
                     </button>
                 </div>

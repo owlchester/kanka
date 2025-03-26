@@ -7,11 +7,9 @@
 @section('content')
 
     <x-form :action="['campaign_dashboards.store', $campaign]">
-    @include('partials.forms.form', [
-        'dialog' => true,
+    @include('partials.forms._dialog', [
         'title' => __('dashboard.dashboards.create.title'),
         'content' => 'dashboard.dashboards._form',
-        'dialog' => true,
     ])
     </x-form>
 @endsection

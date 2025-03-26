@@ -105,7 +105,7 @@
                 </optgroup>
             </select>
         </article>
-        <footer class="bg-base-200 flex flex-wrap gap-3 justify-end items-center p-3 md:rounded-b">
+        <footer class="flex flex-wrap gap-3 justify-end items-center p-4 md:px-6">
             <menu class="flex flex-wrap gap-3 ps-0">
                 <div class="submit-group">
                     <a role="button" class="btn2 btn-primary" @click="loadTemplate()" v-html="trans('templates.load')">

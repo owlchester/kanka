@@ -47,6 +47,9 @@ class PresetController extends Controller
     public function store(StorePreset $request, Campaign $campaign, PresetType $presetType)
     {
         $this->authorize('mapPresets', $campaign);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->only('name', 'config', 'visibility_id');
         $data['type_id'] = $presetType->id;
@@ -81,6 +84,9 @@ class PresetController extends Controller
     public function update(StorePreset $request, Campaign $campaign, PresetType $presetType, Preset $preset)
     {
         $this->authorize('mapPresets', $campaign);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
 
         $data = $request->only('name', 'config', 'visibility_id');
         $preset->update($data);
@@ -99,6 +105,9 @@ class PresetController extends Controller
     public function destroy(Request $request, Campaign $campaign, PresetType $presetType, Preset $preset)
     {
         $this->authorize('mapPresets', $campaign);
+        if ($request->ajax()) {
+            return response()->json(['success' => true]);
+        }
         $preset->delete();
 
         [$route, $params] = $this->parseFrom($request);

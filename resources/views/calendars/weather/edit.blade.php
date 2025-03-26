@@ -13,11 +13,10 @@
 @section('content')
     <x-form method="PATCH" :action="['calendars.calendar_weather.update', $campaign, $weather->calendar->id, $weather->id]">
 
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
         'title' => __('calendars/weather.edit.title'),
         'content' => 'calendars.weather._form',
         'deleteID' => '#delete-weather-' . $weather->id,
-        'dialog' => true,
     ])
 
     <input type="hidden" name="year" value="{{ $weather->year }}" />

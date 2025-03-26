@@ -10,7 +10,7 @@
     <x-dialog.header>
         <div class="sm:w-80 text-left">{{ __('entities.creator.modes.default') }}</div>
     </x-dialog.header>
-    <article>
+    <article class="p-4 md:px-6">
 @endif
 
 <div class="entity-creator-body-{{ $entityType->code ?? 'post' }} flex flex-col gap-5 w-full">

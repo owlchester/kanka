@@ -12,10 +12,9 @@
 
 @section('content')
     <x-form :action="['entities.relations.store', $campaign, $entity->id]">
-        @include('partials.forms.form', [
+        @include('partials.forms._dialog', [
                 'title' => __('entities/relations.create.title', ['name' => $entity->name]),
                 'content' => 'entities.pages.relations._form',
-                'dialog' => true,
             ])
 
         <input type="hidden" name="entity_id" value="{{ $entity->id }}" />

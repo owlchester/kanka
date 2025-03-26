@@ -6,7 +6,7 @@
     {{ __('settings.subscription.cancel.grace.title') }}
 </x-dialog.header>
 
-<article class="text-center max-w-xl container">
+<article class="text-center max-w-xl container p-4 md:px-6">
 
     <x-helper>
         <p class="text-left">

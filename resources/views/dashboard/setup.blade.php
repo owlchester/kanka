@@ -9,8 +9,8 @@
 
 @php
 use App\Enums\Widget;
-$widgetClass = 'widget rounded h-28 shadow-xs hover:shadow-md cursor-pointer bg-box' ;
-$overlayClass = 'rounded flex gap-2 flex-col p-2 items-center h-full';
+$widgetClass = 'widget rounded-xl h-28 shadow-xs hover:shadow cursor-pointer bg-box' ;
+$overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
 @endphp
 
 @section('content')
@@ -133,7 +133,7 @@ $overlayClass = 'rounded flex gap-2 flex-col p-2 items-center h-full';
                     @includeWhen($widget->visible(), '.dashboard._widget')
                 @endforeach
 
-                <div class="col-span-4 widget rounded h-28 hover:border-primary text-primary transition-all duration-150 cursor-pointer border-dashed border-2 py-6" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}">
+                <div class="col-span-4 widget rounded-xl h-28 hover:border-primary text-primary transition-all duration-150 cursor-pointer border-dashed border-2 py-6" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_dashboard_widgets.index', [$campaign, 'dashboard' => $dashboard]) }}">
                     <div class="text-lg flex gap-2 items-center justify-center p-2 align-middle h-full">
                         <x-icon class="plus" />
                         <span class="uppercase">{{ __('crud.add') }}</span>

@@ -12,10 +12,9 @@
 @section('content')
     <x-form :action="['calendars.calendar_weather.store', $campaign, $calendar->id]">
 
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
         'title' => __('calendars/weather.create.title', ['name' => $calendar->name]),
         'content' => 'calendars.weather._form',
-        'dialog' => true,
     ])
 
     <input type="hidden" name="year" value="{{ $year }}" />

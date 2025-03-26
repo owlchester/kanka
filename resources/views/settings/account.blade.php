@@ -21,7 +21,7 @@
                     {{ auth()->user()->email }}
                 </div>
                 <div class="flex-none">
-                    <button class="btn2" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('account.email') }}">
+                    <button class="btn2 btn-outline" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('account.email') }}">
                         {{ __('account/email.actions.update') }}
                     </button>
                 </div>
@@ -36,7 +36,7 @@
                     *********
                 </div>
                 <div class="flex-none">
-                    <button class="btn2" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('account.password') }}">
+                    <button class="btn2 btn-outline" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('account.password') }}">
                         {{ __('account/password.actions.update') }}
                     </button>
                 </div>
@@ -45,7 +45,7 @@
                         {!! __('account/social.info', ['provider' => '<strong>' . ucfirst($user->provider ?? 'debug') . '</strong>']) !!}
                     </div>
                     <div class="flex-none">
-                        <button class="btn2" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('account.social') }}">
+                        <button class="btn2 btn-outline" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('account.social') }}">
                             {{ __('settings.account.actions.social') }}
                         </button>
                     </div>

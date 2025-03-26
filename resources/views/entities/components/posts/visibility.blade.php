@@ -8,10 +8,9 @@
 
 @section('content')
     <x-form :action="['posts.update.visibility', $campaign, $entity, $post]" class="post-visibility" direct>
-        @include('partials.forms.form', [
+        @include('partials.forms._dialog', [
             'title' => __('visibilities.title'),
             'content' => 'entities.components.posts._form',
-            'dialog' => true,
             'model' => $post
         ])
     </x-form>

@@ -1,7 +1,7 @@
 <template>
     <div v-if="stacked()" class="stack inline-grid items-center align-items-end w-[47%] xs:w-[25%] sm:w-48" v-bind:data-stack="entity.children">
         <div
-            class="entity overflow-hidden rounded shadow-sm hover:shadow-md aspect-square w-full flex flex-col bg-box"
+            class="entity overflow-hidden rounded shadow-xs hover:shadow aspect-square w-full flex flex-col bg-box"
             v-bind="dataAttributes()">
             <a
                 :href="entity.urls.children"
@@ -30,7 +30,7 @@
         </div>
         <div
             v-for="s in entity.children"
-            class="entity entity-stack bg-base-300 w-full overflow-hidden rounded aspect-square flex flex-col shadow-sm" title="{{ __('datagrids.tooltips.nested') }}" v-bind:data-stack="s">
+            class="entity entity-stack bg-base-300 w-full overflow-hidden rounded aspect-square flex flex-col shadow-xs" title="{{ __('datagrids.tooltips.nested') }}" v-bind:data-stack="s">
             <div class="block grow"></div>
             <div class="block h-12 p-4 bg-box"></div>
         </div>
@@ -76,7 +76,7 @@ const props = defineProps<{
 }>()
 
 const entityClass = () => {
-    let css = 'entity overflow-hidden rounded shadow-sm hover:shadow-md w-[47%] xs:w-[25%] sm:w-48 aspect-square flex flex-col bg-box';
+    let css = 'entity overflow-hidden rounded shadow-xs hover:shadow w-[47%] xs:w-[25%] sm:w-48 aspect-square flex flex-col bg-box';
 
     if (props.isParent) {
         css += 'shadow-lg stacking-parent font-bold'

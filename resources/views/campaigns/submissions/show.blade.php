@@ -36,12 +36,14 @@
                 <x-forms.select name="role_id" :options="$campaign->roles()->where('is_public', false)->orderBy('is_admin')->pluck('name', 'id')" class="w-full" />
             </x-forms.field>
 
-            <div class="flex items-center gap-5 mb-5">
-                <button type="submit" class="btn2 btn-default" name="action" value="reject">
+            <div class="flex items-center justify-between gap-4 mb-5">
+                <button type="submit" class="btn2 btn-error btn-outline" name="action" value="reject">
+                    <x-icon class="fa-regular fa-times" />
                     {{ __('campaigns/submissions.actions.reject') }}
                 </button>
 
                 <button type="submit" class="btn2 btn-primary" name="action" value="accept">
+                    <x-icon class="check" />
                     {{ __('campaigns/submissions.actions.accept') }}
                 </button>
             </div>

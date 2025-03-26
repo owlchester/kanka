@@ -46,7 +46,7 @@ const click = () => {
 }
 
 const modelClass = () => {
-    let css = 'rounded shadow bg-base-100 flex flex-col gap-2 md:gap-4 p-4 hover:shadow-lg'
+    let css = 'rounded-xl shadow-xs bg-base-100 flex flex-col gap-2 md:gap-4 p-4 hover:shadow'
 
     if (!props.model.url) {
         css = css + ' cursor-pointer'

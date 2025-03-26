@@ -6,10 +6,9 @@
 ?>
 
 <x-form method="DELETE" :action="['campaign_boosts.destroy', $boost->id]">
-@include('partials.forms.form', [
+@include('partials.forms._dialog', [
     'title' => __('settings/premium.remove.title'),
     'content' => 'settings.premium.remove._form',
     'actions' => 'settings.premium.remove._actions',
-    'dialog' => true,
 ])
 </x-form>

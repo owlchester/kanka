@@ -6,7 +6,7 @@
     {{ __('settings.subscription.cancel.title') }}
 </x-dialog.header>
 
-<article class="text-center max-w-xl container">
+<article class="text-center max-w-xl container p-4 md:px-6">
 
     <x-form :action="['settings.subscription.cancel']" id="cancellation-confirm" class="subscription-form text-left">
         <x-grid type="1/1">

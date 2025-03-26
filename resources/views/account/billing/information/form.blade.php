@@ -2,7 +2,6 @@
     @include('partials.forms._dialog', [
         'title' => __('billing/information.title'),
         'content' => 'account.billing.information._form',
-        'dialog' => true,
         'submit' => __('settings.billing.save')
     ])
 </x-form>

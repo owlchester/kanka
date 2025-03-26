@@ -23,10 +23,9 @@
 $permissions = $permissionService->type($entity->type_id)->entityPermissions($entity);
 @endphp
     <x-form :action="['entities.permissions-process', $campaign, $entity->id]" direct>
-        @include('partials.forms.form', [
+        @include('partials.forms._dialog', [
             'title' => __('crud.permissions.title', ['name' => $entity->name]),
             'content' => 'cruds.permissions.permissions_table',
-            'dialog' => true,
             'articleClass' => 'max-w-3xl',
             'showPermissionActions' => true
         ])

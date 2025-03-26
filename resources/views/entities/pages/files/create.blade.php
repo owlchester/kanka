@@ -11,10 +11,9 @@
 
 @section('content')
     <x-form :action="['entities.entity_assets.store', $campaign, $entity]" files>
-        @include('partials.forms.form', [
+        @include('partials.forms._dialog', [
             'title' => __('entities/files.create.title', ['entity' => $entity->name]),
             'content' => 'entities.pages.files._form',
-            'dialog' => true,
         ])
         <input type="hidden" name="type_id" value="{{ \App\Models\EntityAsset::TYPE_FILE }}" />
     </x-form>

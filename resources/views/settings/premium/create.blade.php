@@ -5,11 +5,10 @@
  */
 ?>
 <x-form :action="['campaign_boosts.store']">
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
         'title' => __('settings/premium.actions.unlock'),
         'content' => 'settings.premium.create._form',
         'actions' => 'settings.premium.create._actions',
-        'dialog' => true,
     ])
 
     <input type="hidden" name="campaign_id" value="{{ $campaign->id }}" />

@@ -19,7 +19,7 @@
         </div>
         <div v-if="uploading" class="flex gap-2 flex-col w-full">
             <div class="progress h-1 w-full">
-                <div class="h-1 bg-accent shadow-sm" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" :style="{'width': progressPercentage()}">
+                <div class="h-1 bg-accent shadow-xs" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" :style="{'width': progressPercentage()}">
                     <span class="sr-only"></span>
                 </div>
             </div>
@@ -48,13 +48,13 @@
                 <span class="sr-only">Close</span>
             </button>
         </header>
-        <article class="max-w-4xl flex flex-col gap-2 text-left">
+        <article class="max-w-4xl flex flex-col gap-2 text-left p-4 md:px-6">
             <div class="flex flex-col gap-1 w-full">
                 <p v-html="storageFull"></p>
                 <p v-html="trans.cta_helper" v-if="!hasPremium"></p>
             </div>
         </article>
-        <footer class="bg-base-200 p-2" v-if="!hasPremium">
+        <footer class="p-4 md:px-6" v-if="!hasPremium">
             <menu class="">
                 <a v-bind:href="props.cta" class="btn2 btn-primary">
                     <i class="fa-solid fa-gem" aria-hidden="true" />

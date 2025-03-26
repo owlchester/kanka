@@ -7,7 +7,7 @@
 @section('content')
 
     <form method="POST" action="{{ route('presets.store', [$campaign, $presetType]) }}">
-        @include('partials.forms.form', [
+        @include('partials.forms._panel', [
            'title' => __('presets.create.title'),
            'content' => 'presets.forms._' . $presetType->code,
         ])

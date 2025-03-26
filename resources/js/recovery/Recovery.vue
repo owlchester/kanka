@@ -65,12 +65,12 @@
                 <span class="sr-only">Close</span>
             </button>
         </header>
-        <article class="max-w-4xl flex flex-col gap-2 text-left">
+        <article class="max-w-4xl flex flex-col gap-2 text-left p-4 md:px-6">
             <div class="flex flex-col gap-1 w-full">
                 <label v-html="trans('premium')"></label>
             </div>
         </article>
-        <footer class="bg-base-200 p-2">
+        <footer class="p-4 md:px-6">
             <menu class="">
                 <a :href="upgradeLink" v-html="trans('upgrade')" class="btn2 btn-default"></a>
             </menu>

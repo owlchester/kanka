@@ -3,16 +3,16 @@
     <span class="sr-only" id="dialog-label-primary-dialog">{{ __('Quick creator dialog') }}</span>
 </x-dialog.header>
 @endif
-<article id="qq-modal-loading" class="!hidden">
+<article id="qq-modal-loading" class="!hidden p-4 md:px-6">
     <div class="text-center text-4xl">
         <x-icon class="fa-solid fa-spinner fa-spin" />
         <span class="sr-only">Loading...</span>
     </div>
 </article>
-<article id="qq-modal-form" class="!hidden">
+<article id="qq-modal-form" class="!hidden p-4 md:px-6">
 </article>
 <div class="container">
-    <article id="qq-modal-selection">
+    <article id="qq-modal-selection p-4 md:px-6">
         <div class="quick-creator-body flex flex-col gap-5">
             @includeWhen(isset($new), 'entities.creator._created', ['success' => $new ?? null, 'dismissable' => false])
 

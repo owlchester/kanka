@@ -10,11 +10,10 @@
 
 @section('content')
     <x-form :action="['tags.transfer-process', $campaign, $tag->id]">
-        @include('partials.forms.form', [
+        @include('partials.forms._dialog', [
             'title' => __('tags.transfer.transfer'),
             'content' => 'tags.transfer._form',
             'submit' =>  __('tags.transfer.transfer'),
-            'dialog' => true,
         ])
     </x-form>
 @endsection

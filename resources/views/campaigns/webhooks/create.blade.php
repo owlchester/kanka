@@ -11,11 +11,10 @@
 
 @section('content')
     <x-form :action="['webhooks.store', $campaign]">
-        @include('partials.forms.form', [
+        @include('partials.forms._dialog', [
             'title' => __('campaigns/webhooks.create.title'),
             'content' => 'campaigns/webhooks._form',
             'save' => __('campaigns/webhooks.actions.add'),
-            'dialog' => true,
         ])
     </x-form>
 @endsection

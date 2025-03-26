@@ -12,11 +12,10 @@
 @section('content')
     <x-form :action="['campaign_roles.store', $campaign]">
 
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
             'title' => __('campaigns.roles.create.title'),
             'content' => 'campaigns.roles._form',
             'save' => __('campaigns.roles.actions.add'),
-            'dialog' => true,
             'model' => null,
         ])
 

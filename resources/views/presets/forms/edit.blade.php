@@ -7,7 +7,7 @@
 @section('content')
 
     <x-form :action="['preset_types.presets.update', $campaign, $presetType, $preset]" method="PATCH">
-        @include('partials.forms.form', [
+        @include('partials.forms._panel', [
             'title' => __('presets.edit.title', ['name' => $preset->name]),
             'content' => 'presets.forms._' . $presetType->code,
             'deleteID' => '#delete-form-preset-' . $preset->id,
