@@ -19,7 +19,7 @@
 
         <p class="">
             {!! __('subscription.benefits.main', [
-                'more' => '<a href="https://kanka.io/pricingp" target="_blank">' . __('footer.public-campaigns') . '</a>',
+                'more' => '<a href="https://kanka.io/pricing" target="_blank">' . __('subscription.benefits.more') . '</a>',
                 'boosters' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaigns') . '</a>',
                 'stripe' => '<a href="https://stripe.com" target="_blank">Stripe</a>'
             ]) !!}
@@ -44,15 +44,9 @@
         @endif
         @include('settings.subscription._recap')
 
-        <div class="flex gap-2">
-            <h2 class="grow m-0">
-                {{ __('settings.subscription.tiers') }}
-            </h2>
-            <x-buttons.confirm type="ghost" target="change-information" size="sm">
-                <x-icon class="question" />
-                <span>{{ __('settings.subscription.upgrade_downgrade.button') }}</span>
-            </x-buttons.confirm>
-        </div>
+        <h2 class="m-0">
+            {{ __('settings.subscription.tiers') }}
+        </h2>
         @if (!$isPayPal && !$hasManual)
             <div class="text-center text-vertical">
                 <span>{{ __('tiers.periods.monthly') }}</span>
@@ -130,41 +124,13 @@
             @endforeach
         </div>
 
-        <x-helper>
-            {!! __('settings.subscription.trial_period', [
-                'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>'
-            ]) !!}
-        </x-helper>
+        @include('settings.subscription.faq')
     </x-grid>
     <input type="hidden" id="stripe-token" value="{{ config('services.stripe.key') }}" />
 @endsection
 
 @section('modals')
     @parent
-
-    <x-dialog id="change-information" :title="__('settings.subscription.upgrade_downgrade.button')">
-
-        <h4>{{ __('settings.subscription.upgrade_downgrade.upgrade.title') }}</h4>
-        <ul class="">
-            @foreach(__('settings.subscription.upgrade_downgrade.upgrade.bullets') as $key => $text)
-                <li>{{ $text }}</li>
-            @endforeach
-        </ul>
-
-        <h4>{{ __('settings.subscription.upgrade_downgrade.downgrade.title') }}</h4>
-        <ul class="">
-            @foreach(__('settings.subscription.upgrade_downgrade.downgrade.bullets') as $key => $text)
-                <li>{{ $text }}</li>
-            @endforeach
-        </ul>
-
-        <h4>{{ __('settings.subscription.upgrade_downgrade.cancel.title') }}</h4>
-        <ul>
-            <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.kobold') }}</li>
-            <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.bonuses') }}</li>
-            <li>{{ __('settings.subscription.upgrade_downgrade.cancel.bullets.premium') }}</li>
-        </ul>
-    </x-dialog>
 
     <x-dialog id="subscribe-confirm" :loading="true" ></x-dialog>
 @endsection
