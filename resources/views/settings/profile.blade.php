@@ -9,7 +9,7 @@
 @section('content')
     @include('partials.errors')
 
-    <x-box class="mb-12">
+    <x-box class="mb-12 rounded-2xl">
         <x-slot name="title">
             {{ __('settings.profile.title') }}
         </x-slot>
@@ -72,7 +72,7 @@
     </x-box>
 
         @if (!app()->isProduction())
-            <x-box class="border-error border">
+            <x-box class="border-error border rounded-2xl">
                 <x-slot name="title">
                     Reset Tutorials
                 </x-slot>

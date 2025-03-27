@@ -1,5 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => trans('entities/abilities.create.title', ['name' => $entity->name]),
+    'title' => __('entities/abilities.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::entity($entity)->list(),

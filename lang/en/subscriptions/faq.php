@@ -4,7 +4,7 @@ return  [
     'title' => 'Frequently Asked Questions',
     'cost' => [
         'question' => 'How much does a subscription cost?',
-        'answer' => 'Kanka offers three subscription tiers named after D&D monsters: Owlbear, Wyvern, and Elemental. Pricing varies based on your preferred currency (USD, EUR, or BRL). You\'ll enjoy a 20% discount when choosing an annual subscription instead of monthly billing.'
+        'answer' => 'Kanka offers three subscription tiers named after D&D monsters: Owlbear, Wyvern, and Elemental. Pricing varies based on your preferred currency (USD, EUR, or BRL). You\'ll enjoy two months for free when choosing an annual subscription instead of monthly billing.'
     ],
     'methods' => [
         'question' => 'What payment methods are accepted?',
@@ -38,7 +38,7 @@ return  [
     ],
     'discount' => [
         'question' => 'Are there any discounts for annual subscriptions?',
-        'answer' => 'Yes! We reward our annual subscribers with a 20% discount compared to monthly billing. This is our way of thanking you for your long-term commitment to Kanka.',
+        'answer' => 'Yes! We reward our annual subscribers with two months for free compared to monthly billing. This is our way of thanking you for your long-term commitment to Kanka.',
     ],
     'sharing' => [
         'question' => 'Can I share my account/subscription with others?',

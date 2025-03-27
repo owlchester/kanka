@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <x-box class="mb-12">
+    <x-box class="mb-12 rounded-2xl">
         <x-slot name="title">
             {{ __('settings/account.title') }}
         </x-slot>
@@ -56,7 +56,7 @@
 
     @includeWhen(config('google2fa.enabled'), 'settings._tfa')
 
-    <x-box class="border-error border">
+    <x-box class="border-error border rounded-2xl">
         <x-slot name="title">
             <span class="text-error">{{ __('profiles.sections.dangerzone') }}</span>
         </x-slot>
@@ -72,13 +72,15 @@
     ]) !!}
                     </p>
                 @endif
+                @if (!auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->canceled())
+                    <div class="flex justify-end">
+                    <x-buttons.confirm type="danger" target="delete-account">
+                        <x-icon class="fa-solid fa-exclamation-triangle" />
+                        <span>{{ __('profiles.sections.delete.delete') }}</span>
+                    </x-buttons.confirm>
+                    </div>
+                @endif
             </div>
-            @if (!auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->canceled())
-                <x-buttons.confirm type="danger" target="delete-account">
-                    <x-icon class="fa-solid fa-exclamation-triangle" />
-                    <span>{{ __('profiles.sections.delete.delete') }}</span>
-                </x-buttons.confirm>
-            @endif
         </div>
     </x-box>
 
@@ -94,7 +96,7 @@
             {{ __('profiles.sections.delete.warning') }}
         </p>
 
-        <x-form :action="['settings.account.destroy']" method="PATCH">
+        <x-form :action="['settings.account.destroy']" method="PATCH" class="w-full">
             <x-grid type="1/1">
                 <p>
                     {!! __('profiles.sections.delete.goodbye', ['code' => '<code>goodbye</code>']) !!}

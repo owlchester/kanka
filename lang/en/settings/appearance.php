@@ -29,7 +29,7 @@ return [
         'date-format'           => 'Date formatting',
         'editor'                => 'Text editor',
         'entity-explore'        => 'Entity lists',
-        'mentions'              => 'Mentions when editing',
+        'mentions'              => 'Mentions',
         'new-entity-workflow'   => 'New entity workflow',
         'pagination'            => 'Results per page',
         'theme'                 => 'Theme preference',

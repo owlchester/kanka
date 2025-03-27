@@ -10,10 +10,10 @@ return [
         'left'  => ':amount left',
     ],
     'create'    => [
-        'helper'            => 'Attach one of several abilities to this entity.',
+        'helper'            => 'Attach one of several abilities to :name.',
         'success'           => 'Ability :ability added to :entity.',
         'success_multiple'  => 'Abilities :abilities added to :entity.',
-        'title'             => 'Add abilities to :name',
+        'title'             => 'Add abilities',
     ],
     'fields'    => [
         'note'      => 'Note',
