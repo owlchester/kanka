@@ -14,9 +14,9 @@
     <x-form :action="['entities.move-process', $campaign, $entity]">
     <x-box>
         <x-grid type="1/1">
-            <p class="text-neutral-content">
+            <x-helper>
                 {{ __('entities/move.panel.description') }}
-            </p>
+            </x-helper>
 
             <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
                 <x-forms.select name="campaign" :options="$campaigns" class="w-full" />

@@ -14,13 +14,13 @@ $fieldname = $iconFieldName ?? 'icon';
                 @endforeach
             </datalist>
         </div>
-        <x-helper>
+        <x-slot name="helper">
             {!! __('entities/links.helpers.icon', [
                 'fontawesome' => '<a target="_blank" href="' . config('fontawesome.search') .'">FontAwesome</a>',
                 'rpgawesome' => '<a target="_blank" href="https://nagoshiashumari.github.io/Rpg-Awesome/">RPGAwesome</a>',
                 'docs' => '<a target="_blank" href="https://docs.kanka.io/en/latest/articles/available-icons.html">' . __('footer.documentation') . '</a>'
             ]) !!}
-        </x-helper>
+        </x-slot>
     @else
         @if (auth()->user()->hasBoosters())
             <x-helper>

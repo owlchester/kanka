@@ -15,14 +15,11 @@
     <x-form :action="['entities.transform-process', $campaign, $entity->id]">
         <x-box>
             <x-grid type="1/1">
-                <p class="text-neutral-content m-0">
+                <x-helper>
                     {{ __('entities/transform.panel.description') }}
-                </p>
+                    <x-slot name="docs">https://docs.kanka.io/en/latest/guides/transform.html</x-slot>
+                </x-helper>
 
-                <a href="https://docs.kanka.io/en/latest/guides/transform.html" target="_blank" class="">
-                    <i class="fa-solid fa-external-link" aria-hidden="true"></i>
-                    {{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}
-                </a>
 
                 <x-forms.field field="target" :label="__('entities/transform.fields.target')">
                     <x-forms.select name="target" :options="$entities" class="w-full" required />

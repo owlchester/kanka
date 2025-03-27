@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'create' => [
+        'helper' => 'Create a reminder to link this entity to a calendar.',
+    ],
     'fields'    => [
         'type'  => 'Reminder Type',
     ],

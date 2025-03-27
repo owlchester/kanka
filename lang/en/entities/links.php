@@ -27,7 +27,7 @@ return [
         'title'         => 'Leaving Kanka',
     ],
     'helpers'           => [
-        'icon'      => 'Replace the default icon with one of your choice. Find our more about available icons in our :docs.',
+        'icon'      => 'Customise the link icon with one from :fontawesome or :rpgawesome. Find our more about available icons in our :docs.',
         'parent'    => 'Display this bookmark after an element of the sidebar, rather than in the bookmark section of the sidebar.',
     ],
     'placeholders'      => [

@@ -32,7 +32,7 @@ return [
     'create'            => [
         'new_title'     => 'New connection',
         'success_bulk'  => '{1} Added :count connection to :entity.|[2,*] Added :count connections to :entity.',
-        'title'         => 'New connection for :name',
+        'helper'        => 'Create a connection between :name and another entity.'
     ],
     'delete_mirrored'   => [
         'helper'    => 'This connection is mirrored on the target entity. Select this option to also remove the mirrored connection.',
@@ -59,6 +59,7 @@ return [
     ],
     'helper'            => 'Set up connections between entities with attitudes and visibility. Connections can also be pinned to the entity\'s menu.',
     'helpers'           => [
+        'description' => 'Detail the nature of the connection between the two entities.',
         'no_relations'  => 'This entity doesn\'t currently have any connection to other entities of the campaign.',
         'popup'         => 'Entities of the campaign can be linked together using connections. These can have a description, an attitude rating, a visibility to control who sees a connection, and more.',
     ],
@@ -69,7 +70,7 @@ return [
             'title' => 'Mirrored',
         ],
         'target_relation'   => 'The connection description on the target. Leave blank to use this connection\'s text.',
-        'two_way'           => 'Create a connection on the selected target and mirror them. Updating a mirrored relation doesn\'t update the original connection.',
+        'two_way'           => 'Create a mirrored connection on the target entity. Updating a mirrored connection doesn\'t update the original connection.',
     ],
     'index'             => [
         'title' => 'Connections',

@@ -1,5 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('entities/relations.create.title', ['name' => $entity->name]),
+    'title' => __('entities/relations.create.new_title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::entity($entity)->list(),
@@ -13,7 +13,7 @@
 @section('content')
     <x-form :action="['entities.relations.store', $campaign, $entity->id]">
         @include('partials.forms._dialog', [
-                'title' => __('entities/relations.create.title', ['name' => $entity->name]),
+                'title' => __('entities/relations.create.new_title', ['name' => $entity->name]),
                 'content' => 'entities.pages.relations._form',
             ])
 

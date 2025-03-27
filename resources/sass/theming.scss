@@ -119,43 +119,15 @@ input[type="checkbox"]:checked:after {
     min-height: inherit;
 }
 */
-.select2-container--default .select2-selection--single, .select2-dropdown {
+.select2-container--default .select2-selection--single, .select2-dropdown, .select2-container--default .select2-selection--multiple {
     border-width: 1px;
     border-color: hsl(var(--bc)/var(--tw-border-opacity));
     --tw-border-opacity: 0.2;
     --tw-bg-opacity: 1;
     background-color: hsl(var(--b1)/var(--tw-bg-opacity));
-    border-radius: var(--rounded-btn,.5rem);
+    border-radius: var(--rounded-btn, .5rem);
     box-shadow: none;
 }
-
-
-
-
-/** Dropdown menus **/
-
-/*.dropdown-menu, .dropdown-elements {
-    background: hsl(var(--b1)/var(--tw-bg-opacity, 1));
-    --tw-bg-opacity: 1;
-    border: 0;
-
-    li.divider {
-        background-color: hsl(var(--bc)/var(--tw-background-opacity, 1));
-        --tw-background-opacity: 0.1;
-    }
-
-    li > a:hover, li > a:focus {
-        --tw-background-opacity: 1;
-        background-color: hsl(var(--b2)/var(--tw-background-opacity));
-        --tw-text-opacity: 1;
-        color: hsl(var(--bc)/var(--tw-text-opacity));
-    }
-
-    li > a {
-        --tw-text-opacity: 1;
-        color: hsl(var(--bc)/var(--tw-text-opacity));
-    }
-}*/
 
 .modal-content {
     .modal-body {

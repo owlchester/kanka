@@ -11,7 +11,7 @@
 @section('content')
     <x-form :action="['entities.inventory.copy.store', $campaign, $entity->id]">
     @include('partials.forms._dialog', [
-            'title' => __('entities/inventories.copy.title', ['name' => $entity->name]),
+            'title' => __('entities/inventories.actions.copy_inventory', ['name' => $entity->name]),
             'content' => 'entities.pages.inventory._copy',
             'submit' => __('entities/inventories.actions.copy_inventory'),
         ])

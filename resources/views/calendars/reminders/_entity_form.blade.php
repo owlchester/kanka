@@ -2,8 +2,12 @@
 $onlyOneCalendar = count($calendars) == 1;
 ?>
 <x-grid type="1/1">
+    @empty($model)
+    <x-helper>{{ __('entities/events.create.helper') }}</x-helper>
+    @endif
+
     <div id="entity-calendar-modal-form w-full">
-        <div class="field-calendar entity-calendar-selector w-full">
+        <div class="field-calendar entOrity-calendar-selector w-full">
             <x-forms.foreign
                 :campaign="$campaign"
                 name="calendar_id"

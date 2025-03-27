@@ -10,15 +10,19 @@ if (isset($inventory)) {
     $positionPreset = $inventory->position;
 }
 @endphp
+
+@if (!isset($inventory))
+    <x-helper>{{ __('entities/inventories.create.helper') }}</x-helper>
+@endif
 <x-grid type="3/3">
 
 
     <x-forms.field
         field="name"
         required
-        :helper="__('entities/inventories.helpers.name')"
         :label="__('entities/inventories.fields.name')">
         <input type="text" name="name" value="{!! htmlspecialchars(old('name', $inventory->name ?? null)) !!}" maxlength="45" class="w-full" placeholder="{{ __('entities/inventories.placeholders.name') }}" data-1p-ignore="true" />
+        <x-slot name="helper">{{ __('entities/inventories.helpers.name') }}</x-slot>
     </x-forms.field>
 
     <input type="hidden" name="item_id" value="" />
@@ -87,8 +91,9 @@ if (isset($inventory)) {
 
     @include('cruds.fields.visibility_id', ['model' => $inventory ?? null])
 
-    <x-forms.field field="description" css="col-span-3" :label="__('entities/inventories.fields.description')" :helper="__('entities/inventories.helpers.description')">
+    <x-forms.field field="description" css="col-span-3" :label="__('entities/inventories.fields.description')">
         <input type="text" name="description" value="{!! old('description', $inventory->description ?? null) !!}" maxlength="191" class="w-full" placeholder="{{ __('entities/inventories.placeholders.description') }}" />
+        <x-slot name="helper">{{ __('entities/inventories.helpers.description') }}</x-slot>
     </x-forms.field>
 
 </x-grid>

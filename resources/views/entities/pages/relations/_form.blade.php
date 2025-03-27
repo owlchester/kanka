@@ -1,3 +1,7 @@
+@empty($relation)<x-helper>
+    {{ __('entities/relations.create.helper', ['name' => $entity->name]) }}
+</x-helper>@endif
+
 <x-grid>
 @if(empty($relation))
     <x-forms.foreign
@@ -24,6 +28,7 @@
 @endif
     <x-forms.field field="relation" required :label="__('entities/relations.fields.relation')">
         <input type="text" name="relation" value="{!! htmlspecialchars(old('relation', $relation->relation ?? null)) !!}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.relation') }}" placeholder="{{ __('entities/relations.placeholders.relation') }}" />
+        <x-slot name="helper">{{ __('entities/relations.helpers.description') }}</x-slot>
     </x-forms.field>
 
     @include('cruds.fields.colour_picker', request()->ajax() ? ['dropdownParent' => '#primary-dialog', 'model' => $relation ?? null] : ['model' => $relation ?? null])
