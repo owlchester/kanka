@@ -357,6 +357,7 @@ class CrudController extends Controller
         if (view()->exists($override)) {
             $view = $override;
         }
+
         return view($view, array_merge(['name' => $this->view], $params));
     }
 
@@ -528,6 +529,7 @@ class CrudController extends Controller
         if (view()->exists($override)) {
             $view = $override;
         }
+
         return view($view, $params);
     }
 
