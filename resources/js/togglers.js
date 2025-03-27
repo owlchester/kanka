@@ -44,6 +44,10 @@ const registerEntityPrivacyAlert = () => {
     }
     field.addEventListener('change', function () {
         let selector = document.getElementById('entity-is-private');
+        // Bookmarks have this field but no permissions. This should be handled differently
+        if (!selector) {
+            return;
+        }
         if (this.checked) {
             selector.classList.remove('hidden')
         } else {

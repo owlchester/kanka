@@ -352,7 +352,12 @@ class CrudController extends Controller
             $params['title'] = __('crud.titles.new', ['module' => $singular]);
         }
 
-        return view('cruds.forms.create', array_merge(['name' => $this->view], $params));
+        $view = 'cruds.forms.create';
+        $override = $this->view . '.forms.create';
+        if (view()->exists($override)) {
+            $view = $override;
+        }
+        return view($view, array_merge(['name' => $this->view], $params));
     }
 
     public function crudStore(Request $request, bool $redirectToCreated = false)
@@ -518,7 +523,12 @@ class CrudController extends Controller
             $params['entity'] = $model->entity;
         }
 
-        return view('cruds.forms.edit', $params);
+        $view = 'cruds.forms.edit';
+        $override = $this->view . '.forms.edit';
+        if (view()->exists($override)) {
+            $view = $override;
+        }
+        return view($view, $params);
     }
 
     /**

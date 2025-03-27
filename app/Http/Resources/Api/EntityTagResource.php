@@ -19,7 +19,6 @@ class EntityTagResource extends JsonResource
         $model = $this->resource;
 
         return [
-            'id' => $model->id,
             'tag_id' => $model->tag_id,
         ];
     }

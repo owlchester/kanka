@@ -12,17 +12,14 @@ return [
     ],
     'fields'            => [
         'active'            => 'Active',
-        'dashboard'         => 'Dashboard',
+        'dashboard' => 'Dashboard',
         'default_dashboard' => 'Default dashboard',
-        'entity'            => 'Entity',
         'filters'           => 'Filters',
         'menu'              => 'Subpage',
         'position'          => 'Position',
-        'random'            => 'Random',
         'random_type'       => 'Random Entity Type',
         'selector'          => 'Bookmark Configuration',
         'target'            => 'Target',
-        'type'              => 'Entity List',
     ],
     'helpers'           => [
         'active'            => 'Inactive bookmarks won\'t appear in the interface.',
@@ -33,6 +30,7 @@ return [
         'random'            => 'Use this field to have a bookmark pointing to a random entity. You can filter the link to only go to a specific entity type.',
         'selector'          => 'Configure where this bookmark goes when a user clicks on it in the sidebar.',
         'type'              => 'Set up this bookmark to go directly to a list of entities. To filter the results, copy parts of the url on the filtered entity list after the :? sign into the :filter field.',
+        'css' => 'Add a CSS class that will be added to the bookmark\'s link in the sidebar.',
     ],
     'placeholders'      => [
         'filters'   => 'location_id=15&type=city',
@@ -50,4 +48,11 @@ return [
     'visibilities'      => [
         'is_active' => 'Show the bookmark in the sidebar',
     ],
+    'targets' => [
+        'select' => 'Choose an option',
+        'entity' => 'A single entity',
+        'random' => 'A random entity',
+        'type' => 'List of entities of a specific entity type/module',
+        'dashboard' => 'One of the campaign\'s dashboards',
+    ]
 ];

@@ -52,7 +52,7 @@ $menus = array_merge(['' => __('crud.tabs.story')], $menus);
 <x-grid type="1/1">
     <x-helper>
             {!! __('bookmarks.helpers.entity', [
-            'menu' => '<code>' . __('bookmarks.fields.menu') . '</code>',
+            'menu' => '<span class="font-extrabold">' . __('bookmarks.fields.menu') . '</span>',
             ]) !!}
     </x-helper>
 
@@ -61,7 +61,7 @@ $menus = array_merge(['' => __('crud.tabs.story')], $menus);
             'name' => 'entity_id',
             'required' => true,
             'preset' => !empty($model) && $model->target ? $model->target : null,
-            'label' => __('bookmarks.fields.entity'),
+            'label' => __('entities.entity'),
         ])
 
         <x-forms.field field="menu" :label="__('bookmarks.fields.menu')">

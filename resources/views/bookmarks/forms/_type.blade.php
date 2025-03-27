@@ -7,13 +7,13 @@ $entityTypes = $entityTypeService->campaign($campaign)->exclude([config('entitie
 
     <x-helper>
         {!! __('bookmarks.helpers.type', [
-            'filter' => '<code>' . __('bookmarks.fields.filters') . '</code>',
+            'filter' => '<span class="text-extrabold">' . __('bookmarks.fields.filters') . '</span>',
             '?' => '<code>?</code>',
         ]) !!}
     </x-helper>
 
     <x-grid>
-        <x-forms.field field="entity_type_id" :label="__('crud.fields.type')">
+        <x-forms.field field="entity_type_id" :label="__('crud.fields.entity_type')">
             <x-forms.select name="entity_type_id" :options="$entityTypes" :selected="$source->entity_type_id ?? $model->entity_type_id ?? null" />
         </x-forms.field>
 
