@@ -1,58 +1,70 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+@props([
+    'layout' => 'user',
+])
+
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}" dir="ltr">
 <head>
-<title>{{ config('app.name') }}</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="color-scheme" content="light">
-<meta name="supported-color-schemes" content="light">
+<meta charset="utf-8">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
+<meta name="x-apple-disable-message-reformatting">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 <style>
-@media only screen and (max-width: 600px) {
-.inner-body {
-width: 100% !important;
-}
-
-.footer {
-width: 100% !important;
+@media screen {
+body {
+font-family: 'Inter', sans-serif;
 }
 }
-
-@media only screen and (max-width: 500px) {
-.button {
-width: 100% !important;
-}
+html, body, .document { margin: 0 !important; padding: 0 !important; width: 100% !important; height: 100% !important; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;}
+img { border: 0; outline: none; text-decoration: none;  -ms-interpolation-mode: bicubic; }
+table { border-collapse: collapse; }
+table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+h1, h2, h3, h4, h5, p { margin:0;}
+@media all and (max-width:639px) {
+.wrapper{ width:100%!important; }
+.container{ width:100%!important; min-width:100%!important; padding: 0 !important; }
+.row{padding-left: 20px!important; padding-right: 20px!important;}
 }
 </style>
-{{ $head ?? '' }}
 </head>
-<body>
+<body style="margin: 0 !important; padding: 0 !important; background-color: #F4F7FA">
+<div class="document" role="article" aria-roledescription="email" aria-label="" lang="{{ app()->getLocale() }}" dir="ltr" style="background-color:#F4F7FA; line-height: 100%; font-size:medium; font-size:max(16px, 1rem);">
 
-<table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+<table width="100%" align="center" cellspacing="0" cellpadding="0" border="0">
+<tbody>
+<tr>
+<td class="" background="" bgcolor="#F4F7FA" align="center" valign="top" style="padding: 0 8px;">
+<table width="640" class="wrapper" align="center" border="0" cellpadding="0" cellspacing="0" style="
+max-width: 640px;
+border:1px solid #EAECED;
+border-radius:8px; border-collapse: separate!important; overflow: hidden;
+">
+<tbody>
 <tr>
 <td align="center">
-<table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-{{ $header ?? '' }}
+@include('emails.2024.header')
 
-<!-- Email Body -->
-<tr>
-<td class="body" width="100%" cellpadding="0" cellspacing="0" style="border: hidden !important;">
-<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
 <!-- Body content -->
 <tr>
-<td class="content-cell">
+<td class="content-cell" bgcolor="#ffffff" >
 {{ Illuminate\Mail\Markdown::parse($slot) }}
 
 {{ $subcopy ?? '' }}
 </td>
 </tr>
+@include('emails.2024.footer', ['layout' => $layout])
+</td>
+</tr>
+</tbody>
 </table>
 </td>
 </tr>
-
-{{ $footer ?? '' }}
+</tbody>
 </table>
-</td>
-</tr>
-</table>
+</div>
 </body>
 </html>

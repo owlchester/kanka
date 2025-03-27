@@ -5,6 +5,9 @@ namespace App\Mail;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class WelcomeEmail extends Mailable
@@ -28,17 +31,25 @@ class WelcomeEmail extends Mailable
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * Get the message envelope.
      */
-    public function build()
+    public function envelope(): Envelope
     {
-        return $this
-            ->from(['address' => config('app.email'), 'name' => 'Kanka.io'])
-            ->subject(__('emails/welcome.title'))
-            ->tag('welcome')
-            ->view('emails.welcome.2024.html')
-            ->text('emails.welcome.2024.text');
+        return new Envelope(
+            subject: __('emails/welcome.title'),
+            tags: ['welcome'],
+            from: new Address(config('app.email'), 'Kanka.io'),
+        );
+    }
+
+    /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        return new Content(
+            markdown: 'emails.welcome.2024.text',
+            with: ['user' => $this->user],
+        );
     }
 }
