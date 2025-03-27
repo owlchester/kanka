@@ -112,7 +112,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-D7r5m2Bg.js",
+    "file": "assets/app-BVXR-NWD.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -341,12 +341,12 @@
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-4SbXbJuq.css",
+    "file": "assets/app-BuC1uadH.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-CLgKSpAE.css",
+    "file": "assets/auth-B3DugPUX.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -371,7 +371,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-CxVAY4RB.css",
+    "file": "assets/front-DhetbIQ6.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },
