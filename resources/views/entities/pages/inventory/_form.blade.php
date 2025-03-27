@@ -12,7 +12,7 @@ if (isset($inventory)) {
 @endphp
 
 @if (!isset($inventory))
-    <x-helper>{{ __('entities/inventories.create.helper') }}</x-helper>
+    <x-helper>{{ __('entities/inventories.create.helper', ['name' => $entity->name]) }}</x-helper>
 @endif
 <x-grid type="3/3">
 

@@ -17,6 +17,7 @@ return [
             'add_multiple'      => 'Add members',
         ],
         'create'        => [
+            'helper'            => 'Add one or several members to :name.',
             'success_multiple'  => '{1} Added :count member to :name.|[2,*] Added :count members to :name.',
             'title_multiple'    => 'New Members',
         ],

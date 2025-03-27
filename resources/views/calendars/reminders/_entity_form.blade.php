@@ -3,7 +3,7 @@ $onlyOneCalendar = count($calendars) == 1;
 ?>
 <x-grid type="1/1">
     @empty($model)
-    <x-helper>{{ __('entities/events.create.helper') }}</x-helper>
+        <x-helper>{{ __('entities/events.create.helper', ['name' => $entity->name]) }}</x-helper>
     @endif
 
     <div id="entity-calendar-modal-form w-full">

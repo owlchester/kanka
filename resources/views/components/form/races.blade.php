@@ -52,7 +52,7 @@ if ($quickCreator) {
     </select>
 
     @if ($quickCreator)
-            <a class="quick-creator-subform btn2 join-item" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => config('entities.ids.race'), 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}" aria-label="Create a new race" tabindex="0">
+            <a class="quick-creator-subform btn2 bg-base-200 join-item" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => config('entities.ids.race'), 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}" aria-label="Create a new race" tabindex="0">
                 <span class="fa-solid fa-plus"></span>
             </a>
         </div>

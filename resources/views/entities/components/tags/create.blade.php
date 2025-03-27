@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity */ ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('tags.children.create.entity', ['name' => $entity->name]),
+    'title' => __('entities/tags.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::entity($entity)->list(),
@@ -12,7 +12,7 @@
 @section('content')
     <x-form :action="$formOptions">
         @include('partials.forms._dialog', [
-            'title' => __('tags.children.create.entity', ['name' => $entity->name]),
+            'title' => __('entities/tags.create.title', ['name' => $entity->name]),
             'content' => 'entities.components.tags._form',
             'submit' =>  __('tags.children.actions.add_entity'),
         ])

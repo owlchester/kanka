@@ -31,7 +31,7 @@
     </select>
 
     @if ($canNew && !$dynamicNew)
-            <a class="quick-creator-subform btn2 join-item btn-sm" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => $entityTypeID, 'origin' => 'entity-form', 'target' => $id]) }}" aria-label="Create a new element" tabindex="0">
+            <a class="quick-creator-subform btn2 bg-base-200 join-item btn-sm" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => $entityTypeID, 'origin' => 'entity-form', 'target' => $id]) }}" aria-label="Create a new element" tabindex="0">
                 <x-icon class="plus" />
                 <span class="sr-only">{{ __('crud.create') }}</span>
             </a>

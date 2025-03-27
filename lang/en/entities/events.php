@@ -2,7 +2,7 @@
 
 return [
     'create' => [
-        'helper' => 'Create a reminder to link this entity to a calendar.',
+        'helper' => 'Create a reminder to link :name to a calendar.',
     ],
     'fields'    => [
         'type'  => 'Reminder Type',

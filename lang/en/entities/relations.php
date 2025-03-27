@@ -32,7 +32,7 @@ return [
     'create'            => [
         'new_title'     => 'New connection',
         'success_bulk'  => '{1} Added :count connection to :entity.|[2,*] Added :count connections to :entity.',
-        'helper'        => 'Create a connection between :name and another entity.'
+        'helper'        => 'Create a connection between :name and one or several entities.'
     ],
     'delete_mirrored'   => [
         'helper'    => 'This connection is mirrored on the target entity. Select this option to also remove the mirrored connection.',
