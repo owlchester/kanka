@@ -5,8 +5,9 @@ return [
         'add'   => 'Add an alias',
     ],
     'create'        => [
+        'helper' => 'Create an alias for :name, which will make it findable in the global search and through :code mentions.',
         'success'   => 'Alias :name added to :entity.',
-        'title'     => 'Add an alias to :name',
+        'title'     => 'New alias',
     ],
     'destroy'       => [
         'success'   => 'Alias :name removed.',

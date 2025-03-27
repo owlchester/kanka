@@ -7,7 +7,7 @@
         <div class="flex gap-2 lg:gap-2 justify-end px-4 pt-4">
             <input type="text" v-bind:placeholder="trans('actions.search')" class="grow md:flex-none md:w-80" v-model="searchTerm" />
             <div class="relative">
-                <a role="button" @click="toggleFilters()" class="btn2 btn-default btn-sm">
+                <a role="button" @click="toggleFilters()" class="btn2 btn-outline btn-sm">
                     <i class="fa-solid fa-bars-filter" aria-hidden="true" />
                     <span v-html="trans('actions.filters')"></span>
                 </a>
@@ -31,7 +31,7 @@
                 <i class="fa-solid fa-lock-open" aria-hidden="true" />
                 <span v-html="trans('actions.toggle')"></span>
             </a>
-            <a role="button" class="btn2 md:ml-auto" @click="toggleTemplates()">
+            <a role="button" class="btn2 btn-outline md:ml-auto" @click="toggleTemplates()">
                 <i class="fa-regular fa-file-import" aria-hidden="true" />
                 <span v-html="trans('actions.load')"></span>
             </a>
@@ -97,7 +97,7 @@
                 <span class="sr-only">Close</span>
             </button>
         </header>
-        <article>
+        <article class="flex flex-col gap-4 p-4 md:p-6">
             <label for="template_id" v-html="trans('templates.template')"></label>
             <select v-model="template" class="w-full" id="template_id">
                 <optgroup v-for="(group, key) in templates" v-bind:label="key">
@@ -214,7 +214,7 @@ const deleteClass = () => {
     if (!checked) {
         return 'btn2 btn-ghost'
     }
-    return 'btn2 btn-error'
+    return 'btn2 btn-error btn-outline'
 }
 
 const deleteAll = () => {
@@ -236,7 +236,7 @@ const togglePrivateClass = () => {
     if (!checked) {
         return 'btn2 btn-ghost'
     }
-    return 'btn2'
+    return 'btn2 btn-outline'
 }
 const togglePrivate = () => {
     let selected = attributes.value.filter(attribute => attribute.is_checked);
