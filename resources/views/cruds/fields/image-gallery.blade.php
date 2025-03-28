@@ -92,7 +92,7 @@ $old = isset($entity) && !empty($entity->image_path) || isset($model) && !empty(
         </gallery-selection>
     </div>
 
-    <x-helper>
+    <x-helper class="text-xs">
         {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }} @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif
         @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')
     </x-helper>

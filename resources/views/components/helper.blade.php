@@ -1,4 +1,4 @@
-<div class="text-neutral-content help-block">
+<div {{ $attributes->merge(['class' => "text-neutral-content help-block"]) }}>
     @if (!empty($text))
         <p>{!! $text !!}</p>
     @endif
