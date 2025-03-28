@@ -5,8 +5,8 @@
     'centered' => true,
 ])
 @php
-$boxClass = "rounded p-4 bg-box flex flex-col gap-2 hover:shadow-sm";
-$highlightClass = 'shadow-sm border-primary border-solid border-2';
+$boxClass = "rounded-2xl p-4 bg-box flex flex-col gap-2 hover:shadow";
+$highlightClass = 'shadow-xs border-primary border-solid border-2';
 @endphp
 
 @section('content')
@@ -18,19 +18,19 @@ $highlightClass = 'shadow-sm border-primary border-solid border-2';
         <x-form :action="['settings.appearance.update']" method="PATCH">
             <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-8">
                 <div class="{{ $boxClass }} {{ $highlight === 'dark' ? $highlightClass : '' }}">
-                    <div class="flex gap-2 justify-between">
-                        <h2 class="text-base flex items-center gap-2">
+                    <div class="flex gap-2 justify-between items-center mb-2">
+                        <div class="font-light text-xl flex items-center gap-2">
                             <x-icon class="fa-regular fa-moon-over-sun" />
                             {{ __('settings/appearance.fields.theme') }}
-                        </h2>
+                        </div>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#theme" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
                             <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                         </a>
                     </div>
-                    <p class="text-sm grow">
+                    <x-helper>
                         {{ __('settings/appearance.helpers.theme')}}
                         {{ __('settings/appearance.helpers.overridable')}}
-                    </p>
+                    </x-helper>
                     <x-forms.select
                         name="theme"
                         :options="[
@@ -42,36 +42,36 @@ $highlightClass = 'shadow-sm border-primary border-solid border-2';
                 </div>
 
                 <div class="{{ $boxClass }} {{ $highlight === 'pagination' ? $highlightClass : '' }}">
-                    <div class="flex gap-2 justify-between">
-                        <h2 class="text-base flex items-center gap-2">
+                    <div class="flex gap-2 justify-between items-center mb-2">
+                        <div class="font-light text-xl flex items-center gap-2">
                             <x-icon class="fa-regular fa-list" />
                             {{ __('settings/appearance.fields.pagination') }}
-                        </h2>
+                        </div>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#results-per-page" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
                             <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                         </a>
                     </div>
-                    <p class="text-sm grow">
+                    <x-helper>
                         {{ __('settings/appearance.helpers.pagination')}}
-                    </p>
+                    </x-helper>
                     <x-forms.select name="pagination" :options="$paginationOptions" :selected="auth()->user()->pagination" class="self-end w-full border rounded p-2" :optionAttributes="$paginationDisabled" />
                 </div>
 
 
                 <div class="{{ $boxClass }}">
-                    <div class="flex gap-2 justify-between">
-                        <h2 class="text-base flex items-center gap-2">
+                    <div class="flex gap-2 justify-between items-center mb-2">
+                        <div class="font-light text-xl flex items-center gap-2">
                             <x-icon class="fa-regular fa-calendar" />
                             {{ __('settings/appearance.fields.date-format') }}
-                        </h2>
+                        </div>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#date-formatting" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
                             <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                         </a>
                     </div>
 
-                    <p class="text-sm grow">
+                    <x-helper>
                         {{ __('settings/appearance.helpers.date-format')}}
-                    </p>
+                    </x-helper>
                     <x-forms.select name="date_format" :options="[
                         null => 'Month d, Y',
                         'Y-m-d' => 'Y-m-d',
@@ -83,19 +83,19 @@ $highlightClass = 'shadow-sm border-primary border-solid border-2';
                 </div>
 
                 <div class="{{ $boxClass }} {{ $highlight === 'campaign-switcher' ? $highlightClass : '' }}">
-                    <div class="flex gap-2 justify-between">
-                        <h2 class="text-base flex items-center gap-2">
+                    <div class="flex gap-2 justify-between items-center mb-2">
+                        <div class="font-light text-xl flex items-center gap-2">
                             <x-icon class="fa-regular fa-arrow-down-a-z" />
                             {{ __('settings/appearance.fields.campaign-order') }}
-                        </h2>
+                        </div>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#campaign-order" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
                             <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                         </a>
                     </div>
 
-                    <p class="text-sm grow">
+                    <x-helper>
                         {{ __('settings/appearance.helpers.campaign-order')}}
-                    </p>
+                    </x-helper>
 
                     <x-forms.select name="campaign_switcher_order_by" :options="[
                         null => __('settings/appearance.campaign-switcher.date_created'),
@@ -127,18 +127,18 @@ $highlightClass = 'shadow-sm border-primary border-solid border-2';
                 @endif
 
                 <div class="{{ $boxClass }} {{ $highlight === 'explore' ? $highlightClass : '' }}">
-                    <div class="flex gap-2 justify-between">
-                        <h2 class="text-base flex items-center gap-2">
+                    <div class="flex gap-2 justify-between items-center mb-2">
+                        <div class="font-light text-xl flex items-center gap-2">
                             <x-icon class="fa-solid fa-grid" />
                             {{ __('settings/appearance.fields.entity-explore') }}
-                        </h2>
+                        </div>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#entity-explore" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
                             <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                         </a>
                     </div>
-                    <p class="text-sm grow">
+                    <x-helper>
                         {{ __('settings/appearance.helpers.entity-explore') }}
-                    </p>
+                    </x-helper>
 
                     <x-forms.select name="entity_explore" radio :options="[
                             0 => '<i class=\'fa-solid fa-grid\' aria-hidden=\'true\'></i> ' . __('settings/appearance.explore.grid'),
@@ -147,18 +147,18 @@ $highlightClass = 'shadow-sm border-primary border-solid border-2';
                 </div>
 
                 <div class="{{ $boxClass }}">
-                    <div class="flex gap-2 justify-between">
-                        <h2 class="text-base flex items-center gap-2">
+                    <div class="flex gap-2 justify-between items-center mb-2">
+                        <div class="font-light text-xl flex items-center gap-2">
                             <x-icon class="fa-regular fa-at" />
                             {{ __('settings/appearance.fields.mentions') }}
-                        </h2>
+                        </div>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#mentions" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
                             <x-icon class="fa-regular fa-arrow-up-right-from-square" /> {{ __('general.learn-more') }}
                         </a>
                     </div>
-                    <p class="text-sm grow">
+                    <x-helper>
                         {!! __('settings/appearance.helpers.advanced-mentions') !!}
-                    </p>
+                    </x-helper>
                     <div class="note-editing-area">
                     <x-forms.select name="advanced_mentions" radio :options="[
                             0 => __('settings/appearance.mentions.default', ['mention' => '<span class=\'mention\'>Entity</span>']),

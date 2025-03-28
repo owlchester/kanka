@@ -10,11 +10,10 @@
 
 @section('content')
     <x-form method="PATCH" :action="['entities.inventories.update', $campaign, $entity->id, $inventory]">
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
         'title' => __('entities/inventories.update.title', ['name' => $entity->name]),
         'content' => 'entities.pages.inventory._form',
         'deleteID' => '#delete-inventory-' . $inventory->id,
-        'dialog' => true,
     ])
 
     <input type="hidden" name="entity_id" value="{{ $entity->id }}" />

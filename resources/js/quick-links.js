@@ -5,15 +5,15 @@ const initQuickLinksForm = () => {
     }
     selector.addEventListener('change', function (e) {
         e.preventDefault();
-        let selected = selector.options[selector.selectedIndex];
+        const selected = selector.options[selector.selectedIndex];
 
         const subforms = document.querySelectorAll('.bookmark-subform');
         subforms.forEach(subform => {
-            subform.classList.add('hidden');
+            subform.classList.add('opacity-0', 'invisible', 'h-0');
         });
         let target = document.querySelector(selected.dataset.target);
         if (target) {
-            target.classList.remove('hidden');
+            target.classList.remove('opacity-0', 'invisible', 'h-0');
         }
     });
 };

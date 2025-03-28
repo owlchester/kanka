@@ -6,7 +6,7 @@
 <x-dialog.header>
     {!! __('campaigns/plugins.import.title', ['plugin' => $plugin->name]) !!}
 </x-dialog.header>
-<article class="text-left max-w-2xl">
+<article class="text-left max-w-2xl p-4 md:px-6">
     @include('partials.errors')
 
     <x-form :action="['campaign_plugins.import', $campaign, $plugin]">

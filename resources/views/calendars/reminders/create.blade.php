@@ -13,10 +13,9 @@
 @section('content')
     <x-form :action="['calendars.event.store', $campaign, $calendar->id]" class="entity-calendar-subform">
 
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
         'title' => __('calendars.event.create.title', ['name' => $calendar->name]),
         'content' => 'calendars.reminders._form',
-        'dialog' => true,
         'dropdownParent' => '#primary-dialog',
     ])
 

@@ -5,7 +5,7 @@
     <x-dialog.header>
         {!! $inventory->itemName() !!}
     </x-dialog.header>
-    <article class="max-w-2xl">
+    <article class="max-w-2xl p-4 md:px-6">
         <div class="flex flex-col gap-4">
             <div class="flex gap-4">
                 <div class="text-center self-center">

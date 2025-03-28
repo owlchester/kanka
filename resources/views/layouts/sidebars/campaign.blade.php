@@ -17,41 +17,34 @@
                     icon="fa-duotone fa-block"
                     :text="__('crud.tabs.overview')"
                 ></x-sidebar.element>
-
-                <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
-                    @can('update', $campaign)
-                        <li class="px-2 section-overview {{ $sidebar->activeCampaign('recovery') }}">
-                            <x-sidebar.element
-                                :url="route('recovery', [$campaign])"
-                                icon="fa-duotone fa-trash-undo"
-                                :text="__('campaigns.show.tabs.recovery')"
-                            ></x-sidebar.element>
-                        </li>
-                    @endcan
-                    <li class="px-2 section-overview {{ $sidebar->activeCampaign('achievements') }}">
-                        <x-sidebar.element
-                            :url="route('campaign.achievements', [$campaign])"
-                            icon="fa-duotone fa-bars-progress"
-                            :text="__('campaigns.show.tabs.achievements')"
-                        ></x-sidebar.element>
-                    </li>
-                    <li class="px-2 section-overview {{ $sidebar->activeCampaign('stats') }}">
-                        <x-sidebar.element
-                            :url="route('campaign.stats', [$campaign])"
-                            icon="fa-duotone fa-bars"
-                            :text="__('campaigns.show.tabs.stats')"
-                        ></x-sidebar.element>
-                    </li>
-                </ul>
+            </li>
+            @can('update', $campaign)
+                <li class="px-2 section-overview {{ $sidebar->activeCampaign('recovery') }}">
+                    <x-sidebar.element
+                        :url="route('recovery', [$campaign])"
+                        icon="fa-duotone fa-trash-undo"
+                        :text="__('campaigns.show.tabs.recovery')"
+                    ></x-sidebar.element>
+                </li>
+            @endcan
+            <li class="px-2 section-overview {{ $sidebar->activeCampaign('achievements') }}">
+                <x-sidebar.element
+                    :url="route('campaign.achievements', [$campaign])"
+                    icon="fa-duotone fa-bars-progress"
+                    :text="__('campaigns.show.tabs.achievements')"
+                ></x-sidebar.element>
+            </li>
+            <li class="px-2 section-overview {{ $sidebar->activeCampaign('stats') }}">
+                <x-sidebar.element
+                    :url="route('campaign.stats', [$campaign])"
+                    icon="fa-duotone fa-bars"
+                    :text="__('campaigns.show.tabs.stats')"
+                ></x-sidebar.element>
             </li>
             @if (auth()->check() && (auth()->user()->can('members', $campaign) || auth()->user()->can('submissions', $campaign) || auth()->user()->can('roles', $campaign)))
-            <li class="px-2 section-management">
-                <x-sidebar.element
-                    icon="fa-duotone fa-person-sign"
-                    :text="__('campaigns.show.tabs.management')"
-                ></x-sidebar.element>
-
-                <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
+            <li class="section-management pt-4">
+                <x-sidebar.section :text="__('campaigns.show.tabs.management')" />
+                <ul class="sidebar-submenu list-none p-0 m-0">
                 @can('members', $campaign)
                 <li class="px-2 section-members {{ $sidebar->activeCampaign('campaign_users') }}">
                     <x-sidebar.element
@@ -83,12 +76,9 @@
             </li>
             @endif
 
-            <li class="px-2 section-customisation">
-                <x-sidebar.element
-                    icon="fa-duotone fa-cog"
-                    :text="__('campaigns.show.tabs.customisation')"
-                ></x-sidebar.element>
-                <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
+            <li class="section-customisation pt-4">
+                <x-sidebar.section :text="__('campaigns.show.tabs.customisation')" />
+                <ul class="sidebar-submenu list-none p-0 m-0">
 
                     <li class="px-2 section-modules {{ $sidebar->activeCampaign(['modules', 'entity_types']) }}">
                         <x-sidebar.element
@@ -134,12 +124,9 @@
             </li>
 
             @can('update', $campaign)
-            <li class="px-2 section-management">
-                <x-sidebar.element
-                    icon="fa-duotone fa-database"
-                    :text="__('campaigns.show.tabs.data')"
-                ></x-sidebar.element>
-                <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
+            <li class="section-management pt-4">
+                <x-sidebar.section :text="__('campaigns.show.tabs.data')" />
+                <ul class="sidebar-submenu list-none p-0 m-0">
                     <li class="px-2 section-overview {{ $sidebar->activeCampaign('campaign-export') }}">
                         <x-sidebar.element
                             :url="route('campaign.export', [$campaign])"
@@ -168,16 +155,13 @@
             @endif
 
             @can('roles', $campaign)
-                <li class="px-2 section-management">
-                    <x-sidebar.element
-                        icon="fa-duotone fa-radiation"
-                        :text="__('campaigns.show.tabs.danger')"
-                    ></x-sidebar.element>
-                    <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
+                <li class="section-management pt-4">
+                    <x-sidebar.section :text="__('campaigns.show.tabs.danger')" />
+                    <ul class="sidebar-submenu list-none p-0 m-0">
                         <li class="px-2 section-overview {{ $sidebar->activeCampaign('deletion') }}">
                             <x-sidebar.element
                                 :url="route('campaign.delete', [$campaign])"
-                                icon="fa-duotone fa-trash"
+                                icon="fa-duotone fa-radiation"
                                 :text="__('campaigns.show.tabs.deletion')"
                             ></x-sidebar.element>
                         </li>

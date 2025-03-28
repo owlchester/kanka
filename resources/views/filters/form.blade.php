@@ -6,7 +6,7 @@
 <x-dialog.header>
     {{ __('crud.filters.title') }}
 </x-dialog.header>
-<article>
+<x-dialog.article>
     @if (auth()->guest())
         <x-helper :text="__('filters.helpers.guest')" />
     @else
@@ -75,9 +75,9 @@
     @includeWhen(isset($hasConnectionFilters), 'cruds.datagrids.filters._connection')
 @endif
 <br class="clear-both" />
-</article>
+</x-dialog.article>
 @if (auth()->check())
-    <footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3">
+    <footer class="flex flex-wrap gap-3 justify-between items-start p-3">
         <menu class="flex flex-wrap gap-3 ps-0">
             <span role="button" class="flex-none btn2 btn-sm flex gap-2 items-center {{ $activeFilters === 0 ? 'btn-disabled' : null }} "
                @if ($activeFilters > 0) data-clipboard="{{ $clipboardFilters }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false"  @endif data-toggle="tooltip" data-title="{{ __('crud.filters.copy_helper') }}">

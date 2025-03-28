@@ -1,10 +1,9 @@
 {{ csrf_field() }}
 
 @if (!isset($entityAsset))
-
-    <p class="text-neutral-content">
-        {{ __('entities/aliases.helpers.primary') }}
-    </p>
+    <x-helper>
+        {!! __('entities/aliases.create.helper', ['name' => $entity->name, 'code' => '<code>@</code>']) !!}
+    </x-helper>
 @endif
 
 <x-grid>

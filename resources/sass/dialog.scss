@@ -2,39 +2,12 @@
     display: grid;
     max-inline-size: min(90vw, var(--size-content-3));
     max-block-size: min(80vh, 100%);
-    max-block-size: min(80dvb, 100%);
     padding: 0;
     position: fixed;
     inset: 0;
     z-index: 1050;
     border: 0;
     transition: opacity .5s ease-in-out;
-
-    header {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem;
-        justify-content: space-between;
-        align-items: center;
-        padding-block: 0.5rem;
-        padding-inline: 1.0rem;
-
-        h4 {
-            text-align: center;
-            flex-shrink: 0;
-            place-items: center;
-            margin: 0;
-        }
-
-        > button {
-            //width: 32px;
-            text-align: center;
-            aspect-ratio: 1;
-            flex-shrink: 0;
-            place-items: center;
-            border: 0;
-        }
-    }
 
     article {
         overflow-y: auto;
@@ -43,16 +16,12 @@
         display: grid;
         justify-items: flex-start;
         gap: 0.75rem;
-        padding-inline: 1rem;
-        padding-block: 0.75rem;
-        padding-bottom: 1rem;
     }
     form, .formless {
         display: grid;
         grid-template-rows: auto 1fr auto;
         align-items: start;
         max-block-size: 70vh;
-        max-block-size: 70dvb;
         footer {
             menu:only-child {
                 margin-inline-start: auto;
@@ -64,7 +33,6 @@
         grid-template-rows: auto 1fr auto;
         align-items: start;
         max-block-size: 70vh;
-        max-block-size: 70dvb;
     }
 }
 

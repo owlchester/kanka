@@ -1,7 +1,7 @@
 <x-dialog.header>
  {!! $name !!}
 </x-dialog.header>
-<article class="max-w-xl container">
+<article class="max-w-xl container p-4 md:px-6">
     @if ($marker->hasEntry())
         <div class="marker-entry entity-content">
             {!! \App\Facades\Mentions::mapAny($marker) !!}

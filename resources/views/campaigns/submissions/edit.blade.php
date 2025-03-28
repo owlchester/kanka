@@ -5,7 +5,7 @@
         {{ __('campaigns/submissions.actions.reject') }}
     @endif
 </x-dialog.header>
-<article>
+<x-dialog.article>
     <x-form :action="['campaign_submissions.update', $campaign, $submission->id]" method="PATCH" class="entity-form w-full max-w-lg text-left">
         @if($action === 'approve')
 
@@ -50,5 +50,5 @@
 
     <input type="hidden" name="action" value="{{ $action }}" />
     </x-form>
-</article>
+</x-dialog.article>
 

@@ -6,8 +6,9 @@ return [
         'premium'   => 'Uploading more files requires a premium campaign.',
     ],
     'create'            => [
+        'helper'            => 'Add a file to :name. The file will count towards your gallery storage limit.',
         'success_plural'    => '{1} File :name added.|[2,*] :count files added.',
-        'title'             => 'New file for :entity',
+        'title'             => 'New file',
     ],
     'destroy'           => [
         'success'   => 'File :name removed.',

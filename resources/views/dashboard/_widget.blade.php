@@ -18,7 +18,7 @@ use App\Enums\Widget;
          style="background-image: url('{{ Img::crop(1200, 400)->url($campaign->header_image) }}')"
     @endif
     >
-        <div class="rounded bg-box flex gap-2 flex-col p-4 h-full">
+        <div class="rounded-xl bg-box flex gap-2 flex-col p-4 h-full">
             <div class="flex gap-4 items-center w-full ">
                 <div class="grow truncate">
                     <x-icon :class="$widget->widgetIcon()" tooltip title="{{ __('dashboard.setup.widgets.' . $widget->widget->value) }}" />

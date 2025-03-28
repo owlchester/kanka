@@ -2,7 +2,7 @@
     {{ __('campaigns.leave.title') }}
 </x-dialog.header>
 
-<article class="max-w-xl">
+<article class="max-w-xl p-4 md:px-6">
     @if(auth()->user()->can('leave', $campaign))
         <p class="">
             {!! __('campaigns.leave.confirm', ['name' => '<strong>' . $campaign->name . '</strong>']) !!}

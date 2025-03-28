@@ -10,11 +10,10 @@
 
 @section('content')
     <x-form :action="['entities.inventories.store', $campaign, $entity->id]">
-        @include('partials.forms.form', [
+        @include('partials.forms._dialog', [
             'title' => __('entities/inventories.create.title', ['name' => $entity->name]),
             'content' => 'entities.pages.inventory._form',
             'submit' => __('entities/inventories.actions.add'),
-            'dialog' => true,
             'multiple' => true,
         ])
     <input type="hidden" name="entity_id" value="{{ $entity->id }}" />

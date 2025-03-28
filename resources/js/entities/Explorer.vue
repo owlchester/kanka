@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="flex gap-2 items-start">
-        <div class="rounded shadow-sm w-[47%] xs:w-[25%] sm:w-48 aspect-square flex items-center justify-center text-xl text-neutral-content">
+        <div class="rounded shadow-xs w-[47%] xs:w-[25%] sm:w-48 aspect-square flex items-center justify-center text-xl text-neutral-content">
             <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
         </div>
         </div>
@@ -195,7 +195,7 @@
         </div>
         <div class="flex gap-1 items-start">
             <div class="entities-grid flex flex-wrap gap-3 lg:gap-5">
-                <a v-if="parent" :href="parent.urls.parent" class="entity w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-sm hover:shadow-md sm">
+                <a v-if="parent" :href="parent.urls.parent" class="entity w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-xs hover:shadow sm">
                     <div class="w-46 flex items-center justify-center grow  text-6xl">
                         <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
                     </div>

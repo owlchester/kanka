@@ -1,4 +1,9 @@
-<x-grid>
+<x-grid type="1/1">
+    @if (!isset($entityAsset))
+        <x-helper>
+            {{ __('entities/links.create.helper', ['name' => $entity->name]) }}
+        </x-helper>
+    @endif
     <x-forms.field
         field="name"
         :label="__('entities/links.fields.name')"

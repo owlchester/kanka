@@ -11,11 +11,10 @@
 
 @section('content')
     <x-form :action="$formOptions">
-        @include('partials.forms.form', [
+        @include('partials.forms._dialog', [
             'title' => __('tags.children.create.modal_title', ['name' => $model->name]),
             'content' => 'tags.entities._form',
             'submit' =>  __('tags.children.actions.add'),
-            'dialog' => true,
         ])
         <input type="hidden" name="tag_id" value="{{ $model->entity->id }}" />
     </x-form>

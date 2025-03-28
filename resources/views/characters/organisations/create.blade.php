@@ -10,11 +10,10 @@
 
 @section('content')
     <x-form :action="['characters.character_organisations.store', $campaign, $model->id]">
-        @include('partials.forms.form', [
+        @include('partials.forms._dialog', [
             'title' => __('characters.organisations.create.title'),
             'content' => 'characters.organisations._form',
             'submit' => __('crud.add'),
-            'dialog' => true,
             'dropdownParent' => '#primary-dialog',
         ])
 

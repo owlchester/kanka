@@ -8,10 +8,9 @@
 @section('content')
 
     <x-form :action="['campaign.default-images.store', $campaign]" files>
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
         'title' => __('campaigns/default-images.create.title', ['name' => $campaign->name]),
         'content' => 'campaigns.default-images._form',
-        'dialog' => true
     ])
     </x-form>
 @endsection

@@ -17,12 +17,11 @@
 
 @section('content')
     <x-form :action="['maps.map_groups.store', $campaign, $map]">
-        @include('partials.forms.form', [
+        @include('partials.forms._dialog', [
             'title' => __('maps/groups.create.title', ['name' => $map->name]),
             'content' => 'maps.groups._form',
             'formParams' => ['model' => null, 'map' => $map],
             'actions' => 'maps.groups._actions',
-            'dialog' => true,
         ])
     </x-form>
 @endsection

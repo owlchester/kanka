@@ -14,7 +14,7 @@
     <x-dialog.header>
         {!! $plugin->name !!} - {{ __('campaigns/plugins.info.updates') }}
     </x-dialog.header>
-    <article class="text-left max-w-2xl">
+    <article class="text-left max-w-2xl p-4 md:px-6">
         <div class="formless">
             <div class="flex gap-2 w-full">
                 <div class="plugin-summary grow">

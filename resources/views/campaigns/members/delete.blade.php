@@ -5,7 +5,7 @@
 <x-dialog.header>
     {!! __('crud.delete_modal.title') !!}
 </x-dialog.header>
-<article class="text-left max-w-2xl">
+<article class="text-left max-w-2xl p-4 md:px-6">
     @include('partials.errors')
 
     <x-form method="DELETE" :action="['campaign_users.destroy', $campaign, $campaignUser->id]">

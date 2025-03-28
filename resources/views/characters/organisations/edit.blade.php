@@ -10,11 +10,10 @@
 @section('content')
     @include('partials.errors')
     <x-form :action="['characters.character_organisations.update', $campaign, $model->id, $member->id]" method="PATCH" >
-        @include('partials.forms.form', [
+        @include('partials.forms._dialog', [
             'title' => __('characters.organisations.edit.title', ['name' => $model->name]),
             'content' => 'characters.organisations._form',
             'deleteID' => '#delete-character-organisation-' . $member->id,
-            'dialog' => true,
             'dropdownParent' => '#primary-dialog',
         ])
 

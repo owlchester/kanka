@@ -12,10 +12,9 @@
 @section('content')
     <x-form :action="['entities.entity_assets.store', $campaign, $entity]">
 
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
             'title' => __('entities/aliases.create.title', ['name' => $entity->name]),
             'content' => 'entities.pages.aliases._form',
-            'dialog' => true,
         ])
     </x-form>
 @endsection

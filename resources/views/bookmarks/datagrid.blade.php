@@ -11,11 +11,11 @@
                 if ($model->isDashboard()) {
                     return '<i class="fa-solid fa-th-large"></i> ' . __('bookmarks.fields.dashboard');
                 } elseif ($model->isEntity()) {
-                    return '<i class="fa-solid fa-star"></i> ' . __('bookmarks.fields.entity');
+                    return '<i class="fa-solid fa-star"></i> ' . __('entities.entity');
                 } elseif ($model->isList()) {
-                    return '<i class="fa-solid fa-th-list"></i> ' . __('bookmarks.fields.type');
+                    return '<i class="fa-solid fa-th-list"></i> ' . __('crud.fields.entity_type');
                 } elseif ($model->isRandom()) {
-                    return '<i class="fa-solid fa-question"></i> ' . __('bookmarks.fields.random');
+                    return '<i class="fa-solid fa-question"></i> ' . __('dashboard.setup.widgets.random');
                 }
                 return '';
             },

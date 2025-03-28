@@ -17,11 +17,10 @@
 @section('content')
     <x-form method="PATCH" :action="['entities.reminders.update', $campaign, $entity->id, $reminder->id]" class="entity-calendar-subform">
 
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
         'title' => __('calendars.event.edit.title', ['name' => '<a href="' . $entity->url() . '">' . $entity->name . '</a>']),
         'content' => 'calendars.reminders._form',
         'deleteID' => '#delete-reminder-' . $reminder->id,
-        'dialog' => true,
         'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
     ])
 

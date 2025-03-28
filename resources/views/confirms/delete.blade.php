@@ -4,7 +4,7 @@
     <x-dialog.header>
         {{ __('crud.delete_modal.title') }}
     </x-dialog.header>
-    <article>
+    <x-dialog.article>
         <x-grid type="1/1">
         <p class="m-0">
             {!! __('crud.delete_modal.description_v2', ['tag' => '<strong>' . $name . '</strong>']) !!}
@@ -34,10 +34,10 @@
         </div>
         @endif
         </x-grid>
-    </article>
-    <footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3 md:rounded-b">
+    </x-dialog.article>
+    <footer class="flex flex-wrap gap-2 justify-between items-start p-4 md:p-6">
         <menu class="flex flex-wrap gap-3 ps-0 ms-0">
-            <button autofocus type="button" class="btn2 btn-ghost btn-full" onclick="this.closest('dialog').close('close')">
+            <button autofocus type="button" class="btn2 btn-full" onclick="this.closest('dialog').close('close')">
                 {{ __('crud.cancel') }}
             </button>
         </menu>

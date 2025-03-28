@@ -9,10 +9,9 @@
 ])
 
 @section('content')
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
         'title' => __('conversations.participants.modal', ['name' => $model->name]),
         'content' => 'conversations.participants._form',
-        'dialog' => true,
         'actions' => 'conversations.participants._actions',
         'skipCancel' => true,
     ])

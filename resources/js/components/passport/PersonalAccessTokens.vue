@@ -51,8 +51,8 @@
         <!-- Create Token Modal -->
 
         <dialog class="dialog rounded-2xl text-center" id="modal-create-token" ref="createModal" aria-modal="true" aria-labelledby="modal-create-token-label">
-            <header>
-                <h4 id="modal-create-token-label">
+            <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+                <h4 id="modal-create-token-label" class="text-lg font-normal">
                     Create Token
                 </h4>
                 <button type="button" class="rounded-full" @click="closeModal('createModal')" title="Close">
@@ -100,7 +100,7 @@
                     </div>
                 </form>
 
-                <div class="grid grid-cols-2 gap-2 w-full">
+                <div class="flex justify-between items-center gap-2 w-full">
                     <button type="button" class="btn2 btn-ghost" @click="closeModal('createModal')">Close</button>
 
                     <button type="button" class="btn2 btn-primary" @click="store">
@@ -112,8 +112,8 @@
 
         <!-- Access Token Modal -->
         <dialog class="dialog rounded-2xl text-center" id="modal-access-token" ref="accessModal" aria-modal="true" aria-labelledby="modal-access-token-label">
-            <header>
-                <h4 id="modal-access-token-label">
+            <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+                <h4 id="modal-access-token-label" class="text-lg font-normal">
                     Personal Access Token
                 </h4>
                 <button type="button" class="rounded-full" @click="closeModal('accessModal')" title="Close">

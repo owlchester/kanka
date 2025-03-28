@@ -101,7 +101,7 @@
                         </div>
                         <div v-else-if="hasPreview()" class="cover-background w-full h-full flex p-2" :style="{backgroundImage: 'url(\'' + imagePreview + '\')'}">
                             <div class="progress h-1 w-full self-end">
-                                <div class="h-1 bg-accent shadow-sm" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" :style="{'width': progressPercentage()}">
+                                <div class="h-1 bg-accent shadow-xs" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" :style="{'width': progressPercentage()}">
                                     <span class="sr-only"></span>
                                 </div>
                             </div>
@@ -140,14 +140,14 @@
     </div>
 
     <dialog ref="newDialog" class="dialog rounded-2xl text-center" v-if="initiated">
-        <header class="bg-base-200 sm:rounded-t">
-            <h4 v-html="trans('new_folder')"></h4>
+        <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+            <h4 v-html="trans('new_folder')" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeModal(newDialog)" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>
             </button>
         </header>
-        <article class="max-w-4xl flex flex-col gap-2 text-left">
+        <article class="max-w-4xl flex flex-col gap-2 text-left p-4 md:px-6">
             <div class="flex flex-col gap-1 w-full">
                 <label v-html="trans('name')"></label>
                 <input type="text" class="w-full" v-model="folderName" ref="folderNameField" @keyup.enter="createFolder">
@@ -159,7 +159,7 @@
                 </select>
             </div>
         </article>
-        <footer class="bg-base-200 p-2">
+        <footer class="bp-4 md:px-6">
             <menu class="">
                 <button type="submit" class="btn2 btn-primary" @click="createFolder" v-html="trans('create')">
                 </button>
@@ -168,14 +168,14 @@
     </dialog>
 
     <dialog ref="updateDialog" class="dialog rounded-2xl text-center" v-if="initiated">
-        <header class="bg-base-200 sm:rounded-t">
-            <h4 v-html="trans('update')"></h4>
+        <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+            <h4 v-html="trans('update')" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeModal(updateDialog)" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>
             </button>
         </header>
-        <article class="max-w-4xl flex flex-col gap-2 text-left">
+        <article class="max-w-4xl flex flex-col gap-2 text-left p-4 md:px-6">
             <div class="flex flex-col gap-1 w-full">
                 <label v-html="trans('visibility')"></label>
                 <select class="w-full" v-model="bulkVisibility">

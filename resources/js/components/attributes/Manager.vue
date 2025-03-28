@@ -7,7 +7,7 @@
         <div class="flex gap-2 lg:gap-2 justify-end px-4 pt-4">
             <input type="text" v-bind:placeholder="trans('actions.search')" class="grow md:flex-none md:w-80" v-model="searchTerm" />
             <div class="relative">
-                <a role="button" @click="toggleFilters()" class="btn2 btn-default btn-sm">
+                <a role="button" @click="toggleFilters()" class="btn2 btn-outline btn-sm">
                     <i class="fa-solid fa-bars-filter" aria-hidden="true" />
                     <span v-html="trans('actions.filters')"></span>
                 </a>
@@ -31,7 +31,7 @@
                 <i class="fa-solid fa-lock-open" aria-hidden="true" />
                 <span v-html="trans('actions.toggle')"></span>
             </a>
-            <a role="button" class="btn2 md:ml-auto" @click="toggleTemplates()">
+            <a role="button" class="btn2 btn-outline md:ml-auto" @click="toggleTemplates()">
                 <i class="fa-regular fa-file-import" aria-hidden="true" />
                 <span v-html="trans('actions.load')"></span>
             </a>
@@ -89,15 +89,15 @@
     </div>
 
     <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="templates-dialog" aria-modal="true" v-if="!loading">
-        <header class="bg-base-200 sm:rounded-t">
-            <h4 v-html="trans('templates.title')"></h4>
+        <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+            <h4 v-html="trans('templates.title')" class="text-lg font-normal"></h4>
 
             <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="closeModal()">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>
             </button>
         </header>
-        <article>
+        <article class="flex flex-col gap-4 p-4 md:p-6">
             <label for="template_id" v-html="trans('templates.template')"></label>
             <select v-model="template" class="w-full" id="template_id">
                 <optgroup v-for="(group, key) in templates" v-bind:label="key">
@@ -105,7 +105,7 @@
                 </optgroup>
             </select>
         </article>
-        <footer class="bg-base-200 flex flex-wrap gap-3 justify-end items-center p-3 md:rounded-b">
+        <footer class="flex flex-wrap gap-3 justify-end items-center p-4 md:px-6">
             <menu class="flex flex-wrap gap-3 ps-0">
                 <div class="submit-group">
                     <a role="button" class="btn2 btn-primary" @click="loadTemplate()" v-html="trans('templates.load')">
@@ -214,7 +214,7 @@ const deleteClass = () => {
     if (!checked) {
         return 'btn2 btn-ghost'
     }
-    return 'btn2 btn-error'
+    return 'btn2 btn-error btn-outline'
 }
 
 const deleteAll = () => {
@@ -236,7 +236,7 @@ const togglePrivateClass = () => {
     if (!checked) {
         return 'btn2 btn-ghost'
     }
-    return 'btn2'
+    return 'btn2 btn-outline'
 }
 const togglePrivate = () => {
     let selected = attributes.value.filter(attribute => attribute.is_checked);

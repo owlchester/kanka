@@ -12,10 +12,9 @@
 
     <x-form :action="['entities.reminders.store', $campaign, $entity->id]" class="">
 
-    @include('partials.forms.form', [
+    @include('partials.forms._dialog', [
         'title' => __('calendars.event.create.title', ['name' => $entity->name]),
         'content' => 'calendars.reminders._entity_form',
-        'dialog' => true,
         'dropdownParent' => request()->ajax() ? '#primary-dialog' : null,
     ])
 

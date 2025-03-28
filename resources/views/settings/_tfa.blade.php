@@ -1,4 +1,4 @@
-<x-box class="mb-12">
+<x-box class="mb-12 rounded-2xl">
     <x-slot name="title">
         {{ __('settings.account.2fa.title') }}
     </x-slot>

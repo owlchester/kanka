@@ -16,7 +16,7 @@ if (!isset($user)) {
         </div>
     </section>
     <section class="sidebar grow">
-        <ul class="sidebar-menu overflow-hidden whitespace-no-wrap m-0 p-0 list-none flex flex flex-col gap-0.5">
+        <ul class="sidebar-menu overflow-hidden whitespace-no-wrap list-none m-0 p-0">
             <li class="px-2 {{ $sidebar->settings('profile') }}">
                 <x-sidebar.element
                     :url="route('settings.profile')"
@@ -46,11 +46,11 @@ if (!isset($user)) {
                 ></x-sidebar.element>
             </li>
 
-            <li class="px-2 pt-4">
+            <li class="section-subscription pt-4">
                 <x-sidebar.section :text="__('settings.menu.subscription')" />
                 <ul class="sidebar-submenu list-none p-0 m-0">
                     @if (config('services.stripe.enabled'))
-                        <li class="p-0 m-0 {{ $sidebar->settings('subscription') }} subsection">
+                        <li class="px-2 {{ $sidebar->settings('subscription') }} subsection">
                             <x-sidebar.element
                                 :url="route('settings.subscription')"
                                 icon="fa-regular fa-heart"
@@ -58,7 +58,7 @@ if (!isset($user)) {
                             ></x-sidebar.element>
                         </li>
                         @if (auth()->user()->hasBoosterNomenclature())
-                            <li class="{{ $sidebar->settings('boosters') }} subsection">
+                            <li class="px-2 {{ $sidebar->settings('boosters') }} subsection">
                                 <x-sidebar.element
                                     :url="route('settings.boost')"
                                     icon="fa-regular fa-rocket"
@@ -66,7 +66,7 @@ if (!isset($user)) {
                                 ></x-sidebar.element>
                             </li>
                         @else
-                            <li class="{{ $sidebar->settings('premium') }} subsection">
+                            <li class="px-2 {{ $sidebar->settings('premium') }} subsection">
                                 <x-sidebar.element
                                     :url="route('settings.premium')"
                                     icon="fa-regular fa-gem"
@@ -77,14 +77,14 @@ if (!isset($user)) {
                     @endif
 
                     @if (config('services.stripe.enabled'))
-                        <li class="{{ $sidebar->settings('payment-method', 3) }} subsection">
+                        <li class="px-2 {{ $sidebar->settings('payment-method', 3) }} subsection">
                             <x-sidebar.element
                                 :url="route('billing.payment-method')"
                                 icon="fa-regular fa-credit-card"
                                 :text="__('billing/menu.payment-method')"
                             ></x-sidebar.element>
                         </li>
-                        <li class="{{ $sidebar->settings('history', 3) }} subsection">
+                        <li class="px-2 {{ $sidebar->settings('history', 3) }} subsection">
                             <x-sidebar.element
                                 :url="route('billing.history')"
                                 icon="fa-regular fa-receipt"
@@ -95,11 +95,12 @@ if (!isset($user)) {
                 </ul>
             </li>
 
-            <li class="px-2 pt-4">
+            <li class="section-other pt-4">
                 <x-sidebar.section :text="__('settings.menu.other')" />
 
                 <ul class="sidebar-submenu list-none p-0 m-0">
-                    @if (auth()->user()->isLegacyPatron())<li class="{{ $sidebar->settings('patreon') }} subsection">
+                    @if (auth()->user()->isLegacyPatron() || app()->isLocal())
+                        <li class="px-2 {{ $sidebar->settings('patreon') }} subsection">
                         <x-sidebar.element
                             :url="route('settings.patreon')"
                             icon="fa-brands fa-patreon"
@@ -107,14 +108,14 @@ if (!isset($user)) {
                         ></x-sidebar.element>
                     </li>@endif
 
-                    <li class="p-0 m-0 {{ $sidebar->settings('apps') }} subsection">
+                    <li class="px-2 {{ $sidebar->settings('apps') }} subsection">
                         <x-sidebar.element
                             :url="route('settings.apps')"
                             icon="fa-brands fa-discord"
                             :text="__('settings.menu.apps')"
                         ></x-sidebar.element>
                     </li>
-                    <li class="p-0 m-0 {{ $sidebar->settings('api') }} subsection">
+                    <li class="px-2 {{ $sidebar->settings('api') }} subsection">
                         <x-sidebar.element
                             :url="route('settings.api')"
                             icon="fa-regular fa-code"

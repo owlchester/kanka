@@ -20,9 +20,9 @@
         </div>
     </div>
 </header>
-<article class="max-w-2xl">
+<article class="max-w-2xl ">
     <p>{!! nl2br($feature->description) !!}</p>
 </article>
-<footer class="bg-base-200 flex flex-wrap gap-3 justify-between items-start p-3 md:rounded-b">
+<footer class="flex flex-wrap gap-3 justify-between items-start p-3 md:rounded-b">
 
 </footer>

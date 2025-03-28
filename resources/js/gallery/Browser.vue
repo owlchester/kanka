@@ -4,8 +4,8 @@
     </div>
 
     <dialog class="dialog rounded-2xl text-center" id="gallery-dialog" ref="galleryDialog" aria-modal="true" aria-labelledby="modal-card-label">
-        <header class="bg-base-200 sm:rounded-t">
-            <h4 v-html="trans.browse.title" ></h4>
+        <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+            <h4 v-html="trans.browse.title" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeBrowser()" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">Close</span>
