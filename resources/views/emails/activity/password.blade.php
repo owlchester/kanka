@@ -1,20 +1,15 @@
-<?php /** @var \App\Models\User $user */?>
-@extends('emails.base', [
-    'utmSource' => 'activity',
-    'utmCampaign' => 'password'
-])
+<x-mail::message>
+# New password
 
-@section('content')
+{{ __('emails/subscriptions/upcoming.dear', ['name' => $user->name]) }},
 
-    <p>
-        {{ __('emails/subscriptions/upcoming.dear', ['name' => $user->name]) }},
-    </p>
+{{ __('emails/activity/password.first') }}
 
-    <p>{{ __('emails/activity/password.first') }}</p>
+{!! __('emails/activity/password.help', [
+    'email' => '[' . config('app.email') . '](mailto:' . config('app.email') . ')'
+]) !!}
 
-    <p>{!! __('emails/activity/password.help', [
-        'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>'
-    ]) !!}</p>
+_Jay & Jon_
 
-    <i>Jay & Jon</i>
-@endsection
+</x-mail::message>
+

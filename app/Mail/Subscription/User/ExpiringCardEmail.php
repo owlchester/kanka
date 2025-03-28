@@ -5,6 +5,8 @@ namespace App\Mail\Subscription\User;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class ExpiringCardEmail extends Mailable
@@ -30,17 +32,23 @@ class ExpiringCardEmail extends Mailable
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * Get the message envelope.
      */
-    public function build()
+    public function envelope(): Envelope
     {
-        return $this
-            ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
-            ->subject(__('emails/subscriptions/expiring.title'))
-            ->view('emails.subscriptions.expiring.user-html')
-            ->tag('expiring')
-            ->text('emails.subscriptions.expiring.user-text');
+        return new Envelope(
+            subject: __('emails/subscriptions/expiring.title'),
+            tags: ['expiring']
+        );
+    }
+
+    /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        return new Content(
+            markdown: 'emails.subscriptions.expiring.user-md',
+        );
     }
 }

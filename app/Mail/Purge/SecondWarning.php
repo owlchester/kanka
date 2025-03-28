@@ -50,7 +50,7 @@ class SecondWarning extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.purge.second.html',
+            markdown: 'emails.purge.second.md',
         );
     }
 

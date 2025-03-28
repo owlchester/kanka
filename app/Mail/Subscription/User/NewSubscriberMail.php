@@ -6,6 +6,9 @@ use App\Models\Tier;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class NewSubscriberMail extends Mailable
@@ -29,16 +32,24 @@ class NewSubscriberMail extends Mailable
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * Get the message envelope.
      */
-    public function build()
+    public function envelope(): Envelope
     {
-        return $this
-            ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
-            ->subject('Thank you, and welcome!')
-            ->tag('elemental')
-            ->view('emails.subscriptions.new.' . $this->tier->code);
+        return new Envelope(
+            from: new Address(config('app.email'), 'Kanka Team'),
+            subject: 'Thank you, and welcome!',
+            tags: ['elemental']
+        );
+    }
+
+    /**
+     * Get the message content definition.
+     */
+    public function content(): Content
+    {
+        return new Content(
+            markdown: 'emails.subscriptions.new.' . $this->tier->code,
+        );
     }
 }

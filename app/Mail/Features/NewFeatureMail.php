@@ -5,7 +5,6 @@ namespace App\Mail\Features;
 use App\Models\Feature;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -15,10 +14,7 @@ class NewFeatureMail extends Mailable
     use Queueable;
     use SerializesModels;
 
-    /**
-     * @var Feature
-     */
-    public $feature;
+    public Feature $feature;
 
     /**
      * Create a new message instance.
@@ -38,7 +34,6 @@ class NewFeatureMail extends Mailable
         return new Envelope(
             subject: 'New feature request',
             tags: ['admin-new-feature'],
-            from: new Address(config('app.email'), 'Kanka Admin'),
         );
     }
 
@@ -48,7 +43,7 @@ class NewFeatureMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.features.md',
+            markdown: 'emails.features.new',
             with: ['feature' => $this->feature],
         );
     }

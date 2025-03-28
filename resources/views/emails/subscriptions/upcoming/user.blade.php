@@ -1,3 +1,5 @@
+<x-mail::message>
+
 {{ __('emails/subscriptions/upcoming.dear', ['name' => $user->name]) }},
 
 {{ __('emails/subscriptions/upcoming.primary', [
@@ -10,9 +12,10 @@
 
 {{ __('emails/subscriptions/upcoming.valid') }}
 
-{{ __('emails/subscriptions/upcoming.cancel', ['link' => __('emails/subscriptions/upcoming.link')]) }}
-
+{!! __('emails/subscriptions/upcoming.cancel', ['link' =>  '[' . __('emails/subscriptions/upcoming.link') . '](' . route('settings.subscription') . ')']) !!}
 
 {{ __('emails/subscriptions/upcoming.closing') }}
-The Kanka Team
-https://kanka.io
+
+__Jay & Jon_
+
+</x-mail::message>

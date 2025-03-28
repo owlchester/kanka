@@ -5,7 +5,6 @@ namespace App\Mail\Users;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -33,9 +32,8 @@ class NewPassword extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('hello@kanka.io', 'Kanka'),
             subject: __('emails/activity/password.title'),
-            tags: ['users', 'new-password']
+            tags: ['user', 'new-password'],
         );
     }
 
@@ -45,17 +43,7 @@ class NewPassword extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.activity.password',
+            markdown: 'emails.activity.password',
         );
-    }
-
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
-    public function attachments(): array
-    {
-        return [];
     }
 }

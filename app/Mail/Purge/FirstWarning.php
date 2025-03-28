@@ -50,7 +50,7 @@ class FirstWarning extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.purge.first.html',
+            markdown: 'emails.purge.first.md',
         );
     }
 
