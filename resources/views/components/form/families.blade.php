@@ -33,7 +33,6 @@ if ($quickCreator) {
     field="families"
     :label="\App\Facades\Module::plural(config('entities.ids.family'), __('entities.families'))">
 
-@if ($quickCreator)<div class="join w-full">@endif
 
 <select multiple="multiple" name="families[]" class="w-full select2 join-item" data-tags="true" style="width: 100%" data-url="{{ route('search-list', [$campaign, config('entities.ids.family')]) }}" data-new-tag="{{ __('crud.actions.new') }}" data-allow-clear="true" data-allow-new="{{ $dynamicNew ? 'true' : false}}" data-placeholder="" id="{{ $fieldUniqIdentifier }}">
     @foreach ($selectedOption as $key => $val)
@@ -42,10 +41,12 @@ if ($quickCreator) {
 </select>
 
 @if ($quickCreator)
-        <a class="quick-creator-subform btn2 bg-base-200 join-item btn-sm" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => config('entities.ids.family'), 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}" aria-label="Create a new family" tabindex="0">
-            <span class="fa-solid fa-plus"></span>
+    <x-slot name="action">
+        <a class="quick-creator-subform text-xs cursor-pointer" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => config('entities.ids.family'), 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}" aria-label="Create a new family" tabindex="0">
+            <x-icon class="plus" />
+            {{ __('crud.actions.new') }}
         </a>
-    </div>
+    </x-slot>
 @endif
 </x-forms.field>
 

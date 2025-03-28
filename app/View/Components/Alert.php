@@ -15,6 +15,7 @@ class Alert extends Component
         public string $type,
         public ?string $id = null,
         public bool $dismissible = false,
+        public ?string $class = null,
         public bool $hidden = false,
     ) {}
 

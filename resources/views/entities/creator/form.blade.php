@@ -45,7 +45,7 @@
                            data-live="{{ route('search-list', [$campaign, $entityType]) }}"
                        @endif data-bulk="true" id="{{ !isset($entityType) ? 'qq-post-name-field' : 'qq-name-field' }}" data-1p-ignore="true" />
             @endif
-            <x-alert type="warning" class=" my-1 duplicate-entity-warning" :hidden="true">
+            <x-alert type="warning" class="my-1 duplicate-entity-warning" :hidden="true">
                 {{ __('entities.creator.duplicate') }}<br />
                 <span class="duplicate-entities"></span>
             </x-alert>

@@ -12,7 +12,7 @@
 <article id="qq-modal-form" class="!hidden p-4 md:px-6">
 </article>
 <div class="container">
-    <article id="qq-modal-selection p-4 md:px-6">
+    <article id="qq-modal-selection" class="p-4 md:px-6">
         <div class="quick-creator-body flex flex-col gap-5">
             @includeWhen(isset($new), 'entities.creator._created', ['success' => $new ?? null, 'dismissable' => false])
 

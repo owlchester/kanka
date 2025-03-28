@@ -29,11 +29,11 @@ if ($quickCreator) {
     $quickCreator = auth()->user()->can('create', [$campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $campaign]);
 }
 ?>
-<label>
-    {!! \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')) !!}
-</label>
 
-@if ($quickCreator)<div class="join w-full">@endif
+<x-forms.field
+    field="locations"
+    :label="\App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations'))">
+
 
 <select multiple="multiple" name="locations[]" class="w-full select2 join-item" data-tags="true" style="width: 100%" data-url="{{ route('search-list', [$campaign, config('entities.ids.location')]) }}" data-allow-clear="true" data-new-tag="{{ __('crud.actions.new') }}" data-allow-new="{{ $dynamicNew ? 'true' : false}}" data-placeholder="{{ __('crud.placeholders.multiple') }}" id="{{ $fieldUniqIdentifier }}">
     @foreach ($selectedOption as $key => $val)
@@ -42,8 +42,11 @@ if ($quickCreator) {
 </select>
 
 @if ($quickCreator)
-    <a class="quick-creator-subform btn2 bg-base-200 join-item btn-sm" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => config('entities.ids.location'), 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}" aria-label="Create a new location" tabindex="0">
-        <span class="fa-solid fa-plus"></span>
-    </a>
-</div>
+    <x-slot name="action">
+        <a class="quick-creator-subform text-xs cursor-pointer" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => config('entities.ids.location'), 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}" aria-label="Create a new location" tabindex="0">
+            <x-icon class="plus" />
+            {{ __('crud.actions.new') }}
+        </a>
+    </x-slot>
 @endif
+</x-forms.field>

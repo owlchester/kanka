@@ -32,8 +32,6 @@ if ($quickCreator) {
     field="races"
     :label="\App\Facades\Module::plural(config('entities.ids.race'), __('entities.races'))">
 
-    @if ($quickCreator)<div class="join w-full">@endif
-
     <select
         id="{{ $fieldUniqIdentifier }}"
         multiple="multiple"
@@ -52,9 +50,11 @@ if ($quickCreator) {
     </select>
 
     @if ($quickCreator)
-            <a class="quick-creator-subform btn2 bg-base-200 join-item" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => config('entities.ids.race'), 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}" aria-label="Create a new race" tabindex="0">
-                <span class="fa-solid fa-plus"></span>
+        <x-slot name="action">
+            <a class="quick-creator-subform text-xs cursor-pointer" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => config('entities.ids.race'), 'origin' => 'entity-form', 'target' => $fieldUniqIdentifier, 'multi' => true]) }}" aria-label="Create a new race" tabindex="0">
+                <x-icon class="plus" />
+                {{ __('crud.actions.new') }}
             </a>
-        </div>
+        </x-slot>
     @endif
 </x-forms.field>

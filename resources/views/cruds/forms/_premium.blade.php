@@ -30,7 +30,7 @@
 
             <textarea name="tooltip" class="" id="tooltip" rows="3" placeholder="{{ __('fields.tooltip.description') }}">{!! old('tooltip', FormCopy::field('tooltip')->string() ?: $entity->tooltip ?? null) !!}</textarea>
 
-            <p class="text-neutral-content">
+            <x-slot name="helper">
                 @php
                 $tooltipTags = [];
                 foreach (config('purify.configs.tooltips.allowed') as $tag) {
@@ -39,7 +39,7 @@
                 $tooltipTags = implode(', ', $tooltipTags);
                 @endphp
                 {!! __('fields.tooltip.helper', ['tags' => $tooltipTags]) !!}
-            </p>
+            </x-slot>
         @else
             @include('cruds.fields.helpers.boosted', ['key' => 'fields.tooltip.boosted-description'])
         @endif

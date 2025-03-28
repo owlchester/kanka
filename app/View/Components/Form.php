@@ -20,6 +20,7 @@ class Form extends Component
         public bool $unsaved = false,
         public bool $direct = false,
         public string $id = '',
+        public string $class = '',
         public array $extra = [],
     ) {
         // Guarantee uppercase method for the tests in the blade file

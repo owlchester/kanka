@@ -56,6 +56,9 @@ const quickCreatorDuplicateName = () => {
         }
 
         const warning = this.parentNode.querySelector('.duplicate-entity-warning');
+        if (!warning) {
+            return;
+        }
         warning.classList.add('hidden');
         // Check if an entity of the same type already exists, and warn when it does.
         const url = this.dataset.live + '?q=' + this.value + '&type=' + this.dataset.type;

@@ -3,19 +3,23 @@
     @if ($hidden) hidden @endif"
 >
     @if (isset($label) && !empty($label))
-        <label class="" @if (isset($id)) for="{{ $id }}" @endif>
-            {!! $label !!}
-            @if ($tooltip && isset($helper))
-                @if (isset($link))
-                    <a href="{{ $link }}" target="_blank">
+        <div class="flex items-center justify-between">
+            <label class="" @if (isset($id)) for="{{ $id }}" @endif>
+                {!! $label !!}
+                @if ($tooltip && isset($helper))
+                    @if (isset($link))
+                        <a href="{{ $link }}" target="_blank">
+                            <x-helpers.tooltip :title="$helper" />
+                        </a>
+                    @else
                         <x-helpers.tooltip :title="$helper" />
-                    </a>
-                @else
-                    <x-helpers.tooltip :title="$helper" />
+                    @endif
                 @endif
-            @endif
-        </label>
-    @else
+            </label>
+            @isset($action)
+                {!! $action !!}
+            @endisset
+        </div>
     @endif
     {!! $slot !!}
     @if (isset($helper) && !empty($helper))

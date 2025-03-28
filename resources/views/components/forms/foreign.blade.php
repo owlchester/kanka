@@ -6,10 +6,6 @@
     :helper="$helper"
     tooltip>
 
-    @if ($canNew && !$dynamicNew)
-        <div class="join w-full">
-    @endif
-
     <select
             @if ($multiple) multiple="multiple" @endif
             name="{{ $name }}"
@@ -31,10 +27,11 @@
     </select>
 
     @if ($canNew && !$dynamicNew)
-            <a class="quick-creator-subform btn2 bg-base-200 join-item btn-sm" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => $entityTypeID, 'origin' => 'entity-form', 'target' => $id]) }}" aria-label="Create a new element" tabindex="0">
+        <x-slot name="action">
+            <a class="quick-creator-subform text-xs cursor-pointer" data-url="{{ route('entity-creator.form', [$campaign, 'entity_type' => $entityTypeID, 'origin' => 'entity-form', 'target' => $id]) }}" aria-label="Create a new element" tabindex="0">
                 <x-icon class="plus" />
-                <span class="sr-only">{{ __('crud.create') }}</span>
+                {{ __('crud.actions.new') }}
             </a>
-        </div>
+        </x-slot>
     @endif
 </x-forms.field>
