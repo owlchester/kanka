@@ -1,3 +1,4 @@
+<?php /** This is the old email system, check out vendor/mail/html/layout.blade.php instead */?>
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" dir="ltr">
 <head>

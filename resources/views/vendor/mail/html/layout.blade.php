@@ -2,10 +2,15 @@
     'layout' => 'user',
 ])
 
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" dir="ltr">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="{{ app()->getLocale() }}" dir="ltr"  xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <title>{{ config('app.name') }}</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
     <meta name="x-apple-disable-message-reformatting">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,11 +28,15 @@
         table { border-collapse: collapse; }
         table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
         body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+        p {padding-left: 50px; padding-right: 50px;}
+        ul {padding-left: 65px; padding-right: 65px;}
         h1, h2, h3, h4, h5, p { margin:0;}
         @media all and (max-width:639px) {
             .wrapper{ width:100%!important; }
             .container{ width:100%!important; min-width:100%!important; padding: 0 !important; }
             .row{padding-left: 20px!important; padding-right: 20px!important;}
+            p { padding-left: 20px!important; padding-right: 20px!important; }
+            ul { padding-left: 35px!important; padding-right: 35px!important; }
         }
     </style>
 </head>
