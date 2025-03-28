@@ -38,7 +38,6 @@ class ExpiringCardEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(config('app.email'), 'Kanka Team'),
             subject: __('emails/subscriptions/expiring.title'),
             tags: ['expiring']
         );

@@ -36,8 +36,7 @@ class FailedUserSubscriptionMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(config('app.email'), 'Kanka Team'),
-            subject: 'Warning: subscription issue',
+            subject: 'Issue with your Kanka subscription',
             tags: ['failed']
         );
     }

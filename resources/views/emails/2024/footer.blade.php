@@ -1,4 +1,4 @@
-<table class="ml-default" width="100%" bgcolor="" align="center" border="0" cellspacing="0" cellpadding="0">
+<table class="ml-default" width="100%" bgcolor="" align="center" border="0" cellspacing="0" cellpadding="">
 <tbody><tr>
 <td style="">
 <table class="container ml-21 ml-default-border" width="640" bgcolor="#ffffff" align="center" border="0" cellspacing="0" cellpadding="0" style="width: 640px; min-width: 640px;">
@@ -22,28 +22,28 @@ Chemin Ella Maillart 16, Geneve<br>Switzerland
 <tr>
 <td>
 
-<table class="**$class**" role="presentation" cellpadding="0" cellspacing="0" border="0">
+<table class="social-links" role="presentation" cellpadding="" cellspacing="5" border="0">
 <tbody><tr>
-<td align="center" valign="middle" width="18" style="padding: 0 5px 0 0;">
-<a href="https://kanka.io/go/discord" target="blank" style="text-decoration: none;">
-    <img src="https://assets.mlcdn.com/ml/images/icons/default/rounded_corners/black/discord.png" width="18" alt="discord">
-</a>
-</td>
-<td align="center" valign="middle" width="18" style="padding: 0 5px;">
-<a href="https://kanka.io/go/youtube" target="blank" style="text-decoration: none;">
-    <img src="https://assets.mlcdn.com/ml/images/icons/default/rounded_corners/black/youtube.png" width="18" alt="youtube">
-</a>
-</td>
-<td align="center" valign="middle" width="18" style="padding: 0 5px;">
-<a href="https://kanka.io/go/github" target="blank" style="text-decoration: none;">
-    <img src="https://assets.mlcdn.com/ml/images/icons/default/rounded_corners/black/github.png" width="18" alt="github">
-</a>
-</td>
-<td align="center" valign="middle" width="18" style="padding: 0 0 0 5px;">
-<a href="https://kanka.io/go/instagram" target="blank" style="text-decoration: none;">
-    <img src="https://assets.mlcdn.com/ml/images/icons/default/rounded_corners/black/instagram.png" width="18" alt="instagram">
-</a>
-</td>
+    <td align="center" valign="middle" width="18" >
+        <a href="https://kanka.io/go/discord" target="blank" style="text-decoration: none;">
+            <img src="https://assets.mlcdn.com/ml/images/icons/default/rounded_corners/black/discord.png" width="18" alt="discord">
+        </a>
+    </td>
+    <td align="center" valign="middle" width="18" >
+        <a href="https://kanka.io/go/youtube" target="blank" style="text-decoration: none;">
+            <img src="https://assets.mlcdn.com/ml/images/icons/default/rounded_corners/black/youtube.png" width="18" alt="youtube">
+        </a>
+    </td>
+    <td align="center" valign="middle" width="18" >
+        <a href="https://kanka.io/go/github" target="blank" style="text-decoration: none;">
+            <img src="https://assets.mlcdn.com/ml/images/icons/default/rounded_corners/black/github.png" width="18" alt="github">
+        </a>
+    </td>
+    <td align="center" valign="middle" width="18" >
+        <a href="https://kanka.io/go/instagram" target="blank" style="text-decoration: none;">
+            <img src="https://assets.mlcdn.com/ml/images/icons/default/rounded_corners/black/instagram.png" width="18" alt="instagram">
+        </a>
+    </td>
 </tr>
 </tbody></table>
 </td>

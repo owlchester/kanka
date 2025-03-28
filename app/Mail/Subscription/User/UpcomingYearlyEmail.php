@@ -6,6 +6,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 class UpcomingYearlyEmail extends Mailable
@@ -32,17 +34,21 @@ class UpcomingYearlyEmail extends Mailable
     }
 
     /**
-     * Build the message.
-     *
-     * @return $this
+     * Get the message envelope.
      */
-    public function build()
+    public function envelope(): Envelope
     {
-        return $this
-            ->from(['address' => config('app.email'), 'name' => 'Kanka Team'])
-            ->subject(__('emails/subscriptions/upcoming.title'))
-            ->view('emails.subscriptions.upcoming.user-html')
-            ->tag('upcoming-yearly')
-            ->text('emails.subscriptions.upcoming.user-text');
+        return new Envelope(
+            subject: __('emails/subscriptions/upcoming.title'),
+            tags: ['user', 'upcoming-yearly'],
+        );
+    }
+
+    public function content(): Content
+    {
+        return new Content(
+            markdown: 'emails.subscriptions.upcoming.user',
+            with: ['user' => $this->user, 'date' => $this->date],
+        );
     }
 }

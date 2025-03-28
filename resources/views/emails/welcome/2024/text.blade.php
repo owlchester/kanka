@@ -1,24 +1,22 @@
 <x-mail::message layout="welcome">
 
-# **{!! __('emails/welcome/2024.header', ['name' => $user->name]) !!}**  
+# **{!! __('emails/welcome/2024.header', ['name' => $user->name]) !!}**
 
-{!! __('emails/welcome/2024.lead_1') !!}  
-<br>
+{!! __('emails/welcome/2024.lead_1') !!}
 
-{!! __('emails/welcome/2024.lead_2') !!}  
+{!! __('emails/welcome/2024.lead_2') !!}
 
 
 <x-mail::panel>
 
-## **{!! __('emails/welcome/2024.what_now') !!}**  
+## **{!! __('emails/welcome/2024.what_now') !!}**
 
 {!! __('emails/welcome/2024.what_1', [
     'start' => __('emails/welcome/2024.what_new'),
-]) !!}  
-<br>
+]) !!}
 
 
-{!! __('emails/welcome/2024.what_2') !!}  
+{!! __('emails/welcome/2024.what_2') !!}
 
 - {!! __('emails/welcome/2024.what_3', [
     'kb' => '[' . __('footer.kb') . '](' . \App\Facades\Domain::toFront('kb') . ')',
@@ -32,11 +30,9 @@
 
 </x-mail::panel>
 
-{!! __('emails/welcome/2024.closing') !!}  
-<br><br>
+{!! __('emails/welcome/2024.closing') !!}
 
-Jay and Jon  
-<br><br>
+_Jay and Jon_
 
 {!! __('emails/welcome/2024.ps', [
     'email' => '[' . config('app.email') . '](mailto:' . config('app.email') . ')',

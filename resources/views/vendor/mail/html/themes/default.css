@@ -71,6 +71,8 @@ p {
     line-height: 1.5em;
     margin-top: 0;
     text-align: left;
+    padding: 0 50px;
+    margin-bottom: 1.2rem;
 }
 
 p.sub {
@@ -218,6 +220,11 @@ img {
 .content-cell {
     max-width: 100vw;
     padding: 32px;
+}
+
+table.social-links {
+    border-spacing: 5px;
+    border-collapse: separate;
 }
 
 /* Buttons */
