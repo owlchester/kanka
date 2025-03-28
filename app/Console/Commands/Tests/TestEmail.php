@@ -13,8 +13,6 @@ use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
 use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
 use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\NewPassword;
-use App\Mail\Features\NewFeatureMail;
-use App\Mail\Subscription\Admin\DowngradedSubscriptionMail;
 use App\Models\Feature;
 use App\Models\Tier;
 use Illuminate\Console\Command;
