@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\CampaignDashboardObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -34,6 +35,14 @@ class CampaignDashboard extends Model
     protected array $sanitizable = [
         'name',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(CampaignDashboardObserver::class);
+    }
 
     public function widgets(): HasMany
     {

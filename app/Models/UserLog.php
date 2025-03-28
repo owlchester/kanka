@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUser;
+use App\Observers\UserLogObserver;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
@@ -112,6 +113,14 @@ class UserLog extends Model
         'type_id',
         'ip',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(UserLogObserver::class);
+    }
 
     /**
      * Automatically prune old elements from the db

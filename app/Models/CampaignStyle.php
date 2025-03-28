@@ -6,6 +6,8 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\CampaignStyleObserver;
+use App\Observers\CampaignSubmissionObserver;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
@@ -57,6 +59,14 @@ class CampaignStyle extends Model
     ];
 
     public $defaultSort = ['order', 'id'];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(CampaignStyleObserver::class);
+    }
 
     public function scopeEnabled(Builder $query, bool $enabled = true): Builder
     {

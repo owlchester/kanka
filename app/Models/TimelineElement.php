@@ -8,6 +8,7 @@ use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\TimelineElementObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -76,6 +77,14 @@ class TimelineElement extends Model
         'date',
         'icon',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(TimelineElementObserver::class);
+    }
 
     public function timeline(): BelongsTo
     {

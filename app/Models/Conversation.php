@@ -6,6 +6,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\ConversationObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -76,6 +77,14 @@ class Conversation extends MiscModel
      * @var string[] Extra relations loaded for the API endpoint
      */
     public array $apiWith = ['messages', 'participants'];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(ConversationObserver::class);
+    }
 
     public function messages(): HasMany
     {

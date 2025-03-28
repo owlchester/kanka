@@ -16,6 +16,7 @@ use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Relations\CampaignRelations;
 use App\Models\Scopes\CampaignScopes;
+use App\Observers\CampaignObserver;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -126,6 +127,14 @@ class Campaign extends Model
         'image',
         'header_image',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(CampaignObserver::class);
+    }
 
     /** @var Collection|EntityType[] */
     protected Collection|array $cachedEntityTypes;

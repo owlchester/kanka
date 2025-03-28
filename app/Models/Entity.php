@@ -23,6 +23,7 @@ use App\Models\Concerns\Taggable;
 use App\Models\Concerns\Templatable;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
+use App\Observers\EntityObserver;
 use App\Traits\HasTooltip;
 use Carbon\Carbon;
 use Collator;
@@ -127,6 +128,14 @@ class Entity extends Model
     protected $observables = [
         'crudSaved',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(EntityObserver::class);
+    }
 
     /**
      * Get the child entity

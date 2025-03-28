@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\CampaignRoleObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -47,6 +48,14 @@ class CampaignRole extends Model
         'name',
         'is_admin',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(CampaignRoleObserver::class);
+    }
 
     /**
      * Determine if the campaign role is the campaign's public role

@@ -9,6 +9,7 @@ use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\MapObserver;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -159,6 +160,14 @@ class Map extends MiscModel
     public array $apiWith = ['groups', 'layers'];
 
     protected array $exploreGridFields = ['is_real'];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(MapObserver::class);
+    }
 
     /**
      * Parent ID used for the Node Trait

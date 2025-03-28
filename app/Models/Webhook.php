@@ -7,6 +7,7 @@ use App\Facades\CampaignLocalization;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\WebhookObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -45,6 +46,14 @@ class Webhook extends Model
         'status',
         'action',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(WebhookObserver::class);
+    }
 
     public function tags(): BelongsToMany
     {

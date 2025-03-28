@@ -59,6 +59,14 @@ class CampaignDashboardWidget extends Model
         'widget' => Widget::class,
     ];
 
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(CampaignDashboardWidget::class);
+    }
+
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class);

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\EntityAbilityObserver;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -54,6 +55,14 @@ class EntityAbility extends Model
     protected array $sanitizable = [
         'note',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(EntityAbilityObserver::class);
+    }
 
     public function entity(): BelongsTo
     {

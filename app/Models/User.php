@@ -13,6 +13,7 @@ use App\Models\Concerns\UserBoosters;
 use App\Models\Concerns\UserTokens;
 use App\Models\Relations\UserRelations;
 use App\Models\Scopes\UserScope;
+use App\Observers\UserObserver;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -109,6 +110,14 @@ class User extends \Illuminate\Foundation\Auth\User
     protected array $imageFields = ['avatar'];
 
     protected bool $isAdmin;
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(UserObserver::class);
+    }
 
     /**
      * Get the other campaigns of the user

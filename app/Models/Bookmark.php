@@ -15,6 +15,7 @@ use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\Taggable;
+use App\Observers\BookmarkObserver;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -145,6 +146,14 @@ class Bookmark extends Model
 
     /** @var string Default order for lists */
     public string $defaultOrderField = 'position';
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(BookmarkObserver::class);
+    }
 
     /**
      * Performance with for datagrids

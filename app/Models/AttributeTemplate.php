@@ -6,6 +6,7 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
+use App\Observers\AttributeTemplateObserver;
 use App\Services\Attributes\RandomService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -59,6 +60,15 @@ class AttributeTemplate extends MiscModel
         'attribute_template_id',
         'entity_type_id',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(AttributeTemplateObserver::class);
+    }
+
 
     /** @var bool Attribute templates don't have inventory, relations or abilities */
     public bool $hasRelations = false;

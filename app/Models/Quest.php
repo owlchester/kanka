@@ -11,6 +11,7 @@ use App\Models\Concerns\HasReminder;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\QuestObserver;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -119,6 +120,14 @@ class Quest extends MiscModel
     ];
 
     protected array $exploreGridFields = ['is_completed'];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(QuestObserver::class);
+    }
 
     /**
      * Performance with for datagrids

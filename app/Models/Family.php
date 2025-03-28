@@ -10,6 +10,7 @@ use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\FamilyObserver;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -113,6 +114,14 @@ class Family extends MiscModel
     public function getParentKeyName()
     {
         return 'family_id';
+    }
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(FamilyObserver::class);
     }
 
     /**

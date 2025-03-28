@@ -7,6 +7,7 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
 use App\Models\Relations\CalendarRelations;
+use App\Observers\CalendarObserver;
 use App\Traits\ExportableTrait;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
@@ -106,6 +107,14 @@ class Calendar extends MiscModel
     protected string $entityType = 'calendar';
 
     protected array $cachedCurrentDate;
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(CalendarObserver::class);
+    }
 
     public function scopePreparedWith(Builder $query): Builder
     {

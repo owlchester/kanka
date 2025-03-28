@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\CampaignPluginObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,6 +24,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class CampaignPlugin extends Model
 {
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(CampaignPluginObserver::class);
+    }
+
     public function plugin(): BelongsTo
     {
         return $this->belongsTo(Plugin::class);

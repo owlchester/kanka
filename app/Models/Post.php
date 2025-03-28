@@ -12,6 +12,7 @@ use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Taggable;
 use App\Models\Concerns\Templatable;
+use App\Observers\PostObserver;
 use App\Services\MentionsService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -97,6 +98,14 @@ class Post extends Model
     protected array $sanitizable = [
         'name',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(PostObserver::class);
+    }
 
     public function entity(): BelongsTo
     {

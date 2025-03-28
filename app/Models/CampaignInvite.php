@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
+use App\Observers\CampaignInviteObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -34,6 +35,14 @@ class CampaignInvite extends Model
         'is_active',
         'validity',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(CampaignInviteObserver::class);
+    }
 
     public function role(): BelongsTo
     {

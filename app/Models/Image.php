@@ -9,6 +9,7 @@ use App\Models\Concerns\HasUser;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\ImageObserver;
 use App\Traits\ExportableTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -83,6 +84,14 @@ class Image extends Model
     protected array $sanitizable = [
         'name',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(ImageObserver::class);
+    }
 
     public function imageFolder(): BelongsTo
     {

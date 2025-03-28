@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\CampaignSubmissionObserver;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -25,4 +26,12 @@ class CampaignSubmission extends Model
     protected array $sanitizable = [
         'text',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(CampaignSubmissionObserver::class);
+    }
 }

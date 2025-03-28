@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\CampaignUserObserver;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -32,6 +33,14 @@ class CampaignUser extends Pivot
     protected array $sortable = ['user.name', 'created_at', 'last_login'];
 
     protected $fillable = ['user_id', 'campaign_id'];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(CampaignUserObserver::class);
+    }
 
     public function campaign(): BelongsTo
     {

@@ -9,6 +9,7 @@ use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SimpleSortableTrait;
+use App\Observers\QuestElementObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -64,6 +65,14 @@ class QuestElement extends Model
     protected array $suggestions = [
         QuestCache::class => 'clearSuggestion',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(QuestElementObserver::class);
+    }
 
     public function quest(): BelongsTo
     {

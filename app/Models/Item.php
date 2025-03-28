@@ -9,6 +9,7 @@ use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\ItemObserver;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -114,6 +115,14 @@ class Item extends MiscModel
         'location_id',
         'character_id',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(ItemObserver::class);
+    }
 
     /**
      * Tooltip subtitle (item price/size)

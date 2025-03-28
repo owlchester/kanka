@@ -8,6 +8,7 @@ use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\TimelineObserver;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -88,6 +89,14 @@ class Timeline extends MiscModel
         'eras',
         'eras.elements',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(TimelineObserver::class);
+    }
 
     /**
      * Performance with for datagrids

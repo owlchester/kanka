@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\LastSync;
+use App\Observers\ConversationMessageObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -54,6 +55,14 @@ class ConversationMessage extends Model
      * We want to use the dice_roll entity type for permissions
      */
     protected string $entityType = 'conversation_messages';
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(ConversationMessageObserver::class);
+    }
 
     public function character(): BelongsTo
     {

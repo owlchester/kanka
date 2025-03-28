@@ -8,6 +8,7 @@ use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
+use App\Observers\DiceRollResultObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -57,6 +58,14 @@ class DiceRollResult extends Model
 
     /** @var bool No relations for this entity "type" */
     protected bool $hasRelations = false;
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(DiceRollResultObserver::class);
+    }
 
     public function diceRoll(): BelongsTo
     {

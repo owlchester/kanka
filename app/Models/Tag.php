@@ -10,6 +10,7 @@ use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\TagScopes;
+use App\Observers\TagObserver;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -101,6 +102,14 @@ class Tag extends MiscModel
         'is_auto_applied',
         'is_hidden',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(TagObserver::class);
+    }
 
     public function getParentKeyName(): string
     {

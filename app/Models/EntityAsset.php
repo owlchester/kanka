@@ -10,6 +10,7 @@ use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Scopes\EntityAssetScopes;
 use App\Models\Scopes\Pinnable;
+use App\Observers\EntityAssetObserver;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -72,6 +73,14 @@ class EntityAsset extends Model
     protected array $suggestions = [
         EntityAssetCache::class => 'clearSuggestion',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(EntityAssetObserver::class);
+    }
 
     public function entity(): BelongsTo
     {

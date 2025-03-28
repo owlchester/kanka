@@ -9,6 +9,7 @@ use App\Models\Concerns\HasLocations;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\RaceObserver;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -96,6 +97,14 @@ class Race extends MiscModel
     protected string $locationPivot = 'race_location';
 
     protected string $locationPivotKey = 'race_id';
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(RaceObserver::class);
+    }
 
     /**
      * @return string

@@ -10,6 +10,7 @@ use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\CharacterObserver;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -152,6 +153,14 @@ class Character extends MiscModel
         'location_id',
         'is_personality_visible', // checkbox
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(CharacterObserver::class);
+    }
 
     /**
      * Performance with for old table view of all the campaign characters

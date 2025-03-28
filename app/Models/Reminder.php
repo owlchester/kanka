@@ -6,6 +6,7 @@ use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Scopes\EntityEventScopes;
+use App\Observers\ReminderObserver;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -73,6 +74,14 @@ class Reminder extends Model
         'visibility_id',
         'comment',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(ReminderObserver::class);
+    }
 
     public function remindable()
     {

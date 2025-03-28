@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\CampaignSettingObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -37,6 +38,14 @@ class CampaignSetting extends Model
         'inventories',
         'creatures',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(CampaignSettingObserver::class);
+    }
 
     public function campaign(): BelongsTo
     {

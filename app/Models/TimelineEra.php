@@ -7,6 +7,7 @@ use App\Facades\Mentions;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Observers\TimelineEraObserver;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -64,6 +65,14 @@ class TimelineEra extends Model
         'start_year',
         'end_year',
     ];
+
+    protected static function booted()
+    {
+        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+            return;
+        }
+        static::observe(TimelineEraObserver::class);
+    }
 
     public function timeline(): BelongsTo
     {
