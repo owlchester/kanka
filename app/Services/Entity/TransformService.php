@@ -300,12 +300,12 @@ class TransformService
     {
         $this->orphanChildren();
 
-        // Create misc
+        // Create misc without calling its observers, to not create duplicates
         $this->new = $this->entityType->getMiscClass();
         $this->new->name = $this->entity->name;
         $this->new->is_private = $this->entity->is_private;
         $this->new->campaign_id = $this->campaign->id;
-        $this->new->save();
+        $this->new->saveQuietly();
 
         $this->finish();
 
