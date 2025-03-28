@@ -10,7 +10,6 @@ use App\Models\Concerns\HasLocations;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
-use App\Observers\BookmarkObserver;
 use App\Observers\OrganisationObserver;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
@@ -106,7 +105,7 @@ class Organisation extends MiscModel
 
     protected static function booted()
     {
-        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+        if (app()->runningInConsole() && ! app()->runningUnitTests()) {
             return;
         }
         static::observe(OrganisationObserver::class);

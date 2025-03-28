@@ -130,7 +130,7 @@ class Campaign extends Model
 
     protected static function booted()
     {
-        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+        if (app()->runningInConsole() && ! app()->runningUnitTests()) {
             return;
         }
         static::observe(CampaignObserver::class);

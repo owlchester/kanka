@@ -113,7 +113,7 @@ class User extends \Illuminate\Foundation\Auth\User
 
     protected static function booted()
     {
-        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+        if (app()->runningInConsole() && ! app()->runningUnitTests()) {
             return;
         }
         static::observe(UserObserver::class);

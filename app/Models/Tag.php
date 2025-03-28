@@ -105,7 +105,7 @@ class Tag extends MiscModel
 
     protected static function booted()
     {
-        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+        if (app()->runningInConsole() && ! app()->runningUnitTests()) {
             return;
         }
         static::observe(TagObserver::class);

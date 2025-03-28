@@ -63,12 +63,11 @@ class AttributeTemplate extends MiscModel
 
     protected static function booted()
     {
-        if (app()->runningInConsole() && !app()->runningUnitTests()) {
+        if (app()->runningInConsole() && ! app()->runningUnitTests()) {
             return;
         }
         static::observe(AttributeTemplateObserver::class);
     }
-
 
     /** @var bool Attribute templates don't have inventory, relations or abilities */
     public bool $hasRelations = false;
