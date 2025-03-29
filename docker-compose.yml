@@ -28,7 +28,7 @@ services:
             - minio
             - meilisearch
     mariadb:
-        image: 'mariadb:10'
+        image: 'mariadb:11'
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
@@ -45,11 +45,7 @@ services:
         networks:
             - sail
         healthcheck:
-            test:
-                - CMD
-                - mysqladmin
-                - ping
-                - '-p${DB_PASSWORD}'
+            test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
             retries: 3
             timeout: 5s
     redis:
@@ -142,12 +138,7 @@ services:
         networks:
             - sail
         healthcheck:
-            test:
-                - CMD
-                - wget
-                - '--no-verbose'
-                - '--spider'
-                - 'http://meilisearch:7700/health'
+            test: ["CMD", "wget", "--no-verbose", "--spider",  "http://127.0.0.1:7700/health"]
             retries: 3
             timeout: 5s
 networks:
