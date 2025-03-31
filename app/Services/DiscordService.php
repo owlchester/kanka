@@ -2,16 +2,19 @@
 
 namespace App\Services;
 
-use App\Models\JobLog;
-use App\Models\User;
 use App\Models\UserApp;
+use App\Models\User;
 use Carbon\Carbon;
-use Exception;
 use GuzzleHttp\Client;
+use App\Models\JobLog;
+use Exception;
 use Illuminate\Support\Facades\Log;
 
 /**
  * Class DiscordService
+ *
+ * To set up your discord bot, access the following:
+ * https://discord.com/api/oauth2/authorize?client_id=<DISCORD_ID>&scope=bot&permissions=268443657
  */
 class DiscordService
 {
@@ -127,10 +130,8 @@ class DiscordService
 
     /**
      * Refresh the user's access token
-     *
-     * @return $this
      */
-    public function refresh()
+    public function refresh(): self
     {
         // Don't refresh a valid token
         if (! $this->app->expires_at->isPast()) {
@@ -158,8 +159,6 @@ class DiscordService
 
     /**
      * Add the user to the discord roles
-     *
-     * @return $this
      */
     public function addRoles(): self
     {
