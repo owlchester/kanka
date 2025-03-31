@@ -25,19 +25,7 @@ class RegenerateDiscordToken extends Command
      */
     protected $description = 'Renew a user\'s discord api token.';
 
-    /** @var DiscordService */
-    protected $service;
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct(DiscordService $service)
-    {
-        $this->service = $service;
-        parent::__construct();
-    }
+    protected DiscordService $service;
 
     /**
      * Execute the console command.
@@ -47,6 +35,7 @@ class RegenerateDiscordToken extends Command
     public function handle()
     {
         //$userID = $this->argument('user');
+        $this->service = app()->make(DiscordService::class);
 
         $tokens = UserApp::select(['id', 'user_id', 'access_token', 'refresh_token', 'expires_at', 'updated_at', 'settings'])
             ->with('user')
@@ -59,9 +48,11 @@ class RegenerateDiscordToken extends Command
             return 0;
         }
 
+        $count = 0;
         foreach ($tokens as $token) {
             try {
                 $this->service->user($token->user)->refresh();
+                $count++;
             } catch (\Exception $e) {
                 // Silence errors and ignore
             }
@@ -73,6 +64,8 @@ class RegenerateDiscordToken extends Command
         foreach ($logs as $log) {
             $this->info($log);
         }
+
+        $this->log('Renewed ' . $count . ' tokens.');
 
         return 0;
     }
