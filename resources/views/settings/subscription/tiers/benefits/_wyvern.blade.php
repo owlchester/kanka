@@ -1,14 +1,18 @@
-<div class="flex gap-1">
+<div class="flex gap-1 text-base mb-2">
     <div class="w-8 flex-shrink-0 text-center">
         @if (auth()->user()->hasBoosterNomenclature())
             <x-icon class="fa-regular fa-rocket text-boost" />
+        @else
+            <x-icon class="fa-regular fa-gem text-boost" />
+        @endif
     </div>
-    <a href="https://kanka.io/premium" target="_blank">6 {{ __('tiers.features.boosters') }}</a>
-    @else
-        <x-icon class="fa-regular fa-gem text-boost" />
-</div>
-<a href="https://kanka.io/premium" target="_blank">3 {{ __('concept.premium-campaigns') }}</a>
-@endif
+    <a href="https://kanka.io/premium">
+        @if (auth()->user()->hasBoosterNomenclature())
+            6 {{ __('tiers.features.boosters') }}
+        @else
+            3 {{ __('concept.premium-campaigns') }}
+        @endif
+    </a>
 </div>
 
 <div class="flex gap-1">

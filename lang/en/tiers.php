@@ -34,6 +34,11 @@ return [
         'current'       => 'Current subscription',
         'popular'       => 'Popular',
     ],
+    'target' => [
+        'owlbear' => 'For new users and beginner worldbuilders',
+        'wyvern' => 'For advanced worldbuilders and dungeon masters juggling multiple groups',
+        'elemental' => 'For professionals and dungeon masters not afraid of TPKs',
+    ],
     'toggle'    => [
         'yearly'    => 'Yearly (pay 10 months)',
     ],

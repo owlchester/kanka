@@ -65,39 +65,49 @@
                     @continue
                 @endif
                 <div class="rounded-2xl bg-box flex flex-col gap-4 p-4 relative max-w-2xl lg:max-w-none shadow-xs hover:shadow @if ($tier->isCurrent($user)) drop-shadow border-primary border @endif">
-                    <div class="flex gap-2 items-center flex-col xl:flex-row text-center xl:text-left">
-                        <img class="rounded-full" src="{{ $tier->image() }}" alt="{{ $tier->name }}"/>
-                        <div class="grow flex flex-col">
-                            <div class="text-lg">{{ $tier->name }}</div>
+                    <div class="flex gap-2 flex-col xl:flex-row">
+                        <img class="rounded-full w-fit" src="{{ $tier->image() }}" alt="{{ $tier->name }}"/>
+                        <div class="grow flex flex-col gap-2 w-full">
+                            <div class="text-lg">
+                                {{ $tier->name }}
+
+                                @if ($tier->isCurrent($user))
+                                @elseif ($tier->isPopular())
+                                    <span class="bg-primary text-primary-content text-xs rounded-full px-2 py-1">{{ __('tiers.ribbons.popular') }}</span>
+                                @elseif ($tier->isBestValue())
+                                    <span class="bg-accent text-accent-content text-xs rounded-full px-2 py-1">{{ __('tiers.ribbons.best-value') }}</span>
+                                @endif
+
+                            </div>
                             @if ($tier->isFree())
                                 <div class="price text-neutral-content">
                                     {{ __('front.features.patreon.free') }}
                                 </div>
                             @else
-                                <div class="price price-monthly flex flex-col gap-1">
+                                <div class="price price-monthly flex gap-2 w-full items-end">
                                     <div class="text-4xl">
-                                        <span class="text-sm">{{ $user->currencySymbol() }}</span>{{ number_format($tier->price($user->currency(), \App\Enums\PricingPeriod::Monthly), 2) }}
+                                        {{ $user->currencySymbol() }}
+                                        {{ number_format($tier->price($user->currency(), \App\Enums\PricingPeriod::Monthly), 2) }}
                                     </div>
                                     <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_monthly') }}</span>
                                 </div>
-                                <div class="price price-yearly flex flex-col gap-1">
+                                <div class="price price-yearly flex gap-2 w-full items-end">
                                     <div class="text-4xl">
-                                        <span class="text-sm">{{ $user->currencySymbol() }}</span>{{ number_format($tier->price($user->currency(), \App\Enums\PricingPeriod::Yearly), 2) }}
+                                        {{ $user->currencySymbol() }}
+                                        {{ number_format($tier->price($user->currency(), \App\Enums\PricingPeriod::Yearly), 2) }}
                                     </div>
                                     <span class="text-sm text-neutral-content ">{{ __('tiers.periods.billed_yearly') }}</span>
                                 </div>
                             @endif
+
+                            @if ($tier->code === 'owlbear')
+                                <p class="">{{ __('tiers.target.owlbear') }}</p>
+                            @elseif ($tier->code === 'wyvern')
+                                <p class="">{{ __('tiers.target.wyvern') }}</p>
+                            @elseif ($tier->code === 'elemental')
+                                <p class="">{{ __('tiers.target.elemental') }}</p>
+                            @endif
                         </div>
-                        @if ($tier->isCurrent($user))
-                        @elseif ($tier->isPopular())
-                            <div class="ribbon ribbon-top-right">
-                                <span class="bg-green-500 text-white">{{ __('tiers.ribbons.popular') }}</span>
-                            </div>
-                        @elseif ($tier->isBestValue())
-                            <div class="ribbon ribbon-top-right">
-                                <span class="bg-pink-500 text-white">{{ __('tiers.ribbons.best-value') }}</span>
-                            </div>
-                        @endif
                     </div>
                     @if (!$user->isLegacyPatron() && !$user->hasIncompletePayment('kanka'))
                         <div class="flex flex-col gap-1">
