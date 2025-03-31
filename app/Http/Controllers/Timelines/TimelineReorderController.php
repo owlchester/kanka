@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderTimeline;
 use App\Models\Campaign;
 use App\Models\Timeline;
-use App\Models\TimelineEra;
 use App\Services\TimelineService;
 
 class TimelineReorderController extends Controller
