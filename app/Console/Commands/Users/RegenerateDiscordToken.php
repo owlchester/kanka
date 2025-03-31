@@ -46,7 +46,7 @@ class RegenerateDiscordToken extends Command
     {
         // $userID = $this->argument('user');
 
-        $tokens = UserApp::select(['id', 'user_id', 'access_token', 'refresh_token', 'expires_at', 'updated_at'])
+        $tokens = UserApp::select(['id', 'user_id', 'access_token', 'refresh_token', 'expires_at', 'updated_at', 'settings'])
             ->with('user')
             ->where('app', '=', 'discord')
             ->where('expires_at', '<=', Carbon::now()->toDateString())

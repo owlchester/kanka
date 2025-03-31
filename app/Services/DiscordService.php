@@ -20,9 +20,9 @@ class DiscordService
     /** @var UserApp|null */
     protected $app;
 
-    protected string $url = 'https://discord.com/api/v6/';
+    protected string $url = 'https://discord.com/api/v10/';
 
-    protected $me = false;
+    protected $me;
 
     protected array $logs = [];
 
@@ -81,7 +81,7 @@ class DiscordService
     public function me()
     {
         // Cache the response during a single process
-        if ($this->me !== false) {
+        if (isset($this->me)) {
             return $this->me;
         }
 
@@ -119,7 +119,7 @@ class DiscordService
 
         // Get me for data
         $me = $this->me();
-        $this->app->settings = ['username' => $me->username, 'discriminator' => $me->discriminator];
+        $this->app->settings = ['username' => $me->username];
         $this->app->save();
 
         return $this;
@@ -136,7 +136,6 @@ class DiscordService
         if (! $this->app->expires_at->isPast()) {
             return $this;
         }
-
         $body = [
             'client_id' => config('discord.client_id'),
             'client_secret' => config('discord.client_secret'),
@@ -150,6 +149,9 @@ class DiscordService
 
         $log = 'Renewed user #' . $this->user->id . ' Discord auth token.';
         $this->logs[] = $log;
+
+        // Clear the cached Discord user
+        unset($this->me);
 
         return $this;
     }
