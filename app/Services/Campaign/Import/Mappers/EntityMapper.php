@@ -418,7 +418,7 @@ trait EntityMapper
         }
 
         $fields = [
-            'relation', 'visibility_id', 'attitude', 'is_pinned', 'colour', 'marketplace_uuid'
+            'relation', 'visibility_id', 'attitude', 'is_pinned', 'colour', 'marketplace_uuid',
         ];
         foreach ($this->data['entity']['relationships'] as $data) {
             if (! ImportIdMapper::hasEntity($data['target_id'])) {

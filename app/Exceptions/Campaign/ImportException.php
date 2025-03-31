@@ -4,7 +4,4 @@ namespace App\Exceptions\Campaign;
 
 use Exception;
 
-class ImportException extends Exception
-{
-
-}
+class ImportException extends Exception {}

@@ -292,7 +292,7 @@ trait CustomEntityMapper
                     $asset->metadata = $data['metadata'];
                 }
             }
-            if (!empty($data['image_uuid']) && ImportIdMapper::hasGallery($data['image_uuid'])) {
+            if (! empty($data['image_uuid']) && ImportIdMapper::hasGallery($data['image_uuid'])) {
                 $asset->image_uuid = ImportIdMapper::getGallery($data['image_uuid']);
             }
             $asset->created_by = $this->user->id;
