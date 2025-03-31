@@ -210,6 +210,10 @@ class EntityMappingService
             if ($id == 'redirect') {
                 continue;
             }
+            $id = (int) $id;
+            if (empty($id)) {
+                continue;
+            }
 
             $singularType = $type;
 

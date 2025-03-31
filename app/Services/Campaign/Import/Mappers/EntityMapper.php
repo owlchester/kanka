@@ -196,11 +196,11 @@ trait EntityMapper
     protected function gallery(): self
     {
         $image = Arr::get($this->data, 'entity.image_uuid');
-        if (! empty($image)) {
+        if (! empty($image) && ImportIdMapper::hasGallery($image)) {
             $this->entity->image_uuid = ImportIdMapper::getGallery($image);
         }
         $image = Arr::get($this->data, 'entity.header_uuid');
-        if (! empty($image)) {
+        if (! empty($image) && ImportIdMapper::hasGallery($image)) {
             $this->entity->header_uuid = ImportIdMapper::getGallery($image);
         }
 
@@ -299,7 +299,7 @@ trait EntityMapper
                     $asset->metadata = $data['metadata'];
                 }
             }
-            if (isset($data['image_uuid'])) {
+            if (isset($data['image_uuid']) && ImportIdMapper::hasGallery($data['image_uuid'])) {
                 $asset->image_uuid = ImportIdMapper::getGallery($data['image_uuid']);
             }
             $asset->created_by = $this->user->id;
@@ -418,7 +418,7 @@ trait EntityMapper
         }
 
         $fields = [
-            'relation', 'visibility_id', 'attitude', 'is_pinned', 'colour', 'marketplace_uuid',
+            'relation', 'visibility_id', 'attitude', 'is_pinned', 'colour', 'marketplace_uuid'
         ];
         foreach ($this->data['entity']['relationships'] as $data) {
             if (! ImportIdMapper::hasEntity($data['target_id'])) {

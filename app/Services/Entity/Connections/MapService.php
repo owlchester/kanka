@@ -647,7 +647,7 @@ class MapService
         if (! array_key_exists('location_id', $this->entity->child->getAttributes())) {
             return $this;
         }
-        if (empty($this->entity->child->location_id) || empty($this->entity->child->location)) {
+        if (empty($this->entity->child->location_id) || empty($this->entity->child->location) || empty($this->entity->child->location->entity)) {
             return $this;
         }
 

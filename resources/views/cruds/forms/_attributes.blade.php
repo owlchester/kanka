@@ -27,7 +27,7 @@ foreach ($attributes as $attribute) {
 ?>
 <x-grid type="1/1">
     <div id="attributes-manager">
-        @if (!empty($model))
+        @if (!empty($entity))
             <attributes-manager api="{{ route('attributes.api-entity', [$campaign, $entity]) }}" />
         @elseif (!empty($source))
             <attributes-manager api="{{ route('attributes.api', [$campaign, 'entity_type' => $entityType->id, 'source' => $entity->id]) }}" />

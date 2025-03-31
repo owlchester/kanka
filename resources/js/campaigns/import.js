@@ -36,7 +36,9 @@ const initExport = () => {
         } else {
             alert('Please select the campaign export zip files.');
             let loading = document.querySelector('.loading');
-            loading.classList.remove('loading');
+            if (loading) {
+                loading.classList.remove('loading');
+            }
             return false;
         }
     };
@@ -82,7 +84,7 @@ const startProcess = (form, data) => {
             fileProgress.classList.add('hidden');
 
             if (err.response && err.response.data.message) {
-                fileError.text(err.response.data.message).fadeToggle();
+                //fileError.text(err.response.data.message).fadeToggle();
 
                 let errors = err.response.data.errors;
                 let errorKeys = Object.keys(errors);
@@ -92,7 +94,9 @@ const startProcess = (form, data) => {
             }
 
             let loading = document.querySelector('.loading');
-            loading.classList.remove('loading');
+            if (loading) {
+                loading.classList.remove('loading');
+            }
         });
 };
 
