@@ -33,19 +33,10 @@ class TimelineReorderController extends Controller
             ->ordered()
             ->get();
 
-        $hasNothing = true;
-        /** @var TimelineEra $era */
-        foreach ($eras as $era) {
-            if (! $era->orderedElements->isEmpty()) {
-                $hasNothing = false;
-            }
-        }
-
         return view('timelines.reorder.index', compact(
             'campaign',
             'eras',
             'timeline',
-            'hasNothing'
         ));
     }
 

@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\TimelineEra[] $eras */?>
 
-@if ($hasNothing)
+@if ($eras->isEmpty())
     <x-alert type="warning">
         <p>{{ __('timelines.reorder.empty') }}</p>
     </x-alert>
