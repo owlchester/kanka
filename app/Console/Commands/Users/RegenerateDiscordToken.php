@@ -1,27 +1,24 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\Users;
 
+use App\Jobs\Users\UnsyncDiscord;
 use App\Services\DiscordService;
-use App\Models\User;
 use Carbon\Carbon;
 use App\Models\UserApp;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class RegenerateDiscordToken extends Command
 {
     /**
      * The name and signature of the console command.
-     *
-     * @var string
      */
     protected $signature = 'users:renew-discord-tokens';
 
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected $description = 'Renew a user\'s discord api token.';
 
@@ -34,7 +31,6 @@ class RegenerateDiscordToken extends Command
      */
     public function handle()
     {
-        //$userID = $this->argument('user');
         $this->service = app()->make(DiscordService::class);
 
         $tokens = UserApp::select(['id', 'user_id', 'access_token', 'refresh_token', 'expires_at', 'updated_at', 'settings'])
@@ -51,8 +47,13 @@ class RegenerateDiscordToken extends Command
         $count = 0;
         foreach ($tokens as $token) {
             try {
-                $this->service->user($token->user)->refresh();
+                $this->service->app($token)->refresh();
                 $count++;
+            } catch (ClientException $e) {
+                if (Str::contains($e->getResponse()->getBody()->getContents(), 'invalid_grant')) {
+                    UnsyncDiscord::dispatch($token);
+                }
+                throw $e;
             } catch (\Exception $e) {
                 // Silence errors and ignore
             }

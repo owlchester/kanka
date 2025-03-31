@@ -40,6 +40,14 @@ class DiscordService
         return $this;
     }
 
+    public function app(UserApp $app): self
+    {
+        $this->app = $app;
+        $this->user = $app->user;
+
+        return $this;
+    }
+
     public function validate(string $code): self
     {
         $body = [

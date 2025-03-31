@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'apps' => [
+        'discord' => [
+            'invalid' => 'Your Discord token has expired. Please re-sync your Discord and Kanka account.',
+        ],
+    ],
     'campaign'          => [
         'application'           => [
             'approved'              => 'Your application to the :campaign campaign has been approved.',
@@ -72,7 +77,7 @@ return [
         'comments'      => [
             'new_reply'     => ':user has replied to your comment in :plugin.',
             'new_comment'   => ':user has left a new comment in your plugin :plugin.',
-        ],   
+        ],
     ],
     'unread'            => 'New notification',
 ];

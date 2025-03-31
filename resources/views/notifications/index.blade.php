@@ -1,4 +1,7 @@
-<?php /** @var \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Pagination\LengthAwarePaginator  $notifications */?>
+<?php /** @var \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Pagination\LengthAwarePaginator  $notifications */
+use \Illuminate\Support\Arr;
+use \Illuminate\Support\Str;
+?>
 @extends('layouts.app', [
     'title' => __('notifications.index.title'),
     'breadcrumbs' => false,
@@ -32,16 +35,20 @@
                             <td>
                             @if (!empty($notification->data['icon']))
                                 <i class="fa-solid fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
-                                    @if(\Illuminate\Support\Arr::has($notification->data['params'], 'link'))
+                                    @if(Arr::has($notification->data['params'], 'link'))
         @php
         $url = $notification->data['params']['link'];
-        if (!\Illuminate\Support\Str::startsWith($url, 'http')) {
+        if (!Str::startsWith($url, 'http')) {
             $url = url(app()->getLocale() . '/' . $url);
         }
         // Fix to new links?
         //$url = \Illuminate\Support\Str::replace(['/campaign/'], ['/w/'], $url);
         @endphp
                                         <a href="{{ $url }}">
+                                            {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
+                                        </a>
+                                    @elseif (Arr::has($notification->data['params'], 'route'))
+                                        <a href="{{ route($notification->data['params']['route']) }}">
                                             {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
                                         </a>
                                     @else

@@ -13,6 +13,7 @@ use App\Models\Campaign;
 use App\Models\Pledge;
 use App\Notifications\Header;
 use App\Traits\UserAware;
+use Illuminate\Support\Arr;
 
 class NavigationService
 {
@@ -174,17 +175,19 @@ class NavigationService
         foreach ($this->user->notifications()->unread()->take(5)->get() as $not) {
             $url = '';
             // @phpstan-ignore-next-line
-            if (\Illuminate\Support\Arr::has($not->data['params'], 'link')) {
-                // @phpstan-ignore-next-line
-                $url = $not->data['params']['link'];
+            $data = $not->data;
+            if (Arr::has($data['params'], 'link')) {
+                $url = $data['params']['link'];
                 if (! \Illuminate\Support\Str::startsWith($url, 'http')) {
                     $url = url(app()->getLocale() . '/' . $url);
                 }
+            } elseif (Arr::has($data['params'], 'route')) {
+                $url = route($data['params']['route']);
             }
             $notifications[] = [
                 'id' => $not->id,
-                'icon' => $not->data['icon'], // @phpstan-ignore-line
-                'text' => __('notifications.' . $not->data['key'], $not->data['params']), // @phpstan-ignore-line
+                'icon' => $data['icon'],
+                'text' => __('notifications.' . $data['key'], $data['params']),
                 'url' => $url,
                 'dismiss' => route('notifications.read', $not->id),
                 'dismiss_text' => __('header.notifications.dismiss'),
