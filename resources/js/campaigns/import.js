@@ -84,7 +84,7 @@ const startProcess = (form, data) => {
             fileProgress.classList.add('hidden');
 
             if (err.response && err.response.data.message) {
-                fileError.text(err.response.data.message).fadeToggle();
+                //fileError.text(err.response.data.message).fadeToggle();
 
                 let errors = err.response.data.errors;
                 let errorKeys = Object.keys(errors);

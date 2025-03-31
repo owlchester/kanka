@@ -3,6 +3,7 @@
 namespace App\Services\Campaign\Import;
 
 use App\Enums\CampaignImportStatus;
+use App\Exceptions\Campaign\ImportException;
 use App\Facades\BookmarkCache;
 use App\Facades\CampaignCache;
 use App\Facades\CharacterCache;
@@ -175,9 +176,13 @@ class ImportService
                 ->customModules()
                 ->gallery()
                 ->entities()
-                ->secondCampaign()
-            ;
+                ->secondCampaign();
             $this->job->status_id = CampaignImportStatus::FINISHED;
+        } catch (ImportException $e) {
+            $this->logs[] = $e->getMessage();
+            Log::error('Import', ['error' => $e->getMessage()]);
+            $this->job->status_id = CampaignImportStatus::FAILED;
+            $this->exception = $e;
         } catch (Exception $e) {
             //dump($e->getMessage());
             //dump($e->getTrace());
@@ -223,6 +228,9 @@ class ImportService
     {
         // Open the campaign zip
         $data = $this->open('campaign.json');
+        if ($data == []) {
+            throw new ImportException('No campaign.json found');
+        }
 
         /** @var CampaignMapper $mapper */
         $mapper = app()->make(CampaignMapper::class);
