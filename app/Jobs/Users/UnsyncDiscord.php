@@ -12,6 +12,7 @@ class UnsyncDiscord implements ShouldQueue
     use Queueable;
 
     public int $id;
+
     /**
      * Create a new job instance.
      */

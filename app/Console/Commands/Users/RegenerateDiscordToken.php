@@ -3,9 +3,9 @@
 namespace App\Console\Commands\Users;
 
 use App\Jobs\Users\UnsyncDiscord;
+use App\Models\UserApp;
 use App\Services\DiscordService;
 use Carbon\Carbon;
-use App\Models\UserApp;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -41,6 +41,7 @@ class RegenerateDiscordToken extends Command
 
         if ($tokens->count() === 0) {
             $this->error('No tokens to renew');
+
             return 0;
         }
 

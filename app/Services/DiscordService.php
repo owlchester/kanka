@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use App\Models\UserApp;
-use App\Models\User;
-use Carbon\Carbon;
-use GuzzleHttp\Client;
 use App\Models\JobLog;
+use App\Models\User;
+use App\Models\UserApp;
+use Carbon\Carbon;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 
 /**
