@@ -36,7 +36,9 @@ const initExport = () => {
         } else {
             alert('Please select the campaign export zip files.');
             let loading = document.querySelector('.loading');
-            loading.classList.remove('loading');
+            if (loading) {
+                loading.classList.remove('loading');
+            }
             return false;
         }
     };
@@ -92,7 +94,9 @@ const startProcess = (form, data) => {
             }
 
             let loading = document.querySelector('.loading');
-            loading.classList.remove('loading');
+            if (loading) {
+                loading.classList.remove('loading');
+            }
         });
 };
 
