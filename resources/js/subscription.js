@@ -73,7 +73,25 @@ const initConfirmListener = ()=> {
         couponField.addEventListener('change', checkCoupon);
         couponField.addEventListener('focusout', checkCoupon);
     }
+
+    const selectMethod = document.querySelector('select[name="select-method"]');
+    if (selectMethod) {
+        selectMethod.addEventListener('change', changeMethod);
+    }
 };
+
+const changeMethod = (event) => {
+    console.log('changing method to', event.target.value);
+    const card = document.querySelector('#card-panel');
+    const paypal = document.querySelector('#paypal-panel');
+    if (event.target.value === 'paypal') {
+        card.classList.add('hidden');
+        paypal.classList.remove('hidden');
+    } else {
+        card.classList.remove('hidden');
+        paypal.classList.add('hidden');
+    }
+}
 
 const checkCoupon = (event) => {
     const element = event.target;
@@ -160,24 +178,34 @@ const subscribe = (event) => {
     }.bind(this));
 };
 
-function initPeriodToggle() {
+const initPeriodToggle = () => {
     const pricingOverview = document.getElementById('pricing-overview');
-    const toggler = document.querySelector('input[name="period"]');
-    toggler.addEventListener('change', function () {
-        if (this.checked) {
-            pricingOverview.classList.remove('period-month');
-            pricingOverview.classList.add('period-year');
-        } else {
-            pricingOverview.classList.remove('period-year');
-            pricingOverview.classList.add('period-month');
-        }
-    });
+    const yearly = document.querySelector('[data-period="yearly"]');
+    const monthly = document.querySelector('[data-period="monthly"]');
 
-    if (toggler.checked) {
-        pricingOverview.classList.remove('period-month');
-        pricingOverview.classList.add('period-year');
-    }
+    const togglers = document.querySelectorAll('[data-period]');
+
+    togglers?.forEach((toggler) => {
+        toggler.addEventListener('click', function () {
+            if (this.dataset.period === 'monthly') {
+                yearly.classList.remove('bg-base-100');
+                yearly.classList.add('text-neutral-content');
+                monthly.classList.add('bg-base-100');
+                monthly.classList.remove('text-neutral-content');
+                pricingOverview.classList.remove('period-year');
+                pricingOverview.classList.add('period-month');
+            } else if (this.dataset.period === 'yearly') {
+                monthly.classList.remove('bg-base-100');
+                monthly.classList.add('text-neutral-content');
+                yearly.classList.add('bg-base-100');
+                yearly.classList.remove('text-neutral-content');
+                pricingOverview.classList.remove('period-month');
+                pricingOverview.classList.add('period-year');
+            }
+        });
+    });
 };
+
 
 const disableSubmit = (event) => {
     const form = event.target;

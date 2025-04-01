@@ -48,13 +48,16 @@
             {{ __('settings.subscription.tiers') }}
         </h2>
         @if (!$isPayPal && !$hasManual)
-            <div class="text-center text-vertical">
-                <span>{{ __('tiers.periods.monthly') }}</span>
-                <label class="toggle mx-1">
-                    <input type="checkbox" name="period">
-                    <span class="slider subscription-period-slider"></span>
-                </label>
-                <span>{{ __('tiers.toggle.yearly') }}</span>
+            <div class="flex justify-center">
+                <div class="grid grid-cols-2 gap-2 rounded-2xl bg-base-200 p-0.5 items-center justify-items-stretch font-bold w-full xl:w-auto">
+                    <div class="rounded-2xl px-3 py-2 bg-base-100 flex items-center cursor-pointer justify-center transition-all duration-150" data-period="monthly" role="button">
+                        {{ __('tiers.actions.pay.monthly') }}
+                    </div>
+                    <div class="rounded-2xl px-3 py-2 flex items-center cursor-pointer justify-center text-neutral-content gap-1 transition-all duration-150" data-period="yearly" role="button">
+                        <span>{{ __('tiers.actions.pay.yearly') }}</span>
+                        <span class="text-primary text-xs">{{ __('tiers.actions.pay.save') }}</span>
+                    </div>
+                </div>
             </div>
         @endif
 
@@ -64,20 +67,17 @@
                 @if ($tier->isFree() && $user->isSubscriber())
                     @continue
                 @endif
-                <div class="rounded-2xl bg-box flex flex-col gap-4 p-4 relative max-w-2xl lg:max-w-none shadow-xs hover:shadow @if ($tier->isCurrent($user)) drop-shadow border-primary border @endif">
-                    <div class="flex gap-2 flex-col xl:flex-row">
+                <article class="rounded-2xl bg-box flex flex-col gap-4 p-4 relative max-w-2xl lg:max-w-none shadow-xs hover:shadow @if ($tier->isCurrent($user)) drop-shadow border-primary border @endif">
+                    <div class="flex gap-2 flex-col ">
                         <img class="rounded-full w-fit" src="{{ $tier->image() }}" alt="{{ $tier->name }}"/>
                         <div class="grow flex flex-col gap-2 w-full">
                             <div class="text-lg">
                                 {{ $tier->name }}
 
                                 @if ($tier->isCurrent($user))
-                                @elseif ($tier->isPopular())
-                                    <span class="bg-primary text-primary-content text-xs rounded-full px-2 py-1">{{ __('tiers.ribbons.popular') }}</span>
                                 @elseif ($tier->isBestValue())
-                                    <span class="bg-accent text-accent-content text-xs rounded-full px-2 py-1">{{ __('tiers.ribbons.best-value') }}</span>
+                                    <span class="bg-primary text-primary-content text-xs rounded-full px-2 py-1">{{ __('tiers.ribbons.best-value') }}</span>
                                 @endif
-
                             </div>
                             @if ($tier->isFree())
                                 <div class="price text-neutral-content">
@@ -130,7 +130,7 @@
                             @endif
                         </div>
                     @endif
-                </div>
+                </article>
             @endforeach
         </div>
 

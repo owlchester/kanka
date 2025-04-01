@@ -2,6 +2,11 @@
 
 return [
     'actions'   => [
+        'pay' => [
+            'monthly' => 'Pay monthly',
+            'yearly'  => 'Pay yearly',
+            'save' => 'save 2 months',
+        ],
         'subscribe' => [
             'choose'    => 'Choose :tier',
             'monthly'   => ':tier monthly',
@@ -15,7 +20,7 @@ return [
         'discord'           => 'Unique :discord role and channel',
         'feature_influence' => 'High impact on future features',
         'file_size'         => ':size File size uploads',
-        'hall_of_fame'      => 'Featured in the :hall-of-fame',
+        'import'            => 'Campaign importer',
         'map_size'          => ':size Map size uploads',
         'nice_image'        => 'Nicer default entity thumbnail',
         'no_ads'            => 'Remove all ads',
@@ -25,21 +30,15 @@ return [
     'periods'   => [
         'billed_monthly'    => 'billed monthly',
         'billed_yearly'     => 'billed yearly',
-        'monthly'           => 'Monthly',
-        'yearly'            => 'Yearly',
     ],
     'pricing'   => ':currency :amount / month',
     'ribbons'   => [
         'best-value'    => 'Best value',
         'current'       => 'Current subscription',
-        'popular'       => 'Popular',
     ],
     'target' => [
-        'owlbear' => 'For new users and beginner worldbuilders',
-        'wyvern' => 'For advanced worldbuilders and dungeon masters juggling multiple groups',
-        'elemental' => 'For professionals and dungeon masters not afraid of TPKs',
-    ],
-    'toggle'    => [
-        'yearly'    => 'Yearly (pay 10 months)',
+        'owlbear' => 'Perfect for solo worldbuilders who want to supercharge their main campaign',
+        'wyvern' => 'Ideal for game masters running multiple adventures or collaborative storytellers',
+        'elemental' => 'For worldbuilding pros managing multiple epic settings and expansive campaigns',
     ],
 ];

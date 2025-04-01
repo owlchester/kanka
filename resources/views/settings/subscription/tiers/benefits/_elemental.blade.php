@@ -1,4 +1,4 @@
-<div class="flex gap-1 text-base mb-2">
+<div class="flex gap-1 text-base">
     <div class="w-8 flex-shrink-0 text-center">
         @if (auth()->user()->hasBoosterNomenclature())
             <x-icon class="fa-regular fa-rocket text-boost" />
@@ -6,7 +6,7 @@
             <x-icon class="fa-regular fa-gem text-boost" />
         @endif
     </div>
-    <a href="https://kanka.io/premium">
+    <a href="https://kanka.io/premium?utm_source=subscription&utm_medium=referral&utm_campaign=elemental">
     @if (auth()->user()->hasBoosterNomenclature())
         10 {{ __('tiers.features.boosters') }}
     @else
@@ -29,6 +29,24 @@
 </div>
 <div class="flex gap-1">
     <div class="w-8 flex-shrink-0 text-center">
+        <x-icon class="check" />
+    </div>
+    {{ __('tiers.features.no_ads') }}
+</div>
+
+<hr class="my-4" />
+
+<div class="flex gap-1">
+    <div class="w-8 flex-shrink-0 text-center">
+        <x-icon class="fa-regular fa-upload" />
+    </div>
+    <a href="https://docs.kanka.io/en/latest/features/campaigns/import.html">
+        {{ __('tiers.features.import') }}
+    </a>
+</div>
+
+<div class="flex gap-1">
+    <div class="w-8 flex-shrink-0 text-center">
         <x-icon class="fa-regular fa-grid" />
     </div>
     {{ __('tiers.features.pagination', ['amount' => 100]) }}
@@ -38,7 +56,7 @@
     <div class="w-8 flex-shrink-0 text-center">
         <x-icon class="fa-regular fa-webhook" />
     </div>
-    <a href="{{ route('larecipe.index') }}" target="_blank">
+    <a href="{{ route('larecipe.index') }}">
         {{ __('tiers.features.api_requests', ['amount' => 90]) }}
     </a>
 </div>
@@ -47,24 +65,8 @@
     <div class="w-8 flex-shrink-0 text-center">
         <x-icon class="check" />
     </div>
-    {{ __('tiers.features.no_ads') }}
-</div>
-
-<div class="flex gap-1">
-    <div class="w-8 flex-shrink-0 text-center">
-        <x-icon class="check" />
-    </div>
     <div>
-        {!! __('tiers.features.discord', ['discord' => '<a href="' . config('social.discord') . '" target="_blank">Discord</a>']) !!}
-    </div>
-</div>
-
-<div class="flex gap-1">
-    <div class="w-8 flex-shrink-0 text-center">
-        <x-icon class="check" />
-    </div>
-    <div>
-        {!! __('tiers.features.hall_of_fame', ['hall-of-fame' => '<a href="https://kanka.io/hall-of-fame">' . __('front/hall-of-fame.title') . '</a>']) !!}
+        {!! __('tiers.features.discord', ['discord' => '<a href="https://kanka.io/go/discord">Discord</a>',]) !!}
     </div>
 </div>
 
@@ -79,7 +81,7 @@
     <div class="w-8 flex-shrink-0 text-center">
         <x-icon class="check" />
     </div>
-    <a href="{{ route('roadmap') }}">{{ __('tiers.features.roadmap') }}</a>
+    <a href="{{ route('roadmap', ['utm_source' => 'subscription', 'utm_campaign' => 'elemental']) }}">{{ __('tiers.features.roadmap') }}</a>
 </div>
 
 <div class="flex gap-1">

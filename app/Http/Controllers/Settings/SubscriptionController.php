@@ -16,6 +16,7 @@ use App\Services\SubscriptionService;
 use App\Services\SubscriptionUpgradeService;
 use App\Services\Users\CurrencyService;
 use App\Services\Users\EmailValidationService;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -158,6 +159,13 @@ class SubscriptionController extends Controller
             AbandonedCart::dispatch(auth()->user(), $tier)->delay(now()->addMinutes($delay));
         }
 
+        $nextBillingDate = Carbon::now();
+        if ($period === PricingPeriod::Yearly) {
+            $nextBillingDate->addYear(1);
+        } else {
+            $nextBillingDate->addMonth(1);
+        }
+
         return view('settings.subscription.change', compact(
             'tier',
             'period',
@@ -171,6 +179,7 @@ class SubscriptionController extends Controller
             'hasPromo',
             'limited',
             'isYearly',
+            'nextBillingDate'
         ));
     }
 

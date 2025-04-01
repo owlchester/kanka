@@ -21,7 +21,7 @@
     <div class="w-8 flex-shrink-0 text-center">
         <x-icon class="fa-regular fa-webhook" />
     </div>
-    <a href="{{ route('larecipe.index') }}" target="_blank">
+    <a href="{{ route('larecipe.index') }}">
         {{ __('tiers.features.api_requests', ['amount' => 30]) }}
     </a>
 </div>
