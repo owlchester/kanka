@@ -202,7 +202,7 @@ return [
     ],
     'roles'                             => [
         'actions'       => [
-            'add'           => 'Create role',
+            'add'           => 'New role',
             'duplicate'     => 'Duplicate role',
             'permissions'   => 'Manage permissions',
             'rename'        => 'Rename role',

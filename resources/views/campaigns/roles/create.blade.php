@@ -15,7 +15,7 @@
     @include('partials.forms._dialog', [
             'title' => __('campaigns.roles.create.title'),
             'content' => 'campaigns.roles._form',
-            'save' => __('campaigns.roles.actions.add'),
+            'submit' => __('crud.create'),
             'model' => null,
         ])
 
