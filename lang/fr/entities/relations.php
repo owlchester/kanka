@@ -49,6 +49,7 @@ return [
         'is_pinned'         => 'Épinglé',
         'owner'             => 'Source',
         'relation'          => 'Relation',
+        'target'            => 'Cible',
         'targets'            => 'Cibles',
         'target_relation'   => 'Relation de la cible',
         'two_way'           => 'Créer une relation miroir',

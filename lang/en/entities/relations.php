@@ -48,6 +48,7 @@ return [
         'is_pinned'         => 'Pinned',
         'owner'             => 'Source',
         'relation'          => 'Description',
+        'target'            => 'Target entity',
         'targets'            => 'Target entities',
         'target_relation'   => 'Target\'s description',
         'two_way'           => 'Mirror connection',
