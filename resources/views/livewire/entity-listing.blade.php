@@ -3,7 +3,7 @@
 <div class="flex flex-col gap-2">
 @foreach ($entities as $entity)
     <div class="flex items-center gap-2" data-entity-type="{{ $entity->entityType->pluralCode() }}">
-        <a class="entity-picture inline-block rounded-full cover-background w-9 h-9 flex-shrink-0" style="background-image: url('{{ Avatar::entity($entity)->fallback()->size(40)->thumbnail() }}');"
+        <a class="entity-picture inline-block rounded-full cover-background w-9 h-9 flex-shrink-0" style="background-image: url('{{ Avatar::entity($entity)->fallback()->size(80)->thumbnail() }}');"
             title="{{ $entity->name }}"
             href="{{ $entity->url() }}">
         </a>

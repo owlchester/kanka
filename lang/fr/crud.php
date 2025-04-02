@@ -228,7 +228,7 @@ return [
     'hidden'            => 'Caché',
     'hints'             => [
         'attribute_template'    => 'Appliquer un modèle d\'attribut lors de la création ou l\'édition de cette entité.',
-        'calendar_date'         => 'Une date de calendrier permet un triage plus facile dans les listes, et garde à jour un événement de calendrier dans le calendrier sélectionné.',
+        'calendar_date'         => 'Une date de calendrier permet un triage plus facile dans les listes, et lie l\'entité avec un calendrier à travers en rappel.',
         'image_dimension'       => 'Dimentions recommendées: :dimension pixels.',
         'image_limitations'     => 'Formats supportés: :formats. Taille maximale: :size.',
         'image_recommendation'  => 'Dimensions recommandées: :width par :height px.',
@@ -241,7 +241,7 @@ return [
         'unknown'               => 'Inconnu',
         'updated_clean'         => 'Dernière modification par :name :date',
         'updated_date_clean'    => 'Dernière modification :date',
-        'view'                  => 'Visionner les journaux de l\'entité',
+        'view'                  => 'Voir l\'historique',
     ],
     'image'             => [
         'error' => 'Impossible de récupérer l\'image demandée. Il est possible que le site web ne nous permet pas de télécharger des images (cela arrive par example avec squarespace et DeviantArt), ou le lien n\'est plus valide.',
@@ -331,7 +331,7 @@ return [
         'assets'        => 'Ressources',
         'attributes'    => 'Attributs',
         'boost'         => 'Boost',
-        'connections'   => 'Connexions',
+        'connections'   => 'Relations',
         'inventory'     => 'Inventaire',
         'links'         => 'Liens',
         'mentions'      => 'Mentions',

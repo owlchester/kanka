@@ -87,7 +87,8 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
         @endif
     </div>
 
-    <x-helper>
+    <x-helper class="text-xs">
+        <x-icon class="fa-regular fa-question-circle" />
         {{ __('crud.hints.image_limitations', ['formats' => $formats, 'size' => (isset($size) ? Limit::readable()->map()->upload() : Limit::readable()->upload())]) }} @if (isset($recommended)) {{ __('crud.hints.image_dimension', ['dimension' => $recommended]) }} @endif
         @includeWhen(config('services.stripe.enabled'), 'cruds.fields.helpers.share')
     </x-helper>

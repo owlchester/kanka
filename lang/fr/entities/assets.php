@@ -10,6 +10,6 @@ return [
         'success'   => 'Mention d\'alias copié au presse-papier.',
     ],
     'show'          => [
-        'title' => 'Biens de :name',
+        'title' => 'Ressources de :name',
     ],
 ];

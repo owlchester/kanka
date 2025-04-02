@@ -3,7 +3,7 @@
 return [
     'actions'           => [
         'mode-map'      => 'Outil de visualisation des relations',
-        'mode-table'    => 'Table des relations et connexions',
+        'mode-table'    => 'Table des relations et relation',
     ],
     'bulk'              => [
         'delete'    => '{1} :count relation supprimée.|[2,*] :count relations supprimées.',
@@ -32,7 +32,7 @@ return [
     'create'            => [
         'helper'        => 'Créer un lien entre :name et une ou plusieurs entités.',
         'new_title'     => 'Nouvelle relation',
-        'success_bulk'  => '{1} Ajout de :count connexion à :entity.|[2,*] Ajout de :count connexions à :entity.',
+        'success_bulk'  => '{1} Ajout de :count relation à :entity.|[2,*] Ajout de :count relations à :entity.',
         'title'         => 'Nouvelle relation pour :name',
     ],
     'delete_mirrored'   => [
@@ -49,7 +49,7 @@ return [
         'is_pinned'         => 'Épinglé',
         'owner'             => 'Source',
         'relation'          => 'Relation',
-        'target'            => 'Cible',
+        'targets'            => 'Cibles',
         'target_relation'   => 'Relation de la cible',
         'two_way'           => 'Créer une relation miroir',
         'unmirror'          => 'Délier cette relation de la relation miroir.',
@@ -84,11 +84,11 @@ return [
         'show'              => 'Afficher',
     ],
     'panels'            => [
-        'related'   => 'Liés',
+        'related'   => 'Éléments liés',
     ],
     'placeholders'      => [
         'attitude'          => 'de -100 à 100, 100 étant très positif.',
-        'relation'          => 'Nature de la relation',
+        'relation'          => 'Meilleur ami, rival, lieu d\'origine',
         'target'            => 'Choix d\'un élément',
         'target_relation'   => 'Laisser vide pour utiliser la description',
     ],

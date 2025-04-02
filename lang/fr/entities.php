@@ -3,7 +3,7 @@
 return [
     'abilities'             => 'Pouvoirs',
     'ability'               => 'Pouvoir',
-    'assets'                => 'Biens',
+    'assets'                => 'Ressources',
     'attribute_template'    => 'Modèle d\'attributs',
     'attribute_templates'   => 'Modèles d\'attributs',
     'bookmark'              => 'Favori',

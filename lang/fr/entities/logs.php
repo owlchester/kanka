@@ -24,6 +24,6 @@ return [
     'impersonated'      => 'Imité par :name',
     'none'              => 'Aucun',
     'show'              => [
-        'title' => 'Journaux de l\'entité :name',
+        'title' => 'Historique de :name',
     ],
 ];

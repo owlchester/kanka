@@ -2,9 +2,9 @@
 
 return [
     'actions'   => [
-        'add'   => 'Ajouter un pouvoir',
+        'add'   => 'Ajouter',
         'reset' => 'Réinitialiser les charges',
-        'sync'  => 'Ajouter des races',
+        'sync'  => 'Ajouter depuis les races',
     ],
     'charges'   => [
         'left'  => ':amount restant',
@@ -13,7 +13,7 @@ return [
         'helper'            => 'Ajouter un ou plusieurs pouvoirs à :name.',
         'success'           => 'Pouvoir :ability ajouté à :entity.',
         'success_multiple'  => 'Les pouvoirs :abilities ont été ajouté à :entity.',
-        'title'             => 'Ajouter un pouvoir à :name',
+        'title'             => 'Ajouter des pouvoirs',
     ],
     'fields'    => [
         'note'      => 'Note',
@@ -44,13 +44,13 @@ return [
     'show'      => [
         'helper'    => 'Attache des pouvoirs à cette entité. Il est toujours possible de modifier ou de supprimer un pouvoir. Les pouvoirs qui appartiennent au même parent sont groupés ensemble et agissent comme filtres.',
         'reorder'   => 'Réordonner',
-        'title'     => 'Pouvoirs de l\'entité :name',
+        'title'     => 'Pouvoirs de:name',
     ],
     'types'     => [
         'unorganised'   => 'Les pouvoirs sont regroupés en fonction de leur parent, ou se retrouvent ici.',
     ],
     'update'    => [
         'success'   => 'Pouvoir d\'entité :ability mis à jour.',
-        'title'     => 'Pouvoirs de l\'entité :name',
+        'title'     => 'Pouvoirs de :name',
     ],
 ];

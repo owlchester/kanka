@@ -7,7 +7,7 @@
     <x-forms.foreign
         field="targets"
         required
-        label="entities/relations.fields.target"
+        label="entities/relations.fields.targets"
         :multiple="true"
         name="targets[]"
         id="targets[]"

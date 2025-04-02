@@ -2,7 +2,7 @@
 
 return [
     'actions'           => [
-        'add'               => 'Ajouter un objet',
+        'add'               => 'Ajouter',
         'copy_from'         => 'Copier depuis',
         'copy_inventory'    => 'Copier l\'inventaire',
     ],
@@ -14,7 +14,7 @@ return [
         'helper'        => 'Ajouter un objet à l\'inventaire de :name. Il peut éventuellement être lié à un objet existant de la campagne.',
         'success'       => 'Objet :item ajouté à :entity.',
         'success_bulk'  => '{0} Aucun objet ajouté à :entity.|{1} :count objet ajouté à :entity.|[2,*] :count objets ajoutés à :entity.',
-        'title'         => 'Ajouter un objet à :name',
+        'title'         => 'Ajouter à l\'inventaire',
     ],
     'default_position'  => 'Non organisé',
     'destroy'           => [
@@ -45,7 +45,7 @@ return [
     ],
     'show'              => [
         'helper'    => 'Les entités peuvent avoir des objets attachés pour créer un inventaire.',
-        'title'     => 'Inventaire de l\'entité :name',
+        'title'     => 'Inventaire de :name',
         'unsorted'  => 'Autre',
     ],
     'tooltips'          => [

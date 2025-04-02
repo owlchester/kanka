@@ -23,6 +23,6 @@ return [
     'posts'     => [],
     'premium'   => 'La récupération d\'éléments est une fonctionnalité de campagne premium.',
     'success_v2'=> '{1} :count élément a été récupéré.|[2,*] :count éléments ont été récupérés.',
-    'title'     => 'Récupération d\'entité pour :campaign',
+    'title'     => 'Récupération d\'éléments supprimés',
     'toggle'    => [],
 ];

@@ -22,20 +22,22 @@ if (!empty($oldCalendarID)) {
     <input type="hidden" name="calendar_skip" value="1" />
     @php return; @endphp
 @endif
-<div class="field-calendar-date">
+<div class="field-calendar-date flex flex-col gap-4">
     <x-helper>{{ __('crud.hints.calendar_date') }}</x-helper>
 
-    <a href="#" id="entity-calendar-form-add" class="btn2 btn-sm <?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "hidden" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}">
-        <x-icon entity="calendar" />
-        {{ __('crud.forms.actions.calendar') }}
-    </a>
+    <div>
+        <a href="#" id="entity-calendar-form-add" class="btn2 btn-sm btn-outline <?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "hidden" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}">
+            <x-icon entity="calendar" />
+            {{ __('crud.forms.actions.calendar') }}
+        </a>
+    </div>
 
-    <div class="entity-calendar-form <?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "hidden" : null)?>">
+    <div class="entity-calendar-form transition-all duration-150 flex flex-col gap-4  <?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "hidden" : null)?>">
         @if (count($calendars) == 1)
             <input type="hidden" name="calendar_id" value="{{ isset($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar_id : $source->child->calendar_id ?? null }}" />
         @else
             <input type="hidden" name="calendar_id" />
-            <div class="grid gap-2 md:gap-4 md:grid-cols-3 mb-4">
+            <div class="grid gap-2 md:gap-4 md:grid-cols-3">
                 <div class="field-calendar entity-calendar-selector">
                     <x-forms.foreign
                         :campaign="$campaign"
@@ -98,7 +100,7 @@ if (!empty($oldCalendarID)) {
 
                 <x-forms.field
                     field="periodicity"
-                    :label="__('calendars.fields.recurring_periodicity')">
+                    :label="__('calendars.fields.is_recurring')">
                     <x-forms.select
                         name="calendar_recurring_periodicity"
                         :options="(!empty($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar->recurringOptions(): (!empty($calendar) ? $calendar->recurringOptions() : []))"
@@ -113,10 +115,10 @@ if (!empty($oldCalendarID)) {
         </div>
 
 
-        <div class="text-right mt-2">
-            <a href="#" id="entity-calendar-form-cancel" class="btn2 btn-ghost btn-sm @if ((((isset($model) && $model->hasCalendar()) || empty($model))) && $onlyOneCalendar) @else hidden @endif">
+        <div class="text-right">
+            <a href="#" id="entity-calendar-form-cancel" class="btn2 btn-outline btn-error btn-sm @if ((((isset($model) && $model->hasCalendar()) || empty($model))) && $onlyOneCalendar) @else hidden @endif">
                 <x-icon class="fa-solid fa-eraser" />
-                {{ __('crud.remove') }}
+                {{ __('entities/reminders.actions.remove') }}
             </a>
         </div>
     </div>

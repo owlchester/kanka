@@ -23,7 +23,7 @@ return [
         'scheduled' => 'Programmé',
     ],
     'success'       => 'La campagne est en train d\'être exportée. Tu receveras une notification dans Kanka dès que l\'export est prêt à être téléchargé.',
-    'title'         => 'Export de campagne',
+    'title'         => 'Export',
     'type'          => 'Type',
     'type_assets'   => 'Images',
     'type_entities' => 'Entités',

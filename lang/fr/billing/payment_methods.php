@@ -3,6 +3,6 @@
 return [
     'title' => 'Méthode de paiement',
     'types' => [
-        'card'  => 'Carte',
+        'card'  => 'Carte de crédit/débit',
     ],
 ];

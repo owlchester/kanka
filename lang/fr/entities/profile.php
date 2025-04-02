@@ -4,7 +4,7 @@ return [
     'actions'   => [
         'edit_profile'  => 'Modifier le profil',
     ],
-    'history'   => 'Histoire',
+    'history'   => 'Historique',
     'show'      => [
         'tab_name'  => 'Profil',
         'title'     => 'Profil de :name',

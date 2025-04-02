@@ -367,17 +367,10 @@ return [
     'show'                              => [
         'actions'   => [
             'edit'  => 'Edit campaign',
-            'leave' => 'Leave',
-        ],
-        'menus'     => [
-            'configuration'     => 'Configuration',
-            'overview'          => 'Overview',
-            'user_management'   => 'Member management',
         ],
         'tabs'      => [
             'achievements'      => 'Achievements',
             'applications'      => 'Applications',
-            'campaign'          => 'Campaign',
             'customisation'     => 'Customisation',
             'danger'            => 'Danger',
             'data'              => 'Data',
@@ -385,7 +378,6 @@ return [
             'deletion'          => 'Deletion',
             'export'            => 'Export',
             'import'            => 'Import',
-            'information'       => 'Information',
             'management'        => 'Management',
             'members'           => 'Members',
             'modules'           => 'Modules',

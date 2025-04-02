@@ -2,7 +2,7 @@
 
 return [
     'congratulations'   => 'Félicitations!',
-    'connections'       => '{0} Aucune connexion créée|{1} Une connexion créée|[2,*] :amount connexions créées',
+    'connections'       => '{0} Aucune relation créée|{1} Une relation créée|[2,*] :amount relations créées',
     'created'           => '{0} Aucun(e) :singular créé(e)|{1} Un :singular créé(e)|[2,*] :amount :plural créé(e)s',
     'dead'              => '{0} Aucun mort mystérieuse|{1} Une mort mystérieuse|[2,*] :amount morts mystérieuses',
     'goal'              => 'Objectif :number',

@@ -14,7 +14,7 @@ return [
         'r_date_joined'     => 'Date d\'adhésion (plus récente en premier)',
     ],
     'dismissible'       => [
-        'main'  => 'Contrôlez l\'apparence et la sensation de Kanka. Prière de noter que les campagnes peuvent remplacer certains de ces paramètres.',
+        'main'  => 'Gères l\'apparence et certains fonctionements de Kanka. La configuration de campagnes peuvent remplacer certains de ces paramètres.',
     ],
     'editors'           => [
         'default'   => 'Défaut (:name)',

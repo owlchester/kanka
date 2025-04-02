@@ -25,12 +25,12 @@ return [
     'export'                            => [],
     'fields'                            => [
         'boosted'                           => 'Boosté par',
-        'character_personality_visibility'  => 'Visibilité de la personnalité d\'un personnage par défaut',
+        'character_personality_visibility'  => 'Visibilité par défaut de la personnalité d\'un personnage',
         'connections'                       => 'Afficher le tableau de connections d\'une entité par défaut (au lieu de l\'explorateur de relation pour les campagnes boostées)',
         'css'                               => 'CSS',
         'description'                       => 'Description',
         'entity_count'                      => 'Nombre d\'entités',
-        'entity_privacy'                    => 'Nouvelles entités privées par défaut',
+        'entity_privacy'                    => 'Visibilité par défaut des entités',
         'entry'                             => 'Description de la campagne',
         'excerpt'                           => 'Description de la campagne sur le tableau de bord',
         'followers'                         => 'Followers',
@@ -46,8 +46,8 @@ return [
         'premium'                           => 'Premium débloqué par :name',
         'private_mention_visibility'        => 'Mentions privées',
         'public'                            => 'Visibilité de la campagne',
-        'public_campaign_filters'           => 'Filtres pour les campagnes publiques',
-        'related_visibility'                => 'Visibilité des éléments liés',
+        'public_campaign_filters'           => 'Filtres publics',
+        'related_visibility'                => 'Visibilité par défauts des éléments',
         'superboosted'                      => 'Superboosté par',
         'system'                            => 'Système',
         'theme'                             => 'Thème',
@@ -81,7 +81,7 @@ return [
         'system'                            => 'Si la campagne est publiquement visible, elle sera affichée dans la page :link.',
         'systems'                           => 'A définir.',
         'theme'                             => 'Définir le thème pour la campagne qui surplante le thème de l\'utilisateur.',
-        'view_public'                       => 'Pour afficher la campagne comme le ferait un utilisateur public, ouvre :link dans une fenêtre de navigation privée.',
+        'view_public'                       => 'Pour afficher la campagne comme le ferait un utilisateur public, ouvres :link dans une fenêtre de navigation privée.',
         'visibility'                        => 'Une campagne publique peut être vue par toute personne ayant un lien vers celle-ci.',
     ],
     'index'                             => [],
@@ -144,15 +144,15 @@ return [
             'banned'        => 'Compte suspendu',
             'joined'        => 'Rejoint',
             'last_login'    => 'Dernière connexion',
-            'name'          => 'Utilisateur',
+            'name'          => 'Membre',
             'role'          => 'Rôle',
             'roles'         => 'Rôles',
         ],
         'helpers'               => [
-            'switch'    => 'Basculer vers cet utilisateur',
+            'switch'    => 'Basculer vers ce membre',
         ],
         'impersonating'         => [
-            'message'   => 'Tu visualises la campagne en tant qu\'un autre utilisateur. Certaines fonctionnalités ont été désactivées, mais le reste fonctionne exactement comme le verrait l\'utilisateur.',
+            'message'   => 'Tu visualises la campagne en tant qu\'un autre membre. Certaines fonctionnalités ont été désactivées, mais le reste fonctionne exactement comme le verrait le membre.',
             'title'     => 'Se faisant passer pour :name',
         ],
         'invite'                => [
@@ -221,7 +221,7 @@ return [
         ],
         'create'        => [
             'success'   => 'Rôle :name créé.',
-            'title'     => 'Créer un nouveau rôle pour :name',
+            'title'     => 'Nouveau rôle',
         ],
         'destroy'       => [
             'success'   => 'Rôle :name supprimé.',
@@ -366,7 +366,7 @@ return [
         ],
     ],
     'sharing'                           => [
-        'filters'   => 'Les campagnes publiques sont visible sur la page de :public-campaigns. Remplir les champs suivants rend la tâche plus facile pour les gens de découvrir la campagne.',
+        'filters'   => 'Les campagnes publiques sont visible sur la page de :public-campaigns. Remplir les champs suivants rend la campagne plus facilement trouvable.',
         'language'  => 'La langue dans laquelle le contenu de la campagne est écrite.',
         'system'    => 'Si la campagne est liée à un jeu de rôle, le système utilisé par la campagne.',
     ],
@@ -374,11 +374,6 @@ return [
         'actions'   => [
             'edit'  => 'Modifier la campagne',
             'leave' => 'Quitter la campagne',
-        ],
-        'menus'     => [
-            'configuration'     => 'Configuration',
-            'overview'          => 'Vue d\'ensemble',
-            'user_management'   => 'Gestion d\'utilisateur',
         ],
         'tabs'      => [
             'achievements'      => 'Succès',
@@ -444,10 +439,10 @@ return [
             'post_collapsed'    => 'Affichage par défaut de nouvelle entrées',
         ],
         'helpers'           => [
-            'connections'       => 'Interface qui s\'affiche par défaut en cliquant sur la page connexions d\'une page.',
+            'connections'       => 'Interface qui s\'affiche par défaut en cliquant sur la page relation d\'une page.',
             'connections_mode'  => 'Modifier le mode affiché par défaut lorsque l\'outil de visualisation de relation d\'une entité est ouvert.',
             'descendants'       => 'Contrôler le filtrage par défaut lors du chargement d\'une sous-liste. Par exemple, les caractères d\'un lieu.',
-            'entity-history'    => 'Contrôler qui peut voir les changements récents fait aux entités de la campagne.',
+            'entity-history'    => 'Contrôler qui peut voir l\'historique des changements récents fait aux entités de la campagne.',
             'member-list'       => 'Contrôler qui peut voir les membres de la campagne.',
             'other'             => 'Autres options visuelles de la campagne.',
             'post_collapsed'    => 'Lors de la création d\'une nouvelle entrée sur une entité, sélection de l\'affichage par défaut.',

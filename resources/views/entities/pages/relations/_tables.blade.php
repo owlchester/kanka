@@ -8,7 +8,7 @@
     @if ($rows->count() === 0)
         <x-helper :text="__('entities/relations.helpers.no_relations')" />
         @can('relation', $entity)
-            <a href="{{ route('entities.relations.create', [$campaign, $entity, 'mode' => $mode]) }}" class="btn2 btn-sm" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.relations.create', [$campaign, $entity, 'mode' => $mode]) }}">
+            <a href="{{ route('entities.relations.create', [$campaign, $entity, 'mode' => $mode]) }}" class="btn2 btn-sm btn-outline" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.relations.create', [$campaign, $entity, 'mode' => $mode]) }}">
                 <x-icon class="plus" />
                 <span class="hidden md:inline">
                 {{ __('entities.relation') }}
@@ -22,7 +22,7 @@
     @endif
 </x-box>
 
-@includeWhen(!$connections->isEmpty(), 'entities.pages.relations._connections')
+@includeWhen(!$connections->isEmpty(), 'entities.pages.relations._related')
 
 @section('modals')
     @parent
