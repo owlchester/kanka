@@ -2,16 +2,18 @@
 
 namespace App\Livewire\Users;
 
-use Livewire\Attributes\Validate;
-use Livewire\Component;
 use App\Models\PasswordSecurity;
 use App\Models\User;
+use Livewire\Attributes\Validate;
+use Livewire\Component;
 use PragmaRX\Google2FA\Google2FA;
 
 class Otp extends Component
 {
     public $duplicates;
+
     public bool $clickedBefore = false;
+
     protected $listeners = ['refreshTable' => '$refresh']; // Listen for table refresh event
 
     #[Validate('required|numeric')]
@@ -79,7 +81,6 @@ class Otp extends Component
         } else {
             $this->clickedBefore = true;
         }
-
 
     }
 
