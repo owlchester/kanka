@@ -7,13 +7,13 @@ return [
         'copy_inventory'    => 'Copy inventory',
     ],
     'copy'              => [
-        'helper' => 'Copy the whole inventory of an entity to :name.',
+        'helper'    => 'Copy the whole inventory of an entity to :name.',
     ],
     'create'            => [
+        'helper'        => 'Add an item to :name\'s inventory. It can optionally be linked to an existing object from the campaign.',
         'success'       => 'Item :item added to :entity.',
         'success_bulk'  => '{0} No item added to :entity.|{1} Added :count item to :entity.|[2,*] Added :count items to :entity.',
         'title'         => 'Add to inventory',
-        'helper'        => 'Add an item to :name\'s inventory. It can optionally be linked to an existing object from the campaign.',
     ],
     'default_position'  => 'Unorganised',
     'destroy'           => [

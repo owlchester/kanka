@@ -19,6 +19,7 @@ return [
     'marketplace'       => 'Marketplace',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Platforme',
+    'plugins'           => 'Bibliothèque de Plugins',
     'premium'           => 'Campagnes Premium',
     'press-kit'         => 'Press kit',
     'pricing'           => 'Prix',

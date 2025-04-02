@@ -2,10 +2,10 @@
 
 return [
     'actions'   => [
-        'pay' => [
-            'monthly' => 'Pay monthly',
-            'yearly'  => 'Pay yearly',
-            'save' => 'save 2 months',
+        'pay'       => [
+            'monthly'   => 'Pay monthly',
+            'save'      => 'save 2 months',
+            'yearly'    => 'Pay yearly',
         ],
         'subscribe' => [
             'choose'    => 'Choose :tier',
@@ -36,9 +36,9 @@ return [
         'best-value'    => 'Best value',
         'current'       => 'Current subscription',
     ],
-    'target' => [
-        'owlbear' => 'Perfect for solo worldbuilders who want to supercharge their main campaign',
-        'wyvern' => 'Ideal for game masters running multiple adventures or collaborative storytellers',
+    'target'    => [
         'elemental' => 'For worldbuilding pros managing multiple epic settings and expansive campaigns',
+        'owlbear'   => 'Perfect for solo worldbuilders who want to supercharge their main campaign',
+        'wyvern'    => 'Ideal for game masters running multiple adventures or collaborative storytellers',
     ],
 ];

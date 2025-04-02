@@ -10,6 +10,7 @@ return [
         'left'  => ':amount restant',
     ],
     'create'    => [
+        'helper'            => 'Ajouter un ou plusieurs pouvoirs à :name.',
         'success'           => 'Pouvoir :ability ajouté à :entity.',
         'success_multiple'  => 'Les pouvoirs :abilities ont été ajouté à :entity.',
         'title'             => 'Ajouter un pouvoir à :name',

@@ -27,6 +27,7 @@ return [
     ],
     'helpers'           => [
         'active'            => 'Les favoris inactifs ne s\'affichent pas dans la navigation.',
+        'css'               => 'Ajoutes une classe CSS qui sera ajoutée au lien du bookmark dans la navigation.',
         'dashboard'         => 'Mettre en place le favori pour aller à un tableau de bord.',
         'default_dashboard' => 'Favori vers le tableau de bord par défaut de la campagne. Un tableau de bord personnalisé doit encore être sélectionné.',
         'entity'            => 'Mettre en place le favori pour aller directement sur une entité. Le champ :tab contrôle quel onglet est ouvert. Le champ :menu contrôle quel sous-menu est affiché.',
@@ -50,6 +51,13 @@ return [
         'title'     => 'Réorganiser les favoris',
     ],
     'show'              => [],
+    'targets'           => [
+        'dashboard' => 'Un des tableaux de bord de la campagne',
+        'entity'    => 'Une seule entité',
+        'random'    => 'Une entité au hasard',
+        'select'    => 'Choisir une option',
+        'type'      => 'Liste des entités d\'un type/module d\'entité spécifique',
+    ],
     'visibilities'      => [
         'is_active' => 'Afficher le favori dans la navigation',
     ],

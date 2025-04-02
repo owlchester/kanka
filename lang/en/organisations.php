@@ -13,8 +13,8 @@ return [
     ],
     'members'       => [
         'actions'       => [
-            'add'               => 'Add a member',
-            'add_multiple'      => 'Add members',
+            'add'           => 'Add a member',
+            'add_multiple'  => 'Add members',
         ],
         'create'        => [
             'helper'            => 'Add one or several members to :name.',

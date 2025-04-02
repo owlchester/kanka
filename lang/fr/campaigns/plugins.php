@@ -10,6 +10,7 @@ return [
         'changelog'         => 'Changements',
         'disable'           => 'Désactiver le plugin',
         'enable'            => 'Activer le plugin',
+        'find-plugins'      => 'Trouver des plugins',
         'go_to_marketplace' => 'Aller au marketplace',
         'import'            => 'Importer',
         'update'            => 'Mettre à jour le plugin',
@@ -27,7 +28,7 @@ return [
     'disabled'      => [
         'success'   => 'Le plugin :plugin a été désactivé.',
     ],
-    'empty_list'    => 'La campagne n\'a actuellement aucun plugin. Visiter le marketplace pour ajouter des plugins à la campagne, et revenir ici pour les activer.',
+    'empty_list'    => 'La campagne n\'a actuellement aucun plugin. Visiter la bibliothèque de plugins pour ajouter des plugins à la campagne, et revenir ici pour les activer.',
     'enabled'       => [
         'success'   => 'Le plugin :plugin a été activé.',
     ],

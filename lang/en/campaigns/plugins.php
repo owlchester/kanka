@@ -27,7 +27,7 @@ return [
     'disabled'      => [
         'success'   => 'Plugin :plugin disabled.',
     ],
-    'empty_list'    => 'The campaign doesn\'t currently have any plugins. Go to the marketplace to install a few and come back to activate them.',
+    'empty_list'    => 'The campaign doesn\'t currently have any plugins. Go to the plugin library to install a few and come back to activate them.',
     'enabled'       => [
         'success'   => 'Plugin :plugin enabled.',
     ],

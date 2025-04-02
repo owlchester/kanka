@@ -7,9 +7,11 @@ return [
         'copy_inventory'    => 'Copier l\'inventaire',
     ],
     'copy'              => [
-        'title' => 'Copier l\'inventaire vers :name',
+        'helper'    => 'Copie l\'inventaire complet d\'une entité à :name.',
+        'title'     => 'Copier l\'inventaire vers :name',
     ],
     'create'            => [
+        'helper'        => 'Ajouter un objet à l\'inventaire de :name. Il peut éventuellement être lié à un objet existant de la campagne.',
         'success'       => 'Objet :item ajouté à :entity.',
         'success_bulk'  => '{0} Aucun objet ajouté à :entity.|{1} :count objet ajouté à :entity.|[2,*] :count objets ajoutés à :entity.',
         'title'         => 'Ajouter un objet à :name',

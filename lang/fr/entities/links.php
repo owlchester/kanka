@@ -6,6 +6,7 @@ return [
     ],
     'call-to-action'    => 'Ajoutes des liens vers des ressources externes sur cette entité, comme DnDBeyond, et ils s\'afficheront directement sur la vue d\'ensemble de l\'entité.',
     'create'            => [
+        'helper'    => 'Ajouter un lien externe vers :name, par exemple vers sa page DnDBeyond.',
         'success'   => 'Lien :name ajouté à :entity.',
         'title'     => 'Ajouter un lien à :name',
     ],

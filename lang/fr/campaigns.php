@@ -407,6 +407,9 @@ return [
     ],
     'status'                            => [
         'free'      => 'Fonctionnalités Premium désactivées.',
+        'legacy'    => [
+            'title' => 'Fonctionnalités Boostées (anciennement)',
+        ],
         'premium'   => 'Fonctionnalités Premium activées par :name.',
         'title'     => 'Fonctionnalités Premium',
     ],

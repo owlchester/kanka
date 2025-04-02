@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'apps'              => [
+        'discord'   => [
+            'invalid'   => 'Ton jeton Discord a expiré. Prière de resynchroniser ton compte Discord et ton compte Kanka.',
+        ],
+    ],
     'campaign'          => [
         'application'           => [
             'approved'              => 'Ton application pour rejoindre la campagne :campaign a été approuvée.',
@@ -61,6 +66,12 @@ return [
         'chunked'   => 'La carte :name a fini d\'être traitée et est maintenant utilisable.',
     ],
     'no_notifications'  => 'Il n\'y a actuellement aucune notification.',
+    'plugins'           => [
+        'comments'  => [
+            'new_comment'   => ':user a laissé un nouveau commentaire sur le plugin :plugin.',
+            'new_reply'     => ':user a répondu à ton commentaire dans :plugin.',
+        ],
+    ],
     'subscriptions'     => [
         'charge_fail'   => 'Une erreur est survenue lors du paiement. Kanka va ressayer encore une fois. Si rien ne change, prière de nous contacter.',
         'deleted'       => 'Ton abonnement à Kanka a été annulé après trop d\'essais ratés avec ta méthode de paiement. Va sur la page d\'abonnement et mets à jour tes données de paiement.',

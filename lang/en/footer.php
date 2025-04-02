@@ -18,7 +18,7 @@ return [
     'made'              => 'Made with ❤️ in Geneva, Switzerland',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Platform',
-    'plugins'           => 'Plugins',
+    'plugins'           => 'Plugins Library',
     'premium'           => 'Premium campaigns',
     'press-kit'         => 'Press kit',
     'pricing'           => 'Pricing',

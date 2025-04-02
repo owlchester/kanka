@@ -30,6 +30,7 @@ return [
         'timeline_element'  => 'Élément de timeline',
     ],
     'create'            => [
+        'helper'        => 'Créer un lien entre :name et une ou plusieurs entités.',
         'new_title'     => 'Nouvelle relation',
         'success_bulk'  => '{1} Ajout de :count connexion à :entity.|[2,*] Ajout de :count connexions à :entity.',
         'title'         => 'Nouvelle relation pour :name',
@@ -59,6 +60,7 @@ return [
     ],
     'helper'            => 'Définir des relations entre entités avec leurs description, attitude et visibilité. Les relations peuvent aussi être épinglées sur le menu de l\'entité.',
     'helpers'           => [
+        'description'   => 'Détailler la nature du lien entre les deux entités.',
         'no_relations'  => 'Cette entité n\'a actuellement aucune relation vers d\'autres entités de la campagne.',
         'popup'         => 'Les entités de la campagne peuvent être lié entre elles en utilisant des relations. Celles-ci peuvent avoir une description, une évaluation de relation, un control de visibilité, et plus.',
     ],

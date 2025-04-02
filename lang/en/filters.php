@@ -8,10 +8,10 @@ return [
         'copy'  => 'The filters have been copied to your clipboard.',
     ],
     'bookmark'  => [
+        'helper'    => 'Create a new bookmark to this view using the current filters.',
         'name'      => ':module (filtered)',
         'premium'   => 'Adding more bookmarks requires enabling premium campaign features.',
         'success'   => 'Bookmark created.',
-        'helper'    => 'Create a new bookmark to this view using the current filters.',
     ],
     'helpers'   => [
         'guest' => 'Please log into your account to filter results.',

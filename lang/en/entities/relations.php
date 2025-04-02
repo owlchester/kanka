@@ -30,9 +30,9 @@ return [
         'timeline_element'  => 'Timeline element',
     ],
     'create'            => [
+        'helper'        => 'Create a connection between :name and one or several entities.',
         'new_title'     => 'New connection',
         'success_bulk'  => '{1} Added :count connection to :entity.|[2,*] Added :count connections to :entity.',
-        'helper'        => 'Create a connection between :name and one or several entities.'
     ],
     'delete_mirrored'   => [
         'helper'    => 'This connection is mirrored on the target entity. Select this option to also remove the mirrored connection.',
@@ -59,7 +59,7 @@ return [
     ],
     'helper'            => 'Set up connections between entities with attitudes and visibility. Connections can also be pinned to the entity\'s menu.',
     'helpers'           => [
-        'description' => 'Detail the nature of the connection between the two entities.',
+        'description'   => 'Detail the nature of the connection between the two entities.',
         'no_relations'  => 'This entity doesn\'t currently have any connection to other entities of the campaign.',
         'popup'         => 'Entities of the campaign can be linked together using connections. These can have a description, an attitude rating, a visibility to control who sees a connection, and more.',
     ],

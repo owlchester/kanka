@@ -8,11 +8,13 @@ return [
         'copy'  => 'Les filtres ont été copier à ton presse-papier.',
     ],
     'bookmark'  => [
+        'helper'    => 'Créer un nouveau signet pour cette vue en utilisant les filtres actuels.',
         'name'      => ':module (filtré)',
         'premium'   => 'Pour ajouter plus des favoris, il faut activer les fonctionalités premium.',
         'success'   => 'Favori créé.',
     ],
     'helpers'   => [
         'guest' => 'Prière de te connecter à ton compte pour filter les résultats.',
+        'icon'  => 'Donner à ce signet une icône spéciale :fontawesome, par exemple :example.',
     ],
 ];

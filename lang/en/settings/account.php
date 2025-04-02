@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'title' => 'Account Info',
-    'subtitle' => 'Control your email, password, security and other account settings.',
+    'subtitle'  => 'Control your email, password, security and other account settings.',
+    'title'     => 'Account Info',
 ];

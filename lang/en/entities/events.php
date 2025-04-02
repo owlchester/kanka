@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'create' => [
-        'helper' => 'Create a reminder to link :name to a calendar.',
+    'create'    => [
+        'helper'    => 'Create a reminder to link :name to a calendar.',
     ],
     'fields'    => [
         'type'  => 'Reminder Type',

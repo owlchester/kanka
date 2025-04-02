@@ -6,8 +6,9 @@ return [
         'premium'   => 'Pour uploader plus de fichiers, une campagne Premium est nécessaire.',
     ],
     'create'            => [
+        'helper'            => 'Ajouter un fichier à :name. Le fichier sera pris en compte dans la limite de stockage de la galerie.',
         'success_plural'    => '{1} Fichier :file ajouté.|[2,*] :count fichiers ajoutés.',
-        'title'             => 'Nouveau fichier pour :entity',
+        'title'             => 'Nouveau fichier',
     ],
     'destroy'           => [
         'success'   => 'Fichier :file retiré.',
@@ -21,6 +22,7 @@ return [
         'title' => 'Limite atteinte',
     ],
     'update'            => [
-        'success'   => 'Fichier :file modifié.',
+        'success'   => 'Fichier :name modifié.',
+        'title'     => 'Modifier le fichier',
     ],
 ];
