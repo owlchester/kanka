@@ -15,7 +15,9 @@ class DefaultImageController extends Controller
     public function __construct(
         protected EntityTypeService $entityTypeService,
         protected DefaultImageService $service
-    ) {}
+    ) {
+        $this->middleware('campaign.boosted', ['except' => 'index']);
+    }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

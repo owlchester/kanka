@@ -1,5 +1,7 @@
-{{ csrf_field() }}
 <x-grid type="1/1">
+    @empty($model)
+        <x-helper>{{ __('campaigns/roles.create.helper') }}</x-helper>
+    @endif
 <x-forms.field
     field="name"
     required

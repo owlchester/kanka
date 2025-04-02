@@ -7,8 +7,10 @@ $usages = [
 ];
 @endphp
 
-{{ csrf_field() }}
 <x-grid type="1/1">
+    <x-helper>
+        {{ __('campaigns/invites.create.helper') }}
+    </x-helper>
     <x-forms.field
         field="usage"
         required

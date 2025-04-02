@@ -222,7 +222,7 @@ return [
         ],
         'edit'          => [
             'success'   => 'Role :name updated.',
-            'title'     => 'Edit role :name',
+            'title'     => 'Rename role :name',
         ],
         'fields'        => [
             'copy_permissions'  => 'Copy permissions',

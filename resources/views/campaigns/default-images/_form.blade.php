@@ -1,4 +1,7 @@
 <x-grid type="1/1">
+    <x-helper>
+        {{ __('campaigns/default-images.create.helper') }}
+    </x-helper>
     <x-forms.field
         field="entity-type"
         required

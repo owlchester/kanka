@@ -55,6 +55,7 @@ return [
         'helper'        => 'When a new version of a plugin is released, you can update it to the latest version for your campaign.',
         'title'         => 'Plugin :plugin updates',
         'updates'       => 'Updates',
+        'versions'      => 'Versions',
         'your_version'  => 'Your version',
     ],
     'pitch'         => 'Install and manage plugins from the :marketplace.',

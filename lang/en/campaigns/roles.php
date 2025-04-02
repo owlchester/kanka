@@ -4,6 +4,9 @@ return [
     'actions'   => [
         'status'    => 'Status: :status',
     ],
+    'create' => [
+        'helper' => 'Create a new role for the campaign.',
+    ],
     'overview'  => [
         'limited'   => ':amount of :total roles created.',
         'title'     => 'Available roles',
