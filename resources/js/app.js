@@ -297,7 +297,7 @@ import './quick-creator';
 import './datagrids';
 import './datagrids2';
 import './animations';
-import './quick-links';
+import './bookmarks';
 import './webhooks';
 import './members';
 import './campaign';

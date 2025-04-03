@@ -111,7 +111,7 @@ class BookmarkController extends CrudController
         $bookmark->update($data);
 
         $link = '<a href="' . route(
-            $this->view . '.show',
+            $this->view . '.edit',
             [$campaign, $bookmark->id]
         )
             . '">' . $bookmark->name . '</a>';
@@ -119,11 +119,10 @@ class BookmarkController extends CrudController
             'name' => $link,
         ]);
 
-        session()->flash('success_raw', $success);
 
         $options = [];
         $options = [$campaign, $bookmark] + $options;
-        $route = route($this->view . '.show', $options + [$bookmark]);
+        $route = route($this->view . '.edit', $options + [$bookmark]);
 
         if ($request->has('submit-new')) {
             $route = route($this->route . '.create', $campaign);
@@ -134,10 +133,10 @@ class BookmarkController extends CrudController
         } elseif ($request->has('submit-copy')) {
             $route = route($this->route . '.create', [$campaign, 'copy' => $bookmark->id]);
 
-            return response()->redirectTo($route);
+            return response()->redirectTo($route)->with('success_raw', $success);
         }
 
-        return response()->redirectTo($route);
+        return response()->redirectTo($route)->with('success_raw', $success);
     }
 
     /**
