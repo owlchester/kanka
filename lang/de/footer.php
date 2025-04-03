@@ -16,7 +16,6 @@ return [
         'title' => 'Wähle deine Sprache',
     ],
     'made'              => 'Hergestellt mit ❤️ in Genf, Schweiz',
-    'marketplace'       => 'Marktplatz',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Plattform',
     'premium'           => 'Premium Kampagnen',

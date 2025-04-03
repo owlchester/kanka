@@ -16,7 +16,6 @@ return [
         'title' => 'Wybierz język',
     ],
     'made'              => 'Stworzono z ❤️ w Genewie, Szwajcaria',
-    'marketplace'       => 'Targowisko',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Platforma',
     'premium'           => 'Kampanie premium',

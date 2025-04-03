@@ -19,13 +19,10 @@ return [
         'actions'       => [
             'add'           => 'Ajouter un membre',
             'add_multiple'  => 'Ajouter des membres',
-            'submit'        => 'Nouveau membre',
         ],
         'create'        => [
             'helper'            => 'Ajouter un ou plusieurs membres à :name.',
-            'success'           => 'Membre ajouté à l\'organisation :name.',
             'success_multiple'  => '{1} Ajouté :count membre à :name.|[2,*] Ajouté :count membres à :name.',
-            'title'             => 'Nouveau membre pour :name',
             'title_multiple'    => 'Nouveaux membres',
         ],
         'destroy'       => [

@@ -32,7 +32,6 @@ return [
     'create'            => [
         'new_title'     => 'Nueva relación',
         'success_bulk'  => '{1} Se ha añadido :count conexión a :entity.|[2,*] Se han añadido :count conexiones a :entity.',
-        'title'         => 'Nueva relación para :name',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Esta conexión se refleja en la entidad de destino. Seleccione esta opción para eliminar también la conexión duplicada.',

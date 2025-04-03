@@ -10,7 +10,6 @@ return [
         'changelog'         => 'História zmien',
         'disable'           => 'Deaktivovať plugin',
         'enable'            => 'Aktivovať plugin',
-        'go_to_marketplace' => 'Prejsť do Trhoviska',
         'import'            => 'Importovať',
         'update'            => 'Aktualizovať plugin',
         'update_available'  => 'Dostupná aktualizácia!',

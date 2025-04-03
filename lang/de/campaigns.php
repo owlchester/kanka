@@ -377,17 +377,10 @@ TEXT
     'show'                              => [
         'actions'   => [
             'edit'  => 'Kampagne editieren',
-            'leave' => 'Kampagne verlassen',
-        ],
-        'menus'     => [
-            'configuration'     => 'Aufbau',
-            'overview'          => 'Übersicht',
-            'user_management'   => 'Benutzerverwaltung',
         ],
         'tabs'      => [
             'achievements'      => 'Erfolge',
             'applications'      => 'Bewerbungen',
-            'campaign'          => 'Kampagne',
             'customisation'     => 'Anpassung',
             'danger'            => 'Gefahr',
             'data'              => 'Daten',
@@ -395,7 +388,6 @@ TEXT
             'deletion'          => 'Löschung',
             'export'            => 'Export',
             'import'            => 'Importieren',
-            'information'       => 'Informationen',
             'management'        => 'Management',
             'members'           => 'Mitglieder',
             'modules'           => 'Module',

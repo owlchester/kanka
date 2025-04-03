@@ -373,12 +373,10 @@ return [
     'show'                              => [
         'actions'   => [
             'edit'  => 'Modifier la campagne',
-            'leave' => 'Quitter la campagne',
         ],
         'tabs'      => [
             'achievements'      => 'Succès',
             'applications'      => 'Applications',
-            'campaign'          => 'Campagne',
             'customisation'     => 'Personnalisation',
             'danger'            => 'Danger',
             'data'              => 'Données',
@@ -386,7 +384,6 @@ return [
             'deletion'          => 'Suppression',
             'export'            => 'Export',
             'import'            => 'Import',
-            'information'       => 'Information',
             'management'        => 'Gestion',
             'members'           => 'Membres',
             'modules'           => 'Modules',

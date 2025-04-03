@@ -32,7 +32,6 @@ return [
     'create'            => [
         'new_title'     => 'Neue Beziehungen',
         'success_bulk'  => '{1} :count-Verbindung zu :entity.|[2,*] hinzugefügt :count-Verbindungen zu :entity.',
-        'title'         => 'Beziehung erstellen',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Diese Beziehung wird auf dem Zielobjekt gespiegelt. Wähle diese Option, um auch die gespiegelte Beziehung zu entfernen.',

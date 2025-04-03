@@ -16,7 +16,6 @@ return [
         'title' => 'Choix de la langue',
     ],
     'made'              => 'Fabriqué avec ❤️ à Genève, Suisse',
-    'marketplace'       => 'Marketplace',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Platforme',
     'plugins'           => 'Bibliothèque de Plugins',

@@ -32,7 +32,6 @@ return [
     'create'            => [
         'new_title'     => 'Nuovo legame',
         'success_bulk'  => '{1} Aggiunto :count legame a :entity.|[2,*] Aggiunti :count legami a :entity.',
-        'title'         => 'Nuovo legame per :name',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Questo legame è speculare nell\'entità bersaglio. Selezionare questa opzione rimuoverà anche il legame speculare.',

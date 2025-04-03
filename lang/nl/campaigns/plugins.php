@@ -4,7 +4,6 @@ return [
     'actions'       => [
         'disable'           => 'Schakel plugin uit',
         'enable'            => 'Schakel plugin in',
-        'go_to_marketplace' => 'Ga naar de Marktplaats',
         'update'            => 'Werk plugin bij',
         'update_available'  => 'Update beschikbaar!',
     ],

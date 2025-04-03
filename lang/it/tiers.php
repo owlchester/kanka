@@ -15,7 +15,6 @@ return [
         'discord'           => 'Ruoli e canali :discord unici',
         'feature_influence' => 'Dai la tua opinione sulle funzioni future',
         'file_size'         => ':size per i caricamenti di files',
-        'hall_of_fame'      => 'Hall of Fame',
         'map_size'          => ':size per i caricamenti delle Mappe',
         'nice_image'        => 'Immagini predefinite per le entità',
         'no_ads'            => 'Nessun annuncio.',
@@ -25,16 +24,11 @@ return [
     'periods'   => [
         'billed_monthly'    => 'Fatturato mensilmente',
         'billed_yearly'     => 'Fatturato annualmente',
-        'monthly'           => 'Mensile',
-        'yearly'            => 'Annuale',
     ],
     'pricing'   => ':currency :amount / mese',
     'ribbons'   => [
         'best-value'    => 'Più conveniente',
         'current'       => 'Abbonamento attuale',
-        'popular'       => 'Popolare',
     ],
-    'toggle'    => [
-        'yearly'    => 'Annuale (paghi 10 mesi)',
-    ],
+    'toggle'    => [],
 ];

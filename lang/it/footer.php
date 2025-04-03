@@ -15,7 +15,6 @@ return [
         'other' => 'Altre Lingue',
         'title' => 'Seleziona la tua lingua',
     ],
-    'marketplace'       => 'Mercato',
     'newsletter'        => 'Notizie',
     'platform'          => 'Piattaforma',
     'premium'           => 'Campagne Premium',

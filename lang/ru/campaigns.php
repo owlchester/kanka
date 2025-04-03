@@ -337,20 +337,12 @@ return [
     'show'                              => [
         'actions'   => [
             'edit'  => 'Редактировать',
-            'leave' => 'Покинуть кампанию',
-        ],
-        'menus'     => [
-            'configuration'     => 'Компоненты',
-            'overview'          => 'Основное',
-            'user_management'   => 'Пользователи',
         ],
         'tabs'      => [
             'achievements'      => 'Достижения',
             'applications'      => 'Заявки',
-            'campaign'          => 'Кампания',
             'default-images'    => 'Эскизы',
             'export'            => 'Экспорт',
-            'information'       => 'Информация',
             'members'           => 'Участники',
             'plugins'           => 'Плагины',
             'recovery'          => 'Восстановление',

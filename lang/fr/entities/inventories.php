@@ -8,7 +8,6 @@ return [
     ],
     'copy'              => [
         'helper'    => 'Copie l\'inventaire complet d\'une entité à :name.',
-        'title'     => 'Copier l\'inventaire vers :name',
     ],
     'create'            => [
         'helper'        => 'Ajouter un objet à l\'inventaire de :name. Il peut éventuellement être lié à un objet existant de la campagne.',

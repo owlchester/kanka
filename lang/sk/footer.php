@@ -16,7 +16,6 @@ return [
         'title' => 'Zvoľ tvoj jazyk',
     ],
     'made'              => 'Vytovrené s ❤️ v Ženeve, Švajčiarsko',
-    'marketplace'       => 'Trhovisko',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Platforma',
     'premium'           => 'Prémiové kampane',

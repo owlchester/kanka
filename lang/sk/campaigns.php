@@ -373,17 +373,10 @@ return [
     'show'                              => [
         'actions'   => [
             'edit'  => 'Upraviť kampaň',
-            'leave' => 'Opustiť kampaň',
-        ],
-        'menus'     => [
-            'configuration'     => 'Konfigurácia',
-            'overview'          => 'Prehľad',
-            'user_management'   => 'Správa užívateľov',
         ],
         'tabs'      => [
             'achievements'      => 'Úspechy',
             'applications'      => 'Prihlášky',
-            'campaign'          => 'Kampaň',
             'customisation'     => 'Úprava',
             'danger'            => 'Výstrahy',
             'data'              => 'Údaje',
@@ -391,7 +384,6 @@ return [
             'deletion'          => 'Odstránenie',
             'export'            => 'Export',
             'import'            => 'Import',
-            'information'       => 'Informácie',
             'management'        => 'Manažment',
             'members'           => 'Členovia',
             'modules'           => 'Moduly',

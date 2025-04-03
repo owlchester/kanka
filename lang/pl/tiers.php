@@ -15,7 +15,6 @@ return [
         'discord'           => 'Role na Discordzie',
         'feature_influence' => 'Wpływ na nowe funkcje',
         'file_size'         => 'Dodawanie plików o rozmiarze :size',
-        'hall_of_fame'      => 'Galeria Sław',
         'map_size'          => 'Dodawanie map o rozmiarze :size',
         'nice_image'        => 'Domyślne ikony elementów',
         'no_ads'            => 'Brak reklam',
@@ -25,16 +24,11 @@ return [
     'periods'   => [
         'billed_monthly'    => 'opłata miesięczna',
         'billed_yearly'     => 'opłata roczna',
-        'monthly'           => 'Miesięcznie',
-        'yearly'            => 'Rocznie',
     ],
     'pricing'   => ':currency :amount / miesiąc',
     'ribbons'   => [
         'best-value'    => 'Najkorzystniejsza oferta',
         'current'       => 'Obecna subskrypcja',
-        'popular'       => 'Popularne',
     ],
-    'toggle'    => [
-        'yearly'    => 'Rocznie (jeden miesiąc za darmo)',
-    ],
+    'toggle'    => [],
 ];

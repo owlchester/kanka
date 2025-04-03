@@ -15,10 +15,6 @@ return [
         'actions'       => [
             'add'   => 'Dodaj člana',
         ],
-        'create'        => [
-            'success'   => 'Član dodan u organizaciju.',
-            'title'     => 'Novi član organizacije za :name',
-        ],
         'destroy'       => [
             'success'   => 'Član uklonjen iz organizacije.',
         ],

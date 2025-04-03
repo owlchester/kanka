@@ -244,20 +244,12 @@ return [
     'show'                              => [
         'actions'   => [
             'edit'  => 'Uredi kampanju',
-            'leave' => 'Napusti kampanju',
-        ],
-        'menus'     => [
-            'configuration'     => 'Konfiguracija',
-            'overview'          => 'Pregled',
-            'user_management'   => 'Upravljanje korisnicima',
         ],
         'tabs'      => [
             'achievements'      => 'Postignuća',
             'applications'      => 'Prijave',
-            'campaign'          => 'Kampanja',
             'default-images'    => 'Zadane slike',
             'export'            => 'Izvoz',
-            'information'       => 'Informacije',
             'members'           => 'Članovi',
             'plugins'           => 'Dodaci',
             'recovery'          => 'Oporavak',

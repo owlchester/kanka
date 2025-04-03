@@ -33,7 +33,6 @@ return [
         'helper'        => 'Créer un lien entre :name et une ou plusieurs entités.',
         'new_title'     => 'Nouvelle relation',
         'success_bulk'  => '{1} Ajout de :count relation à :entity.|[2,*] Ajout de :count relations à :entity.',
-        'title'         => 'Nouvelle relation pour :name',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Cette relation est dupliquée sur l\'entité cible. Sélectionner cette option pour aussi supprimer la relation symétrique.',

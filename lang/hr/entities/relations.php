@@ -11,9 +11,7 @@ return [
         'quest_element'     => 'Element zadatka',
         'timeline_element'  => 'Element kronologije',
     ],
-    'create'        => [
-        'title' => 'Novi odnos za :name',
-    ],
+    'create'        => [],
     'destroy'       => [
         'success'   => 'Uklonjen odnos :target s :entity.',
     ],

@@ -4,7 +4,6 @@ return [
     'actions'       => [
         'disable'           => 'Onemogući dodatak',
         'enable'            => 'Omogući dodatak',
-        'go_to_marketplace' => 'Idi na Tržnicu',
         'import'            => 'Uvoz',
         'update'            => 'Ažuriraj dodatak',
         'update_available'  => 'Ažuriranje dostupno!',

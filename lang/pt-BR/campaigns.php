@@ -363,23 +363,15 @@ return [
     'show'                              => [
         'actions'   => [
             'edit'  => 'Editar campanha',
-            'leave' => 'Sair da campanha',
-        ],
-        'menus'     => [
-            'configuration'     => 'Configuração',
-            'overview'          => 'Visão Geral',
-            'user_management'   => 'Gerenciar usuários',
         ],
         'tabs'      => [
             'achievements'      => 'Conquistas',
             'applications'      => 'Solicitações',
-            'campaign'          => 'Campanha',
             'customisation'     => 'Personalização',
             'data'              => 'Dados',
             'default-images'    => 'Imagens de miniatura padrão',
             'export'            => 'Exportar',
             'import'            => 'Importar',
-            'information'       => 'Informações',
             'management'        => 'Gerenciamento',
             'members'           => 'Membros',
             'modules'           => 'Módulos',

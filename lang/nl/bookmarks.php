@@ -10,14 +10,11 @@ return [
     ],
     'fields'        => [
         'dashboard'     => 'Dashboard',
-        'entity'        => 'Entiteit',
         'filters'       => 'Filters',
         'menu'          => 'Menu',
         'position'      => 'Positie',
-        'random'        => 'Willekeurig',
         'random_type'   => 'Willekeurig Entiteit Type',
         'selector'      => 'Quick Link Configuratie',
-        'type'          => 'Entiteit Type',
     ],
     'helpers'       => [
         'dashboard' => 'Laat de snelkoppeling een van de custom dashboards van de campaign targeten.',

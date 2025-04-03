@@ -360,23 +360,15 @@ return [
     'show'                              => [
         'actions'   => [
             'edit'  => 'Modifica Campagna',
-            'leave' => 'Abbandona Campagna',
-        ],
-        'menus'     => [
-            'configuration'     => 'Configurazione',
-            'overview'          => 'Panoramica',
-            'user_management'   => 'Gestione utente',
         ],
         'tabs'      => [
             'achievements'      => 'Obbiettivi',
             'applications'      => 'Candidature',
-            'campaign'          => 'Campagna',
             'customisation'     => 'Personalizzazione',
             'data'              => 'Dati',
             'default-images'    => 'Anteprime predefinite',
             'export'            => 'Esporta',
             'import'            => 'Importa',
-            'information'       => 'Informazioni',
             'management'        => 'Gestione',
             'members'           => 'Membri',
             'modules'           => 'Moduli',

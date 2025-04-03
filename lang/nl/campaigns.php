@@ -238,20 +238,12 @@ return [
     'show'                              => [
         'actions'   => [
             'edit'  => 'Wijzig Campaign',
-            'leave' => 'Verlaat campaign',
-        ],
-        'menus'     => [
-            'configuration'     => 'Configuratie',
-            'overview'          => 'Overzicht',
-            'user_management'   => 'Gebruikersbeheer',
         ],
         'tabs'      => [
             'achievements'      => 'Prestaties',
             'applications'      => 'Sollicitaties',
-            'campaign'          => 'Campaign',
             'default-images'    => 'Standaard Afbeeldingen',
             'export'            => 'Exporteer',
-            'information'       => 'Informatie',
             'members'           => 'Leden',
             'plugins'           => 'Plugins',
             'recovery'          => 'Herstel',

@@ -32,7 +32,6 @@ return [
     'create'            => [
         'new_title'     => 'Nový vzťah',
         'success_bulk'  => '{1} Pridaný :count prepojenie k :entity.|[2,4] Pridané :count prepojenia k :entity.|[5,*] Pridaných :count prepojení k :entity.',
-        'title'         => 'Vytvoriť vzťah',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Tento vzťah sa zrkadlí na cieľovom objekte. Zvoľ túto možnosť, aby bol odstránený aj zrkadlený vzťah.',

@@ -10,7 +10,6 @@ return [
         'changelog'         => 'Zmiany',
         'disable'           => 'Wyłącz dodatek',
         'enable'            => 'Aktywuj dodatek',
-        'go_to_marketplace' => 'Idź na Targowisko',
         'import'            => 'Importuj',
         'update'            => 'Aktualizuj dodatek',
         'update_available'  => 'Dostępna aktualizacja!',

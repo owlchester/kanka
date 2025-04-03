@@ -6,9 +6,7 @@ return [
         'copy_from'         => 'Kopírovať z',
         'copy_inventory'    => 'Kopírovať inventár',
     ],
-    'copy'              => [
-        'title' => 'Kopírovať inventár do :name',
-    ],
+    'copy'              => [],
     'create'            => [
         'success'       => 'Predmet :item pridaný do :entity.',
         'success_bulk'  => '{0} Žiaden predmet nebol pridaný do :entity.|{1} Bol pridaný :count predmet do :entity.|[2,4] Boli pridané :count predmety do :entity.|[5,*] Bolo pridaných :count predmetov do :entity.',

@@ -32,7 +32,6 @@ return [
     'create'            => [
         'new_title'     => 'Nova conexão',
         'success_bulk'  => '{1} Adicionada :count conexão a :entity.|[2,*] Adicionadas :count conexões a :entity.',
-        'title'         => 'Nova conexão para :name',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Essa conexão é espelhada na entidade alvo. Selecione essa opção para também remover  a conexão espelhada.',

@@ -28,7 +28,6 @@ return [
         'theme'                     => 'Motyw',
     ],
     'helpers'                       => [
-        'new-password'  => 'Zmiana hasła wyloguje cię na wszystkich innych urządzeniach.',
         'profile-name'  => 'Zmienia nazwę wyświetlaną w twoim :profile i na :marketplace. Jeżeli wiersz jest pusty, użyta zostanie nazwa konta.',
     ],
     'newsletter'                    => [

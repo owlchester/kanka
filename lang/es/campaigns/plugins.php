@@ -10,7 +10,6 @@ return [
         'changelog'         => 'Registro de cambios',
         'disable'           => 'Desactivar plugin',
         'enable'            => 'Activar plugin',
-        'go_to_marketplace' => 'Ir a la tienda',
         'import'            => 'Importar',
         'update'            => 'Actualizar plugin',
         'update_available'  => '¡Actualización disponible!',

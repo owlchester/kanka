@@ -6,9 +6,7 @@ return [
         'copy_from'         => 'Kopiuj od',
         'copy_inventory'    => 'Kopiuj wyposażenie',
     ],
-    'copy'              => [
-        'title' => 'Kopiuj wyposażenie dla: name',
-    ],
+    'copy'              => [],
     'create'            => [
         'success'       => 'Dodano :item do elementu :entity.',
         'success_bulk'  => '{0} Nie dodano przedmiotów do wyposażenia :entity.|{1} Dodano :count przedmiot do wyposażenia :entity.|[2,4] Dodano :count przedmioty do wyposażenia :entity.|5,] Dodano :count przedmiotów do wyposażenia :entity.',

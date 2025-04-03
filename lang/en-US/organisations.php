@@ -10,9 +10,6 @@ return [
     'helpers'       => [],
     'index'         => [],
     'members'       => [
-        'create'    => [
-            'success'   => 'Member added to the organization.',
-        ],
         'destroy'   => [
             'success'   => 'Member removed from the organization.',
         ],

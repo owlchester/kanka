@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'create'        => [
-        'title' => 'Nieuwe relatie voor :name',
-    ],
+    'create'        => [],
     'destroy'       => [
         'success'   => 'Relatie :target verwijderd voor :entity',
     ],

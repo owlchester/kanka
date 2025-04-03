@@ -15,10 +15,6 @@ return [
         'actions'       => [
             'add'   => 'Voeg een lid toe',
         ],
-        'create'        => [
-            'success'   => 'Lid toegevoegd aan de organisatie.',
-            'title'     => 'Nieuw Organisatie Lid voor :name',
-        ],
         'destroy'       => [
             'success'   => 'Lid verwijderd van de organisatie',
         ],

@@ -11,7 +11,6 @@ return [
         'disable'           => 'Désactiver le plugin',
         'enable'            => 'Activer le plugin',
         'find-plugins'      => 'Trouver des plugins',
-        'go_to_marketplace' => 'Aller au marketplace',
         'import'            => 'Importer',
         'update'            => 'Mettre à jour le plugin',
         'update_available'  => 'Mise à jour disponible!',

@@ -17,12 +17,7 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'       => 'Pridať člena',
-            'submit'    => 'Pridať člena',
-        ],
-        'create'        => [
-            'success'   => 'Člen pridaný do organizácie.',
-            'title'     => 'Nový člen organizácie :name',
+            'add'   => 'Pridať člena',
         ],
         'destroy'       => [
             'success'   => 'Člen odstránený z organizácie.',

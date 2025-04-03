@@ -6,9 +6,7 @@ return [
         'copy_from'         => 'Kopie von',
         'copy_inventory'    => 'Inventar kopieren',
     ],
-    'copy'              => [
-        'title' => 'Inventar kopieren nach :name',
-    ],
+    'copy'              => [],
     'create'            => [
         'success'       => 'Gegenstand :item zu :entity hinzugefügt',
         'success_bulk'  => '{0} Kein Element zu :entity.|{1} hinzugefügt Element :count wurde zu :entity.|[2,*] hinzugefügt Elemente :count wurden zu :entity.',

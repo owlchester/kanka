@@ -15,7 +15,6 @@ return [
         'discord'           => 'Cargos do Discord',
         'feature_influence' => 'Influência em novos recursos',
         'file_size'         => ':size tamanho de upload de arquivo',
-        'hall_of_fame'      => 'Hall da fama',
         'map_size'          => ':size tamanho de upload de mapas',
         'nice_image'        => 'Imagens de entidade padrão',
         'no_ads'            => 'Sem anúncios',
@@ -25,16 +24,11 @@ return [
     'periods'   => [
         'billed_monthly'    => 'cobrado mensalmente',
         'billed_yearly'     => 'cobrado anualmente',
-        'monthly'           => 'Mensalmente',
-        'yearly'            => 'Anualmente',
     ],
     'pricing'   => ':currency :amount / mês',
     'ribbons'   => [
         'best-value'    => 'Melhor valor',
         'current'       => 'Assinatura atual',
-        'popular'       => 'Popular',
     ],
-    'toggle'    => [
-        'yearly'    => 'Anualmente (um mês grátis!)',
-    ],
+    'toggle'    => [],
 ];

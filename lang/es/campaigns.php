@@ -373,17 +373,10 @@ return [
     'show'                              => [
         'actions'   => [
             'edit'  => 'Editar campaña',
-            'leave' => 'Abandonar campaña',
-        ],
-        'menus'     => [
-            'configuration'     => 'Configuración',
-            'overview'          => 'General',
-            'user_management'   => 'Usuarios',
         ],
         'tabs'      => [
             'achievements'      => 'Logros',
             'applications'      => 'Solicitudes',
-            'campaign'          => 'Campaña',
             'customisation'     => 'Personalización',
             'danger'            => 'Peligro',
             'data'              => 'Datos',
@@ -391,7 +384,6 @@ return [
             'deletion'          => 'Eliminación',
             'export'            => 'Exportar',
             'import'            => 'Importar',
-            'information'       => 'Información',
             'management'        => 'Gestión',
             'members'           => 'Miembros',
             'modules'           => 'Módulos',

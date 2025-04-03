@@ -17,12 +17,7 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'       => 'Füge ein Mitglied hinzu',
-            'submit'    => 'Mitglied hinzufügen',
-        ],
-        'create'        => [
-            'success'   => 'Mitglied zu Organisation hinzugefügt.',
-            'title'     => 'Neues Organisationsmitglied für :name',
+            'add'   => 'Füge ein Mitglied hinzu',
         ],
         'destroy'       => [
             'success'   => 'Mitglied aus Organisation entfernt.',

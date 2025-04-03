@@ -10,14 +10,11 @@ return [
     ],
     'fields'        => [
         'dashboard'     => 'Naslovna ploča',
-        'entity'        => 'Entitet',
         'filters'       => 'Filteri',
         'menu'          => 'Izbornik',
         'position'      => 'Pozicija',
-        'random'        => 'Nasumično',
         'random_type'   => 'Nasumičan tip entiteta',
         'selector'      => 'Konfiguracija brzih poveznica',
-        'type'          => 'Tip entiteta',
     ],
     'helpers'       => [
         'dashboard' => 'Neka brza poveznica cilja jednu od prilagođenih naslovnih ploča kampanje.',

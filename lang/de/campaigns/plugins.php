@@ -10,7 +10,6 @@ return [
         'changelog'         => 'Änderungsprotokoll',
         'disable'           => 'Plugin deaktivieren',
         'enable'            => 'Plugin aktivieren',
-        'go_to_marketplace' => 'Gehe zum Marktplatz',
         'import'            => 'Importieren',
         'update'            => 'Plugin aktualisieren',
         'update_available'  => 'Update verfügbar!',

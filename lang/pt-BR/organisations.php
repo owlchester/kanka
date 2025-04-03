@@ -17,12 +17,7 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'       => 'Adicionar um membro',
-            'submit'    => 'Adicionar membro',
-        ],
-        'create'        => [
-            'success'   => 'Membro adicionado à organização.',
-            'title'     => 'Novo Membro',
+            'add'   => 'Adicionar um membro',
         ],
         'destroy'       => [
             'success'   => 'Membro removido da organização.',

@@ -32,7 +32,6 @@ return [
     'create'            => [
         'new_title'     => 'Nowa relacja',
         'success_bulk'  => '{1} Dodano :count relacji do :entity.|[2,4] Dodano :count relacje do :entity.|[5,*] Dodano :count relacji do :entity.',
-        'title'         => 'Nowa relacja elementu :name.',
     ],
     'delete_mirrored'   => [
         'helper'    => 'Te elementy łączy relacja obustronna. Wybór tej opcji usunie obydwie strony relacji.',
