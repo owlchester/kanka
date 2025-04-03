@@ -117,7 +117,7 @@ class IndexController extends Controller
             ->select([
                 'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
                 'entities.type_id', 'entities.parent_id',
-                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
+                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y', 'entities.image_path',
             ])
             ->with(['entityType', 'image'])
             ->withCount('children')
