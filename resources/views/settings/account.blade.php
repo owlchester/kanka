@@ -53,8 +53,9 @@
             </div>
         </div>
     </x-box>
-
-    @includeWhen(config('google2fa.enabled'), 'settings._tfa')
+    @if (config('google2fa.enabled'))
+        @livewire('users.otp')
+    @endif
 
     <x-box class="border-error border rounded-2xl">
         <x-slot name="title">

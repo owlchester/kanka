@@ -136,14 +136,6 @@ Route::post('/security/cancel2fa', [PasswordSecurityController::class, 'cancel2F
 Route::post('/security/generate2faSecret', [PasswordSecurityController::class, 'generate2faSecretCode'])
     ->name('settings.security.generate-2fa');
 
-// Enable 2FA for User
-Route::post('/security/enable2fa', [PasswordSecurityController::class, 'enable2fa'])
-    ->name('settings.security.enable-2fa');
-
-// Disable 2FA for User
-Route::post('/security/disable2fa', [PasswordSecurityController::class, 'disable2fa'])
-    ->name('settings.security.disable-2fa');
-
 // Verify 2FA if User has it enabled
 Route::post('/security/verify2fa', function () {
     return redirect()->route('home');
