@@ -119,7 +119,6 @@ class BookmarkController extends CrudController
             'name' => $link,
         ]);
 
-
         $options = [];
         $options = [$campaign, $bookmark] + $options;
         $route = route($this->view . '.edit', $options + [$bookmark]);
