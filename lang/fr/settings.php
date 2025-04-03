@@ -4,8 +4,9 @@ return [
     'account'       => [
         '2fa'               => [
             'actions'               => [
-                'disable'   => 'Désactiver l\'authentification à deux facteurs',
-                'finish'    => 'Termine la configuration et connecte-toi',
+                'disable'           => 'Désactiver l\'authentification à deux facteurs',
+                'disable-confirm'   => 'Cliquer pour confirmer',
+                'finish'            => 'Termine la configuration et connecte-toi',
             ],
             'activation_helper'     => 'Pour terminer la configuration de l\'authentification à deux facteurs de ton compte, suis ces instructions.',
             'disable'               => [

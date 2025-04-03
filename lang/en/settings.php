@@ -4,9 +4,9 @@ return [
     'account'       => [
         '2fa'               => [
             'actions'               => [
-                'disable'         => 'Disable two-factor authentication',
-                'disable-confirm' => 'Click again to confirm',
-                'finish'          => 'Finish setup and log in',
+                'disable'           => 'Disable two-factor authentication',
+                'disable-confirm'   => 'Click again to confirm',
+                'finish'            => 'Finish setup and log in',
             ],
             'activation_helper'     => 'To finish setting up your account\'s two-factor authentication, please follow these instructions.',
             'disable'               => [

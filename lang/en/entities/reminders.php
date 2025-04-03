@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'actions' => [
-        'remove' => 'Remove calendar date',
+    'actions'   => [
+        'remove'    => 'Remove calendar date',
     ],
 ];
