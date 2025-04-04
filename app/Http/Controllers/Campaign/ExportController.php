@@ -20,6 +20,7 @@ class ExportController extends Controller
     public function index(Campaign $campaign)
     {
         $this->authorize('setting', $campaign);
+
         return view('campaigns.export', compact('campaign'));
     }
 
