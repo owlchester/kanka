@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
             Tracking::class,
             Middleware\CheckIfUserBanned::class,
             Middleware\OTP::class,
+            Middleware\LoginRedirect::class,
         ],
 
         'api' => [
