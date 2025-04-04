@@ -7,7 +7,7 @@
 @if (!empty($campaign))
     @inject('sidebar', 'App\Services\SidebarService')
     @php $sidebar->campaign($campaign)->prepareBookmarks()@endphp
-    <aside class="main-sidebar main-sidebar-placeholder absolute z-20 h-auto min-h-full flex flex-col background-cover @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(240, 208)->url($campaign->image) }})" @endif>
+    <aside class="main-sidebar main-sidebar-placeholder absolute z-[840] h-auto min-h-full flex flex-col background-cover @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(240, 208)->url($campaign->image) }})" @endif>
 
         @include('layouts.sidebars._campaign')
 

@@ -24,7 +24,7 @@ use App\Enums\Widget;
 @endsection
 
 @section('content')
-    <div class="max-w-7xl mx-auto">
+    <div class="max-w-7xl 2xl:mx-auto flex flex-col gap-4">
         @if (empty($dashboard))
             @include('dashboard.widgets._campaign')
         @endif
@@ -66,8 +66,8 @@ use App\Enums\Widget;
         </div>
 
         @can('dashboard', $campaign)
-            <div class="my-5 text-center">
-                <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 flex gap-1" title="{{ __('dashboard.settings.title') }}">
+            <div class="flex justify-center">
+                <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 btn-block flex gap-1" title="{{ __('dashboard.settings.title') }}">
                     <x-icon class="cog" />
                     {{ __('dashboard.actions.customise') }}
                 </a>

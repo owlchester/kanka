@@ -1,11 +1,11 @@
 <?php /** @var \App\Models\Campaign $campaign */ ?>
 @section('content-header')
-<div class="campaign-header cover-background p-2 relative z-[10] @if(!empty($campaign->header_image))campaign-imaged-header px-10 py-14  " style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif">
+<div class="campaign-header cover-background p-4 relative z-[10] @if(!empty($campaign->header_image))campaign-imaged-header px-4 md:px-10 py-6 md:py-14  " style="background-image: url({{ Img::crop(1200, 400)->url($campaign->header_image) }}) @else no-header @endif">
 
-    <div class="campaign-header-content bg-base-100 bg-opacity-60 max-w-7xl mx-auto @if(!empty($campaign->header_image)) backdrop-blur-lg rounded p-4 @else  p-2 @endif">
+    <div class="campaign-header-content bg-base-100 bg-opacity-60 max-w-7xl mx-auto p-4 @if(!empty($campaign->header_image)) backdrop-blur-lg rounded @endif">
         <div class="campaign-content flex flex-col gap-2 ">
-            <div class="campaign-head flex gap-2">
-                <div class="grow">
+            <div class="campaign-head flex gap-2 justify-between items-center">
+                <div class="truncate">
                     <a href="{{ route('overview', $campaign) }}" title="{!! $campaign->name !!}" class="campaign-title text-2xl">
                         {!! $campaign->name !!}
                     </a>
