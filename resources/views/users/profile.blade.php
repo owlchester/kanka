@@ -22,6 +22,7 @@
             <div class="flex gap-10">
                 <div class="grow flex flex-col gap-3">
                     <h1 class="">{!! $user->displayName() !!}</h1>
+                    @if(isset($user->settings['pronouns']))<span class="text-muted text-md">({{ $user->settings['pronouns']}})</span>@endif
                     @if ($user->isBanned())
                         <x-alert type="warning">
                             {{__('users/profile.fields.banned')}}
@@ -39,6 +40,13 @@
                             <x-icon class="fa-brands fa-discord" />
                             {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }}
                         </span>
+                    @endif
+
+                    @if (isset($user->settings['link']))
+                        <a class="btn-round rounded-full" href="{{ $user->settings['link'] }}" title="Beacons.ai" data-toggle="tooltip">
+                            <x-icon class="fa-solid fa-user" />
+                            {{ __('profiles.link.button', ['name' => $user->displayName()]) }}
+                        </a>
                     @endif
 
                     @if ($user->hasPlugins())

@@ -20,12 +20,19 @@ return [
         'newsletter'                => 'I wish to sometimes be contacted by email.',
         'password'                  => 'Current password',
         'profile-name'              => 'Profile name',
+        'pronouns'                  => 'Pronouns',
+        'link'                      => 'Beacons link',
         'settings'                  => 'Settings',
         'subscription_hiding'       => 'Subscription hiding',
         'theme'                     => 'Theme',
     ],
     'helpers'       => [
         'profile-name'  => 'Change the way your name appears on your :profile and the :marketplace. If left blank, your account name will be used instead.',
+        'pronouns'  => 'Change the way your pronouns appear on your :profile and the :marketplace. If left blank, no pronouns will show.',
+        'link'  => 'Change the way a link to your Beacons.ai profile appears on your :profile and the :marketplace. If left blank, no link will show.',
+    ],
+    'link'          => [
+        'button' => ':name\'s Beacons.ai profile',
     ],
     'newsletter'    => [
         'helpers'   => [
