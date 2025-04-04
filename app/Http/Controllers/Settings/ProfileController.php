@@ -37,7 +37,7 @@ class ProfileController extends Controller
         /** @var User $user */
         $user = $request->user();
 
-        $user->saveSettings($request->only(['settings.hide_subscription', 'settings.marketplace_name', 'settings.pronouns','settings.link']))
+        $user->saveSettings($request->only(['settings.hide_subscription', 'settings.marketplace_name', 'settings.pronouns', 'settings.link']))
             ->update($request->only('name', 'has_last_login_sharing', 'avatar', 'profile'));
 
         return redirect()
