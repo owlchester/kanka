@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Str;
 
 class LoginRedirect
 {
@@ -18,9 +19,10 @@ class LoginRedirect
             if ($request->has('next') && in_array($request->get('next'), $whitelist)) {
                 session(['login_redirect' => route($request->get('next'))]);
 
-            } elseif (! (strtok(url()->previous(), '?') === route('login')) && ! (strtok(url()->previous(), '?') === route('register'))) {
+            //Check if the user's url is coming from the login or register page, if it is don't reset the redirect variable.             
+            } elseif (! (Str::before(url()->previous(), '?') === route('login')) && ! (Str::before(url()->previous(), '?') === route('register'))) {
                 // If the user moves outside the login page, reset the redirect variable.
-                session(['login_redirect' => null]);
+                session()->forget('login_redirect');
             }
         }
 
