@@ -148,7 +148,7 @@ class ImportService
         $path = '/campaigns/' . $this->campaign->id . '/imports/';
         foreach ($files as $file) {
             Log::info('Want to download ' . $file);
-            $s3 = Storage::disk('s3')->get($file);
+            $s3 = Storage::disk('export')->get($file);
             $local = $path . uniqid() . '.zip';
             Storage::disk('local')->put($local, $s3);
 

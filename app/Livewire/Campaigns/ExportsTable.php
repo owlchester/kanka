@@ -101,8 +101,8 @@ class ExportsTable extends Component
         if (! $model->finished()) {
             return '';
         }
-        if ($model->path && Storage::exists($model->path)) {
-            $html = '<a class="block break-all truncate" href="' . Storage::url($model->path) . '" target="_blank">' . __('campaigns/export.actions.download') . '</a>';
+        if ($model->path && Storage::disk('export')->exists($model->path)) {
+            $html = '<a class="block break-all truncate" href="' . Storage::disk('export')->url($model->path) . '" target="_blank">' . __('campaigns/export.actions.download') . '</a>';
 
             return $html;
         }

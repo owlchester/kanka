@@ -460,11 +460,11 @@ class ExportService
     {
         // Save all the content.
         try {
-            $path = 'exports/campaigns/' . $this->campaign->id . '/';
-            $this->exportPath = $path . $this->file;
+            $path = 'exports/' . $this->campaign->id;
+            $this->exportPath = $path . '/' . $this->file;
             Log::info('Campaign export finished', ['exportPath' => $this->exportPath]);
-            $this->archive->saveToDisk('s3', $path);
-            Storage::disk('s3')->setVisibility($this->exportPath, 'public');
+            $this->archive->saveToDisk('export', $path);
+            Storage::disk('export')->setVisibility($this->exportPath, 'public');
             $this->filesize = (int) floor($this->archive->getFinalSize() / pow(1024, 2));
         } catch (Exception $e) {
             Log::error('Campaign export', ['action' => 'finish', 'err' => $e->getMessage()]);

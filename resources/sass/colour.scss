@@ -82,6 +82,10 @@
     --tw-text-opacity: 1;
     color:hsl(var(--erc)/var(--tw-text-opacity));
 }
+.text-success {
+    --tw-text-opacity: 1;
+    color:hsl(var(--su)/var(--tw-text-opacity))
+}
 .text-success-content {
     --tw-text-opacity: 1;
     color:hsl(var(--suc)/var(--tw-text-opacity));
