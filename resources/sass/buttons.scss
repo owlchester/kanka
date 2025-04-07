@@ -3,7 +3,7 @@
     align-items: stretch;
     border-radius: var(--rounded-btn, .5rem);
 
-    .join-item:first-child:not(:last-child), :first-child:not(:last-child) .join-item {
+    > .join-item:first-child:not(:last-child), :first-child:not(:last-child) .join-item {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
@@ -29,11 +29,6 @@
         min-height: 2.3rem;
         font-size: 1rem
     }
-}
-.join > .join-item:first-child:not(:last-child),
-.join :first-child:not(:last-child) .join-item {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
 }
 
 .btn2 {
