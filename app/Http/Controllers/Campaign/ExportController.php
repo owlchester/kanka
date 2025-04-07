@@ -33,7 +33,7 @@ class ExportController extends Controller
     {
         $this->authorize('setting', $campaign);
 
-        if (! $campaign->exportable()) {
+        if (! $request->user->can('export', $campaign)) {
             return response()->json(['error' => __('campaigns/export.errors.limit')]);
         }
         if (request()->ajax()) {
