@@ -36,15 +36,15 @@ return [
     'placeholders'      => [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Podstránka (použi poslednú časť textu URL)',
-        'tab'       => 'Záznam, Vzťahy, Poznámky',
+        'tab'       => '(zastaralé)',
     ],
     'random_no_entity'  => 'Nebol nájdený žiaden náhodný objekt.',
     'random_types'      => [
         'any'   => 'Hociktorý objekt',
     ],
     'reorder'           => [
-        'success'   => 'Menu linky preskupené.',
-        'title'     => 'Preskupiť menu linky',
+        'success'   => 'Menu linky usporiadané.',
+        'title'     => 'Usporiadanie liniek v menu',
     ],
     'show'              => [],
     'visibilities'      => [

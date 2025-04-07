@@ -399,6 +399,9 @@ return [
     ],
     'status'                            => [
         'free'      => 'Opcje premium nieaktywne.',
+        'legacy'    => [
+            'title' => 'Funkcja doładowania (pozostałość starszej wersji)',
+        ],
         'premium'   => 'Opcje premium odblokowane przez :name',
         'title'     => 'Opcje premium',
     ],

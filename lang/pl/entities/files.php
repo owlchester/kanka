@@ -22,5 +22,6 @@ return [
     ],
     'update'            => [
         'success'   => 'Zaktualizowano plik :file.',
+        'title'     => 'Zamieszanie plików elementu',
     ],
 ];

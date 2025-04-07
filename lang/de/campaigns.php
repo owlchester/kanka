@@ -403,6 +403,9 @@ TEXT
     ],
     'status'                            => [
         'free'      => 'Premium-Funktionen deaktiviert.',
+        'legacy'    => [
+            'title' => 'Erhöhte Funktionen (Legacy)',
+        ],
         'premium'   => 'Premium-Funktionen werden durch :name freigeschaltet.',
         'title'     => 'Premium Funktionen',
     ],

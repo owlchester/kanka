@@ -193,7 +193,7 @@ return [
     ],
     'placeholders'                      => [
         'locale'    => 'Jazyk',
-        'name'      => 'Názov tvojej kampane',
+        'name'      => 'Názov tvojho sveta',
         'system'    => 'D&D, Pathfinder, Fate, Dračí Doupě',
     ],
     'privacy'                           => [
@@ -220,8 +220,8 @@ return [
             'edit'      => '{1} Aktualizovaná :count rola.|[2,4] Aktualizované :count roly.|[5,*] Aktualizovaných :count rolí.',
         ],
         'create'        => [
-            'success'   => 'Rola vytvorená.',
-            'title'     => 'Vytvoriť novú rolu pre :name',
+            'success'   => 'Rola :name vytvorená.',
+            'title'     => 'Nová rola',
         ],
         'destroy'       => [
             'success'   => 'Rola odstránená.',
@@ -238,7 +238,7 @@ return [
             'users'             => 'Užívateľ',
         ],
         'helper'        => [
-            '1'                     => 'Kampani môže byť priradených viacero rolí. Rola "Admin" má automaticky prístup ku všetkému v kampani, ale každej inej roli môžu byť pridelené špecifické oprávnenia na rôzne typy objektov (postavy, miesta, atď.)',
+            '1'                     => 'Kampani môže byť priradených viacero rolí. Rola :admin má automaticky prístup ku všetkému v kampani, ale každej inej roli môžu byť pridelené špecifické oprávnenia na rôzne typy objektov (postavy, miesta, atď.)',
             '2'                     => 'Objekty môžu mať oveľa detailnejšie nastavenie oprávnení, ktoré vieš nastaviť v karte "Oprávnenia" objektu. Táto karta sa zobrazí, ak máš v kampani viacero rolí alebo členov.',
             '3'                     => 'Môžeš použiť "opt-out" systém, v ktorom všetky roly dostanú práva na čítanie na všetky objekty a niektoré objekty potom nastavíš ako "Súkromné", čím ich skryješ. Alebo rolám nedáš veľa oprávnení a následne ich nastavíš individuálne pre každý objekt.',
             '4'                     => 'Boostnuté kampane môžu mať neobmedzený počet rolí.',
@@ -399,6 +399,9 @@ return [
     ],
     'status'                            => [
         'free'      => 'Prémiové funkcionality sú neaktívne.',
+        'legacy'    => [
+            'title' => 'Boostnuté funkcionality (zastaralé)',
+        ],
         'premium'   => 'Vďaka :name sú prémiové funkcionality aktívne.',
         'title'     => 'Prémiové funkcionality',
     ],

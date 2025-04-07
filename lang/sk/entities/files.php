@@ -2,7 +2,7 @@
 
 return [
     'call-to-action'    => [
-        'error'     => 'Tento objekt má max. počet súborov, ktoré mu môže byť pridelený.',
+        'error'     => 'Tento objekt má max. počet súborov, ktorý mu môže byť pridelený.',
         'premium'   => 'Nahranie ďalších súborov vyžaduje prémiovú kampaň.',
     ],
     'create'            => [
@@ -22,5 +22,6 @@ return [
     ],
     'update'            => [
         'success'   => 'Súbor :file aktualizovaný.',
+        'title'     => 'Aktualizovať súbor objektu',
     ],
 ];

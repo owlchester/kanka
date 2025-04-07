@@ -31,13 +31,13 @@ return [
     ],
     'reorder'       => [
         'parentless'    => 'Bez nadradenej',
-        'success'       => 'Schopnosti úspešne preskupené.',
-        'title'         => 'Preskupenie schopností',
+        'success'       => 'Schopnosti úspešne usporiadané.',
+        'title'         => 'Usporiadanie schopností',
     ],
     'show'          => [
         'tabs'  => [
             'entities'  => 'Objekty',
-            'reorder'   => 'Preskúpiť schopnosti',
+            'reorder'   => 'Usporiadať schopnosti',
         ],
     ],
 ];

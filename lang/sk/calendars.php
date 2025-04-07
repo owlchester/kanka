@@ -25,12 +25,12 @@ return [
     ],
     'destroy'       => [],
     'edit'          => [
-        'today' => 'Kalendárny dátum upravený.',
+        'today' => 'Aktuálny dátum upravený.',
     ],
     'event'         => [
         'create'    => [
-            'success'   => 'Nová udalosť vytvorená',
-            'title'     => 'Pridať udalosť do :name',
+            'success'   => 'Pripomienka vytvorená',
+            'title'     => 'Nová pripomienka',
         ],
         'destroy'   => 'Pripomienka z kalendára ":name" odstránená.',
         'edit'      => [
@@ -38,7 +38,7 @@ return [
             'title'     => 'Upraviť pripomienku v :name',
         ],
         'errors'    => [
-            'invalid_entity'    => 'Neplatná voľba objektu.',
+            'invalid_entity'    => 'Neplatná voľba objektu',
         ],
         'helpers'   => [
             'other_calendar'    => 'Upravuješ pripomienku, ktorá je v kalendári :calendar.',

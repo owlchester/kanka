@@ -22,5 +22,6 @@ return [
     ],
     'update'            => [
         'success'   => 'Datei :file aktualisiert',
+        'title'     => 'Objektdatei aktualisiert',
     ],
 ];
