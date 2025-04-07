@@ -466,7 +466,9 @@ class ExportService
             Log::info('Campaign export finished', ['exportPath' => $this->exportPath]);
 
             $this->archive->saveToDisk('s3', $path);
-            Storage::disk('s3')->setVisibility($this->exportPath, 'public');
+            if (!Storage::disk('s3')->setVisibility($this->exportPath, 'public')) {
+                throw new Exception('Can\'t set visibility of export file');
+            }
             $this->filesize = (int) floor($this->archive->getFinalSize() / pow(1024, 2));
         } catch (Exception $e) {
             Log::error('Campaign export', ['action' => 'finish', 'err' => $e->getMessage()]);
