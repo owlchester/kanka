@@ -86,7 +86,7 @@ class EventController extends Controller
             $year = "-{$year}";
         }
 
-        return view('calendars.events.create', compact(
+        return view('calendars.reminders.create', compact(
             'campaign',
             'calendar',
             'day',
