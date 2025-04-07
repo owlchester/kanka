@@ -467,8 +467,9 @@ class ExportService
             Log::info('Campaign export finished', ['exportPath' => $this->exportPath, 'tmpPath' => $tmpPath]);
             $this->archive->saveTo($tmpPath);
 
-            Storage::disk('export')->put($this->exportPath, fopen($tmpPath, 'r'), ['visibility' => 'public']);
+            Storage::disk('export')->put($this->exportPath, fopen($tmpPath, 'r'), 'public');
             unlink($tmpPath . '/' . $this->file);
+            Log::info('Campaign export saved to export');
 
             //$this->archive->saveToDisk('export', $path);
             //Storage::disk('export')->setVisibility($this->exportPath, 'public');
