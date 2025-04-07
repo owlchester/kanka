@@ -23,14 +23,10 @@
                 {{ __('crud.actions.help') }}
             </a>
             @can('export', $campaign)
-                @if (auth()->user()->id === 1)
                 <a href="#" class="btn2 btn-sm btn-primary" data-toggle="dialog" data-target="export-confirm">
                     <x-icon class="fa-solid fa-download" />
                     {{ __('campaigns/export.actions.export') }}
                 </a>
-                @else
-                    <span class="text-error">Exports are currently unavailable</span>
-                @endif
             @endcan
         </div>
 
