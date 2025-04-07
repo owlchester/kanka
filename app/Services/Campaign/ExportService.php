@@ -467,11 +467,11 @@ class ExportService
             Log::info('Campaign export finished', ['exportPath' => $this->exportPath, 'tmpPath' => $tmpPath]);
             $this->archive->saveTo($tmpPath);
 
-            Storage::disk('export')->put($this->exportPath, fopen($tmpPath, 'r'));
+            Storage::disk('export')->put($this->exportPath, fopen($tmpPath, 'r'), ['visibility' => 'public']);
             unlink($tmpPath);
 
-            $this->archive->saveToDisk('export', $path);
-            Storage::disk('export')->setVisibility($this->exportPath, 'public');
+            //$this->archive->saveToDisk('export', $path);
+            //Storage::disk('export')->setVisibility($this->exportPath, 'public');
             $this->filesize = (int) floor($this->archive->getFinalSize() / pow(1024, 2));
         } catch (Exception $e) {
             Log::error('Campaign export', ['action' => 'finish', 'err' => $e->getMessage()]);
