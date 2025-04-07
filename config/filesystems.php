@@ -76,10 +76,9 @@ return [
             'secret' => env('HETZNER_S3_ACCESS_KEY_SECRET'),
             'region' => env('HETZNER_S3_REGION'),
             'bucket' => env('S3_BUCKET_EXPORT'),
-            //'root' => env('APP_ENV'),
+            'root' => env('APP_ENV'),
             'endpoint' => env('HETZNER_S3_ENDPOINT'),
             'use_path_style_endpoint' => true,
-            'throw' => false,
         ],
 
         's3-assets' => [

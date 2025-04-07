@@ -57,6 +57,7 @@ class Export implements ShouldQueue
     public function handle()
     {
         Log::info('Campaign export', ['init', 'id' => $this->campaignExportId]);
+        Log::info('Disk', config('filesystems.disks.export'));
         $campaignExport = CampaignExport::find($this->campaignExportId);
         if (! $campaignExport) {
             Log::info('Campaign export', ['empty', 'id' => $this->campaignExportId]);
