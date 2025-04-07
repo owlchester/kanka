@@ -463,12 +463,12 @@ class ExportService
         try {
             $path = 'exports/' . $this->campaign->id;
             $this->exportPath = $path . '/' . $this->file;
-            $tmpPath = storage_path($this->exportPath);
+            $tmpPath = storage_path($path);
             Log::info('Campaign export finished', ['exportPath' => $this->exportPath, 'tmpPath' => $tmpPath]);
             $this->archive->saveTo($tmpPath);
 
             Storage::disk('export')->put($this->exportPath, fopen($tmpPath, 'r'), ['visibility' => 'public']);
-            unlink($tmpPath);
+            unlink($tmpPath . '/' . $this->file);
 
             //$this->archive->saveToDisk('export', $path);
             //Storage::disk('export')->setVisibility($this->exportPath, 'public');
