@@ -2,7 +2,7 @@
 
 return [
     'ads'   => [
-        'remove_v5' => 'Kanka is built by just the two of us, fueled by passion (and way too much coffee). Support our quest, banish ads, and unlock premium features for less than :currency:amount/month!',
+        'remove_v5' => 'Kanka is built by just the two of us. Support our quest and enjoy an ad-free experience — for less than the cost of a fancy coffee.',
         'subscribe' => 'Subscribe now.',
     ],
 ];

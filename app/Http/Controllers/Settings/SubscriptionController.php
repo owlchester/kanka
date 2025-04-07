@@ -161,9 +161,9 @@ class SubscriptionController extends Controller
 
         $nextBillingDate = Carbon::now();
         if ($period === PricingPeriod::Yearly) {
-            $nextBillingDate->addYear(1);
+            $nextBillingDate->addYear();
         } else {
-            $nextBillingDate->addMonth(1);
+            $nextBillingDate->addMonth();
         }
 
         return view('settings.subscription.change', compact(
