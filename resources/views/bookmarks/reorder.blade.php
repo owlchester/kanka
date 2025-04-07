@@ -37,7 +37,7 @@
                         </div>
                         <div class="self-end">
                             @if ($link->is_private)
-                                <i class="fa-solid fa-lock" data-title="{{ __('crud.is_private') }}"
+                                <i class="fa-regular fa-lock" data-title="{{ __('crud.is_private') }}"
                                    data-toggle="tooltip"></i>
                             @endif
                         </div>

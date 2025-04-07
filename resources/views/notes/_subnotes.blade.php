@@ -8,7 +8,7 @@
                 <x-entity-link
                     :entity="$subNote->entity"
                     :campaign="$campaign" />
-                @if($subNote->is_private) <x-icon class="fa-solid fa-lock" /> @endif
+                @if($subNote->is_private) <x-icon class="lock" /> @endif
             </span>
         @endforeach
     </div>

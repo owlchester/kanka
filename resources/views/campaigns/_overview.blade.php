@@ -52,7 +52,7 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
 
     <x-infoBox
         title="{{ __('crud.fields.visibility') }}"
-        icon="{{ $campaign->isPublic() ? 'fa-solid fa-check text-green-600' : 'fa-solid fa-lock text-neutral-content' }}"
+        icon="{{ $campaign->isPublic() ? 'fa-solid fa-check text-green-600' : 'fa-regular fa-lock text-neutral-content' }}"
         subtitle="{{ $campaign->isPublic() ? __('campaigns/submissions.public.public') : __('campaigns/submissions.public.private') }}"
         background="{{ $campaign->isPublic() ? 'bg-green-200' : 'bg-neutral' }}"
         subtitleColour="{{ $campaign->isPublic() ? 'text-green-600' : 'text-neutral-content' }}"
