@@ -60,6 +60,7 @@ Route::apiResources([
     'campaigns.campaign_styles' => 'CampaignStyleApiController',
 
     'campaigns.images' => 'CampaignImageApiController',
+    'campaigns.entity_types' => 'Campaigns\EntityTypeApiController',
 ]);
 
 Route::post('campaigns/{campaign}/entities/{entity}/image', [App\Http\Controllers\Api\v1\EntityImageApiController::class, 'put']);
@@ -125,6 +126,6 @@ Route::get('version', function () {
     return config('app.version');
 });
 
-Route::get('entity-types', [App\Http\Controllers\Api\v1\Campaigns\EntityTypeApiController::class, 'index']);
+Route::get('entity-types', [App\Http\Controllers\Api\v1\EntityTypeApiController::class, 'index']);
 Route::get('filters', [App\Http\Controllers\Api\v1\FilterApiController::class, 'index']);
 Route::get('filters/{entityType}', [App\Http\Controllers\Api\v1\FilterApiController::class, 'show']);

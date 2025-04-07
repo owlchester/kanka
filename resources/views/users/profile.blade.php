@@ -37,7 +37,7 @@
                     @if ($discord = $user->discord())
                         <span class="btn-round rounded-full" data-title="Discord" data-toggle="tooltip">
                             <x-icon class="fa-brands fa-discord" />
-                            {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }}
+                            {{ $discord->settings['username'] }}
                         </span>
                     @endif
 

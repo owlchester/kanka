@@ -67,7 +67,7 @@ class RegenerateDiscordToken extends Command
             $this->info($log);
         }
 
-        $this->log('Renewed ' . $count . ' tokens.');
+        $this->info('Renewed ' . $count . ' tokens.');
 
         return 0;
     }
