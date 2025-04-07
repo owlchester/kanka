@@ -15,7 +15,7 @@ class UserAuthenticatedService
         $redirectTo = session()->get('login_redirect');
         if (! empty($redirectTo)) {
             session()->remove('login_redirect');
-            //2FA redirects are handled by the OTP middleware
+            // 2FA redirects are handled by the OTP middleware
             if (config('google2fa.enabled')) {
                 session(['2fa_redirect' => $redirectTo]);
             }
