@@ -31,7 +31,7 @@ class SubmenuService
             'entity' => true,
             'button' => auth()->check() && auth()->user()->can('update', $this->entity) ? [
                 'url' => route('entities.story.reorder', [$this->campaign, $this->entity]),
-                'icon' => 'fa-solid fa-arrow-up-arrow-down',
+                'icon' => 'fa-regular fa-arrow-up-arrow-down',
                 'tooltip' => __('entities/story.reorder.icon_tooltip'),
             ] : null,
         ];
@@ -43,7 +43,7 @@ class SubmenuService
             'route' => 'entities.relations.index',
             'count' => $this->entity->relationships()->has('target')->count(),
             'entity' => true,
-            'icon' => 'fa-solid fa-users',
+            'icon' => 'fa-regular fa-users',
         ];
         //        }
 
@@ -96,7 +96,7 @@ class SubmenuService
                 'route' => 'entities.entity_assets.index',
                 'count' => $this->entity->assets()->count(),
                 'entity' => true,
-                'icon' => 'fa-solid fa-file',
+                'icon' => 'fa-regular fa-file',
             ];
         }
 
@@ -108,7 +108,6 @@ class SubmenuService
                 'route' => 'entities.mentions',
                 'entity' => true,
                 'count' => $mentionsCount,
-                'icon' => 'fa-solid fa-lock',
             ];
         }
 
@@ -118,9 +117,9 @@ class SubmenuService
                 'name' => 'crud.tabs.permissions',
                 'route' => 'entities.permissions',
                 'entity' => true,
-                'icon' => 'fa-solid fa-lock',
                 'ajax' => true,
                 'id' => 'entity-permissions-link',
+                'icon' => 'lock'
             ];
         }
 

@@ -21,7 +21,7 @@
     @endif
     <a href="{{ $entity->url() }}" class="flex gap-1 text-xl p-4 pb-0">
         @if ($entity->is_private)
-            <x-icon class="fa-solid fa-lock" :title="__('crud.is_private')" tooltip />
+            <x-icon class="lock" :title="__('crud.is_private')" tooltip />
         @endif
         <span class="grow">
         @if(!empty($customName))
