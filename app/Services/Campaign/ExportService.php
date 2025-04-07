@@ -14,6 +14,7 @@ use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -475,6 +476,8 @@ class ExportService
             ];
             Log::info('Disk', $diskConfig);
             $disk = Storage::build($diskConfig);
+
+            Log::info('Bucket', Arr::get($disk->getConfig(), "bucket"));
 
             $this->archive->saveToDisk($disk, $path);
             Storage::disk('export')->setVisibility($this->exportPath, 'public');
