@@ -463,7 +463,7 @@ class ExportService
         try {
             $path = 'exports/' . $this->campaign->id;
             $this->exportPath = $path . '/' . $this->file;
-            $tmpPath = storage_path($path);
+            $tmpPath = storage_path($this->exportPath);
             Log::info('Campaign export finished', ['exportPath' => $this->exportPath, 'tmpPath' => $tmpPath]);
             $this->archive->saveTo($tmpPath);
 
