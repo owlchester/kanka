@@ -514,7 +514,7 @@ class MapService
         $organisation = $entity->child;
 
         /** @var OrganisationMember[] $members */
-        $members = $organisation->members()->with(['character', 'character.entity', 'character.entity.image', 'character.entity.entityType'])->has('character')->get();
+        $members = $organisation->members()->with(['character', 'character.entity', 'character.entity.image', 'character.entity.entityType'])->has('character')->has('character.entity')->get();
         foreach ($members as $member) {
             $this
                 ->addEntity($member->character->entity, Avatar::entity($member->character->entity)->fallback()->size(192)->thumbnail())
