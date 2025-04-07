@@ -63,7 +63,7 @@ return [
             'secret' => env('HETZNER_S3_ACCESS_KEY_SECRET'),
             'region' => env('HETZNER_S3_REGION'),
             'bucket' => env('S3_BUCKET_BACKUP'),
-            'root' => env('APP_ENV'),
+            //'root' => env('APP_ENV'),
             'endpoint' => env('HETZNER_S3_ENDPOINT'),
             'use_path_style_endpoint' => true,
             'throw' => false,
@@ -78,7 +78,7 @@ return [
             'bucket' => env('S3_BUCKET_EXPORT'),
             'root' => env('APP_ENV'),
             'endpoint' => env('HETZNER_S3_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'use_path_style_endpoint' => true,
             'throw' => false,
         ],
 
