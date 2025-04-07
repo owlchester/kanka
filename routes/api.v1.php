@@ -126,6 +126,7 @@ Route::get('version', function () {
     return config('app.version');
 });
 
+Route::get('health', [\App\Http\Controllers\Api\v1\HealthController::class, 'index']);
 Route::get('entity-types', [App\Http\Controllers\Api\v1\EntityTypeApiController::class, 'index']);
 Route::get('filters', [App\Http\Controllers\Api\v1\FilterApiController::class, 'index']);
 Route::get('filters/{entityType}', [App\Http\Controllers\Api\v1\FilterApiController::class, 'show']);
