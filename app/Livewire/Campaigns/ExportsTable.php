@@ -102,6 +102,9 @@ class ExportsTable extends Component
             return '';
         }
         if ($model->path && Storage::disk('s3')->exists($model->path)) {
+            if (Storage::disk('s3')->visibility($model->path) == 'private') {
+                Storage::disk('s3')->setVisibility($model->path, 'public');
+            }
             $html = '<a class="block break-all truncate" href="' . Storage::disk('s3')->url($model->path) . '">' . __('campaigns/export.actions.download') . '</a>';
 
             return $html;
