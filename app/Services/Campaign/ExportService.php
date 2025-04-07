@@ -477,7 +477,7 @@ class ExportService
             Log::info('Disk', $diskConfig);
             $disk = Storage::build($diskConfig);
 
-            Log::info('Bucket', Arr::get($disk->getConfig(), "bucket"));
+            Log::info('Bucket', [Arr::get($disk->getConfig(), "bucket")]);
 
             $this->archive->saveToDisk($disk, $path);
             Storage::disk('export')->setVisibility($this->exportPath, 'public');
