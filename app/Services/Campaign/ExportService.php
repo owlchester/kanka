@@ -463,23 +463,14 @@ class ExportService
         try {
             $path = 'exports/' . $this->campaign->id;
             $this->exportPath = $path . '/' . $this->file;
-            Log::info('Campaign export finished', ['exportPath' => $this->exportPath]);
+            $tmpPath = storage_path($path);
+            Log::info('Campaign export finished', ['exportPath' => $this->exportPath, 'tmpPath' => $tmpPath]);
+            $this->archive->saveTo($tmpPath);
 
-            $diskConfig = [
-                'driver' => 's3',
-                'key' => config('filesystems.disks.export.key'),
-                'secret' => config('filesystems.disks.export.secret'),
-                'region' => config('filesystems.disks.export.region'),
-                'bucket' => config('filesystems.disks.export.bucket'),
-                'endpoint' => config('filesystems.disks.export.endpoint'),
-                'use_path_style_endpoint' => true,
-            ];
-            Log::info('Disk', $diskConfig);
-            $disk = Storage::build($diskConfig);
+            Storage::disk('export')->put($this->exportPath, fopen($tmpPath, 'r'));
+            unlink($tmpPath);
 
-            Log::info('Bucket', [Arr::get($disk->getConfig(), "bucket")]);
-
-            $this->archive->saveToDisk($disk, $path);
+            $this->archive->saveToDisk('export', $path);
             Storage::disk('export')->setVisibility($this->exportPath, 'public');
             $this->filesize = (int) floor($this->archive->getFinalSize() / pow(1024, 2));
         } catch (Exception $e) {
