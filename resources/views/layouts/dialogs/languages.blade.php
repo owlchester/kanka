@@ -10,12 +10,12 @@
     <div class="grid grid-cols-2 gap-4">
         <ul class="list-none p-0 m-0">
             <li class="py-2">
-                <a rel="alternate" hreflang="en-US" href="{{ $currentUrl . 'en-US' }}">
+                <a rel="alternate" hreflang="en-US" href="{{ $currentUrl . 'en-US' }}" rel="nofollow">
                     US English
                 </a>
             </li>
             <li class="py-2">
-                <a rel="alternate" hreflang="en" href="{{ $currentUrl . 'en' }}">
+                <a rel="alternate" hreflang="en" href="{{ $currentUrl . 'en' }}" >
                     UK English
                 </a>
             </li>

@@ -56,15 +56,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
 
     @include('layouts.links.icons')
 
-@if (isset($englishCanonical) && $englishCanonical)
     <link rel="canonical" href="{{ $cleanCanonical }}" />
-@else
-    <link rel="canonical" href="{{ $cleanCanonical }}" />
-@foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-    @if (in_array($localeCode, ['hr', 'he', 'gl', 'hu', 'ca', 'nl']))@continue @endif
-    <link rel="alternate" href="{{ \Illuminate\Support\Str::before($cleanCanonical, '?') . '?lang=' . $localeCode }}" hreflang="{{ $localeCode }}">
-@endforeach
-@endif
 
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//kit.fontawesome.com">
