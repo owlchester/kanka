@@ -37,7 +37,7 @@ class Member extends Layout
                     }
                     $private = '';
                     if ($model->is_private) {
-                        $private = '<i class="fa-solid fa-lock" aria-hidden="true"></i> ';
+                        $private = '<i class="fa-regular fa-lock" aria-hidden="true"></i> ';
                     }
 
                     return $icon . $private . $model->role;

@@ -200,7 +200,7 @@ class DatagridRenderer
                 }
                 $html = $this->route(
                     'is_private',
-                    '<i class="fa-solid fa-lock" data-title="' . __('crud.fields.is_private') . '" aria-hidden="true" data-toggle="tooltip"></i> <span class="sr-only">' . __('crud.fields.is_private') . '</span>'
+                    '<i class="fa-regular fa-lock" data-title="' . __('crud.fields.is_private') . '" aria-hidden="true" data-toggle="tooltip"></i> <span class="sr-only">' . __('crud.fields.is_private') . '</span>'
                 );
                 $class = 'w-14 text-center';
             } elseif ($type == 'reminder') {
@@ -473,7 +473,7 @@ class DatagridRenderer
                     return null;
                 }
                 $content = $model->is_private ?
-                    '<i class="fa-solid fa-lock" data-title="' . __('crud.is_private') . '" aria-hidden="true" data-toggle="tooltip"></i> <span class="sr-only">' . __('crud.is_private') . '</span>' :
+                    '<i class="fa-regular fa-lock" data-title="' . __('crud.is_private') . '" aria-hidden="true" data-toggle="tooltip"></i> <span class="sr-only">' . __('crud.is_private') . '</span>' :
                     null;
                 $class = ' text-center';
             } elseif ($type == 'reminder') {

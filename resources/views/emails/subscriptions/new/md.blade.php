@@ -20,7 +20,7 @@ Previously cancelled {{ $lastCancel->tier }} subscription {{ $lastCancel->create
 @endif
 @endif
 @if ($discord = $user->apps->where('app', 'discord')->first())
-Discord: {{ $discord->settings['username'] }}#{{ $discord->settings['discriminator'] }}
+Discord: {{ $discord->settings['username'] }}
 
 @endif
 @if ($user->referral)
@@ -29,7 +29,7 @@ Referral: {{ $user->referrer->code }}
 @endif
 @if (!empty($user->settings['tracking']))
 Ad campaign
-{{ $user->settings['tracking'] }}
+{{ is_array($user->settings['tracking']) ? collect($user->settings['tracking'])->implode(' ') : $user->settings['tracking'] }}
 
 @endif
 

@@ -3,7 +3,7 @@
     align-items: stretch;
     border-radius: var(--rounded-btn, .5rem);
 
-    .join-item:first-child:not(:last-child), :first-child:not(:last-child) .join-item {
+    > .join-item:first-child:not(:last-child), :first-child:not(:last-child) .join-item {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
     }
@@ -24,10 +24,10 @@
 
     .quick-creator-subform.join-item {
         height: 2.3rem;
-        padding-left:.75rem;
-        padding-right:.75rem;
-        min-height:2.3rem;
-        font-size:1rem
+        padding-left: .75rem;
+        padding-right: .75rem;
+        min-height: 2.3rem;
+        font-size: 1rem
     }
 }
 
@@ -108,21 +108,21 @@
 @media (hover: hover) {
     .btn2:hover {
         --tw-border-opacity: 1;
-        border-color:hsl(var(--b3)/var(--tw-border-opacity));
+        border-color: hsl(var(--b3)/var(--tw-border-opacity));
         --tw-bg-opacity: 1;
-        background-color:hsl(var(--b2)/var(--tw-bg-opacity));
-        color:hsl(var(--bc)/var(--tw-text-opacity));
+        background-color: hsl(var(--b2)/var(--tw-bg-opacity));
+        color: hsl(var(--bc)/var(--tw-text-opacity));
     }
     .btn2.btn-primary:hover {
         --tw-border-opacity: 1;
-        border-color:hsl(var(--pf)/var(--tw-border-opacity));
+        border-color: hsl(var(--pf)/var(--tw-border-opacity));
         --tw-bg-opacity: 1;
-        background-color:hsl(var(--pf)/var(--tw-bg-opacity));
-        color:hsl(var(--pc)/var(--tw-text-opacity));
+        background-color: hsl(var(--pf)/var(--tw-bg-opacity));
+        color: hsl(var(--pc)/var(--tw-text-opacity));
     }
     .btn2.btn-secondary:hover {
         --tw-border-opacity: 1;
-        border-color:hsl(var(--sf)/var(--tw-border-opacity));
+        border-color: hsl(var(--sf)/var(--tw-border-opacity));
         --tw-bg-opacity: 1;
         background-color:hsl(var(--sf)/var(--tw-bg-opacity));
         color:hsl(var(--sc)/var(--tw-text-opacity));
@@ -265,8 +265,8 @@
 
 .btn2.btn:active:hover,
 .btn2.btn:active:focus {
-    animation:button-pop 0s ease-out;
-    transform:scale(var(--btn-focus-scale,.97))
+    animation: button-pop 0s ease-out;
+    transform: scale(var(--btn-focus-scale,.97))
 }
 .btn2.btn-active {
     --tw-border-opacity: 1;
@@ -275,10 +275,10 @@
     background-color:hsl(var(--b3)/var(--tw-bg-opacity))
 }
 .btn2:focus-visible {
-    outline-style:solid;
-    outline-width:2px;
-    outline-offset:2px;
-    outline-color:hsl(var(--bc)/1)
+    outline-style: solid;
+    outline-width: 2px;
+    outline-offset: 2px;
+    outline-color: hsl(var(--bc)/1)
 }
 .btn2.btn-primary {
     --tw-border-opacity: 1;
@@ -295,7 +295,7 @@
     background-color:hsl(var(--pf)/var(--tw-bg-opacity))
 }
 .btn2.btn-primary:focus-visible {
-    outline-color:hsl(var(--p)/1)
+    outline-color: hsl(var(--p)/1)
 }
 .btn2.btn-secondary {
     --tw-border-opacity: 1;
@@ -312,7 +312,7 @@
     background-color:hsl(var(--sf)/var(--tw-bg-opacity))
 }
 .btn2.btn-secondary:focus-visible {
-    outline-color:hsl(var(--s)/1)
+    outline-color: hsl(var(--s)/1)
 }
 .btn2.btn-accent {
     --tw-border-opacity: 1;
@@ -329,7 +329,7 @@
     background-color:hsl(var(--af)/var(--tw-bg-opacity))
 }
 .btn2.btn-accent:focus-visible {
-    outline-color:hsl(var(--a)/1)
+    outline-color: hsl(var(--a)/1)
 }
 .btn2.btn-neutral {
     --tw-border-opacity: 1;

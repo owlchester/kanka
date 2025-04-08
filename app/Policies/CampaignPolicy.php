@@ -275,4 +275,16 @@ class CampaignPolicy
     {
         return $this->isAdmin($user) || $this->checkPermission(CampaignPermission::ACTION_POST_TEMPLATES, $user, $campaign);
     }
+
+    public function export(User $user, Campaign $campaign): bool
+    {
+        if (! app()->isProduction()) {
+            return true;
+        }
+        if ($user->hasRole('admin')) {
+            return true;
+        }
+
+        return empty($campaign->export_date) || ! $campaign->export_date->isToday() && $campaign->queuedCampaignExports->count() === 0;
+    }
 }

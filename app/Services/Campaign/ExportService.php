@@ -14,6 +14,7 @@ use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -463,8 +464,8 @@ class ExportService
             $path = 'exports/' . $this->campaign->id;
             $this->exportPath = $path . '/' . $this->file;
             Log::info('Campaign export finished', ['exportPath' => $this->exportPath]);
-            $this->archive->saveToDisk('export', $path);
-            Storage::disk('export')->setVisibility($this->exportPath, 'public');
+
+            $this->archive->saveToDisk('s3', $path);
             $this->filesize = (int) floor($this->archive->getFinalSize() / pow(1024, 2));
         } catch (Exception $e) {
             Log::error('Campaign export', ['action' => 'finish', 'err' => $e->getMessage()]);

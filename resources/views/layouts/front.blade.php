@@ -1,4 +1,8 @@
-<!doctype html>
+@php
+
+$cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
+@endphp
+<html>
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -52,15 +56,7 @@
 
     @include('layouts.links.icons')
 
-@if (isset($englishCanonical) && $englishCanonical)
-        <link rel="canonical" href="{{ request()->fullUrl() }}" />
-@else
-        <link rel="canonical" href="{{ request()->fullUrl() }}" />
-@foreach(LaravelLocalization::getSupportedLocales() as $language => $properties)
-    @if (in_array($language, ['hr', 'he', 'gl', 'hu', 'ca', 'nl']))@continue @endif
-    <link rel="alternate" href="{{ request()->fullUrl() . '?lang=' . $language }}" hreflang="{{ $language }}">
-@endforeach
-@endif
+    <link rel="canonical" href="{{ $cleanCanonical }}" />
 
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="//kit.fontawesome.com">
@@ -68,8 +64,6 @@
 
     @vite('resources/sass/front.scss')
     @livewireStyles
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppin">
     @yield('styles')
 </head>
 

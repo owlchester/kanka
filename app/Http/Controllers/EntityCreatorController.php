@@ -19,6 +19,7 @@ use App\Services\Entity\TagService;
 use App\Services\EntityService;
 use App\Services\EntityTypeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -107,7 +108,9 @@ class EntityCreatorController extends Controller
 
         $values = $this->inputFields;
         // To prevent observer from creating duplicate tags.
-        $this->request->merge(['tags' => $values['tags']]);
+        if (Arr::has($values, 'tags')) {
+            $this->request->merge(['tags' => $values['tags']]);
+        }
 
         foreach ($names as $name) {
             if (empty($name)) {

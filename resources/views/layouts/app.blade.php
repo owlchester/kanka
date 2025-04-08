@@ -20,13 +20,8 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     <meta content='width=device-width, initial-scale=1, maximum-scale=5' name='viewport'>
     <meta property="og:title" content="{!! $seoTitle !!}" />
     <meta property="og:site_name" content="{{ config('app.site_name') }}" />
-@if (isset($canonical))
     <link rel="canonical" href="{{ $cleanCanonical }}" />
-@endif
-@foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-    @if (in_array($localeCode, ['hr', 'he', 'gl', 'hu', 'ca', 'nl']))@continue @endif
-    <link rel="alternate" href="{{ \Illuminate\Support\Str::before($cleanCanonical, '?') . '?lang=' . $localeCode }}" hreflang="{{ $localeCode }}">
-@endforeach
+
 
     @yield('og')
     @include('layouts.links.icons')

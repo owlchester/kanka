@@ -16,14 +16,13 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=5' name='viewport'>
     @include('layouts.links.icons')
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppin">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//kit.fontawesome.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    @vite('resources/sass/front.scss')
 </head>
 
 <body id="page-top">
-<!-- Custom styles for this template -->
-@vite('resources/sass/front.scss')
-<noscript id="deferred-styles">
-</noscript>
 
 @include('layouts.front.nav', ['minimal' => true])
 

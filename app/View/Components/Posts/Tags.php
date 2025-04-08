@@ -23,6 +23,9 @@ class Tags extends Component
      */
     public function render(): View|Closure|string
     {
+        if ($this->post->visibleTags->isEmpty()) {
+            return '';
+        }
         return view('components.posts.tags')
             ->with('tags', $this->post->visibleTags);
     }

@@ -22,12 +22,12 @@
                 <x-icon class="question" />
                 {{ __('crud.actions.help') }}
             </a>
-            @if ($campaign->exportable())
+            @can('export', $campaign)
                 <a href="#" class="btn2 btn-sm btn-primary" data-toggle="dialog" data-target="export-confirm">
                     <x-icon class="fa-solid fa-download" />
                     {{ __('campaigns/export.actions.export') }}
                 </a>
-            @endif
+            @endcan
         </div>
 
         @if (!$campaign->exportable() && !session()->has('success'))

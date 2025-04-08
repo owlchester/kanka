@@ -41,15 +41,15 @@ $entityTags = $post->visibleTags;
             <div class="flex flex-col gap-2 p-4">
                 <x-posts.tags :post="$post" :campaign="$campaign"></x-posts.tags>
 
+                @if ($post->location)
                 <div class="post-details entity-note-details">
-                    @if ($post->location)
                     <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
                         <x-icon entity="location" />
                         <x-entity-link :entity="$post->location->entity" :campaign="$campaign" />
                     </span>
-                    @endif
                 </div>
-                <div class="entity-note-body post-body  overflow-x-auto">
+                @endif
+                <div class="entity-note-body post-body overflow-x-auto">
                     {!! $post->parsedEntry() !!}
                 </div>
 

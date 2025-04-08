@@ -211,7 +211,7 @@
     "isEntry": true
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-D5WmMvKR.js",
+    "file": "assets/explore-DAkxpNJq.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,
@@ -341,12 +341,12 @@
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-C4-ekhV7.css",
+    "file": "assets/app-BK1din7z.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-COdeo8l8.css",
+    "file": "assets/auth-KHwVqx9A.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -371,7 +371,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-D-ERccL2.css",
+    "file": "assets/front-yKvyQO-I.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },
@@ -386,7 +386,7 @@
     "isEntry": true
   },
   "resources/sass/relations.scss": {
-    "file": "assets/relations-BaoqEMLj.css",
+    "file": "assets/relations-BdnNKdiy.css",
     "src": "resources/sass/relations.scss",
     "isEntry": true
   },

@@ -86,7 +86,7 @@ const entityClass = () => {
 
 const entityImage = () => {
     return {
-        backgroundImage: 'url(' + props.entity.images.thumb + ')'
+        backgroundImage: "url('" + props.entity.images.thumb + "')"
     }
 }
 

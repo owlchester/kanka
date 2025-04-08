@@ -101,8 +101,11 @@ class ExportsTable extends Component
         if (! $model->finished()) {
             return '';
         }
-        if ($model->path && Storage::disk('export')->exists($model->path)) {
-            $html = '<a class="block break-all truncate" href="' . Storage::disk('export')->url($model->path) . '" target="_blank">' . __('campaigns/export.actions.download') . '</a>';
+        if ($model->path && Storage::disk('s3')->exists($model->path)) {
+            if (Storage::disk('s3')->visibility($model->path) == 'private') {
+                Storage::disk('s3')->setVisibility($model->path, 'public');
+            }
+            $html = '<a class="block break-all truncate" href="' . Storage::disk('s3')->url($model->path) . '">' . __('campaigns/export.actions.download') . '</a>';
 
             return $html;
         }

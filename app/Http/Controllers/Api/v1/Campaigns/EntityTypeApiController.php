@@ -34,6 +34,9 @@ class EntityTypeApiController extends ApiController
     public function show(Campaign $campaign, EntityType $entityType)
     {
         $this->authorize('access', $campaign);
+        if ($entityType->campaign_id !== $campaign->id) {
+            abort(403);
+        }
 
         return new Resource($entityType);
     }
@@ -71,7 +74,7 @@ class EntityTypeApiController extends ApiController
         return new Resource($entityType);
     }
 
-    public function delete(Request $request, Campaign $campaign, EntityType $entityType)
+    public function destroy(Request $request, Campaign $campaign, EntityType $entityType)
     {
         $this->authorize('setting', $campaign);
         $this->authorize('delete', [$entityType, $campaign]);

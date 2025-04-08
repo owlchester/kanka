@@ -72,14 +72,13 @@ return [
 
         'export' => [
             'driver' => 's3',
-            'key' => env('HETZNER_S3_ACCESS_KEY_ID', env('AWS_ACCESS_KEY_ID')),
-            'secret' => env('HETZNER_S3_ACCESS_KEY_SECRET', env('AWS_SECRET_ACCESS_KEY')),
-            'region' => env('HETZNER_S3_REGION', env('AWS_DEFAULT_REGION')),
-            'bucket' => env('S3_BUCKET_EXPORT', env('AWS_BUCKET')),
+            'key' => env('HETZNER_S3_ACCESS_KEY_ID'),
+            'secret' => env('HETZNER_S3_ACCESS_KEY_SECRET'),
+            'region' => env('HETZNER_S3_REGION'),
+            'bucket' => env('S3_BUCKET_EXPORT'),
             'root' => env('APP_ENV'),
-            'endpoint' => env('HETZNER_S3_ENDPOINT', env('AWS_ENDPOINT')),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-            'throw' => false,
+            'endpoint' => env('HETZNER_S3_ENDPOINT'),
+            'use_path_style_endpoint' => true,
         ],
 
         's3-assets' => [

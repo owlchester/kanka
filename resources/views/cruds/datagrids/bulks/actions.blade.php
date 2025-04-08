@@ -19,7 +19,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
         $dropdownActions[] = [
              'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.permissions', [$campaign, 'entity_type' => $entityType->id])],
             'class' => 'bulk-permissions',
-            'icon' => 'fa-solid fa-lock',
+            'icon' => 'lock',
             'text' => __('crud.bulk.actions.permissions')
         ];
         /*$dropdownActions[] = '
@@ -31,7 +31,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
         $dropdownActions[] = [
              'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.templates', [$campaign, 'entity_type' => $entityType->id])],
             'class' => 'bulk-templates',
-            'icon' => 'fa-solid fa-th-list',
+            'icon' => 'fa-regular fa-th-list',
             'text' => __('crud.bulk.actions.templates')
         ];
     }
@@ -39,7 +39,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
         $dropdownActions[] = [
              'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.transform', [$campaign, 'entity_type' => $entityType->id])],
             'class' => 'bulk-transform',
-            'icon' => 'fa-solid fa-exchange-alt',
+            'icon' => 'fa-regular fa-exchange-alt',
             'text' => __('crud.actions.transform')
         ];
     }
@@ -59,7 +59,7 @@ if (auth()->check() && auth()->user()->isAdmin()) {
 if ($datagridActions->hasBulkPrint()) {
         $dropdownActions[] = [
             'class' => 'bulk-print',
-            'icon' => 'fa-solid fa-print',
+            'icon' => 'fa-regular fa-print',
             'text' => __('crud.actions.print')
         ];
     /*$dropdownActions[] = '

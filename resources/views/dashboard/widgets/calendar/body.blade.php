@@ -67,7 +67,7 @@ $weather = $calendar->calendarWeather()
             </div>
             <ul class="style-none p-0">
                 @foreach ($previousEvents->take(5) as $reminder)
-                    @includeWhen($reminder->entity, 'dashboard.widgets.calendar._reminder')
+                    @includeWhen($reminder->remindable, 'dashboard.widgets.calendar._reminder')
                 @endforeach
             </ul>
         </div>
@@ -84,7 +84,7 @@ $weather = $calendar->calendarWeather()
             </div>
             <ul class="style-none p-0">
                 @foreach ($upcomingEvents->take(5) as $reminder)
-                    @includeWhen($reminder->entity, 'dashboard.widgets.calendar._reminder', ['future' => true])
+                    @includeWhen($reminder->remindable, 'dashboard.widgets.calendar._reminder', ['future' => true])
 
                 @endforeach
             </ul>

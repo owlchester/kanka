@@ -15,7 +15,7 @@ $uid = 1;
             <div class="section-name grow">
                 @if (!empty($section['id']))
                     @if (auth()->check() && auth()->user()->isAdmin() && $section['is_private'] == true)
-                        <i class="fa-solid fa-lock" data-toggle="tooltip" data-title="{{ __('crud.is_private') }}" aria-hidden="true"></i>
+                        <x-icon class="lock" tooltip :title="__('crud.is_private')"/>
                     @endif
                     {!! $section['name'] !!}
                 @else
@@ -44,7 +44,7 @@ $uid = 1;
                             data-clipboard="{attribute:{{ $attribute->id }}}"
                             data-toast="{{ __('crud.alerts.copy_attribute') }}">
                                 @if (auth()->check() && auth()->user()->isAdmin() && $attribute->is_private)
-                                    <x-icon class="fa-solid fa-lock" tooltip :title="__('crud.is_private')" />
+                                    <x-icon class="lock" tooltip :title="__('crud.is_private')" />
                                 @endif
                                 @if ($attribute->validConstraints())
                                     <span class="font-extrabold">{!! $attribute->name() !!}</span>

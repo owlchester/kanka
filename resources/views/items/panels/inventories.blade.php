@@ -15,7 +15,7 @@
                 </td>
                 <td>
                     @if ($inventory->entity->is_private)
-                        <x-icon class="fa-solid fa-lock" :title="{{ __('crud.is_private') }}" tooltip />
+                        <x-icon class="lock" :title="__('crud.is_private')" tooltip />
                     @endif
                     <x-entity-link
                         :entity="$inventory->entity"
