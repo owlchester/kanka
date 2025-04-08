@@ -42,7 +42,7 @@ $specificTheme = null;
     @vite([
     'resources/sass/print/print.scss',
     ])
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
 </head>
 
 <body class="{{ $entity->bodyClasses() }}  @if(isset($bodyClass)){{ $bodyClass }}@endif" @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif>
