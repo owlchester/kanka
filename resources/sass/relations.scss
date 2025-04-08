@@ -1,11 +1,12 @@
-#cy {
-    min-height: calc(90vh);
+//.cy-map {
+//    min-height: calc(90vh);
+//
+//    --tw-bg-opacity: 1;
+//    background-color: var(--relation-explorer-background, hsl(var(--b1)/var(--tw-bg-opacity)));
+//    --tw-text-opacity: 1;
+//    color: var(--relation-explorer-color, hsl(var(--bc)/var(--tw-text-opacity)));
+//}
 
-    --tw-bg-opacity: 1;
-    background-color: var(--relation-explorer-background, hsl(var(--b1)/var(--tw-bg-opacity)));
-    --tw-text-opacity: 1;
-    color: var(--relation-explorer-color, hsl(var(--bc)/var(--tw-text-opacity)));
-}
 .cy-panzoom {
     z-index: 800;
 }
