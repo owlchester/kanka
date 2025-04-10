@@ -52,7 +52,7 @@ class EntityFileService
             $name = $request->get('name');
             if (empty($name)) {
                 $name = $uploadedFile->getClientOriginalName();
-                $name = Str::beforeLast($name, '.');
+                $name = Str::limit(Str::beforeLast($name, '.'), 45, null);
             }
 
             $image = new Image;
