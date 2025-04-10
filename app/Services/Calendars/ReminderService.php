@@ -25,7 +25,7 @@ class ReminderService
     {
         // @phpstan-ignore-next-line
         $reminders = $this->calendar->calendarEvents()
-            ->with(['remindable', 'calendar'])
+            ->with(['remindable'])
             ->whereHas('remindable')
             ->where(function ($primary) {
                 $primary->where(function ($sub) {
@@ -75,7 +75,9 @@ class ReminderService
 
         // Order the past events in descending date to get the closest ones to the current date first
         return $reminders->sortBy(function (Reminder $reminder) {
-            return $reminder->nextUpcomingOccurrence(
+            return $reminder
+                ->setRelation('calendar', $this->calendar)
+                ->nextUpcomingOccurrence(
                 $this->calendar->currentYear(),
                 $this->calendar->currentMonth(),
                 $this->calendar->currentDay(),
@@ -93,7 +95,7 @@ class ReminderService
     {
         // @phpstan-ignore-next-line
         $reminders = $this->calendar->calendarEvents()
-            ->with(['remindable', 'calendar'])
+            ->with(['remindable'])
             ->whereHas('remindable')
             ->where(function ($primary) {
                 $primary->where(function ($sub) {
@@ -144,7 +146,9 @@ class ReminderService
 
         // Order the past events in descending date to get the closest ones to the current date first
         return $reminders->sortBy(function (Reminder $reminder) {
-            return $reminder->mostRecentOccurrence(
+            return $reminder
+                ->setRelation('calendar', $this->calendar)
+                ->calendarmostRecentOccurrence(
                 $this->calendar->currentYear(),
                 $this->calendar->currentMonth(),
                 $this->calendar->currentDay(),
