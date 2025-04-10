@@ -12,7 +12,8 @@ return [
         'reorder'   => [
             'success'   => 'Character families updated successfully.',
         ],
-        'title'     => 'Manage families of :name',
+        'title'     => 'Manage families',
+        'helper' => 'Reorder and control which families of :name are visible or hidden from non-admins.',
     ],
     'fields'        => [
         'age'                       => 'Age',
@@ -88,7 +89,8 @@ return [
         'reorder'   => [
             'success'   => 'Character races updated successfully',
         ],
-        'title'     => 'Manage races of :name',
+        'title'     => 'Manage races',
+        'helper' => 'Reorder and control which races of :name are visible or hidden from non-admins.',
     ],
     'sections'      => [
         'appearance'    => 'Appearance',
