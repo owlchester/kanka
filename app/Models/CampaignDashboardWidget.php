@@ -258,12 +258,22 @@ class CampaignDashboardWidget extends Model
             [$field, $order] = explode('_', $order);
             $base = $base->orderBy($field, $order);
         }
+        $relations = [
+            'image:campaign_id,id,ext,focus_x,focus_y',
+            'entityType:id,code,is_special',
+            'mentions',
+            'mentions.target',
+            'mentions.target.tags'
+        ];
 
         // If an entity type is provided, we can combine that with filters. We need to get the list of the misc
         // ids first to pass on to the entity query.
         if ($this->entityType && ! empty($this->config['filters']) && ! $this->entityType->isSpecial()) {
             /** @var Character|mixed $model */
             $model = $this->entityType->getClass();
+            if ($this->entityType->id === config('entities.ids.quest')) {
+                $relations[] = 'quest:id,is_completed';
+            }
 
             /** @var FilterService $filterService */
             $filterService = app()->make('App\Services\FilterService');
@@ -288,7 +298,7 @@ class CampaignDashboardWidget extends Model
         return $base
             ->inTags($this->tags->pluck('id')->toArray())
             ->inTypes($this->entityType?->id)
-            ->with(['image:campaign_id,id,ext,focus_x,focus_y', 'entityType:id,code,is_special', 'mentions', 'mentions.target', 'mentions.target.tags'])
+            ->with($relations)
             ->paginate(10, ['*'], 'page', $page);
     }
 
