@@ -8,6 +8,6 @@
         <x-entity-link
                 :entity="$race->race->entity"
                 :campaign="$campaign" />
-        @if ($race->is_private) <x-icon class="fa-solid fa-lock" /> @endif
+        @if ($race->is_private) <x-icon class="lock" /> @endif
     </span>
 @endforeach

@@ -201,7 +201,7 @@ class EntityAsset extends Model
     public function url(): string
     {
         if ($this->image_uuid) {
-            return $this->image->url();
+            return $this->image?->url() ?? '';
         }
 
         $path = $this->metadata['path'];

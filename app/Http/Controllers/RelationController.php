@@ -44,7 +44,6 @@ class RelationController extends CrudController
 
     public function __construct(FilterService $filterService, DatagridRenderer $datagridRenderer, AttributeService $attributeService, RelationService $relationService)
     {
-        $this->middleware('auth');
         $this->filterService = $filterService;
         $this->datagrid = $datagridRenderer;
         $this->attributeService = $attributeService;

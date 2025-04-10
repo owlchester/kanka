@@ -165,13 +165,13 @@ class BulkService
             ->to($campaign);
 
         $with = isset($this->entityType) && $this->entityType->isSpecial() ? [
+            'entityType', 'image', 'inventories', 'attributes',
+        ] : [
             'entity',
             'entity.entityType',
             'entity.image',
             'entity.inventories',
             'entity.attributes',
-        ] : [
-            'entityType', 'image', 'inventories', 'attributes',
         ];
         $entities = $model->with($with)->whereIn('id', $this->ids)->get();
 
@@ -420,14 +420,14 @@ class BulkService
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function templates($template): int
+    public function templates(string|int $template): int
     {
         $model = $this->getEntity();
 
         /** @var AttributeService $service */
         $service = app()->make('App\Services\AttributeService');
 
-        $with = isset($this->entityType) && $this->entityType->isSpecial() ? ['entity', 'entity.campaign'] : [];
+        $with = isset($this->entityType) && $this->entityType->isSpecial() ? [] : ['entity', 'entity.campaign'];
         $entities = $model->with($with)->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
