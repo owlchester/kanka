@@ -35,7 +35,6 @@ class DeleteController extends Controller
     public function apply(Request $request, Campaign $campaign, EntityType $entityType)
     {
         $models = explode(',', $request->get('models'));
-        $models = explode(',', $request->get('models'));
         if ($request->has('entities')) {
             $models = $request->get('entities');
         }

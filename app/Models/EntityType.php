@@ -189,6 +189,11 @@ class EntityType extends Model
         return (bool) $this->is_enabled;
     }
 
+    public function isBookmark(): bool
+    {
+        return (bool) $this->id == config('entities.ids.bookmark');
+    }
+
     public function createRoute(Campaign $campaign, array $params = []): string
     {
         if ($this->isSpecial()) {

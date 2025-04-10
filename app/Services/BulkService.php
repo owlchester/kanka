@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
+use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
@@ -72,7 +73,7 @@ class BulkService
     {
         $model = $this->getEntity();
         if (isset($this->entityType)) {
-            if (! $this->entityType->isSpecial()) {
+            if (! $this->entityType->isSpecial() && ! $this->entityType->isBookmark()) {
                 $with = ['entity', 'entity.entityType', 'entity.campaign'];
                 if ($this->entityType->isNested()) {
                     $with[] = 'children';
