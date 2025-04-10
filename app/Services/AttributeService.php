@@ -262,7 +262,7 @@ class AttributeService
         }
 
         // Marketplace campaigns
-        $key = __('attributes/templates.list.marketplace');
+        $key = __('attributes/templates.list.sheets');
         foreach (CampaignPlugin::templates($this->campaign)->with(['plugin', 'plugin.user'])->get() as $plugin) {
             if (empty($plugin->plugin)) {
                 continue;
