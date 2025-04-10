@@ -60,8 +60,8 @@ The list of returned entities can be filtered. The available filters are [availa
 
 To get the details of a single conversation, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
+| Method | URI                               | Headers |
+| :- |:----------------------------------|  :-  |
 | GET/HEAD | `conversations/{conversation.id}` | Default |
 
 ### Results
@@ -97,8 +97,8 @@ To get the details of a single conversation, use the following endpoint.
 
 To get the participants of an conversation, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
+| Method | URI                                                         | Headers |
+| :- |:------------------------------------------------------------|  :-  |
 | GET/HEAD | `conversations/{conversation.id}/conversation_participants` | Default |
 
 ### Results
@@ -190,7 +190,8 @@ To create a conversation, use the following endpoint.
 | `tags` | `array` | Array of tag ids |
 | `is_closed` | `boolean` | If the conversation is closed |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
+| `tooltip`            | `string` | The ability\'s tooltip (premium campaign feature)                   |
 | `is_private` | `boolean` | If the conversation is only visible to `admin` members of the campaign |
 
 ### Results

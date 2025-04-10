@@ -2,52 +2,57 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Facades\Avatar;
-use App\Facades\Images;
+use App\Exceptions\TranslatableException;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\UploadEntityImage;
+use App\Http\Requests\Gallery\UploadFile;
+use App\Http\Resources\Api\EntityImagesResource;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Services\Gallery\UploadService;
 
 class EntityImageApiController extends Controller
 {
-    public function put(UploadEntityImage $request, Campaign $campaign, Entity $entity)
+    public function __construct(public UploadService $uploadService) {}
+
+    public function show(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
-        $this->authorize('update', $entity);
+        $this->authorize('view', $entity);
 
-        // Let the service handle everything
-        throw new \Exception('API hasnt been migrated');
-        //        $entity->update();
-        //
-        //        return response()->json([
-        //            'entity_id' => $entity->id,
-        //            'child_id' => $entity->child->id,
-        //            'image_full' => Avatar::entity($entity)->original(),
-        //            'image_thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
-        //        ]);
+        return new EntityImagesResource($entity);
     }
 
-    /**
-     * @return \Illuminate\Http\JsonResponse
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function destroy(Campaign $campaign, Entity $entity)
+    public function put(UploadFile $request, Campaign $campaign, Entity $entity)
+    {
+        $this->authorize('access', $campaign);
+        $this->authorize('update', $entity);
+        $this->authorize('galleryUpload', $campaign);
+        try {
+            $this->uploadService
+                ->campaign($campaign)
+                ->user($request->user())
+                ->file($request->file('file'));
+            $image = $this->uploadService->image();
+            $field = $request->filled('is_header') ? 'header_uuid' : 'image_uuid';
+            $entity->update([$field => $image->id]);
+            return new EntityImagesResource($entity);
+        } catch (TranslatableException $e) {
+            return response()->json(
+                ['error' => $e->getTranslatedMessage()],
+                421
+            );
+        }
+    }
+
+    public function destroy(Request $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
 
-        // Let the service handle everything
-        Images::cleanup($entity);
+        $field = $request->filled('is_header') ? 'header_uuid' : 'image_uuid';
+        $entity->update([$field => null]);
 
-        $entity->update(['image_path' => '']);
-
-        return response()->json([
-            'entity_id' => $entity->id,
-            'child_id' => $entity->child->id,
-            'image_full' => Avatar::entity($entity)->original(),
-            'image_thumb' => Avatar::entity($entity)->size(40)->thumbnail(),
-        ], 200);
+        return new EntityImagesResource($entity);
     }
 }

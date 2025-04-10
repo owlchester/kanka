@@ -16,8 +16,8 @@ You can get a list of all the bookmarks of a campaign by using the following end
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
+| Method | URI            | Headers |
+| :- |:---------------|  :-  |
 | GET/HEAD | `bookmarks` | Default |
 
 ### Results
@@ -52,8 +52,8 @@ You can get a list of all the bookmarks of a campaign by using the following end
 
 To get the details of a single bookmark, use the following endpoint.
 
-| Method | URI                       | Headers |
-| :- |:--------------------------|  :-  |
+| Method | URI                          | Headers |
+| :- |:-----------------------------|  :-  |
 | GET/HEAD | `bookmarks/{bookmark.id}` | Default |
 
 ### Results

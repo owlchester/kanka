@@ -150,7 +150,8 @@ To create a quest, use the following endpoint.
 | `location_id` | `integer` | The quest's starting location (location) |
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
+| `tooltip`            | `string` | The ability\'s tooltip (premium campaign feature)                   |
 | `is_private` | `boolean` | If the quest is only visible to `admin` members of the campaign |
 
 ### Results

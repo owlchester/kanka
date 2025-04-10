@@ -1,4 +1,4 @@
-# Thumbnails
+# Campaign Thumbnails
 
 ---
 
@@ -11,12 +11,10 @@
 
 You can get a list of all the default thumbnails of a campaign by using the following endpoint. This is a premium campaign feature! If the campaign isn't premium, this API endpoint will result in a 404.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
-
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| GET/HEAD | `default-thumbnails` | Default |
+| Method | URI                                                      | Headers |
+| :- |:---------------------------------------------------------|  :-  |
+| GET/HEAD | `{{version}}/campaigns/{id}/default-thumbnails` | Default |
 
 ### Results
 ```json
@@ -27,7 +25,7 @@ You can get a list of all the default thumbnails of a campaign by using the foll
             "url": "https://th.kanka.io/gR8y1nxfEhBC1nVYdQpr2pUW3lY=/48x48/smart/src/app/logos/logo.png",
         },
         {
-            "entity_type": "creatures",
+            "entity_type": "gods",
             "url": "https://th.kanka.io/gR8y1nxfEhBC1nVYdQpr2pUW3lY=/48x48/smart/src/app/logos/logo.png",
         }
     ]
@@ -45,10 +43,10 @@ To create a default image, use the following endpoint.
 
 ### Body
 
-| Parameter   | Type | Detail |
-|:------------|   :-   |  :-  |
-| `entity_type` | `integer`(required) | The entity type id |
-| `default_entity_image`    | `file` | File uploaded |
+| Parameter              | Type | Detail |
+|:-----------------------|   :-   |  :-  |
+| `entity_type_id`       | `integer`(required) | The entity type id |
+| `default_entity_image` | `file` | File uploaded |
 
 
 ### Results
@@ -68,7 +66,7 @@ To delete a default image, use the following endpoint.
 
 | Parameter   | Type | Detail |
 |:------------|   :-   |  :-  |
-| `entity_type` | `integer`(required) | The entity type id |
+| `entity_type_id` | `integer`(required) | The entity type id |
 
 ### Results
 

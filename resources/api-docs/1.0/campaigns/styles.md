@@ -13,12 +13,9 @@
 
 You can get a list of all the campaign styles of a campaign by using the following endpoint. Note that this feature is reserved to premium campaigns.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
-
-
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET/HEAD | `campaign_styles` | Default |
+| GET/HEAD | `{{version}}/campaigns/{id}/campaign_styles` | Default |
 
 ### Results
 ```json
@@ -44,9 +41,9 @@ You can get a list of all the campaign styles of a campaign by using the followi
 
 To get the details of a single campaign Style, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| GET/HEAD | `campaign_styles/{campaign-campaign-style.id}` | Default |
+| Method | URI                                                              | Headers |
+| :- |:-----------------------------------------------------------------|  :-  |
+| GET/HEAD | `{{version}}/campaigns/{id}/campaign_styles/{campaign_style.id}` | Default |
 
 ### Results
 ```json
@@ -73,7 +70,7 @@ To create a campaign Style, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| POST | `campaign_styles` | Default |
+| POST | `{{version}}/campaigns/{id}/campaign_styles` | Default |
 
 ### Body
 
@@ -93,9 +90,9 @@ To create a campaign Style, use the following endpoint.
 
 To update a campaign style, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| PUT/PATCH | `campaign_styles/{campaign-campaign-style.id}` | Default |
+| Method | URI                                                              | Headers |
+| :- |:-----------------------------------------------------------------|  :-  |
+| PUT/PATCH | `{{version}}/campaigns/{id}/campaign_styles/{campaign_style.id}` | Default |
 
 ### Body
 
@@ -111,9 +108,9 @@ The same body parameters are available as for when creating a campaign Style.
 
 To delete a campaign style, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| DELETE | `campaign_styles/{campaign-campaign-style.id}` | Default |
+| Method | URI                                   | Headers |
+| :- |:--------------------------------------|  :-  |
+| DELETE | `campaign_styles/{campaign_style.id}` | Default |
 
 ### Results
 

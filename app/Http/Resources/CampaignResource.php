@@ -41,7 +41,6 @@ class CampaignResource extends JsonResource
             'name' => $campaign->name,
             'locale' => $campaign->locale,
             'entry' => $campaign->entry,
-            'entry_parsed' => 'not available on the campaigns/ endpoint',
             'image' => $campaign->image,
             'image_full' => $campaign->thumbnail(0),
             'image_thumb' => $campaign->thumbnail(),

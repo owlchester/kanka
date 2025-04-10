@@ -116,7 +116,8 @@ To create a event, use the following endpoint.
 | `location_id` | `string` | Location of the event |
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
+| `tooltip`            | `string` | The ability\'s tooltip (premium campaign feature)                   |
 | `is_private` | `boolean` | If the event is only visible to `admin` members of the campaign |
 ### Results
 

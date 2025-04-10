@@ -16,8 +16,8 @@ You can get a list of all the attributes of an entity by using the following end
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
+| Method | URI                                  | Headers |
+| :- |:-------------------------------------|  :-  |
 | GET/HEAD | `entities/{entity.id}/attributes` | Default |
 
 ### Results
@@ -50,8 +50,8 @@ You can get a list of all the attributes of an entity by using the following end
 
 To get the details of a single attribute, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
+| Method | URI                                                 | Headers |
+| :- |:----------------------------------------------------|  :-  |
 | GET/HEAD | `entities/{entity.id}/attributes/{attribute.id}` | Default |
 
 ### Results

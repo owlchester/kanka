@@ -112,7 +112,8 @@ To create a location, use the following endpoint.
 | `is_destroyed` | `boolean` | If the location is destroyed |
 | `is_private` | `boolean` | If the location is only visible to `admin` members of the campaign |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
+| `tooltip`            | `string` | The ability\'s tooltip (premium campaign feature)                   |
 
 
 ### Results

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Facades\Img;
 use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,7 +22,7 @@ class ProfileResource extends JsonResource
         return [
             'id' => $model->id,
             'name' => $model->name,
-            'avatar' => $model->hasAvatar() ? $model->getAvatarUrl(200) : null,
+            'avatar' => $model->hasAvatar() ? Img::resetCrop()->url($model->avatar) : null,
             'avatar_thumb' => $model->hasAvatar() ? $model->getAvatarUrl() : null,
             'locale' => $model->locale,
             'timezone' => $model->timezone,

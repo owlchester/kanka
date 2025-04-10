@@ -48,7 +48,7 @@ Route::apiResources([
     // Entity elements
     'campaigns.entities.attributes' => 'EntityAttributeApiController',
     'campaigns.entities.posts' => 'PostApiController',
-    'campaigns.entities.reminders' => 'ReminderApiController',
+    'campaigns.entities.reminders' => 'Entities\ReminderApiController',
     'campaigns.entities.relations' => 'EntityRelationApiController',
     'campaigns.entities.entity_tags' => 'EntityTagApiController',
     'campaigns.entities.inventory' => 'EntityInventoryApiController',
@@ -63,6 +63,7 @@ Route::apiResources([
     'campaigns.entity_types' => 'Campaigns\EntityTypeApiController',
 ]);
 
+Route::get('campaigns/{campaign}/entities/{entity}/image', [App\Http\Controllers\Api\v1\EntityImageApiController::class, 'show']);
 Route::post('campaigns/{campaign}/entities/{entity}/image', [App\Http\Controllers\Api\v1\EntityImageApiController::class, 'put']);
 Route::delete('campaigns/{campaign}/entities/{entity}/image', [App\Http\Controllers\Api\v1\EntityImageApiController::class, 'destroy']);
 Route::get('campaigns/{campaign}/roles', 'CampaignRoleApiController@index');

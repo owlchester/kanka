@@ -1,15 +1,15 @@
-# Entity Events
+# Reminders
 
 ---
 
-- [All Entity Events](#all-entity-events)
-- [Single Entity Event](#entity-event)
-- [Create an Entity Event](#create-entity-event)
-- [Update an Entity Event](#update-entity-event)
-- [Delete an Entity Event](#delete-entity-event)
+- [All Reminders](#all-entity-events)
+- [Single Reminder](#entity-event)
+- [Create an Reminder](#create-entity-event)
+- [Update an Reminder](#update-entity-event)
+- [Delete an Reminder](#delete-entity-event)
 
 <a name="all-entity-events"></a>
-## All Entity Events
+## All Reminders
 
 You can get a list of all the entity-events of an entity by using the following endpoint.
 
@@ -18,7 +18,7 @@ You can get a list of all the entity-events of an entity by using the following 
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET/HEAD | `entities/{entity.id}/entity_events` | Default |
+| GET/HEAD | `entities/{entity.id}/reminders` | Default |
 
 ### Results
 ```json
@@ -49,7 +49,7 @@ You can get a list of all the entity-events of an entity by using the following 
 
 
 <a name="entity-event"></a>
-## Entity Event
+## Reminder
 
 To get the details of a single entity-event, use the following endpoint.
 
@@ -84,7 +84,7 @@ To get the details of a single entity-event, use the following endpoint.
 
 
 <a name="create-entity-event"></a>
-## Create an Entity Event
+## Create an Reminder
 
 To create an entity-event, use the following endpoint.
 
@@ -96,17 +96,17 @@ To create an entity-event, use the following endpoint.
 
 | Parameter               | Type | Detail                                                                                 |
 |:------------------------|   :-   |:---------------------------------------------------------------------------------------|
-| `name`                  | `string` (Required) | Name of the entity event                                                               |
+| `name`                  | `string` (Required) | Name of the reminder                                                               |
 | `day`                   | `integer` (Required) | Day on which the event takes place                                                     |
 | `month`                 | `integer` (Required) | Month (id) on which the event takes place                                              |
 | `year`                  | `integer` (Required) | Year on which the event takes place                                                    |
 | `length`                | `integer` (Required) | Duration in days of the event                                                          |
 | `recurring_periodicity` | `string` | Null if the event isn't recurring. `yearly`, `monthly` or `{moon.id}_(f                |n)` where `f` is full moon and `n` is new moon |
 | `recurring_until`       | `integer` | Year until the event reoccurs                                                          |
-| `colour`                | `string` | Colour of the entity event in the calendar                                             |
-| `comment`               | `string` | Comment of the entity event                                                            |
+| `colour`                | `string` | Colour of the reminder in the calendar                                             |
+| `comment`               | `string` | Comment of the reminder                                                            |
 | `calendar_id`           | `integer` (Required) | The calendar\'s id                                                                     |
-| `is_private`            | `boolean` | If the entity event is only visible to `admin` members of the campaign                 |
+| `is_private`            | `boolean` | If the reminder is only visible to `admin` members of the campaign                 |
 | `type_id`               | `null` or `int` | Special field for calculating the age of a character. `2` for birthday, `3` for death. |
 | `visibility_id`         | `int` | The visibility ID: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`.    |
 
@@ -116,7 +116,7 @@ To create an entity-event, use the following endpoint.
 
 
 <a name="update-entity-event"></a>
-## Update an Entity Event
+## Update an Reminder
 
 To update an entity-event, use the following endpoint.
 
@@ -134,7 +134,7 @@ The same body parameters are available as for when creating an entity-event.
 
 
 <a name="delete-entity-event"></a>
-## Delete an Entity Event
+## Delete an Reminder
 
 To delete an entity-event, use the following endpoint.
 

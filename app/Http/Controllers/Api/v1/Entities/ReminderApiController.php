@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1;
+namespace App\Http\Controllers\Api\v1\Entities;
 
+use App\Http\Controllers\Api\v1\ApiController;
 use App\Http\Requests\API\StoreReminder as Request;
 use App\Http\Resources\ReminderResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Reminder;
 
-class EntityEventApiController extends ApiController
+class ReminderApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -26,12 +27,12 @@ class EntityEventApiController extends ApiController
     /**
      * @return resource
      */
-    public function show(Campaign $campaign, Entity $entity, Reminder $entityEvent)
+    public function show(Campaign $campaign, Entity $entity, Reminder $reminder)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
 
-        return new Resource($entityEvent);
+        return new Resource($reminder);
     }
 
     /**
@@ -54,13 +55,13 @@ class EntityEventApiController extends ApiController
     /**
      * @return resource
      */
-    public function update(Request $request, Campaign $campaign, Entity $entity, Reminder $entityEvent)
+    public function update(Request $request, Campaign $campaign, Entity $entity, Reminder $reminder)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
-        $entityEvent->update($request->all());
+        $reminder->update($request->all());
 
-        return new Resource($entityEvent);
+        return new Resource($reminder);
     }
 
     /**
@@ -73,11 +74,11 @@ class EntityEventApiController extends ApiController
         \Illuminate\Http\Request $request,
         Campaign $campaign,
         Entity $entity,
-        Reminder $entityEvent
+        Reminder $reminder
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
-        $entityEvent->delete();
+        $reminder->delete();
 
         return response()->json(null, 204);
     }

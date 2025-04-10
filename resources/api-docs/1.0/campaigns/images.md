@@ -2,7 +2,7 @@
 
 ---
 
-- [All Images](#all-images)
+- [All Gallery Images](#all-images)
 - [Single Image](#image)
 - [Create a Image](#create-image)
 - [Update a Image](#update-image)
@@ -10,16 +10,14 @@
 - [Create a folder](#create-folder)
 
 <a name="all-images"></a>
-## All Images
+## All Gallery Images
 
 You can get a list of all the images of a campaign by using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
-
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| GET/HEAD | `images` | Default |
+| Method | URI                               | Headers |
+| :- |:----------------------------------|  :-  |
+| GET/HEAD | `{{version}}/campaigns/{id}/images` | Default |
 
 ### Results
 ```json
@@ -65,7 +63,7 @@ To get the details of a single image, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET/HEAD | `images/{image.id}` | Default |
+| GET/HEAD | `{{version}}/campaigns/{id}/images/{image.id}` | Default |
 
 ### Results
 ```json
@@ -97,7 +95,7 @@ To create a image, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| POST | `images` | Default |
+| POST | `{{version}}/campaigns/{id}/images` | Default |
 
 ### Body
 
@@ -120,7 +118,7 @@ To update a image, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| PUT/PATCH | `images/{image.id}` | Default |
+| PUT/PATCH | `{{version}}/campaigns/{id}/images/{image.id}` | Default |
 
 ### Body
 
@@ -142,7 +140,7 @@ To delete a image, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| DELETE | `images/{image.id}` | Default |
+| DELETE | `{{version}}/campaigns/{id}/images/{image.id}` | Default |
 
 ### Results
 

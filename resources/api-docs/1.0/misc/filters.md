@@ -4,9 +4,9 @@ The various entity endpoints like `/characters`, `/locations` etc support many f
 
 To get a list of filters, first call `/filters` to get the endpoint for each [entity type](/api-docs/{{version}}/entity-types.md).
 
-| Method | URI       | Headers |
-| :- |:----------|  :-  |
-| GET/HEAD | `filters` | Default |
+| Method | URI                   | Headers |
+| :- |:----------------------|  :-  |
+| GET/HEAD | `{{version}}/filters` | Default |
 
 ### Results
 ```json
@@ -31,7 +31,7 @@ To get a list of available filters for the characters endpoint, call the followi
 
 | Method | URI               | Headers |
 | :- |:------------------|  :-  |
-| GET/HEAD | `filters/1` | Default |
+| GET/HEAD | `{{version}}/filters/1` | Default |
 
 ### Results
 ```json
