@@ -15,6 +15,11 @@ class SocialController extends Controller
 
     public function index()
     {
+        if (empty(auth()->user()->provider)) {
+            return redirect()
+                ->route('settings.account')
+                ->with('error', __('settings.account.social.error'));
+        }
         return view('account.social.form')->with('user', auth()->user());
     }
 
