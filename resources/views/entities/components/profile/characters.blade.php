@@ -23,7 +23,7 @@ $child = $entity->child;
                 {!! \App\Facades\Module::singular(config('entities.ids.family'), __('entities.families')) !!}
                 @can('update', $entity)
                     <span role="button" tabindex="0" class="entity-families-icon" data-toggle="dialog" data-url="{{ route('characters.families.management', [$campaign, $entity->child]) }}" data-target="primary-dialog" aria-haspopup="dialog">
-                        <x-icon class="cog" tooltip title="{{ __('characters.families.title') }}" />
+                        <x-icon class="cog" tooltip title="{{ __('characters.families.title2') }}" />
                     </span>
                 @endif
             </div>
@@ -40,7 +40,7 @@ $child = $entity->child;
                 {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
                 @can('update', $entity)
                     <span role="button" tabindex="0" class="entity-races-icon" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $entity->child]) }}" data-target="primary-dialog" aria-haspopup="dialog">
-                        <x-icon class="cog" tooltip title="{{ __('characters.races.title') }}" />
+                        <x-icon class="cog" tooltip title="{{ __('characters.races.title2') }}" />
                     </span>
                 @endif
             </div>
@@ -51,7 +51,7 @@ $child = $entity->child;
         @elseif ($child->characterRaces->isEmpty() && $child->hasAge())
         <div class="element profile-age">
             <div class="title text-uppercase text-xs">{{ __('characters.fields.age') }}</div>
-            <span>{{ $child->age }}</span>
+            <span>{{ is_numeric($child->age) ? number_format($child->age) : $child->age }}</span>
         </div>
         @else
         <div class="element profile-race-age">
@@ -59,7 +59,7 @@ $child = $entity->child;
                 {!! \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) !!}
                 @can('update', $entity)
                     <span role="button" tabindex="0" class="entity-races-icon" data-toggle="dialog" data-url="{{ route('characters.races.management', [$campaign, $child]) }}" data-target="primary-dialog" aria-haspopup="dialog">
-                        <x-icon class="edit" tooltip title="{{ __('characters.races.title') }}" />
+                        <x-icon class="cog" tooltip title="{{ __('characters.races.title2') }}" />
                     </span>
                 @endif
                 ,
@@ -69,7 +69,7 @@ $child = $entity->child;
             <div class="comma-separated inline">
                 @include('entities.components.profile.character_races')
             </div>,
-            <span>{{ $child->age }}</span>
+            <span>{{ is_numeric($child->age) ? number_format($child->age) : $child->age }}</span>
         </div>
         @endif
     @endif

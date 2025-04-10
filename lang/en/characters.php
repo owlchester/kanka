@@ -12,7 +12,7 @@ return [
         'reorder'   => [
             'success'   => 'Character families updated successfully.',
         ],
-        'title'     => 'Manage families',
+        'title2'     => 'Manage families',
         'helper' => 'Reorder and control which families of :name are visible or hidden from non-admins.',
     ],
     'fields'        => [
@@ -89,7 +89,7 @@ return [
         'reorder'   => [
             'success'   => 'Character races updated successfully',
         ],
-        'title'     => 'Manage races',
+        'title2'     => 'Manage races',
         'helper' => 'Reorder and control which races of :name are visible or hidden from non-admins.',
     ],
     'sections'      => [
