@@ -21,7 +21,7 @@ class Roadmap extends Component
     public function mount()
     {
         if (isset($this->idea) && ! empty($this->idea)) {
-            $feat = Feature::approved()->where('id', $this->idea)->first();
+            $feat = Feature::visible()->where('id', $this->idea)->first();
             if ($feat) {
                 $this->feature = $feat;
             }

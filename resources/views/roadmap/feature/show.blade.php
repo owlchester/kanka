@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Feature $feature */ ?>
 
-<header class="bg-purple text-white rounded-t-2xl flex flex-col gap-2">
+<header class="bg-purple text-white rounded-t-2xl flex flex-col gap-2 p-4">
     <div class="flex gap-2 w-full">
         <h4 class="text-md grow !text-left">
             {!! $feature->name !!}
@@ -20,7 +20,7 @@
         </div>
     </div>
 </header>
-<article class="max-w-2xl ">
+<article class="max-w-2xl p-4 ">
     <p>{!! nl2br($feature->description) !!}</p>
 </article>
 <footer class="flex flex-wrap gap-3 justify-between items-start p-3 md:rounded-b">

@@ -1,4 +1,4 @@
-@php $newWidgetListClass = 'btn2 btn-full'; @endphp
+@php $newWidgetListClass = 'btn2 btn-full btn-outline'; @endphp
 <x-grid>
     <a href="#" class="{{ $newWidgetListClass }}" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'recent', 'dashboard' => $dashboard]) }}" data-toggle="dialog" data-target="primary-dialog">
         <x-icon class="fa-solid fa-list" />
