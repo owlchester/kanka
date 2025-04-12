@@ -212,6 +212,7 @@ class ApiService
 
         // Campaign templates
         $campaignTemplates = AttributeTemplate::has('entity')
+            ->enabled()
             ->orderBy('name', 'ASC')
             ->pluck('name', 'id');
         $key = __('attributes/templates.list.campaign');
