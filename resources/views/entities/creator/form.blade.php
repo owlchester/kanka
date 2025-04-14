@@ -1,8 +1,8 @@
 <?php $enableNew = true; ?>
 @if (isset($entityType))
-<form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', [$campaign, 'entity_type' => $entityType]) }}" autocomplete="off" class="entity-creator-form-{{ $entityType->code }} w-full">
+    <form method="post" id="entity-creator-form" action="{{ route('entity-creator.store', [$campaign, 'entity_type' => $entityType]) }}" autocomplete="off" class="entity-creator-form-{{ $entityType->code }} w-full">
 @else
-        <form method="post" id="entity-creator-form" action="{{ route('entity-creator.post', [$campaign]) }}" autocomplete="off" class="entity-creator-form-post w-full">
+    <form method="post" id="entity-creator-form" action="{{ route('entity-creator.post', [$campaign]) }}" autocomplete="off" class="entity-creator-form-post w-full">
 @endif
     @csrf
 
@@ -20,13 +20,15 @@
     <div class="quick-creator-body flex flex-col gap-5">
 
         @includeWhen(!empty($success), 'entities.creator._created')
+
         <?php
         $fieldID = $mode === 'bulk' ? 'qq-name-field' : (!isset($entityType) ? 'qq-post-name-field' : 'qq-name-field');
         ?>
         <x-forms.field
             field="name"
             required
-            :label="__('crud.fields.name')"
+            :label="__('crud.fields.names')"
+            :helper="$mode === 'bulk' ? __('entities.creator.bulk_names') : null"
             :id="$fieldID">
             @if ($mode === 'bulk')
                 <textarea name="name"
@@ -50,6 +52,10 @@
                 <span class="duplicate-entities"></span>
             </x-alert>
         </x-forms.field>
+
+        @if ($mode === 'bulk')
+            @include('.entities.creator.forms.template')
+        @endif
 
         <a href="#" class="qq-action-more text-uppercase cursor-pointer text-sm {{ !isset($entityType) ? 'hidden' : null }}">
             <x-icon class="fa-solid fa-caret-down" />

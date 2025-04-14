@@ -102,14 +102,12 @@ class CampaignPermission extends Model
     }
 
     /**
-     * Copy an entity inventory to another target
+     * Copy an entity permission to another target
      */
-    public function copyTo(Entity $target, int $from, int $to)
+    public function copyTo(Entity $target)
     {
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;
-        $new->misc_id = $target->entity_id;
-
         return $new->save();
     }
 

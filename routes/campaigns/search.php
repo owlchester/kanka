@@ -24,6 +24,7 @@ Route::get('/w/{campaign}/search/organisation-member', 'Search\LiveController@or
 Route::get('/w/{campaign}/search/months', 'Search\CalendarController@months')->name('search.calendar-months');
 
 Route::get('/w/{campaign}/search/type/{entity_type}', [App\Http\Controllers\Search\ListController::class, 'index'])->name('search-list');
+Route::get('/w/{campaign}/search/type/{entity_type}/templates', [App\Http\Controllers\Search\TemplateController::class, 'index'])->name('search.templates');
 
 Route::get('/w/{campaign}/search/live', [App\Http\Controllers\Search\LiveController::class, 'index'])->name('search.live');
 Route::get('/w/{campaign}/search/recent', [App\Http\Controllers\Search\RecentController::class, 'index'])->name('search.recent');

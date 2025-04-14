@@ -53,6 +53,14 @@ class CharacterTrait extends Model
         return $query->where('section_id', self::SECTION_APPEARANCE);
     }
 
+    public function copyTo(int $character): self
+    {
+        $copy = $this->replicate(['character_id']);
+        $copy->character_id = $character;
+        $copy->save();
+        return $this;
+    }
+
     public function exportFields(): array
     {
         return [

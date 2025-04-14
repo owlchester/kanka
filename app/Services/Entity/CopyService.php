@@ -89,7 +89,7 @@ class CopyService
 
     protected function links(): self
     {
-        if (! $this->check('copy_links')) {
+        if (! $this->force && ! $this->check('copy_links')) {
             return $this;
         }
         foreach ($this->source->assets()->link()->get() as $link) {
@@ -101,7 +101,7 @@ class CopyService
 
     protected function abilities(): self
     {
-        if (! $this->check('copy_abilities')) {
+        if (! $this->force && ! $this->check('copy_abilities')) {
             return $this;
         }
         foreach ($this->source->abilities as $ability) {
@@ -113,11 +113,11 @@ class CopyService
 
     protected function permissions(): self
     {
-        if (! $this->check('copy_permissions')) {
+        if (! $this->force && ! $this->check('copy_permissions')) {
             return $this;
         }
         foreach ($this->source->permissions as $perm) {
-            $perm->copyTo($this->entity, $this->source->entity_id, $this->entity->entity_id);
+            $perm->copyTo($this->entity);
         }
 
         return $this;
@@ -137,7 +137,7 @@ class CopyService
 
     protected function reminders(): self
     {
-        if (! $this->check('copy_reminders')) {
+        if (! $this->force && ! $this->check('copy_reminders')) {
             return $this;
         }
         foreach ($this->source->reminders as $reminder) {
@@ -155,9 +155,7 @@ class CopyService
         /** @var CharacterTrait $trait */
         // @phpstan-ignore-next-line
         foreach ($this->source->child->characterTraits as $trait) {
-            $newTrait = $trait->replicate(['character_id']);
-            $newTrait->character_id = $this->entity->entity_id;
-            $newTrait->save();
+            $trait->copyTo($this->entity->entity_id);
         }
 
         return $this;
