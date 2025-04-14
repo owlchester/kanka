@@ -34,6 +34,7 @@ class EntityCreatorController extends Controller
     public function selection(Request $request, Campaign $campaign)
     {
         $this->campaign = $campaign;
+
         return $this->renderSelection(null);
     }
 
@@ -92,6 +93,7 @@ class EntityCreatorController extends Controller
         if ($request->get('action') === 'more') {
             return $this->renderForm(new Request, $campaign, $entityType, $success);
         }
+
         return $this->renderSelection($success);
     }
 
@@ -138,6 +140,7 @@ class EntityCreatorController extends Controller
         if ($request->get('action') === 'more') {
             return $this->renderForm(new Request, $campaign, null, $success);
         }
+
         return $this->renderSelection($success);
     }
 

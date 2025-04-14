@@ -28,8 +28,8 @@ class StoreEntity extends FormRequest
                 'integer',
                 Rule::exists('entities', 'id')->where(function ($query) {
                     return $query->where('is_template', true);
-                })
-            ]
+                }),
+            ],
         ];
     }
 }

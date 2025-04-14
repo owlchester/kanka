@@ -108,6 +108,7 @@ class CampaignPermission extends Model
     {
         $new = $this->replicate(['entity_id']);
         $new->entity_id = $target->id;
+
         return $new->save();
     }
 

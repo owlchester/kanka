@@ -18,6 +18,7 @@ class EntityImagesResource extends JsonResource
     {
         /** @var Entity $entity */
         $entity = $this->resource;
+
         return [
             'image' => [
                 'uuid' => $entity->image_uuid,

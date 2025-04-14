@@ -78,12 +78,12 @@ class ReminderService
             return $reminder
                 ->setRelation('calendar', $this->calendar)
                 ->nextUpcomingOccurrence(
-                $this->calendar->currentYear(),
-                $this->calendar->currentMonth(),
-                $this->calendar->currentDay(),
-                $this->calendar->months(),
-                $this->calendar->daysInYear()
-            );
+                    $this->calendar->currentYear(),
+                    $this->calendar->currentMonth(),
+                    $this->calendar->currentDay(),
+                    $this->calendar->months(),
+                    $this->calendar->daysInYear()
+                );
         });
     }
 
@@ -149,12 +149,12 @@ class ReminderService
             return $reminder
                 ->setRelation('calendar', $this->calendar)
                 ->mostRecentOccurrence(
-                $this->calendar->currentYear(),
-                $this->calendar->currentMonth(),
-                $this->calendar->currentDay(),
-                $this->calendar->months(),
-                $this->calendar->daysInYear()
-            );
+                    $this->calendar->currentYear(),
+                    $this->calendar->currentMonth(),
+                    $this->calendar->currentDay(),
+                    $this->calendar->months(),
+                    $this->calendar->daysInYear()
+                );
         });
     }
 }

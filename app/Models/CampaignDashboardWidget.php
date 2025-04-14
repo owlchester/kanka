@@ -263,7 +263,7 @@ class CampaignDashboardWidget extends Model
             'entityType:id,code,is_special',
             'mentions',
             'mentions.target',
-            'mentions.target.tags'
+            'mentions.target.tags',
         ];
 
         // If an entity type is provided, we can combine that with filters. We need to get the list of the misc

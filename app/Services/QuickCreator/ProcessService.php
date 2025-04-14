@@ -17,15 +17,15 @@ use App\Services\Entity\TagService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class ProcessService
 {
-    use RequestAware;
     use CampaignAware;
     use EntityTypeAware;
+    use RequestAware;
 
     /** @var Entity[]|Post[] */
     protected array $new = [];
@@ -37,11 +37,7 @@ class ProcessService
 
     protected Entity $entity;
 
-
-    public function __construct(protected CopyService $copyService)
-    {
-
-    }
+    public function __construct(protected CopyService $copyService) {}
 
     public function entity()
     {
@@ -193,6 +189,7 @@ class ProcessService
                 $links[] = '<a href="' . $new->url() . '">' . $new->name . '</a>';
             }
         }
+
         return $links;
     }
 
@@ -206,7 +203,6 @@ class ProcessService
             $rules,
         );
     }
-
 
     protected function dynamicLocation(): self
     {
@@ -380,14 +376,14 @@ class ProcessService
         if ($template->type_id !== $this->entityType->id) {
             return $this;
         }
-        if (!$this->entityType->isSpecial() && $template->isMissingChild()) {
+        if (! $this->entityType->isSpecial() && $template->isMissingChild()) {
             return $this;
         }
 
         $this->template = $template;
 
         $entityFields = [
-            'type', 'parent_id', 'entry', 'image_uuid', 'header_uuid', 'focus_x', 'focus_y', 'tooltip'
+            'type', 'parent_id', 'entry', 'image_uuid', 'header_uuid', 'focus_x', 'focus_y', 'tooltip',
         ];
         foreach ($entityFields as $field) {
             if (empty($template->{$field})) {
@@ -399,9 +395,10 @@ class ProcessService
             $this->inputFields[$field] = $template->{$field};
         }
 
-        if (!$this->entityType->isSpecial()) {
+        if (! $this->entityType->isSpecial()) {
             $this->loadTemplateChild();
         }
+
         return $this;
     }
 
@@ -410,7 +407,7 @@ class ProcessService
         // Do we do a if/else per entity type? Or try and play it by fillable?
         $fillable = $this->template->child->getFillable();
         foreach ($fillable as $field) {
-            if (empty($this->template->child->{$field}) || !empty($this->inputFields[$field])) {
+            if (empty($this->template->child->{$field}) || ! empty($this->inputFields[$field])) {
                 continue;
             }
             $this->inputFields[$field] = $this->template->child->{$field};
@@ -439,5 +436,4 @@ class ProcessService
 
         return $this;
     }
-
 }

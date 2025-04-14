@@ -26,6 +26,7 @@ class Tags extends Component
         if ($this->post->visibleTags->isEmpty()) {
             return '';
         }
+
         return view('components.posts.tags')
             ->with('tags', $this->post->visibleTags);
     }

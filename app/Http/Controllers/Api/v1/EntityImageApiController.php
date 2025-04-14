@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api\v1;
 
 use App\Exceptions\TranslatableException;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Gallery\UploadFile;
 use App\Http\Resources\Api\EntityImagesResource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Gallery\UploadService;
+use Illuminate\Http\Request;
 
 class EntityImageApiController extends Controller
 {
@@ -36,6 +36,7 @@ class EntityImageApiController extends Controller
             $image = $this->uploadService->image();
             $field = $request->filled('is_header') ? 'header_uuid' : 'image_uuid';
             $entity->update([$field => $image->id]);
+
             return new EntityImagesResource($entity);
         } catch (TranslatableException $e) {
             return response()->json(

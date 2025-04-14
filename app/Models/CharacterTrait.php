@@ -58,6 +58,7 @@ class CharacterTrait extends Model
         $copy = $this->replicate(['character_id']);
         $copy->character_id = $character;
         $copy->save();
+
         return $this;
     }
 

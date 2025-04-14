@@ -93,7 +93,7 @@ class ApiService
                 'template' => __('entities/attributes.fields.template'),
                 'load' => __('entities/attributes.actions.load'),
                 'helper' => __('entities/attributes.template.pitch', [
-                    'plugin' => '<a href="' . config('marketplace.url') . '/character-sheets">' . __('footer.plugins') . '</a>'
+                    'plugin' => '<a href="' . config('marketplace.url') . '/character-sheets">' . __('footer.plugins') . '</a>',
                 ]),
             ],
         ];
