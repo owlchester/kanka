@@ -1,5 +1,4 @@
 <?php /** @var \App\Models\Inventory $inventory */?>
-{{ csrf_field() }}
 @php
 $preset = null;
 

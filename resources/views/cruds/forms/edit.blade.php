@@ -53,7 +53,6 @@
 
                 <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
                     <div class="tab-pane flex flex-col gap-5 {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
-                        {{ csrf_field() }}
                         @include($name . '.form._entry', ['source' => null])
                     </div>
                     @includeIf($name . '.form._panes', ['source' => null])

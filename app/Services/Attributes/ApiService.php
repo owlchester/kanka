@@ -92,6 +92,9 @@ class ApiService
                 'title' => __('entities/attributes.template.load.title'),
                 'template' => __('entities/attributes.fields.template'),
                 'load' => __('entities/attributes.actions.load'),
+                'helper' => __('entities/attributes.template.pitch', [
+                    'plugin' => '<a href="' . config('marketplace.url') . '/character-sheets">' . __('footer.plugins') . '</a>'
+                ]),
             ],
         ];
     }

@@ -19,8 +19,6 @@
             <x-dialog.footer>
                 @includeIf($footer)
             </x-dialog.footer>
-            <footer class="flex flex-wrap gap-2 justify-between items-start p-4 md:p-6">
-            </footer>
         @endif
     @if (!empty($form)) </form> @else </div> @endif
 </dialog>

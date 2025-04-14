@@ -11,13 +11,14 @@ return [
     'create'        => [
         'success'   => 'Group :name created.',
         'title'     => 'New Group',
+        'helper' => 'Add a new group to :name. Markers can then be assigned to this group.',
     ],
     'delete'        => [
         'success'   => 'Group :name deleted.',
     ],
     'edit'          => [
         'success'   => 'Group :name updated.',
-        'title'     => 'Edit Group :name',
+        'title'     => 'Edit Group',
     ],
     'fields'        => [
         'is_shown'  => 'Show group markers',

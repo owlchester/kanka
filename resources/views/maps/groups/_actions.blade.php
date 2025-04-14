@@ -1,5 +1,6 @@
+
+<input id="submit-mode" type="hidden" value="true"/>
 <div class="join float-right">
-    <input id="submit-mode" type="hidden" value="true"/>
     <button class="btn2 btn-primary join-item btn-xm" id="form-submit-main" data-target="{{ $target ?? null }}">
         {{ __('crud.save') }}
     </button>

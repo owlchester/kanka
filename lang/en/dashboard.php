@@ -7,13 +7,6 @@ return [
         'join'      => 'Join',
         'unfollow'  => 'Stop following',
     ],
-    'campaigns'     => [
-        'tabs'  => [
-            'modules'   => ':count Modules',
-            'roles'     => ':count Roles',
-            'users'     => ':count Users',
-        ],
-    ],
     'dashboards'    => [
         'actions'       => [
             'edit'      => 'Edit name & permissions',
@@ -21,11 +14,12 @@ return [
             'switch'    => 'Switch to dashboard',
         ],
         'create'        => [
-            'success'   => 'New campaign dashboard :name created.',
-            'title'     => 'New Campaign Dashboard',
+            'success'   => 'New dashboard :name created.',
+            'title'     => 'New dashboard',
+            'helper' => 'Create a new dashboard for :name, and assign which roles can see it or have it as their default dashboard.',
         ],
         'custom'        => [
-            'text'  => 'You are currently editing the :name dashboard of the campaign.',
+            'text'  => 'You are currently editing the :name dashboard.',
         ],
         'default'       => [
             'text'  => 'You are currently editing the default dashboard of :campaign.',
@@ -47,8 +41,8 @@ return [
             'name'  => 'Name of the dashboard',
         ],
         'update'        => [
-            'success'   => 'Campaign dashboard :name updated.',
-            'title'     => 'Update campaign dashboard :name',
+            'success'   => 'Dashboard :name updated.',
+            'title'     => 'Update dashboard',
         ],
         'visibility'    => [
             'default'   => 'Default',
@@ -59,19 +53,6 @@ return [
     'helpers'       => [
         'follow'    => 'Following a campaign will make it appear in the campaign switcher below your campaigns.',
         'join'      => 'This campaign is open to new members. Click to apply to join it.',
-        'setup'     => 'Setup your campaign\'s dashboard.',
-    ],
-    'notifications' => [
-        'modal' => [
-            'confirm'   => 'Got it',
-            'title'     => 'Important Notification',
-        ],
-    ],
-    'recent'        => [
-        'title' => 'Entity list :name',
-    ],
-    'settings'      => [
-        'title' => 'Dashboard Setup',
     ],
     'setup'         => [
         'actions'   => [
@@ -87,7 +68,7 @@ return [
         'title'     => 'Dashboard Setup',
         'tutorial'  => [
             'blog'  => 'our tutorial',
-            'text'  => 'Need help setting up your campaign dashboard? Read :blog for some help and inspiration.',
+            'text'  => 'Need help setting up the dashboard? Read :blog for some help and inspiration.',
         ],
         'widgets'   => [
             'calendar'      => 'Calendar',
@@ -102,16 +83,12 @@ return [
     ],
     'title'         => 'Dashboard',
     'widgets'       => [
-        'actions'                   => [
-            'advanced-options'  => 'Advanced options',
-        ],
         'advanced_options_boosted'  => 'Enable more options like showing pins with a :boosted_campaign.',
         'calendar'                  => [
             'actions'           => [
                 'next'      => 'Change date to next day',
                 'previous'  => 'Change date to previous day',
             ],
-            'events_today'      => 'Today',
             'previous_events'   => 'Previous',
             'upcoming_events'   => 'Upcoming',
         ],
@@ -121,6 +98,8 @@ return [
         'create'                    => [
             'success'   => 'Widget added to the dashboard.',
             'title'     => 'New widget',
+            'helper' => 'Select a widget type to add to the :name dashboard.',
+            'helper-default' => 'Select a widget type to add to the default dashboard.',
         ],
         'delete'                    => [
             'success'   => 'Widget removed from the dashboard.',
@@ -132,7 +111,6 @@ return [
             'optional-entity'   => 'Link to entity',
             'order'             => 'Ordering',
             'size'              => 'Size',
-            'text'              => 'Text',
             'width'             => 'Width',
         ],
         'helpers'                   => [

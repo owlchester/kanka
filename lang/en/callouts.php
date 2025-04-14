@@ -25,6 +25,7 @@ return [
     'premium'   => [
         'learn-more'    => 'What are premium campaigns?',
         'limitation'    => 'To access this feature, premium features need to be enabled.',
+        'multiple'      => 'To access these features, premium features need to be enabled.',
         'title'         => 'Premium campaign feature',
         'unlock'        => 'Unlock premium features for :campaign',
     ],

@@ -2,14 +2,15 @@
 
 return [
     'create'        => [
-        'success'   => 'Weather added.',
-        'title'     => 'New weather',
+        'success'   => 'Weather information added.',
+        'title'     => 'Weather',
+        'helper' => 'Add weather information that will show up on the calendar.',
     ],
     'destroy'       => [
-        'success'   => 'Weather removed.',
+        'success'   => 'Weather information removed.',
     ],
     'edit'          => [
-        'success'   => 'Weather updated.',
+        'success'   => 'Weather information updated.',
         'title'     => 'Update Weather',
     ],
     'fields'        => [

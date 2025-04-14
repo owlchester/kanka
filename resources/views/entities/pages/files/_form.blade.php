@@ -1,5 +1,3 @@
-{{ csrf_field() }}
-
 <x-grid type="1/1">
 @if(!isset($entityAsset))
     <x-helper>

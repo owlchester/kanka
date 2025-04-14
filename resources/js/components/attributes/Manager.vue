@@ -98,6 +98,7 @@
             </button>
         </header>
         <article class="flex flex-col gap-4 p-4 md:p-6">
+            <p class="text-neutral-content" v-html="trans('templates.helper')"></p>
             <label for="template_id" v-html="trans('templates.template')"></label>
             <select v-model="template" class="w-full" id="template_id">
                 <optgroup v-for="(group, key) in templates" v-bind:label="key">

@@ -81,6 +81,7 @@ return [
             'success'   => 'Template loaded',
             'title'     => 'Load from template',
         ],
+        'pitch'     => 'Load attributes from an attribute template or plugins installed from the :plugin.',
         'success'   => 'Attribute template :name applied to :entity',
         'title'     => 'Apply an attribute template for :name',
     ],
