@@ -123,6 +123,5 @@ class ExportsTable extends Component
         }
 
         return '<i class="' . $icon . ' !mr-0"></i>';
-
     }
 }

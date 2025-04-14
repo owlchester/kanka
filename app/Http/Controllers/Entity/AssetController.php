@@ -111,7 +111,6 @@ class AssetController extends Controller
             return redirect()
                 ->route('entities.entity_assets.index', [$campaign, $entity])
                 ->with('success', trans_choice('entities/files.create.success_plural', count($files), ['count' => count($files), 'name' => $files['0']->name]));
-
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('entities.entity_assets.index', [$campaign, $entity])

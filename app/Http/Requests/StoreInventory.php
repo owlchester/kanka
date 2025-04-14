@@ -38,6 +38,5 @@ class StoreInventory extends FormRequest
             'image_uuid' => 'nullable|exists:images,id',
             'is_equipped' => 'boolean',
         ];
-
     }
 }

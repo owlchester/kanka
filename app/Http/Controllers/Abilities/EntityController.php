@@ -70,6 +70,5 @@ class EntityController extends Controller
         return redirect()->route('abilities.entities', [$campaign, 'ability' => $ability->id])
             // ->with('success', __('abilities.children.create.success', ['name' => $ability->name]));
             ->with('success', trans_choice('abilities.children.create.attach_success', $count, ['count' => $count, 'name' => $ability->name]));
-
     }
 }

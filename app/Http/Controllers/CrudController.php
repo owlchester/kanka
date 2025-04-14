@@ -463,7 +463,6 @@ class CrudController extends Controller
             $route = Breadcrumb::index($this->route);
 
             return response()->redirectTo($route);
-
         } catch (LogicException $exception) {
             if (config('app.debug')) {
                 throw $exception;

@@ -74,7 +74,6 @@ class EntityApiController extends ApiController
         $entity->update($request->all());
 
         return new Resource($entity);
-
     }
 
     public function destroy(Request $request, Campaign $campaign, Entity $entity)

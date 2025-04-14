@@ -36,7 +36,6 @@ class MigrateController extends Controller
                 ->route('maps.map_layers.edit', [$campaign, $map, $mapLayer])
                 ->with('error', $e->getTranslatedMessage());
         } catch (\Exception $e) {
-
         }
 
         return redirect()

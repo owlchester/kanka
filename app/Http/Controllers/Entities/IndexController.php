@@ -216,7 +216,6 @@ class IndexController extends Controller
             ],
             'order' => $this->filterService->order(),
         ]);
-
     }
 
     /**
