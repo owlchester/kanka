@@ -147,7 +147,7 @@ $entityTags = $post->visibleTags;
             ->reminders()
             ->has('calendar')
             ->has('calendar.entity')
-            ->with(['calendar', 'calendar.entity', 'entity'])
+            ->with(['calendar', 'calendar.entity', 'remindable'])
             ->sort(request()->only(['o', 'k']))
             ->paginate();
         @endphp
