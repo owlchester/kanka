@@ -148,7 +148,7 @@ class ReminderService
         return $reminders->sortBy(function (Reminder $reminder) {
             return $reminder
                 ->setRelation('calendar', $this->calendar)
-                ->calendarmostRecentOccurrence(
+                ->mostRecentOccurrence(
                 $this->calendar->currentYear(),
                 $this->calendar->currentMonth(),
                 $this->calendar->currentDay(),
