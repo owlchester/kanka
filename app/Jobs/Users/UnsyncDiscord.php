@@ -38,6 +38,7 @@ class UnsyncDiscord implements ShouldQueue
                 'brands fa-discord',
                 'warning',
                 ['route' => 'settings.apps']
-            ));
+            )
+        );
     }
 }

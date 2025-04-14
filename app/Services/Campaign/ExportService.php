@@ -141,10 +141,8 @@ class ExportService
                     $module['icon'] = $this->campaign->moduleIcon($entities[Str::singular($name)]);
                 }
             } catch (Exception $e) {
-
             }
             $modules[$name] = $module;
-
         }
         $this->archive->add(json_encode($modules), 'settings/modules.json');
         $this->files++;
@@ -219,7 +217,6 @@ class ExportService
             } catch (Exception $e) {
                 Log::warning('Campaign export', ['err' => 'Can\'t get campaign image', 'path' => $image]);
             }
-
         }
         $image = $this->campaign->header_image;
         if (! empty($image) && Str::contains($image, '?') && Storage::exists($image)) {

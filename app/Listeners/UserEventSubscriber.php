@@ -98,7 +98,6 @@ class UserEventSubscriber
 
                 return true;
             } catch (Exception $e) {
-
             }
         }
 

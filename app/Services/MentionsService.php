@@ -358,7 +358,6 @@ class MentionsService
                         $hiddenEntity->entityType->code . '">' .
                         Arr::get($data, 'text', $hiddenEntity->name) . '</i>';
                 }
-
             } else {
                 $routeOptions = [];
                 if (! empty($data['params'])) {

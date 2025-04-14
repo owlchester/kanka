@@ -439,7 +439,6 @@ class BulkService
             }
             $service->apply($entity, $template);
             $this->count++;
-
         }
 
         return $this->count;

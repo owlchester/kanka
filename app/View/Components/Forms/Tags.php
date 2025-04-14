@@ -44,10 +44,12 @@ class Tags extends Component
      */
     public function render(): View|Closure|string
     {
-        if ($this->allowNew && ! auth()->user()->can('create', [
+        if (
+            $this->allowNew && ! auth()->user()->can('create', [
             $this->campaign->getEntityTypes()->firstWhere('id', config('entities.ids.tag')),
             $this->campaign,
-        ])) {
+            ])
+        ) {
             $this->allowNew = false;
         }
         $this->prepareOptions();

@@ -393,7 +393,6 @@ class PermissionService
                 $this->entityTypesIds[] = $permission->entity_type_id;
             }
         } elseif ($permission->access && ! in_array($permission->entity_id, $this->entityIds)) {
-
             // This permission targets an entity directly
             $this->entityIds[] = $permission->entity_id;
 

@@ -76,7 +76,6 @@ class EntityWebhookJob implements ShouldQueue
                     [$this->entity->name, $this->username, route('entities.show', [$this->campaign->id, $this->entity])],
                     $webhook->message
                 );
-
             } else {
                 CampaignLocalization::forceCampaign($this->entity->campaign);
                 $data = [

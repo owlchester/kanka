@@ -198,7 +198,6 @@ class ChunkingService
                 );
                 // unset($tile);
                 unset($png, $image);
-
             }
         }
 

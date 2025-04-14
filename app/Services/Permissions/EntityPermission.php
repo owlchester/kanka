@@ -273,7 +273,6 @@ class EntityPermission
         $this->loadedAll = true;
         $this->cached = [];
         unset($this->roleIds, $this->userIsAdmin);
-
     }
 
     protected function userIsAdmin(): bool

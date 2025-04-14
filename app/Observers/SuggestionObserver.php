@@ -29,6 +29,5 @@ class SuggestionObserver
             $cache = app($class);
             $cache::{$call}();
         }
-
     }
 }

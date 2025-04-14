@@ -68,7 +68,6 @@ class TestWebhookJob implements ShouldQueue
                 ['Thaelia', $this->username, route('locations.index', [$campaign])],
                 $this->webhook->message
             );
-
         } else {
             $data = [
                 'event' => [

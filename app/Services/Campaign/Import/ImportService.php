@@ -340,7 +340,6 @@ class ImportService
 
             ImportIdMapper::putCustomEntityType($module['id'], $newModule->id);
             ImportIdMapper::putCustomEntityTypeName($module['code'] . '_' . $module['id'], $newModule->id);
-
         }
 
         return $this;
@@ -427,7 +426,6 @@ class ImportService
                     }
                     $this->logs[] = $count;
                 }
-
             } else {
                 if (! method_exists($mapper, 'second')) {
                     continue;

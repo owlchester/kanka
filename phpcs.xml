@@ -8,6 +8,7 @@
         <exclude name="PSR12.Classes.ClassInstantiation.MissingParentheses"/>
         <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/>
         <exclude name="Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore"/>
+        <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine"/>
     </rule>
 
     <rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/>

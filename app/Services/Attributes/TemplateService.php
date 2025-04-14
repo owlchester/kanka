@@ -300,7 +300,6 @@ class TemplateService
 
         /** @var Attribute $attribute */
         foreach ($template->entity->attributes()->orderBy('default_order', 'ASC')->get() as $attribute) {
-
             [$type, $value] = $this->randomService->randomAttribute($attribute->type_id, $attribute->value);
             $attribute->type_id = $type;
 
