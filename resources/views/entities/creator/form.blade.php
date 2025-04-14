@@ -95,7 +95,7 @@
             </div>
 
             @if ($mode !== 'bulk')
-                <button type="submit" class="btn2 btn-sm quick-creator-submit" data-entity-type="{{ $entityType->code ?? 'post' }}" title="{{ __('entities.creator.tooltips.edit') }}" name="next" value="edit">
+                <button type="submit" class="btn2 btn-sm btn-outline quick-creator-submit" data-entity-type="{{ $entityType->code ?? 'post' }}" title="{{ __('entities.creator.tooltips.edit') }}" name="next" value="edit">
                     <span>
                         {{ __('crud.edit') }}
                     </span>
