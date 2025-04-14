@@ -14,7 +14,7 @@ $hasOthers = false;
                     {{ __('crud.bulk.actions.edit') }}
                 </x-dropdowns.item>
             @elseif ($bulk === \App\Renderers\Layouts\Layout::ACTION_DELETE)
-                @if ($hasOthers) <hr class="m-0" /> @endif
+                @if ($hasOthers) <x-dropdowns.divider /> @endif
                 <x-dropdowns.item link="#" css="text-error text-error hover:bg-error hover:text-error-content datagrid-submit" :data="['action' => 'delete']" icon="trash">
                     {{ __('crud.remove') }}
                 </x-dropdowns.item>

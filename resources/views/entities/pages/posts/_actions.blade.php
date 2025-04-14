@@ -35,7 +35,7 @@
         @endif
     </x-dropdowns.item>
 @endcan
-<hr class="m-0" />
+<x-dropdowns.divider />
 <x-dropdowns.item :link="route('entities.story.reorder', [$campaign, 'entity' => $entity])" icon="fa-solid fa-arrows-v">
     {{ __('entities/story.reorder.icon_tooltip') }}
 </x-dropdowns.item>

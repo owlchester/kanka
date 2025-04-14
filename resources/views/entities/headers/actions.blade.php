@@ -63,7 +63,7 @@
                         @endif
                     </x-dropdowns.item>
                 @endcan
-                <hr class="m-0" />
+                <x-dropdowns.divider />
 
                 @can('post', [$entity])
                     <x-dropdowns.item :link="route('entities.posts.create', [$campaign, $entity])" icon="fa-solid fa-pen-to-square">
@@ -83,7 +83,7 @@
             @endif
         @endif
         @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($entity->campaign_id))
-            <hr class="m-0" />
+            <x-dropdowns.divider />
             <x-dropdowns.item link="{{ route('entities.move', [$campaign, $entity]) }}" icon="fa-regular fa-clone">
                 @can('update', $entity)
                     {{ __('crud.actions.move') }}
@@ -100,7 +100,7 @@
         @endif
 
         @if ($entity)
-                <hr class="m-0" />
+            <x-dropdowns.divider />
             <x-dropdowns.item link="{{ route('entities.html-export', [$campaign, $entity]) }}" icon="fa-solid fa-print">
                 {{ __('crud.actions.print') }}
             </x-dropdowns.item>
@@ -116,7 +116,7 @@
             @php
                 $url = route('confirm-delete', [$campaign, 'route' => route('entities.destroy', [$campaign, $entity]), 'name' => $entity->name]);
             @endphp
-            <hr class="m-0" />
+            <x-dropdowns.divider />
             <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]" icon="trash">
                 {{ __('crud.remove') }}
             </x-dropdowns.item>

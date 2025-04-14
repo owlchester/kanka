@@ -19,7 +19,7 @@
                             {{ $entityTemplate->name  }}
                         </x-dropdowns.item>
                     @endforeach
-                    <hr class="m-0" />
+                    <x-dropdowns.divider />
                 @endif
                 <x-dropdowns.item link="https://docs.kanka.io/en/latest/guides/templates.html" target="_blank" icon="fa-solid fa-external-link">
                         {{ __('helpers.entity_templates.link') }}

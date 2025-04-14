@@ -51,7 +51,7 @@
                                     :dialog="route('confirm-delete', [$campaign, 'route' => route('timelines.timeline_elements.destroy', [$campaign, $timeline, $element, 'from' => 'view']), 'name' => $element->elementName(), 'permanent' => true])"
                                     icon="trash">{{ __('crud.remove') }}
                                 </x-dropdowns.item>
-                                <hr class="m-0" />
+                                <x-dropdowns.divider />
 
                                 @php
                                     $title = '[timeline:' . $timeline->entity->id . '|anchor:timeline-element-' . $element->id . ']';

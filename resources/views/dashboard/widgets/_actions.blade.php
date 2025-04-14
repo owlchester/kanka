@@ -45,7 +45,7 @@
                 @endforeach
 
                 @can('dashboard', $campaign)
-                    <hr class="m-0">
+                    <x-dropdowns.divider />
 
                     <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}">
                         {{ __('dashboard.actions.customise') }}
@@ -85,13 +85,13 @@
             <x-dropdowns.item :link="route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign])" icon="cog">
                 {{ __('dashboard.actions.customise') }}
             </x-dropdowns.item>
-            <hr class="m-0" />
+            <x-dropdowns.divider />
 
             <x-dropdowns.item :link="route('campaigns.edit', $campaign)" icon="pencil">
                 {{ __('campaigns.show.actions.edit') }}
             </x-dropdowns.item>
 
-            <hr class="m-0" />
+            <x-dropdowns.divider />
             <x-dropdowns.item :link="route('campaign_users.index', $campaign)" icon="fa-solid fa-users">
                 {{ __('campaigns.show.tabs.members') }}
             </x-dropdowns.item>

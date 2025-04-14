@@ -77,7 +77,7 @@ const initDropdowns = () => {
         //console.log('me', e, dropdown);
         e.dataset.loaded = '1';
         tippy(e, {
-            content: '<div class="dd-menu flex flex-col gap-1 max-w-2xl">' + dropdown.innerHTML + '</div>',
+            content: '<div class="dd-menu flex flex-col max-w-2xl">' + dropdown.innerHTML + '</div>',
             theme: 'kanka-dropdown',
             placement: e.dataset.direction ?? 'bottom',
             zIndex: 890,

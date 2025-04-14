@@ -50,11 +50,11 @@
 
 /** tippy **/
 .tippy-box {
-    border-radius: 0.25rem;
+    border-radius: var(--rounded-btn, .25rem);
     --tw-drop-shadow:drop-shadow(0 1px 2px rgb(0 0 0 / .1)) drop-shadow(0 1px 1px rgb(0 0 0 / .06));
     filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
     --tw-bg-opacity: 1;
-    background-color: hsl(var(--b2)/var(--tw-bg-opacity));
+    background-color: hsl(var(--b1)/var(--tw-bg-opacity));
     --tw-text-opacity: 1;
     color: hsl(var(--bc)/var(--tw-text-opacity));
 
@@ -65,45 +65,22 @@
 }
 .tippy-box[data-placement^='top'] > .tippy-arrow::before {
     --tw-bg-opacity: 1;
-    border-top-color: hsl(var(--b2)/var(--tw-bg-opacity));
+    border-top-color: hsl(var(--b1)/var(--tw-bg-opacity));
 }
 .tippy-box[data-placement^='bottom'] > .tippy-arrow::before {
     --tw-bg-opacity: 1;
-    border-bottom-color: hsl(var(--b2)/var(--tw-bg-opacity));
+    border-bottom-color: hsl(var(--b1)/var(--tw-bg-opacity));
 }
 .tippy-box[data-placement^='left'] > .tippy-arrow::before {
     --tw-bg-opacity: 1;
-    border-left-color: hsl(var(--b2)/var(--tw-bg-opacity));
+    border-left-color: hsl(var(--b1)/var(--tw-bg-opacity));
 }
 .tippy-box[data-placement^='right'] > .tippy-arrow::before {
     --tw-bg-opacity: 1;
-    border-right-color: hsl(var(--b2)/var(--tw-bg-opacity));
+    border-right-color: hsl(var(--b1)/var(--tw-bg-opacity));
 }
 .tippy-box[data-theme~="kanka-dropdown"] {
     --n: var(--b1);
-
-    .dropdown-elements {
-        min-width: 10rem;
-        li {
-            a {
-                display: flex;
-                padding: .3rem .25rem;
-                gap: 0.25rem;
-                align-items: center;
-                i {
-                    width: 1.25rem;
-                }
-                .keyboard-shortcut {
-                    display: flex;
-                    justify-self: end
-                }
-            }
-        }
-        li.divider {
-            margin: 0.1rem 0;
-            height: 1px;
-        }
-    }
 }
 
 .tippy-box[data-theme~="entity-tooltip"] {

@@ -300,7 +300,7 @@ class SidebarService
                 'label' => 'entities.dice_rolls',
             ],
             'relations' => [
-                'icon' => 'fa-duotone fa-link',
+                'icon' => 'fa-duotone fa-circle-nodes',
                 'label' => 'sidebar.relations',
                 'perm' => 'relations',
                 'module' => false,

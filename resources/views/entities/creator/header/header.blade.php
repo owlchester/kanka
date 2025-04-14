@@ -22,7 +22,7 @@
                         @foreach ($orderedEntityTypes as $dropdownEntityType)
                             @include('entities.creator.header._dropdown')
                         @endforeach
-                        <hr class="m-0" />
+                        <x-dropdowns.divider />
                         @php $data = ['toggle' => 'entity-creator', 'url' => route('entity-creator.selection', $campaign), 'entity-type' => 'return']; @endphp
                         <x-dropdowns.item link="#" icon="fa-solid fa-arrow-left" :data="$data">
                             {{ __('entities.creator.back') }}

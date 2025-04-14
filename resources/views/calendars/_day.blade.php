@@ -51,7 +51,7 @@
                         </x-dropdowns.item>
 
                         @if (!\Illuminate\Support\Arr::get($day, 'isToday', false))
-                            <hr class="m-0" />
+                            <x-dropdowns.divider />
                             @php $data = ['date' => $day['date']]; @endphp
                             <x-dropdowns.item :link="route('calendars.today', $routeOptions)" :data="$data" icon="check">
                                 {{ __('calendars.actions.set_today') }}

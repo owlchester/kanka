@@ -63,7 +63,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
                             :dialog="route('campaign_boosts.edit', [$boost])">
                             {!! __('settings/boosters.superboost.title', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
                         </x-dropdowns.item>
-                        <hr class="m-0" />
+                        <x-dropdowns.divider />
                         <x-dropdowns.item
                             link="#"
                             :dialog="route('campaign_boost.confirm-destroy', $boost)">

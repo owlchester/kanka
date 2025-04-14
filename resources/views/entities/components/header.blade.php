@@ -73,7 +73,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                         target="_blank">
                         {{ __('entities/image.actions.view') }}
                     </x-dropdowns.item>
-                    <hr class="m-0" />
+                    <x-dropdowns.divider />
                     <x-dropdowns.item
                         icon="fa-solid fa-shuffle"
                         :link="route('entities.image.replace', [$campaign, $entity])"

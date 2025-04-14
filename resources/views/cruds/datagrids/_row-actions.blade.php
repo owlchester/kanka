@@ -12,12 +12,14 @@
     <div class="dropdown-menu hidden" role="menu" id="datagrid-submenu-{{ $model->id }}">
         @foreach ($actions as $action)
             @if (is_null($action))
-                <hr class="m-0" />
+                <x-dropdowns.divider />
             @elseif (is_array($action))
-                <a href="{{ $action['route'] }}" class="p-1 flex items-center gap-2 text-sm text-base-content font-normal">
-                    <x-icon class="{{ $action['icon'] }}" />
+                <x-dropdowns.item :link="$action['route']" :icon="$action['icon']">
                     {{ __($action['label']) }}
-                </a>
+                </x-dropdowns.item>
+{{--                <a href="{{ $action['route'] }}" class="p-1 flex items-center gap-2 text-sm text-base-content font-normal">--}}
+{{--                    <x-icon class="{{ $action['icon'] }}" />--}}
+{{--                </a>--}}
             @endif
         @endforeach
     </div>

@@ -99,7 +99,7 @@ if ($model instanceof \App\Models\Relation && auth()->user()->can('delete', $mod
         <div class="dropdown-menu hidden" role="menu" id="batch-actions-submenu">
             @foreach ($dropdownActions as $dropdownAction)
                 @if ($dropdownAction === 'divider')
-                    <hr class="m-0" />
+                    <x-dropdowns.divider />
                     @continue
                 @elseif (!is_array($dropdownAction))
                     @continue
