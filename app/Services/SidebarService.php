@@ -24,6 +24,7 @@ class SidebarService
         'dashboard' => [
             null,
             'dashboard',
+            'dashboard-setup'
         ],
         'characters' => [
             'characters',
