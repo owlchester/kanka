@@ -124,8 +124,8 @@ if (isset($model) && $model->isChunked()) {
                     <?php
                         //get the current center marker or null
                         $preset = null;
-                        if (isset($model) && $model->center_marker) {
-                            $preset = $model->center_marker;
+                        if (isset($model) && $model->centerMarker) {
+                            $preset = $model->centerMarker;
                         }
                     ?>
                     <x-forms.foreign

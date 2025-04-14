@@ -278,8 +278,10 @@ class Quest extends MiscModel
      */
     public function showProfileInfo(): bool
     {
-        if ($this->instigator ||
-            ! empty($this->date) || ! empty($this->calendarReminder()) || ! empty($this->location)) {
+        if (
+            $this->instigator ||
+            ! empty($this->date) || ! empty($this->calendarReminder()) || ! empty($this->location)
+        ) {
             return true;
         }
 

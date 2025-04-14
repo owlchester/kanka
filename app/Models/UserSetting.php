@@ -111,13 +111,11 @@ trait UserSetting
         foreach ($data as $key => $value) {
             if (empty($value) && isset($settings[$key])) {
                 unset($settings[$key], $settings[$key]);
-
             } elseif (! empty($value)) {
                 if ($key == 'link') {
                     $settings[$key] = Purify::clean($value, ['URI.AllowedSchemes' => ['https']]); // Allows https URLs
                 } else {
                     $settings[$key] = Purify::clean($value);
-
                 }
             }
         }

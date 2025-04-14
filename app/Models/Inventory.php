@@ -115,6 +115,5 @@ class Inventory extends Model
         }
 
         return $new->save();
-
     }
 }

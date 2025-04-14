@@ -6,6 +6,8 @@
         <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceBefore"/>
         <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceAfter"/>
         <exclude name="PSR12.Classes.ClassInstantiation.MissingParentheses"/>
+        <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/>
+        <exclude name="Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore"/>
     </rule>
 
     <rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/>

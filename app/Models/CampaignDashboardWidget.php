@@ -166,7 +166,6 @@ class CampaignDashboardWidget extends Model
             $newTag->widget_id = $new->id;
             $newTag->save();
         }
-
     }
 
     public function hasAdvancedOptions(): bool

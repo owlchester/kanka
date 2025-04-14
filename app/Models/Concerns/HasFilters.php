@@ -689,7 +689,6 @@ trait HasFilters
             }
 
             return;
-
         } elseif ($this->filterOption('children')) {
             /** @var Race|null $race */
             $race = Race::find($value);
@@ -723,7 +722,6 @@ trait HasFilters
                 . ' ' . /* $this->subPrivacy('and cf.is_private') . */ ') = 0');
 
             return;
-
         } elseif ($this->filterOption('children')) {
             /** @var Family|null $family */
             $family = Family::find($value);

@@ -136,7 +136,6 @@ class Organisation extends MiscModel
             }
 
             return $query;
-
         } elseif ($filter === FilterOption::EXCLUDE) {
             return $query
                 ->whereRaw('(select count(*) from organisation_member as memb where memb.organisation_id = ' .
