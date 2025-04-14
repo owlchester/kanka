@@ -21,4 +21,8 @@ return [
         'first'         => 'First',
         'last'          => 'Last',
     ],
+    'visibility' => [
+        'title' => 'Post visibility',
+        'helper' => 'Change the visibility for the post :name.',
+    ],
 ];

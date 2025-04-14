@@ -29,7 +29,7 @@ class VisibilityController extends Controller
     {
         $this->authorize('post', [$entity, 'edit', $post]);
 
-        return view('entities.components.posts.visibility', [
+        return view('entities.pages.posts.dialogs.visibility', [
             'campaign' => $campaign,
             'post' => $post,
             'entity' => $entity,
