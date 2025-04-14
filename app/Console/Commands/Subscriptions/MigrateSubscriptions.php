@@ -67,7 +67,6 @@ class MigrateSubscriptions extends Command
                     $this->count++;
                 }
             });
-
     }
 
     protected function map(string $price): string
