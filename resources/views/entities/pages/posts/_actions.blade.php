@@ -35,6 +35,11 @@
         @endif
     </x-dropdowns.item>
 @endcan
+@can('update', $entity)
+    <x-dropdowns.item :link="route('entities.posts.logs', [$campaign, $entity, $post])" icon="fa-regular fa-history">
+        {{ __('crud.history.view') }}
+    </x-dropdowns.item>
+@endcan
 <hr class="m-0" />
 <x-dropdowns.item :link="route('entities.story.reorder', [$campaign, 'entity' => $entity])" icon="fa-solid fa-arrows-v">
     {{ __('entities/story.reorder.icon_tooltip') }}
