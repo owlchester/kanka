@@ -29,7 +29,7 @@ class PostLoggerService
     public function postDirty(Post $post): array
     {
         $dirty = $post->getDirty();
-        $ignoredAttributes = ['created_at', 'updated_at', 'updated_by', 'deleted_by', 'deleted_at'];
+        $ignoredAttributes = ['created_at', 'updated_at', 'updated_by', 'deleted_by', 'deleted_at', 'words'];
         foreach ($dirty as $attribute => $value) {
             // If the model has this attribute as ignored for logs, skip it
             if (in_array($attribute, $ignoredAttributes)) {
