@@ -23,6 +23,17 @@
             'field' => 'entity_type_id'
         ],
         [
+            'label' => __('attribute_templates.fields.is_enabled'),
+            'field' => 'is_enabled',
+            'render' => function($model) {
+                if ($model->is_enabled) {
+                    return '<i class="fa-solid fa-check" title="' . __('attribute_templates.fields.is_enabled') . '"></i>';
+                }
+                return '';
+            },
+
+        ],
+        [
             'type' => 'is_private',
         ]
     ])

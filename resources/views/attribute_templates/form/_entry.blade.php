@@ -8,4 +8,13 @@
             'model' => (isset($model) && $model->entityType ? $model->entityType : FormCopy::field('entityType')->related())
         ], 'label' => 'attribute_templates.fields.auto_apply'])
     </x-forms.field>
+
+    <x-forms.field field="enabled" :label=" __('attribute_templates.fields.is_enabled')">
+        <input type="hidden" name="is_enabled" value="0" />
+        <x-checkbox :text="__('attribute_templates.hints.is_enabled')">
+            <input type="checkbox" name="is_enabled" value="1" @if (isset($model) && !$model->is_enabled) @else checked="checked" @endif />
+        </x-checkbox>
+    </x-forms.field>
+
+
 </x-grid>
