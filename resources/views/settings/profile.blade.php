@@ -92,9 +92,10 @@
                 <x-slot name="title">
                     Reset Tutorials
                 </x-slot>
+                <p>This will reset all tutorials, and make all the dismissible helper texts reappear.</p>
                 <x-form :action="['tutorials.reset']" method="PATCH">
-                    <p>This will reset all tutorials, and make all the dismissible helper texts reappear.</p>
-                    <x-buttons.confirm type="danger">
+                    <x-buttons.confirm type="danger" outline>
+                        <x-icon class="trash" />
                         Reset all tutorials
                     </x-buttons.confirm>
                 </x-form>

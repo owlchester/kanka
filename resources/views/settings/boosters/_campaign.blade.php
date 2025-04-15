@@ -87,11 +87,16 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
         @else
             @if (!$campaign->premium())
                 <a href="#" class="btn2 btn-outline btn-sm" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign]) }}">
+                    <x-icon class="premium" />
                     {!! __('settings/premium.actions.unlock', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
                 </a>
             @elseif (auth()->user()->can('destroy', $boost))
                 <a href="#" class="btn2 btn-error btn-outline btn-sm" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_boost.confirm-destroy', $boost) }}">
+                    <x-icon class="trash" />
+                    <span class="hidden lg:inline">
                     {!! __('settings/premium.actions.remove', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
+                    </span>
+                    <span class="lg:hidden">{{ __('crud.remove') }}</span>
                 </a>
             @endif
         @endif
