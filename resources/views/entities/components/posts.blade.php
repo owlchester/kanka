@@ -54,7 +54,7 @@ $postCount = 0;
     @if ($posts->currentPage() < $posts->lastPage())
         <div class="text-center">
             @if (auth()->check())
-            <a href="#" class="btn2  btn-sm story-load-more" data-url="{{ route('entities.story.load-more', [$campaign, $entity, 'page' => $posts->currentPage() + 1]) }}">
+            <a href="#" class="btn2 btn-sm story-load-more" data-url="{{ route('entities.story.load-more', [$campaign, $entity, 'page' => $posts->currentPage() + 1]) }}">
                 <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> {{ __('entities/story.actions.load_more') }}
             </a>
 

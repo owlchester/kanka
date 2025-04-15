@@ -185,8 +185,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
                 <div class="col-span-2 md:col-span-1 flex items-center gap-2">
                     <div class="flex-none">
                         @if ($member->user->hasAvatar())
-                            <div class="rounded-full w-8 h-8 cover-background" style="background-image: url('{{ $member->user->getAvatarUrl() }}')" title="{{ $member->user->name }}">
-                            </div>
+                            <x-users.avatar :user="$member->user" class="w-8 h-8" />
                         @else
                             <div class="rounded-full w-8 h-8 cover-background bg-neutral text-neutral-content uppercase flex items-center justify-center">
                                 {{ $member->user->initials() }}

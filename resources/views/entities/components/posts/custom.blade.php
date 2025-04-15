@@ -8,12 +8,12 @@
 $entityTags = $post->visibleTags;
 ?>
 <article id="post-{{ $post->id }}" class="flex flex-col gap-2 post-block post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}" data-word-count="{{ $post->words }}">
-    <div class="flex gap-2 items-center">
-        <h3 class="grow" >
+    <div class="flex gap-2 items-center justify-between">
+        <h3 class="" >
             {{ $post->name }}
         </h3>
-        <div class="post-buttons flex items-center gap-2 flex-wrap justify-end">
-            @if (auth()->check())
+        <div class="post-buttons flex items-center gap-2 flex-wrap">
+            @auth
                 @include('icons.visibility', ['icon' => $post->visibilityIcon('')])
                 <div class="dropdown">
                     <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-tree="escape">

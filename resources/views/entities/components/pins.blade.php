@@ -12,13 +12,13 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
 
     @if ($forceShow || $entity->hasPins())
         <div class="col-span-2 sidebar-section-box entity-pins overflow-hidden flex flex-col gap-2 {{ $entity->hasPins() ? '' : 'entity-empty-pin' }}">
-            <div class="sidebar-section-title cursor-pointer text-lg user-select border-b element-toggle flex items-center gap-2" data-animate="collapse" data-target="#sidebar-pinned-elements">
-                <x-icon class="fa-solid fa-chevron-up icon-show" />
-                <x-icon class="fa-solid fa-chevron-down icon-hide" />
-
-                <span class="grow">{{ __('entities/pins.title') }}</span>
-
-                <a href="https://docs.kanka.io/en/latest/features/profile-sidebar.html" target="_blank" aria-label="{{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}" data-toggle="tooltip" data-title="{{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}">
+            <div class="sidebar-section-title cursor-pointer user-select border-b element-toggle flex items-center gap-2 justify-between group" data-animate="collapse" data-target="#sidebar-pinned-elements">
+                <div>
+                    <x-icon class="fa-solid fa-chevron-up icon-show transition-transform duration-200 group-hover:-translate-y-0.5" />
+                    <x-icon class="fa-solid fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
+                    <span class="text-lg ">{{ __('entities/pins.title') }}</span>
+                </div>
+                <a href="https://docs.kanka.io/en/latest/features/profile-sidebar.html" aria-label="{{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}" data-toggle="tooltip" data-title="{{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}" class="">
                     <x-icon class="fa-solid fa-question-circle" />
                 </a>
             </div>

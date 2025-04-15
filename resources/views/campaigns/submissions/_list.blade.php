@@ -6,7 +6,7 @@
     @foreach($submissions as $application)
         <div class="bg-base-100 shadow-xs hover:shadow rounded-xl flex p-4 items-center justify-center gap-3">
             @if ($application->user->hasAvatar())
-                <div class="rounded-full h-10 w-10 cover-background flex-none" style="background-image: url('{!! $application->user->getAvatarUrl() !!}')" data-title="{{ $application->user->name }}"></div>
+                <x-users.avatar :user="$application->user" class="h-10 w-10" />
             @else
                 <div class="rounded-full bg-base-300 h-8 w-8"></div>
             @endif

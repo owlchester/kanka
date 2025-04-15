@@ -10,7 +10,7 @@ $conversation = $entity->child;
     <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity">
         <span class="" data-toggle="tooltip" data-title="{{ __('conversations.tabs.participants') }}">
             <x-badge>
-                <x-icon class="fa-solid fa-users" />
+                <x-icon class="fa-regular fa-users" />
                 {{ $conversation->participants()->count() }}
             </x-badge>
         </span>
@@ -49,7 +49,7 @@ $conversation = $entity->child;
                 <div class="flex gap-2 items-center">
                 @if (!empty($message->user_id))
                     @if ($message->user->hasAvatar())
-                    <img class="cover-background w-6 h-6 rounded-full" src="{{ $message->user->getAvatarUrl() }}" alt="{{ $message->user->name }}">
+                        <x-users.avatar :user="$message->user" class="w-6 h-6" />
                     @endif
                 @elseif (!empty($message->character_id))
                     <img class="entity-image cover-background w-6 h-6 rounded-full" src="{{ \App\Facades\Avatar::entity($message->character->entity)->fallback()->size(40)->thumbnail() }}" alt="{{ $message->character->name }}">

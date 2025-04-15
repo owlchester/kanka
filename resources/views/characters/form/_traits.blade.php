@@ -31,7 +31,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                     </x-grid>
                 @endforeach
             </div>
-            <button class="btn2 btn-sm btn-block dynamic-row-add" data-template="template_appearance" data-target="character-appearance">
+            <button class="btn2 btn-sm btn-outline btn-block dynamic-row-add" data-template="template_appearance" data-target="character-appearance">
                 <x-icon class="plus" />
                 {{ __('characters.actions.add_appearance') }}
             </button>
@@ -76,7 +76,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                     </div>
                 @endforeach
             </div>
-            <button class="btn2 btn-sm btn-block dynamic-row-add" data-template="template_personality" data-target="character-personality">
+            <button class="btn2 btn-sm btn-outline btn-block dynamic-row-add" data-template="template_personality" data-target="character-personality">
                 <x-icon class="plus" />
                 {{ __('characters.actions.add_personality') }}
             </button>

@@ -7,7 +7,7 @@
 
         <div class="flex flex-col gap-4">
             @if ($application->user->hasAvatar())
-                <div class="rounded-full h-14 w-14 cover-background flex-none" style="background-image: url('{!! $application->user->getAvatarUrl(56) !!}')" data-title="{{ $application->user->name }}"></div>
+                <x-users.avatar :user="$application->user" class="h-14 w-14" size="80" />
             @endif
 
             <div class="flex items-end gap-5">
@@ -17,9 +17,7 @@
                 </span>
             </div>
 
-            <div class="text-neutral-content">
-                <p class="text-neutral-content">{!! $application->text !!}</p>
-            </div>
+            <p class="text-neutral-content">{!! $application->text !!}</p>
 
             <x-forms.field
                 field="reason"

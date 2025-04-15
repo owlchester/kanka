@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\EntityLog $log */ ?>
 <div class="entity-logs">
     <div class="flex flex-col gap-2 lg:gap-5">
         <x-form :action="['entities.logs', $campaign, $entity]" method="GET">
@@ -29,12 +30,10 @@
                         </span>
                     </div>
                 </div>
-                <div class="flex gap-2">
-                    <div class="grow log-author">
+                <div class="flex gap-2 justify-between">
+                    <div class="log-author">
                         @if ($log->user)
-                            <a href="{{  route('users.profile', $log->user) }}">
-                                {!! $log->user->name !!}
-                            </a>
+                            <x-users.link :user="$log->user" />
                         @else
                             <span class="text-italic unknown-author">
                                 {{  __('crud.history.unknown') }}
@@ -47,14 +46,14 @@
                             </span>
                         @endif
                     </div>
-                    <div class="flex-0">
+                    <div class="">
                         @if ($campaign->superboosted() && !empty($log->changes))
-                            <a href="#log-cta-{{ $log->id }}" data-animate="collapse">
+                            <a href="#log-cta-{{ $log->id }}" data-animate="collapse" class="btn2 btn-xs btn-outline">
                                 <x-icon class="fa-solid fa-eye" />
                                 {{ __('entities/logs.actions.reveal') }}
                             </a>
                         @elseif (!$campaign->superboosted())
-                            <a href="#log-cta-{{ $log->id }}" data-animate="collapse">
+                            <a href="#log-cta-{{ $log->id }}" data-animate="collapse" class="btn btn-sm btn-outline">
                                 <x-icon class="fa-solid fa-eye" />
                                 {{ __('entities/logs.actions.reveal') }}
                             </a>
