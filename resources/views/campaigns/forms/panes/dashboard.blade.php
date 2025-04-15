@@ -26,11 +26,11 @@
                         <input type="text" name="header_image_url" value="{{ old('header_image_url') }}" maxlength="255" class="w-full" placeholder="{{ __('crud.placeholders.image_url') }}" />
                     </x-forms.field>
 
-                    <p class="text-neutral-content m-0">
+                    <x-slot name="helper">
                         {{ __('crud.hints.image_limitations', ['formats' => 'PNG, JPG, GIF, WebP', 'size' => Limit::readable()->upload()]) }}
                         {{ __('crud.hints.image_recommendation', ['width' => '1200', 'height' => '400']) }}
                         @include('cruds.fields.helpers.share', ['max' => 25])
-                    </p>
+                    </x-slot>
                 </div>
                 <div class="basis-1/4 preview">
                     @if (!empty($model->header_image))

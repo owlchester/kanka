@@ -230,7 +230,7 @@ return [
         'calendar_date'         => 'A calendar date allows easy filtering in lists, and also maintains a reminder in the selected calendar.',
         'image_dimension'       => 'Recommended dimensions: :dimension pixels.',
         'image_limitations'     => 'Supported formats: :formats. Max file size: :size.',
-        'image_recommendation'  => 'Recommended dimensions: :width by :height px.',
+        'image_recommendation'  => 'Recommended dimensions: :width by :height pixels.',
         'is_star'               => 'Pinned elements will appear on the entity\'s overview page.',
         'tooltip'               => 'Replace the automatically generated tooltip with the following contents. Any HTML code will be stripped, but you can still mention other entities using advanced mentions.',
     ],

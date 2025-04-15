@@ -59,7 +59,7 @@ return [
         'dashboard'                         => 'Customise the way the campaign dashboard widget is displayed by filling out the following fields.',
         'entity_count_v3'                   => 'This number is recalculated every :amount hours.',
         'entity_privacy'                    => 'When creating a new entity as an admin, select the default privacy setting of the new entity.',
-        'excerpt'                           => 'The contents of this field will be displayed on the dashboard in the campaign header widget, so write a few sentences introducing your world. If this field is empty, the first 1000 characters of the campaign\'s entry field will be used instead.',
+        'excerpt'                           => 'The contents of this field will be displayed on the dashboard in the campaign header widget, so write a few sentences introducing your world. If this field is empty, the first 1000 characters of the campaign\'s description field will be used instead.',
         'gallery_visibility'                => 'Default Visibility value when uploading images to the gallery.',
         'header_image'                      => 'Image displayed as a background in the campaign header dashboard widget.',
         'hide_history'                      => 'If enabled, only members of the campaign\'s :admin role will have access to an entity\'s history (log of changes).',
