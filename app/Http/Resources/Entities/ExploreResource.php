@@ -4,6 +4,7 @@ namespace App\Http\Resources\Entities;
 
 use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
+use App\Http\Resources\EntityTagResource;
 use App\Http\Resources\EntityTypeResource;
 use App\Models\Entity;
 use Illuminate\Http\Request;
@@ -25,6 +26,15 @@ class ExploreResource extends JsonResource
         $attributes = [];
         if ($entity->is_private) {
             $attributes[] = 'private';
+        }
+        if ($entity->isCharacter() && $entity->character->isDead()) {
+            $attributes[] = 'dead';
+        } elseif ($entity->isOrganisation() && $entity->organisation->isDefunct()) {
+            $attributes[] = 'defunct';
+        } elseif ($entity->isCreature() && $entity->creature->isExtinct()) {
+            $attributes[] = 'extinct';
+        } elseif ($entity->isQuest() && $entity->quest->isCompleted()) {
+            $attributes[] = 'completed';
         }
 
         $routeParams = [$campaign, $entity->entityType];
@@ -52,11 +62,45 @@ class ExploreResource extends JsonResource
                 'tooltip' => route('entities.tooltip', [$campaign, $entity]),
                 'show' => route('entities.show', [$campaign, $entity]),
                 'children' => route('entities.index', [$campaign, $entity->entityType, 'parent_id' => $entity->id]),
+                'children_api' => route('entities.index-api', [$campaign, $entity->entityType, 'parent_id' => $entity->id, 'children' => true]),
                 'parent' => $routeBack,
             ],
+            'tags' => $this->tags(),
             'links' => $links,
         ];
 
         return $data;
+    }
+
+    protected function css(): ?string
+    {
+        /** @var Entity $entity */
+        $entity = $this->resource;
+
+        if ($entity->isCharacter() && $entity->character->isDead()) {
+            return 'dead';
+        }
+        return null;
+    }
+
+    protected function tags(): array
+    {
+        /** @var Entity $entity */
+        $entity = $this->resource;
+
+        $tags = [];
+        $campaign = CampaignLocalization::getCampaign();
+        foreach ($entity->visibleTags as $tag) {
+            $tags[] = [
+                'id' => $tag->id,
+                'urls' => [
+                    'show' => route('entities.show', [$campaign, $tag->entity]),
+                ],
+                'name' => $tag->name,
+                'colour' => $tag->colourClass(),
+                'shortname' => $tag->shortname()
+            ];
+        }
+        return $tags;
     }
 }

@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
@@ -282,5 +283,10 @@ class Tag extends MiscModel
             'is_auto_applied',
             'is_hidden',
         ];
+    }
+
+    public function shortname(): string
+    {
+        return grapheme_extract($this->name, 1);
     }
 }

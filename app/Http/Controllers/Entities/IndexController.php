@@ -49,6 +49,7 @@ class IndexController extends Controller
         $this->filterService->request($request)->entityType($entityType)->build();
 
         $nested = $this->isNested();
+        $mode = $this->layoutMode();
 
         $base = Entity::inTypes($entityType->id)
             ->select([
@@ -81,9 +82,9 @@ class IndexController extends Controller
         return view('entities.index.index')
             ->with('campaign', $campaign)
             ->with('entityType', $entityType)
-            ->with('mode', 'grid')
+            ->with('mode', $mode)
             ->with('parent', $parent)
-            ->with('forceMode', 'grid')
+            //->with('forceMode', 'grid')
             ->with('filterService', $this->filterService)
             ->with('nestable', $nested)
             ->with('templates', new Collection);
@@ -112,14 +113,19 @@ class IndexController extends Controller
         $this->filterService->request($request)->entityType($entityType)->build();
 
         $nested = $this->isNested();
+        $layout = $this->layoutMode();
 
+        $with = ['entityType', 'image'];
+        if ($this->entityType->isStandard()) {
+            $with[] = $this->entityType->code;
+        }
         $base = Entity::inTypes($entityType->id)
             ->select([
-                'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
+                'entities.id', 'entities.name', 'entities.type', 'entities.is_private', 'entities.entity_id',
                 'entities.type_id', 'entities.parent_id',
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y', 'entities.image_path',
             ])
-            ->with(['entityType', 'image'])
+            ->with($with)
             ->withCount('children')
             ->search($this->filterService->search())
             ->order($this->filterService->order())
@@ -165,6 +171,8 @@ class IndexController extends Controller
             'actions' => __('crud.actions.actions'),
             'flatten' => __('datagrids.modes.flatten'),
             'nest' => __('datagrids.modes.nested'),
+            'layout_grid' => __('datagrids.modes.grid'),
+            'layout_table' => __('datagrids.modes.table'),
             'bulkEdit' => __('crud.bulk.actions.edit'),
             'bulkRemove' => __('crud.remove'),
             'bulkPermissions' => __('crud.bulk.actions.permissions'),
@@ -176,9 +184,6 @@ class IndexController extends Controller
         ];
 
         $bookmarkable = $this->filterService->activeFiltersCount() > 0 && auth()->check() && auth()->user()->can('create', Bookmark::class) && ! $request->has('bookmark');
-
-        $toggleParams = [$campaign, $entityType, 'n' => ! $nested];
-        $toggleRoute = route('entities.index', $toggleParams);
 
         return response()->json([
             'parent' => $parent ? new ExploreResource($parent) : null,
@@ -251,5 +256,41 @@ class IndexController extends Controller
 
         // Else use the user's preferred stacking for this entity type
         return Arr::get(auth()->user()->settings, $key, true);
+    }
+
+    /**
+     * Determine if the current layout should be grid or table
+     */
+    protected function layoutMode(): string
+    {
+        $key = $this->entityType->code . '_layout';
+        if ($this->request->has('m') && in_array($this->request->get('m'), ['grid', 'table'])) {
+            $new = $this->request->get('m', 'grid');
+
+            if (auth()->guest()) {
+                Session::put($key, $new);
+            } else {
+                $settings = auth()->user()->settings;
+                if (auth()->check() && Arr::get($settings, $key) != $new) {
+                    $settings = auth()->user()->settings;
+                    if ($new === 'grid') {
+                        unset($settings[$key]);
+                    } else {
+                        $settings[$key] = 'table';
+                    }
+                    auth()->user()->settings = $settings;
+                    auth()->user()->updateQuietly();
+                }
+            }
+
+            return $new;
+        }
+
+        if (auth()->guest()) {
+            return Session::get($key, 'grid');
+        }
+
+        // Else use the user's preferred stacking for this entity type
+        return Arr::get(auth()->user()->settings, $key, 'grid');
     }
 }

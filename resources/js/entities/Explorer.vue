@@ -80,15 +80,25 @@
                     </div>
                 </div>
 
-                <button class="btn2" v-if="nesting">
-                    <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
-                </button>
-                <button @click="switchMode()" class="btn2" v-if="nested && !nesting" :title="i18n.flatten">
-                    <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
-                </button>
-                <button @click="switchMode()" class="btn2" v-else-if="!nesting" :title="i18n.nest">
-                    <i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i>
-                </button>
+                <div v-if="entityType.is_nested">
+                    <button class="btn2" v-if="nesting">
+                        <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
+                    </button>
+                    <button @click="switchMode()" class="btn2" v-if="nested && !nesting" :title="i18n.flatten">
+                        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                    </button>
+                    <button @click="switchMode()" class="btn2" v-else-if="!nesting" :title="i18n.nest">
+                        <i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div v-if="entityType.has_table">
+                    <button @click="switchLayout()" class="btn2" v-if="isGrid()" :title="i18n.layout_table">
+                        <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
+                    </button>
+                    <button @click="switchLayout()" class="btn2" v-else :title="i18n.layout_table">
+                        <i class="fa-solid fa-grid " aria-hidden="true"></i>
+                    </button>
+                </div>
                 <div class="join"  v-if="hasPermissions() && permissions.create">
                     <a :href="urls.create" class="btn2 btn-primary join-item btn-new-entity">
                         <i class="fa-regular fa-plus" aria-hidden="true"></i>
@@ -194,7 +204,7 @@
             </div>
         </div>
         <div class="flex gap-1 items-start">
-            <div class="entities-grid flex flex-wrap gap-3 lg:gap-5">
+            <div :class="gridLayout()">
                 <a v-if="parent" :href="parent.urls.parent" class="entity w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-xs hover:shadow sm">
                     <div class="w-46 flex items-center justify-center grow  text-6xl">
                         <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
@@ -210,6 +220,7 @@
                     :is-parent="false"
                     :i18n="i18n"
                     :selecting="selecting"
+                    :layout="layout"
                 >
                 </entities-entity>
 
@@ -255,6 +266,7 @@ import { TailwindPagination } from 'laravel-vue-pagination';
 const props = defineProps<{
     api: string,
     module: string,
+    mode: string,
 }>()
 
 const entities = ref([])
@@ -280,8 +292,10 @@ const templates = ref([])
 const selecting = ref(false)
 const i18n = ref({})
 const bookmarkable = ref(false)
+const layout = ref('grid');
 
 onMounted(() => {
+    layout.value = props.mode;
     fetch(props.api)
         .then(response => response.json())
         .then(response => {
@@ -345,7 +359,20 @@ const switchMode = () => {
     const currentUrl = new URL(window.location.href);
     currentUrl.searchParams.set('n', nested.value ? 1 : 0);
     window.history.pushState({}, '', currentUrl);
+}
 
+const switchLayout = () => {
+    let url = props.api;
+    if (isGrid()) {
+        layout.value = 'table';
+    } else {
+        layout.value = 'grid';
+    }
+    loadEntities(url + '?m=' + layout.value);
+
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.set('m', layout.value);
+    window.history.pushState({}, '', currentUrl);
 }
 
 const getEntities = async (page = 1) => {
@@ -461,6 +488,17 @@ const selectedEntityIds = () => {
 
 const hasPermissions = () => {
     return permissions.value;
+}
+
+const gridLayout = () => {
+    if (isGrid()) {
+        return "entities-grid flex flex-wrap gap-3 lg:gap-5"
+    }
+    return "entities-grid flex flex-col gap-1 w-full"
+}
+
+const isGrid = () => {
+    return layout.value === 'grid';
 }
 
 </script>
