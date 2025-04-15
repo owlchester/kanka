@@ -32,7 +32,7 @@
                 @endif
             </div>
             @if (!$max)
-                @if (auth()->check() && auth()->user()->hasBoosters())
+                @can('boost', auth()->user())
                     @if ($superboost)
                         <a href="{{ route('settings.boost', ['campaign' => $campaign, 'superboost' => true]) }}" class="btn2 bg-boost text-white btn-lg btn-block">
                             {!! __('callouts.booster.actions.superboost', ['campaign' => $campaign->name]) !!}
@@ -66,7 +66,7 @@
             </div>
 
             @if (!$max)
-            @if (auth()->check() && auth()->user()->hasBoosters())
+            @can('boost', auth()->user())
                 <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-lg btn-block">
                     {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
                 </a>

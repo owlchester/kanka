@@ -12,19 +12,6 @@ use Illuminate\Support\Arr;
 trait UserBoosters
 {
     /**
-     * Determine if a user has access to campaign boosters to boost a campaign
-     */
-    public function hasBoosters(): bool
-    {
-        // Force the page to think that the user has no boosters
-        if (request()->get('_booster') === '0') {
-            return false;
-        }
-
-        return $this->isGoblin();
-    }
-
-    /**
      * Get available boosts for the user
      */
     public function availableBoosts(): int

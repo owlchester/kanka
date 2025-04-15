@@ -265,7 +265,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
     @if (!$campaign->boosted())
         <x-dialog id="booster-cta" :title="__('callouts.booster.titles.boosted')">
             <p class="">{{ __('entities/image.call-to-action') }}</p>
-            @if (auth()->check() && auth()->user()->hasBoosters())
+            @can('boost', auth()->user())
             <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-block">
                 {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
             </a>

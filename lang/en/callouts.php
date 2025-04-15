@@ -15,7 +15,7 @@ return [
         'multiple'      => 'To access these features, the campaign needs to be boosted.',
         'pitches'       => [
             'element-class' => 'Give this element a custom CSS class with a :boosted-campaign.',
-            'icon'          => 'Unlock millions of custom icons from FontAwesome with a :boosted-campaign.',
+            'icon'          => 'Unlock millions of custom icons from :fontawesome with a :boosted-campaign.',
         ],
         'titles'        => [
             'boosted'       => 'Boosted feature',

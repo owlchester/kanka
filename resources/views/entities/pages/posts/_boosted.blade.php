@@ -1,5 +1,5 @@
 <p class="mt-2">{{ __('callouts.premium.limitation') }}
-    @if (auth()->check() && auth()->user()->hasBoosters())
+    @can('boost', auth()->user())
         <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}">
             {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}
         </a>

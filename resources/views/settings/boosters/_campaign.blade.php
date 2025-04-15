@@ -3,44 +3,48 @@
  * @var \App\Models\CampaignBoost $boost
  */
 $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
-<div class="flex rounded-2xl gap-3 px-3 bg-box py-3 flex-nowrap">
-    <div class="flex-none">
+<div class="flex rounded-2xl shadow-xs hover:shadow gap-3 px-3 bg-box py-3 flex-nowrap justify-between items-center">
+    <div class="flex gap-4 items-center">
         @if ($campaign->image)
-            <img src="{{ $campaign->thumbnail(60) }}" alt="{{ $campaign->name }}" loading="lazy" class="rounded-full w-12 h-12" />
+            <img src="{{ $campaign->thumbnail(320, 240) }}" alt="{{ $campaign->name }}" loading="lazy" class="rounded-full w-16 h-16" />
         @else
-            <img src="https://th.kanka.io/UngNKwPxKUPKSZ4z_Qjc9QiyeQs=/280x210/smart/src/app/backgrounds/mountain-background-medium.jpg" alt="{{ $campaign->name }}" loading="lazy" class="rounded-full w-12 h-12" />
+            <img src="https://th.kanka.io/zzKcBpijSBvm4rPWdzRpI82pTNQ=/320x240/smart/src/app/backgrounds/mountain-background-medium.jpg" alt="{{ $campaign->name }}" loading="lazy" class="rounded-full w-16 h-16" />
         @endif
-     </div>
-    <div class="grow">
-        <a class="name inline-block font-bold text-lg" href="{{ route('dashboard', $campaign) }}">
-            {!! \Illuminate\Support\Str::limit($campaign->name, 28) !!}
-        </a>
+        <div class="flex flex-col gap-1">
+            <a class="name text-xl" href="{{ route('dashboard', $campaign) }}">
+                {!! \Illuminate\Support\Str::limit($campaign->name, 28) !!}
+            </a>
 
-        <p class="mb-0">
-            @if ($campaign->premium())
-                {!! __('settings/boosters.campaign.premium', [
-    'user' => '<a href="' . route('users.profile', $boost->user_id) . '">' . $boost->user->displayName() . '</a>',
-    'time' => $boost->created_at->format('M Y')
-    ]) !!}
-            @elseif ($campaign->superboosted())
-                {!! __('settings/boosters.campaign.superboosted', [
-    'user' => '<a href="' . route('users.profile', $boost->user_id) . '">' . $boost->user->displayName() . '</a>',
-    'time' => $boost->created_at->format('M Y')
-    ]) !!}
-            @elseif ($campaign->boosted())
-                {!! __('settings/boosters.campaign.boosted', [
-    'user' => '<a href="' . route('users.profile', $boost->user_id) . '">' . $boost->user->displayName() . '</a>',
-    'time' => $boost->created_at->format('M Y')
+            <p class="mb-0">
+                @if ($campaign->premium())
+                    <x-icon class="premium" />
+                    {!! __('settings/boosters.campaign.premium', [
+        'user' => '<a href="' . route('users.profile', $boost->user_id) . '">' . $boost->user->displayName() . '</a>',
+        'time' => $boost->created_at->format('M Y')
         ]) !!}
-            @else
-                {{ __('settings/boosters.campaign.standard') }}
-            @endif
-        </p>
+                @elseif ($campaign->superboosted())
+                    <x-icon class="fa-regular fa-rocket" />
+                    {!! __('settings/boosters.campaign.superboosted', [
+        'user' => '<a href="' . route('users.profile', $boost->user_id) . '">' . $boost->user->displayName() . '</a>',
+        'time' => $boost->created_at->format('M Y')
+        ]) !!}
+                @elseif ($campaign->boosted())
+                    <x-icon class="fa-regular fa-rocket" />
+                    {!! __('settings/boosters.campaign.boosted', [
+        'user' => '<a href="' . route('users.profile', $boost->user_id) . '">' . $boost->user->displayName() . '</a>',
+        'time' => $boost->created_at->format('M Y')
+            ]) !!}
+                @else
+                    {{ __('settings/boosters.campaign.standard') }}
+                @endif
+            </p>
+        </div>
+
     </div>
-    <div class="flex-none">
+    <div class="">
         @if (auth()->user()->hasBoosterNomenclature())
         <div class="dropdown">
-            <a class="dropdown-toggle p-2" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape">
+            <a class="dropdown-toggle p-2 btn2 btn-ghost" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape">
                 <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
                 <span class="sr-only">{{ __('crud.actions.actions') }}</span>
             </a>
@@ -82,7 +86,7 @@ $boost = isset($boost) ? $boost : $campaign->boosts->first();?>
         </div>
         @else
             @if (!$campaign->premium())
-                <a href="#" class="btn2 btn-secondary btn-outline btn-sm" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign]) }}">
+                <a href="#" class="btn2 btn-outline btn-sm" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_boosts.create', ['campaign' => $campaign]) }}">
                     {!! __('settings/premium.actions.unlock', ['campaign' => \Illuminate\Support\Str::limit($campaign->name, 25)]) !!}
                 </a>
             @elseif (auth()->user()->can('destroy', $boost))

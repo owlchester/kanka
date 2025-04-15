@@ -68,7 +68,7 @@ if (!empty($era)) {
         ]) !!}</x-helper>
 
         @if (!$campaign->boosted())
-            @if (auth()->check() && auth()->user()->hasBoosters())
+            @can('boost', auth()->user())
                 <x-helper>
                     <x-icon class="premium" />
                     {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>']) !!}

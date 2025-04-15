@@ -9,7 +9,7 @@ $fieldname = $iconFieldName ?? 'icon';
         <input type="text" name="{{ $fieldname }}" value="{{ !isset($bulk) ? old($fieldname, $source->{$fieldname} ?? $model->icon ?? null) : null }}" placeholder="{{ $placeholder ?? 'fa-solid fa-users' }}" list="link-icon-list" class="w-full" autocomplete="off" data-paste="fontawesome" maxlength="45" />
         <div class="hidden">
             <datalist id="link-icon-list">
-                @foreach (\App\Facades\EntityAssetCache::iconSuggestion() as $icon)
+                @foreach ($suggestions ?? \App\Facades\EntityAssetCache::iconSuggestion() as $icon)
                     <option value="{{ $icon }}">{{ $icon }}</option>
                 @endforeach
             </datalist>
@@ -22,14 +22,18 @@ $fieldname = $iconFieldName ?? 'icon';
             ]) !!}
         </x-slot>
     @else
-        @if (auth()->user()->hasBoosters())
-            <x-helper>
-                {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>']) !!}
-            </x-helper>
+        <x-slot name="helper">
+        @can('boost', auth()->user())
+            {!! __('callouts.booster.pitches.icon', [
+                'boosted-campaign' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>',
+                'fontawesome' => '<a target="_blank" href="' . config('fontawesome.search') .'">FontAwesome</a>',
+            ]) !!}
         @else
-            <x-helper>
-                {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaigns') . '</a>']) !!}
-            </x-helper>
+            {!! __('callouts.booster.pitches.icon', [
+                'boosted-campaign' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaign') . '</a>',
+                'fontawesome' => '<a target="_blank" href="' . config('fontawesome.search') .'">FontAwesome</a>',
+            ]) !!}
         @endif
+        </x-slot>
     @endif
 </x-forms.field>
