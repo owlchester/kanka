@@ -22,7 +22,10 @@
     </x-dropdowns.item>
 @endif
 @if(auth()->user()->isAdmin())
-    <x-dropdowns.item :link="route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])"  icon="fa-solid fa-arrows-left-right">
+    <x-dropdowns.item
+        :link="route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])"
+        :dialog="route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])"
+        icon="fa-solid fa-arrows-left-right">
         {{ __('entities/notes.move.move') }}
     </x-dropdowns.item>
 @endif

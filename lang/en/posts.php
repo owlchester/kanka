@@ -13,6 +13,13 @@ return [
     'helpers'       => [
         'new'   => 'Add a new post to this entity.',
     ],
+    'move' => [
+        'title' => 'Move post',
+        'helper' => 'Move or copy the post :name to a different entity.',
+        'copy' => [
+            'helper' => 'Keep a copy of the post on :name.',
+        ],
+    ],
     'placeholders'  => [
         'name'  => 'Name of the post',
     ],
