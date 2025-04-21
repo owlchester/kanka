@@ -35,7 +35,7 @@ class IdentityManager
             session()->put($this->getSessionCampaignKey(), $this->campaign->id);
 
             // Log this action
-            auth()->user()->log(UserAction::userSwitch, ['to' => $campaignUser->user->id]);
+            auth()->user()->campaignLog($campaignUser->campaign_id, 'members', 'switch', ['to' => $campaignUser->user->name]);
             session()->put('kanka.userLog', UserAction::userSwitchLogin);
             $this->app['auth']->loginUsingId($campaignUser->user->id);
         } catch (Exception $e) {

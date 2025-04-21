@@ -209,3 +209,5 @@ Route::get('/w/{campaign}/sidebar/image', [App\Http\Controllers\Campaign\ImageCo
 Route::post('/w/{campaign}/sidebar/image', [App\Http\Controllers\Campaign\ImageController::class, 'save'])->name('campaign.sidebar.image-save');
 
 Route::get('/w/{campaign}/stats', [App\Http\Controllers\Campaign\StatController::class, 'index'])->name('campaign.stats');
+
+Route::get('/w/{campaign}/logs', [App\Http\Controllers\Campaign\HistoryController::class, 'index'])->name('campaign.logs');

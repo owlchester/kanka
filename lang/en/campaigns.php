@@ -377,6 +377,7 @@ return [
             'default-images'    => 'Default thumbnails',
             'deletion'          => 'Deletion',
             'export'            => 'Export',
+            'history'           => 'History',
             'import'            => 'Import',
             'management'        => 'Management',
             'members'           => 'Members',
