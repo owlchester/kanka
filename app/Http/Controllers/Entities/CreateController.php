@@ -34,6 +34,14 @@ class CreateController extends Controller
             }
         }
 
+        if ($entityType->isStandard()) {
+            $options = [$campaign];
+            if ($tabCopy) {
+                $options['copy'] = $source->id;
+            }
+            return redirect()->route($entityType->pluralCode() . '.create', $options);
+        }
+
         return view('entities.forms.create')
             ->with('campaign', $campaign)
             ->with('entityType', $entityType)
