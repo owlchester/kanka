@@ -14,7 +14,6 @@ use App\Models\Pledge;
 use App\Models\Role;
 use App\Models\Tier;
 use App\Models\TierPrice;
-use App\Models\UserLog;
 use App\Traits\UserAware;
 use Carbon\Carbon;
 use Exception;

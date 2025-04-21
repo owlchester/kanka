@@ -4,7 +4,6 @@ namespace App\Jobs\Emails;
 
 use App\Enums\UserAction;
 use App\Models\User;
-use App\Models\UserLog;
 use App\Notifications\Header;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

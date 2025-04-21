@@ -21,6 +21,7 @@ class SocialController extends Controller
                 ->route('settings.account')
                 ->with('error', __('settings.account.social.error'));
         }
+
         return view('account.social.form')->with('user', auth()->user());
     }
 

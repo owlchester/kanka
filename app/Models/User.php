@@ -352,11 +352,12 @@ class User extends \Illuminate\Foundation\Auth\User
             'user_id' => $this->id,
         ]);
         $log->type_id = $action;
-        $log->data = !empty($data) ? $data : null;
+        $log->data = ! empty($data) ? $data : null;
         $log->save();
 
         return $this;
     }
+
     public function campaignLog(int $campaign, string $module, string $action, array $data = []): self
     {
         if (! config('logging.enabled')) {

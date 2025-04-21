@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
-use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;

@@ -2,14 +2,12 @@
 
 namespace App\Services\Campaign;
 
-use App\Enums\UserAction;
 use App\Exceptions\Campaign\AlreadyBoostedException;
 use App\Exceptions\Campaign\ExhaustedBoostsException;
 use App\Exceptions\Campaign\ExhaustedSuperboostsException;
 use App\Exceptions\TranslatableException;
 use App\Jobs\Campaigns\NotifyAdmins;
 use App\Models\CampaignBoost;
-use App\Models\UserLog;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 

@@ -5,7 +5,6 @@ namespace App\Jobs\Emails\Purge;
 use App\Enums\UserAction;
 use App\Mail\Purge\SecondWarning;
 use App\Models\User;
-use App\Models\UserLog;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

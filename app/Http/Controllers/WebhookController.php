@@ -7,7 +7,6 @@ use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\User;
-use App\Models\UserLog;
 use App\Services\Subscription\PaymentMethodService;
 use App\Services\SubscriptionService;
 use Illuminate\Support\Arr;

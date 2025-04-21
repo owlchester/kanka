@@ -6,7 +6,6 @@ use App\Enums\UserAction;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Models\User;
 use App\Models\UserFlag;
-use App\Models\UserLog;
 use App\Services\InviteService;
 use App\Services\StarterService;
 use App\Services\Users\CampaignService;

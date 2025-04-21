@@ -31,7 +31,7 @@ class RecoveryService
             }
         }
 
-        if (!empty($posts)) {
+        if (! empty($posts)) {
             $this->user->campaignLog($this->campaign->id, 'recovery', 'posts', ['ids' => $log]);
         }
 

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Enums\UserAction;
 use App\Facades\Module;
 use App\Models\Bookmark;
 use App\Models\Entity;

@@ -14,7 +14,7 @@ return new class extends Migration
         if (! config('logging.enabled')) {
             return;
         }
-        if (!Schema::connection('logs')->hasTable('user_logs')) {
+        if (! Schema::connection('logs')->hasTable('user_logs')) {
             return;
         }
         Schema::connection('logs')->table('user_logs', function (Blueprint $table) {
@@ -31,7 +31,7 @@ return new class extends Migration
         if (! config('logging.enabled')) {
             return;
         }
-        if (!Schema::connection('logs')->hasTable('user_logs')) {
+        if (! Schema::connection('logs')->hasTable('user_logs')) {
             return;
         }
         Schema::connection('logs')->table('user_logs', function (Blueprint $table) {

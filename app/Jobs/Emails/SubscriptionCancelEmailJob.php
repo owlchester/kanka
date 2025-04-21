@@ -6,7 +6,6 @@ use App\Enums\UserAction;
 use App\Mail\Subscription\Admin\CancelledSubscriptionMail;
 use App\Mail\Subscription\User\CancelledUserSubscriptionMail;
 use App\Models\User;
-use App\Models\UserLog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

@@ -2,12 +2,10 @@
 
 namespace App\Jobs;
 
-use App\Enums\UserAction;
 use App\Models\CampaignBoost;
 use App\Models\Pledge;
 use App\Models\Role;
 use App\Models\User;
-use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\DiscordService;
 use Exception;

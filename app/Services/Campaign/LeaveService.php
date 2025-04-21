@@ -2,13 +2,11 @@
 
 namespace App\Services\Campaign;
 
-use App\Enums\UserAction;
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Jobs\Campaigns\NotifyAdmins;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
-use App\Models\UserLog;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;

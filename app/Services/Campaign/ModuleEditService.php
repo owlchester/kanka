@@ -14,10 +14,10 @@ use Illuminate\Support\Str;
 
 class ModuleEditService
 {
-    use UserAware;
     use CampaignAware;
     use EntityTypeAware;
     use PurifiableTrait;
+    use UserAware;
 
     public function update(UpdateModuleName $request): self
     {
@@ -99,7 +99,7 @@ class ModuleEditService
             'toggle',
             [
                 'id' => $this->entityType->id,
-                'enabled' => $this->campaign->setting->{$this->entityType->pluralCode()}
+                'enabled' => $this->campaign->setting->{$this->entityType->pluralCode()},
             ]
         );
 

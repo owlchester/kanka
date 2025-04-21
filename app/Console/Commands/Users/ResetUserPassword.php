@@ -4,7 +4,6 @@ namespace App\Console\Commands\Users;
 
 use App\Enums\UserAction;
 use App\Models\User;
-use App\Models\UserLog;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;

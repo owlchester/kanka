@@ -9,7 +9,6 @@ use App\Jobs\Emails\WelcomeEmailJob;
 use App\Jobs\Users\UnsubscribeUser;
 use App\Jobs\Users\UpdateEmail;
 use App\Models\User;
-use App\Models\UserLog;
 use Exception;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 

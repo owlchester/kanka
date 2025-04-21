@@ -141,7 +141,7 @@ class EntityTypeService
                 'modules',
                 'created',
                 [
-                    'id' => $this->entityType->id
+                    'id' => $this->entityType->id,
                 ]
             );
         } else {
@@ -150,7 +150,7 @@ class EntityTypeService
                 'modules',
                 'updated',
                 [
-                    'id' => $this->entityType->id
+                    'id' => $this->entityType->id,
                 ]
             );
         }
@@ -169,7 +169,7 @@ class EntityTypeService
             'toggle',
             [
                 'id' => $this->entityType->id,
-                'enabled' => $this->entityType->is_enabled
+                'enabled' => $this->entityType->is_enabled,
             ]
         );
     }
@@ -222,7 +222,7 @@ class EntityTypeService
             'modules',
             'deleted',
             [
-                'id' => $this->entityType->id
+                'id' => $this->entityType->id,
             ]
         );
     }

@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Enums\UserAction;
 use App\Models\CampaignUser;
 use App\Models\User;
-use App\Models\UserLog;
 use App\Traits\CampaignAware;
 use Exception;
 use Illuminate\Foundation\Application;

@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign;
 
-use App\Enums\UserAction;
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
 use App\Models\CampaignExport;
@@ -15,7 +14,6 @@ use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;

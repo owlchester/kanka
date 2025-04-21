@@ -12,7 +12,6 @@ use App\Jobs\Users\AbandonedCart;
 use App\Models\Tier;
 use App\Models\TierPrice;
 use App\Models\User;
-use App\Models\UserLog;
 use App\Services\SubscriptionService;
 use App\Services\SubscriptionUpgradeService;
 use App\Services\Users\CurrencyService;

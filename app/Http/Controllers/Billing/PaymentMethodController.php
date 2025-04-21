@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Billing;
 use App\Enums\UserAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserBillingStore;
-use App\Models\UserLog;
 use App\Services\Users\CurrencyService;
 use Illuminate\Support\Facades\Auth;
 

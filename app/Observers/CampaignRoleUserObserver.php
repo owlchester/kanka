@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Enums\UserAction;
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Jobs\CampaignRoleUserJob;
@@ -16,7 +15,7 @@ class CampaignRoleUserObserver
         UserCache::user($campaignRoleUser->user)->clear();
 
         auth()->user()->campaignLog($campaignRoleUser->campaignRole->campaign_id, 'user-role', 'created', [
-            'user' => $campaignRoleUser->user_id, 'role' => $campaignRoleUser->campaign_role_id
+            'user' => $campaignRoleUser->user_id, 'role' => $campaignRoleUser->campaign_role_id,
         ]);
     }
 
@@ -27,7 +26,7 @@ class CampaignRoleUserObserver
         CampaignCache::campaign($campaignRoleUser->campaignRole->campaign)->clear();
 
         auth()->user()->campaignLog($campaignRoleUser->campaignRole->campaign_id, 'user-role', 'deleted', [
-            'user' => $campaignRoleUser->user_id, 'role' => $campaignRoleUser->campaign_role_id
+            'user' => $campaignRoleUser->user_id, 'role' => $campaignRoleUser->campaign_role_id,
         ]);
     }
 }

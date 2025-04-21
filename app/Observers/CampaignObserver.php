@@ -14,7 +14,6 @@ use App\Models\CampaignSetting;
 use App\Models\CampaignUser;
 use App\Models\GameSystem;
 use App\Models\Genre;
-use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\Campaign\SearchCleanupService;
 use App\Services\Users\CampaignService;

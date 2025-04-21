@@ -8,7 +8,6 @@ use App\Http\Requests\SubscriptionCancel;
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
 use App\Jobs\SubscriptionEndJob;
 use App\Models\SubscriptionCancellation;
-use App\Models\UserLog;
 use App\Traits\UserAware;
 use Carbon\Carbon;
 

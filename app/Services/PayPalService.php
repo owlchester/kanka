@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Enums\UserAction;
 use App\Models\Tier;
-use App\Models\UserLog;
 use App\Traits\UserAware;
 use Carbon\Carbon;
 use Laravel\Cashier\Subscription;

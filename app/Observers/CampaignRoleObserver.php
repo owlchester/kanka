@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Enums\UserAction;
 use App\Facades\CampaignCache;
 use App\Models\CampaignRole;
 

@@ -2,7 +2,6 @@
 
 namespace App\Services\Entity;
 
-use App\Enums\UserAction;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -23,7 +22,7 @@ class RecoveryService
             }
         }
 
-        if (!empty($entities)) {
+        if (! empty($entities)) {
             $this->user->campaignLog($this->campaign->id, 'recovery', 'entities', ['ids' => $log]);
         }
 
