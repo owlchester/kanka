@@ -17,6 +17,10 @@
                 <source srcset="{{ $images['wide_xl'] }}" media="(min-width: 768px)" />
                 <img src="{{ $images['wide_sm'] }}" class="w-full entity-picture-wide" alt="{{ $entity->name }}" />
             </picture>
+            <picture class="entity-image-square hidden">
+                <source srcset="{{ $images['square_xl'] }}" media="(min-width: 768px)" />
+                <img src="{{ $images['square_sm'] }}" class="w-full entity-picture-square" alt="{{ $entity->name }}" />
+            </picture>
         </a>
     @endif
     <a href="{{ $entity->url() }}" class="flex gap-1 text-xl p-4 pb-0">
