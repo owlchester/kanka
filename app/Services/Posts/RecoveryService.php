@@ -3,14 +3,9 @@
 namespace App\Services\Posts;
 
 use App\Models\Post;
-use App\Traits\CampaignAware;
-use App\Traits\UserAware;
 
 class RecoveryService
 {
-    use CampaignAware;
-    use UserAware;
-
     /** @var array Entity IDs to be deleted */
     protected array $entityIds = [];
 
@@ -22,17 +17,12 @@ class RecoveryService
 
     public function recover(array $ids): array
     {
-        $posts = $log = [];
+        $posts = [];
         foreach ($ids as $id) {
             $url = $this->post($id);
             if ($url) {
                 $posts[$id] = $url;
-                $log[] = $id;
             }
-        }
-
-        if (!empty($posts)) {
-            $this->user->campaignLog($this->campaign->id, 'recovery', 'posts', ['ids' => $log]);
         }
 
         return $posts;

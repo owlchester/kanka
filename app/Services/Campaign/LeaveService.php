@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign;
 
-use App\Enums\UserAction;
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Jobs\Campaigns\NotifyAdmins;
@@ -58,6 +57,6 @@ class LeaveService
         UserCache::user($this->user)->clear();
         CampaignCache::campaign($this->campaign)->clear();
 
-        $this->user->campaignLog($this->campaign->id, 'members', 'leave');
+        $this->user->log(UserLog::TYPE_CAMPAIGN_LEAVE);
     }
 }

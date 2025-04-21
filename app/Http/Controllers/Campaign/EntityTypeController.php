@@ -50,7 +50,6 @@ class EntityTypeController extends Controller
 
         $this->entityTypeService
             ->campaign($campaign)
-            ->user(auth()->user())
             ->request($request)
             ->save();
 
@@ -90,7 +89,6 @@ class EntityTypeController extends Controller
             ->campaign($campaign)
             ->entityType($entityType)
             ->request($request)
-            ->user(auth()->user())
             ->save();
 
         return redirect()->route('campaign.modules', $campaign)
@@ -108,7 +106,6 @@ class EntityTypeController extends Controller
         try {
             $this->entityTypeService
                 ->campaign($campaign)
-                ->user(auth()->user())
                 ->entityType($entityType)
                 ->toggle();
 
@@ -145,7 +142,6 @@ class EntityTypeController extends Controller
 
         $this->entityTypeService
             ->campaign($campaign)
-            ->user(auth()->user())
             ->entityType($entityType)
             ->delete();
 

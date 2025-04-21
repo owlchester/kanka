@@ -6,13 +6,11 @@ use App\Facades\CampaignCache;
 use App\Models\CampaignPlugin;
 use App\Models\Plugin;
 use App\Traits\CampaignAware;
-use App\Traits\UserAware;
 use Exception;
 
 class PluginService
 {
     use CampaignAware;
-    use UserAware;
 
     protected Plugin $plugin;
 
@@ -30,8 +28,6 @@ class PluginService
             $plugin->is_active = true;
             $plugin->save();
 
-            $this->user->campaignLog($this->campaign->id, 'plugins', 'enabled', ['id' => $plugin->id, 'plugin' => $plugin->plugin_id]);
-
             return true;
         }
 
@@ -45,8 +41,6 @@ class PluginService
         if ($plugin->canDisable()) {
             $plugin->is_active = false;
             $plugin->save();
-
-            $this->user->campaignLog($this->campaign->id, 'plugins', 'disabled', ['id' => $plugin->id, 'plugin' => $plugin->plugin_id]);
 
             return true;
         }
@@ -63,15 +57,18 @@ class PluginService
             throw new Exception(__('campaigns/plugins.errors.invalid_plugin'));
         }
 
+        // Delete it
         $plugin->delete();
-        CampaignCache::clearTheme();
 
-        $this->user->campaignLog($this->campaign->id, 'plugins', 'deleted', ['id' => $plugin->id, 'plugin' => $plugin->plugin_id]);
+        CampaignCache::clearTheme();
 
         return true;
     }
 
-    protected function campaignPlugin(): ?CampaignPlugin
+    /**
+     * @return CampaignPlugin|null
+     */
+    protected function campaignPlugin()
     {
         return CampaignPlugin::where('campaign_id', $this->campaign->id)
             ->where('plugin_id', $this->plugin->id)

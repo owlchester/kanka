@@ -51,7 +51,6 @@ class RoleController extends Controller
         }
         try {
             $this->memberService
-                ->user($request->user())
                 ->campaign($campaign)
                 ->update($campaignUser, $request->get('roles', []));
         } catch (TranslatableException $e) {

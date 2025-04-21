@@ -32,14 +32,10 @@ class VisibilityController extends Controller
     public function save(StoreCampaignVisibility $request, Campaign $campaign)
     {
         $this->authorize('update', $campaign);
-        if ($request->ajax()) {
-            return response()->json();
-        }
 
         $campaign->update([
             'is_public' => $request->get('is_public'),
         ]);
-        auth()->user()->campaignLog($campaign->id, 'visibility', 'switch', ['new' => $campaign->isPublic()]);
 
         $success = __('campaigns/public.update.' . ($campaign->isPublic() ? 'public' : 'private'), [
             'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank">' . __('footer.public-campaigns') . '</a>',

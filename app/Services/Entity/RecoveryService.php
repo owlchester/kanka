@@ -2,29 +2,18 @@
 
 namespace App\Services\Entity;
 
-use App\Enums\UserAction;
 use App\Models\Entity;
-use App\Traits\CampaignAware;
-use App\Traits\UserAware;
 
 class RecoveryService
 {
-    use CampaignAware;
-    use UserAware;
-
     public function recover(array $ids): array
     {
-        $entities = $log = [];
+        $entities = [];
         foreach ($ids as $id) {
             $url = $this->entity($id);
             if ($url) {
                 $entities[$id] = $url;
-                $log[] = $id;
             }
-        }
-
-        if (!empty($entities)) {
-            $this->user->campaignLog($this->campaign->id, 'recovery', 'entities', ['ids' => $log]);
         }
 
         return $entities;

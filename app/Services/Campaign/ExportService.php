@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign;
 
-use App\Enums\UserAction;
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
 use App\Models\CampaignExport;
@@ -80,7 +79,6 @@ class ExportService
             'status' => CampaignExport::STATUS_SCHEDULED,
         ]);
 
-        $this->user->campaignLog($this->campaign->id, 'export', 'created');
         Export::dispatch($this->campaign, $this->user, $entitiesExport, false)->onQueue('heavy');
 
         return $this;

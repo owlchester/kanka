@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\UserAction;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,7 +21,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id')->unsigned();
             $table->unsignedTinyInteger('type_id')
-                ->default(UserAction::login->value);
+                ->default(App\Models\UserLog::TYPE_LOGIN);
             $table->string('ip', 255)->nullable();
             $table->char('country', 6)->nullable();
             $table->timestamps();

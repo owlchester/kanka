@@ -2,13 +2,10 @@
 
 namespace App\Services\Campaign;
 
-use App\Enums\UserAction;
 use App\Facades\CampaignCache;
-use App\Models\CampaignStyle;
 use App\Models\Image;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
-use App\Traits\UserAware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -16,7 +13,6 @@ class DefaultImageService
 {
     use CampaignAware;
     use EntityTypeAware;
-    use UserAware;
 
     public function save(Request $request): bool
     {
@@ -51,8 +47,6 @@ class DefaultImageService
 
         CampaignCache::clear();
 
-        $this->user->campaignLog($this->campaign->id, 'thumbnails', 'created', ['type' => $this->entityType->code]);
-
         return true;
     }
 
@@ -81,8 +75,6 @@ class DefaultImageService
         $this->campaign->saveQuietly();
 
         CampaignCache::clear();
-
-        $this->user->campaignLog($this->campaign->id, 'thumbnails', 'deleted', ['type' => $this->entityType->code]);
 
         return true;
     }

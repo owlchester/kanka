@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Enums\UserAction;
 use App\Facades\Images;
 use App\Facades\Mentions;
 use App\Facades\UserCache;
@@ -109,7 +108,7 @@ class CampaignObserver
 
         UserCache::clear();
 
-        auth()->user()->log(UserAction::campaignNew, ['campaign' => $campaign->id]);
+        auth()->user()->log(UserLog::TYPE_CAMPAIGN_NEW);
     }
 
     public function saved(Campaign $campaign)

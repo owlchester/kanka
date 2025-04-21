@@ -2,7 +2,6 @@
 
 namespace App\Listeners;
 
-use App\Enums\UserAction;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Models\User;
 use App\Models\UserFlag;
@@ -49,10 +48,10 @@ class UserEventSubscriber
             dd('Error OSL-010');
         }
 
-        $action = auth()->viaRemember() ? UserAction::autoLogin : UserAction::login;
+        $action = auth()->viaRemember() ? UserLog::TYPE_AUTOLOGIN : UserLog::TYPE_LOGIN;
         $userLogType = session()->get('kanka.userLog', $action);
         if ($event->user->isBanned()) {
-            $userLogType = session()->get('kanka.userLog', UserAction::bannedLogin);
+            $userLogType = session()->get('kanka.userLog', UserLog::TYPE_BANNED_LOGIN);
         }
         $event->user->log($userLogType);
 
@@ -116,7 +115,7 @@ class UserEventSubscriber
             return;
         }
         if (! $event->user->isBanned()) {
-            $event->user->log(UserAction::logout);
+            $event->user->log(UserLog::TYPE_LOGOUT);
         }
     }
 

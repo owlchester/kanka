@@ -75,7 +75,6 @@ class ModuleController extends Controller
         $this->moduleEditService
             ->campaign($campaign)
             ->entityType($entityType)
-            ->user($request->user())
             ->update($request);
 
         return redirect()->route('campaign.modules', $campaign)
@@ -87,7 +86,6 @@ class ModuleController extends Controller
         $this->authorize('setting', $campaign);
 
         $this->moduleEditService
-            ->user(auth()->user())
             ->campaign($campaign)
             ->reset();
 

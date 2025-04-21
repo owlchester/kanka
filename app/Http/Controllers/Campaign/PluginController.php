@@ -83,7 +83,7 @@ class PluginController extends Controller
     {
         $this->authorize('recover', $campaign);
 
-        $this->service->campaign($campaign)->user(auth()->user())->plugin($plugin)->enable();
+        $this->service->campaign($campaign)->plugin($plugin)->enable();
 
         return redirect()->route('campaign_plugins.index', $campaign)
             ->with(
@@ -101,7 +101,7 @@ class PluginController extends Controller
     {
         $this->authorize('recover', $campaign);
 
-        $this->service->campaign($campaign)->user(auth()->user())->plugin($plugin)->disable();
+        $this->service->campaign($campaign)->plugin($plugin)->disable();
 
         return redirect()->route('campaign_plugins.index', $campaign)
             ->with(
@@ -120,7 +120,7 @@ class PluginController extends Controller
         $this->authorize('recover', $campaign);
 
         try {
-            $this->service->campaign($campaign)->user($request->user())->plugin($plugin)->remove();
+            $this->service->campaign($campaign)->plugin($plugin)->remove();
 
             return redirect()->route('campaign_plugins.index', $campaign)
                 ->with(
@@ -252,7 +252,7 @@ class PluginController extends Controller
                 ->route('campaign_plugins.index', $campaign);
         }
 
-        $this->service->campaign($campaign)->user(auth()->user());
+        $this->service->campaign($campaign);
         $count = 0;
         foreach ($models as $id) {
             /** @var Plugin|null $plugin */

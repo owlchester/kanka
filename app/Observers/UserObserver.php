@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Enums\UserAction;
 use App\Facades\UserCache;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\WelcomeEmailJob;
@@ -54,13 +53,12 @@ class UserObserver
             UserCache::user($user)->clearName();
         }
 
-        // Todo: move to the controller
         if ($user->isDirty('email')) {
-            $user->log(UserAction::emailUpdate);
+            $user->log(UserLog::TYPE_EMAIL_UPDATE);
         } elseif ($user->isDirty('provider')) {
-            $user->log(UserAction::socialSwitch);
+            $user->log(UserLog::TYPE_SOCIAL_SWITCH);
         } elseif ($user->isDirty('password')) {
-            $user->log(UserAction::passwordUpdate);
+            $user->log(UserLog::TYPE_PASSWORD_UPDATE);
         }
     }
 

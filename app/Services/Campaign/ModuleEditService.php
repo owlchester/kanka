@@ -7,14 +7,12 @@ use App\Http\Requests\UpdateModuleName;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
-use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class ModuleEditService
 {
-    use UserAware;
     use CampaignAware;
     use EntityTypeAware;
     use PurifiableTrait;
@@ -76,8 +74,6 @@ class ModuleEditService
         CampaignCache::clear();
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
 
-        $this->user->campaignLog($this->campaign->id, 'modules', 'reset');
-
         return $this;
     }
 
@@ -93,15 +89,6 @@ class ModuleEditService
         $this->campaign->setting->saveQuietly();
         CampaignCache::clear();
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
-        $this->user->campaignLog(
-            $this->campaign->id,
-            'modules',
-            'toggle',
-            [
-                'id' => $this->entityType->id,
-                'enabled' => $this->campaign->setting->{$this->entityType->pluralCode()}
-            ]
-        );
 
         return (bool) $this->campaign->setting->{$this->entityType->pluralCode()};
     }

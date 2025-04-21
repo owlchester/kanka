@@ -2,7 +2,6 @@
 
 namespace App\Jobs\Emails\Purge;
 
-use App\Enums\UserAction;
 use App\Mail\Purge\SecondWarning;
 use App\Models\User;
 use App\Models\UserLog;
@@ -46,7 +45,7 @@ class SecondWarningJob implements ShouldQueue
 
         Log::info('PurgeFirstWarning', ['user' => $this->userId]);
         $campaigns = $user->onlyAdminCampaigns();
-        $user->log(UserAction::purgeWarningSecond);
+        $user->log(UserLog::PURGE_WARNING_SECOND);
 
         $target = app()->isProduction() ? $user->email : config('mail.from.address');
         try {

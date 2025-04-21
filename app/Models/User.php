@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\UserAction;
 use App\Facades\CampaignLocalization;
 use App\Facades\Identity;
 use App\Facades\PostCache;
@@ -343,35 +342,15 @@ class User extends \Illuminate\Foundation\Auth\User
     /**
      * Log an event on the user
      */
-    public function log(UserAction $action, array $data = []): self
+    public function log(int $type): self
     {
         if (! config('logging.enabled')) {
             return $this;
         }
-        $log = new UserLog([
+        UserLog::create([
             'user_id' => $this->id,
+            'type_id' => $type,
         ]);
-        $log->type_id = $action;
-        $log->data = !empty($data) ? $data : null;
-        $log->save();
-
-        return $this;
-    }
-    public function campaignLog(int $campaign, string $module, string $action, array $data = []): self
-    {
-        if (! config('logging.enabled')) {
-            return $this;
-        }
-        $log = new UserLog([
-            'user_id' => $this->id,
-        ]);
-        $log->type_id = UserAction::campaign;
-        $log->campaign_id = $campaign;
-        $first = [];
-        $first['module'] = $module;
-        $first['action'] = $action;
-        $log->data = $first + $data;
-        $log->save();
 
         return $this;
     }
@@ -485,7 +464,7 @@ class User extends \Illuminate\Foundation\Auth\User
         }*/
         // Recent fails are a clear indicator of someone cycling through cards
         return $this->logs()
-            ->where('type_id', UserAction::failedChargeEmail)
+            ->where('type_id', UserLog::TYPE_FAILED_CHARGE_EMAIL)
             ->whereDate('created_at', '>=', Carbon::now()->subHour()->toDateString())
             ->count() >= 2;
     }
