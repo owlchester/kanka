@@ -30,9 +30,9 @@
             </button>
         </div>
         @if (!$role->isAdmin())
-            <p>{!! __('campaigns.roles.hints.role_permissions', ['name' => '<span class="font-extrabold">' . $role->name . '</span>']) !!}</p>
+            <p>{!! __('campaigns.roles.hints.role_permissions', ['name' => '<span class="font-extrabold text-accent">' . $role->name . '</span>']) !!}</p>
         @else
-            <p>{!! __('campaigns.roles.hints.role_admin', ['name' => '<span class="font-extrabold">' . $role->name . '</span>']) !!} </p>
+            <p>{!! __('campaigns.roles.hints.role_admin', ['name' => '<span class="font-extrabold text-accent">' . $role->name . '</span>']) !!} </p>
         @endif
         @if (!$role->isAdmin())
         <x-box>
