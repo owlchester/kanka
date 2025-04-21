@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Users;
 
+use App\Enums\UserAction;
 use App\Models\User;
 use App\Models\UserLog;
 use Illuminate\Console\Command;
@@ -56,7 +57,7 @@ class ResetUserPassword extends Command
 
         $hash = Hash::make($password);
         $user->update(['password' => $hash]);
-        $user->log(UserLog::TYPE_PASSWORD_ADMIN_UPDATE);
+        $user->log(UserAction::PASSWORD_ADMIN_UPDATE);
 
         $this->info('User ' . $userID . ' updated to new password ' . $password);
 

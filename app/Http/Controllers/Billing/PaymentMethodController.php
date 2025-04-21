@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Billing;
 
+use App\Enums\UserAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserBillingStore;
 use App\Models\UserLog;
@@ -77,7 +78,7 @@ class PaymentMethodController extends Controller
 
             $user->card_expires_at = null;
             $user->stripe_id = null;
-            $user->log(UserLog::TYPE_CURRENCY_SWITCH);
+            $user->log(UserAction::currencySwitch);
         }
 
         $user->saveSettings($request->only('currency'));

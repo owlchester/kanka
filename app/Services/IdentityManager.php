@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\UserAction;
 use App\Models\CampaignUser;
 use App\Models\User;
 use App\Models\UserLog;
@@ -34,8 +35,8 @@ class IdentityManager
             session()->put($this->getSessionCampaignKey(), $this->campaign->id);
 
             // Log this action
-            auth()->user()->log(UserLog::TYPE_USER_SWITCH);
-            session()->put('kanka.userLog', UserLog::TYPE_USER_SWITCH_LOGIN);
+            auth()->user()->log(UserAction::userSwitch, ['to' => $campaignUser->user->id]);
+            session()->put('kanka.userLog', UserAction::userSwitchLogin);
             $this->app['auth']->loginUsingId($campaignUser->user->id);
         } catch (Exception $e) {
             return false;
@@ -57,7 +58,7 @@ class IdentityManager
             // $impersonated = $this->app['auth']->user();
             $impersonator = $this->findUserById($this->getImpersonatorId());
 
-            session()->put('kanka.userLog', UserLog::TYPE_USER_REVERT);
+            session()->put('kanka.userLog', UserAction::userRevert);
 
             $this->app['auth']->loginUsingId($impersonator->id);
             $this->clear();

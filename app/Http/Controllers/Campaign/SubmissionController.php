@@ -88,6 +88,7 @@ class SubmissionController extends Controller
         }
 
         $note = $this->service
+            ->user(auth()->user())
             ->campaign($campaign)
             ->submission($campaignSubmission)
             ->process($request->only('role_id', 'rejection', 'action', 'reason'));
@@ -106,10 +107,14 @@ class SubmissionController extends Controller
     public function toggleSave(StoreCampaignApplicationStatus $request, Campaign $campaign)
     {
         $this->authorize('submissions', $campaign);
+        if ($request->ajax()) {
+            return response()->json();
+        }
 
         $campaign->update([
             'is_open' => $request->get('status'),
         ]);
+        auth()->user()->campaignLog($campaign->id, 'applications', 'switch', ['new' => $campaign->isOpen()]);
 
         return redirect()
             ->route('campaign_submissions.index', $campaign)

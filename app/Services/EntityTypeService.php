@@ -135,6 +135,24 @@ class EntityTypeService
 
         if ($this->entityType->wasRecentlyCreated) {
             $this->permissions()->bookmark();
+
+            $this->user->campaignLog(
+                $this->campaign->id,
+                'modules',
+                'created',
+                [
+                    'id' => $this->entityType->id
+                ]
+            );
+        } else {
+            $this->user->campaignLog(
+                $this->campaign->id,
+                'modules',
+                'updated',
+                [
+                    'id' => $this->entityType->id
+                ]
+            );
         }
 
         return $this->entityType;
@@ -144,6 +162,16 @@ class EntityTypeService
     {
         $this->entityType->is_enabled = ! $this->entityType->is_enabled;
         $this->entityType->save();
+
+        $this->user->campaignLog(
+            $this->campaign->id,
+            'modules',
+            'toggle',
+            [
+                'id' => $this->entityType->id,
+                'enabled' => $this->entityType->is_enabled
+            ]
+        );
     }
 
     protected function bookmark(): self
@@ -188,5 +216,14 @@ class EntityTypeService
         $this->entityType->attributeTemplates()->delete();
         $this->entityType->entities()->delete();
         $this->entityType->delete();
+
+        $this->user->campaignLog(
+            $this->campaign->id,
+            'modules',
+            'deleted',
+            [
+                'id' => $this->entityType->id
+            ]
+        );
     }
 }

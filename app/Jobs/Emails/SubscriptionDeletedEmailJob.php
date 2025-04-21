@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Emails;
 
+use App\Enums\UserAction;
 use App\Models\User;
 use App\Models\UserLog;
 use App\Notifications\Header;
@@ -55,6 +56,6 @@ class SubscriptionDeletedEmailJob implements ShouldQueue
             'red'
         ));
 
-        $user->log(UserLog::TYPE_SUB_CANCEL_AUTO);
+        $user->log(UserAction::subCancelAuto);
     }
 }

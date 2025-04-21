@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\UserAction;
 use App\Exceptions\RequireLoginException;
 use App\Facades\UserCache;
 use App\Models\Campaign;
@@ -134,7 +135,7 @@ class InviteService
             )
         );
 
-        $this->user->log(UserLog::TYPE_CAMPAIGN_JOIN);
+        $this->user->campaignLog($campaign->id, 'members', 'join', ['invite' => $invite->id]);
 
         // Make sure the user's cache is cleared
         UserCache::clear();

@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Enums\UserAction;
 use App\Exceptions\Campaign\AlreadyBoostedException;
 use App\Exceptions\Campaign\ExhaustedBoostsException;
 use App\Exceptions\Campaign\ExhaustedSuperboostsException;
@@ -58,17 +59,16 @@ class BoostService
             throw new ExhaustedSuperboostsException;
         }
 
+        // How many boosters we need to create in the table. This is silly and could use some refactoring.
         $amount = 1;
         if ($this->upgrade) {
-            // Create two more
             $amount = 2;
-            $this->user->log(UserLog::TYPE_CAMPAIGN_UPGRADE_BOOST);
+            $this->user->campaignLog($this->campaign->id, 'premium', 'upgrade');
         } elseif ($this->action === 'superboost') {
-            // Create three
             $amount = 3;
-            $this->user->log(UserLog::TYPE_CAMPAIGN_SUPERBOOST);
+            $this->user->campaignLog($this->campaign->id, 'premium', 'superboost');
         } else {
-            $this->user->log(UserLog::TYPE_CAMPAIGN_BOOST);
+            $this->user->campaignLog($this->campaign->id, 'premium', 'boost');
         }
 
         for ($i = 0; $i < $amount; $i++) {
@@ -93,7 +93,7 @@ class BoostService
         }
 
         $amount = 4;
-        $this->user->log(UserLog::TYPE_CAMPAIGN_PREMIUM);
+        $this->user->campaignLog($this->campaign->id, 'premium', 'premium');
 
         for ($i = 0; $i < $amount; $i++) {
             CampaignBoost::create([
@@ -123,7 +123,7 @@ class BoostService
             foreach ($this->user->boosts()->where('campaign_id', $campaignBoost->campaign_id)->get() as $boost) {
                 $boost->delete();
             }
-            $this->user->log(UserLog::TYPE_CAMPAIGN_UNBOOST);
+            $this->user->campaignLog($campaignBoost->campaign_id, 'premium', 'disable');
         }
         $boostCount = $this->campaign->boosts()->count();
         $this->campaign->boost_count = $boostCount;

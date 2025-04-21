@@ -2,6 +2,7 @@
 
 namespace App\Services\Subscription;
 
+use App\Enums\UserAction;
 use App\Models\User;
 use Carbon\Carbon;
 use Laravel\Cashier\PaymentMethod;
@@ -9,7 +10,7 @@ use Stripe\Card;
 
 class PaymentMethodService
 {
-    public function updateExpiry(User $user, int $type)
+    public function updateExpiry(User $user, UserAction $action)
     {
         $defaultPaymentMethod = $user->defaultPaymentMethod();
         if ($defaultPaymentMethod instanceof PaymentMethod) {
@@ -21,6 +22,6 @@ class PaymentMethodService
             $user->card_expires_at = null;
         }
         $user->saveQuietly();
-        $user->log($type);
+        $user->log($action);
     }
 }

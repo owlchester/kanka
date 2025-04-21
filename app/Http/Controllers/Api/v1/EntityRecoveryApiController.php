@@ -42,7 +42,7 @@ class EntityRecoveryApiController extends ApiController
         if (! $campaign->boosted()) {
             return response()->json(null, 204);
         }
-        $this->service->recover($request->entities);
+        $this->service->campaign($campaign)->user($request->user())->recover($request->entities);
 
         return response()->json(['success' => 'Successfully recovered deleted entities']);
     }

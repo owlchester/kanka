@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Enums\PricingPeriod;
+use App\Enums\UserAction;
 use App\Exceptions\TranslatableException;
 use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\MailSettingsChangeJob;
@@ -191,7 +192,7 @@ class SubscriptionService
                 ->withCoupon($this->coupon ?? null)
                 ->create($paymentID);
 
-            $this->user->log(UserLog::TYPE_SUB_NEW);
+            $this->user->log(UserAction::subNew);
 
             return $this;
         }
@@ -199,10 +200,10 @@ class SubscriptionService
         // If going down from elemental to owlbear, keep it as is until the current billing period
         if ($this->downgrading()) {
             $this->user->subscription('kanka')->swap($this->tierPrice()->stripe_id);
-            $this->user->log(UserLog::TYPE_SUB_DOWNGRADE);
+            $this->user->log(UserAction::subDowngrade);
         } else {
             $this->user->subscription('kanka')->swapAndInvoice($this->tierPrice()->stripe_id);
-            $this->user->log(UserLog::TYPE_SUB_UPGRADE);
+            $this->user->log(UserAction::subUpgrade);
         }
 
         return $this;
@@ -234,7 +235,7 @@ class SubscriptionService
                 Arr::get($this->request, 'reason'),
                 Arr::get($this->request, 'reason_custom')
             );
-            $this->user->log(UserLog::TYPE_SUB_DOWNGRADE);
+            $this->user->log(UserAction::subDowngrade);
 
             return $this;
         }
@@ -402,7 +403,7 @@ class SubscriptionService
         $countries = ['EG'];
 
         return $this->user->logs()
-            ->where('type_id', UserLog::TYPE_LOGIN)
+            ->where('type_id', UserAction::login)
             ->whereIn('country', $countries)
             ->count() > 0;
     }

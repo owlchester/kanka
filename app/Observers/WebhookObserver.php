@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Enums\UserAction;
 use App\Models\Webhook;
 use App\Services\Entity\TagService;
 
@@ -10,6 +11,16 @@ class WebhookObserver
     public function saved(Webhook $webhook)
     {
         $this->saveTags($webhook);
+    }
+
+    public function created(Webhook $webhook)
+    {
+        auth()->user()->campaignLog($webhook->campaign_id, 'webhooks', 'created', ['id' => $webhook->id]);
+    }
+
+    public function deleted(Webhook $webhook)
+    {
+        auth()->user()->campaignLog($webhook->campaign_id, 'webhooks', 'deleted', ['id' => $webhook->id]);
     }
 
     /**

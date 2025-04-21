@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Enums\UserAction;
 use App\Facades\Module;
 use App\Models\Bookmark;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -14,6 +16,7 @@ use Stevebauman\Purify\Facades\Purify;
 class SidebarService
 {
     use CampaignAware;
+    use UserAware;
 
     /**
      * List of the campaign's quick links
@@ -583,6 +586,8 @@ class SidebarService
         $this->campaign->ui_settings = $ui;
         $this->campaign->save();
 
+        $this->user->campaignLog($this->campaign->id, 'sidebar', 'save');
+
         $this->clearCache();
     }
 
@@ -592,6 +597,8 @@ class SidebarService
         unset($ui['sidebar']);
         $this->campaign->ui_settings = $ui;
         $this->campaign->save();
+
+        $this->user->campaignLog($this->campaign->id, 'sidebar', 'reset');
 
         $this->clearCache();
     }

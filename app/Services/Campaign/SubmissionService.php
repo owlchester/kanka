@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Enums\UserAction;
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Jobs\Campaigns\NotifyAdmins;
@@ -85,6 +86,8 @@ class SubmissionService
         $this->submission->delete();
         CampaignCache::campaign($this->campaign)->clear();
 
+        $this->user->campaignLog($this->campaign->id, 'applications', 'rejected', ['id' => $this->submission->user_id]);
+
         return $return;
     }
 
@@ -131,6 +134,8 @@ class SubmissionService
 
         // Clear the user's campaign cache
         UserCache::user($this->submission->user)->clear();
+
+        $this->user->campaignLog($this->campaign->id, 'applications', 'approved', ['id' => $this->submission->user_id]);
 
         return $this;
     }

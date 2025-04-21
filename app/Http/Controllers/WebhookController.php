@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserAction;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\SubscriptionDeletedEmailJob;
 use App\Jobs\SubscriptionEndJob;
@@ -91,7 +92,7 @@ class WebhookController extends CashierController
 
             /** @var PaymentMethodService $paymentService */
             $paymentService = app()->make(PaymentMethodService::class);
-            $paymentService->updateExpiry($user, UserLog::TYPE_PAYMENT_AUTO);
+            $paymentService->updateExpiry($user, UserAction::paymentAuto);
         }
 
         return $this->successMethod();
@@ -108,7 +109,7 @@ class WebhookController extends CashierController
 
             /** @var PaymentMethodService $paymentService */
             $paymentService = app()->make(PaymentMethodService::class);
-            $paymentService->updateExpiry($user, UserLog::TYPE_PAYMENT_EDIT);
+            $paymentService->updateExpiry($user, UserAction::paymentEdit);
         }
 
         return $this->successMethod();

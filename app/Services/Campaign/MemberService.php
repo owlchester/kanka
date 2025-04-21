@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Enums\UserAction;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignCache;
 use App\Http\Requests\API\UpdateUserRole;
