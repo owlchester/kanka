@@ -248,7 +248,7 @@ return [
             'campaign_not_public'   => 'Le rôle Public a des permissions mais la campagne est privée. La campagne peut être rendue publique sous l\'onglet Partager en modifiant la campagne.',
             'empty_role'            => 'Ce rôle n\'a pas encore de membre.',
             'role_admin'            => 'Les membres du rôle :name ont automatiquement accès à tout le contenu et toutes les fonctionnalités de la campagne.',
-            'role_permissions'      => 'Permettre au rôle \':name\' les actions suivantes sur toutes les entités.',
+            'role_permissions'      => 'Permettre au rôle :name les actions suivantes sur toutes les entités.',
         ],
         'members'       => 'Membres',
         'modals'        => [
