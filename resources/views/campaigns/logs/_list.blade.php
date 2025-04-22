@@ -25,6 +25,7 @@
             <tr>
                 <td colspan="4" class="text-neutral-content text-xs">
                     <span class="">
+                        <x-icon class="premium" />
                         {{ __('campaigns/logs.premium.helper', ['amount' => $cutoff]) }}
                     </span>
                     @if (auth()->check() && auth()->user()->hasBoosters())
