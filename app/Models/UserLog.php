@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class UserLog
@@ -17,7 +18,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property ?string $country
  * @property ?int $campaign_id
  * @property array $data
+ * @property ?int $impersonated_by
  * @property Carbon $created_at
+ *
+ * @property ?User $impersonator
  */
 class UserLog extends Model
 {
@@ -39,6 +43,7 @@ class UserLog extends Model
         'ip',
         'campaign_id',
         'data',
+        'impersonated_by',
     ];
 
     /**
@@ -52,5 +57,17 @@ class UserLog extends Model
     public function scopeLogins(Builder $builder): Builder
     {
         return $builder->whereIn('type_id', [UserAction::login->value, UserAction::autoLogin->value]);
+    }
+
+    public function impersonator(): BelongsTo
+    {
+        $this->setConnection(config('database.default'));
+        return $this->belongsTo(User::class, 'impersonated_by');
+    }
+
+    public function user(): BelongsTo
+    {
+        $this->setConnection(config('database.default'));
+        return $this->belongsTo(User::class, $this->getUserFieldName());
     }
 }

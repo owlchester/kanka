@@ -30,7 +30,16 @@ class PluginService
             $plugin->is_active = true;
             $plugin->save();
 
-            $this->user->campaignLog($this->campaign->id, 'plugins', 'enabled', ['id' => $plugin->id, 'plugin' => $plugin->plugin_id]);
+            $this->user->campaignLog(
+                $this->campaign->id,
+                'plugins',
+                'enabled',
+                [
+                    'id' => $plugin->id,
+                    'plugin' => $plugin->plugin->name,
+                    'plugin_id' => $plugin->plugin_id
+                ]
+            );
 
             return true;
         }
@@ -46,7 +55,15 @@ class PluginService
             $plugin->is_active = false;
             $plugin->save();
 
-            $this->user->campaignLog($this->campaign->id, 'plugins', 'disabled', ['id' => $plugin->id, 'plugin' => $plugin->plugin_id]);
+            $this->user->campaignLog(
+                $this->campaign->id,
+                'plugins',
+                'disabled',
+                [
+                    'id' => $plugin->id,
+                    'plugin' => $plugin->plugin->name,
+                    'plugin_id' => $plugin->plugin_id
+                ]);
 
             return true;
         }
@@ -66,7 +83,11 @@ class PluginService
         $plugin->delete();
         CampaignCache::clearTheme();
 
-        $this->user->campaignLog($this->campaign->id, 'plugins', 'deleted', ['id' => $plugin->id, 'plugin' => $plugin->plugin_id]);
+        $this->user->campaignLog($this->campaign->id, 'plugins', 'deleted', [
+            'id' => $plugin->id,
+            'plugin' => $plugin->plugin->name,
+            'plugin_id' => $plugin->plugin_id
+        ]);
 
         return true;
     }
@@ -101,6 +122,17 @@ class PluginService
 
         $campaignPlugin->plugin_version_id = $latest->id;
         $campaignPlugin->save();
+
+        auth()->user()->campaignLog(
+            $campaignPlugin->campaign_id,
+            'plugins',
+            'updated',
+            [
+                'id' => $campaignPlugin->id,
+                'plugin' => $campaignPlugin->plugin->name,
+                'plugin_id' => $campaignPlugin->plugin_id
+            ]
+        );
 
         CampaignCache::clearTheme();
 

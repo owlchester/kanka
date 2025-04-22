@@ -20,6 +20,8 @@ return new class extends Migration
         Schema::connection('logs')->table('user_logs', function (Blueprint $table) {
             $table->unsignedBigInteger('campaign_id')->nullable();
             $table->json('data')->nullable();
+
+            $table->unsignedInteger('impersonated_by')->nullable();
         });
     }
 
@@ -37,6 +39,7 @@ return new class extends Migration
         Schema::connection('logs')->table('user_logs', function (Blueprint $table) {
             $table->dropColumn('data');
             $table->dropColumn('campaign_id');
+            $table->dropColumn('impersonated_by');
         });
     }
 };

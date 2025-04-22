@@ -4,7 +4,11 @@
  * @var \Illuminate\Support\Collection $users
  */
 ?>
-<x-box>
+<x-helper>
+    {!! __('campaigns/logs.helpers.list', ['amount' => '<code>' . config('limits.campaigns.logs') . '</code>']) !!}
+</x-helper>
+
+<x-box class="rounded-2xl">
 <table  class="table table-hover table-condensed">
     <thead>
     <tr>
@@ -19,7 +23,17 @@
     @foreach($logs as $log)
         <tr>
             <td>
-                {!! $users->get($log->user_id)->name !!}
+                @if ($log->user)
+                    {!! $log->user->name !!}
+                @else
+                    <span>[deleted user]</span>
+                @endif
+
+                @if ($log->impersonator)
+                    <span class="text-xs text-neutral-content" data-toggle="tooltip" data-title="{{ __('entities/logs.impersonated', ['name' => $log->impersonator->name]) }}">
+                        ({!! $log->impersonator->name !!})
+                    </span>
+                @endif
             </td>
             <td>
                 {{ \Illuminate\Support\Arr::get($log->data, 'module') }}

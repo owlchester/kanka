@@ -14,7 +14,7 @@ return [
     ],
     'intros'    => [
         '1' => 'Dis bonjour à ton nouveau chez toi pour la création de monde, :user! Nous avons mis en place ta première campagne et inclus deux exemples de :characters et :locations Ceux-ci sont également visibles ici sur le tableau de bord.',
-        '2' => 'Pour commencer, cliques sur le gros bouton :new-entity (ou appuies sur :letter sur ton clavier), puis cliques sur :characters pour créer ton premier personnage. C\'est aussi simple que cela ! Tu peux retrouver tous tes personnages, lieux et autres :entités dans la barre latérale située à gauche de la page.',
+        '2' => 'Pour commencer, cliques sur le gros bouton :new-entity (ou appuies sur :letter sur ton clavier), puis cliques sur :characters pour créer ton premier personnage. C\'est aussi simple que cela ! Tu peux retrouver tous tes personnages, lieux et autres :entities dans la barre latérale située à gauche de la page.',
         '3' => 'Voici nos 5 meilleures astuces pour utiliser Kanka',
     ],
     'title'     => 'Bienvenue à :kanka! 🎉',

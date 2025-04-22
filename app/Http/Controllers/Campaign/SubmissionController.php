@@ -7,24 +7,17 @@ use App\Http\Requests\Campaigns\PatchCampaignApplication;
 use App\Http\Requests\Campaigns\StoreCampaignApplicationStatus;
 use App\Models\Campaign;
 use App\Models\CampaignSubmission;
-use App\Services\Campaign\SubmissionService;
+use App\Services\Campaign\ApplicationService;
 
 class SubmissionController extends Controller
 {
-    protected SubmissionService $service;
-
-    public function __construct(SubmissionService $service)
+    public function __construct(protected ApplicationService $service)
     {
         $this->middleware('auth');
 
         $this->service = $service;
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign)
     {
         $this->authorize('submissions', $campaign);
@@ -114,7 +107,12 @@ class SubmissionController extends Controller
         $campaign->update([
             'is_open' => $request->get('status'),
         ]);
-        auth()->user()->campaignLog($campaign->id, 'applications', 'switch', ['new' => $campaign->isOpen()]);
+        auth()->user()->campaignLog(
+            $campaign->id,
+            'applications',
+            'switch',
+            ['new' => $campaign->isOpen() ? 'open' : 'closed']
+        );
 
         return redirect()
             ->route('campaign_submissions.index', $campaign)

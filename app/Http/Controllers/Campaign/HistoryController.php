@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\User;
 use App\Models\UserLog;
+use App\Services\Campaign\ApplicationService;
 use Illuminate\Support\Collection;
 
 class HistoryController extends Controller
@@ -23,17 +24,12 @@ class HistoryController extends Controller
             abort(404);
         }
 
-        $logs = UserLog::where('campaign_id', $campaign->id)->latest()->paginate();
-        $users = new Collection;
-        foreach ($logs as $log) {
-            if (! $users->has($log->user_id)) {
-                $users->put($log->user_id, User::find($log->user_id));
-            }
-        }
+        $logs = UserLog::with(['user', 'impersonator'])->where('campaign_id', $campaign->id)->latest()->paginate();
 
-        return view('campaigns.history.index')
+        return view('campaigns.logs.index')
             ->with('campaign', $campaign)
             ->with('logs', $logs)
-            ->with('users', $users);
+        ;
     }
+
 }

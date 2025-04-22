@@ -3,9 +3,9 @@
     use \Illuminate\Support\Arr;
 @endphp
 @extends('layouts.app', [
-    'title' => __('campaigns.show.tabs.history') . ' - ' . $campaign->name,
+    'title' => __('campaigns.show.tabs.logs') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        __('campaigns.show.tabs.history')
+        __('campaigns.show.tabs.logs')
     ],
     'mainTitle' => false,
     'sidebar' => 'campaign',
@@ -19,22 +19,22 @@
     <div class="flex gap-5 flex-col">
         <div class="flex gap-2 items-center">
             <h3 class="inline-block grow">
-                {{ __('campaigns.show.tabs.history') }}
+                {{ __('campaigns.show.tabs.logs') }}
             </h3>
-            <a class="btn2 btn-sm btn-ghost" href="https://docs.kanka.io/campaign-history.html">
+            <a class="btn2 btn-sm btn-ghost" href="https://docs.kanka.io/campaign-logs.html">
                 <x-icon class="question" />
                 {{ __('crud.actions.help') }}
             </a>
         </div>
 
-        @includeWhen(!$logs->isEmpty(), 'campaigns.history._list')
+        @includeWhen(!$logs->isEmpty(), 'campaigns.logs._list')
         @if($logs->isEmpty())
             <div class="flex flex-col gap-2 justify-center items-center">
                 <div class="text-xl">
-                    {{ __('campaigns/submissions.helpers.no_applications_title') }}
+                    {{ __('campaigns/logs.helpers.title') }}
                 </div>
                 <div class="text-sm text-neutral-content text-center max-w-md">
-                    <p>{!! __('campaigns/submissions.helpers.no_applications', ['button' => '<code><i class="fa-solid fa-door-open" aria-hidden="true"></i> ' . __('dashboard.actions.join') . '</code>']) !!}</p>
+                    <p>{!! __('campaigns/logs.helpers.nothing', ['amount' => '<code>' . config('limits.campaigns.logs') . '</code>']) !!}</p>
                 </div>
             </div>
         @endif

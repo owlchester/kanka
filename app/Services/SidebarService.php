@@ -585,7 +585,7 @@ class SidebarService
         $this->campaign->ui_settings = $ui;
         $this->campaign->save();
 
-        $this->user->campaignLog($this->campaign->id, 'sidebar', 'save');
+        $this->user->campaignLog($this->campaign->id, 'sidebar', 'updated');
 
         $this->clearCache();
     }

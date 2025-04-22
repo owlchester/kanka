@@ -20,7 +20,6 @@ class CampaignPluginObserver
         }
 
         $campaignPlugin->campaign->touchQuietly();
-        auth()->user()->campaignLog($campaignPlugin->campaign_id, 'plugins', 'updated', ['id' => $campaignPlugin->id, 'plugin' => $campaignPlugin->plugin_id]);
     }
 
     /**

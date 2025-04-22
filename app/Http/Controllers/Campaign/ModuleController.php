@@ -110,6 +110,7 @@ class ModuleController extends Controller
         try {
             $status = $this->moduleEditService
                 ->campaign($campaign)
+                ->user(auth()->user())
                 ->entityType($entityType)
                 ->toggle();
 

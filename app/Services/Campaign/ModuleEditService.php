@@ -99,7 +99,8 @@ class ModuleEditService
             'toggle',
             [
                 'id' => $this->entityType->id,
-                'enabled' => $this->campaign->setting->{$this->entityType->pluralCode()},
+                'code' => $this->entityType->code,
+                'new' => $this->campaign->setting->{$this->entityType->pluralCode()} ? 'enabled' : 'disabled',
             ]
         );
 

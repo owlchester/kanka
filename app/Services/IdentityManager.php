@@ -29,12 +29,14 @@ class IdentityManager
     public function switch(CampaignUser $campaignUser): bool
     {
         try {
+
+            auth()->user()->campaignLog($campaignUser->campaign_id, 'members', 'switch', ['to' => $campaignUser->user->name]);
+
             // Save the current user in the session to know we have limitation on the current user.
             session()->put($this->getSessionKey(), $this->app['auth']->user()->id);
             session()->put($this->getSessionCampaignKey(), $this->campaign->id);
 
             // Log this action
-            auth()->user()->campaignLog($campaignUser->campaign_id, 'members', 'switch', ['to' => $campaignUser->user->name]);
             session()->put('kanka.userLog', UserAction::userSwitchLogin);
             $this->app['auth']->loginUsingId($campaignUser->user->id);
         } catch (Exception $e) {

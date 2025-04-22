@@ -15,7 +15,7 @@ use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Arr;
 
-class SubmissionService
+class ApplicationService
 {
     use CampaignAware;
     use PurifiableTrait;

@@ -372,6 +372,7 @@ class User extends \Illuminate\Foundation\Auth\User
         $first['module'] = $module;
         $first['action'] = $action;
         $log->data = $first + $data;
+        $log->impersonated_by = Identity::getImpersonatorId();
         $log->save();
 
         return $this;

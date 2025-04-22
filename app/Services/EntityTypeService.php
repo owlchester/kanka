@@ -142,6 +142,7 @@ class EntityTypeService
                 'created',
                 [
                     'id' => $this->entityType->id,
+                    'code' => $this->entityType->code,
                 ]
             );
         } else {
@@ -151,6 +152,7 @@ class EntityTypeService
                 'updated',
                 [
                     'id' => $this->entityType->id,
+                    'code' => $this->entityType->code,
                 ]
             );
         }
@@ -169,7 +171,8 @@ class EntityTypeService
             'toggle',
             [
                 'id' => $this->entityType->id,
-                'enabled' => $this->entityType->is_enabled,
+                'code' => $this->entityType->code,
+                'new' => $this->entityType->is_enabled ? 'enabled' : 'disabled'
             ]
         );
     }
@@ -223,6 +226,7 @@ class EntityTypeService
             'deleted',
             [
                 'id' => $this->entityType->id,
+                'code' => $this->entityType->code,
             ]
         );
     }

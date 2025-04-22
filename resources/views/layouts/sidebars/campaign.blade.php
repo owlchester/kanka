@@ -80,6 +80,7 @@
                 <x-sidebar.section :text="__('campaigns.show.tabs.customisation')" />
                 <ul class="sidebar-submenu list-none p-0 m-0">
 
+                    @can('setting', $campaign)
                     <li class="px-2 section-modules {{ $sidebar->activeCampaign(['modules', 'entity_types']) }}">
                         <x-sidebar.element
                             :url="route('campaign.modules', [$campaign])"
@@ -87,6 +88,7 @@
                             :text="__('campaigns.show.tabs.modules')"
                         ></x-sidebar.element>
                     </li>
+                    @endcan
                     @if(config('marketplace.enabled'))
                         <li class="px-2 section-modules {{ $sidebar->activeCampaign('plugins') }}">
                             <x-sidebar.element
@@ -147,6 +149,15 @@
                                 :url="route('webhooks.index', [$campaign])"
                                 icon="fa-duotone fa-webhook"
                                 :text="__('campaigns.show.tabs.webhooks')"
+                            ></x-sidebar.element>
+                        </li>
+                    @endif
+                    @can('logs', $campaign)
+                        <li class="px-2 section-webhooks {{ $sidebar->activeCampaign('logs') }}">
+                            <x-sidebar.element
+                                :url="route('campaign.logs', [$campaign])"
+                                icon="fa-duotone fa-timeline"
+                                :text="__('campaigns.show.tabs.logs')"
                             ></x-sidebar.element>
                         </li>
                     @endif
