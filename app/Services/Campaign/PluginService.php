@@ -37,7 +37,7 @@ class PluginService
                 [
                     'id' => $plugin->id,
                     'plugin' => $plugin->plugin->name,
-                    'plugin_id' => $plugin->plugin_id
+                    'plugin_id' => $plugin->plugin_id,
                 ]
             );
 
@@ -62,7 +62,7 @@ class PluginService
                 [
                     'id' => $plugin->id,
                     'plugin' => $plugin->plugin->name,
-                    'plugin_id' => $plugin->plugin_id
+                    'plugin_id' => $plugin->plugin_id,
                 ]);
 
             return true;
@@ -86,7 +86,7 @@ class PluginService
         $this->user->campaignLog($this->campaign->id, 'plugins', 'deleted', [
             'id' => $plugin->id,
             'plugin' => $plugin->plugin->name,
-            'plugin_id' => $plugin->plugin_id
+            'plugin_id' => $plugin->plugin_id,
         ]);
 
         return true;
@@ -130,7 +130,7 @@ class PluginService
             [
                 'id' => $campaignPlugin->id,
                 'plugin' => $campaignPlugin->plugin->name,
-                'plugin_id' => $campaignPlugin->plugin_id
+                'plugin_id' => $campaignPlugin->plugin_id,
             ]
         );
 

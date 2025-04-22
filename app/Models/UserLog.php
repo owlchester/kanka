@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property array $data
  * @property ?int $impersonated_by
  * @property Carbon $created_at
- *
  * @property ?User $impersonator
  */
 class UserLog extends Model
@@ -62,12 +61,14 @@ class UserLog extends Model
     public function impersonator(): BelongsTo
     {
         $this->setConnection(config('database.default'));
+
         return $this->belongsTo(User::class, 'impersonated_by');
     }
 
     public function user(): BelongsTo
     {
         $this->setConnection(config('database.default'));
+
         return $this->belongsTo(User::class, $this->getUserFieldName());
     }
 }

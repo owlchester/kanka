@@ -172,7 +172,7 @@ class EntityTypeService
             [
                 'id' => $this->entityType->id,
                 'code' => $this->entityType->code,
-                'new' => $this->entityType->is_enabled ? 'enabled' : 'disabled'
+                'new' => $this->entityType->is_enabled ? 'enabled' : 'disabled',
             ]
         );
     }

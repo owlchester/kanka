@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Models\User;
 use App\Models\UserLog;
-use App\Services\Campaign\ApplicationService;
-use Illuminate\Support\Collection;
 
 class HistoryController extends Controller
 {
@@ -28,8 +25,6 @@ class HistoryController extends Controller
 
         return view('campaigns.logs.index')
             ->with('campaign', $campaign)
-            ->with('logs', $logs)
-        ;
+            ->with('logs', $logs);
     }
-
 }
