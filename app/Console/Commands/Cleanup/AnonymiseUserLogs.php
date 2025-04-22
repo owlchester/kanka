@@ -24,7 +24,6 @@ class AnonymiseUserLogs extends Command
      */
     protected $description = 'Anonymise User logs older than 30 days';
 
-
     /**
      * Create a new command instance.
      *

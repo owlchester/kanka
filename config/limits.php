@@ -19,7 +19,7 @@ return [
         'modules' => env('APP_MODULE_LIMIT', 5),
         'logs' => [
             'standard' => 7,
-            'premium' => 180
+            'premium' => 180,
         ],
     ],
 

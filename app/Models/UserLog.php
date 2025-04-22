@@ -51,6 +51,7 @@ class UserLog extends Model
     public function prunable(): Builder
     {
         $cutoff = config('logging.prune_months');
+
         return static::where('updated_at', '<=', now()->subMonths($cutoff));
     }
 
@@ -76,6 +77,7 @@ class UserLog extends Model
     public function requiresPremium(): bool
     {
         $cutoff = config('limits.campaigns.logs.standard');
+
         return $this->created_at->diffInDays() > $cutoff;
     }
 }
