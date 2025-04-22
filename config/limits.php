@@ -17,7 +17,10 @@ return [
             'premium' => 20,
         ],
         'modules' => env('APP_MODULE_LIMIT', 5),
-        'logs' => env('APP_CAMPAIGN_LOG_LIMIT', 90),
+        'logs' => [
+            'standard' => 7,
+            'premium' => 180
+        ],
     ],
 
     /**

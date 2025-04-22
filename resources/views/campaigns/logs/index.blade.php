@@ -33,8 +33,23 @@
                 <div class="text-xl">
                     {{ __('campaigns/logs.helpers.title') }}
                 </div>
-                <div class="text-sm text-neutral-content text-center max-w-md">
-                    <p>{!! __('campaigns/logs.helpers.nothing', ['amount' => '<code>' . config('limits.campaigns.logs') . '</code>']) !!}</p>
+                <div class="text-sm text-neutral-content text-center max-w-md flex flex-col gap-4">
+                    <p>{!! __('campaigns/logs.helpers.nothing', ['amount' => '<code>' . $cutoff . '</code>']) !!}</p>
+                    @if (!$campaign->premium())
+                        <hr />
+                        <p>
+                            {!! __('campaigns/logs.premium', ['amount' => '<code>' . config('limits.campaigns.logs.premium') . '</code>']) !!}
+                        </p>
+                        @if (auth()->check() && auth()->user()->hasBoosters())
+                            <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-lg btn-block">
+                                {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
+                            </a>
+                        @else
+                            <a href="https://kanka.io/premium" class="btn2 bg-boost text-white btn-sm btn-block">
+                                {!! __('callouts.premium.learn-more') !!}
+                            </a>
+                        @endif
+                    @endif
                 </div>
             </div>
         @endif

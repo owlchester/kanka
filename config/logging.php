@@ -90,4 +90,7 @@ return [
     ],
 
     'enabled' => env('DB_LOGS_DATABASE', false),
+
+    'anonymize' => 30,
+    'prune_months' => 6,
 ];

@@ -6,9 +6,17 @@ use App\Models\UserLog;
 
 class UserLogService
 {
-    public function deleteOldLogs(): self
+    protected int $count;
+
+    public function count(): int
     {
-        UserLog::where('created_at', '<=', \Carbon\Carbon::today()->subDays(30)->format('Y-m-d'))
+        return $this->count;
+    }
+
+    public function anonymize(): self
+    {
+        $cutoff = config('logging.anonymize');
+        $this->count = UserLog::whereDate('created_at', \Carbon\Carbon::today()->subDays($cutoff)->format('Y-m-d'))
             ->update(['ip' => null, 'country' => null]);
 
         return $this;

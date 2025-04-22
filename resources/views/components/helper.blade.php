@@ -7,8 +7,8 @@
     @endif
 
     @if (!empty($docs))
-        <a href="{{ $docs }}" target="_blank" class="">
-            <i class="fa-solid fa-external-link" aria-hidden="true"></i>
+        <a href="{{ $docs }}"  class="">
+            <x-icon class="fa-solid fa-external-link" />
             {{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}
         </a>
     @endif

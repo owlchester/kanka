@@ -50,7 +50,8 @@ class UserLog extends Model
      */
     public function prunable(): Builder
     {
-        return static::where('updated_at', '<=', now()->subMonths(6));
+        $cutoff = config('logging.prune_months');
+        return static::where('updated_at', '<=', now()->subMonths($cutoff));
     }
 
     public function scopeLogins(Builder $builder): Builder
@@ -70,5 +71,11 @@ class UserLog extends Model
         $this->setConnection(config('database.default'));
 
         return $this->belongsTo(User::class, $this->getUserFieldName());
+    }
+
+    public function requiresPremium(): bool
+    {
+        $cutoff = config('limits.campaigns.logs.standard');
+        return $this->created_at->diffInDays() > $cutoff;
     }
 }

@@ -5,7 +5,7 @@
  */
 ?>
 <x-helper>
-    {!! __('campaigns/logs.helpers.list', ['amount' => '<code>' . config('limits.campaigns.logs') . '</code>']) !!}
+    {!! __('campaigns/logs.helpers.list', ['amount' => '<code>' . $premium . '</code>']) !!}
 </x-helper>
 
 <x-box class="rounded-2xl">
@@ -21,6 +21,29 @@
     </thead>
     <tbody>
     @foreach($logs as $log)
+        @if ($log->requiresPremium())
+            <tr>
+                <td colspan="4" class="text-neutral-content text-xs">
+                    <span class="">
+                        {{ __('campaigns/logs.premium.helper', ['amount' => $cutoff]) }}
+                    </span>
+                    @if (auth()->check() && auth()->user()->hasBoosters())
+                        <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="">
+                            {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
+                        </a>
+                    @else
+                        <a href="https://kanka.io/premium" class="">
+                            {!! __('callouts.premium.learn-more') !!}
+                        </a>
+                    @endif
+                </td>
+                <td>
+                <span data-toggle="tooltip" data-title="{{ $log->created_at }} UTC">
+                    {{ $log->created_at->diffForHumans() }}
+                </span>
+                </td>
+            </tr>
+        @else
         <tr>
             <td>
                 @if ($log->user)
@@ -55,6 +78,7 @@
                 </span>
             </td>
         </tr>
+       @endif
     @endforeach
     </tbody>
 </table>

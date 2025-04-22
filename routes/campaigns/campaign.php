@@ -210,4 +210,4 @@ Route::post('/w/{campaign}/sidebar/image', [App\Http\Controllers\Campaign\ImageC
 
 Route::get('/w/{campaign}/stats', [App\Http\Controllers\Campaign\StatController::class, 'index'])->name('campaign.stats');
 
-Route::get('/w/{campaign}/logs', [App\Http\Controllers\Campaign\HistoryController::class, 'index'])->name('campaign.logs');
+Route::get('/w/{campaign}/logs', [App\Http\Controllers\Campaign\LogController::class, 'index'])->name('campaign.logs');
