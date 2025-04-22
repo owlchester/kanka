@@ -30,6 +30,7 @@ return [
     ],
     'helpers'       => [
         'age'   => 'You can link this entity with a calendar of your campaign to automatically calculate their age instead. :more.',
+        'personality_visible' => 'If selected, the personality traits of this character are visible to all. If not, only to members of the :admin role will be able to see these traits.'
     ],
     'hints'         => [
         'is_appearance_pinned'      => 'Display the appearance traits on the overview page.',
@@ -37,7 +38,7 @@ return [
         'is_personality_pinned'     => 'Display the personality traits on the overview page.',
         'is_personality_visible'    => 'The personality traits are visible to all, not only to members of the :admin role.',
         'personality_not_visible'   => 'Personality traits of this character are currently only visible to Admin users.',
-        'personality_visible'       => 'Personality traits of this character are visible to all.',
+        'personality_visible'       => 'Everyone can view this character\'s personality.',
     ],
     'labels'        => [
         'appearance'    => [

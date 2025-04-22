@@ -33,13 +33,14 @@ return [
     ],
     'helpers'       => [
         'age'   => 'Il est possible de lier cette entité avec un calendrier de la campagne pour automatiquement calculer l\'âge. :more.',
+        'personality_visible' => 'Si coché, les traits de personnalités seront visibles pour tous. Sinon, seuls les membres du rôle :admin de la campagne pourront voir les traits de personnalité de ce personnage.',
     ],
     'hints'         => [
         'is_appearance_pinned'      => 'Si sélectionné, le physique du personnage sera visible sur la page vue d\'ensemble sous l\'entrée.',
         'is_dead'                   => 'Ce personnage est mort.',
         'is_personality_pinned'     => 'Si sélectionné, la personnalité du personnage sera visible sur la page vue d\'ensemble sous l\'entrée.',
-        'is_personality_visible'    => 'Tu peux cacher toute la personnalité des membres de type non Admin.',
-        'personality_not_visible'   => 'Les traits de personnalités de ce personnage sont actuellement seulement visibles pour les Admin de la campagne.',
+        'is_personality_visible'    => 'Tout le monde peut voir les traits de personmalités de ce personnage.',
+        'personality_not_visible'   => 'Les traits de personnalités de ce personnage sont actuellement seulement visibles pour les admin de la campagne.',
         'personality_visible'       => 'Les traits de personnalités sont visibles pour tous.',
     ],
     'index'         => [],

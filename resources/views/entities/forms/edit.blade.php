@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="">
-                    @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form'])
+                    @include('cruds.fields.save', ['disableCancel' => true, 'target' => 'entity-form', 'model' => $entity])
                 </div>
             </div>
 

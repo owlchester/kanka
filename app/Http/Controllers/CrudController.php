@@ -623,7 +623,6 @@ class CrudController extends Controller
                 $route = route($this->route . '.index', [$this->campaign]);
             } elseif ($request->has('submit-copy')) {
                 $route = route($this->route . '.create', [$this->campaign, 'copy' => $model->id]);
-
                 return response()->redirectTo($route);
             }
 

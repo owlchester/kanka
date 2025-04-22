@@ -106,9 +106,11 @@ $role = \App\Facades\CampaignCache::adminRole();
             <x-forms.field
                 field="personality-visible"
                 :label="__('characters.fields.is_personality_visible')"
+                :helper="__('characters.helpers.personality_visible', [
+                'admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\'>' . \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>'])"
             >
                 <x-checkbox :text="__('characters.hints.is_personality_visible', [
-        'admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' target=\'_blank\'>' . \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>'
+        'admin' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\'>' . \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>'
 ])">
                     <input type="checkbox" name="is_personality_visible" value="1" @if (old('is_personality_visible', $source->child->is_personality_visible ?? $model->is_personality_visible ?? false)) checked="checked" @endif/>
                 </x-checkbox>

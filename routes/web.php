@@ -26,6 +26,7 @@ Route::get('/_ccapi/country', [App\Http\Controllers\CookieConsentController::cla
 Route::get('/frontend-prepare', [App\Http\Controllers\FrontendPrepareController::class, 'index']);
 
 Route::get('/_setup', [App\Http\Controllers\SetupController::class, 'index']);
+Route::get('/up', [App\Http\Controllers\HealthController::class, 'index']);
 
 Route::model('feature', App\Models\Feature::class);
 Route::get('roadmap', [App\Http\Controllers\Roadmap\RoadmapController::class, 'index'])->name('roadmap');

@@ -17,7 +17,10 @@ class ReminderResource extends EntityChild
         /** @var Reminder $model */
         $model = $this->resource;
 
-        return $this->onEntity([
+        return [
+            'id' => $model->id,
+            'remindable_id' => $model->remindable_id,
+            'remindable_type' => $model->remindable_type,
             'calendar_id' => $model->calendar_id,
             'date' => $model->date(),
             'day' => $model->day,
@@ -31,7 +34,11 @@ class ReminderResource extends EntityChild
             'colour' => $model->colour,
             'type_id' => $model->type_id,
             'visibility_id' => $model->visibility_id,
+
+            'created_at' => $model->created_at,
             'created_by' => $model->created_by,
-        ]);
+            'updated_at' => $model->updated_at,
+            'updated_by' => $model->updated_by,
+        ];
     }
 }

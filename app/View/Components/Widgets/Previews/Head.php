@@ -47,19 +47,22 @@ class Head extends Component
             return [
                 'wide_xl' => $this->entity->thumbnail(800, 450, 'header_image'),
                 'wide_sm' => $this->entity->thumbnail(480, 270, 'header_image'),
-                'square' => $this->entity->thumbnail(800, 800, 'header_image'),
+                'square_xl' => $this->entity->thumbnail(800, 800, 'header_image'),
+                'square_sm' => $this->entity->thumbnail(480, 480, 'header_image'),
             ];
         } elseif ($this->widget->conf('entity-header') && $this->campaign->boosted() && $this->entity->header) {
             return [
                 'wide_xl' => $this->entity->header->getUrl(800, 450),
                 'wide_sm' => $this->entity->header->getUrl(480, 270),
-                'square' => $this->entity->header->getUrl(800, 800),
+                'square_xl' => $this->entity->header->getUrl(800, 800),
+                'square_sm' => $this->entity->header->getUrl(480, 480),
             ];
         } elseif ($this->entity->hasImage()) {
             return [
                 'wide_xl' => Avatar::entity($this->entity)->size(800, 450)->thumbnail(),
                 'wide_sm' => Avatar::entity($this->entity)->size(480, 270)->thumbnail(),
-                'square' => Avatar::entity($this->entity)->size(800, 800)->thumbnail(),
+                'square_xl' => Avatar::entity($this->entity)->size(800, 800)->thumbnail(),
+                'square_sm' => Avatar::entity($this->entity)->size(480, 480)->thumbnail(),
             ];
         }
 
