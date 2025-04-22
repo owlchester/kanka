@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Enums\PricingPeriod;
-use App\Enums\UserAction;
 use App\Exceptions\TranslatableException;
 use App\Facades\DataLayer;
 use App\Http\Controllers\Controller;
@@ -192,7 +191,7 @@ class SubscriptionController extends Controller
             $this->subscription
                 ->user($request->user())
                 ->renew();
-            $request->user()->log(UserAction::subRenew);
+            $request->user()->log(UserLog::TYPE_SUB_RENEW);
 
             $routeOptions = [];
 

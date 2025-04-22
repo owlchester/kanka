@@ -78,7 +78,6 @@ class ExportService
             'status' => CampaignExport::STATUS_SCHEDULED,
         ]);
 
-        $this->user->campaignLog($this->campaign->id, 'export', 'created');
         Export::dispatch($this->campaign, $this->user, $entitiesExport, false)->onQueue('heavy');
 
         return $this;

@@ -2,7 +2,6 @@
 
 namespace App\Jobs\Emails\Purge;
 
-use App\Enums\UserAction;
 use App\Mail\Purge\FirstWarning;
 use App\Models\User;
 use Exception;
@@ -45,7 +44,7 @@ class FirstWarningJob implements ShouldQueue
 
         Log::info('PurgeFirstWarning', ['user' => $this->userId]);
         $campaigns = $user->onlyAdminCampaigns();
-        $user->log(UserAction::purgeWarningFirst);
+        $user->log(UserLog::PURGE_WARNING_FIRST);
 
         $target = app()->isProduction() ? $user->email : config('mail.from.address');
         try {

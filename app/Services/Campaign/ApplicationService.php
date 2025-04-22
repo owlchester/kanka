@@ -85,8 +85,6 @@ class ApplicationService
         $this->submission->delete();
         CampaignCache::campaign($this->campaign)->clear();
 
-        $this->user->campaignLog($this->campaign->id, 'applications', 'rejected', ['id' => $this->submission->user_id]);
-
         return $return;
     }
 
@@ -133,8 +131,6 @@ class ApplicationService
 
         // Clear the user's campaign cache
         UserCache::user($this->submission->user)->clear();
-
-        $this->user->campaignLog($this->campaign->id, 'applications', 'approved', ['id' => $this->submission->user_id]);
 
         return $this;
     }

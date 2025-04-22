@@ -56,6 +56,6 @@ class LeaveService
         UserCache::user($this->user)->clear();
         CampaignCache::campaign($this->campaign)->clear();
 
-        $this->user->campaignLog($this->campaign->id, 'members', 'leave');
+        $this->user->log(UserLog::TYPE_CAMPAIGN_LEAVE);
     }
 }

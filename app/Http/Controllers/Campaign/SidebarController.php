@@ -53,7 +53,6 @@ class SidebarController extends Controller
 
         // Good luck
         $this->service->campaign($campaign)
-            ->user(auth()->user())
             ->save(request()->all());
 
         return redirect()
@@ -70,10 +69,7 @@ class SidebarController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        $this->service
-            ->campaign($campaign)
-            ->user(auth()->user())
-            ->reset();
+        $this->service->campaign($campaign)->reset();
 
         return redirect()
             ->route('campaign-sidebar', $campaign)

@@ -73,7 +73,6 @@ class WebhookController extends Controller
         $new = new Webhook($request->all());
         $new->campaign_id = $campaign->id;
         $new->save();
-        auth()->user()->campaignLog($campaign->id, 'webhooks', 'created', ['id' => $new->id]);
 
         return redirect()->route('webhooks.index', $campaign)
             ->with('success', __('campaigns/webhooks.create.success'));
@@ -94,7 +93,6 @@ class WebhookController extends Controller
         $this->authorize('webhooks', $campaign);
 
         $webhook->update($request->all());
-        auth()->user()->campaignLog($campaign->id, 'webhooks', 'updated', ['id' => $webhook->id]);
 
         return redirect()->route('webhooks.index', $campaign)
             ->with('success', __('campaigns/webhooks.edit.success'));
@@ -105,7 +103,6 @@ class WebhookController extends Controller
         $this->authorize('webhooks', $campaign);
 
         $webhook->delete();
-        auth()->user()->campaignLog($campaign->id, 'webhooks', 'deleted', ['id' => $webhook->id]);
 
         return redirect()->route('webhooks.index', $campaign)
             ->with('success', __('campaigns/webhooks.destroy.success'));
@@ -121,7 +118,6 @@ class WebhookController extends Controller
         $this->authorize('webhooks', $campaign);
 
         $webhook->update(['status' => ! $webhook->status]);
-        auth()->user()->campaignLog($campaign->id, 'webhooks', 'toggle', ['id' => $webhook->id]);
 
         return redirect()->route('webhooks.index', $campaign)
             ->with(
@@ -175,8 +171,6 @@ class WebhookController extends Controller
         $this->authorize('webhooks', $campaign);
 
         TestWebhookJob::dispatch($campaign, auth()->user(), $webhook, $webhook->action);
-
-        auth()->user()->campaignLog($campaign->id, 'webhooks', 'test', ['id' => $webhook->id]);
 
         return redirect()->route('webhooks.index', $campaign)
             ->with(

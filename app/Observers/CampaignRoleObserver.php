@@ -15,15 +15,9 @@ class CampaignRoleObserver
         CampaignCache::clear();
     }
 
-    public function created(CampaignRole $campaignRole)
-    {
-        auth()->user()->campaignLog($campaignRole->campaign_id, 'roles', 'created', ['id' => $campaignRole->id]);
-    }
-
     public function deleted(CampaignRole $campaignRole)
     {
         CampaignCache::clear();
-        auth()->user()->campaignLog($campaignRole->campaign_id, 'roles', 'deleted', ['id' => $campaignRole->id]);
     }
 
     public function updated(CampaignRole $campaignRole)
@@ -31,6 +25,5 @@ class CampaignRoleObserver
         if ($campaignRole->isAdmin()) {
             CampaignCache::clear();
         }
-        auth()->user()->campaignLog($campaignRole->campaign_id, 'roles', 'updated', ['id' => $campaignRole->id]);
     }
 }

@@ -133,7 +133,7 @@ class InviteService
             )
         );
 
-        $this->user->campaignLog($campaign->id, 'members', 'join', ['invite' => $invite->id]);
+        $this->user->log(UserLog::TYPE_CAMPAIGN_JOIN);
 
         // Make sure the user's cache is cleared
         UserCache::clear();

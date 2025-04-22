@@ -2,7 +2,6 @@
 
 namespace App\Jobs\Emails;
 
-use App\Enums\UserAction;
 use App\Mail\Subscription\Admin\CancelledSubscriptionMail;
 use App\Mail\Subscription\User\CancelledUserSubscriptionMail;
 use App\Models\User;
@@ -64,6 +63,6 @@ class SubscriptionCancelEmailJob implements ShouldQueue
             ->send(
                 new CancelledUserSubscriptionMail($user)
             );
-        $user->log(UserAction::subCancelManual);
+        $user->log(UserLog::TYPE_SUB_CANCEL_MANUAL);
     }
 }

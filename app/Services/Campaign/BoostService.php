@@ -57,16 +57,17 @@ class BoostService
             throw new ExhaustedSuperboostsException;
         }
 
-        // How many boosters we need to create in the table. This is silly and could use some refactoring.
         $amount = 1;
         if ($this->upgrade) {
+            // Create two more
             $amount = 2;
-            $this->user->campaignLog($this->campaign->id, 'premium', 'upgrade');
+            $this->user->log(UserLog::TYPE_CAMPAIGN_UPGRADE_BOOST);
         } elseif ($this->action === 'superboost') {
+            // Create three
             $amount = 3;
-            $this->user->campaignLog($this->campaign->id, 'premium', 'superboost');
+            $this->user->log(UserLog::TYPE_CAMPAIGN_SUPERBOOST);
         } else {
-            $this->user->campaignLog($this->campaign->id, 'premium', 'boost');
+            $this->user->log(UserLog::TYPE_CAMPAIGN_BOOST);
         }
 
         for ($i = 0; $i < $amount; $i++) {
@@ -91,7 +92,7 @@ class BoostService
         }
 
         $amount = 4;
-        $this->user->campaignLog($this->campaign->id, 'premium', 'premium');
+        $this->user->log(UserLog::TYPE_CAMPAIGN_PREMIUM);
 
         for ($i = 0; $i < $amount; $i++) {
             CampaignBoost::create([
@@ -121,7 +122,7 @@ class BoostService
             foreach ($this->user->boosts()->where('campaign_id', $campaignBoost->campaign_id)->get() as $boost) {
                 $boost->delete();
             }
-            $this->user->campaignLog($campaignBoost->campaign_id, 'premium', 'disable');
+            $this->user->log(UserLog::TYPE_CAMPAIGN_UNBOOST);
         }
         $boostCount = $this->campaign->boosts()->count();
         $this->campaign->boost_count = $boostCount;

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Enums\UserAction;
 use App\Models\Tier;
 use App\Traits\UserAware;
 use Carbon\Carbon;
@@ -101,6 +100,6 @@ class PayPalService
             $sub->stripe_price = 'paypal_' . $this->user->pledge; // @phpstan-ignore-line
             $sub->save();
         }
-        $this->user->log(UserAction::subPaypal);
+        $this->user->log(UserLog::TYPE_SUB_PAYPAL);
     }
 }

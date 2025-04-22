@@ -42,7 +42,7 @@ class PostRecoveryApiController extends ApiController
         if (! $campaign->boosted()) {
             return response()->json(null, 204);
         }
-        $this->service->campaign($campaign)->user($request->user())->recover($request->posts);
+        $this->service->recover($request->posts);
 
         return response()->json(['success' => 'Successfully recovered deleted posts']);
     }

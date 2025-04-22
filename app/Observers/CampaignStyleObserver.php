@@ -22,20 +22,4 @@ class CampaignStyleObserver
     {
         CampaignCache::clearTheme();
     }
-
-    public function created(CampaignStyle $campaignStyle)
-    {
-
-        auth()->user()->campaignLog($campaignStyle->campaign_id, 'styles', 'created', ['id' => $campaignStyle->id]);
-    }
-
-    public function updated(CampaignStyle $campaignStyle)
-    {
-        auth()->user()->campaignLog($campaignStyle->campaign_id, 'styles', 'updated', ['id' => $campaignStyle->id]);
-    }
-
-    public function deleted(CampaignStyle $campaignStyle)
-    {
-        auth()->user()->campaignLog($campaignStyle->campaign_id, 'styles', 'deleted', ['id' => $campaignStyle->id]);
-    }
 }
