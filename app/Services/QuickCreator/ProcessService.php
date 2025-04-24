@@ -112,7 +112,7 @@ class ProcessService
         }
 
         // If no entity was created, we throw the standard error
-        if (empty($createdEntities)) {
+        if (empty($this->new)) {
             $rules = $validator->rules();
             $this->validateEntity($values, $rules);
         }

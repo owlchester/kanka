@@ -60,8 +60,8 @@ class EntityCreatorController extends Controller
             ->entity();
 
         // Have a target? Return json for the js to handle it instead
+        $first = $this->processService->first();
         if ($request->has('_target')) {
-            $first = $this->processService->first();
 
             return response()->json([
                 '_target' => $request->get('_target'),
@@ -72,8 +72,7 @@ class EntityCreatorController extends Controller
         }
 
         // Redirect the user to the edit form
-        if ($request->get('action') === 'edit' && isset($new)) {
-            $first = $this->processService->first();
+        if ($request->get('action') == 'edit') {
             $entity = $entityType->isSpecial() ? $first : $first->entity;
             $editUrl = route('entities.edit', [$campaign, $entity]);
 
@@ -90,7 +89,7 @@ class EntityCreatorController extends Controller
         );
 
         // Continue creating more of the same kind
-        if ($request->get('action') === 'more') {
+        if ($request->get('action') == 'more') {
             return $this->renderForm(new Request, $campaign, $entityType, $success);
         }
 
@@ -109,9 +108,8 @@ class EntityCreatorController extends Controller
             ->post();
 
         // Have a target? Return json for the js to handle it instead
+        $first = $this->processService->first();
         if ($request->has('_target')) {
-            $first = $this->processService->first();
-
             return response()->json([
                 '_target' => $request->get('_target'),
                 '_id' => $first->id,
@@ -121,8 +119,8 @@ class EntityCreatorController extends Controller
         }
 
         // Redirect the user to the edit form
-        if ($request->get('action') === 'edit' && isset($new)) {
-            $editUrl = route('entities.posts.edit', [$campaign, $new->entity_id, $new->id]);
+        if ($request->get('action') == 'edit') {
+            $editUrl = route('entities.posts.edit', [$campaign, $first->entity_id, $first->id]);
 
             return response()->json([
                 'redirect' => $editUrl,
@@ -137,7 +135,7 @@ class EntityCreatorController extends Controller
         );
 
         // Continue creating more of the same kind
-        if ($request->get('action') === 'more') {
+        if ($request->get('action') == 'more') {
             return $this->renderForm(new Request, $campaign, null, $success);
         }
 
