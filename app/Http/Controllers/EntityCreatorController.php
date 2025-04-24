@@ -62,7 +62,6 @@ class EntityCreatorController extends Controller
         // Have a target? Return json for the js to handle it instead
         $first = $this->processService->first();
         if ($request->has('_target')) {
-
             return response()->json([
                 '_target' => $request->get('_target'),
                 '_id' => $first->id,
