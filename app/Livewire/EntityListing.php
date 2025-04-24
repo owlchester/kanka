@@ -6,6 +6,7 @@ use App\Facades\Avatar;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\UserCache;
+use App\Facades\Permissions;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
 use Illuminate\Support\Collection;
@@ -43,6 +44,7 @@ class EntityListing extends Component
         UserCache::campaign($this->campaign);
         Avatar::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
+        Permissions::campaign($this->campaign);
 
         $this->pageNumber += 1;
         $entities = $this->widget->entities($this->pageNumber);

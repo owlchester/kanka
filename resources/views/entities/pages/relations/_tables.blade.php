@@ -24,6 +24,12 @@
 
 @includeWhen(!$connections->isEmpty(), 'entities.pages.relations._related')
 
+@if(!$connections->isEmpty())
+
+    @livewire('entities.related', ['campaign' => $campaign, 'entity' => $entity])
+
+@endif
+
 @section('modals')
     @parent
     <x-dialog id="edit-dialog" :loading="true" />

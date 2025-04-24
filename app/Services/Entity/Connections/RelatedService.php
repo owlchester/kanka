@@ -2,6 +2,11 @@
 
 namespace App\Services\Entity\Connections;
 
+use App\Facades\Avatar;
+use App\Facades\CampaignCache;
+use App\Facades\CampaignLocalization;
+use App\Facades\UserCache;
+use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\Conversation;
 use App\Models\Entity;
@@ -22,12 +27,15 @@ class RelatedService
 
     protected string $order = 'name';
 
+    protected string $direction = 'ASC';
+
     /**
      * @param  string|null  $order
      * @return $this
      */
-    public function order($order): self
+    public function order($order, $orderDirection = 'ASC'): self
     {
+        $this->direction = $orderDirection;
         if (! in_array($order, ['name', 'type'])) {
             return $this;
         }
@@ -42,15 +50,15 @@ class RelatedService
         return implode(', ', $this->reasons[$entityId]);
     }
 
-    public function connections()
+    public function connections(int $page = 0)
     {
         // Prepare ids for pagination
         $this->prepareIds();
 
         return Entity::whereIn('id', $this->ids)
             ->with(['image', 'entityType'])
-            ->orderBy($this->order)
-            ->paginate();
+            ->orderBy($this->order, $this->direction)
+            ->paginate(10, ['*'], 'page', $page);
     }
 
     protected function prepareIds()
