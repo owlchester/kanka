@@ -10,8 +10,7 @@ use Illuminate\Http\Request;
 
 class FullTextController extends Controller
 {
-    public function __construct(protected EntitySearchService $service)
-    {}
+    public function __construct(protected EntitySearchService $service) {}
 
     public function index(Campaign $campaign, Request $request)
     {

@@ -12,10 +12,7 @@ use App\Services\Entity\PostService;
 
 class MoveController extends Controller
 {
-
-    public function __construct(protected PostService $service)
-    {
-    }
+    public function __construct(protected PostService $service) {}
 
     public function index(Campaign $campaign, Entity $entity, Post $post)
     {

@@ -15,8 +15,7 @@ class Avatar extends Component
     public function __construct(
         public User $user,
         public int $size = 40
-    )
-    {
+    ) {
         //
     }
 

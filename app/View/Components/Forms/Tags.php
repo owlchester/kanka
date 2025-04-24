@@ -46,8 +46,8 @@ class Tags extends Component
     {
         if (
             $this->allowNew && ! auth()->user()->can('create', [
-            $this->campaign->getEntityTypes()->firstWhere('id', config('entities.ids.tag')),
-            $this->campaign,
+                $this->campaign->getEntityTypes()->firstWhere('id', config('entities.ids.tag')),
+                $this->campaign,
             ])
         ) {
             $this->allowNew = false;

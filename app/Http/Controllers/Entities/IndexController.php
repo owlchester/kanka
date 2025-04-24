@@ -84,7 +84,7 @@ class IndexController extends Controller
             ->with('entityType', $entityType)
             ->with('mode', $mode)
             ->with('parent', $parent)
-            //->with('forceMode', 'grid')
+            // ->with('forceMode', 'grid')
             ->with('filterService', $this->filterService)
             ->with('nestable', $nested)
             ->with('templates', new Collection);

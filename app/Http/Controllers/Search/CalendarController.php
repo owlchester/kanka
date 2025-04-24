@@ -9,13 +9,10 @@ use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
-
     /**
      * LiveController constructor.
      */
-    public function __construct(protected SearchService $searchService)
-    {
-    }
+    public function __construct(protected SearchService $searchService) {}
 
     public function index(Request $request, Campaign $campaign)
     {

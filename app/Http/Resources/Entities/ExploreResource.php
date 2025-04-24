@@ -4,7 +4,6 @@ namespace App\Http\Resources\Entities;
 
 use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
-use App\Http\Resources\EntityTagResource;
 use App\Http\Resources\EntityTypeResource;
 use App\Models\Entity;
 use Illuminate\Http\Request;
@@ -80,6 +79,7 @@ class ExploreResource extends JsonResource
         if ($entity->isCharacter() && $entity->character->isDead()) {
             return 'dead';
         }
+
         return null;
     }
 
@@ -98,9 +98,10 @@ class ExploreResource extends JsonResource
                 ],
                 'name' => $tag->name,
                 'colour' => $tag->colourClass(),
-                'shortname' => $tag->shortname()
+                'shortname' => $tag->shortname(),
             ];
         }
+
         return $tags;
     }
 }

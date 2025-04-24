@@ -12,6 +12,6 @@ class UserPolicy
             return false;
         }
 
-        return $user->isGoblin() || !empty($user->booster_count);
+        return $user->isGoblin() || ! empty($user->booster_count);
     }
 }

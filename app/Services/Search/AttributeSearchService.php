@@ -9,9 +9,8 @@ use App\Traits\RequestAware;
 
 class AttributeSearchService
 {
-    use CampaignAware;
-    use RequestAware;
     use EntityAware;
+    use RequestAware;
 
     public function find(): array
     {
@@ -28,6 +27,7 @@ class AttributeSearchService
                 'value' => $attribute->value,
             ];
         }
+
         return $results;
     }
 }

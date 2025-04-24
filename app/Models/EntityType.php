@@ -226,7 +226,7 @@ class EntityType extends Model
         return method_exists($model, 'getParentKeyName');
     }
 
-    public function hasTable():  bool
+    public function hasTable(): bool
     {
         return $this->isSpecial();
     }

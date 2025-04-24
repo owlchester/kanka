@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
-use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Search\AttributeSearchService;

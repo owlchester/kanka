@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 
 class CampaignController extends Controller
 {
-    public function __construct(protected CampaignSearchService $searchService)
-    {}
+    public function __construct(protected CampaignSearchService $searchService) {}
 
     public function members(Request $request, Campaign $campaign)
     {

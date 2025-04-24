@@ -12,8 +12,7 @@ use Illuminate\Http\JsonResponse;
  */
 class RecentController extends Controller
 {
-    public function __construct(protected RecentService $recentService)
-    {}
+    public function __construct(protected RecentService $recentService) {}
 
     /**
      * Get a user's recent searches
