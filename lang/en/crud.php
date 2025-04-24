@@ -63,7 +63,7 @@ return [
             'title'     => 'Editing multiple entities',
         ],
         'errors'        => [
-            'admin'     => 'Only campaign admins can change the private status of entities.',
+            'admin'     => 'Only members of the Admin role can change the private status of entities.',
             'general'   => 'An error occurred processing your action. Please try again and contact us if the problem persists. Error message: :hint.',
         ],
         'permissions'   => [

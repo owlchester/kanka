@@ -12,7 +12,7 @@
             'type' => 'parent',
         ],
         [
-            'label' => '<i class="fa-solid fa-map" data-toggle="tooltip" data-title="' . __('maps.actions.explore') . '"></i>',
+            'label' => '<i class="fa-regular fa-map" data-toggle="tooltip" data-title="' . __('maps.actions.explore') . '"></i>',
             'render' => function($model) use ($campaign) {
                 return \Illuminate\Support\Facades\Blade::render('maps._explore-link', ['map' => $model, 'campaign' => $campaign]);
             },

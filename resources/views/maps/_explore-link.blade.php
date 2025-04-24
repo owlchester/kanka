@@ -15,5 +15,5 @@ if ($map->isChunked()) {
 @endphp
 <a href="{{ route('maps.explore', [$campaign, $map->id]) }}" target="_blank"
    data-toggle="tooltip" data-title="{{ __('maps.actions.explore') }}">
-    <x-icon class="fa-solid fa-map" />
+    <x-icon class="map" />
 </a>

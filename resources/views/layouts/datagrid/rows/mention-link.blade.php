@@ -7,7 +7,7 @@
 @endif
 @if ($model->entity)
     @if ($model->entity->is_private)
-        <x-icon class="fa-solid fa-lock" tooltip :title="__('aaa')" />
+        <x-icon class="lock" tooltip />
     @endif
     <x-entity-link :entity="$model->entity" :campaign="$campaign" />
 @endif

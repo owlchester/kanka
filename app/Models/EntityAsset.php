@@ -121,10 +121,10 @@ class EntityAsset extends Model
     public function imageUrl(): string
     {
         if ($this->image) {
-            return $this->image->getUrl(120, 80);
+            return $this->image->getUrl(128, 80);
         }
 
-        return Img::crop(120, 80)->url($this->metadata['path']);
+        return Img::crop(128, 80)->url($this->metadata['path']);
     }
 
     /**
