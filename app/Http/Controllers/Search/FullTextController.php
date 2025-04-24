@@ -10,16 +10,11 @@ use Illuminate\Http\Request;
 
 class FullTextController extends Controller
 {
-    protected EntitySearchService $service;
-
-    public function __construct(EntitySearchService $service)
-    {
-        $this->service = $service;
-    }
+    public function __construct(protected EntitySearchService $service)
+    {}
 
     public function index(Campaign $campaign, Request $request)
     {
-        $this->authorize('access', $campaign);
         $term = strip_tags($request->get('term'));
         $term2 = null;
 

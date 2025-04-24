@@ -9,14 +9,12 @@ use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
-    protected SearchService $search;
 
     /**
      * LiveController constructor.
      */
-    public function __construct(SearchService $searchService)
+    public function __construct(protected SearchService $searchService)
     {
-        $this->search = $searchService;
     }
 
     public function index(Request $request, Campaign $campaign)
@@ -24,7 +22,7 @@ class CalendarController extends Controller
         $term = mb_trim($request->get('q') ?? '');
 
         return response()->json(
-            $this->search
+            $this->searchService
                 ->term($term)
                 ->campaign($campaign)
                 ->only(config('entities.ids.calendar'))
@@ -40,7 +38,7 @@ class CalendarController extends Controller
         $term = mb_trim($request->get('q') ?? '');
 
         return response()->json(
-            $this->search
+            $this->searchService
                 ->term($term)
                 ->campaign($campaign)
                 ->monthList()

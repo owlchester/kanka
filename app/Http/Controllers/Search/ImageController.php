@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Image;
 
-class ImageSearchController extends Controller
+class ImageController extends Controller
 {
     public function __construct()
     {
