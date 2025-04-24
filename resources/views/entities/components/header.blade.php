@@ -139,12 +139,6 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                     <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
                 </span>
             @endif
-            @if ($entity->isAttributeTemplate() && !$entity->child->is_enabled)
-                <span class="entity-name-icon entity-char-dead text-2xl" data-toggle="tooltip" data-title="{{ __('attribute_templates.hints.is_disabled') }}">
-                    <x-icon class="fa fa-eye-slash entity-icons" />
-                    <span class="sr-only">{{ __('attribute_templates.hints.is_disabled') }}</span>
-                </span>
-            @endif
             @if ($entity->isQuest() && $entity->child->isCompleted())
                 <span class="entity-name-icon entity-quest-complete text-2xl" data-toggle="tooltip" data-title="{{ __('quests.fields.is_completed') }}">
                     <x-icon class="fa-solid fa-check-circle entity-icons" />
