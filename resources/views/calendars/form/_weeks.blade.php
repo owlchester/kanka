@@ -6,7 +6,7 @@
             <input type="hidden" name="weekday" />
         </x-forms.field>
 
-        <button class="btn2 btn-sm dynamic-row-add" data-template="template_weekday" data-target="calendar-weekdays" title="{{ __('calendars.actions.add_weekday') }}">
+        <button class="btn2 btn-sm btn-outline dynamic-row-add" data-template="template_weekday" data-target="calendar-weekdays" title="{{ __('calendars.actions.add_weekday') }}">
             <x-icon class="plus" /> {{ __('calendars.actions.add_weekday') }}
         </button>
 
@@ -49,7 +49,7 @@
         <x-forms.field field="week-names" :label="__('calendars.fields.week_names')" :helper="__('calendars.hints.weeks')">
         </x-forms.field>
 
-        <button class="btn2 btn-sm dynamic-row-add" data-template="template_week" data-target="calendar-weeks" title="{{ __('calendars.actions.add_week') }}">
+        <button class="btn2 btn-sm btn-outline dynamic-row-add" data-template="template_week" data-target="calendar-weeks" title="{{ __('calendars.actions.add_week') }}">
             <x-icon class="plus" />
             {{ __('calendars.actions.add_week') }}
         </button>

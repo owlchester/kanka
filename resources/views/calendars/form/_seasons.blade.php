@@ -1,7 +1,7 @@
 <x-grid type="1/1">
     <p class="text-neutral-content m-0">{{ __('calendars.hints.seasons') }}</p>
 
-    <button class="btn2 btn-sm  dynamic-row-add" data-template="template_season" data-target="calendar-seasons" title="{{ __('calendars.actions.add_season') }}">
+    <button class="btn2 btn-sm btn-outline dynamic-row-add" data-template="template_season" data-target="calendar-seasons" title="{{ __('calendars.actions.add_season') }}">
         <x-icon class="plus" /> {{ __('calendars.actions.add_season') }}
     </button>
 

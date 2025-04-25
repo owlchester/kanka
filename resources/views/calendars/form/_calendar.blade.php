@@ -57,7 +57,7 @@
         </x-forms.field>
 
 
-        <button class="btn2 btn-sm dynamic-row-add" data-template="template_year" data-target="calendar-years" title="{{ __('calendars.actions.add_year') }}">
+        <button class="btn2 btn-sm btn-outline dynamic-row-add" data-template="template_year" data-target="calendar-years" title="{{ __('calendars.actions.add_year') }}">
             <x-icon class="plus" /> {{ __('calendars.actions.add_year') }}
         </button>
 

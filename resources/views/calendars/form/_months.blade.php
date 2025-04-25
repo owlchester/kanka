@@ -5,7 +5,7 @@
         <input type="hidden" name="month_name" />
     </x-forms.field>
 
-    <button class="btn2 btn-sm dynamic-row-add" data-template="template_month" data-target="calendar-months" title="{{ __('calendars.actions.add_month') }}">
+    <button class="btn2 btn-sm btn-outline dynamic-row-add" data-template="template_month" data-target="calendar-months" title="{{ __('calendars.actions.add_month') }}">
         <x-icon class="plus" /> {{ __('calendars.actions.add_month') }}
     </button>
 

@@ -8,10 +8,9 @@ const entityTooltips = Array();
 const initAjaxTooltips = () => {
     const elementsAjax = document.querySelectorAll('[data-toggle="tooltip-ajax"]');
     elementsAjax.forEach(e => {
-        if (e.dataset.loaded === '1') {
+        if (e._tippy) {
             return;
         }
-        e.dataset.loaded = '1';
         tippy(e, {
             theme: 'entity-tooltip',
             placement: e.dataset.direction ?? 'bottom',
@@ -55,6 +54,10 @@ const initTooltips = () => {
 };
 
 const initTooltip = (e) => {
+    if (e._tippy) {
+        return;
+    }
+
     tippy(e, {
         content: e.dataset.title ?? e.title,
         theme: 'kanka',
@@ -70,12 +73,10 @@ const initDropdowns = () => {
     const elements = document.querySelectorAll('[data-dropdown]');
 
     elements.forEach(e => {
-        if (e.dataset.loaded === '1') {
+        if (e._tippy) {
             return;
         }
         let dropdown = e.parentNode.querySelectorAll('.dropdown-menu')[0];
-        //console.log('me', e, dropdown);
-        e.dataset.loaded = '1';
         tippy(e, {
             content: '<div class="dd-menu flex flex-col max-w-2xl">' + dropdown.innerHTML + '</div>',
             theme: 'kanka-dropdown',
