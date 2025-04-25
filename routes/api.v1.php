@@ -79,6 +79,7 @@ Route::get('campaigns/{campaign}/entities/recent', [App\Http\Controllers\Api\v1\
 Route::post('campaigns/{campaign}/entities/{entity_type}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'put']);
 Route::get('campaigns/{campaign}/entities/{entity}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'show']);
 Route::put('campaigns/{campaign}/entities/{entity}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'edit']);
+Route::patch('campaigns/{campaign}/entities/{entity}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'patch']);
 Route::delete('campaigns/{campaign}/entities/{entity}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'destroy']);
 Route::get('campaigns/{campaign}/entities/{entity}/mentions', [App\Http\Controllers\Api\v1\EntityMentionApiController::class, 'index']);
 

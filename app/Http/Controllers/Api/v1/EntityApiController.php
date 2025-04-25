@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Requests\API\PatchEntity;
 use App\Http\Requests\API\StoreEntities;
 use App\Http\Resources\EntityResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\Api\BulkEntityCreatorService;
+use App\Services\Entity\TransformService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class EntityApiController extends ApiController
 {
     public function __construct(
-        protected BulkEntityCreatorService $bulkEntityCreatorService
+        protected BulkEntityCreatorService $bulkEntityCreatorService,
+        protected TransformService $transformService
     ) {}
 
     public function index(Campaign $campaign)
@@ -72,6 +75,17 @@ class EntityApiController extends ApiController
         }
 
         $entity->update($request->all());
+
+        return new Resource($entity);
+    }
+
+    public function patch(PatchEntity $request, Campaign $campaign, Entity $entity)
+    {
+        $this->authorize('access', $campaign);
+        $this->authorize('update', $entity);
+
+        $entity->update($request->only('name', 'type', 'is_private', 'is_template', 'tooltip', 'entry', 'image_uuid', 'header_uuid'));
+        $entity->crudSaved();
 
         return new Resource($entity);
     }
