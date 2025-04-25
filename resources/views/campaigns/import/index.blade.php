@@ -75,10 +75,8 @@
                     </div>
                 @endif
 
-                <div class="box box-solid">
-                    <div id="datagrid-parent" class="table-responsive">
-                        @include('layouts.datagrid._table')
-                    </div>
+                <div id="datagrid-parent" class="table-responsive">
+                    @include('layouts.datagrid._table')
                 </div>
             @endif
         @else

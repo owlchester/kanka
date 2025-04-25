@@ -14,20 +14,22 @@
         @include('ads.top')
         @include('partials.errors')
 
-        <div class="flex gap-2 items-center">
-            <h3 class="grow">
+        <div class="flex gap-2 items-center justify-between">
+            <h3 class="">
                 {{ __('campaigns/export.title') }}
             </h3>
-            <a href="https://docs.kanka.io/en/latest/features/campaigns/export.html" target="_blank" class="btn2 btn-sm btn-ghost">
-                <x-icon class="question" />
-                {{ __('crud.actions.help') }}
-            </a>
-            @can('export', $campaign)
-                <a href="#" class="btn2 btn-sm btn-primary" data-toggle="dialog" data-target="export-confirm">
-                    <x-icon class="fa-solid fa-download" />
-                    {{ __('campaigns/export.actions.export') }}
+            <div class="flex gap-2 flex-wrap">
+                <a href="https://docs.kanka.io/en/latest/features/campaigns/export.html" target="_blank" class="btn2 btn-sm btn-ghost">
+                    <x-icon class="question" />
+                    {{ __('crud.actions.help') }}
                 </a>
-            @endcan
+                @can('export', $campaign)
+                    <a href="#" class="btn2 btn-sm btn-primary" data-toggle="dialog" data-target="export-confirm">
+                        <x-icon class="fa-solid fa-download" />
+                        {{ __('campaigns/export.actions.export') }}
+                    </a>
+                @endcan
+                </div>
         </div>
 
         @if (!$campaign->exportable() && !session()->has('success'))
@@ -36,10 +38,8 @@
         </x-alert>
         @endif
 
-        <div class="box box-solid">
-            <div id="datagrid-parent" class="table-responsive">
-                @livewire('campaigns.exports-table', ['campaign' => $campaign])
-            </div>
+        <div id="datagrid-parent" class="table-responsive">
+            @livewire('campaigns.exports-table', ['campaign' => $campaign])
         </div>
     </div>
 @endsection

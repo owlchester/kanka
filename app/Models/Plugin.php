@@ -144,6 +144,11 @@ class Plugin extends Model
         return 'campaign_plugins.' . $sub;
     }
 
+    public function libraryUrl(): string
+    {
+        return config('marketplace.url') . '/plugins/' . $this->uuid;
+    }
+
     /**
      * Determine if the plugin is obsolete
      */
