@@ -1,17 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\Search\CalendarController;
-use App\Http\Controllers\Search\MarkerController;
-use App\Http\Controllers\Search\ImageController;
-use App\Http\Controllers\Search\CampaignController;
-use App\Http\Controllers\Search\LiveController;
-use App\Http\Controllers\Search\ListController;
-use App\Http\Controllers\Search\RecentController;
-use App\Http\Controllers\Search\FullTextController;
-use App\Http\Controllers\Search\TemplateController;
 use App\Http\Controllers\Search\AttributeController;
+use App\Http\Controllers\Search\CalendarController;
+use App\Http\Controllers\Search\CampaignController;
+use App\Http\Controllers\Search\FullTextController;
+use App\Http\Controllers\Search\ImageController;
+use App\Http\Controllers\Search\ListController;
+use App\Http\Controllers\Search\LiveController;
+use App\Http\Controllers\Search\MarkerController;
+use App\Http\Controllers\Search\RecentController;
+use App\Http\Controllers\Search\TemplateController;
+use App\Http\Controllers\SearchController;
+use Illuminate\Support\Facades\Route;
 
 // Old Search
 Route::get('/w/{campaign}/search', [SearchController::class, 'search'])->name('search');

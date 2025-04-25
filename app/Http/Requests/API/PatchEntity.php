@@ -26,7 +26,7 @@ class PatchEntity extends FormRequest
         return [
             'name' => 'nullable|string|max:191',
             'entry' => 'nullable|string',
-            'tooltip' => 'nullable|string',           
+            'tooltip' => 'nullable|string',
             'image_uuid' => 'nullable|exists:images,id',
             'header_uuid' => 'nullable|exists:images,id',
             'type' => 'nullable|string|max:191',
