@@ -3,6 +3,7 @@
 namespace App\Models\Relations;
 
 use App\Models\Ability;
+use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\Calendar;
 use App\Models\CampaignDashboard;
@@ -200,6 +201,11 @@ trait CampaignRelations
     public function abilities(): HasMany
     {
         return $this->hasMany(Ability::class);
+    }
+
+    public function attributeTemplates(): HasMany
+    {
+        return $this->hasMany(AttributeTemplate::class);
     }
 
     public function tags(): HasMany

@@ -164,7 +164,7 @@ To create a character, use the following endpoint.
 | `is_private` | `boolean` | If the character is only visible to `admin` members of the campaign |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
-| `tooltip`            | `string` | The ability\'s tooltip (premium campaign feature)                   |
+| `tooltip`            | `string` | The character's tooltip (premium campaign feature)                   |
 | `personality_name` | `array` | An array representing the name of personality traits. For example ```["Goals", "Fears"]```  |
 | `personality_entry` | `array` | An array representing the values of personality traits. For example ```["To become a King", "Quiet places"]```  |
 | `appearance_name` | `array` | An array representing the name of appearance traits. For example ```["Hair", "Eyes"]```  |

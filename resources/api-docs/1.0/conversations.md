@@ -191,7 +191,7 @@ To create a conversation, use the following endpoint.
 | `is_closed` | `boolean` | If the conversation is closed |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
-| `tooltip`            | `string` | The ability\'s tooltip (premium campaign feature)                   |
+| `tooltip`            | `string` | The conversation's tooltip (premium campaign feature)                   |
 | `is_private` | `boolean` | If the conversation is only visible to `admin` members of the campaign |
 
 ### Results
