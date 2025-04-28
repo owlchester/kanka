@@ -42,6 +42,7 @@ use Illuminate\Support\Facades\Route;
  * @property array $options
  * @property ?CampaignDashboard $dashboard
  * @property ?EntityType $entityType
+ * @property ?EntityType $randomEntityType
  * @property ?Entity $target
  * @property bool|int $is_private
  * @property bool|int $is_active
@@ -154,6 +155,7 @@ class Bookmark extends Model
         return $query->with([
             'entity',
             'entityType',
+            'randomEntityType',
             'target',
             'dashboard',
         ]);
@@ -200,6 +202,11 @@ class Bookmark extends Model
     public function entityType(): BelongsTo
     {
         return $this->belongsTo(EntityType::class);
+    }
+
+    public function randomEntityType(): BelongsTo
+    {
+        return $this->belongsTo(EntityType::class, 'random_entity_type');
     }
 
     public function getRouteParams(bool $entity): array
@@ -363,7 +370,7 @@ class Bookmark extends Model
             ->inRandomOrder()
             ->first();
 
-        if (empty($entity) || empty($entity->child)) {
+        if (empty($entity) || $entity->isMissingChild()) {
             return null;
         }
 

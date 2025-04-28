@@ -24,7 +24,7 @@
         ],
         [
             'label' => __('bookmarks.fields.target'),
-            'render' => function ($model) {
+            'render' => function (\App\Models\Bookmark $model) {
                 if ($model->isDashboard()) {
                     return '<a href="' . $model->getRoute() . '">' . $model->name . '</a>';
                 } elseif ($model->isEntity()) {
@@ -35,7 +35,7 @@
                 } elseif ($model->isList()) {
                     return $model->entityType->plural();
                 } elseif ($model->isRandom()) {
-                    return $model->random_entity_type == 'any' ? __('bookmarks.random_types.any') : __('entities.' . $model->random_entity_type);
+                    return $model->random_entity_type == 'any' ? __('bookmarks.random_types.any') : $model->randomEntityType->name();
                 }
                 return '';
             },
