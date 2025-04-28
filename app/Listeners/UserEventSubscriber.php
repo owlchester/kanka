@@ -21,8 +21,7 @@ class UserEventSubscriber
     public function __construct(
         protected LoginService $loginService,
         protected SessionService $sessionService,
-    )
-    {}
+    ) {}
 
     /**
      * Handle user login events.
@@ -34,6 +33,7 @@ class UserEventSubscriber
         // Log the user's login
         if (! $user) {
             Log::error('Missing user in login event');
+
             return false;
         }
 

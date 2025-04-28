@@ -27,6 +27,7 @@ class LoginService
     public function updateLastLoginTime(): self
     {
         $this->user->updateQuietly(['last_login_at' => Carbon::now()]);
+
         return $this;
     }
 
@@ -39,5 +40,4 @@ class LoginService
 
         return $this;
     }
-
 }

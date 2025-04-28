@@ -2,9 +2,9 @@
 
 namespace App\Services\Auth;
 
-use App\Services\Users\CampaignService;
 use App\Services\InviteService;
 use App\Services\StarterService;
+use App\Services\Users\CampaignService;
 use App\Traits\UserAware;
 use Exception;
 
@@ -21,7 +21,7 @@ class SessionService
     public function handleInviteToken(): ?bool
     {
         // Does the user have a join campaign token?
-        if (!session()->has('invite_token')) {
+        if (! session()->has('invite_token')) {
             return null;
         }
         try {
@@ -42,7 +42,7 @@ class SessionService
 
     public function handleFirstLogin(): ?bool
     {
-        if (!session()->has('first_login')) {
+        if (! session()->has('first_login')) {
             return null;
         }
         try {
