@@ -10,11 +10,11 @@ use App\Services\InviteService;
 use App\Services\StarterService;
 use App\Services\Users\CampaignService;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Events\Dispatcher;
-use Exception;
 
 /**
  * @property User $user
