@@ -11,7 +11,6 @@ use App\Services\AttributeService;
 
 class AttributeTemplateApiController extends ApiController
 {
-
     protected AttributeService $attributeService;
 
     public function __construct(AttributeService $attributeService)
@@ -61,7 +60,7 @@ class AttributeTemplateApiController extends ApiController
         $data['campaign_id'] = $campaign->id;
         $model = AttributeTemplate::create($data);
         $this->crudSave($model);
-    
+
         return new Resource($model);
     }
 
