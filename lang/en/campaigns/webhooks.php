@@ -56,11 +56,11 @@ return [
         'url'       => 'Target webhook\'s url',
     ],
     'test'          => [
-        'success'   => 'Test request sent',
+        'success'   => 'Test request sent.',
     ],
     'toggle'        => [
-        'enable'   => 'Webhook enabled successfully',
-        'disable'  => 'Webhook disabled successfully',
+        'enable'   => 'Webhook enabled successfully.',
+        'disable'  => 'Webhook disabled successfully.',
     ],
     'title'         => 'Webhooks',
 ];
