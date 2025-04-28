@@ -117,12 +117,18 @@ class WebhookController extends Controller
     {
         $this->authorize('webhooks', $campaign);
 
+        if ($webhook->status != 1) {
+            $message = __('campaigns/webhooks.toggle.enable');
+        } else {
+            $message = __('campaigns/webhooks.toggle.disable');
+        }
+
         $webhook->update(['status' => ! $webhook->status]);
 
         return redirect()->route('webhooks.index', $campaign)
             ->with(
                 'success',
-                __('campaigns/webhooks.toggle.success')
+                $message
             );
     }
 

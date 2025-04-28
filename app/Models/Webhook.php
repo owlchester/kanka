@@ -100,6 +100,11 @@ class Webhook extends Model
             ->where('status', 1);
     }
 
+    public function isActive(): bool
+    {
+        return $this->status == 1;
+    }
+
     public function skipPrivate(): bool
     {
         if (Arr::has($this->settings, 'skip_private')) {

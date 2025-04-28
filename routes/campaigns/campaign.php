@@ -192,7 +192,7 @@ Route::get('/w/{campaign}/confirm-delete', [App\Http\Controllers\ConfirmControll
 Route::post('/w/{campaign}/vanity-validate', [App\Http\Controllers\Campaign\VanityController::class, 'index'])->name('campaign.vanity-validate');
 
 // Permission save
-Route::patch('/w/{campaign}/webhooks/{webhook}/toggle', [App\Http\Controllers\Campaign\WebhookController::class, 'toggle'])->name('webhooks.toggle');
+Route::get('/w/{campaign}/webhooks/{webhook}/toggle', [App\Http\Controllers\Campaign\WebhookController::class, 'toggle'])->name('webhooks.toggle');
 Route::get('/w/{campaign}/webhooks/{webhook}/status', [App\Http\Controllers\Campaign\WebhookController::class, 'status'])->name('webhooks.status');
 Route::post('/w/{campaign}/webhooks/bulk', [App\Http\Controllers\Campaign\WebhookController::class, 'bulk'])->name('webhooks.bulk');
 Route::get('/w/{campaign}/webhooks/{webhook}/test', [App\Http\Controllers\Campaign\WebhookController::class, 'test'])->name('webhooks.test');
