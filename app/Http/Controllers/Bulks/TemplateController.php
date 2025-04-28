@@ -8,6 +8,7 @@ use App\Models\EntityType;
 use App\Services\AttributeService;
 use App\Services\BulkService;
 use Illuminate\Http\Request;
+use App\Http\Requests\Bulks\Template;
 
 class TemplateController extends Controller
 {
@@ -32,7 +33,7 @@ class TemplateController extends Controller
             ->with('entities', $entities);
     }
 
-    public function apply(Request $request, Campaign $campaign, EntityType $entityType)
+    public function apply(Template $request, Campaign $campaign, EntityType $entityType)
     {
         $models = explode(',', $request->get('models'));
         if ($request->has('entities')) {
