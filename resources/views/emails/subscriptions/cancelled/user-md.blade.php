@@ -1,4 +1,4 @@
-<x-mail::message>
+<x-mail::message layout="user">
 **Cancellation confirmation**
 We're sorry to see you go, {{ $user->name }}. You’re always welcome to rejoin our party and renew your subscription at any time to:
 

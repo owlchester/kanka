@@ -1,4 +1,4 @@
-<x-mail::message>
+<x-mail::message layout="user">
 # New password
 
 {{ __('emails/subscriptions/upcoming.dear', ['name' => $user->name]) }},

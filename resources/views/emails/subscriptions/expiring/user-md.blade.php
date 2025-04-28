@@ -1,4 +1,4 @@
-<x-mail::message>
+<x-mail::message layout="user">
 
 # {{ __('emails/subscriptions/expiring.title') }}
 
