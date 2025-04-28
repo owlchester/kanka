@@ -146,7 +146,7 @@ class CalendarSanitizer extends MiscSanitizer
 
                 $moons[] = [
                     'name' => $this->purify($moonNames[$moonCount]),
-                    'fullmoon' => round($moon, 10),
+                    'fullmoon' => round((float) $moon, 10),
                     'offset' => (int) $moonOffsets[$moonCount],
                     'colour' => $this->purify($moonColours[$moonCount]),
                     'id' => (int) $moonId,
@@ -189,14 +189,14 @@ class CalendarSanitizer extends MiscSanitizer
     protected function cleanDate(): self
     {
         // Calculate date
+        /** @var ?int $year */
         $year = $this->request->post('current_year', '1');
         $month = mb_ltrim($this->request->post('current_month', '1'), '0');
         $day = mb_ltrim($this->request->post('current_day', '1'), '0');
         $monthLengths = (array) $this->request->post('month_length', []);
 
         // Empty values and skipping year 0
-        // @phpstan-ignore-next-line
-        if ($year === null || $this->request->skip_year_zero && $year == 0) {
+        if ($year === null || ($this->request->skip_year_zero && $year == 0)) {
             $year = 1;
         }
         if (empty($month)) {

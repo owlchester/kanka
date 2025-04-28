@@ -47,39 +47,41 @@ class UserEventSubscriber
      */
     public function handleUserLogin(Login $event): bool
     {
+        /** @var User $user */
+        $user = $event->user;
         // Log the user's login
-        if (! $event->user) {
+        if (! $user) {
             dd('Error OSL-010');
         }
 
         $action = auth()->viaRemember() ? UserLog::TYPE_AUTOLOGIN : UserLog::TYPE_LOGIN;
         $userLogType = session()->get('kanka.userLog', $action);
-        if ($event->user->isBanned()) {
+        if ($user->isBanned()) {
             $userLogType = session()->get('kanka.userLog', UserLog::TYPE_BANNED_LOGIN);
         }
-        $event->user->log($userLogType);
+        $user->log($userLogType);
 
         session()->remove('kanka.userLog');
-        $event->user->updateQuietly(['last_login_at' => Carbon::now()]);
+        $user->updateQuietly(['last_login_at' => Carbon::now()]);
 
         // Delete any flags to auto-delete the account based on inactivity
-        UserFlag::where('user_id', $event->user->id)
+        UserFlag::where('user_id', $user->id)
             ->whereIn('flag', [UserFlag::FLAG_INACTIVE_1, UserFlag::FLAG_INACTIVE_2])
             ->delete();
 
         // Update mailerlite for the login stuff
-        if (! session()->has('first_login') && $event->user->hasNewsletter()) {
-            MailSettingsChangeJob::dispatch($event->user);
+        if (! session()->has('first_login') && $user->hasNewsletter()) {
+            MailSettingsChangeJob::dispatch($user);
         }
 
         // Does the user have a join campaign token?
         if (session()->has('invite_token')) {
             try {
                 $campaign = $this->inviteService
-                    ->user($event->user)
+                    ->user($user)
                     ->useToken(session()->get('invite_token'));
                 $this->campaignService
-                    ->user($event->user)
+                    ->user($user)
                     ->campaign($campaign)
                     ->set();
 
@@ -92,11 +94,11 @@ class UserEventSubscriber
             // Let's create their first campaign for them
             try {
                 $campaign = $this->starterService
-                    ->user($event->user)
+                    ->user($user)
                     ->create();
                 session()->remove('first_login');
                 $this->campaignService
-                    ->user($event->user)
+                    ->user($user)
                     ->campaign($campaign)
                     ->set();
 
