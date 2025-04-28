@@ -30,10 +30,10 @@ class CalendarSanitizer extends MiscSanitizer
     protected function cleanMonths(): array
     {
         $months = [];
-        $monthNames = $this->request->post('month_name', []);
-        $monthLengths = $this->request->post('month_length', []);
-        $monthAliases = $this->request->post('month_alias', []);
-        $monthTypes = $this->request->post('month_type', []);
+        $monthNames = (array) $this->request->post('month_name', []);
+        $monthLengths = (array) $this->request->post('month_length', []);
+        $monthAliases = (array) $this->request->post('month_alias', []);
+        $monthTypes = (array) $this->request->post('month_type', []);
 
         foreach ($monthNames as $name) {
             if (empty($name)) {
@@ -58,7 +58,7 @@ class CalendarSanitizer extends MiscSanitizer
     protected function cleanWeekdays(): self
     {
         $weekdays = [];
-        $weekdayNames = $this->request->post('weekday', []);
+        $weekdayNames = (array) $this->request->post('weekday', []);
         foreach ($weekdayNames as $name) {
             if (empty($name)) {
                 continue;
@@ -75,8 +75,8 @@ class CalendarSanitizer extends MiscSanitizer
     {
         $years = [];
         $yearCount = 0;
-        $yearValues = $this->request->post('year_number', []);
-        $yearNames = $this->request->post('year_name', []);
+        $yearValues = (array) $this->request->post('year_number', []);
+        $yearNames = (array) $this->request->post('year_name', []);
         if (! empty($yearValues)) {
             foreach ($yearValues as $year) {
                 if (empty($year)) {
@@ -96,8 +96,8 @@ class CalendarSanitizer extends MiscSanitizer
     {
         $weeks = [];
         $weekCount = 0;
-        $weekValues = $this->request->post('week_number', []);
-        $weekNames = $this->request->post('week_name', []);
+        $weekValues = (array) $this->request->post('week_number', []);
+        $weekNames = (array) $this->request->post('week_name', []);
         if (! empty($weekValues)) {
             foreach ($weekValues as $week) {
                 if (empty($week)) {
@@ -117,11 +117,11 @@ class CalendarSanitizer extends MiscSanitizer
     {
         $moons = [];
         $moonCount = 0;
-        $moonValues = $this->request->post('moon_fullmoon', []);
-        $moonNames = $this->request->post('moon_name', []);
-        $moonOffsets = $this->request->post('moon_offset', []);
-        $moonColours = $this->request->post('moon_colour', []);
-        $moonIds = $this->request->post('moon_id', []);
+        $moonValues = (array) $this->request->post('moon_fullmoon', []);
+        $moonNames = (array) $this->request->post('moon_name', []);
+        $moonOffsets = (array) $this->request->post('moon_offset', []);
+        $moonColours = (array) $this->request->post('moon_colour', []);
+        $moonIds = (array) $this->request->post('moon_id', []);
 
         // Get the highest moon id
         $autoMoonId = 0;
@@ -163,9 +163,9 @@ class CalendarSanitizer extends MiscSanitizer
     {
         $seasons = [];
         $seasonCount = 0;
-        $seasonNames = $this->request->post('season_name', []);
-        $seasonMonths = $this->request->post('season_month', []);
-        $seasonDays = $this->request->post('season_day', []);
+        $seasonNames = (array) $this->request->post('season_name', []);
+        $seasonMonths = (array) $this->request->post('season_month', []);
+        $seasonDays = (array) $this->request->post('season_day', []);
         foreach ($seasonNames as $name) {
             if (empty($name)) {
                 continue;
@@ -192,7 +192,7 @@ class CalendarSanitizer extends MiscSanitizer
         $year = $this->request->post('current_year', '1');
         $month = mb_ltrim($this->request->post('current_month', '1'), '0');
         $day = mb_ltrim($this->request->post('current_day', '1'), '0');
-        $monthLengths = $this->request->post('month_length', []);
+        $monthLengths = (array) $this->request->post('month_length', []);
 
         // Empty values and skipping year 0
         // @phpstan-ignore-next-line
