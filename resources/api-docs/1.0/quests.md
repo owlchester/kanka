@@ -151,7 +151,7 @@ To create a quest, use the following endpoint.
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
-| `tooltip`            | `string` | The ability\'s tooltip (premium campaign feature)                   |
+| `tooltip`            | `string` | The quest's tooltip (premium campaign feature)                   |
 | `is_private` | `boolean` | If the quest is only visible to `admin` members of the campaign |
 
 ### Results

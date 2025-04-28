@@ -267,7 +267,7 @@ To create a calendar, use the following endpoint.
 | `skip_year_zero` | `boolean` | Whether the calendar skips year zero to start in year one |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
-| `tooltip`            | `string` | The ability\'s tooltip (premium campaign feature)                   |
+| `tooltip`            | `string` | The calendar's tooltip (premium campaign feature)                   |
 | `is_private` | `boolean` | If the calendar is only visible to `admin` members of the campaign |
 
 ### Results

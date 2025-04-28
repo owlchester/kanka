@@ -122,7 +122,7 @@ To create a tag, use the following endpoint.
 | `tags` | `array` | Array of tag ids |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
 | `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
-| `tooltip`            | `string` | The ability\'s tooltip (premium campaign feature)                   |
+| `tooltip`            | `string` | The tag's tooltip (premium campaign feature)                   |
 | `is_private` | `boolean` | If the tag is only visible to `admin` members of the campaign |
 | `is_auto_applied` | `boolean` | If the tag is automatically applied to new entities in the campaign |
 | `is_hidden` | `boolean` | If the tag won't be displayed in an entity's header or tooltip |
