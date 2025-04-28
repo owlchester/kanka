@@ -22,7 +22,7 @@ class Template extends FormRequest
     public function rules(): array
     {
         return [
-            'template_id' => 'required|integer|exists:attribute_templates,id'
+            'template_id' => 'required|integer|exists:attribute_templates,id',
         ];
     }
 }

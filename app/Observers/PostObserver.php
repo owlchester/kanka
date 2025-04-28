@@ -127,7 +127,7 @@ class PostObserver
             $existingKey = 'u_' . $user;
             if (isset($existing[$existingKey])) {
                 $perm = $existing[$existingKey];
-                $perm->permission = $perms[$key];
+                $perm->permission = (int) $perms[$key];
                 $perm->save();
                 unset($existing[$existingKey]);
                 $parsed[] = $existingKey;
@@ -152,7 +152,7 @@ class PostObserver
             $existingKey = 'r_' . $user;
             if (isset($existing[$existingKey])) {
                 $perm = $existing[$existingKey];
-                $perm->permission = $perms[$key];
+                $perm->permission = (int) $perms[$key];
                 $perm->save();
                 unset($existing[$existingKey]);
                 $parsed[] = $existingKey;

@@ -142,10 +142,10 @@ class CharacterObserver extends MiscObserver
                 $model->character_id = $character->id;
                 EntityLogger::dirty('organisations', null);
             }
-            $model->organisation_id = $id;
+            $model->organisation_id = (int) $id;
             $model->role = $roles->has($key) ? $roles->get($key, '') : $newRoles->shift();
-            $model->pin_id = (int) $pins->has($key) ? $pins->get($key, '') : $newPins->shift();
-            $model->status_id = (int) $statuses->has($key) ? $statuses->get($key, '') : $newStatuses->shift();
+            $model->pin_id = (int) ($pins->has($key) ? $pins->get($key, '') : $newPins->shift());
+            $model->status_id = (int) ($statuses->has($key) ? $statuses->get($key, '') : $newStatuses->shift());
             if (request()->has('organisation_privates')) {
                 $model->is_private = $privates->has($key) ? $privates->get($key, false) : $newPrivates->shift();
             } else {
