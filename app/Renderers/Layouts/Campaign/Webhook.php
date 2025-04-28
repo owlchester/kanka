@@ -80,6 +80,18 @@ class Webhook extends Layout
                 'icon' => 'fa-regular fa-webhook',
                 'route' => 'webhooks.test',
             ],
+            'disable' => [
+                'can' => 'disable',
+                'route' => 'webhooks.toggle',
+                'label' => 'campaigns/webhooks.actions.bulks.disable',
+                'icon' => 'fa-regular fa-ban',
+            ],
+            'enable' => [
+                'can' => 'enable',
+                'route' => 'webhooks.toggle',
+                'label' => 'campaigns/webhooks.actions.bulks.enable',
+                'icon' => 'fa-regular fa-check',
+            ],
             Layout::ACTION_DELETE,
         ];
     }

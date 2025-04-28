@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Policies;
+
+use App\Models\Webhook;
+use App\Models\User;
+use App\Traits\AdminPolicyTrait;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class WebhookPolicy
+{
+    use AdminPolicyTrait;
+    use HandlesAuthorization;
+
+    public function enable(User $user, Webhook $webhook): bool
+    {
+        // @phpstan-ignore-next-line
+        return $user->isAdmin() && !$webhook->isActive();
+    }
+
+    public function disable(User $user, Webhook $webhook): bool
+    {
+        // @phpstan-ignore-next-line
+        return $user->isAdmin() && $webhook->isActive();
+    }
+}
