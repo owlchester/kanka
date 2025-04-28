@@ -9,7 +9,6 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\Api\BulkEntityCreatorService;
-use App\Services\Entity\TransformService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +16,6 @@ class EntityApiController extends ApiController
 {
     public function __construct(
         protected BulkEntityCreatorService $bulkEntityCreatorService,
-        protected TransformService $transformService
     ) {}
 
     public function index(Campaign $campaign)
