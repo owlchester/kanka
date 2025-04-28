@@ -117,7 +117,7 @@ if (!empty($oldCalendarID)) {
 
         <div class="text-right">
             <a href="#" id="entity-calendar-form-cancel" class="btn2 btn-outline btn-error btn-sm @if ((((isset($model) && $model->hasCalendar()) || empty($model))) && $onlyOneCalendar) @else hidden @endif">
-                <x-icon class="fa-solid fa-eraser" />
+                <x-icon class="fa-regular fa-eraser" />
                 {{ __('entities/reminders.actions.remove') }}
             </a>
         </div>

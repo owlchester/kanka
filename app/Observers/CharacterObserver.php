@@ -43,8 +43,8 @@ class CharacterObserver extends MiscObserver
         }
 
         $traitOrder = 0;
-        $traitNames = request()->post($trait . '_name', []);
-        $traitEntry = request()->post($trait . '_entry', []);
+        $traitNames = (array) request()->post($trait . '_name', []);
+        $traitEntry = (array) request()->post($trait . '_entry', []);
 
         foreach ($traitNames as $id => $name) {
             if (empty($name)) {
@@ -94,7 +94,7 @@ class CharacterObserver extends MiscObserver
         }
 
         $orgCount = 0;
-        $organisations = request()->post('organisations', []);
+        $organisations = (array) request()->post('organisations', []);
         $roles = new Collection(request()->post('organisation_roles', []));
         $statuses = new Collection(request()->post('organisation_statuses', []));
         $pins = new Collection(request()->post('organisation_pins', []));
@@ -144,8 +144,8 @@ class CharacterObserver extends MiscObserver
             }
             $model->organisation_id = $id;
             $model->role = $roles->has($key) ? $roles->get($key, '') : $newRoles->shift();
-            $model->pin_id = $pins->has($key) ? $pins->get($key, '') : $newPins->shift();
-            $model->status_id = $statuses->has($key) ? $statuses->get($key, '') : $newStatuses->shift();
+            $model->pin_id = (int) $pins->has($key) ? $pins->get($key, '') : $newPins->shift();
+            $model->status_id = (int) $statuses->has($key) ? $statuses->get($key, '') : $newStatuses->shift();
             if (request()->has('organisation_privates')) {
                 $model->is_private = $privates->has($key) ? $privates->get($key, false) : $newPrivates->shift();
             } else {

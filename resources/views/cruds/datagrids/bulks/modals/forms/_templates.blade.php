@@ -7,6 +7,6 @@
             'boosted-campaign' => '<a href=\'https://kanka.io/premium\'>' . __('concept.premium-campaigns') . '</a>',
             'marketplace' => '<a href=\'' . config('marketplace.url') . '/character-sheets\'>' . __('footer.plugins') . '</a>'
         ])">
-        <x-forms.select name="template_id" :options="$templates" class="w-full" :placeholder="__('entities/attributes.placeholders.template')" />
+        <x-forms.select name="template_id" :options="$templates" class="w-full" :placeholder="__('entities/attributes.placeholders.template')" required />
     </x-forms.field>
 </x-grid>

@@ -24,7 +24,7 @@ class FamilyObserver extends MiscObserver
             return $this;
         }
 
-        $ids = request()->post('members', []);
+        $ids = (array) request()->post('members', []);
 
         // Only use tags the user can actually view. This way admins can
         // have tags on entities that the user doesn't know about.

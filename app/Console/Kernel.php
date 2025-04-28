@@ -31,23 +31,23 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command(CalendarAdvancer::class)->dailyAt('00:00');
-        $schedule->command(VisibileEntityCountCommand::class)->dailyAt('01:00');
+        $schedule->command(CalendarAdvancer::class)->onOneServer()->dailyAt('00:00');
+        $schedule->command(VisibileEntityCountCommand::class)->onOneServer()->dailyAt('01:00');
         // $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
-        $schedule->command(EndSubscriptions::class)->dailyAt('00:05');
-        $schedule->command(RegenerateDiscordToken::class)->dailyAt('00:15');
-        $schedule->command(ExpiringCardCommand::class)->monthlyOn(1, '02:00');
+        $schedule->command(EndSubscriptions::class)->onOneServer()->dailyAt('00:05');
+        $schedule->command(RegenerateDiscordToken::class)->onOneServer()->dailyAt('00:15');
+        $schedule->command(ExpiringCardCommand::class)->onOneServer()->monthlyOn(1, '02:00');
 
-        $schedule->command('backup:clean')->daily()->at('01:00');
-        $schedule->command('backup:run')->twiceDaily(2, 14);
+        $schedule->command('backup:clean')->onOneServer()->daily()->at('01:00');
+        $schedule->command('backup:run')->onOneServer()->twiceDaily(2, 14);
         // $schedule->command('backup:monitor')->daily()->at('03:00');
 
-        $schedule->command('model:prune')->daily();
-        $schedule->command(CleanupEntityLogs::class)->dailyAt('03:30');
-        $schedule->command(AnonymiseUserLogs::class)->dailyAt('03:50');
-        $schedule->command(CleanupTrashed::class)->dailyAt('02:15');
-        $schedule->command(CleanupTrashedCampaigns::class)->dailyAt('02:45');
-        $schedule->command(CleanupUsers::class)->dailyAt('01:50');
+        $schedule->command('model:prune')->onOneServer()->daily();
+        $schedule->command(CleanupEntityLogs::class)->onOneServer()->dailyAt('03:30');
+        $schedule->command(AnonymiseUserLogs::class)->onOneServer()->dailyAt('03:50');
+        $schedule->command(CleanupTrashed::class)->onOneServer()->dailyAt('02:15');
+        $schedule->command(CleanupTrashedCampaigns::class)->onOneServer()->dailyAt('02:45');
+        $schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50');
     }
 
     /**

@@ -39,6 +39,7 @@
   - [Tags](/api-docs/{{version}}/tags)
   - [Conversations](/api-docs/{{version}}/conversations)
   - [Dice Rolls](/api-docs/{{version}}/dice-rolls)
+  - [Attribute Templates](/api-docs/{{version}}/attribute-templates)
 
 - ## Entities
   - [Abilities](/api-docs/{{version}}/entities/entity-abilities)

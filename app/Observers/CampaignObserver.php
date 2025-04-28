@@ -183,7 +183,7 @@ class CampaignObserver
             return;
         }
 
-        $ids = request()->post('genres', []);
+        $ids = (array) request()->post('genres', []);
 
         $existing = [];
         /** @var Genre $genre */
@@ -219,7 +219,7 @@ class CampaignObserver
             return;
         }
 
-        $ids = request()->post('systems', []);
+        $ids = (array) request()->post('systems', []);
 
         $existing = [];
         foreach ($campaign->systems as $system) {

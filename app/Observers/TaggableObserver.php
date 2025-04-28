@@ -24,7 +24,7 @@ class TaggableObserver
         }
 
         // Only save tags if we are in a form.
-        $ids = request()->post('tags', []);
+        $ids = (array) request()->post('tags', []);
 
         // Only use tags the user can actually view. This way admins can
         // have tags on entities that the user doesn't know about.

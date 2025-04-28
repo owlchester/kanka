@@ -3,7 +3,6 @@
 namespace App\Services\Search;
 
 use App\Models\Attribute;
-use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\RequestAware;
 
