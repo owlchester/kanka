@@ -10,6 +10,10 @@ use App\Services\InviteService;
 use App\Services\StarterService;
 use App\Services\Users\CampaignService;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Logout;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Events\Dispatcher;
 use Exception;
 
 /**
@@ -41,7 +45,7 @@ class UserEventSubscriber
     /**
      * Handle user login events.
      */
-    public function onUserLogin($event): bool
+    public function handleUserLogin(Login $event): bool
     {
         // Log the user's login
         if (! $event->user) {
@@ -107,7 +111,7 @@ class UserEventSubscriber
     /**
      * Handle user logout events.
      */
-    public function onUserLogout($event)
+    public function handleUserLogout(Logout $event)
     {
         // Log the activity
         if (! $event->user) {
@@ -118,9 +122,9 @@ class UserEventSubscriber
         }
     }
 
-    public function onUserRegistered($event)
+    public function handleUserRegistered(Registered $event)
     {
-        // If the user has an invite token, we don't want to do anything else
+        // If the user has an invite-token, we don't want to do anything else
         if (session()->has('invite_token')) {
             return;
         }
@@ -131,21 +135,12 @@ class UserEventSubscriber
     /**
      * Register the listeners for the subscriber.
      */
-    public function subscribe($events)
+    public function subscribe(Dispatcher $events): array
     {
-        $events->listen(
-            'Illuminate\Auth\Events\Login',
-            'App\Listeners\UserEventSubscriber@onUserLogin'
-        );
-
-        $events->listen(
-            'Illuminate\Auth\Events\Registered',
-            'App\Listeners\UserEventSubscriber@onUserRegistered'
-        );
-
-        $events->listen(
-            'Illuminate\Auth\Events\Logout',
-            'App\Listeners\UserEventSubscriber@onUserLogout'
-        );
+        return [
+            Login::class => 'handleUserLogin',
+            Logout::class => 'handleUserLogout',
+            Registered::class => 'handleUserRegistered',
+        ];
     }
 }
