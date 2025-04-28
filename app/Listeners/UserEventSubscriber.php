@@ -7,10 +7,6 @@ use App\Models\User;
 use App\Models\UserLog;
 use App\Services\Auth\LoginService;
 use App\Services\Auth\SessionService;
-use App\Services\InviteService;
-use App\Services\StarterService;
-use App\Services\Users\CampaignService;
-use Exception;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Auth\Events\Registered;
@@ -22,17 +18,6 @@ use Illuminate\Support\Facades\Log;
  */
 class UserEventSubscriber
 {
-    protected InviteService $inviteService;
-
-    protected StarterService $starterService;
-
-    protected CampaignService $campaignService;
-
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
     public function __construct(
         protected LoginService $loginService,
         protected SessionService $sessionService,
