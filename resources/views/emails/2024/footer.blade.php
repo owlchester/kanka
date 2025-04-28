@@ -54,10 +54,10 @@ Chemin Ella Maillart 16, Geneve<br>Switzerland
 <td class="col" align="left" width="250" valign="top" style="text-align: left!important;">
 
 <p style="font-family: 'Inter', sans-serif; color: #515856; font-size: 14px; line-height: 150%; margin-bottom: 6px; display: inline-block;">
-@if ($layout == 'welcome')
-{{ __('emails/welcome/2024.why') }}
-@elseif ($layout == 'user' )
+@if ($layout != 'welcome')
 <i>This email was automatically sent to you by <a href="https://kanka.io">Kanka.io</a>.</i>
+@else
+{{ __('emails/welcome/2024.why') }}
 @endif
 </p>
 </td>

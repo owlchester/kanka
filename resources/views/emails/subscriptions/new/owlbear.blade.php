@@ -1,5 +1,5 @@
 
-<x-mail::message layout="user">
+<x-mail::message>
 
 Hi {{ $user->name }},
 
