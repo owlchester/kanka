@@ -36,7 +36,10 @@
 
 @if (!empty($relation) && !empty($relation->isMirrored()))
     <x-alert type="info">
-        <h4><i class="fa-solid fa-sync-alt"></i> {{ __('entities/relations.hints.mirrored.title') }}</h4>
+        <h4>
+            <x-icon class="fa-solid fa-sync-alt" />
+            {{ __('entities/relations.hints.mirrored.title') }}
+        </h4>
         <p>{!! __('entities/relations.hints.mirrored.text', [
         'link' => '<a href="' . $relation->target->url() . '" data-toggle="tooltip-ajax" data-id="' . $relation->target_id . '" data-url="' . route('entities.tooltip', [$campaign, $relation->target->id]) . "\">" . $relation->target->name . '</a>'
         ]) !!}</p>
