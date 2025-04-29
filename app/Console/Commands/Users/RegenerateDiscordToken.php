@@ -54,8 +54,8 @@ class RegenerateDiscordToken extends Command
                 if (Str::contains($e->getResponse()->getBody()->getContents(), 'invalid_grant')) {
                     UnsyncDiscord::dispatch($token);
                 }
-                throw $e;
             } catch (\Exception $e) {
+                report($e);
                 // Silence errors and ignore
             }
         }
