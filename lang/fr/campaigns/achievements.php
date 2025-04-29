@@ -6,7 +6,7 @@ return [
     'created'           => '{0} Aucun(e) :singular créé(e)|{1} Un :singular créé(e)|[2,*] :amount :plural créé(e)s',
     'dead'              => '{0} Aucun mort mystérieuse|{1} Une mort mystérieuse|[2,*] :amount morts mystérieuses',
     'goal'              => 'Objectif :number',
-    'goal_reached'      => 'La campagne a débloqué le succès suivant :',
+    'goal_reached'      => 'Succès débloqué',
     'level'             => 'niveau :number',
     'markers'           => '{0} Aucun marqueur de carte créé|{1} Un marqueur de carte créé|[2,*] :amount marqueurs de carte créés',
     'painter'           => '{0} Aucun thème créé|{1} Un thème créé|[2,*] :amount thèmes créés',
