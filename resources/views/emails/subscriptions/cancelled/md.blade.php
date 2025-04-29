@@ -1,4 +1,4 @@
-<x-mail::message>
+<x-mail::message layout="admin">
 # Subscription cancellation
 
 [{{ $user->name }}](https://admin.kanka.io/users/{{ $user->id }}) cancelled.

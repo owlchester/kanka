@@ -60,7 +60,7 @@
                                         {{ Illuminate\Mail\Markdown::parse($slot) }}
 
                                         {{ $subcopy ?? '' }}
-                                        @include('emails.2024.footer', ['layout' => $layout])
+                                        @includeWhen($layout != 'admin', 'emails.2024.footer', ['layout' => $layout])
                                     </td>
                                 </tr>
                             </tbody>
