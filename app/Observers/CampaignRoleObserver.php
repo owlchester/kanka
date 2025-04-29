@@ -18,13 +18,13 @@ class CampaignRoleObserver
 
     public function created(CampaignRole $campaignRole)
     {
-        auth()->user()->campaignLog($campaignRole->campaign_id, 'roles', 'created', ['id' => $campaignRole->id]);
+        auth()->user()->campaignLog($campaignRole->campaign_id, 'roles', 'created', ['id' => $campaignRole->id, 'name' => $campaignRole->name]);
     }
 
     public function deleted(CampaignRole $campaignRole)
     {
         CampaignCache::clear();
-        auth()->user()->campaignLog($campaignRole->campaign_id, 'roles', 'deleted', ['id' => $campaignRole->id]);
+        auth()->user()->campaignLog($campaignRole->campaign_id, 'roles', 'deleted', ['id' => $campaignRole->id, 'name' => $campaignRole->name]);
     }
 
     public function updated(CampaignRole $campaignRole)
@@ -32,6 +32,6 @@ class CampaignRoleObserver
         if ($campaignRole->isAdmin()) {
             CampaignCache::clear();
         }
-        auth()->user()->campaignLog($campaignRole->campaign_id, 'roles', 'updated', ['id' => $campaignRole->id]);
+        auth()->user()->campaignLog($campaignRole->campaign_id, 'roles', 'updated', ['id' => $campaignRole->id, 'name' => $campaignRole->name]);
     }
 }

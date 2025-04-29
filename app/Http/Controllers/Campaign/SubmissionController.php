@@ -14,8 +14,6 @@ class SubmissionController extends Controller
     public function __construct(protected ApplicationService $service)
     {
         $this->middleware('auth');
-
-        $this->service = $service;
     }
 
     public function index(Campaign $campaign)
