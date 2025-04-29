@@ -56,6 +56,7 @@ class Icon extends Component
             'lock' => 'fa-regular fa-lock',
             'filter' => 'fa-regular fa-filter',
             'load' => 'fa-solid fa-spinner fa-spin',
+            'arrow' => 'fa-regular fa-arrow-right',
             default => $class,
         };
     }

@@ -20,7 +20,8 @@
         </div>
     @else
         <p class="">{{ __('campaigns.leave.no-admin-left') }}</p>
-        <a href="{{ route('campaign_users.index', $campaign) }}" class="btn2">
+        <a href="{{ route('campaign_users.index', $campaign) }}" class="btn2 btn-outline">
+            <x-icon class="arrow" />
             {{ __('campaigns.leave.fix') }}
         </a>
     @endif

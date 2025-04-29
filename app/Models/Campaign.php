@@ -578,4 +578,9 @@ class Campaign extends Model
 
         return $this->cachedEntityTypes;
     }
+
+    public function link(): string
+    {
+        return '<a href="' . route('dashboard', $this) . '">' . $this->name . '</a>';
+    }
 }

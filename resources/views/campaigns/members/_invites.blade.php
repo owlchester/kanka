@@ -5,7 +5,7 @@
  * @var \App\Models\CampaignInvite[] $invitations
  */
 ?>
-@if (auth()->user()->can('invite', $campaign))
+@can('invite', $campaign)
 
     <div class="flex gap-2 items-center">
         <h3 class="inline-block grow">
@@ -75,7 +75,7 @@
         </x-box>
         @else
         <x-box>
-            <x-helper :text="__('campaigns.members.invite.description')" />
+            <x-helper :text="__('campaigns.members.invite.description', ['campaign' => $campaign->link()])" />
         </x-box>
         @endif
 @endif
@@ -88,7 +88,7 @@
         'id' => 'invite-help',
         'title' => __('campaigns.members.invite.title'),
         'textes' => [
-            __('campaigns.members.invite.description', ['campaign' => $campaign->name]),
+            __('campaigns.members.invite.description', ['campaign' => $campaign->link()]),
             __('campaigns.members.invite.more', [
                         'link' =>
                             '<a href="' . route('campaign_roles.index', $campaign) . '">'

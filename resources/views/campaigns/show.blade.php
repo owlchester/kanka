@@ -21,6 +21,9 @@
     @include('ads.top')
 
     <div class="flex gap-5 flex-col">
+
+        @include('campaigns._overview')
+
         @can('update', $campaign)
             @if($campaign->isPublic() && $campaign->publicHasNoVisibility())
                 <x-alert type="warning">
@@ -30,8 +33,6 @@
                 </x-alert>
             @endif
         @endcan
-
-        @include('campaigns._overview')
 
         <div class="flex gap-2 items-center">
             <h3 class="inline-block grow">

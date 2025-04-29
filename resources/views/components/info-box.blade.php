@@ -1,5 +1,5 @@
 <x-box class="flex items-center gap-5 rounded-xl shadow-xs">
-    <div class="rounded {{ $background }} w-12 h-12 flex items-center justify-center">
+    <div class="rounded {{ $background }} w-12 h-12 text-xl flex items-center justify-center">
         <x-icon class="{{ $icon }}" />
     </div>
     <div class="flex flex-col gap-0 grow">
@@ -20,7 +20,7 @@
         @endif
     @elseif ($premium && !$campaign->boosted())
         <a class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer neutral-link" href="{{ route('settings.premium', ['campaign' => $campaign->id]) }}" data-tooltip data-title="{{ __('settings/premium.actions.unlock') }}">
-            <x-icon class="fa-solid fa-gem" />
+            <x-icon class="premium" />
         </a>
     @endif
 </x-box>
