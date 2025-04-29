@@ -47,15 +47,6 @@
         </x-forms.field>
     </div>
 
-    <x-forms.field
-        field="status"
-        :label="__('campaigns/webhooks.fields.enabled')">
-        <input type="hidden" name="status" value="0" />
-        <x-checkbox :text="__('campaigns/webhooks.helper.active')">
-            <input type="checkbox" name="status" value="1" @if (old('status', $webhook->status ?? true)) checked="checked" @endif />
-        </x-checkbox>
-    </x-forms.field>
-
     <x-forms.field field="tags">
         <input type="hidden" name="save-tags" value="1" />
 
@@ -65,6 +56,15 @@
             allowClear="false"
             :dropdownParent="$dropdownParent ?? null"
         ></x-forms.tags>
+    </x-forms.field>
+
+    <x-forms.field
+        field="status"
+        :label="__('campaigns/webhooks.fields.enabled')">
+        <input type="hidden" name="status" value="0" />
+        <x-checkbox :text="__('campaigns/webhooks.helper.active')">
+            <input type="checkbox" name="status" value="1" @if (old('status', $webhook->status ?? true)) checked="checked" @endif />
+        </x-checkbox>
     </x-forms.field>
 
     <x-forms.field field="skip-private" :label="__('campaigns/webhooks.fields.private_entities.skip')">

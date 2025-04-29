@@ -3,14 +3,18 @@
         {{ __('campaigns.show.tabs.webhooks') }}</span>
     </h3>
     @if ($campaign->premium())
-    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
+    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog" data-target="primary-dialog"
             data-target="webhooks-help">
         <x-icon class="question" />
         {{ __('crud.actions.help') }}
     </button>
-    @can('update', $campaign))
-        <a href="{{ route('webhooks.create', $campaign) }}" class="btn2 btn-primary btn-sm"
-           data-url="{{ route('webhooks.create', $campaign) }}"
+    @can('update', $campaign)
+        <a
+            href="{{ route('webhooks.create', $campaign) }}"
+            class="btn2 btn-primary btn-sm"
+            data-toggle="dialog"
+            data-target="primary-dialog"
+            data-url="{{ route('webhooks.create', $campaign) }}"
         >
             <x-icon class="plus" />
             {{ __('campaigns/webhooks.actions.add') }}
