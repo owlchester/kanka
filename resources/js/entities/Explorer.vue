@@ -62,7 +62,7 @@
                 </button>
                 <div class="dropdown" v-else>
                     <button @click="orderDropdown = !orderDropdown" class="btn2" :title="i18n.order">
-                        <i class="fa-solid fa-arrow-down-a-z" aria-hidden="true"></i>
+                        <i class="fa-regular fa-arrow-down-a-z" aria-hidden="true"></i>
                     </button>
                     <div class="dropdown-menu absolute mt-2 flex flex-col gap-1 bg-base-200 shadow p-2 rounded z-10" role="menu" id="templates-submenu" v-if="orderDropdown" v-click-outside="onClickOutside">
                         <button @click="orderBy('name')" :class="orderByClass('name')">
@@ -85,18 +85,18 @@
                         <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
                     </button>
                     <button @click="switchMode()" class="btn2" v-if="nested && !nesting" :title="i18n.flatten">
-                        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                        <i class="fa-regular fa-layer-group" aria-hidden="true"></i>
                     </button>
                     <button @click="switchMode()" class="btn2" v-else-if="!nesting" :title="i18n.nest">
-                        <i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i>
+                        <i class="fa-regular fa-boxes-stacked" aria-hidden="true"></i>
                     </button>
                 </div>
                 <div v-if="entityType.has_table">
                     <button @click="switchLayout()" class="btn2" v-if="isGrid()" :title="i18n.layout_table">
-                        <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
+                        <i class="fa-regular fa-list-ul" aria-hidden="true"></i>
                     </button>
                     <button @click="switchLayout()" class="btn2" v-else :title="i18n.layout_table">
-                        <i class="fa-solid fa-grid " aria-hidden="true"></i>
+                        <i class="fa-regular fa-grid " aria-hidden="true"></i>
                     </button>
                 </div>
                 <div class="join"  v-if="hasPermissions() && permissions.create">
@@ -107,7 +107,7 @@
 
                     <div class="dropdown relative" v-if="permissions.template">
                         <button type="button" class="btn2 btn-primary join-item"  aria-expanded="false" aria-label="Create from template" aria-haspopup="menu" aria-controls="templates-submenu" @click="templating = !templating">
-                            <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
+                            <i class="fa-regular fa-caret-down" aria-hidden="true"></i>
                             <span class="sr-only" v-html="i18n.actions"></span>
                         </button>
                         <div class="dropdown-menu absolute mt-2 flex flex-col gap-1 right-0 bg-base-200 shadow p-2 rounded z-10" role="menu" id="templates-submenu" v-if="templating" v-click-outside="onClickOutside">
@@ -117,7 +117,7 @@
                                 :key="template.id"
                                 class="new-entity-from-template text-base-content flex items-center gap-2 px-2 py-1"
                             >
-                                <i class="fa-solid fa-star" aria-hidden="true"></i>
+                                <i class="fa-regular fa-star" aria-hidden="true"></i>
                                 <span v-html="template.name"></span>
                             </a>
                             <hr class="m-0" />
@@ -125,7 +125,7 @@
                                 href="https://docs.kanka.io/en/latest/guides/templates.html"
                                 class="flex flex-no-wrap gap-2 px-2 py-1 items-center"
                             >
-                                <i class="fa-solid fa-external-link" aria-hidden="true"></i>
+                                <i class="fa-regular fa-external-link" aria-hidden="true"></i>
                                 <span class="text-nowrap" v-html="i18n.templates"></span>
                             </a>
                         </div>
@@ -147,7 +147,7 @@
                     <!-- If permissions isn't empty but an actual object !-->
                     <div class="dropdown relative" v-if="hasPermissions()">
                         <button type="button" class="btn2 btn-primary join-item"  aria-expanded="false" aria-label="Create from template" aria-haspopup="menu" aria-controls="templates-submenu" @click="templating = !templating">
-                            <i class="fa-solid fa-caret-down" aria-hidden="true"></i>
+                            <i class="fa-regular fa-caret-down" aria-hidden="true"></i>
                             <span class="sr-only" v-html="i18n.actions"></span>
                         </button>
                         <div class="dropdown-menu absolute mt-2 flex flex-col gap-1 right-0 bg-base-200 shadow p-2 rounded z-10" role="menu" id="templates-submenu" v-if="templating" v-click-outside="onClickOutside">
@@ -205,11 +205,19 @@
         </div>
         <div class="flex gap-1 items-start">
             <div :class="gridLayout()">
-                <a v-if="parent" :href="parent.urls.parent" class="entity w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-xs hover:shadow sm">
+                <a v-if="parent && isGrid()" :href="parent.urls.parent" class="entity w-[47%] xs:w-[25%] sm:w-48 overflow-hidden rounded flex flex-col shadow-xs hover:shadow sm">
                     <div class="w-46 flex items-center justify-center grow  text-6xl">
-                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                        <i class="fa-regular fa-arrow-left" aria-hidden="true"></i>
                     </div>
                     <div class="block text-center p-4 h-12 bg-box">
+                        <span v-html="parent.links.back"></span>
+                    </div>
+                </a>
+                <a v-else-if="parent && !isGrid()" :href="parent.urls.parent" class="rounded-xl flex bg-base-100 shadow-xs items-center gap-4 py-2 px-4 overflow-hidden">
+                    <div class="">
+                        <i class="fa-regular fa-arrow-left" aria-hidden="true"></i>
+                    </div>
+                    <div class="">
                         <span v-html="parent.links.back"></span>
                     </div>
                 </a>
@@ -440,7 +448,7 @@ const orderByIcon = (field: string) => {
     if (isOrderingAscending(field)) {
         return 'fa-regular fa-arrow-down-z-a';
     }
-    return 'fa-solid fa-arrow-down-a-z';
+    return 'fa-fa-regular fa-arrow-down-a-z';
 }
 
 const isOrdering = (field: string) => {
