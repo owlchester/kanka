@@ -117,7 +117,7 @@ class CopyService
             return $this;
         }
         foreach ($this->source->permissions as $perm) {
-            $perm->copyTo($this->entity, $this->source->entity_id, $this->entity->entity_id);
+            $perm->copyTo($this->entity);
         }
 
         return $this;
