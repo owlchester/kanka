@@ -2,12 +2,7 @@
     <h3 class="inline-block grow">
         {{ __('campaigns.show.tabs.webhooks') }}</span>
     </h3>
-    @if ($campaign->premium())
-    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog" data-target="primary-dialog"
-            data-target="webhooks-help">
-        <x-icon class="question" />
-        {{ __('crud.actions.help') }}
-    </button>
+    <x-learn-more url="features/campaigns/webhooks.html" />
     @can('update', $campaign)
         <a
             href="{{ route('webhooks.create', $campaign) }}"
@@ -19,7 +14,6 @@
             <x-icon class="plus" />
             {{ __('campaigns/webhooks.actions.add') }}
         </a>
-    @endif
     @endif
 </div>
 @if (!$campaign->premium())

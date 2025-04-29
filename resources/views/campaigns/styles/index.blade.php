@@ -19,10 +19,7 @@ use App\Facades\Datagrid ?>
                 {{ __('campaigns.show.tabs.styles') }}
             </h3>
             <div class="flex gap-2 flex-wrap items-center justify-end">
-                <a href="https://docs.kanka.io/en/latest/features/campaigns/theming.html" class="btn2 btn-sm btn-ghost">
-                    <x-icon class="question" />
-                    {{ __('crud.actions.help') }}
-                </a>
+                <x-learn-more url="features/campaigns/theming.html" />
                 @if ($campaign->boosted())
                     <a href="{{ route('campaign_styles.create', $campaign) }}" class="btn2 btn-primary btn-sm">
                         <x-icon class="plus" />

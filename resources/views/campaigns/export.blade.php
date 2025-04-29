@@ -18,11 +18,8 @@
             <h3 class="">
                 {{ __('campaigns/export.title') }}
             </h3>
-            <div class="flex gap-2 flex-wrap">
-                <a href="https://docs.kanka.io/en/latest/features/campaigns/export.html" target="_blank" class="btn2 btn-sm btn-ghost">
-                    <x-icon class="question" />
-                    {{ __('crud.actions.help') }}
-                </a>
+            <div class="flex gap-2 flex-wrap items-center">
+                <x-learn-more url="features/campaigns/export.html" />
                 @can('export', $campaign)
                     <a href="#" class="btn2 btn-sm btn-primary" data-toggle="dialog" data-target="export-confirm">
                         <x-icon class="fa-solid fa-download" />

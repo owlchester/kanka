@@ -21,12 +21,7 @@
             <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.modules') }}
             </h3>
-
-            <a href="//docs.kanka.io/en/latest/features/campaigns/modules.html"
-               target="_blank" class="btn2 btn-sm btn-ghost">
-                <x-icon class="question" />
-                {!! __('crud.actions.help') !!}
-            </a>
+            <x-learn-more url="features/campaigns/modules.html" />
             @can('update', $campaign)
             @if ($canReset)
                 <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">

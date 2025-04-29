@@ -19,7 +19,7 @@
             <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                     data-target="public-help">
                 <x-icon class="question" />
-                {!! __('crud.actions.help') !!}
+                {{ __('general.learn-more') }}
             </button>
         </div>
     </div>

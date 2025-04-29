@@ -19,12 +19,7 @@
                 {{ __('campaigns.show.tabs.sidebar') }}
             </h3>
 
-            @if ($campaign->boosted())
-                <a class="btn2 btn-sm btn-ghost" href="https://docs.kanka.io/en/latest/features/campaigns/sidebar.html" target="_blank">
-                    <x-icon class="question" />
-                    {{ __('crud.actions.help') }}
-                </a>
-          @endif
+            <x-learn-more url="features/campaigns/sidebar.html" />
         </div>
 
         @if (!$campaign->boosted())

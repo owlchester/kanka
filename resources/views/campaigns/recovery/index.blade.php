@@ -15,11 +15,8 @@
             <h3 class="inline-block grow">
                 {{ __('campaigns/recovery.title') }}
             </h3>
-            <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
-                    data-target="recovery-help">
-                <x-icon class="question" />
-                {{ __('crud.actions.help') }}
-            </button>
+
+            <x-learn-more url="features/campaigns/recovery.html" />
         </div>
         <div id="recovery">
             <recovery
@@ -29,16 +26,6 @@
     </div>
 
 @endsection
-
-
-@section('modals')
-    @parent
-    <x-dialog id="recovery-help" :title="__('campaigns.show.tabs.recovery')">
-        <p>{!! __('campaigns/recovery.helper', ['count' => '<code>' . config('entities.hard_delete') . '</code>']) !!}</p>
-    </x-dialog>
-
-@endsection
-
 
 @section('scripts')
     @parent

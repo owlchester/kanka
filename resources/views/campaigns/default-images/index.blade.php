@@ -17,10 +17,7 @@
             <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.default-images') }}
             </h3>
-            <a href="https://docs.kanka.io/en/latest/features/campaigns/default-thumbnails.html" class="btn2 btn-sm btn-ghost" target="_blank">
-                <x-icon class="question" />
-                {{ __('crud.actions.help') }}
-            </a>
+            <x-learn-more url="features/campaigns/default-thumbnails.html" />
             @if ($campaign->boosted())
                 @can('recover', $campaign)
                 <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary btn-sm"

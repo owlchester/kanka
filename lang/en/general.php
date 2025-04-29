@@ -14,4 +14,5 @@ return [
         'updated'           => ':name updated.',
     ],
     'yes'           => 'Yes',
+    'documentation' => 'Learn more about this feature in our documentation',
 ];
