@@ -24,6 +24,7 @@
                         :url="route('recovery', [$campaign])"
                         icon="fa-duotone fa-trash-undo"
                         :text="__('campaigns.show.tabs.recovery')"
+                        premium
                     ></x-sidebar.element>
                 </li>
             @endcan
@@ -32,6 +33,7 @@
                     :url="route('campaign.achievements', [$campaign])"
                     icon="fa-duotone fa-bars-progress"
                     :text="__('campaigns.show.tabs.achievements')"
+                    premium
                 ></x-sidebar.element>
             </li>
             <li class="px-2 section-overview {{ $sidebar->activeCampaign('stats') }}">
@@ -93,6 +95,7 @@
                                 :url="route('campaign_plugins.index', [$campaign])"
                                 icon="fa-duotone fa-shop"
                                 :text="__('campaigns.show.tabs.plugins')"
+                                premium
                             ></x-sidebar.element>
                         </li>
                     @endif
@@ -101,6 +104,7 @@
                             :url="route('campaign.default-images', [$campaign])"
                             icon="fa-duotone fa-image"
                             :text="__('campaigns.show.tabs.default-images')"
+                            premium
                         ></x-sidebar.element>
                     </li>
 
@@ -110,6 +114,7 @@
                                 :url="route('campaign_styles.index', [$campaign])"
                                 icon="fa-duotone fa-palette"
                                 :text="__('campaigns.show.tabs.styles')"
+                                premium
                             ></x-sidebar.element>
                         </li>
                         <li class="px-2 section-modules {{ $sidebar->activeCampaign('sidebar-setup') }}">
@@ -117,6 +122,7 @@
                                 :url="route('campaign-sidebar', [$campaign])"
                                 icon="fa-duotone fa-bars-staggered"
                                 :text="__('campaigns.show.tabs.sidebar')"
+                                premium
                             ></x-sidebar.element>
                         </li>
                     @endif
@@ -147,6 +153,7 @@
                                 :url="route('webhooks.index', [$campaign])"
                                 icon="fa-duotone fa-webhook"
                                 :text="__('campaigns.show.tabs.webhooks')"
+                                premium
                             ></x-sidebar.element>
                         </li>
                     @endif

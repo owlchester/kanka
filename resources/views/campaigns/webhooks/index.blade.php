@@ -8,7 +8,7 @@
         <x-icon class="question" />
         {{ __('crud.actions.help') }}
     </button>
-    @if (auth()->user()->can('update', $campaign))
+    @can('update', $campaign))
         <a href="{{ route('webhooks.create', $campaign) }}" class="btn2 btn-primary btn-sm"
            data-url="{{ route('webhooks.create', $campaign) }}"
         >
