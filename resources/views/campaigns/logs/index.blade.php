@@ -38,7 +38,7 @@
                     @if (!$campaign->premium())
                         <hr />
                         <p>
-                            {!! __('campaigns/logs.premium', ['amount' => '<code>' . config('limits.campaigns.logs.premium') . '</code>']) !!}
+                            {!! __('campaigns/logs.premium.helper', ['amount' => '<code>' . config('limits.campaigns.logs.premium') . '</code>']) !!}
                         </p>
                         @if (auth()->check() && auth()->user()->hasBoosters())
                             <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-lg btn-block">
