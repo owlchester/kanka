@@ -62,7 +62,7 @@
                     @if (!empty($cta))
                         <p>{!! $cta !!}</p>
                     @elseif (!$minimal)
-                        <p>{{ __('callouts.premium.limitation') }}</p>
+                        <p>{!! __('callouts.premium.limitation', ['campaign' => $campaign->name]) !!}</p>
                     @endif
                 @endif
             </div>
