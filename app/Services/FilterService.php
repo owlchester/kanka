@@ -40,9 +40,6 @@ class FilterService
     /** @var Model|MiscModel|Location The entity sub model */
     protected Model|MiscModel|Location $model;
 
-    /**
-     * @return $this
-     */
     public function request(Request $request): self
     {
         $this->request = $request;
@@ -52,9 +49,6 @@ class FilterService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function options(array $data): self
     {
         $this->data = $data;
@@ -63,8 +57,6 @@ class FilterService
     }
 
     /**
-     * @return $this
-     *
      * @throws \Exception
      */
     public function model(Model $model): self
@@ -270,9 +262,6 @@ class FilterService
         }
     }
 
-    /**
-     * @return $this
-     */
     private function prepareSearch(): self
     {
         $search = Arr::get($this->data, 'search');

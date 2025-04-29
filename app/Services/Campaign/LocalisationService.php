@@ -50,9 +50,6 @@ class LocalisationService
         return $this->consoleCampaignId;
     }
 
-    /**
-     * @return $this
-     */
     public function setConsoleCampaign(int $campaignId): self
     {
         $this->consoleCampaignId = $campaignId;

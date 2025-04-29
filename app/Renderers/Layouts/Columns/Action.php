@@ -39,9 +39,6 @@ class Action extends Column
         }
     }
 
-    /**
-     * @return $this
-     */
     public function params(array $params): self
     {
         $this->params = $params;
@@ -71,9 +68,6 @@ class Action extends Column
         return in_array(Layout::ACTION_DELETE, $this->actions);
     }
 
-    /**
-     * @return $this
-     */
     protected function import(array $action): self
     {
         // No auth check? We good.

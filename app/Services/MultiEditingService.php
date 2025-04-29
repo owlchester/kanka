@@ -62,8 +62,6 @@ class MultiEditingService
 
     /**
      * Set the user as editing an entity
-     *
-     * @return $this
      */
     public function edit(): self
     {
@@ -88,8 +86,6 @@ class MultiEditingService
 
     /**
      * Remove the user as editing the entity
-     *
-     * @return $this
      */
     public function finish(): self
     {
@@ -120,8 +116,6 @@ class MultiEditingService
 
     /**
      * Touch the editing entry in the db
-     *
-     * @return $this
      */
     public function keepAlive(): self
     {

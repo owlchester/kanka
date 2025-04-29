@@ -9,7 +9,6 @@ use App\Models\EntityType;
 use App\Services\AttributeService;
 use App\Services\BulkService;
 use Illuminate\Http\Request;
-use App\Http\Requests\Bulks\Template;
 
 class TemplateController extends Controller
 {

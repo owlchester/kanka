@@ -88,9 +88,6 @@ class SubmissionService
         return $return;
     }
 
-    /**
-     * @return $this
-     */
     protected function approve(int $roleID, string $message = ''): self
     {
         // Add the user to the campaign

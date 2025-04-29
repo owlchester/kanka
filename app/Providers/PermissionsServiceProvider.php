@@ -34,9 +34,6 @@ class PermissionsServiceProvider extends ServiceProvider
             ->registerEntity();
     }
 
-    /**
-     * @return $this
-     */
     protected function registerMain(): self
     {
         $this->app->singleton(PermissionService::class, function () {
@@ -52,9 +49,6 @@ class PermissionsServiceProvider extends ServiceProvider
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     protected function registerEntity(): self
     {
         $this->app->singleton(EntityPermission::class, function () {
@@ -72,9 +66,6 @@ class PermissionsServiceProvider extends ServiceProvider
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     protected function registerRole(): self
     {
         $this->app->singleton(RolePermission::class, function () {

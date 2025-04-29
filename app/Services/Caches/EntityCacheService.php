@@ -42,9 +42,6 @@ class EntityCacheService extends BaseCache
         return $data;
     }
 
-    /**
-     * @return $this
-     */
     public function clearSuggestion(EntityType $entityType): self
     {
         $this->forget(

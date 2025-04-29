@@ -505,8 +505,6 @@ class MapMarker extends Model
 
     /**
      * Set the current mode to editing the marker
-     *
-     * @return $this
      */
     public function editing(): self
     {
@@ -517,9 +515,6 @@ class MapMarker extends Model
 
     /**
      * Set the current mode to exploring the map
-     *
-     * @param  bool  $popup  = true
-     * @return $this
      */
     public function exploring(bool $popup = true): self
     {
@@ -543,8 +538,6 @@ class MapMarker extends Model
     /**
      * Used for calculating sizes and distances when using open street map where everything is way more
      * zoomed in.
-     *
-     * @return $this
      */
     public function multiplier(bool $isReal = false): self
     {

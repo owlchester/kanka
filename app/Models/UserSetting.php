@@ -98,8 +98,6 @@ trait UserSetting
 
     /**
      * Save the user settings into the array mutator
-     *
-     * @return $this
      */
     public function saveSettings(array $data): self
     {
@@ -127,8 +125,6 @@ trait UserSetting
 
     /**
      * Save user's custom billing info
-     *
-     * @return $this
      */
     public function updateBillingInfo($billing): self
     {
@@ -143,10 +139,6 @@ trait UserSetting
         return $this;
     }
 
-    /**
-     * @param  array  $data
-     * @return $this
-     */
     public function updateSettings($data): self
     {
         $fields = ['mail_release'];

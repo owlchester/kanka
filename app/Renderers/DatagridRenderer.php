@@ -581,8 +581,6 @@ class DatagridRenderer
 
     /**
      * Tell the rendered that this is a nested view
-     *
-     * @return $this
      */
     public function nested(string $key = 'parent_id'): self
     {

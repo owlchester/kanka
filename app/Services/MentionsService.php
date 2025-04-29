@@ -30,7 +30,7 @@ class MentionsService
     use CampaignAware;
     use MentionTrait;
 
-    /** The text that is being parsed, usualy an entry field */
+    /** The text that is being parsed, usually an entry field */
     protected ?string $text = '';
 
     /** @var array|Entity[] List of entities */
@@ -535,8 +535,6 @@ class MentionsService
      * The gallery injects images as a thumbnail, instead of the final URL.
      * Meaning that when we switched from images.kanka.io to th.kanka.io,
      * all the gallery images in text were broken.
-     *
-     * @return $this
      */
     protected function fixGalleryUrls(): self
     {
@@ -626,8 +624,6 @@ class MentionsService
 
     /**
      * Replace mentions of attributes to a visual representation for the text editor
-     *
-     * @return $this
      */
     protected function parseAttributesForEdit(): self
     {

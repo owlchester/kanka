@@ -26,9 +26,6 @@ class CharacterObserver extends MiscObserver
         EntityLogger::model($character)->entity($character->entity)->finish();
     }
 
-    /**
-     * @return $this
-     */
     protected function saveTraits(Character $character, string $trait = 'personality'): self
     {
         // Users who can edit the character but can't access personality traits shouldn't be allowed to

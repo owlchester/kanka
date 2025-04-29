@@ -193,8 +193,6 @@ class TransformService
 
     /**
      * If switching from an organisation to a family, we need to move the members?
-     *
-     * @return $this
      */
     protected function members(): self
     {
@@ -240,8 +238,6 @@ class TransformService
 
     /**
      * Remove the old participants from a convo
-     *
-     * @return $this
      */
     protected function participants(): self
     {

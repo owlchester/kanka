@@ -103,9 +103,6 @@ class DashboardService
         return $dashboards;
     }
 
-    /**
-     * @return $this
-     */
     public function add(Entity $entity): self
     {
         $this->displayedEntities[] = $entity->id;

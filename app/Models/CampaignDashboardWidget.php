@@ -389,8 +389,6 @@ class CampaignDashboardWidget extends Model
 
     /**
      * A way to set the entity, typically for the random widget
-     *
-     * @return $this
      */
     public function setEntity(Entity $entity): self
     {

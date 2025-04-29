@@ -60,9 +60,6 @@ class ImporterService
 
     protected mixed $model;
 
-    /**
-     * @return $this
-     */
     public function plugin(Plugin $plugin): self
     {
         $this->plugin = $plugin;
@@ -70,9 +67,6 @@ class ImporterService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function options(array $options): self
     {
         if (Arr::get($options, 'force_private', false)) {

@@ -55,8 +55,6 @@ class ModuleEditService
 
     /**
      * Remove the custom modules setup from the campaign
-     *
-     * @return $this
      */
     public function reset(): self
     {

@@ -171,9 +171,6 @@ class AttributeService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function updateVisibility(bool $privateAttributes): self
     {
         // Only admins can update this value

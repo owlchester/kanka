@@ -22,9 +22,6 @@ class BoostService
     /** @var bool If updating an existing boost to a superboost */
     protected bool $upgrade = false;
 
-    /**
-     * @return $this
-     */
     public function action(string $action = 'boost'): self
     {
         $this->action = $action;
@@ -32,9 +29,6 @@ class BoostService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function upgrade(): self
     {
         $this->upgrade = true;
@@ -110,8 +104,6 @@ class BoostService
     /**
      * Unboost a campaign
      *
-     * @return $this
-     *
      * @throws \Exception
      */
     public function unboost(CampaignBoost $campaignBoost): self
@@ -181,8 +173,6 @@ class BoostService
 
     /**
      * Dispatch a job to notify all campaign admins
-     *
-     * @return $this
      */
     protected function notify(string $key): self
     {

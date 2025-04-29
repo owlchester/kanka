@@ -45,9 +45,6 @@ class BulkService
         protected MoveService $moveService
     ) {}
 
-    /**
-     * @return $this
-     */
     public function entities(array $ids = []): self
     {
         $this->ids = $ids;
@@ -460,11 +457,7 @@ class BulkService
         return new Relation;
     }
 
-    /**
-     * @param  array  $mirrorOptions
-     * @return int
-     */
-    protected function updateRelations(array $filledFields, $mirrorOptions)
+    protected function updateRelations(array $filledFields, $mirrorOptions): int
     {
         $relations = Relation::whereIn('id', $this->ids)->get();
 
