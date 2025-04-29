@@ -9,12 +9,12 @@
         <div class="flex flex-col gap-4" data-position="{{ \Illuminate\Support\Str::slug($position) }}">
             <div class="section-title flex gap-4 items-center">
                 <h2 class="grow text-2xl flex items-center gap-1 cursor-pointer" data-animate="collapse" data-target="#inventory-section-body-{{ \Illuminate\Support\Str::slug($position) }}">
-                    <x-icon class="fa-solid fa-chevron-up collapsed:flip transition-all duration-150" />
+                    <x-icon class="fa-regular fa-chevron-up collapsed:flip transition-all duration-150" />
                     {!! $position ?? "Unsorted" !!}
                 </h2>
                 <div class="flex items-center gap-4">
                     <a href="#" class="rounded hidden link link-accent bg-box">
-                        <x-icon class="fa-solid fa-copy" />
+                        <x-icon class="copy" />
                     </a>
                     @can('inventory', $entity)
                         <a href="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $position]) }}"
@@ -26,7 +26,7 @@
                         </a>
 
                         <a href="#" class="rounded hidden link link-accent bg-box">
-                            <x-icon class="fa-solid fa-times" />
+                            <x-icon class="fa-regular fa-times" />
                         </a>
                         <td class="text-right">
                             <a href="#" class="btn2 btn-default btn-sm text-error"

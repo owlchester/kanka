@@ -1,10 +1,10 @@
 <a href="{{ route('entities.entity_abilities.reorder', [$campaign, $entity]) }}" class="btn2 btn-sm">
-    <x-icon class="fa-solid fa-arrow-up-arrow-down" />
+    <x-icon class="fa-regular fa-arrow-up-arrow-down" />
     <span class="hidden md:inline">{{ __('entities/abilities.show.reorder') }}</span>
     <span class="md:hidden">{{ __('sidebar.campaign_switcher.reorder') }}</span>
 </a>
 <a href="{{ route('entities.entity_abilities.reset', [$campaign, $entity]) }}" class="btn2 btn-sm" data-title="{{ __('entities/abilities.helpers.recharge') }}" data-toggle="tooltip">
-    <x-icon class="fa-solid fa-redo" />
+    <x-icon class="fa-regular fa-redo" />
     <span class="hidden md:inline">{{ __('entities/abilities.actions.reset') }}</span>
     <span class="md:hidden">{{ __('crud.actions.reset') }}</span>
 </a>

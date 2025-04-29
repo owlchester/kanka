@@ -15,7 +15,7 @@
         <div class="text-lg">
         @can('update', $entity)
             <a href="#" data-toggle="dialog-ajax" data-target="asset-update-dialog" data-url="{{ route('entities.entity_assets.edit', [$campaign, $entity, $asset]) }}">
-                <i class="fa-solid fa-pencil" aria-hidden="true" aria-label="{{ __('crud.edit') }}"></i>
+                <i class="fa-regular fa-pencil" aria-hidden="true" aria-label="{{ __('crud.edit') }}"></i>
             </a>
         @endif
         @include('icons.visibility', ['icon' => $asset->visibilityIcon()])

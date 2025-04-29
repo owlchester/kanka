@@ -49,12 +49,12 @@
                     <div class="">
                         @if ($campaign->superboosted() && !empty($log->changes))
                             <a href="#log-cta-{{ $log->id }}" data-animate="collapse" class="btn2 btn-xs btn-outline">
-                                <x-icon class="fa-solid fa-eye" />
+                                <x-icon class="fa-regular fa-eye" />
                                 {{ __('entities/logs.actions.reveal') }}
                             </a>
                         @elseif (!$campaign->superboosted())
                             <a href="#log-cta-{{ $log->id }}" data-animate="collapse" class="btn btn-sm btn-outline">
-                                <x-icon class="fa-solid fa-eye" />
+                                <x-icon class="fa-regular fa-eye" />
                                 {{ __('entities/logs.actions.reveal') }}
                             </a>
                         @endif

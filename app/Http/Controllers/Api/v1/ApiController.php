@@ -15,7 +15,7 @@ class ApiController extends Controller
         // Fire an event for the Entity Observer.
         $model->crudSaved();
 
-        // MenuLink have no entity attached to them.
+        // Bookmarks have no entity attached to them.
         if (! empty($model->entity)) {
             $model->entity->crudSaved();
             // If the child was changed but nothing changed on the entity, we still want to trigger an update

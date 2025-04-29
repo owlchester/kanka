@@ -17,7 +17,7 @@
             'clipboard' => $title,
             'toast' => __('entities/notes.copy_mention.success')
     ]; @endphp
-    <x-dropdowns.item link="#" :data="$data" icon="fa-solid fa-link">
+    <x-dropdowns.item link="#" :data="$data" icon="fa-regular fa-link">
         {{ __('entities/notes.copy_mention.copy') }}
     </x-dropdowns.item>
 @endif
@@ -25,7 +25,7 @@
     <x-dropdowns.item
         :link="route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])"
         :dialog="route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])"
-        icon="fa-solid fa-arrows-left-right">
+        icon="fa-regular fa-arrows-left-right">
         {{ __('entities/notes.move.move') }}
     </x-dropdowns.item>
 @endif
@@ -44,6 +44,6 @@
     </x-dropdowns.item>
 @endcan
 <x-dropdowns.divider />
-<x-dropdowns.item :link="route('entities.story.reorder', [$campaign, 'entity' => $entity])" icon="fa-solid fa-arrows-v">
+<x-dropdowns.item :link="route('entities.story.reorder', [$campaign, 'entity' => $entity])" icon="fa-regular fa-arrows-v">
     {{ __('entities/story.reorder.icon_tooltip') }}
 </x-dropdowns.item>

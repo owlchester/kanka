@@ -30,7 +30,7 @@
                         {!! $role->name !!}
                     @endif
                     @if ($role->isPublic() && !$campaign->isPublic())
-                        <x-icon class="fa-solid fa-exclamation-triangle text-accent" tooltip :title="__('campaigns.roles.permissions.helpers.not_public')" />
+                        <x-icon class="fa-regular fa-exclamation-triangle text-accent" tooltip :title="__('campaigns.roles.permissions.helpers.not_public')" />
                     @endif
                 </span>
             @endforeach
@@ -39,7 +39,7 @@
                     @if ($user->hasAvatar())
                         <x-users.avatar :user="$user" class="w-5 h-5" />
                     @else
-                        <x-icon class="fa-solid fa-user" />
+                        <x-icon class="fa-regular fa-user" />
                     @endif
                     {!! $user->name !!}
                 </div>

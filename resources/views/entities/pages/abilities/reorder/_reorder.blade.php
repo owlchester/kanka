@@ -16,7 +16,7 @@
                         <x-reorder.child id="$ability->id">
                             <input type="hidden" name="ability[]" value="{{ $ability->id }}" />
                             <div class="dragger relative">
-                                <x-icon class="fa-solid fa-sort" />
+                                <x-icon class="fa-regular fa-sort" />
                             </div>
                             <div class="overflow-hidden grow flex flex-no-wrap items-center gap-2">
                                 <span class="truncate">{!! $ability->ability->name !!}</span>
