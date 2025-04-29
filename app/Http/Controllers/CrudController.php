@@ -399,7 +399,7 @@ class CrudController extends Controller
                 $new->crudSaved();
             }
 
-            // MenuLink have no entity attached to them.
+            // Bookmarks have no entity attached to them.
             if (! ($new instanceof Bookmark) && $new->entity) {
                 $new->entity->crudSaved();
                 // Weird hack for prod issues
@@ -419,7 +419,7 @@ class CrudController extends Controller
                         ->save($request->get('attribute', []));
 
                     // When copying an entity, the user probably wants to update all mentions of attributes to ones on the new entity.
-                    if ($request->has('replace_mentions') && $request->filled('replace_mentions') && $new->isFillable('entry')) {
+                    if ($request->has('replace_mentions') && $request->filled('replace_mentions') && $new->entity->isFillable('entry')) {
                         $this->attributeService
                             ->replaceMentions((int) $request->post('copy_source_id'));
                     }
