@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Enums\UserAction;
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Jobs\CampaignRoleUserJob;

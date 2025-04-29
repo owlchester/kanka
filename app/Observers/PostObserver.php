@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Enums\UserAction;
 use App\Facades\Identity;
 use App\Models\EntityLog;
 use App\Models\Post;
@@ -102,6 +103,14 @@ class PostObserver
             $log->changes = $changes;
         }
         $log->save();
+
+        $actionName = 'create';
+        if ($action == EntityLog::ACTION_UPDATE_POST) {
+            $actionName = 'update';
+        } elseif ($action == EntityLog::ACTION_DELETE_POST) {
+            $actionName = 'delete';
+        }
+        auth()->user()->log(UserAction::post, ['action' => $actionName, 'id' => $post->id]);
     }
 
     public function savePermissions(Post $post): bool
