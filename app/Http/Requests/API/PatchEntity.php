@@ -3,8 +3,8 @@
 namespace App\Http\Requests\API;
 
 use App\Models\Entity;
-use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\Nested;
+use Illuminate\Foundation\Http\FormRequest;
 
 class PatchEntity extends FormRequest
 {
