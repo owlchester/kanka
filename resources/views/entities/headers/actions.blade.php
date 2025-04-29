@@ -17,7 +17,7 @@
 <div class="dropdown entity-actions-dropdown flex items-center">
     <div role="button" tabindex="0" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="entity-submenu" class="btn2 btn-sm entity-actions-button">
         <span class="sr-only">{{ __('Open action menu') }}</span>
-        <x-icon class="fa-solid fa-ellipsis-h" />
+        <x-icon class="fa-regular fa-ellipsis-h" />
     </div>
     <div class="dropdown-menu hidden" role="menu" id="entity-submenu">
         @can('update', $entity)
@@ -45,13 +45,13 @@
             @if(auth()->check())
                 @can('update', $entity)
                     @if ($entity->isTimeline())
-                        <x-dropdowns.item :link="route('timelines.reorder', [$campaign, $entity->child])" icon="fa-solid fa-list-ol">
+                        <x-dropdowns.item :link="route('timelines.reorder', [$campaign, $entity->child])" icon="fa-regular fa-list-ol">
                             {{ __('timelines.show.tabs.reorder-elements') }}
                         </x-dropdowns.item>
                     @endif
                 @endcan
 
-                <x-dropdowns.item link="#" :data="['title' => $entity->entityType->code . ':' . $entity->id, 'toggle' => 'tooltip', 'clipboard' => '[' . $entity->entityType->code . ':' . $entity->id .']', 'toast' => __('crud.alerts.copy_mention')]" icon="fa-solid fa-at">
+                <x-dropdowns.item link="#" :data="['title' => $entity->entityType->code . ':' . $entity->id, 'toggle' => 'tooltip', 'clipboard' => '[' . $entity->entityType->code . ':' . $entity->id .']', 'toast' => __('crud.alerts.copy_mention')]" icon="fa-regular fa-at">
                     {{ __('crud.actions.copy_mention') }}
                 </x-dropdowns.item>
                 @can('setTemplates', $campaign)
@@ -66,17 +66,17 @@
                 <hr class="m-0" />
 
                 @can('post', [$entity])
-                    <x-dropdowns.item :link="route('entities.posts.create', [$campaign, $entity])" icon="fa-solid fa-pen-to-square">
+                    <x-dropdowns.item :link="route('entities.posts.create', [$campaign, $entity])" icon="fa-regular fa-pen-to-square">
                         {{ __('crud.actions.new_post') }}
                     </x-dropdowns.item>
                 @endcan
                 @can('update', $entity)
 
-                    <x-dropdowns.item :link="route('entities.story.reorder', [$campaign, $entity])" icon="fa-solid fa-list-ol">
+                    <x-dropdowns.item :link="route('entities.story.reorder', [$campaign, $entity])" icon="fa-regular fa-list-ol">
                         {{ __('entities/story.reorder.icon_tooltip') }}
                     </x-dropdowns.item>
 
-                    <x-dropdowns.item link="{{ route('entities.relations.create', [$campaign, 'entity' => $entity, 'mode' => 'table']) }}" :dialog="route('entities.relations.create', [$campaign, 'entity' => $entity, 'mode' => 'table'])" icon="fa-solid fa-people-arrows">
+                    <x-dropdowns.item link="{{ route('entities.relations.create', [$campaign, 'entity' => $entity, 'mode' => 'table']) }}" :dialog="route('entities.relations.create', [$campaign, 'entity' => $entity, 'mode' => 'table'])" icon="fa-regular fa-people-arrows">
                         {{ __('entities/relations.create.new_title') }}
                     </x-dropdowns.item>
                 @endcan
@@ -94,20 +94,20 @@
         @endif
 
         @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $entity))
-            <x-dropdowns.item link="{{ route('entities.transform', [$campaign, $entity]) }}" icon="fa-solid fa-exchange-alt">
+            <x-dropdowns.item link="{{ route('entities.transform', [$campaign, $entity]) }}" icon="fa-regular fa-exchange-alt">
                 {{ __('crud.actions.transform') }}
             </x-dropdowns.item>
         @endif
 
         @if ($entity)
                 <hr class="m-0" />
-            <x-dropdowns.item link="{{ route('entities.html-export', [$campaign, $entity]) }}" icon="fa-solid fa-print">
+            <x-dropdowns.item link="{{ route('entities.html-export', [$campaign, $entity]) }}" icon="fa-regular fa-print">
                 {{ __('crud.actions.print') }}
             </x-dropdowns.item>
-            <x-dropdowns.item link="{{ route('entities.json.export', [$campaign, $entity]) }}" icon="fa-solid fa-download">
+            <x-dropdowns.item link="{{ route('entities.json.export', [$campaign, $entity]) }}" icon="fa-regular fa-download">
                 {{ __('crud.actions.json-export') }}
             </x-dropdowns.item>
-            <x-dropdowns.item link="{{ route('entities.markdown.export', [$campaign, $entity]) }}" icon="fa-solid fa-download">
+            <x-dropdowns.item link="{{ route('entities.markdown.export', [$campaign, $entity]) }}" icon="fa-regular fa-download">
                 {{ __('crud.actions.markdown-export') }}
             </x-dropdowns.item>
         @endif

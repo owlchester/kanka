@@ -5,7 +5,7 @@
                 <x-grid class="perm-row">
                     <div class="join">
                         <span class="join-item flex items-center bg-base-200 p-2 rounded">
-                            <i class="fa-solid fa-users" aria-hidden="true"></i>
+                            <i class="fa-regular fa-users" aria-hidden="true"></i>
                         </span>
                         <input type="text" value="{!! $perm->role->name !!}" disabled="disabled" class="" />
                     </div>
@@ -24,7 +24,7 @@
                 <x-grid class="perm-row">
                     <div class="join">
                         <span class="join-item flex items-center bg-base-200 p-2 rounded">
-                            <i class="fa-solid fa-user" aria-hidden="true"></i>
+                            <i class="fa-regular fa-user" aria-hidden="true"></i>
                         </span>
                         <input type="text" value="{!! $perm->user->name !!}" disabled="disabled" class="w-full" />
                     </div>
@@ -44,10 +44,10 @@
     </div>
     <div class="join">
         <a href="#" class="join-item btn2 btn-ghost" data-toggle="dialog" data-target="post-new-user">
-            <i class="fa-solid fa-user" aria-hidden="true"></i> {{ __('campaigns.roles.fields.users') }}
+            <i class="fa-regular fa-user" aria-hidden="true"></i> {{ __('campaigns.roles.fields.users') }}
         </a>
         <a href="#" class="join-item btn2 btn-ghost" data-toggle="dialog" data-target="post-new-role">
-            <i class="fa-solid fa-users" aria-hidden="true"></i> {{ __('campaigns.members.fields.roles') }}
+            <i class="fa-regular fa-users" aria-hidden="true"></i> {{ __('campaigns.members.fields.roles') }}
         </a>
     </div>
     <input type="hidden" name="permissions" value="1" />
@@ -79,7 +79,7 @@
     <div class="hidden" id="post-perm-templates">
         <x-grid id="post-perm-user-template" class="perm-row">
             <div class="join">
-                <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+                <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-regular fa-user" aria-hidden="true"></i></span>
                 <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="w-full join-item" />
             </div>
 
@@ -93,7 +93,7 @@
         </x-grid>
         <x-grid id="post-perm-role-template" class="perm-row">
             <div class="join">
-                <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-solid fa-users" aria-hidden="true"></i></span>
+                <span class="join-item flex items-center bg-base-200 p-2 rounded"><i class="fa-regular fa-users" aria-hidden="true"></i></span>
                 <input type="text" value="$SELECTEDNAME$" disabled="disabled" class="w-full join-item" />
             </div>
             <div class="flex items-center gap-2">

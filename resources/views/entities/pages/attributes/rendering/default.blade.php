@@ -23,7 +23,7 @@ $uid = 1;
                 @endif
             </div>
             <div class="flex-none">
-                <x-icon class="fa-solid fa-chevron-up collapsed:flip transition-all duration-150" />
+                <x-icon class="fa-regular fa-chevron-up collapsed:flip transition-all duration-150" />
             </div>
         </div>
         <div class="section-attributes overflow-hidden flex flex-col gap-1" id="attribute-section-body-{{ $section['id'] }}">
@@ -31,11 +31,11 @@ $uid = 1;
                 <div class="flex items-center gap-5 w-full p-1 rounded-2xl odd:bg-base-200">
                     <div class="attribute-icon w-8 p-2 text-accent">
                         @if ($attribute->isNumber())
-                            <x-icon class="fa-solid fa-hashtag" />
+                            <x-icon class="fa-regular fa-hashtag" />
                         @elseif ($attribute->isCheckbox())
-                            <x-icon class="fa-solid fa-user-check" />
+                            <x-icon class="fa-regular fa-user-check" />
                         @else
-                            <x-icon class="fa-solid fa-circle-notch" />
+                            <x-icon class="fa-regular fa-circle-notch" />
                         @endif
                     </div>
                     <div class="flex flex-col gap-1 p-2 w-full">
@@ -56,9 +56,9 @@ $uid = 1;
                         <div class="attribute-value grow" data-live-id="{{ $attribute->id }}">
                             @if ($attribute->isCheckbox())
                                 @if ($attribute->value)
-                                    <x-icon class="fa-solid fa-check" label="checked" />
+                                    <x-icon class="fa-regular fa-check" label="checked" />
                                 @else
-                                    <x-icon class="fa-solid fa-xmark" label="unchecked" />
+                                    <x-icon class="fa-regular fa-xmark" label="unchecked" />
                                 @endif
                             @elseif ($attribute->isText())
                                 {!! nl2br($attribute->mappedValue()) !!}
@@ -67,7 +67,7 @@ $uid = 1;
                             @endif
 
                             @if(\App\Facades\Attributes::isLoop($attribute->name))
-                                <x-icon class="fa-solid fa-warning" title="{{ __('entities/attributes.errors.loop') }}" tooltip />
+                                <x-icon class="fa-regular fa-warning" title="{{ __('entities/attributes.errors.loop') }}" tooltip />
                             @endif
                         </div>
                     </div>

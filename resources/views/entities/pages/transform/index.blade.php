@@ -28,7 +28,7 @@
 
             <x-dialog.footer>
                 <button class="btn2 btn-primary">
-                    <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
+                    <i class="fa-regular fa-exchange-alt" aria-hidden="true"></i>
                     {{ __('entities/transform.actions.transform') }}
                 </button>
             </x-dialog.footer>

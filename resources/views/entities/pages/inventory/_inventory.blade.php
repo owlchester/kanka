@@ -9,7 +9,7 @@
         <th>{{ __('entities/inventories.fields.qty') }}</th>
         @if (auth()->check())
             <th>
-                <i class="fa-solid fa-user-lock" data-title="{{ __('crud.fields.visibility') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                <i class="fa-regular fa-user-lock" data-title="{{ __('crud.fields.visibility') }}" data-toggle="tooltip" aria-hidden="true"></i>
                 <span class="sr-only">{{ __('crud.fields.visibility') }}</span>
             </th>
             <th><br /></th>
@@ -41,7 +41,7 @@
         <tr class="overflow-hidden inventory-group-{{ $posCount }}">
             <td style="width: 50px">
                 @if ($item->is_equipped)
-                    <i class="fa-solid fa-check" data-title="{{ __('entities/inventories.fields.is_equipped') }}" data-animate="collapse" aria-hidden="true"></i>
+                    <i class="fa-regular fa-check" data-title="{{ __('entities/inventories.fields.is_equipped') }}" data-animate="collapse" aria-hidden="true"></i>
                     <span class="sr-only">{{ __('entities/inventories.fields.is_equipped') }}</span>
                 @endif
             </td>

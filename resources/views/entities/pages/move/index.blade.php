@@ -43,7 +43,7 @@
 
         <x-dialog.footer>
             <button class="btn2 btn-primary">
-                <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                <x-icon class="copy" />
                 @can('update', $entity) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan
             </button>
         </x-dialog.footer>
