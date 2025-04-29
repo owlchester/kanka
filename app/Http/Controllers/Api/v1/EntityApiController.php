@@ -81,8 +81,12 @@ class EntityApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
-
-        $entity->update($request->only('name', 'type', 'is_private', 'is_template', 'tooltip', 'entry', 'image_uuid', 'header_uuid'));
+        if ($entity->hasChild()) {
+            $data = $request->only('name', 'type', 'is_private', 'is_template', 'tooltip', 'entry', 'image_uuid', 'header_uuid');
+        } else {
+            $data = $request->only('name', 'type', 'is_private', 'is_template', 'tooltip', 'entry', 'image_uuid', 'header_uuid', 'parent_id');
+        }
+        $entity->update($data);
         $entity->crudSaved();
 
         return new Resource($entity);

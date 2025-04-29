@@ -324,6 +324,7 @@ To patch an entity, use the following endpoint.
 | `entry` | `string`  | The html description of the entity. |
 | `image_uuid` | `uuid` | The image gallery uuid of the entity. |   
 | `header_uuid` | `uuid` | The image gallery uuid of the entity's header. |
+| `parent_id` | `int` | The id of the entity's parent entity (only for custom modules). |
 
 
 ### Example

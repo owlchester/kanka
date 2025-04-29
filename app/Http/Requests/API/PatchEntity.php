@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\API;
 
+use App\Models\Entity;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Nested;
 
 class PatchEntity extends FormRequest
 {
@@ -23,7 +25,7 @@ class PatchEntity extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'nullable|string|max:191',
             'entry' => 'nullable|string',
             'tooltip' => 'nullable|string',
@@ -31,5 +33,19 @@ class PatchEntity extends FormRequest
             'header_uuid' => 'nullable|exists:images,id',
             'type' => 'nullable|string|max:191',
         ];
+
+        // Editing an special entity type? Don't allow selecting oneself.
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self)) {
+            $rules['parent_id'] = [
+                'nullable',
+                'integer',
+                'exists:entities,id',
+                new Nested(Entity::class, $self),
+            ];
+        }
+
+        return $rules;
     }
 }
