@@ -38,7 +38,7 @@
     @if ($campaign->premium() && $render === 'attributes')
         <iframe src="{{ route('entities.attributes-dashboard', [$campaign, $entity]) }}" class="tooltip-render w-full h-44"></iframe>
     @else
-    <div class="tooltip-text @if ($hasImage) px-4 pb-4 @endif">
+    <div class="tooltip-text flex flex-col gap-2 @if ($hasImage) px-4 pb-4 @endif">
         {!! $entity->ajaxTooltip() !!}
     </div>
     @endif

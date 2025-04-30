@@ -13,13 +13,21 @@
     }
     .tooltip-text {
         // Boosted campaigns can set a custom tooltip WITH html, including headers, so we need to make them way smaller here
-        h1, h2, h3 {
-            font-size: 1.05rem;
-            margin: 0.3rem 0;
+        h1 {
+            font-size: 1.16rem;
+            //margin: 0.5rem 0;
+        }
+        h2 {
+            font-size: 1.12rem;
+            //margin: 0.4rem 0;
+        }
+        h3 {
+            font-size: 1.09rem;
+            //margin: 0.3rem 0;
         }
         h4, h5, h6 {
             font-size: 0.95rem;
-            margin: 0.3rem 0;
+            //margin: 0.3rem 0;
         }
     }
 }
