@@ -1,8 +1,16 @@
 /**
  * Control the way tooltips appear. Boosted campaigns can have entity images displayed in tooltips.
  */
-.tooltip-ajax {
+.tooltip-content {
     max-width: 378px !important;
+    .tooltip-header {
+        background:
+            linear-gradient(180deg, rgba(51, 51, 51, 0) 0%, hsl(var(--b1)/var(--tw-bg-opacity, 1)) 100%),
+            var(--tooltip-background);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+    }
     .tooltip-text {
         // Boosted campaigns can set a custom tooltip WITH html, including headers, so we need to make them way smaller here
         h1, h2, h3 {
@@ -85,4 +93,8 @@
 
 .tippy-box[data-theme~="entity-tooltip"] {
     background-color: hsl(var(--b1)/var(--tw-bg-opacity));
+
+    .tippy-content {
+        padding: 0;
+    }
 }

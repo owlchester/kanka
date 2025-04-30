@@ -5,23 +5,29 @@
  * @var \App\Models\Tag $tag
  */
 ?>
-<div class="tooltip-content flex flex-col gap-2 p-1 {{ implode(' ', $tagClasses) }}">
-    <div class="flex gap-2 items-center mb-1">
-        @if ($campaign->boosted() && $campaign->tooltip_image && Avatar::entity($entity)->hasImage())
-        <div class="flex-none">
-                <div class="rounded-full w-10 h-10 cover-background" style="background-image: url('{{ Avatar::entity($entity)->size(40)->thumbnail() }}');"></div>
-        </div>
-        @endif
-        <div class="grow entity-names">
-            <a href="{{ $entity->url() }}" class="entity-name text-xl block">
-                {!! $entity->name !!}
-            </a>
+<div class="tooltip-content flex flex-col gap-2 {{ implode(' ', $tagClasses) }}" >
+    <div
+        class="flex gap-4 items-end tooltip-header @if ($hasImage) px-4 h-32 w-full @endif"
+        @if ($hasImage)
+            style="--tooltip-background: url('{{ Avatar::entity($entity)->size(378, 256)->thumbnail() }}')"
+        @endif>
+        <div class="grow entity-names flex flex-col gap-0.5 overflow-hidden">
+            <div class="flex gap-1 overflow-hidden items-center text-xl ">
+                <a href="{{ $entity->url() }}" class="entity-name truncate">
+                    {!! $entity->name !!}
+                </a>
+                @if ($entity->isCharacter() && $entity->character->isDead())
+                    <x-icon class="fa-regular fa-skull" tooltip :title="__('characters.hints.is_dead')" />
+                @endif
+            </div>
+
+
             @if (!$entity->entityType->isSpecial() && method_exists($entity->child, 'tooltipSubtitle'))
-                <span class="entity-subtitle text-base block">{!! $entity->child->tooltipSubtitle() !!}</span>
+                <span class="entity-subtitle italic">{!! $entity->child->tooltipSubtitle() !!}</span>
             @endif
         </div>
     </div>
-    @if ($tags->isNotEmpty())<div class="tooltip-tags flex flex-wrap gap-2">
+    @if ($tags->isNotEmpty())<div class="tooltip-tags flex flex-wrap gap-2 @if ($hasImage) px-4 @endif">
         @foreach ($tags as $tag)
             @if (!$tag->entity) @continue @endif
             <a href="{{ $tag->getLink() }}" class="tooltip-tag" data-id="{{ $tag->entity->id }}" data-tag-slug="{{ $tag->slug }}" title="{{ $tag->name }}">
@@ -32,7 +38,7 @@
     @if ($campaign->premium() && $render === 'attributes')
         <iframe src="{{ route('entities.attributes-dashboard', [$campaign, $entity]) }}" class="tooltip-render w-full h-44"></iframe>
     @else
-    <div class="tooltip-text text-sm">
+    <div class="tooltip-text @if ($hasImage) px-4 pb-4 @endif">
         {!! $entity->ajaxTooltip() !!}
     </div>
     @endif

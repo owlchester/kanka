@@ -20,7 +20,9 @@ trait HasTooltip
         $text = null;
 
         $campaign = CampaignLocalization::getCampaign();
+        $limit = 500;
         if ($campaign->boosted()) {
+            $limit = 1000;
             // If the campaign is boosted, entities can have a custom tooltip. This allows them to use some
             // html syntax, and thus a lot more control on what is displayed.
             $boostedTooltip = strip_tags($this->tooltip);
@@ -38,12 +40,12 @@ trait HasTooltip
         }
         $text = $this->parsedEntry();
         $text = strip_tags($text, $this->allowedTooltipTags());
-        $text = $this->limitTooltipTextLength($text);
+        $text = $this->limitTooltipTextLength($text, $limit);
 
         return $text;
     }
 
-    protected function limitTooltipTextLength(string $text): string
+    protected function limitTooltipTextLength(string $text, int $limit): string
     {
         // Extract links to exclude them from the character count
         $links = [];
@@ -57,7 +59,7 @@ trait HasTooltip
         }
 
         // Limit text length excluding link placeholders
-        $text = Str::limit($text, 500);
+        $text = Str::limit($text, $limit);
 
         // Restore links from placeholders
         foreach ($links as $placeholder => $link) {

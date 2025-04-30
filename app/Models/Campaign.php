@@ -58,7 +58,6 @@ use Illuminate\Support\Collection;
  *
  * UI virtual Settings
  * @property bool|int $tooltip_family
- * @property bool|int $tooltip_image
  * @property bool|int $hide_members
  * @property bool|int $hide_history
  */
@@ -289,14 +288,6 @@ class Campaign extends Model
     public function getExcerptForEditionAttribute()
     {
         return Mentions::parseForEdit($this, 'excerpt');
-    }
-
-    /**
-     * Determine if the campaign has images in tooltips.
-     */
-    public function getTooltipImageAttribute()
-    {
-        return Arr::get($this->ui_settings, 'tooltip_image', false);
     }
 
     public function defaultToNested(): bool

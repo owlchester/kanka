@@ -424,7 +424,6 @@ return [
             'connections_mode'  => 'Default connections map mode',
             'descendants'       => 'Descendants filtering',
             'entity_history'    => 'Entity\'s history logs',
-            'entity_image'      => 'Entity\'s image',
             'member_list'       => 'Member list',
             'post_collapsed'    => 'New post default collapsed value',
         ],
@@ -437,7 +436,6 @@ return [
             'other'             => 'Other visual options for the campaign.',
             'post_collapsed'    => 'When creating a new post on an entity, select the collapsed field\'s default value.',
             'theme'             => 'Display the campaign in the member\'s theme, or force it to render in one of the following themes.',
-            'tooltip'           => 'Control which information is visibile when hovering an entity\'s name in their tooltip.',
         ],
         'members'           => [
             'hidden'    => 'Only visible to campaign admins',

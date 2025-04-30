@@ -81,29 +81,6 @@ if (!isset($model) || !$model->boosted()) {
 
         <hr />
 
-        <h4>{{ __('crud.fields.tooltip') }}</h4>
-        <x-helper :text="__('campaigns.ui.helpers.tooltip')" />
-
-        <x-grid>
-            <x-forms.field
-                field="entity-image"
-                :label="__('campaigns.ui.fields.entity_image')">
-
-                @php $dizzy = [];
-                if (!isset($campaign) || !$campaign->boosted()) {
-                    $dizzy = [1 => ['disabled' => true]];
-                }
-                @endphp
-                <x-forms.select name="ui_settings[tooltip_image]" :options="[0 => __('campaigns.privacy.hidden'), 1 => __('campaigns.privacy.visible')]" :selected="$campaign->ui_settings['tooltip_image'] ?? null" :optionAttributes="$dizzy" />
-                @if (!isset($model) || !$model->boosted())
-                    <input type="hidden" name="ui_settings[tooltip_image]" value="0" />
-                    <x-helper :text="__('callouts.premium.limitation')" />
-                @endif
-            </x-forms.field>
-        </x-grid>
-
-        <hr />
-
         <h4>{{ __('campaigns.ui.other') }}</h4>
         <x-helper :text="__('campaigns.ui.helpers.other')" />
 
