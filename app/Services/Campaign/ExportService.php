@@ -358,14 +358,23 @@ class ExportService
     protected function processImage(Image $image): self
     {
         if (! $this->assets) {
-            $this->archive->add($image->export(), 'gallery/' . $image->id . '.json');
-            $this->files++;
+            try {
+                $this->archive->add($image->export(), 'gallery/' . $image->id . '.json');
+                $this->files++;
+            } catch (Exception $e) {
+                Log::warning('Campaign export', ['err' => 'Can\'t get gallery image', 'image' => $image->id]);
+            }
             // return $this;
         }
 
         if (! $image->isFolder()) {
-            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image->path), 'gallery/' . $image->id . '.' . $image->ext);
-            $this->files++;
+
+            try {
+                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image->path), 'gallery/' . $image->id . '.' . $image->ext);
+                $this->files++;
+            } catch (Exception $e) {
+                Log::warning('Campaign export', ['err' => 'Can\'t get gallery image folder?', 'image' => $image->id]);
+            }
         }
         $this->progress();
 
