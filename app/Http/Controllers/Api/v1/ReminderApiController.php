@@ -8,7 +8,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Reminder;
 
-class EntityEventApiController extends ApiController
+class ReminderApiController extends ApiController
 {
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
