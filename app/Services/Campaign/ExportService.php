@@ -367,7 +367,7 @@ class ExportService
             // return $this;
         }
 
-        if (! $image->isFolder()) {
+        if (! $image->isFolder() && Storage::exists($image->path)) {
 
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image->path), 'gallery/' . $image->id . '.' . $image->ext);
@@ -480,7 +480,7 @@ class ExportService
             Log::error('Campaign export', ['action' => 'finish', 'err' => $e->getMessage()]);
             // The export might fail if the zip is too big.
             $this->files = 0;
-            throw new Exception($e->getMessage());
+            throw $e;
         }
 
         return $this;
