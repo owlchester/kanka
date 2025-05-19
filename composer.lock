@@ -7913,16 +7913,16 @@
         },
         {
             "name": "stechstudio/laravel-zipstream",
-            "version": "5.4",
+            "version": "5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stechstudio/laravel-zipstream.git",
-                "reference": "9aa106c2a29b6be98fb07d9eb69611a8582ebccc"
+                "reference": "a528db854ed8de6b9d9cad2c601dc84ef3ac59fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stechstudio/laravel-zipstream/zipball/9aa106c2a29b6be98fb07d9eb69611a8582ebccc",
-                "reference": "9aa106c2a29b6be98fb07d9eb69611a8582ebccc",
+                "url": "https://api.github.com/repos/stechstudio/laravel-zipstream/zipball/a528db854ed8de6b9d9cad2c601dc84ef3ac59fa",
+                "reference": "a528db854ed8de6b9d9cad2c601dc84ef3ac59fa",
                 "shasum": ""
             },
             "require": {
@@ -7974,9 +7974,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stechstudio/laravel-zipstream/issues",
-                "source": "https://github.com/stechstudio/laravel-zipstream/tree/5.4"
+                "source": "https://github.com/stechstudio/laravel-zipstream/tree/5.5"
             },
-            "time": "2025-02-21T01:20:38+00:00"
+            "time": "2025-05-14T19:04:31+00:00"
         },
         {
             "name": "stevebauman/purify",
