@@ -14,7 +14,7 @@
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? true"
     :selected="$preset"
-    :route="route('search-list', [$campaign, config('entities.ids.attribute_template')])"
+    :route="route('search-list', [$campaign, config('entities.ids.attribute_template')] + (isset($entity) ? ['exclude' => $entity->id] : []))"
     :dropdownParent="$dropdownParent ?? null"
     :entityTypeID="config('entities.ids.attribute_template')"
     :helper="__('attribute_templates.hints.parent_attribute_template')">

@@ -150,7 +150,7 @@ class RelationController extends CrudController
      */
     public function edit(Campaign $campaign, Relation $relation)
     {
-        $this->authorize('relations', $campaign);
+        $this->authorize('update', $relation->owner);
 
         $params = [
             'campaign' => $campaign,
@@ -171,7 +171,7 @@ class RelationController extends CrudController
      */
     public function update(StoreRelation $request, Campaign $campaign, Relation $relation)
     {
-        $this->authorize('relations', $campaign);
+        $this->authorize('update', $relation->owner);
 
         // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
         if (request()->ajax()) {

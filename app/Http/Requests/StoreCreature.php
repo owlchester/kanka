@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Creature;
+use App\Models\Entity;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -45,14 +46,14 @@ class StoreCreature extends FormRequest
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
-        /** @var Creature $self */
-        $self = request()->route('creature');
-        if (! empty($self)) {
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self) && $self->isCreature()) {
             $rules['creature_id'] = [
                 'nullable',
                 'integer',
                 'exists:creatures,id',
-                new Nested(Creature::class, $self),
+                new Nested(Creature::class, $self->child),
             ];
         }
 

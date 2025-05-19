@@ -37,7 +37,7 @@ class Nested implements ValidationRule
             return;
         }
 
-        $bloodline = $parent->ancestors()->pluck('id')->toArray();
+        $bloodline = $parent->ancestorsAndSelf()->pluck('id')->toArray();
         if (in_array($this->self->id, $bloodline)) {
             $fail('validation.nested_loop')->translate(['parent' => $parent->name]);
         }

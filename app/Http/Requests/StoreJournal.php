@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Entity;
 use App\Models\Journal;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -54,14 +55,14 @@ class StoreJournal extends FormRequest
             }
         }
 
-        /** @var Journal $self */
-        $self = request()->route('journal');
+        /** @var Entity $self */
+        $self = request()->route('entity');
         if (! empty($self)) {
             $rules['journal_id'] = [
                 'nullable',
                 'integer',
                 'exists:journals,id',
-                new Nested(Journal::class, $self),
+                new Nested(Journal::class, $self->child),
             ];
         }
 

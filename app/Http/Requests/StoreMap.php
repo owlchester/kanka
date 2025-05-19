@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Entity;
 use App\Models\Map;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -49,14 +50,14 @@ class StoreMap extends FormRequest
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
-        /** @var Map $self */
-        $self = request()->route('map');
-        if (! empty($self)) {
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self) && $self->isMap()) {
             $rules['map_id'] = [
                 'nullable',
                 'integer',
                 'exists:maps,id',
-                new Nested(Map::class, $self),
+                new Nested(Map::class, $self->child),
             ];
         }
 

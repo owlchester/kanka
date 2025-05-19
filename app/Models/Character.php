@@ -466,9 +466,7 @@ class Character extends MiscModel
             'title' => __('characters.fields.title'),
             'sex' => __('characters.fields.sex'),
             'is_dead' => __('characters.fields.is_dead'),
-            'location_id' => __('entities.location'),
-            'family_id' => __('entities.family'),
-            'race_id' => __('entities.race'),
+            'location.name' => __('entities.location'),
         ];
 
         if (auth()->check() && auth()->user()->isAdmin()) {

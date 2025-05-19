@@ -28,6 +28,7 @@ class VisibilityController extends Controller
     public function index(Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity, 'edit', $post]);
+        $this->authorize('visibility', $post);
 
         return view('entities.pages.posts.dialogs.visibility', [
             'campaign' => $campaign,
@@ -44,6 +45,7 @@ class VisibilityController extends Controller
     public function update(EditPostVisibility $request, Campaign $campaign, Entity $entity, Post $post)
     {
         $this->authorize('post', [$entity, 'edit', $post]);
+        $this->authorize('visibility', $post);
 
         $post->update($request->all());
 

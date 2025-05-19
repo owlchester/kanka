@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Entity;
 use App\Models\Item;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -48,14 +49,14 @@ class StoreItem extends FormRequest
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
-        /** @var Item $self */
-        $self = request()->route('item');
+        /** @var Entity $self */
+        $self = request()->route('entity');
         if (! empty($self)) {
             $rules['item_id'] = [
                 'nullable',
                 'integer',
                 'exists:items,id',
-                new Nested(Item::class, $self),
+                new Nested(Item::class, $self->child),
             ];
         }
 

@@ -21,7 +21,7 @@ if (isset($model) && $model->ability) {
     :dynamicNew="$dynamicNew ?? false"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('search-list', [$campaign, config('entities.ids.ability')] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.ability')] + (isset($entity) ? ['exclude' => $entity->id] : []))"
     :selected="$preset"
     :helper="$helper ?? null"
     :dropdownParent="$dropdownParent ?? null"

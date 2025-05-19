@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Entity;
 use App\Models\Organisation;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -45,14 +46,14 @@ class StoreOrganisation extends FormRequest
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
-        /** @var Organisation $self */
-        $self = request()->route('organisation');
-        if (! empty($self)) {
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self) && $self->isOrganisation()) {
             $rules['organisation_id'] = [
                 'nullable',
                 'integer',
                 'exists:organisations,id',
-                new Nested(Organisation::class, $self),
+                new Nested(Organisation::class, $self->child),
             ];
         }
 

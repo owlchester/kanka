@@ -20,7 +20,7 @@ if (isset($model) && $model->parent) {
     :allowClear="$allowClear ?? true"
     :dynamicNew="$dynamicNew ?? false"
     :parent="$isParent ?? false"
-    :route="route('search-list', [$campaign, config('entities.ids.journal')] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.journal')] + (isset($entity) ? ['exclude' => $entity->id] : []))"
     :selected="$preset"
     :dropdownParent="$dropdownParent ?? null"
     :entityTypeID="config('entities.ids.journal')">
