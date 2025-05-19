@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Ability;
+use App\Models\Entity;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
 use App\Traits\ApiRequest;
@@ -44,14 +45,14 @@ class StoreAbility extends FormRequest
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
-        /** @var Ability $self */
-        $self = request()->route('ability');
-        if (! empty($self)) {
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self) && $self->isAbility()) {
             $rules['ability_id'] = [
                 'nullable',
                 'integer',
                 'exists:abilities,id',
-                new Nested(Ability::class, $self),
+                new Nested(Ability::class, $self->child),
             ];
         }
 

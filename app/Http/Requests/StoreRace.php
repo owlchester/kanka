@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Entity;
 use App\Models\Race;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -45,14 +46,14 @@ class StoreRace extends FormRequest
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
-        /** @var Race $self */
-        $self = request()->route('race');
-        if (! empty($self)) {
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self) && $self->isRace()) {
             $rules['race_id'] = [
                 'nullable',
                 'integer',
                 'exists:races,id',
-                new Nested(Race::class, $self),
+                new Nested(Race::class, $self->child),
             ];
         }
 

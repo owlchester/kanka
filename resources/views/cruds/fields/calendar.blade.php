@@ -22,7 +22,7 @@
     :allowClear="$allowClear ?? true"
     :dynamicNew="$dynamicNew ?? false"
     :parent="$isParent ?? false"
-    :route="route('search-list', [$campaign, config('entities.ids.calendar')] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.calendar')] + (isset($entity) ? ['exclude' => $entity->id] : []))"
     :selected="$preset"
     :helper="$helper ?? null"
     :dropdownParent="$dropdownParent ?? null"

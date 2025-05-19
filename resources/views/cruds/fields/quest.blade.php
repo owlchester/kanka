@@ -19,7 +19,7 @@ if (isset($model) && $model->parent) {
     :dynamicNew="$dynamicNew ?? false"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('search-list', [$campaign, config('entities.ids.quest')] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.quest')] + (isset($entity) ? ['exclude' => $entity->id] : []))"
     :selected="$preset"
     :helper="$helper ?? null"
     :dropdownParent="$dropdownParent ?? null"

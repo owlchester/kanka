@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Entity;
 use App\Models\Tag;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -49,16 +50,17 @@ class StoreTag extends FormRequest
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
-        /** @var Tag $self */
-        $self = request()->route('tag');
-        if (! empty($self)) {
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self) && $self->isTag()) {
             $rules['tag_id'] = [
                 'nullable',
                 'integer',
                 'exists:tags,id',
-                new Nested(Tag::class, $self),
+                new Nested(Tag::class, $self->child),
             ];
         }
+        dd($rules);
 
         return $this->clean($rules);
     }

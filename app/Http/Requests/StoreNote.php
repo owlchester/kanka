@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Entity;
 use App\Models\Note;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -43,14 +44,14 @@ class StoreNote extends FormRequest
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
-        /** @var Note $self */
-        $self = request()->route('note');
+        /** @var Entity $self */
+        $self = request()->route('entity');
         if (! empty($self)) {
             $rules['note_id'] = [
                 'nullable',
                 'integer',
                 'exists:notes,id',
-                new Nested(Note::class, $self),
+                new Nested(Note::class, $self->child),
             ];
         }
 

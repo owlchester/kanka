@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Entity;
 use App\Models\Quest;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -55,14 +56,14 @@ class StoreQuest extends FormRequest
             }
         }
 
-        /** @var Quest $self */
-        $self = request()->route('quest');
-        if (! empty($self)) {
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self) && $self->isQuest()) {
             $rules['quest_id'] = [
                 'nullable',
                 'integer',
                 'exists:quests,id',
-                new Nested(Quest::class, $self),
+                new Nested(Quest::class, $self->child),
             ];
         }
 
