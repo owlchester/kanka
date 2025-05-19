@@ -63,6 +63,7 @@ class EntityWebhookJob implements ShouldQueue
             return;
         }
 
+        // Todo: move all of this to a service so it can be tested
         $webhooks = Webhook::active($this->campaign->id, $this->action)->with('tags')->get();
         $entityTags = $this->entity->tags()->pluck('tags.id')->all();
         foreach ($webhooks as $webhook) {
