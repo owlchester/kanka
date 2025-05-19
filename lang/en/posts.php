@@ -12,6 +12,7 @@ return [
     ],
     'helpers'       => [
         'new'   => 'Add a new post to this entity.',
+        'visibility' => 'Change the visibility of the post :name.',
     ],
     'placeholders'  => [
         'name'  => 'Name of the post',
