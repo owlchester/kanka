@@ -93,8 +93,8 @@ To create a map marker, use the following endpoint.
 > {success} Code 200 with JSON body of the new map.
 
 
-<a name="update-map"></a>
-## Update a Map
+<a name="update-map-marker"></a>
+## Update a Map Marker
 
 To update a map, use the following endpoint.
 
@@ -111,8 +111,8 @@ The same body parameters are available as for when creating a map.
 > {success} Code 200 with JSON body of the updated map.
 
 
-<a name="delete-map"></a>
-## Delete a Map
+<a name="delete-map-marker"></a>
+## Delete a Map Marker
 
 To delete a map, use the following endpoint.
 

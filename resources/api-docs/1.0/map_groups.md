@@ -65,8 +65,8 @@ To create a map group, use the following endpoint.
 > {success} Code 200 with JSON body of the new map.
 
 
-<a name="update-map"></a>
-## Update a Map
+<a name="update-map-group"></a>
+## Update a Map Group
 
 To update a map, use the following endpoint.
 
@@ -83,8 +83,8 @@ The same body parameters are available as for when creating a map.
 > {success} Code 200 with JSON body of the updated map.
 
 
-<a name="delete-map"></a>
-## Delete a Map
+<a name="delete-map-group"></a>
+## Delete a Map Group
 
 To delete a map, use the following endpoint.
 
