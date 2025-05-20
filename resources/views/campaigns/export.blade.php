@@ -44,7 +44,12 @@
 @section('modals')
     @parent
     <x-dialog id="export-confirm" :title="__('campaigns/export.confirm.title')">
-        <p>{{ __('campaigns/export.confirm.warning') }}</p>
+        <x-helper>
+            {!! __('campaigns/export.confirm.warning', ['name' => $campaign->name]) !!}
+        </x-helper>
+        <x-helper>
+            {{ __('campaigns/export.confirm.notification') }}
+        </x-helper>
 
         <div class="grid grid-cols-2 gap-2 w-full">
             <x-buttons.confirm type="ghost" full="true" dismiss="dialog">

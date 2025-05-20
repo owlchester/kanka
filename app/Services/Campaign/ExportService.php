@@ -33,8 +33,6 @@ class ExportService
 
     protected \STS\ZipStream\Builder $archive;
 
-    protected bool $assets = false;
-
     protected int $files = 0;
 
     protected int $filesize = 0;
@@ -59,13 +57,6 @@ class ExportService
         return $this;
     }
 
-    public function assets(bool $assets): self
-    {
-        $this->assets = $assets;
-
-        return $this;
-    }
-
     public function queue(): self
     {
         $this->campaign->export_date = date('Y-m-d');
@@ -74,11 +65,11 @@ class ExportService
         $entitiesExport = CampaignExport::create([
             'campaign_id' => $this->campaign->id,
             'created_by' => $this->user->id,
-            'type' => CampaignExport::TYPE_ENTITIES,
+            'type' => 1,
             'status' => CampaignExport::STATUS_SCHEDULED,
         ]);
 
-        Export::dispatch($this->campaign, $this->user, $entitiesExport, false)->onQueue('heavy');
+        Export::dispatch($this->campaign, $this->user, $entitiesExport)->onQueue('heavy');
 
         return $this;
     }
@@ -205,9 +196,6 @@ class ExportService
         ];
         $this->archive->addRaw($this->campaign->makeHidden($hidden)->toJson(), 'campaign.json');
         $this->files++;
-        if (! $this->assets) {
-            // return $this;
-        }
         $image = $this->campaign->image;
         if (! empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
             $this->addImage($image, $image);
@@ -342,14 +330,11 @@ class ExportService
 
     protected function processImage(Image $image): self
     {
-        if (! $this->assets) {
-            try {
-                $this->archive->add($image->export(), 'gallery/' . $image->id . '.json');
-                $this->files++;
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get gallery image', 'image' => $image->id]);
-            }
-            // return $this;
+        try {
+            $this->archive->add($image->export(), 'gallery/' . $image->id . '.json');
+            $this->files++;
+        } catch (Exception $e) {
+            Log::warning('Campaign export', ['err' => 'Can\'t get gallery image', 'image' => $image->id]);
         }
 
         if (! $image->isFolder() && Storage::exists($image->path)) {
@@ -414,7 +399,7 @@ class ExportService
     protected function notify(): self
     {
         $this->user->notify(new Header(
-            'campaign.' . ($this->assets ? 'asset_export' : 'export'),
+            'campaign.export',
             'download',
             'green',
             [
@@ -433,10 +418,10 @@ class ExportService
         try {
             $path = 'exports/' . $this->campaign->id;
             $this->exportPath = $path . '/' . $this->file;
-            Log::info('Campaign export finished', ['exportPath' => $this->exportPath]);
-
+            Log::info('Campaign export', ['action' => 'prepared', 'exportPath' => $this->exportPath]);
             $this->archive->saveToDisk('s3', $path);
             $this->filesize = (int) floor($this->archive->getFinalSize() / pow(1024, 2));
+            Log::info('Campaign export', ['action' => 'finished']);
         } catch (Exception $e) {
             Log::error('Campaign export', ['action' => 'finish', 'err' => $e->getMessage()]);
             // The export might fail if the zip is too big.
@@ -452,15 +437,13 @@ class ExportService
      */
     public function fail(): self
     {
-        if (! $this->assets) {
-            $this->campaign->updateQuietly([
-                'export_date' => null,
-            ]);
-        }
+        $this->campaign->updateQuietly([
+            'export_date' => null,
+        ]);
 
         // Notify the user that something went wrong
         $this->user->notify(new Header(
-            $this->assets ? 'campaign.asset_export_error' : 'campaign.export_error',
+            'campaign.export_error',
             'circle-exclamation',
             'red',
             [

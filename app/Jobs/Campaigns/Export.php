@@ -36,16 +36,13 @@ class Export implements ShouldQueue
 
     protected int $campaignExportId;
 
-    protected bool $assets;
-
     /**
      * CampaignExport constructor.
      */
-    public function __construct(Campaign $campaign, User $user, CampaignExport $campaignExport, bool $assets = false)
+    public function __construct(Campaign $campaign, User $user, CampaignExport $campaignExport)
     {
         $this->campaignId = $campaign->id;
         $this->userId = $user->id;
-        $this->assets = $assets;
         $this->campaignExportId = $campaignExport->id;
     }
 
@@ -83,7 +80,6 @@ class Export implements ShouldQueue
         $service
             ->user($user)
             ->campaign($campaign)
-            ->assets($this->assets)
             ->log($campaignExport)
             ->export();
 
