@@ -45,6 +45,10 @@ return [
         'success'   => '{1} Reordered :count style.|[2,*] Reordered :count styles.',
         'title'     => 'Reorder styles',
     ],
+    'toggle'        => [
+        'enable'   => 'Style enabled successfully.',
+        'disable'  => 'Style disabled successfully.',
+    ],
     'theme'         => [
         'none'      => 'Use user\'s preference',
         'override'  => 'Theme override',

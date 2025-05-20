@@ -62,6 +62,18 @@ class Theme extends Layout
     public function actions(): array
     {
         return [
+            'disable' => [
+                'can' => 'disable',
+                'route' => 'campaign_styles.toggle',
+                'label' => 'campaigns/styles.actions.disable',
+                'icon' => 'fa-regular fa-ban',
+            ],
+            'enable' => [
+                'can' => 'enable',
+                'route' => 'campaign_styles.toggle',
+                'label' => 'campaigns/styles.actions.enable',
+                'icon' => 'fa-regular fa-check',
+            ],
             self::ACTION_EDIT,
             self::ACTION_DELETE,
         ];
