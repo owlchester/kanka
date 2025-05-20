@@ -53,6 +53,7 @@ class MapMarkerCacheService extends BaseCache
 
         return $data;
     }
+
     public function clearSuggestion(): self
     {
         $this->forget(

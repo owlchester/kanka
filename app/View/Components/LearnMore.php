@@ -13,8 +13,7 @@ class LearnMore extends Component
      */
     public function __construct(
         public string $url
-    )
-    {
+    ) {
         //
     }
 

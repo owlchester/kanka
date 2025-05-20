@@ -479,7 +479,8 @@ class ExportService
             try {
                 $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $image);
                 $this->files++;
-                return ;
+
+                return;
             } catch (\Throwable $e) {
                 $retry++;
                 Log::warning('Campaign export', ['err' => 'S3 GetObject failed', 'attempt' => $retry, 'path' => $path]);
