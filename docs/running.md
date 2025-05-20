@@ -31,6 +31,7 @@ Kanka is set up to run with Docker and [Laravel Sail](https://laravel.com/docs/1
 * [Redis](https://redis.com/) for the cache
 * [Minio](https://min.io/) for file storage
 * [Thumbor](https://www.thumbor.org/) for image thumbnails
+* [Mailpit](https://mailpit.axllent.org/) for email testing
 
 ### Prerequisite
 
