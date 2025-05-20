@@ -81,11 +81,13 @@ class EntityApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
-        if ($entity->hasChild()) {
-            $data = $request->only('name', 'type', 'is_private', 'is_template', 'tooltip', 'entry', 'image_uuid', 'header_uuid');
-        } else {
-            $data = $request->only('name', 'type', 'is_private', 'is_template', 'tooltip', 'entry', 'image_uuid', 'header_uuid', 'parent_id');
+        $keys = ['name', 'type', 'is_private', 'is_template', 'tooltip', 'entry', 'image_uuid', 'header_uuid'];
+        if (!$entity->hasChild()) {
+            $keys[] = 'parent_id';
         }
+    
+        $data = $request->only($keys);
+
         $entity->update($data);
         $entity->crudSaved();
 
