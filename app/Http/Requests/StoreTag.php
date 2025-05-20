@@ -60,7 +60,6 @@ class StoreTag extends FormRequest
                 new Nested(Tag::class, $self->child),
             ];
         }
-        dd($rules);
 
         return $this->clean($rules);
     }
