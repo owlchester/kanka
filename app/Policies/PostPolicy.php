@@ -17,7 +17,7 @@ class PostPolicy
         // as it's a custom permission for the user to be able to edit this model.
         if (
             in_array($post->visibility_id, [Visibility::Admin, Visibility::AdminSelf])
-            && !$user->isAdmin() && $post->created_by != $user->id
+            && ! $user->isAdmin() && $post->created_by != $user->id
         ) {
             return false;
         } elseif ($post->visibility_id === Visibility::AdminSelf && $post->created_by !== $user->id) {
