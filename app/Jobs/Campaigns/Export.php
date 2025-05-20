@@ -124,7 +124,6 @@ class Export implements ShouldQueue
         $service
             ->user($user)
             ->campaign($campaign)
-            ->assets($this->assets)
             ->fail();
 
         // Sentry will handle the rest
