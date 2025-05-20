@@ -238,4 +238,30 @@ class StyleController extends Controller
             ->route('campaign_styles.index', $campaign)
             ->with('success', trans_choice('campaigns/styles.reorder.success', $order, ['count' => $order]));
     }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function toggle(Campaign $campaign, CampaignStyle $campaignStyle)
+    {
+        $this->authorize('update', $campaign);
+
+        if ($campaignStyle->is_enabled) {
+            $message = __('campaigns/styles.toggle.disable');
+        } else {
+            $message = __('campaigns/styles.toggle.enable');
+        }
+
+        $campaignStyle->update(['is_enabled' => ! $campaignStyle->is_enabled]);
+
+        CampaignCache::clearStyles()->clear();
+
+        return redirect()->route('campaign_styles.index', $campaign)
+            ->with(
+                'success',
+                $message
+            );
+    }
 }

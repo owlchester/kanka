@@ -101,6 +101,7 @@ Route::get('/w/{campaign}/edit', [App\Http\Controllers\Crud\CampaignController::
 Route::patch('/w/{campaign}/update', [App\Http\Controllers\Crud\CampaignController::class, 'update'])->name('campaigns.update');
 
 Route::post('/w/{campaign}/campaign_styles/bulk', 'Campaign\StyleController@bulk')->name('campaign_styles.bulk');
+Route::get('/w/{campaign}/campaign_styles/{campaign_style}/toggle', [App\Http\Controllers\Campaign\StyleController::class, 'toggle'])->name('campaign_styles.toggle');
 Route::post('/w/{campaign}/campaign_styles/reorder', 'Campaign\StyleController@reorder')->name('campaign_styles.reorder-save');
 Route::get('/w/{campaign}/theme-builder', [App\Http\Controllers\Campaign\ThemeBuilderController::class, 'index'])->name('campaign_styles.builder');
 Route::post('/w/{campaign}/theme-builder', [App\Http\Controllers\Campaign\ThemeBuilderController::class, 'save'])->name('campaign_styles.builder-save');
