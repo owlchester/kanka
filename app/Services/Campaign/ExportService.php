@@ -205,27 +205,16 @@ class ExportService
         ];
         $this->archive->addRaw($this->campaign->makeHidden($hidden)->toJson(), 'campaign.json');
         $this->files++;
-        // Log::info("wat", ['path' => 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image)]);
         if (! $this->assets) {
             // return $this;
         }
         $image = $this->campaign->image;
         if (! empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
-            try {
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image), $image);
-                $this->files++;
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get campaign image', 'path' => $image]);
-            }
+            $this->addImage($image, $image);
         }
         $image = $this->campaign->header_image;
         if (! empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
-            try {
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image), $image);
-                $this->files++;
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get campaign header', 'path' => $image]);
-            }
+            $this->addImage($image, $image);
         }
 
         $this->progress();
@@ -363,14 +352,8 @@ class ExportService
             // return $this;
         }
 
-        if (! $image->isFolder()) {
-
-            try {
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image->path), 'gallery/' . $image->id . '.' . $image->ext);
-                $this->files++;
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get gallery image folder?', 'image' => $image->id]);
-            }
+        if (! $image->isFolder() && Storage::exists($image->path)) {
+            $this->addImage($image->path, 'gallery/' . $image->id . '.' . $image->ext);
         }
         $this->progress();
 
@@ -394,21 +377,11 @@ class ExportService
 
         $path = $entity->image_path;
         if (! empty($path) && ! Str::contains($path, '?') && Storage::exists($path)) {
-            try {
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
-                $this->files++;
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get image_path', 'image_path' => $path, 'entity' => $entity->id]);
-            }
+            $this->addImage($path, $path);
         }
         $path = $entity->header_image;
         if (! empty($path) && ! Str::contains($path, '?') && Storage::exists($path)) {
-            try {
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
-                $this->files++;
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get header_image', 'header_image' => $path, 'entity' => $entity->id]);
-            }
+            $this->addImage($path, $path);
         }
 
         /** @var EntityAsset $file */
@@ -420,11 +393,7 @@ class ExportService
             if (! Storage::exists($path)) {
                 continue;
             }
-            try {
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get asset file', 'path' => $path, 'asset' => $file->id]);
-            }
+            $this->addImage($path, $path);
         }
 
         if ($model instanceof Map) {
@@ -433,11 +402,7 @@ class ExportService
                 if (! $path || ! Storage::exists($path)) {
                     continue;
                 }
-                try {
-                    $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
-                } catch (Exception $e) {
-                    Log::warning('Campaign export', ['err' => 'Can\'t get map layer file', 'path' => $path, 'layer' => $layer->id]);
-                }
+                $this->addImage($path, $path);
             }
         }
 
@@ -476,7 +441,7 @@ class ExportService
             Log::error('Campaign export', ['action' => 'finish', 'err' => $e->getMessage()]);
             // The export might fail if the zip is too big.
             $this->files = 0;
-            throw new Exception($e->getMessage());
+            throw $e;
         }
 
         return $this;
@@ -521,5 +486,24 @@ class ExportService
         }
         $this->log->progress = $total;
         $this->log->save();
+    }
+
+    protected function addImage(string $path, string $image): void
+    {
+        $maxRetries = 3;
+        $retry = 0;
+        while ($retry < $maxRetries) {
+            try {
+                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $image);
+                $this->files++;
+                return ;
+            } catch (\Throwable $e) {
+                $retry++;
+                Log::warning('Campaign export', ['err' => 'S3 GetObject failed', 'attempt' => $retry, 'path' => $path]);
+                usleep(200_000 * $retry); // exponential backoff (200ms, 400ms, 600ms)
+            }
+        }
+        Log::error('Campaign export', ['err' => 'S3 GetObject permanently failed', 'attempt' => $retry, 'path' => $path]);
+
     }
 }
