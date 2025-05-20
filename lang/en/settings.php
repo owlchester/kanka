@@ -153,6 +153,7 @@ return [
                 'not_for'           => 'Subscription is not for me',
                 'not_playing'       => 'No longer playing or campaign on hiatus',
                 'not_using'         => 'Not currently using Kanka',
+                'testing'           => 'Just testing Kanka',
                 'other'             => 'Other',
             ],
             'text'      => 'Sorry to see you go! Cancelling your subscription will keep it active until :date, after which your premium campaigns will revert to standard campaigns and other benefits related to supporting Kanka will be disabled. Feel free to fill out the following form to inform us what we can do better, or what led to your decision.',
