@@ -52,6 +52,7 @@ class EntityAssetCacheService extends BaseCache
 
         return $data;
     }
+
     public function clearSuggestion(): self
     {
         $this->forget(

@@ -55,7 +55,7 @@ class StoreLocation extends FormRequest
             ];
         }
         $sub = request()->route('location');
-        if (empty($self) && !empty($sub)) {
+        if (empty($self) && ! empty($sub)) {
             $rules['location_id'] = [
                 'nullable',
                 'integer',

@@ -34,6 +34,7 @@ class MarketplaceCacheService extends BaseCache
 
         return $data;
     }
+
     public function clearCount(): self
     {
         $this->forget(
