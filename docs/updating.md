@@ -1,4 +1,4 @@
-# Updating
+# 🔄 Updating
 
 We recommend always running from a release tag rather than the `main` branch. You can check which branch you are on by going `git branch` in the Kanka root folder on your machine (not in docker).
 
@@ -9,7 +9,7 @@ When updating your local installation, we recommend checkout out each tag chrono
 > :warning: **Warning**
 > Never ever checkout the `@develop` branch as it is unstable and will break your installation.
 
-### Backup
+## ⚡ Backup
 
 We **strongly** recommend backing up your database data before running any upgrade. You can create a backup of your data by running the following command. Note that this backup command is only available from version 1.44 and onward.
 
@@ -19,7 +19,7 @@ sail artisan backup:run
 
 This will create a gzip file in `storage/app/{app_name}/{date}.zip`
 
-### Checkout out a specific tag
+## 🏷️ Checkout out a specific tag
 
 In your project's root folder, run the following command to checkout a specific tag, in this example version 1.42.
 

@@ -1,4 +1,4 @@
-# Setup
+# ✨ Meilisearch setup
 
 Before importing entities to meilisearch is important to do some setup, first of all there are some .ENV
 parameters to be set.
@@ -13,13 +13,13 @@ parameters to be set.
 
 Now we can start importing the entities.  
 
-# Importing entities
+## Importing entities
 
 To import all entities that are setup to work with meilisearch, run:
 
 > sail artisan setup:meilisearch
 
-## Individual models
+### Individual models
 
 To import entities from an individual model, run:
 
@@ -31,13 +31,13 @@ This has to be run for each model type we wish to import to the Meilisearch data
 
 > sail artisan scout:import "App\Models\Characters"
 
-# Config change
+## Config change
 
 It's also important to run this following command the first time meilisearch is set up and whenever any of the index settings on `config/scout.php` are modified:
 
 > sail artisan scout:sync-index-settings
 
-# Testing
+## Testing
 
 Call the following api endpoint with a valid token
 
