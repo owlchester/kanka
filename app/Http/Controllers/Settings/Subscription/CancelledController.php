@@ -31,7 +31,7 @@ class CancelledController extends Controller
             }
         }
 
-        $endDate = $user->subscription('kanka')?->ends_at->isoFormat('MMMM D, Y');
+        $endDate = $user->subscription('kanka')->ends_at->isoFormat('MMMM D, Y');
 
         return view('settings.subscription.cancelled')
             ->with('user', $user)
