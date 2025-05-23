@@ -1,7 +1,6 @@
 <?php /**
  * @var \App\Models\CampaignBoost $boost
  * @var \App\Models\Campaign $campaign
- * @var \App\Services\SubscriptionService $service
  * @var \App\Models\User $user
  */
 
@@ -26,22 +25,7 @@
         </p>
 
         @include('partials.errors')
-        @if (session('sub_value'))
-            <div class="text-center">
-                <p>
-                    <a href="{{ route('settings.premium') }}" class="btn2 btn-primary btn-lg mr-4" target="blank">
-                        <i class="fa-solid fa-gem mr-1" aria-hidden="true"></i>
-                        {{ __('settings/premium.ready.title') }}
-                    </a>
-                    @if (!$user->discord())
-                        <a  href="{{ route('settings.apps') }}" class="btn2 btn-primary btn-lg ml-4" target="blank">
-                            <i class="fa-brands fa-discord mr-1" aria-hidden="true"></i>
-                            {{ __('settings.apps.discord.unlock') }}
-                        </a>
-                    @endif
-                </p>
-            </div>
-        @endif
+
         @include('settings.subscription._recap')
 
         <h2 class="m-0">
@@ -150,15 +134,6 @@
     @parent
     @vite('resources/js/subscription.js')
     <script src="https://js.stripe.com/v3/"></script>
-
-@if($tracking == 'subscribed')
-    <script>
-        gtag('event', 'conversion', {
-            'send_to': 'AW-659212134/z5nbCLmq0fsBEOaOq7oC',
-            'transaction_id': '{{ auth()->user()->id }}'
-        });
-    </script>
-@endif
 @endsection
 
 @section('styles')

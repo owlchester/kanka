@@ -9,13 +9,10 @@ use Illuminate\Http\Request;
 
 class CancellationController extends Controller
 {
-    protected CancellationService $service;
-
     public function __construct(
-        CancellationService $service,
+        protected CancellationService $service,
     ) {
         $this->middleware(['auth', 'identity', 'subscriptions']);
-        $this->service = $service;
     }
 
     public function index(Request $request)
@@ -43,8 +40,7 @@ class CancellationController extends Controller
             ->cancel();
 
         return redirect()
-            ->route('settings.subscription', ['cancelled' => 1])
-            ->with('success', __('settings.subscription.success.cancel'))
+            ->route('settings.subscription.cancelled', ['cancelled' => 1])
             ->with('sub_tracking', 'cancel')
             ->with('sub_value', 0);
     }

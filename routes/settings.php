@@ -25,6 +25,8 @@ use App\Http\Controllers\Settings\PremiumController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\ReleaseController;
 use App\Http\Controllers\Settings\Subscription\CancellationController;
+use App\Http\Controllers\Settings\Subscription\CancelledController;
+use App\Http\Controllers\Settings\Subscription\FinishController;
 use App\Http\Controllers\Settings\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
@@ -75,10 +77,12 @@ Route::patch('/newsletter', [NewsletterController::class, 'update'])->name('sett
 Route::get('/subscription', [SubscriptionController::class, 'index'])->name('settings.subscription');
 Route::get('/subscription/change/{tier}', [SubscriptionController::class, 'change'])->name('settings.subscription.change');
 Route::post('/subscription/renew', [SubscriptionController::class, 'renew'])->name('settings.subscription.renew');
+Route::get('/subscription/finish', [FinishController::class, 'index'])->name('settings.subscription.finish');
 Route::get('/subscription/callback', [SubscriptionController::class, 'callback'])->name('settings.subscription.callback');
 Route::post('/subscription/change/{tier}', [SubscriptionController::class, 'subscribe'])->name('settings.subscription.subscribe');
 Route::get('/subscription/unsubscribe', [CancellationController::class, 'index'])->name('settings.subscription.unsubscribe');
 Route::post('/subscription/cancel', [CancellationController::class, 'save'])->name('settings.subscription.cancel');
+Route::get('/subscription/cancelled', [CancelledController::class, 'index'])->name('settings.subscription.cancelled');
 Route::get('/billing/payment-method', [PaymentMethodController::class, 'index'])->name('billing.payment-method');
 Route::patch('/billing/payment-method', [PaymentMethodController::class, 'save'])->name('billing.payment-method.save');
 Route::get('/billing/currency', [PaymentMethodController::class, 'currency'])->name('billing.currency');
