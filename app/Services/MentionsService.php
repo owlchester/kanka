@@ -201,7 +201,7 @@ class MentionsService
         // dump($text);
         // New entities
         $text = preg_replace_callback(
-            '`\[new:([a-z_]+)\|(.*?)\]`i',
+            '`\[new:([a-z_-]+)\|(.*?)\]`i',
             function ($data) {
                 if (count($data) !== 3) {
                     return $data[0];
@@ -315,7 +315,7 @@ class MentionsService
 
     protected function replaceEntityMentions(): void
     {
-        $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i', function ($matches) {
+        $this->text = preg_replace_callback('`\[([a-z_-]+):(.*?)\]`i', function ($matches) {
             // Icons
             $fontAwesomes = ['fa ', 'fas ', 'far ', 'fab ', 'ra ', 'fa-solid ', 'fa-regular ', 'fa-brands '];
             if ($matches[1] == 'icon' && Str::startsWith($matches[2], $fontAwesomes)) {
@@ -565,7 +565,7 @@ class MentionsService
      */
     protected function parseMentionsForEdit(): self
     {
-        $this->text = preg_replace_callback('`\[([a-z_]+):(.*?)\]`i', function ($matches) {
+        $this->text = preg_replace_callback('`\[([a-z_-]+):(.*?)\]`i', function ($matches) {
             $data = $this->extractData($matches);
 
             if ($data['type'] === 'post') {
@@ -752,7 +752,7 @@ class MentionsService
     {
         // First let's prepare all mentions to do a single query on the entities table
         $this->mentionedEntities = [];
-        preg_replace_callback('`\[([a-z_]+):(.*?)\]`i', function ($matches) {
+        preg_replace_callback('`\[([a-z_-]+):(.*?)\]`i', function ($matches) {
             $segments = explode('|', $matches[2]);
             $id = (int) $segments[0];
 
