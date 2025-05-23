@@ -7,7 +7,7 @@
 ?>
 <div class="tooltip-content flex flex-col gap-2 {{ implode(' ', $tagClasses) }}" >
     <div
-        class="flex gap-4 items-end tooltip-header @if ($hasImage) px-4 h-32 w-full @endif"
+        class="flex gap-4 items-end tooltip-header @if ($hasImage) px-4 h-32 w-full @else px-4 pt-2 @endif"
         @if ($hasImage)
             style="--tooltip-background: url('{{ Avatar::entity($entity)->size(378, 256)->thumbnail() }}')"
         @endif>
@@ -27,7 +27,7 @@
             @endif
         </div>
     </div>
-    @if ($tags->isNotEmpty())<div class="tooltip-tags flex flex-wrap gap-2 @if ($hasImage) px-4 @endif">
+    @if ($tags->isNotEmpty())<div class="tooltip-tags flex flex-wrap gap-2 px-4">
         @foreach ($tags as $tag)
             @if (!$tag->entity) @continue @endif
             <a href="{{ $tag->getLink() }}" class="tooltip-tag" data-id="{{ $tag->entity->id }}" data-tag-slug="{{ $tag->slug }}" title="{{ $tag->name }}">
@@ -38,7 +38,7 @@
     @if ($campaign->premium() && $render === 'attributes')
         <iframe src="{{ route('entities.attributes-dashboard', [$campaign, $entity]) }}" class="tooltip-render w-full h-44"></iframe>
     @else
-    <div class="tooltip-text flex flex-col gap-2 @if ($hasImage) px-4 pb-4 @endif">
+    <div class="tooltip-text flex flex-col gap-2 px-4 pb-4">
         {!! $entity->ajaxTooltip() !!}
     </div>
     @endif
