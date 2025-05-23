@@ -436,10 +436,10 @@ class ExportService
         try {
             $path = 'exports/' . $this->campaign->id;
             $this->exportPath = $path . '/' . $this->file;
-            Log::info('Campaign export finished', ['exportPath' => $this->exportPath]);
-
+            Log::info('Campaign export', ['action' => 'finished preparing', 'exportPath' => $this->exportPath]);
             $this->archive->saveToDisk('s3', $path);
             $this->filesize = (int) floor($this->archive->getFinalSize() / pow(1024, 2));
+            Log::info('Campaign export', ['action' => 'saved to disk']);
         } catch (Exception $e) {
             Log::error('Campaign export', ['action' => 'finish', 'err' => $e->getMessage()]);
             // The export might fail if the zip is too big.
