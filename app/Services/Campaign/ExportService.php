@@ -14,7 +14,6 @@ use App\Notifications\Header;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Exception;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -507,8 +506,12 @@ class ExportService
                 $source = 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path);
                 if ($this->cloudfront) {
                     $source = Storage::disk('cloudfront')->url($path);
+                    $stream = fopen($source, 'rb');
+                    $this->archive->add($stream, $image);
+                    fclose($stream);
+                } else {
+                    $this->archive->add($source, $image);
                 }
-                $this->archive->add($source, $image);
                 $this->files++;
                 return ;
             } catch (\Throwable $e) {
