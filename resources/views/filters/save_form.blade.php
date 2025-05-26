@@ -8,9 +8,9 @@
     {{ __('filters.actions.bookmark') }}
 </x-dialog.header>
 <x-dialog.article>
-    <p class="text-neutral-content">
+    <x-helper>
         {{ __('filters.bookmark.helper') }}
-    </p>
+    </x-helper>
     <x-grid type="1/1">
         <x-forms.field
             field="name"
@@ -18,15 +18,30 @@
             <input type="text" name="name" value="{{  __('filters.bookmark.name', ['module' => $entityType->plural()]) }}" maxlength="191" class="w-full" autocomplete="off" />
         </x-forms.field>
 
+        @if ($campaign->boosted())
         <x-forms.field
             field="icon"
             :label="__('maps/markers.fields.icon')"
             :helper="__('filters.helpers.icon', [
             'fontawesome' => '<a href=\'' . config('fontawesome.search') . '\'>FontAwesome</a>',
-            'example' => '<i class=\'fa-solid fa-horse\' aria-hidden=\'true\'></i> <code>fa-solid fa-horse</code>',
+            'example' => '<i class=\'fa-regular fa-user-beard-bolt\' aria-hidden=\'true\'></i> <code>fa-solid fa-horse</code>',
             ])">
             <input type="text" name="icon" value="fa-solid fa-th-list" maxlength="191" class="w-full" autocomplete="off" />
         </x-forms.field>
+        @else
+            <x-forms.field
+                field="icon"
+                :label="__('entities/links.fields.icon')">
+                <x-slot name="helper">
+            {!! __('filters.helpers.icon-premium', [
+                'fontawesome' => '<a href=\'' . config('fontawesome.search') . '\'>FontAwesome</a>',
+                'example' => '<i class=\'fa-regular fa-user-beard-bolt\' aria-hidden=\'true\'></i> <code>fa-solid fa-horse</code>',
+                'premium' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaign') . '</a>',
+            ]) !!}
+                </x-slot>
+            </x-forms.field>
+            <input type="hidden" name="icon" value="fa-solid fa-th-list" />
+        @endif
 
 
         <x-forms.field

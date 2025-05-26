@@ -16,5 +16,6 @@ return [
     'helpers'   => [
         'guest' => 'Please log into your account to filter results.',
         'icon'  => 'Give this bookmark a special :fontawesome icon, for example :example.',
+        'icon-premium' => 'Give this bookmark a special :fontawesome icon, like :example, with a :premium.',
     ],
 ];
