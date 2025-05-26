@@ -40,6 +40,8 @@ class ExportService
 
     protected int $filesize = 0;
 
+    protected bool $cloudfront = false;
+
     protected string $version = '3.0.0';
 
     protected CampaignExport $log;
@@ -182,6 +184,11 @@ class ExportService
             Image::where('campaign_id', $this->campaign->id)->count() +
             1; // Campaign json;
         $this->currentElements = 0;
+
+        $cloudfront = config('filesystems.disks.cloudfront.url');
+        if ($cloudfront) {
+            $this->cloudfront = true;
+        }
 
         return $this;
     }
@@ -497,7 +504,11 @@ class ExportService
         $retry = 0;
         while ($retry < $maxRetries) {
             try {
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $image);
+                $source = 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path);
+                if ($this->cloudfront) {
+                    $source = Storage::disk('cloudfront')->url($path);
+                }
+                $this->archive->add($source, $image);
                 $this->files++;
                 return ;
             } catch (\Throwable $e) {
