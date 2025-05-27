@@ -73,7 +73,7 @@ const registerPermissionDeleteEvents = () => {
         }
         btn.dataset.init = '1';
         btn.addEventListener('click', function (e) {
-            //console.log('clicking');
+            console.log('clicking', btn, btn.closest('.perm-row'));
             btn.closest('.perm-row').remove();
             e.preventDefault();
 
