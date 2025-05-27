@@ -112,7 +112,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-7NxG_hVX.js",
+    "file": "assets/app-DM1ieRnm.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -127,7 +127,7 @@
     ]
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-DJ9i-1FP.js",
+    "file": "assets/attributes-manager-DV5OklFS.js",
     "name": "attributes-manager",
     "src": "resources/js/attributes-manager.js",
     "isEntry": true,
@@ -211,7 +211,7 @@
     "isEntry": true
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-EhSz00kC.js",
+    "file": "assets/explore-DfLoIlNq.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,
@@ -341,12 +341,12 @@
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-DV2h-QUq.css",
+    "file": "assets/app-DaVW98x7.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-DB8CTsBd.css",
+    "file": "assets/auth-DteQ7TQf.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -371,7 +371,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-DqbISFXO.css",
+    "file": "assets/front-Bg9NZUa_.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },

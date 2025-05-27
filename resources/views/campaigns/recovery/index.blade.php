@@ -11,8 +11,8 @@
 @section('content')
     <div class="flex gap-5 flex-col">
         @include('partials.errors')
-        <div class="flex gap-2 items-center">
-            <h3 class="inline-block grow">
+        <div class="flex gap-2 items-center justify-between">
+            <h3 class="">
                 {{ __('campaigns/recovery.title') }}
             </h3>
 
