@@ -29,6 +29,16 @@ return [
         'first'         => 'First',
         'last'          => 'Last',
     ],
+    'permissions' => [
+        'actions' => [
+            'members' => 'Add members',
+            'roles' => 'Add roles',
+        ],
+        'helpers' => [
+            'members' => 'Add one or multiple members to have special permissions on this post.',
+            'roles' => 'Add one or multiple roles to have special permissions on this post.',
+        ]
+    ],
     'visibility' => [
         'title' => 'Post visibility',
         'helper' => 'Change the visibility for the post :name.',
