@@ -33,6 +33,10 @@
         <x-alert type="warning">
             {{ __('campaigns/export.errors.limit') }}
         </x-alert>
+        @else
+            <x-alert type="warning">
+                <p>There is currently an issue affecting some exports, causing the export to repeatedly fail at 99%. We are working on a solution.</p>
+            </x-alert>
         @endif
 
         <div id="datagrid-parent" class="table-responsive">

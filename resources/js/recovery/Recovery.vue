@@ -154,7 +154,7 @@ const recoverElement = (model) => {
     recovering.value = true
     let data = {}
 
-    if (f.type_code === 'post') {
+    if (f.type === 'post') {
         data.posts = [f.id]
         data.entities = []
     } else {
