@@ -19,7 +19,7 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
                     <span class="text-lg ">{{ __('entities/pins.title') }}</span>
                 </div>
                 <a href="https://docs.kanka.io/en/latest/features/profile-sidebar.html" aria-label="{{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}" data-toggle="tooltip" data-title="{{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}" class="">
-                    <x-icon class="fa-solid fa-question-circle" />
+                    <x-icon class="question" />
                 </a>
             </div>
             <div class="sidebar-elements grid overflow-hidden" id="sidebar-pinned-elements">

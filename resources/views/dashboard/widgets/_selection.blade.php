@@ -35,7 +35,7 @@
         </a>
         @if(!empty($dashboard))
             <a  href="#" class="{{ $newWidgetListClass }}" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'campaign', 'dashboard' => $dashboard]) }}" data-toggle="dialog" data-target="primary-dialog">
-                <x-icon class="fa-solid fa-th-list" />
+                <x-icon class="fa-regular fa-th-list" />
                 {{ __('dashboard.setup.widgets.campaign') }}
             </a>
         @endif

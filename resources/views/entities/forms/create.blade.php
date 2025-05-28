@@ -35,9 +35,9 @@
                         @if (config('services.stripe.enabled'))
                             <x-tab.tab target="premium" icon="premium" :title="auth()->check() && auth()->user()->hasBoosterNomenclature() ? __('crud.tabs.boost') : __('crud.tabs.premium')"></x-tab.tab>
                         @endif
-                        <x-tab.tab target="attributes" icon="fa-solid fa-th-list" :title="__('crud.tabs.attributes')"></x-tab.tab>
+                        <x-tab.tab target="attributes" icon="attributes" :title="__('crud.tabs.attributes')"></x-tab.tab>
 
-                        <x-tab.tab target="permissions" icon="fa-solid fa-cog" :title="__('crud.tabs.permissions')"></x-tab.tab>
+                        <x-tab.tab target="permissions" icon="permissions" :title="__('crud.tabs.permissions')"></x-tab.tab>
 
                         @if ((!empty($source) || !empty(old('copy_source_id'))) && $tabCopy)
                             <x-tab.tab target="copy" :title="__('crud.forms.copy_options')"></x-tab.tab>

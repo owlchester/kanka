@@ -13,11 +13,11 @@
                 <div class="flex gap-2 md:gap-4 items-center w-full">
                     <div class="flex gap-2 items-center text-xl grow">
                         <a v-bind:href="ability.actions.view" class="ability-name text-2xl" v-html="ability.name"></a>
-                        <i class="fa-solid fa-lock" v-if="ability.visibility_id === 2" v-bind:title="ability.visibility"></i>
-                        <i class="fa-solid fa-user-lock" v-if="ability.visibility_id === 3" v-bind:title="ability.visibility"></i>
-                        <i class="fa-solid fa-users" v-if="ability.visibility_id === 5" v-bind:title="ability.visibility"></i>
-                        <i class="fa-solid fa-user-secret" v-if="ability.visibility_id === 4" v-bind:title="ability.visibility"></i>
-                        <i class="fa-solid fa-eye" v-if="ability.visibility_id === 1" v-bind:title="ability.visibility"></i>
+                        <i class="fa-regular fa-lock" v-if="ability.visibility_id === 2" v-bind:title="ability.visibility"></i>
+                        <i class="fa-regular fa-user-lock" v-if="ability.visibility_id === 3" v-bind:title="ability.visibility"></i>
+                        <i class="fa-regular fa-users" v-if="ability.visibility_id === 5" v-bind:title="ability.visibility"></i>
+                        <i class="fa-regular fa-user-secret" v-if="ability.visibility_id === 4" v-bind:title="ability.visibility"></i>
+                        <i class="fa-regular fa-eye" v-if="ability.visibility_id === 1" v-bind:title="ability.visibility"></i>
                     </div>
                     <div v-if="ability.type" class="hidden md:inline bg-base-200 p-2 rounded-xl flex-none" v-html="ability.type"></div>
 
@@ -27,7 +27,7 @@
                             v-if="canDelete"
                             class="btn2 btn-ghost btn-sm"
                             v-bind:title="ability.i18n.edit">
-                            <i class="fa-solid fa-pencil text-xl" aria-hidden="true"></i>
+                            <i class="fa-regular fa-pencil text-xl" aria-hidden="true"></i>
                             <span class="sr-only" v-html="ability.i18n.edit"></span>
                         </a>
                     </div>

@@ -30,7 +30,7 @@
                 </div>
                 <div class="relative">
                     <button class="btn2 btn-default btn-sm" @click="toggleFilters">
-                        <i class="fa-solid fa-filter" aria-hidden="true" />
+                        <i class="fa-regular fa-filter" aria-hidden="true" />
                         <span v-html="trans('filters')" class="hidden md:inline"></span>
                         <span v-if="showUnused">(1)</span>
                     </button>
@@ -50,15 +50,15 @@
                     <span v-html="trans('details')"></span>
                 </button>
                 <button class="btn2 btn-default btn-sm" v-if="!isBulking && canManage" @click="openNewFolder">
-                    <i class="fa-solid fa-plus" aria-hidden="true" />
+                    <i class="fa-regular fa-plus" aria-hidden="true" />
                     <span v-html="trans('new_folder')"></span>
                 </button>
                 <button class="btn2 btn-default btn-sm" v-if="!isBulking && canManage" @click="startBulking">
-                    <i class="fa-solid fa-list-check" aria-hidden="true" />
+                    <i class="fa-regular fa-list-check" aria-hidden="true" />
                     <span v-html="trans('select')"></span>
                 </button>
                 <button class="btn2 btn-primary btn-sm" v-if="isBulking" @click="openUpdate">
-                    <i class="fa-solid fa-pencil" aria-hidden="true" />
+                    <i class="fa-regular fa-pencil" aria-hidden="true" />
                     <span v-html="trans('update')"></span>
                     <span v-html="countSelected()"></span>
                 </button>

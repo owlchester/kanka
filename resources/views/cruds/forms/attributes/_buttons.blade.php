@@ -25,7 +25,7 @@
             </x-dropdowns.item>
 
             @if(request()->is('*/attribute_templates/*') || (isset($entity) && $entity->isAttributeTemplate()))
-                <x-dropdowns.item link="#" :data="['attribute-template' => '#random_template', 'sortable' => $existing ? 'true' : 'false']" icon="fa-solid fa-question">
+                <x-dropdowns.item link="#" :data="['attribute-template' => '#random_template', 'sortable' => $existing ? 'true' : 'false']" icon="question">
                     {{ __('entities/attributes.types.random') }}
                 </x-dropdowns.item>
             @endif

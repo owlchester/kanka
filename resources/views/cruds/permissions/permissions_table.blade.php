@@ -43,7 +43,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
         </div>
         <div class="" data-title="{{ __('permissions.helpers.delete') }}" data-tooltip>
             <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.delete') }}</span>
-            <x-icon class="fa-regular fa-trash md:hidden" />
+            <x-icon class="fa-regular fa-trash-can md:hidden" />
         </div>
         <div class="" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}" data-tooltip>
             <span class="hidden md:inline font-bold">{{ __('entities.posts') }}</span>
@@ -165,7 +165,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
             </div>
             <div class="" data-title="{{ __('permissions.helpers.delete') }}" data-tooltip>
                 <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.delete') }}</span>
-                <x-icon class="fa-regular fa-trash md:hidden"  />
+                <x-icon class="fa-regular fa-trash-can md:hidden"  />
             </div>
             <div class="" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}" data-tooltip>
                 <span class="hidden md:inline font-bold">{{ __('entities.posts') }}</span>

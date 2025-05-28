@@ -27,7 +27,7 @@
     @if(!empty($dashboards))
         <div class="dropdown ">
             <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="false">
-                <x-icon class="fa-solid fa-th-large" />
+                <x-icon class="fa-regular fa-th-large" />
             </button>
             <div class="dropdown-menu hidden" role="menu">
                 @if (!empty($dashboard))
@@ -56,7 +56,7 @@
     @else
         @can('dashboard', $campaign)
             <a href="{{ route('dashboard.setup', $campaign) }}" class="btn2" title="{{ __('dashboard.actions.customise') }}">
-                <x-icon class="fa-solid fa-th-large" />
+                <x-icon class="fa-regular fa-th-large" />
             </a>
         @endcan
     @endif
@@ -70,7 +70,7 @@
         </button>
         <div class="dropdown-menu hidden" role="menu">
             @if (!empty($dashboard))
-                <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => 'default'])" icon="fa-solid fa-th-large">
+                <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => 'default'])" icon="fa-regular fa-th-large">
                     {{ __('dashboard.dashboards.default.title')}}
                 </x-dropdowns.item>
             @endif
@@ -78,7 +78,7 @@
                 @if (!empty($dashboard) && $dash->id == $dashboard->id)
                     @continue
                 @endif
-                <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => $dash->id])" icon="fa-solid fa-th-large">
+                <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => $dash->id])" icon="fa-regular fa-th-large">
                     {!! $dash->name !!}
                 </x-dropdowns.item>
             @endforeach

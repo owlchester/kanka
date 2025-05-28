@@ -125,7 +125,7 @@
                     <p>
                         {!! __('users/profile.fields.entities_created', [
 'count' => '</p><p class="text-light mb-3">' . $user->createdEntitiesCount(),
-'help' => '<i class="fa-solid fa-question-circle" title="' . __('users/profile.helpers.entities_created') . '"></i>',
+'help' => '<i class="fa-regular fa-question-circle" title="' . __('users/profile.helpers.entities_created') . '"></i>',
 ]) !!}</p>
                 </div>
 

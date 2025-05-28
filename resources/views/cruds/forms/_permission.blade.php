@@ -42,7 +42,7 @@ if (!empty($source) && $source->is_private) {
 <x-grid type="1/1">
     @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['privacyToggle' => true])
 
-    <x-alert type="warning" id="entity-is-private" :hidden="!$hidden">
+    <x-alert type="warning" class="rounded-xl" id="entity-is-private" :hidden="!$hidden">
         <strong>{{ __('entities/permissions.privacy.warning') }}</strong>
         <p>{!! __('entities/permissions.privacy.text', [
         'admin' => '<a href="' . route(

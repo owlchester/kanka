@@ -1,7 +1,7 @@
 <template>
     <a :class="campaignClass()" v-bind:href="campaign.url" :style="{backgroundImage: backgroundImage()}" :title="campaign.name">
         <div class="absolute top-2 right-2 text-sm text-boost" v-if="campaign.is_boosted">
-            <i class="fa-solid fa-gem" aria-label="Premium campaign"></i>
+            <i class="fa-regular fa-gem" aria-label="Premium campaign"></i>
         </div>
         <div class="flex items-end justify-center name w-full text-xs p-2 pt-6 text-center" v-html="campaign.name">
         </div>
