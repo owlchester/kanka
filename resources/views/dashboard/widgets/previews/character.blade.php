@@ -7,7 +7,7 @@
 ?>
 <x-widgets.previews.head :widget="$widget" :campaign="$campaign" :entity="$entity">
     @if ($entity->child->isDead())
-        <x-icon class="ra ra-skull" :title="__('characters.fields.is_dead')" tooltip />
+        <x-icon class="fa-regular fa-skull" :title="__('characters.fields.is_dead')" tooltip />
     @endif
 </x-widgets.previews.head>
 <x-widgets.previews.body  :widget="$widget" :campaign="$campaign" :entity="$entity">

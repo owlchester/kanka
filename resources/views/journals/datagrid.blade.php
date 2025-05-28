@@ -33,6 +33,13 @@
             },
         ],
         [
+            'label' => '<i class="' . \App\Facades\Module::duoIcon('journal') . '" title="' . \App\Facades\Module::plural(config('entities.ids.journal'), __('entities.journals')) . '"></i>',
+            'render' => function($model) {
+                return number_format($model->children_count);
+            },
+            'disableSort' => true,
+        ],
+        [
             'type' => 'is_private',
         ]
     ])

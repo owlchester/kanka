@@ -7,7 +7,7 @@
         [
             'type' => 'parent',
         ],
-       [
+        [
             'label' => __('attribute_templates.fields.attributes'),
             'render' => function($model) {
                 return number_format($model->entity->attributes_count);
@@ -15,7 +15,7 @@
             },
             'disableSort' => true,
         ],
-       [
+        [
             'label' => __('attribute_templates.fields.auto_apply'),
             'render' => function($model) {
                 return $model->entityType ? $model->entityType->name() : null;
@@ -31,7 +31,14 @@
                 }
                 return '';
             },
+        ],
 
+        [
+            'label' => '<i class="' . \App\Facades\Module::duoIcon('attribute_template') . '" title="' . \App\Facades\Module::plural(config('entities.ids.attribute_template'), __('entities.attribute_templates')) . '"></i>',
+            'render' => function($model) {
+                return number_format($model->children_count);
+            },
+            'disableSort' => true,
         ],
         [
             'type' => 'is_private',

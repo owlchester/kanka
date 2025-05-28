@@ -19,6 +19,13 @@
             'disableSort' => true,
         ],
         [
+            'label' => '<i class="' . \App\Facades\Module::duoIcon('timeline') . '" title="' . \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines')) . '"></i>',
+            'render' => function($model) {
+                return number_format($model->children_count);
+            },
+            'disableSort' => true,
+        ],
+        [
             'type' => 'is_private',
         ]
     ])

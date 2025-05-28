@@ -36,14 +36,21 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="fa-solid fa-check-circle" title="' . __('quests.fields.is_completed') . '"></i>',
+            'label' => '<i class="fa-regular fa-check-circle" title="' . __('quests.fields.is_completed') . '"></i>',
             'render' => function ($model) {
-                return $model->is_completed ? '<i class="fa-solid fa-check-circle" title="' . __('quests.fields.is_completed') . '"></i>' : null;
+                return $model->is_completed ? '<i class="fa-regular fa-check-circle" title="' . __('quests.fields.is_completed') . '"></i>' : null;
             },
             'field' => 'is_completed',
         ],
         [
             'type' => 'reminder',
+        ],
+        [
+            'label' => '<i class="' . \App\Facades\Module::duoIcon('quest') . '" title="' . \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests')) . '"></i>',
+            'render' => function($model) {
+                return number_format($model->children_count);
+            },
+            'disableSort' => true,
         ],
         [
             'type' => 'is_private',

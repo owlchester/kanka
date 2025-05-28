@@ -135,7 +135,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
             </h1>
             @if ($entity->isCharacter() && $entity->child->isDead())
                 <span class="entity-name-icon entity-char-dead text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_dead') }}">
-                    <x-icon class="ra ra-skull entity-icons" />
+                    <x-icon class="fa-regular fa-skull entity-icons" />
                     <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
                 </span>
             @endif
@@ -171,13 +171,13 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
             @endif
             @if ($entity->isCreature() && $entity->child->isDead())
                 <span class="entity-name-icon entity-cre-dead text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_dead') }}">
-                    <x-icon class="ra ra-skull entity-icons " />
+                    <x-icon class="fa-regular fa-skull entity-icons " />
                     <span class="sr-only">{{ __('creatures.hints.is_dead') }}</span>
                 </span>
             @endif
             @if ($entity->isFamily() && $entity->child->isExtinct())
                 <span class="entity-name-icon entity-fam-extinct text-2xl" data-toggle="tooltip" data-title="{{ __('families.hints.is_extinct') }}">
-                    <x-icon class="ra ra-skull entity-icons " />
+                    <x-icon class="fa-regular fa-skull entity-icons " />
                     <span class="sr-only">{{ __('families.hints.is_extinct') }}</span>
                 </span>
             @endif
