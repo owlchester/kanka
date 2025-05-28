@@ -16,7 +16,6 @@ return [
         'reorder'   => [
             'success'   => 'Rody postavy úspešne aktualizované.',
         ],
-        'title'     => 'Spravovať rody :name',
     ],
     'fields'        => [
         'age'                       => 'Vek',
@@ -96,7 +95,6 @@ return [
         'reorder'   => [
             'success'   => 'Rasy postavy úspešne aktualizované.',
         ],
-        'title'     => 'Spravovať rasy :name',
     ],
     'sections'      => [
         'appearance'    => 'Výzor',

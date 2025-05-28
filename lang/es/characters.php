@@ -16,7 +16,6 @@ return [
         'reorder'   => [
             'success'   => 'Las familias del personaje se han actualizado correctamente.',
         ],
-        'title'     => 'Administrar familias de :name',
     ],
     'fields'        => [
         'age'                       => 'Edad',
@@ -96,7 +95,6 @@ return [
         'reorder'   => [
             'success'   => 'Razas del personaje actualizadas correctamente',
         ],
-        'title'     => 'Administrar las razas de :name',
     ],
     'sections'      => [
         'appearance'    => 'Apariencia',

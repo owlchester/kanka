@@ -16,7 +16,6 @@ return [
         'reorder'   => [
             'success'   => 'Zmieniono rodziny postaci.',
         ],
-        'title'     => 'Zarządzanie rodzinami :name',
     ],
     'fields'        => [
         'age'                       => 'Wiek',
@@ -96,7 +95,6 @@ return [
         'reorder'   => [
             'success'   => 'Zmieniono rasy postaci.',
         ],
-        'title'     => 'Zarządzanie rasami :name',
     ],
     'sections'      => [
         'appearance'    => 'Wygląd',
