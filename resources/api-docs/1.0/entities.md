@@ -9,6 +9,7 @@
 - [Related Entities](#related-entities)
 - [Recently Edited Entities](#recent-entities)
 - [Create Entities](#create-entities)
+- [Patching an Entity](#patch-entities)
 - [Transform Entities](#transform-entities)
 - [Transfer Entities](#transfer-entities)
 - [Deleted Entities](#deleted-entities)
@@ -300,6 +301,53 @@ To create up to 20 entities at once, use the following endpoint.
 ### Results
 
 > {success} Code 200 with JSON body of the new entities.
+
+
+<a name="patch-entities"></a>
+## Patching an Entity
+
+To patch an entity, use the following endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| PATCH | `entities` | Default |
+
+### Body
+
+| Parameter | Type | Detail |
+| :- |   :-   |  :-  |
+| `name` | `string` | Name of the entity. |
+| `type` | `string` | The type of the entity. |
+| `is_private` | `boolean` | If the entity is only visible to `admin` members of the campaign. |
+| `is_template` | `boolean` | If the entity is set as a template. |
+| `tooltip` | `string`  | The entity's tooltip (premium campaign feature). |
+| `entry` | `string`  | The html description of the entity. |
+| `image_uuid` | `uuid` | The image gallery uuid of the entity. |   
+| `header_uuid` | `uuid` | The image gallery uuid of the entity's header. |
+| `parent_id` | `int` | The id of the entity's parent entity (only for custom modules). |
+
+
+### Example
+
+
+```json
+{
+    "name": "Frejya",
+    "type": "Legendary Warrior",
+    "is_private": 0,
+    "is_template": 1,
+    "tooltip": "Warrior from ancient times",
+    "entry": "One of the strongest warriors of the land",
+    "image_uuid": "00000000-0000-0000-0000-000000000000",
+    "header_uuid": "00000000-0000-0000-0000-000000000000"
+}
+
+
+```
+
+### Results
+
+> {success} Code 200 with JSON body of the patched entity.
 
 
 <a name="transform-entities"></a>
