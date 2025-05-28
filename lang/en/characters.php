@@ -9,11 +9,11 @@ return [
         'title' => 'New Character',
     ],
     'families'      => [
+        'helper'    => 'Reorder and control which families of :name are visible or hidden from non-admins.',
         'reorder'   => [
             'success'   => 'Character families updated successfully.',
         ],
-        'title2'     => 'Manage families',
-        'helper' => 'Reorder and control which families of :name are visible or hidden from non-admins.',
+        'title2'    => 'Manage families',
     ],
     'fields'        => [
         'age'                       => 'Age',
@@ -29,8 +29,8 @@ return [
         'traits'                    => 'Traits',
     ],
     'helpers'       => [
-        'age'   => 'You can link this entity with a calendar of your campaign to automatically calculate their age instead. :more.',
-        'personality_visible' => 'If selected, the personality traits of this character are visible to all. If not, only to members of the :admin role will be able to see these traits.'
+        'age'                   => 'You can link this entity with a calendar of your campaign to automatically calculate their age instead. :more.',
+        'personality_visible'   => 'If selected, the personality traits of this character are visible to all. If not, only to members of the :admin role will be able to see these traits.',
     ],
     'hints'         => [
         'is_appearance_pinned'      => 'Display the appearance traits on the overview page.',
@@ -87,11 +87,11 @@ return [
         ],
     ],
     'races'         => [
+        'helper'    => 'Reorder and control which races of :name are visible or hidden from non-admins.',
         'reorder'   => [
             'success'   => 'Character races updated successfully',
         ],
-        'title2'     => 'Manage races',
-        'helper' => 'Reorder and control which races of :name are visible or hidden from non-admins.',
+        'title2'    => 'Manage races',
     ],
     'sections'      => [
         'appearance'    => 'Appearance',
