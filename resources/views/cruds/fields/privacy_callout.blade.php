@@ -1,8 +1,4 @@
 @php
-$data = [];
-if (isset($privacyToggle)) {
-    $data['data-toggle'] = 'entity-privacy';
-}
 $isPrivate = old('is_private', $source->is_private ?? $model->is_private ?? $campaign->entity_visibility)
 @endphp
 <div class="privacy-callout rounded-xl p-4 border border-red-300">

@@ -100,7 +100,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             </x-forms.field>
         @endif
 
-        @if (auth()->user()->isAdmin())
+        @can('admin', $campaign)
                 <hr>
             <input type="hidden" name="is_personality_visible" value="0" />
             <x-forms.field

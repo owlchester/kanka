@@ -90,6 +90,8 @@
                         browse="{{ route('gallery.browse', [$campaign]) }}"
                         old="false"
                         i18n="{{ $translations }}"
+                        premium="true"
+                        cta="{{ route('settings.premium', ['campaign' => $campaign->id]) }}"
                     >
                         <x-icon class="load" />
                     </gallery-selection>

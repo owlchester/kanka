@@ -21,7 +21,7 @@
         {{ __('entities/notes.copy_mention.copy') }}
     </x-dropdowns.item>
 @endif
-@if(auth()->user()->isAdmin())
+@can('admin', $campaign)
     <x-dropdowns.item
         :link="route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])"
         :dialog="route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])"

@@ -48,11 +48,8 @@
         {{ __('entities/attributes.actions.remove_all') }}
     </button>
 </div>
-<!-- Modal -->
 
-
-
-@if (auth()->user()->isAdmin())
+@can('admin', $campaign)
     @php
         $role = \App\Facades\CampaignCache::adminRole();
     @endphp

@@ -181,7 +181,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                     <span class="sr-only">{{ __('families.hints.is_extinct') }}</span>
                 </span>
             @endif
-            @if (auth()->check() && auth()->user()->isAdmin())
+            @can('admin', $campaign)
                 <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $entity]) }}" data-target="primary-dialog" aria-haspopup="dialog">
                         <i class="fa-solid fa-lock entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <i class="fa-solid fa-lock-open entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
