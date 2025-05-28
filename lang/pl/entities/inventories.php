@@ -6,8 +6,11 @@ return [
         'copy_from'         => 'Kopiuj od',
         'copy_inventory'    => 'Kopiuj wyposażenie',
     ],
-    'copy'              => [],
+    'copy'              => [
+        'helper'    => 'Kopiuje całe wyposażenie elementu do :name.',
+    ],
     'create'            => [
+        'helper'        => 'Dodaje przedmiot do wyposażenia :name. Można też użyć przedmiotu już istniejącego w kampanii.',
         'success'       => 'Dodano :item do elementu :entity.',
         'success_bulk'  => '{0} Nie dodano przedmiotów do wyposażenia :entity.|{1} Dodano :count przedmiot do wyposażenia :entity.|[2,4] Dodano :count przedmioty do wyposażenia :entity.|5,] Dodano :count przedmiotów do wyposażenia :entity.',
         'title'         => 'Dodaj przedmiot dla :name',

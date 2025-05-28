@@ -4,8 +4,9 @@ return [
     'account'       => [
         '2fa'               => [
             'actions'               => [
-                'disable'   => 'Deaktivovať dvojstupňové overenie identity',
-                'finish'    => 'Dokončiť nastavenie a prihlásiť sa',
+                'disable'           => 'Deaktivovať dvojstupňové overenie identity',
+                'disable-confirm'   => 'Potvrď ešte jedným klikom',
+                'finish'            => 'Dokončiť nastavenie a prihlásiť sa',
             ],
             'activation_helper'     => 'Na dokončenie nastavenia dvojstupňového overenia identity tvojho konta nasleduj tieto inštrukcie.',
             'disable'               => [

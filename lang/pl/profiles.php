@@ -58,7 +58,7 @@ return [
             'delete'        => 'Usuń konto',
             'goodbye'       => 'Jeśli tak, przepisz :code w polu poniżej.',
             'helper'        => 'Usunięcie konta spowoduje również usunięcie wszystkich kampanii, których jesteś jednym członkiem. To działanie nieodwracalne, którego nie można cofnąć.',
-            'subscribed'    => 'Anuluj :suscription zanim możliwe będzie usunięcie konta.',
+            'subscribed'    => 'Anuluj :subscription zanim możliwe będzie usunięcie konta.',
             'title'         => 'Usuwanie konta',
             'warning'       => 'Po usunięciu konta wszystkie dane zostaną wykasowane. Czy na pewno chcesz to zrobić?',
         ],
