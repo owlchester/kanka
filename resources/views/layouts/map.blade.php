@@ -73,23 +73,23 @@ $specificTheme = null;
                                     </a>
                                     <div class="dropdown">
                                         <button type="button" class="btn2 btn-primary btn-sm join-item" data-dropdown aria-expanded="false">
-                                            <x-icon class="fa-solid fa-caret-down" />
+                                            <x-icon class="fa-regular fa-caret-down" />
                                             <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                                         </button>
                                         <div class="dropdown-menu hidden" role="menu">
                                             <x-dropdowns.item
                                                 :link="route('maps.map_layers.index', [$campaign, $map])"
-                                                icon="fa-solid fa-layer-group">
+                                                icon="fa-regular fa-layer-group">
                                                 {{ __('maps.panels.layers') }}
                                             </x-dropdowns.item>
                                             <x-dropdowns.item
                                                 :link="route('maps.map_groups.index', [$campaign, $map])"
-                                                icon="fa-solid fa-map-signs">
+                                                icon="fa-regular fa-map-signs">
                                                 {{ __('maps.panels.groups') }}
                                             </x-dropdowns.item>
                                             <x-dropdowns.item
                                                 :link="route('maps.map_markers.index', [$campaign, $map])"
-                                                icon="fa-solid fa-map-pin">
+                                                icon="fa-regular fa-map-pin">
                                                 {{ __('maps.panels.markers') }}
                                             </x-dropdowns.item>
                                         </div>
@@ -129,7 +129,7 @@ $specificTheme = null;
     <div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
 
     <div class="toast-container fixed overflow-y-auto overflow-x-hidden bottom-4 right-4 max-h-full"></div>
-@else 
+@else
     @yield('content')
 @endif
 

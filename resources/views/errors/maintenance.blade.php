@@ -33,7 +33,7 @@
 
         <p class="lg:max-w-2xl mx-auto text-center">Kanka is currently unavailable due to planned server maintenance.</p>
 
-        <p class="lg:max-w-2xl mx-auto text-center">This maintenance is planned to last until <a href="https://everytimezone.com/s/6b4d2bc8" target="_blank" class="link-light"><i class="fa-solid fa-external-link"></i> 15:30 UTC</a>.</p>
+        <p class="lg:max-w-2xl mx-auto text-center">This maintenance is planned to last until <a href="https://everytimezone.com/s/6b4d2bc8" target="_blank" class="link-light"><x-icon class="link" />  15:30 UTC</a>.</p>
         @else
 
         <h2 id="maintenance">{{ __('errors.503.title') }}</h2>

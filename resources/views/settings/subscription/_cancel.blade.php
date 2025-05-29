@@ -30,7 +30,7 @@ dd('who is calling dis');
     <button class="btn2 btn-lg btn-block btn-primary btn-error btn-outline subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
         <span>{{ __('settings.subscription.actions.cancel_sub') }}</span>
         <span class="spinner hidden">
-            <x-icon class="fa-solid fa-spin fa-spinner" />
+            <x-icon class="load" />
         </span>
     </button>
 </x-grid>

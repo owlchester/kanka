@@ -35,7 +35,7 @@
                 @if ($canEdit)
                 <div class="dropdown">
                     <a class="btn2 btn-xs" data-dropdown aria-expanded="false" data-placement="right">
-                        <i class="fa-solid fa-ellipsis-h" data-tree="escape"></i>
+                        <i class="fa-regular fa-ellipsis-h" data-tree="escape"></i>
                         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
                     </a>
 
@@ -46,7 +46,7 @@
                         </x-dropdowns.item>
 
                         @php $data = ['toggle' => 'dialog', 'date' => $day['date'], 'target' => 'primary-dialog', 'url' => route('calendars.calendar_weather.create', $routeOptions)]; @endphp
-                        <x-dropdowns.item link="#" :data="$data" icon="fa-solid fa-snowflake">
+                        <x-dropdowns.item link="#" :data="$data" icon="fa-regular fa-snowflake">
                             {{ __('calendars.actions.' .  (!empty($day['weather']) ? 'update_weather' : 'add_weather')) }}
                         </x-dropdowns.item>
 
@@ -104,16 +104,16 @@
                             </span>
                             @if ($event->isBirth())
                                 @if ($event->year === $day['year'])
-                                    <x-icon class="fa-solid fa-baby" title="{{ __('entities/events.types.birth') }}" tooltip />
+                                    <x-icon class="fa-regular fa-baby" title="{{ __('entities/events.types.birth') }}" tooltip />
                                 @else
-                                    <x-icon class="fa-solid fa-birthday-cake" title="{{ __('entities/events.types.birthday') }}" tooltip />
+                                    <x-icon class="fa-regular fa-birthday-cake" title="{{ __('entities/events.types.birthday') }}" tooltip />
                                 @endif
                             @endif
                             @if ($event->isDeath())
-                                <x-icon class="fa-solid fa-skull" title="{{ __('entities/events.types.death') }}" tooltip />
+                                <x-icon class="fa-regular fa-skull" title="{{ __('entities/events.types.death') }}" tooltip />
                             @endif
                             @if ($event->is_recurring)
-                                <x-icon class="fa-solid fa-arrows-rotate" tooltip :title="__('calendars.fields.is_recurring')" />
+                                <x-icon class="fa-regular fa-arrows-rotate" tooltip :title="__('calendars.fields.is_recurring')" />
                             @endif
                         </div>
                         <div class="reminder-comment">

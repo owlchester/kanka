@@ -29,7 +29,7 @@
                 <div class="parent-delete-row">
                     <div class="flex items-center gap-2">
                         <div class="sortable-handler p-2 cursor-move">
-                            <x-icon class="fa-solid fa-grip-vertical" />
+                            <x-icon class="fa-regular fa-grip-vertical" />
                         </div>
                         <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
@@ -81,7 +81,7 @@
                     <div class="grid grid-cols-2 gap-2">
                         <div class="flex items-center gap-2">
                             <div class="sortable-handler p-2 cursor-move">
-                                <x-icon class="fa-solid fa-grip-vertical" />
+                                <x-icon class="fa-regular fa-grip-vertical" />
                             </div>
                             <div class="grow field">
                                 <label class="sr-only">{{ __('calendars.parameters.weeks.number') }}</label>
@@ -111,7 +111,7 @@
         <div class="parent-delete-row">
             <div class="flex items-center gap-2">
                 <div class="sortable-handler p-2 cursor-move">
-                    <x-icon class="fa-solid fa-grip-vertical" />
+                    <x-icon class="fa-regular fa-grip-vertical" />
                 </div>
                 <div class="grow field">
                     <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
@@ -129,7 +129,7 @@
             <div class="grid grid-cols-2 gap-2">
                 <div class="flex items-center gap-2">
                     <div class="sortable-handler p-2 cursor-move">
-                        <x-icon class="fa-solid fa-grip-vertical" />
+                        <x-icon class="fa-regular fa-grip-vertical" />
                     </div>
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.weeks.number') }}</label>

@@ -55,7 +55,7 @@ $postCount = 0;
         <div class="text-center">
             @if (auth()->check())
             <a href="#" class="btn2 btn-sm story-load-more" data-url="{{ route('entities.story.load-more', [$campaign, $entity, 'page' => $posts->currentPage() + 1]) }}">
-                <i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> {{ __('entities/story.actions.load_more') }}
+                <i class="fa-regular fa-arrows-rotate" aria-hidden="true"></i> {{ __('entities/story.actions.load_more') }}
             </a>
 
             <i class="fa-solid fa-spinner fa-spin fa-2x" id="story-more-spinner" style="display: none"></i>
@@ -77,7 +77,7 @@ $postCount = 0;
     <div class="text-center row-add-note-button">
         <a href="{{ route('entities.posts.create', [$campaign, $entity]) }}" class="btn2 btn-sm btn-new-post  btn-block"
            data-entity-type="post" data-toggle="tooltip" data-title="{{ __('posts.helpers.new') }}">
-            <x-icon class="fa-solid fa-pen-to-square" />
+            <x-icon class="fa-regular fa-pen-to-square" />
             {{ __('crud.actions.new_post') }}
         </a>
     </div>

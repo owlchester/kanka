@@ -8,7 +8,7 @@
         {!! $slot !!}
         @if (!empty($doc))
             <p>
-                {!!  __('crud.helpers.learn_more', ['documentation' => '<a href="' . $doc . '" target="_blank"><i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation') . '</a>']) !!}
+                {!!  __('crud.helpers.learn_more', ['documentation' => '<a href="' . $doc . '"><i class="fa-regular fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation') . '</a>']) !!}
             </p>
         @endif
     </div>

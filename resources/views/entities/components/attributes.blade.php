@@ -13,7 +13,7 @@ $attributes = $entity->starredAttributes();
             @if ($attribute->isCheckbox())
                 <span class="live-edit grow text-right" data-id="{{ $attribute->id }}">
                 @if ($attribute->value)
-                    <x-icon class="fa-solid fa-check " />
+                    <x-icon class="fa-regular fa-check " />
                 @else
                     <span class="">
                         {{ __('general.no') }}

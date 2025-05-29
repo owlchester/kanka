@@ -86,17 +86,21 @@
                     </button>
                     <button @click="switchMode()" class="btn2" v-if="nested && !nesting" :title="i18n.flatten">
                         <i class="fa-regular fa-layer-group" aria-hidden="true"></i>
+                        <span class="sr-only" v-html="i18n.flatten"></span>
                     </button>
                     <button @click="switchMode()" class="btn2" v-else-if="!nesting" :title="i18n.nest">
                         <i class="fa-regular fa-boxes-stacked" aria-hidden="true"></i>
+                        <span class="sr-only" v-html="i18n.next"></span>
                     </button>
                 </div>
                 <div v-if="entityType.has_table">
                     <button @click="switchLayout()" class="btn2" v-if="isGrid()" :title="i18n.layout_table">
                         <i class="fa-regular fa-list-ul" aria-hidden="true"></i>
+                        <span class="sr-only" v-html="i18n.layout_table"></span>
                     </button>
-                    <button @click="switchLayout()" class="btn2" v-else :title="i18n.layout_table">
-                        <i class="fa-regular fa-grid " aria-hidden="true"></i>
+                    <button @click="switchLayout()" class="btn2" v-else :title="i18n.layout_grid">
+                        <i class="fa-regular fa-grid-2 " aria-hidden="true"></i>
+                        <span class="sr-only" v-html="i18n.layout_grid"></span>
                     </button>
                 </div>
                 <div class="join"  v-if="hasPermissions() && permissions.create">

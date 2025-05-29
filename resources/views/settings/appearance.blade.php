@@ -129,7 +129,7 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                 <div class="{{ $boxClass }} {{ $highlight === 'explore' ? $highlightClass : '' }}">
                     <div class="flex gap-2 justify-between items-center mb-2">
                         <div class="font-light text-xl flex items-center gap-2">
-                            <x-icon class="fa-solid fa-grid" />
+                            <x-icon class="fa-regular fa-grid" />
                             {{ __('settings/appearance.fields.entity-explore') }}
                         </div>
                         <a href="https://docs.kanka.io/en/latest/account/appearance.html#entity-explore" target="_blank" class="" data-tooltip data-title="{{ __('settings/appearance.actions.learn-more') }}">
@@ -141,7 +141,7 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                     </x-helper>
 
                     <x-forms.select name="entity_explore" radio :options="[
-                            0 => '<i class=\'fa-solid fa-grid\' aria-hidden=\'true\'></i> ' . __('settings/appearance.explore.grid'),
+                            0 => '<i class=\'fa-regular fa-grid\' aria-hidden=\'true\'></i> ' . __('settings/appearance.explore.grid'),
                             1 => '<i class=\'fa-solid fa-list-ul\' aria-hidden=\'true\'></i> ' . __('settings/appearance.explore.table'),
                         ]" :selected="auth()->user()->entity_explore" class="self-end w-full border rounded p-2" />
                 </div>

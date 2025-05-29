@@ -69,13 +69,13 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                 <div class="dropdown-menu hidden" role="menu">
                     <x-dropdowns.item
                         :link="$imageUrl"
-                        icon="fa-solid fa-external-link"
+                        icon="link"
                         target="_blank">
                         {{ __('entities/image.actions.view') }}
                     </x-dropdowns.item>
                     <x-dropdowns.divider />
                     <x-dropdowns.item
-                        icon="fa-solid fa-shuffle"
+                        icon="fa-regular fa-shuffle"
                         :link="route('entities.image.replace', [$campaign, $entity])"
                         :dialog="route('entities.image.replace', [$campaign, $entity])">
                         {{ __('entities/image.actions.replace_image') }}
@@ -83,20 +83,20 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
 
                     @if ($campaign->boosted())
                         <x-dropdowns.item
-                            icon="fa-solid fa-crosshairs"
+                            icon="fa-regular fa-crosshairs"
                             :link="route('entities.image.focus', [$campaign, $entity])">
                             {{ __('entities/image.actions.change_focus') }}</x-dropdowns.item>
                     @else
                         <x-dropdowns.item
                             link="#"
-                            icon="fa-solid fa-crosshairs"
+                            icon="fa-regular fa-crosshairs"
                             popup="booster-cta">
                             {{ __('entities/image.actions.change_focus') }}</x-dropdowns.item>
                     @endif
 
                     @if ($entity->image)
                     <x-dropdowns.item
-                        icon="fa-solid fa-eye"
+                        icon="fa-regular fa-eye"
                         :link="route('gallery.file.visibility', [$campaign, $entity->image])"
                         :dialog="route('gallery.file.visibility', [$campaign, $entity->image])"
                         >
@@ -141,31 +141,31 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
             @endif
             @if ($entity->isQuest() && $entity->child->isCompleted())
                 <span class="entity-name-icon entity-quest-complete text-2xl" data-toggle="tooltip" data-title="{{ __('quests.fields.is_completed') }}">
-                    <x-icon class="fa-solid fa-check-circle entity-icons" />
+                    <x-icon class="fa-regular fa-check-circle entity-icons" />
                     <span class="sr-only">{{ __('quests.fields.is_completed') }}</span>
                 </span>
             @endif
             @if ($entity->isOrganisation() && $entity->child->isDefunct())
                 <span class="entity-name-icon entity-org-defunct text-2xl" data-toggle="tooltip" data-title="{{ __('organisations.hints.is_defunct') }}">
-                    <x-icon class="fa-solid fa-shop-slash entity-icons " />
+                    <x-icon class="fa-regular fa-shop-slash entity-icons " />
                     <span class="sr-only">{{ __('organisations.hints.is_defunct') }}</span>
                 </span>
             @endif
             @if ($entity->isLocation() && $entity->child->isDestroyed())
                 <span class="entity-name-icon entity-loc-destroyed text-2xl" data-toggle="tooltip" data-title="{{ __('locations.hints.is_destroyed') }}">
-                    <x-icon class="fa-solid fa-building-circle-xmark " />
+                    <x-icon class="fa-regular fa-building-circle-xmark " />
                     <span class="sr-only">{{ __('locations.hints.is_destroyed') }}</span>
                 </span>
             @endif
             @if ($entity->isRace() && $entity->child->isExtinct())
                 <span class="entity-name-icon entity-rac-extinct text-2xl" data-toggle="tooltip" data-title="{{ __('races.hints.is_extinct') }}">
-                    <x-icon class="fa-solid fa-skull-cow entity-icons " />
+                    <x-icon class="fa-regular fa-skull-cow entity-icons " />
                     <span class="sr-only">{{ __('races.hints.is_extinct') }}</span>
                 </span>
             @endif
             @if ($entity->isCreature() && $entity->child->isExtinct())
                 <span class="entity-name-icon entity-cre-extinct text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_extinct') }}">
-                    <x-icon class="fa-solid fa-skull-cow entity-icons " />
+                    <x-icon class="fa-regular fa-skull-cow entity-icons " />
                     <span class="sr-only">{{ __('creatures.hints.is_extinct') }}</span>
                 </span>
             @endif
@@ -183,8 +183,8 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
             @endif
             @can('admin', $campaign)
                 <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $entity]) }}" data-target="primary-dialog" aria-haspopup="dialog">
-                        <i class="fa-solid fa-lock entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
-                        <i class="fa-solid fa-lock-open entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                        <i class="fa-regular fa-lock entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                        <i class="fa-regular fa-lock-open entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                     </span>
             @endif
@@ -217,7 +217,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         @endif
             @can('update', $entity)
                 <span role="button" tabindex="0" class="entity-tag-icon text-xl" data-toggle="dialog" data-url="{{ $addTagsUrl }}" data-target="primary-dialog" aria-haspopup="dialog">
-                    <x-icon class="fa-solid fa-tag" tooltip="1" :title="__('Add or remove tags')" />
+                    <x-icon class="fa-regular fa-tag" tooltip="1" :title="__('Add or remove tags')" />
                     <span class="sr-only">{{ __('Add or remove tags')  }}</span>
                 </span>
             @endcan

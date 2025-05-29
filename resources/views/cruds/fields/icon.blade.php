@@ -6,7 +6,7 @@ $fieldname = $iconFieldName ?? 'icon';
     field="icon"
     :label="__('entities/links.fields.icon')">
     @if($campaign->boosted())
-        <input type="text" name="{{ $fieldname }}" value="{{ !isset($bulk) ? old($fieldname, $source->{$fieldname} ?? $model->icon ?? null) : null }}" placeholder="{{ $placeholder ?? 'fa-solid fa-users' }}" list="link-icon-list" class="w-full" autocomplete="off" data-paste="fontawesome" maxlength="45" />
+        <input type="text" name="{{ $fieldname }}" value="{{ !isset($bulk) ? old($fieldname, $source->{$fieldname} ?? $model->icon ?? null) : null }}" placeholder="{{ $placeholder ?? 'fa-regular fa-users' }}" list="link-icon-list" class="w-full" autocomplete="off" data-paste="fontawesome" maxlength="45" />
         <div class="hidden">
             <datalist id="link-icon-list">
                 @foreach ($suggestions ?? \App\Facades\EntityAssetCache::iconSuggestion() as $icon)

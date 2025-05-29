@@ -88,7 +88,7 @@
 
             @if ($activeFilters > 0)
                 <a href="{{ route($route, [$campaign, 'reset-filter' => 'true']) }}" class="btn2 btn-sm btn-error btn-outline">
-                    <x-icon class="fa-solid fa-eraser" />
+                    <x-icon class="fa-regular fa-eraser" />
                     {{ __('crud.filters.mobile.clear') }}
                 </a>
             @endif

@@ -8,7 +8,7 @@
         <div class="dropup">
             <button type="button" class="btn2 join-item btn-primary " data-dropdown
                 aria-expanded="false">
-                <x-icon class="fa-solid fa-caret-down" />
+                <x-icon class="fa-regular fa-caret-down" />
                 <span class="sr-only">{{ __('crud.actions.actions') }}</span>
             </button>
             <div class="dropdown-menu hidden" role="menu">

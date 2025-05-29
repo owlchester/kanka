@@ -43,7 +43,7 @@
 
                     @if ($user->hasPlugins())
                         <a class="btn-round rounded-full" href="{{ config('marketplace.url') . '/profiles/' . $user->id }}" title="Marketplace" data-toggle="tooltip">
-                            <x-icon class="fa-solid fa-shop" />
+                            <x-icon class="fa-regular fa-shop" />
                             {{ __('footer.plugins') }}
                         </a>
                     @endif

@@ -38,7 +38,7 @@
                 <x-grid type="3/3">
                     <div class="flex gap-2 items-center">
                         <div class="sortable-handler p-2 cursor-move">
-                            <x-icon class="fa-solid fa-grip-vertical" />
+                            <x-icon class="fa-regular fa-grip-vertical" />
                         </div>
                         <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.seasons.name') }}</label>
@@ -75,7 +75,7 @@
         <x-grid type="3/3">
             <div class="flex gap-2 items-center">
                 <div class="sortable-handler p-2 cursor-move">
-                    <x-icon class="fa-solid fa-grip-vertical" />
+                    <x-icon class="fa-regular fa-grip-vertical" />
                 </div>
                 <div class="grow field">
                     <label class="sr-only">{{ __('calendars.parameters.seasons.name') }}</label>

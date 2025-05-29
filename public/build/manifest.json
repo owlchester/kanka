@@ -112,7 +112,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-bhHhmXtL.js",
+    "file": "assets/app-BIeRR98m.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -211,7 +211,7 @@
     "isEntry": true
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-8X0Szgwu.js",
+    "file": "assets/explore-DIVvJiQQ.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,

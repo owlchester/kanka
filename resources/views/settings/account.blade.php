@@ -106,7 +106,7 @@
                     <input type="text" name="goodbye" @if (config('app.debug')) value="goodbye" @endif required  />
                 </x-forms.field>
                 <x-buttons.confirm type="danger" full="true">
-                    <x-icon class="fa-solid fa-exclamation-triangle" />
+                    <x-icon class="fa-regular fa-exclamation-triangle" />
                     {{ __('profiles.sections.delete.confirm') }}
                 </x-buttons.confirm>
             </x-grid>

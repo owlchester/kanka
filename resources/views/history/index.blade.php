@@ -59,7 +59,7 @@
                 <div class="p-2 border-solid border-b" x-data="{opened: false}">
                     <div class="flex justify-center items-center gap-2 {{ $count > 0 && !$superboosted ? 'blur' : null }}">
                         <div class="flex-none rounded-full {{ $log->actionBackground() }} inline-block text-center text-xs p-1 h-6 w-6 ">
-                            <x-icon class="fa-solid {{ $log->actionIcon() }}" />
+                            <x-icon class="fa-regular {{ $log->actionIcon() }}" />
                         </div>
                         <div class="grow">
                             @if ($superboosted || $count === 0)
@@ -85,7 +85,7 @@ if (!$log->entity) {
                                @endif
                                 @if ($log->impersonator)
                                     <span class="ml-5 text-warning">
-                                        <x-icon class="fa-solid fa-exclamation-triangle" />
+                                        <x-icon class="fa-regular fa-exclamation-triangle" />
                                     {{ __('entities/logs.impersonated', ['name' => $log->impersonator->name]) }}
                                     </span>
                                 @endif

@@ -13,7 +13,7 @@
             </x-buttons.confirm>
             <x-form :action="['campaign.leave-process', $campaign, $campaign->id]">
                 <x-buttons.confirm type="danger" outline="true" full="true">
-                    <i class="fa-solid fa-sign-out-alt" aria-hidden="true"></i>
+                    <i class="fa-regular fa-sign-out-alt" aria-hidden="true"></i>
                     {{ __('campaigns.leave.confirm-button') }}
                 </x-buttons.confirm>
             </x-form>

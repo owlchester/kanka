@@ -25,7 +25,7 @@
             @can('update', $campaign)
             @if ($canReset)
                 <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
-                    <i class="fa-solid fa-eraser" aria-hidden="true"></i>
+                    <i class="fa-regular fa-eraser" aria-hidden="true"></i>
                     {{ __('crud.actions.reset') }}
                 </a>
             @endif

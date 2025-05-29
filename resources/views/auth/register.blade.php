@@ -56,7 +56,7 @@
             <div class="flex items-stretch w-full">
                 <input id="password" type="password" class="rounded border p-2 w-full dark:bg-slate-800 dark:border-slate-500" name="password" required @if (config('auth.fast_registration')) value="{{ $name }}" @endif placeholder="{{ __('auth.register.fields.password') }}">
                 <a href="#" id="toggle-password" class="p-2" tabindex="-1" title="{{ __('auth.helpers.password') }}">
-                    <i id="toggle-password-icon" class="fa-solid fa-eye" aria-hidden="true"></i>
+                    <i id="toggle-password-icon" class="fa-regular fa-eye" aria-hidden="true"></i>
                     <span class="sr-only">{{ __('auth.helpers.password') }}</span>
                 </a>
             </div>

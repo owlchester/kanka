@@ -9,7 +9,7 @@
             <x-reorder.child :id="$group->id">
                 <input type="hidden" name="group[]" value="{{ $group->id }}" />
                 <div class="dragger">
-                    <x-icon class="fa-solid fa-sort" />
+                    <x-icon class="fa-regular fa-sort" />
                 </div>
                 <div class="overflow-hidden grow flex flex-no-wrap items-center">
                     <span class="truncate">{!! $group->name !!}</span>

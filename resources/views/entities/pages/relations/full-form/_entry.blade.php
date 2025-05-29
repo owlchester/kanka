@@ -37,7 +37,7 @@
 @if (!empty($relation) && !empty($relation->isMirrored()))
     <x-alert type="info" class="mt-5">
         <h4>
-            <x-icon class="fa-solid fa-sync-alt" />
+            <x-icon class="fa-regular fa-sync-alt" />
             {{ __('entities/relations.hints.mirrored.title') }}
         </h4>
         <p>{!! __('entities/relations.hints.mirrored.text', [

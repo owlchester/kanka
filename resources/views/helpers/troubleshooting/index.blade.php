@@ -20,7 +20,7 @@
                     <x-grid type="1/1">
                         <p class="">{{ __('helpers.troubleshooting.success') }}</p>
                         <a href="#" data-clipboard="{{ $token }}" data-toggle="tooltip" data-toast="Token copied to the clipboard" data-title="{{__('campaigns.invites.actions.copy') }}">
-                            <x-icon class="fa-solid fa-copy" />
+                            <x-icon class="fa-regular fa-copy" />
                             {{ $token }}
                         </a>
                     </x-grid>

@@ -52,7 +52,7 @@
                 <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">
                     <div class="flex items-center gap-2">
                         <div class="sortable-handler p-2 cursor-move">
-                            <x-icon class="fa-solid fa-grip-vertical" />
+                            <x-icon class="fa-regular fa-grip-vertical" />
                         </div>
                         <div class="field">
                             <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>
@@ -93,7 +93,7 @@
         <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">
             <div class="flex gap-2 items-center">
                 <div class="sortable-handler p-2 cursor-move">
-                    <x-icon class="fa-solid fa-grip-vertical" />
+                    <x-icon class="fa-regular fa-grip-vertical" />
                 </div>
                 <div class="field">
                     <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>

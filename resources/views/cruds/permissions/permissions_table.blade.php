@@ -64,7 +64,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
                         {!! $role->name !!}
                     </a>
                     @if ($role->isPublic() && !$campaign->isPublic())
-                        <x-icon class="fa-solid fa-exclamation-triangle" tooltip :title="__('campaigns.roles.permissions.helpers.not_public')" />
+                        <x-icon class="fa-regular fa-exclamation-triangle" tooltip :title="__('campaigns.roles.permissions.helpers.not_public')" />
                     @endif
                 @else
                     {!! $role->name !!}

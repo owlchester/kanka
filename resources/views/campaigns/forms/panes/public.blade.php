@@ -11,7 +11,7 @@
                 </p>
                 <p>
                     <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank">
-                        <x-icon class="fa-solid fa-external-link-alt" />
+                        <x-icon class="link" />
                         {{ __('helpers.public') }}
                     </a>
                 </p>

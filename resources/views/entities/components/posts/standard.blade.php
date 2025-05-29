@@ -10,8 +10,8 @@ $entityTags = $post->visibleTags;
 <article class="flex flex-col gap-2 post-block post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}" data-template="{{ $post->isTemplate() ? '1' : '0' }}" id="post-{{ $post->id }}" data-word-count="{{ $post->words }}">
     <div class="post-header flex gap-1 md:gap-2 items-center justify-between">
         <div class="flex gap-2 items-center cursor-pointer element-toggle group {{ $post->collapsed() ? "animate-collapsed" : null }}" data-animate="collapse" data-target="#post-body-{{ $post->id }}">
-            <x-icon class="fa-solid fa-chevron-up icon-show transition-transform duration-200 group-hover:-translate-y-0.5" />
-            <x-icon class="fa-solid fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
+            <x-icon class="fa-regular fa-chevron-up icon-show transition-transform duration-200 group-hover:-translate-y-0.5" />
+            <x-icon class="fa-regular fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
             <h3 class="post-title {{ $post->collapsed() ? "collapsed" : null }}"  >
                 {!! $post->name !!}
                 @if (config('app.debug'))
@@ -30,7 +30,7 @@ $entityTags = $post->visibleTags;
                 @endif
                 <div class="dropdown">
                     <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape">
-                        <x-icon class="fa-solid fa-ellipsis-v" />
+                        <x-icon class="fa-regular fa-ellipsis-v" />
                         <span class="sr-only">{{__('crud.actions.actions') }}</span>
                     </a>
                     <div class="dropdown-menu hidden" role="menu">
@@ -61,7 +61,7 @@ $entityTags = $post->visibleTags;
 
                 @can('update', $entity)
                 <a href="{{ route('entities.posts.logs', [$campaign, $entity, $post]) }}" title="{{ __('crud.history.view') }}" class="print-none">
-                    <x-icon class="fa-solid fa-history" />
+                    <x-icon class="fa-regular fa-history" />
                 </a>
                 @endcan
 

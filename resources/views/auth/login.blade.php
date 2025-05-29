@@ -51,7 +51,7 @@
                 <div class="flex items-stretch w-full">
                     <input id="password" type="password" class="border rounded w-full p-2 dark:bg-slate-800 dark:border-slate-500" name="password" required placeholder="{{ __('auth.login.fields.password') }}">
                     <a href="#" id="toggle-password" class="input-group-addon p-2" title="{{ __('auth.helpers.password') }}">
-                        <i id="toggle-password-icon" class="fa-solid fa-eye" aria-hidden="true"></i>
+                        <i id="toggle-password-icon" class="fa-regular fa-eye" aria-hidden="true"></i>
                         <span class="sr-only">{{ __('auth.helpers.password') }}</span>
                     </a>
                 </div>

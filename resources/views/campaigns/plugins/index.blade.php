@@ -6,7 +6,7 @@
         {{ __('campaigns.show.tabs.plugins') }}
     </h3>
     <a href="{{ config('marketplace.url') }}" class="btn2 btn-primary btn-sm">
-        {{ __('campaigns/plugins.actions.find-plugins') }} <x-icon class="fa-solid fa-external-link-alt"></x-icon>
+        {{ __('campaigns/plugins.actions.find-plugins') }} <x-icon class="link" />
     </a>
 </div>
 

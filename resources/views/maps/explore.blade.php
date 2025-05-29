@@ -17,7 +17,7 @@
                 {{ __('maps/explore.actions.enter-edit-mode') }}
             </button>
             <button class="btn2 btn-default btn-mode-disable">
-                <x-icon class="fa-solid fa-ban" />
+                <x-icon class="fa-regular fa-ban" />
                 {{ __('maps/explore.actions.exit-edit-mode') }}
             </button>
             <button class="btn2 btn-mode-drawing">

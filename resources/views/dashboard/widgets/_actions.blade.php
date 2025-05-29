@@ -65,7 +65,7 @@
 @can('update', $campaign)
     <div class="dropdown">
         <button class="btn2 btn-sm" data-dropdown aria-expanded="false">
-            <x-icon class="fa-solid fa-ellipsis-h" />
+            <x-icon class="fa-regular fa-ellipsis-h" />
 
         </button>
         <div class="dropdown-menu hidden" role="menu">

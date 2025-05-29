@@ -37,7 +37,7 @@
                     @can('update', $timeline->entity)
                         <div class="dropdown inline">
                             <a class="btn2 btn-xs btn-ghost" data-dropdown aria-expanded="false" data-placement="right">
-                                <x-icon class="fa-solid fa-ellipsis-v" />
+                                <x-icon class="fa-regular fa-ellipsis-v" />
                                 <span class="sr-only">{{__('crud.actions.actions') }}</span>
                             </a>
                             <div class="dropdown-menu hidden" role="menu">

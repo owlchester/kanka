@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\EntityAsset $asset */?>
 <div class="entity-asset asset-alias flex gap-2 items-center lg:w-80" data-id="{{ $asset->id }}" data-asset-type="alias">
     <div  class="flex-none w-32 h-20 text-center icon rounded flex items-center align-center justify-center bg-black/10 ">
-        <x-icon class="text-3xl fa-solid fa-arrow-right" />
+        <x-icon class="text-3xl fa-regular fa-arrow-right" />
     </div>
     <div class="grow text flex flex-col gap-1 overflow-hidden">
         <div class="asset-name truncate" data-toggle="tooltip" data-title="{{ $asset->name }}">

@@ -35,7 +35,8 @@
         </p>
 
         <p>
-            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i>
+            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank">
+                <x-icon class="link" />
                 {{ __('helpers.public') }}
             </a>
         </p>
@@ -49,14 +50,14 @@
                         <x-icon class="{{ $entityType->icon() }}" />
                     </div>
                     <div class="loading-animation hidden">
-                        <x-icon class="fa-solid fa-spinner fa-spin" />
+                        <x-icon class="load" />
                     </div>
                 </div>
 
                 <div class="">{!! $entityType->plural() !!}</div>
                 @if ((!$entityType->isSpecial() && !$campaign->enabled($entityType)) || ($entityType->isSpecial() && !$entityType->isEnabled()))
                     <div class="rounded bg-warning text-warning-content" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
-                        <i class="fa-solid fa-exclamation-triangle"  aria-hidden="true"></i>
+                        <i class="fa-regular fa-exclamation-triangle"  aria-hidden="true"></i>
                         <span class="md:hidden text-sm inline">{{ __('campaigns.modules.permission-disabled') }}</span>
                     </div>
                 @endif
@@ -76,7 +77,7 @@
     'textes' => [
         __('campaigns/roles.public.description', ['name' => $role->name]),
         __('campaigns/roles.public.test', ['url' => '<a href="' . route('dashboard', $campaign) . '">' . route('dashboard', $campaign) . '</a>']),
-        '<a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> ' . __('helpers.public') . '</a>'
+        '<a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-regular fa-external-link-alt"></i> ' . __('helpers.public') . '</a>'
 ]
 ])
 @endsection

@@ -13,11 +13,11 @@
 
 @if ($model->isPublic() && !$campaign->isPublic() && $model->role_permissions_count > 0)
     <div class="hidden sm:block">
-        <x-icon class="fa-solid fa-exclamation-triangle" tooltip title="{{ __('campaigns.roles.hints.campaign_not_public') }}" />
+        <x-icon class="fa-regular fa-exclamation-triangle" tooltip title="{{ __('campaigns.roles.hints.campaign_not_public') }}" />
     </div>
     <div class="sm:hidden cursor-pointer" x-data="{open: false}" @click="open = !open">
         <span role="button" class="btn2 btn-xs" >
-            <i class="fa-solid fa-exclamation-triangle"></i>
+            <i class="fa-regular fa-exclamation-triangle"></i>
         </span>
         <span x-show="open" class="help-block text-xs">
             {{ __('campaigns.roles.hints.campaign_not_public') }}

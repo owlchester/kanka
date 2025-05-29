@@ -36,7 +36,7 @@ $enabled = $campaign->enabled($entityType);
             @if ($entityType->isDeprecated())
             <div class="text-center text-sm">
                 <span data-toggle="tooltip" data-title="{{ __('campaigns.settings.deprecated.help') }}">
-                    <i class="fa-solid fa-exclamation-triangle" aria-hidden="true"></i>
+                    <i class="fa-regular fa-exclamation-triangle" aria-hidden="true"></i>
                     {{ __('campaigns.settings.deprecated.title') }}
                 </span>
                 <span class="md:hidden">{{ __('campaigns.settings.deprecated.help') }}</span>

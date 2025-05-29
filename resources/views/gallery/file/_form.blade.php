@@ -2,7 +2,7 @@
         <div class="">
             @if($image->isFolder())
                 <div class="text-center my-5">
-                    <x-icon class="fa-solid fa-folder fa-4x" />
+                    <x-icon class="fa-regular fa-folder fa-4x" />
                 </div>
             @else
 

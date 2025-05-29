@@ -18,7 +18,7 @@
             </a>',
             'letter' => '<kbd>N</kbd>',
             'characters' => '<span class="badge border select-none flex items-center gap-2"><i class="fa-solid fa-user" aria-hidden="true"></i> ' . __('entities.character') . '</span>',
-            'entities' => '<a target="_blank" href="https://docs.kanka.io/en/latest/entities/overview.html">' . __('abilities.show.tabs.entities') . ' <i class="fa-solid fa-external-link" aria-hidden="true"></i></a>',
+            'entities' => '<a target="_blank" href="https://docs.kanka.io/en/latest/entities/overview.html">' . __('abilities.show.tabs.entities') . ' <i class="fa-regular fa-external-link" aria-hidden="true"></i></a>',
         ]) !!}
     </p>
     <p class="font-bold">
@@ -30,7 +30,7 @@
         <li class="">
             {!! __('dashboards/widgets/welcome.tricks.1', [
     'code' => '<code>@</code>',
-    'mention' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/mentions.html">' . __('dashboards/widgets/welcome.tricks.mention') . ' <i class="fa-solid fa-external-link" aria-hidden="true"></i></a>',
+    'mention' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/mentions.html">' . __('dashboards/widgets/welcome.tricks.mention') . ' <i class="fa-regular fa-external-link" aria-hidden="true"></i></a>',
 ]) !!}
         </li>
         <li class="">
@@ -41,7 +41,7 @@
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.tricks.3', [
-    'posts' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/posts.html">' . __('entities.posts') . ' <i class="fa-solid fa-external-link" aria-hidden="true"></i></a>']) !!}
+    'posts' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/posts.html">' . __('entities.posts') . ' <i class="fa-regular fa-external-link" aria-hidden="true"></i></a>']) !!}
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.tricks.4', [
