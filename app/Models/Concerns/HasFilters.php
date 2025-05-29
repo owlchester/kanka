@@ -452,7 +452,7 @@ trait HasFilters
 
         if ($value) {
             $query->whereNotNull('e.entry')
-                ->where('e.entry','!=','');
+                ->where('e.entry', '!=', '');
         } else {
             $query->whereNull('e.entry')
                 ->orWhere('e.entry', '');

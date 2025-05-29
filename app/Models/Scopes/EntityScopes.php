@@ -245,7 +245,7 @@ trait EntityScopes
     {
         if ($value) {
             $query->whereNotNull('entities.entry')
-                ->where('entities.entry','!=','');
+                ->where('entities.entry', '!=', '');
         } else {
             $query->whereNull('entities.entry')
                 ->orWhere('entities.entry', '');
