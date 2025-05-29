@@ -172,7 +172,7 @@ class ExportService
         $this->path = $saveFolder . $this->file;
         $this->archive = new ZipArchive;
         $creation = $this->archive->open($this->path, ZipArchive::CREATE | ZipArchive::OVERWRITE);
-        if (!$creation) {
+        if (! $creation) {
             throw new Exception('Could not create zip file');
         }
         Log::debug('Campaign export', ['action' => 'zip created', 'path' => $this->path]);
@@ -458,15 +458,15 @@ class ExportService
 
     protected function cleanup(): void
     {
-        if (!isset($this->path)) {
+        if (! isset($this->path)) {
             return;
         }
         // Don't delete zips on debug mode
         if (app()->hasDebugModeEnabled()) {
             return;
         }
-//        unlink($this->path);
-//        unset($this->path);
+        //        unlink($this->path);
+        //        unset($this->path);
     }
 
     /**
@@ -516,7 +516,7 @@ class ExportService
         $retry = 0;
         while ($retry < $maxRetries) {
             try {
-                if (!$this->cloudfront) {
+                if (! $this->cloudfront) {
                     // In Laravel, Storage::get() will load the image in memory but not get rid of it until
                     // garbage collection, so to avoid memory issues, we do it ourselves
                     $stream = Storage::disk('s3')->readStream($path);
@@ -528,6 +528,7 @@ class ExportService
                 fclose($stream);
                 $this->archive->addFromString($fileName, $content);
                 $this->files++;
+
                 return;
             } catch (\Throwable $e) {
                 $retry++;

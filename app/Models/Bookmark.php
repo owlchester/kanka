@@ -54,6 +54,7 @@ use Illuminate\Support\Facades\Route;
  */
 class Bookmark extends Model
 {
+    use Blameable;
     use HasCampaign;
     use HasFactory;
     use HasFilters;
@@ -65,7 +66,6 @@ class Bookmark extends Model
     use Searchable;
     use Sortable;
     use Taggable;
-    use Blameable;
 
     protected $fillable = [
         'campaign_id',
