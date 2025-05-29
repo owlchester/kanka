@@ -56,11 +56,11 @@
 
             <h4 class="m-0">{{ __('campaigns.fields.public_campaign_filters') }}</h4>
 
-            <p>
-                {!! __('campaigns.sharing.filters', [
+            <x-helper>
+                <p>{!! __('campaigns.sharing.filters', [
         'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank">' . __('footer.public-campaigns') . '</a>'
-        ]) !!}
-            </p>
+        ]) !!}</p>
+            </x-helper>
 
             <x-grid>
                 <x-forms.field
