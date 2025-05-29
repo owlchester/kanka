@@ -23,9 +23,11 @@
         </div>
 
         @if (!$campaign->boosted())
-            <x-cta :campaign="$campaign">
-                <p>{{ __('campaigns/sidebar.call-to-action') }}</p>
-            </x-cta>
+            <x-premium-cta :campaign="$campaign">
+                <p>
+                    {{ __('campaigns/sidebar.call-to-action') }}
+                </p>
+            </x-premium-cta>
         @else
 
             <x-tutorial code="sidebar_reorder">

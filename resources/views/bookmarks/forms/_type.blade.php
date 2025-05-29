@@ -6,10 +6,12 @@ $entityTypes = $entityTypeService->campaign($campaign)->exclude([config('entitie
 <x-grid type="1/1">
 
     <x-helper>
+        <p>
         {!! __('bookmarks.helpers.type', [
             'filter' => '<span class="text-extrabold">' . __('bookmarks.fields.filters') . '</span>',
             '?' => '<code>?</code>',
         ]) !!}
+        </p>
     </x-helper>
 
     <x-grid>

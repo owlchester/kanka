@@ -15,7 +15,7 @@
     </h2>
     <div class="max-w-2xl">
         <x-helper>
-            {!! $description !!}
+            {!! $slot !!}
         </x-helper>
     </div>
 

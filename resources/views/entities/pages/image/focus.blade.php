@@ -31,7 +31,9 @@ $source = empty($entity->image_path) && !empty($entity->image_uuid) ? $entity->i
     @if ($campaign->boosted())
         <x-grid type="1/1">
         @if(!empty($entity->image_path))
-            <x-helper>{{ __('entities/image.focus.helper') }}</x-helper>
+            <x-helper>
+                <p>{{ __('entities/image.focus.helper') }}</p>
+            </x-helper>
         @endif
 
         <div class="focus-selector relative flex mx-auto max-w-sm">

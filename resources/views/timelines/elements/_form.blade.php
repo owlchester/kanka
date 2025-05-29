@@ -62,21 +62,27 @@ if (!empty($era)) {
                 @endforeach
             </datalist>
         </div>
-            <x-helper>{!! __('timelines/elements.helpers.icon', [
-        'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPG Awesome</a>',
-        'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">Font Awesome</a>'
-        ]) !!}</x-helper>
+            <x-helper>
+                <p>{!! __('timelines/elements.helpers.icon', [
+        'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/">RPG Awesome</a>',
+        'fontawesome' => '<a href="' . config('fontawesome.search') . '">Font Awesome</a>'
+        ]) !!}</p>
+            </x-helper>
 
         @if (!$campaign->boosted())
             @can('boost', auth()->user())
                 <x-helper>
+                    <p>
                     <x-icon class="premium" />
                     {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>']) !!}
+                    </p>
                 </x-helper>
             @else
                 <x-helper>
+                    <p>
                     <x-icon class="premium" />
                     {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaign') . '</a>']) !!}
+                    </p>
                 </x-helper>
             @endif
         @endif

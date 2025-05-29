@@ -29,9 +29,9 @@ use App\Facades\Datagrid ?>
             </div>
         </div>
         @if (!$campaign->boosted())
-            <x-cta :campaign="$campaign" :image="false">
+            <x-premium-cta :campaign="$campaign">
                 <p>{!! __('campaigns/styles.pitch') !!}</p>
-            </x-cta>
+            </x-premium-cta>
         @endif
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -50,7 +50,7 @@ use App\Facades\Datagrid ?>
         @if ($styles->count() === 0)
             <x-box>
                 <x-helper>
-                    {!! __('campaigns/styles.helpers.main', ['here' => '<a href="https://blog.kanka.io/category/tutorials" target="_blank">' . __('campaigns/styles.helpers.here') . '</a>']) !!}
+                    <p>{!! __('campaigns/styles.helpers.main', ['here' => '<a href="https://blog.kanka.io/category/tutorials" target="_blank">' . __('campaigns/styles.helpers.here') . '</a>']) !!}</p>
                 </x-helper>
             </x-box>
         @else

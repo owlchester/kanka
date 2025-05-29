@@ -3,7 +3,7 @@
  */?>
 <x-grid type="1/1">
     <x-helper>
-        {!! __('conversations.participants.helper', ['name' => $model->name]) !!}
+        <p>{!! __('conversations.participants.helper', ['name' => $model->name]) !!}</p>
     </x-helper>
 
     <div class="flex flex-col gap-2">
@@ -33,7 +33,7 @@
         @endif
     @empty
         <x-helper>
-            {{ __('conversations.hints.empty') }}
+            <p>{{ __('conversations.hints.empty') }}</p>
         </x-helper>
     @endforelse
     </div>

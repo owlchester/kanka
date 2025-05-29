@@ -1,6 +1,8 @@
 <x-grid type="1/1">
     @empty($model)
-        <x-helper>{{ __('calendars/weather.create.helper') }}</x-helper>
+        <x-helper>
+            <p>{{ __('calendars/weather.create.helper') }}</p>
+        </x-helper>
     @endif
     <x-forms.field
         field="weather"

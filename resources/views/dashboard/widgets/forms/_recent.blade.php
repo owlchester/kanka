@@ -50,8 +50,8 @@
             @include('dashboard.widgets.forms._related')
         @else
             <x-helper>
-                {!! __('dashboard.widgets.advanced_options_boosted', [
-        'boosted_campaign' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaigns') . '</a>']) !!}
+                <p>{!! __('dashboard.widgets.advanced_options_boosted', [
+        'boosted_campaign' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
             </x-helper>
         @endif
     </div>

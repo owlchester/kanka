@@ -24,9 +24,7 @@ use \Illuminate\Support\Arr;
         </div>
         @if (!$campaign->superboosted())
             <x-premium-cta :campaign="$campaign" superboost>
-                <x-slot name="description">
-                    {{ __('campaigns/achievements.pitch') }}
-                </x-slot>
+                <p>{{ __('campaigns/achievements.pitch') }}</p>
             </x-premium-cta>
         @else
 

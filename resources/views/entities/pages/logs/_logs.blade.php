@@ -83,8 +83,10 @@
                     @elseif (!$campaign->superboosted())
                         <div class="flex flex-col gap-2">
                             <x-helper>
-                                <x-icon class="premium" />
-                                {!! __('entities/logs.call-to-action', ['amount' => config('entities.logs')]) !!}
+                                <p>
+                                    <x-icon class="premium" />
+                                    {!! __('entities/logs.call-to-action', ['amount' => config('entities.logs')]) !!}
+                                </p>
                             </x-helper>
                             @can('boost', auth()->user())
                                 <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white">

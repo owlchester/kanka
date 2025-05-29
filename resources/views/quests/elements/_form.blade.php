@@ -1,5 +1,5 @@
 <x-helper>
- {{ __('quests.elements.fields.entity_or_name') }}
+    <p>{{ __('quests.elements.fields.entity_or_name') }}</p>
 </x-helper>
 <x-grid>
     <x-forms.field field="entity" required>

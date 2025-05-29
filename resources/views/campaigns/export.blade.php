@@ -49,10 +49,10 @@
     @parent
     <x-dialog id="export-confirm" :title="__('campaigns/export.confirm.title')">
         <x-helper>
-            {!! __('campaigns/export.confirm.warning', ['name' => $campaign->name]) !!}
+            <p>{!! __('campaigns/export.confirm.warning', ['name' => $campaign->name]) !!}</p>
         </x-helper>
         <x-helper>
-            {{ __('campaigns/export.confirm.notification') }}
+            <p>{{ __('campaigns/export.confirm.notification') }}</p>
         </x-helper>
 
         <div class="grid grid-cols-2 gap-2 w-full">

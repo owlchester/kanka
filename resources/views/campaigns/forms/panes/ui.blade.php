@@ -21,11 +21,11 @@ if (!isset($model) || !$model->boosted()) {
         </h4>
         @if (isset($model) && $model->boosted())
             <x-helper>
-                {!! __('campaigns.helpers.premium', ['settings' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaigns') . '</a>']) !!}
+                <p>{!! __('campaigns.helpers.premium', ['settings' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
             </x-helper>
         @else
             <x-helper>
-                {!! __('campaigns.helpers.premium', ['settings' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaigns') . '</a>']) !!}
+                <p>{!! __('campaigns.helpers.premium', ['settings' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
             </x-helper>
         @endif
 
@@ -82,7 +82,9 @@ if (!isset($model) || !$model->boosted()) {
         <hr />
 
         <h4>{{ __('campaigns.ui.other') }}</h4>
-        <x-helper :text="__('campaigns.ui.helpers.other')" />
+        <x-helper>
+            <p>{{  __('campaigns.ui.helpers.other') }}</p>
+        </x-helper>
 
         <x-grid>
             <x-forms.field

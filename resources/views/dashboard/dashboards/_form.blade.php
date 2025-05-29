@@ -7,7 +7,7 @@
 <x-grid type="1/1">
     @empty($dashboard)
     <x-helper>
-        {!! __('dashboard.dashboards.create.helper', ['name' => $campaign->name]) !!}
+        <p>{!! __('dashboard.dashboards.create.helper', ['name' => $campaign->name]) !!}</p>
     </x-helper>
     @endif
 

@@ -2,9 +2,9 @@
 <x-grid type="1/1">
     <x-helper>
         @if ($dashboard)
-        {!! __('dashboard.widgets.create.helper', ['name' => $dashboard->name]) !!}
+            <p>{!! __('dashboard.widgets.create.helper', ['name' => $dashboard->name]) !!}</p>
         @else
-            {!! __('dashboard.widgets.create.helper-default') !!}
+            <p>{!! __('dashboard.widgets.create.helper-default') !!}</p>
         @endif
     </x-helper>
     <div class="flex flex-col gap-2 md:grid grid-cols-2 md:gap-6">

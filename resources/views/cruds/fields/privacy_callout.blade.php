@@ -11,7 +11,7 @@ $isPrivate = old('is_private', $source->is_private ?? $model->is_private ?? $cam
                 {{ __('crud.permissions.actions.private') }}
             </p>
             <x-helper>
-                {!! __('crud.fields.is_private_v3', [
+                <p>{!! __('crud.fields.is_private_v3', [
         'admin-role' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\'>' . \Illuminate\Support\Arr::get(\App\Facades\CampaignCache::adminRole(), 'name', __('campaigns.roles.admin_role')) . '</a>'
         ]) !!}
                 <a
@@ -20,7 +20,7 @@ $isPrivate = old('is_private', $source->is_private ?? $model->is_private ?? $cam
                     data-title="{{ __('general.documentation') }}">
                     <x-icon class="fa-regular fa-book" />
                     {{ __('general.learn-more') }}
-                </a>.
+                </a>.</p>
             </x-helper>
         </div>
     </label>

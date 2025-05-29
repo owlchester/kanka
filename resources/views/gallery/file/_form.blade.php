@@ -11,7 +11,9 @@
                         <img src="{{ $image->getUrl(192, 144) }}" class="max-w-full rounded" alt="{{ $image->name }}" />
                     </div>
                 @else
-                    <x-helper text="This file can't be previewed." />
+                    <x-helper>
+                        <p>This file can't be previewed.</p>
+                    </x-helper>
                 @endif
 
                 <hr />

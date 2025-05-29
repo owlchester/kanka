@@ -28,8 +28,8 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         </a>
                     </div>
                     <x-helper>
-                        {{ __('settings/appearance.helpers.theme')}}
-                        {{ __('settings/appearance.helpers.overridable')}}
+                        <p>{{ __('settings/appearance.helpers.theme')}}</p>
+                        <p>{{ __('settings/appearance.helpers.overridable')}}</p>
                     </x-helper>
                     <x-forms.select
                         name="theme"
@@ -52,7 +52,7 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         </a>
                     </div>
                     <x-helper>
-                        {{ __('settings/appearance.helpers.pagination')}}
+                        <p>{{ __('settings/appearance.helpers.pagination')}}</p>
                     </x-helper>
                     <x-forms.select name="pagination" :options="$paginationOptions" :selected="auth()->user()->pagination" class="self-end w-full border rounded p-2" :optionAttributes="$paginationDisabled" />
                 </div>
@@ -70,7 +70,7 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                     </div>
 
                     <x-helper>
-                        {{ __('settings/appearance.helpers.date-format')}}
+                        <p>{{ __('settings/appearance.helpers.date-format')}}</p>
                     </x-helper>
                     <x-forms.select name="date_format" :options="[
                         null => 'Month d, Y',
@@ -94,7 +94,7 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                     </div>
 
                     <x-helper>
-                        {{ __('settings/appearance.helpers.campaign-order')}}
+                        <p>{{ __('settings/appearance.helpers.campaign-order')}}</p>
                     </x-helper>
 
                     <x-forms.select name="campaign_switcher_order_by" :options="[
@@ -137,7 +137,7 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         </a>
                     </div>
                     <x-helper>
-                        {{ __('settings/appearance.helpers.entity-explore') }}
+                        <p>{{ __('settings/appearance.helpers.entity-explore') }}</p>
                     </x-helper>
 
                     <x-forms.select name="entity_explore" radio :options="[
@@ -157,7 +157,7 @@ $highlightClass = 'shadow-xs border-primary border-solid border-2';
                         </a>
                     </div>
                     <x-helper>
-                        {!! __('settings/appearance.helpers.advanced-mentions') !!}
+                        <p>{!! __('settings/appearance.helpers.advanced-mentions') !!}</p>
                     </x-helper>
                     <div class="note-editing-area">
                     <x-forms.select name="advanced_mentions" radio :options="[

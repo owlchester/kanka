@@ -75,7 +75,9 @@
         </x-box>
         @else
         <x-box>
-            <x-helper :text="__('campaigns.members.invite.description', ['campaign' => $campaign->link()])" />
+            <x-helper>
+                <p>{!! __('campaigns.members.invite.description', ['campaign' => $campaign->link()]) !!}</p>
+            </x-helper>
         </x-box>
         @endif
 @endif

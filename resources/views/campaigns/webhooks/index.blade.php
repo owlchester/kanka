@@ -17,9 +17,9 @@
     @endif
 </div>
 @if (!$campaign->premium())
-    <x-cta :campaign="$campaign" premium>
+    <x-premium-cta :campaign="$campaign" premium>
         <p>{!! __('campaigns/webhooks.pitch') !!}</p>
-    </x-cta>
+    </x-premium-cta>
 @else
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\Webhook $webhook

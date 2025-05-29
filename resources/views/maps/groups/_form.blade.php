@@ -1,7 +1,7 @@
 <x-grid type="1/1">
     @empty($model)
         <x-helper>
-            {!! __('maps/groups.create.helper', ['name' => $map->name]) !!}
+            <p>{!! __('maps/groups.create.helper', ['name' => $map->name]) !!}</p>
         </x-helper>
     @endif
     <x-forms.field

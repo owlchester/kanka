@@ -1,6 +1,8 @@
 <x-grid type="1/1">
     <x-helper>
+        <p>
         {{ __('entities/move.panel.description_bulk_copy') }}
+        </p>
     </x-helper>
 
     <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">

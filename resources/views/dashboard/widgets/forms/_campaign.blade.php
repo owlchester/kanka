@@ -1,1 +1,3 @@
-<x-helper :text="__('dashboard.widgets.campaign.helper')" />
+<x-helper>
+    <p>{{ __('dashboard.widgets.campaign.helper') }}</p>
+</x-helper>

@@ -16,7 +16,7 @@
         <x-box>
             <x-grid type="1/1">
                 <x-helper>
-                    {{ __('entities/transform.panel.description') }}
+                    <p>{{ __('entities/transform.panel.description') }}</p>
                     <x-slot name="docs">https://docs.kanka.io/en/latest/guides/transform.html</x-slot>
                 </x-helper>
 

@@ -60,7 +60,7 @@
     <x-dialog id="post-new-user" :title="__('entities/notes.show.advanced')" footer="entities.pages.posts.dialogs._user-footer">
         <x-grid type="1/1">
             <x-helper>
-                {{ __('posts.permissions.helpers.members') }}
+                <p>{{ __('posts.permissions.helpers.members') }}</p>
             </x-helper>
             <x-forms.field field="user" :label="__('campaigns.roles.members')">
                 @include('components.form.user', ['options' => [
@@ -72,7 +72,9 @@
     </x-dialog>
     <x-dialog id="post-new-role" :title="__('entities/notes.show.advanced')" footer="entities.pages.posts.dialogs._role-footer">
         <x-grid type="1/1">
-            <x-helper>{{ __('posts.permissions.helpers.roles') }}</x-helper>
+            <x-helper>
+                <p>{{ __('posts.permissions.helpers.roles') }}</p>
+            </x-helper>
             <x-forms.field field="user" :label="__('crud.permissions.fields.role')">
                 @include('components.form.role', ['options' => [
                     'dropdownParent' => '#post-new-role',

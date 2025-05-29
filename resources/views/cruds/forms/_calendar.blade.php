@@ -23,7 +23,7 @@ if (!empty($oldCalendarID)) {
     @php return; @endphp
 @endif
 <div class="field-calendar-date flex flex-col gap-4">
-    <x-helper>{{ __('crud.hints.calendar_date') }}</x-helper>
+    <x-helper><p>{{ __('crud.hints.calendar_date') }}</p></x-helper>
 
     <div>
         <a href="#" id="entity-calendar-form-add" class="btn2 btn-sm btn-outline <?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "hidden" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}">

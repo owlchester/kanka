@@ -15,7 +15,7 @@
     <x-box>
         <x-grid type="1/1">
             <x-helper>
-                {{ __('entities/move.panel.description') }}
+                <p>{{ __('entities/move.panel.description') }}</p>
             </x-helper>
 
             <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">

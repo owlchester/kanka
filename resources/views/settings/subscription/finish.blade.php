@@ -41,7 +41,7 @@
                                     {!! $availableCampaign->name !!}
                                 </a>
                                 <x-helper>
-                                    {{ __('settings/boosters.campaign.standard') }}
+                                    <p>{{ __('settings/boosters.campaign.standard') }}</p>
                                 </x-helper>
                             </div>
                             <a href="#" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('campaign_boosts.create', ['campaign' => $availableCampaign, 'next' => 'subscription.finish']) }}" class="btn2 btn-outline btn-sm">

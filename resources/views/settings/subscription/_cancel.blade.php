@@ -6,7 +6,7 @@ dd('who is calling dis');
 <x-form :action="['settings.subscription.cancel']" id="cancellation-confirm" class="subscription-form text-left">
 <x-grid type="1/1">
     <x-helper>
-        {!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}
+        <p>{!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}</p>
     </x-helper>
 
 <x-forms.field field="cancel-reason" :label="__('settings.subscription.fields.reason')">

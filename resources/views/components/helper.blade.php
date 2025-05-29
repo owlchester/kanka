@@ -1,15 +1,10 @@
-<div {{ $attributes->merge(['class' => "text-neutral-content help-block"]) }}>
-    @if (!empty($text))
-        <p>{!! $text !!}</p>
-    @endif
-    @if (!empty($slot))
-        <p>{!! $slot !!}</p>
-    @endif
+<div {{ $attributes->merge(['class' => "text-neutral-content help-block flex flex-col gap-2"]) }}>
+    {!! $slot !!}
 
     @if (!empty($docs))
         <a href="{{ $docs }}" class="">
-            <x-icon class="link" />
-            {{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}
+            <x-icon class="fa-regular fa-book" />
+            {{ __('general.documentation') }}
         </a>
     @endif
 </div>

@@ -1,6 +1,6 @@
 <x-grid type="1/1">
     <x-helper>
-        {!! __('posts.move.helper', ['name' => $post->name]) !!}
+        <p>{!! __('posts.move.helper', ['name' => $post->name]) !!}</p>
     </x-helper>
     <x-forms.field field="entity" :label="__('entities/notes.move.entity')" required>
         <select name="entity" class=" select2" data-url="{{ route('search.entities-with-relations', $campaign) }}" data-allow-clear="false" data-allow-new="false" data-placeholder="{{ __('entities/notes.move.description') }}"></select>

@@ -1,5 +1,3 @@
 <x-premium-cta :campaign="$campaign">
-    <x-slot name="description">
-        {{ __('campaigns/modules.pitch-custom') }}
-    </x-slot>
+    <p>{{ __('campaigns/modules.pitch-custom') }}</p>
 </x-premium-cta>

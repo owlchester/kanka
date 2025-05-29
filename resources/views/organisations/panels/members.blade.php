@@ -65,7 +65,7 @@ $all = $entity->child->allMembers()->has('character')->count();
     @if ($direct === 0 && !$allMembers)
         <x-box>
             <x-helper>
-                {{ __('organisations.members.helpers.' . ($allMembers ? 'all_' : null) . 'members') }}
+                <p>{{ __('organisations.members.helpers.' . ($allMembers ? 'all_' : null) . 'members') }}</p>
             </x-helper>
         </x-box>
     @else

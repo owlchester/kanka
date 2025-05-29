@@ -9,7 +9,7 @@
 </x-dialog.header>
 <x-dialog.article>
     <x-helper>
-        {{ __('filters.bookmark.helper') }}
+        <p>{{ __('filters.bookmark.helper') }}</p>
     </x-helper>
     <x-grid type="1/1">
         <x-forms.field

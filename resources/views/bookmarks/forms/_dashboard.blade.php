@@ -6,7 +6,9 @@ foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) 
 }
 ?>
 <x-grid type="1/1">
-    <x-helper :text="__('bookmarks.helpers.dashboard')" />
+    <x-helper>
+        <p>{{ __('bookmarks.helpers.dashboard') }}</p>
+    </x-helper>
 
 @if($campaign->boosted())
     <x-grid>

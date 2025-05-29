@@ -24,7 +24,9 @@ use \Illuminate\Support\Str;
 
         <x-box :padding="0">
             @if ($notifications->count() === 0)
-                <x-helper :text="__('notifications.no_notifications')" />
+                <x-helper>
+                    <p>{{ __('notifications.no_notifications') }}</p>
+                </x-helper>
             @else
             <div class="table-responsive">
                 <table class="table table-hover mb-0">

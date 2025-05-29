@@ -1,6 +1,6 @@
 <x-grid type="1/1">
     <x-helper>
-        {!! __('races.members.create.helper', ['name' => $model->name]) !!}
+        <p>{!! __('races.members.create.helper', ['name' => $model->name]) !!}</p>
     </x-helper>
 
     <x-forms.field field="member" :label="__('races.fields.members')">

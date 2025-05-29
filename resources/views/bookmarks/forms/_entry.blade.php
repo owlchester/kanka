@@ -79,7 +79,9 @@ $premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campa
 <x-box class="flex flex-col gap-4">
     <div class="text-xl">{{ __('bookmarks.fields.selector') }}</div>
 
-    <x-helper :text="__('bookmarks.helpers.selector')" />
+    <x-helper>
+        <p>{{ __('bookmarks.helpers.selector') }}</p>
+    </x-helper>
 
     <x-forms.field field="target" :label="__('bookmarks.fields.target')">
         <select name="type" class="" id="bookmark-selector">

@@ -15,11 +15,11 @@
     @if (!$campaign->boosted())
         @can('boost', auth()->user())
             <x-helper>
-                <x-icon class="premium" /> {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>']) !!}
+                <p><x-icon class="premium" /> {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>']) !!}</p>
             </x-helper>
         @else
             <x-helper>
-                <x-icon class="premium" /> {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="https://kanka.io/premium">' . __('concepts.premium-campaign') . '</a>']) !!}
+                <p><x-icon class="premium" /> {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="https://kanka.io/premium">' . __('concepts.premium-campaign') . '</a>']) !!}</p>
             </x-helper>
         @endif
     @endif

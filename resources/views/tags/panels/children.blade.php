@@ -68,7 +68,9 @@ $direct = $entity->child->entities()->count();
 @if ($all === 0)
 <div class="" id="tag-children">
     <x-box>
-        <x-helper :text="__('tags.helpers.no_children')" />
+        <x-helper>
+            <p>{{ __('tags.helpers.no_children') }}</p>
+        </x-helper>
         @can('update', $entity)
             <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
                 data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">

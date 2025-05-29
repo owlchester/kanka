@@ -92,7 +92,7 @@ $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
 
         @empty($dashboard)
         <x-helper>
-            {!! __('dashboard.dashboards.default.text', ['campaign' => $campaign->name]) !!}
+            <p>{!! __('dashboard.dashboards.default.text', ['campaign' => $campaign->name]) !!}</p>
         </x-helper>
         @endif
 

@@ -41,7 +41,7 @@
 
             @if (isset($model) && $model->isPublic())
                 <x-helper>
-                    {!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard', $campaign) . '" target="_blank">' . route('dashboard', $campaign) . '</a>']) !!}
+                    <p>{!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard', $campaign) . '">' . route('dashboard', $campaign) . '</a>']) !!}</p>
                 </x-helper>
 
                 @if ($model->publicHasNoVisibility())

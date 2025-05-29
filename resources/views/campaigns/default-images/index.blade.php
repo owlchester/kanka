@@ -33,7 +33,9 @@
             @if (empty($campaign->defaultImages()))
                 @can('recover', $campaign)
                 <x-box>
-                    <x-helper>{{ __('campaigns/default-images.empty') }}</x-helper>
+                    <x-helper>
+                        <p>{{ __('campaigns/default-images.empty') }}</p>
+                    </x-helper>
                 </x-box>
                 @endcan
             @endif
@@ -63,9 +65,9 @@
 
             </div>
         @else
-            <x-cta :campaign="$campaign">
+            <x-premium-cta :campaign="$campaign">
                 <p>{{ __('campaigns/default-images.call-to-action') }}</p>
-            </x-cta>
+            </x-premium-cta>
         @endif
     </div>
 @endsection

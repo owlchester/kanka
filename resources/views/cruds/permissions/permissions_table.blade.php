@@ -21,11 +21,11 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
 ?>
 
 <x-helper>
-    {!! __('crud.permissions.helpers.setup', [
+    <p>{!! __('crud.permissions.helpers.setup', [
         'allow' => '<code>' . __('crud.permissions.actions.bulk_entity.allow') . '</code>',
         'deny' => '<code>' . __('crud.permissions.actions.bulk_entity.deny') . '</code>',
         'inherit' => '<code>' . __('crud.permissions.actions.bulk_entity.inherit') . '</code>',
-    ]) !!}
+    ]) !!}</p>
 </x-helper>
 
 <div id="crud_permissions" class="flex flex-col gap-2">
@@ -148,7 +148,9 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
     @endforeach
 
     @if (isset($skipUsers) && $skipUsers && $campaign->nonAdmins()->count() > config('limits.campaigns.members'))
-        <x-helper>{{ __('crud.permissions.too_many_members', ['number' => config('limits.campaigns.members')]) }}</x-helper>
+        <x-helper>
+            <p>{{ __('crud.permissions.too_many_members', ['number' => config('limits.campaigns.members')]) }}</p>
+        </x-helper>
         <input type="hidden" name="permissions_too_many" value="1" />
     @else
 

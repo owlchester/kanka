@@ -49,8 +49,10 @@
     <x-dialog id="rename-dialog" :loading="true"></x-dialog>
 
     <x-dialog id="reset-confirm" :title="__('campaigns/modules.reset.title')">
-        <x-helper>{{ __('campaigns/modules.reset.warning') }}</x-helper>
-        <x-helper>{{ __('campaigns/modules.reset.default') }}</x-helper>
+        <x-helper>
+            <p>{{ __('campaigns/modules.reset.warning') }}</p>
+            <p>{{ __('campaigns/modules.reset.default') }}</p>
+        </x-helper>
 
         <div class="grid grid-cols-2 gap-2 w-full">
             <x-buttons.confirm type="ghost" full="true" dismiss="dialog">

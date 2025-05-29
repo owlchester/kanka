@@ -23,9 +23,11 @@
         </div>
     @endif
 @else
-    <x-cta :campaign="$campaign">
-        <p>{!! __('campaigns/plugins.pitch', ['marketplace' => '<a href="' . config('marketplace.url') . '" target="_blank">' . __('footer.plugins'). '</a>']) !!}</p>
-    </x-cta>
+    <x-premium-cta :campaign="$campaign">
+        <p>
+            {!! __('campaigns/plugins.pitch', ['marketplace' => '<a href="' . config('marketplace.url') . '">' . __('footer.plugins'). '</a>']) !!}
+        </p>
+    </x-premium-cta>
 @endif
 
 

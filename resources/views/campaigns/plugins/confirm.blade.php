@@ -13,10 +13,10 @@
     <x-form :action="['campaign_plugins.import', $campaign, $plugin]">
         <x-grid type="1/1">
             <x-helper>
-                {!! __('campaigns/plugins.import.helper', [
+                <p>{!! __('campaigns/plugins.import.helper', [
                 'count' => $version->version->entities()->count(),
                 'plugin' => '<a href="' . $plugin->libraryUrl() . '">' . $plugin->name . '</a>'
-            ]) !!}
+            ]) !!}</p>
             </x-helper>
 
             <x-forms.field field="force_private" :label=" __('campaigns/plugins.import.fields.private')">
