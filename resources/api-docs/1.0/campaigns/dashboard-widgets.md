@@ -36,7 +36,9 @@ You can get a list of all the dashboard Widgets of a campaign by using the follo
             "position": 2,
             "tags": [],
             "created_at": "2020-06-03T11:04:31.000000Z",
-            "updated_at": "2020-09-06T08:59:07.000000Z"
+            "updated_at": "2020-09-06T08:59:07.000000Z",
+            "created_by": 420,
+            "updated_by": 422
         }
     ]
 }
@@ -67,7 +69,9 @@ To get the details of a single dashboard Widget, use the following endpoint.
         "position": 2,
         "tags": [],
         "created_at": "2020-06-03T11:04:31.000000Z",
-        "updated_at": "2020-09-06T08:59:07.000000Z"
+        "updated_at": "2020-09-06T08:59:07.000000Z",
+        "created_by": 420,
+        "updated_by": 422
     }
 
 }
