@@ -36,6 +36,10 @@
                     <label>{!! __('crud.fields.has_entity_files') !!}</label>
                     @include('cruds.datagrids.filters._choice', ['field' => 'has_entity_files'])
                 </div>
+                <div class="field flex flex-col gap-1 field-has_entry">
+                    <label>{!! __('crud.fields.has_entry') !!}</label>
+                    @include('cruds.datagrids.filters._choice', ['field' => 'has_entry'])
+                </div>
                 <div class="field flex flex-col gap-1 field-has_posts">
                     <label>{!! __('crud.fields.has_posts') !!}</label>
                     @include('cruds.datagrids.filters._choice', ['field' => 'has_posts'])

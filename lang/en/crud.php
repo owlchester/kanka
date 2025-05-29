@@ -141,6 +141,7 @@ return [
         'gallery_image'     => 'Gallery Image',
         'has_attributes'    => 'Has attributes',
         'has_entity_files'  => 'Has entity files',
+        'has_entry'         => 'Has entry',
         'has_image'         => 'Has an image',
         'has_posts'         => 'Has posts',
         'header_image'      => 'Header Image',

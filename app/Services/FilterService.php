@@ -82,6 +82,7 @@ class FilterService
             'tags',
             'has_image',
             'has_posts',
+            'has_entry',
             'has_entity_files',
             'has_attributes',
             'created_by',

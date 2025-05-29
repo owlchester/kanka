@@ -265,6 +265,16 @@ abstract class DatagridFilter
     }
 
     /**
+     * Add the entity has entry
+     */
+    protected function hasEntry(): self
+    {
+        $this->filters[] = 'has_entry';
+
+        return $this;
+    }
+
+    /**
      * Add the entity has attributes
      */
     protected function hasAttributes(): self
