@@ -37,6 +37,8 @@ You can get a list of all the attributes of an entity by using the following end
             "type_id": 1,
             "updated_at": "2020-03-11T13:31:34.000000Z",
             "updated_by": null,
+            "created_by": 420,
+            "updated_by": 422,
             "value": "5",
             "parsed": "5"
         }
@@ -60,7 +62,7 @@ To get the details of a single attribute, use the following endpoint.
     "data": {
         "api_key": "",
         "created_at": "2019-07-09T19:55:13.000000Z",
-        "created_by": null,
+        "created_by": 420,
         "default_order": 0,
         "entity_id": 4,
         "id": 151,
@@ -69,7 +71,7 @@ To get the details of a single attribute, use the following endpoint.
         "name": "Force Strength",
         "type_id": 1,
         "updated_at": "2020-03-11T13:31:34.000000Z",
-        "updated_by": null,
+        "updated_by": 420,
         "value": "5",
         "parsed": "5"
     }
