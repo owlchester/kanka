@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Widget;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Taggable;
@@ -38,6 +39,7 @@ use Illuminate\Support\Str;
  */
 class CampaignDashboardWidget extends Model
 {
+    use Blameable;
     use HasCampaign;
     use HasFactory;
     use LastSync;
