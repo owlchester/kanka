@@ -35,7 +35,7 @@
                 } elseif ($model->isList()) {
                     return $model->entityType->plural();
                 } elseif ($model->isRandom()) {
-                    return $model->random_entity_type == 'any' ? __('bookmarks.random_types.any') : $model->randomEntityType->name();
+                    return $model->random_entity_type == 'any' ? __('bookmarks.random_types.any') : $model->randomEntityType?->name();
                 }
                 return '';
             },

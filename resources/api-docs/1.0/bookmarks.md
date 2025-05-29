@@ -40,6 +40,8 @@ You can get a list of all the bookmarks of a campaign by using the following end
            "dashboard_id": null,
            "created_at": "2020-12-24T00:38:49.000000Z",
            "updated_at": "2020-12-24T00:41:20.000000Z",
+           "created_by": 420,
+           "updated_by": 422,
            "options": {"is_nested": "1"}
         }
     ]
@@ -75,6 +77,8 @@ To get the details of a single bookmark, use the following endpoint.
         "dashboard_id": null,
         "created_at": "2020-12-24T00:38:49.000000Z",
         "updated_at": "2020-12-24T00:41:20.000000Z",
+        "created_by": 420,
+        "updated_by": 422,
         "options": {"is_nested": "1"}
     }
 

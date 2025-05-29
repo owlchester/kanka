@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\BookmarkCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Dashboard;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasSuggestions;
@@ -64,6 +65,7 @@ class Bookmark extends Model
     use Searchable;
     use Sortable;
     use Taggable;
+    use Blameable;
 
     protected $fillable = [
         'campaign_id',
