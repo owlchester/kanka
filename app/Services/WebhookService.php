@@ -6,26 +6,23 @@ use App\Facades\Avatar;
 use App\Facades\CampaignLocalization;
 use App\Http\Resources\EntityResource;
 use App\Models\Webhook;
-use App\Traits\UserAware;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Http;
-
+use App\Traits\UserAware;
 use Exception;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class WebhookService
 {
-    use UserAware;
     use CampaignAware;
     use EntityAware;
+    use UserAware;
 
-    /**
-     */
     public function process(int $action)
     {
-        
-       // Todo: move all of this to a service so it can be tested
+
+        // Todo: move all of this to a service so it can be tested
         $webhooks = Webhook::active($this->campaign->id, $action)->with('tags')->get();
         $entityTags = $this->entity->tags()->pluck('tags.id')->all();
         foreach ($webhooks as $webhook) {
@@ -87,8 +84,6 @@ class WebhookService
         }
     }
 
-    /**
-     */
     public function test(Webhook $webhook)
     {
 

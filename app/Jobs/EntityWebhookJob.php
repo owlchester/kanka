@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\User;
