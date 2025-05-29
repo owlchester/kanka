@@ -14,6 +14,8 @@ class Grid extends Component
     public function __construct(
         public ?string $id = null,
         public ?string $type = null,
+        public ?string $show = null,
+        public ?string $xdata = null,
         public bool $hidden = false,
     ) {}
 

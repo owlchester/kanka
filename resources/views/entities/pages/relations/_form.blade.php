@@ -2,7 +2,7 @@
     {{ __('entities/relations.create.helper', ['name' => $entity->name]) }}
 </x-helper>@endif
 
-<x-grid>
+<x-grid xdata="{opened: {{ old('two_way', false) ? 'true' : 'false' }}}">
 @if(empty($relation))
     <x-forms.foreign
         field="targets"
@@ -35,19 +35,22 @@
     @include('cruds.fields.attitude', ['model' => $relation ?? null])
 
 @if(empty($relation) && (!isset($mirror) || $mirror == true))
-    <x-forms.field field="field-two-way" :label="__('entities/relations.fields.two_way')">
-        <x-checkbox :text="__('entities/relations.hints.two_way')">
-            <input type="checkbox" name="two_way" value="1" @if (old('two_way', false)) checked="checked" @endif data-animate="collapse" data-target="#two-way-relation" />
+    <x-forms.field
+        field="field-two-way"
+        :label="__('entities/relations.fields.two_way')">
+        <x-checkbox
+            :text="__('entities/relations.hints.two_way')">
+            <input type="checkbox" name="two_way" value="1" @if (old('two_way', false)) checked="checked" @endif @click="opened = !opened" />
         </x-checkbox>
     </x-forms.field>
 
     <div>
-        <div class="hidden" id="two-way-relation">
+        <div x-show="opened">
             <x-forms.field
                 field="target-relation"
                 :label="__('entities/relations.fields.target_relation')"
                 :helper="__('entities/relations.hints.target_relation')"
-                tooltip>
+                >
                 <input type="text" name="target_relation" value="{{ old('target_relation', $relation->target_relation ?? null) }}" maxlength="191" class="w-full" aria-label="{{ __('entities/relations.placeholders.target_relation') }}" placeholder="{{ __('entities/relations.placeholders.target_relation') }}" />
             </x-forms.field>
         </div>
