@@ -40,7 +40,9 @@ if (!empty($source) && $source->is_private) {
 @endphp
 
 <x-grid type="1/1">
-    @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['privacyToggle' => true])
+    @can('admin', $campaign)
+        @include('cruds.fields.privacy_callout', ['privacyToggle' => true])
+    @endif
 
     <x-alert type="warning" class="rounded-xl" id="entity-is-private" :hidden="!$hidden">
         <strong>{{ __('entities/permissions.privacy.warning') }}</strong>
@@ -48,7 +50,7 @@ if (!empty($source) && $source->is_private) {
         'admin' => '<a href="' . route(
             'campaigns.campaign_roles.admin',
             $campaign,
-        ) . '" target="_blank">' .
+        ) . '">' .
         \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>',
     ]) !!}</p>
     </x-alert>

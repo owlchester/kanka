@@ -16,7 +16,7 @@
             @if (!($log->action < 7 || $log->post))
                 @continue
             @endif
-            <div class="rounded p-4 shadow-xs bg-box entity-log flex flex-col gap-2">
+            <div class="rounded p-4 shadow-xs bg-box entity-log flex flex-col gap-2" x-data="{ opened: @if (!$expanded) false @else true @endif }">
                 <div class="log-title flex gap-2">
                     <div class="grow font-extrabold action">
                         {!! __('entities/logs.actions.' . $log->actionCode()) !!}
@@ -48,19 +48,19 @@
                     </div>
                     <div class="">
                         @if ($campaign->superboosted() && !empty($log->changes))
-                            <a href="#log-cta-{{ $log->id }}" data-animate="collapse" class="btn2 btn-xs btn-outline">
+                            <a @click="opened = !opened" class="btn2 btn-xs btn-outline">
                                 <x-icon class="fa-regular fa-eye" />
                                 {{ __('entities/logs.actions.reveal') }}
                             </a>
                         @elseif (!$campaign->superboosted())
-                            <a href="#log-cta-{{ $log->id }}" data-animate="collapse" class="btn btn-sm btn-outline">
+                            <a @click="opened = !opened" class="btn btn-sm btn-outline">
                                 <x-icon class="fa-regular fa-eye" />
                                 {{ __('entities/logs.actions.reveal') }}
                             </a>
                         @endif
                     </div>
                 </div>
-                <div class="log-cta @if (!$expanded) hidden @endif" id="log-cta-{{ $log->id }}">
+                <div class="log-cta" x-show="opened" id="log-cta-{{ $log->id }}">
                     @if ($campaign->superboosted() && !empty($log->changes))
                         <p class="text-neutral-content">{{ __('history.helpers.changes') }}</p>
                         <ul>

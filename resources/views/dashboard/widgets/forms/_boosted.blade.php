@@ -3,7 +3,7 @@
         @include ('partials.boost_icon')
     </div>
     <div>
-        <p class="">{!! __('callouts.premium.multiple', ['campaign' => $campaign]) !!}</p>
+        <p class="">{!! __('callouts.premium.multiple', ['campaign' => $campaign->name]) !!}</p>
 
         @can('boost', auth()->user())
             <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-sm">

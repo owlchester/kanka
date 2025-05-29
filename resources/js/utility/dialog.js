@@ -101,6 +101,8 @@ const loadDialogContent = (url, target) => {
             } else {
                 document.dispatchEvent(dialogLoadedEvent);
             }
+            Alpine.initTree(target);
+            console.log('alpine triggered on', target);
         });
 };
 

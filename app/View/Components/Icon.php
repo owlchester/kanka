@@ -20,6 +20,7 @@ class Icon extends Component
         public ?string $link = null,
         public ?string $size = null,
         public ?string $label = null,
+        public ?string $show = null,
     ) {}
 
     /**

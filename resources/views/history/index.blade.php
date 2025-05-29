@@ -56,7 +56,7 @@
                     <div class="font-bold">{{ $log->created_at->format('M d, Y') }}</div>
                     <div class="rounded bg-box border border-b-0 ">
                 @endif
-                <div class="p-2 border-solid border-b">
+                <div class="p-2 border-solid border-b" x-data="{opened: false}">
                     <div class="flex justify-center items-center gap-2 {{ $count > 0 && !$superboosted ? 'blur' : null }}">
                         <div class="flex-none rounded-full {{ $log->actionBackground() }} inline-block text-center text-xs p-1 h-6 w-6 ">
                             <x-icon class="fa-solid {{ $log->actionIcon() }}" />
@@ -95,10 +95,11 @@ if (!$log->entity) {
                         </div>
                         @if(!empty($log->changes))
                             <div class="flex-end">
-                                <a href="#log-{{ $log->id }}" data-animate="collapse" data-target="#log-{{ $log->id }}">
-                                    <x-icon class="fa-solid fa-eye" />
+                                <span class="btn2 btn-xs btn-outline" @click="opened = !opened">
+                                    <x-icon class="fa-regular fa-eye" show="!opened" />
+                                    <x-icon class="fa-regular fa-eye-slash" show="opened" />
                                     {{ __('entities/logs.actions.reveal') }}
-                                </a>
+                                </span>
                             </div>
                         @endif
                         <div class="text-xs text-muted flex-end text-right">
@@ -112,7 +113,7 @@ if (!$log->entity) {
                         </div>
                     </div>
                     @if (!empty($log->changes) && $superboosted)
-                    <div id="log-{{ $log->id }}" class="py-2 flex flex-col gap-2 hidden">
+                    <div x-show="opened" class="py-2 flex flex-col gap-2">
                         <p class="text-neutral-content">{{ __('history.helpers.changes') }}</p>
                         @foreach ($log->changes as $attribute => $value)
                             @if (is_array($value)) @continue @endif

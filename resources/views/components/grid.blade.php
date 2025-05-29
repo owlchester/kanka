@@ -6,6 +6,8 @@
 {{ $attributes->get('class') }}
 @if ($hidden) hidden @endif"
 @if ($id) id="{{ $id }}" @endif
+@if ($show) x-show="{{ $show }}" @endif
+@if ($xdata) x-data="{{ $xdata }}" @endif
 >
     {!! $slot !!}
 </div>
