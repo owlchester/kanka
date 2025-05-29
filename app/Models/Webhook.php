@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\WebhookAction;
 use App\Facades\CampaignLocalization;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SortableTrait;
@@ -23,6 +24,7 @@ use Illuminate\Support\Arr;
  */
 class Webhook extends Model
 {
+    use Blameable;
     use HasCampaign;
     use Paginatable;
     use SortableTrait;
