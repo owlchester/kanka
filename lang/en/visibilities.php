@@ -10,5 +10,5 @@ return [
     ],
     'title'     => 'Updating visibility',
     'toast'     => 'Successfully updated visibility.',
-    'tooltip'   => 'Click to learn about the various visibility options.',
+    'tooltip'   => 'Click to learn about the various visibility options and what they mean in our documentation.',
 ];

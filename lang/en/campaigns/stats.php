@@ -17,7 +17,6 @@ return [
         'creator'   => 'Created by',
         'general'   => 'General',
     ],
-    'pitch'         => 'Track your worldbuilding progress against our campaign achievements.',
     'title2'        => 'Statistics',
     'titles'        => [
         'calendars' => 'Time Keeper level :level',

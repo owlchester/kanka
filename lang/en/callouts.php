@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions' => [
+        'subscription' => 'Learn more about subscriptions',
+    ],
     'booster'   => [
         'actions'       => [
             'boost'         => 'Boost :campaign',
@@ -23,7 +26,7 @@ return [
         ],
     ],
     'premium'   => [
-        'learn-more'    => 'What are premium campaigns?',
+        'learn-more'    => 'Learn more about premium campaigns',
         'limitation'    => 'To access this feature, premium features need to be enabled for :campaign.',
         'multiple'      => 'To access these features, premium features need to be enabled for :campaign..',
         'title'         => 'Premium feature',

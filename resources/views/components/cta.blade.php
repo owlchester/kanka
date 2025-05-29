@@ -1,6 +1,4 @@
 <div class="@if (request()->ajax()) max-w-2xl @endif p-5 rounded-xl text-center text-base bg-box shadow-xs flex flex-col gap-5">
-
-
     @if ($legacy)
         <h4 class="text-2xl">
             <x-icon class="fa-regular fa-rocket text-boost" />
@@ -73,9 +71,14 @@
                     {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
                 </a>
             @else
-                <a href="https://kanka.io/premium" class="btn2 bg-boost text-white btn-block">
-                    {!! __('callouts.premium.learn-more') !!}
-                </a>
+                <div class="flex flex-col md:grid grid-cols-2 gap-4">
+                    <a href="https://kanka.io/premium" class="btn2 btn-outline">
+                        {!! __('callouts.premium.learn-more') !!}
+                    </a>
+                    <a href="{{ route('settings.subscription', ['from' => 'cta', 'c' => $campaign->id]) }}" class="btn2 bg-boost text-white">
+                        {{ __('callouts.actions.subscription') }}
+                    </a>
+                </div>
             @endif
         @endif
     @endif

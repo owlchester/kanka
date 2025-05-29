@@ -23,9 +23,11 @@ use \Illuminate\Support\Arr;
             <x-learn-more url="features/campaigns/achievements.html" />
         </div>
         @if (!$campaign->superboosted())
-            <x-cta :campaign="$campaign" superboost="true">
-                <p>{{ __('campaigns/stats.pitch') }}</p>
-            </x-cta>
+            <x-premium-cta :campaign="$campaign" superboost>
+                <x-slot name="description">
+                    {{ __('campaigns/achievements.pitch') }}
+                </x-slot>
+            </x-premium-cta>
         @else
 
         <div class="flex flex-wrap gap-5">
