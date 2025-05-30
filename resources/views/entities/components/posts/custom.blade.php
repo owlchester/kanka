@@ -14,7 +14,13 @@ $entityTags = $post->visibleTags;
         </h3>
         <div class="post-buttons flex items-center gap-2 flex-wrap">
             @auth
-                @include('icons.visibility', ['icon' => $post->visibilityIcon('')])
+                @can('visibility', $post)
+                    <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
+                    @include('icons.visibility', ['icon' => $post->visibilityIcon()])
+                </span>
+                @else
+                    @include('icons.visibility', ['icon' => $post->visibilityIcon()])
+                @endif
                 <div class="dropdown">
                     <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-tree="escape">
                         <x-icon class="fa-regular fa-ellipsis-v" />
