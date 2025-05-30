@@ -17,6 +17,7 @@ return [
             'premium' => 20,
         ],
         'modules' => env('APP_MODULE_LIMIT', 5),
+        'export' => 6, // hours after which exports get deleted
     ],
 
     /**

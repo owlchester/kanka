@@ -27,7 +27,7 @@
             @if($plugin->hasUpdate())
                 <x-form :action="['campaign_plugins.update', $campaign, $plugin]" class="inline-block">
                     <button type="submit" class="btn2 btn-primary btn-sm">
-                        <x-icon class="fa-solid fa-download" />
+                        <x-icon class="fa-regular fa-download" />
                         {{ __('campaigns/plugins.actions.update') }}
                     </button>
                 </x-form>

@@ -19,7 +19,7 @@
         <div class="flex-grow p-2" v-html="notification.text"></div>
 
         <div class="flex-none p-2 cursor-pointer dismissable" v-on:click="dismiss(notification)" v-if="!is_loading" :title="notification.dismiss_text">
-            <i class="fa-solid fa-times" aria-hidden="true"></i>
+            <i class="fa-regular fa-times" aria-hidden="true"></i>
         </div>
         <div class="flex-none p-2" v-else>
             <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
@@ -49,7 +49,11 @@ const backgroundClass = (notification) => {
     return css + ' unread';
 };
 const iconClass = (notification) => {
-    return 'fa-solid fa-' + notification.icon;
+    let icon = 'fa-regular fa-' + notification.icon;
+    if (notification.colour === 'red') {
+        icon += ' text-red';
+    }
+    return icon;
 };
 const dismiss = (notification) => {
     is_loading.value = true;

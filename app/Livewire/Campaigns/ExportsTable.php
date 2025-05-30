@@ -4,6 +4,7 @@ namespace App\Livewire\Campaigns;
 
 use App\Models\Campaign;
 use App\Models\CampaignExport;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -102,6 +103,12 @@ class ExportsTable extends Component
             return '';
         }
         if ($model->path && Storage::disk('s3')->exists($model->path)) {
+            // Sometimes there are bugs and a job doesn't get queued to delete the file.
+            // This is a dirty hack in the meantime
+            if ($model->created_at->diffInHours(Carbon::now()) > config('limits.campaigns.export')) {
+                Storage::disk('s3')->delete($model->path);
+                return '';
+            }
             if (Storage::disk('s3')->visibility($model->path) == 'private') {
                 Storage::disk('s3')->setVisibility($model->path, 'public');
             }

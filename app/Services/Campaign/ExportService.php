@@ -423,7 +423,7 @@ class ExportService
             'green',
             [
                 'link' => route('campaign.export', $this->campaign),
-                'time' => 60,
+                'time' => 120,
                 'campaign' => $this->campaign->name,
             ]
         ));
@@ -465,8 +465,7 @@ class ExportService
         if (app()->hasDebugModeEnabled()) {
             return;
         }
-        //        unlink($this->path);
-        //        unset($this->path);
+        unlink($this->path);
     }
 
     /**

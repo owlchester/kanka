@@ -22,7 +22,7 @@
                 <x-learn-more url="features/campaigns/export.html" />
                 @can('export', $campaign)
                     <a href="#" class="btn2 btn-sm btn-primary" data-toggle="dialog" data-target="export-confirm">
-                        <x-icon class="fa-solid fa-download" />
+                        <x-icon class="fa-regular fa-download" />
                         {{ __('campaigns/export.actions.export') }}
                     </a>
                 @endcan
