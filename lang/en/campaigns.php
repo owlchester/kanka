@@ -128,6 +128,7 @@ return [
         'no-admin-left'     => 'Leaving the campaign isn\'t possible because doing so would leave it without any admins. Add another member to the admin role first.',
         'success'           => 'You have left :name.',
         'title'             => 'Leaving the campaign',
+        'action' => 'Leave the campaign',
     ],
     'members'                           => [
         'actions'               => [

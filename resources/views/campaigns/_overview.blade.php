@@ -69,7 +69,7 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
             subtitle="{{ __('users/profile.fields.member_since', ['date' => $campaign->members()->where('user_id', auth()->user()->id)->first()?->created_at?->isoFormat('MMMM D, Y')]) }}"
             :campaign="$campaign"
             :url="route('campaign.leave', $campaign)"
-            :urlTooltip="__('campaigns.leave.title')"
+            :urlTooltip="__('campaigns.leave.action')"
             urlIcon="fa-regular fa-person-walking"
             ajax
         ></x-infoBox>
