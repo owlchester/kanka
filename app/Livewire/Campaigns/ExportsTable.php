@@ -107,6 +107,7 @@ class ExportsTable extends Component
             // This is a dirty hack in the meantime
             if ($model->created_at->diffInHours(Carbon::now()) > config('limits.campaigns.export')) {
                 Storage::disk('s3')->delete($model->path);
+
                 return '';
             }
             if (Storage::disk('s3')->visibility($model->path) == 'private') {
