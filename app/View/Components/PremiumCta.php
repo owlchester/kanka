@@ -15,8 +15,7 @@ class PremiumCta extends Component
     public function __construct(
         public Campaign $campaign,
         public bool $superboosted = false
-    )
-    {
+    ) {
         //
     }
 
