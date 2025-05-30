@@ -39,7 +39,7 @@ class MapLayerApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $map->entity);
 
-        if (!auth()->user()->can('addLayer', [$map, $campaign])) {
+        if (! auth()->user()->can('addLayer', [$map, $campaign])) {
             return response()->json(['error' => 'Max amount of map layers reached']);
         }
 

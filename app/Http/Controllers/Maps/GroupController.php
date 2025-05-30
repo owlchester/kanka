@@ -53,7 +53,7 @@ class GroupController extends Controller
     {
         $this->authorize('update', $map->entity);
 
-        if (!auth()->user()->can('addGroup', [$map, $campaign])) {
+        if (! auth()->user()->can('addGroup', [$map, $campaign])) {
             return view('maps.form._groups_max')
                 ->with('campaign', $campaign)
                 ->with('map', $map)
@@ -75,7 +75,7 @@ class GroupController extends Controller
             return response()->json(['success' => true]);
         }
 
-        if (!auth()->user()->can('addGroup', [$map, $campaign])) {
+        if (! auth()->user()->can('addGroup', [$map, $campaign])) {
             return view('maps.form._groups_max')
                 ->with('campaign', $campaign)
                 ->with('map', $map)

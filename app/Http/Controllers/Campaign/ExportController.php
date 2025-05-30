@@ -49,7 +49,7 @@ class ExportController extends Controller
         return redirect()
             ->route('campaign.export', $campaign)
             ->withSuccess(__('campaigns/export.success', [
-                'admin' => \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role'))
+                'admin' => \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
             ]));
     }
 }

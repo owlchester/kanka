@@ -38,7 +38,7 @@ class MapGroupApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $map->entity);
-        if (!auth()->user()->can('addGroup', [$map, $campaign])) {
+        if (! auth()->user()->can('addGroup', [$map, $campaign])) {
             return response()->json(['error' => 'Max amount of map groups reached']);
         }
 

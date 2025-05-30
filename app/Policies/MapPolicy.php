@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Map;
 use App\Models\Campaign;
+use App\Models\Map;
 use App\Models\User;
 
 class MapPolicy extends MiscPolicy
@@ -19,6 +19,7 @@ class MapPolicy extends MiscPolicy
         if ($campaign->boosted()) {
             $max = config('limits.campaigns.maps.groups.premium');
         }
+
         return $map->groups->count() < $max;
     }
 
@@ -28,6 +29,7 @@ class MapPolicy extends MiscPolicy
         if ($campaign->boosted()) {
             $max = config('limits.campaigns.maps.layers.premium');
         }
+
         return $map->layers->count() < $max;
     }
 }

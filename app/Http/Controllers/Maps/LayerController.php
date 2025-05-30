@@ -58,7 +58,7 @@ class LayerController extends Controller
     {
         $this->authorize('update', $map->entity);
 
-        if (!auth()->user()->can('addLayer', [$map, $campaign])) {
+        if (! auth()->user()->can('addLayer', [$map, $campaign])) {
             return view('maps.form._layers_max')
                 ->with('campaign', $campaign)
                 ->with('map', $map)
@@ -83,7 +83,7 @@ class LayerController extends Controller
             return response()->json(['success' => true]);
         }
 
-        if (!auth()->user()->can('addLayer', [$map, $campaign])) {
+        if (! auth()->user()->can('addLayer', [$map, $campaign])) {
             return view('maps.form._groups_max')
                 ->with('campaign', $campaign)
                 ->with('map', $map)

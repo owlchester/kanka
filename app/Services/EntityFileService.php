@@ -37,7 +37,7 @@ class EntityFileService
         $files = [];
         foreach ($uploadedFiles as $uploadedFile) {
             // Already above max capacity?
-            if (!$request->user()->can('addFile', [$this->entity, $this->campaign])) {
+            if (! $request->user()->can('addFile', [$this->entity, $this->campaign])) {
                 throw (new TranslatableException('crud.files.errors.max'))
                     ->setOptions(['max' => $this->campaign->maxEntityFiles()]);
             }
