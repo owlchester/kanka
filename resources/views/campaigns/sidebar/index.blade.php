@@ -32,7 +32,11 @@
 
             <x-tutorial code="sidebar_reorder">
                 <p>
-                    {{ __('campaigns/sidebar.helpers.reordering') }}
+                    {!! __('campaigns/sidebar.helpers.reordering')  !!}
+                </p>
+                <p>
+                    <x-icon class="fa-regular fa-circle-info" />
+                    {!! __('campaigns/sidebar.helpers.bookmarks', ['position' => '<strong>' . __('bookmarks.fields.position') . '</strong>'])  !!}
                 </p>
             </x-tutorial>
             <x-form :action="['campaign-sidebar-save', $campaign]" class="sidebar-setup form-inline form-mobile-inline">

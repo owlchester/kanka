@@ -464,18 +464,6 @@ class Campaign extends Model
     }
 
     /**
-     * Determine if a campaign can be exported, or if it already hit the daily maximum
-     */
-    public function exportable(): bool
-    {
-        if (! app()->isProduction()) {
-            return true; // $this->queuedCampaignExports->count() === 0;
-        }
-
-        return empty($this->export_date) || ! $this->export_date->isToday() && $this->queuedCampaignExports->count() === 0;
-    }
-
-    /**
      * Get the value of the follower variable
      */
     public function follower(): int

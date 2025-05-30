@@ -7,7 +7,8 @@ return [
     'call-to-action'    => 'Customise the order, icons and names of elements in the campaign\'s sidebar.',
     'helpers'           => [
         'image'         => 'Add an image to represent the campaign. This image will be used in the sidebar and in the campaign switcher interface. You can change this at any time by editing the campaign.',
-        'reordering'    => 'Reorder the sidebar by drag and dropping the left-side icons.',
+        'reordering'    => 'You can reorder the sidebar by dragging and dropping the icons on the left of each row.',
+        'bookmarks' => 'Bookmarks aren’t listed here because each one has its own :position setting that determines where it appears in the sidebar.',
     ],
     'image-success'     => 'The new campaign image has been saved. This image can be changed again by editing the campaign.',
     'reset'             => [
