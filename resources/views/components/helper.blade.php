@@ -2,7 +2,7 @@
     {!! $slot !!}
 
     @if (!empty($docs))
-        <a href="{{ $docs }}" class="">
+        <a href="https://docs.kanka.io/en/latest/{{ $docs }}" class="">
             <x-icon class="fa-regular fa-book" />
             {{ __('general.documentation') }}
         </a>

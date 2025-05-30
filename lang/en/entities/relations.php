@@ -62,7 +62,6 @@ return [
     'helpers'           => [
         'description'   => 'Detail the nature of the connection between the two entities.',
         'no_relations'  => 'This entity doesn\'t currently have any connection to other entities of the campaign.',
-        'popup'         => 'Entities of the campaign can be linked together using connections. These can have a description, an attitude rating, a visibility to control who sees a connection, and more.',
     ],
     'hints'             => [
         'attitude'          => 'This optional field can be used to define the default order connections appear in by descending order.',
