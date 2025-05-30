@@ -10,6 +10,7 @@ return [
         'left'  => 'Pozostało :amount',
     ],
     'create'    => [
+        'helper'            => 'Dodaje jedną lub więcej zdolności do :name.',
         'success'           => 'Zdolność :ability dodano do :entity',
         'success_multiple'  => 'Zdolności :ability dodano do :entity',
         'title'             => 'Dodaj zdolności dla :name',

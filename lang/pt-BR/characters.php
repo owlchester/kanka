@@ -12,9 +12,7 @@ return [
     'destroy'       => [],
     'dice_rolls'    => [],
     'edit'          => [],
-    'families'      => [
-        'title' => 'Gerenciar famílias de :name',
-    ],
+    'families'      => [],
     'fields'        => [
         'age'                       => 'Idade',
         'is_appearance_pinned'      => 'Aparência fixada',
@@ -93,7 +91,6 @@ return [
         'reorder'   => [
             'success'   => 'Raças de personagens atualizadas com sucesso',
         ],
-        'title'     => 'Gerenciar raças de :name',
     ],
     'sections'      => [
         'appearance'    => 'Aparência',

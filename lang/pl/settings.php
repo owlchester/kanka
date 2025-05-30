@@ -4,8 +4,9 @@ return [
     'account'       => [
         '2fa'               => [
             'actions'               => [
-                'disable'   => 'Wyłącz autoryzację dwueatpową',
-                'finish'    => 'Skończ konfigurację i się zaloguj',
+                'disable'           => 'Wyłącz autoryzację dwueatpową',
+                'disable-confirm'   => 'Kliknij ponownie by potwierdzić',
+                'finish'            => 'Skończ konfigurację i się zaloguj',
             ],
             'activation_helper'     => 'Wykonuj poniższe polecenia by skonfigurować autoryzację dwuetapową.',
             'disable'               => [

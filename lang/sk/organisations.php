@@ -17,7 +17,13 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'   => 'Pridať člena',
+            'add'           => 'Pridať člena',
+            'add_multiple'  => 'Pridať členov',
+        ],
+        'create'        => [
+            'helper'            => 'Pridať jedného alebo viacerých členov k :name.',
+            'success_multiple'  => '{1} Pridaný :count člen k :name.|[2,4] Pridaní :count členovia k :name.|[5,*] Pridaných 5 členov k :name.',
+            'title_multiple'    => 'Noví členovia',
         ],
         'destroy'       => [
             'success'   => 'Člen odstránený z organizácie.',

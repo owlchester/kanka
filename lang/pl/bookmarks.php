@@ -24,6 +24,7 @@ return [
     ],
     'helpers'           => [
         'active'            => 'Nieaktywne skróty nie pojawią się w menu bocznym',
+        'css'               => 'Określa klasę CSS, która zostanie dodana do skrótu umieszczonego w menu bocznym.',
         'dashboard'         => 'Skrót prowadzący do jednego z własnych pulpitów kampanii. Ta opcja dostępna jest tylko w :boosted kampanii.',
         'default_dashboard' => 'Odnośnik prowadzi do pulpitu domyślnego. Pulpity własne należy dopiero wybrać.',
         'entity'            => 'Stwórz skrót prowadzący wprost do jakiegoś elementu. Pole :tab pozwala decydować, która zakładka się wyświetli. Pole :menu pozwala określić, która podstrona zostanie otwarta.',
@@ -47,6 +48,13 @@ return [
         'title'     => 'Zmiana kolejności skrótów',
     ],
     'show'              => [],
+    'targets'           => [
+        'dashboard' => 'Jeden z pulpitów kampanii',
+        'entity'    => 'Pojedynczy element',
+        'random'    => 'Losowy element',
+        'select'    => 'Wybierz opcję',
+        'type'      => 'Lista elementów należących do określonego typu/modułu',
+    ],
     'visibilities'      => [
         'is_active' => 'Pokaż skróty w menu bocznym',
     ],

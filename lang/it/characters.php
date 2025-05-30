@@ -16,7 +16,6 @@ return [
         'reorder'   => [
             'success'   => 'Famiglie del personaggio aggiornate con successo.',
         ],
-        'title'     => 'Gestisci le famiglie di :name',
     ],
     'fields'        => [
         'age'                       => 'Età',
@@ -96,7 +95,6 @@ return [
         'reorder'   => [
             'success'   => 'Stirpi del personaggio aggiornate con successo',
         ],
-        'title'     => 'Gestisci le stirpi di :name',
     ],
     'sections'      => [
         'appearance'    => 'Aspetto',

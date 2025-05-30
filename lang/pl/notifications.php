@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'apps'              => [
+        'discord'   => [
+            'invalid'   => 'Token Discord stracił ważność. Zsynchronizuj Discord i Kankę ponownie.',
+        ],
+    ],
     'campaign'          => [
         'application'           => [
             'approved'              => 'Zatwierdzono twoje zgłoszenie do kampanii :campaign.',
@@ -61,6 +66,12 @@ return [
         'chunked'   => 'Zakończono przetwarzanie mapy :name i można już jej używać.',
     ],
     'no_notifications'  => 'Nie masz powiadomień',
+    'plugins'           => [
+        'comments'  => [
+            'new_comment'   => ':user zamieścił nowy komentarz o dodatku :plugin.',
+            'new_reply'     => ':user odpowiedział na twój komentarz o :plugin',
+        ],
+    ],
     'subscriptions'     => [
         'charge_fail'   => 'Wystąpił problem w czasie przetwarzania płatności. Odczekaj chwilę i spróbuj jeszcze raz. Jeżeli nic się nie zmieni, skontaktuj się z nami.',
         'deleted'       => 'Po zbyt wielu nieudanych próbach obciążenia twojej karty skasowaliśmy twoją subskrypcję Kanki. Wejdź do ustawień subskrypcji i uaktualnij metodę płatności.',

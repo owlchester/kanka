@@ -16,7 +16,6 @@ return [
         'reorder'   => [
             'success'   => 'Les familles du personage ont été mises à jour avec succès.',
         ],
-        'title'     => 'Gérer les familles de :name',
     ],
     'fields'        => [
         'age'                       => 'Age',
@@ -32,8 +31,8 @@ return [
         'traits'                    => 'Traits',
     ],
     'helpers'       => [
-        'age'   => 'Il est possible de lier cette entité avec un calendrier de la campagne pour automatiquement calculer l\'âge. :more.',
-        'personality_visible' => 'Si coché, les traits de personnalités seront visibles pour tous. Sinon, seuls les membres du rôle :admin de la campagne pourront voir les traits de personnalité de ce personnage.',
+        'age'                   => 'Il est possible de lier cette entité avec un calendrier de la campagne pour automatiquement calculer l\'âge. :more.',
+        'personality_visible'   => 'Si coché, les traits de personnalités seront visibles pour tous. Sinon, seuls les membres du rôle :admin de la campagne pourront voir les traits de personnalité de ce personnage.',
     ],
     'hints'         => [
         'is_appearance_pinned'      => 'Si sélectionné, le physique du personnage sera visible sur la page vue d\'ensemble sous l\'entrée.',
@@ -97,7 +96,6 @@ return [
         'reorder'   => [
             'success'   => 'Mise à jour réussie des races de personnage.',
         ],
-        'title'     => 'Gérer les races de :name',
     ],
     'sections'      => [
         'appearance'    => 'Physique',

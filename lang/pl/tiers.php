@@ -2,6 +2,11 @@
 
 return [
     'actions'   => [
+        'pay'       => [
+            'monthly'   => 'Płatność miesięczna',
+            'save'      => '2 miesiące za darmo',
+            'yearly'    => 'Płatność roczna',
+        ],
         'subscribe' => [
             'choose'    => 'Wybierz :tier',
             'monthly'   => ':tier miesięcznie',
@@ -15,6 +20,7 @@ return [
         'discord'           => 'Role na Discordzie',
         'feature_influence' => 'Wpływ na nowe funkcje',
         'file_size'         => 'Dodawanie plików o rozmiarze :size',
+        'import'            => 'Import kampanii',
         'map_size'          => 'Dodawanie map o rozmiarze :size',
         'nice_image'        => 'Domyślne ikony elementów',
         'no_ads'            => 'Brak reklam',
@@ -29,6 +35,11 @@ return [
     'ribbons'   => [
         'best-value'    => 'Najkorzystniejsza oferta',
         'current'       => 'Obecna subskrypcja',
+    ],
+    'target'    => [
+        'elemental' => 'Dla koneserów światotwórstwa pracujących jednocześnie z wieloma rozległymi światami i wielkimi kampaniami.',
+        'owlbear'   => 'Dla samotnych światotwórców, którzy chcą dodatkowych opcji w głównej kampanii.',
+        'wyvern'    => 'Dla mistrzów gry prowadzących kilka kampanii oraz uczestników grupowych projektów narracyjnych.',
     ],
     'toggle'    => [],
 ];

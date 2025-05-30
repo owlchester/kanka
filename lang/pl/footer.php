@@ -18,6 +18,7 @@ return [
     'made'              => 'Stworzono z ❤️ w Genewie, Szwajcaria',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Platforma',
+    'plugins'           => 'Biblioteka dodatków',
     'premium'           => 'Kampanie premium',
     'press-kit'         => 'Dla prasy',
     'pricing'           => 'Cena subskrybcji',
