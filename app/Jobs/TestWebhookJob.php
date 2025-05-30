@@ -21,8 +21,6 @@ class TestWebhookJob implements ShouldQueue
 
     public int $campaignId;
 
-    public int $action;
-
     public User $user;
 
     public Webhook $webhook;
@@ -39,7 +37,7 @@ class TestWebhookJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Campaign $campaign, User $user, Webhook $webhook, int $action)
+    public function __construct(Campaign $campaign, User $user, Webhook $webhook)
     {
         // Can't save the entity directly into the job because of the child() function not returning a
         // string? Maybe something to do with the to array part of the queue.
