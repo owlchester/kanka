@@ -58,11 +58,11 @@ class LayerController extends Controller
     {
         $this->authorize('update', $map->entity);
 
-        if ($map->layers->count() >= $campaign->maxMapLayers()) {
+        if (!auth()->user()->can('addLayer', [$map, $campaign])) {
             return view('maps.form._layers_max')
                 ->with('campaign', $campaign)
                 ->with('map', $map)
-                ->with('max', Campaign::LAYER_COUNT_MAX);
+                ->with('max', config('limits.campaigns.maps.layers.premium'));
         }
 
         return view(
@@ -83,11 +83,11 @@ class LayerController extends Controller
             return response()->json(['success' => true]);
         }
 
-        if ($map->layers->count() >= $campaign->maxMapLayers()) {
+        if (!auth()->user()->can('addLayer', [$map, $campaign])) {
             return view('maps.form._groups_max')
                 ->with('campaign', $campaign)
                 ->with('map', $map)
-                ->with('max', Campaign::LAYER_COUNT_MAX);
+                ->with('max', config('limits.campaigns.maps.layers.premium'));
         }
 
         $model = new MapLayer;

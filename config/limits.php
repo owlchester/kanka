@@ -3,7 +3,7 @@
 return [
     'campaigns' => [
         /**
-         * Limits in place for standard campaigns
+         * Limits in place for standard campaigns. Premium campaigns are unlimited
          */
         'members' => 10,
         'roles' => 3,
@@ -18,6 +18,17 @@ return [
         ],
         'modules' => env('APP_MODULE_LIMIT', 5),
         'export' => 6, // hours after which exports get deleted
+        'maps' => [
+            // Maximum number of groups per map
+            'groups' => [
+                'standard' => 1,
+                'premium' => 10,
+            ],
+            'layers' => [
+                'standard' => 1,
+                'premium' => 10,
+            ],
+        ],
     ],
 
     /**
@@ -35,4 +46,12 @@ return [
     ],
 
     'pagination' => env('APP_PAGINATION', 15),
+
+    'api' => [
+        // Throttling values of requests per minute before a 421 "back down" response is thrown
+        'throttle' => [
+            'subscriber' => env('API_THROTTLE_SUBSCRIBER_LIMIT', 90),
+            'default' => env('API_THROTTLE_LIMIT', 30),
+        ],
+    ],
 ];

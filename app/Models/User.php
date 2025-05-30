@@ -232,7 +232,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function getRateLimitAttribute(): int
     {
-        return $this->isGoblin() ? 90 : 30;
+        return $this->isGoblin() ? config('limits.api.throttle.subscriber') : config('limits.api.throttle.default');
     }
 
     /**

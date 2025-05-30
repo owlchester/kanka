@@ -110,4 +110,9 @@ class EntityPolicy
             ||
             $perms->whereIn('role_id', $roleIds)->count() == 1;
     }
+
+    public function addFile(User $user, Entity $entity, Campaign $campaign): bool
+    {
+        return $entity->assets()->file()->count() < $campaign->maxEntityFiles();
+    }
 }

@@ -203,11 +203,10 @@ class AssetController extends Controller
      */
     protected function createFile(Campaign $campaign, Entity $entity)
     {
-        $max = $campaign->maxEntityFiles();
-        if ($entity->assets()->file()->count() >= $max) {
+        if (!auth()->user()->can('addFile', [$entity, $campaign])) {
             return view('entities.pages.files.max')
                 ->with('campaign', $campaign)
-                ->with('max', $max);
+                ->with('max', $campaign->maxEntityFiles());
         }
 
         return view('entities.pages.files.create')

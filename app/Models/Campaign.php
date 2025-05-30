@@ -84,10 +84,6 @@ class Campaign extends Model
 
     public const int VISIBILITY_PUBLIC = 3;
 
-    public const int LAYER_COUNT_MIN = 1;
-
-    public const int LAYER_COUNT_MAX = 10;
-
     protected $fillable = [
         'name',
         'slug',
@@ -318,18 +314,6 @@ class Campaign extends Model
     public function getHideHistoryAttribute()
     {
         return Arr::get($this->ui_settings, 'hide_history', false);
-    }
-
-    /**
-     * Number of layers a map of a campaign can have
-     */
-    public function maxMapLayers(): int
-    {
-        if ($this->boosted()) {
-            return self::LAYER_COUNT_MAX;
-        }
-
-        return self::LAYER_COUNT_MIN;
     }
 
     public function maxEntityFiles(): int
