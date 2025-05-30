@@ -112,12 +112,15 @@ class ExportsTable extends Component
             if (Storage::disk('s3')->visibility($model->path) == 'private') {
                 Storage::disk('s3')->setVisibility($model->path, 'public');
             }
-            $html = '<a class="block break-all truncate" href="' . Storage::disk('s3')->url($model->path) . '">' . __('campaigns/export.actions.download') . '</a>';
+            $html = '<a class="flex items-center gap-1" href="' . Storage::disk('s3')->url($model->path) . '">' .
+                '<i class="fa-regular fa-download" aria-hidden="true"></i>' .
+                __('campaigns/export.actions.download') .
+                '</a>';
 
             return $html;
         }
 
-        return '<span class="text-neutral-content">' . __('campaigns/export.expired') . '</span>';
+        return '<span class="text-neutral-content italic">' . __('campaigns/export.expired') . '</span>';
     }
 
     public function sortIcon(): string
