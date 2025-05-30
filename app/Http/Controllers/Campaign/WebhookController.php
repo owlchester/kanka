@@ -176,7 +176,7 @@ class WebhookController extends Controller
     {
         $this->authorize('webhooks', $campaign);
 
-        TestWebhookJob::dispatch($campaign, auth()->user(), $webhook, $webhook->action);
+        TestWebhookJob::dispatch($campaign, auth()->user(), $webhook);
 
         return redirect()->route('webhooks.index', $campaign)
             ->with(
