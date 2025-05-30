@@ -24,8 +24,8 @@ foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) 
         </x-forms.field>
     </x-grid>
 @else
-    <x-cta :campaign="$campaign" minimal="1" image="0">
+    <x-premium-cta :campaign="$campaign">
         <p>{{ __('dashboard.dashboards.pitch') }}</p>
-    </x-cta>
+    </x-premium-cta>
 @endif
 </x-grid>

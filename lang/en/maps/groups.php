@@ -34,8 +34,14 @@ return [
         'title' => 'Groups of :name',
     ],
     'pitch'         => [
-        'error' => 'Max number of groups reached.',
-        'until' => 'Create up to :max groups to each map.',
+        'max' => [
+            'limit' => 'This map has reached its group limit',
+            'helper' => 'You can\'t add any more groups unless you remove an existing one.',
+        ],
+        'upgrade'   => [
+            'limit' => 'You\'ve reached the limit of :limit groups for this map',
+            'upgrade' => 'Upgrade to a premium campaign to add up to :limit groups and unlock even more creative flexibility.',
+        ]
     ],
     'placeholders'  => [
         'name'          => 'Shops, Treasure, NPCs',

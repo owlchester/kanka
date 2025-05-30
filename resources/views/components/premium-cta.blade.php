@@ -19,12 +19,5 @@
         </x-helper>
     </div>
 
-    <div class="flex flex-col sm:flex-row gap-3">
-        <a href="https://kanka.io/premium" class="btn2 btn-outline">
-            {!! __('callouts.premium.learn-more') !!}
-        </a>
-        <a href="{{ route('settings.subscription', ['f' => 'cta', 'w' => $campaign->id]) }}" class="btn2 bg-boost text-white">
-            {{ __('callouts.actions.subscription') }}
-        </a>
-    </div>
+    <x-premium-cta-footer :campaign="$campaign" />
 </div>

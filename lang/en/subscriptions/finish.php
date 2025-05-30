@@ -11,13 +11,13 @@ return [
     ],
     'discord' => [
         'title' => 'Get your Discord perks',
-        'helper' => 'As a subscriber, you unlock exclusive roles and private channels in our Discord community, but first, you’ll need to connect your Discord account.',
+        'helper' => 'As a subscriber, you unlock exclusive roles and private channels in our Discord community, but first, you\'ll need to connect your Discord account.',
         'action' => 'Connect your Discord account',
         'enjoy' => 'Head over to Discord to enjoy your new perks',
     ],
     'roadmap' => [
         'title' => 'Help shape the future of Kanka',
-        'helper' => 'We’re building Kanka for you. Check out the public roadmap and suggest or vote on features you’d love to see!',
+        'helper' => 'We\'re building Kanka for you. Check out the public roadmap and suggest or vote on features you\'d love to see!',
         'action' => 'View the roadmap & suggest features',
     ],
     'help' => [

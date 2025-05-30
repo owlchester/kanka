@@ -18,7 +18,7 @@ return [
     'helpers'       => [
         'primary'   => 'Setting one or several aliases on the entity will make it findable in the global search (top bar) and through :code mentions.',
     ],
-    'pitch'         => 'Create aliases for this entity to easily find it through the search and through mentions.',
+    'pitch'         => 'Add aliases to this entity to make it easier to find in search and when using mentions. Perfect for nicknames, titles, or alternate spellings.',
     'placeholders'  => [
         'name'  => 'New alias',
     ],

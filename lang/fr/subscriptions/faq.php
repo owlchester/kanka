@@ -2,15 +2,15 @@
 
 return [
     'cancellation'  => [
-        'answer'    => 'Absolument ! Ton abonnement te permet d’activer des campagnes premium dont tous les membres bénéficient. Peu importe leur propre abonnement, tous les participants d’une campagne premium profitent des fonctionnalités avancées, ce qui fait de Kanka une plateforme idéale pour la création de mondes en collaboration.',
+        'answer'    => 'Absolument ! Ton abonnement te permet d\'activer des campagnes premium dont tous les membres bénéficient. Peu importe leur propre abonnement, tous les participants d\'une campagne premium profitent des fonctionnalités avancées, ce qui fait de Kanka une plateforme idéale pour la création de mondes en collaboration.',
         'question'  => 'Est-ce que je peux annuler mon abonnement à tout moment?',
     ],
     'cost'          => [
-        'answer'    => 'Kanka propose trois niveaux d’abonnement nommés d’après des monstres de D&D: Owlbear, Wyvern et Elemental Les prix varient selon ta devise préférée (USD, EUR ou BRL). En choisissant un abonnement annuel plutôt qu’un paiement mensuel, tu bénéficies de deux mois gratuits.',
+        'answer'    => 'Kanka propose trois niveaux d\'abonnement nommés d\'après des monstres de D&D: Owlbear, Wyvern et Elemental Les prix varient selon ta devise préférée (USD, EUR ou BRL). En choisissant un abonnement annuel plutôt qu\'un paiement mensuel, tu bénéficies de deux mois gratuits.',
         'question'  => 'Combien coûte un abonnement?',
     ],
     'data'          => [
-        'answer'    => 'Rassure-toi, nous ne supprimons jamais tes données à la fin d’un abonnement. Les campagnes premium redeviennent simplement des campagnes standard, avec les fonctionnalités premium désactivées temporairement. Lorsque tu te réabonnes, toutes tes données et paramètres premium sont immédiatement restaurés, exactement comme tu les avais laissés.',
+        'answer'    => 'Rassure-toi, nous ne supprimons jamais tes données à la fin d\'un abonnement. Les campagnes premium redeviennent simplement des campagnes standard, avec les fonctionnalités premium désactivées temporairement. Lorsque tu te réabonnes, toutes tes données et paramètres premium sont immédiatement restaurés, exactement comme tu les avais laissés.',
         'question'  => 'Qu\'advient-il de mes données si j\'annule mon abonnement?',
     ],
     'discount'      => [
@@ -18,7 +18,7 @@ return [
         'question'  => 'Existe-t-il des réductions pour les abonnements annuels?',
     ],
     'downgrade'     => [
-        'answer'    => 'Tu peux modifier ton niveau d’abonnement à tout moment. En cas de mise à niveau, nous te facturerons uniquement la différence entre ton abonnement actuel et le nouveau plan pour le reste de ta période de facturation. En cas de rétrogradation, le nouveau tarif réduit prendra effet à la date de ton prochain renouvellement, sans interruption de tes avantages actuels.',
+        'answer'    => 'Tu peux modifier ton niveau d\'abonnement à tout moment. En cas de mise à niveau, nous te facturerons uniquement la différence entre ton abonnement actuel et le nouveau plan pour le reste de ta période de facturation. En cas de rétrogradation, le nouveau tarif réduit prendra effet à la date de ton prochain renouvellement, sans interruption de tes avantages actuels.',
         'question'  => 'Comment mettre à niveau ou rétrograder mon abonnement?',
     ],
     'fail'          => [
@@ -42,12 +42,12 @@ return [
         'question'  => 'Mes informations de paiement sont-elles sécurisées?',
     ],
     'sharing'       => [
-        'answer'    => 'Absolument ! Ton abonnement te permet d’activer des campagnes premium dont tous les membres bénéficient. Peu importe leur propre abonnement, tous les participants d’une campagne premium profitent des fonctionnalités avancées, ce qui fait de Kanka une plateforme idéale pour la création de mondes en collaboration.',
+        'answer'    => 'Absolument ! Ton abonnement te permet d\'activer des campagnes premium dont tous les membres bénéficient. Peu importe leur propre abonnement, tous les participants d\'une campagne premium profitent des fonctionnalités avancées, ce qui fait de Kanka une plateforme idéale pour la création de mondes en collaboration.',
         'question'  => 'Puis-je partager mon compte/abonnement avec d\'autres personnes?',
     ],
     'title'         => 'Questions fréquemment posées',
     'trial'         => [
-        'answer'    => 'Nous ne proposons pas d’essai gratuit traditionnel, mais la version gratuite de Kanka offre déjà de puissants outils de création de mondes et de gestion de campagnes pour bien commencer. Lorsque tu es prêt à aller plus loin, un abonnement débloque des fonctionnalités premium comme une limite d’upload d’images plus élevée, une expérience sans publicité, des rôles Discord exclusifs et d’autres améliorations pour ton monde.',
+        'answer'    => 'Nous ne proposons pas d\'essai gratuit traditionnel, mais la version gratuite de Kanka offre déjà de puissants outils de création de mondes et de gestion de campagnes pour bien commencer. Lorsque tu es prêt à aller plus loin, un abonnement débloque des fonctionnalités premium comme une limite d\'upload d\'images plus élevée, une expérience sans publicité, des rôles Discord exclusifs et d\'autres améliorations pour ton monde.',
         'question'  => 'Existe-t-il une version d\'essai gratuite ?',
     ],
     'update'        => [

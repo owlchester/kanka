@@ -14,7 +14,7 @@ return [
     ],
     'organise_play'         => [],
     'permissions'           => [
-        'answer'    => 'Absolument, c\'est ce pourquoi nous avons créé Kanka! Vous pouvez inviter n’importe qui à votre campagne, et leur donner des rôles et des permissions. Nous avons créé un système extrêmement flexible (vous pouvez à la fois utiliser des options de permission et de restriction) pour couvrir toutes les situations possibles.',
+        'answer'    => 'Absolument, c\'est ce pourquoi nous avons créé Kanka! Vous pouvez inviter n\'importe qui à votre campagne, et leur donner des rôles et des permissions. Nous avons créé un système extrêmement flexible (vous pouvez à la fois utiliser des options de permission et de restriction) pour couvrir toutes les situations possibles.',
         'question'  => 'Puis-je sélectionner les informations que mes joueurs peuvent voir?',
     ],
     'sections'              => [

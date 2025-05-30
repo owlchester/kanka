@@ -4,7 +4,7 @@ return [
     'actions'   => [
         'show-old'  => 'Changes',
     ],
-    'cta'       => 'Display a log of all the recent changes to the campaign.',
+    'cta'       => 'Keep track of everything that\'s changed in your campaign with a detailed activity log of recent edits, additions, and updates.',
     'empty'     => 'No value',
     'filters'   => [
         'all-actions'   => 'All actions',

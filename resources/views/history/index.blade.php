@@ -12,9 +12,9 @@
 @section('content')
     <x-grid type="1/1">
     @if (!$superboosted)
-        <x-cta :campaign="$campaign" superboost="true">
+        <x-premium-cta :campaign="$campaign" superboost>
             <p>{{ __('history.cta') }}</p>
-        </x-cta>
+        </x-premium-cta>
     @else
         <x-tutorial code="history" doc="https://docs.kanka.io/en/latest/features/history.html">
             <p>{!! __('history.helpers.base', ['amount' => 3]) !!}</p>

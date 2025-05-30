@@ -11,9 +11,9 @@ $options = [
 
 ?>
 @if(!$campaign->boosted())
-    <x-cta :campaign="$campaign">
+    <x-premium-cta :campaign="$campaign">
         <p>{{ __('entities/relations.call-to-action') }}</p>
-    </x-cta>
+    </x-premium-cta>
     <?php return ?>
 @endif
 

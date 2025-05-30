@@ -22,7 +22,7 @@ return [
             'editing_partial'   => '{0} :count/:total connections were updated|{1} :count/:total connection was updated.|[2,*] :count/:total connection were updated.',
         ],
     ],
-    'call-to-action'    => 'Visually explore the connections of this entity and how it\'s connected to the rest of the campaign.',
+    'call-to-action'    => 'Visually explore how this entity connects to others in your campaign. See relationships, mentions, and shared history in a dynamic and interactive map.',
     'connections'       => [
         'map_point'         => 'Map point',
         'mention'           => 'Mention',

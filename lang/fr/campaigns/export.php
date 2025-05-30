@@ -7,7 +7,7 @@ return [
     ],
     'confirm'       => [
         'title'     => 'Confirmation d\'export',
-        'warning'   => 'Tu es sur le point d’exporter les données de la campagne. Ce processus peut prendre beaucoup de temps selon la taille de la campagne. Tu peux continuer à utiliser Kanka pendant que nos serveurs génèrent l\'export.',
+        'warning'   => 'Tu es sur le point d\'exporter les données de la campagne. Ce processus peut prendre beaucoup de temps selon la taille de la campagne. Tu peux continuer à utiliser Kanka pendant que nos serveurs génèrent l\'export.',
     ],
     'errors'        => [
         'limit' => 'La campagne a déjà été exportée une fois aujourd\'hui. Exporter la campagne sera possible de nouveau demain.',

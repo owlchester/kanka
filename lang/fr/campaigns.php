@@ -286,7 +286,7 @@ return [
                 'gallery'       => [
                     'browse'    => 'Permettre de parcourir la galerie, et définir l\'image d\'entité depuis la galerie.',
                     'manage'    => 'Permettre l\'accès complet à la galerie, avec la possibilité de modifier et supprimer des images.',
-                    'upload'    => 'Permet de télécharger des images dans la galerie. L\'utilisateur ne verra que les images qu’il/elle a téléchargées si elles ne sont pas combinées avec l’autorisation de parcourir.',
+                    'upload'    => 'Permet de télécharger des images dans la galerie. L\'utilisateur ne verra que les images qu\'il/elle a téléchargées si elles ne sont pas combinées avec l\'autorisation de parcourir.',
                 ],
                 'manage'        => 'Permettre la gestion de la campagne tel qu\'un membre du rôle admin, sans permettre aux membres de supprimer la campagne.',
                 'members'       => 'Permettre l\'invitation de nouveaux membre à la campagne.',

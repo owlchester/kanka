@@ -122,9 +122,9 @@ $sizeOptions = [
                     @endif
                         <textarea name="custom_shape" class="w-full" rows="2" placeholder="{{ __('maps/markers.placeholders.custom_shape') }}">{!! \App\Facades\FormCopy::field('custom_shape')->string() ?: old('custom_shape', $model->custom_shape ?? null) !!}</textarea>
                     @else
-                        <x-cta :campaign="$campaign" image="0">
+                        <x-premium-cta :campaign="$campaign">
                             <p>{{ __('maps/markers.pitches.poly') }}</p>
-                        </x-cta>
+                        </x-premium-cta>
                         </div>
                     </div>
                     @endif
