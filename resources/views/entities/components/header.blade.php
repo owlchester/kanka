@@ -217,8 +217,8 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         @endif
             @can('update', $entity)
                 <span role="button" tabindex="0" class="entity-tag-icon text-xl" data-toggle="dialog" data-url="{{ $addTagsUrl }}" data-target="primary-dialog" aria-haspopup="dialog">
-                    <x-icon class="fa-regular fa-tag" tooltip="1" :title="__('Add or remove tags')" />
-                    <span class="sr-only">{{ __('Add or remove tags')  }}</span>
+                    <x-icon class="fa-regular fa-tag" tooltip="1" :title="__('entities/tags.create.title')" />
+                    <span class="sr-only">{{ __('entities/tags.create.title')  }}</span>
                 </span>
             @endcan
             </div>

@@ -13,8 +13,8 @@
     <x-form :action="$formOptions">
         @include('partials.forms._dialog', [
             'title' => __('entities/tags.create.title', ['name' => $entity->name]),
-            'content' => 'entities.components.tags._form',
-            'submit' =>  __('tags.children.actions.add_entity'),
+            'content' => 'entities.pages.tags._form',
+            'submit' =>  __('crud.save'),
         ])
         <input type="hidden" name="entity_id" value="{{ $entity->id }}" />
     </x-form>
