@@ -18,6 +18,7 @@ class SaveService
     protected ?string $text;
 
     protected DOMDocument $document;
+
     protected DOMXPath $xpath;
 
     /** @var array Created new mentions to avoid duplicates */
@@ -46,7 +47,6 @@ class SaveService
     {
         return $this->createdNewEntities;
     }
-
 
     public function save(): string
     {
@@ -77,6 +77,7 @@ class SaveService
             },
             $this->text
         );
+
         return $this;
     }
 
@@ -89,6 +90,7 @@ class SaveService
         libxml_clear_errors();
 
         $this->xpath = new DOMXPath($this->document);
+
         return $this;
     }
 
@@ -103,6 +105,7 @@ class SaveService
         foreach ($nodes as $mentionLink) {
             $this->parseMention($mentionLink);
         }
+
         return $this;
     }
 
@@ -124,7 +127,7 @@ class SaveService
         }
 
         // Advanced attribute [attribute:123], use that
-        if (!empty($advancedAttribute)) {
+        if (! empty($advancedAttribute)) {
             $this->replace($advancedAttribute, $mentionLink);
 
             return;
@@ -132,7 +135,7 @@ class SaveService
 
         // If the name isn't the target name, transform it into an advanced mention
         $originalName = $mentionLink->getAttribute('data-name');
-        if (!empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
+        if (! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
             $mention = Str::replace(']', '|' . $mentionName . ']', $advancedMention);
             $this->replace($mention, $mentionLink);
 
@@ -201,6 +204,7 @@ class SaveService
         foreach ($body->childNodes as $child) {
             $newHtml .= $this->document->saveHTML($child);
         }
+
         return $newHtml;
     }
 }
