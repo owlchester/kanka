@@ -16,23 +16,27 @@ $calendar = null;
 if (!empty($oldCalendarID)) {
     $calendar = \App\Models\Calendar::find($oldCalendarID);
 }
+$opened = (isset($model) && $model->hasCalendar()) || !empty($oldCalendarID);
 ?>
 @if (isset($model) && $model->hasCalendarButNoAccess())
     <input type="hidden" name="calendar_id" value="{{ $model->calendarReminder()->calendar_id }}" />
     <input type="hidden" name="calendar_skip" value="1" />
     @php return; @endphp
 @endif
-<div class="field-calendar-date flex flex-col gap-4">
-    <x-helper><p>{{ __('crud.hints.calendar_date') }}</p></x-helper>
-
-    <div>
-        <a href="#" id="entity-calendar-form-add" class="btn2 btn-sm btn-outline <?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "hidden" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}">
+<div class="field-calendar-date flex flex-col gap-4" x-data="{ opened: {{ $opened ? 'true' : 'false' }} }">
+    <div class="flex flex-col gap-1 items-start" >
+        <label>{{ __('entities/reminders.labels.add') }}</label>
+        <a href="#" id="entity-calendar-form-add" class="btn2 btn-sm btn-outline <?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "hidden" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}" @click="opened = !opened" x-show="!opened">
             <x-icon entity="calendar" />
-            {{ __('crud.forms.actions.calendar') }}
+            {{ __('entities/reminders.actions.add') }}
         </a>
+
+        <x-helper>
+            <p class="text-xs">{{ __('entities/reminders.helpers.pitch') }}</p>
+        </x-helper>
     </div>
 
-    <div class="entity-calendar-form transition-all duration-150 flex flex-col gap-4  <?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "hidden" : null)?>">
+    <div class="entity-calendar-form transition-all duration-150 flex flex-col gap-4" x-show="opened">
         @if (count($calendars) == 1)
             <input type="hidden" name="calendar_id" value="{{ isset($model) && $model->hasCalendar() ? $model->calendarReminder()->calendar_id : $source->child->calendar_id ?? null }}" />
         @else
@@ -53,7 +57,7 @@ if (!empty($oldCalendarID)) {
             </div>
         @endif
 
-        <div class="entity-calendar-subform <?=((!isset($model) || !$model->hasCalendar()) && empty($oldCalendarID) ? "hidden" : null)?>">
+        <div class="entity-calendar-subform @if (!$opened) hidden @endif">
             <div class="grid gap-2 md:gap-4 md:grid-cols-3">
                 <x-forms.field
                     field="year"
@@ -116,7 +120,7 @@ if (!empty($oldCalendarID)) {
 
 
         <div class="text-right">
-            <a href="#" id="entity-calendar-form-cancel" class="btn2 btn-outline btn-error btn-sm @if ((((isset($model) && $model->hasCalendar()) || empty($model))) && $onlyOneCalendar) @else hidden @endif">
+            <a href="#" id="entity-calendar-form-cancel" class="btn2 btn-outline btn-error btn-sm @if ((((isset($model) && $model->hasCalendar()) || empty($model))) && $onlyOneCalendar) @else hidden @endif" @click="opened = false">
                 <x-icon class="fa-regular fa-eraser" />
                 {{ __('entities/reminders.actions.remove') }}
             </a>
