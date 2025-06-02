@@ -7,8 +7,10 @@ use App\Services\Entity\NewService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use DOMDocument;
-use DOMElement;
+use DomNode;
+use DomElement;
 use DOMXPath;
+use Illuminate\Support\Str;
 
 class SaveService
 {
@@ -119,8 +121,10 @@ class SaveService
             contains(concat(" ", normalize-space(@class), " "), " attribute-mention ")
         ]');
 
-        foreach ($nodes as $mentionLink) {
-            $this->parseMention($mentionLink);
+        foreach ($nodes as $element) {
+            if ($element instanceof DomElement) {
+                $this->parseMention($element);
+            }
         }
 
         return $this;
@@ -129,7 +133,7 @@ class SaveService
     /**
      * We have a mention link, do some magic
      */
-    protected function parseMention(DOMElement $mentionLink): void
+    protected function parseMention(DomElement $mentionLink): void
     {
         $text = $mentionLink->nodeValue;
 
@@ -179,7 +183,7 @@ class SaveService
         return $this;
     }
 
-    protected function replace(string $text, mixed $node): void
+    protected function replace(string $text, DomElement $node): void
     {
         $textNode = $this->document->createTextNode($text);
         $node->parentNode->replaceChild($textNode, $node);

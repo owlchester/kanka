@@ -51,7 +51,7 @@
         "stechstudio/laravel-zipstream": "^5.0",
         "stevebauman/purify": "6.2.*",
         "symfony/http-client": "^7.2",
-        "symfony/mailgun-mailer": "^7.1",
+        "symfony/mailgun-mailer": "^7.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",
