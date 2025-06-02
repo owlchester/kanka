@@ -9,7 +9,6 @@ use App\Models\Attribute;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAsset;
-use App\Models\EntityType;
 use App\Models\Map;
 use App\Models\MiscModel;
 use App\Models\Post;
@@ -18,10 +17,8 @@ use App\Services\Entity\NewService;
 use App\Services\TOC\TocSlugify;
 use App\Traits\CampaignAware;
 use App\Traits\MentionTrait;
-use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use TOC\MarkupFixer;
 
@@ -59,12 +56,6 @@ class MentionsService
 
     /** @var array List of valid entity types */
     protected array $validEntityTypes = [];
-
-    /** @var array Created new mentions to avoid duplicates */
-    protected array $newEntityMentions = [];
-
-    /** @var bool New entities have been created from the mention parsing */
-    protected bool $createdNewEntities = false;
 
     /** @var string Class used to inject and strip advanced mention name helpers */
     public const string ADVANCED_MENTION_CLASS = 'advanced-mention-name';
@@ -166,14 +157,6 @@ class MentionsService
     }
 
     /**
-     * If new entities were created from the mentions
-     */
-    public function hasNewEntities(): bool
-    {
-        return $this->createdNewEntities;
-    }
-
-    /**
      * Parse a model's text for editing (transform mentions into advanced mentions, normal
      * mentions visually, etc)
      */
@@ -188,75 +171,6 @@ class MentionsService
         $this->text = (string) $model->$field;
 
         return $this->replaceForEdit();
-    }
-
-    /**
-     * Replace span mentions into [entity:123] blocks
-     */
-    public function codify(?string $text): string
-    {
-        if (empty($text)) {
-            $text = '';
-        }
-        // dump($text);
-        // New entities
-        $text = preg_replace_callback(
-            '`\[new:([a-z_-]+)\|(.*?)\]`i',
-            function ($data) {
-                if (count($data) !== 3) {
-                    return $data[0];
-                }
-
-                // check type is valid
-                return $this->newEntityMention($data[1], $data[2]);
-            },
-            $text
-        );
-
-        // Parse all links and transform them into advanced mentions [] if needed
-        $links = '`<a\s*[^>]*>(.*?)<\/a\s*>`is';
-        $text = preg_replace_callback($links, function ($matches) {
-            // Summernote will purify & into &amps, so we need to convert them back. This is done so that mentioning an
-            // entity with & in the name doesn't get replaced with an advanced mention when saving and the name didn't
-            // change.
-            $mentionName = Str::replace(['&amp;'], ['&'], $matches[1]);
-            $attributes = $this->linkAttributes($matches[0]);
-            $advancedMention = Arr::get($attributes, 'data-mention');
-            $advancedAttribute = Arr::get($attributes, 'data-attribute');
-            // It's not a mention or attribute, keep it as is
-            if (empty($advancedMention) && empty($advancedAttribute)) {
-                return $matches[0];
-            }
-
-            // Advanced attribute [attribute:123], use that
-            if (! empty($advancedAttribute)) {
-                return $advancedAttribute;
-            }
-
-            // If the name isn't the target name, transform it into an advanced mention
-            $originalName = Arr::get($attributes, 'data-name');
-            if (! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
-                return Str::replace(']', '|' . $mentionName . ']', $advancedMention);
-            }
-
-            return $advancedMention;
-        }, $text);
-
-        // Remove advanced mention name blocks
-        // dump($text);
-        $text = preg_replace(
-            '`<ins class="' . self::ADVANCED_MENTION_CLASS . '" data-name="([^"]*)"></ins>`',
-            '',
-            $text
-        );
-        // Legacy support for during the go-live migration
-        $text = preg_replace(
-            '`<span class="' . self::ADVANCED_MENTION_CLASS . '" data-name="([^"]*)"></span>`',
-            '',
-            $text
-        );
-
-        return $text;
     }
 
     /**
@@ -940,41 +854,6 @@ class MentionsService
     }
 
     /**
-     * Replace new entity mentions with entities.
-     */
-    protected function newEntityMention(string $type, string $name): string
-    {
-        if (empty($type) || empty($name)) {
-            return $name;
-        }
-
-        $types = $this->newService->campaign($this->campaign)->available();
-
-        /** @var ?EntityType $entityType */
-        $entityType = $types->where('code', $type)->first();
-        if (! $entityType) {
-            return $name;
-        }
-
-        // Do we already have it cached?
-        $key = $type . ':' . mb_strtolower($name);
-        if (isset($this->newEntityMentions[$key])) {
-            return "[{$type}:" . $this->newEntityMentions[$key] . ']';
-        }
-
-        // Create the new model
-        $newEntity = $this->newService
-            ->campaign($this->campaign)
-            ->user(auth()->user())
-            ->entityType($entityType)
-            ->create($name);
-        $this->newEntityMentions[$key] = $newEntity->id;
-        $this->createdNewEntities = true;
-
-        return '[' . $type . ':' . $newEntity->id . ']';
-    }
-
-    /**
      * Protect from rendering future field:entry mentions to avoid endless loops
      */
     protected function lockEntryRendering(): void
@@ -988,37 +867,6 @@ class MentionsService
     protected function unlockEntryRendering(): void
     {
         $this->enableEntryField = true;
-    }
-
-    /**
-     * Extract html attributes from a link if it's a Kanka "mention" from the text editor
-     */
-    protected function linkAttributes(string $html): array
-    {
-        // Don't waste time on the expensive DOMDocument call if there is no mention
-        if (! Str::contains($html, ['"mention"', '"post-mention"', '"attribute attribute-mention"'])) {
-            return [];
-        }
-        $attributes = [];
-        $dom = new \DOMDocument;
-        try {
-            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html);
-
-            $links = $dom->getElementsByTagName('a');
-            $link = $links[0];
-
-            $validAttributes = ['class', 'data-name', 'data-mention', 'data-attribute'];
-            foreach ($validAttributes as $attribute) {
-                if (! $link->hasAttribute($attribute)) {
-                    continue;
-                }
-                $attributes[$attribute] = $link->getAttribute($attribute);
-            }
-        } catch (Exception $e) {
-            Log::warning('The following html link triggered an issue', ['link' => $html]);
-        }
-
-        return $attributes;
     }
 
     protected function mentionPost(array $data): string

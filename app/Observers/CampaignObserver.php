@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Facades\Images;
-use App\Facades\Mentions;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
@@ -18,6 +17,7 @@ use App\Models\Genre;
 use App\Models\UserLog;
 use App\Notifications\Header;
 use App\Services\Campaign\SearchCleanupService;
+use App\Services\Mentions\SaveService;
 use App\Services\Users\CampaignService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -38,7 +38,15 @@ class CampaignObserver
         // Purity text
         $attributes = $campaign->getAttributes();
         if (array_key_exists('excerpt', $attributes)) {
-            $campaign->excerpt = $this->purify(Mentions::codify($campaign->excerpt));
+            /** @var SaveService $service */
+            $service = app()->make(SaveService::class);
+            $campaign->excerpt = $this->purify(
+                $service
+                    ->campaign($campaign)
+                    ->user(auth()->user())
+                    ->text($campaign->excerpt)
+                    ->save()
+            );
         }
 
         if (request()->has('is_public')) {
