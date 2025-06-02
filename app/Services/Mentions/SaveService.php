@@ -33,6 +33,10 @@ class SaveService
         protected NewService $newService,
     ) {}
 
+    /**
+     * Might be a 600,000 word html document. Might be a <p><br /></p>.
+     * Who knows what we'll get, but we'll do our best to be useful.
+     */
     public function text(?string $text): self
     {
         $this->text = $text;
@@ -48,21 +52,27 @@ class SaveService
         return $this->createdNewEntities;
     }
 
+    /**
+     * Transform the html from the text editor with its weird mention syntax into mentions that can be parsed later on
+     */
     public function save(): string
     {
         if (empty($this->text)) {
             return '';
         }
 
-        $this
+        return $this
             ->parseNewEntities()
             ->prepareDocument()
             ->parseMentions()
-            ->cleanup();
-
-        return $this->html();
+            ->cleanup()
+            ->html();
     }
 
+    /**
+     * The user can type @NewEntity and create a bunch of new things on the fly. This function
+     * supports that.
+     */
     protected function parseNewEntities(): self
     {
         $this->text = preg_replace_callback(
@@ -81,6 +91,10 @@ class SaveService
         return $this;
     }
 
+    /**
+     * We have a text of html, transform that into a DomDocument and DomXPath to be able to loop on various html
+     * elements easily.
+     */
     protected function prepareDocument(): self
     {
         // Parse all links and transform them into advanced mentions [] if needed
@@ -94,6 +108,9 @@ class SaveService
         return $this;
     }
 
+    /**
+     * Mentions come in different shapes and sizes. Handle them all in a single function call.
+     */
     protected function parseMentions(): self
     {
         $nodes = $this->xpath->query('//a[
@@ -109,6 +126,9 @@ class SaveService
         return $this;
     }
 
+    /**
+     * We have a mention link, do some magic
+     */
     protected function parseMention(DOMElement $mentionLink): void
     {
         $text = $mentionLink->nodeValue;
@@ -145,6 +165,9 @@ class SaveService
         $this->replace($advancedMention, $mentionLink);
     }
 
+    /**
+     * Get rid of any fancy <ins> and special <span> elements leftover from mentions with custom names
+     */
     protected function cleanup(): self
     {
         // Remove legacy <ins> and <span> advanced-mention elements
@@ -156,14 +179,14 @@ class SaveService
         return $this;
     }
 
-    protected function replace(string $text, mixed $node)
+    protected function replace(string $text, mixed $node): void
     {
         $textNode = $this->document->createTextNode($text);
         $node->parentNode->replaceChild($textNode, $node);
     }
 
     /**
-     * Replace new entity mentions with entities.
+     * Create a new entity based on a mention
      */
     protected function newEntityMention(string $type, string $name): string
     {
@@ -196,9 +219,11 @@ class SaveService
         return '[' . $type . ':' . $newEntity->id . ']';
     }
 
+    /**
+     * When all is said and done, get the body content of DomDocument and save that to the db
+     */
     protected function html(): string
     {
-        // Extract inner HTML of <body>
         $body = $this->document->getElementsByTagName('body')->item(0);
         $newHtml = '';
         foreach ($body->childNodes as $child) {
