@@ -7,10 +7,12 @@ use App\Facades\Mentions;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
+use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
 use App\Models\CampaignUser;
+use App\Models\EntityType;
 use App\Models\GameSystem;
 use App\Models\Genre;
 use App\Models\UserLog;
@@ -79,16 +81,31 @@ class CampaignObserver
             'is_admin' => true,
         ]);
 
-        CampaignRole::create([
+        $readOnlyRoles = [];
+
+        $readOnlyRoles[] = CampaignRole::create([
             'campaign_id' => $campaign->id,
             'name' => __('campaigns.members.roles.public'),
             'is_public' => true,
         ]);
 
-        CampaignRole::create([
+        $readOnlyRoles[] = CampaignRole::create([
             'campaign_id' => $campaign->id,
             'name' => __('campaigns.members.roles.player'),
         ]);
+
+        $entityTypes = EntityType::default()->get();
+
+        foreach ($readOnlyRoles as $readOnlyRole) {
+            foreach ($entityTypes as $entityType) {
+                CampaignPermission::create([
+                    'campaign_role_id' => $readOnlyRole->id,
+                    'access' => true,
+                    'action' => CampaignPermission::ACTION_READ,
+                    'entity_type_id' => $entityType->id,
+                ]);
+            }
+        }
 
         CampaignRoleUser::create([
             'campaign_role_id' => $role->id,
