@@ -18,12 +18,12 @@ use App\Services\Entity\NewService;
 use App\Services\TOC\TocSlugify;
 use App\Traits\CampaignAware;
 use App\Traits\MentionTrait;
-use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use TOC\MarkupFixer;
+use DOMDocument;
+use DOMXPath;
 
 class MentionsService
 {
@@ -191,7 +191,7 @@ class MentionsService
     }
 
     /**
-     * Replace span mentions into [entity:123] blocks
+     * Replace mention links into [entity:123] text elements
      */
     public function codify(?string $text): string
     {
@@ -214,49 +214,66 @@ class MentionsService
         );
 
         // Parse all links and transform them into advanced mentions [] if needed
-        $links = '`<a\s*[^>]*>(.*?)<\/a\s*>`is';
-        $text = preg_replace_callback($links, function ($matches) {
-            // Summernote will purify & into &amps, so we need to convert them back. This is done so that mentioning an
-            // entity with & in the name doesn't get replaced with an advanced mention when saving and the name didn't
-            // change.
-            $mentionName = Str::replace(['&amp;'], ['&'], $matches[1]);
-            $attributes = $this->linkAttributes($matches[0]);
-            $advancedMention = Arr::get($attributes, 'data-mention');
-            $advancedAttribute = Arr::get($attributes, 'data-attribute');
+        $doc = new DOMDocument();
+        libxml_use_internal_errors(true); // Suppress warnings for malformed HTML
+        $doc->loadHTML(mb_convert_encoding($text, 'HTML-ENTITIES', 'UTF-8'));
+        libxml_clear_errors();
+
+        $xpath = new DOMXPath($doc);
+        $nodes = $xpath->query('//a[
+            contains(concat(" ", normalize-space(@class), " "), " mention ") or
+            contains(concat(" ", normalize-space(@class), " "), " post-mention ") or
+            contains(concat(" ", normalize-space(@class), " "), " attribute-mention ")
+        ]');
+
+        foreach ($nodes as $mentionLink) {
+            $text = $mentionLink->nodeValue;
+
+            $name = html_entity_decode($mentionLink->getAttribute('data-name'));
+
+            // Now you can compare $name with $text to check for edits
+            $mentionName = Str::replace(['&amp;'], ['&'], $text);
+            $advancedMention = $mentionLink->getAttribute('data-mention');
+            $advancedAttribute = $mentionLink->getAttribute('data-attribute');
             // It's not a mention or attribute, keep it as is
             if (empty($advancedMention) && empty($advancedAttribute)) {
-                return $matches[0];
+                $textNode = $doc->createTextNode($name);
+                $mentionLink->parentNode->replaceChild($textNode, $mentionLink);
+                continue;
             }
 
             // Advanced attribute [attribute:123], use that
-            if (! empty($advancedAttribute)) {
-                return $advancedAttribute;
+            if (!empty($advancedAttribute)) {
+                $textNode = $doc->createTextNode($advancedAttribute);
+                $mentionLink->parentNode->replaceChild($textNode, $mentionLink);
+                continue;
             }
 
             // If the name isn't the target name, transform it into an advanced mention
-            $originalName = Arr::get($attributes, 'data-name');
-            if (! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
-                return Str::replace(']', '|' . $mentionName . ']', $advancedMention);
+            $originalName = $mentionLink->getAttribute('data-name');
+            if (!empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
+                $mention = Str::replace(']', '|' . $mentionName . ']', $advancedMention);
+                $textNode = $doc->createTextNode($mention);
+                $mentionLink->parentNode->replaceChild($textNode, $mentionLink);
+                continue;
             }
 
-            return $advancedMention;
-        }, $text);
+            $textNode = $doc->createTextNode($advancedMention);
+            $mentionLink->parentNode->replaceChild($textNode, $mentionLink);
+        }
+        // Remove legacy <ins> and <span> advanced-mention elements
+        $advancedNodes = $xpath->query('//ins[@class="' . self::ADVANCED_MENTION_CLASS . '" and @data-name] | //span[@class="' . self::ADVANCED_MENTION_CLASS . '" and @data-name]');
+        foreach ($advancedNodes as $node) {
+            $node->parentNode->removeChild($node);
+        }
 
-        // Remove advanced mention name blocks
-        // dump($text);
-        $text = preg_replace(
-            '`<ins class="' . self::ADVANCED_MENTION_CLASS . '" data-name="([^"]*)"></ins>`',
-            '',
-            $text
-        );
-        // Legacy support for during the go-live migration
-        $text = preg_replace(
-            '`<span class="' . self::ADVANCED_MENTION_CLASS . '" data-name="([^"]*)"></span>`',
-            '',
-            $text
-        );
-
-        return $text;
+        // Extract inner HTML of <body>
+        $body = $doc->getElementsByTagName('body')->item(0);
+        $newHtml = '';
+        foreach ($body->childNodes as $child) {
+            $newHtml .= $doc->saveHTML($child);
+        }
+        return $newHtml;
     }
 
     /**
@@ -988,37 +1005,6 @@ class MentionsService
     protected function unlockEntryRendering(): void
     {
         $this->enableEntryField = true;
-    }
-
-    /**
-     * Extract html attributes from a link if it's a Kanka "mention" from the text editor
-     */
-    protected function linkAttributes(string $html): array
-    {
-        // Don't waste time on the expensive DOMDocument call if there is no mention
-        if (! Str::contains($html, ['"mention"', '"post-mention"', '"attribute attribute-mention"'])) {
-            return [];
-        }
-        $attributes = [];
-        $dom = new \DOMDocument;
-        try {
-            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $html);
-
-            $links = $dom->getElementsByTagName('a');
-            $link = $links[0];
-
-            $validAttributes = ['class', 'data-name', 'data-mention', 'data-attribute'];
-            foreach ($validAttributes as $attribute) {
-                if (! $link->hasAttribute($attribute)) {
-                    continue;
-                }
-                $attributes[$attribute] = $link->getAttribute($attribute);
-            }
-        } catch (Exception $e) {
-            Log::warning('The following html link triggered an issue', ['link' => $html]);
-        }
-
-        return $attributes;
     }
 
     protected function mentionPost(array $data): string
