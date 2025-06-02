@@ -5,13 +5,9 @@ return [
         'add_appearance'    => 'Ajouter une apparence',
         'add_personality'   => 'Ajouter un trait de personnalité',
     ],
-    'conversations' => [],
     'create'        => [
         'title' => 'Créer une nouvelle personne',
     ],
-    'destroy'       => [],
-    'dice_rolls'    => [],
-    'edit'          => [],
     'families'      => [
         'helper'    => 'Réorganise et contrôle quelles familles de :name sont visibles ou cachées aux non-admins.',
         'reorder'   => [
@@ -44,9 +40,6 @@ return [
         'personality_not_visible'   => 'Les traits de personnalités de ce personnage sont actuellement seulement visibles pour les admin de la campagne.',
         'personality_visible'       => 'Les traits de personnalités sont visibles pour tous.',
     ],
-    'index'         => [],
-    'items'         => [],
-    'journals'      => [],
     'labels'        => [
         'appearance'    => [
             'entry' => 'Description de l\'apparance',
@@ -57,7 +50,6 @@ return [
             'name'  => 'Nom du trait de personnalité',
         ],
     ],
-    'maps'          => [],
     'organisations' => [
         'create'    => [
             'success'   => 'Personne ajoutée à l\'organisation.',
@@ -105,7 +97,6 @@ return [
         'appearance'    => 'Physique',
         'personality'   => 'Personnalité',
     ],
-    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'Tu n\'as pas le droit de modifier les traits de personnalité de ce personnage.',
     ],

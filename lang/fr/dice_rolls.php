@@ -7,7 +7,6 @@ return [
     'destroy'       => [
         'dice_roll' => 'Jet de dés retiré.',
     ],
-    'edit'          => [],
     'fields'        => [
         'created_at'    => 'Jeté à',
         'parameters'    => 'Paramètres',

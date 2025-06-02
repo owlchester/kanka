@@ -1,12 +1,7 @@
 <?php
 
 return [
-    'characters'    => [
-        'helpers'   => [
-            'all_characters'    => 'Anzeige aller Charaktere, die sich auf diese Spezies und seine Unterspezies beziehen.',
-            'characters'        => 'Anzeige aller Charaktere, die in direktem Zusammenhang mit dieser Spezies stehen.',
-        ],
-    ],
+    'characters'    => [],
     'create'        => [
         'title' => 'Neue Spezies',
     ],

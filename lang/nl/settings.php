@@ -178,7 +178,6 @@ return [
         'success'               => [
             'alternative'   => 'Je betaling is geregistreerd. Je krijgt een melding zodra deze is verwerkt en je abonnement actief is.',
             'callback'      => 'Je inschrijving is gelukt. Je account wordt bijgewerkt zodra onze betalingsprovider ons op de hoogte stelt van de wijziging (dit kan enkele minuten duren).',
-            'cancel'        => 'Je abonnement is opgezegd. Het blijft actief tot het einde van je huidige factureringsperiode.',
             'currency'      => 'De valuta-instelling van je voorkeur is bijgewerkt.',
             'subscribed'    => 'Je inschrijving is gelukt. Vergeet niet om je te abonneren op de Community Vote-nieuwsbrief om op de hoogte te worden gehouden wanneer een stemming live gaat. Je kunt je nieuwsbriefinstellingen wijzigen op je profielpagina.',
         ],

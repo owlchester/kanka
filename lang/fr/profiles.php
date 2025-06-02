@@ -1,15 +1,12 @@
 <?php
 
 return [
-    'appearance'                    => [],
     'avatar'                        => [
         'success'   => 'Photo de profil modifiée.',
     ],
-    'campaign_switcher_order_by'    => [],
     'edit'                          => [
         'success'   => 'Profil modifié',
     ],
-    'editors'                       => [],
     'fields'                        => [
         'avatar'                    => 'Avatar',
         'bio'                       => 'Biographie',

@@ -155,7 +155,6 @@ return [
         'name'              => 'Nazwa',
         'parent'            => 'Źródło',
         'position'          => 'Kolejność',
-        'privacy'           => 'Tajne',
         'replace_mentions'  => 'Zamień wzmianki o cechach tego elementu wzmiankami nowego elementu',
         'template'          => 'Szablon',
         'tooltip'           => 'Dymek',
@@ -217,7 +216,6 @@ return [
     ],
     'helpers'           => [
         'copy_options'  => 'Skopiuj następujące elementy elementu źródłowego do nowego elementu.',
-        'learn_more'    => 'Więc informacji o tej funkcji zawiera :documentation.',
         'linking'       => 'Łącza do innych elementów',
         'nested_parent' => 'Wyświetl pochodne :parent',
         'pagination'    => [

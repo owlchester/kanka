@@ -7,13 +7,7 @@ return [
         'join'      => 'beitreten',
         'unfollow'  => 'Nicht mehr folgen',
     ],
-    'campaigns'     => [
-        'tabs'  => [
-            'modules'   => ':count Module',
-            'roles'     => ':count Rollen',
-            'users'     => ':count Users',
-        ],
-    ],
+    'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
             'edit'      => 'Editieren',
@@ -59,20 +53,10 @@ return [
     'helpers'       => [
         'follow'    => 'Wenn du einer Kampagne folgst, wird sie im Kampagnenwähler (oben rechts) unter deinen Kampagnen angezeigt.',
         'join'      => 'Diese Kampagne steht neuen Mitgliedern offen. Klicken Sie, um sich zu bewerben, um daran teilzunehmen.',
-        'setup'     => 'Richte dein Kampagnen Dashboard ein.',
     ],
-    'notifications' => [
-        'modal' => [
-            'confirm'   => 'Verstanden',
-            'title'     => 'Wichtige Mitteilung',
-        ],
-    ],
-    'recent'        => [
-        'title' => 'Vor kurzem bearbeitete :name',
-    ],
-    'settings'      => [
-        'title' => 'Dashboard Einstellungen',
-    ],
+    'notifications' => [],
+    'recent'        => [],
+    'settings'      => [],
     'setup'         => [
         'actions'   => [
             'add'               => 'Widget hinzufügen',
@@ -103,16 +87,12 @@ return [
     'title'         => 'Dashboard',
     'welcome'       => [],
     'widgets'       => [
-        'actions'                   => [
-            'advanced-options'  => 'Erweiterte Optionen',
-        ],
         'advanced_options_boosted'  => 'Aktiviere weitere Optionen wie das Anzeigen von Pins mit einer :boosted_campaign.',
         'calendar'                  => [
             'actions'           => [
                 'next'      => 'Datum auf nächsten Tag ändern',
                 'previous'  => 'Datum auf vorigen Tag ändern',
             ],
-            'events_today'      => 'Heute',
             'previous_events'   => 'Vorige',
             'upcoming_events'   => 'Bevorstehende',
         ],
@@ -133,7 +113,6 @@ return [
             'optional-entity'   => 'Link zum Objekt',
             'order'             => 'Sortierung',
             'size'              => 'Größe',
-            'text'              => 'Text',
             'width'             => 'Breite',
         ],
         'helpers'                   => [

@@ -405,7 +405,6 @@ return [
             'connections'       => 'Interface padrão das conexões da entidade',
             'connections_mode'  => 'Modo explorador de relações padrão',
             'entity_history'    => 'Registro de histórico da entidade',
-            'entity_image'      => 'Imagem da entidade',
             'member_list'       => 'Lista de membros da campanha',
             'post_collapsed'    => 'Valor padrão do campo recolhido de um novo post',
         ],
@@ -417,7 +416,6 @@ return [
             'other'             => 'Outras opções visuais para a campanha.',
             'post_collapsed'    => 'Ao criar um novo post em uma entidade, selecione o valor padrão do campo recolhido.',
             'theme'             => 'Exiba a campanha no tema do usuário ou force-a a renderizar em um dos seguintes temas.',
-            'tooltip'           => 'Controle quais informações ficam visíveis ao passar o mouse sobre o nome de uma entidade em sua dica de contexto.',
         ],
         'members'           => [
             'hidden'    => 'Apenas visível aos administradores da campanha',

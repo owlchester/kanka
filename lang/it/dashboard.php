@@ -6,13 +6,7 @@ return [
         'join'      => 'Unisciti',
         'unfollow'  => 'Smetti di seguire',
     ],
-    'campaigns'     => [
-        'tabs'  => [
-            'modules'   => ':count Moduli',
-            'roles'     => ':count Ruoli',
-            'users'     => ':count Utenti',
-        ],
-    ],
+    'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
             'edit'      => 'Modifica nome & autorizzazioni',
@@ -58,20 +52,10 @@ return [
     'helpers'       => [
         'follow'    => 'Seguendo una campagna, questa apparirà nel selettore delle campagne sotto le vostre campagne.',
         'join'      => 'Questa campagna è aperta a nuovi membri. Clicca per unirti.',
-        'setup'     => 'Imposta la Pagina Principale della tua campagna.',
     ],
-    'notifications' => [
-        'modal' => [
-            'confirm'   => 'Capito',
-            'title'     => 'Notifica Importante',
-        ],
-    ],
-    'recent'        => [
-        'title' => 'Lista di entità :name',
-    ],
-    'settings'      => [
-        'title' => 'Impostazioni della Pagina Principale',
-    ],
+    'notifications' => [],
+    'recent'        => [],
+    'settings'      => [],
     'setup'         => [
         'actions'   => [
             'add'               => 'Aggiungi un widget',
@@ -100,16 +84,12 @@ return [
     ],
     'title'         => 'Pagina Principale',
     'widgets'       => [
-        'actions'                   => [
-            'advanced-options'  => 'Opzioni Avanzate',
-        ],
         'advanced_options_boosted'  => 'Abilita altre opzioni, come mostrare i pin con una campagna :boosted_campaign.',
         'calendar'                  => [
             'actions'           => [
                 'next'      => 'Cambia la data al giorno successivo',
                 'previous'  => 'Cambia la data al giorno precedente',
             ],
-            'events_today'      => 'Oggi',
             'previous_events'   => 'Precedente',
             'upcoming_events'   => 'Prossimi',
         ],
@@ -129,7 +109,6 @@ return [
             'optional-entity'   => 'Link all\'entità',
             'order'             => 'Ordinamento',
             'size'              => 'Dimensione',
-            'text'              => 'Testo',
             'width'             => 'Larghezza',
         ],
         'helpers'                   => [

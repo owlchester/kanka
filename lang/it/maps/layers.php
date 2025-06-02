@@ -31,10 +31,7 @@ return [
     'index'         => [
         'title' => 'Livelli di :name',
     ],
-    'pitch'         => [
-        'error' => 'Massimo numero di livelli raggiunto.',
-        'until' => 'Carica fino a :max livelli per ogni mappa.',
-    ],
+    'pitch'         => [],
     'placeholders'  => [
         'name'          => 'Sotterranei, Livello 2, Relitto',
         'position'      => 'Primo',

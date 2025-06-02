@@ -10,7 +10,6 @@ return [
             'attach_success'        => '{1} Se ha añadido :count entidad a la etiqueta :name.|[2,*] Se han añadido :count entidades a la etiqueta :name.',
             'attach_success_entity' => 'Etiquetas actualizadas con éxito para :name.',
             'entity'                => 'Añadir etiquetas a :name',
-            'modal_title'           => 'Añadir entidades a :name',
         ],
     ],
     'create'        => [
@@ -44,13 +43,10 @@ return [
     ],
     'tags'          => [],
     'transfer'      => [
-        'description'       => 'Mover las entidades de esta etiqueta a otra etiqueta.',
-        'fail'              => 'Fallo al transferir entidades de :tag a :newTag',
-        'fail_post'         => 'Error al transferir entradas de :tag a :newTag',
-        'post_description'  => 'Mover las entradas de esta etiqueta a otra etiqueta.',
-        'success'           => 'Entidades de :tag transferidas con éxito a :newTag',
-        'success_post'      => 'Se han transferido correctamente las entradas de :tag a :newTag',
-        'title'             => 'Transferir :name',
-        'transfer'          => 'Transferir',
+        'fail'          => 'Fallo al transferir entidades de :tag a :newTag',
+        'fail_post'     => 'Error al transferir entradas de :tag a :newTag',
+        'success'       => 'Entidades de :tag transferidas con éxito a :newTag',
+        'success_post'  => 'Se han transferido correctamente las entradas de :tag a :newTag',
+        'transfer'      => 'Transferir',
     ],
 ];

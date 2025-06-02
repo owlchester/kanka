@@ -8,7 +8,6 @@ return [
     'fields'    => [
         'deleted'   => 'Removido',
     ],
-    'helper'    => 'Entidades removidas podem ser recuperadas em até :count dias. As entidades removidas enquanto a campanha não é impulsionada ainda são recuperáveis quando a campanha for impulsionada.',
     'posts'     => [],
     'title'     => 'Recuperação de Entidades - :campaign',
     'toggle'    => [],

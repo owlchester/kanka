@@ -17,17 +17,6 @@ return [
         'creator'   => 'Créé par',
         'general'   => 'Général',
     ],
-    'helper'        => 'Suis la progression pour débloquer divers succès pour la campagne. Ces chiffres sont mis à jour une fois toutes les 24 heures.',
-    'pitch'         => 'Suis ton progrès dans le worldbuilding de ton monde en débloquant des succès.',
-    'placeholder'   => ':amount de :target',
-    'targets'       => [
-        'calendars' => 'Créer :target calendriers',
-        'characters'=> 'Créer :target personnages',
-        'dead'      => 'Tuer :target personnages',
-        'families'  => 'Créer :target familles',
-        'locations' => 'Créer :target lieux',
-        'races'     => 'Créer :target races',
-    ],
     'title2'        => 'Statistiques',
     'titles'        => [
         'calendars' => 'Chronométreur/euse niveau :level',

@@ -6,13 +6,7 @@ return [
         'join'      => 'Join',
         'unfollow'  => 'Ontvolg',
     ],
-    'campaigns'     => [
-        'tabs'  => [
-            'modules'   => ':count Modules',
-            'roles'     => ':count Rollen',
-            'users'     => ':count Gebruikers',
-        ],
-    ],
+    'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
             'edit'      => 'Wijzig',
@@ -57,20 +51,10 @@ return [
     'helpers'       => [
         'follow'    => 'Als je een campaign volgt, wordt deze weergegeven in de campaign wisselaar (linksboven) onder je campaigns.',
         'join'      => 'Deze campaign staat open voor nieuwe leden. Klik om aan te vragen om er lid van te worden.',
-        'setup'     => 'Stel het dashboard van je campaign in.',
     ],
-    'notifications' => [
-        'modal' => [
-            'confirm'   => 'Begrepen',
-            'title'     => 'Belangrijke Melding',
-        ],
-    ],
-    'recent'        => [
-        'title' => 'Onlangs gewijzigd :name',
-    ],
-    'settings'      => [
-        'title' => 'Dashboard Instellingen',
-    ],
+    'notifications' => [],
+    'recent'        => [],
+    'settings'      => [],
     'setup'         => [
         'actions'   => [
             'add'               => 'Voeg een widget toe',
@@ -95,7 +79,6 @@ return [
                 'next'      => 'Wijzig de datum naar de volgende dag',
                 'previous'  => 'Wijzig de datum naar de vorige dag',
             ],
-            'events_today'      => 'Vandaag',
             'previous_events'   => 'Vorige',
             'upcoming_events'   => 'Aankomend',
         ],
@@ -110,7 +93,6 @@ return [
         ],
         'fields'        => [
             'name'  => 'Aangepaste widget naam',
-            'text'  => 'Tekst',
             'width' => 'Breedte',
         ],
         'recent'        => [

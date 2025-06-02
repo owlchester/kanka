@@ -2,12 +2,10 @@
 
 return [
     'call-to-action'    => [
-        'error'     => 'Cette entité a atteint le nombre maximum de fichiers.',
         'max'       => [
             'helper'    => 'Tu ne peux pas joindre plus de fichiers à moins d\'en supprimer un existant.',
             'limit'     => 'Cette entité a atteint le nombre maximum de fichiers',
         ],
-        'premium'   => 'Pour uploader plus de fichiers, une campagne Premium est nécessaire.',
         'upgrade'   => [
             'limit'     => 'Tu as atteint la limite de :limit fichiers pour cette entité.',
             'upgrade'   => 'Passe à une campagne premium pour pouvoir joindre jusqu\'à :limit fichiers et débloquer encore plus de flexibilité créative.',

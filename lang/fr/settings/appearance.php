@@ -49,7 +49,6 @@ return [
         'advanced'  => 'Afficher les mentions avancées :code',
         'default'   => 'Nom de l\'entité',
     ],
-    'nested'            => [],
     'success'           => 'Options d\'affichage enregistrées.',
     'values'            => [
         'pagination'        => ':amount résultats par page',

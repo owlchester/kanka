@@ -254,7 +254,6 @@ return [
         'success'               => [
             'alternative'   => 'Se ha registrado tu pago. Recibirás una notificación en cuanto terminemos de procesarlo y se active tu suscripción.',
             'callback'      => 'Tu suscripción ha tenido éxito. Tu cuenta será actualizada en cuanto nuestro proveedor de pagos nos informe del cambio (puede llevar algunos minutos).',
-            'cancel'        => 'Se ha cancelado tu suscripción. Continuará activa hasta el final del período de pago.',
             'currency'      => 'Se ha actualizado tu moneda preferida.',
             'subscribed'    => 'Tu suscripción ha tenido éxito. ¡No te olvides de suscribirte a la newsletter de votaciones comunitarias para enterarte cuando se abra una votación! Puedes cambiar tu configuración de newsletters en tu perfil.',
         ],

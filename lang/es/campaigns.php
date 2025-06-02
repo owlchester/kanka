@@ -428,7 +428,6 @@ return [
             'connections_mode'  => 'Modo del explorador de relaciones predeterminado',
             'descendants'       => 'Filtrado de los descendientes',
             'entity_history'    => 'Registros históricos de la entidad',
-            'entity_image'      => 'Imagen de la entidad',
             'member_list'       => 'Lista de miembros de la campaña',
             'post_collapsed'    => 'Valor de colapsado/expandido por defecto de los posts',
         ],
@@ -441,7 +440,6 @@ return [
             'other'             => 'Otras opciones visuales para la campaña.',
             'post_collapsed'    => 'Al crear un nuevo post en una entidad, selecciona si estará colapsado o expandido por defecto.',
             'theme'             => 'Muestra la campaña en el tema del usuario u oblíguela mostrarse en uno de los siguientes temas.',
-            'tooltip'           => 'Controla qué información se muestra en la descripción emergente al pasar el ratón sobre el nombre de una entidad.',
         ],
         'members'           => [
             'hidden'    => 'Solo visible para administradores de campaña',

@@ -59,7 +59,6 @@ return [
     'helper'            => 'Vytvor vzťahy medzi objektami s postojom a viditeľnosťou. Vzťahy môžu byť tiež pripnuté k menu objektu.',
     'helpers'           => [
         'no_relations'  => 'Tento objekt nemá aktuálne žiadne vzťahy s inými objektami v kampani.',
-        'popup'         => 'Objekty kampane môžu byť medzi sebou prepojené pomocou vzťahov. Tieto môžu obsahovať popis, hodnotenie postoja, viditeľnosť podľa toho, kto ho má vidieť, atď.',
     ],
     'hints'             => [
         'attitude'          => 'Toto nepovinné pole môže usporiadať poradie vzťahov štandardne podľa hodnoty vzťahu.',

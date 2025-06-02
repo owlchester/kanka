@@ -11,15 +11,12 @@ return [
             'attach_success_entity' => 'Etiquettes modifiées pour :name.',
             'entity'                => 'Etiquetter :name',
             'helper'                => 'Etiquetter une ou plusieurs entités avec :name',
-            'modal_title'           => 'Ajouter des entités à :name',
             'title'                 => 'Etiquetter',
         ],
     ],
     'create'        => [
         'title' => 'Nouvelle étiquette',
     ],
-    'destroy'       => [],
-    'edit'          => [],
     'fields'        => [
         'children'          => 'Enfants',
         'is_auto_applied'   => 'Appliquer automatiquement aux nouvelles entités',
@@ -35,7 +32,6 @@ return [
         'is_hidden'         => 'Si activé, cette étiquette ne s\'affichera pas dans l\'entête d\'entité, ni dans les infobulles.',
         'tag'               => 'Affichées ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
     ],
-    'index'         => [],
     'placeholders'  => [
         'type'  => 'Légende, Guerres, Histoire, Religion',
     ],
@@ -44,23 +40,19 @@ return [
             'children'  => 'Enfants',
         ],
     ],
-    'tags'          => [],
     'transfer'      => [
-        'description'       => 'Transférer les entités de cette étiquette vers une autre étiquette.',
-        'entities'          => [
+        'entities'      => [
             'helper'    => 'Transférer les entités étiquetées avec :name à une autre étiquette.',
             'title'     => 'Transférer les entités',
         ],
-        'fail'              => 'Les entités de :tag n\'ont pas pu être transférées vers :newTag',
-        'fail_post'         => 'Les articles de :tag n\'ont pas pu être transférés vers :newTag',
-        'post_description'  => 'Transférer les articles de cette étiquette vers une autre étiquette.',
-        'posts'             => [
+        'fail'          => 'Les entités de :tag n\'ont pas pu être transférées vers :newTag',
+        'fail_post'     => 'Les articles de :tag n\'ont pas pu être transférés vers :newTag',
+        'posts'         => [
             'helper'    => 'Transférer les articles étiquetés avec :name à une autre étiquette.',
             'title'     => 'Transférer les articles',
         ],
-        'success'           => 'Les entités de :tag ont été transférées vers :newTag',
-        'success_post'      => 'Les articles de :tag ont été transférés vers :newTag',
-        'title'             => 'Transférer :name',
-        'transfer'          => 'Transférer',
+        'success'       => 'Les entités de :tag ont été transférées vers :newTag',
+        'success_post'  => 'Les articles de :tag ont été transférés vers :newTag',
+        'transfer'      => 'Transférer',
     ],
 ];

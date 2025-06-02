@@ -92,11 +92,9 @@ return [
         'netherlands'   => 'Pays-Bas',
         'spain'         => 'Espagne',
     ],
-    'invoices'      => [],
     'layout'        => [
         'title' => 'Mise en page',
     ],
-    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Compte',
         'api'                   => 'API',
@@ -256,7 +254,6 @@ return [
         'success'               => [
             'alternative'   => 'Le paiement a été enregistré. Une notification sera générée dès le paiement traité et l\'abonnement activé.',
             'callback'      => 'Ton abonnement est réussi! Ton compte sera mis à jour dès que notre gestionnaire de paiement nous informera des changements (cela peut prendre quelques minutes).',
-            'cancel'        => 'Ton abonnement est annulé. Il sera toujours actif jusqu\'à la fin de la période actuelle.',
             'currency'      => 'Devise préférée sauvegardée.',
             'subscribed'    => 'Ton abonnement est réussi! N\'oublie pas de t\'abonner à la newsletter Community Vote pour être averti lorsqu\'un vote sera ouvert. Tu peux modifier tes paramètres de newsletter sur ta page de profil.',
         ],

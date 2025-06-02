@@ -1,16 +1,13 @@
 <?php
 
 return [
-    'actions'                           => [],
     'create'                            => [
         'success'   => 'Campagne créée.',
         'title'     => 'Nouvelle Campagne',
     ],
-    'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Campagne modifiée.',
     ],
-    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'Les nouveaux personnages ont leur personnalité privée par défault.',
     ],
@@ -432,7 +429,6 @@ return [
             'connections_mode'  => 'Mode par défaut d\'outil de visualisation de relation',
             'descendants'       => 'Filtrage des descendants',
             'entity_history'    => 'Historique d\'une entité',
-            'entity_image'      => 'Image d\'une entité',
             'member_list'       => 'Liste des membres de la campagne',
             'post_collapsed'    => 'Affichage par défaut de nouvelle entrées',
         ],
@@ -445,7 +441,6 @@ return [
             'other'             => 'Autres options visuelles de la campagne.',
             'post_collapsed'    => 'Lors de la création d\'une nouvelle entrée sur une entité, sélection de l\'affichage par défaut.',
             'theme'             => 'Afficher la campagne dans le thème choisi par l\'utilisateur, ou forcer l\'affichage dans un des thèmes suivants.',
-            'tooltip'           => 'Définir quelles options sont visibles lors du survol du nom d\'une entité.',
         ],
         'members'           => [
             'hidden'    => 'Seulement visible aux admins de la campagne',

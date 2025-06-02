@@ -34,12 +34,10 @@ return [
         'title' => 'Groupes de :name',
     ],
     'pitch'         => [
-        'error'     => 'Nombre maximum de groupes atteint.',
         'max'       => [
             'helper'    => 'Tu ne peux pas ajouter d\'autres groupes à moins d\'en supprimer un existant.',
             'limit'     => 'Cette carte a atteint sa limite de groupes',
         ],
-        'until'     => 'Créer jusqu\'à :max groupes pour chaque carte.',
         'upgrade'   => [
             'limit'     => 'Cette carte a atteint sa limite de :limit groupes',
             'upgrade'   => 'Passe à une campagne premium pour ajouter jusqu\'à :limit groupes et débloquer encore plus de flexibilité créative.',

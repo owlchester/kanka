@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'abilities'     => [],
     'children'      => [
         'actions'       => [
             'attach'    => 'Ajouter des entités',
@@ -17,14 +16,9 @@ return [
     'create'        => [
         'title' => 'Nouveau pouvoir',
     ],
-    'destroy'       => [],
-    'edit'          => [],
-    'entities'      => [],
     'fields'        => [
         'charges'   => 'Charges',
     ],
-    'helpers'       => [],
-    'index'         => [],
     'placeholders'  => [
         'charges'   => 'Nombre d\'utilisation. Les attributs peuvent être référencés avec {Level}*{CHA}',
         'name'      => 'Jet de feu, Alert, Résistance',

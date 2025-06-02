@@ -1,25 +1,15 @@
 <?php
 
 return [
-    'characters'    => [
-        'helpers'   => [
-            'all_characters'    => 'Affichage des personnages de cette race et de toutes les sous-races.',
-            'characters'        => 'Affichage de tous les personnages de cette race.',
-        ],
-    ],
     'create'        => [
         'title' => 'Nouvelle Race',
     ],
-    'destroy'       => [],
-    'edit'          => [],
     'fields'        => [
         'members'   => 'Membres',
     ],
-    'helpers'       => [],
     'hints'         => [
         'is_extinct'    => 'Cette race est éteinte.',
     ],
-    'index'         => [],
     'members'       => [
         'create'    => [
             'helper'    => 'Ajouter un ou plusieurs personnages à :name.',
@@ -31,6 +21,4 @@ return [
     'placeholders'  => [
         'type'  => 'Humain, Fée, Borg',
     ],
-    'races'         => [],
-    'show'          => [],
 ];

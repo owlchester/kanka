@@ -1,10 +1,7 @@
 <?php
 
 return [
-    'call-to-action'    => [
-        'error'     => 'Dieses Objekt hat die maximale Anzahl an Dateien erreicht, die es verwalten kann.',
-        'premium'   => 'Das Hochladen weiterer Dateien erfordert eine Premium-Kampagne.',
-    ],
+    'call-to-action'    => [],
     'create'            => [
         'success_plural'    => '{1} Datei :name hinzugefügt.|[2,*] :count der hinzugefügten Dateien.',
         'title'             => 'Neue Datei für :entity',

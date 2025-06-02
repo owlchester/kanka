@@ -4,8 +4,6 @@ return [
     'create'        => [
         'title' => 'Ajouter une quête',
     ],
-    'destroy'       => [],
-    'edit'          => [],
     'elements'      => [
         'create'    => [
             'success'   => 'L\'entité :entity ajoutée à la quête.',
@@ -39,7 +37,6 @@ return [
     'hints'         => [
         'quests'    => 'Un réseau de quêtes liées peut être créé à l\'aide du champ Quête Parentale.',
     ],
-    'index'         => [],
     'placeholders'  => [
         'date'      => 'Date réelle de la quête',
         'entity'    => 'Nom d\'un élément dans la quête',

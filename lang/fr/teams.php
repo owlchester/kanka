@@ -8,7 +8,6 @@ return [
     'leads'     => [
         'translators'   => 'Kanka est traduit en plusieurs langues grâce à ces incroyables contributeurs.',
     ],
-    'patreon'   => [],
     'people'    => [
         'itzamna'   => [
             'title' => 'Développeur Junior',

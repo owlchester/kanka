@@ -59,7 +59,6 @@ return [
     'helper'            => 'Estabeleça conexões entre entidades com atitudes e visibilidade. Conexões também podem ser fixadas no menu da entidade.',
     'helpers'           => [
         'no_relations'  => 'Essa entidade atualmente não tem quaisquer outras conexões com outras entidades da campanha.',
-        'popup'         => 'Entidades da campanha podem ser vinculadas umas às outras usando conexões. Elas podem ter uma descrição, uma avaliação de atitude, uma visibilidade para controlar quem vê a relação, e muito mais.',
     ],
     'hints'             => [
         'attitude'          => 'Este campo opcional pode ser usado para definir a ordem padrão em que as conexões aparecem em ordem decrescente.',

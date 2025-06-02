@@ -62,7 +62,6 @@ return [
     'helpers'           => [
         'description'   => 'Opisuje charakter relacji między dwoma elementami.',
         'no_relations'  => 'Element nie jest obecnie związany z żadnym innym elementem tej kampanii.',
-        'popup'         => 'Elementy można łączyć z pomocą relacji. Mogą one posiadać opis, wartość, ograniczoną widoczność dla różnych użytkowników i tak dalej.',
     ],
     'hints'             => [
         'attitude'          => 'Pole opcjonalne, pozwalająca określić kolejność wyświetlania relacji, w porządku malejącym.',

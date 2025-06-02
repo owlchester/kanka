@@ -431,7 +431,6 @@ return [
             'connections_mode'  => 'Štandardný mód prehliadača vzťahov',
             'descendants'       => 'Filtrovanie podradených objektov',
             'entity_history'    => 'Protokol histórie objektu',
-            'entity_image'      => 'Obrázok objektu',
             'member_list'       => 'Zoznam členov kampane',
             'post_collapsed'    => 'Štandardná nová hodnota zbalenej poznámky',
         ],
@@ -444,7 +443,6 @@ return [
             'other'             => 'Ďalšie možnosti zobrazenia kampane.',
             'post_collapsed'    => 'Keď vytváraš novú poznámku k objektu, zvoľ štandardnú hodnotu pre zbalené pole.',
             'theme'             => 'Zobraz kampaň v téme užívateľa alebo vynúť zobrazenie v jednej z nasledujúcich tém.',
-            'tooltip'           => 'Kontroluj, ktoré informácie budú viditeľné v bubline, ak sa kurzorom postavíš na názov objektu.',
         ],
         'members'           => [
             'hidden'    => 'Viditeľné len pre adminov kampane',

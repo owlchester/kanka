@@ -16,5 +16,4 @@ return [
     ],
     'empty'             => 'Aucun module ne possède actuellement une image par défaut.',
     'helper'            => 'Utilisée pour toutes les entités sans image de ce module.',
-    'index'             => [],
 ];

@@ -8,7 +8,6 @@ return [
         ],
         'create'        => [
             'attach_success'    => '{1} Allega l\'abilità :name a :count entità.|[2,*] Allega l\'abilità :name a :count entità.',
-            'modal'             => 'Allega :name alle entità',
         ],
         'description'   => 'Entità che hanno l\'abilità',
         'title'         => 'Abilità :name Entità',

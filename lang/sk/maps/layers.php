@@ -31,10 +31,7 @@ return [
     'index'         => [
         'title' => 'Vrstvy :name',
     ],
-    'pitch'         => [
-        'error' => 'Dosiahnutý max. počet vrstiev.',
-        'until' => 'Nahraj ku každej mape až :max vrstiev.',
-    ],
+    'pitch'         => [],
     'placeholders'  => [
         'name'          => 'Podsvetie, Úroveň 2, Vrak lode',
         'position'      => 'Nepovinné pole na nastavenie poradia zobrazenia vrstiev.',

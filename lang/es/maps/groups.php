@@ -32,10 +32,7 @@ return [
     'index'         => [
         'title' => 'Grupos de :name',
     ],
-    'pitch'         => [
-        'error' => 'Número máximo de grupos alcanzado.',
-        'until' => 'Crea hasta :max grupos para cada mapa.',
-    ],
+    'pitch'         => [],
     'placeholders'  => [
         'name'          => 'Tiendas, tesoros, PNJs...',
         'position'      => 'Campo opcional para indicar el orden en el que aparecen los grupos.',

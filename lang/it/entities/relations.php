@@ -59,7 +59,6 @@ return [
     'helper'            => 'Imposta i legami fra due entità con atteggiamento e visibilità. I legami possono anche essere fissati nel menù dell\'entità.',
     'helpers'           => [
         'no_relations'  => 'Questa entità non ha attualmente nessun legame ad altre entità nella campagna.',
-        'popup'         => 'Le entità della campagna possono essere collegate tra loro utilizzando i legami. Queste possono avere una descrizione, una valutazione dell\'atteggiamento, una visibilità per controllare chi può visualizzare il legame e altro ancora.',
     ],
     'hints'             => [
         'attitude'          => 'Questo campo opzionale può essere utilizzato per definire l\'ordine predefinito di visualizzazione dei legami in ordine decrescente.',

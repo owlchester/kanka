@@ -1,12 +1,7 @@
 <?php
 
 return [
-    'characters'    => [
-        'helpers'   => [
-            'all_characters'    => 'Exibindo todos os personagens relacionados a esta raça e suas sub-raças.',
-            'characters'        => 'Exibindo todos os personagens relacionados diretamente a esta raça.',
-        ],
-    ],
+    'characters'    => [],
     'create'        => [
         'title' => 'Nova Raça',
     ],

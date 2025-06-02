@@ -9,8 +9,6 @@ return [
     'create'        => [
         'title' => 'Nouvelle carte',
     ],
-    'destroy'       => [],
-    'edit'          => [],
     'errors'        => [
         'chunking'  => [
             'error'     => 'Une erreur est survenue durant le traitement de la carte. Contactes l\'équipe sur :discord pour de l\'aide.',
@@ -59,8 +57,6 @@ return [
         'min_zoom'              => 'La valeur minimale à laquelle la carte peut être rétrécie. La valeur par défaut est de :default, et la valeur minimale est de :min.',
         'missing_image'         => 'Enregister la carte avec une image avant de pouvoir ajouter des couches et des marqueurs.',
     ],
-    'index'         => [],
-    'maps'          => [],
     'panels'        => [
         'groups'    => 'Groupes',
         'layers'    => 'Couches',

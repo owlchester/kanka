@@ -9,9 +9,7 @@ return [
     ],
     'helpers'   => [],
     'list'      => [
-        'campaign'      => 'Modelos da Campanha',
-        'kanka'         => 'Modelos do Kanka',
-        'marketplace'   => 'Modelos do Mercado',
+        'campaign'  => 'Modelos da Campanha',
     ],
     'pitch'     => 'Encontre e adicione planilhas de personagens do :marketplace em uma :boosted-campaign.',
 ];

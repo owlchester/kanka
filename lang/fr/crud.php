@@ -89,7 +89,6 @@ return [
         'bulk_title'    => 'Appliquer un modèle d\'attribute aux entités',
     ],
     'cancel'            => 'Annuler',
-    'click_modal'       => [],
     'copy_to_campaign'  => [
         'bulk_title'    => 'Copier vers une campagne',
         'panel'         => 'Copier',
@@ -119,7 +118,6 @@ return [
         'boosted_campaigns'     => 'Cette fonctionnalité n\'est que disponible que pour les :boosted.',
         'unavailable_feature'   => 'Fonctionnalité indisponible',
     ],
-    'events'            => [],
     'fields'            => [
         'calendar_date'     => 'Date calendrier',
         'child'             => 'Enfant',
@@ -157,7 +155,6 @@ return [
         'names'             => 'Noms',
         'parent'            => 'Parent',
         'position'          => 'Position',
-        'privacy'           => 'Visibilité',
         'replace_mentions'  => 'Remplace les mentions d\'attributs avec ceux de la nouvelle entité.',
         'template'          => 'Modèle',
         'tooltip'           => 'Infobulle',
@@ -219,7 +216,6 @@ return [
     ],
     'helpers'           => [
         'copy_options'  => 'Copier les éléments liés suivant de la source à la nouvelle entité.',
-        'learn_more'    => 'En savoir plus sur cette fonctionnalité dans notre :documentation.',
         'linking'       => 'Lier d\'autres entités',
         'nested_parent' => 'Affichage des enfants de :parent.',
         'pagination'    => [
@@ -255,8 +251,6 @@ return [
         'or_cancel'         => 'ou :cancel',
         'skip_to_content'   => 'Aller au contenu',
     ],
-    'new_entity'        => [],
-    'panels'            => [],
     'permissions'       => [
         'actions'           => [
             'bulk'          => [

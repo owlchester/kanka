@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'available' => [],
     'codes'     => [
         'ca'    => 'Catalan',
         'cs'    => 'Tchèque',

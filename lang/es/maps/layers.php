@@ -31,10 +31,7 @@ return [
     'index'         => [
         'title' => 'Capas de :name',
     ],
-    'pitch'         => [
-        'error' => 'Número máximo de capas alcanzado.',
-        'until' => 'Sube hasta :max capas a cada mapa.',
-    ],
+    'pitch'         => [],
     'placeholders'  => [
         'name'          => 'Subterráneo, nivel 2, naufragio...',
         'position'      => 'Campo opcional para definir en qué orden se apilan las capas.',

@@ -32,12 +32,10 @@ return [
         'title' => 'Couches de :name',
     ],
     'pitch'         => [
-        'error'     => 'Nombre maximal de couche atteins.',
         'max'       => [
             'helper'    => 'Tu ne peux pas ajouter d\'autres couches à moins d\'en supprimer une existante.',
             'limit'     => 'Cette carte a atteint sa limite de couches',
         ],
-        'until'     => 'Créer jusqu\'à :max couches pour chaque carte.',
         'upgrade'   => [
             'limit'     => 'Cette carte a atteint sa limite de :limit couches',
             'upgrade'   => 'Passe à une campagne premium pour ajouter jusqu\'à :limit couches et débloquer encore plus de flexibilité créative.',

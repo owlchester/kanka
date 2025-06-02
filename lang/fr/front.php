@@ -1,8 +1,6 @@
 <?php
 
 return [
-    'about'                 => [],
-    'actions'               => [],
     'campaigns'             => [
         'public'    => [
             'filters'   => [
@@ -10,15 +8,11 @@ return [
             ],
         ],
     ],
-    'community'             => [],
-    'contact'               => [],
     'cookie'                => [
         'dismiss'   => 'Compris!',
         'link'      => 'En savoir plus',
         'message'   => 'Kanka utilise des cookies pour assurer une bonne expérience sur notre site web.',
     ],
-    'faq'                   => [],
-    'featured_campaigns'    => [],
     'features'              => [
         'api'       => [
             'link'  => 'Documentation d\'API',
@@ -38,10 +32,6 @@ return [
             'upload_limit_map'  => 'Taille des cartes augmentées',
         ],
     ],
-    'first_block'           => [],
-    'footer'                => [],
-    'goodbye'               => [],
-    'help'                  => [],
     'home'                  => [
         'seo'   => [
             'meta-description'  => 'Kanka est un gestionnaire de campagne JDR communautaire, qui facilite l\'organisation et la planification de tes campagnes JDR',

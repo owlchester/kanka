@@ -9,9 +9,7 @@ return [
     ],
     'helpers'   => [],
     'list'      => [
-        'campaign'      => 'Šablóny v kampaniach',
-        'kanka'         => 'Šablóny od Kanky',
-        'marketplace'   => 'Šablóny na trhovisku',
+        'campaign'  => 'Šablóny v kampaniach',
     ],
     'pitch'     => 'Nájdi a pridaj denníky postáv z :marketplace k :boosted-campaign.',
 ];

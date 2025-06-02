@@ -41,5 +41,4 @@ return [
         'owlbear'   => 'Parfait pour les créateurs solo qui souhaitent mettre leur campagne en valeur',
         'wyvern'    => 'Idéal pour les maîtres de jeu qui gèrent plusieurs aventures et pour les projets collaboratifs',
     ],
-    'toggle'    => [],
 ];
