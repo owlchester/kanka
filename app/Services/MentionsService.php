@@ -9,7 +9,6 @@ use App\Models\Attribute;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\EntityAsset;
-use App\Models\EntityType;
 use App\Models\Map;
 use App\Models\MiscModel;
 use App\Models\Post;
@@ -22,8 +21,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use TOC\MarkupFixer;
-use DOMDocument;
-use DOMXPath;
 
 class MentionsService
 {
@@ -59,12 +56,6 @@ class MentionsService
 
     /** @var array List of valid entity types */
     protected array $validEntityTypes = [];
-
-    /** @var array Created new mentions to avoid duplicates */
-    protected array $newEntityMentions = [];
-
-    /** @var bool New entities have been created from the mention parsing */
-    protected bool $createdNewEntities = false;
 
     /** @var string Class used to inject and strip advanced mention name helpers */
     public const string ADVANCED_MENTION_CLASS = 'advanced-mention-name';
@@ -188,92 +179,6 @@ class MentionsService
         $this->text = (string) $model->$field;
 
         return $this->replaceForEdit();
-    }
-
-    /**
-     * Replace mention links into [entity:123] text elements
-     */
-    public function codify(?string $text): string
-    {
-        if (empty($text)) {
-            $text = '';
-        }
-        // dump($text);
-        // New entities
-        $text = preg_replace_callback(
-            '`\[new:([a-z_-]+)\|(.*?)\]`i',
-            function ($data) {
-                if (count($data) !== 3) {
-                    return $data[0];
-                }
-
-                // check type is valid
-                return $this->newEntityMention($data[1], $data[2]);
-            },
-            $text
-        );
-
-        // Parse all links and transform them into advanced mentions [] if needed
-        $doc = new DOMDocument();
-        libxml_use_internal_errors(true); // Suppress warnings for malformed HTML
-        $doc->loadHTML(mb_convert_encoding($text, 'HTML-ENTITIES', 'UTF-8'));
-        libxml_clear_errors();
-
-        $xpath = new DOMXPath($doc);
-        $nodes = $xpath->query('//a[
-            contains(concat(" ", normalize-space(@class), " "), " mention ") or
-            contains(concat(" ", normalize-space(@class), " "), " post-mention ") or
-            contains(concat(" ", normalize-space(@class), " "), " attribute-mention ")
-        ]');
-
-        foreach ($nodes as $mentionLink) {
-            $text = $mentionLink->nodeValue;
-
-            $name = html_entity_decode($mentionLink->getAttribute('data-name'));
-
-            // Now you can compare $name with $text to check for edits
-            $mentionName = Str::replace(['&amp;'], ['&'], $text);
-            $advancedMention = $mentionLink->getAttribute('data-mention');
-            $advancedAttribute = $mentionLink->getAttribute('data-attribute');
-            // It's not a mention or attribute, keep it as is
-            if (empty($advancedMention) && empty($advancedAttribute)) {
-                $textNode = $doc->createTextNode($name);
-                $mentionLink->parentNode->replaceChild($textNode, $mentionLink);
-                continue;
-            }
-
-            // Advanced attribute [attribute:123], use that
-            if (!empty($advancedAttribute)) {
-                $textNode = $doc->createTextNode($advancedAttribute);
-                $mentionLink->parentNode->replaceChild($textNode, $mentionLink);
-                continue;
-            }
-
-            // If the name isn't the target name, transform it into an advanced mention
-            $originalName = $mentionLink->getAttribute('data-name');
-            if (!empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
-                $mention = Str::replace(']', '|' . $mentionName . ']', $advancedMention);
-                $textNode = $doc->createTextNode($mention);
-                $mentionLink->parentNode->replaceChild($textNode, $mentionLink);
-                continue;
-            }
-
-            $textNode = $doc->createTextNode($advancedMention);
-            $mentionLink->parentNode->replaceChild($textNode, $mentionLink);
-        }
-        // Remove legacy <ins> and <span> advanced-mention elements
-        $advancedNodes = $xpath->query('//ins[@class="' . self::ADVANCED_MENTION_CLASS . '" and @data-name] | //span[@class="' . self::ADVANCED_MENTION_CLASS . '" and @data-name]');
-        foreach ($advancedNodes as $node) {
-            $node->parentNode->removeChild($node);
-        }
-
-        // Extract inner HTML of <body>
-        $body = $doc->getElementsByTagName('body')->item(0);
-        $newHtml = '';
-        foreach ($body->childNodes as $child) {
-            $newHtml .= $doc->saveHTML($child);
-        }
-        return $newHtml;
     }
 
     /**
@@ -954,41 +859,6 @@ class MentionsService
             '<div class="toc">' . $toc . "</div>\n",
             $this->text
         );
-    }
-
-    /**
-     * Replace new entity mentions with entities.
-     */
-    protected function newEntityMention(string $type, string $name): string
-    {
-        if (empty($type) || empty($name)) {
-            return $name;
-        }
-
-        $types = $this->newService->campaign($this->campaign)->available();
-
-        /** @var ?EntityType $entityType */
-        $entityType = $types->where('code', $type)->first();
-        if (! $entityType) {
-            return $name;
-        }
-
-        // Do we already have it cached?
-        $key = $type . ':' . mb_strtolower($name);
-        if (isset($this->newEntityMentions[$key])) {
-            return "[{$type}:" . $this->newEntityMentions[$key] . ']';
-        }
-
-        // Create the new model
-        $newEntity = $this->newService
-            ->campaign($this->campaign)
-            ->user(auth()->user())
-            ->entityType($entityType)
-            ->create($name);
-        $this->newEntityMentions[$key] = $newEntity->id;
-        $this->createdNewEntities = true;
-
-        return '[' . $type . ':' . $newEntity->id . ']';
     }
 
     /**

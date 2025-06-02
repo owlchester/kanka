@@ -14,6 +14,7 @@
         "php": "^8.3",
         "ext-json": "*",
         "ext-zip": "*",
+        "ext-dom": "*",
         "aws/aws-sdk-php": "^3.276",
         "bacon/bacon-qr-code": "^3.0",
         "binarytorch/larecipe": "^2.0",
@@ -50,7 +51,7 @@
         "stechstudio/laravel-zipstream": "^5.0",
         "stevebauman/purify": "6.2.*",
         "symfony/http-client": "^7.2",
-        "symfony/mailgun-mailer": "^7.1"
+        "symfony/mailgun-mailer": "^7.1",
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",
