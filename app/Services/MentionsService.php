@@ -157,14 +157,6 @@ class MentionsService
     }
 
     /**
-     * If new entities were created from the mentions
-     */
-    public function hasNewEntities(): bool
-    {
-        return $this->createdNewEntities;
-    }
-
-    /**
      * Parse a model's text for editing (transform mentions into advanced mentions, normal
      * mentions visually, etc)
      */

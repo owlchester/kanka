@@ -31,8 +31,6 @@ class EntryObserver
                 ->text($model->{$model->entryFieldName()})
                 ->save()
         );
-        //        dump('Becomes');
-        //        dd($model->{$model->entryFieldName()});
 
         // Word count
         if (! Arr::exists($attributes, 'words')) {

@@ -7,8 +7,8 @@ use App\Services\Entity\NewService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use DOMDocument;
+use DOMElement;
 use DOMXPath;
-use Illuminate\Support\Str;
 
 class SaveService
 {
@@ -18,6 +18,7 @@ class SaveService
     protected ?string $text;
 
     protected DOMDocument $document;
+    protected DOMXPath $xpath;
 
     /** @var array Created new mentions to avoid duplicates */
     protected array $newEntityMentions = [];
@@ -38,11 +39,32 @@ class SaveService
         return $this;
     }
 
+    /**
+     * If new entities were created from the mentions
+     */
+    public function hasNewEntities(): bool
+    {
+        return $this->createdNewEntities;
+    }
+
+
     public function save(): string
     {
         if (empty($this->text)) {
             return '';
         }
+
+        $this
+            ->parseNewEntities()
+            ->prepareDocument()
+            ->parseMentions()
+            ->cleanup();
+
+        return $this->html();
+    }
+
+    protected function parseNewEntities(): self
+    {
         $this->text = preg_replace_callback(
             '`\[new:([a-z_-]+)\|(.*?)\]`i',
             function ($data) {
@@ -55,69 +77,80 @@ class SaveService
             },
             $this->text
         );
+        return $this;
+    }
 
+    protected function prepareDocument(): self
+    {
         // Parse all links and transform them into advanced mentions [] if needed
         $this->document = new DOMDocument;
         libxml_use_internal_errors(true); // Suppress warnings for malformed HTML
         $this->document->loadHTML(mb_convert_encoding($this->text, 'HTML-ENTITIES', 'UTF-8'));
         libxml_clear_errors();
 
-        $xpath = new DOMXPath($this->document);
-        $nodes = $xpath->query('//a[
+        $this->xpath = new DOMXPath($this->document);
+        return $this;
+    }
+
+    protected function parseMentions(): self
+    {
+        $nodes = $this->xpath->query('//a[
             contains(concat(" ", normalize-space(@class), " "), " mention ") or
             contains(concat(" ", normalize-space(@class), " "), " post-mention ") or
             contains(concat(" ", normalize-space(@class), " "), " attribute-mention ")
         ]');
 
         foreach ($nodes as $mentionLink) {
-            $text = $mentionLink->nodeValue;
+            $this->parseMention($mentionLink);
+        }
+        return $this;
+    }
 
-            $name = html_entity_decode($mentionLink->getAttribute('data-name'));
+    protected function parseMention(DOMElement $mentionLink): void
+    {
+        $text = $mentionLink->nodeValue;
 
-            // Now you can compare $name with $text to check for edits
-            $mentionName = Str::replace(['&amp;'], ['&'], $text);
-            $advancedMention = $mentionLink->getAttribute('data-mention');
-            $advancedAttribute = $mentionLink->getAttribute('data-attribute');
-            // It's not a mention or attribute, keep it as is
-            if (empty($advancedMention) && empty($advancedAttribute)) {
-                $this->replace($name, $mentionLink);
+        $name = html_entity_decode($mentionLink->getAttribute('data-name'));
 
-                continue;
-            }
+        // Now you can compare $name with $text to check for edits
+        $mentionName = Str::replace(['&amp;'], ['&'], $text);
+        $advancedMention = $mentionLink->getAttribute('data-mention');
+        $advancedAttribute = $mentionLink->getAttribute('data-attribute');
+        // It's not a mention or attribute, keep it as is
+        if (empty($advancedMention) && empty($advancedAttribute)) {
+            $this->replace($name, $mentionLink);
 
-            // Advanced attribute [attribute:123], use that
-            if (! empty($advancedAttribute)) {
-                $this->replace($advancedAttribute, $mentionLink);
-
-                continue;
-            }
-
-            // If the name isn't the target name, transform it into an advanced mention
-            $originalName = $mentionLink->getAttribute('data-name');
-            if (! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
-                $mention = Str::replace(']', '|' . $mentionName . ']', $advancedMention);
-                $this->replace($mention, $mentionLink);
-
-                continue;
-            }
-
-            $this->replace($advancedMention, $mentionLink);
+            return;
         }
 
+        // Advanced attribute [attribute:123], use that
+        if (!empty($advancedAttribute)) {
+            $this->replace($advancedAttribute, $mentionLink);
+
+            return;
+        }
+
+        // If the name isn't the target name, transform it into an advanced mention
+        $originalName = $mentionLink->getAttribute('data-name');
+        if (!empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
+            $mention = Str::replace(']', '|' . $mentionName . ']', $advancedMention);
+            $this->replace($mention, $mentionLink);
+
+            return;
+        }
+
+        $this->replace($advancedMention, $mentionLink);
+    }
+
+    protected function cleanup(): self
+    {
         // Remove legacy <ins> and <span> advanced-mention elements
-        $advancedNodes = $xpath->query('//ins[@class="' . $this->advancedMentionClass . '" and @data-name] | //span[@class="' . $this->advancedMentionClass . '" and @data-name]');
+        $advancedNodes = $this->xpath->query('//ins[@class="' . $this->advancedMentionClass . '" and @data-name] | //span[@class="' . $this->advancedMentionClass . '" and @data-name]');
         foreach ($advancedNodes as $node) {
             $node->parentNode->removeChild($node);
         }
 
-        // Extract inner HTML of <body>
-        $body = $this->document->getElementsByTagName('body')->item(0);
-        $newHtml = '';
-        foreach ($body->childNodes as $child) {
-            $newHtml .= $this->document->saveHTML($child);
-        }
-
-        return $newHtml;
+        return $this;
     }
 
     protected function replace(string $text, mixed $node)
@@ -158,5 +191,16 @@ class SaveService
         $this->createdNewEntities = true;
 
         return '[' . $type . ':' . $newEntity->id . ']';
+    }
+
+    protected function html(): string
+    {
+        // Extract inner HTML of <body>
+        $body = $this->document->getElementsByTagName('body')->item(0);
+        $newHtml = '';
+        foreach ($body->childNodes as $child) {
+            $newHtml .= $this->document->saveHTML($child);
+        }
+        return $newHtml;
     }
 }
