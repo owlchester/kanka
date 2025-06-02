@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Facades\Images;
-use App\Facades\Mentions;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;

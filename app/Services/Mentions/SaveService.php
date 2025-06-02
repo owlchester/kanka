@@ -6,16 +6,16 @@ use App\Models\EntityType;
 use App\Services\Entity\NewService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Illuminate\Support\Str;
 use DOMDocument;
 use DOMXPath;
+use Illuminate\Support\Str;
 
 class SaveService
 {
     use CampaignAware;
     use UserAware;
 
-    protected ?String $text;
+    protected ?string $text;
 
     protected DOMDocument $document;
 
@@ -34,6 +34,7 @@ class SaveService
     public function text(?string $text): self
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -56,7 +57,7 @@ class SaveService
         );
 
         // Parse all links and transform them into advanced mentions [] if needed
-        $this->document = new DOMDocument();
+        $this->document = new DOMDocument;
         libxml_use_internal_errors(true); // Suppress warnings for malformed HTML
         $this->document->loadHTML(mb_convert_encoding($this->text, 'HTML-ENTITIES', 'UTF-8'));
         libxml_clear_errors();
@@ -80,20 +81,23 @@ class SaveService
             // It's not a mention or attribute, keep it as is
             if (empty($advancedMention) && empty($advancedAttribute)) {
                 $this->replace($name, $mentionLink);
+
                 continue;
             }
 
             // Advanced attribute [attribute:123], use that
-            if (!empty($advancedAttribute)) {
+            if (! empty($advancedAttribute)) {
                 $this->replace($advancedAttribute, $mentionLink);
+
                 continue;
             }
 
             // If the name isn't the target name, transform it into an advanced mention
             $originalName = $mentionLink->getAttribute('data-name');
-            if (!empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
+            if (! empty($originalName) && $originalName != Str::replace('&quot;', '"', $mentionName)) {
                 $mention = Str::replace(']', '|' . $mentionName . ']', $advancedMention);
                 $this->replace($mention, $mentionLink);
+
                 continue;
             }
 
@@ -112,6 +116,7 @@ class SaveService
         foreach ($body->childNodes as $child) {
             $newHtml .= $this->document->saveHTML($child);
         }
+
         return $newHtml;
     }
 

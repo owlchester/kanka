@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Facades\CampaignLocalization;
-use App\Facades\Mentions;
 use App\Jobs\EntityMappingJob;
 use App\Services\Mentions\SaveService;
 use Illuminate\Database\Eloquent\Model;
