@@ -152,7 +152,7 @@ return [
         'is_star'           => 'Pinned',
         'locations'         => ':first in :second',
         'name'              => 'Name',
-        'names'              => 'Names',
+        'names'             => 'Names',
         'parent'            => 'Parent',
         'position'          => 'Position',
         'replace_mentions'  => 'Replace attribute mentions in the entry with those of the new entity',

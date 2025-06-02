@@ -2,9 +2,9 @@
 
 return [
     'create'        => [
+        'helper'    => 'Add weather information that will show up on the calendar.',
         'success'   => 'Weather information added.',
         'title'     => 'Weather',
-        'helper' => 'Add weather information that will show up on the calendar.',
     ],
     'destroy'       => [
         'success'   => 'Weather information removed.',

@@ -21,6 +21,7 @@ return [
             'switch'    => 'Basculer vers',
         ],
         'create'        => [
+            'helper'    => 'Crée un nouveau tableau de bord pour :name, et attribue les rôles qui peuvent le voir ou l\'avoir comme tableau de bord par défaut.',
             'success'   => 'Nouveau tableau de bord :name créé.',
             'title'     => 'Nouveau tableau de bord',
         ],
@@ -120,8 +121,10 @@ return [
             'helper'    => 'Ce widget affiche l\'entête de campagne. Ce widget est tout le temps visible sur le tableau de bord de défaut.',
         ],
         'create'                    => [
-            'success'   => 'Widget ajouté au tableau de bord.',
-            'title'     => 'Nouveau widget',
+            'helper'            => 'Sélectionne un type de widget à ajouter au tableau de bord :name.',
+            'helper-default'    => 'Sélectionne un type de widget à ajouter au tableau de bord par défaut.',
+            'success'           => 'Widget ajouté au tableau de bord.',
+            'title'             => 'Nouveau widget',
         ],
         'delete'                    => [
             'success'   => 'Widget retiré du tableau de bord.',

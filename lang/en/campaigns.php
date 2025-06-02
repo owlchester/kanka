@@ -121,6 +121,7 @@ return [
         ],
     ],
     'leave'                             => [
+        'action'            => 'Leave the campaign',
         'confirm'           => 'Are you sure you want to leave :name? You won\'t be able to access it anymore, unless one of it\'s admins invites you again.',
         'confirm-button'    => 'Yes, leave now',
         'error'             => 'Can\'t leave the campaign.',
@@ -128,7 +129,6 @@ return [
         'no-admin-left'     => 'Leaving the campaign isn\'t possible because doing so would leave it without any admins. Add another member to the admin role first.',
         'success'           => 'You have left :name.',
         'title'             => 'Leaving the campaign',
-        'action' => 'Leave the campaign',
     ],
     'members'                           => [
         'actions'               => [

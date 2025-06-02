@@ -10,6 +10,7 @@ return [
     'level'             => 'niveau :number',
     'markers'           => '{0} Aucun marqueur de carte créé|{1} Un marqueur de carte créé|[2,*] :amount marqueurs de carte créés',
     'painter'           => '{0} Aucun thème créé|{1} Un thème créé|[2,*] :amount thèmes créés',
+    'pitch'             => 'Les succès de campagne sont un moyen amusant de célébrer les étapes importantes de ton aventure dans Kanka. Suis tes progrès, implique tes joueurs et mets en valeur tes réalisations avec une campagne premium.',
     'plugins'           => '{0} Aucun plugin installé|{1} Un plugin installé|[2,*] :amount plugins installés',
     'remaining'         => [
         'generic'   => 'de plus pour débloquer le niveau suivant.',

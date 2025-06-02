@@ -31,14 +31,14 @@ return [
     'index'         => [
         'title' => 'Layers of :name',
     ],
-    'pitch' => [
-        'max' => [
-            'limit' => 'This map has reached its layer limit',
-            'helper' => 'You can\'t add any more layers unless you remove an existing one.',
+    'pitch'         => [
+        'max'       => [
+            'helper'    => 'You can\'t add any more layers unless you remove an existing one.',
+            'limit'     => 'This map has reached its layer limit',
         ],
         'upgrade'   => [
-            'limit' => 'You\'ve reached the limit of :limit layers for this map',
-            'upgrade' => 'Upgrade to a premium campaign to add up to :limit layers and unlock even more creative flexibility.',
+            'limit'     => 'You\'ve reached the limit of :limit layers for this map',
+            'upgrade'   => 'Upgrade to a premium campaign to add up to :limit layers and unlock even more creative flexibility.',
         ],
     ],
     'placeholders'  => [

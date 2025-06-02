@@ -52,6 +52,10 @@ return [
         'title'     => 'Modifier le thème de la campagne.',
     ],
     'title'         => 'Styles de la campagne',
+    'toggle'        => [
+        'disable'   => 'Style désactivé.',
+        'enable'    => 'Style activé.',
+    ],
     'update'        => [
         'success'   => 'Style :name modifié.',
         'title'     => 'Modifier le style',

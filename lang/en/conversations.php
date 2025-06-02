@@ -30,7 +30,7 @@ return [
         'destroy'   => [
             'success'   => 'Participant :entity removed from the conversation.',
         ],
-        'helper' => 'Add and remove participants from :name.',
+        'helper'    => 'Add and remove participants from :name.',
         'modal'     => 'Participants',
         'title'     => 'Participants of :name',
     ],

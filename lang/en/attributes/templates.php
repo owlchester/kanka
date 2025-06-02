@@ -8,8 +8,8 @@ return [
         ],
     ],
     'list'      => [
-        'campaign'      => 'Attribute Templates',
-        'sheets'   => 'Character Sheets',
+        'campaign'  => 'Attribute Templates',
+        'sheets'    => 'Character Sheets',
     ],
     'pitch'     => 'Find and add character sheets from the :marketplace on a :boosted-campaign.',
 ];

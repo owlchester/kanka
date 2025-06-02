@@ -43,6 +43,10 @@ return [
     'import'        => [
         'button'                => 'Import',
         'created'               => 'Created the following entities:',
+        'fields'                => [
+            'only_new'  => 'Only new entities',
+            'private'   => 'Private entities',
+        ],
         'helper'                => 'You are about to import :count entities from the :plugin plugin. If this plugin was previously imported, changes you have since made to the imported entities may be lost.',
         'no_new_entities'       => 'There are no new entities to be imported.',
         'option_only_import'    => 'Only import new entities, skipping previously imported entities.',
@@ -50,10 +54,6 @@ return [
         'success'               => '{1} Imported :count entity from the plugin :plugin.|[2,*] Imported :count entities from the plugin :plugin.',
         'title'                 => 'Import content pack',
         'updated'               => 'Updated the following entities:',
-        'fields' => [
-            'private' => 'Private entities',
-            'only_new' => 'Only new entities',
-        ]
     ],
     'info'          => [
         'helper'        => 'When a new version of a plugin is released, you can update it to the latest version for your campaign.',

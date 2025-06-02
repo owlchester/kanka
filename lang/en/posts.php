@@ -14,11 +14,21 @@ return [
         'new'           => 'Add a new post to this entity.',
         'visibility'    => 'Change the visibility of the post :name.',
     ],
-    'move' => [
-        'title' => 'Move post',
-        'helper' => 'Move or copy the post :name to a different entity.',
-        'copy' => [
-            'helper' => 'Keep a copy of the post on :name.',
+    'move'          => [
+        'copy'      => [
+            'helper'    => 'Keep a copy of the post on :name.',
+        ],
+        'helper'    => 'Move or copy the post :name to a different entity.',
+        'title'     => 'Move post',
+    ],
+    'permissions'   => [
+        'actions'   => [
+            'members'   => 'Add members',
+            'roles'     => 'Add roles',
+        ],
+        'helpers'   => [
+            'members'   => 'Add one or multiple members to have special permissions on this post.',
+            'roles'     => 'Add one or multiple roles to have special permissions on this post.',
         ],
     ],
     'placeholders'  => [
@@ -29,18 +39,8 @@ return [
         'first'         => 'First',
         'last'          => 'Last',
     ],
-    'permissions' => [
-        'actions' => [
-            'members' => 'Add members',
-            'roles' => 'Add roles',
-        ],
-        'helpers' => [
-            'members' => 'Add one or multiple members to have special permissions on this post.',
-            'roles' => 'Add one or multiple roles to have special permissions on this post.',
-        ]
-    ],
-    'visibility' => [
-        'title' => 'Post visibility',
-        'helper' => 'Change the visibility for the post :name.',
+    'visibility'    => [
+        'helper'    => 'Change the visibility for the post :name.',
+        'title'     => 'Post visibility',
     ],
 ];

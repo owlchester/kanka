@@ -15,5 +15,5 @@ return [
         'success'   => 'Default thumbnail for :type removed.',
     ],
     'empty'             => 'No modules currently have a default thumbnail setup.',
-    'helper' => 'Used for all entities of this module without an image.',
+    'helper'            => 'Used for all entities of this module without an image.',
 ];

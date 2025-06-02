@@ -10,7 +10,9 @@ return [
             'attach_success'        => '{1} Ajout de :count entité à l\'étiquette :name.|[2,*] Ajout de :count entités à l\'étiquette :name.',
             'attach_success_entity' => 'Etiquettes modifiées pour :name.',
             'entity'                => 'Etiquetter :name',
+            'helper'                => 'Etiquetter une ou plusieurs entités avec :name',
             'modal_title'           => 'Ajouter des entités à :name',
+            'title'                 => 'Etiquetter',
         ],
     ],
     'create'        => [
@@ -45,9 +47,17 @@ return [
     'tags'          => [],
     'transfer'      => [
         'description'       => 'Transférer les entités de cette étiquette vers une autre étiquette.',
+        'entities'          => [
+            'helper'    => 'Transférer les entités étiquetées avec :name à une autre étiquette.',
+            'title'     => 'Transférer les entités',
+        ],
         'fail'              => 'Les entités de :tag n\'ont pas pu être transférées vers :newTag',
         'fail_post'         => 'Les articles de :tag n\'ont pas pu être transférés vers :newTag',
         'post_description'  => 'Transférer les articles de cette étiquette vers une autre étiquette.',
+        'posts'             => [
+            'helper'    => 'Transférer les articles étiquetés avec :name à une autre étiquette.',
+            'title'     => 'Transférer les articles',
+        ],
         'success'           => 'Les entités de :tag ont été transférées vers :newTag',
         'success_post'      => 'Les articles de :tag ont été transférés vers :newTag',
         'title'             => 'Transférer :name',

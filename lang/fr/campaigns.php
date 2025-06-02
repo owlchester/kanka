@@ -125,6 +125,7 @@ return [
         ],
     ],
     'leave'                             => [
+        'action'            => 'Quitter la campagne',
         'confirm'           => 'Es-tu sûr de vouloir quitter la campagne :name? Tu n\'auras plus accès aux données, sauf si un admin de la campagne t\'invite à nouveau.',
         'confirm-button'    => 'Oui, quitter la campagne',
         'error'             => 'Impossible de quitter la campagne.',

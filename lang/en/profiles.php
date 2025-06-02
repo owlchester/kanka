@@ -13,6 +13,7 @@ return [
         'email'                     => 'Email',
         'hide_subscription'         => 'Hide my name from the :hall_of_fame.',
         'last_login_share'          => 'Share with other campaign members when I last logged in.',
+        'link'                      => 'Social link',
         'login_sharing'             => 'Last login sharing',
         'name'                      => 'Name',
         'new_password'              => 'New Password',
@@ -21,18 +22,17 @@ return [
         'password'                  => 'Current password',
         'profile-name'              => 'Profile name',
         'pronouns'                  => 'Pronouns',
-        'link'                      => 'Social link',
         'settings'                  => 'Settings',
         'subscription_hiding'       => 'Subscription hiding',
         'theme'                     => 'Theme',
     ],
     'helpers'       => [
+        'link'          => 'Change the way a link to your social profile appears on your :profile and the :marketplace. If left blank, no link will show.',
         'profile-name'  => 'Change the way your name appears on your :profile and the :marketplace. If left blank, your account name will be used instead.',
-        'pronouns'  => 'Change the way your pronouns appear on your :profile and the :marketplace. If left blank, no pronouns will show.',
-        'link'  => 'Change the way a link to your social profile appears on your :profile and the :marketplace. If left blank, no link will show.',
+        'pronouns'      => 'Change the way your pronouns appear on your :profile and the :marketplace. If left blank, no pronouns will show.',
     ],
     'link'          => [
-        'button' => ':name\'s social profile',
+        'button'    => ':name\'s social profile',
     ],
     'newsletter'    => [
         'helpers'   => [

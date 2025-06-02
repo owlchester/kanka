@@ -2,6 +2,7 @@
 
 return [
     'deselect_all'  => 'Deselect All',
+    'documentation' => 'Learn more about this feature in our documentation',
     'done'          => 'Done',
     'learn-more'    => 'Learn more',
     'no'            => 'No',
@@ -14,5 +15,4 @@ return [
         'updated'           => ':name updated.',
     ],
     'yes'           => 'Yes',
-    'documentation' => 'Learn more about this feature in our documentation',
 ];

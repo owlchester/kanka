@@ -10,8 +10,8 @@ return [
             'attach_success'        => '{1} Tagged :count entity .|[2,*] Tagged :count entities.',
             'attach_success_entity' => 'Successfully updated tags for :name.',
             'entity'                => 'Add tags to :name',
-            'title'           => 'Tag entities',
-            'helper' => 'Tag one or several entities with :name',
+            'helper'                => 'Tag one or several entities with :name',
+            'title'                 => 'Tag entities',
         ],
     ],
     'create'        => [
@@ -41,18 +41,18 @@ return [
         ],
     ],
     'transfer'      => [
-        'entities' => [
-            'helper'            => 'Transfer entities tagged with :name to another tag.',
-            'title'             => 'Transfer entities',
+        'entities'      => [
+            'helper'    => 'Transfer entities tagged with :name to another tag.',
+            'title'     => 'Transfer entities',
         ],
-        'posts' => [
-            'helper'            => 'Transfer posts tagged with :name to another tag.',
-            'title'             => 'Transfer posts',
+        'fail'          => 'Failed to transfer entities from :tag to :newTag',
+        'fail_post'     => 'Failed to transfer posts from :tag to :newTag',
+        'posts'         => [
+            'helper'    => 'Transfer posts tagged with :name to another tag.',
+            'title'     => 'Transfer posts',
         ],
-        'fail'              => 'Failed to transfer entities from :tag to :newTag',
-        'fail_post'         => 'Failed to transfer posts from :tag to :newTag',
-        'success'           => 'Successfully transferred entities from :tag to :newTag',
-        'success_post'      => 'Successfully transferred posts from :tag to :newTag',
-        'transfer'          => 'Transfer',
+        'success'       => 'Successfully transferred entities from :tag to :newTag',
+        'success_post'  => 'Successfully transferred posts from :tag to :newTag',
+        'transfer'      => 'Transfer',
     ],
 ];

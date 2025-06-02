@@ -9,9 +9,9 @@ return [
         'patch'     => '{1} Updated :count group.|[2,*] Updated :count groups.',
     ],
     'create'        => [
+        'helper'    => 'Add a new group to :name. Markers can then be assigned to this group.',
         'success'   => 'Group :name created.',
         'title'     => 'New Group',
-        'helper' => 'Add a new group to :name. Markers can then be assigned to this group.',
     ],
     'delete'        => [
         'success'   => 'Group :name deleted.',
@@ -34,14 +34,14 @@ return [
         'title' => 'Groups of :name',
     ],
     'pitch'         => [
-        'max' => [
-            'limit' => 'This map has reached its group limit',
-            'helper' => 'You can\'t add any more groups unless you remove an existing one.',
+        'max'       => [
+            'helper'    => 'You can\'t add any more groups unless you remove an existing one.',
+            'limit'     => 'This map has reached its group limit',
         ],
         'upgrade'   => [
-            'limit' => 'You\'ve reached the limit of :limit groups for this map',
-            'upgrade' => 'Upgrade to a premium campaign to add up to :limit groups and unlock even more creative flexibility.',
-        ]
+            'limit'     => 'You\'ve reached the limit of :limit groups for this map',
+            'upgrade'   => 'Upgrade to a premium campaign to add up to :limit groups and unlock even more creative flexibility.',
+        ],
     ],
     'placeholders'  => [
         'name'          => 'Shops, Treasure, NPCs',

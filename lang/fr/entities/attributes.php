@@ -82,6 +82,7 @@ return [
             'success'   => 'Modèle chargé',
             'title'     => 'Chargement à partir d\'un modèle',
         ],
+        'pitch'     => 'Charge les attributs depuis un modèle d\'attributs ou depuis les plugins installés via :plugin.',
         'success'   => 'Modèle d\'attribut :name appliqué pour :entity.',
         'title'     => 'Appliquer un modèle d\'attribut pour :name',
     ],

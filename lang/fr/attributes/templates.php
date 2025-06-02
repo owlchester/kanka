@@ -12,6 +12,7 @@ return [
         'campaign'      => 'Modèles de campagne',
         'kanka'         => 'Modèles de Kanka',
         'marketplace'   => 'Modèles du marketplace',
+        'sheets'        => 'Feuilles de personnages',
     ],
     'pitch'     => 'Trouves et ajoutes des fiches de personnage sur le :marketplace dans une :boosted-campaign.',
 ];

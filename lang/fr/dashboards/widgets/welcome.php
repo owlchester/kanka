@@ -11,6 +11,7 @@ return [
     ],
     'focus'     => [
         'text'  => 'Ici, c\'est moi!',
+        'title' => 'Hey',
     ],
     'intros'    => [
         '1' => 'Dis bonjour à ton nouveau chez toi pour la création de monde, :user! Nous avons mis en place ta première campagne et inclus deux exemples de :characters et :locations Ceux-ci sont également visibles ici sur le tableau de bord.',

@@ -45,10 +45,6 @@ return [
         'success'   => '{1} Reordered :count style.|[2,*] Reordered :count styles.',
         'title'     => 'Reorder styles',
     ],
-    'toggle'        => [
-        'enable'   => 'Style enabled successfully.',
-        'disable'  => 'Style disabled successfully.',
-    ],
     'theme'         => [
         'none'      => 'Use user\'s preference',
         'override'  => 'Theme override',
@@ -56,6 +52,10 @@ return [
         'title'     => 'Update the theme override',
     ],
     'title'         => 'Theming',
+    'toggle'        => [
+        'disable'   => 'Style disabled successfully.',
+        'enable'    => 'Style enabled successfully.',
+    ],
     'update'        => [
         'success'   => 'Style :name updated.',
         'title'     => 'Update style',

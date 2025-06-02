@@ -8,7 +8,8 @@ return [
         ],
         'create'        => [
             'attach_success'    => '{1} Le pouvoir :name ajouté à :count entité.|[2,*] Le pouvoir :name ajouté à :count entités.',
-            'modal'             => 'Attacher :name à des entités',
+            'helper'            => 'Attacher :name à une ou plusieurs entités.',
+            'title'             => 'Attacher des entités',
         ],
         'description'   => 'Entités ayant le pouvoir',
         'title'         => 'Entités du pouvoir :name',

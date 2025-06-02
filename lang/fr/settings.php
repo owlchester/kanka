@@ -156,6 +156,7 @@ return [
                 'not_playing'       => 'La campagne n\'est plus active ou en pause',
                 'not_using'         => 'Je n\'utilise pas Kanka actuellement',
                 'other'             => 'Autre',
+                'testing'           => 'Juste en train de tester Kanka.',
             ],
             'text'      => 'Désolé de te voir partir! L\'annulation de ton abonnement le gardera actif jusqu\'au la fin du mois payé, après quoi tu perdras les bonus de ta campagne et les autres avantages liés au soutien de Kanka. N\'hésite pas à remplir le formulaire suivant pour nous informer de ce que nous pouvons améliorer, ou ce qui a conduit à ta décision.',
             'title'     => 'Annulation de l\'abonnement',

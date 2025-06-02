@@ -33,6 +33,7 @@ return [
         'destroy'   => [
             'success'   => 'Participant :entity retiré de la conversation.',
         ],
+        'helper'    => 'Ajouter et retirer des participants de :name.',
         'modal'     => 'Participants',
         'title'     => 'Participants de :name',
     ],

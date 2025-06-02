@@ -2,6 +2,7 @@
 
 return [
     'deselect_all'  => 'Désélectionner tout',
+    'documentation' => 'En savoir plus sur cette fonctionnalité dans notre documentation.',
     'done'          => 'Terminé',
     'learn-more'    => 'En savoir plus',
     'no'            => 'Non',

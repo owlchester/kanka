@@ -14,9 +14,9 @@ return [
             'switch'    => 'Switch to dashboard',
         ],
         'create'        => [
+            'helper'    => 'Create a new dashboard for :name, and assign which roles can see it or have it as their default dashboard.',
             'success'   => 'New dashboard :name created.',
             'title'     => 'New dashboard',
-            'helper' => 'Create a new dashboard for :name, and assign which roles can see it or have it as their default dashboard.',
         ],
         'custom'        => [
             'text'  => 'You are currently editing the :name dashboard.',
@@ -96,10 +96,10 @@ return [
             'helper'    => 'This widget displays the campaign header. This widget is always shown on the default dashboard.',
         ],
         'create'                    => [
-            'success'   => 'Widget added to the dashboard.',
-            'title'     => 'New widget',
-            'helper' => 'Select a widget type to add to the :name dashboard.',
-            'helper-default' => 'Select a widget type to add to the default dashboard.',
+            'helper'            => 'Select a widget type to add to the :name dashboard.',
+            'helper-default'    => 'Select a widget type to add to the default dashboard.',
+            'success'           => 'Widget added to the dashboard.',
+            'title'             => 'New widget',
         ],
         'delete'                    => [
             'success'   => 'Widget removed from the dashboard.',

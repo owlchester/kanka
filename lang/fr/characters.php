@@ -13,9 +13,11 @@ return [
     'dice_rolls'    => [],
     'edit'          => [],
     'families'      => [
+        'helper'    => 'Réorganise et contrôle quelles familles de :name sont visibles ou cachées aux non-admins.',
         'reorder'   => [
             'success'   => 'Les familles du personage ont été mises à jour avec succès.',
         ],
+        'title2'    => 'Gérer les familles',
     ],
     'fields'        => [
         'age'                       => 'Age',
@@ -93,9 +95,11 @@ return [
         ],
     ],
     'races'         => [
+        'helper'    => 'Réorganise et contrôle quelles races de :name sont visibles ou cachées aux non-admins.',
         'reorder'   => [
             'success'   => 'Mise à jour réussie des races de personnage.',
         ],
+        'title2'    => 'Gérer les races',
     ],
     'sections'      => [
         'appearance'    => 'Physique',

@@ -2,14 +2,14 @@
 
 return [
     'call-to-action'    => [
-        'max' => [
-            'limit' => 'This entity has reached its file limit',
-            'helper' => 'You can\'t attach any more files unless you remove an existing one.',
+        'max'       => [
+            'helper'    => 'You can\'t attach any more files unless you remove an existing one.',
+            'limit'     => 'This entity has reached its file limit',
         ],
         'upgrade'   => [
-            'limit' => 'You\'ve reached the limit of :limit files for this entity',
-            'upgrade' => 'Upgrade to a premium campaign to attach up to :limit files and unlock even more creative flexibility.',
-        ]
+            'limit'     => 'You\'ve reached the limit of :limit files for this entity',
+            'upgrade'   => 'Upgrade to a premium campaign to attach up to :limit files and unlock even more creative flexibility.',
+        ],
     ],
     'create'            => [
         'helper'            => 'Add a file to :name. The file will count towards the gallery storage limit.',
