@@ -1,19 +1,19 @@
 <?php
 
 return [
-    'campaigns'             => [
+    'campaigns'     => [
         'public'    => [
             'filters'   => [
                 'is-premium'    => 'Cette campagne est Premium!',
             ],
         ],
     ],
-    'cookie'                => [
+    'cookie'        => [
         'dismiss'   => 'Compris!',
         'link'      => 'En savoir plus',
         'message'   => 'Kanka utilise des cookies pour assurer une bonne expérience sur notre site web.',
     ],
-    'features'              => [
+    'features'      => [
         'api'       => [
             'link'  => 'Documentation d\'API',
         ],
@@ -32,37 +32,37 @@ return [
             'upload_limit_map'  => 'Taille des cartes augmentées',
         ],
     ],
-    'home'                  => [
+    'home'          => [
         'seo'   => [
             'meta-description'  => 'Kanka est un gestionnaire de campagne JDR communautaire, qui facilite l\'organisation et la planification de tes campagnes JDR',
         ],
     ],
-    'master'                => [],
-    'media'                 => [],
-    'menu'                  => [
+    'master'        => [],
+    'media'         => [],
+    'menu'          => [
         'dashboard'     => 'Accueil',
         'login'         => 'Login',
         'register'      => 'Inscription',
         'register_free' => 'Inscription gratuite',
     ],
-    'meta'                  => [
+    'meta'          => [
         'description'   => 'Kanka est un outil digital et flexible pour la création de monde et gestionnaire de campagne de jeu de rôle.',
         'title'         => 'Kanka - Gestionnaire en ligne de campagne de jeu de rôle et outil de création de monde',
     ],
-    'partners'              => [],
-    'pricing'               => [
+    'partners'      => [],
+    'pricing'       => [
         'tier'  => [
             'free'  => 'Gratuit',
             'month' => 'Mois',
         ],
     ],
-    'privacy'               => [],
-    'release'               => [],
-    'roadmap'               => [],
-    'second_block'          => [],
-    'seo'                   => [
+    'privacy'       => [],
+    'release'       => [],
+    'roadmap'       => [],
+    'second_block'  => [],
+    'seo'           => [
         'keywords'  => 'Création de monde, jeux de rôle, gestionnaire de jeux de rôle',
     ],
-    'team'                  => [],
-    'terms'                 => [],
+    'team'          => [],
+    'terms'         => [],
 ];

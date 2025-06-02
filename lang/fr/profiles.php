@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'avatar'                        => [
+    'avatar'        => [
         'success'   => 'Photo de profil modifiée.',
     ],
-    'edit'                          => [
+    'edit'          => [
         'success'   => 'Profil modifié',
     ],
-    'fields'                        => [
+    'fields'        => [
         'avatar'                    => 'Avatar',
         'bio'                       => 'Biographie',
         'email'                     => 'Email',
@@ -26,15 +26,15 @@ return [
         'subscription_hiding'       => 'Cacher l\'abonnement',
         'theme'                     => 'Thème',
     ],
-    'helpers'                       => [
+    'helpers'       => [
         'link'          => 'Modifie la façon dont un lien vers ton profil social apparaît sur ton :profile et le :marketplace. Si tu laisses ce champ vide, aucun lien ne s\'affichera.',
         'profile-name'  => 'Modifie ton nom sur ton :profile et le :marketplace. Si vide, le nom du compte sera utilisé.',
         'pronouns'      => 'Modifie la façon dont tes pronoms apparaissent sur ton :profile et le :marketplace. Si tu laisses ce champ vide, aucun pronom ne s\'affichera.',
     ],
-    'link'                          => [
+    'link'          => [
         'button'    => 'Profile social de :name',
     ],
-    'newsletter'                    => [
+    'newsletter'    => [
         'helpers'   => [
             'header'    => 'S\'adonner aux newsletters par email pour être notifié des changements dans Kanka.',
         ],
@@ -44,10 +44,10 @@ return [
         'title'     => 'Newsletter',
         'updated'   => 'Préférence de la newsletter modifiée.',
     ],
-    'password'                      => [
+    'password'      => [
         'success'   => 'Mot de passe modifié.',
     ],
-    'placeholders'                  => [
+    'placeholders'  => [
         'bio'                       => 'Une courte bio affichée sur le profil public.',
         'email'                     => 'Adresse email',
         'name'                      => 'Nom tel qu\'affiché',
@@ -55,7 +55,7 @@ return [
         'new_password_confirmation' => 'Confirmation du nouveau mot de passe',
         'password'                  => 'Saisie du mot de passe actuel',
     ],
-    'sections'                      => [
+    'sections'      => [
         'dangerzone'    => 'Zone dangereuse',
         'delete'        => [
             'confirm'       => 'Oui, supprimer mon compte',
@@ -70,14 +70,14 @@ return [
             'title' => 'Modification du mot de passe',
         ],
     ],
-    'settings'                      => [
+    'settings'      => [
         'helpers'   => [
             'bio'       => 'La biographie est visible sur ton :link.',
             'profile'   => 'profil public',
         ],
         'success'   => 'Paramètres modifiés.',
     ],
-    'theme'                         => [
+    'theme'         => [
         'success'   => 'Thème modifié.',
         'themes'    => [
             'dark'      => 'Sombre',
@@ -86,8 +86,8 @@ return [
             'midnight'  => 'Bleu Minuit',
         ],
     ],
-    'title'                         => 'Profil',
-    'workflows'                     => [
+    'title'         => 'Profil',
+    'workflows'     => [
         'created'   => 'Afficher l\'entité créée',
         'default'   => 'Liste des entités',
     ],

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'codes'     => [
+    'codes' => [
         'ca'    => 'Catalan',
         'cs'    => 'Tchèque',
         'de'    => 'Allemand',
@@ -23,5 +23,5 @@ return [
         'sk'    => 'Slovaque',
         'tr'    => 'Turque',
     ],
-    'header'    => 'Langues',
+    'header'=> 'Langues',
 ];
