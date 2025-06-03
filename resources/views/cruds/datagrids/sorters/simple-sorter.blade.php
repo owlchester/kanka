@@ -5,7 +5,7 @@
     @endphp
     <div class="dropdown">
         <a role="button" class="btn2 btn-sm" data-dropdown aria-expanded="false">
-            <i class="fa-solid fa-arrow-down-a-z" aria-hidden="true" data-tree="escape"></i>
+            <i class="fa-regular fa-arrow-down-a-z" aria-hidden="true" data-tree="escape"></i>
             <span class="sr-only">Order by</span>
         </a>
         <div class="dropdown-menu hidden" role="menu">

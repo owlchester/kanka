@@ -371,6 +371,7 @@ class SearchService
         $searchResults = [];
 
         // Load up the calendars of a campaign to get the month names
+        // Todo: this can load any calendar regardless of permission
         $calendars = Calendar::get();
         foreach ($calendars as $calendar) {
             $months = $calendar->months();

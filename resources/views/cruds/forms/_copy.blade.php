@@ -1,4 +1,6 @@
-<x-helper>{{ __('crud.helpers.copy_options') }}</x-helper>
+<x-helper>
+    <p>{{ __('crud.helpers.copy_options') }}</p>
+</x-helper>
 <x-forms.field
     field="copy-posts">
     <input type="hidden" name="copy_posts" value="0" />

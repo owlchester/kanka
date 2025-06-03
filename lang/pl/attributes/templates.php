@@ -9,9 +9,7 @@ return [
     ],
     'helpers'   => [],
     'list'      => [
-        'campaign'      => 'Szablony kampanii',
-        'kanka'         => 'Szablony Kanki',
-        'marketplace'   => 'Szablony z Targowiska',
+        'campaign'  => 'Szablony kampanii',
     ],
     'pitch'     => 'Wyszukaj i dodaj do :boosted-campaign karty postaci z :marketplace',
 ];

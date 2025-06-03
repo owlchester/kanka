@@ -1,13 +1,15 @@
 <x-grid type="1/1">
-    @empty($model)
-        <x-helper>{{ __('campaigns/roles.create.helper') }}</x-helper>
+    @empty($role)
+        <x-helper>
+            <p>{{ __('campaigns/roles.create.helper') }}</p>
+        </x-helper>
     @endif
 <x-forms.field
     field="name"
     required
     :label="__('campaigns.roles.fields.name')"
     >
-    <input type="text" name="name" placeholder="{{ __('campaigns.roles.placeholders.name') }}" maxlength="45" required value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" />
+    <input type="text" name="name" placeholder="{{ __('campaigns.roles.placeholders.name') }}" maxlength="45" required value="{!! htmlspecialchars(old('name', $role->name ?? null)) !!}" />
 </x-forms.field>
 @if (isset($roleId))
     <x-forms.field

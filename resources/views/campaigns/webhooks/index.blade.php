@@ -2,26 +2,24 @@
     <h3 class="inline-block grow">
         {{ __('campaigns.show.tabs.webhooks') }}</span>
     </h3>
-    @if ($campaign->premium())
-    <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
-            data-target="webhooks-help">
-        <x-icon class="question" />
-        {{ __('crud.actions.help') }}
-    </button>
-    @if (auth()->user()->can('update', $campaign))
-        <a href="{{ route('webhooks.create', $campaign) }}" class="btn2 btn-primary btn-sm"
-           data-url="{{ route('webhooks.create', $campaign) }}"
+    <x-learn-more url="features/campaigns/webhooks.html" />
+    @can('update', $campaign)
+        <a
+            href="{{ route('webhooks.create', $campaign) }}"
+            class="btn2 btn-primary btn-sm"
+            data-toggle="dialog"
+            data-target="primary-dialog"
+            data-url="{{ route('webhooks.create', $campaign) }}"
         >
             <x-icon class="plus" />
             {{ __('campaigns/webhooks.actions.add') }}
         </a>
     @endif
-    @endif
 </div>
 @if (!$campaign->premium())
-    <x-cta :campaign="$campaign" premium>
+    <x-premium-cta :campaign="$campaign" premium>
         <p>{!! __('campaigns/webhooks.pitch') !!}</p>
-    </x-cta>
+    </x-premium-cta>
 @else
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\Webhook $webhook

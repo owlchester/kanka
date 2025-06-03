@@ -249,7 +249,6 @@ return [
         'success'               => [
             'alternative'   => 'Seu pagamento foi registrado. Você receberá uma notificação assim que for processado e sua assinatura estiver ativa.',
             'callback'      => 'Sua assinatura foi realizada com sucesso. Sua conta será atualizada assim que nosso provedor de pagamento nos informar sobre a mudança (isso pode levar alguns minutos).',
-            'cancel'        => 'Sua assinatura foi cancelada. Ela continuará ativa até o final do seu período de faturamento atual.',
             'currency'      => 'Sua configuração de moeda preferida foi atualizada.',
             'subscribed'    => 'Sua assinatura foi bem-sucedida! Não se esqueça de assinar o boletim informativo Votação da Comunidade para ser notificado quando uma votação for ao ar. Além disso, você pode conferir nosso discord e fazer parte da comunidade',
         ],

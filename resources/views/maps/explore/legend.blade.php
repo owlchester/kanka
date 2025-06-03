@@ -7,7 +7,7 @@
 <h4 class="text-sidebar-content flex gap-2 items-center">
     <span class="">{{ __('maps.panels.legend') }}</span>
     <button class="btn2 btn-xs btn-ghost" data-animate="collapse" data-target=".map-legend-group-markers" data-toggle="tooltip" data-title="{{ __('maps/explore.toggle') }}">
-        <x-icon class="fa-solid fa-folder-tree" />
+        <x-icon class="fa-regular fa-folder-tree" />
     </button>
 </h4>
 <ul>
@@ -15,8 +15,8 @@
         <li>
             @if(isset($marker['markers']))
                 <a href="#" class="map-legend-group" data-animate="collapse" data-target=".map-legend-group-{{ $marker['id'] }}">
-                    <span class="map-legend-group-{{ $marker['id'] }}"><x-icon class="fa-solid fa-folder-open" /></span>
-                    <span class="hidden map-legend-group-{{ $marker['id'] }}"><x-icon class="fa-solid fa-folder" /></span>
+                    <span class="map-legend-group-{{ $marker['id'] }}"><x-icon class="fa-regular fa-folder-open" /></span>
+                    <span class="hidden map-legend-group-{{ $marker['id'] }}"><x-icon class="fa-regular fa-folder" /></span>
                     {!! $marker['name'] !!}
                 </a>
 

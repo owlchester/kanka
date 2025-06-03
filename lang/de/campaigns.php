@@ -435,7 +435,6 @@ TEXT
             'connections_mode'  => 'Standard Beziehung-Explorer für Beobachter',
             'descendants'       => 'Filtern von Nachkommen',
             'entity_history'    => 'Verlaufsprotokolle des Objekts',
-            'entity_image'      => 'Objekt Portrait',
             'member_list'       => 'Mitgliederliste der Kampagne',
             'post_collapsed'    => 'Neuer Post-Standardwert für eingeklappteWerte',
         ],
@@ -448,7 +447,6 @@ TEXT
             'other'             => 'Andere visuelle Optionen für die Kampagne.',
             'post_collapsed'    => 'Wählen Sie beim Erstellen eines neuen Beitrags für ein Objekt den Standardwert des minimierten Felds aus.',
             'theme'             => 'Zeige die Kampagne im Thema des Benutzers an oder erzwinge die Darstellung in einem der folgenden Themen.',
-            'tooltip'           => 'Kontrollieren Sie, welche Informationen sichtbar sind, wenn Sie den Namen eines Objekts in ihrer QuickInfo bewegen.',
         ],
         'members'           => [
             'hidden'    => 'Nur für Kampagnenadministratoren sichtbar',

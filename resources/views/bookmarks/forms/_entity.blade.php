@@ -51,9 +51,9 @@ $menus = array_merge(['' => __('crud.tabs.story')], $menus);
 ?>
 <x-grid type="1/1">
     <x-helper>
-            {!! __('bookmarks.helpers.entity', [
+        <p>{!! __('bookmarks.helpers.entity', [
             'menu' => '<span class="font-extrabold">' . __('bookmarks.fields.menu') . '</span>',
-            ]) !!}
+        ]) !!}</p>
     </x-helper>
 
     <x-grid>

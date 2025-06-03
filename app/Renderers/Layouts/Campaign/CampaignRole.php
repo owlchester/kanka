@@ -64,19 +64,19 @@ class CampaignRole extends Layout
         return [
             'update' => [
                 'label' => 'campaigns.roles.actions.rename',
-                'icon' => 'fa-solid fa-edit',
+                'icon' => 'fa-regular fa-edit',
                 'can' => 'update',
                 'type' => 'dialog-ajax',
                 'route' => 'campaign_roles.edit',
             ],
             'show' => [
                 'label' => 'campaigns.roles.actions.permissions',
-                'icon' => 'fa-solid fa-edit',
+                'icon' => 'fa-regular fa-cog',
                 'route' => 'campaign_roles.show',
             ],
             'duplicate' => [
                 'label' => 'campaigns.roles.actions.duplicate',
-                'icon' => 'fa-solid fa-copy',
+                'icon' => 'fa-regular fa-copy',
                 'can' => 'update',
                 'type' => 'dialog-ajax',
                 'route' => 'campaign_roles.duplicate',

@@ -32,10 +32,7 @@ return [
     'index'         => [
         'title' => 'Gruppe von :name',
     ],
-    'pitch'         => [
-        'error' => 'Maximale Anzahl an Gruppen erreicht.',
-        'until' => 'Erstelle bis zu :max-Gruppen für jede Karte.',
-    ],
+    'pitch'         => [],
     'placeholders'  => [
         'name'          => 'Geschäfte, Schatz, NSC,',
         'position'      => 'Optionales Feld zum Festlegen der Reihenfolge, in der die Gruppen angezeigt werden.',

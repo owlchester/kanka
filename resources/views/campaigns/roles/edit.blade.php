@@ -11,7 +11,7 @@
 
 @section('content')
     <x-form :action="['campaign_roles.update', $campaign, $role->id]" method="PATCH" class="entity-form">
-        @include('partials.forms._dialog', [
+        @include('partials.forms.form', [
             'title' => __('campaigns.roles.edit.title', ['name' => $role->name]),
             'content' => 'campaigns.roles._form',
             'submit' => __('campaigns.roles.actions.rename'),

@@ -51,9 +51,9 @@ class Webhook extends Layout
             'status' => [
                 'key' => 'status',
                 'label' => 'campaigns/webhooks.fields.enabled',
-                'render' => function ($model) {
+                'render' => function (\App\Models\Webhook $model) {
                     if ($model->status) {
-                        return '<i class="fa-solid fa-check" aria-hidden="true"></i>';
+                        return '<i class="fa-regular fa-check-circle" aria-hidden="true"></i><span class="sr-only">' . __('campaigns/webhooks.fields.enabled') . '</span>';
                     }
 
                     return '';
@@ -72,13 +72,25 @@ class Webhook extends Layout
         return [
             'update' => [
                 'label' => 'crud.update',
-                'icon' => 'fa-solid fa-edit',
+                'icon' => 'fa-regular fa-edit',
                 'route' => 'webhooks.edit',
             ],
             'test' => [
                 'label' => 'campaigns/webhooks.actions.test',
-                'icon' => 'fa-solid fa-webhook',
+                'icon' => 'fa-regular fa-webhook',
                 'route' => 'webhooks.test',
+            ],
+            'disable' => [
+                'can' => 'disable',
+                'route' => 'webhooks.toggle',
+                'label' => 'campaigns/webhooks.actions.bulks.disable',
+                'icon' => 'fa-regular fa-ban',
+            ],
+            'enable' => [
+                'can' => 'enable',
+                'route' => 'webhooks.toggle',
+                'label' => 'campaigns/webhooks.actions.bulks.enable',
+                'icon' => 'fa-regular fa-check',
             ],
             Layout::ACTION_DELETE,
         ];
@@ -90,13 +102,13 @@ class Webhook extends Layout
             [
                 'action' => 'enable',
                 'label' => 'campaigns/webhooks.actions.bulks.enable',
-                'icon' => 'fa-solid fa-check',
+                'icon' => 'fa-regular fa-check',
                 'can' => 'campaign:update',
             ],
             [
                 'action' => 'disable',
                 'label' => 'campaigns/webhooks.actions.bulks.disable',
-                'icon' => 'fa-solid fa-ban',
+                'icon' => 'fa-regular fa-ban',
                 'can' => 'campaign:update',
             ],
             self::ACTION_DELETE,

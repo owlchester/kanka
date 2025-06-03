@@ -34,9 +34,9 @@
         <x-grid type="1/1">
             @include('maps.markers._form', ['model' => null])
             <x-box.footer>
-                <div class="submit-group flex items-center gap-2">
-                    <div class="inline-block grow">
-                    @include('partials.footer_cancel', ['ajax' => null])
+                <div class="submit-group flex items-center justify-between gap-2">
+                    <div class="">
+                        @include('partials.footer_cancel', ['ajax' => null])
                     </div>
                     @include('maps.markers._actions')
                 </div>

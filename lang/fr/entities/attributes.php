@@ -35,7 +35,6 @@ return [
         'is_private'    => 'Seulement permettre aux membres du rôle :admin-role de t voir les attributs de cette entité.',
         'setup'         => 'Tu peux représenter des valeurs comme les points de vie ou l\'intelligence d\'une entité avec les attributs. Ajoutes des attributs manuellement en cliquant le bouton :manage, ou applique ceux d\'un modèle d\'attributs.',
     ],
-    'hints'         => [],
     'index'         => [
         'success'   => 'Attributs modifiés pour :entity.',
         'title'     => 'Attributs pour :name',
@@ -82,6 +81,7 @@ return [
             'success'   => 'Modèle chargé',
             'title'     => 'Chargement à partir d\'un modèle',
         ],
+        'pitch'     => 'Charge les attributs depuis un modèle d\'attributs ou depuis les plugins installés via :plugin.',
         'success'   => 'Modèle d\'attribut :name appliqué pour :entity.',
         'title'     => 'Appliquer un modèle d\'attribut pour :name',
     ],

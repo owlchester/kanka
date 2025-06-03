@@ -111,7 +111,6 @@ return [
         'is_star'           => 'Vastgemaakt',
         'name'              => 'Naam',
         'position'          => 'Positie',
-        'privacy'           => 'Privacy',
         'tooltip'           => 'Tooltip',
         'type'              => 'Type',
         'visibility'        => 'Zichtbaarheid',

@@ -14,7 +14,7 @@ if (isset($model) && $model->entity && $model->entity->image_uuid) {
 @endphp
 @if(!isset($bulk))
     <x-helper>
-        {{ __('fields.gallery-image.description') }}
+        <p>{{ __('fields.gallery-image.description') }}</p>
     </x-helper>
 @endif
 <x-grid type="{{ isset($bulk) ? '1-1' : '3/4' }}">

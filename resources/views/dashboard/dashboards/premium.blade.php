@@ -2,8 +2,9 @@
     {{ __('concept.premium-feature') }}
 </x-dialog.header>
 <x-dialog.article>
-    <x-cta :campaign="$campaign" image="0">
+    <x-helper>
         <p>{{ __('dashboard.dashboards.pitch') }}</p>
-    </x-cta>
+    </x-helper>
+    <x-premium-cta-footer :campaign="$campaign" />
 </x-dialog.article>
 

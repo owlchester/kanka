@@ -11,21 +11,21 @@
             'type' => 'parent',
         ],
         [
-            'label' => '<i class="fa-solid fa-coins" aria-hidden="true" title="' . __('items.fields.price') . '"></i> <span class="sr-only">' . __('items.fields.price') . '</span>',
+            'label' => '<i class="fa-regular fa-coins" aria-hidden="true" title="' . __('items.fields.price') . '"></i> <span class="sr-only">' . __('items.fields.price') . '</span>',
             'field' => 'price',
             'render' => function($model) {
                 return $model->price;
             }
         ],
         [
-            'label' => '<i class="fa-solid fa-ruler-combined" aria-hidden="true" title="' . __('items.fields.size') . '"></i> <span class="sr-only">' . __('items.fields.size') . '</span>',
+            'label' => '<i class="fa-regular fa-ruler-combined" aria-hidden="true" title="' . __('items.fields.size') . '"></i> <span class="sr-only">' . __('items.fields.size') . '</span>',
             'field' => 'size',
             'render' => function($model) {
                 return $model->size;
             }
         ],
         [
-            'label' => '<i class="fa-solid fa-weight-hanging" aria-hidden="true" title="' . __('items.fields.weight') . '"></i> <span class="sr-only">' . __('items.fields.weight') . '</span>',
+            'label' => '<i class="fa-regular fa-weight-hanging" aria-hidden="true" title="' . __('items.fields.weight') . '"></i> <span class="sr-only">' . __('items.fields.weight') . '</span>',
             'field' => 'weight',
             'render' => function($model) {
                 return $model->weight;

@@ -6,13 +6,7 @@ return [
         'join'      => 'Pridruži se',
         'unfollow'  => 'Prekini pratiti',
     ],
-    'campaigns'     => [
-        'tabs'  => [
-            'modules'   => '{1} :count modul|{2,*} :count modula',
-            'roles'     => '{1} :count uloga|{2,4} :count uloge|{5,*} :count uloga',
-            'users'     => '{1} :count korisnik|{2,*} :count korisnika',
-        ],
-    ],
+    'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
             'edit'      => 'Uredi',
@@ -57,20 +51,10 @@ return [
     'helpers'       => [
         'follow'    => 'Praćenje kampanje prikazat će ju u izborniku kampanje (gore desno) ispod tvojih kampanja.',
         'join'      => 'Ova kampanja otvorena je za nove članove. Prijavi se da bi joj se pridružio/la.',
-        'setup'     => 'Postavljanje naslovne ploče kampanje.',
     ],
-    'notifications' => [
-        'modal' => [
-            'confirm'   => 'Shvaćam',
-            'title'     => 'Važna obavijest',
-        ],
-    ],
-    'recent'        => [
-        'title' => 'Nedavno izmijenjeno :name',
-    ],
-    'settings'      => [
-        'title' => 'Postavke naslovne ploče',
-    ],
+    'notifications' => [],
+    'recent'        => [],
+    'settings'      => [],
     'setup'         => [
         'actions'   => [
             'add'               => 'Dodajte programčić',
@@ -90,15 +74,11 @@ return [
     ],
     'title'         => 'Naslovna ploča',
     'widgets'       => [
-        'actions'       => [
-            'advanced-options'  => 'Napredne opcije',
-        ],
         'calendar'      => [
             'actions'           => [
                 'next'      => 'Promijeni trenutni datum na sljedeći dan',
                 'previous'  => 'Promijeni trenutni datum na prethodni dan',
             ],
-            'events_today'      => 'Danas',
             'previous_events'   => 'Prošli događaji',
             'upcoming_events'   => 'Nadolazeći događaji',
         ],
@@ -115,7 +95,6 @@ return [
             'dashboard' => 'Naslovna ploča',
             'name'      => 'Proizvoljan naziv programčića',
             'order'     => 'Sortiranje',
-            'text'      => 'Tekst',
             'width'     => 'Širina',
         ],
         'orders'        => [

@@ -9,9 +9,7 @@ return [
     ],
     'helpers'   => [],
     'list'      => [
-        'campaign'      => 'Шаблоны кампании',
-        'kanka'         => 'Шаблоны Kanka',
-        'marketplace'   => 'Шаблоны каталога',
+        'campaign'  => 'Шаблоны кампании',
     ],
     'pitch'     => ':marketplace позволяет искать листы персонажей и добавлять их в кампанию с помощью :boosted-campaign.',
 ];

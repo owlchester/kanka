@@ -33,8 +33,8 @@ return [
         'roles'     => 'Select roles that should have permission to view entities of this new module. This can later be changed in the role permissions.',
         'singular'  => 'The singular name for an entity of the new module. For example, potion',
     ],
-    'pitch'         => 'Rename and change the icon associated with this module for the whole campaign.',
-    'pitch-custom'  => 'Create custom modules to store unique entities.',
+    'pitch'         => 'Rename this module and choose a custom icon to better match your campaign\'s theme and style. Perfect for tailoring the experience to your world and players.',
+    'pitch-custom'  => 'Create custom modules to represent any kind of entity in your world. No limits, just creativity.',
     'rename'        => [
         'helper'    => 'Change the name and icon of the module throughout the campaign. Leave blank to use Kanka\'s default.',
         'success'   => 'Module customised.',

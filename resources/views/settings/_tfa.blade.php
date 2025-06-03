@@ -63,7 +63,7 @@
                 </p>
                 <div class="w-full">
                     <x-buttons.confirm type="danger" outline="true" full="true">
-                        <x-icon class="fa-solid fa-exclamation-triangle" />
+                        <x-icon class="fa-regular fa-exclamation-triangle" />
                         {{ __('crud.actions.confirm') }}
                     </x-buttons.confirm>
                 </div>

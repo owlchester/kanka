@@ -10,17 +10,24 @@
 ])
 
 @section('content')
-    <div class="modal-body text-center">
-        @if (request()->ajax())
-            <x-dialog.close />
-        @endif
-
+    <x-dialog.header>
         @if ($campaign->boosted())
-            {{ __('maps/groups.pitch.error') }}
+            {{ __('maps/groups.pitch.max.limit') }}
         @else
-            <x-cta :campaign="$campaign">
-                <p>{{ __('maps/groups.pitch.until', ['max' => $max]) }}</p>
-            </x-cta>
+            {!! __('maps/groups.pitch.upgrade.limit', ['limit' => config('limits.campaigns.groups.standard')]) !!}
         @endif
-    </div>
+    </x-dialog.header>
+
+    <x-dialog.article class="max-w-3xl">
+        @if ($campaign->boosted())
+            <x-helper>
+                <p>{{ __('maps/groups.pitch.max.helper', ['limit' => $max]) }}</p>
+            </x-helper>
+        @else
+            <x-helper>
+                <p>{{ __('maps/groups.pitch.upgrade.upgrade', ['limit' => $max]) }}</p>
+            </x-helper>
+            <x-premium-cta-footer :campaign="$campaign" />
+        @endif
+    </x-dialog.article>
 @endsection

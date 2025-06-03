@@ -54,6 +54,6 @@ class EntityListing extends Component
 
     public function render()
     {
-        return view('livewire.entity-listing');
+        return view('livewire.dashboards.entity-listing');
     }
 }

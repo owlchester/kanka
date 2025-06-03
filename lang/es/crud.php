@@ -155,7 +155,6 @@ return [
         'name'              => 'Nombre',
         'parent'            => 'Padre',
         'position'          => 'Posición',
-        'privacy'           => 'Privacidad',
         'replace_mentions'  => 'Sustituir las menciones de atributos de la entrada por las de la nueva entidad.',
         'template'          => 'Plantilla',
         'tooltip'           => 'Descripción emergente',
@@ -217,7 +216,6 @@ return [
     ],
     'helpers'           => [
         'copy_options'  => 'Copia los siguientes elementos relacionados del origen a la nueva entidad.',
-        'learn_more'    => 'Obtenga más información sobre esta función en nuestra :documentation.',
         'linking'       => 'Vinculando con otras entidades',
         'nested_parent' => 'Mostrando los hijos de :parent.',
         'pagination'    => [

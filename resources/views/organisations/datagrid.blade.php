@@ -28,7 +28,7 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="fa-solid fa-users" title="' . trans('organisations.fields.members') . '"></i>',
+            'label' => '<i class="fa-regular fa-users" title="' . trans('organisations.fields.members') . '"></i>',
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return number_format($model->members_count);
@@ -36,15 +36,22 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="fa-solid fa-shop-slash" title="' . __('organisations.fields.is_defunct') . '"></i>',
+            'label' => '<i class="fa-regular fa-shop-slash" title="' . __('organisations.fields.is_defunct') . '"></i>',
             'field' => 'is_defunct',
             'render' => function($model) {
                 if ($model->isDefunct()) {
-                    return '<i class="fa-solid fa-shop-slash" title="' . __('organisations.fields.is_defunct') . '"></i>';
+                    return '<i class="fa-regular fa-shop-slash" title="' . __('organisations.fields.is_defunct') . '"></i>';
                 }
                 return '';
             },
             'class' => 'icon'
+        ],
+        [
+            'label' => '<i class="' . \App\Facades\Module::duoIcon('organisation') . '" title="' . \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations')) . '"></i>',
+            'render' => function($model) {
+                return number_format($model->children_count);
+            },
+            'disableSort' => true,
         ],
         [
             'type' => 'is_private',

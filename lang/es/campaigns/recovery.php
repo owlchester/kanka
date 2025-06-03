@@ -10,7 +10,6 @@ return [
         'deleted'       => 'Eliminadas',
         'deleted_at'    => 'Eliminado en :date por :user',
     ],
-    'helper'    => 'Las entidades eliminadas se pueden recuperar hasta :count días después mediante esta interfaz.',
     'name_link' => ':name se ha recuperado correctamente',
     'order'     => [
         'newest'        => 'Ordenar por: Más recientes primero',

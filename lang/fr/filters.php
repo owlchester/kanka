@@ -14,7 +14,8 @@ return [
         'success'   => 'Favori créé.',
     ],
     'helpers'   => [
-        'guest' => 'Prière de te connecter à ton compte pour filter les résultats.',
-        'icon'  => 'Donner à ce signet une icône spéciale :fontawesome, par exemple :example.',
+        'guest'         => 'Prière de te connecter à ton compte pour filter les résultats.',
+        'icon'          => 'Donne à ce signet une icône spéciale :fontawesome, par exemple :example.',
+        'icon-premium'  => 'Donne à ce favori une icône spéciale :fontawesome, comme :example, avec un :premium.',
     ],
 ];

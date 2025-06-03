@@ -53,11 +53,11 @@ class GroupController extends Controller
     {
         $this->authorize('update', $map->entity);
 
-        if ($map->groups->count() >= $campaign->maxMapLayers()) {
+        if (! auth()->user()->can('addGroup', [$map, $campaign])) {
             return view('maps.form._groups_max')
                 ->with('campaign', $campaign)
                 ->with('map', $map)
-                ->with('max', Campaign::LAYER_COUNT_MAX);
+                ->with('max', config('limits.campaigns.maps.groups.premium'));
         }
 
         return view(
@@ -75,11 +75,11 @@ class GroupController extends Controller
             return response()->json(['success' => true]);
         }
 
-        if ($map->groups->count() >= $campaign->maxMapLayers()) {
+        if (! auth()->user()->can('addGroup', [$map, $campaign])) {
             return view('maps.form._groups_max')
                 ->with('campaign', $campaign)
                 ->with('map', $map)
-                ->with('max', Campaign::LAYER_COUNT_MAX);
+                ->with('max', config('limits.campaigns.maps.groups.premium'));
         }
         $model = new MapGroup;
         $data = $request->only('name', 'position', 'entry', 'visibility_id', 'is_shown');

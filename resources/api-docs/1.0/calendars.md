@@ -20,8 +20,8 @@ You can get a list of all the calendars of a campaign by using the following end
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
+| Method | URI            | Headers |
+| :- |:---------------|  :-  |
 | GET/HEAD | `calendars` | Default |
 
 ### URL Parameters
@@ -135,8 +135,8 @@ The list of returned entities can be filtered. The available filters are [availa
 
 To get the details of a single calendar, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
+| Method | URI                          | Headers |
+| :- |:-----------------------------|  :-  |
 | GET/HEAD | `calendars/{calendar.id}` | Default |
 
 ### Results
@@ -266,7 +266,8 @@ To create a calendar, use the following endpoint.
 | `tags` | `array` | Array of tag ids |
 | `skip_year_zero` | `boolean` | Whether the calendar skips year zero to start in year one |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
+| `tooltip`            | `string` | The calendar's tooltip (premium campaign feature)                   |
 | `is_private` | `boolean` | If the calendar is only visible to `admin` members of the campaign |
 
 ### Results
@@ -311,8 +312,8 @@ To delete a calendar, use the following endpoint.
 
 You can get a list of all the reminders of a calendar by using the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
+| Method | URI                                    | Headers |
+| :- |:---------------------------------------|  :-  |
 | GET/HEAD | `calendars/{calendar.id}/reminders` | Default |
 
 ### Results

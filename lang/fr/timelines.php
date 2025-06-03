@@ -9,8 +9,6 @@ return [
     'create'        => [
         'title' => 'Nouvelle chronologie',
     ],
-    'destroy'       => [],
-    'edit'          => [],
     'fields'        => [
         'copy_elements' => 'Copier les éléments',
         'copy_eras'     => 'Copier les ères',
@@ -21,7 +19,6 @@ return [
         'no_era_v2'     => 'Cette chronologie ne possède pas d\'ères. Les ères peuvent être ajoutées ici, après quoi des éléments pourront y être ajouté.',
         'reverse_order' => 'Activer pour afficher les ères dans le sens chronologique inversé (plus ancien en premier)',
     ],
-    'index'         => [],
     'placeholders'  => [
         'type'  => 'Principale, chronique du monde, chronologie du royaume',
     ],
@@ -35,5 +32,4 @@ return [
             'reorder-elements'  => 'Réordonner les éléments',
         ],
     ],
-    'timelines'     => [],
 ];

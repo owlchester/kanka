@@ -18,10 +18,7 @@
             <h3 class="grow">
                 {{ __('campaigns/import.title') }}
             </h3>
-            <a href="https://docs.kanka.io/en/latest/features/campaigns/import.html" target="_blank" class="btn2 btn-sm btn-ghost">
-                <x-icon class="question" />
-                {{ __('crud.actions.help') }}
-            </a>
+            <x-learn-more url="features/campaigns/import.html" />
         </div>
 
         <p class="max-w-2xl">{{ __('campaigns/import.description') }}</p>
@@ -46,7 +43,9 @@
                                     <label>{{ __('campaigns/import.fields.file') }}</label>
 
                                     <input type="file" name="file" class="w-full" id="export-files" accept=".zip" />
-                                    <x-helper>{{ __('campaigns/import.limitation', ['size' => '512 MiB']) }}</x-helper>
+                                    <x-helper>
+                                        <p>{{ __('campaigns/import.limitation', ['size' => '512 MiB']) }}</p>
+                                    </x-helper>
                                 </div>
 
                                 <button type="submit" class="btn2 btn-primary">

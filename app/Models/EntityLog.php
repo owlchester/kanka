@@ -121,7 +121,7 @@ class EntityLog extends Model
         } elseif ($this->action == self::ACTION_REORDER_POST) {
             return 'fa-arrows-rotate';
         } elseif ($this->action == self::ACTION_DELETE || $this->action == self::ACTION_DELETE_POST) {
-            return 'fa-trash';
+            return 'fa-trash-can';
         } elseif ($this->action == self::ACTION_RESTORE) {
             return 'fa-history';
         }

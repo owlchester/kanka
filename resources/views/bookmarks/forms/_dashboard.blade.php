@@ -6,7 +6,9 @@ foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) 
 }
 ?>
 <x-grid type="1/1">
-    <x-helper :text="__('bookmarks.helpers.dashboard')" />
+    <x-helper>
+        <p>{{ __('bookmarks.helpers.dashboard') }}</p>
+    </x-helper>
 
 @if($campaign->boosted())
     <x-grid>
@@ -22,8 +24,8 @@ foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) 
         </x-forms.field>
     </x-grid>
 @else
-    <x-cta :campaign="$campaign" minimal="1" image="0">
+    <x-premium-cta :campaign="$campaign">
         <p>{{ __('dashboard.dashboards.pitch') }}</p>
-    </x-cta>
+    </x-premium-cta>
 @endif
 </x-grid>

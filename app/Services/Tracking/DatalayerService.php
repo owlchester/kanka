@@ -112,9 +112,6 @@ class DatalayerService
         return $this->userGroup() === 'b';
     }
 
-    /**
-     * @return $this
-     */
     public function add(string $key, mixed $value): self
     {
         $this->additional[$key] = $value;
@@ -133,8 +130,6 @@ class DatalayerService
 
     /**
      * Set the new subscriber as true
-     *
-     * @return $this
      */
     public function newSubscriber(): self
     {
@@ -145,8 +140,6 @@ class DatalayerService
 
     /**
      * Trigger the user as being newly cancelled
-     *
-     * @return $this
      */
     public function newCancelledSubscriber(): self
     {
@@ -157,8 +150,6 @@ class DatalayerService
 
     /**
      * Set the new account as true
-     *
-     * @return $this
      */
     public function newAccount(): self
     {

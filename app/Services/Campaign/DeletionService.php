@@ -2,7 +2,7 @@
 
 namespace App\Services\Campaign;
 
-use App\Models\UserLog;
+use App\Enums\UserAction;
 use App\Services\Users\CampaignService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -21,7 +21,7 @@ class DeletionService
 
     public function delete(): void
     {
-        $this->user->log(UserLog::TYPE_CAMPAIGN_DELETE);
+        $this->user->log(UserAction::campaignDelete, ['campaign' => $this->campaign->id]);
         $this->campaign->delete();
 
         $this->campaignService->user($this->user)->next();

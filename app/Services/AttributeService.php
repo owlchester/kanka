@@ -171,9 +171,6 @@ class AttributeService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function updateVisibility(bool $privateAttributes): self
     {
         // Only admins can update this value
@@ -195,7 +192,7 @@ class AttributeService
     public function applyEntityTemplates(Entity $entity, int $order = 0): int
     {
         $typeId = $entity->typeId();
-        $templates = AttributeTemplate::has('entity')->where(['entity_type_id' => $typeId])->get();
+        $templates = AttributeTemplate::has('entity')->enabled()->where(['entity_type_id' => $typeId])->get();
         /** @var AttributeTemplate $template */
         foreach ($templates as $template) {
             $order = $template->apply($entity, $order);
@@ -242,6 +239,7 @@ class AttributeService
 
         // Campaign templates
         $campaignTemplates = AttributeTemplate::has('entity')
+            ->enabled()
             ->orderBy('name', 'ASC')
             ->pluck('name', 'id');
         $key = __('attributes/templates.list.campaign');
@@ -262,7 +260,7 @@ class AttributeService
         }
 
         // Marketplace campaigns
-        $key = __('attributes/templates.list.marketplace');
+        $key = __('attributes/templates.list.sheets');
         foreach (CampaignPlugin::templates($this->campaign)->with(['plugin', 'plugin.user'])->get() as $plugin) {
             if (empty($plugin->plugin)) {
                 continue;

@@ -2,9 +2,9 @@
 
 namespace App\Jobs\Emails;
 
+use App\Enums\UserAction;
 use App\Mail\Subscription\User\FailedUserSubscriptionMail;
 use App\Models\User;
-use App\Models\UserLog;
 use App\Notifications\Header;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -64,6 +64,6 @@ class SubscriptionFailedEmailJob implements ShouldQueue
             ->send(
                 new FailedUserSubscriptionMail($user)
             );
-        $user->log(UserLog::TYPE_FAILED_CHARGE_EMAIL);
+        $user->log(UserAction::failedChargeEmail);
     }
 }

@@ -58,9 +58,6 @@ class UserCacheService extends BaseCache
         return $data;
     }
 
-    /**
-     * @return $this
-     */
     public function clearName(): self
     {
         $key = $this->nameKey($this->user->id);

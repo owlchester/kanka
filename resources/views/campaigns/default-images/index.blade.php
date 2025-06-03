@@ -17,10 +17,7 @@
             <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.default-images') }}
             </h3>
-            <a href="https://docs.kanka.io/en/latest/features/campaigns/default-thumbnails.html" class="btn2 btn-sm btn-ghost" target="_blank">
-                <x-icon class="question" />
-                {{ __('crud.actions.help') }}
-            </a>
+            <x-learn-more url="features/campaigns/default-thumbnails.html" />
             @if ($campaign->boosted())
                 @can('recover', $campaign)
                 <a href="{{ route('campaign.default-images.create', $campaign) }}" class="btn2 btn-primary btn-sm"
@@ -34,23 +31,25 @@
         </div>
         @if ($campaign->boosted())
             @if (empty($campaign->defaultImages()))
-                @can('recover', $campaign)
-                <x-box>
-                    <x-helper>{{ __('campaigns/default-images.empty') }}</x-helper>
-                </x-box>
-                @endcan
+                <x-helper>
+                    <p>{{ __('campaigns/default-images.empty') }}</p>
+                </x-helper>
             @endif
-            <div class="grid grid-cols-2 sm:grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
-
+            <div class="grid grid-cols-1 gap-2 xl:grid-cols-2 xl:gap-5">
                 @foreach ($campaign->defaultImages() as $image)
                     @if (!\Illuminate\Support\Arr::has($entityTypes, $image['type']))
                         @continue
                     @endif
-                    <div class="rounded overflow-hidden border flex gap-2 items-center bg-box">
-                        <div class="flex-initial w-24 h-24 cover-background" style="background-image: url('{{ Img::crop(96, 96)->url($image['path']) }}')">
+                    <div class="rounded-xl overflow-hidden flex gap-5 items-center bg-box p-2 shadow-xs hover:shadow">
+                        <div class="flex-initial w-24 h-24 cover-background rounded-xl" style="background-image: url('{{ Img::crop(96, 96)->url($image['path']) }}')">
                         </div>
-                        <div class="grow">
-                            {!! $entityTypes[$image['type']]->plural() !!}
+                        <div class="grow flex flex-col gap-1">
+                            <span class="text-lg">
+                                {!! $entityTypes[$image['type']]->plural() !!}
+                            </span>
+                            <span class="text-sm text-neutral-content">
+                                {{ __('campaigns/default-images.helper') }}
+                            </span>
                         </div>
                         @can('recover', $campaign)
                         <div class="mr-2">
@@ -66,9 +65,9 @@
 
             </div>
         @else
-            <x-cta :campaign="$campaign">
+            <x-premium-cta :campaign="$campaign">
                 <p>{{ __('campaigns/default-images.call-to-action') }}</p>
-            </x-cta>
+            </x-premium-cta>
         @endif
     </div>
 @endsection

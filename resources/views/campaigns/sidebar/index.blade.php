@@ -19,23 +19,24 @@
                 {{ __('campaigns.show.tabs.sidebar') }}
             </h3>
 
-            @if ($campaign->boosted())
-                <a class="btn2 btn-sm btn-ghost" href="https://docs.kanka.io/en/latest/features/campaigns/sidebar.html" target="_blank">
-                    <x-icon class="question" />
-                    {{ __('crud.actions.help') }}
-                </a>
-          @endif
+            <x-learn-more url="features/campaigns/sidebar.html" />
         </div>
 
         @if (!$campaign->boosted())
-            <x-cta :campaign="$campaign">
-                <p>{{ __('campaigns/sidebar.call-to-action') }}</p>
-            </x-cta>
+            <x-premium-cta :campaign="$campaign">
+                <p>
+                    {{ __('campaigns/sidebar.call-to-action') }}
+                </p>
+            </x-premium-cta>
         @else
 
             <x-tutorial code="sidebar_reorder">
                 <p>
-                    {{ __('campaigns/sidebar.helpers.reordering') }}
+                    {!! __('campaigns/sidebar.helpers.reordering')  !!}
+                </p>
+                <p>
+                    <x-icon class="fa-regular fa-circle-info" />
+                    {!! __('campaigns/sidebar.helpers.bookmarks', ['position' => '<strong>' . __('bookmarks.fields.position') . '</strong>'])  !!}
                 </p>
             </x-tutorial>
             <x-form :action="['campaign-sidebar-save', $campaign]" class="sidebar-setup form-inline form-mobile-inline">
@@ -79,7 +80,7 @@
                                     <input type="text" class="w-40 lg:w-80" name="{{ $childName }}_label" value="{!! $child['custom_label'] ?? null !!}" placeholder="{{ $child['label'] ?? __($child['label_key']) }}" maxlength="90" />
                                     <span class="hidden md:flex text-neutral-content text-xs">
                                         ( {{ $child['label'] ?? __($child['label_key']) }}
-                                        @if (\Illuminate\Support\Arr::get($child, 'disabled') === true) <i class="fa-solid fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}"></i>
+                                        @if (\Illuminate\Support\Arr::get($child, 'disabled') === true) <i class="fa-regular fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}"></i>
                                         @endif
                                         )
                                     </span>

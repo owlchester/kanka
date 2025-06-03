@@ -17,7 +17,9 @@
                 <option value="{{ $option }}" @if ($option == $attribute->value) selected="selected" @endif>{{ \App\Facades\Mentions::onlyName()->mapText($option) }}</option>
             @endforeach
         </select>
-        <x-helper>{{ __('entities/attributes.ranges.text', ['options' => $attribute->listRangeText()]) }}</x-helper>
+        <x-helper>
+            <p>{{ __('entities/attributes.ranges.text', ['options' => $attribute->listRangeText()]) }}</p>
+        </x-helper>
     @else
         <input type="text" name="value" class="w-full" maxlength="191" value="{{ $attribute->value }}" />
     @endif

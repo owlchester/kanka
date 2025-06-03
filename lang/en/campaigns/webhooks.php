@@ -46,7 +46,7 @@ return [
         'url'               => 'Url',
     ],
     'helper'        => [
-        'active'    => 'If the webhook is currently active',
+        'active'    => 'The webhook is active and will trigger on the selected event.',
         'message'   => 'Add a custom message with support for mappings',
         'status'    => 'Toggle the active status of the webhook',
     ],
@@ -56,7 +56,11 @@ return [
         'url'       => 'Target webhook\'s url',
     ],
     'test'          => [
-        'success'   => 'Test request sent',
+        'success'   => 'Test request sent.',
     ],
     'title'         => 'Webhooks',
+    'toggle'        => [
+        'disable'   => 'Webhook disabled successfully.',
+        'enable'    => 'Webhook enabled successfully.',
+    ],
 ];

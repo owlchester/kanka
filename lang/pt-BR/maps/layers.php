@@ -31,10 +31,7 @@ return [
     'index'         => [
         'title' => 'Camadas de :name',
     ],
-    'pitch'         => [
-        'error' => 'Número máximo de camadas alcançado.',
-        'until' => 'Carregue até :max camadas para cada mapa.',
-    ],
+    'pitch'         => [],
     'placeholders'  => [
         'name'          => 'Subterrãneo, Nível 2, Navio Naufragado',
         'position'      => 'Primeiro',

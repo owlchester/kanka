@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\LastSync;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
  * @property string $message
  * @property ?Character $character
  * @property Conversation $conversation
+ * @property Carbon $created_at
  */
 class ConversationMessage extends Model
 {

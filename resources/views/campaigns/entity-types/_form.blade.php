@@ -1,6 +1,10 @@
 <x-grid type="1/1">
     @if (!isset($entityType))
-        <x-helper>{{ __('campaigns/modules.create.helper') }}</x-helper>
+        <x-helper>
+            <p>
+                {{ __('campaigns/modules.create.helper') }}
+            </p>
+        </x-helper>
     @endif
 
     <x-forms.field

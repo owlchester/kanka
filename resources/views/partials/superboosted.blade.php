@@ -7,6 +7,6 @@
     </x-alert>
 @else
     <x-helper>
-        {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaigns') . '</a>']) !!}
+        <p>{!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
     </p>
 @endif

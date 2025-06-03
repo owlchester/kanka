@@ -5,7 +5,7 @@
 @endif
 <article id="qq-modal-loading" class="!hidden p-4 md:px-6">
     <div class="text-center text-4xl">
-        <x-icon class="fa-solid fa-spinner fa-spin" />
+        <x-icon class="load" />
         <span class="sr-only">Loading...</span>
     </div>
 </article>
@@ -31,7 +31,7 @@
         <div class="quick-creator-footertext-center">
             <p class="m-4 text-neutral-content text-xs">{!! __('entities.creator.missing_v2', [
         'learn-more' => '<a href="//docs.kanka.io/en/latest/features/quick-creator.html" target="_blank">' .
-            '<i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('front/newsletter.actions.learn_more') . '</a>']) !!}</p>
+            '<i class="fa-regular fa-external-link" aria-hidden="true"></i> ' . __('front/newsletter.actions.learn_more') . '</a>']) !!}</p>
         </div>
     </article>
 </div>

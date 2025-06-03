@@ -1,3 +1,3 @@
-<x-cta :campaign="$campaign" :image="false">
+<x-premium-cta :campaign="$campaign">
     <p>{{ __('campaigns/modules.pitch-custom') }}</p>
-</x-cta>
+</x-premium-cta>

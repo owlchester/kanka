@@ -9,13 +9,13 @@
             'label' => __('crud.fields.type'),
             'render' => function ($model) {
                 if ($model->isDashboard()) {
-                    return '<i class="fa-solid fa-th-large"></i> ' . __('bookmarks.fields.dashboard');
+                    return '<i class="fa-regular fa-th-large"></i> ' . __('bookmarks.fields.dashboard');
                 } elseif ($model->isEntity()) {
-                    return '<i class="fa-solid fa-star"></i> ' . __('entities.entity');
+                    return '<i class="fa-regular fa-star"></i> ' . __('entities.entity');
                 } elseif ($model->isList()) {
-                    return '<i class="fa-solid fa-th-list"></i> ' . __('crud.fields.entity_type');
+                    return '<i class="fa-regular fa-th-list"></i> ' . __('crud.fields.entity_type');
                 } elseif ($model->isRandom()) {
-                    return '<i class="fa-solid fa-question"></i> ' . __('dashboard.setup.widgets.random');
+                    return '<i class="fa-regular fa-question"></i> ' . __('dashboard.setup.widgets.random');
                 }
                 return '';
             },
@@ -35,7 +35,7 @@
                 } elseif ($model->isList()) {
                     return $model->entityType->plural();
                 } elseif ($model->isRandom()) {
-                    return $model->random_entity_type == 'any' ? __('bookmarks.random_types.any') : $model->randomEntityType->name();
+                    return $model->random_entity_type == 'any' ? __('bookmarks.random_types.any') : $model->randomEntityType?->name();
                 }
                 return '';
             },
@@ -45,7 +45,7 @@
             'label' => __('bookmarks.fields.active'),
             'render' => function ($model) {
                 if ($model->is_active) {
-                    return '<i class="fa-solid fa-check-circle" aria-hidden="true"></i>';
+                    return '<i class="fa-regular fa-check-circle" aria-hidden="true"></i>';
                 }
                 return '';
             },

@@ -21,6 +21,7 @@ class AttributeTemplateFilter extends DatagridFilter
                 'placeholder' => __('crud.placeholders.parent'),
                 'model' => AttributeTemplate::class,
             ])
+            ->add('is_enabled')
             ->isPrivate()
             ->template()
             ->hasAttributes()

@@ -16,8 +16,8 @@ You can get a list of all the bookmarks of a campaign by using the following end
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
+| Method | URI            | Headers |
+| :- |:---------------|  :-  |
 | GET/HEAD | `bookmarks` | Default |
 
 ### Results
@@ -40,6 +40,8 @@ You can get a list of all the bookmarks of a campaign by using the following end
            "dashboard_id": null,
            "created_at": "2020-12-24T00:38:49.000000Z",
            "updated_at": "2020-12-24T00:41:20.000000Z",
+           "created_by": 420,
+           "updated_by": 422,
            "options": {"is_nested": "1"}
         }
     ]
@@ -52,8 +54,8 @@ You can get a list of all the bookmarks of a campaign by using the following end
 
 To get the details of a single bookmark, use the following endpoint.
 
-| Method | URI                       | Headers |
-| :- |:--------------------------|  :-  |
+| Method | URI                          | Headers |
+| :- |:-----------------------------|  :-  |
 | GET/HEAD | `bookmarks/{bookmark.id}` | Default |
 
 ### Results
@@ -75,6 +77,8 @@ To get the details of a single bookmark, use the following endpoint.
         "dashboard_id": null,
         "created_at": "2020-12-24T00:38:49.000000Z",
         "updated_at": "2020-12-24T00:41:20.000000Z",
+        "created_by": 420,
+        "updated_by": 422,
         "options": {"is_nested": "1"}
     }
 

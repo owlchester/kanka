@@ -24,9 +24,9 @@
         field="tooltips"
         :label="__('fields.tooltip.name')">
         @if($campaign->boosted())
-            <p class="text-neutral-content">
-                {{ __('fields.tooltip.description') }}
-            </p>
+            <x-helper>
+                <p>{{ __('fields.tooltip.description') }}</p>
+            </x-helper>
 
             <textarea name="tooltip" class="" id="tooltip" rows="3" placeholder="{{ __('fields.tooltip.description') }}">{!! old('tooltip', FormCopy::field('tooltip')->string() ?: $entity->tooltip ?? null) !!}</textarea>
 
@@ -90,6 +90,8 @@
                         browse="{{ route('gallery.browse', [$campaign]) }}"
                         old="false"
                         i18n="{{ $translations }}"
+                        premium="true"
+                        cta="{{ route('settings.premium', ['campaign' => $campaign->id]) }}"
                     >
                         <x-icon class="load" />
                     </gallery-selection>

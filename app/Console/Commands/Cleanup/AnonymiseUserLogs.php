@@ -24,17 +24,14 @@ class AnonymiseUserLogs extends Command
      */
     protected $description = 'Anonymise User logs older than 30 days';
 
-    protected UserLogService $service;
-
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(UserLogService $service)
+    public function __construct(protected UserLogService $service)
     {
         parent::__construct();
-        $this->service = $service;
     }
 
     /**
@@ -42,9 +39,9 @@ class AnonymiseUserLogs extends Command
      */
     public function handle()
     {
-        $this->service->deleteOldLogs();
+        $this->service->anonymize();
 
-        $log = 'Cleaned up user logs PII.';
+        $log = 'Cleaned up ' . $this->service->count() . ' logs PII.';
         $this->info($log);
         $this->log($log);
 

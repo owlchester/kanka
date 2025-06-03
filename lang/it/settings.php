@@ -247,7 +247,6 @@ return [
         'success'               => [
             'alternative'   => 'Il pagamento è stato registrato. Riceverai una notifica non appena il pagamento sarà stato elaborato e l\'abbonamento sarà attivo.',
             'callback'      => 'La sottocrizione dell\'abbonamento è andata a buon fine. L\'account verrà aggiornato non appena il nostro fornitore di pagamenti ci informerà della modifica (potrebbero essere necessari alcuni minuti).',
-            'cancel'        => 'L\'abbonamento è stato annullato. Continuerà a essere attivo fino alla fine del periodo di fatturazione corrente.',
             'currency'      => 'L\'impostazione della valuta preferita è stata aggiornata.',
             'subscribed'    => 'La tua iscrizione è andata a buon fine! Non dimenticarti di iscriverti alla newsletter del Community Vote per essere avvisato quando una votazione viene effettuata. Inoltre, puoi dare un\'occhiata al nostro discord e diventare parte della comunità',
         ],

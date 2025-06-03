@@ -189,6 +189,7 @@ class NavigationService
                 'icon' => $data['icon'],
                 'text' => __('notifications.' . $data['key'], $data['params']),
                 'url' => $url,
+                'colour' => $data['colour'],
                 'dismiss' => route('notifications.read', $not->id),
                 'dismiss_text' => __('header.notifications.dismiss'),
                 'is_read' => $not->read(), // @phpstan-ignore-line

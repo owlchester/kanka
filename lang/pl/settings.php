@@ -255,7 +255,6 @@ return [
         'success'               => [
             'alternative'   => 'Zarejestrowaliśmy płatność. Otrzymasz powiadomienie kiedy tylko zostanie przetworzona i aktywujemy subskrypcję.',
             'callback'      => 'Subskrypcja udana. Zaktualizujemy twoje konto gdy tylko obsługujący płatności powiadomi nas o zmianie (to może potrwać kilka minut).',
-            'cancel'        => 'Anulowano subskrypcję. Pozostanie aktywna do końca okresu rozliczeniowego.',
             'currency'      => 'Zmieniono walutę rozliczenia.',
             'subscribed'    => 'Subskrypcja udana. Nie zapomnij o newsletterze głosowań społeczności, by zawsze wiedzieć kiedy rozpoczyna się głosowanie. Możesz zmienić ustawienia newslettera na stronie profilu.',
         ],

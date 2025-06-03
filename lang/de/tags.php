@@ -10,7 +10,6 @@ return [
             'attach_success'        => '{1} :count Objekte zum Tag :name hinzugefügt.|[2,*] :count Objekte zum Tag :name hinzugefügt.',
             'attach_success_entity' => 'Erfolgreich aktualisierte Tags für :name.',
             'entity'                => 'Tags hinzufügen zu :name',
-            'modal_title'           => 'Füge Objekt zu :name hinzu',
         ],
     ],
     'create'        => [
@@ -44,13 +43,10 @@ return [
     ],
     'tags'          => [],
     'transfer'      => [
-        'description'       => 'Verschiebe das Objeklt dieses Tags in ein anderes Tag.',
-        'fail'              => 'Die Übertragung von Objekten von :tag nach :newTag ist fehlgeschlagen',
-        'fail_post'         => 'Übertragung von Beiträgen von :tag nach :newTag fehlgeschlagen',
-        'post_description'  => 'Verschiebe die Beiträge dieses Tags in einen anderen Tag.',
-        'success'           => 'Objekte wurden erfolgreich von :tag nach :newTag übertragen',
-        'success_post'      => 'Erfolgreich Beiträge von :tag nach :newTag übertragen',
-        'title'             => 'übertrage :name',
-        'transfer'          => 'übertrage',
+        'fail'          => 'Die Übertragung von Objekten von :tag nach :newTag ist fehlgeschlagen',
+        'fail_post'     => 'Übertragung von Beiträgen von :tag nach :newTag fehlgeschlagen',
+        'success'       => 'Objekte wurden erfolgreich von :tag nach :newTag übertragen',
+        'success_post'  => 'Erfolgreich Beiträge von :tag nach :newTag übertragen',
+        'transfer'      => 'übertrage',
     ],
 ];

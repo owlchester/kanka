@@ -1,12 +1,7 @@
 <?php
 
 return [
-    'characters'    => [
-        'helpers'   => [
-            'all_characters'    => 'Zobrazí všetky postavy tohto druhu a jemu podradených druhov.',
-            'characters'        => 'Zobrazí všetky postavy iba tohto druhu.',
-        ],
-    ],
+    'characters'    => [],
     'create'        => [
         'title' => 'Nový druh',
     ],

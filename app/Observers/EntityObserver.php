@@ -136,7 +136,9 @@ class EntityObserver
             $entity->reloadChild();
         }
 
-        EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::CREATED->value);
+        if ($entity->campaign->premium()) {
+            EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::CREATED->value);
+        }
     }
 
     protected function grant(Entity $entity, int $action): CampaignPermission
@@ -163,7 +165,10 @@ class EntityObserver
     public function updated(Entity $entity)
     {
         EntityUpdatedJob::dispatch($entity);
-        EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
+
+        if ($entity->campaign->premium()) {
+            EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
+        }
 
         // Sometimes we just touch the entity, which should also touch the child
         if ($entity->hasChild() && $entity->child && $entity->updated_at->greaterThan($entity->child->updated_at)) {
@@ -201,11 +206,14 @@ class EntityObserver
         // When an entity is soft-deleted, we just want some webhooks to trigger,
         // not actually delete the entity and its image.
         if ($entity->trashed()) {
-            EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value);
+            if ($entity->campaign->premium()) {
+                EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::DELETED->value);
+            }
 
             return;
         }
 
+        // Todo: Why is this not handled by the database?
         $entity->permissions()->delete();
         $entity->widgets()->delete();
     }

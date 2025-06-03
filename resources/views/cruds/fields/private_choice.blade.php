@@ -1,4 +1,4 @@
-@if (auth()->user()->isAdmin())
+@can('admin', $campaign)
     <x-forms.field
         field="private"
         :label="__('crud.fields.is_private')">

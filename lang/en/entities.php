@@ -26,6 +26,9 @@ return [
         'bulk_names'                => 'Add one name per line',
         'duplicate'                 => 'Heads up! There are other entities of this type with a similar name.',
         'helper_v2'                 => 'Quickly create the foundation of a new entity without interrupting your current flow.',
+        'helpers'                   => [
+            'template'  => 'Select a template the new entities will be a copy of',
+        ],
         'missing_v2'                => 'Only modules that are enabled and that you have permission to create are available in this interface. :learn-more.',
         'modes'                     => [
             'bulk'      => 'Bulk add',

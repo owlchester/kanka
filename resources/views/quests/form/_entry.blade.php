@@ -7,6 +7,11 @@
     @include('cruds.fields.location')
 
     @include('cruds.fields.date')
+
+    <div class="col-span-2">
+        @include('cruds.forms._calendar', ['source' => $source])
+    </div>
+
     <x-forms.field field="completed" :label="__('quests.fields.is_completed')">
         <input type="hidden" name="is_completed" value="0" />
         <x-checkbox :text="__('quests.helpers.is_completed')">
@@ -19,6 +24,3 @@
     @include('cruds.fields.tags')
     @include('cruds.fields.image')
 </x-grid>
-
-<hr />
-@include('cruds.forms._calendar', ['source' => $source])

@@ -13,13 +13,16 @@
             field="vanity"
             :label="__('campaigns.fields.vanity')">
             @if (isset($model) && $model->hasVanity())
-                <x-helper :text="__('campaigns/vanity.set', ['vanity' => '<code>' . $model->slug . '</code>'])" />
+                <x-helper>
+                    <p>{!! __('campaigns/vanity.set', ['vanity' => '<code>' . $model->slug . '</code>']) !!}</p>
+                </x-helper>
             @elseif(isset($model) && $model->premium())
-                <x-helper>{!! __('campaigns/vanity.helper', [
+                <x-helper>
+                    <p>{!! __('campaigns/vanity.helper', [
     'default' => '<code>w/' . (isset($model) ? $model->id : 123456) . '</code>',
     'example' => '<code>w/exandria-unlimited</code>',
     'learn-more' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html">' . __('footer.documentation') . '</a>'
-    ]) !!}</x-helper>
+    ]) !!}</p></x-helper>
 
                 <input type="text" maxlength="45" name="vanity" class="w-full" data-url="{{ route('campaign.vanity-validate', $model) }}" value="{{ old('vanity') }}"/>
                 <p class="hidden" id="vanity-loading">
@@ -30,11 +33,13 @@
                     <p>{!! __('campaigns/vanity.available', ['vanity' => '<code></code>']) !!}</p>
                 </div>
             @else
-                <x-helper>{!! __('campaigns/vanity.helper', [
+                <x-helper>
+                    <p>{!! __('campaigns/vanity.helper', [
     'default' => '<code>w/' . (isset($model) ? $model->id : 123456) . '</code>',
     'example' => '<code>w/exandria-unlimited</code>',
     'learn-more' => '<a target="_blank" href="https://docs.kanka.io/en/latest/features/campaigns/vanity-url.html">' . __('footer.documentation') . '</a>'
-    ]) !!}</x-helper>
+    ]) !!}</p>
+                </x-helper>
                 @if (isset($model))
                     @if ($model->legacyBoosted())
                         <a href="{{ route('settings.boost') }}">Switch to premium campaigns to unlock vanity urls on campaigns.</a>

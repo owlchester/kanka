@@ -9,12 +9,9 @@ use Illuminate\Http\Request;
 
 class ExportController extends Controller
 {
-    protected ExportService $service;
-
-    public function __construct(ExportService $exportService)
+    public function __construct(public ExportService $exportService)
     {
         $this->middleware('auth');
-        $this->service = $exportService;
     }
 
     public function index(Campaign $campaign)
@@ -32,21 +29,27 @@ class ExportController extends Controller
     public function export(Request $request, Campaign $campaign)
     {
         $this->authorize('setting', $campaign);
-
-        if (! $request->user()->can('export', $campaign)) {
-            return response()->json(['error' => __('campaigns/export.errors.limit')]);
-        }
         if (request()->ajax()) {
             return response()->json();
         }
 
-        $this->service
+        if (! $request->user()->can('export', $campaign)) {
+            return redirect()
+                ->route('campaign.export', $campaign)
+                ->withError(__('campaigns/export.errors.limit'));
+        }
+
+        $this->exportService
             ->campaign($campaign)
             ->user($request->user())
             ->queue();
 
+        $role = \App\Facades\CampaignCache::adminRole();
+
         return redirect()
             ->route('campaign.export', $campaign)
-            ->withSuccess(__('campaigns/export.success'));
+            ->withSuccess(__('campaigns/export.success', [
+                'admin' => \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
+            ]));
     }
 }

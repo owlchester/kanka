@@ -1,5 +1,4 @@
 <?php /** @var \App\Models\Inventory $inventory */?>
-{{ csrf_field() }}
 @php
 $preset = null;
 
@@ -12,7 +11,9 @@ if (isset($inventory)) {
 @endphp
 
 @if (!isset($inventory))
-    <x-helper>{{ __('entities/inventories.create.helper', ['name' => $entity->name]) }}</x-helper>
+    <x-helper>
+        <p>{{ __('entities/inventories.create.helper', ['name' => $entity->name]) }}</p>
+    </x-helper>
 @endif
 <x-grid type="3/3">
 

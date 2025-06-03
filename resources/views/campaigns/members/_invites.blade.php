@@ -5,7 +5,7 @@
  * @var \App\Models\CampaignInvite[] $invitations
  */
 ?>
-@if (auth()->user()->can('invite', $campaign))
+@can('invite', $campaign)
 
     <div class="flex gap-2 items-center">
         <h3 class="inline-block grow">
@@ -13,7 +13,7 @@
         </h3>
         <button class="btn2 btn-sm btn-ghost" data-toggle="dialog" data-target="invite-help">
             <x-icon class="question" />
-            {{ __('crud.actions.help') }}
+            {{ __('general.learn-more') }}
         </button>
 
         <a href="{{ route('campaign_invites.create', $campaign) }}" class="btn2 btn-primary btn-sm"
@@ -26,7 +26,7 @@
     @if($invitations->count() > 0)
         <x-box :padding="false">
             <div class="table-responsive">
-                <table id="campaign-invites" class="table table-hover table-striped mb-0">
+                <table id="campaign-invites" class="table table-hover">
                     <thead>
                         <tr>
                             <th>{{ __('campaigns.invites.fields.token') }}</th>
@@ -75,7 +75,9 @@
         </x-box>
         @else
         <x-box>
-            <x-helper :text="__('campaigns.members.invite.description')" />
+            <x-helper>
+                <p>{!! __('campaigns.members.invite.description', ['campaign' => $campaign->link()]) !!}</p>
+            </x-helper>
         </x-box>
         @endif
 @endif
@@ -88,7 +90,7 @@
         'id' => 'invite-help',
         'title' => __('campaigns.members.invite.title'),
         'textes' => [
-            __('campaigns.members.invite.description', ['campaign' => $campaign->name]),
+            __('campaigns.members.invite.description', ['campaign' => $campaign->link()]),
             __('campaigns.members.invite.more', [
                         'link' =>
                             '<a href="' . route('campaign_roles.index', $campaign) . '">'

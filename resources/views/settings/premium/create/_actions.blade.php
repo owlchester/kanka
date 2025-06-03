@@ -4,6 +4,6 @@
         <?php return; ?>
 @endif
 <button type="submit" class="btn2 btn-primary">
-    <span class="fa-solid fa-gem" aria-hidden="true"></span>
+    <x-icon class="premium" />
     <span class="">{{ __('settings/premium.create.actions.confirm') }}</span>
 </button>

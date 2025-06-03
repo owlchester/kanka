@@ -25,14 +25,9 @@ const registercalendarForm = () => {
         calendarAdd.addEventListener('click', function (e) {
             e.preventDefault();
 
-            calendarAdd.classList.add('hidden');
-            calendarForm.classList.remove('hidden');
-
             let defaultCalendarId = calendarAdd.dataset.defaultCalendar;
             if (defaultCalendarId) {
                 calendarHiddenField.value = defaultCalendarId;
-                calendarCancel?.classList.remove('hidden');
-                calendarSubForm.classList.remove('hidden');
                 loadCalendarDates(defaultCalendarId);
             }
             return false;
@@ -44,17 +39,13 @@ const registercalendarForm = () => {
                 calendarField.value = null;
             }
             calendarHiddenField.value = null;
-            calendarCancel.classList.add('hidden');
-            calendarHideSubform();
         });
     }
 
     if (calendarField) {
         calendarField.onchange = element => {
-            calendarSubForm.classList.add('hidden');
             // No new calendar selected? hide everything again
             if (!calendarField.value) {
-                calendarHideSubform();
                 return false;
             }
             // Load month list
@@ -88,10 +79,8 @@ const registercalendarModal = () => {
 
     if (calendarField) {
         calendarField.onchange = event => {
-            calendarSubForm.classList.add('hidden');
             // No new calendar selected? hide everything again
             if (!calendarField.value) {
-                calendarHideSubform();
                 return;
             }
             // Load month list
@@ -100,8 +89,6 @@ const registercalendarModal = () => {
 
         //var defaultCalendarId = calendarAdd.data('default-calendar');
         if (calendarField?.value) {
-            calendarCancel?.classList.remove('hidden');
-            calendarSubForm.classList.remove('hidden');
             loadCalendarDates(calendarField.value);
         }
     }
@@ -184,7 +171,6 @@ const loadCalendarDates = (calendarID) => {
                 calendarDayField.appendChild(option);
             }
             calendarLoading.classList.add('hidden');
-            calendarSubForm.classList.remove('hidden');
 
             calendarYearField.value = data.current.year;
 
@@ -210,19 +196,6 @@ const loadCalendarDates = (calendarID) => {
                 calendarMonthField.value = data[0].id;
             }
         });
-};
-
-/**
- *
- */
-const calendarHideSubform = () => {
-    calendarForm.classList.add('hidden');
-    calendarAdd.classList.remove('hidden');
-
-    document.querySelector('[name="calendar_day"]').value = null;
-    document.querySelector('[name="calendar_month"]').value = null;
-    document.querySelector('input[name="calendar_year"]').value = null;
-    document.querySelector('[name="calendar_id"]').value = null;
 };
 
 /**

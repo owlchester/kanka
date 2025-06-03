@@ -39,7 +39,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property array $config
  * @property Collection|MapLayer[] $layers
  * @property Collection|MapMarker[] $markers
- * @property MapMarker $center_marker
+ * @property MapMarker $centerMarker
  * @property Collection|MapGroup[] $groups
  * @property array $grids
  */
@@ -210,7 +210,7 @@ class Map extends MiscModel
             ->with(['entity', 'entity.entityType', 'group', 'map', 'entity.image']);
     }
 
-    public function center_marker(): HasOne
+    public function centerMarker(): HasOne
     {
         return $this->hasOne('App\Models\MapMarker', 'id', 'center_marker_id');
     }
@@ -460,10 +460,10 @@ class Map extends MiscModel
         }
 
         // If we have a center marker
-        if ($this->center_marker != null) {
+        if ($this->centerMarker != null) {
             // use his position
-            $latitude = $this->center_marker->latitude;
-            $longitude = $this->center_marker->longitude;
+            $latitude = $this->centerMarker->latitude;
+            $longitude = $this->centerMarker->longitude;
         } else {
             // Use the center positions if they exist
             if (! empty($this->center_y)) {

@@ -5,7 +5,7 @@
         <input type="hidden" name="month_name" />
     </x-forms.field>
 
-    <button class="btn2 btn-sm dynamic-row-add" data-template="template_month" data-target="calendar-months" title="{{ __('calendars.actions.add_month') }}">
+    <button class="btn2 btn-sm btn-outline dynamic-row-add" data-template="template_month" data-target="calendar-months" title="{{ __('calendars.actions.add_month') }}">
         <x-icon class="plus" /> {{ __('calendars.actions.add_month') }}
     </button>
 
@@ -43,14 +43,16 @@
             <div class="">{{ __('calendars.parameters.month.name') }}</div>
             <div class="">{{ __('calendars.parameters.month.length') }}</div>
             <div class="">{{ __('calendars.parameters.month.alias') }}</div>
-            <div class="">{{ __('calendars.parameters.month.type') }} <i class="fa-solid fa-question-circle" data-toggle="tooltip" data-title="{{ __('calendars.helpers.month_type') }}"></i></div>
+            <div class="">{{ __('calendars.parameters.month.type') }}
+                <x-icon class="question" tooltip title="{{ __('calendars.helpers.month_type') }}" />
+            </div>
         </div>
         @foreach ($months as $month)
             <div class="parent-delete-row">
                 <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">
                     <div class="flex items-center gap-2">
                         <div class="sortable-handler p-2 cursor-move">
-                            <x-icon class="fa-solid fa-grip-vertical" />
+                            <x-icon class="fa-regular fa-grip-vertical" />
                         </div>
                         <div class="field">
                             <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>
@@ -91,7 +93,7 @@
         <div class="grid gap-2 grid-cols-2 md:grid-cols-4 md:gap-4">
             <div class="flex gap-2 items-center">
                 <div class="sortable-handler p-2 cursor-move">
-                    <x-icon class="fa-solid fa-grip-vertical" />
+                    <x-icon class="fa-regular fa-grip-vertical" />
                 </div>
                 <div class="field">
                     <label class="sr-only">{{ __('calendars.parameters.month.name') }}</label>

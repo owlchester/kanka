@@ -7,7 +7,6 @@ return [
     'create'            => [
         'title' => 'Nouveau favori',
     ],
-    'destroy'           => [],
     'edit'              => [
         'title' => 'Favori :name',
     ],
@@ -33,7 +32,6 @@ return [
         'selector'          => 'Configurer vers quel type d\'entité l\'utilisateur ira en cliquant sur le favori dans le menu de navigation.',
         'type'              => 'Définir ce favori pour aller directement sur une liste d\'entité. Pour filtrer les résultats, il faut copier l\'url de la page filtrée après le :? de l\'url dans le champs :filter.',
     ],
-    'index'             => [],
     'placeholders'      => [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Sous-page (dernière partie de l\'url)',
@@ -47,7 +45,6 @@ return [
         'success'   => 'Favoris réorganisés.',
         'title'     => 'Réorganiser les favoris',
     ],
-    'show'              => [],
     'targets'           => [
         'dashboard' => 'Un des tableaux de bord de la campagne',
         'entity'    => 'Une seule entité',

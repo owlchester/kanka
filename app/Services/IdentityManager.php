@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
+use App\Enums\UserAction;
 use App\Models\CampaignUser;
 use App\Models\User;
-use App\Models\UserLog;
 use App\Traits\CampaignAware;
 use Exception;
 use Illuminate\Foundation\Application;
@@ -29,13 +29,15 @@ class IdentityManager
     public function switch(CampaignUser $campaignUser): bool
     {
         try {
+
+            auth()->user()->campaignLog($campaignUser->campaign_id, 'members', 'switch', ['to' => $campaignUser->user->name]);
+
             // Save the current user in the session to know we have limitation on the current user.
             session()->put($this->getSessionKey(), $this->app['auth']->user()->id);
             session()->put($this->getSessionCampaignKey(), $this->campaign->id);
 
             // Log this action
-            auth()->user()->log(UserLog::TYPE_USER_SWITCH);
-            session()->put('kanka.userLog', UserLog::TYPE_USER_SWITCH_LOGIN);
+            session()->put('kanka.userLog', UserAction::userSwitchLogin);
             $this->app['auth']->loginUsingId($campaignUser->user->id);
         } catch (Exception $e) {
             return false;
@@ -57,7 +59,7 @@ class IdentityManager
             // $impersonated = $this->app['auth']->user();
             $impersonator = $this->findUserById($this->getImpersonatorId());
 
-            session()->put('kanka.userLog', UserLog::TYPE_USER_REVERT);
+            session()->put('kanka.userLog', UserAction::userRevert);
 
             $this->app['auth']->loginUsingId($impersonator->id);
             $this->clear();

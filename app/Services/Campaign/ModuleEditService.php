@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateModuleName;
 use App\Observers\PurifiableTrait;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
+use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -16,6 +17,7 @@ class ModuleEditService
     use CampaignAware;
     use EntityTypeAware;
     use PurifiableTrait;
+    use UserAware;
 
     public function update(UpdateModuleName $request): self
     {
@@ -55,8 +57,6 @@ class ModuleEditService
 
     /**
      * Remove the custom modules setup from the campaign
-     *
-     * @return $this
      */
     public function reset(): self
     {
@@ -74,6 +74,8 @@ class ModuleEditService
         CampaignCache::clear();
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
 
+        $this->user->campaignLog($this->campaign->id, 'modules', 'reset');
+
         return $this;
     }
 
@@ -89,6 +91,16 @@ class ModuleEditService
         $this->campaign->setting->saveQuietly();
         CampaignCache::clear();
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
+        $this->user->campaignLog(
+            $this->campaign->id,
+            'modules',
+            'toggle',
+            [
+                'id' => $this->entityType->id,
+                'code' => $this->entityType->code,
+                'new' => $this->campaign->setting->{$this->entityType->pluralCode()} ? 'enabled' : 'disabled',
+            ]
+        );
 
         return (bool) $this->campaign->setting->{$this->entityType->pluralCode()};
     }

@@ -32,8 +32,14 @@ return [
         'title' => 'Layers of :name',
     ],
     'pitch'         => [
-        'error' => 'Max number of layers reached.',
-        'until' => 'Upload up to :max layers to each map.',
+        'max'       => [
+            'helper'    => 'You can\'t add any more layers unless you remove an existing one.',
+            'limit'     => 'This map has reached its layer limit',
+        ],
+        'upgrade'   => [
+            'limit'     => 'You\'ve reached the limit of :limit layers for this map',
+            'upgrade'   => 'Upgrade to a premium campaign to add up to :limit layers and unlock even more creative flexibility.',
+        ],
     ],
     'placeholders'  => [
         'name'          => 'Underground, Level 2, Shipwreck',

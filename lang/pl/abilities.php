@@ -8,7 +8,6 @@ return [
         ],
         'create'        => [
             'attach_success'    => '{1} Zdolność :name dodano :count elementowi. |[2,*] Zdolność :name dodano :count elementom.',
-            'modal'             => 'Dodaj :name elementom',
         ],
         'description'   => 'Elementy posiadające tę zdolność',
         'title'         => 'Elementy zdolności :name',

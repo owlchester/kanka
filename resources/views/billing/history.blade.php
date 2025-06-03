@@ -36,7 +36,7 @@
                     <td>{{ $invoice->paid ? __('billing/invoices.status.paid') : __('billing/invoices.status.pending') }}</td>
                     <td>
                         <a href="{{ route('billing.history.download', ['invoice' => $invoice->id]) }}">
-                            <x-icon class="fa-solid fa-download" /> {{  __('billing/invoices.actions.download') }}
+                            <x-icon class="fa-regular fa-download" /> {{  __('billing/invoices.actions.download') }}
                         </a>
 
                     </td>

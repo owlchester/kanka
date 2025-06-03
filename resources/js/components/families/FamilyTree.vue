@@ -1,23 +1,23 @@
 <template>
     <div class="flex gap-2 mb-5 justify-end items-center align-right" v-if="!isLoading && permission">
         <button class="btn2 btn-sm btn-primary" v-if="!isEditing" v-on:click="startEditing()">
-            <i class="fa-solid fa-edit" aria-hidden="true"></i>
+            <i class="fa-regular fa-edit" aria-hidden="true"></i>
             {{ this.texts.actions.edit }}
         </button>
         <a class="btn2 btn-ghost btn-sm " v-if="showEditFounder()" v-on:click="createNewFounder()">
-            <i class="fa-solid fa-user" aria-hidden="true"></i>
+            <i class="fa-regular fa-user" aria-hidden="true"></i>
             {{ this.texts.actions.founder }}
         </a>
         <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="resetTree()">
-            <i class="fa-solid fa-redo" aria-hidden="true"></i>
+            <i class="fa-regular fa-redo" aria-hidden="true"></i>
             {{ this.texts.actions.reset }}
         </a>
         <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="clearTree()">
-            <i class="fa-solid fa-eraser" aria-hidden="true"></i>
+            <i class="fa-regular fa-eraser" aria-hidden="true"></i>
             {{ this.texts.actions.clear }}
         </a>
         <button class="btn2 btn-sm btn-primary" :disabled="!isDirty" v-if="isEditing" v-on:click="saveTree()">
-            <i class="fa-solid fa-save" aria-hidden="true"></i>
+            <i class="fa-regular fa-save" aria-hidden="true"></i>
             {{ this.texts.actions.save }}
         </button>
     </div>
@@ -50,7 +50,7 @@
                 >
                 <div class="relative" v-bind:style="{width: dragWidth() + 'px', height: dragHeight() + 'px'}">
                     <a class="btn2 btn-primary" v-on:click="createNode()" v-if="showCreateNode()">
-                        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                        <i class="fa-regular fa-plus" aria-hidden="true"></i>
                         {{ this.texts.actions.first }}
                     </a>
 

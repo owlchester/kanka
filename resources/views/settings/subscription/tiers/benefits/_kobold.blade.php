@@ -22,6 +22,6 @@
         <x-icon class="fa-regular fa-webhook" />
     </div>
     <a href="{{ route('larecipe.index') }}">
-        {{ __('tiers.features.api_requests', ['amount' => 30]) }}
+        {{ __('tiers.features.api_requests', ['amount' => config('limits.api.throttle.standard')]) }}
     </a>
 </div>

@@ -1,7 +1,7 @@
 @if (!$campaign->boosted())
-    <x-cta :campaign="$campaign">
+    <x-premium-cta :campaign="$campaign">
         <p>{{ __('families/trees.pitch') }}</p>
-    </x-cta>
+    </x-premium-cta>
 @else
     <div id="family-tree">
         <family-tree

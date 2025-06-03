@@ -32,10 +32,7 @@ return [
     'index'         => [
         'title' => 'Grupos de :name',
     ],
-    'pitch'         => [
-        'error' => 'Número máximo de grupos alcançado.',
-        'until' => 'Crie até :max grupos para cada mapa.',
-    ],
+    'pitch'         => [],
     'placeholders'  => [
         'name'          => 'Lojas, Tesouros, PdMs',
         'position'      => 'Primeiro',

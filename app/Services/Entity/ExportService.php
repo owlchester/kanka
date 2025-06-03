@@ -11,9 +11,6 @@ class ExportService
     /** @var Entity */
     protected $entity;
 
-    /**
-     * @return $this
-     */
     public function entity(Entity $entity): self
     {
         $this->entity = $entity;

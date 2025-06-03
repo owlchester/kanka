@@ -9,8 +9,6 @@ return [
     ],
     'helpers'   => [],
     'list'      => [
-        'campaign'      => 'Predlošci kampanje',
-        'kanka'         => 'Kanka predlošci',
-        'marketplace'   => 'Predlošci tržišta',
+        'campaign'  => 'Predlošci kampanje',
     ],
 ];

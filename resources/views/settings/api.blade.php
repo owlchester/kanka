@@ -10,8 +10,8 @@
         <x-slot name="title">{{ __('settings.api.title') }}</x-slot>
         <x-slot name="subtitle">{{ __('settings.api.helper') }}</x-slot>
         <x-slot name="link">
-            <a href="{{ route('larecipe.index') }}" class="" target="_blank">
-                <x-icon class="fa-regular fa-external-link-square" />
+            <a href="{{ route('larecipe.index') }}" class="">
+                <x-icon class="link" />
                 {{ __('front.features.api.link') }}
             </a>
         </x-slot>

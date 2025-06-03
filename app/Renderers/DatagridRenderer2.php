@@ -183,9 +183,6 @@ class DatagridRenderer2
         return $this->deleteForms;
     }
 
-    /**
-     * @return $this
-     */
     public function permissions(bool $permissions): self
     {
         $this->permissions = $permissions;

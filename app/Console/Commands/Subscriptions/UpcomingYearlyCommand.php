@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Subscriptions;
 
+use App\Enums\UserAction;
 use App\Jobs\Emails\Subscriptions\UpcomingYearlyAlert;
 use App\Models\UserLog;
 use App\Traits\HasJobLog;
@@ -80,7 +81,7 @@ class UpcomingYearlyCommand extends Command
 
             UserLog::create([
                 'user_id' => $userId,
-                'type_id' => UserLog::NOTIFY_YEARLY_SUB,
+                'type_id' => UserAction::notifyYearlySub,
             ]);
 
             $count++;

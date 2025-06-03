@@ -3,15 +3,13 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Enums\PricingPeriod;
+use App\Enums\UserAction;
 use App\Exceptions\TranslatableException;
-use App\Facades\DataLayer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UserSubscribeStore;
 use App\Jobs\Users\AbandonedCart;
 use App\Models\Tier;
-use App\Models\TierPrice;
 use App\Models\User;
-use App\Models\UserLog;
 use App\Services\SubscriptionService;
 use App\Services\SubscriptionUpgradeService;
 use App\Services\Users\CurrencyService;
@@ -53,41 +51,14 @@ class SubscriptionController extends Controller
     {
         /** @var User $user */
         $user = auth()->user();
+        $stripeApiToken = config('cashier.key');
         $this->currencyService->user($user)->setDefaultCurrency();
-
-        $stripeApiToken = config('cashier.key', null);
         $status = $this->subscription->user($user)->status();
         $current = $this->subscription->currentPlan();
-        $service = $this->subscription;
         $currency = $user->currencySymbol();
-        $invoices = ! empty($user->stripe_id) ? $user->invoices(true, ['limit' => 3]) : [];
-        $tracking = session()->get('sub_tracking');
-        $newSubPricingId = session()->get('sub_id');
         $tiers = Tier::with('prices')->ordered()->get();
         $isPayPal = $user->hasPayPal();
         $hasManual = $user->hasManualSubscription();
-        $gaTrackingEvent = $gaPurchase = null;
-        if (! empty($tracking)) {
-            $gaTrackingEvent = 'TJhYCMDErpYDEOaOq7oC';
-            if ($tracking === 'subscribed') {
-                DataLayer::newSubscriber();
-                DataLayer::add('userSubValue', session('sub_value'));
-            } else {
-                DataLayer::newCancelledSubscriber();
-            }
-        }
-
-        if (! empty($newSubPricingId)) {
-            /** @var TierPrice $pricing */
-            $pricing = TierPrice::find($newSubPricingId);
-            $gaPurchase = [
-                'value' => $pricing->cost,
-                'currency' => $pricing->currency,
-                'coupon' => session()->get('sub_coupon'),
-                'item_id' => $pricing->tier->id,
-                'item_name' => $pricing->tier->name . ($pricing->isYearly() ? ' Yearly' : null),
-            ];
-        }
 
         return view('settings.subscription.index', compact(
             'stripeApiToken',
@@ -95,11 +66,6 @@ class SubscriptionController extends Controller
             'user',
             'currency',
             'current',
-            'service',
-            'invoices',
-            'tracking',
-            'gaTrackingEvent',
-            'gaPurchase',
             'tiers',
             'isPayPal',
             'hasManual',
@@ -192,7 +158,7 @@ class SubscriptionController extends Controller
             $this->subscription
                 ->user($request->user())
                 ->renew();
-            $request->user()->log(UserLog::TYPE_SUB_RENEW);
+            $request->user()->log(UserAction::subRenew);
 
             $routeOptions = [];
 
@@ -243,13 +209,9 @@ class SubscriptionController extends Controller
                 ->change()
                 ->finish();
 
-            $flash = 'subscribed';
-            $routeOptions = ['success' => 1];
-
             return redirect()
-                ->route('settings.subscription', $routeOptions)
-                ->withSuccess(__('settings.subscription.success.' . $flash))
-                ->with('sub_tracking', $flash)
+                ->route('settings.subscription.finish')
+                ->with('sub_tracking', 'subscribed')
                 ->with('sub_value', $this->subscription->subscriptionValue())
                 ->with('sub_coupon', $request->get('coupon'))
                 ->with('sub_id', $this->subscription->tierPrice()->id);

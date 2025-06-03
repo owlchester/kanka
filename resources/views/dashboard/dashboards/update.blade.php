@@ -1,5 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => trans('dashboard.dashboards.update.title', ['name' => $dashboard->name]),
+    'title' => __('dashboard.dashboards.update.title', ['name' => $dashboard->name]),
     'description' => '',
     'breadcrumbs' => []
 ])

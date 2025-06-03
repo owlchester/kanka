@@ -7,5 +7,5 @@
     data-tag-id="{{ $tag->id }}"
     data-tag-slug="{{ $tag->slug }}"
     data-entity-id="{{ $tag->entity->id }}">
-    {{ ucfirst(mb_substr($tag->slug, 0, 1)) }}
+    {{ $tag->shortName() }}
 </a>

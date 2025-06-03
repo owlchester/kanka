@@ -6,7 +6,7 @@
             <input type="hidden" name="weekday" />
         </x-forms.field>
 
-        <button class="btn2 btn-sm dynamic-row-add" data-template="template_weekday" data-target="calendar-weekdays" title="{{ __('calendars.actions.add_weekday') }}">
+        <button class="btn2 btn-sm btn-outline dynamic-row-add" data-template="template_weekday" data-target="calendar-weekdays" title="{{ __('calendars.actions.add_weekday') }}">
             <x-icon class="plus" /> {{ __('calendars.actions.add_weekday') }}
         </button>
 
@@ -29,7 +29,7 @@
                 <div class="parent-delete-row">
                     <div class="flex items-center gap-2">
                         <div class="sortable-handler p-2 cursor-move">
-                            <x-icon class="fa-solid fa-grip-vertical" />
+                            <x-icon class="fa-regular fa-grip-vertical" />
                         </div>
                         <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
@@ -49,7 +49,7 @@
         <x-forms.field field="week-names" :label="__('calendars.fields.week_names')" :helper="__('calendars.hints.weeks')">
         </x-forms.field>
 
-        <button class="btn2 btn-sm dynamic-row-add" data-template="template_week" data-target="calendar-weeks" title="{{ __('calendars.actions.add_week') }}">
+        <button class="btn2 btn-sm btn-outline dynamic-row-add" data-template="template_week" data-target="calendar-weeks" title="{{ __('calendars.actions.add_week') }}">
             <x-icon class="plus" />
             {{ __('calendars.actions.add_week') }}
         </button>
@@ -81,7 +81,7 @@
                     <div class="grid grid-cols-2 gap-2">
                         <div class="flex items-center gap-2">
                             <div class="sortable-handler p-2 cursor-move">
-                                <x-icon class="fa-solid fa-grip-vertical" />
+                                <x-icon class="fa-regular fa-grip-vertical" />
                             </div>
                             <div class="grow field">
                                 <label class="sr-only">{{ __('calendars.parameters.weeks.number') }}</label>
@@ -111,7 +111,7 @@
         <div class="parent-delete-row">
             <div class="flex items-center gap-2">
                 <div class="sortable-handler p-2 cursor-move">
-                    <x-icon class="fa-solid fa-grip-vertical" />
+                    <x-icon class="fa-regular fa-grip-vertical" />
                 </div>
                 <div class="grow field">
                     <label class="sr-only">{{ __('calendars.parameters.weeks.name') }}</label>
@@ -129,7 +129,7 @@
             <div class="grid grid-cols-2 gap-2">
                 <div class="flex items-center gap-2">
                     <div class="sortable-handler p-2 cursor-move">
-                        <x-icon class="fa-solid fa-grip-vertical" />
+                        <x-icon class="fa-regular fa-grip-vertical" />
                     </div>
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.weeks.number') }}</label>

@@ -1,3 +1,4 @@
+<?php /** @var \App\Models\EntityLog $log */ ?>
 <div class="entity-logs">
     <div class="flex flex-col gap-2 lg:gap-5">
         <x-form :action="['entities.logs', $campaign, $entity]" method="GET">
@@ -15,7 +16,7 @@
             @if (!($log->action < 7 || $log->post))
                 @continue
             @endif
-            <div class="rounded p-4 shadow-xs bg-box entity-log flex flex-col gap-2">
+            <div class="rounded p-4 shadow-xs bg-box entity-log flex flex-col gap-2" x-data="{ opened: @if (!$expanded) false @else true @endif }">
                 <div class="log-title flex gap-2">
                     <div class="grow font-extrabold action">
                         {!! __('entities/logs.actions.' . $log->actionCode()) !!}
@@ -29,12 +30,10 @@
                         </span>
                     </div>
                 </div>
-                <div class="flex gap-2">
-                    <div class="grow log-author">
+                <div class="flex gap-2 justify-between">
+                    <div class="log-author">
                         @if ($log->user)
-                            <a href="{{  route('users.profile', $log->user) }}">
-                                {!! $log->user->name !!}
-                            </a>
+                            <x-users.link :user="$log->user" />
                         @else
                             <span class="text-italic unknown-author">
                                 {{  __('crud.history.unknown') }}
@@ -47,21 +46,21 @@
                             </span>
                         @endif
                     </div>
-                    <div class="flex-0">
+                    <div class="">
                         @if ($campaign->superboosted() && !empty($log->changes))
-                            <a href="#log-cta-{{ $log->id }}" data-animate="collapse">
+                            <a @click="opened = !opened" class="btn2 btn-xs btn-outline">
                                 <x-icon class="fa-regular fa-eye" />
                                 {{ __('entities/logs.actions.reveal') }}
                             </a>
                         @elseif (!$campaign->superboosted())
-                            <a href="#log-cta-{{ $log->id }}" data-animate="collapse">
+                            <a @click="opened = !opened" class="btn btn-sm btn-outline">
                                 <x-icon class="fa-regular fa-eye" />
                                 {{ __('entities/logs.actions.reveal') }}
                             </a>
                         @endif
                     </div>
                 </div>
-                <div class="log-cta @if (!$expanded) hidden @endif" id="log-cta-{{ $log->id }}">
+                <div class="log-cta" x-show="opened" id="log-cta-{{ $log->id }}">
                     @if ($campaign->superboosted() && !empty($log->changes))
                         <p class="text-neutral-content">{{ __('history.helpers.changes') }}</p>
                         <ul>
@@ -84,10 +83,12 @@
                     @elseif (!$campaign->superboosted())
                         <div class="flex flex-col gap-2">
                             <x-helper>
-                                <x-icon class="premium" />
-                                {!! __('entities/logs.call-to-action', ['amount' => config('entities.logs')]) !!}
+                                <p>
+                                    <x-icon class="premium" />
+                                    {!! __('entities/logs.call-to-action', ['amount' => config('entities.logs')]) !!}
+                                </p>
                             </x-helper>
-                            @if (auth()->check() && auth()->user()->hasBoosters())
+                            @can('boost', auth()->user())
                                 <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white">
                                     {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}
                                 </a>

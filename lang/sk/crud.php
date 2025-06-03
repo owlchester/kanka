@@ -155,7 +155,6 @@ return [
         'name'              => 'Názov',
         'parent'            => 'Rodič',
         'position'          => 'Pozícia',
-        'privacy'           => 'Súkromie',
         'replace_mentions'  => 'Zameniť referencie atribútov v zázname za tie nového objektu.',
         'template'          => 'Šablóna',
         'tooltip'           => 'Bublina',
@@ -217,7 +216,6 @@ return [
     ],
     'helpers'           => [
         'copy_options'  => 'Kopírovať nasledujúce prepojené prvky zo zdroja do nového objektu.',
-        'learn_more'    => 'Zisti viac o tejto funkcii v našej :documentation.',
         'linking'       => 'Prepojenia s inými objektami',
         'nested_parent' => 'Zobrazenie podobjektov :parent.',
         'pagination'    => [

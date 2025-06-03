@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\Models\Attribute $attribute
+ * @var \App\Models\Entity $entity
  */
 $attributes = $entity->starredAttributes();
 ?>
@@ -13,7 +14,7 @@ $attributes = $entity->starredAttributes();
             @if ($attribute->isCheckbox())
                 <span class="live-edit grow text-right" data-id="{{ $attribute->id }}">
                 @if ($attribute->value)
-                    <x-icon class="fa-solid fa-check " />
+                    <x-icon class="fa-regular fa-check " />
                 @else
                     <span class="">
                         {{ __('general.no') }}
@@ -24,7 +25,7 @@ $attributes = $entity->starredAttributes();
                 <p class="m-0 grow w-full live-edit @if (trim($attribute->value) === '') empty-value @endif" data-id="{{ $attribute->id }}">
                     {!! nl2br($attribute->mappedValue()) !!}
                 </p>
-            @elseif (!$attribute->isCheckbox() && !$attribute->isSection())
+            @elseif (!$attribute->isSection())
                 <p class="live-edit @if (trim($attribute->value) === '') empty-value @endif text-right grow m-0 inline-block" data-id="{{ $attribute->id }}">
                     {!! $attribute->mappedValue() !!}
                 </p>

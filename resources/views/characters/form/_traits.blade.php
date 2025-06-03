@@ -11,7 +11,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                     <x-grid class="parent-delete-row">
                         <div class="flex gap-1 items-center">
                             <div class="sortable-handler px-2 cursor-move">
-                                <x-icon class="fa-solid fa-grip-vertical" />
+                                <x-icon class="fa-regular fa-grip-vertical" />
                             </div>
                             <div class="grow field">
                                 <label class="sr-only">{{ __('characters.labels.appearance.name') }}</label>
@@ -31,7 +31,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                     </x-grid>
                 @endforeach
             </div>
-            <button class="btn2 btn-sm btn-block dynamic-row-add" data-template="template_appearance" data-target="character-appearance">
+            <button class="btn2 btn-sm btn-outline btn-block dynamic-row-add" data-template="template_appearance" data-target="character-appearance">
                 <x-icon class="plus" />
                 {{ __('characters.actions.add_appearance') }}
             </button>
@@ -58,7 +58,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                     <div class="grid grid-cols-1 gap-2 parent-delete-row">
                         <div class="flex gap-1 items-center">
                             <div class="sortable-handler px-2 cursor-move">
-                                <x-icon class="fa-solid fa-grip-vertical" />
+                                <x-icon class="fa-regular fa-grip-vertical" />
                             </div>
                             <div class="grow field">
                                 <label class="sr-only">{{ __('characters.labels.personality.name') }}</label>
@@ -76,7 +76,7 @@ $role = \App\Facades\CampaignCache::adminRole();
                     </div>
                 @endforeach
             </div>
-            <button class="btn2 btn-sm btn-block dynamic-row-add" data-template="template_personality" data-target="character-personality">
+            <button class="btn2 btn-sm btn-outline btn-block dynamic-row-add" data-template="template_personality" data-target="character-personality">
                 <x-icon class="plus" />
                 {{ __('characters.actions.add_personality') }}
             </button>
@@ -100,7 +100,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             </x-forms.field>
         @endif
 
-        @if (auth()->user()->isAdmin())
+        @can('admin', $campaign)
                 <hr>
             <input type="hidden" name="is_personality_visible" value="0" />
             <x-forms.field
@@ -129,7 +129,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             <div class="flex gap-1 items-center">
                 @if(!isset($model))
                     <div class="sortable-handler px-2 cursor-move">
-                        <x-icon class="fa-solid fa-grip-vertical" />
+                        <x-icon class="fa-regular fa-grip-vertical" />
                     </div>
                 @endif
                 <div class="grow field">
@@ -154,7 +154,7 @@ $role = \App\Facades\CampaignCache::adminRole();
             <div class="flex gap-1 items-center">
                 @if(!isset($model))
                 <div class="sortable-handler px-2 cursor-move">
-                    <x-icon class="fa-solid fa-grip-vertical" />
+                    <x-icon class="fa-regular fa-grip-vertical" />
                 </div>
                 @endif
                 <div class="grow field">

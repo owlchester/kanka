@@ -1,5 +1,8 @@
 <?php /** @var \App\Models\Tag $model */?>
 <x-grid type="1/1">
+    <x-helper>
+        <p>{!! __('tags.children.create.helper', ['name' => $model->name]) !!}</p>
+    </x-helper>
     <x-forms.foreign
         field="entities"
         required

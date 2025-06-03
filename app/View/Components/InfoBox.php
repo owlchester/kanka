@@ -23,7 +23,7 @@ class InfoBox extends Component
         public string $target = 'primary-dialog',
         public string $background = 'bg-neutral',
         public string $subtitleColour = 'text-neutral-content',
-        public string $urlIcon = 'fa-solid fa-angle-right',
+        public string $urlIcon = 'fa-regular fa-angle-right',
         public bool $ajax = false,
         public bool $premium = false,
     ) {}

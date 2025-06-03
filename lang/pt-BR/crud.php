@@ -149,7 +149,6 @@ return [
         'name'              => 'Nome',
         'parent'            => 'Primário',
         'position'          => 'Posição',
-        'privacy'           => 'Privacidade',
         'replace_mentions'  => 'Substitua as menções de atributo na introdução pelas da nova entidade',
         'template'          => 'Modelo',
         'tooltip'           => 'Dica de Contexto',
@@ -210,7 +209,6 @@ return [
     ],
     'helpers'           => [
         'copy_options'  => 'Copie os seguintes elementos relacionados da origem para a nova entidade.',
-        'learn_more'    => 'Saiba mais sobre esse recurso em nossa :documentation.',
         'linking'       => 'Vinculando a outras entidades',
         'nested_parent' => 'Mostrando os filhos de :parent.',
         'pagination'    => [

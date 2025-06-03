@@ -1,10 +1,7 @@
 <?php
 
 return [
-    'call-to-action'    => [
-        'error'     => 'Tento objekt má max. počet súborov, ktorý mu môže byť pridelený.',
-        'premium'   => 'Nahranie ďalších súborov vyžaduje prémiovú kampaň.',
-    ],
+    'call-to-action'    => [],
     'create'            => [
         'success_plural'    => '{1} Súbor :name pridaný.|[2,4] :count súbory pridané.|[5,*] :count súborov pridaných.',
         'title'             => 'Nový súbor pre :entity',

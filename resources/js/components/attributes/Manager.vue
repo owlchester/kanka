@@ -8,7 +8,7 @@
             <input type="text" v-bind:placeholder="trans('actions.search')" class="grow md:flex-none md:w-80" v-model="searchTerm" />
             <div class="relative">
                 <a role="button" @click="toggleFilters()" class="btn2 btn-outline btn-sm">
-                    <i class="fa-solid fa-bars-filter" aria-hidden="true" />
+                    <i class="fa-regular fa-bars-filter" aria-hidden="true" />
                     <span v-html="trans('actions.filters')"></span>
                 </a>
                 <div class="border shadow rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
@@ -24,11 +24,11 @@
         </div>
         <div class="flex gap-2 md:gap-5 flex-wrap px-4 pb-4">
             <a role="button" v-bind:class="deleteClass()" @click="deleteAll()">
-                <i class="fa-solid fa-trash-can" aria-hidden="true" />
+                <i class="fa-regular fa-trash-can" aria-hidden="true" />
                 <span v-html="trans('columns.delete')"></span>
             </a>
             <a role="button" @click="togglePrivate()" v-bind:class="togglePrivateClass()" v-if="isAdmin()">
-                <i class="fa-solid fa-lock-open" aria-hidden="true" />
+                <i class="fa-regular fa-lock-open" aria-hidden="true" />
                 <span v-html="trans('actions.toggle')"></span>
             </a>
             <a role="button" class="btn2 btn-outline md:ml-auto" @click="toggleTemplates()">
@@ -36,7 +36,7 @@
                 <span v-html="trans('actions.load')"></span>
             </a>
             <a href="https://docs.kanka.io/en/latest/features/attributes.html" target="_blank" class="btn2 btn-ghost">
-                <i class="fa-solid fa-question-circle" aria-hidden="true" />
+                <i class="fa-regular fa-question-circle" aria-hidden="true" />
                 <span v-html="trans('actions.help')"></span>
             </a>
         </div>
@@ -98,6 +98,7 @@
             </button>
         </header>
         <article class="flex flex-col gap-4 p-4 md:p-6">
+            <p class="text-neutral-content" v-html="trans('templates.helper')"></p>
             <label for="template_id" v-html="trans('templates.template')"></label>
             <select v-model="template" class="w-full" id="template_id">
                 <optgroup v-for="(group, key) in templates" v-bind:label="key">

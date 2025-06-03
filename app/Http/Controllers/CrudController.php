@@ -463,7 +463,6 @@ class CrudController extends Controller
             $route = Breadcrumb::index($this->route);
 
             return response()->redirectTo($route);
-
         } catch (LogicException $exception) {
             if (config('app.debug')) {
                 throw $exception;
@@ -624,6 +623,7 @@ class CrudController extends Controller
                 $route = route($this->route . '.index', [$this->campaign]);
             } elseif ($request->has('submit-copy')) {
                 $route = route($this->route . '.create', [$this->campaign, 'copy' => $model->id]);
+
                 return response()->redirectTo($route);
             }
 
@@ -673,8 +673,6 @@ class CrudController extends Controller
 
     /**
      * Set the datagrid sorter for sub views
-     *
-     * @return $this
      */
     protected function datagridSorter(string $datagridSorter): self
     {
@@ -696,7 +694,6 @@ class CrudController extends Controller
      * Add a button to the top of a datagrid
      *
      * @param  string  $route
-     * @return $this
      */
     protected function addNavAction($route, string $label, string $class = '', bool $blank = false): self
     {
@@ -717,8 +714,6 @@ class CrudController extends Controller
 
     /**
      * Set the controller as having a limit check
-     *
-     * @return $this
      */
     protected function hasLimitCheck(bool $value = true): self
     {

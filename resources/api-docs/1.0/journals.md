@@ -18,7 +18,7 @@ You can get a list of all the journals of a campaign by using the following endp
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET/HEAD | `journals` | Default |
+| GET/HEAD | `{{version}}/journals` | Default |
 
 ### URL Parameters
 
@@ -60,7 +60,7 @@ To get the details of a single journal, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET/HEAD | `journals/{journal.id}` | Default |
+| GET/HEAD | `{{version}}/journals/{journal.id}` | Default |
 
 ### Results
 ```json
@@ -111,7 +111,8 @@ To create a journal, use the following endpoint.
 | `author_id` | `integer` | The "author" of the journal (entity id)                                 |
 | `tags` | `array` | Array of tag ids                                                        |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
+| `tooltip`            | `string` | The journal's tooltip (premium campaign feature)                   |
 | `is_private` | `boolean` | If the journal is only visible to `admin` members of the campaign       |
 ### Results
 

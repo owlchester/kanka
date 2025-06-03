@@ -42,7 +42,7 @@ TEXT
         'question'  => 'Do you offer refunds?',
     ],
     'renewal'       => [
-        'answer'    => 'Yes, for credit card subscriptions, we\'ll automatically renew your plan at the same rate when your billing period ends. PayPal subscriptions are the exception—they require manual renewal as PayPal doesn\'t support automatic billing continuation for our service.',
+        'answer'    => 'Yes, for credit card subscriptions, we\'ll automatically renew your plan at the same rate when your billing period ends. PayPal subscriptions are the exception, they require manual renewal as PayPal doesn\'t support automatic billing continuation for our service.',
         'question'  => 'Will I be charged automatically when my subscription renews?',
     ],
     'security'      => [

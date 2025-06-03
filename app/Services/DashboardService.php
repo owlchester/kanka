@@ -103,9 +103,6 @@ class DashboardService
         return $dashboards;
     }
 
-    /**
-     * @return $this
-     */
     public function add(Entity $entity): self
     {
         $this->displayedEntities[] = $entity->id;
@@ -130,7 +127,7 @@ class DashboardService
         ]);
 
         // Loop through the permissions
-        $roles = $request->post('roles');
+        $roles = (array) $request->post('roles');
         foreach ($roles as $roleId => $setting) {
             if (empty($setting)) {
                 continue;
@@ -172,7 +169,7 @@ class DashboardService
         }
 
         // Loop through the permissions
-        $rolesForm = $request->post('roles');
+        $rolesForm = (array) $request->post('roles');
         foreach ($rolesForm as $roleId => $setting) {
             if (empty($setting)) {
                 continue;

@@ -31,10 +31,7 @@ return [
     'index'         => [
         'title' => 'Warstwy mapy :name',
     ],
-    'pitch'         => [
-        'error' => 'Osiągnięto maksymalną liczbę warstw.',
-        'until' => 'Dodaj do :max warstw do każdej mapy.',
-    ],
+    'pitch'         => [],
     'placeholders'  => [
         'name'          => 'Podziemia, poziom 2, wrak statku',
         'position'      => 'Pole opcjonalne, pozwala ustalić kolejność wyświetlania warstw.',

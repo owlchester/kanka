@@ -92,6 +92,9 @@ class ApiService
                 'title' => __('entities/attributes.template.load.title'),
                 'template' => __('entities/attributes.fields.template'),
                 'load' => __('entities/attributes.actions.load'),
+                'helper' => __('entities/attributes.template.pitch', [
+                    'plugin' => '<a href="' . config('marketplace.url') . '/character-sheets">' . __('footer.plugins') . '</a>',
+                ]),
             ],
         ];
     }
@@ -212,6 +215,7 @@ class ApiService
 
         // Campaign templates
         $campaignTemplates = AttributeTemplate::has('entity')
+            ->enabled()
             ->orderBy('name', 'ASC')
             ->pluck('name', 'id');
         $key = __('attributes/templates.list.campaign');
@@ -225,7 +229,7 @@ class ApiService
         }
 
         // Marketplace campaigns
-        $key = __('attributes/templates.list.marketplace');
+        $key = __('attributes/templates.list.sheets');
         foreach (CampaignPlugin::templates($this->campaign)->with(['plugin', 'plugin.user'])->get() as $plugin) {
             if (empty($plugin->plugin)) {
                 continue;

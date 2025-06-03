@@ -55,7 +55,8 @@ class ImagePolicy
 
     public function visibility(User $user, Image $image): bool
     {
-        if ((in_array($image->visibility_id, [Visibility::Admin, Visibility::AdminSelf]) && ! auth()->user()->isAdmin())
+        if (
+            (in_array($image->visibility_id, [Visibility::Admin, Visibility::AdminSelf]) && ! auth()->user()->isAdmin())
             &&
             (in_array($image->visibility_id, [Visibility::Self, Visibility::AdminSelf]) && ! ($image->created_by == auth()->user()->id))
         ) {

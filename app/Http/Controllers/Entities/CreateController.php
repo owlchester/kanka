@@ -39,6 +39,7 @@ class CreateController extends Controller
             if ($tabCopy) {
                 $options['copy'] = $source->id;
             }
+
             return redirect()->route($entityType->pluralCode() . '.create', $options);
         }
 
@@ -116,7 +117,6 @@ class CreateController extends Controller
             $route = route('entities.show', [$campaign, $entity]);
 
             return response()->redirectTo($route);
-
         } catch (LogicException $exception) {
             if (config('app.debug')) {
                 throw $exception;

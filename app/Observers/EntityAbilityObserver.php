@@ -57,7 +57,6 @@ class EntityAbilityObserver
         // entering a non-ending loop.
         if ($entityAbility->entity && $entityAbility->entity->hasChild()) {
             $entityAbility->entity->child->touchQuietly();
-
         }
     }
 }

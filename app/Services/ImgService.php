@@ -36,9 +36,6 @@ class ImgService
         $this->local = config('thumbor.key') === 'local';
     }
 
-    /**
-     * @return $this
-     */
     public function console(): self
     {
         $this->console = true;
@@ -46,9 +43,6 @@ class ImgService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function new(): self
     {
         $this->new = true;
@@ -56,9 +50,6 @@ class ImgService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function crop(int $width, ?int $height = null): self
     {
         if ($width !== 0) {
@@ -71,9 +62,6 @@ class ImgService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function focus(int $x, int $y): self
     {
         $this->focusX = $x;
@@ -82,9 +70,6 @@ class ImgService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function resetCrop(): self
     {
         $this->crop = '';
@@ -92,9 +77,6 @@ class ImgService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function reset(): self
     {
         $this->crop = '';
@@ -104,9 +86,6 @@ class ImgService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function base(?string $base = 'user'): self
     {
         //        if (!empty($this->s3)) {

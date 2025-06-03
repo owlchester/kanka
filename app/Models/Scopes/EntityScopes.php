@@ -193,6 +193,9 @@ trait EntityScopes
             } elseif ($name === 'has_posts') {
                 // @phpstan-ignore-next-line
                 $query->filterHasPosts($values);
+            } elseif ($name === 'has_entry') {
+                // @phpstan-ignore-next-line
+                $query->filterHasEntry($values);
             }
         }
 
@@ -232,6 +235,20 @@ trait EntityScopes
             $query->whereNotNull('posts.id');
         } else {
             $query->whereNull('posts.id');
+        }
+    }
+
+    /**
+     * Filter on entities with posts
+     */
+    protected function scopeFilterHasEntry(Builder $query, bool $value = true): void
+    {
+        if ($value) {
+            $query->whereNotNull('entities.entry')
+                ->where('entities.entry', '!=', '');
+        } else {
+            $query->whereNull('entities.entry')
+                ->orWhere('entities.entry', '');
         }
     }
 

@@ -118,7 +118,6 @@ return [
         'locations'         => ':first u :second',
         'name'              => 'Naziv',
         'position'          => 'Položaj',
-        'privacy'           => 'Privatnost',
         'tooltip'           => 'Kratki opis',
         'type'              => 'Tip',
         'visibility'        => 'Vidljivost',

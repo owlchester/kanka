@@ -104,7 +104,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
             </section>
             <div class="absolute bottom-0 right-0 p-4 hidden back-to-top">
                 <a href="#{{ isset($contentId) ? $contentId : "main-content" }}" class="flex items-center gap-1">
-                    <x-icon class="fa-solid fa-arrow-up" />
+                    <x-icon class="fa-regular fa-arrow-up" />
                     Back to top
                 </a>
             </div>

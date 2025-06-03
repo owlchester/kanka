@@ -1,7 +1,7 @@
 <x-grid type="1/1">
     <p class="text-neutral-content m-0">{{ __('calendars.hints.seasons') }}</p>
 
-    <button class="btn2 btn-sm  dynamic-row-add" data-template="template_season" data-target="calendar-seasons" title="{{ __('calendars.actions.add_season') }}">
+    <button class="btn2 btn-sm btn-outline dynamic-row-add" data-template="template_season" data-target="calendar-seasons" title="{{ __('calendars.actions.add_season') }}">
         <x-icon class="plus" /> {{ __('calendars.actions.add_season') }}
     </button>
 
@@ -38,7 +38,7 @@
                 <x-grid type="3/3">
                     <div class="flex gap-2 items-center">
                         <div class="sortable-handler p-2 cursor-move">
-                            <x-icon class="fa-solid fa-grip-vertical" />
+                            <x-icon class="fa-regular fa-grip-vertical" />
                         </div>
                         <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.seasons.name') }}</label>
@@ -75,7 +75,7 @@
         <x-grid type="3/3">
             <div class="flex gap-2 items-center">
                 <div class="sortable-handler p-2 cursor-move">
-                    <x-icon class="fa-solid fa-grip-vertical" />
+                    <x-icon class="fa-regular fa-grip-vertical" />
                 </div>
                 <div class="grow field">
                     <label class="sr-only">{{ __('calendars.parameters.seasons.name') }}</label>

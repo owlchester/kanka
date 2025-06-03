@@ -3,7 +3,7 @@
         <div class="flex items-center gap-1 max-w-full">
             <div class="flex-none">
                 <span class="truncate" v-if="node.isUnknown">
-                    <i class="fa-solid fa-3x fa-question" aria-hidden="true"/>
+                    <i class="fa-regular fa-3x fa-question" aria-hidden="true"/>
                 </span>
                 <a v-bind:href="entity.url" v-if="!node.isUnknown">
                     <img v-bind:src="entity.thumb" class="rounded-full entity-image w-10 h-10" v-bind:alt="entity.name" />
@@ -15,7 +15,7 @@
                         {{ entity.name }}
                     </span>
                     <span class="self-end" v-show="entity.is_dead">
-                        <i class="fa-solid fa-skull" v-bind:title="tooltip('is_dead')" aria-hidden="true"></i>
+                        <i class="fa-regular fa-skull" v-bind:title="tooltip('is_dead')" aria-hidden="true"></i>
                     </span>
                 </a>
                 <span v-bind:class="cssClasses()" v-if="node.isUnknown">
@@ -35,15 +35,15 @@
                 </span>
                 <div class="flex gap-1" v-if="isEditing">
                     <a v-on:click="editEntity(uuid, node)" class="cursor-pointer" v-bind:title="i18n('entity', 'edit')">
-                        <i class="fa-solid fa-pencil" aria-hidden="true"></i>
+                        <i class="fa-regular fa-pencil" aria-hidden="true"></i>
                         <span class="sr-only">{{ i18n('entity', 'edit') }}</span>
                     </a>
                     <a v-if="!isRelation" v-on:click="addRelation(uuid)" class="cursor-pointer" v-bind:title="i18n('relation', 'add')">
-                        <i class="fa-solid fa-user-plus" aria-hidden="true"></i>
+                        <i class="fa-regular fa-user-plus" aria-hidden="true"></i>
                         <span class="sr-only">{{ i18n('relation', 'add') }}</span>
                     </a>
                     <a v-on:click="deleteEntity(uuid)" class="align-end cursor-pointer" v-bind:title="i18n('entity', 'remove')">
-                        <i class="fa-solid fa-trash" aria-hidden="true"></i>
+                        <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
                         <span class="sr-only">{{  i18n('entity', 'remove') }}</span>
                     </a>
                 </div>

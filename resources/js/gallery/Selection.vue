@@ -57,7 +57,7 @@
         <footer class="p-4 md:px-6" v-if="!hasPremium">
             <menu class="">
                 <a v-bind:href="props.cta" class="btn2 btn-primary">
-                    <i class="fa-solid fa-gem" aria-hidden="true" />
+                    <i class="fa-regular fa-gem" aria-hidden="true" />
                     <span v-html="trans.cta_action"></span>
                 </a>
             </menu>

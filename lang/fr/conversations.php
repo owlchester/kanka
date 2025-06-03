@@ -4,8 +4,6 @@ return [
     'create'        => [
         'title' => 'Nouvelle Conversation',
     ],
-    'destroy'       => [],
-    'edit'          => [],
     'fields'        => [
         'is_closed'     => 'Fermée',
         'messages'      => 'Messages',
@@ -15,7 +13,6 @@ return [
         'empty'         => 'Il n\'y a aucun participant dans cette convertation.',
         'participants'  => 'Ajoute des participants à la conversation.',
     ],
-    'index'         => [],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Message supprimé.',
@@ -33,6 +30,7 @@ return [
         'destroy'   => [
             'success'   => 'Participant :entity retiré de la conversation.',
         ],
+        'helper'    => 'Ajouter et retirer des participants de :name.',
         'modal'     => 'Participants',
         'title'     => 'Participants de :name',
     ],

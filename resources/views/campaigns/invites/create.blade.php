@@ -9,7 +9,7 @@
 
 @section('content')
     <x-form :action="['campaign_invites.store', $campaign]">
-        @include('partials.forms._dialog', [
+        @include('partials.forms.form', [
             'title' => __('campaigns.invites.actions.link'),
             'content' => 'campaigns.invites._form',
             'submit' => __('campaigns.invites.create.buttons.create'),

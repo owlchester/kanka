@@ -31,10 +31,7 @@ return [
     'index'         => [
         'title' => 'ebene von :name',
     ],
-    'pitch'         => [
-        'error' => 'Maximale Anzahl an Ebenen erreicht.',
-        'until' => 'Lade bis zu :max-Layer auf jede Karte hoch.',
-    ],
+    'pitch'         => [],
     'placeholders'  => [
         'name'          => 'Untergrund, Ebene 2, Schiffbruch',
         'position'      => 'Optionales Feld zum Festlegen der Reihenfolge, in der die Ebenen angezeigt werden.',

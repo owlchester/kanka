@@ -4,7 +4,7 @@ return [
     'actions'   => [
         'show-old'  => 'Changes',
     ],
-    'cta'       => 'Display a log of all the recent changes to the campaign.',
+    'cta'       => 'Keep track of everything that\'s changed in your campaign with a detailed activity log of recent edits, additions, and updates.',
     'empty'     => 'No value',
     'filters'   => [
         'all-actions'   => 'All actions',
@@ -14,6 +14,13 @@ return [
     'helpers'   => [
         'base'      => 'This interface contains recent changes to entities of the campaign for up to :amount months, showing the most recent changes first.',
         'changes'   => 'The following fields previously had these values.',
+    ],
+    'fields' => [
+        'who' => 'Who',
+        'when' => 'When',
+        'action' => 'Action',
+        'module' => 'Module',
+        'details' => 'Details',
     ],
     'log'       => [
         'create'        => ':user created :entity',

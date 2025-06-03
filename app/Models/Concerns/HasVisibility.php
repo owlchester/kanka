@@ -47,19 +47,19 @@ trait HasVisibility
 
                 return $icon;
             }
-            $icon['class'] = 'fa-solid fa-eye';
+            $icon['class'] = 'fa-regular fa-eye';
             $icon['key'] = __('visibilities.helpers.all');
         } elseif ($this->visibility_id === Visibility::Admin) {
-            $icon['class'] = 'fa-solid fa-lock';
+            $icon['class'] = 'fa-regular fa-lock';
             $icon['key'] = __('visibilities.helpers.admin');
         } elseif ($this->visibility_id === Visibility::Self) {
-            $icon['class'] = 'fa-solid fa-user-secret';
+            $icon['class'] = 'fa-regular fa-user-secret';
             $icon['key'] = __('visibilities.helpers.self');
         } elseif ($this->visibility_id === Visibility::AdminSelf) {
-            $icon['class'] = 'fa-solid fa-user-lock';
+            $icon['class'] = 'fa-regular fa-user-lock';
             $icon['key'] = __('visibilities.helpers.admin-self');
         } elseif ($this->visibility_id === Visibility::Member) {
-            $icon['class'] = 'fa-solid fa-users';
+            $icon['class'] = 'fa-regular fa-users';
             $icon['key'] = __('visibilities.helpers.members');
         }
 

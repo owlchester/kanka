@@ -13,13 +13,10 @@
     @include('ads.top')
 
     <div class="flex gap-5 flex-col">
-
-        <div class="flex gap-2 items-center">
-            <h3 class="inline-block grow">
+        <div class="flex gap-2 items-center justify-between">
+            <h3 class="">
                 {!! __('campaigns/stats.title2') !!}
             </h3>
-            <div class="flex-none flex gap-1">
-            </div>
         </div>
 
         <x-alert type="info">

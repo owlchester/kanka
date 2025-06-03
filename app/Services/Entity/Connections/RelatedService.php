@@ -24,7 +24,6 @@ class RelatedService
 
     /**
      * @param  string|null  $order
-     * @return $this
      */
     public function order($order): self
     {
@@ -126,9 +125,6 @@ class RelatedService
             ->loadAuthoredJournals();
     }
 
-    /**
-     * @return $this
-     */
     protected function loadQuests(): self
     {
         $elements = $this->entity->quests()->with(['quest', 'quest.entity'])->has('quest')->get();
@@ -343,8 +339,6 @@ class RelatedService
 
     /**
      * Load the entity's location if it has one
-     *
-     * @return $this
      */
     protected function loadLocation(): self
     {

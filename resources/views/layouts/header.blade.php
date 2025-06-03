@@ -22,7 +22,7 @@
         <div class="flex-none">
             <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="dialog" data-target="primary-dialog" class="quick-creator-button btn2 btn-primary btn-sm"
             tabindex="0">
-                <x-icon class="flex-none fa-solid fa-plus ml-1" />
+                <x-icon class="flex-none fa-regular fa-plus ml-1" />
                 <span class="grow hidden sm:inline-block">
                     {{ __('crud.create') }}
                 </span>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="dropdown">
                             <button type="button" class="rounded hover:text-accent text-2xl" data-dropdown aria-expanded="false">
-                                <x-icon class="fa-solid fa-palette" />
+                                <x-icon class="fa-regular fa-palette" />
                             </button>
                             <div class="dropdown-menu hidden" role="menu">
                                 @if (request()->has('_theme'))

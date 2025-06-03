@@ -6,6 +6,7 @@ use App\Facades\Module;
 use App\Models\Bookmark;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -14,6 +15,7 @@ use Stevebauman\Purify\Facades\Purify;
 class SidebarService
 {
     use CampaignAware;
+    use UserAware;
 
     /**
      * List of the campaign's quick links
@@ -24,6 +26,7 @@ class SidebarService
         'dashboard' => [
             null,
             'dashboard',
+            'dashboard-setup',
         ],
         'characters' => [
             'characters',
@@ -300,7 +303,7 @@ class SidebarService
                 'label' => 'entities.dice_rolls',
             ],
             'relations' => [
-                'icon' => 'fa-duotone fa-link',
+                'icon' => 'fa-duotone fa-circle-nodes',
                 'label' => 'sidebar.relations',
                 'perm' => 'relations',
                 'module' => false,
@@ -583,6 +586,8 @@ class SidebarService
         $this->campaign->ui_settings = $ui;
         $this->campaign->save();
 
+        $this->user->campaignLog($this->campaign->id, 'sidebar', 'updated');
+
         $this->clearCache();
     }
 
@@ -592,6 +597,8 @@ class SidebarService
         unset($ui['sidebar']);
         $this->campaign->ui_settings = $ui;
         $this->campaign->save();
+
+        $this->user->campaignLog($this->campaign->id, 'sidebar', 'reset');
 
         $this->clearCache();
     }

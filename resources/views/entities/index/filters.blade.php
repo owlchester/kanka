@@ -12,7 +12,9 @@
     </x-dialog.header>
     <x-dialog.article>
         @if (auth()->guest())
-            <x-helper :text="__('filters.helpers.guest')" />
+            <x-helper>
+                <p>{{ __('filters.helpers.guest') }}</p>
+            </x-helper>
         @else
             <x-grid class="max-w-3xl">
                 <div class="field flex flex-col gap-1 field-name">
@@ -36,6 +38,10 @@
                     <label>{!! __('crud.fields.has_entity_files') !!}</label>
                     @include('cruds.datagrids.filters._choice', ['field' => 'has_entity_files'])
                 </div>
+                <div class="field flex flex-col gap-1 field-has_entry">
+                    <label>{!! __('crud.fields.has_entry') !!}</label>
+                    @include('cruds.datagrids.filters._choice', ['field' => 'has_entry'])
+                </div>
                 <div class="field flex flex-col gap-1 field-has_posts">
                     <label>{!! __('crud.fields.has_posts') !!}</label>
                     @include('cruds.datagrids.filters._choice', ['field' => 'has_posts'])
@@ -58,14 +64,14 @@
             <menu class="flex flex-wrap gap-3 ps-0">
             <span role="button" class="flex-none btn2 btn-sm flex gap-2 items-center {{ $filterService->activeFiltersCount() === 0 ? 'btn-disabled' : null }} "
                   @if ($filterService->activeFiltersCount() > 0) data-clipboard="{{ $filterService->clipboardFilters() }}" data-toast="{{ __('filters.alerts.copy') }}" onclick="return false"  @endif data-toggle="tooltip" data-title="{{ __('crud.filters.copy_helper') }}">
-                <x-icon class="fa-solid fa-clipboard" />
+                <x-icon class="fa-regular fa-clipboard" />
                 <span class="max-sm:hidden">{{ __('crud.filters.copy_to_clipboard') }}</span>
                 <span class="visible md:hidden">{{ __('crud.filters.mobile.copy') }}</span>
             </span>
 
                 @if ($filterService->activeFiltersCount() > 0)
                     <a href="{{ route('entities.index', [$campaign, $entityType, 'reset-filter' => 'true']) }}" class="btn2 btn-sm btn-error btn-outline">
-                        <x-icon class="fa-solid fa-eraser" />
+                        <x-icon class="fa-regular fa-eraser" />
                         {{ __('crud.filters.mobile.clear') }}
                     </a>
                 @endif
@@ -76,7 +82,7 @@
             </menu>
             <menu class="flex flex-wrap gap-3 ps-0">
                 <button type="submit" class="btn2 btn-primary btn-sm">
-                    <x-icon class="fa-solid fa-filter" />
+                    <x-icon class="fa-regular fa-filter" />
                     {{ __('crud.filter') }}
                 </button>
             </menu>

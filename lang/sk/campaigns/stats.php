@@ -17,17 +17,7 @@ return [
         'creator'   => 'Vytvorené',
         'general'   => 'Všeobecné',
     ],
-    'helper'        => 'Zaznamenávaj svoj postup pri odomykaní rôznych úspechov pre tvoju kampaň. Tieto štatistiky sú aktualizované každých 24 hodín.',
-    'pitch'         => 'Zaznamenávaj postup tvorby tvojho sveta voči našim úspechom kampane.',
-    'placeholder'   => ':amount z :target',
-    'targets'       => [
-        'calendars' => 'Vytvoriť :target kalendárov',
-        'characters'=> 'Vytvoriť :target postáv',
-        'dead'      => 'Zabiť :target postáv',
-        'families'  => 'Vytvoriť :target rodov',
-        'locations' => 'Vytvoriť :target miest',
-        'races'     => 'Vytvoriť :target rás',
-    ],
+    'targets'       => [],
     'title2'        => 'Štatistiky',
     'titles'        => [
         'calendars' => 'Záznamník času úrovne :level',

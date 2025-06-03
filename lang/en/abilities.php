@@ -7,7 +7,8 @@ return [
         ],
         'create'        => [
             'attach_success'    => '{1} Attached the ability :name to :count entity.|[2,*] Attached the ability :name to :count entities.',
-            'modal'             => 'Attach :name to entities',
+            'helper'            => 'Attach :name to one or several entities.',
+            'title'             => 'Attach entities',
         ],
         'description'   => 'Entities having the ability',
         'title'         => 'Ability :name Entities',

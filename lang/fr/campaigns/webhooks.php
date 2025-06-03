@@ -59,4 +59,8 @@ return [
         'success'   => 'Test envoyé',
     ],
     'title'         => 'Webhooks',
+    'toggle'        => [
+        'disable'   => 'Webhook désactivé.',
+        'enable'    => 'Webhook activé.',
+    ],
 ];

@@ -17,21 +17,17 @@
 ])
 
 @section('content')
+    @include('partials.errors')
     <x-form :action="['maps.map_layers.store', $campaign, $map]" files id="map-layer-form">
         <x-box>
-            @include('partials.errors')
-
             @include('maps.layers._form', ['model' => null])
 
-            <x-box.footer>
-                <div class="flex gap-2">
-                    <div class="grow">
+            <div class="flex justify-between gap-2 mt-4">
+                <div class="">
                     @include('partials.footer_cancel')
-                    </div>
-                    @include('maps.groups._actions')
                 </div>
-            </x-box.footer>
-    </x-box>
-
+                @include('maps.groups._actions')
+            </div>
+        </x-box>
     </x-form>
 @endsection

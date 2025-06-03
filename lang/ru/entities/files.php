@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'call-to-action'    => [
-        'error' => 'Этот объект достиг максимального числа файлов.',
-    ],
+    'call-to-action'    => [],
     'create'            => [
         'title' => 'Новый файл объекта :entity',
     ],

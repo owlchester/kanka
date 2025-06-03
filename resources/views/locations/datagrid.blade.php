@@ -24,11 +24,11 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="fa-solid fa-building-circle-xmark" title="' . __('locations.fields.is_destroyed') . '"></i>',
+            'label' => '<i class="fa-regular fa-building-circle-xmark" title="' . __('locations.fields.is_destroyed') . '"></i>',
             'field' => 'is_destroyed',
             'render' => function($model) {
                 if ($model->isDestroyed()) {
-                    return '<i class="fa-solid fa-building-circle-xmark" title="' . __('locations.fields.is_destroyed') . '"></i>';
+                    return '<i class="fa-regular fa-building-circle-xmark" title="' . __('locations.fields.is_destroyed') . '"></i>';
                 }
                 return '';
             },

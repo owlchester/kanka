@@ -26,10 +26,10 @@
                         Dear user, you are still using our legacy campaign boosters concept. Switching to premium campaigns will unboost your campaigns and give you a number of premium campaigns based on your subscription.
                     </p>
                     <p>
-                        As a reminder, premium campaigns are just a renamed superboosted campaign. Owlbears get 1, Wyverns 3, and Elementals 7.
+                        As a reminder, premium campaigns are just a renamed superboosted campaign, plus a bunch of new features like <strong>family trees</strong> and <strong>custom modules</strong>. Owlbears get 1, Wyverns 3, and Elementals 7.
                     </p>
                     <p>
-                        This action cannot be reverted.
+                        This action is permanent and cannot be reverted.
                     </p>
 
                     <button class="btn2 btn-block btn-secondary"
@@ -42,68 +42,70 @@
         @endif
 
         <x-box>
-            <h3 class="">{{ __('settings/boosters.pitch.title') }}</h3>
-            <p class="">{{ __('settings/boosters.pitch.description') }}</p>
+            <x-grid type="1/1">
+                <h3 class="">{{ __('settings/boosters.pitch.title') }}</h3>
+                <p class="">{{ __('settings/boosters.pitch.description') }}</p>
 
-            <h4 class="">{{ __('settings/boosters.pitch.benefits.title') }}</h4>
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-1">
-                <div class="flex items-center">
-                    <div class="p-1 w-12 flex-none">
-                        <x-icon class="fa-solid fa-palette fa-2x" />
+                <h4 class="">{{ __('settings/boosters.pitch.benefits.title') }}</h4>
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-1">
+                    <div class="flex items-center">
+                        <div class="p-1 w-12 flex-none">
+                            <x-icon class="fa-solid fa-palette fa-2x" />
+                        </div>
+                        <div class="p-1">
+                            {{ __('settings/boosters.pitch.benefits.customisable') }}
+                        </div>
                     </div>
-                    <div class="p-1">
-                        {{ __('settings/boosters.pitch.benefits.customisable') }}
+                    <div class="flex items-center">
+                        <div class="p-1 w-12 flex-none">
+                            <i class="fa-solid fa-image-portrait fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="p-1">
+                            {{ __('settings/boosters.pitch.benefits.entities') }}
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="p-1 w-12 flex-none">
+                            <i class="fa-solid fa-hourglass-half fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="p-1">
+                            {{ __('settings/boosters.pitch.benefits.backup', ['amount' => config('entities.hard_delete')]) }}
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="p-1 w-12 flex-none">
+                            <i class="fa-solid fa-horse-head fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="p-1">
+                            {{ __('settings/boosters.pitch.benefits.icons') }}
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="p-1 w-12 flex-none">
+                            <i class="fa-solid fa-camera fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="p-1">
+                            {{ __('settings/boosters.pitch.benefits.upload') }}
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="p-1 w-12 flex-none">
+                            <i class="fa-solid fa-user-group fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="p-1">
+                            {{ __('settings/boosters.pitch.benefits.relations') }}
+                        </div>
                     </div>
                 </div>
-                <div class="flex items-center">
-                    <div class="p-1 w-12 flex-none">
-                        <i class="fa-solid fa-image-portrait fa-2x" aria-hidden="true"></i>
-                    </div>
-                    <div class="p-1">
-                        {{ __('settings/boosters.pitch.benefits.entities') }}
-                    </div>
-                </div>
-                <div class="flex items-center">
-                    <div class="p-1 w-12 flex-none">
-                        <i class="fa-solid fa-hourglass-half fa-2x" aria-hidden="true"></i>
-                    </div>
-                    <div class="p-1">
-                        {{ __('settings/boosters.pitch.benefits.backup', ['amount' => config('entities.hard_delete')]) }}
-                    </div>
-                </div>
-                <div class="flex items-center">
-                    <div class="p-1 w-12 flex-none">
-                        <i class="fa-solid fa-horse-head fa-2x" aria-hidden="true"></i>
-                    </div>
-                    <div class="p-1">
-                        {{ __('settings/boosters.pitch.benefits.icons') }}
-                    </div>
-                </div>
-                <div class="flex items-center">
-                    <div class="p-1 w-12 flex-none">
-                        <i class="fa-solid fa-camera fa-2x" aria-hidden="true"></i>
-                    </div>
-                    <div class="p-1">
-                        {{ __('settings/boosters.pitch.benefits.upload') }}
-                    </div>
-                </div>
-                <div class="flex items-center">
-                    <div class="p-1 w-12 flex-none">
-                        <i class="fa-solid fa-user-group fa-2x" aria-hidden="true"></i>
-                    </div>
-                    <div class="p-1">
-                        {{ __('settings/boosters.pitch.benefits.relations') }}
-                    </div>
-                </div>
-            </div>
-            <p>{!! __('settings/boosters.pitch.more', ['boosters' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
+                <p>{!! __('settings/boosters.pitch.more', ['boosters' => '<a href="https://kanka.io/premiumutm_source=boosters&utm_medium=referral&utm_campaign=findoutmore">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
+            </x-grid>
         </x-box>
 
 
         <h2 class="">
             {{ __('settings/boosters.ready.title') }}
 
-            @if (auth()->user()->hasBoosters() || !empty(auth()->user()->booster_count))
+            @can('boost', auth()->user())
                 <div class="badge bg-boost flex gap-1 badge-lg ml-2" data-toggle="tooltip" data-title="{{ __('settings/boosters.ready.available') }}">
                     <x-icon class="premium" />
                     {{ auth()->user()->availableBoosts() }}
@@ -128,7 +130,7 @@
             ])
         @endif
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 campaign-list">
+        <div class="grid grid-cols-1 gap-2 campaign-list">
             @foreach ($boosts as $boost)
                 @include('settings.boosters._campaign', ['campaign' => $boost->campaign])
             @endforeach

@@ -255,7 +255,6 @@ return [
         'success'               => [
             'alternative'   => 'Tvoja platba bola zaregistrovaná. Obdržíš oznámenie akonáhle bude spracovaná a tvoje predplatné aktívne.',
             'callback'      => 'Úspešne predplatené. Tvoje konto bude čoskoro aktualizované akonáhle nás spracovateľ platieb informuje o zmene (môže to pár minút trvať).',
-            'cancel'        => 'Predplatné bolo zrušené. Aktívne bude do konca aktuálneho platobného obdobia.',
             'currency'      => 'Nastavenie preferovanej meny bolo aktualizované.',
             'subscribed'    => 'Úspešne predplatené. Nezabudni sa pridať do newsletteru Komunitných hlasovaní, aby sme ťa mohli informovať, keď bude hlasovanie otvorené. Nastavenie newsletteru si môžeš zmeniť v tvojom profile.',
         ],

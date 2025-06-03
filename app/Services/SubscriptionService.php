@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Enums\PricingPeriod;
+use App\Enums\UserAction;
 use App\Exceptions\TranslatableException;
 use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\MailSettingsChangeJob;
@@ -13,7 +14,6 @@ use App\Models\Pledge;
 use App\Models\Role;
 use App\Models\Tier;
 use App\Models\TierPrice;
-use App\Models\UserLog;
 use App\Traits\UserAware;
 use Carbon\Carbon;
 use Exception;
@@ -59,11 +59,6 @@ class SubscriptionService
     /** @var array|Request The request object */
     protected $request;
 
-    /**
-     * @return $this
-     *
-     * @throws Exception
-     */
     public function tier(Tier $tier): self
     {
         $this->tier = $tier;
@@ -72,8 +67,6 @@ class SubscriptionService
     }
 
     /**
-     * @return $this
-     *
      * @throws Exception
      */
     public function period(PricingPeriod $period): self
@@ -97,9 +90,6 @@ class SubscriptionService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function webhook(): self
     {
         $this->webhook = true;
@@ -107,9 +97,6 @@ class SubscriptionService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function request(array $request): self
     {
         $this->request = $request;
@@ -117,9 +104,6 @@ class SubscriptionService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function coupon(?string $coupon = null): self
     {
         if ($this->period === PricingPeriod::Yearly && ! empty($coupon)) {
@@ -131,8 +115,6 @@ class SubscriptionService
 
     /**
      * When the stripe API calls us, we get a plan_id that needs to be transformed into a tier and tierprice
-     *
-     * @return $this
      */
     public function plan(string $plan): self
     {
@@ -179,8 +161,6 @@ class SubscriptionService
     }
 
     /**
-     * @return $this
-     *
      * @throws \Laravel\Cashier\Exceptions\IncompletePayment
      */
     public function subscribe(string $paymentID): self
@@ -191,7 +171,7 @@ class SubscriptionService
                 ->withCoupon($this->coupon ?? null)
                 ->create($paymentID);
 
-            $this->user->log(UserLog::TYPE_SUB_NEW);
+            $this->user->log(UserAction::subNew);
 
             return $this;
         }
@@ -199,10 +179,10 @@ class SubscriptionService
         // If going down from elemental to owlbear, keep it as is until the current billing period
         if ($this->downgrading()) {
             $this->user->subscription('kanka')->swap($this->tierPrice()->stripe_id);
-            $this->user->log(UserLog::TYPE_SUB_DOWNGRADE);
+            $this->user->log(UserAction::subDowngrade);
         } else {
             $this->user->subscription('kanka')->swapAndInvoice($this->tierPrice()->stripe_id);
-            $this->user->log(UserLog::TYPE_SUB_UPGRADE);
+            $this->user->log(UserAction::subUpgrade);
         }
 
         return $this;
@@ -214,9 +194,7 @@ class SubscriptionService
     }
 
     /**
-     * Setup the user's pledge, role, discord
-     *
-     * @return $this
+     * Set up the user's pledge, role, discord
      */
     public function finish(): self
     {
@@ -234,7 +212,7 @@ class SubscriptionService
                 Arr::get($this->request, 'reason'),
                 Arr::get($this->request, 'reason_custom')
             );
-            $this->user->log(UserLog::TYPE_SUB_DOWNGRADE);
+            $this->user->log(UserAction::subDowngrade);
 
             return $this;
         }
@@ -402,7 +380,7 @@ class SubscriptionService
         $countries = ['EG'];
 
         return $this->user->logs()
-            ->where('type_id', UserLog::TYPE_LOGIN)
+            ->where('type_id', UserAction::login)
             ->whereIn('country', $countries)
             ->count() > 0;
     }

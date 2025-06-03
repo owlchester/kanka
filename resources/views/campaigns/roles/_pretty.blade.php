@@ -14,7 +14,7 @@ $first = true;
                 <label class="">
                     <span class="hidden sm:inline">
                         {{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}
-                        <i class="fa-solid fa-question-circle text-link cursor-pointer" aria-hidden="true" data-target="permission-modal" data-toggle="dialog"></i>
+                        <i class="fa-regular fa-question-circle text-link cursor-pointer" aria-hidden="true" data-target="permission-modal" data-toggle="dialog"></i>
                         <br />
                     </span>
                     <input type="checkbox" class="permission-toggle" data-action="{{ $perm['action'] }}" title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" />
@@ -31,7 +31,7 @@ $first = true;
         </div>
         @if (($permissions['entityType']->isSpecial() && !$permissions['entityType']->isEnabled()) || (!$permissions['entityType']->isSpecial() && !$campaign->enabled($permissions['entityType']->pluralCode())))
             <div class="inline" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
-                <x-icon class="fa-solid fa-exclamation-triangle" />
+                <x-icon class="fa-regular fa-exclamation-triangle" />
                 <span class="inline sm:hidden text-sm">{{ __('campaigns.modules.permission-disabled') }}</span>
             </div>
         @endif
@@ -72,7 +72,7 @@ $first = true;
             <div class="hidden sm:flex text-center tooltip-wide gap-2 justify-center">
                 <label>
         <span class="hidden sm:inline">{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}@if($perm['action'] == \App\Enums\Permission::Posts->value)
-                <i class="fa-solid fa-question-circle" data-placement="bottom" data-toggle="tooltip" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
+                <i class="fa-regular fa-question-circle" data-placement="bottom" data-toggle="tooltip" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}"></i>
             @endif<br /></span>
                     <input type="checkbox" class="permission-toggle" data-action="{{ $perm['action'] }}" title="{{ __('campaigns.roles.permissions.actions.' . $perm['label']) }}" />
 

@@ -4,17 +4,13 @@ return [
     'create'        => [
         'title' => 'Nouvelle Organisation',
     ],
-    'destroy'       => [],
-    'edit'          => [],
     'fields'        => [
         'is_defunct'    => 'Défunte',
         'members'       => 'Membres',
     ],
-    'helpers'       => [],
     'hints'         => [
         'is_defunct'    => 'Cette organisation n\'est plus en opération.',
     ],
-    'index'         => [],
     'members'       => [
         'actions'       => [
             'add'           => 'Ajouter un membre',
@@ -57,10 +53,7 @@ return [
             'unknown'   => 'Status inconnu',
         ],
     ],
-    'organisations' => [],
     'placeholders'  => [
         'type'  => 'Culte, Bande, Rebellion',
     ],
-    'quests'        => [],
-    'show'          => [],
 ];

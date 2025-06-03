@@ -11,7 +11,9 @@ $visibilities = [
 <div class="tab-pane" id="form-permission">
 
     <x-grid type="1/1">
-        <x-helper :text="__('campaigns.helpers.permissions_tab')" />
+        <x-helper>
+            <p>{{ __('campaigns.helpers.permissions_tab') }}</p>
+        </x-helper>
 
         <x-grid>
             <x-forms.field

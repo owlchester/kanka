@@ -8,7 +8,9 @@
 
 
 @section('content')
-    <x-cta :campaign="$campaign" image="0">
-        <p>{{ __('campaigns/limits.' . $key) }}</p>
-    </x-cta>
+    <x-premium-cta :campaign="$campaign">
+        <x-slot name="description">
+            {{ __('campaigns/limits.' . $key) }}
+        </x-slot>
+    </x-premium-cta>
 @endsection

@@ -21,15 +21,22 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="fa-solid fa-skull-cow" title="' . __('creatures.fields.is_extinct') . '"></i>',
+            'label' => '<i class="fa-regular fa-skull-cow" title="' . __('creatures.fields.is_extinct') . '"></i>',
             'field' => 'is_extinct',
             'render' => function($model) {
                 if ($model->isExtinct()) {
-                    return '<i class="fa-solid fa-skull-cow" title="' . __('creatures.fields.is_extinct') . '"></i>';
+                    return '<i class="fa-regular fa-skull-cow" title="' . __('creatures.fields.is_extinct') . '"></i>';
                 }
                 return '';
             },
             'class' => 'icon'
+        ],
+        [
+            'label' => '<i class="' . \App\Facades\Module::duoIcon('race') . '" title="' . \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) . '"></i>',
+            'render' => function($model) {
+                return number_format($model->children_count);
+            },
+            'disableSort' => true,
         ],
         [
             'type' => 'is_private',

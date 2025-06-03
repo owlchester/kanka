@@ -21,8 +21,11 @@
         {{ __('entities/notes.copy_mention.copy') }}
     </x-dropdowns.item>
 @endif
-@if(auth()->user()->isAdmin())
-    <x-dropdowns.item :link="route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])"  icon="fa-regular fa-arrows-left-right">
+@can('admin', $campaign)
+    <x-dropdowns.item
+        :link="route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])"
+        :dialog="route('posts.move', [$campaign, 'entity' => $entity, 'post' => $post, 'from' => 'main'])"
+        icon="fa-regular fa-arrows-left-right">
         {{ __('entities/notes.move.move') }}
     </x-dropdowns.item>
 @endif
@@ -40,7 +43,7 @@
         {{ __('crud.history.view') }}
     </x-dropdowns.item>
 @endcan
-<hr class="m-0" />
+<x-dropdowns.divider />
 <x-dropdowns.item :link="route('entities.story.reorder', [$campaign, 'entity' => $entity])" icon="fa-regular fa-arrows-v">
     {{ __('entities/story.reorder.icon_tooltip') }}
 </x-dropdowns.item>

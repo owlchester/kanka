@@ -1,12 +1,7 @@
 <?php
 
 return [
-    'characters'    => [
-        'helpers'   => [
-            'all_characters'    => 'Visualizzazione di tutti i personaggi legati a questa stirpe e alle sue sotto-stirpi.',
-            'characters'        => 'Visualizzazione di tutti i personaggi legati direttamente a questa stirpe.',
-        ],
-    ],
+    'characters'    => [],
     'create'        => [
         'title' => 'Nuova Stirpe',
     ],

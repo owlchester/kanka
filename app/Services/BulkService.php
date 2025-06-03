@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Datagrids\Bulks\Bulk;
 use App\Exceptions\TranslatableException;
-use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
@@ -46,9 +45,6 @@ class BulkService
         protected MoveService $moveService
     ) {}
 
-    /**
-     * @return $this
-     */
     public function entities(array $ids = []): self
     {
         $this->ids = $ids;
@@ -440,7 +436,6 @@ class BulkService
             }
             $service->apply($entity, $template);
             $this->count++;
-
         }
 
         return $this->count;
@@ -462,11 +457,7 @@ class BulkService
         return new Relation;
     }
 
-    /**
-     * @param  array  $mirrorOptions
-     * @return int
-     */
-    protected function updateRelations(array $filledFields, $mirrorOptions)
+    protected function updateRelations(array $filledFields, $mirrorOptions): int
     {
         $relations = Relation::whereIn('id', $this->ids)->get();
 

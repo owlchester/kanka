@@ -12,9 +12,6 @@ class TimelineService
 {
     protected Timeline $timeline;
 
-    /**
-     * @return $this
-     */
     public function timeline(Timeline $timeline): self
     {
         $this->timeline = $timeline;

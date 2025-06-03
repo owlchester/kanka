@@ -24,7 +24,7 @@
     <div class="flex flex-col gap-5">
     @if (auth()->guest())
         <div class="text-muted grow">
-            <x-icon class="fa-solid fa-filter" />
+            <x-icon class="fa-regular fa-filter" />
             {{ __('filters.helpers.guest') }}
         </div>
     @else
@@ -52,7 +52,7 @@
 
         @if ($unfilteredCount != $filteredCount)
             <x-helper>
-                {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
+                <p>{{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}</p>
             </x-helper>
         @endif
         @if($models->hasPages())

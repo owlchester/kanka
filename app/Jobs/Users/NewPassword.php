@@ -50,6 +50,5 @@ class NewPassword implements ShouldQueue
             // to avoid spamming sentry.
             throw $e;
         }
-
     }
 }

@@ -12,7 +12,7 @@
             'type' => 'parent',
         ],
         [
-            'label' => '<i class="fa-solid fa-map" data-toggle="tooltip" data-title="' . __('maps.actions.explore') . '"></i>',
+            'label' => '<i class="fa-regular fa-map" data-toggle="tooltip" data-title="' . __('maps.actions.explore') . '"></i>',
             'render' => function($model) use ($campaign) {
                 return \Illuminate\Support\Facades\Blade::render('maps._explore-link', ['map' => $model, 'campaign' => $campaign]);
             },
@@ -23,7 +23,7 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' => \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps')),
+            'label' => '<i class="' . \App\Facades\Module::duoIcon('map') . '" title="' . \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps')) . '"></i>',
             'render' => function($model) {
                 return number_format($model->children_count);
             },

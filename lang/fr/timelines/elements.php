@@ -34,5 +34,4 @@ return [
         'name'      => 'Requis si pas d\'entité sélectionnée.',
         'position'  => 'Position dans la liste des éléments de l\'ère. Laisser vide pour ajouter à la fin.',
     ],
-    'warning'       => [],
 ];

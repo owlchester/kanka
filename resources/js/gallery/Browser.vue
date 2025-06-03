@@ -18,10 +18,10 @@
                     <input type="text" class="w-full" :placeholder="trans.browse.search.placeholder" @input="handleInput" />
                 </div>
                 <div class="flex-none cursor-pointer btn2 btn-ghost btn-sm" v-if="mode !== 'large'" @click="toggle('large')" :title="trans.browse.layouts.large">
-                    <i class="fa-solid fa-grid-2" aria-label="Large previews"></i>
+                    <i class="fa-regular fa-grid-2" aria-label="Large previews"></i>
                 </div>
                 <div class="flex-none cursor-pointer btn2 btn-ghost btn-sm" v-if="mode !== 'small'" @click="toggle('small')" :title="trans.browse.layouts.small">
-                    <i class="fa-solid fa-grid-4" aria-label="Small previews"></i>
+                    <i class="fa-regular fa-grid-4" aria-label="Small previews"></i>
                 </div>
             </div>
 

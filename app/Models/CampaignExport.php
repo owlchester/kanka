@@ -24,10 +24,6 @@ class CampaignExport extends Model
     use MassPrunable;
     use SortableTrait;
 
-    public const int TYPE_ENTITIES = 1;
-
-    public const int TYPE_ASSETS = 2;
-
     public const int STATUS_SCHEDULED = 1;
 
     public const int STATUS_RUNNING = 2;

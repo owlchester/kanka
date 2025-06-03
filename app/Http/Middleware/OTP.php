@@ -32,6 +32,13 @@ class OTP
         $authentication = app(OTPAuthentication::class)->boot($request);
 
         if ($authentication->isAuthenticated()) {
+            $redirectTo = session()->get('2fa_redirect');
+            if ($redirectTo) {
+                session()->remove('2fa_redirect');
+
+                return redirect($redirectTo);
+            }
+
             return $next($request);
         }
 

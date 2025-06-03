@@ -37,7 +37,7 @@
             @foreach ($visibility['users'] as $user)
                 <div class="flex gap-1 items-center">
                     @if ($user->hasAvatar())
-                        <div class="avatar cover-background w-5 h-5 rounded-full" style="background-image: url('{!! $user->getAvatarUrl() !!}')"></div>
+                        <x-users.avatar :user="$user" class="w-5 h-5" />
                     @else
                         <x-icon class="fa-regular fa-user" />
                     @endif

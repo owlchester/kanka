@@ -14,6 +14,7 @@
         "php": "^8.3",
         "ext-json": "*",
         "ext-zip": "*",
+        "ext-dom": "*",
         "aws/aws-sdk-php": "^3.276",
         "bacon/bacon-qr-code": "^3.0",
         "binarytorch/larecipe": "^2.0",

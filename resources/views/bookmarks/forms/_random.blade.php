@@ -6,7 +6,9 @@ $entityTypes = $entityTypeService->campaign($campaign)->exclude(['bookmark'])->p
 
 
 <x-grid type="1/1">
-    <x-helper :text="__('bookmarks.helpers.random')" />
+    <x-helper>
+        <p>{{ __('bookmarks.helpers.random') }}</p>
+    </x-helper>
 
     <x-grid>
         <x-forms.field field="random-type" :label="__('bookmarks.fields.random_type')">

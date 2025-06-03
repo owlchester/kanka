@@ -2,104 +2,61 @@
 
 namespace App\Listeners;
 
+use App\Enums\UserAction;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Models\User;
-use App\Models\UserFlag;
-use App\Models\UserLog;
-use App\Services\InviteService;
-use App\Services\StarterService;
-use App\Services\Users\CampaignService;
-use Carbon\Carbon;
-use Exception;
+use App\Services\Auth\LoginService;
+use App\Services\Auth\SessionService;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Logout;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @property User $user
  */
 class UserEventSubscriber
 {
-    protected InviteService $inviteService;
-
-    protected StarterService $starterService;
-
-    protected CampaignService $campaignService;
-
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
     public function __construct(
-        InviteService $inviteService,
-        StarterService $starterService,
-        CampaignService $campaignService
-    ) {
-        $this->inviteService = $inviteService;
-        $this->starterService = $starterService;
-        $this->campaignService = $campaignService;
-    }
+        protected LoginService $loginService,
+        protected SessionService $sessionService,
+    ) {}
 
     /**
      * Handle user login events.
      */
-    public function onUserLogin($event): bool
+    public function handleUserLogin(Login $event): bool
     {
+        /** @var User $user */
+        $user = $event->user;
         // Log the user's login
-        if (! $event->user) {
-            dd('Error OSL-010');
+        if (! $user) {
+            Log::error('Missing user in login event');
+
+            return false;
         }
 
-        $action = auth()->viaRemember() ? UserLog::TYPE_AUTOLOGIN : UserLog::TYPE_LOGIN;
-        $userLogType = session()->get('kanka.userLog', $action);
-        if ($event->user->isBanned()) {
-            $userLogType = session()->get('kanka.userLog', UserLog::TYPE_BANNED_LOGIN);
-        }
-        $event->user->log($userLogType);
-
-        session()->remove('kanka.userLog');
-        $event->user->updateQuietly(['last_login_at' => Carbon::now()]);
-
-        // Delete any flags to auto-delete the account based on inactivity
-        UserFlag::where('user_id', $event->user->id)
-            ->whereIn('flag', [UserFlag::FLAG_INACTIVE_1, UserFlag::FLAG_INACTIVE_2])
-            ->delete();
+        $this->loginService
+            ->user($user)
+            ->logUserActivity()
+            ->updateLastLoginTime()
+            ->clearInactivityFlag();
 
         // Update mailerlite for the login stuff
-        if (! session()->has('first_login') && $event->user->hasNewsletter()) {
-            MailSettingsChangeJob::dispatch($event->user);
+        if (! session()->has('first_login') && $user->hasNewsletter()) {
+            MailSettingsChangeJob::dispatch($user);
         }
 
-        // Does the user have a join campaign token?
-        if (session()->has('invite_token')) {
-            try {
-                $campaign = $this->inviteService
-                    ->user($event->user)
-                    ->useToken(session()->get('invite_token'));
-                $this->campaignService
-                    ->user($event->user)
-                    ->campaign($campaign)
-                    ->set();
+        // Process invite token or first login
+        $inviteResult = $this->sessionService->user($user)->handleInviteToken();
+        if ($inviteResult !== null) {
+            return $inviteResult;
+        }
 
-                return true;
-            } catch (Exception $e) {
-                // Silence errors here
-            }
-        } elseif (session()->has('first_login')) {
-            // Todo: move this to the controller? Not sure why it should be an event's responsibility
-            // Let's create their first campaign for them
-            try {
-                $campaign = $this->starterService
-                    ->user($event->user)
-                    ->create();
-                session()->remove('first_login');
-                $this->campaignService
-                    ->user($event->user)
-                    ->campaign($campaign)
-                    ->set();
-
-                return true;
-            } catch (Exception $e) {
-
-            }
+        $firstLoginResult = $this->sessionService->user($user)->handleFirstLogin();
+        if ($firstLoginResult !== null) {
+            return $firstLoginResult;
         }
 
         return true;
@@ -108,20 +65,20 @@ class UserEventSubscriber
     /**
      * Handle user logout events.
      */
-    public function onUserLogout($event)
+    public function handleUserLogout(Logout $event)
     {
         // Log the activity
         if (! $event->user) {
             return;
         }
         if (! $event->user->isBanned()) {
-            $event->user->log(UserLog::TYPE_LOGOUT);
+            $event->user->log(UserAction::logout);
         }
     }
 
-    public function onUserRegistered($event)
+    public function handleUserRegistered(Registered $event)
     {
-        // If the user has an invite token, we don't want to do anything else
+        // If the user has an invite-token, we don't want to do anything else
         if (session()->has('invite_token')) {
             return;
         }
@@ -132,21 +89,12 @@ class UserEventSubscriber
     /**
      * Register the listeners for the subscriber.
      */
-    public function subscribe($events)
+    public function subscribe(Dispatcher $events): array
     {
-        $events->listen(
-            'Illuminate\Auth\Events\Login',
-            'App\Listeners\UserEventSubscriber@onUserLogin'
-        );
-
-        $events->listen(
-            'Illuminate\Auth\Events\Registered',
-            'App\Listeners\UserEventSubscriber@onUserRegistered'
-        );
-
-        $events->listen(
-            'Illuminate\Auth\Events\Logout',
-            'App\Listeners\UserEventSubscriber@onUserLogout'
-        );
+        return [
+            Login::class => 'handleUserLogin',
+            Logout::class => 'handleUserLogout',
+            Registered::class => 'handleUserRegistered',
+        ];
     }
 }

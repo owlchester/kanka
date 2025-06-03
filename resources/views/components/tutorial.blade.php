@@ -7,9 +7,10 @@
     <div class="flex flex-col gap-2">
         {!! $slot !!}
         @if (!empty($doc))
-            <p>
-                {!!  __('crud.helpers.learn_more', ['documentation' => '<a href="' . $doc . '" target="_blank"><i class="fa-solid fa-external-link" aria-hidden="true"></i> ' . __('footer.documentation') . '</a>']) !!}
-            </p>
+            <a href="{{ $doc }}">
+                <x-icon class="fa-regular fa-book" />
+                {{ __('general.documentation') }}
+            </a>
         @endif
     </div>
 </div>

@@ -2,27 +2,27 @@
     <div class="flex flex-wrap gap-2 md:gap-5 lg:gap-10 justify-center justify-items-stretch items-center
      lg:border lg:rounded bg-base-200 lg:bg-inherit p-2 lg:p-5 text-xs md:text-sm m-0 lg:m-5 ">
         <div v-if="showAddForm" role="button" @click="addAttribute($event, '')" class="flex flex-col gap-1 items-center hover:text-primary">
-            <i class="fa-solid fa-person text-xl md:text-2xl" aria-hidden="true" />
+            <i class="fa-regular fa-person text-xl md:text-2xl" aria-hidden="true" />
             <span v-html="trans('types.attribute')" class="text-xs"></span>
         </div>
 
         <div v-if="showAddForm" role="button" @click="addAttribute($event, 'multiline')" class="flex flex-col gap-1 items-center hover:text-primary">
-            <i class="fa-solid fa-align-justify text-xl md:text-2xl" aria-hidden="true" />
+            <i class="fa-regular fa-align-justify text-xl md:text-2xl" aria-hidden="true" />
             <span v-html="trans('types.multiline')" class="text-xs"></span>
         </div>
 
         <div v-if="showAddForm" role="button" @click="addAttribute($event, 'number')" class="flex flex-col gap-1 items-center hover:text-primary">
-            <i class="fa-solid fa-hashtag text-xl md:text-2xl" aria-hidden="true" />
+            <i class="fa-regular fa-hashtag text-xl md:text-2xl" aria-hidden="true" />
             <span v-html="trans('types.number')" class="text-xs"></span>
         </div>
 
         <div v-if="showAddForm" role="button" @click="toggleAddForm()" class="rounded-full w-12 lg:w-16 h-12 lg:h-16 bg-primary text-primary-content text-2xl flex items-center justify-center shadow-md flex-none">
-            <i class="fa-solid fa-times" aria-hidden="true" />
+            <i class="fa-regular fa-times" aria-hidden="true" />
             <span class="sr-only">Close new attribute form</span>
         </div>
 
         <div v-if="showAddForm" role="button" @click="addAttribute($event, 'section')" class="flex flex-col gap-1 items-center hover:text-primary">
-            <i class="fa-solid fa-layer-group text-xl md:text-2xl" aria-hidden="true" />
+            <i class="fa-regular fa-layer-group text-xl md:text-2xl" aria-hidden="true" />
             <span v-html="trans('types.section')" class="text-xs"></span>
         </div>
 
@@ -32,12 +32,12 @@
         </div>
 
         <div v-if="showAddForm" role="button" @click="addAttribute($event, 'random')" class="flex flex-col gap-1 items-center hover:text-primary">
-            <i class="fa-solid fa-question-circle text-xl md:text-2xl" aria-hidden="true" />
+            <i class="fa-regular fa-question-circle text-xl md:text-2xl" aria-hidden="true" />
             <span v-html="trans('types.random')" class="text-xs truncate"></span>
         </div>
 
         <div v-if="!showAddForm" role="button" @click="toggleAddForm()" class="rounded-full w-12 lg:w-16 h-12 lg:h-16 bg-primary text-primary-content text-2xl flex items-center justify-center shadow-md">
-            <i class="fa-solid fa-plus" aria-hidden="true" />
+            <i class="fa-regular fa-plus" aria-hidden="true" />
             <span class="sr-only">Open new attribute form</span>
         </div>
     </div>

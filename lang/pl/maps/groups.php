@@ -32,10 +32,7 @@ return [
     'index'         => [
         'title' => 'Kategorie mapy :name',
     ],
-    'pitch'         => [
-        'error' => 'Stworzono maksymalną liczbę grup.',
-        'until' => 'Utwórz do :max grup na każdej mapie.',
-    ],
+    'pitch'         => [],
     'placeholders'  => [
         'name'          => 'Sklepy, skarby, BNi.',
         'position'      => 'Pole opcjonalne, pozwala ustalić kolejność w której pojawiają się kategorie.',

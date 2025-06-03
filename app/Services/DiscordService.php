@@ -29,9 +29,6 @@ class DiscordService
 
     protected array $logs = [];
 
-    /**
-     * @return $this
-     */
     public function user(User $user): self
     {
         $this->user = $user;

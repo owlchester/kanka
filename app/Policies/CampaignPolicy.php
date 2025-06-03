@@ -32,6 +32,11 @@ class CampaignPolicy
         return true;
     }
 
+    public function admin(User $user, Campaign $campaign): bool
+    {
+        return $user->isAdmin($campaign);
+    }
+
     /**
      * Can't create a campaign while impersonating another user. Should be handled in the controller?
      */
@@ -63,10 +68,19 @@ class CampaignPolicy
     }
 
     /**
-     * Determine wheter the user can manage the webhooks of the campaign.
+     * Determine whether the user can manage the webhooks of the campaign.
      */
     public function webhooks(User $user, Campaign $campaign): bool
     {
+        return $this->recover($user, $campaign);
+    }
+
+    /**
+     * Determine whether the user can manage the webhooks of the campaign.
+     */
+    public function logs(User $user, Campaign $campaign): bool
+    {
+        return false;
         return $this->recover($user, $campaign);
     }
 

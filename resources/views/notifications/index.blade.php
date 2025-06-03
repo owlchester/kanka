@@ -24,7 +24,9 @@ use \Illuminate\Support\Str;
 
         <x-box :padding="0">
             @if ($notifications->count() === 0)
-                <x-helper :text="__('notifications.no_notifications')" />
+                <x-helper>
+                    <p>{{ __('notifications.no_notifications') }}</p>
+                </x-helper>
             @else
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
@@ -34,7 +36,7 @@ use \Illuminate\Support\Str;
                         <tr class="@if(!$notification->read()) info @endif">
                             <td>
                             @if (!empty($notification->data['icon']))
-                                <i class="fa-solid fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
+                                <i class="fa-regular fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
                                     @if(Arr::has($notification->data['params'], 'link'))
         @php
         $url = $notification->data['params']['link'];
@@ -59,7 +61,7 @@ use \Illuminate\Support\Str;
                                 @endif
                             </td>
                             <td class="text-right">
-                                <span class="text-muted " title="{{ $notification->created_at }}">
+                                <span class="text-neutral-content " title="{{ $notification->created_at }}">
                                     {{ $notification->created_at->diffForHumans() }}
                                 </span>
                             </td>

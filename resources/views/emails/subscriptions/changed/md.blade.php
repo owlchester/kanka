@@ -1,4 +1,4 @@
-<x-mail::message>
+<x-mail::message layout="admin">
 # Subscription change
 
 Changed subscription for {{ $user->pledge }} [{{ $user->name }}](https://admin.kanka.io/users/{{ $user->id }}) (#{{ $user->id }}) [{{ $user->email }}](mailto:{{ $user->email }})

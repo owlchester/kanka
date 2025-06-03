@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\StoreCampaignApplication;
 use App\Models\Campaign;
 use App\Models\CampaignSubmission;
-use App\Services\Campaign\SubmissionService;
+use App\Services\Campaign\ApplicationService;
 
 class ApplyController extends Controller
 {
-    protected SubmissionService $service;
+    protected ApplicationService $service;
 
-    public function __construct(SubmissionService $service)
+    public function __construct(ApplicationService $service)
     {
         $this->service = $service;
         $this->middleware('auth');

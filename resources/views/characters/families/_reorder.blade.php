@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\CharacterFamily[] $families */?>
 <x-grid type="1/1">
     <x-helper>
-        {!! __('characters.families.helper', ['name' => $character->name]) !!}
+        <p>{!! __('characters.families.helper', ['name' => $character->name]) !!}</p>
     </x-helper>
     @if (!$families)
         <x-alert type="warning">

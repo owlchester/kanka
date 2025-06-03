@@ -30,7 +30,7 @@
     <div class="flex flex-col gap-5">
     @if (auth()->guest())
         <div class="text-muted grow">
-            <x-icon class="fa-solid fa-filter" />
+            <x-icon class="fa-regular fa-filter" />
             {{ __('filters.helpers.guest') }}
         </div>
     @else

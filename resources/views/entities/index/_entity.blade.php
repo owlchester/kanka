@@ -13,7 +13,7 @@
 
                 @if ($model->is_private)
                     <div class="bubble-private absolute left-1.5 top-1.5 text-base shadow-xs flex justify-center align-items-center items-center aspect-square rounded-full w-6 h-6 bg-box opacity-80 text-base-content">
-                        <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')" />
+                        <x-icon class="lock" :title="__('crud.is_private')" />
                     </div>
                 @endif
             </a>
@@ -34,7 +34,7 @@
         <a href="{{ $model->url() }}" class="block avatar grow relative cover-background" style="background-image: url('{{ Avatar::entity($model)->fallback()->size(192, 144)->thumbnail() }}')">
             @if ($model->is_private)
                 <div class="bubble-private absolute left-1.5 top-1.5 shadow-xs flex justify-center align-items-center items-center aspect-square rounded-full w-6 h-6 text-base bg-box opacity-80 text-base-content">
-                    <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')" />
+                    <x-icon class="lock" :title="__('crud.is_private')" />
                 </div>
             @endif
         </a>

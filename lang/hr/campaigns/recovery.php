@@ -8,6 +8,5 @@ return [
     'fields'    => [
         'deleted'   => 'Obrisano',
     ],
-    'helper'    => 'Obrisani entiteti se mogu oporaviti do :count dana koristeći ovo sučelje.',
     'title'     => 'Oporavak entiteta za :campaign',
 ];

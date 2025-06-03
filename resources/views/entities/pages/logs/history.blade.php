@@ -11,7 +11,7 @@
             'date' => '<span data-toggle="tooltip" data-title="' . $model->updated_at . ' UTC' . '">' . $model->updated_at->diffForHumans() . '</span>',
         ]) !!}
         @can('update', $entity)
-            <br /><a href="{{ route('entities.logs', [$campaign, $entity]) }}" data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.logs', [$campaign, $entity]) }}" title="{{ __('crud.history.view') }}" class="">
+            <br /><a href="{{ route('entities.logs', [$campaign, $entity]) }}" title="{{ __('crud.history.view') }}" class="">
                 <x-icon class="fa-regular fa-history" />
                 <span class="hidden md:inline">{{ __('crud.history.view') }}</span>
             </a>

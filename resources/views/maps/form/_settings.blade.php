@@ -108,7 +108,9 @@ if (isset($model) && $model->isChunked()) {
             </ul>
             <div class="tab-content bg-base-100 p-4">
                 <div id="coordinates" class="tab-pane active">
-                    <x-helper  :text="__('maps.helpers.center')" />
+                    <x-helper>
+                        <p>{{ __('maps.helpers.center') }}</p>
+                    </x-helper>
                     <x-grid>
                         <x-forms.field field="center-y" :label="__('maps.fields.center_y')">
                             <input type="number" name="center_y" class="w-full" value="{{ FormCopy::field('center_y')->string() ?: old('center_y', $model->center_y ?? null) }}" min="-90" step="0.001" placeholder="{{ __('maps.placeholders.center_y') }}" />
@@ -124,8 +126,8 @@ if (isset($model) && $model->isChunked()) {
                     <?php
                         //get the current center marker or null
                         $preset = null;
-                        if (isset($model) && $model->center_marker) {
-                            $preset = $model->center_marker;
+                        if (isset($model) && $model->centerMarker) {
+                            $preset = $model->centerMarker;
                         }
                     ?>
                     <x-forms.foreign

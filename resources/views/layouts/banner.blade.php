@@ -1,7 +1,7 @@
 {{--@if (auth()->check() && auth()->user()->created_at->isBefore(\Carbon\Carbon::create(2024, 12, 25)))--}}
 {{--    <x-tutorial code="banner_s25" type="info" :auth="true">--}}
 {{--        <p>--}}
-{{--            We thrive on your feedback! Take a moment to fill out our <a href="https://docs.google.com/forms/d/e/1FAIpQLSepB1v1Es2NV-7axGc8vGeyEHrIehvIHTwV-pU5frZMzKQC7w/viewform?usp=dialog" target="_blank" style="text-decoration: underline"><x-icon class="fa-solid fa-external-link" />2025 Satisfaction Survey</a> and help us improve Kanka.--}}
+{{--            We thrive on your feedback! Take a moment to fill out our <a href="https://docs.google.com/forms/d/e/1FAIpQLSepB1v1Es2NV-7axGc8vGeyEHrIehvIHTwV-pU5frZMzKQC7w/viewform?usp=dialog" target="_blank" style="text-decoration: underline"><x-icon class="fa-regular fa-external-link" />2025 Satisfaction Survey</a> and help us improve Kanka.--}}
 {{--        </p>--}}
 {{--    </x-tutorial>--}}
 {{--@endif--}}
@@ -9,7 +9,7 @@
 
 {{--<x-tutorial code="banner_kanka30" type="warning" :auth="false">--}}
 {{--    <p>--}}
-{{--        We are releasing a big update on Wednesday 19th of February 2025. As a result, Kanka will be unavailable from <a href="https://everytimezone.com/s/07a5d1d9" target="_blank" class="underline"><i class="fa-solid fa-external-link" aria-hidden="true"></i> 14:30 UTC</a> to 15:30 UTC. Join us on <a href="{{ config('social.discord') }}" target="_blank" class="underline">Discord</a> to get updates.--}}
+{{--        We are releasing a big update on Wednesday 19th of February 2025. As a result, Kanka will be unavailable from <a href="https://everytimezone.com/s/07a5d1d9" target="_blank" class="underline"><i class="fa-regular fa-external-link" aria-hidden="true"></i> 14:30 UTC</a> to 15:30 UTC. Join us on <a href="{{ config('social.discord') }}" target="_blank" class="underline">Discord</a> to get updates.--}}
 {{--    </p>--}}
 {{--</x-tutorial>--}}
 

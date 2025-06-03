@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Enums\UserAction;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignCache;
 use App\Http\Requests\API\UpdateUserRole;
@@ -28,9 +29,6 @@ class MemberService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function fromRequest(UpdateUserRole $request): self
     {
         $this
@@ -165,8 +163,6 @@ class MemberService
 
     /**
      * Load a user
-     *
-     * @return $this
      */
     protected function loadUser(int $userID): self
     {
@@ -177,8 +173,6 @@ class MemberService
 
     /**
      * Load a campaign role
-     *
-     * @return $this
      */
     protected function loadCampaignRole(int $roleID): self
     {

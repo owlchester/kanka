@@ -17,7 +17,7 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' => '<i class="fa-solid fa-users" title="' . trans('families.fields.members') . '"></i>',
+            'label' => '<i class="fa-regular fa-users" title="' . trans('families.fields.members') . '"></i>',
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return number_format($model->members_count);
@@ -25,15 +25,21 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="ra ra-skull" title="' . __('creatures.fields.is_extinct') . '"></i>',
+            'label' => '<i class="fa-regular fa-skull" title="' . __('creatures.fields.is_extinct') . '"></i>',
             'field' => 'is_extinct',
             'render' => function($model) {
                 if ($model->isExtinct()) {
-                    return '<i class="ra ra-skull" title="' . __('creatures.fields.is_extinct') . '"></i>';
+                    return '<i class="fa-regular fa-skull" title="' . __('creatures.fields.is_extinct') . '"></i>';
                 }
                 return '';
             },
             'class' => 'icon'
+        ],[
+            'label' => '<i class="' . \App\Facades\Module::duoIcon('family') . '" title="' . \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')) . '"></i>',
+            'render' => function($model) {
+                return number_format($model->children_count);
+            },
+            'disableSort' => true,
         ],
         [
             'type' => 'is_private',

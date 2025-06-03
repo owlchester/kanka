@@ -119,7 +119,7 @@ class SubmenuService
                 'entity' => true,
                 'ajax' => true,
                 'id' => 'entity-permissions-link',
-                'icon' => 'lock'
+                'icon' => 'lock',
             ];
         }
 

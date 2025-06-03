@@ -13,7 +13,7 @@
         'premium' =>  __('concept.premium-campaigns'),
         ]) !!}
         <a href="{{ route('settings.subscription') }}">
-            {{ __('misc.ads.subscribe') }}
+            {{ __('misc.ads.member') }}
         </a>
     </p>
 </x-ad>

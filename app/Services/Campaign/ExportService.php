@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Enums\UserAction;
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
 use App\Models\CampaignExport;
@@ -34,8 +35,6 @@ class ExportService
 
     protected ZipArchive $archive;
 
-    protected bool $assets = false;
-
     protected int $files = 0;
 
     protected int $filesize = 0;
@@ -62,13 +61,6 @@ class ExportService
         return $this;
     }
 
-    public function assets(bool $assets): self
-    {
-        $this->assets = $assets;
-
-        return $this;
-    }
-
     public function queue(): self
     {
         $this->campaign->export_date = date('Y-m-d');
@@ -77,11 +69,12 @@ class ExportService
         $entitiesExport = CampaignExport::create([
             'campaign_id' => $this->campaign->id,
             'created_by' => $this->user->id,
-            'type' => CampaignExport::TYPE_ENTITIES,
+            'type' => 1,
             'status' => CampaignExport::STATUS_SCHEDULED,
         ]);
 
-        Export::dispatch($this->campaign, $this->user, $entitiesExport, false)->onQueue('heavy');
+        $this->user->campaignLog($this->campaign->id, 'export', 'created');
+        Export::dispatch($this->campaign, $this->user, $entitiesExport)->onQueue('heavy');
 
         return $this;
     }
@@ -147,10 +140,8 @@ class ExportService
                     $module['icon'] = $this->campaign->moduleIcon($entities[Str::singular($name)]);
                 }
             } catch (Exception $e) {
-
             }
             $modules[$name] = $module;
-
         }
         $this->archive->addFromString('settings/modules.json', json_encode($modules));
         $this->files++;
@@ -183,7 +174,7 @@ class ExportService
         $this->path = $saveFolder . $this->file;
         $this->archive = new ZipArchive;
         $creation = $this->archive->open($this->path, ZipArchive::CREATE | ZipArchive::OVERWRITE);
-        if (!$creation) {
+        if (! $creation) {
             throw new Exception('Could not create zip file');
         }
         Log::debug('Campaign export', ['action' => 'zip created', 'path' => $this->path]);
@@ -226,9 +217,6 @@ class ExportService
         ];
         $this->archive->addFromString('campaign.json', $this->campaign->makeHidden($hidden)->toJson());
         $this->files++;
-        if (! $this->assets) {
-            // return $this;
-        }
         $image = $this->campaign->image;
         if (! empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
             $this->addImage($image, $image);
@@ -363,14 +351,11 @@ class ExportService
 
     protected function processImage(Image $image): self
     {
-        if (! $this->assets) {
-            try {
-                $this->archive->addFromString('gallery/' . $image->id . '.json', $image->export());
-                $this->files++;
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get gallery image', 'image' => $image->id]);
-            }
-            // return $this;
+        try {
+            $this->archive->addFromString('gallery/' . $image->id . '.json', $image->export());
+            $this->files++;
+        } catch (Exception $e) {
+            Log::warning('Campaign export', ['err' => 'Can\'t get gallery image', 'image' => $image->id]);
         }
 
         if (! $image->isFolder() && Storage::exists($image->path)) {
@@ -435,12 +420,12 @@ class ExportService
     protected function notify(): self
     {
         $this->user->notify(new Header(
-            'campaign.' . ($this->assets ? 'asset_export' : 'export'),
+            'campaign.export',
             'download',
             'green',
             [
                 'link' => route('campaign.export', $this->campaign),
-                'time' => 60,
+                'time' => 120,
                 'campaign' => $this->campaign->name,
             ]
         ));
@@ -475,15 +460,14 @@ class ExportService
 
     protected function cleanup(): void
     {
-        if (!isset($this->path)) {
+        if (! isset($this->path)) {
             return;
         }
         // Don't delete zips on debug mode
         if (app()->hasDebugModeEnabled()) {
             return;
         }
-//        unlink($this->path);
-//        unset($this->path);
+        unlink($this->path);
     }
 
     /**
@@ -491,15 +475,13 @@ class ExportService
      */
     public function fail(): self
     {
-        if (! $this->assets) {
-            $this->campaign->updateQuietly([
-                'export_date' => null,
-            ]);
-        }
+        $this->campaign->updateQuietly([
+            'export_date' => null,
+        ]);
 
         // Notify the user that something went wrong
         $this->user->notify(new Header(
-            $this->assets ? 'campaign.asset_export_error' : 'campaign.export_error',
+            'campaign.export_error',
             'circle-exclamation',
             'red',
             [
@@ -535,41 +517,21 @@ class ExportService
         $retry = 0;
         while ($retry < $maxRetries) {
             try {
-                if (!$this->cloudfront) {
+                if (! $this->cloudfront) {
                     // In Laravel, Storage::get() will load the image in memory but not get rid of it until
                     // garbage collection, so to avoid memory issues, we do it ourselves
                     $stream = Storage::disk('s3')->readStream($path);
-                    $content = stream_get_contents($stream);
-                    fclose($stream);
-                    $this->archive->addFromString($fileName, $content);
-                    $this->files++;
-                    return;
+                } else {
+                    // In prod, s3 assets are behind cloudfront, so we can be even more efficient
+                    $stream = Storage::disk('cloudfront')->readStream($path);
                 }
-
-                // In prod, s43 assets are behind cloudfront, so we can be even more efficient
-                $stream = Storage::disk('cloudfront')->readStream($path);
                 $content = stream_get_contents($stream);
                 fclose($stream);
                 $this->archive->addFromString($fileName, $content);
                 $this->files++;
-                return;
 
-//                $source = Storage::disk('cloudfront')->url($path);
-//                $stream = @fopen($source, 'rb');
-//                if (!$stream) {
-//                    Log::error('Campaign export', ['err' => 'Invalid stream', 'path' => $path]);
-//                    return;
-//                }
-//                $tmpFile = tmpfile();
-//                $tmpMeta = stream_get_meta_data($tmpFile);
-//                stream_copy_to_stream($stream, $tmpFile);
-//                fclose($stream);
-//                $this->archive->addFile($tmpMeta['uri'], $fileName);
-//                fclose($tmpFile);
-//                $this->files++;
-//                return;
+                return;
             } catch (\Throwable $e) {
-                throw $e;
                 $retry++;
                 usleep(200_000 * $retry); // exponential backoff (200ms, 400ms, 600ms)
             }

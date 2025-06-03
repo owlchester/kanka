@@ -283,4 +283,9 @@ class Tag extends MiscModel
             'is_hidden',
         ];
     }
+
+    public function shortname(): string
+    {
+        return grapheme_extract($this->name, 1);
+    }
 }

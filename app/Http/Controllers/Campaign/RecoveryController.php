@@ -50,8 +50,14 @@ class RecoveryController extends Controller
         $this->authorize('recover', $campaign);
 
         try {
-            $entities = $this->entityService->recover($request->get('entities', []));
-            $posts = $this->postService->recover($request->get('posts', []));
+            $entities = $this->entityService
+                ->campaign($campaign)
+                ->user($request->user())
+                ->recover($request->get('entities', []));
+            $posts = $this->postService
+                ->campaign($campaign)
+                ->user($request->user())
+                ->recover($request->get('posts', []));
 
             $count = count($entities) + count($posts);
 

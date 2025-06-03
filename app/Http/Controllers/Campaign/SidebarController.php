@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\SidebarService;
+use Illuminate\Http\Request;
 
 class SidebarController extends Controller
 {
@@ -43,12 +44,16 @@ class SidebarController extends Controller
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function save(Campaign $campaign)
+    public function save(Request $request, Campaign $campaign)
     {
         $this->authorize('update', $campaign);
+        if ($request->ajax()) {
+            return response()->json();
+        }
 
         // Good luck
         $this->service->campaign($campaign)
+            ->user(auth()->user())
             ->save(request()->all());
 
         return redirect()
@@ -65,7 +70,10 @@ class SidebarController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        $this->service->campaign($campaign)->reset();
+        $this->service
+            ->campaign($campaign)
+            ->user(auth()->user())
+            ->reset();
 
         return redirect()
             ->route('campaign-sidebar', $campaign)

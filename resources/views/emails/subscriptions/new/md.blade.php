@@ -1,4 +1,4 @@
-<x-mail::message>
+<x-mail::message layout="admin">
 # New subscription
 
 New subscription for user [{{ $user->name }}](https://admin.kanka.io/users/{{ $user->id }}) in {{ $user->currencySymbol() }} (#{{ $user->id }}) {{ $user->email }}.

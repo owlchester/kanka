@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Race[] $races */?>
 <x-grid type="1/1">
     <x-helper>
-        {!! __('characters.races.helper', ['name' => $character->name]) !!}
+        <p>{!! __('characters.races.helper', ['name' => $character->name]) !!}</p>
     </x-helper>
 
     @if (!$races)

@@ -13,15 +13,14 @@
             {{ __('footer.public-campaigns') }}
         </a>
     </div>
-
     @if (!isset($minimal) || !$minimal)
     <div class="gap-2.5 items-center hidden lg:flex">
         @guest()
-            <a href="{{ route('login') }}" class="btn-login transition-all duration-200">
+            <a href="{{ route('login', request()->is('roadmap') ? ['next' => 'roadmap'] : []) }}" class="btn-login transition-all duration-200">
                 {{ __('front.menu.login') }}
             </a>
             @if (config('auth.register_enabled'))
-            <a href="{{ route('register') }}" class="btn-register transition-all duration-200">
+            <a href="{{ route('register', request()->is('roadmap') ? ['next' => 'roadmap'] : []) }}" class="btn-register transition-all duration-200">
                 {{ __('front.menu.register') }}
             </a>
             @endif

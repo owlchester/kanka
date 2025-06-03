@@ -22,7 +22,7 @@ use \App\Models\Calendar;
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="fa-solid fa-cake" title="' . trans('crud.tabs.reminders') . '"></i>',
+            'label' => '<i class="fa-regular fa-cake" title="' . trans('crud.tabs.reminders') . '"></i>',
             'render' => function(Calendar $model) {
                 return number_format($model->calendar_events_count);
             },
