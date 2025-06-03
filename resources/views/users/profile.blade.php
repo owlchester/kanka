@@ -21,7 +21,15 @@
         <div class="px-6 py-20 lg:max-w-7xl mx-auto flex flex-col gap-8">
             <div class="flex gap-10">
                 <div class="grow flex flex-col gap-3">
-                    <h1 class="">{!! $user->displayName() !!}</h1>
+                    <h1 class="flex items-center gap-2">
+                        {!! $user->displayName() !!}
+                        @if(isset($user->settings['pronouns']))
+                            <span class="text-md">
+                            ({{ $user->settings['pronouns']}})
+                        </span>
+                        @endif
+                    </h1>
+
                     @if ($user->isBanned())
                         <x-alert type="warning">
                             {{__('users/profile.fields.banned')}}
