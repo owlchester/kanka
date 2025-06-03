@@ -56,6 +56,10 @@
                         </a>
                     @endif
 
+                    @isset($user->settings['link'])
+                        <x-profile.social-link :link="$user->settings['link']" />
+                    @endif
+
                     @if (auth()->check() && !\App\Facades\Identity::isImpersonating() && auth()->user()->id === $user->id)
                         <a href="{{ route('settings.profile') }}" class="btn-round rounded-full" target="_blank" data-title="{{ __('crud.edit') }}" data-toggle="tooltip">
                             <x-icon class="pencil" />
