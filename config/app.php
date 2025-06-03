@@ -242,7 +242,6 @@ return [
         App\Providers\PermissionsServiceProvider::class,
         App\Providers\EntitySetupServiceProvider::class,
         App\Providers\ModuleServiceProvider::class,
-        App\Providers\SubmenuServiceProvider::class,
         App\Providers\Logs\ApiLogServiceProvider::class,
         App\Providers\DomainServiceProvider::class,
         App\Providers\LimitServiceProvider::class,
