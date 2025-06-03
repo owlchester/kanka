@@ -70,7 +70,7 @@ class CampaignResource extends JsonResource
         }
 
         if ($this->withMentions) {
-            $data['entry_parsed'] = Mentions::mapAny($this->resource);
+            $data['entry_parsed'] = $campaign->parsedEntry();
         }
 
         // Hide stuff like sidebar

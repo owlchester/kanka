@@ -86,7 +86,7 @@ class EntityResource extends JsonResource
 
         if ($entity->entityType->isSpecial()) {
             $data['entry'] = $entity->entry;
-            $data['entry_parsed'] = Mentions::mapEntity($entity, 'entry');
+            $data['entry_parsed'] = $entity->parsedEntry();
             $data['parent_id'] = $entity->parent_id;
         } else {
             $data['child_id'] = $entity->entity_id;
@@ -151,7 +151,7 @@ class EntityResource extends JsonResource
             'id' => $misc->id,
             'name' => $misc->name,
             'entry' => $misc->entity->hasEntry() ? $misc->entity->entry : null,
-            'entry_parsed' => $misc->entity->hasEntry() ? Mentions::mapAny($misc->entity) : null,
+            'entry_parsed' => $misc->entity->hasEntry() ? $misc->entity->parsedEntry() : null,
             'tooltip' => $misc->entity->tooltip ?: null,
             'type' => $misc->entity->type ?: null,
             'image' => $misc->entity->image_path,

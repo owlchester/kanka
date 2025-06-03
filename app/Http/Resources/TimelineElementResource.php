@@ -26,7 +26,7 @@ class TimelineElementResource extends JsonResource
             'entity_id' => $model->entity_id,
             'name' => $model->name,
             'entry' => $model->entry,
-            'entry_parsed' => Mentions::mapAny($model),
+            'entry_parsed' => $model->parsedEntry(),
             'date' => $model->date,
             'colour' => $model->colour,
             'position' => $model->position,

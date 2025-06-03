@@ -22,7 +22,7 @@ class QuestElementResource extends ModelResource
             'entity_id' => $model->entity_id,
             'name' => $model->name,
             'description' => $model->description,
-            'description_parsed' => ! empty($model->description) ? Mentions::mapAny($model, 'description') : null,
+            'description_parsed' => ! empty($model->description) ? $model->parsedEntry() : null,
             'colour' => $model->colour,
             'role' => $model->role,
             'visibility_id' => $model->visibility_id,
