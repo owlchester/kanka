@@ -80,6 +80,7 @@ class CampaignPolicy
      */
     public function logs(User $user, Campaign $campaign): bool
     {
+        return false;
         return $this->recover($user, $campaign);
     }
 

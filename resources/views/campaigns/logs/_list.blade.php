@@ -8,7 +8,7 @@
     <p>{!! __('campaigns/logs.helpers.list', ['amount' => '<code>' . $premium . '</code>']) !!}</p>
 </x-helper>
 
-<table  class="table table-hover table-condensed bg-box">
+<table  class="table table-hover table-condensed bg-box rounded">
     <thead>
     <tr>
         <th>{{ __('history.fields.who') }}</th>
