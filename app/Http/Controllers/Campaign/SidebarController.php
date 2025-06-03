@@ -19,11 +19,6 @@ class SidebarController extends Controller
         $this->service = $service;
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign)
     {
         $this->authorize('update', $campaign);
@@ -39,11 +34,6 @@ class SidebarController extends Controller
         );
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function save(Request $request, Campaign $campaign)
     {
         $this->authorize('update', $campaign);
@@ -61,11 +51,6 @@ class SidebarController extends Controller
             ->with('success', __('campaigns/sidebar.success'));
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function reset(Campaign $campaign)
     {
         $this->authorize('update', $campaign);

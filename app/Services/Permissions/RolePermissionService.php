@@ -343,7 +343,7 @@ class RolePermissionService
             return false;
         }
 
-        $this->add($this->entityType?->id, $action);
+        $this->add($this->entityType->id, $action);
 
         return true;
     }
