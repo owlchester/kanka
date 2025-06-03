@@ -19,7 +19,7 @@ $appearances = $entity->child->appearances;
         @foreach ($appearances as $trait)
                 <p class="entity-appearance-{{ \Illuminate\Support\Str::slug($trait->name) }}" data-word-count="{{ $trait->words }}">
                     <b>{{ $trait->name }}</b><br />
-                    {{ $trait->entry }}
+                    {!! $trait->entry !!}
                 </p>
         @endforeach
                 </div>
