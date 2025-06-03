@@ -68,7 +68,7 @@ class DefaultImageController extends Controller
 
         $entityType = EntityType::inCampaign($campaign)->find($request->post('entity_type'));
 
-        if ($this->service->campaign($campaign)->entityType($entityType)->save($request)) {
+        if ($this->service->campaign($campaign)->entityType($entityType)->user(auth()->user())->save($request)) {
             return redirect()->route('campaign.default-images', $campaign)
                 ->with(
                     'success',
@@ -96,6 +96,7 @@ class DefaultImageController extends Controller
         $entityType = EntityType::inCampaign($campaign)->findOrFail($request->post('entity_type'));
         $this->service
             ->campaign($campaign)
+            ->user(auth()->user())
             ->entityType($entityType)
             ->destroy();
 
