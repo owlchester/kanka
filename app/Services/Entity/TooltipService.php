@@ -1,33 +1,33 @@
 <?php
 
-namespace App\Traits;
+namespace App\Services\Entity;
 
-use App\Facades\CampaignLocalization;
-use App\Facades\Mentions;
+use App\Traits\CampaignAware;
+use App\Traits\EntityAware;
 use Illuminate\Support\Str;
 
-trait HasTooltip
+class TooltipService
 {
+    use EntityAware;
+    use CampaignAware;
+
     /**
      * Full tooltip used for ajax calls
      */
-    public function ajaxTooltip(): string
+    public function tooltip(): string
     {
-        if ($this->isMissingChild()) {
+        if ($this->entity->isMissingChild()) {
             return '';
         }
 
-        $text = null;
-
-        $campaign = CampaignLocalization::getCampaign();
         $limit = 500;
-        if ($campaign->boosted()) {
+        if ($this->campaign->boosted()) {
             $limit = 1000;
             // If the campaign is boosted, entities can have a custom tooltip. This allows them to use some
             // html syntax, and thus a lot more control on what is displayed.
-            $boostedTooltip = strip_tags($this->tooltip);
+            $boostedTooltip = strip_tags($this->entity->tooltip);
             if (! empty(mb_trim($boostedTooltip))) {
-                $text = Mentions::mapEntity($this);
+                $text = $this->entity->parsedEntry();
                 $text = strip_tags($text, $this->allowedTooltipTags());
                 if (! empty($text)) {
                     return nl2br($text);
@@ -35,10 +35,10 @@ trait HasTooltip
             }
         }
 
-        if (! method_exists($this, 'parsedEntry')) {
+        if (! method_exists($this->entity, 'parsedEntry')) {
             return '';
         }
-        $text = $this->parsedEntry();
+        $text = $this->entity->parsedEntry();
         $text = strip_tags($text, $this->allowedTooltipTags());
         $text = $this->limitTooltipTextLength($text, $limit);
 

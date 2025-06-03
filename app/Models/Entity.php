@@ -23,7 +23,6 @@ use App\Models\Concerns\Taggable;
 use App\Models\Concerns\Templatable;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
-use App\Traits\HasTooltip;
 use Carbon\Carbon;
 use Collator;
 use Exception;
@@ -74,7 +73,6 @@ class Entity extends Model
     use HasMentions;
     use HasRecursiveRelationships;
     use HasSuggestions;
-    use HasTooltip;
     use LastSync;
     use Paginatable;
     use Sanitizable;
@@ -189,7 +187,7 @@ class Entity extends Model
         if ($campaign->boosted()) {
             $boostedTooltip = strip_tags($this->tooltip);
             if (! empty(mb_trim($boostedTooltip))) {
-                $text = Mentions::mapEntity($this);
+                $text = $this->parsedEntry();
 
                 return (string) strip_tags($text);
             }

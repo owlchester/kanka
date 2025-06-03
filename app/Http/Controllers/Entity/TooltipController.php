@@ -6,6 +6,7 @@ use App\Facades\Avatar;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Services\Entity\TooltipService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
@@ -13,6 +14,9 @@ class TooltipController extends Controller
 {
     use CampaignAware;
     use GuestAuthTrait;
+
+    public function __construct(public TooltipService $tooltipService)
+    {}
 
     /**
      * Prepare and show an entity's tooltip
@@ -30,6 +34,8 @@ class TooltipController extends Controller
         $render = request()->get('render');
         $hasImage = Avatar::entity($entity)->hasImage();
 
+        $tooltipText = $this->tooltipService->entity($entity)->campaign($campaign)->tooltip();
+
         $tooltip = view('entities.components.tooltip')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
@@ -37,6 +43,7 @@ class TooltipController extends Controller
             ->with('hasImage', $hasImage)
             ->with('tagClasses', $tagClasses)
             ->with('render', $render)
+            ->with('tooltip', $tooltipText)
             ->render();
 
         return response()->json([

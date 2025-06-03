@@ -39,7 +39,7 @@
         <iframe src="{{ route('entities.attributes-dashboard', [$campaign, $entity]) }}" class="tooltip-render w-full h-44"></iframe>
     @else
     <div class="tooltip-text flex flex-col gap-2 px-4 pb-4 overflow-auto">
-        {!! $entity->ajaxTooltip() !!}
+        {!! $tooltip !!}
     </div>
     @endif
 </div>
