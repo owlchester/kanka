@@ -15,7 +15,7 @@
     <div class="flex gap-5 flex-col">
         <div class="flex gap-2 items-center">
             <h3 class="inline-block grow">
-                {{ __('campaigns.show.tabs.members') }} <span class="text-sm">({{ $rows->total() }} / @if ($limit = $campaign->memberLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</span>
+                {{ __('campaigns.show.tabs.members') }} <span class="text-sm">({{ $rows->total() }} / @if ($limit = $campaign->memberLimit()){{ $limit }}@else <x-icon class="fa-solid fa-infinity" /> @endif)</span>
             </h3>
             <x-learn-more url="features/campaigns/members.html" />
         </div>

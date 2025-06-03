@@ -50,7 +50,7 @@
                     <div class="flex flex-col md:flex-row items-center gap-2">
                         <div class="flex gap-2">
                             <span class="bg-base-300 p-2 w-10 rounded dnd-handle cursor-move flex-none text-center">
-                                <i class="inline-block {{ $setup['custom_icon'] ?? $setup['icon'] }}" aria-hidden="true"></i>
+                                <x-icon class="inline-block {{ $setup['custom_icon'] ?? $setup['icon'] }}" />
                             </span>
                             <input type="text" class="w-20 lg:w-40" name="{{ $name }}_icon" value="{{ $setup['custom_icon'] ?? null }}" placeholder="{{ $setup['icon'] }}" maxlength="50" data-paste="fontawesome" />
                         </div>
@@ -73,14 +73,15 @@
                                 <div class="flex flex-col md:flex-row items-center gap-2">
                                     <div class="flex gap-2">
                                         <span class="bg-base-300 p-2 w-10 text-center flex-none rounded dnd-handle cursor-move">
-                                            <i class="inline-block w-6 {{ $child['custom_icon'] ?? $child['icon'] }}" aria-hidden="true"></i>
+                                            <x-icon class="inline-block w-6 {{ $child['custom_icon'] ?? $child['icon'] }}" />
                                         </span>
                                         <input type="text" class="w-20 lg:w-40" name="{{ $childName }}_icon" value="{{ $child['custom_icon'] ?? null }}" placeholder="{{ $child['icon'] ?? null }}" data-paste="fontawesome" maxlength="50" />
                                     </div>
                                     <input type="text" class="w-40 lg:w-80" name="{{ $childName }}_label" value="{!! $child['custom_label'] ?? null !!}" placeholder="{{ $child['label'] ?? __($child['label_key']) }}" maxlength="90" />
                                     <span class="hidden md:flex text-neutral-content text-xs">
                                         ( {{ $child['label'] ?? __($child['label_key']) }}
-                                        @if (\Illuminate\Support\Arr::get($child, 'disabled') === true) <i class="fa-regular fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}"></i>
+                                        @if (\Illuminate\Support\Arr::get($child, 'disabled') === true)
+                                            <i class="fa-regular fa-exclamation-triangle" aria-hidden="true" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}"></i>
                                         @endif
                                         )
                                     </span>

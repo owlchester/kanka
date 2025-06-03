@@ -6,6 +6,7 @@ use App\Enums\Permission;
 use App\Models\CampaignPermission;
 use App\Models\EntityType;
 use App\Traits\CampaignAware;
+use App\Traits\EntityTypeAware;
 use App\Traits\RoleAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -14,6 +15,7 @@ class RolePermissionService
 {
     use CampaignAware;
     use RoleAware;
+    use EntityTypeAware;
 
     protected int $type;
 
@@ -327,10 +329,10 @@ class RolePermissionService
     /**
      * Toggle an entity's action permission
      */
-    public function toggle(int $entityType, int $action): bool
+    public function toggle(int $action): bool
     {
         $perm = $this->role->permissions()
-            ->where('entity_type_id', $entityType)
+            ->where('entity_type_id', $this->entityType->id)
             ->where('action', $action)
             ->whereNull('entity_id')
             ->first();
@@ -341,7 +343,7 @@ class RolePermissionService
             return false;
         }
 
-        $this->add($entityType, $action);
+        $this->add($this->entityType?->id, $action);
 
         return true;
     }

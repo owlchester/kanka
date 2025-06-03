@@ -19,7 +19,7 @@
 
     <x-dialog.footer>
         <button type="submit" class="btn2 btn-error btn-outline">
-            <span class="fa-solid fa-trash-can" aria-hidden="true"></span>
+            <x-icon class="fa-solid fa-trash-can" />
             <span class="remove-button-label">{{ __('crud.remove') }}</span>
         </button>
     </x-dialog.footer>

@@ -8,7 +8,7 @@ $enabled = $campaign->enabled($entityType);
 
 <x-box class="box-module overflow-hidden flex flex-wrap flex-col select-none {{ $enabled ? 'module-enabled' : null }} {{ isset($deprecated) ? 'box-deprecated' : null }} " id="{{ $entityType->code }}" :padding="false">
     <div class="header p-2 bg-neutral text-neutral-content flex items-center gap-2 transition-all duration-300">
-        <i class="flex-0 text-lg {{ $entityType->icon() }}" aria-hidden="true"></i>
+        <x-icon class="flex-0 text-lg {{ $entityType->icon() }}" />
         <span class="text-lg grow break-all">
             {!! $entityType->plural() !!}
         </span>
@@ -36,7 +36,7 @@ $enabled = $campaign->enabled($entityType);
             @if ($entityType->isDeprecated())
             <div class="text-center text-sm">
                 <span data-toggle="tooltip" data-title="{{ __('campaigns.settings.deprecated.help') }}">
-                    <i class="fa-regular fa-exclamation-triangle" aria-hidden="true"></i>
+                    <x-icon class="fa-regular fa-exclamation-triangle" />
                     {{ __('campaigns.settings.deprecated.title') }}
                 </span>
                 <span class="md:hidden">{{ __('campaigns.settings.deprecated.help') }}</span>

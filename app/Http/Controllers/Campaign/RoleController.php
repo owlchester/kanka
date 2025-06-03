@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignRole;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
+use App\Models\EntityType;
 use App\Services\EntityTypeService;
 use App\Services\Permissions\RolePermissionService;
 use Illuminate\Http\Request;
@@ -265,7 +266,7 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function toggle(Campaign $campaign, CampaignRole $campaignRole, int $entityType, int $action)
+    public function toggle(Campaign $campaign, CampaignRole $campaignRole, EntityType $entityType, int $action)
     {
         $this->authorize('view', [$campaignRole, $campaign]);
         $this->authorize('update', $campaignRole);
@@ -274,15 +275,15 @@ class RoleController extends Controller
             abort(404);
         }
 
-        $enabled = $this->service->role($campaignRole)->toggle($entityType, $action);
+        $enabled = $this->service->role($campaignRole)->entityType($entityType)->toggle($action);
 
         return response()->json([
             'success' => true,
             'status' => $enabled,
             'toast' => __('campaigns/roles.toggle.' . ($enabled ? 'enabled' : 'disabled'), [
                 'role' => $campaignRole->name,
-                'action' => __('crud.permissions.actions.read'),
-                'entities' => EntitySetup::plural($entityType),
+                'action' => __('campaigns.roles.permissions.actions.read'),
+                'entities' => $entityType->plural(),
             ]),
         ]);
     }

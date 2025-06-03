@@ -17,7 +17,7 @@
     </div>
     <div class="sm:hidden cursor-pointer" x-data="{open: false}" @click="open = !open">
         <span role="button" class="btn2 btn-xs" >
-            <i class="fa-regular fa-exclamation-triangle"></i>
+            <x-icon class="fa-regular fa-exclamation-triangle" />
         </span>
         <span x-show="open" class="help-block text-xs">
             {{ __('campaigns.roles.hints.campaign_not_public') }}

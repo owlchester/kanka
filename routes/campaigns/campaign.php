@@ -42,7 +42,7 @@ Route::post('/w/{campaign}/editing/keep-alive', 'EditingController@keepAliveCamp
 
 // Permission save
 Route::post('/w/{campaign}/campaign_roles/{campaign_role}/savePermissions', 'Campaign\RoleController@savePermissions')->name('campaign_roles.savePermissions');
-Route::post('/w/{campaign}/campaign_roles/{campaign_role}/toggle/{entity}/{action}', 'Campaign\RoleController@toggle')->name('campaign_roles.toggle');
+Route::post('/w/{campaign}/campaign_roles/{campaign_role}/toggle/{entityType}/{action}', 'Campaign\RoleController@toggle')->name('campaign_roles.toggle');
 Route::post('/w/{campaign}/campaign_roles/bulk', 'Campaign\RoleController@bulk')->name('campaign_roles.bulk');
 
 // Impersonator

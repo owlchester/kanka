@@ -12,15 +12,16 @@
             {{ __('crud.permissions.title') }}
         </h1>
         <div class="flex-none flex gap-2">
-            <a href="#" data-url="{{ route('campaign-visibility', $campaign) }}" data-target="campaign-visibility" data-toggle="dialog-ajax" class="btn2 btn-sm btn-primary" >
-                <i class="fa-solid fa-user-secret"></i> {{ __('campaigns/roles.actions.status', ['status' => $campaign->isPublic() ? __('campaigns.visibilities.public') : __('campaigns.visibilities.private')]) }}
-            </a>
 
             <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
                     data-target="public-help">
                 <x-icon class="question" />
                 {{ __('general.learn-more') }}
             </button>
+            <a href="#" data-url="{{ route('campaign-visibility', $campaign) }}" data-target="campaign-visibility" data-toggle="dialog-ajax" class="btn2 btn-sm btn-primary" >
+                <x-icon class="fa-solid fa-user-secret" />
+                {{ __('campaigns/roles.actions.status', ['status' => $campaign->isPublic() ? __('campaigns.visibilities.public') : __('campaigns.visibilities.private')]) }}
+            </a>
         </div>
     </div>
 
@@ -44,7 +45,7 @@
 
     <div class="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         @foreach ($modules as $entityType)
-            <div class="public-permission flex flex-col gap-2 rounded items-center text-center justify-center break-all overflow-x-hidden cursor-pointer text-lg px-2 py-5 select-none {{ $permissionService->type($entityType->id)->can(\App\Enums\Permission::View) ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$campaign, $role, 'entity' => $entityType->id, 'action' => \App\Enums\Permission::View->value]) }}">
+            <div class="public-permission flex flex-col gap-2 rounded items-center text-center justify-center break-all overflow-x-hidden cursor-pointer text-lg px-2 py-5 select-none {{ $permissionService->type($entityType->id)->can(\App\Enums\Permission::View) ? "enabled": null }}" data-url="{{ route('campaign_roles.toggle', [$campaign, $role, 'entityType' => $entityType, 'action' => \App\Enums\Permission::View->value]) }}">
                 <div class="block text-2xl">
                     <div class="module-icon">
                         <x-icon class="{{ $entityType->icon() }}" />
@@ -57,7 +58,7 @@
                 <div class="">{!! $entityType->plural() !!}</div>
                 @if ((!$entityType->isSpecial() && !$campaign->enabled($entityType)) || ($entityType->isSpecial() && !$entityType->isEnabled()))
                     <div class="rounded bg-warning text-warning-content" data-toggle="tooltip" data-title="{{ __('campaigns.modules.permission-disabled') }}">
-                        <i class="fa-regular fa-exclamation-triangle"  aria-hidden="true"></i>
+                        <x-icon class="fa-regular fa-exclamation-triangle" />
                         <span class="md:hidden text-sm inline">{{ __('campaigns.modules.permission-disabled') }}</span>
                     </div>
                 @endif
