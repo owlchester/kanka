@@ -6,7 +6,7 @@
         @continue
     @endif
     <div class="flex items-center gap-2 justify-between" data-entity-type="{{ $entity->entityType->pluralCode() }}">
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 overflow-hidden">
             <a class="entity-picture inline-block rounded-full cover-background w-9 h-9 flex-shrink-0" style="background-image: url('{{ Avatar::entity($entity)->fallback()->size(80)->thumbnail() }}');"
                 title="{{ $entity->name }}"
                 href="{{ $entity->url() }}">
