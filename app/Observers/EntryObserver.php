@@ -24,10 +24,13 @@ class EntryObserver
         /** @var SaveService $service */
         $service = app()->make(SaveService::class);
         $campaign = CampaignLocalization::getCampaign();
+        // When creating a campaign, there is no campaign yet
+        if ($campaign) {
+            $service->campaign($campaign);
+        }
         // @phpstan-ignore-next-line
         $model->{$model->entryFieldName()} = $this->purify(
             $service
-                ->campaign($campaign)
                 ->user(auth()->user())
                 // @phpstan-ignore-next-line
                 ->text($model->{$model->entryFieldName()})
