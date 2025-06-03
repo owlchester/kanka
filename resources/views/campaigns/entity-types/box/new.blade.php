@@ -10,7 +10,7 @@
     data-url="{{ route('entity_types.create', [$campaign]) }}"
     data-target="primary-dialog"
     title="{{ __('campaigns/modules.actions.customise') }}">
-    <div class="flex flex-wrap items-center gap-2">
+    <div class="flex flex-wrap items-center gap-2 text-lg">
         @can('update', $campaign)
             <x-icon class="plus" />
             {{ __('campaigns/modules.actions.create') }}
