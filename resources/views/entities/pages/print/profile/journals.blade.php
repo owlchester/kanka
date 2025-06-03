@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\Journal $model */?>
 @include('entities.components.profile._location')
 @if ($model->date)
-| {{ __('journals.fields.date') }} | {{ \App\Facades\UserDate::format($model->date) }} |
+| {{ __('journals.fields.date') }} | <x-date :date="$model->date" string /> |
 @endif
 @if ($model->author && $model->author)
 | {{ __('journals.fields.author') }} | {!! $model->author->name !!} |

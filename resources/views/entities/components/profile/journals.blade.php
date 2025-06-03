@@ -15,7 +15,7 @@ $child = $entity->child;
     @if ($child->date)
         <div class="element profile-date">
             <div class="title text-uppercase text-xs">{{ __('journals.fields.date') }}</div>
-            {{ \App\Facades\UserDate::format($child->date) }}
+            <x-date :date="$child->date" />
         </div>
     @endif
 

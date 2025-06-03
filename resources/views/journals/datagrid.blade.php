@@ -14,7 +14,9 @@
             'label' => __('journals.fields.date'),
             'field' => 'date',
             'render' => function ($model) {
-                return \App\Facades\UserDate::format($model->date);
+                return \Illuminate\Support\Facades\Blade::renderComponent(
+                    new \App\View\Components\Date(date: $model->date)
+                );
             }
         ],
         [

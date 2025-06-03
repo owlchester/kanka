@@ -1,3 +1,3 @@
 @if (!empty($model->date))
-    {{ \App\Facades\UserDate::format($model->date) }}
+    <x-date :date="$model->date" />
 @endif

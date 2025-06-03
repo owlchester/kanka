@@ -6,7 +6,7 @@
 | {{ __('quests.fields.location') }} | {!! $model->location->name !!} |
 @endif
 @if ($model->date)
-| {{ __('journals.fields.date') }} | {{ \App\Facades\UserDate::format($model->date) }} |
+| {{ __('journals.fields.date') }} | <x-date :date="$model->date" string /> |
 @endif
 @include('entities.pages.print.profile._reminder')
 @include('entities.pages.print.profile._type')
