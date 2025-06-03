@@ -8,6 +8,7 @@ use App\Http\Requests\QuickCreator\StorePost;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
+use App\Models\Post;
 use App\Services\Entity\PopularService;
 use App\Services\EntityService;
 use App\Services\EntityTypeService;
@@ -72,7 +73,7 @@ class EntityCreatorController extends Controller
 
         // Redirect the user to the edit form
         if ($request->get('action') == 'edit') {
-            $entity = $entityType->isSpecial() ? $first : $first->entity;
+            $entity = $first instanceof Post ? $first->entity : $first;
             $editUrl = route('entities.edit', [$campaign, $entity]);
 
             return response()->json([
