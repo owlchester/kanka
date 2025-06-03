@@ -79,7 +79,7 @@ class DefaultImageController extends Controller
         return redirect()->route('campaign.default-images', $campaign)
             ->with(
                 'error',
-                __('campaigns/default-images.create.error', ['type' => __('entities.' . $request->post('entity_type'))])
+                __('campaigns/default-images.create.error', ['type' => $entityType->plural()])
             );
     }
 
