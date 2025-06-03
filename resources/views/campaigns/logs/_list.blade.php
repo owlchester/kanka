@@ -5,11 +5,10 @@
  */
 ?>
 <x-helper>
-    {!! __('campaigns/logs.helpers.list', ['amount' => '<code>' . $premium . '</code>']) !!}
+    <p>{!! __('campaigns/logs.helpers.list', ['amount' => '<code>' . $premium . '</code>']) !!}</p>
 </x-helper>
 
-<x-box class="rounded-2xl">
-<table  class="table table-hover table-condensed">
+<table  class="table table-hover table-condensed bg-box">
     <thead>
     <tr>
         <th>{{ __('history.fields.who') }}</th>
@@ -21,14 +20,14 @@
     </thead>
     <tbody>
     @foreach($logs as $log)
-        @if ($log->requiresPremium())
+        @if ($log->requiresPremium() && !$campaign->premium())
             <tr>
                 <td colspan="4" class="text-neutral-content text-xs">
                     <span class="">
                         <x-icon class="premium" />
                         {{ __('campaigns/logs.premium.helper', ['amount' => $cutoff]) }}
                     </span>
-                    @if (auth()->check() && auth()->user()->hasBoosters())
+                    @can('boost', auth()->user())
                         <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="">
                             {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
                         </a>
@@ -83,5 +82,4 @@
     @endforeach
     </tbody>
 </table>
-</x-box>
 {!! $logs->links() !!}

@@ -40,7 +40,7 @@
                         <p>
                             {!! __('campaigns/logs.premium.helper', ['amount' => '<code>' . config('limits.campaigns.logs.premium') . '</code>']) !!}
                         </p>
-                        @if (auth()->check() && auth()->user()->hasBoosters())
+                        @can('boost', auth()->user())
                             <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-lg btn-block">
                                 {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
                             </a>
