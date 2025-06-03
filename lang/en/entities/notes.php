@@ -20,7 +20,7 @@ return [
         'title'     => 'New post for :name',
     ],
     'destroy'       => [
-        'success'   => 'Post :name for :entity removed.',
+        'success'   => 'Post :name removed from :entity.',
     ],
     'edit'          => [
         'success'   => 'Post :name for :entity updated.',

@@ -102,10 +102,10 @@ if ($hasImage) {
 
     @can('update', $marker->map->entity)
         <div class="marker-actions text-center sm:rounded-t">
-            <x-button.delete-confirm  target="#delete-marker-confirm-form-{{ $marker->id }}" />
+            <x-buttons.confirm-delete :route="route('maps.map_markers.destroy', [$campaign, $marker->map, $marker])">
+                <input name="from" type="hidden" value="explore" />
+            </x-buttons.confirm-delete>
         </div>
-        <x-form method="DELETE" :action="['maps.map_markers.destroy', $campaign, $marker->map, $marker]" id="delete-marker-confirm-form-{{ $marker->id }}">
-        <input name="from" type="hidden" value="explore" />
         </x-form>
     @endcan
 </div>

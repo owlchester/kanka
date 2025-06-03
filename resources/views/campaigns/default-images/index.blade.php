@@ -40,27 +40,7 @@
                     @if (!\Illuminate\Support\Arr::has($entityTypes, $image['type']))
                         @continue
                     @endif
-                    <div class="rounded-xl overflow-hidden flex gap-5 items-center bg-box p-2 shadow-xs hover:shadow">
-                        <div class="flex-initial w-24 h-24 cover-background rounded-xl" style="background-image: url('{{ Img::crop(96, 96)->url($image['path']) }}')">
-                        </div>
-                        <div class="grow flex flex-col gap-1">
-                            <span class="text-lg">
-                                {!! $entityTypes[$image['type']]->plural() !!}
-                            </span>
-                            <span class="text-sm text-neutral-content">
-                                {{ __('campaigns/default-images.helper') }}
-                            </span>
-                        </div>
-                        @can('recover', $campaign)
-                        <div class="mr-2">
-                        <x-button.delete-confirm size="sm" target="#delete-thumb-{{ $image['uuid'] }}" />
-                        </div>
-                        <x-form method="DELETE" :action="['campaign.default-images.delete', $campaign]" class="hidden" id="delete-thumb-{{ $image['uuid'] }}" >
-                            <input type="hidden" name="entity_type" value="{{ $entityTypes[$image['type']]->id }}" />
-                        </x-form>
-                        @endcan
-                    </div>
-
+                    @include('campaigns.default-images._thumbnail')
                 @endforeach
 
             </div>
