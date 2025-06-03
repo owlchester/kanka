@@ -3,7 +3,7 @@
 @if ($campaign->boosted())
     <p>{!! __('settings/boosters.boost.errors.boosted', ['campaign' => $campaign->name])!!}</p>
 @elseif(auth()->user()->availableBoosts() < $cost)
-    @if (auth()->check() && auth()->user()->hasBoosters())
+    @can('boost', auth()->user())
         <p class="">
             {!! __('settings/boosters.boost.errors.out-of-boosters', [
                 'upgrade' => '<a href="' . route('settings.subscription') . '">' . __('settings/boosters.boost.upgrade') . '</a>',

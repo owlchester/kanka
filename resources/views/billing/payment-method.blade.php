@@ -80,10 +80,12 @@
             <div class="flex gap-2 justify-between">
                 @if (\Illuminate\Support\Arr::exists($user->profile ?? [], 'billing'))
                     <x-helper>
-                        {!! nl2br($user->profile['billing']) !!}
+                        <p>{!! nl2br($user->profile['billing']) !!}</p>
                     </x-helper>
                 @else
-                    <x-helper>{{ __('billing/information.helper') }}</x-helper>
+                    <x-helper>
+                        <p>{{ __('billing/information.helper') }}</p>
+                    </x-helper>
                 @endif
                 <div class="">
                     <button class="btn2 btn-outline" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('account.billing.info') }}">

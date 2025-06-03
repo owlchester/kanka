@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\AttributeType;
 use App\Facades\Attributes;
 use App\Facades\Mentions;
+use App\Models\Concerns\Blameable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
 use App\Models\Scopes\Pinnable;
@@ -34,6 +35,7 @@ use Laravel\Scout\Searchable;
  */
 class Attribute extends Model
 {
+    use Blameable;
     use HasFactory;
     use OrderableTrait;
     use Paginatable;

@@ -11,7 +11,7 @@
                 </p>
                 <p>
                     <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank">
-                        <x-icon class="fa-solid fa-external-link-alt" />
+                        <x-icon class="link" />
                         {{ __('helpers.public') }}
                     </a>
                 </p>
@@ -41,7 +41,7 @@
 
             @if (isset($model) && $model->isPublic())
                 <x-helper>
-                    {!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard', $campaign) . '" target="_blank">' . route('dashboard', $campaign) . '</a>']) !!}
+                    <p>{!! __('campaigns.helpers.view_public', ['link' => '<a href="' . route('dashboard', $campaign) . '">' . route('dashboard', $campaign) . '</a>']) !!}</p>
                 </x-helper>
 
                 @if ($model->publicHasNoVisibility())
@@ -56,11 +56,11 @@
 
             <h4 class="m-0">{{ __('campaigns.fields.public_campaign_filters') }}</h4>
 
-            <p>
-                {!! __('campaigns.sharing.filters', [
+            <x-helper>
+                <p>{!! __('campaigns.sharing.filters', [
         'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank">' . __('footer.public-campaigns') . '</a>'
-        ]) !!}
-            </p>
+        ]) !!}</p>
+            </x-helper>
 
             <x-grid>
                 <x-forms.field

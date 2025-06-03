@@ -89,7 +89,6 @@ return [
         'bulk_title'    => 'Appliquer un modèle d\'attribute aux entités',
     ],
     'cancel'            => 'Annuler',
-    'click_modal'       => [],
     'copy_to_campaign'  => [
         'bulk_title'    => 'Copier vers une campagne',
         'panel'         => 'Copier',
@@ -119,7 +118,6 @@ return [
         'boosted_campaigns'     => 'Cette fonctionnalité n\'est que disponible que pour les :boosted.',
         'unavailable_feature'   => 'Fonctionnalité indisponible',
     ],
-    'events'            => [],
     'fields'            => [
         'calendar_date'     => 'Date calendrier',
         'child'             => 'Enfant',
@@ -143,6 +141,7 @@ return [
         'gallery_image'     => 'Galerie d\'image',
         'has_attributes'    => 'Possède des attributs',
         'has_entity_files'  => 'Possède des fichiers',
+        'has_entry'         => 'Possède une entrée',
         'has_image'         => 'Possède une image',
         'has_posts'         => 'Possède des articles',
         'header_image'      => 'Image d\'en-tête',
@@ -153,9 +152,9 @@ return [
         'is_star'           => 'Epinglé',
         'locations'         => ':first dans :second',
         'name'              => 'Nom',
+        'names'             => 'Noms',
         'parent'            => 'Parent',
         'position'          => 'Position',
-        'privacy'           => 'Visibilité',
         'replace_mentions'  => 'Remplace les mentions d\'attributs avec ceux de la nouvelle entité.',
         'template'          => 'Modèle',
         'tooltip'           => 'Infobulle',
@@ -217,7 +216,6 @@ return [
     ],
     'helpers'           => [
         'copy_options'  => 'Copier les éléments liés suivant de la source à la nouvelle entité.',
-        'learn_more'    => 'En savoir plus sur cette fonctionnalité dans notre :documentation.',
         'linking'       => 'Lier d\'autres entités',
         'nested_parent' => 'Affichage des enfants de :parent.',
         'pagination'    => [
@@ -253,8 +251,6 @@ return [
         'or_cancel'         => 'ou :cancel',
         'skip_to_content'   => 'Aller au contenu',
     ],
-    'new_entity'        => [],
-    'panels'            => [],
     'permissions'       => [
         'actions'           => [
             'bulk'          => [
@@ -270,6 +266,7 @@ return [
             ],
             'delete'        => 'Supprimer',
             'edit'          => 'Modifier',
+            'private'       => 'Rendre privé',
             'toggle'        => 'Basculer',
             'view'          => 'Voir',
         ],
@@ -308,6 +305,7 @@ return [
         'quest'         => 'Choix d\'une quête',
         'race'          => 'Choix d\'une race',
         'tag'           => 'Choix d\'une étiquette',
+        'template'      => 'Choix d\'un modèle',
         'timeline'      => 'Choix d\'une chronologie',
         'type'          => 'Type de l\'entité',
         'user'          => 'Choix d\'un utilisateur',

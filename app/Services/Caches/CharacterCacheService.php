@@ -51,9 +51,6 @@ class CharacterCacheService extends BaseCache
         return $data;
     }
 
-    /**
-     * @return $this
-     */
     public function clearSuggestion(): self
     {
         $this->forget(

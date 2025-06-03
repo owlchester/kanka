@@ -11,7 +11,8 @@ return [
         'name'  => 'Tytuł',
     ],
     'helpers'       => [
-        'new'   => 'Dodaj nowy komentarz do tego elementu.',
+        'new'           => 'Dodaj nowy komentarz do tego elementu.',
+        'visibility'    => 'Zmienia widoczność komentarza :name.',
     ],
     'placeholders'  => [
         'name'  => 'Tytuł komentarza',

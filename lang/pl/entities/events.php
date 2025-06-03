@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'create'    => [
+        'helper'    => 'Tworzy epizod łączący :name z kalendarzem.',
+    ],
     'fields'    => [
         'type'  => 'Rodzaj epizodu',
     ],

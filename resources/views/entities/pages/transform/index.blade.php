@@ -16,8 +16,8 @@
         <x-box>
             <x-grid type="1/1">
                 <x-helper>
-                    {{ __('entities/transform.panel.description') }}
-                    <x-slot name="docs">https://docs.kanka.io/en/latest/guides/transform.html</x-slot>
+                    <p>{{ __('entities/transform.panel.description') }}</p>
+                    <x-slot name="docs">guides/transform.html</x-slot>
                 </x-helper>
 
 
@@ -28,7 +28,7 @@
 
             <x-dialog.footer>
                 <button class="btn2 btn-primary">
-                    <i class="fa-solid fa-exchange-alt" aria-hidden="true"></i>
+                    <x-icon class="fa-regular fa-exchange-alt" />
                     {{ __('entities/transform.actions.transform') }}
                 </button>
             </x-dialog.footer>

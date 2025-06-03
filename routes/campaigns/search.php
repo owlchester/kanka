@@ -1,31 +1,43 @@
 <?php
 
+use App\Http\Controllers\Search\AttributeController;
+use App\Http\Controllers\Search\CalendarController;
+use App\Http\Controllers\Search\CampaignController;
+use App\Http\Controllers\Search\FullTextController;
+use App\Http\Controllers\Search\ImageController;
+use App\Http\Controllers\Search\ListController;
+use App\Http\Controllers\Search\LiveController;
+use App\Http\Controllers\Search\MarkerController;
+use App\Http\Controllers\Search\RecentController;
+use App\Http\Controllers\Search\TemplateController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 // Old Search
-Route::get('/w/{campaign}/search', [App\Http\Controllers\SearchController::class, 'search'])->name('search');
+Route::get('/w/{campaign}/search', [SearchController::class, 'search'])->name('search');
 
-Route::get('/w/{campaign}/search/markers', [App\Http\Controllers\Search\MarkerController::class, 'index'])->name('markers.find');
-Route::get('/w/{campaign}/search/images', 'Search\ImageSearchController@index')->name('images.find');
+Route::get('/w/{campaign}/search/markers', [MarkerController::class, 'index'])->name('markers.find');
+Route::get('/w/{campaign}/search/images', [ImageController::class, 'index'])->name('images.find');
 
-Route::get('/w/{campaign}/search/members', 'Search\CampaignSearchController@members')->name('find.campaign.members');
-Route::get('/w/{campaign}/search/roles', 'Search\CampaignSearchController@roles')->name('find.campaign.roles');
+Route::get('/w/{campaign}/search/members', [CampaignController::class, 'members'])->name('find.campaign.members');
+Route::get('/w/{campaign}/search/roles', [CampaignController::class, 'roles'])->name('find.campaign.roles');
 
-// Entity Search
-Route::get('/w/{campaign}/search/entity-calendars', 'Search\CalendarController@index')->name('search.calendars');
-Route::get('/w/{campaign}/search/attributes/{entity}', 'Search\AttributeSearchController@index')->name('search.attributes');
+Route::get('/w/{campaign}/search/entity-calendars', [CalendarController::class, 'index'])->name('search.calendars');
+Route::get('/w/{campaign}/search/months', [CalendarController::class, 'months'])->name('search.calendar-months');
+
+Route::get('/w/{campaign}/search/entities/{entity}/attributes', [AttributeController::class, 'index'])->name('search.attributes');
 
 // Global Entity Search
-Route::get('/w/{campaign}/search/reminder-entities', 'Search\LiveController@reminderEntities')->name('search.entities-with-reminders');
-Route::get('/w/{campaign}/search/relation-entities', 'Search\LiveController@relationEntities')->name('search.entities-with-relations');
-Route::get('/w/{campaign}/search/tag-children', 'Search\LiveController@tagChildren')->name('search.tag-children');
-Route::get('/w/{campaign}/search/ability-entities', 'Search\LiveController@abilityEntities')->name('search.ability-entities');
-Route::get('/w/{campaign}/search/organisation-member', 'Search\LiveController@organisationMembers')->name('search.organisation-member');
-Route::get('/w/{campaign}/search/months', 'Search\CalendarController@months')->name('search.calendar-months');
+Route::get('/w/{campaign}/search/reminder-entities', [LiveController::class, 'reminderEntities'])->name('search.entities-with-reminders');
+Route::get('/w/{campaign}/search/relation-entities', [LiveController::class, 'relationEntities'])->name('search.entities-with-relations');
+Route::get('/w/{campaign}/search/tag-children', [LiveController::class, 'tagChildren'])->name('search.tag-children');
+Route::get('/w/{campaign}/search/ability-entities', [LiveController::class, 'abilityEntities'])->name('search.ability-entities');
+Route::get('/w/{campaign}/search/organisation-member', [LiveController::class, 'organisationMembers'])->name('search.organisation-member');
 
-Route::get('/w/{campaign}/search/type/{entity_type}', [App\Http\Controllers\Search\ListController::class, 'index'])->name('search-list');
+Route::get('/w/{campaign}/search/type/{entity_type}', [ListController::class, 'index'])->name('search-list');
+Route::get('/w/{campaign}/search/type/{entity_type}/templates', [TemplateController::class, 'index'])->name('search.templates');
 
-Route::get('/w/{campaign}/search/live', [App\Http\Controllers\Search\LiveController::class, 'index'])->name('search.live');
-Route::get('/w/{campaign}/search/recent', [App\Http\Controllers\Search\RecentController::class, 'index'])->name('search.recent');
+Route::get('/w/{campaign}/search/live', [LiveController::class, 'index'])->name('search.live');
+Route::get('/w/{campaign}/search/recent', [RecentController::class, 'index'])->name('search.recent');
 
-Route::get('/w/{campaign}/search/fulltext', [App\Http\Controllers\Search\FullTextController::class, 'index'])->name('search.fulltext');
+Route::get('/w/{campaign}/search/fulltext', [FullTextController::class, 'index'])->name('search.fulltext');

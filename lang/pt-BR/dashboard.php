@@ -6,13 +6,7 @@ return [
         'join'      => 'Entrar',
         'unfollow'  => 'Deixar de seguir',
     ],
-    'campaigns'     => [
-        'tabs'  => [
-            'modules'   => ':count Módulos',
-            'roles'     => ':count Cargos',
-            'users'     => ':count Usuários',
-        ],
-    ],
+    'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
             'edit'      => 'Editar nome & permissões',
@@ -58,20 +52,10 @@ return [
     'helpers'       => [
         'follow'    => 'Seguir uma campanha fará com que ela apareça no seletor de campanha (canto superior esquerdo) abaixo de suas campanhas.',
         'join'      => 'Essa campanha é aberta a novos membros. Clique para solicitar sua inscrição.',
-        'setup'     => 'Configure o dashboard de sua campanha.',
     ],
-    'notifications' => [
-        'modal' => [
-            'confirm'   => 'Entendido',
-            'title'     => 'Notificação Importante',
-        ],
-    ],
-    'recent'        => [
-        'title' => 'Lista de entidade :name',
-    ],
-    'settings'      => [
-        'title' => 'Configurar Dashboard',
-    ],
+    'notifications' => [],
+    'recent'        => [],
+    'settings'      => [],
     'setup'         => [
         'actions'   => [
             'add'               => 'Adicionar um widget',
@@ -100,16 +84,12 @@ return [
     ],
     'title'         => 'Dashboard',
     'widgets'       => [
-        'actions'                   => [
-            'advanced-options'  => 'Opções avançadas',
-        ],
         'advanced_options_boosted'  => 'Habilite mais opções como mostrar fixados com uma :boosted_campaign.',
         'calendar'                  => [
             'actions'           => [
                 'next'      => 'Alterar data para o dia seguinte',
                 'previous'  => 'Alterar data para o dia anterior',
             ],
-            'events_today'      => 'Hoje',
             'previous_events'   => 'Anterior',
             'upcoming_events'   => 'Posterior',
         ],
@@ -129,7 +109,6 @@ return [
             'optional-entity'   => 'Link para entidade',
             'order'             => 'Ordenação',
             'size'              => 'Tamanho',
-            'text'              => 'Texto',
             'width'             => 'Largura',
         ],
         'helpers'                   => [

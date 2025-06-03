@@ -7,7 +7,7 @@
             <i class="fa-light fa-grip-vertical handle cursor-move" aria-hidden="true"/>
         </div>
         <div class="w-6 md:w-8 pt-2" v-else>
-            <i class="fa-solid fa-user-secret" aria-hidden="true"/>
+            <i class="fa-regular fa-user-secret" aria-hidden="true"/>
         </div>
         <div class="w-6 md:w-8 pt-2">
             <input type="checkbox"

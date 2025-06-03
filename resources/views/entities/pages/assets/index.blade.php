@@ -12,9 +12,7 @@
 @section('entity-header-actions')
     <div class="header-buttons flex flex-wrap gap-2 items-center justify-end">
         @can('update', $entity)
-            <a href="https://docs.kanka.io/en/latest/features/assets.html" target="_blank" class="btn2 btn-ghost btn-sm">
-                <x-icon class="question" /> {{ __('crud.actions.help') }}
-            </a>
+            <x-learn-more url="features/assets.html" />
             @include('entities.pages.assets._buttons')
         @endcan
         @include('entities.headers.actions', ['edit' => false])

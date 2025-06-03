@@ -1,5 +1,5 @@
 <div>
-    <table class="table table-hover m-0 mb-2 w-full shadow-xs bg-box rounded">
+    <table class="table table-hover bg-box shadow-xs rounded">
         <thead>
             <tr>
                 <th wire:click="sortBy('status')" style="cursor: pointer;">

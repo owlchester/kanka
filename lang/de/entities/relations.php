@@ -59,7 +59,6 @@ return [
     'helper'            => 'Richten Sie Beziehungen zwischen Objekten mit Einstellungen und Sichtbarkeit ein. Beziehungen können auch an das Menü der Berechtigung angeheftet werden.',
     'helpers'           => [
         'no_relations'  => 'Dieses Objekt hat derzeit keine Beziehungen zu anderen Objekten der Kampagne.',
-        'popup'         => 'Objekte der Kampagne können über Beziehungen miteinander verknüpft werden. Diese können eine Beschreibung, eine Einstellungsbewertung, eine Sichtbarkeit haben, um zu steuern, wer eine Beziehung sieht, und mehr.',
     ],
     'hints'             => [
         'attitude'          => 'In diesem optionalen Feld können Sie die Standardordnungsbeziehungen definieren, sie wird in absteigender Reihenfolge angezeigt.',

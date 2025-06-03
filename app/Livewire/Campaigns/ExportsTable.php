@@ -4,6 +4,7 @@ namespace App\Livewire\Campaigns;
 
 use App\Models\Campaign;
 use App\Models\CampaignExport;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -102,15 +103,25 @@ class ExportsTable extends Component
             return '';
         }
         if ($model->path && Storage::disk('s3')->exists($model->path)) {
+            // Sometimes there are bugs and a job doesn't get queued to delete the file.
+            // This is a dirty hack in the meantime
+            if ($model->created_at->diffInHours(Carbon::now()) > config('limits.campaigns.export')) {
+                Storage::disk('s3')->delete($model->path);
+
+                return '';
+            }
             if (Storage::disk('s3')->visibility($model->path) == 'private') {
                 Storage::disk('s3')->setVisibility($model->path, 'public');
             }
-            $html = '<a class="block break-all truncate" href="' . Storage::disk('s3')->url($model->path) . '">' . __('campaigns/export.actions.download') . '</a>';
+            $html = '<a class="flex items-center gap-1" href="' . Storage::disk('s3')->url($model->path) . '">' .
+                '<i class="fa-regular fa-download" aria-hidden="true"></i>' .
+                __('campaigns/export.actions.download') .
+                '</a>';
 
             return $html;
         }
 
-        return '<span class="text-neutral-content">' . __('campaigns/export.expired') . '</span>';
+        return '<span class="text-neutral-content italic">' . __('campaigns/export.expired') . '</span>';
     }
 
     public function sortIcon(): string
@@ -123,6 +134,5 @@ class ExportsTable extends Component
         }
 
         return '<i class="' . $icon . ' !mr-0"></i>';
-
     }
 }

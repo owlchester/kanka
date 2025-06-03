@@ -168,14 +168,14 @@ abstract class MiscModel extends Model
         if (! isset($this->hasRelations)) {
             $actions[] = [
                 'route' => route('entities.relations.index', [$campaign, $this->entity]),
-                'icon' => 'fa-solid fa-users',
+                'icon' => 'fa-regular fa-circle-nodes',
                 'label' => 'crud.tabs.connections',
             ];
 
             if ($campaign->enabled('inventories')) {
                 $actions[] = [
                     'route' => route('entities.inventory', [$campaign, $this->entity]),
-                    'icon' => 'fa-solid fa-gem',
+                    'icon' => 'fa-regular fa-gem',
                     'label' => 'crud.tabs.inventory',
                 ];
             }
@@ -187,7 +187,7 @@ abstract class MiscModel extends Model
             }
             $actions[] = [
                 'route' => route('entities.edit', [$campaign, $this->entity]),
-                'icon' => 'fa-solid fa-edit',
+                'icon' => 'edit',
                 'label' => 'crud.edit',
             ];
         }

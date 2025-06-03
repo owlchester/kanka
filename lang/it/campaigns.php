@@ -401,7 +401,6 @@ return [
             'connections'       => 'Interfaccia connessioni dell\'entità predefinita',
             'connections_mode'  => 'Modalità Esploratore di Relazioni predefinita',
             'entity_history'    => 'Cronologia dell\'entità',
-            'entity_image'      => 'Immagine dell\'entità',
             'member_list'       => 'Lista dei membri della campagna',
             'post_collapsed'    => 'Valore predefinito del nuovo post ripiegato',
         ],
@@ -413,7 +412,6 @@ return [
             'other'             => 'Altre opzioni grafiche per la campagna',
             'post_collapsed'    => 'Quando crei un nuovo post in un\'entità, seleziona il valore predefinito del campo ripiegato.',
             'theme'             => 'Visualizza la campagna nel tema dell\'utente o usa uno dei temi seguenti per tutti gli utenti.',
-            'tooltip'           => 'Controlla quale informazione è visibile passando il mouse sul nome di un\'entità nella sua descrizione popup.',
         ],
         'members'           => [
             'hidden'    => 'Visibile solo agli amministratori della campagna',

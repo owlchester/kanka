@@ -21,16 +21,11 @@
             <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.modules') }}
             </h3>
-
-            <a href="//docs.kanka.io/en/latest/features/campaigns/modules.html"
-               target="_blank" class="btn2 btn-sm btn-ghost">
-                <x-icon class="question" />
-                {!! __('crud.actions.help') !!}
-            </a>
+            <x-learn-more url="features/campaigns/modules.html" />
             @can('update', $campaign)
             @if ($canReset)
                 <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="reset-confirm">
-                    <i class="fa-solid fa-eraser" aria-hidden="true"></i>
+                    <i class="fa-regular fa-eraser" aria-hidden="true"></i>
                     {{ __('crud.actions.reset') }}
                 </a>
             @endif
@@ -54,8 +49,10 @@
     <x-dialog id="rename-dialog" :loading="true"></x-dialog>
 
     <x-dialog id="reset-confirm" :title="__('campaigns/modules.reset.title')">
-        <x-helper>{{ __('campaigns/modules.reset.warning') }}</x-helper>
-        <x-helper>{{ __('campaigns/modules.reset.default') }}</x-helper>
+        <x-helper>
+            <p>{{ __('campaigns/modules.reset.warning') }}</p>
+            <p>{{ __('campaigns/modules.reset.default') }}</p>
+        </x-helper>
 
         <div class="grid grid-cols-2 gap-2 w-full">
             <x-buttons.confirm type="ghost" full="true" dismiss="dialog">

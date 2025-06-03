@@ -38,7 +38,6 @@ abstract class DatagridFilter
 
     /**
      * @param  string|array  $name
-     * @return $this
      */
     protected function add($name): self
     {
@@ -49,8 +48,6 @@ abstract class DatagridFilter
 
     /**
      * Add the location filters
-     *
-     * @return $this
      */
     protected function location(): self
     {
@@ -74,8 +71,6 @@ abstract class DatagridFilter
 
     /**
      * Add the locations filters
-     *
-     * @return $this
      */
     protected function locations(): self
     {
@@ -100,8 +95,6 @@ abstract class DatagridFilter
 
     /**
      * Add the races filters
-     *
-     * @return $this
      */
     protected function races(): self
     {
@@ -126,8 +119,6 @@ abstract class DatagridFilter
 
     /**
      * Add the organisations filters
-     *
-     * @return $this
      */
     protected function organisations(): self
     {
@@ -152,8 +143,6 @@ abstract class DatagridFilter
 
     /**
      * Add the families filters
-     *
-     * @return $this
      */
     protected function families(): self
     {
@@ -178,8 +167,6 @@ abstract class DatagridFilter
 
     /**
      * Add the character filters
-     *
-     * @return $this
      */
     protected function character(string $field = 'character_id'): self
     {
@@ -202,8 +189,6 @@ abstract class DatagridFilter
 
     /**
      * Add the character filters
-     *
-     * @return $this
      */
     protected function journal(): self
     {
@@ -226,8 +211,6 @@ abstract class DatagridFilter
 
     /**
      * Add the tags filters
-     *
-     * @return $this
      */
     protected function tags(): self
     {
@@ -250,8 +233,6 @@ abstract class DatagridFilter
 
     /**
      * Add the is_private
-     *
-     * @return $this
      */
     protected function isPrivate(): self
     {
@@ -265,8 +246,6 @@ abstract class DatagridFilter
 
     /**
      * Add the entity has an image
-     *
-     * @return $this
      */
     protected function hasImage(): self
     {
@@ -277,8 +256,6 @@ abstract class DatagridFilter
 
     /**
      * Add the entity has posts
-     *
-     * @return $this
      */
     protected function hasPosts(): self
     {
@@ -288,9 +265,17 @@ abstract class DatagridFilter
     }
 
     /**
+     * Add the entity has entry
+     */
+    protected function hasEntry(): self
+    {
+        $this->filters[] = 'has_entry';
+
+        return $this;
+    }
+
+    /**
      * Add the entity has attributes
-     *
-     * @return $this
      */
     protected function hasAttributes(): self
     {
@@ -301,8 +286,6 @@ abstract class DatagridFilter
 
     /**
      * Add the has image
-     *
-     * @return $this
      */
     protected function hasEntityFiles(): self
     {
@@ -313,8 +296,6 @@ abstract class DatagridFilter
 
     /**
      * Add the (real) date filter
-     *
-     * @return $this
      */
     protected function date(): self
     {
@@ -325,8 +306,6 @@ abstract class DatagridFilter
 
     /**
      * Add the attributes selector
-     *
-     * @return $this
      */
     protected function attributes(): self
     {
@@ -337,8 +316,6 @@ abstract class DatagridFilter
 
     /**
      * Add the connection selector
-     *
-     * @return $this
      */
     protected function connections(): self
     {
@@ -349,8 +326,6 @@ abstract class DatagridFilter
 
     /**
      * Add the date range filter
-     *
-     * @return $this
      */
     protected function dateRange(): self
     {
@@ -361,8 +336,6 @@ abstract class DatagridFilter
 
     /**
      * Add the is template filter
-     *
-     * @return $this
      */
     protected function template(): self
     {

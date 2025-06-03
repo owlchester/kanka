@@ -59,7 +59,6 @@ return [
     'helper'            => 'Crea relaciones entre entidades y configura su actitud y visibilidad. Las relaciones también se pueden fijar al menú de la entidad.',
     'helpers'           => [
         'no_relations'  => 'Esta entidad no tiene actualmente ninguna conexión con otras entidades de la campaña.',
-        'popup'         => 'Las entidades de la campaña pueden vincularse entre sí mediante conexiones. Estas pueden tener una descripción, una valoración de actitud, una visibilidad para controlar quién ve una conexión, etc.',
     ],
     'hints'             => [
         'attitude'          => 'Aquí se puede definir opcionalmente el orden en el que las relaciones aparecen por defecto de forma descendiente.',

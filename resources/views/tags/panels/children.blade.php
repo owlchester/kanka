@@ -28,7 +28,7 @@ $direct = $entity->child->entities()->count();
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">
         <button data-url="{{ route('tags.transfer', [$campaign, $entity->child]) }}" data-toggle="dialog" data-target="primary-dialog" class="btn2 btn-sm">
-            <x-icon class="fa-solid fa-arrow-right"/>
+            <x-icon class="fa-regular fa-arrow-right"/>
             <span class="hidden xl:inline">{{ __('tags.transfer.transfer') }}</span>
         </button>
 
@@ -68,7 +68,9 @@ $direct = $entity->child->entities()->count();
 @if ($all === 0)
 <div class="" id="tag-children">
     <x-box>
-        <x-helper :text="__('tags.helpers.no_children')" />
+        <x-helper>
+            <p>{{ __('tags.helpers.no_children') }}</p>
+        </x-helper>
         @can('update', $entity)
             <a href="{{ $addEntityUrl }}" class="btn2 btn-primary btn-sm"
                 data-toggle="dialog" data-target="primary-dialog" data-url="{{ $addEntityUrl }}">

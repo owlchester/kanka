@@ -1,11 +1,14 @@
 <?php /** @var \App\Models\Ability $model */?>
-{{ csrf_field() }}
+
+<x-helper>
+    <p>{{ __('abilities.children.create.helper', ['name' => $model->name]) }}</p>
+</x-helper>
 
 <x-grid type="1/1">
     <x-forms.foreign
         field="entities"
         required
-        label="abilities.show.tabs.entities"
+        label="entities.entities"
         multiple="multiple"
         name="entities[]"
         id="entities[]"

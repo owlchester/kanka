@@ -19,11 +19,13 @@ class EntityTypeResource extends JsonResource
         return [
             'id' => $this->id,
             'code' => $this->code,
-            'singular' => $this->singular,
-            'plural' => $this->plural,
+            'singular' => $this->name(),
+            'plural' => $this->plural(),
             'icon' => $this->icon,
             'is_special' => $this->isSpecial(),
             'is_enabled' => $this->isEnabled(),
+            'is_nested' => $this->isNested(),
+            'has_table' => $this->hasTable(),
         ];
     }
 }

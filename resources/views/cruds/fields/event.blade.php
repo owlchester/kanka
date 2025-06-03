@@ -18,7 +18,7 @@ if (isset($model) && $model->parent) {
     :allowNew="$allowNew ?? true"
     :allowClear="$allowClear ?? true"
     :parent="$isParent ?? false"
-    :route="route('search-list', [$campaign, config('entities.ids.event')] + (isset($model) ? ['exclude' => $model->id] : []))"
+    :route="route('search-list', [$campaign, config('entities.ids.event')] + (isset($entity) ? ['exclude' => $entity->id] : []))"
     :selected="$preset"
     :dropdownParent="$dropdownParent ?? null"
     :entityTypeID="config('entities.ids.event')">

@@ -12,7 +12,7 @@
 
 @if ($unfilteredCount != $filteredCount)
     <x-helper>
-        {{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}
+        <p>{{ __('crud.filters.filtered', ['count' => $filteredCount, 'total' => $unfilteredCount, 'entity' => __('entities.' . $name)]) }}</p>
     </x-helper>
 @endif
 

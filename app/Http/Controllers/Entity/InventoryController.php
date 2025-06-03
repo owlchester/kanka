@@ -50,11 +50,6 @@ class InventoryController extends Controller
         ));
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function create(Campaign $campaign, Entity $entity)
     {
         $this->authorize('update', $entity);
@@ -82,7 +77,7 @@ class InventoryController extends Controller
         }
         $count = 0;
         $itemIds = $request->post('item_id');
-        if (isset($itemIds)) {
+        if (isset($itemIds) && is_array($itemIds)) {
             foreach ($itemIds as $id) {
                 $data = $request->only($this->fillable);
                 $data['item_id'] = $id;

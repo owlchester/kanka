@@ -76,8 +76,6 @@ class PermissionService
 
     /**
      * Set the desired action
-     *
-     * @return $this
      */
     public function action(Permission $permission): self
     {
@@ -209,8 +207,6 @@ class PermissionService
 
     /**
      * Grant a permission ad-hoc
-     *
-     * @return $this
      */
     public function grant(Entity $entity): self
     {
@@ -232,8 +228,6 @@ class PermissionService
 
     /**
      * Load the permissions for posts
-     *
-     * @return $this
      */
     protected function loadPostPermissions(): self
     {
@@ -267,8 +261,6 @@ class PermissionService
 
     /**
      * Load the permissions of the user (roles and personal permissions)
-     *
-     * @return $this
      */
     private function loadPermissions(): self
     {
@@ -303,8 +295,6 @@ class PermissionService
 
     /**
      * Load the user's roles
-     *
-     * @return $this
      */
     protected function loadRoles(): self
     {
@@ -393,7 +383,6 @@ class PermissionService
                 $this->entityTypesIds[] = $permission->entity_type_id;
             }
         } elseif ($permission->access && ! in_array($permission->entity_id, $this->entityIds)) {
-
             // This permission targets an entity directly
             $this->entityIds[] = $permission->entity_id;
 

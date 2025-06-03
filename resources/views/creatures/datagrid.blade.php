@@ -12,13 +12,6 @@
             'type' => 'parent',
         ],
         [
-            'label' => \App\Facades\Module::plural(config('entities.ids.creature'), __('entities.creatures')),
-            'render' => function($model) {
-                return $model->children_count;
-            },
-            'disableSort' => true,
-        ],
-        [
             'label' => \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')),
             'render' => function($model) use ($campaign) {
                 $locations = [];
@@ -35,26 +28,33 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="fa-solid fa-skull-cow" title="' . __('creatures.fields.is_extinct') . '"></i>',
+            'label' => '<i class="fa-regular fa-skull-cow" title="' . __('creatures.fields.is_extinct') . '"></i>',
             'field' => 'is_extinct',
             'render' => function($model) {
                 if ($model->isExtinct()) {
-                    return '<i class="fa-solid fa-skull-cow" title="' . __('creatures.fields.is_extinct') . '"></i>';
+                    return '<i class="fa-regular fa-skull-cow" title="' . __('creatures.fields.is_extinct') . '"></i>';
                 }
                 return '';
             },
             'class' => 'icon'
         ],
         [
-            'label' => '<i class="ra ra-skull" title="' . __('characters.fields.is_dead') . '"></i>',
+            'label' => '<i class="fa-regular fa-skull" title="' . __('characters.fields.is_dead') . '"></i>',
             'field' => 'is_dead',
             'render' => function($model) {
                 if ($model->isDead()) {
-                    return '<i class="ra ra-skull" title="' . __('characters.fields.is_dead') . '"></i>';
+                    return '<i class="fa-regular fa-skull" title="' . __('characters.fields.is_dead') . '"></i>';
                 }
                 return '';
             },
             'class' => 'icon'
+        ],
+        [
+            'label' => '<i class="' . \App\Facades\Module::duoIcon('creature') . '" title="' . \App\Facades\Module::plural(config('entities.ids.creature'), __('entities.creatures')) . '"></i>',
+            'render' => function($model) {
+                return number_format($model->children_count);
+            },
+            'disableSort' => true,
         ],
         [
             'type' => 'is_private',

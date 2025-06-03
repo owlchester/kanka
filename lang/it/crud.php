@@ -149,7 +149,6 @@ return [
         'name'              => 'Nome',
         'parent'            => 'Genitore',
         'position'          => 'Posizione',
-        'privacy'           => 'Privacy',
         'replace_mentions'  => 'Sostituire le menzioni degli attributi nella voce con quelle della nuova entità.',
         'template'          => 'Modello',
         'tooltip'           => 'Tooltip',
@@ -210,7 +209,6 @@ return [
     ],
     'helpers'           => [
         'copy_options'  => 'Copia i seguenti elementi correlati alla fonte nella nuova entità.',
-        'learn_more'    => 'Scopri di più riguardo alla funzione nella nostra :documentation.',
         'linking'       => 'Collega ad altre entità',
         'nested_parent' => 'Visualizzazione dei figli di :parent.',
         'pagination'    => [

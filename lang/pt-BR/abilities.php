@@ -8,7 +8,6 @@ return [
         ],
         'create'        => [
             'attach_success'    => '{1} Anexada a habilidade :name a :count entidade.|[2,*] Anexada a habilidade :name a :count entidades.',
-            'modal'             => 'Anexar :name às entidades',
         ],
         'description'   => 'Entidades que possuem a habilidade',
         'title'         => 'Entidades com a Habilidade :name',

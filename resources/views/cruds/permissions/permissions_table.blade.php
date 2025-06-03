@@ -21,11 +21,11 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
 ?>
 
 <x-helper>
-    {!! __('crud.permissions.helpers.setup', [
+    <p>{!! __('crud.permissions.helpers.setup', [
         'allow' => '<code>' . __('crud.permissions.actions.bulk_entity.allow') . '</code>',
         'deny' => '<code>' . __('crud.permissions.actions.bulk_entity.deny') . '</code>',
         'inherit' => '<code>' . __('crud.permissions.actions.bulk_entity.inherit') . '</code>',
-    ]) !!}
+    ]) !!}</p>
 </x-helper>
 
 <div id="crud_permissions" class="flex flex-col gap-2">
@@ -43,7 +43,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
         </div>
         <div class="" data-title="{{ __('permissions.helpers.delete') }}" data-tooltip>
             <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.delete') }}</span>
-            <x-icon class="fa-regular fa-trash md:hidden" />
+            <x-icon class="fa-regular fa-trash-can md:hidden" />
         </div>
         <div class="" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}" data-tooltip>
             <span class="hidden md:inline font-bold">{{ __('entities.posts') }}</span>
@@ -64,7 +64,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
                         {!! $role->name !!}
                     </a>
                     @if ($role->isPublic() && !$campaign->isPublic())
-                        <x-icon class="fa-solid fa-exclamation-triangle" tooltip :title="__('campaigns.roles.permissions.helpers.not_public')" />
+                        <x-icon class="fa-regular fa-exclamation-triangle" tooltip :title="__('campaigns.roles.permissions.helpers.not_public')" />
                     @endif
                 @else
                     {!! $role->name !!}
@@ -148,7 +148,9 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
     @endforeach
 
     @if (isset($skipUsers) && $skipUsers && $campaign->nonAdmins()->count() > config('limits.campaigns.members'))
-        <x-helper>{{ __('crud.permissions.too_many_members', ['number' => config('limits.campaigns.members')]) }}</x-helper>
+        <x-helper>
+            <p>{{ __('crud.permissions.too_many_members', ['number' => config('limits.campaigns.members')]) }}</p>
+        </x-helper>
         <input type="hidden" name="permissions_too_many" value="1" />
     @else
 
@@ -165,7 +167,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
             </div>
             <div class="" data-title="{{ __('permissions.helpers.delete') }}" data-tooltip>
                 <span class="hidden md:inline font-bold">{{ __('crud.permissions.actions.delete') }}</span>
-                <x-icon class="fa-regular fa-trash md:hidden"  />
+                <x-icon class="fa-regular fa-trash-can md:hidden"  />
             </div>
             <div class="" data-title="{{ __('campaigns.roles.permissions.helpers.entity_note') }}" data-tooltip>
                 <span class="hidden md:inline font-bold">{{ __('entities.posts') }}</span>
@@ -185,8 +187,7 @@ $moduleName = isset($entityType) ? $entityType->name() : $entity->entityType->na
                 <div class="col-span-2 md:col-span-1 flex items-center gap-2">
                     <div class="flex-none">
                         @if ($member->user->hasAvatar())
-                            <div class="rounded-full w-8 h-8 cover-background" style="background-image: url('{{ $member->user->getAvatarUrl() }}')" title="{{ $member->user->name }}">
-                            </div>
+                            <x-users.avatar :user="$member->user" class="w-8 h-8" />
                         @else
                             <div class="rounded-full w-8 h-8 cover-background bg-neutral text-neutral-content uppercase flex items-center justify-center">
                                 {{ $member->user->initials() }}

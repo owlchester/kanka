@@ -7,13 +7,7 @@ return [
         'join'      => 'Dołącz',
         'unfollow'  => 'Przestań śledzić',
     ],
-    'campaigns'     => [
-        'tabs'  => [
-            'modules'   => ':count modułów',
-            'roles'     => ':count ról',
-            'users'     => '"count użytkowników',
-        ],
-    ],
+    'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
             'edit'      => 'Edytuj',
@@ -59,20 +53,10 @@ return [
     'helpers'       => [
         'follow'    => 'Śledzenie kampanii sprawi, że pojawi się w menu przełączania kampanii (lewy górny róg), pod twoimi własnymi kampaniami.',
         'join'      => 'Kampania jest otwarta na nowych członków. Kliknij, by do niej dołączyć.',
-        'setup'     => 'Skonfiguruj pulpit kampanii.',
     ],
-    'notifications' => [
-        'modal' => [
-            'confirm'   => 'Rozumiem',
-            'title'     => 'Ważne ogłoszenia',
-        ],
-    ],
-    'recent'        => [
-        'title' => 'Ostatnio zmieniany element :name',
-    ],
-    'settings'      => [
-        'title' => 'Ustawienia pulpitu',
-    ],
+    'notifications' => [],
+    'recent'        => [],
+    'settings'      => [],
     'setup'         => [
         'actions'   => [
             'add'               => 'Dodaj widżet',
@@ -102,16 +86,12 @@ return [
     ],
     'title'         => 'Pulpit',
     'widgets'       => [
-        'actions'                   => [
-            'advanced-options'  => 'Opcje zaawansowane',
-        ],
         'advanced_options_boosted'  => 'Więcej opcji, na przykład wyświetlanie przypięć, zapewnia :boosted_campaing.',
         'calendar'                  => [
             'actions'           => [
                 'next'      => 'Zmień datę na kolejny dzień',
                 'previous'  => 'Zmień datę na poprzedni dzień',
             ],
-            'events_today'      => 'Dzisiaj',
             'previous_events'   => 'Poprzedni',
             'upcoming_events'   => 'Nadchodzące',
         ],
@@ -132,7 +112,6 @@ return [
             'optional-entity'   => 'Odnośnik do elementu',
             'order'             => 'Kolejność',
             'size'              => 'Rozmiar',
-            'text'              => 'Tekst',
             'width'             => 'Szerokość',
         ],
         'helpers'                   => [

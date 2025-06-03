@@ -1,7 +1,7 @@
 <x-grid type="1/1">
     @if (!isset($entityAsset))
         <x-helper>
-            {{ __('entities/links.create.helper', ['name' => $entity->name]) }}
+            <p>{{ __('entities/links.create.helper', ['name' => $entity->name]) }}</p>
         </x-helper>
     @endif
     <x-forms.field

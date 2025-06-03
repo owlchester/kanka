@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'age'               => [],
     'api-filters'       => [
         'description'   => 'Les filtres suivants sont disponibles pour l\'API :name.',
         'title'         => 'Filtres d\'API',
@@ -13,7 +12,6 @@ return [
         'info'  => 'Pour quoi ces événements sont-ils affichés?',
         'title' => 'Widget de calendrier',
     ],
-    'dice'              => [],
     'entity_templates'  => [
         'link'  => 'Comment définir des modèles',
     ],
@@ -23,8 +21,6 @@ return [
     'link'              => [
         'description'   => 'Un lien vers une entité peut être facilement inséré en utilisant \'@\' dans le text. \'#\' peut être utilisé pour avoir une liste de mois depuis les calendriers de la campagne.',
     ],
-    'map'               => [],
-    'pins'              => [],
     'public'            => 'Une vidéo sur Youtube explique comment fonctionne les campagnes publiques.',
     'troubleshooting'   => [
         'description'       => 'Un membre de l\'équipe Kanka t\'as envoyé vers cette page. Sélectionnes une campagne dans la liste pour générer un jeton. Ce jeton nous permettra de rejoindre la campagne en tant qu\'administrateur.',

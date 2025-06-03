@@ -24,13 +24,6 @@
             }
         ],
         [
-            'label' => \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')),
-            'render' => function($model) {
-                return number_format($model->children_count);
-            },
-            'disableSort' => true,
-        ],
-        [
             'label' => __('tags.fields.children'),
             'render' => function($model) {
                 return number_format($model->entities_count);
@@ -38,26 +31,33 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="fa-solid fa-tag" data-title="' . __('tags.fields.is_auto_applied') . '" data-toggle="tooltip"></i>',
+            'label' => '<i class="fa-regular fa-wand-magic" data-title="' . __('tags.fields.is_auto_applied') . '" data-toggle="tooltip"></i>',
             'field' => 'is_auto_applied',
             'render' => function($model) {
                 if ($model->isAutoApplied()) {
-                    return '<i class="fa-solid fa-tag" data-title="' . __('tags.fields.is_auto_applied') . '" data-toggle="tooltip"></i>';
+                    return '<i class="fa-regular fa-wand-magic" data-title="' . __('tags.fields.is_auto_applied') . '" data-toggle="tooltip"></i>';
                 }
                 return '';
             },
             'class' => 'icon'
         ],
         [
-            'label' => '<i class="fa-solid fa-tag" data-title="' . __('tags.fields.is_hidden') . '" data-toggle="tooltip"></i>',
+            'label' => '<i class="fa-regular fa-eye-slash" data-title="' . __('tags.fields.is_hidden') . '" data-toggle="tooltip"></i>',
             'field' => 'is_hidden',
             'render' => function($model) {
                 if ($model->isHidden()) {
-                    return '<i class="fa-solid fa-tag" data-title="' . __('tags.fields.is_hidden') . '" data-toggle="tooltip"></i>';
+                    return '<i class="fa-regular fa-eye-slash" data-title="' . __('tags.fields.is_hidden') . '" data-toggle="tooltip"></i>';
                 }
                 return '';
             },
             'class' => 'icon'
+        ],
+        [
+            'label' => '<i class="' . \App\Facades\Module::duoIcon('tag') . '" title="' . \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')) . '"></i>',
+            'render' => function($model) {
+                return number_format($model->children_count);
+            },
+            'disableSort' => true,
         ],
         [
             'type' => 'is_private',

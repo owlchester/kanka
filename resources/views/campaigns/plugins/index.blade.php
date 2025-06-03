@@ -6,7 +6,7 @@
         {{ __('campaigns.show.tabs.plugins') }}
     </h3>
     <a href="{{ config('marketplace.url') }}" class="btn2 btn-primary btn-sm">
-        {{ __('campaigns/plugins.actions.find-plugins') }} <x-icon class="fa-solid fa-external-link-alt"></x-icon>
+        {{ __('campaigns/plugins.actions.find-plugins') }} <x-icon class="link" />
     </a>
 </div>
 
@@ -23,9 +23,11 @@
         </div>
     @endif
 @else
-    <x-cta :campaign="$campaign">
-        <p>{!! __('campaigns/plugins.pitch', ['marketplace' => '<a href="' . config('marketplace.url') . '" target="_blank">' . __('footer.plugins'). '</a>']) !!}</p>
-    </x-cta>
+    <x-premium-cta :campaign="$campaign">
+        <p>
+            {!! __('campaigns/plugins.pitch', ['marketplace' => '<a href="' . config('marketplace.url') . '">' . __('footer.plugins'). '</a>']) !!}
+        </p>
+    </x-premium-cta>
 @endif
 
 

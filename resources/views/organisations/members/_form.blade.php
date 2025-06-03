@@ -16,7 +16,7 @@ $statuses = [
 
     @empty($member)
         <x-helper>
-            {{ __('organisations.members.create.helper', ['name' => $model->name]) }}
+            <p>{{ __('organisations.members.create.helper', ['name' => $model->name]) }}</p>
         </x-helper>
     @endif
 

@@ -1,6 +1,4 @@
-# Running kanka
-
-## Preface
+# 💻 Running Kanka
 
 Kanka is a dockerized self-hosted PHP application.
 
@@ -25,12 +23,13 @@ These developer docker instances are quite different from [kanka.io](https://kan
 
 ## Docker
 
-Kanka is set up to run with Docker and [Laravel Sail](https://laravel.com/docs/10.x/sail). It comes with several machines.
+Kanka is set up to run with Docker and [Laravel Sail](https://laravel.com/docs/11.x/sail). It comes with several machines.
 * Laravel Sail for running the Kanka PHP application
 * [Mariadb](https://mariadb.org/) for the database
 * [Redis](https://redis.com/) for the cache
 * [Minio](https://min.io/) for file storage
 * [Thumbor](https://www.thumbor.org/) for image thumbnails
+* [Mailpit](https://mailpit.axllent.org/) for email testing
 
 ### Prerequisite
 
@@ -141,4 +140,4 @@ sail down
 
 ### Sharing your local Kanka
 
-Do not make your Kanka instance accessible to the web! To share your Kanka instance with your friends, use the `sail share` command. Follow the [official documentation](https://laravel.com/docs/10.x/sail#sharing-your-site), or set up a reverse proxy in front of it.
+Do not make your Kanka instance accessible to the web! To share your Kanka instance with your friends, use the `sail share` command. Follow the [official documentation](https://laravel.com/docs/11.x/sail#sharing-your-site), or set up a reverse proxy in front of it.

@@ -10,7 +10,7 @@
                 </div>
                 <div class="relative">
                     <button class="btn2 btn-default btn-sm" @click="toggleFilters">
-                        <i class="fa-solid fa-filter" aria-hidden="true" />
+                        <i class="fa-regular fa-filter" aria-hidden="true" />
                         <span v-html="trans('order_by_' + filter)" class="hidden md:inline"></span>
                     </button>
                     <div class="border shadow rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-5 w-60" v-if="showFilters"  v-click-outside="onClickOutside">
@@ -23,15 +23,15 @@
             <div class="flex gap-2 self-end flex-wrap">
 
                 <button class="btn2 btn-default btn-sm" v-if="!hasSelection()" @click="selectAll">
-                    <i class="fa-solid fa-list-check" aria-hidden="true" />
+                    <i class="fa-regular fa-list-check" aria-hidden="true" />
                     <span v-html="trans('select_all')"></span>
                 </button>
                 <button class="btn2 btn-default btn-sm" v-if="hasSelection()" @click="deselectAll">
-                    <i class="fa-solid fa-xmark" aria-hidden="true" />
+                    <i class="fa-regular fa-xmark" aria-hidden="true" />
                     <span v-html="trans('deselect_all')"></span>
                 </button>
                 <button class="btn2 btn-primary btn-sm" v-if="hasSelection()" @click="bulkRecover">
-                    <i class="fa-solid fa-plus" aria-hidden="true" />
+                    <i class="fa-regular fa-plus" aria-hidden="true" />
                     <span v-html="trans('restore_selected')"></span>
                     <span v-html="countSelected()"></span>
                 </button>
@@ -154,7 +154,7 @@ const recoverElement = (model) => {
     recovering.value = true
     let data = {}
 
-    if (f.type_code === 'post') {
+    if (f.type === 'post') {
         data.posts = [f.id]
         data.entities = []
     } else {

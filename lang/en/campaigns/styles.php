@@ -52,6 +52,10 @@ return [
         'title'     => 'Update the theme override',
     ],
     'title'         => 'Theming',
+    'toggle'        => [
+        'disable'   => 'Style disabled successfully.',
+        'enable'    => 'Style enabled successfully.',
+    ],
     'update'        => [
         'success'   => 'Style :name updated.',
         'title'     => 'Update style',

@@ -1,5 +1,7 @@
 <div class="tab-pane" id="form-dashboard">
-    <x-helper :text="__('campaigns.helpers.dashboard')" />
+    <x-helper>
+        <p>{{ __('campaigns.helpers.dashboard') }}</p>
+    </x-helper>
 
     <x-grid type="1/1">
         <x-forms.field

@@ -7,13 +7,7 @@ return [
         'join'      => 'Pridať sa',
         'unfollow'  => 'Zrušiť sledovanie',
     ],
-    'campaigns'     => [
-        'tabs'  => [
-            'modules'   => '{1} :count modul|[2,4] :count moduly|[5,*] :count modulov',
-            'roles'     => '{1} :count rola|[2,4] :count role|[5,*] :count rolí',
-            'users'     => '{1} :count užívateľ|[2,4] :count užívatelia|[5,*] :count užívateľov',
-        ],
-    ],
+    'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
             'edit'      => 'Upraviť názov a oprávnenia',
@@ -59,20 +53,10 @@ return [
     'helpers'       => [
         'follow'    => 'Keď sleduješ nejakú kampaň, bude sa ti zobrazovať v prepínači kampaní (vpravo hore) pod tvojimi kampaňami.',
         'join'      => 'Táto kampaň je otvorená pre nových členov. Klikni sem na pridanie sa do nej.',
-        'setup'     => 'Nastav svoju nástenku kampane.',
     ],
-    'notifications' => [
-        'modal' => [
-            'confirm'   => 'Rozumiem',
-            'title'     => 'Dôležitý oznam',
-        ],
-    ],
-    'recent'        => [
-        'title' => 'Nedávno zmenené :name',
-    ],
-    'settings'      => [
-        'title' => 'Nastavenia nástenky',
-    ],
+    'notifications' => [],
+    'recent'        => [],
+    'settings'      => [],
     'setup'         => [
         'actions'   => [
             'add'               => 'Pridať widget',
@@ -102,16 +86,12 @@ return [
     ],
     'title'         => 'Nástenka',
     'widgets'       => [
-        'actions'                   => [
-            'advanced-options'  => 'Rozšírené možnosti',
-        ],
         'advanced_options_boosted'  => 'Aktivovať viac možností ako napr. zobrazovania značiek s :boosted_campaign.',
         'calendar'                  => [
             'actions'           => [
                 'next'      => 'Zmeniť dátum na nasledujúci deň',
                 'previous'  => 'Zmeniť dátum na predošlý deň',
             ],
-            'events_today'      => 'Dnes',
             'previous_events'   => 'Predošlé',
             'upcoming_events'   => 'Nasledujúce',
         ],
@@ -132,7 +112,6 @@ return [
             'optional-entity'   => 'Link k objektu',
             'order'             => 'Zoradenie',
             'size'              => 'Veľkosť',
-            'text'              => 'Text',
             'width'             => 'Šírka',
         ],
         'helpers'                   => [

@@ -12,16 +12,16 @@
             'type' => 'parent',
         ],
         [
-            'label' => '<i class="' . \App\Facades\Module::duoIcon('ability') . '" title="' . __('entities.abilities') . '"></i>',
+            'label' => '<i class="fa-regular fa-user" title="' . __('abilities.show.tabs.entities') . '"></i>',
             'render' => function($model) {
-                return number_format($model->children_count);
+                return number_format($model->entities_count);
             },
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="fa-solid fa-user" title="' . __('abilities.show.tabs.entities') . '"></i>',
+            'label' => '<i class="' . \App\Facades\Module::duoIcon('ability') . '" title="' . \App\Facades\Module::plural(config('entities.ids.ability'), __('entities.abilities')) . '"></i>',
             'render' => function($model) {
-                return number_format($model->entities_count);
+                return number_format($model->children_count);
             },
             'disableSort' => true,
         ],

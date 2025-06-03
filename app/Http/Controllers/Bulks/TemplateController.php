@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Bulks;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Bulks\Template;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\AttributeService;
@@ -32,7 +33,7 @@ class TemplateController extends Controller
             ->with('entities', $entities);
     }
 
-    public function apply(Request $request, Campaign $campaign, EntityType $entityType)
+    public function apply(Template $request, Campaign $campaign, EntityType $entityType)
     {
         $models = explode(',', $request->get('models'));
         if ($request->has('entities')) {

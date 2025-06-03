@@ -32,7 +32,7 @@
 
             <div class="flex flex-col gap-1" v-if="canManage">
                 <label class="font-extrabold flex gap-1 items-center">
-                    <i class="fa-solid fa-users" aria-hidden="true" />
+                    <i class="fa-regular fa-users" aria-hidden="true" />
                     <span  v-html="trans('visibility')"></span>
                 </label>
                 <select
@@ -54,7 +54,7 @@
                     @click="toggleMentions"
                 >
                     <div class="grow font-bold flex gap-1 items-center">
-                        <i class="fa-solid fa-cubes" aria-hidden="true" />
+                        <i class="fa-regular fa-cubes" aria-hidden="true" />
                         <span v-html="trans('used_in')"></span>
                     </div>
                     <i
@@ -76,11 +76,11 @@
                         class="rounded-xl bg-base-200 px-4 py-1 flex gap-1 items-center"
                     >
                         <i
-                            class="fa-solid fa-image"
+                            class="fa-regular fa-image"
                             v-if="mention.type === 'image'"
                             aria-hidden="true"
                         />
-                        <i class="fa-solid fa-pen" v-else aria-hidden="true" />
+                        <i class="fa-regular fa-pen" v-else aria-hidden="true" />
                         <span class="truncate" v-html="mention.name"></span>
                     </a>
                     <span class="text-neutral-content" v-if="!hasMentions()" v-html="trans('unused')"></span>
@@ -124,7 +124,7 @@
                     @click="focus"
                     class="rounded border p-2 flex gap-1 items-center"
                 >
-                    <i class="fa-solid fa-bullseye" aria-hidden="true" />
+                    <i class="fa-regular fa-bullseye" aria-hidden="true" />
                     <span class="truncate" v-html="trans('focus_point')"></span>
                 </button>
 
@@ -140,7 +140,7 @@
                 class="text-right text-neutral-content flex gap-1 self-end items-center text-xs"
                 v-if="saved"
             >
-                <i class="fa-solid fa-check-double" aria-hidden="true"></i>
+                <i class="fa-regular fa-check-double" aria-hidden="true"></i>
                 <span v-html="trans('saved')"></span>
             </div>
         </div>

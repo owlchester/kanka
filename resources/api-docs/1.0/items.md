@@ -121,7 +121,8 @@ To create a item, use the following endpoint.
 | `is_private` | `boolean` | If the item is only visible to `admin` members of the campaign |
 | `item_id` | `integer` | The ID of the item's parent item, if it has one |
 | `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
+| `tooltip`            | `string` | The item's tooltip (premium campaign feature)                   |
 
 ### Results
 

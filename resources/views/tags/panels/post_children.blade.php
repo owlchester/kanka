@@ -34,7 +34,9 @@ $all = $model->posts()->count();
 @if ($all === 0)
 <div class="" id="tag-children">
     <x-box>
-        <x-helper :text="__('tags.helpers.no_posts')" />
+        <x-helper>
+            <p>{{ __('tags.helpers.no_posts') }}</p>
+        </x-helper>
     </x-box>
 </div>
 @else

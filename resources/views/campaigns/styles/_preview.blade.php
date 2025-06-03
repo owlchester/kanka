@@ -58,7 +58,7 @@
                 <x-dropdowns.item link="#">
                     Action 2
                 </x-dropdowns.item>
-                <hr class="m-0" />
+                <x-dropdowns.divider />
                 <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content">
                     Action 3
                 </x-dropdowns.item>

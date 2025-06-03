@@ -22,7 +22,7 @@ return [
             'editing_partial'   => '{0} :count/:total connections were updated|{1} :count/:total connection was updated.|[2,*] :count/:total connection were updated.',
         ],
     ],
-    'call-to-action'    => 'Visually explore the connections of this entity and how it\'s connected to the rest of the campaign.',
+    'call-to-action'    => 'Visually explore how this entity connects to others in your campaign. See relationships, mentions, and shared history in a dynamic and interactive map.',
     'connections'       => [
         'map_point'         => 'Map point',
         'mention'           => 'Mention',
@@ -62,7 +62,6 @@ return [
     'helpers'           => [
         'description'   => 'Detail the nature of the connection between the two entities.',
         'no_relations'  => 'This entity doesn\'t currently have any connection to other entities of the campaign.',
-        'popup'         => 'Entities of the campaign can be linked together using connections. These can have a description, an attitude rating, a visibility to control who sees a connection, and more.',
     ],
     'hints'             => [
         'attitude'          => 'This optional field can be used to define the default order connections appear in by descending order.',

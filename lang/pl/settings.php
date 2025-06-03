@@ -4,8 +4,9 @@ return [
     'account'       => [
         '2fa'               => [
             'actions'               => [
-                'disable'   => 'Wyłącz autoryzację dwueatpową',
-                'finish'    => 'Skończ konfigurację i się zaloguj',
+                'disable'           => 'Wyłącz autoryzację dwueatpową',
+                'disable-confirm'   => 'Kliknij ponownie by potwierdzić',
+                'finish'            => 'Skończ konfigurację i się zaloguj',
             ],
             'activation_helper'     => 'Wykonuj poniższe polecenia by skonfigurować autoryzację dwuetapową.',
             'disable'               => [
@@ -254,7 +255,6 @@ return [
         'success'               => [
             'alternative'   => 'Zarejestrowaliśmy płatność. Otrzymasz powiadomienie kiedy tylko zostanie przetworzona i aktywujemy subskrypcję.',
             'callback'      => 'Subskrypcja udana. Zaktualizujemy twoje konto gdy tylko obsługujący płatności powiadomi nas o zmianie (to może potrwać kilka minut).',
-            'cancel'        => 'Anulowano subskrypcję. Pozostanie aktywna do końca okresu rozliczeniowego.',
             'currency'      => 'Zmieniono walutę rozliczenia.',
             'subscribed'    => 'Subskrypcja udana. Nie zapomnij o newsletterze głosowań społeczności, by zawsze wiedzieć kiedy rozpoczyna się głosowanie. Możesz zmienić ustawienia newslettera na stronie profilu.',
         ],

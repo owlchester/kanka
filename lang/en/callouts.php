@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'   => [
+        'subscription'  => 'Learn more about subscriptions',
+    ],
     'booster'   => [
         'actions'       => [
             'boost'         => 'Boost :campaign',
@@ -15,7 +18,7 @@ return [
         'multiple'      => 'To access these features, the campaign needs to be boosted.',
         'pitches'       => [
             'element-class' => 'Give this element a custom CSS class with a :boosted-campaign.',
-            'icon'          => 'Unlock millions of custom icons from FontAwesome with a :boosted-campaign.',
+            'icon'          => 'Unlock millions of custom icons like :example from :fontawesome with a :boosted-campaign.',
         ],
         'titles'        => [
             'boosted'       => 'Boosted feature',
@@ -23,9 +26,10 @@ return [
         ],
     ],
     'premium'   => [
-        'learn-more'    => 'What are premium campaigns?',
-        'limitation'    => 'To access this feature, premium features need to be enabled.',
-        'title'         => 'Premium campaign feature',
+        'learn-more'    => 'Learn more about premium campaigns',
+        'limitation'    => 'To access this feature, premium features need to be enabled for :campaign.',
+        'multiple'      => 'To access these features, premium features need to be enabled for :campaign.',
+        'title'         => 'Premium feature',
         'unlock'        => 'Unlock premium features for :campaign',
     ],
     'subscribe' => [

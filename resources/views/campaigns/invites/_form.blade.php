@@ -9,7 +9,7 @@ $usages = [
 
 <x-grid type="1/1">
     <x-helper>
-        {{ __('campaigns/invites.create.helper') }}
+        <p>{{ __('campaigns/invites.create.helper') }}</p>
     </x-helper>
     <x-forms.field
         field="usage"

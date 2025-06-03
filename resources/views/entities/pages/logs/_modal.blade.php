@@ -78,7 +78,7 @@
             {{--                                <x-helper>{!! __('entities/logs.call-to-action', [--}}
             {{--'amount' => config('entities.logs'),--}}
             {{--]) !!}</x-helper>--}}
-            {{--                            @if (auth()->check() && auth()->user()->hasBoosters())--}}
+            {{--                            @can('boost', auth()->user())--}}
             {{--                                <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white">--}}
             {{--                                    {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}--}}
             {{--                                </a>--}}

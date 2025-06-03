@@ -125,8 +125,8 @@ class PostObserver
             $existing[$key . $perm->user_id] = $perm;
         }
 
-        $users = request()->post('perm_user', []);
-        $perms = request()->post('perm_user_perm', []);
+        $users = (array) request()->post('perm_user', []);
+        $perms = (array) request()->post('perm_user_perm', []);
 
         foreach ($users as $key => $user) {
             if ($user == '$SELECTEDID$') {
@@ -136,7 +136,7 @@ class PostObserver
             $existingKey = 'u_' . $user;
             if (isset($existing[$existingKey])) {
                 $perm = $existing[$existingKey];
-                $perm->permission = $perms[$key];
+                $perm->permission = (int) $perms[$key];
                 $perm->save();
                 unset($existing[$existingKey]);
                 $parsed[] = $existingKey;
@@ -150,8 +150,8 @@ class PostObserver
             }
         }
 
-        $roles = request()->post('perm_role', []);
-        $perms = request()->post('perm_role_perm', []);
+        $roles = (array) request()->post('perm_role', []);
+        $perms = (array) request()->post('perm_role_perm', []);
 
         foreach ($roles as $key => $user) {
             if ($user == '$SELECTEDID$') {
@@ -161,7 +161,7 @@ class PostObserver
             $existingKey = 'r_' . $user;
             if (isset($existing[$existingKey])) {
                 $perm = $existing[$existingKey];
-                $perm->permission = $perms[$key];
+                $perm->permission = (int) $perms[$key];
                 $perm->save();
                 unset($existing[$existingKey]);
                 $parsed[] = $existingKey;

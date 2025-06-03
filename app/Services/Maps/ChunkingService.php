@@ -198,7 +198,6 @@ class ChunkingService
                 );
                 // unset($tile);
                 unset($png, $image);
-
             }
         }
 
@@ -218,8 +217,6 @@ class ChunkingService
 
     /**
      * Finish the process by updating the map
-     *
-     * @return $this
      */
     protected function finish(): self
     {
@@ -269,8 +266,6 @@ class ChunkingService
 
     /**
      * Open the original image
-     *
-     * @return $this
      */
     protected function openOriginal(): self
     {

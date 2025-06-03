@@ -8,16 +8,22 @@
 $entityTags = $post->visibleTags;
 ?>
 <article id="post-{{ $post->id }}" class="flex flex-col gap-2 post-block post-{{ $post->id }} post-position-{{ $post->position }}@if (isset($post->settings['class'])) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}" data-word-count="{{ $post->words }}">
-    <div class="flex gap-2 items-center">
-        <h3 class="grow" >
+    <div class="flex gap-2 items-center justify-between">
+        <h3 class="" >
             {{ $post->name }}
         </h3>
-        <div class="post-buttons flex items-center gap-2 flex-wrap justify-end">
-            @if (auth()->check())
-                @include('icons.visibility', ['icon' => $post->visibilityIcon('')])
+        <div class="post-buttons flex items-center gap-2 flex-wrap">
+            @auth
+                @can('visibility', $post)
+                    <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
+                    @include('icons.visibility', ['icon' => $post->visibilityIcon()])
+                </span>
+                @else
+                    @include('icons.visibility', ['icon' => $post->visibilityIcon()])
+                @endif
                 <div class="dropdown">
                     <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-tree="escape">
-                        <x-icon class="fa-solid fa-ellipsis-v" />
+                        <x-icon class="fa-regular fa-ellipsis-v" />
                         <span class="sr-only">{{__('crud.actions.actions') }}</span>
                     </a>
                     <div class="dropdown-menu hidden" role="menu">

@@ -13,13 +13,13 @@
 
     <input type="text" name="{{ $fieldname }}" value="{{ old($fieldname, $source->{$fieldname} ?? $model->{$fieldname} ?? null) }}" placeholder="{{ __('maps/markers.placeholders.custom_icon', ['example1' => '"fa-solid fa-gem"', 'example2' => '"ra ra-aura"']) }}" list="map-marker-icon-list" autocomplete="off" data-paste="fontawesome" @if (!$campaign->boosted()) disabled="disabled" @endif />
     @if (!$campaign->boosted())
-        @if (auth()->check() && auth()->user()->hasBoosters())
+        @can('boost', auth()->user())
             <x-helper>
-                <x-icon class="premium" /> {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>']) !!}
+                <p><x-icon class="premium" /> {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="' . route('settings.premium', ['campaign' => $campaign]) . '">' . __('concept.premium-campaign') . '</a>']) !!}</p>
             </x-helper>
         @else
             <x-helper>
-                <x-icon class="premium" /> {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="https://kanka.io/premium">' . __('concepts.premium-campaign') . '</a>']) !!}
+                <p><x-icon class="premium" /> {!! __('crud.errors.boosted_campaigns', ['boosted' => '<a href="https://kanka.io/premium">' . __('concepts.premium-campaign') . '</a>']) !!}</p>
             </x-helper>
         @endif
     @endif

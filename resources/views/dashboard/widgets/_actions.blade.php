@@ -27,7 +27,7 @@
     @if(!empty($dashboards))
         <div class="dropdown ">
             <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="false">
-                <x-icon class="fa-solid fa-th-large" />
+                <x-icon class="fa-regular fa-th-large" />
             </button>
             <div class="dropdown-menu hidden" role="menu">
                 @if (!empty($dashboard))
@@ -45,7 +45,7 @@
                 @endforeach
 
                 @can('dashboard', $campaign)
-                    <hr class="m-0">
+                    <x-dropdowns.divider />
 
                     <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}">
                         {{ __('dashboard.actions.customise') }}
@@ -56,7 +56,7 @@
     @else
         @can('dashboard', $campaign)
             <a href="{{ route('dashboard.setup', $campaign) }}" class="btn2" title="{{ __('dashboard.actions.customise') }}">
-                <x-icon class="fa-solid fa-th-large" />
+                <x-icon class="fa-regular fa-th-large" />
             </a>
         @endcan
     @endif
@@ -65,12 +65,12 @@
 @can('update', $campaign)
     <div class="dropdown">
         <button class="btn2 btn-sm" data-dropdown aria-expanded="false">
-            <x-icon class="fa-solid fa-ellipsis-h" />
+            <x-icon class="fa-regular fa-ellipsis-h" />
 
         </button>
         <div class="dropdown-menu hidden" role="menu">
             @if (!empty($dashboard))
-                <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => 'default'])" icon="fa-solid fa-th-large">
+                <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => 'default'])" icon="fa-regular fa-th-large">
                     {{ __('dashboard.dashboards.default.title')}}
                 </x-dropdowns.item>
             @endif
@@ -78,20 +78,20 @@
                 @if (!empty($dashboard) && $dash->id == $dashboard->id)
                     @continue
                 @endif
-                <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => $dash->id])" icon="fa-solid fa-th-large">
+                <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => $dash->id])" icon="fa-regular fa-th-large">
                     {!! $dash->name !!}
                 </x-dropdowns.item>
             @endforeach
             <x-dropdowns.item :link="route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign])" icon="cog">
                 {{ __('dashboard.actions.customise') }}
             </x-dropdowns.item>
-            <hr class="m-0" />
+            <x-dropdowns.divider />
 
             <x-dropdowns.item :link="route('campaigns.edit', $campaign)" icon="pencil">
                 {{ __('campaigns.show.actions.edit') }}
             </x-dropdowns.item>
 
-            <hr class="m-0" />
+            <x-dropdowns.divider />
             <x-dropdowns.item :link="route('campaign_users.index', $campaign)" icon="fa-solid fa-users">
                 {{ __('campaigns.show.tabs.members') }}
             </x-dropdowns.item>

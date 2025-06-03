@@ -294,7 +294,6 @@ trait EntityMapper
                     $asset->image_uuid = $image->id;
                     unset($data['metadata']['path']);
                     $asset->metadata = $data['metadata'];
-
                 } else {
                     $asset->metadata = $data['metadata'];
                 }
@@ -522,7 +521,6 @@ trait EntityMapper
             'copy_item_entry',
         ];
         foreach ($this->data['entity']['inventories'] as $data) {
-
             $inv = new Inventory;
             $inv->entity_id = $this->entity->id;
             if (! empty($data['item_id'])) {

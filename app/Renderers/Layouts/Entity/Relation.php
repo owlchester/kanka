@@ -21,7 +21,7 @@ class Relation extends Layout
                 'render' => function ($relation) {
                     $icon = '';
                     if ($relation->isPinned()) {
-                        $icon = '<i class="fa-solid fa-star" data-title="' . __('crud.fields.is_star') . '" data-toggle="tooltip"></i> ';
+                        $icon = '<i class="fa-regular fa-star" data-title="' . __('crud.fields.is_star') . '" data-toggle="tooltip"></i> ';
                     }
 
                     return $icon . $relation->relation;

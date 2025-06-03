@@ -46,6 +46,11 @@ class UploadService
         return $this;
     }
 
+    public function image(): Image
+    {
+        return $this->image;
+    }
+
     public function folder(string $folder): self
     {
         if (empty($folder)) {

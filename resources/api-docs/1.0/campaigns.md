@@ -2,24 +2,18 @@
 
 ---
 
-- [User Campaigns](#user-campaigns)
+- [User's Campaigns](#user-campaigns)
 - [Single Campaign](#campaign)
-- [Campaign Members](#campaign-members)
-- [Campaign Member](#campaign-member)
-- [Add Role To Member](#add-role-to-member)
-- [Remove Role From Member](#remove-role-from-member)
 - [Campaign Roles](#campaign-roles)
+
 <a name="user-campaigns"></a>
-## User Campaigns
+## User's Campaigns
 
 You can get a list of all the campaigns the user has access to using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/`. For example, `campaigns` becomes `api.kanka.io/{{version}}/campaigns`.
-
-
 | Method | URI         | Headers |
 | :- |:------------|  :-  |
-| GET | `campaigns` | Default |
+| GET | `{{version}}/campaigns` | Default |
 
 ### Results
 ```json
@@ -30,7 +24,6 @@ You can get a list of all the campaigns the user has access to using the followi
             "name": "Thaelia",
             "locale": "en",
             "entry": "\r\n<p>Aenean sit amet vehicula.</p>\r\n",
-            "entry_parsed": "not available on the campaigns/ endpoint",
             "image": "{path}",
             "image_full": "{url}",
             "image_thumb": "{url}",
@@ -79,7 +72,9 @@ Getting a single campaign is straightforward. `{id}` is to be replaced with the 
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET | `campaigns/{id}` | Default |
+| GET | `{{version}}/campaigns/{id}` | Default |
+
+This endpoint also includes the `entry_parsed` property, which transforms `[entity:123]` mentions into `<a href="">` link elements.
 
 ### Results
 ```json
@@ -88,8 +83,8 @@ Getting a single campaign is straightforward. `{id}` is to be replaced with the 
         "id": 1,
         "name": "Thaelia",
         "locale": "fr",
-        "entry": "\r\n<p>Aenean sit amet vehicula [character:133].</p>\r\n",
-        "entry_parsed": "\r\n<p>Aenean sit amet vehicula <a href=\"...\">Lorem Ipsum</a>.</p>\r\n",
+        "entry": "<p>Aenean sit amet vehicula [entity:10].</p>",
+        "entry_parsed": "<p>Aenean sit amet vehicula <a href=\"...\">Lorem Ipsum</a>.</p>",
         "image": "{path}",
         "image_full": "{url}",
         "image_thumb": "{url}",
@@ -115,100 +110,6 @@ Getting a single campaign is straightforward. `{id}` is to be replaced with the 
 }
 ```
 
-<a name="campaign-members"></a>
-## Campaign Members
-
-To get a list of all the members of a campaign, use the following endpoint.
-
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| GET | `campaigns/{id}/users` | Default |
-
-### Results
-```json
-{
-    "data": [
-        {
-            "id": 1,
-            "name": "Ilestis",
-            "avatar": "{url}"
-        },
-        {
-            "id": 2,
-            "name": "Ilestis Jr.",
-            "avatar": "{url}"
-        }
-    ]
-}
-```
-
-<a name="campaign-member"></a>
-## Campaign Member
-
-To get the info of an specific member of a campaign, use the following endpoint.
-
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| GET | `campaigns/{id}/users/{user_id}` | Default |
-
-### Results
-```json
-{
-    "data": [
-        {
-            "id": 1,
-            "name": "Ilestis",
-            "avatar": "{url}"
-        }
-    ]
-}
-```
-<a name="add-role-to-member"></a>
-## Add Role To Member
-
-To add a role to a member of the campaign, use the following endpoint.
-
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| POST | `campaigns/{id}/users` | Default |
-
-### Body
-
-| Parameter | Type | Detail |
-| :- |   :-   |  :-  |
-| `user_id` | `integer` (Required) | The user's id |
-| `role_id` | `integer` (Required) | The role's id |
-
-
-### Results
-```json
-{
-    "data": "role successfully added to user"
-}
-```
-
-<a name="remove-role-from-member"></a>
-## Remove Role From Member
-
-To remove a role from a member of the campaign, use the following endpoint.
-
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
-| DELETE | `campaigns/{id}/users` | Default |
-
-### Body
-
-| Parameter | Type | Detail |
-| :- |   :-   |  :-  |
-| `user_id` | `integer` (Required) | The user's id |
-| `role_id` | `integer` (Required) | The role's id |
-
-### Results
-```json
-{
-    "data": "role successfully removed from user"
-}
-```
 
 <a name="campaign-roles"></a>
 ## Campaign roles
@@ -217,7 +118,7 @@ To get a list of all the roles of a campaign, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET | `campaigns/{id}/roles` | Default |
+| GET | `{{version}}/campaigns/{id}/roles` | Default |
 
 ### Results
 ```json

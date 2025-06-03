@@ -3,7 +3,7 @@
 
     <p class="text-neutral-content m-0">{{ __('calendars.hints.moons') }}</p>
 
-    <button class="btn2 btn-sm  dynamic-row-add" data-template="template_moon" data-target="calendar-moons" title="{{ __('calendars.actions.add_moon') }}">
+    <button class="btn2 btn-sm btn-outline dynamic-row-add" data-template="template_moon" data-target="calendar-moons" title="{{ __('calendars.actions.add_moon') }}">
         <x-icon class="plus" />
         {{ __('calendars.actions.add_moon') }}
     </button>
@@ -49,7 +49,7 @@ if (!empty($moonNames)) {
                 <div class="grid grid-cols-2 gap-2">
                     <div class="flex gap-2 items-center">
                         <div class="sortable-handler p-2 cursor-move">
-                            <x-icon class="fa-solid fa-grip-vertical" />
+                            <x-icon class="fa-regular fa-grip-vertical" />
                         </div>
                         <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.moon.name') }}</label>
@@ -90,7 +90,7 @@ if (!empty($moonNames)) {
             <div class="grid grid-cols-2 gap-2">
                 <div class="flex gap-2 items-center">
                     <div class="sortable-handler p-2 cursor-move">
-                        <x-icon class="fa-solid fa-grip-vertical" />
+                        <x-icon class="fa-regular fa-grip-vertical" />
                     </div>
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.moon.name') }}</label>

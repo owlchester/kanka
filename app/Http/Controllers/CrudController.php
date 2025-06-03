@@ -399,7 +399,7 @@ class CrudController extends Controller
                 $new->crudSaved();
             }
 
-            // MenuLink have no entity attached to them.
+            // Bookmarks have no entity attached to them.
             if (! ($new instanceof Bookmark) && $new->entity) {
                 $new->entity->crudSaved();
                 // Weird hack for prod issues
@@ -419,7 +419,7 @@ class CrudController extends Controller
                         ->save($request->get('attribute', []));
 
                     // When copying an entity, the user probably wants to update all mentions of attributes to ones on the new entity.
-                    if ($request->has('replace_mentions') && $request->filled('replace_mentions') && $new->isFillable('entry')) {
+                    if ($request->has('replace_mentions') && $request->filled('replace_mentions') && $new->entity->isFillable('entry')) {
                         $this->attributeService
                             ->replaceMentions((int) $request->post('copy_source_id'));
                     }
@@ -463,7 +463,6 @@ class CrudController extends Controller
             $route = Breadcrumb::index($this->route);
 
             return response()->redirectTo($route);
-
         } catch (LogicException $exception) {
             if (config('app.debug')) {
                 throw $exception;
@@ -674,8 +673,6 @@ class CrudController extends Controller
 
     /**
      * Set the datagrid sorter for sub views
-     *
-     * @return $this
      */
     protected function datagridSorter(string $datagridSorter): self
     {
@@ -697,7 +694,6 @@ class CrudController extends Controller
      * Add a button to the top of a datagrid
      *
      * @param  string  $route
-     * @return $this
      */
     protected function addNavAction($route, string $label, string $class = '', bool $blank = false): self
     {
@@ -718,8 +714,6 @@ class CrudController extends Controller
 
     /**
      * Set the controller as having a limit check
-     *
-     * @return $this
      */
     protected function hasLimitCheck(bool $value = true): self
     {

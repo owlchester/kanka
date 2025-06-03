@@ -5,7 +5,7 @@
     <div class="family-tree-relation text-center absolute text-sm" v-bind:style="relationBox()" v-bind:data-row="row" v-bind:data-col="column">
         <a v-if="isEditing" v-on:click="editRelation(uuid, relation)" class="cursor-pointer" v-bind:title="i18n('relation', 'edit')">
             <span class="truncate">{{ relationText() }}</span>
-            <i class="fa-solid fa-pencil" aria-hidden="true">
+            <i class="fa-regular fa-pencil" aria-hidden="true">
                 <span class="sr-only">{{ i18n('relation', 'edit') }}</span>
             </i>
         </a>
@@ -13,8 +13,8 @@
         <br />
 
         <a v-if="isEditing" v-on:click="addChild(uuid)" class="cursor-pointer" v-bind:title="i18n('entity', 'child')">
-            <i class="fa-solid fa-baby" aria-hidden="true"></i>
-            <i class="fa-solid fa-plus" aria-hidden="true"></i>
+            <i class="fa-regular fa-baby" aria-hidden="true"></i>
+            <i class="fa-regular fa-plus" aria-hidden="true"></i>
             <span class="sr-only">{{ i18n('entity', 'child') }}</span>
         </a>
     </div>
@@ -57,7 +57,7 @@ export default {
             return css;
         },
         verticalSource() {
-            return (this.relation.colour ? '--family-tree-line: ' + this.relation.colour + ';': '') + 
+            return (this.relation.colour ? '--family-tree-line: ' + this.relation.colour + ';': '') +
                 'width: 1px; height: ' + this.height + 'px;' +
                 'left: ' + (this.sourceX + (this.entityWidth / 2)) + 'px; ' +
                 'top: ' + (this.sourceY + (this.entityHeight)) + 'px;' +
@@ -65,7 +65,7 @@ export default {
             ;
         },
         verticalTarget() {
-            return (this.relation.colour ? '--family-tree-line: ' + this.relation.colour + ';': '') + 
+            return (this.relation.colour ? '--family-tree-line: ' + this.relation.colour + ';': '') +
                 'width: 1px; height: ' + this.height + 'px;' +
                 'left: ' + (this.drawX + (this.entityWidth / 2)) + 'px; ' +
                 'top: ' + (this.drawY + (this.entityHeight)) + 'px; ' +

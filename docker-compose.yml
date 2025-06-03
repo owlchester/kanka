@@ -27,6 +27,7 @@ services:
             - redis
             - minio
             - meilisearch
+            - mailpit
     mariadb:
         image: 'mariadb:11'
         ports:
@@ -126,6 +127,13 @@ services:
             - sail
         depends_on:
             - thumbor
+    mailpit:
+        image: axllent/mailpit
+        ports:
+        - '8025:8025'  # Web UI
+        - '${MAIL_PORT:-1025}:1025'  # SMTP server
+        networks:
+            - sail
     meilisearch:
         image: 'getmeili/meilisearch:latest'
         ports:

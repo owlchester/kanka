@@ -12,12 +12,7 @@ use Illuminate\Http\JsonResponse;
  */
 class RecentController extends Controller
 {
-    protected RecentService $service;
-
-    public function __construct(RecentService $recentService)
-    {
-        $this->service = $recentService;
-    }
+    public function __construct(protected RecentService $recentService) {}
 
     /**
      * Get a user's recent searches
@@ -25,17 +20,17 @@ class RecentController extends Controller
     public function index(Campaign $campaign): JsonResponse
     {
         $recent = [];
-        $this->service->campaign($campaign);
+        $this->recentService->campaign($campaign);
         if (auth()->check()) {
-            $recent = $this->service
+            $recent = $this->recentService
                 ->user(auth()->user())
                 ->recent();
         }
 
         return response()->json([
             'recent' => $recent,
-            'bookmarks' => $this->service->bookmarks(),
-            'indexes' => $this->service->indexes(),
+            'bookmarks' => $this->recentService->bookmarks(),
+            'indexes' => $this->recentService->indexes(),
             'fulltext_route' => route('search.fulltext', [$campaign]),
             'texts' => [
                 'recents' => __('search.lookup.recents'),

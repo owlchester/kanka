@@ -4,7 +4,12 @@
  * @var \App\Models\CampaignDashboard $dashboard
  */
 ?>
-<div class="flex flex-col gap-5 w-full">
+<x-grid type="1/1">
+    @empty($dashboard)
+    <x-helper>
+        <p>{!! __('dashboard.dashboards.create.helper', ['name' => $campaign->name]) !!}</p>
+    </x-helper>
+    @endif
 
     <x-forms.field
         field="name"
@@ -14,12 +19,16 @@
         <input type="text" name="name" placeholder="{{ __('dashboard.dashboards.placeholders.name') }}" maxlength="45" required value="{!! htmlspecialchars(old('name', $dashboard->name ?? null)) !!}" />
     </x-forms.field>
 
-    <div class="field grid grid-cols-2 gap-5">
+    <div class="field grid grid-cols-2 gap-2 items-center">
         <div class="font-extrabold">{{ __('campaigns.members.fields.role') }}</div>
         <div class="font-extrabold">{{ __('dashboard.dashboards.fields.visibility') }}</div>
 
         @foreach($campaign->roles as $role)
-            <div class="truncate">{{$role->name}}</div>
+            <div class="truncate">
+                <a href="{{ route('campaign_roles.show', [$campaign, $role]) }}">
+                    {!! $role->name !!}
+                </a>
+            </div>
             <select name="roles[{{ $role->id }}]">
                 @if(!$role->is_admin)
                 <option value="">{{ __('dashboard.dashboards.visibility.none') }}</option>
@@ -32,13 +41,13 @@
     </div>
 
 
-@if(!empty($source))
-    <input type="hidden" name="copy_widgets" value="0" />
-    <x-forms.field field="copy" :label="__('dashboard.dashboards.fields.copy_widgets')">
-        <x-checkbox :text="__('dashboard.dashboards.helpers.copy_widgets', ['name' => $source->name])">
-            <input type="checkbox" name="copy_widgets" value="1" @if (old('copy_widgets', true)) checked="checked" @endif />
-        </x-checkbox>
-        <input type="hidden" name="source" value="{{ $source->id }}" />
-    </x-forms.field>
-@endif
-</div>
+    @if(!empty($source))
+        <input type="hidden" name="copy_widgets" value="0" />
+        <x-forms.field field="copy" :label="__('dashboard.dashboards.fields.copy_widgets')">
+            <x-checkbox :text="__('dashboard.dashboards.helpers.copy_widgets', ['name' => $source->name])">
+                <input type="checkbox" name="copy_widgets" value="1" @if (old('copy_widgets', true)) checked="checked" @endif />
+            </x-checkbox>
+            <input type="hidden" name="source" value="{{ $source->id }}" />
+        </x-forms.field>
+    @endif
+</x-grid>

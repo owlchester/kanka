@@ -37,7 +37,7 @@
                     @can('update', $timeline->entity)
                         <div class="dropdown inline">
                             <a class="btn2 btn-xs btn-ghost" data-dropdown aria-expanded="false" data-placement="right">
-                                <x-icon class="fa-solid fa-ellipsis-v" />
+                                <x-icon class="fa-regular fa-ellipsis-v" />
                                 <span class="sr-only">{{__('crud.actions.actions') }}</span>
                             </a>
                             <div class="dropdown-menu hidden" role="menu">
@@ -51,7 +51,7 @@
                                     :dialog="route('confirm-delete', [$campaign, 'route' => route('timelines.timeline_elements.destroy', [$campaign, $timeline, $element, 'from' => 'view']), 'name' => $element->elementName(), 'permanent' => true])"
                                     icon="trash">{{ __('crud.remove') }}
                                 </x-dropdowns.item>
-                                <hr class="m-0" />
+                                <x-dropdowns.divider />
 
                                 @php
                                     $title = '[timeline:' . $timeline->entity->id . '|anchor:timeline-element-' . $element->id . ']';

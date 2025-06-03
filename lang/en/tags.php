@@ -7,10 +7,11 @@ return [
             'add_entity'    => 'Add to entity',
         ],
         'create'    => [
-            'attach_success'        => '{1} Added :count entity to tag :name.|[2,*] Added :count entities to tag :name.',
-            'attach_success_entity' => 'Succesfully updated tags for :name.',
+            'attach_success'        => '{1} Tagged :count entity .|[2,*] Tagged :count entities.',
+            'attach_success_entity' => 'Successfully updated tags for :name.',
             'entity'                => 'Add tags to :name',
-            'modal_title'           => 'Add entities to :name',
+            'helper'                => 'Tag one or several entities with :name',
+            'title'                 => 'Tag entities',
         ],
     ],
     'create'        => [
@@ -40,13 +41,18 @@ return [
         ],
     ],
     'transfer'      => [
-        'description'       => 'Move this tag\'s entities to another tag.',
-        'fail'              => 'Failed to transfer entities from :tag to :newTag',
-        'fail_post'         => 'Failed to transfer posts from :tag to :newTag',
-        'post_description'  => 'Move this tag\'s posts to another tag.',
-        'success'           => 'Successfully transferred entities from :tag to :newTag',
-        'success_post'      => 'Successfully transferred posts from :tag to :newTag',
-        'title'             => 'Transfer :name',
-        'transfer'          => 'Transfer',
+        'entities'      => [
+            'helper'    => 'Transfer entities tagged with :name to another tag.',
+            'title'     => 'Transfer entities',
+        ],
+        'fail'          => 'Failed to transfer entities from :tag to :newTag',
+        'fail_post'     => 'Failed to transfer posts from :tag to :newTag',
+        'posts'         => [
+            'helper'    => 'Transfer posts tagged with :name to another tag.',
+            'title'     => 'Transfer posts',
+        ],
+        'success'       => 'Successfully transferred entities from :tag to :newTag',
+        'success_post'  => 'Successfully transferred posts from :tag to :newTag',
+        'transfer'      => 'Transfer',
     ],
 ];

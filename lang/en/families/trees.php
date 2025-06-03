@@ -58,7 +58,7 @@ return [
             'confirm'   => 'Are you sure you want to discard any changes made to the family tree?',
         ],
     ],
-    'pitch'     => 'Create a detailed family tree for the families of the campaign.',
+    'pitch'     => 'Build a detailed family tree to visualize relationships and lineage within your world\'s families.',
     'success'   => [
         'cleared'   => 'Family tree erased.',
         'reseted'   => 'Family tree has been reset.',

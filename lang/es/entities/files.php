@@ -1,10 +1,7 @@
 <?php
 
 return [
-    'call-to-action'    => [
-        'error'     => 'Esta entidad ha alcanzado el número máximo de archivos que puede almacenar.',
-        'premium'   => 'Subir más archivos requiere una campaña premium.',
-    ],
+    'call-to-action'    => [],
     'create'            => [
         'success_plural'    => '{1} Archivo :name añadido.|[2,*] :count archivos añadidos.',
         'title'             => 'Nuevo archivo para :entity',

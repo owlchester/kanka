@@ -62,7 +62,6 @@ class Otp extends Component
             $this->redirectRoute('login', ['success' => __('settings.account.2fa.success_enable')]);
         }
         session()->flash('otp-error', __('settings.account.2fa.error_enable'));
-
     }
 
     /*
@@ -81,7 +80,6 @@ class Otp extends Component
         } else {
             $this->clickedBefore = true;
         }
-
     }
 
     public function render()

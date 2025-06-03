@@ -15,7 +15,7 @@ if ($hasImage) {
 
         <div class="p-1 text-right">
             <span class="marker-close" data-tooltip data-title="{{ __('crud.actions.close') }}">
-                <x-icon class="fa-solid fa-close" />
+                <x-icon class="fa-regular fa-close" />
             </span>
         </div>
     <div class="marker-header-fade grow flex p-2 items-end">

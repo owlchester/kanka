@@ -14,32 +14,21 @@
         @include('ads.top')
         @include('partials.errors')
 
-        <div class="flex gap-2 items-center">
-            <h3 class="grow">
+        <div class="flex gap-2 items-center justify-between">
+            <h3 class="">
                 {{ __('campaigns/export.title') }}
             </h3>
-            <a href="https://docs.kanka.io/en/latest/features/campaigns/export.html" target="_blank" class="btn2 btn-sm btn-ghost">
-                <x-icon class="question" />
-                {{ __('crud.actions.help') }}
-            </a>
-            @can('export', $campaign)
+            <div class="flex gap-2 flex-wrap items-center">
+                <x-learn-more url="features/campaigns/export.html" />
                 <a href="#" class="btn2 btn-sm btn-primary" data-toggle="dialog" data-target="export-confirm">
-                    <x-icon class="fa-solid fa-download" />
+                    <x-icon class="fa-regular fa-download" />
                     {{ __('campaigns/export.actions.export') }}
                 </a>
-            @endcan
+            </div>
         </div>
 
-        @if (!$campaign->exportable() && !session()->has('success'))
-        <x-alert type="warning">
-            {{ __('campaigns/export.errors.limit') }}
-        </x-alert>
-        @endif
-
-        <div class="box box-solid">
-            <div id="datagrid-parent" class="table-responsive">
-                @livewire('campaigns.exports-table', ['campaign' => $campaign])
-            </div>
+        <div id="datagrid-parent" class="table-responsive">
+            @livewire('campaigns.exports-table', ['campaign' => $campaign])
         </div>
     </div>
 @endsection
@@ -47,18 +36,36 @@
 @section('modals')
     @parent
     <x-dialog id="export-confirm" :title="__('campaigns/export.confirm.title')">
-        <p>{{ __('campaigns/export.confirm.warning') }}</p>
+        @can('export', $campaign)
+            @php $role = \App\Facades\CampaignCache::adminRole(); @endphp
+            <x-helper>
+                <p>{!! __('campaigns/export.confirm.warning', ['name' => '<strong>' . $campaign->name . '</strong>']) !!}</p>
+            </x-helper>
+            <x-helper>
+                <p>{!! __('campaigns/export.confirm.notification', ['admin' => '<a href="' . route(
+            'campaigns.campaign_roles.admin',
+            $campaign,
+        ) . '">' .
+        \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>']) !!}</p>
+            </x-helper>
 
-        <div class="grid grid-cols-2 gap-2 w-full">
-            <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
-                {{ __('crud.cancel') }}
-            </x-buttons.confirm>
-
-            <x-form :action="['campaign.export-process', $campaign]">
-                <x-buttons.confirm type="primary" full="true">
-                    {{ __('crud.actions.confirm') }}
+            <div class="grid grid-cols-2 gap-2 w-full">
+                <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                    {{ __('crud.cancel') }}
                 </x-buttons.confirm>
-            </x-form>
-        </div>
+
+                <x-form :action="['campaign.export-process', $campaign]">
+                    <x-buttons.confirm type="primary" full="true">
+                        {{ __('crud.actions.confirm') }}
+                    </x-buttons.confirm>
+                </x-form>
+            </div>
+        @else
+            <x-helper>
+                <p>
+                    {{ __('campaigns/export.errors.limit') }}
+                </p>
+            </x-helper>
+        @endif
     </x-dialog>
 @endsection

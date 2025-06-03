@@ -27,7 +27,7 @@ return [
     'section_4'         => 'Notre :youtube propose des vidéos couvrant les bases de Kanka. Même si tous les sujets ne sont pas encore couverts, on ajoute régulièrement des nouvelles vidéos.',
     'section_4_v2'      => 'Notre :knowledge-base couvre les questions les plus fréquentes. Pour une aide pour complète, notre :documentation couvre beaucoup plus de sujets en détails.',
     'section_6'         => 'Nous contacter',
-    'section_7'         => 'Si tu n\'as pas trouvé de réponse à tes questions, ou si tu souhaites simplement nous contacter, tu peux nous trouver sur :facebook, ou tu peux nous envoyer un courriel à :email. On est une petite équipe de 2 amis, mais on répond à chaque e-mail qu’on reçoit, donc n\'hésite pas!',
+    'section_7'         => 'Si tu n\'as pas trouvé de réponse à tes questions, ou si tu souhaites simplement nous contacter, tu peux nous trouver sur :facebook, ou tu peux nous envoyer un courriel à :email. On est une petite équipe de 2 amis, mais on répond à chaque e-mail qu\'on reçoit, donc n\'hésite pas!',
     'section_8'         => 'Une dernière chose',
     'section_9_v2'      => 'On a fait en sorte que toutes les fonctionnalités de base de Kanka soient gratuites, et elles le seront toujours. Cependant, si tu souhaites nous soutenir dans ce projet, tu peux t\'abonner à Kanka pour débloquer plus de fonctionnalités. Plus d\'information sur notre page de :pricing.',
     'social_account'    => 'Si tu as des problèmes pour te connecter à ton compte, tu utilises un login :provider. La méthode d\'authentification peut être changée dans les paramètres du compte.',

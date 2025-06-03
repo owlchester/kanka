@@ -1,15 +1,14 @@
 <?php
 
 return [
-    'index'     => [
+    'index' => [
         'lead'          => 'Worldbuilding amusant et fiable',
         'translations'  => 'Traductions',
     ],
-    'leads'     => [
+    'leads' => [
         'translators'   => 'Kanka est traduit en plusieurs langues grâce à ces incroyables contributeurs.',
     ],
-    'patreon'   => [],
-    'people'    => [
+    'people'=> [
         'itzamna'   => [
             'title' => 'Développeur Junior',
         ],

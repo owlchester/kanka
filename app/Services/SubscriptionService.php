@@ -59,11 +59,6 @@ class SubscriptionService
     /** @var array|Request The request object */
     protected $request;
 
-    /**
-     * @return $this
-     *
-     * @throws Exception
-     */
     public function tier(Tier $tier): self
     {
         $this->tier = $tier;
@@ -72,8 +67,6 @@ class SubscriptionService
     }
 
     /**
-     * @return $this
-     *
      * @throws Exception
      */
     public function period(PricingPeriod $period): self
@@ -97,9 +90,6 @@ class SubscriptionService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function webhook(): self
     {
         $this->webhook = true;
@@ -107,9 +97,6 @@ class SubscriptionService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function request(array $request): self
     {
         $this->request = $request;
@@ -117,9 +104,6 @@ class SubscriptionService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function coupon(?string $coupon = null): self
     {
         if ($this->period === PricingPeriod::Yearly && ! empty($coupon)) {
@@ -131,8 +115,6 @@ class SubscriptionService
 
     /**
      * When the stripe API calls us, we get a plan_id that needs to be transformed into a tier and tierprice
-     *
-     * @return $this
      */
     public function plan(string $plan): self
     {
@@ -179,8 +161,6 @@ class SubscriptionService
     }
 
     /**
-     * @return $this
-     *
      * @throws \Laravel\Cashier\Exceptions\IncompletePayment
      */
     public function subscribe(string $paymentID): self
@@ -214,9 +194,7 @@ class SubscriptionService
     }
 
     /**
-     * Setup the user's pledge, role, discord
-     *
-     * @return $this
+     * Set up the user's pledge, role, discord
      */
     public function finish(): self
     {

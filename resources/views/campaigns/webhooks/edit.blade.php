@@ -11,7 +11,7 @@
 
 @section('content')
     <x-form :action="['webhooks.update', $campaign, $webhook->id]" method="PATCH">
-        @include('partials.forms._dialog', [
+        @include('partials.forms.form', [
             'title' => __('campaigns/webhooks.edit.title'),
             'content' => 'campaigns/webhooks._form',
             'submit' => __('crud.update'),

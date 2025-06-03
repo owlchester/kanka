@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Facades\Limit;
 use App\Models\Calendar;
+use App\Models\Entity;
 use App\Rules\CalendarFormat;
 use App\Rules\CalendarMoonOffset;
 use App\Rules\Nested;
@@ -72,14 +73,14 @@ class StoreCalendar extends FormRequest
             $rules['leap_year_start'] = 'required|numeric|min:1|max:255';
         }
 
-        /** @var Calendar $self */
-        $self = request()->route('calendar');
+        /** @var Entity $self */
+        $self = request()->route('entity');
         if (! empty($self)) {
             $rules['calendar_id'] = [
                 'nullable',
                 'integer',
                 'exists:calendars,id',
-                new Nested(Calendar::class, $self),
+                new Nested(Calendar::class, $self->child),
             ];
         }
 

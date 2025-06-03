@@ -2,8 +2,9 @@
 
 namespace App\Observers;
 
-use App\Facades\Mentions;
+use App\Facades\CampaignLocalization;
 use App\Jobs\EntityMappingJob;
+use App\Services\Mentions\SaveService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
@@ -20,14 +21,18 @@ class EntryObserver
         if (! array_key_exists($model->entryFieldName(), $attributes)) {
             return;
         }
-        //        dump('Submitted');
-        //        dump($model->{$model->entryFieldName()});
-        //        dump('Codify');
-        //        dump(Mentions::codify($model->{$model->entryFieldName()}));
+        /** @var SaveService $service */
+        $service = app()->make(SaveService::class);
+        $campaign = CampaignLocalization::getCampaign();
         // @phpstan-ignore-next-line
-        $model->{$model->entryFieldName()} = $this->purify(Mentions::codify($model->{$model->entryFieldName()}));
-        //        dump('Becomes');
-        //        dd($model->{$model->entryFieldName()});
+        $model->{$model->entryFieldName()} = $this->purify(
+            $service
+                ->campaign($campaign)
+                ->user(auth()->user())
+                // @phpstan-ignore-next-line
+                ->text($model->{$model->entryFieldName()})
+                ->save()
+        );
 
         // Word count
         if (! Arr::exists($attributes, 'words')) {

@@ -32,7 +32,7 @@ class TagController extends Controller
         $this->authorize('update', $entity);
         $formOptions = ['entity.tags-add.save', $campaign, 'entity' => $entity];
 
-        return view('entities.components.tags.create', [
+        return view('entities.pages.tags.create', [
             'campaign' => $campaign,
             'entity' => $entity,
             'formOptions' => $formOptions,

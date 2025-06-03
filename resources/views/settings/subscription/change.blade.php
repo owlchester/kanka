@@ -76,7 +76,7 @@
                     @if ($isDowngrading)
 
                         <x-helper>
-                            {!! __('settings.subscription.upgrade_downgrade.downgrade.provide_reason')!!}
+                            <p>{!! __('settings.subscription.upgrade_downgrade.downgrade.provide_reason')!!}</p>
                         </x-helper>
 
                         <div class="field-reason">
@@ -166,7 +166,7 @@
                 <x-form :action="['paypal.process-transaction', 'tier' => $tier]" class="subscription-form flex flex-row gap-5">
                     <x-grid type="1/1">
                         <x-helper>
-                            {{ __('settings.subscription.helpers.paypal_v3') }}
+                            <p>{{ __('settings.subscription.helpers.paypal_v3') }}</p>
                         </x-helper>
 
                         <button class="btn2 btn-block btn-primary subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">

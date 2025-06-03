@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Zip;
+use ZipArchive;
 
 class ExportService
 {
@@ -32,15 +33,15 @@ class ExportService
 
     protected string $file;
 
-    protected \STS\ZipStream\Builder $archive;
-
-    protected bool $assets = false;
+    protected ZipArchive $archive;
 
     protected int $files = 0;
 
     protected int $filesize = 0;
 
-    protected string $version = '3.0.0';
+    protected bool $cloudfront = false;
+
+    protected string $version;
 
     protected CampaignExport $log;
 
@@ -60,13 +61,6 @@ class ExportService
         return $this;
     }
 
-    public function assets(bool $assets): self
-    {
-        $this->assets = $assets;
-
-        return $this;
-    }
-
     public function queue(): self
     {
         $this->campaign->export_date = date('Y-m-d');
@@ -75,12 +69,12 @@ class ExportService
         $entitiesExport = CampaignExport::create([
             'campaign_id' => $this->campaign->id,
             'created_by' => $this->user->id,
-            'type' => CampaignExport::TYPE_ENTITIES,
+            'type' => 1,
             'status' => CampaignExport::STATUS_SCHEDULED,
         ]);
 
         $this->user->campaignLog($this->campaign->id, 'export', 'created');
-        Export::dispatch($this->campaign, $this->user, $entitiesExport, false)->onQueue('heavy');
+        Export::dispatch($this->campaign, $this->user, $entitiesExport)->onQueue('heavy');
 
         return $this;
     }
@@ -111,6 +105,9 @@ class ExportService
                 ->update([
                     'status' => CampaignExport::STATUS_FAILED,
                 ]);
+            if (isset($this->path)) {
+                $this->cleanup();
+            }
             Log::error('Campaign export', ['action' => 'export', 'err' => $e->getMessage()]);
             throw $e;
         }
@@ -143,12 +140,10 @@ class ExportService
                     $module['icon'] = $this->campaign->moduleIcon($entities[Str::singular($name)]);
                 }
             } catch (Exception $e) {
-
             }
             $modules[$name] = $module;
-
         }
-        $this->archive->add(json_encode($modules), 'settings/modules.json');
+        $this->archive->addFromString('settings/modules.json', json_encode($modules));
         $this->files++;
 
         return $this;
@@ -157,7 +152,7 @@ class ExportService
     protected function customCampaignModules(): self
     {
         $settings = $this->campaign->entityTypes->where('is_special', 1)->select('id', 'code', 'is_enabled', 'singular', 'plural', 'icon')->toArray();
-        $this->archive->add(json_encode($settings), 'settings/custom-modules.json');
+        $this->archive->addFromString('settings/custom-modules.json', json_encode($settings));
         $this->files++;
 
         return $this;
@@ -165,7 +160,8 @@ class ExportService
 
     protected function prepare(): self
     {
-        $this->exportPath = '/exports/campaigns/';
+        $this->version = config('app.version');
+        $this->exportPath = 'app/exports/';
         $saveFolder = storage_path($this->exportPath);
         File::ensureDirectoryExists($saveFolder);
 
@@ -173,9 +169,16 @@ class ExportService
         $this->file =
             Str::slug($this->campaign->name) . '_' .
             date('Ymd_His') . '.zip';
+        Log::debug('Campaign export', ['action' => 'preparing', 'exportPath' => $this->exportPath, 'file' => $this->file]);
         CampaignCache::campaign($this->campaign);
-        // $this->path = $saveFolder . $this->file;
-        $this->archive = Zip::create($this->file);
+        $this->path = $saveFolder . $this->file;
+        $this->archive = new ZipArchive;
+        $creation = $this->archive->open($this->path, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+        if (! $creation) {
+            throw new Exception('Could not create zip file');
+        }
+        Log::debug('Campaign export', ['action' => 'zip created', 'path' => $this->path]);
+        $this->archive->addFromString('aaaaa.json', 'hello');
 
         // Count the number of elements to export to get a rough idea of progress
         $this->totalElements =
@@ -183,6 +186,11 @@ class ExportService
             Image::where('campaign_id', $this->campaign->id)->count() +
             1; // Campaign json;
         $this->currentElements = 0;
+
+        $cloudfront = config('filesystems.disks.cloudfront.url');
+        if ($cloudfront) {
+            $this->cloudfront = true;
+        }
 
         return $this;
     }
@@ -194,7 +202,7 @@ class ExportService
             'export_version' => $this->version,
             'started' => date('Y-m-d H:i:s'),
         ];
-        $this->archive->addRaw(json_encode($info), 'info.json');
+        $this->archive->addFromString('info.json', json_encode($info));
 
         return $this;
     }
@@ -207,30 +215,15 @@ class ExportService
             'boost_count', 'export_date', 'is_featured', 'featured_until',
             'featured_reason', 'visible_entity_count', 'system', 'follower', 'is_hidden',
         ];
-        $this->archive->addRaw($this->campaign->makeHidden($hidden)->toJson(), 'campaign.json');
+        $this->archive->addFromString('campaign.json', $this->campaign->makeHidden($hidden)->toJson());
         $this->files++;
-        // Log::info("wat", ['path' => 's3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($this->campaign->image)]);
-        if (! $this->assets) {
-            // return $this;
-        }
         $image = $this->campaign->image;
         if (! empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
-            try {
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image), $image);
-                $this->files++;
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get campaign image', 'path' => $image]);
-            }
-
+            $this->addImage($image, $image);
         }
         $image = $this->campaign->header_image;
         if (! empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
-            try {
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image), $image);
-                $this->files++;
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get campaign header', 'path' => $image]);
-            }
+            $this->addImage($image, $image);
         }
 
         $this->progress();
@@ -358,15 +351,15 @@ class ExportService
 
     protected function processImage(Image $image): self
     {
-        if (! $this->assets) {
-            $this->archive->add($image->export(), 'gallery/' . $image->id . '.json');
+        try {
+            $this->archive->addFromString('gallery/' . $image->id . '.json', $image->export());
             $this->files++;
-            // return $this;
+        } catch (Exception $e) {
+            Log::warning('Campaign export', ['err' => 'Can\'t get gallery image', 'image' => $image->id]);
         }
 
-        if (! $image->isFolder()) {
-            $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($image->path), 'gallery/' . $image->id . '.' . $image->ext);
-            $this->files++;
+        if (! $image->isFolder() && Storage::exists($image->path)) {
+            $this->addImage($image->path, 'gallery/' . $image->id . '.' . $image->ext);
         }
         $this->progress();
 
@@ -382,29 +375,19 @@ class ExportService
         }
 
         if ($model instanceof Entity) {
-            $this->archive->add(json_encode(['entity' => $model->export()]), $module . '/' . Str::slug($model->name) . '.json');
+            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.json', json_encode(['entity' => $model->export()]));
         } else {
-            $this->archive->add($model->export(), $module . '/' . Str::slug($model->name) . '.json');
+            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.json', json_encode($model->export()));
         }
         $this->files++;
 
         $path = $entity->image_path;
         if (! empty($path) && ! Str::contains($path, '?') && Storage::exists($path)) {
-            try {
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
-                $this->files++;
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get image_path', 'image_path' => $path, 'entity' => $entity->id]);
-            }
+            $this->addImage($path, $path);
         }
         $path = $entity->header_image;
         if (! empty($path) && ! Str::contains($path, '?') && Storage::exists($path)) {
-            try {
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
-                $this->files++;
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get header_image', 'header_image' => $path, 'entity' => $entity->id]);
-            }
+            $this->addImage($path, $path);
         }
 
         /** @var EntityAsset $file */
@@ -416,11 +399,7 @@ class ExportService
             if (! Storage::exists($path)) {
                 continue;
             }
-            try {
-                $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
-            } catch (Exception $e) {
-                Log::warning('Campaign export', ['err' => 'Can\'t get asset file', 'path' => $path, 'asset' => $file->id]);
-            }
+            $this->addImage($path, $path);
         }
 
         if ($model instanceof Map) {
@@ -429,11 +408,7 @@ class ExportService
                 if (! $path || ! Storage::exists($path)) {
                     continue;
                 }
-                try {
-                    $this->archive->add('s3://' . config('filesystems.disks.s3.bucket') . '/' . Storage::path($path), $path);
-                } catch (Exception $e) {
-                    Log::warning('Campaign export', ['err' => 'Can\'t get map layer file', 'path' => $path, 'layer' => $layer->id]);
-                }
+                $this->addImage($path, $path);
             }
         }
 
@@ -445,12 +420,12 @@ class ExportService
     protected function notify(): self
     {
         $this->user->notify(new Header(
-            'campaign.' . ($this->assets ? 'asset_export' : 'export'),
+            'campaign.export',
             'download',
             'green',
             [
                 'link' => route('campaign.export', $this->campaign),
-                'time' => 60,
+                'time' => 120,
                 'campaign' => $this->campaign->name,
             ]
         ));
@@ -462,20 +437,37 @@ class ExportService
     {
         // Save all the content.
         try {
+            $this->archive->close();
             $path = 'exports/' . $this->campaign->id;
             $this->exportPath = $path . '/' . $this->file;
-            Log::info('Campaign export finished', ['exportPath' => $this->exportPath]);
+            Log::info('Campaign export', ['action' => 'finished generating zip', 'exportPath' => $this->exportPath, 'path' => $this->path, 'file' => $this->file]);
 
-            $this->archive->saveToDisk('s3', $path);
-            $this->filesize = (int) floor($this->archive->getFinalSize() / pow(1024, 2));
+            Storage::disk('s3')->putFileAs($path, $this->path, $this->file, 'public');
+            $this->filesize = (int) floor(filesize($this->path) / pow(1024, 2));
+            Log::info('Campaign export', ['action' => 'saved to disk']);
+
         } catch (Exception $e) {
             Log::error('Campaign export', ['action' => 'finish', 'err' => $e->getMessage()]);
             // The export might fail if the zip is too big.
             $this->files = 0;
-            throw new Exception($e->getMessage());
+            throw $e;
         }
 
+        $this->cleanup();
+
         return $this;
+    }
+
+    protected function cleanup(): void
+    {
+        if (! isset($this->path)) {
+            return;
+        }
+        // Don't delete zips on debug mode
+        if (app()->hasDebugModeEnabled()) {
+            return;
+        }
+        unlink($this->path);
     }
 
     /**
@@ -483,21 +475,21 @@ class ExportService
      */
     public function fail(): self
     {
-        if (! $this->assets) {
-            $this->campaign->updateQuietly([
-                'export_date' => null,
-            ]);
-        }
+        $this->campaign->updateQuietly([
+            'export_date' => null,
+        ]);
 
         // Notify the user that something went wrong
         $this->user->notify(new Header(
-            $this->assets ? 'campaign.asset_export_error' : 'campaign.export_error',
+            'campaign.export_error',
             'circle-exclamation',
             'red',
             [
                 'campaign' => $this->campaign->name,
             ]
         ));
+
+        $this->cleanup();
 
         return $this;
     }
@@ -517,5 +509,33 @@ class ExportService
         }
         $this->log->progress = $total;
         $this->log->save();
+    }
+
+    protected function addImage(string $path, string $fileName): void
+    {
+        $maxRetries = 3;
+        $retry = 0;
+        while ($retry < $maxRetries) {
+            try {
+                if (! $this->cloudfront) {
+                    // In Laravel, Storage::get() will load the image in memory but not get rid of it until
+                    // garbage collection, so to avoid memory issues, we do it ourselves
+                    $stream = Storage::disk('s3')->readStream($path);
+                } else {
+                    // In prod, s3 assets are behind cloudfront, so we can be even more efficient
+                    $stream = Storage::disk('cloudfront')->readStream($path);
+                }
+                $content = stream_get_contents($stream);
+                fclose($stream);
+                $this->archive->addFromString($fileName, $content);
+                $this->files++;
+
+                return;
+            } catch (\Throwable $e) {
+                $retry++;
+                usleep(200_000 * $retry); // exponential backoff (200ms, 400ms, 600ms)
+            }
+        }
+        Log::error('Campaign export', ['err' => 'S3 GetObject permanently failed', 'attempt' => $retry, 'path' => $path]);
     }
 }

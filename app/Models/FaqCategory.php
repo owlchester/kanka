@@ -36,9 +36,7 @@ class FaqCategory extends Model
         'locale',
     ];
 
-    protected $_locale;
-
-    protected $_faqCount = false;
+    protected $locale;
 
     /**
      * @param  bool  $visible
@@ -86,14 +84,5 @@ class FaqCategory extends Model
         return $this->faqs
             ->where('is_visible', true)
             ->sortBy('order');
-    }
-
-    public function faqCount()
-    {
-        if ($this->_faqCount === false) {
-            $this->_faqCount = $this->faqs->count();
-        }
-
-        return $this->_faqCount;
     }
 }

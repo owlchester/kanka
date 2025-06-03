@@ -19,6 +19,6 @@ class SearchController extends Controller
         }
         $term = mb_trim($term);
 
-        return redirect()->route('search.fulltext', [$campaign, 'term' => mb_trim($term)]);
+        return redirect()->route('search.fulltext', [$campaign, 'term' => $term]);
     }
 }

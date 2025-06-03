@@ -33,7 +33,11 @@ const initLiveAttributes = () => {
 
     const parsedFields = document.querySelectorAll('.live-edit-parsed');
     parsedFields.forEach(field => {
-        field.addEventListener('click', function () {
+        field.addEventListener('click', function (e) {
+            // If clicking on a link inside the live-edit link, just follow the link, don't open the editor
+            if (e.target.tagName === 'A') {
+                return;
+            }
             const id = field.dataset.id;
             const url = liveEditURL + '?id=' + id + '&uid=' + field.dataset.uid;
 

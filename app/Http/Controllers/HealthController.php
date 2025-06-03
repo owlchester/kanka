@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Events\DiagnosingHealth;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\View;
 
 class HealthController extends Controller
 {

@@ -4,7 +4,7 @@
     </button>
     <div class="dropdown">
         <button type="button" class="btn2 btn-sm" data-dropdown aria-expanded="true">
-            <x-icon class="fa-solid fa-caret-down" />
+            <x-icon class="fa-regular fa-caret-down" />
             {{ __('entities/attributes.actions.more') }}
         </button>
         <div class="dropdown-menu hidden" role="menu">
@@ -12,20 +12,20 @@
                 {{ __('entities/attributes.types.checkbox') }}
             </x-dropdowns.item>
 
-            <x-dropdowns.item link="#" :data="['attribute-template' => '#text_template', 'sortable' => $existing ? 'true' : 'false']" icon="fa-solid fa-align-justify">
+            <x-dropdowns.item link="#" :data="['attribute-template' => '#text_template', 'sortable' => $existing ? 'true' : 'false']" icon="fa-regular fa-align-justify">
                 {{ __('entities/attributes.types.text') }}
             </x-dropdowns.item>
 
-            <x-dropdowns.item link="#" :data="['attribute-template' => '#number_template', 'sortable' => $existing ? 'true' : 'false']" icon="fa-solid fa-hashtag">
+            <x-dropdowns.item link="#" :data="['attribute-template' => '#number_template', 'sortable' => $existing ? 'true' : 'false']" icon="fa-regular fa-hashtag">
                 {{ __('entities/attributes.types.number') }}
             </x-dropdowns.item>
 
-            <x-dropdowns.item link="#" :data="['attribute-template' => '#section_template', 'sortable' => $existing ? 'true' : 'false']" icon="fa-solid fa-layer-group">
+            <x-dropdowns.item link="#" :data="['attribute-template' => '#section_template', 'sortable' => $existing ? 'true' : 'false']" icon="fa-regular fa-layer-group">
                 {{ __('entities/attributes.types.section') }}
             </x-dropdowns.item>
 
             @if(request()->is('*/attribute_templates/*') || (isset($entity) && $entity->isAttributeTemplate()))
-                <x-dropdowns.item link="#" :data="['attribute-template' => '#random_template', 'sortable' => $existing ? 'true' : 'false']" icon="fa-solid fa-question">
+                <x-dropdowns.item link="#" :data="['attribute-template' => '#random_template', 'sortable' => $existing ? 'true' : 'false']" icon="question">
                     {{ __('entities/attributes.types.random') }}
                 </x-dropdowns.item>
             @endif
@@ -33,7 +33,7 @@
     </div>
     @if (isset($entity) && $entity->attributes()->where('is_hidden', '1')->get()->has('0'))
         <button type="button" class="btn2 btn-ghost" data-toggle="dialog" data-target="hidden-attributes">
-            <x-icon class="fa-solid fa-eye-slash" />
+            <x-icon class="fa-regular fa-eye-slash" />
             {{ __('entities/attributes.actions.show_hidden') }}
         </button>
     @endif
@@ -48,11 +48,8 @@
         {{ __('entities/attributes.actions.remove_all') }}
     </button>
 </div>
-<!-- Modal -->
 
-
-
-@if (auth()->user()->isAdmin())
+@can('admin', $campaign)
     @php
         $role = \App\Facades\CampaignCache::adminRole();
     @endphp

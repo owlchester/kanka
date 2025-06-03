@@ -8,6 +8,5 @@ return [
     'fields'    => [
         'deleted'   => 'Verwijderd',
     ],
-    'helper'    => 'Verwijderde entiteiten kunnen tot :count dagen worden hersteld bij gebruik van deze interface.',
     'title'     => 'Entiteitsherstel voor :campaign',
 ];

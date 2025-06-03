@@ -86,11 +86,18 @@ $switcher: #D8DBFF;
     font-size: 1rem;
     font-weight: 500;
     transition: all 0.2s;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
 
     &:hover, &:focus {
         background-color: $dark;
         color: white;
     }
+}
+.btn-sm {
+    padding: 0.8rem 1.3rem;
+    font-size: 0.875rem;
 }
 
 .block-input, .block-btn {

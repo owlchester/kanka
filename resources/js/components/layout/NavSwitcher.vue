@@ -151,7 +151,7 @@
                                 {{ profile.subscription.call_to_action }}
                                 <div class="link flex gap-1 items-center">{{ profile.subscription.call_to_action_2 }}
                                     <i class="fa-duotone fa-credit-card" aria-hidden="true" v-if="pro"></i>
-                                    <i class="fa-solid fa-credit-card" aria-hidden="true" v-else></i>
+                                    <i class="fa-regular fa-credit-card" aria-hidden="true" v-else></i>
                                     <i class="fa-brands fa-paypal" aria-hidden="true"></i>
                                 </div>
                             </div>
@@ -162,25 +162,25 @@
                 <ul class="m-0 p-0 list-none flex flex-col gap-2" v-if="!profile.is_impersonating">
                     <li>
                         <a v-bind:href="profile.urls.settings.url" class="p-2 block">
-                            <i class="fa-solid fa-cog mr-3" aria-hidden="true"></i>
+                            <i class="fa-regular fa-cog mr-3" aria-hidden="true"></i>
                             {{ profile.urls.settings.name }}
                         </a>
                     </li>
                     <li>
                         <a v-bind:href="profile.urls.profile.url" class="p-2 block">
-                            <i class="fa-solid fa-user mr-3" aria-hidden="true"></i>
+                            <i class="fa-regular fa-user mr-3" aria-hidden="true"></i>
                             {{ profile.urls.profile.name }}
                         </a>
                     </li>
                     <li>
                         <a v-bind:href="profile.urls.help.url" class="p-2 block" target="_blank">
-                            <i class="fa-solid fa-question-circle mr-3" aria-hidden="true"></i>
+                            <i class="fa-regular fa-question-circle mr-3" aria-hidden="true"></i>
                             {{ profile.urls.help.name }}
                         </a>
                     </li>
                     <li>
                         <a href="#" v-on:click="logout()" class="p-2 block">
-                            <i class="fa-solid fa-sign-out mr-3" aria-hidden="true"></i>
+                            <i class="fa-regular fa-sign-out mr-3" aria-hidden="true"></i>
                             {{ profile.urls.logout.name }}
                         </a>
                     </li>
@@ -188,7 +188,7 @@
                 <ul class="m-0 p-0 list-none flex flex-col gap-2" v-else>
                     <li>
                         <a v-bind:href="profile.return.url" class="">
-                            <i class="fa-solid fa-sign-out-alt mr-3" aria-hidden="true"></i>
+                            <i class="fa-regular fa-sign-out-alt mr-3" aria-hidden="true"></i>
                             {{ profile.return.name }}
                         </a>
                     </li>
@@ -215,7 +215,7 @@
 
                         <a v-bind:href="campaigns.urls.new" class="new-campaign flex items-center text-center border-dashed border rounded-lg h-24 p-2 overflow-hidden">
                             <span class="text-xs text-break uppercase">
-                                <i class="fa-solid fa-plus" aria-hidden="true" style="display: none"></i>
+                                <i class="fa-regular fa-plus" aria-hidden="true" style="display: none"></i>
                                 {{ campaigns.texts.new }}
                             </span>
                         </a>

@@ -154,6 +154,7 @@ return [
                 'not_playing'       => 'No longer playing or campaign on hiatus',
                 'not_using'         => 'Not currently using Kanka',
                 'other'             => 'Other',
+                'testing'           => 'Just testing Kanka',
             ],
             'text'      => 'Sorry to see you go! Cancelling your subscription will keep it active until :date, after which your premium campaigns will revert to standard campaigns and other benefits related to supporting Kanka will be disabled. Feel free to fill out the following form to inform us what we can do better, or what led to your decision.',
             'title'     => 'Cancelling subscription',
@@ -253,7 +254,6 @@ return [
         'success'               => [
             'alternative'   => 'Your payment was registered. You will get a notification as soon as it is processed and your subscription is active.',
             'callback'      => 'Your subscription was successful. Your account will be updated as soon as our payment provider informs us of the change (this might take a few minutes).',
-            'cancel'        => 'Your subscription was cancelled. It will continue to be active until the end of your current billing period.',
             'currency'      => 'Your preferred currency setting was updated.',
             'subscribed'    => 'Your subscription was successful! Don\'t forget to subscribe our newsletter to be notified of changes in Kanka. Also, you can check out our discord and become part of the community',
         ],

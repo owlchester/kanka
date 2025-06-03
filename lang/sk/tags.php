@@ -10,7 +10,6 @@ return [
             'attach_success'        => '{1} :count objekt pridaný do kategórie :name.|[2,4] :count objekty pridané do kategórie :name.|[5,*] :count objektov pridaných do kategórie :name.',
             'attach_success_entity' => 'Kategórie pre :name úspešne pridané.',
             'entity'                => 'Pridať kategórie k :name',
-            'modal_title'           => 'Pridať objekty k :name.',
         ],
     ],
     'create'        => [
@@ -44,13 +43,10 @@ return [
     ],
     'tags'          => [],
     'transfer'      => [
-        'description'       => 'Presunie objekty tejto kategórie pod inú kategóriu.',
-        'fail'              => 'Nepodarilo sa presunúť objekty z :tag na :newTag',
-        'fail_post'         => 'Nepodarilo sa presunúť ponámky z :tag na :newTag',
-        'post_description'  => 'Presunie poznámky tejto kategórie pod inú kategóriu.',
-        'success'           => 'Presun objektov z :tag na :newTag úspešný',
-        'success_post'      => 'Presun poznámok z :tag na :newTag úspešný',
-        'title'             => 'Presun :name',
-        'transfer'          => 'Presun',
+        'fail'          => 'Nepodarilo sa presunúť objekty z :tag na :newTag',
+        'fail_post'     => 'Nepodarilo sa presunúť ponámky z :tag na :newTag',
+        'success'       => 'Presun objektov z :tag na :newTag úspešný',
+        'success_post'  => 'Presun poznámok z :tag na :newTag úspešný',
+        'transfer'      => 'Presun',
     ],
 ];

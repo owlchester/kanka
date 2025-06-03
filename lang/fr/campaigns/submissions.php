@@ -16,7 +16,6 @@ return [
         ],
         'title'         => 'Rejoindre :name',
     ],
-    'errors'        => [],
     'fields'        => [
         'application'   => 'Application',
         'reason'        => 'Motif d\'approbation / de rejet',
@@ -42,7 +41,6 @@ return [
         'public'    => 'La campagne est publique',
         'title'     => 'Campaign publique',
     ],
-    'statuses'      => [],
     'toggle'        => [
         'closed'    => 'Fermé aux candidatures',
         'label'     => 'Status',

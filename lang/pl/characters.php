@@ -13,10 +13,11 @@ return [
     'dice_rolls'    => [],
     'edit'          => [],
     'families'      => [
+        'helper'    => 'Pozwala zmienić kolejność i określić, które rodziny :name będą widoczne lub ukryte dla nie-administratorów.',
         'reorder'   => [
             'success'   => 'Zmieniono rodziny postaci.',
         ],
-        'title'     => 'Zarządzanie rodzinami :name',
+        'title2'    => 'Zarządzaj rodzinami',
     ],
     'fields'        => [
         'age'                       => 'Wiek',
@@ -32,7 +33,8 @@ return [
         'traits'                    => 'Opis',
     ],
     'helpers'       => [
-        'age'   => 'Możesz też połączyć ten element z kalendarzem kampanii, by automatycznie obliczyć wiek. :more',
+        'age'                   => 'Możesz też połączyć ten element z kalendarzem kampanii, by automatycznie obliczyć wiek. :more',
+        'personality_visible'   => 'Po zaznaczeniu cechy osobowości będą widoczne dla każdego. W przeciwnym razie widzieć je będą tylko posiadacze roli :admin.',
     ],
     'hints'         => [
         'is_appearance_pinned'      => 'Zaznacz, by cechy wyglądu postaci wyświetlane były w widoku podstawowym.',
@@ -93,10 +95,11 @@ return [
         ],
     ],
     'races'         => [
+        'helper'    => 'Pozwala zmienić kolejność i określić, które rasy :name będą widoczne lub ukryte dla nie-administratorów.',
         'reorder'   => [
             'success'   => 'Zmieniono rasy postaci.',
         ],
-        'title'     => 'Zarządzanie rasami :name',
+        'title2'    => 'Zarządzaj rasami',
     ],
     'sections'      => [
         'appearance'    => 'Wygląd',

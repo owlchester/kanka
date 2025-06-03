@@ -32,6 +32,7 @@ class TagFilter extends DatagridFilter
             ->isPrivate()
             ->template()
             ->hasImage()
+            ->hasEntry()
             ->hasPosts()
             ->hasEntityFiles()
             ->hasAttributes()

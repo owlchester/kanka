@@ -21,11 +21,7 @@
             <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.applications') }}
             </h3>
-            <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
-                    data-target="submissions-help">
-                <x-icon class="question" />
-                {{ __('crud.actions.help') }}
-            </button>
+            <x-learn-more url="features/campaigns/applications.html" />
         </div>
 
         @include('campaigns.submissions._requirements')
@@ -45,13 +41,5 @@
 
 
 @section('modals')
-
-    @include('partials.helper-modal', [
-        'id' => 'submissions-help',
-        'title' => __('campaigns.show.tabs.applications'),
-        'textes' => [
-            __('campaigns/submissions.helpers.modal')
-    ]])
-
     <x-dialog id="submission-dialog" loading="true" />
 @endsection

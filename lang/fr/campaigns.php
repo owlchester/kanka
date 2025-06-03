@@ -1,16 +1,13 @@
 <?php
 
 return [
-    'actions'                           => [],
     'create'                            => [
         'success'   => 'Campagne créée.',
         'title'     => 'Nouvelle Campagne',
     ],
-    'destroy'                           => [],
     'edit'                              => [
         'success'   => 'Campagne modifiée.',
     ],
-    'entity_note_visibility'            => [],
     'entity_personality_visibilities'   => [
         'private'   => 'Les nouveaux personnages ont leur personnalité privée par défault.',
     ],
@@ -125,6 +122,7 @@ return [
         ],
     ],
     'leave'                             => [
+        'action'            => 'Quitter la campagne',
         'confirm'           => 'Es-tu sûr de vouloir quitter la campagne :name? Tu n\'auras plus accès aux données, sauf si un admin de la campagne t\'invite à nouveau.',
         'confirm-button'    => 'Oui, quitter la campagne',
         'error'             => 'Impossible de quitter la campagne.',
@@ -286,7 +284,7 @@ return [
                 'gallery'       => [
                     'browse'    => 'Permettre de parcourir la galerie, et définir l\'image d\'entité depuis la galerie.',
                     'manage'    => 'Permettre l\'accès complet à la galerie, avec la possibilité de modifier et supprimer des images.',
-                    'upload'    => 'Permet de télécharger des images dans la galerie. L\'utilisateur ne verra que les images qu’il/elle a téléchargées si elles ne sont pas combinées avec l’autorisation de parcourir.',
+                    'upload'    => 'Permet de télécharger des images dans la galerie. L\'utilisateur ne verra que les images qu\'il/elle a téléchargées si elles ne sont pas combinées avec l\'autorisation de parcourir.',
                 ],
                 'manage'        => 'Permettre la gestion de la campagne tel qu\'un membre du rôle admin, sans permettre aux membres de supprimer la campagne.',
                 'members'       => 'Permettre l\'invitation de nouveaux membre à la campagne.',
@@ -431,7 +429,6 @@ return [
             'connections_mode'  => 'Mode par défaut d\'outil de visualisation de relation',
             'descendants'       => 'Filtrage des descendants',
             'entity_history'    => 'Historique d\'une entité',
-            'entity_image'      => 'Image d\'une entité',
             'member_list'       => 'Liste des membres de la campagne',
             'post_collapsed'    => 'Affichage par défaut de nouvelle entrées',
         ],
@@ -444,7 +441,6 @@ return [
             'other'             => 'Autres options visuelles de la campagne.',
             'post_collapsed'    => 'Lors de la création d\'une nouvelle entrée sur une entité, sélection de l\'affichage par défaut.',
             'theme'             => 'Afficher la campagne dans le thème choisi par l\'utilisateur, ou forcer l\'affichage dans un des thèmes suivants.',
-            'tooltip'           => 'Définir quelles options sont visibles lors du survol du nom d\'une entité.',
         ],
         'members'           => [
             'hidden'    => 'Seulement visible aux admins de la campagne',

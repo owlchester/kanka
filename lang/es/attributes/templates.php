@@ -9,9 +9,7 @@ return [
     ],
     'helpers'   => [],
     'list'      => [
-        'campaign'      => 'Plantillas de campaña',
-        'kanka'         => 'Plantillas de Kanka',
-        'marketplace'   => 'Plantillas del Marketplace',
+        'campaign'  => 'Plantillas de campaña',
     ],
     'pitch'     => 'Encuentra y añade hojas de personaje del :marketplace a una :boosted-campaign.',
 ];

@@ -22,14 +22,14 @@ class TransferController extends Controller
     {
         $this->authorize('update', $tag->entity);
 
-        return view('tags.transfer', compact('campaign', 'tag'));
+        return view('tags.transfer.entities.transfer', compact('campaign', 'tag'));
     }
 
     public function postIndex(Campaign $campaign, Tag $tag)
     {
         $this->authorize('update', $tag->entity);
 
-        return view('tags.transfer_posts', compact('campaign', 'tag'));
+        return view('tags.transfer.posts.transfer', compact('campaign', 'tag'));
     }
 
     public function process(TransferTag $request, Campaign $campaign, Tag $tag)

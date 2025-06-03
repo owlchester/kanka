@@ -31,6 +31,7 @@ return [
         ],
         'join'                  => ':user a rejoint la campagne :campaign.',
         'leave'                 => ':user a quitté la campagne :campaign.',
+        'new_owner'             => 'Tu es devenu un admin de :campaign.',
         'plugin'                => [
             'deleted'   => 'Le plugin :plugin a été supprimé du marketplace et retiré de la campagne :campaign.',
         ],

@@ -200,7 +200,6 @@ class Family extends MiscModel
     {
         return $this->hasMany(CharacterFamily::class)
             ->with(['character', 'character.entity']);
-
     }
 
     /**

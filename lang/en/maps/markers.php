@@ -84,7 +84,7 @@ return [
         'title' => 'Markers of :name',
     ],
     'pitches'       => [
-        'poly'  => 'Draw custom polygon shapes to represent borders and other uneven shapes.',
+        'poly'  => 'Use polygons to outline borders, territories, or uneven regions on your map. Available as part of premium campaign features.',
     ],
     'placeholders'  => [
         'custom_icon'   => 'Try :example1 or :example2',

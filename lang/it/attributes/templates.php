@@ -9,9 +9,7 @@ return [
     ],
     'helpers'   => [],
     'list'      => [
-        'campaign'      => 'Template della campagna',
-        'kanka'         => 'Template di Kanka',
-        'marketplace'   => 'Template del Marketplace',
+        'campaign'  => 'Template della campagna',
     ],
     'pitch'     => 'Trova e aggiungi schede del personaggio dal :marketplace in una :boosted-campaign',
 ];

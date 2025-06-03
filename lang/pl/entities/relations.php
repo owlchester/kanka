@@ -30,6 +30,7 @@ return [
         'timeline_element'  => 'Część historii',
     ],
     'create'            => [
+        'helper'        => 'Łączy :name z jednym lub kilkoma innymi elementami',
         'new_title'     => 'Nowa relacja',
         'success_bulk'  => '{1} Dodano :count relacji do :entity.|[2,4] Dodano :count relacje do :entity.|[5,*] Dodano :count relacji do :entity.',
     ],
@@ -49,6 +50,7 @@ return [
         'relation'          => 'Relacja',
         'target'            => 'Obiekt',
         'target_relation'   => 'Relacje obiektu',
+        'targets'           => 'Elementy obiektu',
         'two_way'           => 'Stwórz relację obustronną',
         'unmirror'          => 'Zmień w relację jednostronną',
     ],
@@ -58,8 +60,8 @@ return [
     ],
     'helper'            => 'Ustalaj relacje między elementami, określając ich rodzaj i widoczność. Relacje można przypinać do opisu elementów.',
     'helpers'           => [
+        'description'   => 'Opisuje charakter relacji między dwoma elementami.',
         'no_relations'  => 'Element nie jest obecnie związany z żadnym innym elementem tej kampanii.',
-        'popup'         => 'Elementy można łączyć z pomocą relacji. Mogą one posiadać opis, wartość, ograniczoną widoczność dla różnych użytkowników i tak dalej.',
     ],
     'hints'             => [
         'attitude'          => 'Pole opcjonalne, pozwalająca określić kolejność wyświetlania relacji, w porządku malejącym.',

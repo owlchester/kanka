@@ -92,11 +92,9 @@ return [
         'netherlands'   => 'Pays-Bas',
         'spain'         => 'Espagne',
     ],
-    'invoices'      => [],
     'layout'        => [
         'title' => 'Mise en page',
     ],
-    'marketplace'   => [],
     'menu'          => [
         'account'               => 'Compte',
         'api'                   => 'API',
@@ -156,6 +154,7 @@ return [
                 'not_playing'       => 'La campagne n\'est plus active ou en pause',
                 'not_using'         => 'Je n\'utilise pas Kanka actuellement',
                 'other'             => 'Autre',
+                'testing'           => 'Juste en train de tester Kanka.',
             ],
             'text'      => 'Désolé de te voir partir! L\'annulation de ton abonnement le gardera actif jusqu\'au la fin du mois payé, après quoi tu perdras les bonus de ta campagne et les autres avantages liés au soutien de Kanka. N\'hésite pas à remplir le formulaire suivant pour nous informer de ce que nous pouvons améliorer, ou ce qui a conduit à ta décision.',
             'title'     => 'Annulation de l\'abonnement',
@@ -255,7 +254,6 @@ return [
         'success'               => [
             'alternative'   => 'Le paiement a été enregistré. Une notification sera générée dès le paiement traité et l\'abonnement activé.',
             'callback'      => 'Ton abonnement est réussi! Ton compte sera mis à jour dès que notre gestionnaire de paiement nous informera des changements (cela peut prendre quelques minutes).',
-            'cancel'        => 'Ton abonnement est annulé. Il sera toujours actif jusqu\'à la fin de la période actuelle.',
             'currency'      => 'Devise préférée sauvegardée.',
             'subscribed'    => 'Ton abonnement est réussi! N\'oublie pas de t\'abonner à la newsletter Community Vote pour être averti lorsqu\'un vote sera ouvert. Tu peux modifier tes paramètres de newsletter sur ta page de profil.',
         ],

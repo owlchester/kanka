@@ -17,10 +17,7 @@
             <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.members') }} <span class="text-sm">({{ $rows->total() }} / @if ($limit = $campaign->memberLimit()){{ $limit }}@else<i class="fa-solid fa-infinity" aria-hidden="true"></i>@endif)</span>
             </h3>
-            <a href="https://docs.kanka.io/en/latest/features/campaigns/members.html" class="btn2 btn-sm btn-ghost" target="_blank">
-                <x-icon class="question" />
-                {{ __('crud.actions.help') }}
-            </a>
+            <x-learn-more url="features/campaigns/members.html" />
         </div>
 
         <x-grid>

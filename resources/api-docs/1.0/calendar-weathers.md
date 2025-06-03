@@ -16,8 +16,8 @@ You can get a list of all the weather effects of a calendar by using the followi
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | URI                                        | Headers |
-| :- |:-------------------------------------------|  :-  |
+| Method | URI                                           | Headers |
+| :- |:----------------------------------------------|  :-  |
 | GET/HEAD | `calendars/{calendar.id}/calendar_weather` | Default |
 
 ### Results
@@ -65,8 +65,8 @@ You can get a list of all the weather effects of a calendar by using the followi
 
 To get the details of a single weather effect, use the following endpoint.
 
-| Method | URI                                                              | Headers |
-| :- |:-----------------------------------------------------------------|  :-  |
+| Method | URI                                                                 | Headers |
+| :- |:--------------------------------------------------------------------|  :-  |
 | GET/HEAD | `calendars/{calendar.id}/calendar_weather/{calendar_weather.id}` | Default |
 
 ### Results

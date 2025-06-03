@@ -57,7 +57,7 @@ data-visibility="{{ $item->visibility_id }}"
 
     @if ($item->is_equipped)
         <div class="left-2 bottom-1 absolute text-lg">
-            <x-icon class="fa-solid fa-backpack" tooltip="1" :title="__('entities/inventories.tooltips.equipped')" />
+            <x-icon class="fa-regular fa-backpack" tooltip="1" :title="__('entities/inventories.tooltips.equipped')" />
         </div>
     @endif
 

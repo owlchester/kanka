@@ -32,6 +32,11 @@ class CampaignPolicy
         return true;
     }
 
+    public function admin(User $user, Campaign $campaign): bool
+    {
+        return $user->isAdmin($campaign);
+    }
+
     /**
      * Can't create a campaign while impersonating another user. Should be handled in the controller?
      */

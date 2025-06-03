@@ -10,18 +10,21 @@
 ])
 
 @section('content')
-<div class="modal-body text-center">
-    @if (request()->ajax())
-        <x-dialog.close />
-    @endif
 
     @if ($campaign->boosted())
-        {{ __('maps/layers.pitch.error') }}
+        <x-box class="rounded-xl flex flex-col gap-4 p-6">
+            <h2 class="text-2xl">
+                <x-icon class="fa-regular fa-exclamation-triangle" />
+                {{ __('maps/groups.pitch.max.limit') }}
+            </h2>
+            <x-helper>
+                <p>{{ __('maps/layers.pitch.max.helper', ['limit' => $max]) }}</p>
+            </x-helper>
+        </x-box>
     @else
-        <x-cta :campaign="$campaign">
-            <p>{{ __('maps/layers.pitch.until', ['max' => $max]) }}</p>
-        </x-cta>
+        <x-premium-cta :campaign="$campaign">
+            <p>{{ __('maps/layers.pitch.upgrade.upgrade', ['limit' => $max]) }}</p>
+        </x-premium-cta>
     @endif
-</div>
 
 @endsection

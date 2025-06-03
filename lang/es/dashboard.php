@@ -7,13 +7,7 @@ return [
         'join'      => 'Unirse',
         'unfollow'  => 'Dejar de seguir',
     ],
-    'campaigns'     => [
-        'tabs'  => [
-            'modules'   => ':count módulos',
-            'roles'     => ':count roles',
-            'users'     => ':count usuarios',
-        ],
-    ],
+    'campaigns'     => [],
     'dashboards'    => [
         'actions'       => [
             'edit'      => 'Editar',
@@ -59,20 +53,10 @@ return [
     'helpers'       => [
         'follow'    => 'Si sigues una campaña, esta aparecerá en el menú de cambio de campaña (arriba a la derecha) bajo tus campañas.',
         'join'      => 'Esta campaña está abierta a nuevos miembros. Haz clic en unirse para enviar una solicitud.',
-        'setup'     => 'Configura el tablero de la campaña',
     ],
-    'notifications' => [
-        'modal' => [
-            'confirm'   => 'Entendido',
-            'title'     => 'Notificación importante',
-        ],
-    ],
-    'recent'        => [
-        'title' => ':name recientemente modificados',
-    ],
-    'settings'      => [
-        'title' => 'Ajustes del tablero',
-    ],
+    'notifications' => [],
+    'recent'        => [],
+    'settings'      => [],
     'setup'         => [
         'actions'   => [
             'add'               => 'Añadir widget',
@@ -103,16 +87,12 @@ return [
     'title'         => 'Tablero de',
     'welcome'       => [],
     'widgets'       => [
-        'actions'                   => [
-            'advanced-options'  => 'Opciones avanzadas',
-        ],
         'advanced_options_boosted'  => 'Habilita más opciones como mostrar pines con una :boosted_campaign.',
         'calendar'                  => [
             'actions'           => [
                 'next'      => 'Cambiar fecha al día siguiente',
                 'previous'  => 'Cambiar fecha al día anterior',
             ],
-            'events_today'      => 'Hoy',
             'previous_events'   => 'Anterior',
             'upcoming_events'   => 'Próximo',
         ],
@@ -133,7 +113,6 @@ return [
             'optional-entity'   => 'Link a la entidad',
             'order'             => 'Orden',
             'size'              => 'Tamaño',
-            'text'              => 'Texto',
             'width'             => 'Anchura',
         ],
         'helpers'                   => [

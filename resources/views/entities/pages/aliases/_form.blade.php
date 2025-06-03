@@ -1,8 +1,6 @@
-{{ csrf_field() }}
-
 @if (!isset($entityAsset))
     <x-helper>
-        {!! __('entities/aliases.create.helper', ['name' => $entity->name, 'code' => '<code>@</code>']) !!}
+        <p>{!! __('entities/aliases.create.helper', ['name' => $entity->name, 'code' => '<code>@</code>']) !!}</p>
     </x-helper>
 @endif
 

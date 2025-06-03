@@ -10,9 +10,14 @@ use Illuminate\Support\Str;
 
 class MarkerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request, Campaign $campaign)
     {
-        $term = mb_trim($request->q ?? '');
+        $term = mb_trim($request->get('q') ?? '');
         // parent map_id allowed for the marker (limits search to the markers of the map only)
         $include = $request->has('include') ? [$request->get('include')] : [];
 

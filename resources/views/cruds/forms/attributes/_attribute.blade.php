@@ -16,7 +16,7 @@ if ($attribute->isSection()) {
 
 <div class="flex flex-wrap md:flex-no-wrap items-start gap-1 attribute_row ">
     <div class="sortable-handler p-2 cursor-move">
-        <x-icon class="fa-solid fa-grip-vertical" />
+        <x-icon class="fa-regular fa-grip-vertical" />
     </div>
     <div class="field @if ($attribute->isSection()) grow @endif ">
         <label class="sr-only">{{ __('entities/attributes.labels.' . ($attribute->isSection() ? 'section' : 'name')) }}</label>

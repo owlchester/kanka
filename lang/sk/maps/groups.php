@@ -32,10 +32,7 @@ return [
     'index'         => [
         'title' => 'Skupiny :name',
     ],
-    'pitch'         => [
-        'error' => 'Dosiahnutý max. počet skupín.',
-        'until' => 'Vytvor na každej mape až :max skupín.',
-    ],
+    'pitch'         => [],
     'placeholders'  => [
         'name'          => 'Obchody, Poklady, NPC',
         'position'      => 'Nepovinné pole na nastavenie poradia zobrazenia skupín.',

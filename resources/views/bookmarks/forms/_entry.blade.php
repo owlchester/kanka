@@ -28,48 +28,13 @@ $premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campa
 
     <x-grid>
 
-        <x-forms.field field="icon" :label="__('entities/links.fields.icon')">
-            @if($campaign->boosted())
-                <input type="text" name="icon" value="{{ old('text', $source->icon ?? $model->icon ?? null) }}" placeholder="fa-solid fa-users" list="link-icon-list" data-paste="fontawesome" maxlength="45" />
-                <div class="hidden">
-                    <datalist id="link-icon-list">
-                        @foreach (\App\Facades\BookmarkCache::iconSuggestion() as $icon)
-                            <option value="{{ $icon }}">{{ $icon }}</option>
-                        @endforeach
-                    </datalist>
-                </div>
-                <x-slot name="helper">
-                    {!! __('entities/links.helpers.icon', [
-                        'fontawesome' => '<a href="' . config('fontawesome.search') . '" target="_blank">FontAwesome</a>',
-                        'rpgawesome' => '<a href="https://nagoshiashumari.github.io/Rpg-Awesome/" target="_blank">RPGAwesome</a>',
-                        'docs' => '<a href="https://docs.kanka.io/en/latest/articles/available-icons.html" target="_blank">' . __('footer.documentation',) . '</a>',
-                    ]) !!}
-                </x-slot>
-            @else
-                @if (auth()->user()->hasBoosters())
-                <x-helper>
-                    {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => $settingsLink]) !!}
-                </x-helper>
-                @else
-                    <x-helper>
-                        {!! __('callouts.booster.pitches.icon', ['boosted-campaign' => $premiumLink]) !!}
-                    </x-helper>
-                @endif
-            @endif
-        </x-forms.field>
-
         <x-forms.field
             field="position"
             :label="__('bookmarks.fields.position')"
             tooltip
             :helper="__('entities/links.helpers.parent')">
             <x-forms.select name="parent" :options="$sidebar->campaign($campaign)->availableParents()" :selected="$model->parent ?? 'bookmarks'" />
-
-            <p class="text-neutral-content md:hidden">
-                {!! __('entities/links.helpers.parent') !!}
-            </p>
         </x-forms.field>
-
 
         <x-forms.field
             field="active"
@@ -81,13 +46,13 @@ $premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campa
             <x-checkbox :text="__('bookmarks.visibilities.is_active')">
                 <input type="checkbox" name="is_active" value="1" @if (old('is_active', $model->is_active ?? true)) checked="checked" @endif />
             </x-checkbox>
-
         </x-forms.field>
+
+        @include('cruds.fields.icon', ['suggestions' => \App\Facades\BookmarkCache::iconSuggestion()])
 
         <x-forms.field
                 field="class"
                 :label="__('dashboard.widgets.fields.class')"
-                tooltip
                 :helper="__('dashboard.widgets.helpers.class')"
         >
             @if ($campaign->boosted())
@@ -96,15 +61,13 @@ $premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campa
                     {{ __('bookmarks.helpers.class') }}
                 </p>
             @else
-                @if (auth()->user()->hasBoosters())
-                <x-helper>
-                    {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => $settingsLink]) !!}
-                </x-helper>
-                @else
-                    <x-helper>
+                <x-slot name="helper">
+                    @can('boost', auth()->user())
+                        {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => $settingsLink]) !!}
+                    @else
                         {!! __('callouts.booster.pitches.element-class', ['boosted-campaign' => $premiumLink]) !!}
-                    </x-helper>
-                @endif
+                    @endif
+                </x-slot>
             @endif
         </x-forms.field>
     </x-grid>
@@ -116,7 +79,9 @@ $premiumLink = '<a href="https://kanka.io/premium">' . __('concept.premium-campa
 <x-box class="flex flex-col gap-4">
     <div class="text-xl">{{ __('bookmarks.fields.selector') }}</div>
 
-    <x-helper :text="__('bookmarks.helpers.selector')" />
+    <x-helper>
+        <p>{{ __('bookmarks.helpers.selector') }}</p>
+    </x-helper>
 
     <x-forms.field field="target" :label="__('bookmarks.fields.target')">
         <select name="type" class="" id="bookmark-selector">

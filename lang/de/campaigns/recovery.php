@@ -10,7 +10,6 @@ return [
         'deleted'       => 'Gelöscht',
         'deleted_at'    => 'Gelöscht :date von :user',
     ],
-    'helper'    => 'Gelöschte Objekte können :count Tage wiederhergestellt werden wenn sie diese Schnittstelle nutzen.',
     'name_link' => ':name wurde erfolgreich wiederhergestellt',
     'order'     => [
         'newest'        => 'Ordnen nach :newest',

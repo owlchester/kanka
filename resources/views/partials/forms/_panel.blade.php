@@ -1,10 +1,10 @@
-<div class="box box-solid">
+<div class="box">
     <div class="box-body">
         @include('partials.errors')
         @include($content)
     </div>
-    <div class="box-footer flex gap-2 items-center">
-        <div class="grow flex gap-2 items-center">
+    <div class="box-footer flex gap-2 items-center justify-between">
+        <div class="flex gap-2 items-center">
             @include('partials.footer_cancel')
 
             @if (isset($actions))

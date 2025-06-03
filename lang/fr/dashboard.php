@@ -7,13 +7,6 @@ return [
         'join'      => 'Joindre',
         'unfollow'  => 'Ne plus suivre',
     ],
-    'campaigns'     => [
-        'tabs'  => [
-            'modules'   => ':count modules',
-            'roles'     => ':count rôles',
-            'users'     => ':count membres',
-        ],
-    ],
     'dashboards'    => [
         'actions'       => [
             'edit'      => 'Modifier',
@@ -21,6 +14,7 @@ return [
             'switch'    => 'Basculer vers',
         ],
         'create'        => [
+            'helper'    => 'Crée un nouveau tableau de bord pour :name, et attribue les rôles qui peuvent le voir ou l\'avoir comme tableau de bord par défaut.',
             'success'   => 'Nouveau tableau de bord :name créé.',
             'title'     => 'Nouveau tableau de bord',
         ],
@@ -59,19 +53,6 @@ return [
     'helpers'       => [
         'follow'    => 'Suivre une campagne la rend visibile dans le changeur de campagne (en haut à droite) après tes campagnes.',
         'join'      => 'Cette campagne est ouverte à de nouveaux membres. Cliquer pour postuler pour rejoindre.',
-        'setup'     => 'Configurer le tableau de bord de la campagne',
-    ],
-    'notifications' => [
-        'modal' => [
-            'confirm'   => 'Compris',
-            'title'     => 'Notification importante',
-        ],
-    ],
-    'recent'        => [
-        'title' => 'Modifications récentes sur les :name',
-    ],
-    'settings'      => [
-        'title' => 'Modifier le tableau de bord',
     ],
     'setup'         => [
         'actions'   => [
@@ -101,18 +82,13 @@ return [
         ],
     ],
     'title'         => 'Tableau de bord',
-    'welcome'       => [],
     'widgets'       => [
-        'actions'                   => [
-            'advanced-options'  => 'Options avancées',
-        ],
         'advanced_options_boosted'  => 'Activer plus d\'options comme afficher les épingles avec une :boosted_campaign.',
         'calendar'                  => [
             'actions'           => [
                 'next'      => 'Changer la date au prochain jour',
                 'previous'  => 'Changer la date au jour précédent',
             ],
-            'events_today'      => 'Aujourd\'hui',
             'previous_events'   => 'Précédents',
             'upcoming_events'   => 'Prochainement',
         ],
@@ -120,8 +96,10 @@ return [
             'helper'    => 'Ce widget affiche l\'entête de campagne. Ce widget est tout le temps visible sur le tableau de bord de défaut.',
         ],
         'create'                    => [
-            'success'   => 'Widget ajouté au tableau de bord.',
-            'title'     => 'Nouveau widget',
+            'helper'            => 'Sélectionne un type de widget à ajouter au tableau de bord :name.',
+            'helper-default'    => 'Sélectionne un type de widget à ajouter au tableau de bord par défaut.',
+            'success'           => 'Widget ajouté au tableau de bord.',
+            'title'             => 'Nouveau widget',
         ],
         'delete'                    => [
             'success'   => 'Widget retiré du tableau de bord.',
@@ -133,7 +111,6 @@ return [
             'optional-entity'   => 'Liens vers une entité',
             'order'             => 'Ordre d\'affichage',
             'size'              => 'Taille',
-            'text'              => 'Texte',
             'width'             => 'Largeur',
         ],
         'helpers'                   => [

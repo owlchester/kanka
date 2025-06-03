@@ -36,16 +36,13 @@ class Export implements ShouldQueue
 
     protected int $campaignExportId;
 
-    protected bool $assets;
-
     /**
      * CampaignExport constructor.
      */
-    public function __construct(Campaign $campaign, User $user, CampaignExport $campaignExport, bool $assets = false)
+    public function __construct(Campaign $campaign, User $user, CampaignExport $campaignExport)
     {
         $this->campaignId = $campaign->id;
         $this->userId = $user->id;
-        $this->assets = $assets;
         $this->campaignExportId = $campaignExport->id;
     }
 
@@ -83,14 +80,14 @@ class Export implements ShouldQueue
         $service
             ->user($user)
             ->campaign($campaign)
-            ->assets($this->assets)
             ->log($campaignExport)
             ->export();
 
         // Don't delete in "sync" mode as there is no delay.
         $queue = config('queue.default');
         if ($queue !== 'sync') {
-            FileCleanup::dispatch($service->exportPath())->delay(now()->addDay());
+            FileCleanup::dispatch($service->exportPath())
+                ->delay(now()->addHours(config('limits.campaigns.export')));
         }
 
         return 1;
@@ -124,7 +121,6 @@ class Export implements ShouldQueue
         $service
             ->user($user)
             ->campaign($campaign)
-            ->assets($this->assets)
             ->fail();
 
         // Sentry will handle the rest

@@ -6,6 +6,7 @@ return [
     ],
     'call-to-action'    => 'Dodaj odnośnik do zasobów zewnętrznych, na przykład DnDBeyond. Zostanie wyświetlony bezpośrednio w opisie elementu.',
     'create'            => [
+        'helper'    => 'Dodaje do :name odnośnik prowadzący na zewnątrz, na przykład do DnDBeyond.',
         'success'   => 'Dodano odnośnik :name do elementu :entity.',
         'title'     => 'Dodaj odnośnik do :name',
     ],

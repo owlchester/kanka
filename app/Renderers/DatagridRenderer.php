@@ -273,14 +273,14 @@ class DatagridRenderer
 
         // Order by
         $order = $this->filterService->order();
-        $orderImg = ' <i class="fa-solid fa-sort" aria-hidden="true"></i>';
+        $orderImg = ' <i class="fa-regular fa-sort" aria-hidden="true"></i>';
         if (! empty($order) && isset($order[$field])) {
             $direction = 'down';
             if ($order[$field] != 'DESC') {
                 $routeOptions['desc'] = true;
                 $direction = 'up';
             }
-            $orderImg = ' <i class="fa-solid fa-sort-' . $direction . '" aria-hidden="true"></i>';
+            $orderImg = ' <i class="fa-regular fa-sort-' . $direction . '" aria-hidden="true"></i>';
         }
 
         return "<a href='" .
@@ -402,7 +402,7 @@ class DatagridRenderer
             } else {
                 // Handle boolean values (has, is)
                 if ($this->isBoolean($column)) {
-                    $icon = $column == 'is_dead' ? 'ra ra-skull' : 'fa-solid fa-check-circle';
+                    $icon = $column == 'is_dead' ? 'fa-regular fa-skull' : 'fa-regular fa-check-circle';
                     $content = $model->{$column} ? '<i class="' . $icon . '" aria-hidden="true"></i>' : '';
                 } else {
                     $content = ($model->{$column});
@@ -552,7 +552,7 @@ class DatagridRenderer
             $actions .= ' <a href="'
                 . route($this->getOption('baseRoute') . '.edit', [$this->campaign, $model])
                 . '" title="' . __('crud.edit') . '">
-                <i class="fa-solid fa-edit" aria-hidden="true"></i>
+                <i class="fa-regular fa-edit" aria-hidden="true"></i>
             </a>';
         }
 
@@ -581,8 +581,6 @@ class DatagridRenderer
 
     /**
      * Tell the rendered that this is a nested view
-     *
-     * @return $this
      */
     public function nested(string $key = 'parent_id'): self
     {

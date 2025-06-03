@@ -38,10 +38,10 @@
                                 <x-tab.tab target="premium" icon="premium" :title="auth()->check() && auth()->user()->hasBoosterNomenclature() ? __('crud.tabs.boost') : __('crud.tabs.premium')"></x-tab.tab>
                             @endif
                             @if ($tabAttributes)
-                                <x-tab.tab target="attributes" icon="fa-solid fa-th-list" :title="__('crud.tabs.attributes')"></x-tab.tab>
+                                <x-tab.tab target="attributes" icon="attributes" :title="__('crud.tabs.attributes')"></x-tab.tab>
                             @endif
                             @if ($tabPermissions)
-                                <x-tab.tab target="permissions" icon="fa-solid fa-cog" :title="__('crud.tabs.permissions')"></x-tab.tab>
+                                <x-tab.tab target="permissions" icon="permissions" :title="__('crud.tabs.permissions')"></x-tab.tab>
                             @endif
                         </ul>
                     </div>
@@ -53,7 +53,6 @@
 
                 <div class="tab-content bg-base-100 p-4 rounded-bl rounded-br">
                     <div class="tab-pane flex flex-col gap-5 {{ (request()->get('tab') == null ? ' active' : '') }}" id="form-entry">
-                        {{ csrf_field() }}
                         @include($name . '.form._entry', ['source' => null])
                     </div>
                     @includeIf($name . '.form._panes', ['source' => null])

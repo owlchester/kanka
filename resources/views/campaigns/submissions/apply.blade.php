@@ -1,5 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => trans('campaigns/submissions.apply.title', ['name' => $campaign->name]),
+    'title' => __('campaigns/submissions.apply.title', ['name' => $campaign->name]),
     'breadcrumbs' => [
         __('dashboard.actions.join')
     ]

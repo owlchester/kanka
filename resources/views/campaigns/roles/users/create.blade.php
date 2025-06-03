@@ -12,7 +12,7 @@
 
     <x-form :action="['campaign_roles.campaign_role_users.store', $campaign, 'campaign_role' => $role]">
 
-    @include('partials.forms._dialog', [
+    @include('partials.forms.form', [
         'title' => __('campaigns.roles.users.actions.add'),
         'content' => 'campaigns.roles.users._form',
         'submit' => __('campaigns.roles.users.actions.add'),

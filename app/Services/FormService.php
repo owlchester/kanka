@@ -12,10 +12,7 @@ class FormService
 {
     protected MiscModel $source;
 
-    /**
-     * @return $this
-     */
-    public function source(?MiscModel $source = null)
+    public function source(?MiscModel $source = null): self
     {
         $this->source = $source;
 

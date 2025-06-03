@@ -16,9 +16,6 @@ class CouponService
 
     protected \App\Models\Tier $tier;
 
-    /**
-     * @return $this
-     */
     public function code(string $code): self
     {
         $this->code = strip_tags(mb_trim($code, ' '));
@@ -26,9 +23,6 @@ class CouponService
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function tier(\App\Models\Tier $tier): self
     {
         $this->tier = $tier;

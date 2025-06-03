@@ -78,8 +78,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define the "api" routes for the application.
-     *
-     * @return $this
      */
     protected function api(): self
     {

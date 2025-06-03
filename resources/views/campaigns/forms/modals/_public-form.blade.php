@@ -5,7 +5,9 @@
         'public-role' => '<a href="' . route('campaigns.campaign_roles.public', $campaign) . '" target="_blank">' . __('campaigns.members.roles.public') . '</a>',
     ]) !!}</p>
         <p>
-            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-solid fa-external-link-alt"></i> {{ __('helpers.public') }}</a>
+            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank">
+                <x-icon class="link" /> {{ __('helpers.public') }}
+            </a>
         </p>
     </x-helper>
 

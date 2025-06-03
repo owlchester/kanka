@@ -431,7 +431,6 @@ return [
             'connections_mode'  => 'Domyślny tryb wyświetlania relacji',
             'descendants'       => 'Wyświetlanie pochodnych',
             'entity_history'    => 'Historia edycji elementu',
-            'entity_image'      => 'Ilustracja elementu',
             'member_list'       => 'Lista uczestników kampanii',
             'post_collapsed'    => 'Domyślny sposób prezentowana komentarzy',
         ],
@@ -444,7 +443,6 @@ return [
             'other'             => 'Inne opcje wizualne kampanii',
             'post_collapsed'    => 'Wybierz sposób wyświetlania nowych komentarzy do elementów.',
             'theme'             => 'Wyświetla kampanię używając motywu użytkownika, albo wymusza wyświetlenie w jednym z poniższych motywów.',
-            'tooltip'           => 'Wybierz informacje widoczne po najechaniu kursorem na nazwę elementu na liście',
         ],
         'members'           => [
             'hidden'    => 'Widoczne tylko dla adminów kampanii',

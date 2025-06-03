@@ -8,7 +8,9 @@
 </x-dialog.header>
 <x-dialog.article>
     @if (auth()->guest())
-        <x-helper :text="__('filters.helpers.guest')" />
+        <x-helper>
+            <p>{{ __('filters.helpers.guest') }}</p>
+        </x-helper>
     @else
         <x-grid class="max-w-3xl">
             @foreach ($filters as $field)
@@ -49,7 +51,7 @@
                         @include('cruds.datagrids.filters._array')
                     @endif
                 @else
-                    <label>{{ __((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_posts', 'date_range', 'template']) ? 'crud.fields.' : $langKey . '.fields.') . $field) }}</label>
+                    <label>{{ __((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template']) ? 'crud.fields.' : $langKey . '.fields.') . $field) }}</label>
                     @if ($filterService->isCheckbox($field))
                         @include('cruds.datagrids.filters._choice')
                     @elseif ($field === 'type' && !empty($entityModel))
@@ -88,7 +90,7 @@
 
             @if ($activeFilters > 0)
                 <a href="{{ route($route, [$campaign, 'reset-filter' => 'true']) }}" class="btn2 btn-sm btn-error btn-outline">
-                    <x-icon class="fa-solid fa-eraser" />
+                    <x-icon class="fa-regular fa-eraser" />
                     {{ __('crud.filters.mobile.clear') }}
                 </a>
             @endif

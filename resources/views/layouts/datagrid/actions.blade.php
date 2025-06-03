@@ -3,7 +3,7 @@
 @endif
 <div class="dropdown">
     <a role="button" class="cursor-pointer w-8 h-8 rounded-full hover:bg-base-300 flex items-center justify-center align-middle" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape" aria-haspopup="menu" aria-controls="actions-submenu" aria-label="{{ __('crud.actions.actions') }}">
-        <i class="fa-solid fa-ellipsis-v " data-tree="escape"></i>
+        <i class="fa-regular fa-ellipsis-v " data-tree="escape"></i>
         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
     </a>
     <div class="dropdown-menu hidden" role="menu" id="actions-submenu">

@@ -76,11 +76,17 @@ class MapGroup extends Model
         return $this->hasMany(MapMarker::class, 'group_id');
     }
 
+    public function markersWithEntity(): HasMany
+    {
+        return $this->hasMany(MapMarker::class, 'group_id')
+            ->with(['entity', 'entity.entityType', 'group']);
+    }
+
     public function markerGroupHtml(): string
     {
         $data = [];
         /** @var MapMarker[] $markers */
-        $markers = $this->markers()->with('entity', 'group')->get();
+        $markers = $this->markersWithEntity;
         foreach ($markers as $marker) {
             if ($marker->visible()) {
                 $data[] = 'marker' . $marker->id;

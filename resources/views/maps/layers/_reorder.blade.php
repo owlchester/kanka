@@ -8,7 +8,7 @@
             <x-reorder.child :id="$layer->id">
                 <input type="hidden" name="layer[]" value="{{ $layer->id }}" />
                 <div class="dragger">
-                    <x-icon class="fa-solid fa-sort" />
+                    <x-icon class="fa-regular fa-sort" />
                 </div>
                 <div class="overflow-hidden grow flex flex-no-wrap items-center gap-2">
                     <span class="truncate">{!! $layer->name !!}</span>

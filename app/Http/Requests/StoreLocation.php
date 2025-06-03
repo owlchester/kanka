@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Entity;
 use App\Models\Location;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -43,14 +44,23 @@ class StoreLocation extends FormRequest
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
-        /** @var Location $self */
-        $self = request()->route('location');
-        if (! empty($self)) {
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self) && $self->isLocation()) {
             $rules['location_id'] = [
                 'nullable',
                 'integer',
                 'exists:locations,id',
-                new Nested(Location::class, $self),
+                new Nested(Location::class, $self->child),
+            ];
+        }
+        $sub = request()->route('location');
+        if (empty($self) && ! empty($sub)) {
+            $rules['location_id'] = [
+                'nullable',
+                'integer',
+                'exists:locations,id',
+                new Nested(Location::class, $sub),
             ];
         }
 

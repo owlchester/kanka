@@ -1,8 +1,8 @@
 <div class="tab-pane" id="form-templates">
     <x-grid type="1/1">
-    <x-helper>
-        {{ __('posts.create.template.helper') }}
-    </x-helper>
+        <x-helper>
+            <p>{{ __('posts.create.template.helper') }}</p>
+        </x-helper>
         <ul>
             @foreach ($templates as $id => $name)
                 <li>

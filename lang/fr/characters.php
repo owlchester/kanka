@@ -5,18 +5,15 @@ return [
         'add_appearance'    => 'Ajouter une apparence',
         'add_personality'   => 'Ajouter un trait de personnalité',
     ],
-    'conversations' => [],
     'create'        => [
         'title' => 'Créer une nouvelle personne',
     ],
-    'destroy'       => [],
-    'dice_rolls'    => [],
-    'edit'          => [],
     'families'      => [
+        'helper'    => 'Réorganise et contrôle quelles familles de :name sont visibles ou cachées aux non-admins.',
         'reorder'   => [
             'success'   => 'Les familles du personage ont été mises à jour avec succès.',
         ],
-        'title'     => 'Gérer les familles de :name',
+        'title2'    => 'Gérer les familles',
     ],
     'fields'        => [
         'age'                       => 'Age',
@@ -32,8 +29,8 @@ return [
         'traits'                    => 'Traits',
     ],
     'helpers'       => [
-        'age'   => 'Il est possible de lier cette entité avec un calendrier de la campagne pour automatiquement calculer l\'âge. :more.',
-        'personality_visible' => 'Si coché, les traits de personnalités seront visibles pour tous. Sinon, seuls les membres du rôle :admin de la campagne pourront voir les traits de personnalité de ce personnage.',
+        'age'                   => 'Il est possible de lier cette entité avec un calendrier de la campagne pour automatiquement calculer l\'âge. :more.',
+        'personality_visible'   => 'Si coché, les traits de personnalités seront visibles pour tous. Sinon, seuls les membres du rôle :admin de la campagne pourront voir les traits de personnalité de ce personnage.',
     ],
     'hints'         => [
         'is_appearance_pinned'      => 'Si sélectionné, le physique du personnage sera visible sur la page vue d\'ensemble sous l\'entrée.',
@@ -43,9 +40,6 @@ return [
         'personality_not_visible'   => 'Les traits de personnalités de ce personnage sont actuellement seulement visibles pour les admin de la campagne.',
         'personality_visible'       => 'Les traits de personnalités sont visibles pour tous.',
     ],
-    'index'         => [],
-    'items'         => [],
-    'journals'      => [],
     'labels'        => [
         'appearance'    => [
             'entry' => 'Description de l\'apparance',
@@ -56,7 +50,6 @@ return [
             'name'  => 'Nom du trait de personnalité',
         ],
     ],
-    'maps'          => [],
     'organisations' => [
         'create'    => [
             'success'   => 'Personne ajoutée à l\'organisation.',
@@ -94,16 +87,16 @@ return [
         ],
     ],
     'races'         => [
+        'helper'    => 'Réorganise et contrôle quelles races de :name sont visibles ou cachées aux non-admins.',
         'reorder'   => [
             'success'   => 'Mise à jour réussie des races de personnage.',
         ],
-        'title'     => 'Gérer les races de :name',
+        'title2'    => 'Gérer les races',
     ],
     'sections'      => [
         'appearance'    => 'Physique',
         'personality'   => 'Personnalité',
     ],
-    'show'          => [],
     'warnings'      => [
         'personality_hidden'    => 'Tu n\'as pas le droit de modifier les traits de personnalité de ce personnage.',
     ],

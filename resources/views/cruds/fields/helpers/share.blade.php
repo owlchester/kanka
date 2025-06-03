@@ -1,6 +1,6 @@
-@if (auth()->check() && auth()->user()->hasBoosters())
+@can('boost', auth()->user())
     @if (isset($campaign) && !$campaign->boosted())
-        @if (auth()->check() && auth()->user()->hasBoosterNomenclature())
+        @can('boost', auth()->user())
             <p>
                 <a href="{{ route('settings.boost', ['campaign' => $campaign]) }}">
                     <x-icon class="premium" />

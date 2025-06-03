@@ -35,6 +35,8 @@ class BookmarkResource extends EntityResource
             'css' => $model->css,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at,
+            'created_by' => $model->created_by,
+            'updated_by' => $model->updated_by,
             'options' => $model->options,
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Requests\API\PatchEntity;
 use App\Http\Requests\API\StoreEntities;
 use App\Http\Resources\EntityResource as Resource;
 use App\Models\Campaign;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class EntityApiController extends ApiController
 {
     public function __construct(
-        protected BulkEntityCreatorService $bulkEntityCreatorService
+        protected BulkEntityCreatorService $bulkEntityCreatorService,
     ) {}
 
     public function index(Campaign $campaign)
@@ -74,7 +75,23 @@ class EntityApiController extends ApiController
         $entity->update($request->all());
 
         return new Resource($entity);
+    }
 
+    public function patch(PatchEntity $request, Campaign $campaign, Entity $entity)
+    {
+        $this->authorize('access', $campaign);
+        $this->authorize('update', $entity);
+        $keys = ['name', 'type', 'is_private', 'is_template', 'tooltip', 'entry', 'image_uuid', 'header_uuid'];
+        if ($entity->entityType->isSpecial()) {
+            $keys[] = 'parent_id';
+        }
+
+        $data = $request->only($keys);
+
+        $entity->update($data);
+        $entity->crudSaved();
+
+        return new Resource($entity);
     }
 
     public function destroy(Request $request, Campaign $campaign, Entity $entity)

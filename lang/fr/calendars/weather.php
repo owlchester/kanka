@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'actions'       => [],
     'create'        => [
+        'helper'    => 'Ajouter des informations météo à apparaître sur le calendrier.',
         'success'   => 'Météo ajoutée.',
         'title'     => 'Nouvel effet météorologique',
     ],

@@ -68,7 +68,7 @@
 
         @foreach (auth()->user()->campaigns as $campaign)
             <a href="{{ route('dashboard', $campaign) }}" class="btn-round rounded flex gap-2 items-center">
-                <x-icon class="fa-solid fa-arrow-right" />
+                <x-icon class="fa-regular fa-arrow-right" />
                 {!! $campaign->name !!}
             </a>
         @endforeach

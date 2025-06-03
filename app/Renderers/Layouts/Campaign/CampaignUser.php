@@ -32,7 +32,7 @@ class CampaignUser extends Layout
                 'render' => function (\App\Models\CampaignUser $model) {
                     $html = '<a class="block break-all truncate" href="' . route('users.profile', [$model->user]) . '" target="_blank">' . $model->user->name . '</a>';
                     if ($model->user->isBanned()) {
-                        $html .= '<i class="fa-solid fa-ban" aria-hidden="true" data-toggle="tooltip" data-title = "' . __('campaigns.members.fields.banned') . '"></i>';
+                        $html .= '<i class="fa-regular fa-ban" aria-hidden="true" data-toggle="tooltip" data-title = "' . __('campaigns.members.fields.banned') . '"></i>';
                     }
 
                     return $html;
@@ -103,13 +103,13 @@ class CampaignUser extends Layout
         return [
             'switch' => [
                 'label' => 'campaigns.members.actions.switch',
-                'icon' => 'fa-solid fa-sign-in-alt',
+                'icon' => 'fa-regular fa-sign-in-alt',
                 'can' => 'switch',
                 'route' => 'identity.switch',
             ],
             'delete' => [
                 'label' => 'campaigns.members.actions.remove',
-                'icon' => 'fa-solid fa-trash',
+                'icon' => 'fa-regular fa-trash-can',
                 'can' => 'delete',
                 'type' => 'dialog-ajax',
                 'route' => 'campaign_users.delete',

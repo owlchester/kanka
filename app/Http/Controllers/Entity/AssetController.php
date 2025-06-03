@@ -111,7 +111,6 @@ class AssetController extends Controller
             return redirect()
                 ->route('entities.entity_assets.index', [$campaign, $entity])
                 ->with('success', trans_choice('entities/files.create.success_plural', count($files), ['count' => count($files), 'name' => $files['0']->name]));
-
         } catch (TranslatableException $e) {
             return redirect()
                 ->route('entities.entity_assets.index', [$campaign, $entity])
@@ -204,11 +203,10 @@ class AssetController extends Controller
      */
     protected function createFile(Campaign $campaign, Entity $entity)
     {
-        $max = $campaign->maxEntityFiles();
-        if ($entity->assets()->file()->count() >= $max) {
+        if (! auth()->user()->can('addFile', [$entity, $campaign])) {
             return view('entities.pages.files.max')
                 ->with('campaign', $campaign)
-                ->with('max', $max);
+                ->with('max', $campaign->maxEntityFiles());
         }
 
         return view('entities.pages.files.create')

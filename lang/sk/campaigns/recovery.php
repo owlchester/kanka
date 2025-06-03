@@ -10,7 +10,6 @@ return [
         'deleted'       => 'Zmazané',
         'deleted_at'    => 'Zmazané :user dňa :date',
     ],
-    'helper'    => 'Zmazané objekty kampane je možné obnoviť do :count dní. Objekty zmazané, kým kampaň nie je prémiová môžu byť obnovené, ak bude kampaň upgradeovaná.',
     'name_link' => ':name bolo úspešne obnovené',
     'order'     => [
         'newest'        => 'Zoradiť podľa: Najnovšie',

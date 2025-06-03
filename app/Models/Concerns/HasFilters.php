@@ -63,6 +63,7 @@ trait HasFilters
             'tags',
             'has_image',
             'has_posts',
+            'has_entry',
             'has_entity_files',
             'has_attributes',
             'created_by',
@@ -155,6 +156,8 @@ trait HasFilters
                     $this->filterType($query, $value);
                 } elseif ($key == 'has_posts') {
                     $this->filterHasPosts($query, $value);
+                } elseif ($key == 'has_entry') {
+                    $this->filterHasEntry($query, $value);
                 } elseif ($key == 'is_equipped') {
                     $this->filterIsEquipped($query, $value);
                 } elseif ($key == 'has_attributes') {
@@ -440,6 +443,24 @@ trait HasFilters
     }
 
     /**
+     * Filter on entities with an entry
+     */
+    protected function filterHasEntry(Builder $query, ?string $value = null): void
+    {
+        $query
+            ->joinEntity();
+
+        if ($value) {
+            $query->whereNotNull('e.entry')
+                ->where('e.entry', '!=', '');
+        } else {
+            $query->whereNull('e.entry')
+                ->orWhere('e.entry', '');
+
+        }
+    }
+
+    /**
      * Filter on entities that are equipped
      */
     protected function filterIsEquipped(Builder $query, ?string $value = null): void
@@ -689,7 +710,6 @@ trait HasFilters
             }
 
             return;
-
         } elseif ($this->filterOption('children')) {
             /** @var Race|null $race */
             $race = Race::find($value);
@@ -723,7 +743,6 @@ trait HasFilters
                 . ' ' . /* $this->subPrivacy('and cf.is_private') . */ ') = 0');
 
             return;
-
         } elseif ($this->filterOption('children')) {
             /** @var Family|null $family */
             $family = Family::find($value);

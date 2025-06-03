@@ -34,6 +34,8 @@ class LoginController extends Controller
     public function __construct(UserAuthenticatedService $userAuthService)
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('login.redirect')->except('logout');
+
         $this->userAuthService = $userAuthService;
     }
 

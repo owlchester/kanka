@@ -10,7 +10,6 @@ return [
         'deleted'       => 'Supprimé',
         'deleted_at'    => 'Supprimé le :date par :user',
     ],
-    'helper'    => 'Les entités supprimées sont récupérables pendant :count jours.',
     'name_link' => ':name récupéré',
     'order'     => [
         'newest'        => 'Ordonner par: Récent',
@@ -20,9 +19,7 @@ return [
         'type'          => 'Ordonner par: Type',
         'type_order'    => 'Type',
     ],
-    'posts'     => [],
     'premium'   => 'La récupération d\'éléments est une fonctionnalité de campagne premium.',
     'success_v2'=> '{1} :count élément a été récupéré.|[2,*] :count éléments ont été récupérés.',
     'title'     => 'Récupération d\'éléments supprimés',
-    'toggle'    => [],
 ];

@@ -20,6 +20,7 @@ class Icon extends Component
         public ?string $link = null,
         public ?string $size = null,
         public ?string $label = null,
+        public ?string $show = null,
     ) {}
 
     /**
@@ -43,12 +44,12 @@ class Icon extends Component
     {
         return match ($class) {
             'map' => 'fa-regular fa-map',
-            'check' => 'fa-solid fa-check',
+            'check' => 'fa-regular fa-check',
             'trash' => 'fa-regular fa-trash-can',
-            'plus' => 'fa-solid fa-plus',
-            'question' => 'fa-solid fa-question-circle',
+            'plus' => 'fa-regular fa-plus',
+            'question' => 'fa-regular fa-question-circle',
             'save' => 'fa-regular fa-save',
-            'pencil' => 'fa-solid fa-pencil',
+            'pencil' => 'fa-regular fa-pencil',
             'cog' => 'fa-regular fa-cog',
             'copy' => 'fa-regular fa-copy',
             'edit' => 'fa-regular fa-edit',
@@ -56,6 +57,10 @@ class Icon extends Component
             'lock' => 'fa-regular fa-lock',
             'filter' => 'fa-regular fa-filter',
             'load' => 'fa-solid fa-spinner fa-spin',
+            'arrow' => 'fa-regular fa-arrow-right',
+            'permissions' => 'fa-regular fa-user-shield',
+            'attributes' => 'fa-regular fa-rectangle-list',
+            'link' => 'fa-regular fa-external-link',
             default => $class,
         };
     }

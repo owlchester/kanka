@@ -1,5 +1,6 @@
+<?php /** @var \App\Models\EntityAsset $asset */?>
 <div class="entity-assets">
-    <div class="grid grid-cols-3 gap-2 entity-assets-row">
+    <div class="flex flex-col lg:flex-row flex-wrap gap-4 max-w-7xl entity-assets-row">
         @forelse ($assets as $asset)
             @if ($asset->hiddenImage()) @continue @endif
             @includeWhen($asset->isFile(), 'entities.pages.assets._file')

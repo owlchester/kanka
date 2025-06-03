@@ -10,7 +10,6 @@ return [
         'deleted'       => 'Usunięto',
         'deleted_at'    => 'Usunięte :date przez :user',
     ],
-    'helper'    => 'Dzięki tej opcji można odzyskać usunięte elementy do :count dni od chwili usunięcia.',
     'name_link' => 'Udało się odzyskać :name',
     'order'     => [
         'newest'        => 'Sortowanie według: Newest',

@@ -22,7 +22,6 @@ return [
     'create'        => [
         'title' => 'Nouveau Calendrier',
     ],
-    'destroy'       => [],
     'edit'          => [
         'today' => 'Date du calendrier mise à jour.',
     ],
@@ -112,7 +111,6 @@ return [
         'weeks'             => 'Les semaines importantes du calendrier peuvent avoir un nom.',
         'years'             => 'Certaines années sont tellement importantes qu\'elles ont leur propre nom.',
     ],
-    'index'         => [],
     'layouts'       => [
         'month'     => 'Mois',
         'monthly'   => 'Mensuel par défaut',

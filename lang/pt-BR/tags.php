@@ -10,7 +10,6 @@ return [
             'attach_success'        => '{1} Adicionada :count entidade à tag :name.|[2,*] Adicionadas :count entidades à tag :name.',
             'attach_success_entity' => 'Tags atualizadas com sucesso para :name',
             'entity'                => 'Adicionar tags a :name',
-            'modal_title'           => 'Adicionar entidades a :name',
         ],
     ],
     'create'        => [
@@ -43,10 +42,8 @@ return [
     ],
     'tags'          => [],
     'transfer'      => [
-        'description'   => 'Mova as entidades desta tag para outra tag.',
-        'fail'          => 'Falha ao transferir entidades de :tag para :newTag',
-        'success'       => 'Entidades transferidas com sucesso de :tag para :newTag',
-        'title'         => 'Transferir :name',
-        'transfer'      => 'Transferir',
+        'fail'      => 'Falha ao transferir entidades de :tag para :newTag',
+        'success'   => 'Entidades transferidas com sucesso de :tag para :newTag',
+        'transfer'  => 'Transferir',
     ],
 ];

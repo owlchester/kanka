@@ -1,21 +1,19 @@
 <?php
 
 return [
-    'appearance'                    => [],
-    'avatar'                        => [
+    'avatar'        => [
         'success'   => 'Photo de profil modifiée.',
     ],
-    'campaign_switcher_order_by'    => [],
-    'edit'                          => [
+    'edit'          => [
         'success'   => 'Profil modifié',
     ],
-    'editors'                       => [],
-    'fields'                        => [
+    'fields'        => [
         'avatar'                    => 'Avatar',
         'bio'                       => 'Biographie',
         'email'                     => 'Email',
         'hide_subscription'         => 'Cacher mon nom du :hall_of_fame.',
         'last_login_share'          => 'Partager la date de ma dernière connexion avec les autres membres de mes campagnes.',
+        'link'                      => 'Lien social',
         'login_sharing'             => 'Partage de la dernière connexion',
         'name'                      => 'Nom',
         'new_password'              => 'Nouveau mot de passe',
@@ -23,14 +21,20 @@ return [
         'newsletter'                => 'Je souhaite être contacté par email de temps en temps.',
         'password'                  => 'Mot de passe actuel',
         'profile-name'              => 'Nom de profil',
+        'pronouns'                  => 'Pronons',
         'settings'                  => 'Paramètres',
         'subscription_hiding'       => 'Cacher l\'abonnement',
         'theme'                     => 'Thème',
     ],
-    'helpers'                       => [
-        'profile-name'  => 'Changer ton nom sur ton :profile et le :marketplace. Si vide, le nom du compte sera utilisé.',
+    'helpers'       => [
+        'link'          => 'Modifie la façon dont un lien vers ton profil social apparaît sur ton :profile et le :marketplace. Si tu laisses ce champ vide, aucun lien ne s\'affichera.',
+        'profile-name'  => 'Modifie ton nom sur ton :profile et le :marketplace. Si vide, le nom du compte sera utilisé.',
+        'pronouns'      => 'Modifie la façon dont tes pronoms apparaissent sur ton :profile et le :marketplace. Si tu laisses ce champ vide, aucun pronom ne s\'affichera.',
     ],
-    'newsletter'                    => [
+    'link'          => [
+        'button'    => 'Profile social de :name',
+    ],
+    'newsletter'    => [
         'helpers'   => [
             'header'    => 'S\'adonner aux newsletters par email pour être notifié des changements dans Kanka.',
         ],
@@ -40,10 +44,10 @@ return [
         'title'     => 'Newsletter',
         'updated'   => 'Préférence de la newsletter modifiée.',
     ],
-    'password'                      => [
+    'password'      => [
         'success'   => 'Mot de passe modifié.',
     ],
-    'placeholders'                  => [
+    'placeholders'  => [
         'bio'                       => 'Une courte bio affichée sur le profil public.',
         'email'                     => 'Adresse email',
         'name'                      => 'Nom tel qu\'affiché',
@@ -51,7 +55,7 @@ return [
         'new_password_confirmation' => 'Confirmation du nouveau mot de passe',
         'password'                  => 'Saisie du mot de passe actuel',
     ],
-    'sections'                      => [
+    'sections'      => [
         'dangerzone'    => 'Zone dangereuse',
         'delete'        => [
             'confirm'       => 'Oui, supprimer mon compte',
@@ -66,14 +70,14 @@ return [
             'title' => 'Modification du mot de passe',
         ],
     ],
-    'settings'                      => [
+    'settings'      => [
         'helpers'   => [
             'bio'       => 'La biographie est visible sur ton :link.',
             'profile'   => 'profil public',
         ],
         'success'   => 'Paramètres modifiés.',
     ],
-    'theme'                         => [
+    'theme'         => [
         'success'   => 'Thème modifié.',
         'themes'    => [
             'dark'      => 'Sombre',
@@ -82,8 +86,8 @@ return [
             'midnight'  => 'Bleu Minuit',
         ],
     ],
-    'title'                         => 'Profil',
-    'workflows'                     => [
+    'title'         => 'Profil',
+    'workflows'     => [
         'created'   => 'Afficher l\'entité créée',
         'default'   => 'Liste des entités',
     ],

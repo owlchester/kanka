@@ -8,25 +8,29 @@
 $entityTags = $post->visibleTags;
 ?>
 <article class="flex flex-col gap-2 post-block post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}" data-template="{{ $post->isTemplate() ? '1' : '0' }}" id="post-{{ $post->id }}" data-word-count="{{ $post->words }}">
-    <div class="post-header flex gap-1 md:gap-2 items-center">
-        <div class="grow flex gap-2 items-center cursor-pointer element-toggle {{ $post->collapsed() ? "animate-collapsed" : null }}" data-animate="collapse" data-target="#post-body-{{ $post->id }}">
-            <x-icon class="fa-solid fa-chevron-up icon-show" />
-            <x-icon class="fa-solid fa-chevron-down icon-hide" />
-            <h3 class="post-title grow {{ $post->collapsed() ? "collapsed" : null }}"  >
+    <div class="post-header flex gap-1 md:gap-2 items-center justify-between">
+        <div class="flex gap-2 items-center cursor-pointer element-toggle group {{ $post->collapsed() ? "animate-collapsed" : null }}" data-animate="collapse" data-target="#post-body-{{ $post->id }}">
+            <x-icon class="fa-regular fa-chevron-up icon-show transition-transform duration-200 group-hover:-translate-y-0.5" />
+            <x-icon class="fa-regular fa-chevron-down icon-hide transition-transform duration-200 group-hover:translate-y-0.5" />
+            <h3 class="post-title {{ $post->collapsed() ? "collapsed" : null }}"  >
                 {!! $post->name !!}
                 @if (config('app.debug'))
                     <sup class="text-xs">({{ $post->position }})</sup>
                 @endif
             </h3>
         </div>
-        <div class="flex-none flex gap-1 items-center">
-            @if (auth()->check() && auth()->user()->can('post', [$entity, 'edit', $post]))
-            <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
-                @include('icons.visibility', ['icon' => $post->visibilityIcon()])
-            </span>
+        <div class="flex gap-1 items-center">
+            @can('post', [$entity, 'edit', $post])
+                @can('visibility', $post)
+                    <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
+                    @include('icons.visibility', ['icon' => $post->visibilityIcon()])
+                </span>
+                @else
+                    @include('icons.visibility', ['icon' => $post->visibilityIcon()])
+                @endif
                 <div class="dropdown">
                     <a role="button" class="btn2 btn-ghost btn-sm" data-dropdown aria-expanded="false" data-placement="right" data-tree="escape">
-                        <x-icon class="fa-solid fa-ellipsis-v" />
+                        <x-icon class="fa-regular fa-ellipsis-v" />
                         <span class="sr-only">{{__('crud.actions.actions') }}</span>
                     </a>
                     <div class="dropdown-menu hidden" role="menu">
@@ -57,7 +61,7 @@ $entityTags = $post->visibleTags;
 
                 @can('update', $entity)
                 <a href="{{ route('entities.posts.logs', [$campaign, $entity, $post]) }}" title="{{ __('crud.history.view') }}" class="print-none">
-                    <x-icon class="fa-solid fa-history" />
+                    <x-icon class="fa-regular fa-history" />
                 </a>
                 @endcan
 

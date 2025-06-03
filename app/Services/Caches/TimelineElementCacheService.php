@@ -22,8 +22,8 @@ class TimelineElementCacheService extends BaseCache
             'ra ra-tower',
             'fa-solid fa-home',
             'ra ra-capitol',
-            'ra ra-skull',
-            'fa-solid fa-coins',
+            'fa-solid fa-skull',
+            'fa-regular fa-coins',
             'ra ra-beer',
             'fa-solid fa-map-marker-alt',
             'fa-solid fa-thumbtack',
@@ -54,9 +54,6 @@ class TimelineElementCacheService extends BaseCache
         return $data;
     }
 
-    /**
-     * @return $this
-     */
     public function clearSuggestion(): self
     {
         $this->forget(

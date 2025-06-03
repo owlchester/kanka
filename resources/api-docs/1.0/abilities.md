@@ -17,8 +17,8 @@ You can get a list of all the abilities of a campaign by using the following end
 > {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
+| Method | URI            | Headers |
+| :- |:---------------|  :-  |
 | GET/HEAD | `abilities` | Default |
 
 ### URL parameters
@@ -33,19 +33,27 @@ The list of returned entities can be filtered. The available filters are [availa
         {
             "id": 1,
             "name": "Fireball",
-            "entry": "\n<p>Lorem Ipsum.</p>\n",
+            "entry": "\n<p>Lorem Ipsum [character:123] .</p>\n",
+            "entry_parsed": "\n<p>Lorem Ipsum <a href=\"...\">Adam Morley</a>.</p>\n",
+            "tooltip": null,
+            "type": "3rd level",
             "image": "{path}",
+            "focus_x": null,
+            "focus_y": null,
             "image_full": "{url}",
             "image_thumb": "{url}",
             "has_custom_image": false,
+            "image_uuid": null,
+            "header_uuid": null,
             "is_private": true,
+            "is_template": false,
+            "is_attributes_private": false,
             "entity_id": 17,
             "tags": [],
             "created_at": "2020-03-25T13:52:42.000000Z",
             "created_by": 1,
             "updated_at": "2020-05-15T08:35:56.000000Z",
             "updated_by": 1,
-            "type": "3rd level",
             "ability_id": null,
             "charges": 3,
             "abilities": []
@@ -60,8 +68,8 @@ The list of returned entities can be filtered. The available filters are [availa
 
 To get the details of a single ability, use the following endpoint.
 
-| Method | URI | Headers |
-| :- |   :-   |  :-  |
+| Method | URI                         | Headers |
+| :- |:----------------------------|  :-  |
 | GET/HEAD | `abilities/{ability.id}` | Default |
 
 ### Results
@@ -104,17 +112,19 @@ To create an ability, use the following endpoint.
 
 ### Body
 
-| Parameter | Type | Detail |
-| :- |   :-   |  :-  |
-| `name` | `string` (Required) | Name of the ability |
-| `entry` | `string` | The html description of the ability |
-| `type` | `string` | The ability's type |
-| `ability_id` | `integer` | The ability's parent ability |
-| `charges` | `string` | How many charges the ability has |
-| `tags` | `array` | Array of tag ids |
-| `entity_image_uuid` | `string` | Gallery image UUID for the entity image                                 |
-| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (limited to premium campaigns) |
-| `is_private` | `boolean` | If the ability is only visible to `admin` members of the campaign |
+| Parameter            | Type | Detail                                                              |
+|:---------------------|   :-   |:--------------------------------------------------------------------|
+| `name`               | `string` (Required) | Name of the ability                                                 |
+| `entry`              | `string` | The html description of the ability                                 |
+| `type`               | `string` | The ability's type                                                  |
+| `ability_id`         | `integer` | The ability's parent ability                                        |
+| `charges`            | `string` | How many charges the ability has                                    |
+| `tags`               | `array` | Array of tag ids                                                    |
+| `entity_image_uuid`  | `string` | Gallery image UUID for the entity image                             |
+| `entity_header_uuid` | `string` | Gallery image UUID for the entity header (premium campaign feature) |
+| `tooltip`            | `string` | The ability's tooltip (premium campaign feature)                   |
+| `is_private`         | `boolean` | If the ability is only visible to `admin` members of the campaign   |
+
 ### Results
 
 > {success} Code 200 with JSON body of the new ability.

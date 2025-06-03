@@ -5,7 +5,6 @@ $targets = [
 ];
 ?>
 
-{{ csrf_field() }}
 <x-grid>
     @include('cruds.fields.name', ['trans' => 'conversations'])
     @include('cruds.fields.type', ['base' => \App\Models\Conversation::class, 'trans' => 'conversations'])

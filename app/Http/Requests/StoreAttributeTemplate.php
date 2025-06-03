@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\AttributeTemplate;
+use App\Models\Entity;
 use App\Rules\Nested;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,14 +33,14 @@ class StoreAttributeTemplate extends FormRequest
         ];
 
         // Editing an attribute template? Don't allow selecting oneself.
-        /** @var AttributeTemplate $self */
-        $self = request()->route('attribute_template');
-        if (! empty($self)) {
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self) && $self->isAttributeTemplate()) {
             $rules['attribute_template_id'] = [
                 'nullable',
                 'integer',
                 'exists:attribute_templates,id',
-                new Nested(AttributeTemplate::class, $self),
+                new Nested(AttributeTemplate::class, $self->child),
             ];
         }
 

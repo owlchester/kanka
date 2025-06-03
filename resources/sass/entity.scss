@@ -33,7 +33,7 @@
 }
 .element-toggle.collapsed, .post-block .collapsed, .element-toggle.animate-collapsed {
     .icon-hide {
-        display: unset;
+        display: inline-block;
     }
     .icon-show {
         display: none;

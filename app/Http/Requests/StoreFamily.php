@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Facades\Limit;
+use App\Models\Entity;
 use App\Models\Family;
 use App\Rules\Nested;
 use App\Rules\UniqueAttributeNames;
@@ -44,14 +45,14 @@ class StoreFamily extends FormRequest
             'attribute' => ['array', new UniqueAttributeNames],
         ];
 
-        /** @var Family $self */
-        $self = request()->route('family');
-        if (! empty($self)) {
+        /** @var Entity $self */
+        $self = request()->route('entity');
+        if (! empty($self) && $self->isFamily()) {
             $rules['family_id'] = [
                 'nullable',
                 'integer',
                 'exists:families,id',
-                new Nested(Family::class, $self),
+                new Nested(Family::class, $self->child),
             ];
         }
 

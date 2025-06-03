@@ -117,7 +117,6 @@ class CreateController extends Controller
             $route = route('entities.show', [$campaign, $entity]);
 
             return response()->redirectTo($route);
-
         } catch (LogicException $exception) {
             if (config('app.debug')) {
                 throw $exception;

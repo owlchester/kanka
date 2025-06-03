@@ -6,7 +6,7 @@ dd('who is calling dis');
 <x-form :action="['settings.subscription.cancel']" id="cancellation-confirm" class="subscription-form text-left">
 <x-grid type="1/1">
     <x-helper>
-        {!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}
+        <p>{!! __('settings.subscription.cancel.text', ['date' => $endDate])!!}</p>
     </x-helper>
 
 <x-forms.field field="cancel-reason" :label="__('settings.subscription.fields.reason')">
@@ -30,7 +30,7 @@ dd('who is calling dis');
     <button class="btn2 btn-lg btn-block btn-primary btn-error btn-outline subscription-confirm-button" data-text="{{ __('settings.subscription.actions.subscribe') }}">
         <span>{{ __('settings.subscription.actions.cancel_sub') }}</span>
         <span class="spinner hidden">
-            <x-icon class="fa-solid fa-spin fa-spinner" />
+            <x-icon class="load" />
         </span>
     </button>
 </x-grid>

@@ -1,12 +1,7 @@
 <?php
 
 return [
-    'characters'    => [
-        'helpers'   => [
-            'all_characters'    => 'Wyświetla wszystkie postaci należące do tej rasy i ras pochodnych.',
-            'characters'        => 'Wyświetla wyłącznie postaci należące do tej rasy.',
-        ],
-    ],
+    'characters'    => [],
     'create'        => [
         'title' => 'Nowa rasa',
     ],

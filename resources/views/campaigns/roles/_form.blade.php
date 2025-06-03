@@ -1,6 +1,8 @@
 <x-grid type="1/1">
     @empty($role)
-        <x-helper>{{ __('campaigns/roles.create.helper') }}</x-helper>
+        <x-helper>
+            <p>{{ __('campaigns/roles.create.helper') }}</p>
+        </x-helper>
     @endif
 <x-forms.field
     field="name"

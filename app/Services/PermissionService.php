@@ -34,8 +34,6 @@ class PermissionService
 
     /**
      * Set the entity type
-     *
-     * @return $this
      */
     public function type(int $type): self
     {

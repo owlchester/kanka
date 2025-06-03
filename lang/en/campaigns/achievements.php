@@ -10,6 +10,7 @@ return [
     'level'             => 'level :number',
     'markers'           => '{0} No map markers created|{1} One map marker created|[2,*] :amount map markers created',
     'painter'           => '{0} No themes created|{1} One theme created|[2,*] :amount themes created',
+    'pitch'             => 'Campaign achievements are a fun way to celebrate milestones in your worldbuilding journey. Track progress, engage your players, and showcase your accomplishments with a premium campaign.',
     'plugins'           => '{0} No plugins installed|{1} One plugin installed|[2,*] :amount plugins installed',
     'remaining'         => [
         'generic'   => 'More and the next level will be unlocked.',

@@ -4,7 +4,7 @@ return [
     'actions'           => [
         'add'   => 'Add a link',
     ],
-    'call-to-action'    => 'Add links to external resources on this entity, like to DnDBeyond, and they will display directly on the entity\'s overview.',
+    'call-to-action'    => 'Add external links to this entity, like a character sheet on D&D Beyond or a relevant wiki page. Linked resources will be shown directly on the entity\'s overview for easy access.',
     'create'            => [
         'helper'    => 'Add an external link to :name, for example to their DnDBeyond page.',
         'success'   => 'Link :name added to :entity.',
@@ -28,7 +28,7 @@ return [
         'title'         => 'Leaving Kanka',
     ],
     'helpers'           => [
-        'icon'      => 'Customise the link icon with one from :fontawesome or :rpgawesome. Find our more about available icons in our :docs.',
+        'icon'      => 'Customise the link icon with a special :fontawesome icon, for example :example. Find our more about available icons in our :docs.',
         'parent'    => 'Display this bookmark after an element of the sidebar, rather than in the bookmark section of the sidebar.',
     ],
     'placeholders'      => [

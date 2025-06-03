@@ -28,7 +28,7 @@ return [
     'helpers'       => [
         'custom'    => 'Ceci est un module personnalisé.',
         'icon'      => 'L\'icône :fontawesome, par example :example.',
-        'info'      => 'Une campagne est compromise de plusieurs modules qui interagissent entre eux. Il est possible d\'activer ou de désactiver les modules qui ne sont pas utiles pour la campagne. Désactiver un module ne supprime aucune de ses données, mais cache simplement l\'information.',
+        'info'      => 'Une campagne est composée de plusieurs modules qui interagissent entre eux. Il est possible d\'activer ou de désactiver les modules qui ne sont pas utiles pour la campagne. Désactiver un module ne supprime aucune de ses données, mais cache simplement l\'information.',
         'plural'    => 'Le pluriel des entités de du module. Par example, potions.',
         'roles'     => 'Sélection de rôle qui ont la permission de voir les entités de ce nouveau module. Ceci peut être modifié plus tard dans les permissions des rôles.',
         'singular'  => 'Le singulier d\'une entité de ce nouveau module. Par example, potion.',

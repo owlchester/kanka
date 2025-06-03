@@ -75,8 +75,8 @@
                 @endif
                 @if (!auth()->user()->subscribed('kanka') || auth()->user()->subscription('kanka')->canceled())
                     <div class="flex justify-end">
-                    <x-buttons.confirm type="danger" target="delete-account">
-                        <x-icon class="fa-solid fa-exclamation-triangle" />
+                    <x-buttons.confirm type="danger" outline target="delete-account">
+                        <x-icon class="trash" />
                         <span>{{ __('profiles.sections.delete.delete') }}</span>
                     </x-buttons.confirm>
                     </div>
@@ -106,7 +106,7 @@
                     <input type="text" name="goodbye" @if (config('app.debug')) value="goodbye" @endif required  />
                 </x-forms.field>
                 <x-buttons.confirm type="danger" full="true">
-                    <x-icon class="fa-solid fa-exclamation-triangle" />
+                    <x-icon class="fa-regular fa-exclamation-triangle" />
                     {{ __('profiles.sections.delete.confirm') }}
                 </x-buttons.confirm>
             </x-grid>

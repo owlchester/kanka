@@ -13,8 +13,6 @@ class CampaignService
 
     /**
      * Set a campaign as the user's "current" campaign
-     *
-     * @return $this
      */
     public function set(): self
     {

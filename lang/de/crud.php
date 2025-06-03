@@ -155,7 +155,6 @@ return [
         'name'              => 'Name',
         'parent'            => 'übergeordnetes Element',
         'position'          => 'Position',
-        'privacy'           => 'Privat',
         'replace_mentions'  => 'Ersetze die Attributerwähnungen im Eintrag durch die des neuen Objekts',
         'template'          => 'Vorlage',
         'tooltip'           => 'Kurzinfo',
@@ -217,7 +216,6 @@ return [
     ],
     'helpers'           => [
         'copy_options'  => 'Kopieren Sie die folgenden verwandten Elemente aus der Quelle in das neue Objekt.',
-        'learn_more'    => 'Erfahre mehr über diese Funktion in unserer :documentation.',
         'linking'       => 'Verknüpfung mit anderen Objekten',
         'nested_parent' => 'Anzeige der untergeordneten Objekte von :parent.',
         'pagination'    => [

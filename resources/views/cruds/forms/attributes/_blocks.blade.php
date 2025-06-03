@@ -9,7 +9,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
     <template id="attribute_template">
         <div class="{{ $flex }} attribute_row">
             <div class="sortable-handler p-2 cursor-move">
-                <x-icon class="fa-solid fa-grip-vertical" />
+                <x-icon class="fa-regular fa-grip-vertical" />
             </div>
             <div class="{{ $nameBlock }}">
                 <div class="field">
@@ -29,7 +29,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
 
                 @if ($isAdmin)
                     <input type="hidden" name="attr_is_private[$TMP_ID$]" value="0" />
-                    <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
+                    <i class="fa-regular fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
                 @endif
@@ -45,7 +45,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
     <template id="text_template">
         <div class="{{ $flex }} attribute_row" >
             <div class="sortable-handler p-2 cursor-move">
-                <x-icon class="fa-solid fa-grip-vertical" />
+                <x-icon class="fa-regular fa-grip-vertical" />
             </div>
             <div class="{{ $nameBlock }}">
                 <div class="field">
@@ -65,7 +65,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
 
                 @if ($isAdmin)
                     <input type="hidden" name="attr_is_private[$TMP_ID$]" value="0" />
-                    <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
+                    <i class="fa-regular fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
                 @endif
@@ -82,7 +82,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
     <template id="number_template">
         <div class="{{ $flex }} attribute_row">
             <div class="sortable-handler p-2 cursor-move">
-                <x-icon class="fa-solid fa-grip-vertical" />
+                <x-icon class="fa-regular fa-grip-vertical" />
             </div>
             <div class="field {{ $nameBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
@@ -100,7 +100,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
 
                 @if ($isAdmin)
                     <input type="hidden" name="attr_is_private[$TMP_ID$]" value="0" />
-                    <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
+                    <i class="fa-regular fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
                 @endif
@@ -116,7 +116,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
     <template id="checkbox_template">
         <div class="{{ $flex }} attribute_row items-center">
             <div class="sortable-handler p-2 cursor-move">
-                <x-icon class="fa-solid fa-grip-vertical" />
+                <x-icon class="fa-regular fa-grip-vertical" />
             </div>
             <div class="field {{ $nameBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.checkbox') }}</label>
@@ -133,7 +133,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
 
                 @if ($isAdmin)
                     <input type="hidden" name="attr_is_private[$TMP_ID$]" value="0" />
-                    <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
+                    <i class="fa-regular fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
                 @endif
@@ -151,7 +151,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
     <template id="section_template">
         <div class="{{ $flex }} attribute_row">
             <div class="sortable-handler p-2 cursor-move">
-                <x-icon class="fa-solid fa-grip-vertical" />
+                <x-icon class="fa-regular fa-grip-vertical" />
             </div>
             <div class="field {{ $textBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.section') }}</label>
@@ -166,7 +166,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
 
                 @if ($isAdmin)
                     <input type="hidden" name="attr_is_private[$TMP_ID$]" value="0" />
-                    <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
+                    <i class="fa-regular fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
                 @endif
@@ -182,7 +182,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
     <template id="random_template">
         <div class="{{ $flex }} attribute_row">
             <div class="sortable-handler p-2 cursor-move">
-                <x-icon class="fa-solid fa-grip-vertical" />
+                <x-icon class="fa-regular fa-grip-vertical" />
             </div>
             <div class="field {{ $nameBlock }}">
                 <label class="sr-only">{{ __('entities/attributes.labels.name') }}</label>
@@ -200,7 +200,7 @@ $flex = 'flex flex-wrap md:flex-no-wrap items-start gap-1';
 
                 @if ($isAdmin)
                     <input type="hidden" name="attr_is_private[$TMP_ID$]" value="0" />
-                    <i class="fa-solid fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
+                    <i class="fa-regular fa-unlock-alt fa-2x" data-toggle="private" data-private="{{ __('entities/attributes.visibility.private') }}" data-public="{{ __('entities/attributes.visibility.public') }}"
                        data-lock="{{ __('entities/attributes.toasts.lock') }}" data-unlock="{{ __('entities/attributes.toasts.unlock') }}"
                     ></i>
                 @endif

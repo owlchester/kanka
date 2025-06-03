@@ -39,7 +39,7 @@ return [
             'invalid_entity'    => 'Invalid entity selection',
         ],
         'helpers'   => [
-            'other_calendar'    => 'You are editing a reminder that is on :calendar.',
+            'other_calendar'    => 'You are editing a reminder that was added on :calendar. Modifying this reminder will modify it in both places.',
         ],
         'success'   => 'Reminder \':event\' added to :calendar.',
     ],

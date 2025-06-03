@@ -5,7 +5,8 @@
         @if ($templates->isEmpty())
             <p class="">
                 <a href="//docs.kanka.io/en/latest/guides/templates.html" target="_blank">
-                    <i class="fa-solid fa-external-link"></i> {{ __('helpers.entity_templates.link') }}
+                    <x-icon class="link" />
+                    {{ __('helpers.entity_templates.link') }}
                 </a>
             </p>
         @else

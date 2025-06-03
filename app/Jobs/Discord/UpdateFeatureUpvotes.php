@@ -60,6 +60,5 @@ class UpdateFeatureUpvotes implements ShouldQueue
         Http::patch($editUrl, [
             'content' => $content,
         ]);
-
     }
 }

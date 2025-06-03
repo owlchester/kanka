@@ -21,8 +21,6 @@ class EntityResource extends JsonResource
 
     /**
      * Get related objects for this entity
-     *
-     * @return $this
      */
     public function withRelated(): self
     {
@@ -31,9 +29,6 @@ class EntityResource extends JsonResource
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function withMisc(): self
     {
         $this->withMisc = true;

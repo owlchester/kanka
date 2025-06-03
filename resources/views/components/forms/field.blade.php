@@ -27,8 +27,9 @@
             <x-icon class="fa-regular fa-circle-info" />
             {!! $helper !!}
             @if (isset($link))
-                <a href="{{ $link }}" target="_blank">
-                    {{ __('crud.helpers.learn_more', ['documentation' => __('footer.documentation')]) }}
+                <a href="{{ $link }}">
+                    <x-icon class="fa-regular fa-book" />
+                    {{ __('general.documentation') }}
                 </a>
             @endif
         </p>

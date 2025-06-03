@@ -20,18 +20,12 @@ use \Illuminate\Support\Arr;
             {{ __('campaigns.show.tabs.achievements') }}
             </h3>
 
-            @if ($campaign->superboosted())
-                <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
-                             data-target="stats-help">
-                    <x-icon class="question" />
-                    {{ __('crud.actions.help') }}
-                </button>
-            @endif
+            <x-learn-more url="features/campaigns/achievements.html" />
         </div>
         @if (!$campaign->superboosted())
-            <x-cta :campaign="$campaign" superboost="true">
-                <p>{{ __('campaigns/stats.pitch') }}</p>
-            </x-cta>
+            <x-premium-cta :campaign="$campaign" superboost>
+                <p>{{ __('campaigns/achievements.pitch') }}</p>
+            </x-premium-cta>
         @else
 
         <div class="flex flex-wrap gap-5">
@@ -45,15 +39,5 @@ use \Illuminate\Support\Arr;
         </div>
         @endif
     </div>
-@endsection
-
-@section('modals')
-
-    @include('partials.helper-modal', [
-        'id' => 'stats-help',
-        'title' => __('campaigns.show.tabs.achievements'),
-        'textes' => [
-            __('campaigns/stats.helper')
-    ]])
 @endsection
 

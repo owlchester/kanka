@@ -178,7 +178,6 @@ return [
         'success'               => [
             'alternative'   => 'Tvoja uplata je registrirana. Primit ćeš obavijest čim se obradi i tvoja pretplata postane aktivna.',
             'callback'      => 'Tvoja pretplata je uspješna. Tvoj račun će biti ažuriran čim nas naš pružatelj plaćanja informira o promjeni (ovo može potrajati nekoliko minuta).',
-            'cancel'        => 'Tvoja pretplata je otkazana. I dalje će biti aktivna do kraja tvog trenutnog razdoblja naplate.',
             'currency'      => 'Tvoja željena postavka valute je ažurirana.',
             'subscribed'    => 'Tvoja pretplata je bila uspješna. Ne zaboravi se pretplatiti na bilten glasanja zajednice kako bi te obavijestili kada započne novo glasanje. Postavke biltena možeš promijeniti na stranici profila.',
         ],

@@ -1,5 +1,6 @@
 <div class="flex gap-1 items-start" id="entities-explorer">
     <entities-explorer
+        mode="{{ $mode }}"
         api="{{ route('entities.index-api', array_merge([$campaign, $entityType], $parent ? ['parent_id' => $parent] : [])) }}"
         module="{{ $entityType->plural() }}"
         csrf="{{ csrf_token() }}"

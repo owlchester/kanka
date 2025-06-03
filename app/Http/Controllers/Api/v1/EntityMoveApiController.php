@@ -54,6 +54,5 @@ class EntityMoveApiController extends ApiController
                 'message' => $e->getTranslatedMessage(),
             ]);
         }
-
     }
 }

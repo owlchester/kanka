@@ -58,7 +58,6 @@ use Illuminate\Support\Collection;
  *
  * UI virtual Settings
  * @property bool|int $tooltip_family
- * @property bool|int $tooltip_image
  * @property bool|int $hide_members
  * @property bool|int $hide_history
  */
@@ -84,10 +83,6 @@ class Campaign extends Model
     public const int VISIBILITY_REVIEW = 2;
 
     public const int VISIBILITY_PUBLIC = 3;
-
-    public const int LAYER_COUNT_MIN = 1;
-
-    public const int LAYER_COUNT_MAX = 10;
 
     protected $fillable = [
         'name',
@@ -291,14 +286,6 @@ class Campaign extends Model
         return Mentions::parseForEdit($this, 'excerpt');
     }
 
-    /**
-     * Determine if the campaign has images in tooltips.
-     */
-    public function getTooltipImageAttribute()
-    {
-        return Arr::get($this->ui_settings, 'tooltip_image', false);
-    }
-
     public function defaultToNested(): bool
     {
         return (bool) Arr::get($this->ui_settings, 'nested', false) == 'all';
@@ -327,18 +314,6 @@ class Campaign extends Model
     public function getHideHistoryAttribute()
     {
         return Arr::get($this->ui_settings, 'hide_history', false);
-    }
-
-    /**
-     * Number of layers a map of a campaign can have
-     */
-    public function maxMapLayers(): int
-    {
-        if ($this->boosted()) {
-            return self::LAYER_COUNT_MAX;
-        }
-
-        return self::LAYER_COUNT_MIN;
     }
 
     public function maxEntityFiles(): int
@@ -489,18 +464,6 @@ class Campaign extends Model
     }
 
     /**
-     * Determine if a campaign can be exported, or if it already hit the daily maximum
-     */
-    public function exportable(): bool
-    {
-        if (! app()->isProduction()) {
-            return true; // $this->queuedCampaignExports->count() === 0;
-        }
-
-        return empty($this->export_date) || ! $this->export_date->isToday() && $this->queuedCampaignExports->count() === 0;
-    }
-
-    /**
      * Get the value of the follower variable
      */
     public function follower(): int
@@ -577,5 +540,10 @@ class Campaign extends Model
         $this->cachedEntityTypes = EntityType::inCampaign($this)->enabled()->get();
 
         return $this->cachedEntityTypes;
+    }
+
+    public function link(): string
+    {
+        return '<a href="' . route('dashboard', $this) . '">' . $this->name . '</a>';
     }
 }

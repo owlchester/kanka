@@ -49,13 +49,14 @@ class LiveSearchService
             ->get();
 
         $list = [];
+        $child = Str::camel($this->entityType->code);
         /** @var Entity $entity */
         foreach ($entities as $entity) {
-            if (! $this->entityType->isSpecial() && empty($entity->{$this->entityType->code})) {
+            if (! $this->entityType->isSpecial() && empty($entity->{$child})) {
                 continue;
             }
             $format = [
-                'id' => $this->entityType->isSpecial() ? $entity->id : $entity->{$this->entityType->code}->id,
+                'id' => $this->entityType->isSpecial() ? $entity->id : $entity->{$child}->id,
                 'entity_id' => $entity->id,
                 'name' => $entity->name,
                 'text' => $entity->name,

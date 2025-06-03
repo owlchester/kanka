@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Facades\Avatar;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -27,11 +28,13 @@ class TooltipController extends Controller
             $tagClasses[] = 'kanka-tag-' . $tag->slug;
         }
         $render = request()->get('render');
+        $hasImage = Avatar::entity($entity)->hasImage();
 
         $tooltip = view('entities.components.tooltip')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
             ->with('tags', $entity->visibleTags)
+            ->with('hasImage', $hasImage)
             ->with('tagClasses', $tagClasses)
             ->with('render', $render)
             ->render();

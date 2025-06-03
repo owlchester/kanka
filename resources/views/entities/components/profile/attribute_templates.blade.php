@@ -19,6 +19,15 @@ $child = $entity->child;
         </div>
     @endif
 
+    <div class="element profile-is-enabled">
+        <div class="title text-uppercase text-xs">{{ __('attribute_templates.fields.is_enabled') }}</div>
+        @if ($child->is_enabled)
+            {{ __('general.yes')}}
+        @else
+            {{ __('general.no')}}
+        @endif
+    </div>
+
     @if (!empty($child->entityType))
         <div class="element profile-entity-type">
             <div class="title text-uppercase text-xs">{{ __('attribute_templates.fields.auto_apply') }}</div>

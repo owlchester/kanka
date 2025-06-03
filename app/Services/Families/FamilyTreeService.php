@@ -333,8 +333,6 @@ class FamilyTreeService
 
     /**
      * Save a new tree config to the database
-     *
-     * @return $this
      */
     public function save(array $data = []): self
     {

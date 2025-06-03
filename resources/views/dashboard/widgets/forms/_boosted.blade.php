@@ -3,14 +3,14 @@
         @include ('partials.boost_icon')
     </div>
     <div>
-        <p class="">{{ __('callouts.premium.limitation') }}</p>
+        <p class="">{!! __('callouts.premium.multiple', ['campaign' => $campaign->name]) !!}</p>
 
-        @if (auth()->user()->hasBoosters())
-        <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-sm" target="_blank">
-            {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}
-        </a>
+        @can('boost', auth()->user())
+            <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-sm">
+                {!! __('settings/premium.actions.unlock', ['campaign' => $campaign->name]) !!}
+            </a>
         @else
-            <a href="{{ \App\Facades\Domain::toFront('premium') }}" target="_blank" class="btn2 bg-boost text-white btn-sm">
+            <a href="{{ \App\Facades\Domain::toFront('premium') }}" class="btn2 bg-boost text-white btn-sm">
                 {!! __('callouts.premium.learn-more') !!}
             </a>
         @endif

@@ -31,7 +31,7 @@ if ($firstPost && $firstPost->position >= 0) {
             <x-reorder.child :id="$note->id">
                 <input type="hidden" name="posts[{{ $note->id }}][id]" value="{{ $note->id }}" />
                 <div class="dragger">
-                    <x-icon class="fa-solid fa-sort" />
+                    <x-icon class="fa-regular fa-sort" />
                 </div>
                 <div class="truncate flex-grow">
                     {!! $note->name !!}

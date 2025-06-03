@@ -15,7 +15,7 @@
     <x-box>
         <x-grid type="1/1">
             <x-helper>
-                {{ __('entities/move.panel.description') }}
+                <p>{{ __('entities/move.panel.description') }}</p>
             </x-helper>
 
             <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
@@ -43,7 +43,7 @@
 
         <x-dialog.footer>
             <button class="btn2 btn-primary">
-                <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                <x-icon class="copy" />
                 @can('update', $entity) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan
             </button>
         </x-dialog.footer>
