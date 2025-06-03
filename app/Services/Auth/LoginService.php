@@ -2,6 +2,7 @@
 
 namespace App\Services\Auth;
 
+use App\Enums\UserAction;
 use App\Models\UserFlag;
 use App\Models\UserLog;
 use App\Traits\UserAware;
@@ -13,10 +14,10 @@ class LoginService
 
     public function logUserActivity(): self
     {
-        $action = auth()->viaRemember() ? UserLog::TYPE_AUTOLOGIN : UserLog::TYPE_LOGIN;
+        $action = auth()->viaRemember() ? UserAction::autoLogin : UserAction::login;
         $userLogType = session()->get('kanka.userLog', $action);
         if ($this->user->isBanned()) {
-            $userLogType = session()->get('kanka.userLog', UserLog::TYPE_BANNED_LOGIN);
+            $userLogType = session()->get('kanka.userLog', UserAction::bannedLogin);
         }
         $this->user->log($userLogType);
         session()->remove('kanka.userLog');
