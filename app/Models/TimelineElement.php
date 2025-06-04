@@ -198,6 +198,9 @@ class TimelineElement extends Model
 
     public function toSearchableArray()
     {
+        if (! $this->timeline || ! $this->timeline->entity) {
+            return [];
+        }
         return [
             'campaign_id' => $this->timeline->entity->campaign_id,
             'entity_id' => $this->timeline->entity->id,

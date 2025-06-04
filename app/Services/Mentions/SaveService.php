@@ -228,6 +228,9 @@ class SaveService
     protected function html(): string
     {
         $body = $this->document->getElementsByTagName('body')->item(0);
+        if (empty($body)) {
+            return '';
+        }
         $newHtml = '';
         foreach ($body->childNodes as $child) {
             $newHtml .= $this->document->saveHTML($child);
