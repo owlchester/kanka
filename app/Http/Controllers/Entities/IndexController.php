@@ -50,18 +50,7 @@ class IndexController extends Controller
 
         $nested = $this->isNested();
         $mode = $this->layoutMode();
-
-        $base = Entity::inTypes($entityType->id)
-            ->select([
-                'entities.id', 'entities.name', 'entities.type', 'entities.is_private',
-                'entities.type_id', 'entities.parent_id',
-                'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
-            ])
-            ->with(['entityType', 'image'])
-            ->withCount('children')
-            ->search($this->filterService->search())
-            ->order($this->filterService->order())
-            ->distinct();
+        $title = $entityType->plural();
 
         $parent = null;
         if ($request->has('parent_id')) {
@@ -71,12 +60,21 @@ class IndexController extends Controller
                 'entities.image_uuid', 'entities.focus_x', 'entities.focus_y',
             ])
                 ->inTypes([$entityType->id])->where('id', $request->get('parent_id'))->first();
-            if ($parent) {
-                $base->where('entities.parent_id', $request->get('parent_id'));
-            }
         }
-        if (empty($parent) && $nested && $this->filterService->activeFiltersCount() === 0) {
-            $base->whereNull('entities.parent_id');
+
+        $apiParams = [$campaign, $entityType];
+        if ($parent) {
+            $apiParams['parent_id'] = $parent;
+        }
+        if ($request->get('_from') === 'bookmark') {
+            $apiParams['_from'] = 'bookmark';
+            $apiParams['bookmark'] = $request->get('bookmark');
+        }
+        if ($request->has('bookmark')) {
+            $bookmark = Bookmark::where('id', $request->get('bookmark'))->first();
+            if ($bookmark) {
+                $title = $bookmark->name;
+            }
         }
 
         return view('entities.index.index')
@@ -84,10 +82,11 @@ class IndexController extends Controller
             ->with('entityType', $entityType)
             ->with('mode', $mode)
             ->with('parent', $parent)
-            // ->with('forceMode', 'grid')
             ->with('filterService', $this->filterService)
             ->with('nestable', $nested)
-            ->with('templates', new Collection);
+            ->with('templates', new Collection)
+            ->with('apiParams', $apiParams)
+            ->with('title', $title);
     }
 
     protected function loadTemplates(Campaign $campaign, EntityType $entityType): Collection
