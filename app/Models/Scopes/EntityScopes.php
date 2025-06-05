@@ -172,10 +172,10 @@ trait EntityScopes
         foreach ($filters as $name => $values) {
             if (! is_array($values) && $values === null) {
                 continue;
-            } elseif (in_array($name, ['name', 'type', 'is_private', 'parent_id'])) {
+            } elseif (in_array($name, ['is_private', 'parent_id'])) {
                 $query->where($name, $values);
-
-                continue;
+            } elseif (in_array($name, ['name', 'type'])) {
+                $query->textFilter($name, $values);
             } elseif (in_array($name, ['has_image', 'template'])) {
                 $property = 'is_template';
                 if ($name === 'has_image') {
@@ -287,5 +287,47 @@ trait EntityScopes
                 ->leftJoin('entity_tags as et' . $v, "et{$v}.entity_id", 'entities.id')
                 ->where("et{$v}.tag_id", $v);
         }
+    }
+
+    protected function scopeTextFilter(Builder $query, string $field, ?string $value = null): Builder
+    {
+        $searchTerms = explode(';', $value);
+        foreach ($searchTerms as $searchTerm) {
+            if (empty($searchTerm) && $searchTerm != '0') {
+                continue;
+            }
+            list($operator, $text) = $this->extractSearchOperator($searchTerm, 'type');
+            $searchTerm = $text;
+
+            $query->where(
+                $field,
+                $operator,
+                ($operator == '=' ? $text : "%{$searchTerm}%")
+            );
+        }
+        return $query;
+    }
+
+    /**
+     * @param  string|array  $value  (array for tags)
+     */
+    protected function extractSearchOperator(mixed $value, string $key): array
+    {
+        $operator = 'like';
+        $filterValue = $value;
+        if ($value == '!!') {
+            $operator = 'IS NULL';
+            $filterValue = null;
+        } elseif (Str::startsWith($value, '!')) {
+            $operator = 'not like';
+            $filterValue = mb_ltrim($value, '!');
+        } elseif (Str::endsWith($value, '!')) {
+            $operator = '=';
+            $filterValue = mb_rtrim($value, '!');
+        } elseif (Str::endsWith($key, '_id')) {
+            $operator = '=';
+        }
+
+        return [$operator, $filterValue];
     }
 }
