@@ -147,6 +147,9 @@ class QuestElement extends Model
 
     public function toSearchableArray()
     {
+        if (! $this->quest || ! $this->quest->entity) {
+            return [];
+        }
         return [
             'campaign_id' => $this->quest->entity->campaign_id,
             'entity_id' => $this->quest->entity->id,

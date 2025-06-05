@@ -228,7 +228,7 @@ class Post extends Model
     protected function makeAllSearchableUsing($query)
     {
         return $query
-            ->select([$this->getTable() . '.*', 'entities.id as entity_id'])
+            ->select([$this->getTable() . '.*', 'entities.id as entity_id', 'entities.campaign_id as campaign_id'])
             ->leftJoin('entities', $this->getTable() . '.entity_id', '=', 'entities.id')
             ->has('entity')
             ->with('entity');
@@ -236,6 +236,10 @@ class Post extends Model
 
     public function toSearchableArray()
     {
+        if (! $this->entity) {
+            return [];
+        }
+
         return [
             'campaign_id' => $this->entity->campaign_id,
             'entity_id' => $this->entity_id,

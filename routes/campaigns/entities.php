@@ -111,7 +111,7 @@ Route::post('/w/{campaign}/tags/{tag}/transfer-posts', 'Tags\TransferController@
 
 // Tags Quick Add
 Route::get('/w/{campaign}/tags/{tag}/children', 'Tags\ChildController@index')->name('tags.children');
-Route::get('/w/{campaign}/tags/{tag}/posts', 'Tags\ChildController@postIndex')->name('tags.children.posts');
+Route::get('/w/{campaign}/tags/{tag}/posts', 'Tags\PostController@index')->name('tags.posts');
 Route::get('/w/{campaign}/tags/{tag}/entity-add', 'Tags\ChildController@create')->name('tags.entity-add');
 Route::post('/w/{campaign}/tags/{tag}/entity-add', 'Tags\ChildController@store')->name('tags.entity-add.save');
 

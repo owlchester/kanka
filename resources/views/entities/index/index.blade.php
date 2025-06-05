@@ -1,7 +1,7 @@
 @extends('layouts.app', [
-    'title' => $entityType->plural(),
+    'title' => $title,
     'skipTitle' => true,
-    'seoTitle' => $entityType->plural() . ' - ' . $campaign->name,
+    'seoTitle' => $title . ' - ' . $campaign->name,
     'breadcrumbs' => false,
     'canonical' => true,
     'bodyClass' => 'kanka-' . $entityType->code,
