@@ -40,6 +40,7 @@ class TagController extends Controller
                 'entity', 'entity.image', 'entity.entityType',
                 'parent', 'parent.entity',
             ])
+            ->has('entity')
             ->paginate();
 
         if (request()->ajax()) {
