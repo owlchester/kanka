@@ -11,7 +11,7 @@ use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 
-class TagController extends Controller
+class PostController extends Controller
 {
     use CampaignAware;
     use GuestAuthTrait;
@@ -22,25 +22,17 @@ class TagController extends Controller
     {
         $this->campaign($campaign)->authEntityView($tag->entity);
 
-        $options = ['campaign' => $campaign, 'tag' => $tag, 'm' => $this->descendantsMode()];
-        $filters = [];
-        if ($this->filterToDirect()) {
-            $filters['tag_id'] = $tag->id;
-        }
+        $options = ['campaign' => $campaign, 'tag' => $tag];
 
-        Datagrid::layout(\App\Renderers\Layouts\Tag\Tag::class)
-            ->route('tags.tags', $options);
+        Datagrid::layout(\App\Renderers\Layouts\Tag\Post::class)
+            ->route('tags.posts', $options);
 
-        // @phpstan-ignore-next-line
         $this->rows = $tag
-            ->descendants()
+            ->posts()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->filter($filters)
-            ->with([
-                'entity', 'entity.image', 'entity.entityType',
-                'parent', 'parent.entity',
-            ])
-            ->paginate();
+            ->with(['entity', 'entity.image', 'visibleTags'])
+            ->has('entity')
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();
@@ -48,6 +40,6 @@ class TagController extends Controller
 
         return $this
             ->campaign($campaign)
-            ->subview('tags.tags', $tag);
+            ->subview('tags.children.posts', $tag);
     }
 }

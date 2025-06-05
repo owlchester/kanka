@@ -14,7 +14,7 @@ if (!empty($onload)) {
     ];
     $routeOptions = Datagrid::initOptions($routeOptions);
     $datagridOptions =
-        ['datagridUrl' => route('tags.children.posts', $routeOptions)]
+        ['datagridUrl' => route('tags.posts', $routeOptions)]
     ;
 }
 
