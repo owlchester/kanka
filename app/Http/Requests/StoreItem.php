@@ -36,7 +36,7 @@ class StoreItem extends FormRequest
             'entry' => 'nullable|string',
             'type' => 'nullable|string|max:191',
             'location_id', 'nullable|integer|exists:locations,id',
-            'character_id', 'nullable|integer|exists:character,id',
+            'character_id', 'nullable|integer|exists:characters,id',
             'item_id' => 'nullable|integer|exists:items,id',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'image_url' => 'nullable|url|active_url',
