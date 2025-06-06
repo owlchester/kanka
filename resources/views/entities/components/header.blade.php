@@ -34,14 +34,18 @@ $hasBanner = false;
 if($campaign->boosted() && $entity->hasHeaderImage()) {
     $hasBanner = true;
     $headerImageUrl = $entity->getHeaderUrl();
+    $headerImageSquare = $entity->getHeaderUrl(400, 400);
+    $headerImageS = $entity->getHeaderUrl(800, 267);
+    $headerImageM = $entity->getHeaderUrl(1200, 400);
+    $headerImageL = $entity->getHeaderUrl(2400, 800);
+    $headerImageXL = $entity->getHeaderUrl(2400, 800);
+
 }
 
 ?>
-
-<div class="entity-header flex gap-5 items-end relative @if ($hasBanner) with-entity-banner p-4 text-white cover-background @endif" @if ($hasBanner) style="background-image: url('{{ $headerImageUrl }}');" @endif>
-
+<div class="w-full h-full entity-header flex-wrap md:flex-no-wrap flex gap-2 md:gap-5 items-end relative @if ($hasBanner) with-entity-banner p-4 text-white aspect-[3/1] @endif">
     @if ($imageUrl)
-    <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto">
+    <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto z-10">
 
         @can('update', $entity)
             @if(isset($printing) && $printing)
@@ -113,7 +117,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         @endcan
     </div>
     @endif
-    <div class="entity-header-text grow flex flex-col gap-2">
+    <div class="entity-header-text grow flex flex-col gap-1 md:gap-2 z-10">
         @if (!empty($breadcrumb))
             <ol class="entity-breadcrumb text-sm m-0 p-0">
                 @foreach ($breadcrumb as $bcdata)
@@ -134,57 +138,57 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                 {!! $entity->name !!}
             </h1>
             @if ($entity->isCharacter() && $entity->child->isDead())
-                <span class="entity-name-icon entity-char-dead text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_dead') }}">
+                <span class="entity-name-icon entity-char-dead md:text-2xl" data-toggle="tooltip" data-title="{{ __('characters.hints.is_dead') }}">
                     <x-icon class="fa-regular fa-skull entity-icons" />
                     <span class="sr-only">{{ __('characters.hints.is_dead') }}</span>
                 </span>
             @endif
             @if ($entity->isQuest() && $entity->child->isCompleted())
-                <span class="entity-name-icon entity-quest-complete text-2xl" data-toggle="tooltip" data-title="{{ __('quests.fields.is_completed') }}">
+                <span class="entity-name-icon entity-quest-complete md:text-2xl" data-toggle="tooltip" data-title="{{ __('quests.fields.is_completed') }}">
                     <x-icon class="fa-regular fa-check-circle entity-icons" />
                     <span class="sr-only">{{ __('quests.fields.is_completed') }}</span>
                 </span>
             @endif
             @if ($entity->isOrganisation() && $entity->child->isDefunct())
-                <span class="entity-name-icon entity-org-defunct text-2xl" data-toggle="tooltip" data-title="{{ __('organisations.hints.is_defunct') }}">
+                <span class="entity-name-icon entity-org-defunct md:text-2xl" data-toggle="tooltip" data-title="{{ __('organisations.hints.is_defunct') }}">
                     <x-icon class="fa-regular fa-shop-slash entity-icons " />
                     <span class="sr-only">{{ __('organisations.hints.is_defunct') }}</span>
                 </span>
             @endif
             @if ($entity->isLocation() && $entity->child->isDestroyed())
-                <span class="entity-name-icon entity-loc-destroyed text-2xl" data-toggle="tooltip" data-title="{{ __('locations.hints.is_destroyed') }}">
+                <span class="entity-name-icon entity-loc-destroyed md:text-2xl" data-toggle="tooltip" data-title="{{ __('locations.hints.is_destroyed') }}">
                     <x-icon class="fa-regular fa-building-circle-xmark " />
                     <span class="sr-only">{{ __('locations.hints.is_destroyed') }}</span>
                 </span>
             @endif
             @if ($entity->isRace() && $entity->child->isExtinct())
-                <span class="entity-name-icon entity-rac-extinct text-2xl" data-toggle="tooltip" data-title="{{ __('races.hints.is_extinct') }}">
+                <span class="entity-name-icon entity-rac-extinct md:text-2xl" data-toggle="tooltip" data-title="{{ __('races.hints.is_extinct') }}">
                     <x-icon class="fa-regular fa-skull-cow entity-icons " />
                     <span class="sr-only">{{ __('races.hints.is_extinct') }}</span>
                 </span>
             @endif
             @if ($entity->isCreature() && $entity->child->isExtinct())
-                <span class="entity-name-icon entity-cre-extinct text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_extinct') }}">
+                <span class="entity-name-icon entity-cre-extinct md:text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_extinct') }}">
                     <x-icon class="fa-regular fa-skull-cow entity-icons " />
                     <span class="sr-only">{{ __('creatures.hints.is_extinct') }}</span>
                 </span>
             @endif
             @if ($entity->isCreature() && $entity->child->isDead())
-                <span class="entity-name-icon entity-cre-dead text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_dead') }}">
+                <span class="entity-name-icon entity-cre-dead md:text-2xl" data-toggle="tooltip" data-title="{{ __('creatures.hints.is_dead') }}">
                     <x-icon class="fa-regular fa-skull entity-icons " />
                     <span class="sr-only">{{ __('creatures.hints.is_dead') }}</span>
                 </span>
             @endif
             @if ($entity->isFamily() && $entity->child->isExtinct())
-                <span class="entity-name-icon entity-fam-extinct text-2xl" data-toggle="tooltip" data-title="{{ __('families.hints.is_extinct') }}">
+                <span class="entity-name-icon entity-fam-extinct md:text-2xl" data-toggle="tooltip" data-title="{{ __('families.hints.is_extinct') }}">
                     <x-icon class="fa-regular fa-skull entity-icons " />
                     <span class="sr-only">{{ __('families.hints.is_extinct') }}</span>
                 </span>
             @endif
             @can('admin', $campaign)
-                <span role="button" tabindex="0" class="entity-privacy-icon" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $entity]) }}" data-target="primary-dialog" aria-haspopup="dialog">
-                        <i class="fa-regular fa-lock entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
-                        <i class="fa-regular fa-lock-open entity-icons text-2xl" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                <span role="button" tabindex="0" class="entity-privacy-icon md:" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $entity]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                        <i class="fa-regular fa-lock entity-icons" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
+                        <i class="fa-regular fa-lock-open entity-icons" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
                     </span>
             @endif
@@ -242,7 +246,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         <span
             role="button"
             tabindex="0"
-            class="header-visibility absolute top-2 right-2 rounded cursor-pointer"
+            class="header-visibility absolute top-2 right-2 rounded cursor-pointer z-10"
             data-toggle="dialog"
             data-url="{{ route('gallery.file.visibility', [$campaign, $entity->header]) }}"
             data-target="primary-dialog"
@@ -252,11 +256,24 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         </span>
         @else
             <span
-                class="header-visibility absolute top-2 right-2 rounded">
+                class="header-visibility absolute top-2 right-2 rounded z-10">
                 <x-icon :class="$entity->header->visibilityIcon()['class']" :title="$headerHelper" tooltip />
             </span>
         @endcan
     @endif
+        @if ($hasBanner)
+            <picture class="">
+                <source media="(min-width:2400px)" srcset="{{ $headerImageXL }}">
+                <source media="(min-width:1600px)" srcset="{{ $headerImageL }}">
+                <source media="(min-width:800px)" srcset="{{ $headerImageM }}">
+                <source media="(min-width:600px)" srcset="{{ $headerImageS }}">
+                <img
+                    src="{{ $headerImageSquare }}"
+                    alt="{{ $entity->name }} header image"
+                    class="absolute inset-0 w-full h-full z-0 object-cover"
+                >
+            </picture>
+        @endif
 </div>
 
 @section('modals')
