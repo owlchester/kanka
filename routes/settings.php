@@ -27,6 +27,7 @@ use App\Http\Controllers\Settings\ReleaseController;
 use App\Http\Controllers\Settings\Subscription\CancellationController;
 use App\Http\Controllers\Settings\Subscription\CancelledController;
 use App\Http\Controllers\Settings\Subscription\FinishController;
+use App\Http\Controllers\Settings\Subscription\FreeTrialController;
 use App\Http\Controllers\Settings\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
@@ -86,6 +87,9 @@ Route::get('/subscription/cancelled', [CancelledController::class, 'index'])->na
 Route::get('/billing/payment-method', [PaymentMethodController::class, 'index'])->name('billing.payment-method');
 Route::patch('/billing/payment-method', [PaymentMethodController::class, 'save'])->name('billing.payment-method.save');
 Route::get('/billing/currency', [PaymentMethodController::class, 'currency'])->name('billing.currency');
+
+Route::get('/subscription/free-trial', [FreeTrialController::class, 'index'])->name('settings.free-trial');
+Route::post('/subscription/free-trial/accept', [FreeTrialController::class, 'accept'])->name('settings.free-trial.accept');
 
 Route::get('/billing/history', [HistoryController::class, 'index'])->name('billing.history');
 Route::get('/billing/history/download/{invoice}', [HistoryController::class, 'download'])->name('billing.history.download');

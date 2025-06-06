@@ -45,7 +45,7 @@ $box = 'rounded-2xl p-2 lg:p-3 bg-box shadow-xs hover:shadow flex flex-col items
     @else
         <div class="{{ $box }}">
             <div class="text-xl  text-center">
-                @if ($user->hasPayPal())
+                @if ($user->hasPayPal() || $user->hasManualSubscription())
                     {{ $user->pledge }}
                 @else
                 {{ $current->tier->name ?? \App\Models\Pledge::KOBOLD }}

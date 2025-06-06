@@ -22,3 +22,16 @@
 {{--        </p>--}}
 {{--    </x-tutorial>--}}
 {{--@endif--}}
+
+@can('freeTrial', auth()->user())
+    <x-tutorial code="free_trial" type="info">
+            <p>
+                {!! __('subscriptions/free-trial.pitch.title') !!}<br />
+
+                <a href="{{ route('settings.free-trial') }}" class="font-bold underline">
+                    <x-icon class="fa-duotone fa-sparkles" /> {!! __('subscriptions/free-trial.actions.accept') !!}
+                </a>
+            </p>
+
+        </x-tutorial>
+@endif

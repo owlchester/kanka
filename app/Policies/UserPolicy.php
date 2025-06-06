@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\UserFlags;
 use App\Models\User;
 
 class UserPolicy
@@ -18,5 +19,10 @@ class UserPolicy
         }
 
         return $user->isGoblin() || ! empty($user->booster_count);
+    }
+
+    public function freeTrial(User $user)
+    {
+        return $user->flags()->where('flag', UserFlags::freeTrial)->count() === 1 && !$user->isSubscriber();
     }
 }

@@ -156,7 +156,7 @@ class PurgeService
             ->leftJoin('user_flags as f', function ($sub) {
                 return $sub
                     ->on('f.user_id', 'users.id')
-                    ->where('f.flag', \App\Enums\UserFlag::firstWarning->value);
+                    ->where('f.flag', \App\Enums\UserFlags::firstWarning->value);
             })
             ->where(function ($sub) {
                 $sub->whereNull('last_login_at')
@@ -183,7 +183,7 @@ class PurgeService
                     if (! $this->dry) {
                         $flag = new UserFlag;
                         $flag->user_id = $user->id;
-                        $flag->flag = \App\Enums\UserFlag::firstWarning;
+                        $flag->flag = \App\Enums\UserFlags::firstWarning;
                         $flag->save();
 
                         FirstWarningJob::dispatch($user->id);
@@ -212,12 +212,12 @@ class PurgeService
             ->leftJoin('user_flags as f', function ($sub) {
                 return $sub
                     ->on('f.user_id', 'users.id')
-                    ->where('f.flag', \App\Enums\UserFlag::firstWarning->value);
+                    ->where('f.flag', \App\Enums\UserFlags::firstWarning->value);
             })
             ->leftJoin('user_flags as f2', function ($sub) {
                 return $sub
                     ->on('f2.user_id', 'users.id')
-                    ->where('f2.flag', \App\Enums\UserFlag::secondWarning->value);
+                    ->where('f2.flag', \App\Enums\UserFlags::secondWarning->value);
             })
             ->where(function ($sub) {
                 $sub->where('users.pledge', '')
@@ -240,7 +240,7 @@ class PurgeService
                     if (! $this->dry) {
                         $flag = new UserFlag;
                         $flag->user_id = $user->id;
-                        $flag->flag = \App\Enums\UserFlag::secondWarning;
+                        $flag->flag = \App\Enums\UserFlags::secondWarning;
                         $flag->save();
 
                         SecondWarningJob::dispatch($user->id);
@@ -271,7 +271,7 @@ class PurgeService
             ->leftJoin('user_flags as f', function ($sub) {
                 return $sub
                     ->on('f.user_id', 'users.id')
-                    ->where('f.flag', \App\Enums\UserFlag::secondWarning->value);
+                    ->where('f.flag', \App\Enums\UserFlags::secondWarning->value);
             })
             ->where(function ($sub) {
                 $sub->where('users.pledge', '')

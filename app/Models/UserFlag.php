@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property \App\Enums\UserFlag $flag
+ * @property \App\Enums\UserFlags $flag
  */
 class UserFlag extends Model
 {
@@ -15,6 +15,6 @@ class UserFlag extends Model
     use HasUser;
 
     public $casts = [
-        'flag' => \App\Enums\UserFlag::class,
+        'flag' => \App\Enums\UserFlags::class,
     ];
 }
