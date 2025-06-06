@@ -7,16 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property string $flag
+ * @property \App\Enums\UserFlag $flag
  */
 class UserFlag extends Model
 {
     use HasFactory;
     use HasUser;
 
-    public const string FLAG_INACTIVE_1 = 'inactive_1';
-
-    public const string FLAG_INACTIVE_2 = 'inactive_2';
-
-    public const string FLAG_EMAIL = 'email';
+    public $casts = [
+        'flag' => \App\Enums\UserFlag::class,
+    ];
 }

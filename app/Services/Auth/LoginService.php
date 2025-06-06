@@ -36,7 +36,7 @@ class LoginService
     {
         // Delete any flags to auto-delete the account based on inactivity
         UserFlag::where('user_id', $this->user->id)
-            ->whereIn('flag', [UserFlag::FLAG_INACTIVE_1, UserFlag::FLAG_INACTIVE_2])
+            ->whereIn('flag', [\App\Enums\UserFlag::firstWarning->value, \App\Enums\UserFlag::secondWarning->value])
             ->delete();
 
         return $this;
