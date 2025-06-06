@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Entity;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddCalendarEvent;
-use App\Http\Requests\UpdateCalendarEvent;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -15,7 +14,6 @@ use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
-use Illuminate\Support\Str;
 
 class ReminderController extends Controller
 {
@@ -139,102 +137,5 @@ class ReminderController extends Controller
         return redirect()
             ->route('entities.reminders.index', [$campaign, $entity])
             ->with('success', __('calendars.event.create.success'));
-    }
-
-    public function edit(Campaign $campaign, Entity $entity, Reminder $reminder)
-    {
-        $this->authorize('reminders', $reminder->remindable);
-
-        $name = $this->view;
-        $route = $this->route;
-        $parent = explode('.', $this->view)[0];
-        $calendar = $reminder->calendar;
-        $next = request()->get('next', null);
-        $from = request()->get('from', null);
-        if (! empty($from)) {
-            if ($from !== 'calendar') {
-                $from = Calendar::find($from);
-            }
-        }
-
-        return view('calendars.reminders.edit', compact(
-            'campaign',
-            'entity',
-            'reminder',
-            'calendar',
-            'name',
-            'route',
-            'parent',
-            'next',
-            'from'
-        ));
-    }
-
-    public function update(UpdateCalendarEvent $request, Campaign $campaign, Entity $entity, Reminder $reminder)
-    {
-        $this->authorize('reminders', $reminder->remindable);
-
-        if (request()->ajax()) {
-            return response()->json(['success' => true]);
-        }
-
-        if (request()->has('entity_id') && request()->get('entity_id') != $entity->id) {
-            $newEntity = Entity::findOrFail(request()->get('entity_id'));
-
-            $this->authorize('reminders', $newEntity);
-            $request->merge(['type_id' => null]);
-        }
-        $routeOptions = ['campaign' => $campaign, 'entity' => $reminder->calendar->entity, 'year' => request()->post('year')];
-        $reminder->update($request->all());
-
-        if (request()->has('layout')) {
-            $routeOptions['layout'] = request()->get('layout');
-        }
-        if (request()->get('layout', $reminder->calendar->defaultLayout()) !== 'year') {
-            $routeOptions['month'] = request()->post('month');
-        }
-
-        $next = request()->post('next', '0');
-        if ($next == 'calendars.events') {
-            return redirect()
-                ->route('calendars.events', [$campaign, $reminder->calendar])
-                ->with('success', __('calendars.event.edit.success'));
-        } elseif ($next == 'entity.reminders') {
-            return redirect()
-                ->route('entities.reminders.index', [$campaign, $entity])
-                ->with('success', __('calendars.event.edit.success'));
-        } elseif (Str::startsWith($next, 'calendar.')) {
-            $id = Str::after($next, 'calendar.');
-            $routeOptions['calendar'] = $id;
-        }
-
-        return redirect()->route('entities.show', $routeOptions)
-            ->with('success', __('calendars.event.edit.success'));
-    }
-
-    public function destroy(Campaign $campaign, Entity $entity, Reminder $reminder)
-    {
-        $this->authorize('reminders', $entity);
-        $reminder->delete();
-        $success = __('calendars.event.destroy', ['name' => $reminder->calendar->name]);
-
-        $next = request()->post('next', '0');
-        if ($next == 'calendars.events') {
-            return redirect()
-                ->route('calendars.events', [$campaign, $reminder->calendar])
-                ->with('success', $success);
-        } elseif ($next == 'entity.reminders') {
-            return redirect()
-                ->route('entities.reminders.index', [$campaign, $entity])
-                ->with('success', $success);
-        } elseif (Str::startsWith($next, 'calendar.')) {
-            return redirect()
-                ->route('entities.show', [$campaign, $reminder->calendar->entity])
-                ->with('success', $success);
-        }
-
-        return redirect()
-            ->route('entities.reminders.index', [$campaign, $entity])
-            ->with('success', $success);
     }
 }

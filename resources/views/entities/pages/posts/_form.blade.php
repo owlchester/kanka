@@ -88,6 +88,12 @@ $layoutOptions = $layoutDefault + $layoutOptions
                 <x-forms.field field="location" id="field-location" :hidden="isset($layoutHelper)">
                     @include('cruds.fields.location', ['from' => null])
                 </x-forms.field>
+                @if (isset($model))
+                    @include('cruds.forms._calendar', ['post' => $model])
+                @else
+                    @include('cruds.forms._calendar')
+                @endif
+
                 <x-forms.field field="tags">
                     <input type="hidden" name="save_tags" value="1" />
                     <x-forms.tags

@@ -45,14 +45,23 @@ $entityTags = $post->visibleTags;
             <div class="flex flex-col gap-2 p-4">
                 <x-posts.tags :post="$post" :campaign="$campaign"></x-posts.tags>
 
-                @if ($post->location)
+                @if ($post->location || $post->calendarReminder()?->calendar_id)
                 <div class="post-details entity-note-details">
-                    <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
-                        <x-icon entity="location" />
-                        <x-entity-link :entity="$post->location->entity" :campaign="$campaign" />
-                    </span>
+                    @if ($post->location)
+                        <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
+                            <x-icon entity="location" />
+                            <x-entity-link :entity="$post->location->entity" :campaign="$campaign" />
+                        </span>
+                    @endif
+                    @if ($post->calendarReminder()?->calendar_id)
+                        <span class="entity-note-detail-element entity-note-reminder post-detail-element post-reminder">
+                            <x-icon entity="calendar" />
+                            <a href="{{ $post->calendarReminder()->calendar->getLink() . '?year=' . $post->calendarReminder()->year . '&month=' . $post->calendarReminder()->month }} "> {{ $post->calendarReminder()->readableDate() }} </a>
+                        </span>
+                    @endif
                 </div>
                 @endif
+
                 <div class="entity-note-body post-body overflow-x-auto">
                     {!! $post->parsedEntry() !!}
                 </div>

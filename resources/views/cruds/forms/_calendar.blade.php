@@ -2,16 +2,25 @@
 /**
  * View used in Quest and Journals form "calendar" button
  * @var \App\Models\Journal $model
+ * @var \App\Models\Post $post
  */
 $calendars = \App\Models\Calendar::get();
 $onlyOneCalendar = count($calendars) == 1;
 $oldCalendarID = old('calendar_id');
 $sourceRemidner = null;
 // Make sure the user has access to the source's calendar
-if (!empty($source) && $source->child->calendarReminder()) {
+if (!empty($source) && empty($post) && $source->child->calendarReminder()) {
     $oldCalendarID = $source->child->calendarReminder()->calendar_id;
     $sourceReminder = $source->child->calendarReminder();
+} elseif (!empty($post) && $post->calendarReminder()) {
+    $oldCalendarID = $post->calendarReminder()->calendar_id;
+    $sourceReminder = $post->calendarReminder();
 }
+
+if (!empty($post)) {
+    $model = $post;
+}
+
 $calendar = null;
 if (!empty($oldCalendarID)) {
     $calendar = \App\Models\Calendar::find($oldCalendarID);

@@ -15,7 +15,7 @@
     'centered' => true,
 ])
 @section('content')
-    <x-form method="PATCH" :action="['entities.reminders.update', $campaign, $entity->id, $reminder->id]" class="entity-calendar-subform">
+    <x-form method="PATCH" :action="['reminders.update', $campaign, $reminder->id]" class="entity-calendar-subform">
 
     @include('partials.forms._dialog', [
         'title' => __('calendars.event.edit.title', ['name' => '<a href="' . $entity->url() . '">' . $entity->name . '</a>']),
@@ -32,7 +32,7 @@
         <input type="hidden" name="layout" value="{{ request()->get('layout') }}" />
     @endif
     </x-form>
-    <x-form :action="['entities.reminders.destroy', $campaign, $entity->id, $reminder->id]" method="DELETE" id="delete-reminder-{{ $reminder->id }}">
+    <x-form :action="['reminders.destroy', $campaign, $reminder->id]" method="DELETE" id="delete-reminder-{{ $reminder->id }}">
     @if (request()->has('layout'))
         <input type="hidden" name="layout" value="{{ request()->get('layout') }}" />
     @endif

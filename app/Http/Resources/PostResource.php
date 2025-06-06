@@ -29,6 +29,10 @@ class PostResource extends EntityChild
             'layout_id' => $model->layout_id,
             'is_template' => $model->isTemplate(),
             'tags' => $model->tags()->pluck('tags.id')->toArray(),
+            'calendar_id' => $model->calendarDate?->calendar_id,
+            'calendar_year' => $model->calendarDate?->year,
+            'calendar_month' => $model->calendarDate?->month,
+            'calendar_day' => $model->calendarDate?->day,
         ]);
     }
 }
