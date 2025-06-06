@@ -8,6 +8,7 @@ use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
+use App\Models\Concerns\PostHasReminder;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Taggable;
@@ -20,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -66,6 +69,7 @@ class Post extends Model
     use SortableTrait;
     use Taggable;
     use Templatable;
+    use PostHasReminder;
 
     protected $fillable = [
         'entity_id',
@@ -244,4 +248,47 @@ class Post extends Model
             'entry' => strip_tags($this->entry),
         ];
     }
+
+    /**
+     * Touch a model (update the timestamps) without any observers/events
+     */
+    public function touchSilently()
+    {
+        return static::withoutEvents(function () {
+            // Still log who edited the entity
+            $this->updated_by = auth()->user()->id;
+
+            return $this->touch();
+        });
+    }
+
+    public function reminders(): MorphMany
+    {
+        return $this->morphMany(Reminder::class, 'remindable');
+    }
+
+    /**
+     * Calendar Date Events are used by Journals and Quests to link them directly to a calendar
+     */
+    public function calendarDateEvents(): MorphMany
+    {
+        return $this->reminders()
+            ->with('calendar')
+            ->has('calendar')
+            ->calendarDate();
+    }
+
+    public function calendarDate(): MorphOne
+    {
+        return $this->morphOne(Reminder::class, 'remindable')
+            ->with('calendar')
+            ->has('calendar')
+            ->where('type_id', EntityEventType::CALENDAR_DATE);
+    }
+
+    public function elapsedEvents(): MorphMany
+    {
+        return $this->reminders()->with('calendar')->whereNotNull('type_id');
+    }
+
 }

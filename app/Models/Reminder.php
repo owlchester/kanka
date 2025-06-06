@@ -281,7 +281,7 @@ class Reminder extends Model
 
     public function url(string $where): string
     {
-        return 'entities.reminders.' . $where;
+        return 'reminders.' . $where;
     }
 
     public function routeParams(array $options = []): array
@@ -549,8 +549,10 @@ class Reminder extends Model
     }
 
     public function death()
-    {
-        return $this->hasOne(Reminder::class, 'entity_id', 'entity_id')->whereColumn('calendar_id', 'reminders.calendar_id')->where('type_id', EntityEventType::DEATH);
+    {    
+        return $this->morphOne(Reminder::class, 'remindable')
+            ->whereColumn('calendar_id', 'reminders.calendar_id')
+            ->where('type_id', EntityEventType::DEATH);
     }
 
     /**

@@ -42,6 +42,10 @@ You can get a list of all the posts of an entity by using the following endpoint
             "permissions": [],
             "layout_id": 3,
             "tags": [],
+            "calendar_id": 102,
+            "calendar_year": 2020,
+            "calendar_month": "Novus",
+            "calendar_day": 2,
         }
     ]
 }
@@ -76,6 +80,10 @@ To get the details of a single post, use the following endpoint.
         "permissions": [],
         "layout_id": 3,
         "tags": [],
+        "calendar_id": 102,
+        "calendar_year": 2020,
+        "calendar_month": "Novus",
+        "calendar_day": 2,
     }
 }
 ```

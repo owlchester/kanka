@@ -1,7 +1,10 @@
 <li data-ago="{{ isset($future) ? $reminder->inDays() : $reminder->daysAgo() }}" class="flex gap-2">
     <div class="grow">
-        <a href="{{ $reminder->remindable->url() }}">{!! $reminder->remindable->name !!}</a>
-
+        @if ($reminder->remindable instanceof \App\Models\Post)
+            <a href="{{ $reminder->remindable->entity->url() }}">{!! $reminder->remindable->name !!} ({!! $reminder->remindable->entity->name !!})</a>
+        @else
+            <a href="{{ $reminder->remindable->url() }}">{!! $reminder->remindable->name !!}</a>
+        @endif
         @if (config('app.debug'))
             @if (isset($future))
                 <span class="text-xs">({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)</span>

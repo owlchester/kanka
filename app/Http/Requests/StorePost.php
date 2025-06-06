@@ -26,13 +26,25 @@ class StorePost extends FormRequest
      */
     public function rules()
     {
-        return $this->clean([
+
+        $rules = [
             'name' => ['required', 'max:191', new \App\Rules\Lessless],
             'visibility_id' => 'nullable|exists:visibilities,id',
             'is_pinned' => 'boolean',
             'position' => 'nullable|integer|min:-128|max:128',
             'entry' => 'nullable|string',
-            'layout_id' => 'nullable|integer|exists:post_layouts,id',
-        ]);
+            'layout_id' => 'nullable|integer|exists:post_layouts,id'
+        ];
+
+        if (request()->has('calendar_id') && request()->post('calendar_id') !== null && ! request()->has('calendar_skip')) {
+            $rules['calendar_day'] = 'required_with:calendar_id|min:1';
+            $rules['calendar_year'] = 'required_with:calendar_id';
+
+            if (request()->has('length')) {
+                $rules['length'] = 'required_with:calendar_id|min:1';
+            }
+        }
+
+        return $this->clean($rules);
     }
 }

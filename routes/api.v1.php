@@ -49,7 +49,7 @@ Route::apiResources([
     // Entity elements
     'campaigns.entities.attributes' => 'EntityAttributeApiController',
     'campaigns.entities.posts' => 'PostApiController',
-    'campaigns.entities.reminders' => 'Entities\ReminderApiController',
+    'campaigns.reminders' => 'Entities\ReminderApiController',
     'campaigns.entities.relations' => 'EntityRelationApiController',
     'campaigns.entities.entity_tags' => 'EntityTagApiController',
     'campaigns.entities.inventory' => 'EntityInventoryApiController',
