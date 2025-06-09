@@ -21,6 +21,7 @@ class OfferTrialService
     protected function find(): void
     {
         $ids = json_decode(Storage::disk('local')->get('promo.json'), true);
+        //$ids = [];
 
         $users = User::select('users.id')
             ->where('last_login_at', '>', now()->subMonths(3))

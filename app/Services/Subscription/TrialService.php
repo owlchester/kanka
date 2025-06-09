@@ -43,7 +43,11 @@ class TrialService
 
     protected function removeFlag(): void
     {
-        $this->user->flags()->where('flag', UserFlags::freeTrial)->delete();
+        $this
+            ->user
+            ->flags()
+            ->freeTrial()
+            ->delete();
         session()->remove('kanka.freeTrial');
     }
 }
