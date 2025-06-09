@@ -105,7 +105,6 @@ class Journal extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
         'date',
     ];
 

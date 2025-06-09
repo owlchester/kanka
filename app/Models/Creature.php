@@ -96,7 +96,6 @@ class Creature extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
     ];
 
     /**
