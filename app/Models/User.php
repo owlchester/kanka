@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Enums\UserAction;
-use App\Enums\UserFlags;
 use App\Facades\CampaignLocalization;
 use App\Facades\Identity;
 use App\Facades\PostCache;
