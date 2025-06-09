@@ -8,6 +8,7 @@ use App\Http\Requests\StoreBookmark;
 use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\EntityType;
+use App\Services\DashboardService;
 use Illuminate\Http\Request;
 
 class BookmarkController extends CrudController
@@ -66,6 +67,11 @@ class BookmarkController extends CrudController
         return $this->campaign($campaign)->crudIndex($request);
     }
 
+    public function create(Campaign $campaign)
+    {
+        return $this->campaign($campaign)->crudCreate(['dashboards' => $this->dashboardOptions($campaign)]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -91,7 +97,7 @@ class BookmarkController extends CrudController
      */
     public function edit(Campaign $campaign, Bookmark $bookmark)
     {
-        return $this->campaign($campaign)->crudEdit($bookmark);
+        return $this->campaign($campaign)->crudEdit($bookmark, ['dashboards' => $this->dashboardOptions($campaign)]);
     }
 
     /**
@@ -154,5 +160,18 @@ class BookmarkController extends CrudController
     protected function getEntityType(): EntityType
     {
         return EntityType::where('id', config('entities.ids.bookmark'))->first();
+    }
+
+    protected function dashboardOptions(Campaign $campaign): array
+    {
+
+        /** @var DashboardService $service */
+        $service = app()->make(DashboardService::class);
+        $dashboards = $service->campaign($campaign)->getDashboards();
+        $dashboardOptions = ['' => ''];
+        foreach ($dashboards as $dashboard) {
+            $dashboardOptions[$dashboard->id] = $dashboard->name;
+        }
+        return $dashboardOptions;
     }
 }

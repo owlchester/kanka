@@ -492,7 +492,7 @@ class CrudController extends Controller
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
-    public function crudEdit(Model|MiscModel $model)
+    public function crudEdit(Model|MiscModel $model, array $params = [])
     {
         $this->authorize('update', $model instanceof MiscModel ? $model->entity : $model);
 
@@ -509,7 +509,7 @@ class CrudController extends Controller
             }
         }
 
-        $params = [
+        $params = array_merge($params, [
             'campaign' => $this->campaign,
             'model' => $model,
             'name' => $this->view,
@@ -518,7 +518,7 @@ class CrudController extends Controller
             'tabBoosted' => $this->tabBoosted,
             'tabCopy' => $this->tabCopy,
             'editingUsers' => $editingUsers,
-        ];
+        ]);
         if ($model->entity) {
             $params['entity'] = $model->entity;
         }

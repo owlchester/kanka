@@ -7,9 +7,13 @@ use App\Facades\Dashboard;
 use App\Facades\DataLayer;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
+use App\Services\DashboardService;
 
 class DashboardController extends Controller
 {
+    public function __construct(protected DashboardService $dashboardService)
+    {}
+
     public function index(Campaign $campaign)
     {
         // Determine the user's dashboard
@@ -17,9 +21,9 @@ class DashboardController extends Controller
         if ($requestedDashboard == 'default') {
             $requestedDashboard = -1;
         }
-        $dashboard = Dashboard::campaign($campaign)
+        $dashboard = $this->dashboardService->campaign($campaign)
             ->getDashboard((int) $requestedDashboard);
-        $dashboards = Dashboard::getDashboards();
+        $dashboards = $this->dashboardService->getDashboards();
 
         $widgets =
             CampaignDashboardWidget::onDashboard($dashboard)

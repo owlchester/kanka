@@ -155,7 +155,9 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function registerWebObservers()
     {
-        // When in console (queue, commands), we don't want observers to trigger
+        // When in console (queue, commands), we don't want observers to trigger.
+        // We probably do, but we're so far down the rabbit hole that we no
+        // longer want them.
         if (app()->runningInConsole() && ! app()->runningUnitTests()) {
             return;
         }
@@ -217,11 +219,7 @@ class AppServiceProvider extends ServiceProvider
         Webhook::observe('App\Observers\WebhookObserver');
         Quest::observe('App\Observers\QuestObserver');
         QuestElement::observe('App\Observers\QuestElementObserver');
-
         Race::observe('App\Observers\RaceObserver');
-
-        // Tell laravel that we are using bootstrap 3 to style the paginators
-        // Paginator::useTailwind();
 
         if (request()->has('_debug_perm') && config('app.debug')) {
             // Add in boot function

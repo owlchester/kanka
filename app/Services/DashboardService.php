@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Facades\CampaignCache;
+use App\Facades\Dashboard;
 use App\Facades\UserCache;
 use App\Http\Requests\StoreCampaignDashboard;
 use App\Models\CampaignDashboard;
@@ -32,7 +33,7 @@ class DashboardService
      *
      * @return null|CampaignDashboard
      */
-    public function getDashboard(?int $dashboard = null)
+    public function getDashboard(?int $dashboard = null): ?CampaignDashboard
     {
         // Only available for boosted campaigns
         if (! $this->campaign->boosted()) {
@@ -58,7 +59,7 @@ class DashboardService
     /**
      * Get the available dashboards for the user
      *
-     * @return array[]
+     * @return array[]|CampaignDashboard[]
      */
     public function getDashboards(): array
     {

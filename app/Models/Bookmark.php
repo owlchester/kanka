@@ -329,14 +329,6 @@ class Bookmark extends Model
         return route('bookmarks.' . $route, [$campaign, $this->id]);
     }
 
-    /**
-     * Get the entity_type id from the entity_types table
-     */
-    public function entityTypeId(): int
-    {
-        return (int) config('entities.ids.bookmark');
-    }
-
     public function isRandom(): bool
     {
         return ! empty($this->random_entity_type);
@@ -357,46 +349,23 @@ class Bookmark extends Model
         return ! empty($this->entity_type_id);
     }
 
-    public function randomEntity()
-    {
-        $entityType = $this->random_entity_type != 'any' ? $this->random_entity_type : null;
-        $entityTypeID = null;
-        if (! empty($entityType)) {
-            $entityTypeID = config('entities.ids.' . $entityType);
-        }
-
-        /** @var ?Entity $entity */
-        $entity = Entity::inTags($this->tags->pluck('id')->toArray())
-            ->inTypes($entityTypeID)
-            ->whereNotIn('entities.id', Dashboard::excluding())
-            ->inRandomOrder()
-            ->first();
-
-        if (empty($entity) || $entity->isMissingChild()) {
-            return null;
-        }
-
-        return $entity->url();
-    }
-
     /**
      * Icon HTML class
      */
     public function iconClass(): string
     {
-        $campaign = CampaignLocalization::getCampaign();
-        if (! empty($this->icon) && $campaign->boosted()) {
+        if (! empty($this->icon)) {
             return e($this->icon);
         } elseif ($this->target) {
-            return 'fa-solid fa-arrow-circle-right';
+            return 'fa-regular fa-arrow-circle-right';
         } elseif ($this->isRandom()) {
-            return 'fa-solid fa-question';
+            return 'fa-regular fa-question';
         }
         if (! empty($this->entityType->icon)) {
             return $this->entityType->icon;
         }
 
-        return 'fa-solid fa-th-list';
+        return 'fa-regular fa-th-list';
     }
 
     /**

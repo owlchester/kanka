@@ -1,10 +1,3 @@
-<?php
-$dashboards = ['' => ''];
-//$dashboards['default'] = __('bookmarks.fields.default_dashboard');
-foreach (\App\Facades\Dashboard::campaign($campaign)->getDashboards() as $dash) {
-    $dashboards[$dash->id] = $dash->name;
-}
-?>
 <x-grid type="1/1">
     <x-helper>
         <p>{{ __('bookmarks.helpers.dashboard') }}</p>
