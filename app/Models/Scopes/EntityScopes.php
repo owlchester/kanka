@@ -296,7 +296,7 @@ trait EntityScopes
             if (empty($searchTerm) && $searchTerm != '0') {
                 continue;
             }
-            list($operator, $text) = $this->extractSearchOperator($searchTerm, 'type');
+            [$operator, $text] = $this->extractSearchOperator($searchTerm, 'type');
             $searchTerm = $text;
 
             $query->where(
@@ -305,6 +305,7 @@ trait EntityScopes
                 ($operator == '=' ? $text : "%{$searchTerm}%")
             );
         }
+
         return $query;
     }
 
