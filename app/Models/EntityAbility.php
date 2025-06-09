@@ -72,7 +72,7 @@ class EntityAbility extends Model
     {
         return $query
             ->orderBy('position')
-            ->orderBy('a.type')
+            ->orderBy('ae.type')
             ->orderBy('a.name');
     }
 
