@@ -22,7 +22,6 @@ class FreeTrialController extends Controller
 
         $this->authorize('free-trial', $user);
 
-
         return view('settings.subscription.free-trial', compact(
             'user',
         ));
