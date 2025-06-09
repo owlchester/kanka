@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Enums\UserAction;
 use App\Models\Webhook;
 use App\Services\Entity\TagService;
 
