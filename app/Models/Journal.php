@@ -135,7 +135,7 @@ class Journal extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['journal_id', 'author_id', 'date', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
+        return ['journal_id', 'author_id', 'date'];
     }
 
     /**

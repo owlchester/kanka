@@ -211,7 +211,7 @@ class Quest extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['quest_id', 'instigator_id', 'location_id', 'is_completed', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
+        return ['quest_id', 'instigator_id', 'location_id', 'is_completed'];
     }
 
     public function shortDescription()
