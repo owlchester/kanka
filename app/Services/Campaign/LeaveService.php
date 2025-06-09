@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign;
 
-use App\Enums\UserAction;
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Jobs\Campaigns\NotifyAdmins;

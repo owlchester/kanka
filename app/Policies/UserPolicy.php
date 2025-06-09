@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Enums\UserFlags;
 use App\Models\User;
 
 class UserPolicy
@@ -23,6 +22,6 @@ class UserPolicy
 
     public function freeTrial(User $user)
     {
-        return session()->get('kanka.freeTrial') && !$user->isSubscriber();
+        return session()->get('kanka.freeTrial') && ! $user->isSubscriber();
     }
 }
