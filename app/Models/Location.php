@@ -209,21 +209,6 @@ class Location extends MiscModel
         return $this->hasMany('App\Models\Family', 'location_id', 'id');
     }
 
-    /**
-     * Get all families in the location and descendants
-     */
-    public function allFamilies(): Builder
-    {
-        $locationIds = [$this->id];
-        foreach ($this->descendants as $descendant) {
-            $locationIds[] = $descendant->id;
-        }
-
-        $table = new Family;
-
-        return Family::whereIn($table->getTable() . '.location_id', $locationIds)->with('location');
-    }
-
     public function journals(): HasMany
     {
         return $this->hasMany('App\Models\Journal', 'location_id', 'id');

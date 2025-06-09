@@ -236,7 +236,10 @@ class Family extends MiscModel
             $familyIDs[] = $descendant->id;
         }
 
-        return CharacterFamily::groupBy('character_id')->distinct('character_id')->whereIn('character_family.family_id', $familyIDs)->with('character');
+        return CharacterFamily::groupBy('character_id')
+            ->distinct('character_id')
+            ->whereIn('character_family.family_id', $familyIDs)
+            ->with('character');
     }
 
     /**

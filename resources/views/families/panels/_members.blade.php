@@ -28,7 +28,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         @else
             <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::Direct]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span> ({{ $entity->child->members()->count() }})
+                <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span> ({{ $entity->child->members()->has('entity')->count() }})
             </a>
         @endif
         @can('update', $entity)
