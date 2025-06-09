@@ -23,6 +23,6 @@ class UserPolicy
 
     public function freeTrial(User $user)
     {
-        return $user->flags()->where('flag', UserFlags::freeTrial)->count() === 1 && !$user->isSubscriber();
+        return session()->get('kanka.freeTrial'); // && !$user->isSubscriber();
     }
 }

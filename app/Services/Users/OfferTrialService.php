@@ -6,6 +6,7 @@ use App\Enums\UserFlags;
 use App\Models\JobLog;
 use App\Models\User;
 use App\Models\UserFlag;
+use Illuminate\Support\Facades\Storage;
 
 class OfferTrialService
 {
@@ -19,8 +20,7 @@ class OfferTrialService
 
     protected function find(): void
     {
-        $ids = [33];
-
+        $ids = json_decode(Storage::disk('local')->get('promo.json'), true);
 
         $users = User::select('users.id')
             ->where('last_login_at', '>', now()->subMonths(3))

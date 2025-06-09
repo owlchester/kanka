@@ -4,6 +4,7 @@ namespace App\Services\Auth;
 
 use App\Enums\UserAction;
 use App\Enums\UserFlags;
+use App\Facades\UserCache;
 use App\Models\UserFlag;
 use App\Models\Users\Tutorial;
 use App\Traits\UserAware;
@@ -45,13 +46,16 @@ class LoginService
 
     public function loadFlags(): self
     {
-        $flag = $this->user->can('freeTrial', $this->user);
+        $flag = $this->user->flags()->where('flag', UserFlags::freeTrial)->count() === 1;
         if ($flag) {
             // If the user "dismissed" the tutorial 2 or more days ago, cancel that
-            $this->user->tutorials()
+            $count = $this->user->tutorials()
                 ->where('code', 'banner_free_trial')
                 ->whereDate('created_at', '<', Carbon::now()->subDays(2))
                 ->delete();
+            if ($count === 1) {
+                UserCache::user($this->user)->clear();
+            }
             session()->put('kanka.freeTrial', true);
         }
         return $this;

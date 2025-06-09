@@ -24,7 +24,7 @@
 {{--@endif--}}
 
 @can('freeTrial', auth()->user())
-    <x-tutorial code="free_trial" type="info">
+    <x-tutorial code="banner_free_trial" type="info">
             <p>
                 {!! __('subscriptions/free-trial.pitch.title') !!}<br />
 
