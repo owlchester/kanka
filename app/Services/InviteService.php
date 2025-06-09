@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Enums\UserAction;
 use App\Exceptions\RequireLoginException;
 use App\Facades\UserCache;
 use App\Models\Campaign;

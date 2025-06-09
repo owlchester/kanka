@@ -4,10 +4,10 @@ namespace App\View\Components;
 
 use Carbon\Carbon;
 use Closure;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
-use Exception;
 
 class Date extends Component
 {
@@ -24,8 +24,7 @@ class Date extends Component
     public function __construct(
         public ?string $date,
         public bool $string = false
-    )
-    {
+    ) {
         //
     }
 
@@ -42,12 +41,13 @@ class Date extends Component
             $original = new Carbon($this->date);
             $this->formattedDate = $original->isoFormat($this->format);
         } catch (Exception $e) {
-           $this->formattedDate = $this->date;
+            $this->formattedDate = $this->date;
         }
 
         if ($this->string) {
             return $this->formattedDate;
         }
+
         return view('components.date')
             ->with('formatted', $this->formattedDate);
     }

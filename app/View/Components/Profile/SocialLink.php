@@ -15,10 +15,9 @@ class SocialLink extends Component
      */
     public function __construct(
         string $link
-    )
-    {
+    ) {
         $this->link = $link;
-        if (!preg_match('#^https?://#i', $this->link)) {
+        if (! preg_match('#^https?://#i', $this->link)) {
             $this->link = 'https://' . $this->link;
         }
     }

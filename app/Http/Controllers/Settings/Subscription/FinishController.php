@@ -50,6 +50,7 @@ class FinishController extends Controller
         }
 
         $availableCampaigns = $user->campaigns()->unboosted()->get();
+        $isTrial = $request->get('trial') == 1;
 
         return view('settings.subscription.finish', compact(
             'stripeApiToken',
@@ -62,6 +63,7 @@ class FinishController extends Controller
             'gaTrackingEvent',
             'gaPurchase',
             'isPayPal',
+            'isTrial',
         ));
     }
 }

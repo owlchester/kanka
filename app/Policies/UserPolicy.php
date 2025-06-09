@@ -19,4 +19,9 @@ class UserPolicy
 
         return $user->isGoblin() || ! empty($user->booster_count);
     }
+
+    public function freeTrial(User $user)
+    {
+        return session()->get('kanka.freeTrial') && ! $user->isSubscriber();
+    }
 }

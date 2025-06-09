@@ -12,10 +12,15 @@
 ])
 
 @section('content')
+    <x-hero>
+        <x-slot name="title">
+            {{ $isTrial ? __('subscriptions/free-trial.started.title') : __('subscriptions/finish.title') }}
+        </x-slot>
+        <x-slot name="subtitle">
+            {{ $isTrial ? __('subscriptions/free-trial.started.header') : __('subscriptions/finish.header') }}
+        </x-slot>
+    </x-hero>
     <x-grid type="1/1">
-        <h1>{{ __('subscriptions/finish.title') }}</h1>
-
-        <p>{{ __('subscriptions/finish.header') }}</p>
         <p>{{ __('subscriptions/finish.next') }}</p>
 
         <div id="premium" class="flex flex-col gap-4 bg-box p-4 rounded-2xl">

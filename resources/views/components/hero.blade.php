@@ -7,6 +7,7 @@
                 <p class="text-xl max-w-xl mb-2">{{ $subtitle ?? null }}</p>
                 @endif
                 {!! $link ?? null !!}
+                {!! $slot !!}
             </div>
         </div>
     </div>

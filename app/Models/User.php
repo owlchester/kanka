@@ -542,7 +542,7 @@ class User extends \Illuminate\Foundation\Auth\User
     {
         return $this->subscribed('kanka') &&
             $this->subscription('kanka') &&
-            Str::startsWith($this->subscription('kanka')->stripe_price, 'manual_');
+            Str::startsWith($this->subscription('kanka')->stripe_id, 'manual_');
     }
 
     /**

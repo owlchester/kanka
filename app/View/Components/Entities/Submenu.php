@@ -18,8 +18,7 @@ class Submenu extends Component
         public Entity $entity,
         public Campaign $campaign,
         public ?string $active = null,
-    )
-    {
+    ) {
         //
     }
 
@@ -36,6 +35,7 @@ class Submenu extends Component
     {
         /** @var SubmenuService $service */
         $service = app()->make(SubmenuService::class);
+
         return $service
             ->campaign($this->campaign)
             ->entity($this->entity)

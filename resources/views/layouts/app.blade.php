@@ -76,7 +76,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
         @includeWhen(isset($campaign) || (isset($sidebar) && $sidebar === 'settings'), 'layouts.sidebars.' . ($sidebar ?? 'app'))
 
         <div class="content-wrapper transition-all duration-150" id="{{ isset($contentId) ? $contentId : "main-content" }}">
-            @include('layouts.banner')
+            @includeWhen(!isset($skipBanners), 'layouts.banner')
 
             @if(!view()->hasSection('content-header') && (isset($breadcrumbs) && $breadcrumbs !== false))
                 <section class="content-header p-4 pb-0 @if (isset($centered) && $centered) max-w-7xl mx-auto @endif">

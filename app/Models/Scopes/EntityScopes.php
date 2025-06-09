@@ -175,6 +175,7 @@ trait EntityScopes
             } elseif (in_array($name, ['is_private', 'parent_id'])) {
                 $query->where($name, $values);
             } elseif (in_array($name, ['name', 'type'])) {
+                // @phpstan-ignore-next-line
                 $query->textFilter($name, $values);
             } elseif (in_array($name, ['has_image', 'template'])) {
                 $property = 'is_template';
