@@ -28,7 +28,7 @@
 
                     <div class="text-xs">
                         <p>
-                            Kanka v{{ config('app.version') }} - <span data-toggle="tooltip" data-title="{{ __('footer.server-time', ['server' => gethostname()]) }}">{{ \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm A') }}</span>
+                            Kanka v{{ config('app.version') }} - <span data-toggle="tooltip" data-html="true" data-title="{{ __('footer.server-time', ['server' => gethostname()]) }}<br />Page generated in {{ round((microtime(true) - LARAVEL_START) * 1000, 2) }} ms">{{ \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm A') }}</span>
                         </p>
                     </div>
                 </div>
