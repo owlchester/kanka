@@ -121,8 +121,7 @@ class PostObserver
 
         $existing = $parsed = [];
         foreach ($post->permissions as $perm) {
-            $key = $perm->isUser() ? 'u_' : 'r_';
-            $existing[$key . $perm->user_id] = $perm;
+            $existing[$perm->isUser() ? 'u_' . $perm->user_id : 'r_' . $perm->role_id] = $perm;
         }
 
         $users = (array) request()->post('perm_user', []);
