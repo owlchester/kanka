@@ -27,7 +27,7 @@ class TrialService
         $sub = new Subscription;
         $sub->user_id = $this->user->id;
         $sub->type = 'kanka';
-        $sub->stripe_id = 'manual_sub_' . uniqid(); // @phpstan-ignore-line
+        $sub->stripe_id = 'manual_sub_' . uniqid();
         $sub->stripe_status = 'canceled';
         $sub->stripe_price = 'trial_' . $this->user->pledge;
         $sub->quantity = 1;
