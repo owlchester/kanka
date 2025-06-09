@@ -23,6 +23,6 @@ class UserPolicy
 
     public function freeTrial(User $user)
     {
-        return session()->get('kanka.freeTrial'); // && !$user->isSubscriber();
+        return session()->get('kanka.freeTrial') && !$user->isSubscriber();
     }
 }
