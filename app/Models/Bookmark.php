@@ -16,17 +16,15 @@ use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
 use App\Models\Concerns\Taggable;
-use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Route;
 
 /**
  * Class Bookmark
  *
+ * @property int $id
  * @property string $name
  * @property ?string $tab
  * @property ?string $menu
@@ -211,114 +209,6 @@ class Bookmark extends Model
         return $this->belongsTo(EntityType::class, 'random_entity_type');
     }
 
-    public function getRouteParams(bool $entity): array
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        $parameters = [
-            $campaign,
-            $entity ? $this->target : $this->target->entity_id,
-            'bookmark' => $this->id,
-        ];
-
-        if (! empty($this->menu)) {
-            if ($this->menu == 'all-members') {
-                $parameters['all_members'] = 1;
-            }
-            if (isset($this->options['subview_filter'])) {
-                $parameters[] = $this->options['subview_filter'];
-            }
-        }
-
-        return $parameters;
-    }
-
-    /**
-     * Get the route the bookmark points to
-     */
-    public function getRoute(): string
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        if ($this->dashboard) {
-            $dashboard = $this->dashboard_id;
-            if (Arr::get($this->options, 'default_dashboard') === '1') {
-                $dashboard = 'default';
-            }
-
-            return route('dashboard', [$campaign, 'dashboard' => $dashboard, 'bookmark' => $this->id]);
-        } elseif ($this->isRandom()) {
-            return route('bookmarks.random', [$campaign, $this->id]);
-        }
-
-        return ! empty($this->entity_id) ? $this->getEntityRoute() : $this->getIndexRoute();
-    }
-
-    /**
-     * Generate a route for an entity's overview or subpage
-     */
-    protected function getEntityRoute(): string
-    {
-        $campaign = CampaignLocalization::getCampaign();
-        $plural = $this->target->entityType->pluralCode();
-        if (empty($plural)) {
-            return '';
-        }
-        $route = 'entities.show';
-        $entity = true;
-        if (! empty($this->menu)) {
-            $menuRoute = $this->target->entityType->pluralCode() . '.' . $this->menu;
-            $entity = false;
-
-            // Inventories use a different url buildup
-            $routeOptions = [$campaign, $this->target->id, 'bookmark' => $this->id];
-            if ($this->menu === 'inventory') {
-                return route('entities.inventory', $routeOptions);
-            } elseif ($this->menu === 'relations') {
-                return route('entities.relations.index', $routeOptions);
-            } elseif ($this->menu === 'abilities') {
-                if ($this->target->isAbility()) {
-                    $routeOptions = [$campaign, $this->target->entity_id, 'bookmark' => $this->id];
-
-                    return route('abilities.abilities', $routeOptions);
-                }
-
-                return route('entities.entity_abilities.index', $routeOptions);
-            } elseif ($this->menu === 'assets') {
-                return route('entities.entity_assets.index', $routeOptions);
-            } elseif ($this->menu === 'reminders') {
-                return route('entities.reminders.index', $routeOptions);
-            } elseif ($this->menu === 'attributes') {
-                return route('entities.attributes', $routeOptions);
-            }
-            if (Route::has($menuRoute)) {
-                $route = $menuRoute;
-            }
-        }
-
-        return route($route, $this->getRouteParams($entity));
-    }
-
-    /**
-     * Generate the route for a list of entities
-     */
-    protected function getIndexRoute(): string
-    {
-        $filters = $this->filters . '&_clean=true&_from=bookmark&bookmark=' . $this->id;
-        if (! empty($this->options['is_nested']) && $this->options['is_nested'] == '1') {
-            $filters .= '&n=1';
-        }
-        try {
-            $campaign = CampaignLocalization::getCampaign();
-
-            if ($this->entityType->isSpecial()) {
-                return route('entities.index', [$campaign, $this->entityType, $filters]);
-            } else {
-                return route($this->entityType->pluralCode() . '.index', [$campaign, $filters]);
-            }
-        } catch (Exception $e) {
-            return '/invalid';
-        }
-    }
-
     /**
      * Override the get link
      */
@@ -327,6 +217,15 @@ class Bookmark extends Model
         $campaign = CampaignLocalization::getCampaign();
 
         return route('bookmarks.' . $route, [$campaign, $this->id]);
+    }
+
+    /**
+     * Get the entity_type id from the entity_types table.
+     * Needed to get custom module name
+     */
+    public function entityTypeId(): int
+    {
+        return (int) config('entities.ids.bookmark');
     }
 
     public function isRandom(): bool

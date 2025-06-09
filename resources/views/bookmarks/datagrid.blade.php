@@ -26,12 +26,12 @@
             'label' => __('bookmarks.fields.target'),
             'render' => function (\App\Models\Bookmark $model) {
                 if ($model->isDashboard()) {
-                    return '<a href="' . $model->getRoute() . '">' . $model->name . '</a>';
+                    return $model->dashboard->name;
                 } elseif ($model->isEntity()) {
                     if (!$model->target) {
                         return __('crud.users.unknown');
                     }
-                    return '<a href="' . $model->getRoute() . '">' . $model->target->name . '</a>';
+                    return '<a href="' . $model->target->url() . '">' . $model->target->name . '</a>';
                 } elseif ($model->isList()) {
                     return $model->entityType->plural();
                 } elseif ($model->isRandom()) {
