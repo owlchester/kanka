@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Enums\UserAction;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWebhook;

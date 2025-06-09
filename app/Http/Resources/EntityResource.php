@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Facades\Avatar;
-use App\Facades\Mentions;
 use App\Models\Item;
 use App\Models\MiscModel;
 use Illuminate\Http\Resources\Json\JsonResource;

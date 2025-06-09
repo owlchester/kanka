@@ -150,6 +150,7 @@ class QuestElement extends Model
         if (! $this->quest || ! $this->quest->entity) {
             return [];
         }
+
         return [
             'campaign_id' => $this->quest->entity->campaign_id,
             'entity_id' => $this->quest->entity->id,

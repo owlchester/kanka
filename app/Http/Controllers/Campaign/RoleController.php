@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Facades\Datagrid;
-use App\Facades\EntitySetup;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignRole;
 use App\Models\Campaign;

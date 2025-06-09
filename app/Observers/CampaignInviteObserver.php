@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Enums\UserAction;
 use App\Models\CampaignInvite;
 use Illuminate\Support\Str;
 

@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 
 class PurifiableObserver
 {
@@ -19,5 +18,4 @@ class PurifiableObserver
             );
         }
     }
-
 }
