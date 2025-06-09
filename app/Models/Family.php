@@ -47,7 +47,6 @@ class Family extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'entry',
         'location_id',
         'family_id',
         'is_private',

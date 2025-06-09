@@ -61,7 +61,6 @@ class Character extends MiscModel
         'campaign_id',
         'location_id',
         'title',
-        'entry',
         'age',
         'sex',
         'pronouns',
@@ -108,7 +107,6 @@ class Character extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
         'sex',
         'pronouns',
         'title',
