@@ -48,11 +48,11 @@ class LoginService
     {
         // Only bother users for up to 30 days about their free trial
         $flag = $this
-                ->user
-                ->flags()
-                ->freeTrial()
-                ->whereDate('created_at', '>=', Carbon::now()->subDays(30))
-                ->count() === 1;
+            ->user
+            ->flags()
+            ->freeTrial()
+            ->whereDate('created_at', '>=', Carbon::now()->subDays(30))
+            ->count() === 1;
         if ($flag) {
             // If the user "dismissed" the tutorial 2 or more days ago, cancel that
             $count = $this->user->tutorials()
@@ -64,6 +64,7 @@ class LoginService
             }
             session()->put('kanka.freeTrial', true);
         }
+
         return $this;
     }
 }

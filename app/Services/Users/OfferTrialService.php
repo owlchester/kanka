@@ -15,13 +15,14 @@ class OfferTrialService
     public function run(): int
     {
         $this->find();
+
         return count($this->users);
     }
 
     protected function find(): void
     {
         $ids = json_decode(Storage::disk('local')->get('promo.json'), true);
-        //$ids = [];
+        // $ids = [];
 
         $users = User::select('users.id')
             ->where('last_login_at', '>', now()->subMonths(3))

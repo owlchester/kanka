@@ -2,7 +2,6 @@
 
 namespace App\Services\Subscription;
 
-use App\Enums\Tier;
 use App\Enums\UserFlags;
 use App\Models\UserFlag;
 use App\Traits\UserAware;
@@ -25,7 +24,7 @@ class TrialService
         $this->user->pledge = 'Owlbear';
         $this->user->save();
 
-        $sub = new Subscription();
+        $sub = new Subscription;
         $sub->user_id = $this->user->id;
         $sub->type = 'kanka';
         $sub->stripe_id = 'manual_sub_' . uniqid(); // @phpstan-ignore-line
