@@ -42,7 +42,6 @@ class Event extends MiscModel
         'campaign_id',
         'name',
         'date',
-        'entry',
         'is_private',
         'location_id',
         'event_id',

@@ -200,7 +200,9 @@ class Organisation extends MiscModel
     {
         $organisationId = $this->organisationAndDescendantIds();
 
-        return OrganisationMember::whereIn('organisation_member.organisation_id', $organisationId)->with('character');
+        return OrganisationMember::whereIn('organisation_member.organisation_id', $organisationId)
+            ->with('character')
+            ->has('character.entity');
     }
 
     /**

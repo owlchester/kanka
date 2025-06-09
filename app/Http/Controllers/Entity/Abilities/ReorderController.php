@@ -8,6 +8,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Abilities\AbilityService;
 use App\Services\Abilities\ReorderService;
+use Illuminate\Database\Query\JoinClause;
 
 class ReorderController extends Controller
 {
@@ -34,6 +35,11 @@ class ReorderController extends Controller
                 'ability.parent', 'ability.parent.entity',
             ])
             ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
+            ->leftJoin('entities as ae', function (JoinClause $join) {
+                $join
+                    ->on('ae.entity_id', '=', 'a.id')
+                    ->where('ae.type_id', '=', config('entities.ids.ability'));
+            })
             ->defaultOrder()
             ->get();
 

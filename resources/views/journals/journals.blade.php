@@ -19,7 +19,7 @@
             <a href="{{ route('journals.journals', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">{{ __('crud.filters.direct') }}</span>
-                ({{ $model->children()->count() }})
+                ({{ $model->children()->has('entity')->count() }})
             </a>
         @endif
         @include('entities.headers.actions', ['edit' => false])

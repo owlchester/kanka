@@ -146,7 +146,7 @@ class Quest extends MiscModel
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'name', 'type', 'location_id', 'is_completed', 'is_private'])
+            ->select(['id', 'name', 'location_id', 'is_completed', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'location', 'location.entity',

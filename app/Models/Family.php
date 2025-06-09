@@ -47,7 +47,6 @@ class Family extends MiscModel
     protected $fillable = [
         'campaign_id',
         'name',
-        'entry',
         'location_id',
         'family_id',
         'is_private',
@@ -237,7 +236,10 @@ class Family extends MiscModel
             $familyIDs[] = $descendant->id;
         }
 
-        return CharacterFamily::groupBy('character_id')->distinct('character_id')->whereIn('character_family.family_id', $familyIDs)->with('character');
+        return CharacterFamily::groupBy('character_id')
+            ->distinct('character_id')
+            ->whereIn('character_family.family_id', $familyIDs)
+            ->with('character');
     }
 
     /**

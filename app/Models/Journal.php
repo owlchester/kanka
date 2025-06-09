@@ -105,7 +105,6 @@ class Journal extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
         'date',
     ];
 
@@ -150,7 +149,9 @@ class Journal extends MiscModel
 
         $table = new Journal;
 
-        return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)->with('parent');
+        return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)
+            ->has('entity')
+            ->with('parent');
     }
 
     public function character(): BelongsTo
