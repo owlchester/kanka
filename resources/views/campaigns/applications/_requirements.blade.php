@@ -7,14 +7,14 @@
             <x-icon class="fa-solid {{ $campaign->isOpen() ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
         </div>
         <div class="flex flex-col gap-0 grow">
-            <span>{!! __('campaigns/submissions.open.title') !!}</span>
+            <span>{!! __('campaigns/applications.open.title') !!}</span>
             @if ($campaign->isOpen())
-                <span class="text-green-600">{!! __('campaigns/submissions.open.open') !!}</span>
+                <span class="text-green-600">{!! __('campaigns/applications.open.open') !!}</span>
             @else
-                <span class="text-red-600">{!! __('campaigns/submissions.open.closed') !!}</span>
+                <span class="text-red-600">{!! __('campaigns/applications.open.closed') !!}</span>
             @endif
         </div>
-        <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" data-url="{{ route('campaign-applications', $campaign) }}" data-target="submission-dialog" data-toggle="dialog-ajax">
+        <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" data-url="{{ route('campaign-applications', $campaign) }}" data-target="application-dialog" data-toggle="dialog-ajax">
             <x-icon class="fa-solid fa-angle-right" />
         </div>
     </x-box>
@@ -23,11 +23,11 @@
             <x-icon class="fa-solid {{ $campaign->isPublic() ? 'fa-check text-green-600' : 'fa-times text-red-600' }}" />
         </div>
         <div class="flex flex-col gap-0 grow">
-            <span>{!! __('campaigns/submissions.public.title') !!}</span>
+            <span>{!! __('campaigns/applications.public.title') !!}</span>
             @if ($campaign->isPublic())
-                <span class="text-green-600">{!! __('campaigns/submissions.public.public') !!}</span>
+                <span class="text-green-600">{!! __('campaigns/applications.public.public') !!}</span>
             @else
-                <span class="text-red-600">{!! __('campaigns/submissions.public.private') !!}</span>
+                <span class="text-red-600">{!! __('campaigns/applications.public.private') !!}</span>
             @endif
         </div>
         <div class="rounded-full border h-12 w-12 flex items-center justify-center cursor-pointer" data-url="{{ route('campaign-visibility', $campaign) }}" data-target="primary-dialog" data-toggle="dialog-ajax">

@@ -60,11 +60,11 @@
 @section('modals')
 
     @include('partials.helper-modal', [
-        'id' => 'submissions-help',
+        'id' => 'applications-help',
         'title' => __('campaigns.show.tabs.applications'),
         'textes' => [
-            __('campaigns/submissions.helpers.modal')
+            __('campaigns/applications.helpers.modal')
     ]])
 
-    <x-dialog id="submission-dialog" loading="true" />
+    <x-dialog id="application-dialog" loading="true" />
 @endsection

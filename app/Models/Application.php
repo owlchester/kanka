@@ -8,11 +8,11 @@ use App\Models\Concerns\Sanitizable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class CampaignSubmission
+ * Class Application
  *
  * @property string $text
  */
-class CampaignSubmission extends Model
+class Application extends Model
 {
     use HasCampaign;
     use HasUser;

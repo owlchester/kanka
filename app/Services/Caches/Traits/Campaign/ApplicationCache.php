@@ -11,6 +11,6 @@ trait ApplicationCache
 
     protected function formatApplications(): int
     {
-        return $this->campaign->submissions->count();
+        return $this->campaign->applications->count();
     }
 }

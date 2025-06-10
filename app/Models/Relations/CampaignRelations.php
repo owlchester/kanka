@@ -15,7 +15,7 @@ use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
 use App\Models\CampaignStyle;
-use App\Models\CampaignSubmission;
+use App\Models\Application;
 use App\Models\CampaignUser;
 use App\Models\Character;
 use App\Models\Conversation;
@@ -70,7 +70,7 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignPlugin[] $campaignPlugins
  * @property Collection|CampaignDashboardWidget[] $widgets
  * @property Collection|CampaignDashboard[] $dashboards
- * @property Collection|CampaignSubmission[] $submissions
+ * @property Collection|Application[] $applications
  * @property Collection|CampaignStyle[] $styles
  * @property Collection|Genre[] $genres
  * @property Collection|GameSystem[] $systems
@@ -268,9 +268,9 @@ trait CampaignRelations
         return $this->belongsTo('App\Models\Theme');
     }
 
-    public function submissions(): HasMany
+    public function applications(): HasMany
     {
-        return $this->hasMany('App\Models\CampaignSubmission');
+        return $this->hasMany('App\Models\Application');
     }
 
     public function entityRelations(): HasMany

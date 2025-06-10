@@ -6,7 +6,7 @@ use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Jobs\Campaigns\NotifyAdmins;
 use App\Models\CampaignRoleUser;
-use App\Models\CampaignSubmission;
+use App\Models\Application;
 use App\Models\CampaignUser;
 use App\Notifications\Header;
 use App\Observers\PurifiableTrait;
@@ -21,22 +21,22 @@ class ApplicationService
     use PurifiableTrait;
     use UserAware;
 
-    protected CampaignSubmission $submission;
+    protected Application $application;
 
-    public function submission(CampaignSubmission $submission): self
+    public function application(Application $application): self
     {
-        $this->submission = $submission;
+        $this->application = $application;
 
         return $this;
     }
 
     public function apply(?string $reason = null): self
     {
-        $submission = new CampaignSubmission;
-        $submission->text = $reason;
-        $submission->user_id = $this->user->id;
-        $submission->campaign_id = $this->campaign->id;
-        $submission->save();
+        $application = new Application;
+        $application->text = $reason;
+        $application->user_id = $this->user->id;
+        $application->campaign_id = $this->campaign->id;
+        $application->save();
 
         CampaignCache::campaign($this->campaign)->clear();
 
@@ -46,7 +46,7 @@ class ApplicationService
             'door-open',
             'yellow',
             [
-                'link' => route('campaign_submissions.index', $this->campaign),
+                'link' => route('applications.index', $this->campaign),
                 'campaign' => $this->campaign->name,
             ]
         );
@@ -70,7 +70,7 @@ class ApplicationService
             } else {
                 $key = 'campaign.application.rejected';
             }
-            $this->submission
+            $this->application
                 ->user
                 ->notify(
                     new Header($key, 'user', 'red', [
@@ -82,10 +82,10 @@ class ApplicationService
             $this->approve((int) Arr::get($data, 'role_id'), $this->purify(Arr::get($data, 'reason')));
         }
 
-        $this->submission->delete();
+        $this->application->delete();
         CampaignCache::campaign($this->campaign)->clear();
 
-        $this->user->campaignLog($this->campaign->id, 'applications', 'rejected', ['id' => $this->submission->user_id]);
+        $this->user->campaignLog($this->campaign->id, 'applications', 'rejected', ['id' => $this->application->user_id]);
 
         return $return;
     }
@@ -94,13 +94,13 @@ class ApplicationService
     {
         // Add the user to the campaign
         CampaignUser::create([
-            'user_id' => $this->submission->user_id,
+            'user_id' => $this->application->user_id,
             'campaign_id' => $this->campaign->id,
         ]);
 
         // Add the user to the role
         CampaignRoleUser::create([
-            'user_id' => $this->submission->user_id,
+            'user_id' => $this->application->user_id,
             'campaign_role_id' => $roleID,
         ]);
         // $message = $this->purify(Arr::get($data, 'message'));
@@ -110,7 +110,7 @@ class ApplicationService
             $key = 'campaign.application.approved_message';
         }
         // Notify the user
-        $this->submission
+        $this->application
             ->user
             ->notify(
                 new Header(
@@ -129,9 +129,9 @@ class ApplicationService
         CampaignCache::campaign($this->campaign)->clear();
 
         // Clear the user's campaign cache
-        UserCache::user($this->submission->user)->clear();
+        UserCache::user($this->application->user)->clear();
 
-        $this->user->campaignLog($this->campaign->id, 'applications', 'approved', ['id' => $this->submission->user_id]);
+        $this->user->campaignLog($this->campaign->id, 'applications', 'approved', ['id' => $this->application->user_id]);
 
         return $this;
     }

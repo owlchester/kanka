@@ -13,7 +13,7 @@ class CampaignApiController extends ApiController
         $campaigns = $request
             ->user()
             ->campaigns()
-            ->with(['members', 'setting', 'roles', 'submissions', 'members.user'])
+            ->with(['members', 'setting', 'roles', 'applications', 'members.user'])
             ->lastSync(request()->get('lastSync'))
             ->paginate();
 

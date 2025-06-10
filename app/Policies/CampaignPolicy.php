@@ -199,9 +199,9 @@ class CampaignPolicy
     }
 
     /**
-     * Permission to view the campaign submissions
+     * Permission to view the campaign applications
      */
-    public function submissions(?User $user): bool
+    public function applications(?User $user): bool
     {
         return $user && $user->isAdmin();
     }

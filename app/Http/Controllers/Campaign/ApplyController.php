@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\StoreCampaignApplication;
 use App\Models\Campaign;
-use App\Models\CampaignSubmission;
+use App\Models\Application;
 use App\Services\Campaign\ApplicationService;
 
 class ApplyController extends Controller
@@ -22,10 +22,10 @@ class ApplyController extends Controller
     {
         $this->authorize('apply', $campaign);
 
-        $submission = auth()->user()->submissions()->first();
+        $application = auth()->user()->applications()->first();
 
-        return view('campaigns.submissions.apply')
-            ->with('submission', $submission)
+        return view('campaigns.applications.apply')
+            ->with('application', $application)
             ->with('campaign', $campaign);
     }
 
@@ -33,18 +33,18 @@ class ApplyController extends Controller
     {
         $this->authorize('apply', $campaign);
 
-        /** @var ?CampaignSubmission $submission */
-        $submission = auth()->user()->submissions()->first();
-        if (! empty($submission)) {
-            $submission->update(['text' => $request->get('application')]);
-            $success = __('campaigns/submissions.apply.success.update');
+        /** @var ?Application $application */
+        $application = auth()->user()->applications()->first();
+        if (! empty($application)) {
+            $application->update(['text' => $request->get('application')]);
+            $success = __('campaigns/applications.apply.success.update');
         } else {
             $this->service
                 ->user(auth()->user())
                 ->campaign($campaign)
                 ->apply($request->get('application'));
 
-            $success = __('campaigns/submissions.apply.success.apply');
+            $success = __('campaigns/applications.apply.success.apply');
         }
 
         return redirect()
@@ -56,14 +56,14 @@ class ApplyController extends Controller
     {
         $this->authorize('apply', $campaign);
 
-        /** @var ?CampaignSubmission $submission */
-        $submission = auth()->user()->submissions()->first();
-        if (! empty($submission)) {
-            $submission->delete();
+        /** @var ?Application $application */
+        $application = auth()->user()->applications()->first();
+        if (! empty($application)) {
+            $application->delete();
         }
 
         return redirect()
             ->route('dashboard', $campaign)
-            ->with('success', __('campaigns/submissions.apply.success.remove'));
+            ->with('success', __('campaigns/applications.apply.success.remove'));
     }
 }
