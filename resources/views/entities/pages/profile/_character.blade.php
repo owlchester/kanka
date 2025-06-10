@@ -13,10 +13,10 @@ $traits = $model->characterTraits()->personality()->orderBy('default_order')->ge
                     </p>
                 @endif
 
-                @if ($model->entity->type)
+                @if ($entity->type)
                     <p class="entity-type">
                         <b>{{ __('crud.fields.type') }}</b><br />
-                        {!! $model->entity->type !!}
+                        {!! $entity->type !!}
                     </p>
                 @endif
 

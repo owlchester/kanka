@@ -1,9 +1,9 @@
 <?php
 /**
- * @var \App\Models\MiscModel $model
+ * @var \App\Models\Entity $entity
  * @var \App\Models\Relation $relation
  */
-$models = isset($entity) ? $entity->pinnedRelations : $model->entity->pinnedRelations;
+$models = $entity->pinnedRelations;
 $previousRelation = null;
 
 if (count($models) === 0) {

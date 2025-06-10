@@ -2,9 +2,9 @@
 /** @var \App\Models\MiscModel $model */
 ?>
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('crud.titles.editing', ['name' => $model->name])  . ' - ' . __('entities.' . $name),
+    'title' => __('crud.titles.editing', ['name' => $entity->name])  . ' - ' . __('entities.' . $name),
     'breadcrumbs' => (isset($entity) ? [
-        Breadcrumb::entity($entity ?? $model->entity)->list(),
+        Breadcrumb::entity($entity)->list(),
         Breadcrumb::show(),
         __('crud.edit'),
     ] : [
@@ -18,7 +18,7 @@
 @section('content')
     <x-form
         method="PATCH"
-        :action="[$name . '.update', $campaign, $model->id]"
+        :action="[$name . '.update', $campaign, $entity->id]"
         files
         unsaved
         class="entity-form"
@@ -35,7 +35,7 @@
 
                             @includeIf($name . '.form._tabs', ['source' => null])
                             @if ($tabBoosted && config('services.stripe.enabled'))
-                                <x-tab.tab target="premium" icon="premium" :title="auth()->check() && auth()->user()->hasBoosterNomenclature() ? __('crud.tabs.boost') : __('crud.tabs.premium')"></x-tab.tab>
+                                <x-tab.tab target="premium" icon="premium" :title="auth()->user()->hasBoosterNomenclature() ? __('crud.tabs.boost') : __('crud.tabs.premium')"></x-tab.tab>
                             @endif
                             @if ($tabAttributes)
                                 <x-tab.tab target="attributes" icon="attributes" :title="__('crud.tabs.attributes')"></x-tab.tab>
@@ -75,8 +75,8 @@
             </div>
         </x-grid>
 
-        @if(!empty($model->entity) && $campaign->hasEditingWarning())
-            <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', [$campaign, $model->entity->id]) }}" />
+        @if(!empty($entity) && $campaign->hasEditingWarning())
+            <input type="hidden" id="editing-keep-alive" data-url="{{ route('entities.keep-alive', [$campaign, $entity->id]) }}" />
         @endif
     </x-form>
 @endsection
@@ -85,5 +85,5 @@
 
 @section('modals')
     @parent
-    @includeWhen(!empty($editingUsers) && !empty($model->entity), 'cruds.forms.edit_warning', ['model' => $model])
+    @includeWhen(!empty($editingUsers) && !empty($entity), 'cruds.forms.edit_warning', ['model' => $model])
 @endsection
