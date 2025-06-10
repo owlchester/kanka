@@ -5,6 +5,7 @@ namespace App\Services\Entity;
 use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\EntityEventType;
+use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Reminder;
 use Exception;
@@ -20,7 +21,7 @@ class RemindableService
         $this->request = $request;
     }
 
-    public function processSaved(Post|Model $model)
+    public function processSaved(Post|Entity $model)
     {
 
         // The user is editing an entity with a calendar, but doesn't have the permission to see
@@ -28,8 +29,6 @@ class RemindableService
         if (request()->has('calendar_skip')) {
             return;
         }
-
-        $entity = $model->entity;
 
         // Previously, this lookup was only triggered when the calendar_id or date was dirty. However, this excludes just
         // changing the colour or periodicity. To support the API not overriding the values, we still check to make
@@ -57,7 +56,7 @@ class RemindableService
                 $reminder->remindable_id = $model->id;
             } else {
                 $reminder->remindable_type = Entity::class;
-                $reminder->remindable_id = $entity->id;
+                $reminder->remindable_id = $model->id;
             }
         }
 
