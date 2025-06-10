@@ -2,7 +2,6 @@
 
 namespace App\Services\Entity;
 
-use Illuminate\Http\Request;
 use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\EntityEventType;
@@ -10,6 +9,7 @@ use App\Models\Post;
 use App\Models\Reminder;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class RemindableService
 {
@@ -20,7 +20,8 @@ class RemindableService
         $this->request = $request;
     }
 
-    public function processSaved(Post|Model $model) {
+    public function processSaved(Post|Model $model)
+    {
 
         // The user is editing an entity with a calendar, but doesn't have the permission to see
         // the calendar? We skip any work.
@@ -86,5 +87,4 @@ class RemindableService
             throw $e;
         }
     }
-
 }

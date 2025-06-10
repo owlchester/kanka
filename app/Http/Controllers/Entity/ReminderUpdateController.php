@@ -23,12 +23,13 @@ class ReminderUpdateController extends Controller
     use GuestAuthTrait;
     use HasDatagrid;
     use HasSubview;
-    
+
     protected string $view = 'entity_event';
 
     protected string $route = 'reminders';
 
     protected ?Entity $entity = null;
+
     protected ?Post $post = null;
 
     protected CalendarService $calendarService;
@@ -85,10 +86,9 @@ class ReminderUpdateController extends Controller
             $request->merge(['type_id' => null]);
         }
 
-        if (!is_null($this->post)) {
+        if (! is_null($this->post)) {
             $request->merge(['type_id' => EntityEventType::CALENDAR_DATE]);
         }
-
 
         $routeOptions = ['campaign' => $campaign, 'entity' => $reminder->calendar->entity, 'year' => request()->post('year')];
         $reminder->update($request->all());
@@ -149,11 +149,11 @@ class ReminderUpdateController extends Controller
     {
         if ($reminder->remindable instanceof Post) {
             $this->authorize('reminders', $reminder->remindable->entity);
-            $this->entity  = $reminder->remindable->entity;
+            $this->entity = $reminder->remindable->entity;
             $this->post = $reminder->remindable;
         } else {
             $this->authorize('reminders', $reminder->remindable);
-            $this->entity  = $reminder->remindable;
+            $this->entity = $reminder->remindable;
             $this->post = null;
         }
     }

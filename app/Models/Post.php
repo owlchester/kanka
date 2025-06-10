@@ -62,6 +62,7 @@ class Post extends Model
     use HasEntry;
     use HasFactory;
     use HasLocation;
+    use HasReminder;
     use HasVisibility;
     use Paginatable;
     use PostHasReminder;
@@ -71,7 +72,6 @@ class Post extends Model
     use SortableTrait;
     use Taggable;
     use Templatable;
-    use HasReminder;
     use TouchSilently;
 
     protected $fillable = [

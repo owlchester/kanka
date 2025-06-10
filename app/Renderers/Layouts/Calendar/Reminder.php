@@ -27,8 +27,8 @@ class Reminder extends Layout
             'type' => [
                 'key' => 'type_id',
                 'label' => 'crud.fields.entity_type',
-                'render' => function ($model) {                
-                    return $model->remindable instanceof Post ? __('entities.post') . ' (' . $model->remindable->entity->entityType->name() . ')' : $model->remindable->entityType->name(); 
+                'render' => function ($model) {
+                    return $model->remindable instanceof Post ? __('entities.post') . ' (' . $model->remindable->entity->entityType->name() . ')' : $model->remindable->entityType->name();
                 },
             ],
             'date' => [

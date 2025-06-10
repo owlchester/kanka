@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Remindable
 {
-
     protected RemindableService $service;
 
     public function __construct(RemindableService $service)

@@ -14,6 +14,7 @@ trait TouchSilently
                 // Still log who edited the entity
                 $this->updated_by = auth()->user()->id;
             }
+
             return $this->touch();
         });
     }
