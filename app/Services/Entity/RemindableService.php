@@ -5,7 +5,6 @@ namespace App\Services\Entity;
 use App\Models\Calendar;
 use App\Models\Entity;
 use App\Models\EntityEventType;
-use App\Models\MiscModel;
 use App\Models\Post;
 use App\Models\Reminder;
 use Exception;
