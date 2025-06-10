@@ -82,7 +82,7 @@
                 @endcan
             @endif
         @endif
-        @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check() && auth()->user()->hasOtherCampaigns($entity->campaign_id))
+        @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check())
             @php /** todo: the option should be visible even if a user has no other campaigns to show that its possible, and the page should then warn the user about them not having another campaign */ @endphp
             <x-dropdowns.divider />
             <x-dropdowns.item link="{{ route('entities.move', [$campaign, $entity]) }}" icon="fa-regular fa-clone">

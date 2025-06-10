@@ -66,7 +66,7 @@ trait SubEntityScopes
         if (property_exists($this, 'exploreGridFields')) {
             $extra = $this->exploreGridFields;
         }
-        $defaultFields = array_merge($extra, ['id', 'name', 'type', 'is_private']);
+        $defaultFields = array_merge($extra, ['id', 'name', 'is_private']);
         $tableName = $this->getTable();
         $prefixedFields = [];
         foreach ($defaultFields as $field) {

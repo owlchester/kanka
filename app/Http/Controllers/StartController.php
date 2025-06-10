@@ -9,27 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class StartController extends Controller
 {
-    protected string $view = 'campaigns';
-
-    /**
-     * Create a new controller instance.
-     *
-     * CampaignController constructor.
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Request $request)
     {
-        $campaign = new Campaign;
-        $this->authorize('create', $campaign);
+        $this->authorize('create', new Campaign);
 
         // A user with campaigns doesn't need this process.
         $tracking = null;
@@ -38,18 +25,15 @@ class StartController extends Controller
             $tracking = 'pa10CJTvrssBEOaOq7oC';
         }
 
-        return view($this->view . '.forms.create', [
+        return view('campaigns.forms.create', [
             'start' => auth()->user()->campaigns->count() === 0,
             'gaTrackingEvent' => $tracking,
         ]);
     }
 
-    /**
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function store(StoreCampaign $request)
     {
-        $this->authorize('create', 'App\Models\Campaign');
+        $this->authorize('create', new Campaign);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
@@ -58,13 +42,13 @@ class StartController extends Controller
         $options = $request->all();
         $options['entry'] = '';
         $options['excerpt'] = '';
-        Campaign::create($options);
+        $campaign = Campaign::create($options);
 
         if ($first) {
-            return redirect()->route('home');
+            return redirect()->route('dashboard', $campaign);
         }
 
-        return redirect()->route('home')
-            ->with('success', __($this->view . '.create.success'));
+        return redirect()->route('dashboard', $campaign)
+            ->with('success', __('campaigns.create.success'));
     }
 }

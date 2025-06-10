@@ -177,17 +177,6 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Check if the user has other campaigns than the current one
-     */
-    public function hasOtherCampaigns(int $campaignId): bool
-    {
-        // Todo: move to policy
-        $campaigns = UserCache::campaigns();
-
-        return $campaigns->where('campaign_id', '<>', $campaignId)->count() > 0;
-    }
-
-    /**
      * Determine if a user is a subscriber
      */
     public function isSubscriber(): bool
