@@ -73,6 +73,7 @@ class Entity extends Model
     use HasEntry;
     use HasMentions;
     use HasRecursiveRelationships;
+    use HasReminder;
     use HasSuggestions;
     use LastSync;
     use Paginatable;
@@ -84,7 +85,6 @@ class Entity extends Model
     use Taggable;
     use Templatable;
     use TouchSilently;
-    use HasReminder;
 
     protected $fillable = [
         'campaign_id',

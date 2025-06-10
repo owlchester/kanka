@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Models\Post;
 use App\Services\Entity\RemindableService;
-use Exception;
 
 class RemindablePost
 {
