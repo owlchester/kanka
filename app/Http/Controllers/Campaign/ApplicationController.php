@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Campaign;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\PatchCampaignApplication;
 use App\Http\Requests\Campaigns\StoreCampaignApplicationStatus;
-use App\Models\Campaign;
 use App\Models\Application;
+use App\Models\Campaign;
 use App\Services\Campaign\ApplicationService;
 
 class ApplicationController extends Controller

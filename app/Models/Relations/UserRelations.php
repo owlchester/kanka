@@ -2,12 +2,12 @@
 
 namespace App\Models\Relations;
 
+use App\Models\Application;
 use App\Models\BragiLog;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
-use App\Models\Application;
 use App\Models\Entity;
 use App\Models\EntityUser;
 use App\Models\FeatureVote;
@@ -140,7 +140,7 @@ trait UserRelations
      */
     public function applications(): HasMany
     {
-        return $this->hasMany('App\Models\Application');
+        return $this->hasMany(Application::class);
     }
 
     /**

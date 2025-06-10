@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\StoreCampaignApplication;
-use App\Models\Campaign;
 use App\Models\Application;
+use App\Models\Campaign;
 use App\Services\Campaign\ApplicationService;
 
 class ApplyController extends Controller

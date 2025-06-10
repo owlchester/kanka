@@ -3,6 +3,7 @@
 namespace App\Models\Relations;
 
 use App\Models\Ability;
+use App\Models\Application;
 use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\Calendar;
@@ -15,7 +16,6 @@ use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
 use App\Models\CampaignStyle;
-use App\Models\Application;
 use App\Models\CampaignUser;
 use App\Models\Character;
 use App\Models\Conversation;
@@ -104,7 +104,7 @@ trait CampaignRelations
         return $this->hasMany('App\Models\CampaignUser');
     }
 
-    public function nonAdmins()
+    public function nonAdmins(): Collection
     {
         if (isset($this->nonAdmins)) {
             return $this->nonAdmins;
@@ -270,7 +270,7 @@ trait CampaignRelations
 
     public function applications(): HasMany
     {
-        return $this->hasMany('App\Models\Application');
+        return $this->hasMany(Application::class);
     }
 
     public function entityRelations(): HasMany

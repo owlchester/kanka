@@ -21,10 +21,7 @@
             <h3 class="inline-block grow">
                 {{ __('campaigns.show.tabs.logs') }}
             </h3>
-            <a class="btn2 btn-sm btn-ghost" href="https://docs.kanka.io/campaign-logs.html">
-                <x-icon class="question" />
-                {{ __('crud.actions.help') }}
-            </a>
+            <x-learn-more url="features/campaigns/logs" />
         </div>
 
         @includeWhen(!$logs->isEmpty(), 'campaigns.logs._list')
@@ -56,15 +53,3 @@
     </div>
 @endsection
 
-
-@section('modals')
-
-    @include('partials.helper-modal', [
-        'id' => 'applications-help',
-        'title' => __('campaigns.show.tabs.applications'),
-        'textes' => [
-            __('campaigns/applications.helpers.modal')
-    ]])
-
-    <x-dialog id="application-dialog" loading="true" />
-@endsection
