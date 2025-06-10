@@ -49,7 +49,12 @@ The list of returned entities can be filtered. The available filters are [availa
             "type": "Main",
             "is_completed": false,
             "quest_id": null,
-            "elements": []
+            "elements": [],
+            "calendar_id": 102,
+            "calendar_year": 2020,
+            "calendar_month": "Novus",
+            "calendar_day": 2,
+            "calendar_event_length": 3,
         }
     ]
 }
@@ -88,7 +93,12 @@ To get the details of a single quest, use the following endpoint.
         "date": "2020-04-20",
         "is_completed": false,
         "quest_id": null,
-        "elements": []
+        "elements": [],
+        "calendar_id": 102,
+        "calendar_year": 2020,
+        "calendar_month": "Novus",
+        "calendar_day": 2,
+        "calendar_event_length": 3,
     }
 
 }

@@ -26,6 +26,7 @@ class JournalResource extends EntityResource
             'calendar_year' => $model->entity->calendarDate?->year,
             'calendar_month' => $model->entity->calendarDate?->month,
             'calendar_day' => $model->entity->calendarDate?->day,
+            'calendar_event_length' => $model->calendarDate?->length,
         ]);
     }
 }

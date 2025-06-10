@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Events;
+namespace App\Http\Controllers\Entity;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCalendarEvent;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\Entity;
+use App\Models\EntityEventType;
 use App\Models\Post;
 use App\Models\Reminder;
 use App\Services\CalendarService;
@@ -16,22 +17,21 @@ use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Str;
 
-use function PHPUnit\Framework\isNull;
-
-class ReminderController extends Controller
+class ReminderUpdateController extends Controller
 {
     use CampaignAware;
     use GuestAuthTrait;
     use HasDatagrid;
     use HasSubview;
-
+    
     protected string $view = 'entity_event';
 
     protected string $route = 'reminders';
 
-    protected CalendarService $calendarService;
+    protected ?Entity $entity = null;
+    protected ?Post $post = null;
 
-    protected string $model = Reminder::class;
+    protected CalendarService $calendarService;
 
     public function __construct(CalendarService $calendarService)
     {
@@ -41,16 +41,9 @@ class ReminderController extends Controller
 
     public function edit(Campaign $campaign, Reminder $reminder)
     {
-        if ($reminder->remindable instanceof Post) {
-            $this->authorize('reminders', $reminder->remindable->entity);
-            $entity  = $reminder->remindable->entity;
-            $post = $reminder->remindable;
-        } else {
-            $this->authorize('reminders', $reminder->remindable);
-            $entity  = $reminder->remindable;
-            $post = null;
-        }
-
+        $this->checkPermissions($reminder);
+        $entity = $this->entity;
+        $post = $this->post;
         $name = $this->view;
         $route = $this->route;
         $parent = explode('.', $this->view)[0];
@@ -79,26 +72,24 @@ class ReminderController extends Controller
 
     public function update(UpdateCalendarEvent $request, Campaign $campaign, Reminder $reminder)
     {
-        if ($reminder->remindable instanceof Post) {
-            $this->authorize('reminders', $reminder->remindable->entity);
-            $entity  = $reminder->remindable->entity;
-            $post = $reminder->remindable;
-        } else {
-            $this->authorize('reminders', $reminder->remindable);
-            $entity  = $reminder->remindable;
-            $post = null;
-        }
+        $this->checkPermissions($reminder);
 
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
 
-        if (request()->has('entity_id') && request()->get('entity_id') != $entity->id && isNull($post)) {
+        if (request()->has('entity_id') && request()->get('entity_id') != $this->entity->id && is_null($this->post)) {
             $newEntity = Entity::findOrFail(request()->get('entity_id'));
 
             $this->authorize('reminders', $newEntity);
             $request->merge(['type_id' => null]);
         }
+
+        if (!is_null($this->post)) {
+            $request->merge(['type_id' => EntityEventType::CALENDAR_DATE]);
+        }
+
+
         $routeOptions = ['campaign' => $campaign, 'entity' => $reminder->calendar->entity, 'year' => request()->post('year')];
         $reminder->update($request->all());
 
@@ -116,7 +107,7 @@ class ReminderController extends Controller
                 ->with('success', __('calendars.event.edit.success'));
         } elseif ($next == 'entity.reminders') {
             return redirect()
-                ->route('entities.reminders.index', [$campaign, $entity])
+                ->route('entities.reminders.index', [$campaign, $this->entity])
                 ->with('success', __('calendars.event.edit.success'));
         } elseif (Str::startsWith($next, 'calendar.')) {
             $id = Str::after($next, 'calendar.');
@@ -129,15 +120,8 @@ class ReminderController extends Controller
 
     public function destroy(Campaign $campaign, Reminder $reminder)
     {
-        if ($reminder->remindable instanceof Post) {
-            $this->authorize('reminders', $reminder->remindable->entity);
-            $entity  = $reminder->remindable->entity;
-            $post = $reminder->remindable;
-        } else {
-            $this->authorize('reminders', $reminder->remindable);
-            $entity  = $reminder->remindable;
-            $post = null;
-        }
+        $this->checkPermissions($reminder);
+
         $reminder->delete();
         $success = __('calendars.event.destroy', ['name' => $reminder->calendar->name]);
 
@@ -148,7 +132,7 @@ class ReminderController extends Controller
                 ->with('success', $success);
         } elseif ($next == 'entity.reminders') {
             return redirect()
-                ->route('entities.reminders.index', [$campaign, $entity])
+                ->route('entities.reminders.index', [$campaign, $this->entity])
                 ->with('success', $success);
         } elseif (Str::startsWith($next, 'calendar.')) {
             return redirect()
@@ -157,7 +141,20 @@ class ReminderController extends Controller
         }
 
         return redirect()
-            ->route('entities.reminders.index', [$campaign, $entity])
+            ->route('entities.reminders.index', [$campaign, $this->entity])
             ->with('success', $success);
+    }
+
+    private function checkPermissions(Reminder $reminder)
+    {
+        if ($reminder->remindable instanceof Post) {
+            $this->authorize('reminders', $reminder->remindable->entity);
+            $this->entity  = $reminder->remindable->entity;
+            $this->post = $reminder->remindable;
+        } else {
+            $this->authorize('reminders', $reminder->remindable);
+            $this->entity  = $reminder->remindable;
+            $this->post = null;
+        }
     }
 }

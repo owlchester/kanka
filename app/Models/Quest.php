@@ -7,7 +7,6 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
-use App\Models\Concerns\HasReminder;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -41,7 +40,6 @@ class Quest extends MiscModel
     use HasFilters;
     use HasLocation;
     use HasRecursiveRelationships;
-    use HasReminder;
     use Nested;
     use Sanitizable;
     use SoftDeletes;
@@ -280,7 +278,7 @@ class Quest extends MiscModel
     {
         if (
             $this->instigator ||
-            ! empty($this->date) || ! empty($this->calendarReminder()) || ! empty($this->location)
+            ! empty($this->date) || ! empty($this->entity->calendarReminder()) || ! empty($this->location)
         ) {
             return true;
         }

@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Calendar;
 
+use App\Models\Post;
 use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
@@ -26,8 +27,8 @@ class Reminder extends Layout
             'type' => [
                 'key' => 'type_id',
                 'label' => 'crud.fields.entity_type',
-                'render' => function ($model) {
-                    return $model->remindable?->entityType?->name() ?? __('entities.post') . ' (' . $model->remindable->entity->entityType->name() . ')';
+                'render' => function ($model) {                
+                    return $model->remindable instanceof Post ? __('entities.post') . ' (' . $model->remindable->entity->entityType->name() . ')' : $model->remindable->entityType->name(); 
                 },
             ],
             'date' => [

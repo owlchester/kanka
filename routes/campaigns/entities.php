@@ -271,7 +271,7 @@ Route::resources([
     '/w/{campaign}/entities.entity_abilities' => 'Entity\AbilityController',
     '/w/{campaign}/entities.posts' => 'Entity\PostController',
     '/w/{campaign}/entities.reminders' => 'Entity\ReminderController',
-    '/w/{campaign}/reminders' => 'Events\ReminderController',
+    '/w/{campaign}/reminders' => 'Entity\ReminderUpdateController',
     '/w/{campaign}/entities.entity_assets' => 'Entity\AssetController',
     '/w/{campaign}/entities.inventories' => 'Entity\InventoryController',
     '/w/{campaign}/entities.relations' => 'Entity\RelationController',

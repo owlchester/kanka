@@ -9,9 +9,9 @@ $onlyOneCalendar = count($calendars) == 1;
 $oldCalendarID = old('calendar_id');
 $sourceRemidner = null;
 // Make sure the user has access to the source's calendar
-if (!empty($source) && empty($post) && $source->child->calendarReminder()) {
-    $oldCalendarID = $source->child->calendarReminder()->calendar_id;
-    $sourceReminder = $source->child->calendarReminder();
+if (!empty($source) && empty($post) && $source->calendarReminder()) {
+    $oldCalendarID = $source->calendarReminder()->calendar_id;
+    $sourceReminder = $source->calendarReminder();
 } elseif (!empty($post) && $post->calendarReminder()) {
     $oldCalendarID = $post->calendarReminder()->calendar_id;
     $sourceReminder = $post->calendarReminder();
@@ -19,6 +19,8 @@ if (!empty($source) && empty($post) && $source->child->calendarReminder()) {
 
 if (!empty($post)) {
     $model = $post;
+} else {
+    $model = $model->entity;
 }
 
 $calendar = null;

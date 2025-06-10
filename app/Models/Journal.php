@@ -6,7 +6,6 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
-use App\Models\Concerns\HasReminder;
 use App\Models\Concerns\Nested;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -38,7 +37,6 @@ class Journal extends MiscModel
     use HasFilters;
     use HasLocation;
     use HasRecursiveRelationships;
-    use HasReminder;
     use Nested;
     use Sanitizable;
     use SoftDeletes;
@@ -194,7 +192,7 @@ class Journal extends MiscModel
         if (! empty($this->author) || ! empty($this->location)) {
             return true;
         }
-        if (! empty($this->calendarReminder())) {
+        if (! empty($this->entity->calendarReminder())) {
             return true;
         }
 

@@ -6,13 +6,14 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasLocation;
+use App\Models\Concerns\HasReminder;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
-use App\Models\Concerns\PostHasReminder;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Taggable;
 use App\Models\Concerns\Templatable;
+use App\Models\Concerns\TouchSilently;
 use App\Services\MentionsService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -69,7 +70,8 @@ class Post extends Model
     use SortableTrait;
     use Taggable;
     use Templatable;
-    use PostHasReminder;
+    use HasReminder;
+    use TouchSilently;
 
     protected $fillable = [
         'entity_id',
@@ -251,19 +253,6 @@ class Post extends Model
             'type' => 'post',
             'entry' => strip_tags($this->entry),
         ];
-    }
-
-    /**
-     * Touch a model (update the timestamps) without any observers/events
-     */
-    public function touchSilently()
-    {
-        return static::withoutEvents(function () {
-            // Still log who edited the entity
-            $this->updated_by = auth()->user()->id;
-
-            return $this->touch();
-        });
     }
 
     public function reminders(): MorphMany

@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Facades\EntityCache;
 use App\Facades\Img;
-use App\Facades\Mentions;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\EntityLogs;
@@ -13,6 +12,7 @@ use App\Models\Concerns\EntityType;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasMentions;
+use App\Models\Concerns\HasReminder;
 use App\Models\Concerns\HasSuggestions;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\Paginatable;
@@ -21,6 +21,7 @@ use App\Models\Concerns\Searchable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Taggable;
 use App\Models\Concerns\Templatable;
+use App\Models\Concerns\TouchSilently;
 use App\Models\Relations\EntityRelations;
 use App\Models\Scopes\EntityScopes;
 use Carbon\Carbon;
@@ -82,6 +83,8 @@ class Entity extends Model
     use SortableTrait;
     use Taggable;
     use Templatable;
+    use TouchSilently;
+    use HasReminder;
 
     protected $fillable = [
         'campaign_id',
@@ -258,19 +261,6 @@ class Entity extends Model
     public function hasFiles(): bool
     {
         return $this->type_id != config('entities.ids.bookmark');
-    }
-
-    /**
-     * Touch a model (update the timestamps) without any observers/events
-     */
-    public function touchSilently()
-    {
-        return static::withoutEvents(function () {
-            // Still log who edited the entity
-            $this->updated_by = auth()->user()->id;
-
-            return $this->touch();
-        });
     }
 
     public function hasHeaderImage(): bool

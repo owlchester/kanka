@@ -67,7 +67,7 @@ class EventController extends Controller
                             'remindable' => function ($morphTo) {
                     $morphTo->morphWith([
                         Entity::class => ['entityType', 'tags', 'image'],
-                        Post::class => ['tags', 'entity'],
+                        Post::class => ['tags', 'entity', 'entity.image', 'entity.entityType'],
                     ]);
                 },
                 ])

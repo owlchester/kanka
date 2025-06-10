@@ -33,6 +33,7 @@ class PostResource extends EntityChild
             'calendar_year' => $model->calendarDate?->year,
             'calendar_month' => $model->calendarDate?->month,
             'calendar_day' => $model->calendarDate?->day,
+            'calendar_event_length' => $model->calendarDate?->length,
         ]);
     }
 }
