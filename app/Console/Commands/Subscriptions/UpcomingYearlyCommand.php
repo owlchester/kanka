@@ -45,6 +45,7 @@ class UpcomingYearlyCommand extends Command
      */
     public function handle()
     {
+        // Todo: use the Pricing table instead
         $plans = array_merge(
             config('subscription.owlbear.yearly'),
             config('subscription.wyvern.yearly'),

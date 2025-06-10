@@ -181,6 +181,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function hasOtherCampaigns(int $campaignId): bool
     {
+        // Todo: move to policy
         $campaigns = UserCache::campaigns();
 
         return $campaigns->where('campaign_id', '<>', $campaignId)->count() > 0;
@@ -497,6 +498,7 @@ class User extends \Illuminate\Foundation\Auth\User
      */
     public function onlyAdminCampaigns(): array
     {
+        // Todo: move to a service
         $campaigns = [];
         $userCampaigns = $this->campaigns()->with(['roles', 'roles.users'])->get();
         foreach ($userCampaigns as $campaign) {
@@ -543,20 +545,6 @@ class User extends \Illuminate\Foundation\Auth\User
         return $this->subscribed('kanka') &&
             $this->subscription('kanka') &&
             Str::startsWith($this->subscription('kanka')->stripe_id, 'manual_');
-    }
-
-    /**
-     * Check if the user has a yearly subscription through stripe
-     */
-    public function isStripeYearly(): bool
-    {
-        $prices = array_merge(
-            config('subscription.owlbear.yearly'),
-            config('subscription.wyvern.yearly'),
-            config('subscription.elemental.yearly'),
-        );
-
-        return $this->subscribedToPrice($prices, 'kanka');
     }
 
     /**
