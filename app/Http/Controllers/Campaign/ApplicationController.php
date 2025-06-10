@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Campaign;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\PatchCampaignApplication;
 use App\Http\Requests\Campaigns\StoreCampaignApplicationStatus;
+use App\Models\Application;
 use App\Models\Campaign;
-use App\Models\CampaignSubmission;
 use App\Services\Campaign\ApplicationService;
 
-class SubmissionController extends Controller
+class ApplicationController extends Controller
 {
     public function __construct(protected ApplicationService $service)
     {
@@ -18,18 +18,18 @@ class SubmissionController extends Controller
 
     public function index(Campaign $campaign)
     {
-        $this->authorize('submissions', $campaign);
+        $this->authorize('applications', $campaign);
 
-        $submissions = $campaign->submissions()->with('user')->paginate();
+        $applications = $campaign->applications()->with('user')->paginate();
 
-        return view('campaigns.submissions.index')
-            ->with('submissions', $submissions)
+        return view('campaigns.applications.index')
+            ->with('applications', $applications)
             ->with('campaign', $campaign);
     }
 
-    public function show(Campaign $campaign, CampaignSubmission $campaignSubmission)
+    public function show(Campaign $campaign, Application $application)
     {
-        $this->authorize('submissions', $campaign);
+        $this->authorize('applications', $campaign);
 
         if (! $campaign->canHaveMoreMembers()) {
             return view('cruds.forms.limit')
@@ -38,14 +38,14 @@ class SubmissionController extends Controller
                 ->with('name', 'campaign_roles');
         }
 
-        return view('campaigns.submissions.show')
-            ->with('application', $campaignSubmission)
+        return view('campaigns.applications.show')
+            ->with('application', $application)
             ->with('campaign', $campaign);
     }
 
-    public function edit(Campaign $campaign, CampaignSubmission $campaignSubmission)
+    public function edit(Campaign $campaign, Application $application)
     {
-        $this->authorize('submissions', $campaign);
+        $this->authorize('applications', $campaign);
 
         if (! $campaign->canHaveMoreMembers()) {
             return view('cruds.forms.limit')
@@ -56,18 +56,18 @@ class SubmissionController extends Controller
 
         $action = request()->get('action');
         if (! in_array($action, ['approve', 'reject'])) {
-            return redirect()->route('campaign_submissions.index', $campaign);
+            return redirect()->route('applications.index', $campaign);
         }
 
-        return view('campaigns.submissions.edit')
-            ->with('submission', $campaignSubmission)
+        return view('campaigns.applications.edit')
+            ->with('application', $application)
             ->with('campaign', $campaign)
             ->with('action', $action);
     }
 
-    public function update(PatchCampaignApplication $request, Campaign $campaign, CampaignSubmission $campaignSubmission)
+    public function update(PatchCampaignApplication $request, Campaign $campaign, Application $application)
     {
-        $this->authorize('submissions', $campaign);
+        $this->authorize('applications', $campaign);
 
         if (! $campaign->canHaveMoreMembers()) {
             return redirect()->back()
@@ -81,23 +81,23 @@ class SubmissionController extends Controller
         $note = $this->service
             ->user(auth()->user())
             ->campaign($campaign)
-            ->submission($campaignSubmission)
+            ->application($application)
             ->process($request->only('role_id', 'rejection', 'action', 'reason'));
 
-        return redirect()->route('campaign_submissions.index', $campaign)
-            ->with('success', __('campaigns/submissions.update.' . $note));
+        return redirect()->route('applications.index', $campaign)
+            ->with('success', __('campaigns/applications.update.' . $note));
     }
 
     public function toggle(Campaign $campaign)
     {
-        $this->authorize('submissions', $campaign);
+        $this->authorize('applications', $campaign);
 
-        return view('campaigns.submissions._toggle', compact('campaign'));
+        return view('campaigns.applications._toggle', compact('campaign'));
     }
 
     public function toggleSave(StoreCampaignApplicationStatus $request, Campaign $campaign)
     {
-        $this->authorize('submissions', $campaign);
+        $this->authorize('applications', $campaign);
         if ($request->ajax()) {
             return response()->json();
         }
@@ -113,7 +113,7 @@ class SubmissionController extends Controller
         );
 
         return redirect()
-            ->route('campaign_submissions.index', $campaign)
-            ->with('success', __('campaigns/submissions.toggle.success'));
+            ->route('applications.index', $campaign)
+            ->with('success', __('campaigns/applications.toggle.success'));
     }
 }

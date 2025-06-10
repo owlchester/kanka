@@ -2,12 +2,12 @@
 
 namespace App\Models\Relations;
 
+use App\Models\Application;
 use App\Models\BragiLog;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
-use App\Models\CampaignSubmission;
 use App\Models\Entity;
 use App\Models\EntityUser;
 use App\Models\FeatureVote;
@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property Collection|Campaign[] $following
  * @property Campaign|null $lastCampaign
  * @property Referral|null $referrer
- * @property Collection|CampaignSubmission[] $submissions
+ * @property Collection|Application[] $applications
  * @property Collection|Entity[] $entities
  * @property Collection|Plugin[] $plugins
  * @property Collection|UserApp[] $apps
@@ -136,11 +136,11 @@ trait UserRelations
     }
 
     /**
-     * List of campaign submissions the user is trying to join
+     * List of campaign applications the user is trying to join
      */
-    public function submissions(): HasMany
+    public function applications(): HasMany
     {
-        return $this->hasMany('App\Models\CampaignSubmission');
+        return $this->hasMany(Application::class);
     }
 
     /**

@@ -24,15 +24,15 @@
             <x-learn-more url="features/campaigns/applications.html" />
         </div>
 
-        @include('campaigns.submissions._requirements')
-        @includeWhen(!$submissions->isEmpty(), 'campaigns.submissions._list')
-        @if($submissions->isEmpty())
+        @include('campaigns.applications._requirements')
+        @includeWhen(!$applications->isEmpty(), 'campaigns.applications._list')
+        @if($applications->isEmpty())
             <div class="flex flex-col gap-2 justify-center items-center">
                 <div class="text-xl">
-                    {{ __('campaigns/submissions.helpers.no_applications_title') }}
+                    {{ __('campaigns/applications.helpers.no_applications_title') }}
                 </div>
                 <div class="text-sm text-neutral-content text-center max-w-md">
-                    <p>{!! __('campaigns/submissions.helpers.no_applications', ['button' => '<code><i class="fa-solid fa-door-open" aria-hidden="true"></i> ' . __('dashboard.actions.join') . '</code>']) !!}</p>
+                    <p>{!! __('campaigns/applications.helpers.no_applications', ['button' => '<code><i class="fa-solid fa-door-open" aria-hidden="true"></i> ' . __('dashboard.actions.join') . '</code>']) !!}</p>
                 </div>
             </div>
         @endif
@@ -41,5 +41,5 @@
 
 
 @section('modals')
-    <x-dialog id="submission-dialog" loading="true" />
+    <x-dialog id="application-dialog" loading="true" />
 @endsection

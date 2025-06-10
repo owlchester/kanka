@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\Validators\HashValidator;
 use App\Models\Ability;
+use App\Models\Application;
 use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\Calendar;
@@ -17,7 +18,6 @@ use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
 use App\Models\CampaignStyle;
-use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
 use App\Models\Character;
 use App\Models\Conversation;
@@ -181,7 +181,7 @@ class AppServiceProvider extends ServiceProvider
         CampaignPlugin::observe('App\Observers\CampaignPluginObserver');
         CampaignSetting::observe('App\Observers\CampaignSettingObserver');
         CampaignDashboard::observe('App\Observers\CampaignDashboardObserver');
-        CampaignSubmission::observe('App\Observers\CampaignSubmissionObserver');
+        Application::observe('App\Observers\ApplicationObserver');
         CampaignStyle::observe('App\Observers\CampaignStyleObserver');
         Character::observe(CharacterObserver::class);
         Conversation::observe('App\Observers\ConversationObserver');

@@ -449,7 +449,7 @@ class SearchService
             $this
                 ->addCampaignPage('campaigns.show.tabs.members', 'campaign_users.index', 'members')
                 ->addCampaignPage('campaigns.show.tabs.roles', 'campaign_roles.index', 'roles')
-                ->addCampaignPage('campaigns.show.tabs.applications', 'campaign_submissions.index', 'submissions')
+                ->addCampaignPage('campaigns.show.tabs.applications', 'applications.index', 'applications')
                 ->addCampaignPage('campaigns.show.tabs.modules', 'campaign.modules')
                 ->addCampaignPage('campaigns.show.tabs.recovery', 'recovery', 'update')
                 ->addCampaignPage('campaigns.show.tabs.styles', 'campaign_styles.index', 'update')

@@ -1,9 +1,9 @@
 <?php
-/** @var \App\Models\CampaignSubmission[] $submissions */
+/** @var \App\Models\Application[] $applications */
 ?>
 
 <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-4 xl:gap-5">
-    @foreach($submissions as $application)
+    @foreach($applications as $application)
         <div class="bg-base-100 shadow-xs hover:shadow rounded-xl flex p-4 items-center justify-center gap-3">
             @if ($application->user->hasAvatar())
                 <x-users.avatar :user="$application->user" class="h-10 w-10" />
@@ -15,10 +15,10 @@
                 <p class="text-neutral-content">{{ $application->created_at->diffForHumans() }}</p>
             </div>
 
-            <div class="rounded-full border h-8 w-8 flex items-center justify-center flex-none cursor-pointer" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('campaign_submissions.show', [$campaign, $application])}}">
+            <div class="rounded-full border h-8 w-8 flex items-center justify-center flex-none cursor-pointer" data-toggle="dialog" data-target="primary-dialog" data-url="{{  route('applications.show', [$campaign, $application])}}">
                 <x-icon class="fa-solid fa-angle-right" />
             </div>
         </div>
     @endforeach
 </div>
-{!! $submissions->onEachSide(0)->links() !!}
+{!! $applications->onEachSide(0)->links() !!}

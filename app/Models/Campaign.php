@@ -261,7 +261,7 @@ class Campaign extends Model
     }
 
     /**
-     * Determine if a campaign is open to submissions
+     * Determine if a campaign is open to applications
      */
     public function isOpen(): bool
     {
