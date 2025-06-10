@@ -33,7 +33,7 @@ class RemindablePost
         if (! request()->has('calendar_id')) {
             return;
         }
-        
+
         $calendarID = request()->post('calendar_id');
 
         // We already had this event linked

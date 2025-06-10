@@ -63,13 +63,13 @@ class Post extends Model
     use HasLocation;
     use HasVisibility;
     use Paginatable;
+    use PostHasReminder;
     use Sanitizable;
     use Searchable;
     use SoftDeletes;
     use SortableTrait;
     use Taggable;
     use Templatable;
-    use PostHasReminder;
 
     protected $fillable = [
         'entity_id',
@@ -294,5 +294,4 @@ class Post extends Model
     {
         return $this->reminders()->with('calendar')->whereNotNull('type_id');
     }
-
 }

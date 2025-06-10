@@ -34,7 +34,7 @@ class StorePost extends FormRequest
             'is_pinned' => 'boolean',
             'position' => 'nullable|integer|min:-128|max:128',
             'entry' => 'nullable|string',
-            'layout_id' => 'nullable|integer|exists:post_layouts,id'
+            'layout_id' => 'nullable|integer|exists:post_layouts,id',
         ];
 
         if (request()->has('calendar_id') && request()->post('calendar_id') !== null && ! request()->has('calendar_skip')) {

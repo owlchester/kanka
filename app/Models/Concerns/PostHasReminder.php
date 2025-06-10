@@ -3,7 +3,6 @@
 namespace App\Models\Concerns;
 
 use App\Models\Reminder;
-use App\Observers\Remindable;
 use App\Observers\RemindablePost;
 use Illuminate\Support\Arr;
 

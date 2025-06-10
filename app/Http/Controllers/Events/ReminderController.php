@@ -43,11 +43,11 @@ class ReminderController extends Controller
     {
         if ($reminder->remindable instanceof Post) {
             $this->authorize('reminders', $reminder->remindable->entity);
-            $entity  = $reminder->remindable->entity;
+            $entity = $reminder->remindable->entity;
             $post = $reminder->remindable;
         } else {
             $this->authorize('reminders', $reminder->remindable);
-            $entity  = $reminder->remindable;
+            $entity = $reminder->remindable;
             $post = null;
         }
 
@@ -81,11 +81,11 @@ class ReminderController extends Controller
     {
         if ($reminder->remindable instanceof Post) {
             $this->authorize('reminders', $reminder->remindable->entity);
-            $entity  = $reminder->remindable->entity;
+            $entity = $reminder->remindable->entity;
             $post = $reminder->remindable;
         } else {
             $this->authorize('reminders', $reminder->remindable);
-            $entity  = $reminder->remindable;
+            $entity = $reminder->remindable;
             $post = null;
         }
 
@@ -131,11 +131,11 @@ class ReminderController extends Controller
     {
         if ($reminder->remindable instanceof Post) {
             $this->authorize('reminders', $reminder->remindable->entity);
-            $entity  = $reminder->remindable->entity;
+            $entity = $reminder->remindable->entity;
             $post = $reminder->remindable;
         } else {
             $this->authorize('reminders', $reminder->remindable);
-            $entity  = $reminder->remindable;
+            $entity = $reminder->remindable;
             $post = null;
         }
         $reminder->delete();
