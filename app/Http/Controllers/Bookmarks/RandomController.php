@@ -9,8 +9,7 @@ use App\Services\Bookmarks\RandomEntityService;
 
 class RandomController extends Controller
 {
-    public function __construct(protected RandomEntityService $service)
-    {}
+    public function __construct(protected RandomEntityService $service) {}
 
     public function index(Campaign $campaign, Bookmark $bookmark)
     {

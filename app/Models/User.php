@@ -7,7 +7,6 @@ use App\Facades\CampaignLocalization;
 use App\Facades\Identity;
 use App\Facades\PostCache;
 use App\Facades\SingleUserCache;
-use App\Facades\UserCache;
 use App\Models\Concerns\HasImage;
 use App\Models\Concerns\LastSync;
 use App\Models\Concerns\UserBoosters;

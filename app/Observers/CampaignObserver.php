@@ -2,24 +2,17 @@
 
 namespace App\Observers;
 
-use App\Enums\UserAction;
 use App\Facades\Images;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
-use App\Models\CampaignPermission;
-use App\Models\CampaignRole;
-use App\Models\CampaignRoleUser;
-use App\Models\CampaignSetting;
 use App\Models\CampaignUser;
-use App\Models\EntityType;
 use App\Models\GameSystem;
 use App\Models\Genre;
 use App\Notifications\Header;
 use App\Services\Campaign\SearchCleanupService;
 use App\Services\Mentions\SaveService;
 use App\Services\Users\CampaignService;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class CampaignObserver

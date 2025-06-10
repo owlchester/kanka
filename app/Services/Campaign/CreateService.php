@@ -14,9 +14,9 @@ use App\Models\EntityType;
 use App\Services\Users\CampaignService;
 use App\Traits\RequestAware;
 use App\Traits\UserAware;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
-use Exception;
 
 class CreateService
 {
@@ -25,9 +25,7 @@ class CreateService
 
     protected Campaign $campaign;
 
-    public function __construct(protected CampaignService $campaignService)
-    {
-    }
+    public function __construct(protected CampaignService $campaignService) {}
 
     public function create(): Campaign
     {
@@ -106,6 +104,7 @@ class CreateService
     {
         $this->campaign->slug = (string) $this->campaign->id;
         $this->campaign->saveQuietly();
+
         return $this;
     }
 
@@ -131,6 +130,7 @@ class CreateService
 
         $this->user->log(UserAction::campaignNew, ['campaign' => $this->campaign->id]);
         UserCache::clear();
+
         return $this;
     }
 }

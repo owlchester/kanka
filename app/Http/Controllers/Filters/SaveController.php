@@ -63,6 +63,7 @@ class SaveController extends Controller
         $bookmark->save();
 
         $route = $this->routingService->campaign($campaign)->bookmark($bookmark)->url();
+
         return redirect()->to($route)->withSuccess(__('filters.bookmark.success'));
     }
 }

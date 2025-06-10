@@ -4,9 +4,9 @@ namespace App\Services\Bookmarks;
 
 use App\Models\Bookmark;
 use App\Traits\CampaignAware;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
-use Exception;
 
 class RoutingService
 {
@@ -17,6 +17,7 @@ class RoutingService
     public function bookmark(Bookmark $bookmark): self
     {
         $this->bookmark = $bookmark;
+
         return $this;
     }
 

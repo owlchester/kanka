@@ -7,7 +7,6 @@ use App\Http\Requests\StoreCampaign;
 use App\Models\Campaign;
 use App\Services\Campaign\CreateService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CreateController extends Controller
 {

@@ -9,8 +9,7 @@ use App\Services\Campaign\CreateService;
 
 class CampaignApiController extends ApiController
 {
-    public function __construct(protected CreateService $createService)
-    {}
+    public function __construct(protected CreateService $createService) {}
 
     public function index(\Illuminate\Http\Request $request)
     {

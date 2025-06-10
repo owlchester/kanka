@@ -7,7 +7,6 @@ use App\Models\CampaignRole;
 use App\Models\CampaignUser;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
-use Illuminate\Support\Collection;
 
 class CampaignService
 {

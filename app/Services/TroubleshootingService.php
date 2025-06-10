@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Exceptions\TranslatableException;
 use App\Models\AdminInvite;
 use App\Models\Campaign;
-use App\Models\CampaignRole;
 use App\Models\User;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
