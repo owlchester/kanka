@@ -59,6 +59,7 @@ trait SortableTrait
             if ($this instanceof Entity) {
                 return $query->orderBy($this->getTable() . '.type', $order);
             }
+
             return $query
                 ->select($this->getTable() . '.*')
                 ->leftJoin('entities as e', function ($join) {

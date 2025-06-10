@@ -6,7 +6,7 @@
     </x-helper>
 
     <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
-        <x-forms.select name="campaign" :options="auth()->user()->moveCampaignList($campaign, false)" class="w-full" />
+        <x-forms.select name="campaign" :options="$campaigns" class="w-full" />
     </x-forms.field>
 
     @includeIf($type . '.bulk.modals._copy_to_campaign')

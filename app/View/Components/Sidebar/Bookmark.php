@@ -17,8 +17,7 @@ class Bookmark extends Component
         public Campaign $campaign,
         public \App\Models\Bookmark $bookmark,
         public RoutingService $routingService,
-    )
-    {
+    ) {
         //
     }
 
@@ -36,7 +35,6 @@ class Bookmark extends Component
             ->with('url', $url)
             ->with('icon', $this->bookmark->iconClass())
             ->with('text', $this->bookmark->name)
-            ->with('class', '')
-            ;
+            ->with('class', '');
     }
 }

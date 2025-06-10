@@ -23,7 +23,7 @@ class TroubleshootingService
         $campaigns = [
             '' => __('helpers.troubleshooting.select_campaign'),
         ];
-        foreach ($this->user->adminCampaigns() as $id => $name) {
+        foreach ($this->adminCampaigns() as $id => $name) {
             $campaigns[$id] = $name;
         }
 
@@ -50,5 +50,19 @@ class TroubleshootingService
         $token->save();
 
         return $token;
+    }
+
+    protected function adminCampaigns(): array
+    {
+        $campaigns = [];
+
+        return $this
+            ->user
+            ->campaignRoles()
+            ->where('campaign_roles.is_admin', 1)
+            ->leftJoin('campaigns', 'campaigns.id', '=', 'campaign_roles.campaign_id')
+            ->has('campaign')
+            ->pluck('campaigns.name', 'campaigns.id')
+            ->toArray();
     }
 }

@@ -9,6 +9,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\MoveService;
 use App\Services\EntityTypeService;
+use App\Services\Users\CampaignService;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,8 @@ class MoveController extends Controller
 
     public function __construct(
         protected MoveService $service,
-        protected EntityTypeService $entityTypeService
+        protected EntityTypeService $entityTypeService,
+        protected CampaignService $campaignService,
     ) {
         $this->middleware(['auth']);
     }
@@ -35,8 +37,10 @@ class MoveController extends Controller
     {
         $this->authorize('view', $entity);
 
-        $campaigns = auth()->user()->moveCampaignList($campaign);
-        $campaigns[0] = __('entities/move.fields.select_one');
+        $campaigns = $this->campaignService
+            ->user(auth()->user())
+            ->campaign($campaign)
+            ->campaigns();
 
         return view('entities.pages.move.index', compact(
             'campaign',

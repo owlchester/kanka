@@ -7,12 +7,14 @@ use App\Http\Requests\Bulks\Copy;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\BulkService;
+use App\Services\Users\CampaignService;
 use Illuminate\Http\Request;
 
 class CopyController extends Controller
 {
     public function __construct(
         protected BulkService $bulkService,
+        protected CampaignService $campaignService
     ) {
         $this->middleware('auth');
     }
@@ -20,9 +22,14 @@ class CopyController extends Controller
     public function index(Request $request, Campaign $campaign, EntityType $entityType)
     {
         $entities = $request->get('entities');
+        $campaigns = $this->campaignService
+            ->user(auth()->user())
+            ->campaign($campaign)
+            ->campaigns();
 
         return view('cruds.datagrids.bulks.modals._copy_campaign')
             ->with('campaign', $campaign)
+            ->with('campaigns', $campaigns)
             ->with('entityType', $entityType)
             ->with('type', $entityType->code)
             ->with('entities', $entities);

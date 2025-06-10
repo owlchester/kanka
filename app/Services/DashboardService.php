@@ -30,8 +30,6 @@ class DashboardService
 
     /**
      * Get the current or default dashboard for the user
-     *
-     * @return null|CampaignDashboard
      */
     public function getDashboard(?int $dashboard = null): ?CampaignDashboard
     {

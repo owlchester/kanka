@@ -172,6 +172,7 @@ class BookmarkController extends CrudController
         foreach ($dashboards as $dashboard) {
             $dashboardOptions[$dashboard->id] = $dashboard->name;
         }
+
         return $dashboardOptions;
     }
 }

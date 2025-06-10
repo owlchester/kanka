@@ -13,6 +13,7 @@ class RandomEntityService
     public function bookmark(Bookmark $bookmark): self
     {
         $this->bookmark = $bookmark;
+
         return $this;
     }
 

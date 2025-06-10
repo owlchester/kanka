@@ -37,8 +37,11 @@ class DefaultThumbnailApiController extends ApiController
     {
         $this->authorize('access', $campaign);
 
+        /** @var EntityType $entityType */
         $entityType = EntityType::inCampaign($campaign)->find($request->post('entity_type_id'));
-        $this->defaultImageService->campaign($campaign)->user($request->user())->entityType($entityType);
+        $this->defaultImageService->campaign($campaign)
+            ->user($request->user())
+            ->entityType($entityType);
         if ($this->defaultImageService->save($request)) {
             return response()->json([
                 'data' => 'Default thumbnail successfully uploaded',
@@ -55,6 +58,7 @@ class DefaultThumbnailApiController extends ApiController
     {
         $this->authorize('recover', $campaign);
 
+        /** @var EntityType $entityType */
         $entityType = EntityType::inCampaign($campaign)->find($request->post('entity_type_id'));
         $result = $this->defaultImageService
             ->campaign($campaign)

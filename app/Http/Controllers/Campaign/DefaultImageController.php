@@ -66,6 +66,7 @@ class DefaultImageController extends Controller
             return response()->json(['success' => true]);
         }
 
+        /** @var EntityType $entityType */
         $entityType = EntityType::inCampaign($campaign)->find($request->post('entity_type'));
 
         if ($this->service->campaign($campaign)->entityType($entityType)->user(auth()->user())->save($request)) {

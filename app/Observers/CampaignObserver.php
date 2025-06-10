@@ -2,24 +2,17 @@
 
 namespace App\Observers;
 
-use App\Enums\UserAction;
 use App\Facades\Images;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignBoost;
-use App\Models\CampaignPermission;
-use App\Models\CampaignRole;
-use App\Models\CampaignRoleUser;
-use App\Models\CampaignSetting;
 use App\Models\CampaignUser;
-use App\Models\EntityType;
 use App\Models\GameSystem;
 use App\Models\Genre;
 use App\Notifications\Header;
 use App\Services\Campaign\SearchCleanupService;
 use App\Services\Mentions\SaveService;
 use App\Services\Users\CampaignService;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class CampaignObserver
@@ -71,69 +64,8 @@ class CampaignObserver
 
     public function created(Campaign $campaign)
     {
-        $role = new CampaignUser([
-            'user_id' => auth()->user()->id,
-            'campaign_id' => $campaign->id,
-        ]);
-        $role->save();
+        // todo: move all of this to a service...
 
-        // Make sure we save the last campaign id to avoid infinite loops
-        $this->campaignService
-            ->user(auth()->user())
-            ->campaign($campaign)
-            ->set();
-
-        $role = CampaignRole::create([
-            'campaign_id' => $campaign->id,
-            'name' => __('campaigns.members.roles.owner'),
-            'is_admin' => true,
-        ]);
-
-        $readOnlyRoles = [];
-
-        $readOnlyRoles[] = CampaignRole::create([
-            'campaign_id' => $campaign->id,
-            'name' => __('campaigns.members.roles.public'),
-            'is_public' => true,
-        ]);
-
-        $readOnlyRoles[] = CampaignRole::create([
-            'campaign_id' => $campaign->id,
-            'name' => __('campaigns.members.roles.player'),
-        ]);
-
-        $entityTypes = EntityType::default()->get();
-
-        foreach ($readOnlyRoles as $readOnlyRole) {
-            foreach ($entityTypes as $entityType) {
-                CampaignPermission::create([
-                    'campaign_role_id' => $readOnlyRole->id,
-                    'access' => true,
-                    'action' => CampaignPermission::ACTION_READ,
-                    'entity_type_id' => $entityType->id,
-                ]);
-            }
-        }
-
-        CampaignRoleUser::create([
-            'campaign_role_id' => $role->id,
-            'user_id' => Auth::user()->id,
-        ]);
-
-        // Settings
-        $setting = new CampaignSetting([
-            'campaign_id' => $campaign->id,
-            'dice_rolls' => 0,
-            'conversations' => 0,
-        ]);
-        $setting->save();
-
-        $campaign->slug = (string) $campaign->id;
-        $campaign->saveQuietly();
-
-        UserCache::clear();
-
-        auth()->user()->log(UserAction::campaignNew, ['campaign' => $campaign->id]);
     }
 
     public function saved(Campaign $campaign)
