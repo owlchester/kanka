@@ -299,17 +299,17 @@ class Entity extends Model
     /**
      * Get the entity background header image
      */
-    public function getHeaderUrl(): ?string
+    public function getHeaderUrl(int $width = 1200, int $height = 400): ?string
     {
         if (! empty($this->header_image)) {
-            return $this->thumbnail(1200, 400, 'header_image');
+            return $this->thumbnail($width, $height, 'header_image');
         }
 
         if (empty($this->header)) {
             return null;
         }
 
-        return $this->header->getUrl(1200, 400);
+        return $this->header->getUrl($width, $height);
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Facades\Avatar;
 use App\Facades\Breadcrumb;
 use App\Models\Bookmark;
 use App\Models\Entity;
+use App\Services\Bookmarks\RoutingService;
 use App\Services\EntityTypeService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
@@ -20,7 +21,8 @@ class RecentService
     use UserAware;
 
     public function __construct(
-        protected EntityTypeService $entityTypeService
+        protected EntityTypeService $entityTypeService,
+        protected RoutingService $routingService,
     ) {}
 
     public function recent(): array
@@ -114,7 +116,7 @@ class RecentService
     protected function formatBookmark(Bookmark $link): array
     {
         return [
-            'url' => $link->getRoute(),
+            'url' => $this->routingService->campaign($this->campaign)->bookmark($link)->url(),
             'icon' => $link->iconClass(),
             'text' => $link->name,
         ];

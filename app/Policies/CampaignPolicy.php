@@ -81,7 +81,7 @@ class CampaignPolicy
     public function logs(User $user, Campaign $campaign): bool
     {
         return false;
-        //return $this->recover($user, $campaign);
+        // return $this->recover($user, $campaign);
     }
 
     /**
@@ -199,9 +199,9 @@ class CampaignPolicy
     }
 
     /**
-     * Permission to view the campaign submissions
+     * Permission to view the campaign applications
      */
-    public function submissions(?User $user): bool
+    public function applications(?User $user): bool
     {
         return $user && $user->isAdmin();
     }

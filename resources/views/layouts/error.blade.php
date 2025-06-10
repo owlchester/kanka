@@ -54,7 +54,7 @@
 
         <p class="lg:max-w-2xl mx-auto text-center">
             {!! __('errors.footer', [
-    'discord' => '<a href="' . config('social.discord') . '" class="link-light">Discord</a>',
+    'discord' => '<a href="https://kanka.io/go/discord" class="link-light">Discord</a>',
     'email' => '<a href="mailto:' . config('app.email') . '" class="link-light">' . config('app.email') . '</a>',
 ]) !!}
         </p>

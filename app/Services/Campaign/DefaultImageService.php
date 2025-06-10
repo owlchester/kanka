@@ -2,9 +2,7 @@
 
 namespace App\Services\Campaign;
 
-use App\Enums\UserAction;
 use App\Facades\CampaignCache;
-use App\Models\CampaignStyle;
 use App\Models\Image;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;

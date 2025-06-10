@@ -358,15 +358,21 @@ const bulkDialog = (url) => {
     if (ids.length === 0) {
         return;
     }
-    url += '?entities[]=' + ids.join('&entities[]=');
-    window.openDialog('primary-dialog', url);
+
+    let parsedUrl = new URL(url, window.location.origin);
+    let params = parsedUrl.searchParams;
+    ids.forEach(id => {
+        params.append('entities[]', id);
+    });
+
+    window.openDialog('primary-dialog', parsedUrl.toString());
 }
 
 const switchMode = () => {
     nesting.value = true;
     let url = props.api;
     nested.value = !nested.value;
-    loadEntities(url + '?n=' + (nested.value ? 1 : 0));
+    loadEntities(addToUrl(url, 'n', (nested.value ? '1' : '0')));
 
     const currentUrl = new URL(window.location.href);
     currentUrl.searchParams.set('n', nested.value ? 1 : 0);
@@ -380,7 +386,7 @@ const switchLayout = () => {
     } else {
         layout.value = 'grid';
     }
-    loadEntities(url + '?m=' + layout.value);
+    loadEntities(addToUrl(url, 'm', layout.value));
 
     const currentUrl = new URL(window.location.href);
     currentUrl.searchParams.set('m', layout.value);
@@ -419,14 +425,18 @@ const finishLoading = () => {
 }
 
 const orderBy = (field: string) => {
-    console.log('order', field)
     ordering.value = true
 
-    let url = props.api;
-    url += '?order=' + field;
+    let url = new URL(props.api, window.location.origin);
+    let params = url.searchParams;
+
+    params.set('order', field);
     if (isOrderingAscending(field)) {
-        url += '&desc=1';
+        params.set('desc', '1');
+    } else {
+        params.delete('desc');
     }
+    url = url.toString();
     loadEntities(url);
 
     const currentUrl = new URL(window.location.href);
@@ -511,6 +521,13 @@ const gridLayout = () => {
 
 const isGrid = () => {
     return layout.value === 'grid';
+}
+
+const addToUrl = (url, param, value) => {
+    let urlObject = new URL(url, window.location.origin);
+    let params = urlObject.searchParams;
+    params.set(param, value);
+    return urlObject.toString();
 }
 
 </script>

@@ -41,7 +41,8 @@ class UserEventSubscriber
             ->user($user)
             ->logUserActivity()
             ->updateLastLoginTime()
-            ->clearInactivityFlag();
+            ->clearInactivityFlag()
+            ->loadFlags();
 
         // Update mailerlite for the login stuff
         if (! session()->has('first_login') && $user->hasNewsletter()) {

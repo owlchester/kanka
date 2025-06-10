@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign;
 
-use App\Enums\UserAction;
 use App\Facades\CampaignCache;
 use App\Jobs\Campaigns\Export;
 use App\Models\CampaignExport;

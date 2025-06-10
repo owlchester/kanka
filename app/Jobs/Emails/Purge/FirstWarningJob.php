@@ -5,6 +5,7 @@ namespace App\Jobs\Emails\Purge;
 use App\Enums\UserAction;
 use App\Mail\Purge\FirstWarning;
 use App\Models\User;
+use App\Services\Users\CampaignService;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -38,13 +39,17 @@ class FirstWarningJob implements ShouldQueue
      */
     public function handle(): void
     {
+        /** @var User $user */
         $user = User::find($this->userId);
         if (empty($user)) {
             return;
         }
 
         Log::info('PurgeFirstWarning', ['user' => $this->userId]);
-        $campaigns = $user->onlyAdminCampaigns();
+
+        /** @var CampaignService $service */
+        $service = app()->make(CampaignService::class);
+        $campaigns = $service->user($user)->flaggedCampaigns();
         $user->log(UserAction::purgeWarningFirst);
 
         $target = app()->isProduction() ? $user->email : config('mail.from.address');

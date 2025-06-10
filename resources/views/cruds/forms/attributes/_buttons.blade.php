@@ -60,7 +60,7 @@
         <x-checkbox :text="__('entities/attributes.helpers.is_private', [
     'admin-role' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' target=\'_blank\'>' . \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>',
     ])">
-            <input type="checkbox" name="is_attributes_private" value="1" @if (old('is_attributes_private', $model->entity->is_attributes_private ?? false)) checked="checked" @endif />
+            <input type="checkbox" name="is_attributes_private" value="1" @if (old('is_attributes_private', $entity->is_attributes_private ?? false)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 @endif

@@ -3,6 +3,7 @@
 namespace App\Models\Relations;
 
 use App\Models\Ability;
+use App\Models\Application;
 use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\Calendar;
@@ -15,7 +16,6 @@ use App\Models\CampaignPlugin;
 use App\Models\CampaignRole;
 use App\Models\CampaignSetting;
 use App\Models\CampaignStyle;
-use App\Models\CampaignSubmission;
 use App\Models\CampaignUser;
 use App\Models\Character;
 use App\Models\Conversation;
@@ -70,7 +70,7 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignPlugin[] $campaignPlugins
  * @property Collection|CampaignDashboardWidget[] $widgets
  * @property Collection|CampaignDashboard[] $dashboards
- * @property Collection|CampaignSubmission[] $submissions
+ * @property Collection|Application[] $applications
  * @property Collection|CampaignStyle[] $styles
  * @property Collection|Genre[] $genres
  * @property Collection|GameSystem[] $systems
@@ -104,7 +104,7 @@ trait CampaignRelations
         return $this->hasMany('App\Models\CampaignUser');
     }
 
-    public function nonAdmins()
+    public function nonAdmins(): Collection
     {
         if (isset($this->nonAdmins)) {
             return $this->nonAdmins;
@@ -268,9 +268,9 @@ trait CampaignRelations
         return $this->belongsTo('App\Models\Theme');
     }
 
-    public function submissions(): HasMany
+    public function applications(): HasMany
     {
-        return $this->hasMany('App\Models\CampaignSubmission');
+        return $this->hasMany(Application::class);
     }
 
     public function entityRelations(): HasMany

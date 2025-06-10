@@ -53,6 +53,6 @@
     </div>
 
     <hr />
-    <p>If you are unsure why you are seeing this, contact us at <a href="mailto:{{ config('app.email') }}">{{ config('app.email') }}</a> or directly on <a href="{{ config('social.discord') }}">Discord</a>.</p>
+    <p>If you are unsure why you are seeing this, contact us at <a href="mailto:{{ config('app.email') }}">{{ config('app.email') }}</a> or reach out directly on <a href="https://kanka.io/go/discord">Discord</a>.</p>
 
 @endsection

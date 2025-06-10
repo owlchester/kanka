@@ -27,27 +27,36 @@
         <x-forms.field
             field="name"
             required
-            :label="__('crud.fields.names')"
+            :label="$mode === 'bulk' ? __('crud.fields.names') : __('crud.fields.name')"
             :helper="$mode === 'bulk' ? __('entities.creator.bulk_names') : null"
             :id="$fieldID">
             @if ($mode === 'bulk')
-                <textarea name="name"
-                          autocomplete="off"
-                          class="w-full"
-                          id="qq-name-field"
-                          rows="4"
-                          @if (isset($entityType))
-                          data-live="{{ route('search-list', [$campaign, $entityType]) }}"
-                          @endif
-                          placeholder="{{ __('entities.creator.bulk_names') }}"></textarea>
+                <textarea
+                    name="name"
+                      autocomplete="off"
+                      class="w-full"
+                      id="qq-name-field"
+                      rows="4"
+                      @if (isset($entityType))
+                      data-live="{{ route('search-list', [$campaign, $entityType]) }}"
+                      @endif
+                      placeholder="{{ __('entities.creator.bulk_names') }}"></textarea>
             @else
 
-                <input type="text" name="name" placeholder="{{ !isset($entityType) ? __('posts.placeholders.name') : __('crud.placeholders.name') }}" autocomplete="off" value="{!! old('name') !!}" maxlength="191" required
-                       @if (isset($entityType))
-                           data-live="{{ route('search-list', [$campaign, $entityType]) }}"
-                       @endif data-bulk="true" id="{{ !isset($entityType) ? 'qq-post-name-field' : 'qq-name-field' }}" data-1p-ignore="true" />
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="{{ !isset($entityType) ? __('posts.placeholders.name') : __('crud.placeholders.name') }}"
+                    autocomplete="off"
+                    value="{!! old('name') !!}"
+                    maxlength="191"
+                    required
+                    @if (isset($entityType)) data-live="{{ route('search-list', [$campaign, $entityType]) }}" @endif
+                    data-bulk="true"
+                    id="{{ !isset($entityType) ? 'qq-post-name-field' : 'qq-name-field' }}"
+                    data-1p-ignore="true" />
             @endif
-            <x-alert type="warning" class="my-1 duplicate-entity-warning" :hidden="true">
+            <x-alert type="warning" class="my-1 duplicate-entity-warning" hidden>
                 {{ __('entities.creator.duplicate') }}<br />
                 <span class="duplicate-entities"></span>
             </x-alert>

@@ -146,7 +146,7 @@ class Quest extends MiscModel
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'name', 'type', 'location_id', 'is_completed', 'is_private'])
+            ->select(['id', 'name', 'location_id', 'is_completed', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'location', 'location.entity',
@@ -211,7 +211,7 @@ class Quest extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['quest_id', 'instigator_id', 'location_id', 'is_completed', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
+        return ['quest_id', 'instigator_id', 'location_id', 'is_completed'];
     }
 
     public function shortDescription()

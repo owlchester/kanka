@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Models\CharacterRace;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
 use App\Models\MapMarker;
@@ -156,6 +157,18 @@ class CopyService
         // @phpstan-ignore-next-line
         foreach ($this->source->child->characterTraits as $trait) {
             $trait->copyTo($this->entity->entity_id);
+        }
+
+        // Families, races
+        $relations = ['characterFamilies', 'characterRaces', 'organisationMemberships'];
+        foreach ($relations as $relation) {
+            /** @var CharacterRace $item */
+            // @phpstan-ignore-next-line
+            foreach ($this->source->child->{$relation} as $item) {
+                $new = $item->replicate(['character_id']);
+                $new->character_id = $this->entity->entity_id;
+                $new->save();
+            }
         }
 
         return $this;

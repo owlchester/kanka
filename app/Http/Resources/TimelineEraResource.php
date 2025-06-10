@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Facades\Mentions;
 use App\Models\TimelineEra;
 use Illuminate\Http\Resources\Json\JsonResource;
 

@@ -2,21 +2,28 @@
 
 namespace App\Models;
 
+use App\Enums\UserFlags;
 use App\Models\Concerns\HasUser;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property string $flag
+ * @property \App\Enums\UserFlags $flag
+ *
+ * @method static|self|Builder freeTrial()
  */
 class UserFlag extends Model
 {
     use HasFactory;
     use HasUser;
 
-    public const string FLAG_INACTIVE_1 = 'inactive_1';
+    public $casts = [
+        'flag' => \App\Enums\UserFlags::class,
+    ];
 
-    public const string FLAG_INACTIVE_2 = 'inactive_2';
-
-    public const string FLAG_EMAIL = 'email';
+    public function scopeFreeTrial(Builder $query): Builder
+    {
+        return $query->where('flag', UserFlags::freeTrial);
+    }
 }

@@ -30,13 +30,13 @@
             @endif
         </div>
         @if ($campaign->boosted())
-            @if (empty($campaign->defaultImages()))
+            @if (empty($images))
                 <x-helper>
                     <p>{{ __('campaigns/default-images.empty') }}</p>
                 </x-helper>
             @endif
             <div class="grid grid-cols-1 gap-2 xl:grid-cols-2 xl:gap-5">
-                @foreach ($campaign->defaultImages() as $image)
+                @foreach ($images as $image)
                     @if (!\Illuminate\Support\Arr::has($entityTypes, $image['type']))
                         @continue
                     @endif

@@ -403,6 +403,10 @@ class Attribute extends Model
      */
     public function toSearchableArray()
     {
+        if (! $this->entity) {
+            return [];
+        }
+
         return [
             'campaign_id' => $this->entity->campaign_id,
             'entity_id' => $this->entity_id,

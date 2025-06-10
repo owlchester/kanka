@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign;
 
-use App\Enums\UserAction;
 use App\Exceptions\TranslatableException;
 use App\Facades\CampaignCache;
 use App\Http\Requests\API\UpdateUserRole;
@@ -60,7 +59,7 @@ class MemberService
                     'campaigns.roles.users.errors.cant_kick_admins'
                 ))->setOptions([
                     'admin' => $role->campaignRole->name,
-                    'discord' => '<a href="' . config('social.discord') . '>Discord</a>',
+                    'discord' => '<a href="https://kanka.io/go/discord">Discord</a>',
                     'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>',
                 ]);
             }
@@ -153,7 +152,7 @@ class MemberService
                 'campaigns.roles.users.errors.cant_kick_admins'
             ))->setOptions([
                 'admin' => $this->userCampaignRole->campaignRole->name,
-                'discord' => '<a href="' . config('social.discord') . '>Discord</a>',
+                'discord' => '<a href="https://kanka.io/go/discord">Discord</a>',
                 'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>',
             ]);
         }

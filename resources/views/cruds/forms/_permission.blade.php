@@ -10,15 +10,7 @@
 if (isset($source)) {
     $permissionService->entityPermissions($source);
 }
-if (isset($model)) {
-    if ($model instanceof \App\Models\Entity) {
-        $permissionService->entityPermissions($model);
-        $permissionService->type($model->type_id);
-    } else {
-        $permissionService->entityPermissions($model->entity);
-        $permissionService->type($model->entity->type_id);
-    }
-} elseif (isset($entity)) {
+if (isset($entity)) {
     $permissionService->entityPermissions($entity);
     $permissionService->type($entity->type_id);
 } else {

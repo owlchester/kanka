@@ -43,7 +43,7 @@
                     :text="__('campaigns.show.tabs.stats')"
                 ></x-sidebar.element>
             </li>
-            @if (auth()->check() && (auth()->user()->can('members', $campaign) || auth()->user()->can('submissions', $campaign) || auth()->user()->can('roles', $campaign)))
+            @if (auth()->check() && (auth()->user()->can('members', $campaign) || auth()->user()->can('applications', $campaign) || auth()->user()->can('roles', $campaign)))
             <li class="section-management pt-4">
                 <x-sidebar.section :text="__('campaigns.show.tabs.management')" />
                 <ul class="sidebar-submenu list-none p-0 m-0">
@@ -65,10 +65,10 @@
                         ></x-sidebar.element>
                     </li>
                 @endif
-                @can('submissions', $campaign)
-                    <li class="px-2 section-submissions {{ $sidebar->activeCampaign('campaign_submissions') }}">
+                @can('applications', $campaign)
+                    <li class="px-2 section-applications {{ $sidebar->activeCampaign('applications') }}">
                         <x-sidebar.element
-                            :url="route('campaign_submissions.index', [$campaign])"
+                            :url="route('applications.index', [$campaign])"
                             icon="fa-duotone fa-arrow-right-to-bracket"
                             :text="__('campaigns.show.tabs.applications')"
                         ></x-sidebar.element>

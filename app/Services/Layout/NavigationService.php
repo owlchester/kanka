@@ -62,7 +62,7 @@ class NavigationService
             $data['subscription'] = [
                 'tier' => $this->user->pledge,
                 'created' => __('users/profile.fields.subscriber_since', ['date' => $this->user->subscription('kanka')->created_at->format('M d, Y')]),
-                'image' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/' . mb_strtolower($this->user->pledge) . '-325.png',
+                'image' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/' . mb_strtolower($this->user->pledge) . '-128.png',
                 'boosters' => __('settings/boosters.available', [
                     'amount' => $this->user->availableBoosts(),
                     'total' => $this->user->maxBoosts(),
@@ -71,7 +71,7 @@ class NavigationService
         } else {
             $data['subscription'] = [
                 'tier' => Pledge::KOBOLD,
-                'image' => 'https://th.kanka.io/A6VJUbyTGHLiGhEat30RzpLGBsY=/64x64/smart/src/app/tiers/kobold.png',
+                'image' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/kobold-128.png',
                 // 'call_to_action' => __('Subscriptions start at USD 5.00 per month')
                 'call_to_action' => __('settings/boosters.available', [
                     'amount' => $this->user->availableBoosts(),

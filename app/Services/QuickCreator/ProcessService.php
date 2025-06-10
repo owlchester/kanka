@@ -65,6 +65,7 @@ class ProcessService
 
         // Handle dynamic elements
         $this->inputFields = $values;
+
         $this->dynamicTags()
             ->dynamicParent($this->entityType)
             ->dynamicLocations()
@@ -105,6 +106,17 @@ class ProcessService
                 $new->save();
                 $new->crudSaved();
                 $new->entity->crudSaved();
+
+                // Fill entity when using a template
+                if (isset($this->template)) {
+                    $new->entity->entry = Arr::get($values, 'entry');
+                    $new->entity->type = Arr::get($values, 'type');
+                    $new->entity->image_uuid = Arr::get($values, 'image_uuid');
+                    $new->entity->header_uuid = Arr::get($values, 'header_uuid');
+                    $new->entity->tooltip = Arr::get($values, 'tooltip');
+                    $new->entity->saveQuietly();
+                }
+
                 $this->new[] = $new->entity;
                 $this->entity = $new->entity;
                 $this->copyTemplateRelations();

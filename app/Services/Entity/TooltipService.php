@@ -8,8 +8,8 @@ use Illuminate\Support\Str;
 
 class TooltipService
 {
-    use EntityAware;
     use CampaignAware;
+    use EntityAware;
 
     /**
      * Full tooltip used for ajax calls

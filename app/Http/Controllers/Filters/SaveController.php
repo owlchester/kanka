@@ -6,16 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\EntityType;
+use App\Services\Bookmarks\RoutingService;
 use App\Services\FilterService;
 
 class SaveController extends Controller
 {
-    protected FilterService $filterService;
-
-    public function __construct(FilterService $filterService)
+    public function __construct(
+        protected FilterService $filterService,
+        protected RoutingService $routingService)
     {
         $this->middleware(['auth']);
-        $this->filterService = $filterService;
     }
 
     protected function render(Campaign $campaign, EntityType $entityType)
@@ -62,6 +62,8 @@ class SaveController extends Controller
         $bookmark->parent = $entityType->isSpecial() ? null : $entityType->pluralCode();
         $bookmark->save();
 
-        return redirect()->to($bookmark->getRoute())->withSuccess(__('filters.bookmark.success'));
+        $route = $this->routingService->campaign($campaign)->bookmark($bookmark)->url();
+
+        return redirect()->to($route)->withSuccess(__('filters.bookmark.success'));
     }
 }

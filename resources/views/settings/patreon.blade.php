@@ -13,7 +13,7 @@
     <x-grid type="1/1">
         @include('partials.errors')
 
-    @if(auth()->user()->isLegacyPatron())
+    @if(!auth()->user()->isLegacyPatron())
         <x-box>
             <x-grid type="1/1">
                 @includeIf('settings.tiers._' . strtolower(auth()->user()->pledge ?: 'kobold'))

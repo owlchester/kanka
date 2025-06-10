@@ -9,7 +9,7 @@
 
 {{--<x-tutorial code="banner_kanka30" type="warning" :auth="false">--}}
 {{--    <p>--}}
-{{--        We are releasing a big update on Wednesday 19th of February 2025. As a result, Kanka will be unavailable from <a href="https://everytimezone.com/s/07a5d1d9" target="_blank" class="underline"><i class="fa-regular fa-external-link" aria-hidden="true"></i> 14:30 UTC</a> to 15:30 UTC. Join us on <a href="{{ config('social.discord') }}" target="_blank" class="underline">Discord</a> to get updates.--}}
+{{--        We are releasing a big update on Wednesday 19th of February 2025. As a result, Kanka will be unavailable from <a href="https://everytimezone.com/s/07a5d1d9" target="_blank" class="underline"><i class="fa-regular fa-external-link" aria-hidden="true"></i> 14:30 UTC</a> to 15:30 UTC. Join us on <a href="https://kanka.io/go/discord" target="_blank" class="underline">Discord</a> to get updates.--}}
 {{--    </p>--}}
 {{--</x-tutorial>--}}
 
@@ -22,3 +22,16 @@
 {{--        </p>--}}
 {{--    </x-tutorial>--}}
 {{--@endif--}}
+
+@can('freeTrial', auth()->user())
+    <x-tutorial code="banner_free_trial" type="info">
+            <p>
+                {!! __('subscriptions/free-trial.pitch.title') !!}<br />
+
+                <a href="{{ route('settings.free-trial') }}" class="font-bold underline">
+                    <x-icon class="fa-duotone fa-sparkles" /> {!! __('subscriptions/free-trial.actions.accept') !!}
+                </a>
+            </p>
+
+        </x-tutorial>
+@endif

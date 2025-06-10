@@ -20,7 +20,7 @@ class EmailValidationService
         }
 
         $flag = UserFlag::where('user_id', $this->user->id)
-            ->where('flag', UserFlag::FLAG_EMAIL)
+            ->where('flag', \App\Enums\UserFlags::email->value)
             ->first();
         // If we've already notified the user, no need to notify them again
         if ($flag) {
@@ -29,7 +29,7 @@ class EmailValidationService
 
         $flag = new UserFlag;
         $flag->user_id = $this->user->id;
-        $flag->flag = UserFlag::FLAG_EMAIL;
+        $flag->flag = \App\Enums\UserFlags::email;
         $flag->save();
 
         $token = new UserValidation;

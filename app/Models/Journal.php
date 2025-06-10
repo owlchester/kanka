@@ -105,7 +105,6 @@ class Journal extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
         'date',
     ];
 
@@ -135,7 +134,7 @@ class Journal extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['journal_id', 'author_id', 'date', 'calendar_id', 'calendar_year', 'calendar_month', 'calendar_day'];
+        return ['journal_id', 'author_id', 'date'];
     }
 
     /**
@@ -150,7 +149,9 @@ class Journal extends MiscModel
 
         $table = new Journal;
 
-        return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)->with('parent');
+        return Journal::whereIn($table->getTable() . '.journal_id', $locationIds)
+            ->has('entity')
+            ->with('parent');
     }
 
     public function character(): BelongsTo

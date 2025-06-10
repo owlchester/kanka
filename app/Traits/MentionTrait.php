@@ -13,6 +13,9 @@ trait MentionTrait
     public function extract(?string $text = null): array
     {
         $mentions = [];
+        if (empty($text)) {
+            return $mentions;
+        }
 
         preg_match_all('`\[([a-z]+):(.*?)\]`i', $text, $segments);
 

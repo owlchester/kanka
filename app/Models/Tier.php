@@ -53,10 +53,10 @@ class Tier extends Model
     public function image(): string
     {
         return match ($this->name) {
-            'Owlbear' => 'https://th.kanka.io/s17BtlhzUJp4h07gxtzmljKO3fU=/60x60/smart/src/app/tiers/owlbear-750.png',
-            'Wyvern' => 'https://th.kanka.io/rJBeW_Poe2uvjdo44f2yzDnofzo=/60x60/smart/src/app/tiers/wyvern-750.png',
-            'Elemental' => 'https://th.kanka.io/Wira7yc1p1cAa_GUwC0SGDOuSwg=/60x60/smart/src/app/tiers/elemental-750.png',
-            default => 'https://th.kanka.io/Xy0Dm1dMld_NUYYA2gJdTkKnqjE=/60x60/smart/src/app/tiers/kobold-750.png'
+            'Owlbear' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/owlbear-128.png',
+            'Wyvern' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/wyvern-128.png',
+            'Elemental' => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/elemental-128.png',
+            default => 'https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/kobold-128.png'
         };
     }
 

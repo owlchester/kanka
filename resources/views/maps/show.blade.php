@@ -14,7 +14,7 @@
         <div class="entity-main-block grow flex flex-col gap-5 min-w-0">@if ($entity->child->explorable())
                 @if ($entity->child->isChunked() && $entity->child->chunkingError())
                     <x-alert type="error">
-                        {!! __('maps.errors.chunking.error', ['discord' => '<a href="' . config('social.discord') . '" target="_blank">Discord</a>']) !!}
+                        {!! __('maps.errors.chunking.error', ['discord' => '<a href="https://kanka.io/go/discord">Discord</a>']) !!}
                     </x-alert>
                 @elseif ($entity->child->isChunked() && !$entity->child->chunkingReady())
                     <x-alert type="warning">

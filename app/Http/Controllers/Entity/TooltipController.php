@@ -15,8 +15,7 @@ class TooltipController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
 
-    public function __construct(public TooltipService $tooltipService)
-    {}
+    public function __construct(public TooltipService $tooltipService) {}
 
     /**
      * Prepare and show an entity's tooltip

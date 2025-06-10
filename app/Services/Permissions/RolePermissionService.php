@@ -14,8 +14,8 @@ use Illuminate\Support\Str;
 class RolePermissionService
 {
     use CampaignAware;
-    use RoleAware;
     use EntityTypeAware;
+    use RoleAware;
 
     protected int $type;
 

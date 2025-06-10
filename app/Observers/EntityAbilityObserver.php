@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\EntityAbility;
+use Illuminate\Database\Query\JoinClause;
 
 class EntityAbilityObserver
 {
@@ -19,10 +20,19 @@ class EntityAbilityObserver
         if ($entityAbility->position !== null) {
             $position = $entityAbility->position;
             $abilities = EntityAbility::select('entity_abilities.*')
-                ->with(['ability'])
+                ->with(['ability', 'ability.entity'])
                 ->has('ability')
                 ->join('abilities as a', 'a.id', 'entity_abilities.ability_id')
-                ->where('entity_id', $entityAbility->entity_id)
+                ->leftJoin('entities as ae', function (JoinClause $join) {
+                    $join
+                        ->on('ae.entity_id', '=', 'a.id')
+                        ->where('ae.type_id', '=', config('entities.ids.ability'));
+                })
+                ->where(function ($query) use ($entityAbility) {
+                    $query->where('ae.id', $entityAbility->entity_id)
+                        ->orWhereNull('ae.id');
+                })
+                ->where('entity_abilities.entity_id', $entityAbility->entity_id)
                 ->where('entity_abilities.id', '<>', $entityAbility->id)
                 ->where('position', '>=', $position)
                 ->defaultOrder()

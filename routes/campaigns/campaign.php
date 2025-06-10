@@ -77,7 +77,7 @@ Route::delete('/w/{campaign}/default-images', 'Campaign\DefaultImageController@d
 
 Route::resources([
     '/w/{campaign}/campaign_users' => 'Campaign\UserController',
-    '/w/{campaign}/campaign_submissions' => 'Campaign\SubmissionController',
+    '/w/{campaign}/applications' => 'Campaign\ApplicationController',
 
     // Permission manager
     '/w/{campaign}/campaign_roles' => 'Campaign\RoleController',
@@ -169,8 +169,8 @@ Route::get('/w/{campaign}/modules/{entity_type}/edit', [App\Http\Controllers\Cam
 Route::patch('/w/{campaign}/modules/{entity_type}/update', [App\Http\Controllers\Campaign\ModuleController::class, 'update'])->name('modules.update');
 Route::delete('/w/{campaign}/modules/reset', [App\Http\Controllers\Campaign\ModuleController::class, 'reset'])->name('modules.reset');
 
-Route::get('/w/{campaign}/campaign-applications', 'Campaign\SubmissionController@toggle')->name('campaign-applications');
-Route::post('/w/{campaign}/campaign-applications', 'Campaign\SubmissionController@toggleSave')->name('campaign-applications.save');
+Route::get('/w/{campaign}/campaign-applications', 'Campaign\ApplicationController@toggle')->name('campaign-applications');
+Route::post('/w/{campaign}/campaign-applications', 'Campaign\ApplicationController@toggleSave')->name('campaign-applications.save');
 
 // Campaign sidebar setup
 Route::get('/w/{campaign}/sidebar-setup', 'Campaign\SidebarController@index')->name('campaign-sidebar');

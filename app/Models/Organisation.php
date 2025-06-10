@@ -162,7 +162,7 @@ class Organisation extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['organisation_id', 'is_defunct', 'location_id'];
+        return ['organisation_id', 'is_defunct'];
     }
 
     public function pinnedMembers()
@@ -200,7 +200,9 @@ class Organisation extends MiscModel
     {
         $organisationId = $this->organisationAndDescendantIds();
 
-        return OrganisationMember::whereIn('organisation_member.organisation_id', $organisationId)->with('character');
+        return OrganisationMember::whereIn('organisation_member.organisation_id', $organisationId)
+            ->with('character')
+            ->has('character.entity');
     }
 
     /**

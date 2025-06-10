@@ -69,7 +69,7 @@
 ]) !!}
         </li>
         <li class="">
-            {!! __('dashboards/widgets/welcome.endings.2', ['discord' => '<a href="' . config('social.discord') . '" target="_blank">Discord</a>']) !!}
+            {!! __('dashboards/widgets/welcome.endings.2', ['discord' => '<a href="https://kanka.io/go/discord">Discord</a>']) !!}
         </li>
         <li class="">
             {!! __('dashboards/widgets/welcome.endings.3', [

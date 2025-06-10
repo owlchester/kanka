@@ -2,6 +2,7 @@
 
 namespace App\Models\Concerns;
 
+use App\Models\Entity;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -55,6 +56,10 @@ trait SortableTrait
                 return $query->sortOnForeign($key, $order);
             }
         } elseif ($key === 'type') {
+            if ($this instanceof Entity) {
+                return $query->orderBy($this->getTable() . '.type', $order);
+            }
+
             return $query
                 ->select($this->getTable() . '.*')
                 ->leftJoin('entities as e', function ($join) {

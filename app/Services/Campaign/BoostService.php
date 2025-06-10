@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign;
 
-use App\Enums\UserAction;
 use App\Exceptions\Campaign\AlreadyBoostedException;
 use App\Exceptions\Campaign\ExhaustedBoostsException;
 use App\Exceptions\Campaign\ExhaustedSuperboostsException;

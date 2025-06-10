@@ -90,7 +90,6 @@ class Race extends MiscModel
 
     protected array $sanitizable = [
         'name',
-        'type',
     ];
 
     protected string $locationPivot = 'race_location';

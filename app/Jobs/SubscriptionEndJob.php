@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Enums\UserAction;
 use App\Models\CampaignBoost;
 use App\Models\Pledge;
 use App\Models\Role;

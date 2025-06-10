@@ -1,6 +1,6 @@
     <div class="flex gap-2 items-center">
         <div class="flex-0">
-            <img class="img-circle w-24 h-24" src="{{ Img::crop(96)->new()->url('app/tiers/goblin-750.png') }}" alt="Goblin">
+            <img class="w-16 h-16" src="https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/goblin-128.png" alt="Goblin">
         </div>
         <div class="grow">
             <h3>Goblin</h3>
@@ -15,7 +15,7 @@
         <div class="">{{ __('front.features.patreon.upload_limit_map') }}</div>
         <div class="">10 MiB</div>
 
-        <div class="">{!! __('front.features.patreon.discord', ['discord' => '<a href="' . config('social.discord') . '" target="_blank">Discord</a>']) !!}</div>
+        <div class="">{!! __('front.features.patreon.discord', ['discord' => '<a href="https://kanka.io/go/discord">Discord</a>']) !!}</div>
         <div class=""><x-icon class="fa-solid fa-check-circle" /></div>
 
         <div class="">{{ __('front.features.patreon.default_image') }}</div>

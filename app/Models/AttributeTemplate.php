@@ -248,6 +248,10 @@ class AttributeTemplate extends MiscModel
 
     public function toSearchableArray()
     {
+        if (! $this->entity) {
+            return [];
+        }
+
         return [
             'campaign_id' => $this->entity->campaign_id,
             'entity_id' => $this->entity->id,

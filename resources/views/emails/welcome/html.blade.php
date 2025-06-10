@@ -25,7 +25,7 @@
 
     <p><b>{{ __('emails/welcome.2023.chat.title') }}</b></p>
     <p>{!! __('emails/welcome.2023.chat.text_1', [
-        'discord' => '<a href="' . config('social.discord') . '" target="_blank">Discord</a>',
+        'discord' => '<a href="https://kanka.io/go/discord">Discord</a>',
         'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>'
     ]) !!}</p>
 

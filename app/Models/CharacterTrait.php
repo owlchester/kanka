@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Purifiable;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,8 +21,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class CharacterTrait extends Model
 {
-    use Purifiable;
     use Paginatable;
+    use Purifiable;
 
     public const int SECTION_APPEARANCE = 1;
 

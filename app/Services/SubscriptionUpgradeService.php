@@ -38,7 +38,7 @@ class SubscriptionUpgradeService
         if (! $this->user->subscribed('kanka') || $this->user->hasManualSubscription()) {
             return $price;
         }
-        if ($this->user->isStripeYearly() || $this->user->hasPayPal()) {
+        if ($this->onYearlyPlan()) {
             $monthly = false;
         }
 
@@ -89,5 +89,21 @@ class SubscriptionUpgradeService
 
         // For paypal, we need the subscription's end date
         return $this->user->subscription('kanka')->ends_at;
+    }
+
+    protected function onYearlyPlan(): bool
+    {
+        if ($this->user->hasPayPal()) {
+            return true;
+        }
+
+        // Todo: move to tiers table?
+        $prices = array_merge(
+            config('subscription.owlbear.yearly'),
+            config('subscription.wyvern.yearly'),
+            config('subscription.elemental.yearly'),
+        );
+
+        return $this->user->subscribedToPrice($prices, 'kanka');
     }
 }
