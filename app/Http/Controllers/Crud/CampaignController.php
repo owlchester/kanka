@@ -3,13 +3,9 @@
 namespace App\Http\Controllers\Crud;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCampaign;
 use App\Http\Requests\UpdateCampaign;
 use App\Models\Campaign;
 use App\Services\MultiEditingService;
-use Exception;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 
 class CampaignController extends Controller
 {
@@ -23,59 +19,6 @@ class CampaignController extends Controller
     public function show(Campaign $campaign)
     {
         return view($this->view . '.show', compact('campaign'));
-    }
-
-    public function create(Campaign $campaign)
-    {
-        $this->authorize('create', $campaign);
-
-        return view($this->view . '.forms.create', ['start' => false]);
-    }
-
-    public function store(StoreCampaign $request)
-    {
-        $campaign = new Campaign;
-        $this->authorize('create', $campaign);
-
-        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
-        if (request()->ajax()) {
-            return response()->json(['success' => true]);
-        }
-
-        $first = ! auth()->user()->hasCampaigns();
-        $data = $request->all();
-
-        $data['entry'] = Arr::get($data, 'entry');
-        $data['excerpt'] = Arr::get($data, 'excerpt');
-
-        DB::beginTransaction();
-        try {
-            /** @var Campaign $campaign */
-            $campaign = Campaign::create($data);
-
-            DB::commit();
-        } catch (Exception $e) {
-            DB::rollBack();
-            throw $e;
-        }
-
-        if ($request->has('submit-update')) {
-            return redirect()
-                ->route('campaigns.edit', $campaign)
-                ->with('success', __($this->view . '.create.success', ['name' => $campaign->name]));
-        } elseif ($request->has('submit-new')) {
-            return redirect()
-                ->route('start')
-                ->with('success', __($this->view . '.create.success', ['name' => $campaign->name]));
-        } elseif ($first) {
-            $user = auth()->user();
-            $user->save();
-
-            return redirect()->route('dashboard', $campaign);
-        }
-
-        return redirect()->route('dashboard', $campaign)
-            ->with('success', __($this->view . '.create.success', ['name' => $campaign->name]));
     }
 
     public function edit(Campaign $campaign)

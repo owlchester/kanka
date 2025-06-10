@@ -237,7 +237,7 @@ class PermissionService
         $this->loadedPosts = true;
 
         // Get the user's individual and role permissions
-        $roles = $this->user->campaignRoleIDs($this->campaign->id);
+        $roles = $this->userRoles();
         $perms = PostPermission::select(['post_id', 'permission'])
             ->leftJoin('posts as p', 'p.id', 'post_permissions.post_id')
             ->leftJoin('entities as e', 'e.id', 'p.entity_id')
@@ -453,5 +453,13 @@ class PermissionService
                 $this->deniedModels[] = $permission->misc_id;
             }
         }
+    }
+
+    protected function userRoles(): array
+    {
+        return UserCache::user($this->user)
+            ->roles()
+            ->pluck('id')
+            ->toArray();
     }
 }

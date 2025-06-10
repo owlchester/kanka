@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Campaign;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaign;
 use App\Models\Campaign;
+use App\Services\Campaign\CreateService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class StartController extends Controller
+class CreateController extends Controller
 {
-    public function __construct()
+    public function __construct(protected CreateService $createService)
     {
         $this->middleware('auth');
     }
@@ -34,21 +36,30 @@ class StartController extends Controller
     public function store(StoreCampaign $request)
     {
         $this->authorize('create', new Campaign);
+
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
 
-        $first = ! Auth::user()->hasCampaigns();
-        $options = $request->all();
-        $options['entry'] = '';
-        $options['excerpt'] = '';
-        $campaign = Campaign::create($options);
+        $first = auth()->user()->campaigns->count() === 0;
+        $campaign = $this->createService
+            ->request($request)
+            ->user($request->user())
+            ->create();
 
-        if ($first) {
+        if ($request->has('submit-update')) {
+            return redirect()
+                ->route('campaigns.edit', $campaign)
+                ->with('success', __('campaigns.create.success', ['name' => $campaign->name]));
+        } elseif ($request->has('submit-new')) {
+            return redirect()
+                ->route('start')
+                ->with('success', __('campaigns.create.success', ['name' => $campaign->name]));
+        } elseif ($first) {
             return redirect()->route('dashboard', $campaign);
         }
 
         return redirect()->route('dashboard', $campaign)
-            ->with('success', __('campaigns.create.success'));
+            ->with('success', __('campaigns.create.success', ['name' => $campaign->name]));
     }
 }

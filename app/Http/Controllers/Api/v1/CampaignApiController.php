@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Requests\StoreCampaign as Request;
 use App\Http\Resources\CampaignResource;
 use App\Models\Campaign;
+use App\Services\Campaign\CreateService;
 
 class CampaignApiController extends ApiController
 {
+    public function __construct(protected CreateService $createService)
+    {}
+
     public function index(\Illuminate\Http\Request $request)
     {
         $campaigns = $request
@@ -30,10 +34,14 @@ class CampaignApiController extends ApiController
 
     public function store(Request $request)
     {
-        $model = Campaign::create($request->all());
-        $model->refresh();
+        $this->authorize('create', Campaign::class);
 
-        return new CampaignResource($model);
+        $campaign = $this->createService->user($request->user())
+            ->request($request)
+            ->create();
+        $campaign->refresh();
+
+        return new CampaignResource($campaign);
     }
 
     public function update(Request $request, Campaign $campaign)

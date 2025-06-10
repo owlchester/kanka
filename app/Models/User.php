@@ -111,19 +111,6 @@ class User extends \Illuminate\Foundation\Auth\User
 
     protected bool $isAdmin;
 
-    /**
-     * Get the other campaigns of the user
-     */
-    public function moveCampaignList(Campaign $campaign, bool $hasEmpty = true): array
-    {
-        $campaigns = $hasEmpty ? [0 => ''] : [];
-        foreach ($this->campaigns()->whereNotIn('campaign_id', [$campaign->id])->get() as $campaign) {
-            $campaigns[$campaign->id] = $campaign->name;
-        }
-
-        return $campaigns;
-    }
-
     public function getAvatarUrl(int $size = 40): string
     {
         if ($this->hasAvatar()) {
@@ -166,14 +153,6 @@ class User extends \Illuminate\Foundation\Auth\User
             ->where('campaign_id', $campaign->id)
             ->where('is_admin', 1)
             ->count() === 1;
-    }
-
-    /**
-     * Check if a user has campaigns
-     */
-    public function hasCampaigns($count = 0): bool
-    {
-        return UserCache::user($this)->campaigns()->count() > $count;
     }
 
     /**
@@ -256,24 +235,8 @@ class User extends \Illuminate\Foundation\Auth\User
         return $this->currency() === 'brl';
     }
 
-    public function adminCampaigns(): array
-    {
-        $campaigns = [];
-
-        $roles = $this
-            ->campaignRoles()
-            ->where('campaign_roles.is_admin', 1)->with('campaign')
-            ->get();
-        foreach ($roles as $role) {
-            /** @var CampaignRole $role */
-            $campaigns[$role->campaign->id] = $role->campaign->name;
-        }
-
-        return $campaigns;
-    }
-
     /**
-     * Check if User has a Role(s) associated.
+     * Check if the user has a Role(s) associated.
      *
      * @param  string|array  $name  The role(s) to check.
      */
@@ -323,18 +286,11 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Get the user's role IDs based on the campaign
-     */
-    public function campaignRoleIDs(int $campaignID): array
-    {
-        return UserCache::roles()->pluck('id')->toArray();
-    }
-
-    /**
      * Log an event on the user
      */
     public function log(UserAction $action, array $data = []): self
     {
+        // todo: move to a facade
         if (! config('logging.enabled')) {
             return $this;
         }
@@ -350,6 +306,7 @@ class User extends \Illuminate\Foundation\Auth\User
 
     public function campaignLog(int $campaign, string $module, string $action, array $data = []): self
     {
+        // todo: move to a facade
         if (! config('logging.enabled')) {
             return $this;
         }
@@ -483,41 +440,7 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * List of campaigns the user is the only admin of. This is used for the automatic purge warning emails
-     */
-    public function onlyAdminCampaigns(): array
-    {
-        // Todo: move to a service
-        $campaigns = [];
-        $userCampaigns = $this->campaigns()->with(['roles', 'roles.users'])->get();
-        foreach ($userCampaigns as $campaign) {
-            /** @var ?CampaignRole $adminRole */
-            $adminRole = $campaign->roles->where('is_admin', true)->first();
-            if (! $adminRole) {
-                continue;
-            }
-
-            // If the user isn't in the admin
-            $isAdmin = false;
-            foreach ($adminRole->users as $member) {
-                if ($member->user_id === $this->id) {
-                    $isAdmin = true;
-                }
-            }
-
-            if (! $isAdmin || $adminRole->users->count() > 1) {
-                continue;
-            }
-
-            // The user is the only admin
-            $campaigns[] = $campaign;
-        }
-
-        return $campaigns;
-    }
-
-    /**
-     * Check if user is subscribed via PayPal
+     * Check if the user is subscribed via PayPal
      */
     public function hasPayPal(): bool
     {
@@ -527,7 +450,7 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     /**
-     * Check if user is subscribed via a manual sub
+     * Check if the user is subscribed via a manual sub
      */
     public function hasManualSubscription(): bool
     {
