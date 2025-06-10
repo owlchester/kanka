@@ -36,6 +36,6 @@ _Jay and Jon_
 
 {!! __('emails/welcome/2024.ps', [
     'email' => '[' . config('app.email') . '](mailto:' . config('app.email') . ')',
-    'discord' => '[Discord](https:' . config('social.discord') . ')',
+    'discord' => '[Discord](https://kanka.io/go/discord)',
 ]) !!}
 </x-mail::message>

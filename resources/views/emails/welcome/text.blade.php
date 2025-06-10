@@ -16,7 +16,7 @@
 
 {!! __('emails/welcome.2023.chat.text_1', [
     'email' => config('app.email'),
-    'discord' => 'Discord (https:' . config('social.discord') . ')',
+    'discord' => 'Discord (https://kanka.io/go/discord)',
 ]) !!}
 
 

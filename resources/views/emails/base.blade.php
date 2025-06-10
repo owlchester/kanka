@@ -82,15 +82,15 @@
 
         <div class="footer">
             <p>
-                <a href="https://{{ config('social.discord') }}" class="social" target="discord" title="Discord" rel="noreferrer">
+                <a href="https://kanka.io/go/discord" class="social" target="discord" title="Discord" rel="noreferrer">
                     <img src="https://d3a4xjr8r2ldhu.cloudfront.net/app/socials/discord-brands.png" /></a>
-                <a href="https://{{ config('social.facebook') }}" class="social" target="facebook" title="Facebook" rel="noreferrer">
+                <a href="https://kanka.io/go/facebook" class="social" target="facebook" title="Facebook" rel="noreferrer">
                     <img src="https://d3a4xjr8r2ldhu.cloudfront.net/app/socials/facebook-brands.png" /></a>
-                <a href="https://{{ config('social.instagram') }}" class="social" target="instagram" title="Instagram" rel="noreferrer">
+                <a href="https://kanka.io/go/instagram" class="social" target="instagram" title="Instagram" rel="noreferrer">
                     <img src="https://d3a4xjr8r2ldhu.cloudfront.net/app/socials/instagram-brands.png" /></a>
-                <a href="https://{{ config('social.youtube') }}" class="social" target="youtube" title="Youtube" rel="noreferrer">
+                <a href="https://kanka.io/go/youtube" class="social" target="youtube" title="Youtube" rel="noreferrer">
                     <img src="https://d3a4xjr8r2ldhu.cloudfront.net/app/socials/youtube-brands.png" /></a>
-                <a href="https://{{ config('social.twitter') }}" class="social" target="twitter" title="Twitter" rel="noreferrer">
+                <a href="https://kanka.io/go/twitter" class="social" target="twitter" title="Twitter" rel="noreferrer">
                     <img src="https://d3a4xjr8r2ldhu.cloudfront.net/app/socials/twitter-brands.png" /></a>
             </p>
 
