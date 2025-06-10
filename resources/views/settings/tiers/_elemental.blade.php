@@ -1,7 +1,7 @@
 
     <div class="flex gap-2 items-center">
         <div class="flex-0">
-            <img class="img-circle  w-24 h-24" src="{{ Img::crop(96)->new()->url('app/tiers/elemental-750.png') }}" alt="Elemental">
+            <img class="w-16 h-16" src="https://d3a4xjr8r2ldhu.cloudfront.net/app/tiers/elemental-128.png" alt="Elemental">
         </div>
         <div class="grow">
             <h3>Elemental</h3>

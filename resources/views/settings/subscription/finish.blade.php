@@ -24,7 +24,7 @@
         <p>{{ __('subscriptions/finish.next') }}</p>
 
         <div id="premium" class="flex flex-col gap-4 bg-box p-4 rounded-2xl">
-            <h2>
+            <h2 class="text-2xl">
                 <x-icon class="premium" />
                 {{ __('subscriptions/finish.premium.title') }}
             </h2>
@@ -61,7 +61,7 @@
         </div>
 
         <div id="discord" class="flex flex-col gap-4 bg-box p-4 rounded-2xl">
-            <h2>
+            <h2 class="text-2xl">
                 <x-icon class="fa-brands fa-discord" />
                 {{ __('subscriptions/finish.discord.title') }}
             </h2>
@@ -81,7 +81,7 @@
         </div>
 
         <div id="roadmap" class="flex flex-col gap-4 bg-box p-4 rounded-2xl">
-            <h2>
+            <h2 class="text-2xl">
                 <x-icon class="fa-regular fa-box-ballot" />
                 {{ __('subscriptions/finish.roadmap.title') }}
             </h2>
@@ -95,7 +95,7 @@
         </div>
 
         <div id="help" class="flex flex-col gap-4">
-            <h2>
+            <h2 class="text-2xl">
                 {{ __('subscriptions/finish.help.title') }}
             </h2>
             <p>{!! __('subscriptions/finish.help.helper', [

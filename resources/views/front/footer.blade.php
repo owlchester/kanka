@@ -5,14 +5,22 @@
 
             <div class="flex-col gap-8 hidden lg:flex col-span-2 ">
                 <div>
-                    <img class="inline-block" src="https://th.kanka.io/tNmf0YlrJqMPrQE7iPW5bdcsPtQ=/103x103/smart/src/app/logos/logo-white.png" title="Kanka logo" alt="Kanka logo" />
+                    @include('icons.kanka-svg')
                 </div>
 
                 <div class="flex items-center gap-5 text-3xl flex-wrap">
                     @include('layouts._socials')
                 </div>
                 <div class="text-xs">
-                    Kanka {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}
+                    <p class="text-xs">
+                        {{ __('footer.made') }}
+                    </p>
+                    <p class="text-xs">
+                        {{ __('footer.thanks') }}
+                    </p>
+                    <p class="text-xs">
+                        {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}
+                    </p>
                 </div>
             </div>
 

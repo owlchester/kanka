@@ -33,7 +33,7 @@
 
     <x-grid type="1/1">
         <div id="included" class="flex flex-col gap-4 bg-box p-4 rounded-2xl">
-            <h2>
+            <h2 class="text-2xl">
                 <x-icon class="fa-regular fa-check-square" />
                 {{ __('subscriptions/free-trial.included.title') }}
             </h2>
@@ -54,7 +54,7 @@
         </div>
 
         <div id="why" class="flex flex-col gap-4 bg-box p-4 rounded-2xl">
-            <h2>
+            <h2 class="text-2xl">
                 <x-icon class="fa-regular fa-trophy" />
                 {{ __('subscriptions/free-trial.why.title') }}
             </h2>
@@ -65,7 +65,7 @@
 
 
         <div id="tease" class="flex flex-col gap-4 bg-box p-4 rounded-2xl">
-            <h2>
+            <h2 class="text-2xl">
                 <x-icon class="fa-regular fa-mountain" />
                 {{ __('subscriptions/free-trial.tease.title') }}
             </h2>
