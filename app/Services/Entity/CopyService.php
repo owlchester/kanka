@@ -163,6 +163,7 @@ class CopyService
         $relations = ['characterFamilies', 'characterRaces', 'organisationMemberships'];
         foreach ($relations as $relation) {
             /** @var CharacterRace $item */
+            //@phpstan-ignore-next-line
             foreach ($this->source->child->{$relation} as $item) {
                 $new = $item->replicate(['character_id']);
                 $new->character_id = $this->entity->entity_id;
