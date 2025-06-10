@@ -27,12 +27,16 @@ class DefaultImageController extends Controller
     public function index(Campaign $campaign)
     {
         $entityTypes = [];
+        /** @var EntityType $entityType */
         foreach (EntityType::inCampaign($campaign)->get() as $entityType) {
             $entityTypes[$entityType->pluralCode()] = $entityType;
         }
 
+        $images = $campaign->defaultImages();
+
         return view('campaigns.default-images.index')
             ->with('campaign', $campaign)
+            ->with('images', $images)
             ->with('entityTypes', $entityTypes);
     }
 
