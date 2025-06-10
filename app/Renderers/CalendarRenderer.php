@@ -790,7 +790,7 @@ class CalendarRenderer
         // @phpstan-ignore-next-line
         return $calendar->calendarEvents()
             ->whereHas('remindable')
-            ->with([            
+            ->with([
                 'remindable' => function ($morphTo) {
                     $morphTo->morphWith([
                         Entity::class => ['entityType', 'tags', 'image'],

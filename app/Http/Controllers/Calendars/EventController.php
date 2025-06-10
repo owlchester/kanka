@@ -63,14 +63,14 @@ class EventController extends Controller
 
         // @phpstan-ignore-next-line
         $this->rows = $rows
-            ->with(['calendar', 'calendar.entity', 
-                            'remindable' => function ($morphTo) {
+            ->with(['calendar', 'calendar.entity',
+                'remindable' => function ($morphTo) {
                     $morphTo->morphWith([
                         Entity::class => ['entityType', 'tags', 'image'],
                         Post::class => ['tags', 'entity', 'entity.image', 'entity.entityType'],
                     ]);
                 },
-                ])
+            ])
             ->whereHas('remindable')
             ->sort(request()->only(['o', 'k']))
             ->paginate();

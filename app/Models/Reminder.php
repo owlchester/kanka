@@ -549,7 +549,7 @@ class Reminder extends Model
     }
 
     public function death()
-    {    
+    {
         return $this->morphOne(Reminder::class, 'remindable')
             ->whereColumn('calendar_id', 'reminders.calendar_id')
             ->where('type_id', EntityEventType::DEATH);
