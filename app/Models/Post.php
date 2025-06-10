@@ -64,7 +64,6 @@ class Post extends Model
     use HasLocation;
     use HasVisibility;
     use Paginatable;
-    use PostHasReminder;
     use Sanitizable;
     use Searchable;
     use SoftDeletes;
