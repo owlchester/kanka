@@ -74,7 +74,7 @@ class AclScope implements Scope
             return $this->applyToPost($query, $model);
         }
 
-        // Campaign admins doesn't have any restrictions on base
+        // Campaign admins don't have any restrictions on base
         Permissions::campaign(CampaignLocalization::getCampaign())
             ->action(Permission::View);
         if (auth()->check()) {

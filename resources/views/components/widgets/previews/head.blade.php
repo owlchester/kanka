@@ -27,7 +27,7 @@
         @if ($entity->is_private)
             <x-icon class="lock" :title="__('crud.is_private')" tooltip />
         @endif
-        <span class="grow">
+        <span class="grow truncate">
         @if(!empty($customName))
             {{ $customName }}
         @elseif (!empty($widget->conf('text')))

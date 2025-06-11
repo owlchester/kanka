@@ -664,7 +664,7 @@ class MentionsService
      */
     protected function prepareEntities(): void
     {
-        // First let's prepare all mentions to do a single query on the entities table
+        // First, let's prepare all mentions to do a single query on the entities table
         $this->mentionedEntities = [];
         preg_replace_callback('`\[([a-z_-]+):(.*?)\]`i', function ($matches) {
             $segments = explode('|', $matches[2]);
