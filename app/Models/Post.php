@@ -6,12 +6,14 @@ use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
 use App\Models\Concerns\HasLocation;
+use App\Models\Concerns\HasReminder;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
 use App\Models\Concerns\Taggable;
 use App\Models\Concerns\Templatable;
+use App\Models\Concerns\TouchSilently;
 use App\Services\MentionsService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -20,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -58,6 +62,7 @@ class Post extends Model
     use HasEntry;
     use HasFactory;
     use HasLocation;
+    use HasReminder;
     use HasVisibility;
     use Paginatable;
     use Sanitizable;
@@ -66,6 +71,7 @@ class Post extends Model
     use SortableTrait;
     use Taggable;
     use Templatable;
+    use TouchSilently;
 
     protected $fillable = [
         'entity_id',
@@ -247,5 +253,34 @@ class Post extends Model
             'type' => 'post',
             'entry' => strip_tags($this->entry),
         ];
+    }
+
+    public function reminders(): MorphMany
+    {
+        return $this->morphMany(Reminder::class, 'remindable');
+    }
+
+    /**
+     * Calendar Date Events are used by Journals and Quests to link them directly to a calendar
+     */
+    public function calendarDateEvents(): MorphMany
+    {
+        return $this->reminders()
+            ->with('calendar')
+            ->has('calendar')
+            ->calendarDate();
+    }
+
+    public function calendarDate(): MorphOne
+    {
+        return $this->morphOne(Reminder::class, 'remindable')
+            ->with('calendar')
+            ->has('calendar')
+            ->where('type_id', EntityEventType::CALENDAR_DATE);
+    }
+
+    public function elapsedEvents(): MorphMany
+    {
+        return $this->reminders()->with('calendar')->whereNotNull('type_id');
     }
 }

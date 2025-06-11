@@ -6,6 +6,7 @@ use App\Models\Calendar;
 use App\Models\CalendarWeather;
 use App\Models\Entity;
 use App\Models\EntityEventType;
+use App\Models\Post;
 use App\Models\Reminder;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
@@ -789,7 +790,14 @@ class CalendarRenderer
         // @phpstan-ignore-next-line
         return $calendar->calendarEvents()
             ->whereHas('remindable')
-            ->with(['remindable', 'remindable.tags', 'remindable.image', 'death', 'remindable.entityType'])
+            ->with([
+                'remindable' => function ($morphTo) {
+                    $morphTo->morphWith([
+                        Entity::class => ['entityType', 'tags', 'image'],
+                        Post::class => ['tags', 'entity'],
+                    ]);
+                },
+                'death'])
             ->where(function ($query) {
                 $query
                     // Where it's the current year , or current year and current month

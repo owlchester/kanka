@@ -81,20 +81,25 @@
             @if (!empty($day['events']))
                 @foreach ($day['events'] as $event)
                     <div class="calendar-event-block text-left rounded-sm p-1 relative cursor-pointer text-sm flex gap-1 flex-col   {{ $event->getLabelColour() }}" style="background-color: {{ $event->getLabelBackgroundColour() }}; @if (\Illuminate\Support\Str::startsWith($event->colour, '#')) color: {{ $colours->contrastBW($event->colour) }};"@endif
-                        @if ($canEdit)
-@php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
-                            data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('entities.reminders.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->remindable->id, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->remindable->id, $event->id, 'next' => 'calendar.' . $model->id]) + $routeOptions) }}"
+                        @if ($canEdit && $event->isEntity())
+                            @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
+                            data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('reminders.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->id, 'next' => 'calendar.' . $model->id]) + $routeOptions) }}"
+                    
+                        @elseif ($canEdit && $event->isPost())
+                            @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
+                            data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('reminders.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->id, 'next' => 'calendar.' . $model->id]) + $routeOptions) }}"
                         @else
                             data-url="{{ $event->remindable->url() }}"
                         @endif
                         >
                         <div class="flex gap-1 items-center">
-                            @if (Avatar::entity($event->remindable)->hasImage())
+                            @if ($event->isEntity() && Avatar::entity($event->remindable)->hasImage())
                                 <div class="hidden md:inline grow-0">
                                     <a href="{{ $event->remindable->url() }}" class="entity-image w-7 h-7 cover-background" style="background-image: url('{{ Avatar::size(40)->thumbnail() }}');"></a>
                                 </div>
                             @endif
-                            <span data-toggle="tooltip-ajax" data-id="{{ $event->remindable->id }}" data-url="{{ route('entities.tooltip', [$campaign, $event->remindable]) }}" class="grow truncate">
+
+                            <span data-toggle="tooltip-ajax" data-id="{{ $event->isEntity() ? $event->remindable->id : $event->remindable->entity->id}}" data-url="{{ route('entities.tooltip', [$campaign, $event->remindable->entity ?? $event->remindable]) }}" class="grow truncate">
                                 {{ $event->remindable->name }}
                                 @if ($renderer->isEventStartDate($event, $day['date']))
                                     <span class="text-xs">{{ __('calendars.events.start')}}</span>

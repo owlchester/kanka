@@ -58,7 +58,7 @@
     </x-forms.field>
 
     @include('cruds.fields.visibility_id', ['model' => $reminder ?? null])
-    @if (!empty($entity) && $entity->isCharacter())
+    @if (!empty($entity) && $entity->isCharacter() && $reminder->remindable instanceof App\Models\Entity)
         <x-forms.field
             field="type"
             :label="__('entities/events.fields.type')"

@@ -265,6 +265,7 @@ Route::resources([
     '/w/{campaign}/races' => 'Crud\RaceController',
     '/w/{campaign}/creatures' => 'Crud\CreatureController',
     '/w/{campaign}/relations' => 'RelationController',
+    '/w/{campaign}/reminders' => 'ReminderUpdateController',
 
     // Entities
     // 'entities.attributes' => 'AttributeController',

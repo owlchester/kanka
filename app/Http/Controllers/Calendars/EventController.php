@@ -9,6 +9,8 @@ use App\Http\Requests\AddCalendarEvent;
 use App\Http\Requests\ValidateReminderLength;
 use App\Models\Calendar;
 use App\Models\Campaign;
+use App\Models\Entity;
+use App\Models\Post;
 use App\Services\CalendarService;
 use App\Services\LengthValidatorService;
 use App\Traits\CampaignAware;
@@ -61,7 +63,14 @@ class EventController extends Controller
 
         // @phpstan-ignore-next-line
         $this->rows = $rows
-            ->with(['remindable', 'calendar', 'calendar.entity', 'remindable.image', 'remindable.entityType'])
+            ->with(['calendar', 'calendar.entity',
+                'remindable' => function ($morphTo) {
+                    $morphTo->morphWith([
+                        Entity::class => ['entityType', 'tags', 'image'],
+                        Post::class => ['tags', 'entity', 'entity.image', 'entity.entityType'],
+                    ]);
+                },
+            ])
             ->whereHas('remindable')
             ->sort(request()->only(['o', 'k']))
             ->paginate();

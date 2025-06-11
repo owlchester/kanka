@@ -9,6 +9,7 @@ use App\Models\Concerns\Orderable;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Searchable;
 use App\Models\Concerns\Sortable;
+use App\Models\Concerns\TouchSilently;
 use App\Models\Scopes\SubEntityScopes;
 use Carbon\Carbon;
 use Exception;
@@ -44,6 +45,7 @@ abstract class MiscModel extends Model
     use Searchable;
     use Sortable;
     use SubEntityScopes;
+    use TouchSilently;
 
     /** Entity type (character, location) */
     protected string $entityType;
@@ -142,16 +144,6 @@ abstract class MiscModel extends Model
         $this->setRelation('entity', $entity);
 
         return $entity;
-    }
-
-    /**
-     * Touch a model (update the timestamps) without any observers/events
-     */
-    public function touchSilently()
-    {
-        return static::withoutEvents(function () {
-            return $this->touch();
-        });
     }
 
     /**

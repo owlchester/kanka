@@ -351,7 +351,7 @@ class MentionsService
                             $data['text'] = $child->characterRaces->first()->race->name;
                         }
                         if ($field == 'calendar_date' && $child->calendar_id) {
-                            $data['text'] = $child->calendarReminder()->readableDate();
+                            $data['text'] = $entity->calendarReminder()->readableDate();
                         }
                     }
                     if ($field === 'entry' && method_exists($entity, 'parsedEntry')) {

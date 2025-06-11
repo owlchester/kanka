@@ -28,12 +28,12 @@ trait HasReminder
 
     public function hasCalendar(): bool
     {
-        return $this->hasCalendarDate() && $this->entity->calendarDate->calendar !== null;
+        return $this->hasCalendarDate() && $this->calendarDate->calendar !== null;
     }
 
     public function hasCalendarButNoAccess(): bool
     {
-        return $this->hasCalendarDate() && $this->entity->calendarDate->calendar === null;
+        return $this->hasCalendarDate() && $this->calendarDate->calendar === null;
     }
 
     public function getDate(): string
@@ -66,7 +66,7 @@ trait HasReminder
             return null;
         }
 
-        return $this->entity->calendarDate->calendar_id;
+        return $this->calendarDate->calendar_id;
     }
 
     public function getCalendarYearAttribute(): ?int
@@ -75,7 +75,7 @@ trait HasReminder
             return null;
         }
 
-        return $this->entity->calendarDate->year;
+        return $this->calendarDate->year;
     }
 
     public function getCalendarMonthAttribute(): ?int
@@ -84,7 +84,7 @@ trait HasReminder
             return null;
         }
 
-        return $this->entity->calendarDate->month;
+        return $this->calendarDate->month;
     }
 
     public function getCalendarDayAttribute(): ?int
@@ -93,7 +93,7 @@ trait HasReminder
             return null;
         }
 
-        return $this->entity->calendarDate->day;
+        return $this->calendarDate->day;
     }
 
     public function getCalendarLengthAttribute(): ?int
@@ -102,7 +102,7 @@ trait HasReminder
             return null;
         }
 
-        return (int) $this->entity->calendarDate->length;
+        return (int) $this->calendarDate->length;
     }
 
     /**
@@ -114,7 +114,7 @@ trait HasReminder
             return null;
         }
 
-        return $this->entity->calendarDate->recurring_periodicity;
+        return $this->calendarDate->recurring_periodicity;
     }
 
     /**
@@ -128,16 +128,16 @@ trait HasReminder
             return '#cccccc';
         }
 
-        return $this->entity->calendarDate->colour;
+        return $this->calendarDate->colour;
     }
 
     public function calendarReminder(): ?Reminder
     {
-        return $this->entity?->calendarDate;
+        return $this->calendarDate;
     }
 
     protected function hasCalendarDate(): bool
     {
-        return $this->entity && $this->entity->calendarDate;
+        return isset($this->calendarDate);
     }
 }

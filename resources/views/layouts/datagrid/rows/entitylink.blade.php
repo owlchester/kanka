@@ -41,7 +41,18 @@
     @if ($model->remindable->is_private)
         <x-icon class="lock" :title="__('crud.is_private')" tooltip />
     @endif
-    <x-entity-link
+
+
+    @if ($model instanceof \App\Models\Reminder && $model->isPost())
+        <x-entity-link
+        :entity="$model->remindable->entity"
+        :name="$model->remindable->name . ' (' . $model->remindable->entity->name . ')'"
+        :post="$model->remindable->id"
+        :campaign="$campaign" />
+    @else
+        <x-entity-link
         :entity="$model->remindable"
         :campaign="$campaign" />
+    @endif
+
 @endif
