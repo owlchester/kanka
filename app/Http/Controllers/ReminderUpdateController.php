@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCalendarEvent;
 use App\Models\Calendar;
 use App\Models\Campaign;
