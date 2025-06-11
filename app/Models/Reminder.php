@@ -95,6 +95,16 @@ class Reminder extends Model
         return $this->belongsTo(EntityEventType::class, 'type_id');
     }
 
+    public function isPost(): bool
+    {
+        return $this->remindable instanceof Post;
+    }
+
+    public function isEntity(): bool
+    {
+        return $this->remindable instanceof Entity;
+    }
+
     public function readableDate(): string
     {
         if (! isset($this->readableDate)) {

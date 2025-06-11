@@ -17,6 +17,6 @@ class Remindable
     public function saved(Model $model)
     {
         // @phpstan-ignore-next-line
-        $this->service->processSaved($model);
+        $this->service->request(request())->save($model);
     }
 }

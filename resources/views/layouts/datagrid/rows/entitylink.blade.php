@@ -43,7 +43,7 @@
     @endif
 
 
-    @if ($model instanceof \App\Models\Reminder && $model->remindable instanceof \App\Models\Post)
+    @if ($model instanceof \App\Models\Reminder && $model->isPost())
         <x-entity-link
         :entity="$model->remindable->entity"
         :name="$model->remindable->name . ' (' . $model->remindable->entity->name . ')'"

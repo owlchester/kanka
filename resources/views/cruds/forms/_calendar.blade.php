@@ -20,7 +20,7 @@ if (!empty($source) && empty($post) && $source->calendarReminder()) {
 if (!empty($post)) {
     $model = $post;
 } else {
-    $model = $model->entity;
+    $model = $entity;
 }
 
 $calendar = null;

@@ -265,13 +265,13 @@ Route::resources([
     '/w/{campaign}/races' => 'Crud\RaceController',
     '/w/{campaign}/creatures' => 'Crud\CreatureController',
     '/w/{campaign}/relations' => 'RelationController',
+    '/w/{campaign}/reminders' => 'ReminderUpdateController',
 
     // Entities
     // 'entities.attributes' => 'AttributeController',
     '/w/{campaign}/entities.entity_abilities' => 'Entity\AbilityController',
     '/w/{campaign}/entities.posts' => 'Entity\PostController',
     '/w/{campaign}/entities.reminders' => 'Entity\ReminderController',
-    '/w/{campaign}/reminders' => 'Entity\ReminderUpdateController',
     '/w/{campaign}/entities.entity_assets' => 'Entity\AssetController',
     '/w/{campaign}/entities.inventories' => 'Entity\InventoryController',
     '/w/{campaign}/entities.relations' => 'Entity\RelationController',

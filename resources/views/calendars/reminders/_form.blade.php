@@ -4,7 +4,7 @@
     </x-alert>
 @endif
 
-@if (!empty($reminder) && $reminder->remindable instanceof \App\Models\Entity)
+@if (!empty($reminder) && $reminder->isEntity())
     <x-grid type="1/1">
         @include('cruds.fields.entity', ['route' => null, 'preset' => $reminder->remindable, 'name' => 'entity_id', 'dropdownParent' => $dropdownParent ?? '#primary-dialog', 'allowClear' => false])
     </x-grid>
