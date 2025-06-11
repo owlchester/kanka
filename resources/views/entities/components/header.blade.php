@@ -45,7 +45,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
 ?>
 <div class="w-full h-full entity-header flex-wrap md:flex-no-wrap flex gap-2 md:gap-5 items-end relative @if ($hasBanner) with-entity-banner p-4 text-white aspect-[3/1] @endif">
     @if ($imageUrl)
-    <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto z-10">
+    <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto">
 
         @can('update', $entity)
             @if(isset($printing) && $printing)
@@ -117,7 +117,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         @endcan
     </div>
     @endif
-    <div class="entity-header-text grow flex flex-col gap-1 md:gap-2 z-10">
+    <div class="entity-header-text grow flex flex-col gap-1 md:gap-2">
         @if (!empty($breadcrumb))
             <ol class="entity-breadcrumb text-sm m-0 p-0">
                 @foreach ($breadcrumb as $bcdata)
@@ -246,7 +246,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         <span
             role="button"
             tabindex="0"
-            class="header-visibility absolute top-2 right-2 rounded cursor-pointer z-10"
+            class="header-visibility absolute top-2 right-2 rounded cursor-pointer"
             data-toggle="dialog"
             data-url="{{ route('gallery.file.visibility', [$campaign, $entity->header]) }}"
             data-target="primary-dialog"
@@ -256,7 +256,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         </span>
         @else
             <span
-                class="header-visibility absolute top-2 right-2 rounded z-10">
+                class="header-visibility absolute top-2 right-2 rounded">
                 <x-icon :class="$entity->header->visibilityIcon()['class']" :title="$headerHelper" tooltip />
             </span>
         @endcan
