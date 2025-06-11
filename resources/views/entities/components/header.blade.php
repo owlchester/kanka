@@ -262,7 +262,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         @endcan
     @endif
         @if ($hasBanner)
-            <picture class="">
+            <picture class="entity-banner absolute top-0 left-0 -z-10 w-full aspect-[3/1]">
                 <source media="(min-width:2400px)" srcset="{{ $headerImageXL }}">
                 <source media="(min-width:1600px)" srcset="{{ $headerImageL }}">
                 <source media="(min-width:800px)" srcset="{{ $headerImageM }}">
