@@ -8,6 +8,7 @@
 
 - ## Campaigns
   - [Campaigns](/api-docs/{{version}}/campaigns)
+  - [Campaign Applications](/api-docs/{{version}}/campaigns/applications)
   - [Campaign Members](/api-docs/{{version}}/campaigns/members)
   - [Campaign Roles](/api-docs/{{version}}/campaigns/roles)
   - [Default Thumbnails](/api-docs/{{version}}/campaigns/default-thumbnails)

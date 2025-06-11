@@ -14,6 +14,7 @@
 Route::apiResources([
     'campaigns' => 'CampaignApiController',
     'campaigns.abilities' => 'AbilityApiController',
+    'campaigns.applications' => 'ApplicationApiController',
     'campaigns.attribute_templates' => 'AttributeTemplateApiController',
     'campaigns.bookmarks' => 'BookmarkApiController',
     // 'campaigns.campaign_users' => 'CampaignUserApiController',
@@ -133,3 +134,6 @@ Route::get('health', [\App\Http\Controllers\Api\v1\HealthController::class, 'ind
 Route::get('entity-types', [App\Http\Controllers\Api\v1\EntityTypeApiController::class, 'index']);
 Route::get('filters', [App\Http\Controllers\Api\v1\FilterApiController::class, 'index']);
 Route::get('filters/{entityType}', [App\Http\Controllers\Api\v1\FilterApiController::class, 'show']);
+
+Route::post('campaigns/{campaign}/applications/{application}/approve', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'approve']);
+Route::post('campaigns/{campaign}/applications/{application}/reject', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'reject']);
