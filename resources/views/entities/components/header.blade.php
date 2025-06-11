@@ -186,7 +186,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                 </span>
             @endif
             @can('admin', $campaign)
-                <span role="button" tabindex="0" class="entity-privacy-icon md:text-2xl" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $entity]) }}" data-target="primary-dialog" aria-haspopup="dialog">
+                <span role="button" tabindex="0" class="entity-privacy-icon md:text-2xl hover:text-primary" data-toggle="dialog" data-url="{{ route('entities.quick-privacy', [$campaign, $entity]) }}" data-target="primary-dialog" aria-haspopup="dialog">
                         <i class="fa-regular fa-lock entity-icons" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <i class="fa-regular fa-lock-open entity-icons" data-title="{{ __('entities/permissions.quick.title') }}" data-toggle="tooltip" aria-hidden="true"></i>
                         <span class="sr-only">{{ __('entities/permissions.quick.screen-reader') }}</span>
@@ -220,7 +220,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
             @endforeach
         @endif
             @can('update', $entity)
-                <span role="button" tabindex="0" class="entity-tag-icon text-xl" data-toggle="dialog" data-url="{{ $addTagsUrl }}" data-target="primary-dialog" aria-haspopup="dialog">
+                <span role="button" tabindex="0" class="entity-tag-icon text-xl hover:text-primary" data-toggle="dialog" data-url="{{ $addTagsUrl }}" data-target="primary-dialog" aria-haspopup="dialog">
                     <x-icon class="fa-regular fa-tag" tooltip="1" :title="__('entities/tags.create.title')" />
                     <span class="sr-only">{{ __('entities/tags.create.title')  }}</span>
                 </span>
