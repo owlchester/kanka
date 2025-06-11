@@ -341,11 +341,11 @@ class MentionsService
                         $field = 'sex';
                     }
 
-                    if (! $entity->isMissingChild()) {
+                    if ($entity->hasChild() && ! $entity->isMissingChild()) {
                         /** @var Character|Map|Quest $child */
                         $child = $entity->child;
                         if ($field == 'family' && ! $child->families->isEmpty()) {
-                            $data['text'] = $child->characterFamilies()->first()->family->name;
+                            $data['text'] = $child->characterFamilies->first()->family->name;
                         }
                         if ($field == 'race' && ! $child->characterRaces->isEmpty()) {
                             $data['text'] = $child->characterRaces->first()->race->name;
