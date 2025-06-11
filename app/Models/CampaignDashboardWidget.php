@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -60,6 +61,8 @@ class CampaignDashboardWidget extends Model
         'config' => 'array',
         'widget' => Widget::class,
     ];
+
+    protected LengthAwarePaginator $cachedEntities;
 
     public function entity(): BelongsTo
     {
@@ -133,6 +136,7 @@ class CampaignDashboardWidget extends Model
             'entity', 'entity.image', 'entity.entityType', 'entity.header',
             //            'tags',
             'entity.mentions', 'entity.mentions.target', 'entity.mentions.target.tags:id,name,slug',
+            'entity.mentions.target.entityType:id,code,is_special',
             'entityType',
         ])
             ->orderBy('position');
@@ -237,6 +241,9 @@ class CampaignDashboardWidget extends Model
      */
     public function entities(int $page = 1)
     {
+        if (isset($this->cachedEntities)) {
+            return $this->cachedEntities;
+        }
         $base = new Entity;
 
         $excludedTypes = [];
@@ -265,6 +272,7 @@ class CampaignDashboardWidget extends Model
             'mentions',
             'mentions.target',
             'mentions.target.tags',
+            'mentions.target.entityType:id,code,is_special',
         ];
 
         // If an entity type is provided, we can combine that with filters. We need to get the list of the misc
@@ -296,7 +304,7 @@ class CampaignDashboardWidget extends Model
             $base = $base->whereIn('entities.entity_id', $entityIds);
         }
 
-        return $base
+        return $this->cachedEntities = $base
             ->inTags($this->tags->pluck('id')->toArray())
             ->inTypes($this->entityType?->id)
             ->with($relations)

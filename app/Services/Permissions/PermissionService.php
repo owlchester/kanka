@@ -8,7 +8,6 @@ use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Models\PostPermission;
-use App\Models\User;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Database\Schema\Blueprint;
@@ -59,6 +58,8 @@ class PermissionService
     protected int $entityType;
 
     protected int $entityTypeID;
+
+    protected float $start;
 
     public function isAdmin(): bool
     {
@@ -137,7 +138,7 @@ class PermissionService
 
     public function createTemporaryTable(): self
     {
-        if ($this->tempPermissionFilled || request()->filled('_perm_v1')) {
+        if ($this->tempPermissionFilled) {
             return $this;
         }
         if (! $this->tempPermissionCreated) {
@@ -146,6 +147,7 @@ class PermissionService
                 $table->temporary();
             });
             $this->tempPermissionCreated = true;
+            $this->tune('Temp table created');
         }
         $batch = [];
         foreach ($this->entityIds as $id) {
@@ -163,6 +165,7 @@ class PermissionService
         //            ->where('id', 329259)->get();
         //        dd($wa);
         $this->tempPermissionFilled = true;
+        $this->tune('Temp table filled');
 
         return $this;
     }
@@ -267,12 +270,15 @@ class PermissionService
         if ($this->loadedPermissions) {
             return $this;
         }
+
+        $this->start = microtime(true);
         $this->loadedPermissions = true;
 
         // Valid user: load their roles
         if ($this->hasUser()) {
             $this->loadRoles();
             $this->loadUserPermissions();
+            $this->tune('Perms loaded for user');
         }
 
         // If the user had no loaded roles, we need a public role
@@ -280,6 +286,7 @@ class PermissionService
             return $this;
         }
         $this->loadPublicRole();
+        $this->tune('Perms loaded with public');
 
         return $this;
     }
@@ -453,5 +460,18 @@ class PermissionService
                 $this->deniedModels[] = $permission->misc_id;
             }
         }
+    }
+
+    protected function tune(string $log): void
+    {
+        return;
+//        if (!isset($this->campaign)) {
+//            return;
+//        }
+//        if ($this->campaign->id !== 1) {
+//            return;
+//        }
+//
+//        Log::info($log . ' in ' . round(microtime(true) - $this->start, 3) . 's');
     }
 }
