@@ -82,7 +82,7 @@ const initConfirmListener = ()=> {
 };
 
 const changeMethod = (event) => {
-    console.log('changing method to', event.target.value);
+    //console.log('changing method to', event.target.value);
     const card = document.querySelector('#card-panel');
     const paypal = document.querySelector('#paypal-panel');
     if (event.target.value === 'paypal') {
@@ -231,7 +231,6 @@ const initAnalytics = () => {
                 item_name: button.dataset.name,
                 item_price: button.dataset.price
             };
-            console.log('log', item);
             gtag('event', 'select_item', {
                 items: [item]
             });
@@ -246,7 +245,6 @@ const initAnalytics = () => {
                 item_name: button.dataset.name,
                 item_price: button.dataset.price
             };
-            console.log('log', item);
             gtag('event', 'select_item', {
                 items: [item]
             });
