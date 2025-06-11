@@ -14,7 +14,6 @@
 Route::apiResources([
     'campaigns' => 'CampaignApiController',
     'campaigns.abilities' => 'AbilityApiController',
-    'campaigns.applications' => 'ApplicationApiController',
     'campaigns.attribute_templates' => 'AttributeTemplateApiController',
     'campaigns.bookmarks' => 'BookmarkApiController',
     // 'campaigns.campaign_users' => 'CampaignUserApiController',
@@ -135,5 +134,7 @@ Route::get('entity-types', [App\Http\Controllers\Api\v1\EntityTypeApiController:
 Route::get('filters', [App\Http\Controllers\Api\v1\FilterApiController::class, 'index']);
 Route::get('filters/{entityType}', [App\Http\Controllers\Api\v1\FilterApiController::class, 'show']);
 
+Route::get('campaigns/{campaign}/applications', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'index']);
+Route::get('campaigns/{campaign}/applications/{application}', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'show']);
 Route::post('campaigns/{campaign}/applications/{application}/approve', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'approve']);
 Route::post('campaigns/{campaign}/applications/{application}/reject', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'reject']);

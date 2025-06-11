@@ -51,7 +51,7 @@ To get a single application to a campaign, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| GET | `{{version}}/campaigns/{id}/applications{application.id}` | Default |
+| GET | `{{version}}/campaigns/{id}/applications/{application.id}` | Default |
 
 ### Results
 ```json

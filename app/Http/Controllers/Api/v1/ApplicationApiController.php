@@ -42,7 +42,7 @@ class ApplicationApiController extends ApiController
     }
 
     /**
-     * @return resource
+     * @return \Illuminate\Http\JsonResponse
      */
     public function reject(RejectApplication $request, Campaign $campaign, Application $application)
     {
@@ -60,7 +60,7 @@ class ApplicationApiController extends ApiController
     }
 
     /**
-     * @return resource
+     * @return \Illuminate\Http\JsonResponse
      */
     public function approve(ApproveApplication $request, Campaign $campaign, Application $application)
     {
