@@ -258,7 +258,7 @@ class Image extends Model
             return $query;
         }
 
-        return $query->where('name', 'like', '%' . $term . '%');
+        return $query->where($this->getTable() . '.name', 'like', '%' . $term . '%');
     }
 
     public function scopeSearch(Builder $query, ?string $folder, ?string $term): Builder
