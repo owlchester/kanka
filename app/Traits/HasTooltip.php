@@ -30,7 +30,7 @@ trait HasTooltip
                 $text = Mentions::mapEntity($this);
                 $text = strip_tags($text, $this->allowedTooltipTags());
                 if (! empty($text)) {
-                    return nl2br($text);
+                    return '<div>' . nl2br($text) . '<div>';
                 }
             }
         }
