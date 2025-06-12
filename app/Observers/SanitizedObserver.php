@@ -35,14 +35,6 @@ class SanitizedObserver
 
     protected function purify(?string $text): ?string
     {
-        $text = mb_trim(Purify::clean(strip_tags($text)) ?? '');
-        // Users still want to use < and > so let's not break it for them
-        // $text = Str::replace(['&lt;', '&gt;', '&amp;&amp;'], ['<', '>', '&&'], $text);
-        // If it's really empty, zap it
-        if ($text == "\r\n\r\n" || empty($text)) {
-            return null;
-        }
-
-        return $text;
+        return mb_trim(Purify::clean(strip_tags($text)) ?? '');
     }
 }

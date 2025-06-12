@@ -11,7 +11,7 @@
                 <span class="sr-only">Close</span>
             </button>
         </header>
-        <article class="max-w-4xl">
+        <article class="max-w-4xl p-4">
 
             <div class="flex gap-1 w-full" v-if="!loading && !error">
                 <div class="grow">
