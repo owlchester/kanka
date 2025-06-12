@@ -36,7 +36,11 @@ class RandomEntity extends Component
         Avatar::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
 
-        $this->entity = $this->widget->randomEntity();
+        $entity = $this->widget->randomEntity();
+        if (!$entity) {
+            return;
+        }
+        $this->entity = $entity;
         \App\Facades\Dashboard::add($this->entity);
         $this->widget->setEntity($this->entity);
 

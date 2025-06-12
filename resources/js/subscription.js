@@ -12,6 +12,7 @@ const subscribeModal = document.getElementById('subscribe-confirm');
 const init = () => {
     initStripe();
     initPeriodToggle();
+    initAnalytics();
     window.onEvent(function() {
         initConfirmListener();
     });
@@ -81,7 +82,7 @@ const initConfirmListener = ()=> {
 };
 
 const changeMethod = (event) => {
-    console.log('changing method to', event.target.value);
+    //console.log('changing method to', event.target.value);
     const card = document.querySelector('#card-panel');
     const paypal = document.querySelector('#paypal-panel');
     if (event.target.value === 'paypal') {
@@ -214,5 +215,42 @@ const disableSubmit = (event) => {
     submitBtn.disabled = true;
     return true;
 };
+
+
+// Send a gtag event when .price-monthly and .price-yearly buttons are clicked
+const initAnalytics = () => {
+    // Select all elements with .price-monthly and .price-yearly classes
+    const monthlyButtons = document.querySelectorAll('.price-monthly');
+    const yearlyButtons = document.querySelectorAll('.price-yearly');
+
+    // Attach click event listener to each .price-monthly button
+    monthlyButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            let item = {
+                item_id: button.dataset.id,
+                item_name: button.dataset.name,
+                item_price: button.dataset.price
+            };
+            gtag('event', 'select_item', {
+                items: [item]
+            });
+        });
+    });
+
+    // Attach click event listener to each .price-yearly button
+    yearlyButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            let item = {
+                item_id: button.dataset.id,
+                item_name: button.dataset.name,
+                item_price: button.dataset.price
+            };
+            gtag('event', 'select_item', {
+                items: [item]
+            });
+        });
+    });
+
+}
 
 init();

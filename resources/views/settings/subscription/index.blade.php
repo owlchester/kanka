@@ -134,6 +134,15 @@
     @parent
     @vite('resources/js/subscription.js')
     <script src="https://js.stripe.com/v3/"></script>
+
+    @if (!$user->isSubscriber())
+        <script>
+            gtag('event', 'view_item_list', {
+                item_list_id: 'pricing_tiers',
+                item_list_name: '{{ __('settings.subscription.manage_subscription') }}'
+            });
+        </script>
+    @endif
 @endsection
 
 @section('styles')

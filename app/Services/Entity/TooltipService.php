@@ -30,7 +30,7 @@ class TooltipService
                 $text = $this->entity->parsedEntry();
                 $text = strip_tags($text, $this->allowedTooltipTags());
                 if (! empty($text)) {
-                    return nl2br($text);
+                    return '<div>' . nl2br($text) . '<div>';
                 }
             }
         }
