@@ -5,7 +5,7 @@
  */
 $entity = $entity ?? $widget->entity;
 
-if (empty($entity) && $entity->isMissingChild()) {
+if (empty($entity) || $entity->isMissingChild()) {
     return;
 }
 
