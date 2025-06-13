@@ -8,12 +8,13 @@ use App\Http\Requests\StoreWebhook;
 use App\Jobs\TestWebhookJob;
 use App\Models\Campaign;
 use App\Models\Webhook;
+use App\Services\Campaign\Webhooks\SaveService;
 
 class WebhookController extends Controller
 {
     protected string $view = 'webhooks';
 
-    public function __construct()
+    public function __construct(protected SaveService $service)
     {
         $this->middleware('auth');
     }
@@ -70,10 +71,7 @@ class WebhookController extends Controller
             return response()->json();
         }
 
-        $new = new Webhook($request->all());
-        $new->campaign_id = $campaign->id;
-        $new->save();
-        auth()->user()->campaignLog($campaign->id, 'webhooks', 'created', ['id' => $new->id]);
+        $new = $this->service->campaign($campaign)->user($request->user())->request($request)->save();
 
         return redirect()->route('webhooks.index', $campaign)
             ->with('success', __('campaigns/webhooks.create.success'));
@@ -93,8 +91,13 @@ class WebhookController extends Controller
     {
         $this->authorize('webhooks', $campaign);
 
+        $this->service
+            ->campaign($campaign)
+            ->user($request->user())
+            ->webhook($webhook)
+            ->request($request)
+            ->save();
         $webhook->update($request->all());
-        auth()->user()->campaignLog($campaign->id, 'webhooks', 'updated', ['id' => $webhook->id]);
 
         return redirect()->route('webhooks.index', $campaign)
             ->with('success', __('campaigns/webhooks.edit.success'));
@@ -105,7 +108,6 @@ class WebhookController extends Controller
         $this->authorize('webhooks', $campaign);
 
         $webhook->delete();
-        auth()->user()->campaignLog($campaign->id, 'webhooks', 'deleted', ['id' => $webhook->id]);
 
         return redirect()->route('webhooks.index', $campaign)
             ->with('success', __('campaigns/webhooks.destroy.success'));
