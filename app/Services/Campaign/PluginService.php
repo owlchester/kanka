@@ -42,6 +42,7 @@ class PluginService
         if ($plugin->canDisable()) {
             $plugin->is_active = false;
             $plugin->save();
+
             return true;
         }
 

@@ -18,8 +18,7 @@ class RoleUserRemoved
     public function __construct(
         public CampaignRoleUser $campaignRoleUser,
         public ?User $user,
-    )
-    {
+    ) {
         //
     }
 }

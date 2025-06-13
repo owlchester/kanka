@@ -5,8 +5,6 @@ namespace App\Listeners\Campaigns\Plugins;
 use App\Events\Campaigns\Plugins\PluginDeleted;
 use App\Events\Campaigns\Plugins\PluginImported;
 use App\Events\Campaigns\Plugins\PluginUpdated;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class LogPlugin
 {

@@ -10,7 +10,6 @@ use App\Services\Campaign\ApplicationService;
 
 class ApplyController extends Controller
 {
-
     public function __construct(protected ApplicationService $service)
     {
         $this->middleware('auth');

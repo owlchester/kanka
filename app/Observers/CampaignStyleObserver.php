@@ -2,6 +2,9 @@
 
 namespace App\Observers;
 
+use App\Events\Campaigns\Styles\StyleCreated;
+use App\Events\Campaigns\Styles\StyleDeleted;
+use App\Events\Campaigns\Styles\StyleUpdated;
 use App\Facades\CampaignCache;
 use App\Models\CampaignStyle;
 
@@ -18,24 +21,18 @@ class CampaignStyleObserver
         $campaignStyle->order = (int) $last + 1;
     }
 
-    public function saved()
-    {
-        CampaignCache::clearTheme();
-    }
-
     public function created(CampaignStyle $campaignStyle)
     {
-
-        auth()->user()->campaignLog($campaignStyle->campaign_id, 'styles', 'created', ['id' => $campaignStyle->id]);
+        StyleCreated::dispatch($campaignStyle, auth()->user());
     }
 
     public function updated(CampaignStyle $campaignStyle)
     {
-        auth()->user()->campaignLog($campaignStyle->campaign_id, 'styles', 'updated', ['id' => $campaignStyle->id]);
+        StyleUpdated::dispatch($campaignStyle, auth()->user());
     }
 
     public function deleted(CampaignStyle $campaignStyle)
     {
-        auth()->user()->campaignLog($campaignStyle->campaign_id, 'styles', 'deleted', ['id' => $campaignStyle->id]);
+        StyleDeleted::dispatch($campaignStyle, auth()->user());
     }
 }

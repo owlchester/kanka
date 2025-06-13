@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Events\Campaigns\Plugins;
+namespace App\Events\Campaigns\Styles;
 
-use App\Models\CampaignPlugin;
+use App\Models\CampaignStyle;
 use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PluginDeleted
+class StyleUpdated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -17,9 +17,9 @@ class PluginDeleted
      * Create a new event instance.
      */
     public function __construct(
-        public CampaignPlugin $campaignPlugin,
-        public ?User $user,
-    ) {
+        public CampaignStyle $campaignStyle,
+        public ?User $user, )
+    {
         //
     }
 

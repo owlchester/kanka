@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers\Campaign\Plugins;
 
-use App\Facades\CampaignCache;
-use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Plugin;
 use App\Services\Campaign\PluginService;
-use Exception;
 use Illuminate\Http\Request;
 
 class UpdateController extends Controller
 {
     protected PluginService $service;
-
 
     public function __construct(PluginService $service)
     {

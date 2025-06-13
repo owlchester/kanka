@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignCache;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
@@ -13,9 +12,7 @@ use Illuminate\Http\Request;
 
 class PluginController extends Controller
 {
-    public function __construct(protected PluginService $service)
-    {
-    }
+    public function __construct(protected PluginService $service) {}
 
     public function index(Campaign $campaign)
     {

@@ -4,7 +4,6 @@ namespace App\Services\Plugins;
 
 use App\Enums\Visibility;
 use App\Events\Campaigns\Plugins\PluginImported;
-use App\Events\Campaigns\Plugins\PluginUpdated;
 use App\Models\CampaignPlugin;
 use App\Models\Character;
 use App\Models\CharacterTrait;
@@ -118,7 +117,6 @@ class ImporterService
             $this->importFields($pluginEntity);
             $count++;
         }
-
 
         PluginImported::dispatch($campaignPlugin, $this->user);
 
@@ -248,8 +246,7 @@ class ImporterService
             $this->importCharacterRace($value);
 
             return;
-        }
-        elseif ($field == 'family_id' && $this->model instanceof Character) {
+        } elseif ($field == 'family_id' && $this->model instanceof Character) {
             $this->importCharacterFamily($value);
 
             return;

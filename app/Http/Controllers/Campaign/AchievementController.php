@@ -11,10 +11,7 @@ use App\Services\Campaign\AchievementService;
  */
 class AchievementController extends Controller
 {
-
-    public function __construct(protected AchievementService $service)
-    {
-    }
+    public function __construct(protected AchievementService $service) {}
 
     public function index(Campaign $campaign)
     {

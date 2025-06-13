@@ -11,14 +11,19 @@ use App\Events\Campaigns\Members\RoleUserRemoved;
 use App\Events\Campaigns\Plugins\PluginDeleted;
 use App\Events\Campaigns\Plugins\PluginImported;
 use App\Events\Campaigns\Plugins\PluginUpdated;
+use App\Events\Campaigns\Styles\StyleCreated;
+use App\Events\Campaigns\Styles\StyleDeleted;
+use App\Events\Campaigns\Styles\StyleUpdated;
 use App\Events\FeatureCreated;
 use App\Listeners\Campaigns\ClearCampaignCache;
+use App\Listeners\Campaigns\ClearCampaignThemeCache;
 use App\Listeners\Campaigns\Followers\UpdateFollowerCount;
 use App\Listeners\Campaigns\Invites\LogInvite;
 use App\Listeners\Campaigns\Members\LogUserRoleChanged;
 use App\Listeners\Campaigns\Members\RunRoleUserJob;
 use App\Listeners\Campaigns\Plugins\ClearThemeCache;
 use App\Listeners\Campaigns\Plugins\LogPlugin;
+use App\Listeners\Campaigns\Styles\LogStyle;
 use App\Listeners\SendFeatureNotification;
 use App\Listeners\Users\ClearUserCache;
 use Illuminate\Auth\Events\Login;
@@ -70,6 +75,18 @@ class EventServiceProvider extends ServiceProvider
         ],
         PluginImported::class => [
             LogPlugin::class,
+        ],
+        StyleCreated::class => [
+            LogStyle::class,
+            ClearCampaignThemeCache::class,
+        ],
+        StyleUpdated::class => [
+            LogStyle::class,
+            ClearCampaignThemeCache::class,
+        ],
+        StyleDeleted::class => [
+            LogStyle::class,
+            ClearCampaignThemeCache::class,
         ],
     ];
 

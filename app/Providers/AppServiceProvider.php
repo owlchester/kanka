@@ -9,7 +9,6 @@ use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\Calendar;
 use App\Models\Campaign;
-use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignFollower;
 use App\Models\CampaignInvite;

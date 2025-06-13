@@ -139,8 +139,10 @@ class DashboardService
             'created_by' => $this->user->id,
             'name' => $this->request->post('name'),
         ]);
+
         return $this;
     }
+
     protected function roles(): self
     {
         // Loop through the permissions
@@ -164,12 +166,13 @@ class DashboardService
                 'is_default' => $setting == 'default',
             ]);
         }
+
         return $this;
     }
 
     protected function copy(): self
     {
-        if (!$this->request->filled('copy_widgets')) {
+        if (! $this->request->filled('copy_widgets')) {
             return $this;
         }
         $sourceId = $this->request->post('source');
@@ -182,9 +185,9 @@ class DashboardService
         foreach ($source->widgets()->with('dashboardWidgetTags')->get() as $widget) {
             $widget->copyTo($this->dashboard);
         }
+
         return $this;
     }
-
 
     /**
      * @throws \Exception

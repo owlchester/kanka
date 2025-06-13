@@ -11,7 +11,6 @@ class ToggleController extends Controller
 {
     protected PluginService $service;
 
-
     public function __construct(PluginService $service)
     {
         $this->middleware('auth');

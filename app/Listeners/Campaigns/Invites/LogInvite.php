@@ -4,8 +4,6 @@ namespace App\Listeners\Campaigns\Invites;
 
 use App\Events\Campaigns\Invites\InviteCreated;
 use App\Events\Campaigns\Invites\InviteDeleted;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class LogInvite
 {
@@ -28,7 +26,7 @@ class LogInvite
             'invites',
             $action,
             [
-                'id' => $event->campaignInvite->id
+                'id' => $event->campaignInvite->id,
             ]
         );
     }
