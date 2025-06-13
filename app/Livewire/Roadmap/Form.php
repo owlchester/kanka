@@ -52,8 +52,6 @@ class Form extends Component
             $feat->updateQuietly();
         }
 
-        NewFeatureEmailJob::dispatch($feat);
-
         if ($this->file) {
             $file = $this->file->storeAs('features/' . $feat->id, uniqid() . '.' . $this->file->getClientOriginalExtension(), 's3');
             $featFile = new FeatureFile;

@@ -12,7 +12,8 @@ return [
     'bot_token' => getenv('DISCORD_BOT_TOKEN'),
 
     'webhooks' => [
-        'features' => env('DISCORD_WEBHOOK_FEATURES', null),
+        'features' => env('DISCORD_WEBHOOK_FEATURES'),
+        'admin' => env('DISCORD_WEBHOOK_ADMIN'),
     ],
     'color' => env('DISCORD_COLOR', '7506394'),
 

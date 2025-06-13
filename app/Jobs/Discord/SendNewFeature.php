@@ -3,6 +3,7 @@
 namespace App\Jobs\Discord;
 
 use App\Models\Feature;
+use App\Services\Discord\NotificationService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -52,29 +53,18 @@ class SendNewFeature implements ShouldQueue
         }
         Log::info('Jobs/Discord/SendNewFeature', ['start', 'feature' => $feature->id]);
 
-        $title = $feature->name;
-        $content = 'A new idea has been approved and can be voted on!';
 
-        $response = Http::post(config('discord.webhooks.features') . '?wait=true', [
-            'content' => $content,
-            'embeds' => [
-                [
-                    'title' => $title,
-                    'description' => strip_tags($feature->description),
-                    'color' => config('discord.color'),
-                    'url' => route('roadmap', ['status' => 'ideas', 'idea' => $feature->id]),
-                    'author' => [
-                        'name' => $feature->user->name,
-                        'url' => route('users.profile', $feature->created_by),
-                        'icon_url' => $feature->user->hasAvatar() ? $feature->user->getAvatarUrl() : null,
-                    ],
-                ],
-            ],
-            'wait' => true,
-        ]);
-
-        $messageData = $response->json();
-        $messageId = $messageData['id'];
+        /** @var NotificationService $service */
+        $service = app()->make(NotificationService::class);
+        $messageData = $service
+            ->webhook(config('discord.webhooks.features'))
+            ->title($feature->name)
+            ->content('A new idea has been approved and can be voted on!')
+            ->user($feature->user)
+            ->description($feature->description)
+            ->url(route('roadmap', ['status' => 'ideas', 'idea' => $feature->id]))
+            ->send()
+            ->json();
 
         $feature->message_id = $messageData['id'];
         $feature->saveQuietly();
