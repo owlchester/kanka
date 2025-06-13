@@ -76,11 +76,13 @@ $entityTags = $post->visibleTags;
         @include('characters.panels.organisations', ['character' => $entity->child])
     @elseif ($post->layout?->code == 'quest_elements' && $entity->isQuest())
         @php
-            $elements = $entity->child
-                    ->elements()
-                    ->paginate();
-            $elements->withPath(route('quests.quest_elements.index', [$campaign, $entity->child]));
-            $model = $entity->child;
+            $datagridSorter = new \App\Datagrids\Sorters\QuestElementSorter();
+                $elements = $entity->child
+                        ->elements()
+                        ->simpleSort($datagridSorter)
+                        ->paginate();
+                $elements->withPath(route('quests.quest_elements.index', [$campaign, $entity->child]));
+                $model = $entity->child;
         @endphp
         @include('quests.elements._elements', ['elements' => $elements])
     @elseif ($post->layout?->code == 'location_characters' && $entity->isLocation())
