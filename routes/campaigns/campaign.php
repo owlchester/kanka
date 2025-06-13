@@ -119,13 +119,16 @@ Route::get('/w/{campaign}/campaign-roles/{campaign_role}/duplicate', 'Campaign\R
 if (config('marketplace.enabled')) {
     Route::get('/w/{campaign}/plugins', 'Campaign\PluginController@index')->name('campaign_plugins.index');
     Route::delete('/w/{campaign}/plugins/{plugin}/delete', 'Campaign\PluginController@delete')->name('campaign_plugins.destroy');
-    Route::get('/w/{campaign}/plugins/{plugin}/enable', 'Campaign\PluginController@enable')->name('campaign_plugins.enable');
-    Route::get('/w/{campaign}/plugins/{plugin}/disable', 'Campaign\PluginController@disable')->name('campaign_plugins.disable');
-    Route::post('/w/{campaign}/plugins/{plugin}/import', 'Campaign\PluginController@import')->name('campaign_plugins.import');
-    Route::get('/w/{campaign}/plugins/{plugin}/confirm-import', 'Campaign\PluginController@confirmImport')->name('campaign_plugins.confirm-import');
-    Route::get('/w/{campaign}/plugins/{plugin}/update', 'Campaign\PluginController@updateInfo')->name('campaign_plugins.update-info');
-    Route::post('/w/{campaign}/plugins/{plugin}/update', 'Campaign\PluginController@update')->name('campaign_plugins.update');
-    Route::post('/w/{campaign}/plugins/bulk', 'Campaign\PluginController@bulk')->name('campaign_plugins.bulk');
+    Route::get('/w/{campaign}/plugins/{plugin}/enable', 'Campaign\Plugins\ToggleController@enable')->name('campaign_plugins.enable');
+    Route::get('/w/{campaign}/plugins/{plugin}/disable', 'Campaign\Plugins\ToggleController@disable')->name('campaign_plugins.disable');
+
+    Route::get('/w/{campaign}/plugins/{plugin}/confirm-import', 'Campaign\Plugins\ImportController@index')->name('campaign_plugins.confirm-import');
+    Route::post('/w/{campaign}/plugins/{plugin}/import', 'Campaign\Plugins\ImportController@process')->name('campaign_plugins.import');
+
+    Route::get('/w/{campaign}/plugins/{plugin}/update', 'Campaign\Plugins\UpdateController@index')->name('campaign_plugins.update-info');
+    Route::post('/w/{campaign}/plugins/{plugin}/update', 'Campaign\Plugins\UpdateController@update')->name('campaign_plugins.update');
+
+    Route::post('/w/{campaign}/plugins/bulk', 'Campaign\Plugins\BulkController@index')->name('campaign_plugins.bulk');
 }
 
 Route::get('/w/{campaign}/redirect', 'RedirectController@index')->name('redirect');
@@ -161,7 +164,7 @@ Route::post('/w/{campaign}/campaign-export', 'Campaign\ExportController@export')
 Route::get('/w/{campaign}/campaign-import', 'Campaign\ImportController@index')->name('campaign.import');
 Route::post('/w/{campaign}/campaign-import', 'Campaign\ImportController@store')->name('campaign.import-process');
 Route::get('/w/{campaign}/campaign-{ts}.styles', [App\Http\Controllers\Campaign\CssController::class, 'index'])->name('campaign.css');
-Route::get('/w/{campaign}/campaign_plugin-{ts}.styles', 'Campaign\PluginController@css')->name('campaign_plugins.css');
+Route::get('/w/{campaign}/campaign_plugin-{ts}.styles', 'Campaign\Plugins\CssController@index')->name('campaign_plugins.css');
 Route::get('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
 Route::post('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');
 
