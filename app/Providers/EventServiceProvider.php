@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\Campaigns\Applications\Accepted;
+use App\Events\Campaigns\Applications\Rejected;
 use App\Events\Campaigns\Followers\FollowerCreated;
 use App\Events\Campaigns\Followers\FollowerRemoved;
 use App\Events\Campaigns\Invites\InviteCreated;
@@ -15,6 +17,7 @@ use App\Events\Campaigns\Styles\StyleCreated;
 use App\Events\Campaigns\Styles\StyleDeleted;
 use App\Events\Campaigns\Styles\StyleUpdated;
 use App\Events\FeatureCreated;
+use App\Listeners\Campaigns\Applications\LogApplication;
 use App\Listeners\Campaigns\ClearCampaignCache;
 use App\Listeners\Campaigns\ClearCampaignThemeCache;
 use App\Listeners\Campaigns\Followers\UpdateFollowerCount;
@@ -87,6 +90,15 @@ class EventServiceProvider extends ServiceProvider
         StyleDeleted::class => [
             LogStyle::class,
             ClearCampaignThemeCache::class,
+        ],
+        Accepted::class => [
+            LogApplication::class,
+            ClearCampaignCache::class,
+            ClearUserCache::class,
+        ],
+        Rejected::class => [
+            LogApplication::class,
+            ClearCampaignCache::class,
         ],
     ];
 

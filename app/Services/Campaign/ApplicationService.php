@@ -2,8 +2,9 @@
 
 namespace App\Services\Campaign;
 
+use App\Events\Campaigns\Applications\Accepted;
+use App\Events\Campaigns\Applications\Rejected;
 use App\Facades\CampaignCache;
-use App\Facades\UserCache;
 use App\Jobs\Campaigns\NotifyAdmins;
 use App\Models\Application;
 use App\Models\CampaignRoleUser;
@@ -78,14 +79,12 @@ class ApplicationService
                         'reason' => $rejection,
                     ])
                 );
+            Rejected::dispatch($this->application, $this->campaign, $this->user);
         } else {
             $this->approve((int) Arr::get($data, 'role_id'), $this->purify(Arr::get($data, 'reason')));
         }
 
         $this->application->delete();
-        CampaignCache::campaign($this->campaign)->clear();
-
-        $this->user->campaignLog($this->campaign->id, 'applications', 'rejected', ['id' => $this->application->user_id]);
 
         return $return;
     }
@@ -125,13 +124,7 @@ class ApplicationService
                 )
             );
 
-        // Update the campaign members cache when a user was added
-        CampaignCache::campaign($this->campaign)->clear();
-
-        // Clear the user's campaign cache
-        UserCache::user($this->application->user)->clear();
-
-        $this->user->campaignLog($this->campaign->id, 'applications', 'approved', ['id' => $this->application->user_id]);
+        Accepted::dispatch($this->application, $this->campaign, $this->user);
 
         return $this;
     }

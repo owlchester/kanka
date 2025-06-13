@@ -1,21 +1,27 @@
 <?php
 
-namespace App\Events\Campaigns;
+namespace App\Events\Campaigns\Applications;
 
+use App\Models\Application;
+use App\Models\Campaign;
+use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class StylesStyleCreated
+class Accepted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public function __construct()
-    {
+    public function __construct(
+        public Application $application,
+        public Campaign $campaign,
+        public ?User $user,
+    ) {
         //
     }
 

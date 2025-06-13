@@ -20,6 +20,7 @@ class ClearUserCache
     public function handle(object $event): void
     {
         $user = $event->campaignRoleUser->user
+            ?? $event->application->user
             ?? $event->user
             ?? null;
 
