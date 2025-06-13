@@ -20,7 +20,12 @@ class DashboardController extends Controller
         if ($requestedDashboard == 'default') {
             $requestedDashboard = -1;
         }
-        $dashboard = $this->dashboardService->campaign($campaign)
+        if (auth()->check()) {
+            $this->dashboardService->user(auth()->user());
+        }
+        $dashboard = $this
+            ->dashboardService
+            ->campaign($campaign)
             ->getDashboard((int) $requestedDashboard);
         $dashboards = $this->dashboardService->getDashboards();
 

@@ -164,10 +164,9 @@ class BookmarkController extends CrudController
 
     protected function dashboardOptions(Campaign $campaign): array
     {
-
         /** @var DashboardService $service */
         $service = app()->make(DashboardService::class);
-        $dashboards = $service->campaign($campaign)->getDashboards();
+        $dashboards = $service->campaign($campaign)->user(auth()->user())->getDashboards();
         $dashboardOptions = ['' => ''];
         foreach ($dashboards as $dashboard) {
             $dashboardOptions[$dashboard->id] = $dashboard->name;

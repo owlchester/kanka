@@ -59,7 +59,12 @@ class DashboardController extends Controller
             return response()->json();
         }
 
-        $dashboard = $this->service->campaign($campaign)->create($request);
+        $dashboard = $this
+            ->service
+            ->campaign($campaign)
+            ->request($request)
+            ->user($request->user())
+            ->create();
 
         return redirect()->route('dashboard.setup', [$campaign, 'dashboard' => $dashboard->id])
             ->with('success', __('dashboard.dashboards.create.success', ['name' => $dashboard->name]));
@@ -83,7 +88,8 @@ class DashboardController extends Controller
 
         $dashboard = $this->service->campaign($campaign)
             ->dashboard($campaignDashboard)
-            ->update($request);
+            ->request($request)
+            ->update();
 
         return redirect()->route('dashboard.setup', [$campaign, 'dashboard' => $dashboard->id])
             ->with('success', __('dashboard.dashboards.update.success', ['name' => $dashboard->name]));

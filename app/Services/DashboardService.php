@@ -3,20 +3,23 @@
 namespace App\Services;
 
 use App\Facades\CampaignCache;
-use App\Facades\Dashboard;
 use App\Facades\UserCache;
-use App\Http\Requests\StoreCampaignDashboard;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardRole;
+use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
+use App\Traits\RequestAware;
+use App\Traits\UserAware;
 
 class DashboardService
 {
     use CampaignAware;
+    use RequestAware;
+    use UserAware;
 
-    /** @var array IDs of entities displayed */
+    // IDs of entities displayed
     protected array $displayedEntities = [];
 
     protected CampaignDashboard $dashboard;
@@ -69,7 +72,7 @@ class DashboardService
         $available = $this->availableDashboards();
         $dashboards = [];
 
-        if (! auth()->check() || ! $this->campaign->userIsMember()) {
+        if (! isset($this->user) || ! $this->campaign->userIsMember()) {
             foreach ($available['public'] as $role) {
                 $dashboards[] = $role->dashboard;
             }
@@ -78,7 +81,7 @@ class DashboardService
         }
 
         // Admin?
-        if (auth()->user()->isAdmin()) {
+        if ($this->user->isAdmin()) {
             foreach ($available['admin'] as $role) {
                 $dashboards[] = $role->dashboard;
             }
@@ -117,16 +120,31 @@ class DashboardService
     /**
      * Create a dashboard and it's permissions
      */
-    public function create(StoreCampaignDashboard $request): CampaignDashboard
+    public function create(): CampaignDashboard
     {
-        $dashboard = CampaignDashboard::create([
-            'campaign_id' => $this->campaign->id,
-            'created_by' => auth()->user()->id,
-            'name' => $request->post('name'),
-        ]);
+        $this
+            ->createDashboard()
+            ->roles()
+            ->copy();
 
+        CampaignCache::clear();
+
+        return $this->dashboard;
+    }
+
+    protected function createDashboard(): self
+    {
+        $this->dashboard = CampaignDashboard::create([
+            'campaign_id' => $this->campaign->id,
+            'created_by' => $this->user->id,
+            'name' => $this->request->post('name'),
+        ]);
+        return $this;
+    }
+    protected function roles(): self
+    {
         // Loop through the permissions
-        $roles = (array) $request->post('roles');
+        $roles = (array) $this->request->post('roles');
         foreach ($roles as $roleId => $setting) {
             if (empty($setting)) {
                 continue;
@@ -140,25 +158,41 @@ class DashboardService
             }
 
             $dashboardRole = CampaignDashboardRole::create([
-                'campaign_dashboard_id' => $dashboard->id,
+                'campaign_dashboard_id' => $this->dashboard->id,
                 'campaign_role_id' => $role->id,
                 'is_visible' => true,
                 'is_default' => $setting == 'default',
             ]);
         }
-
-        CampaignCache::clear();
-
-        return $dashboard;
+        return $this;
     }
+
+    protected function copy(): self
+    {
+        if (!$this->request->filled('copy_widgets')) {
+            return $this;
+        }
+        $sourceId = $this->request->post('source');
+        /** @var ?CampaignDashboard $source */
+        $source = CampaignDashboard::find($sourceId);
+        if (empty($source)) {
+            return $this;
+        }
+        /** @var CampaignDashboardWidget $widget */
+        foreach ($source->widgets()->with('dashboardWidgetTags')->get() as $widget) {
+            $widget->copyTo($this->dashboard);
+        }
+        return $this;
+    }
+
 
     /**
      * @throws \Exception
      */
-    public function update(StoreCampaignDashboard $request): CampaignDashboard
+    public function update(): CampaignDashboard
     {
         $this->dashboard->update([
-            'name' => $request->post('name'),
+            'name' => $this->request->post('name'),
         ]);
 
         // Existing roles
@@ -168,7 +202,7 @@ class DashboardService
         }
 
         // Loop through the permissions
-        $rolesForm = (array) $request->post('roles');
+        $rolesForm = (array) $this->request->post('roles');
         foreach ($rolesForm as $roleId => $setting) {
             if (empty($setting)) {
                 continue;
@@ -222,7 +256,7 @@ class DashboardService
     protected function defaultDashboard(array $available)
     {
         // Unlogged or not a member
-        if (! auth()->check() || ! $this->campaign->userIsMember()) {
+        if (! isset($this->user) || ! $this->campaign->userIsMember()) {
             foreach ($available['public'] as $role) {
                 if ($role->is_default) {
                     return $role->dashboard;
@@ -233,7 +267,7 @@ class DashboardService
         }
 
         // Admin?
-        if (auth()->user()->isAdmin()) {
+        if ($this->user->isAdmin()) {
             foreach ($available['admin'] as $role) {
                 if ($role->is_default) {
                     return $role->dashboard;
@@ -268,9 +302,9 @@ class DashboardService
     protected function validateDashboard(array $available, int $dashboard)
     {
         $filtered = false;
-        if (! auth()->check() || ! $this->campaign->userIsMember()) {
+        if (! isset($this->user) || ! $this->campaign->userIsMember()) {
             $filtered = $available['public'];
-        } elseif (auth()->user()->isAdmin()) {
+        } elseif ($this->user) {
             $filtered = $available['admin'];
         }
 
