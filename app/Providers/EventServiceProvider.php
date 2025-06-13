@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Events\Campaigns\Followers\FollowerCreated;
+use App\Events\Campaigns\Followers\FollowerRemoved;
 use App\Events\Campaigns\Members\RoleUserAdded;
 use App\Events\Campaigns\Members\RoleUserRemoved;
 use App\Events\FeatureCreated;
 use App\Listeners\Campaigns\ClearCampaignCache;
+use App\Listeners\Campaigns\Followers\UpdateFollowerCount;
 use App\Listeners\Campaigns\Members\ClearUserCacheOnRoleChange;
 use App\Listeners\Campaigns\Members\LogUserRoleChanged;
 use App\Listeners\Campaigns\Members\RunRoleUserJob;
@@ -37,7 +40,13 @@ class EventServiceProvider extends ServiceProvider
             LogUserRoleChanged::class,
             ClearUserCache::class,
             ClearCampaignCache::class
-        ]
+        ],
+        FollowerCreated::class => [
+            UpdateFollowerCount::class,
+        ],
+        FollowerRemoved::class => [
+            UpdateFollowerCount::class,
+        ],
     ];
 
     /**

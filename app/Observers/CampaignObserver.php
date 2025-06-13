@@ -64,8 +64,6 @@ class CampaignObserver
 
     public function created(Campaign $campaign)
     {
-        // todo: move all of this to a service...
-
     }
 
     public function saved(Campaign $campaign)
