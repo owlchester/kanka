@@ -180,7 +180,6 @@ class AppServiceProvider extends ServiceProvider
         CampaignFollower::observe('App\Observers\CampaignFollowerObserver');
         CampaignPlugin::observe('App\Observers\CampaignPluginObserver');
         CampaignSetting::observe('App\Observers\CampaignSettingObserver');
-        CampaignDashboard::observe('App\Observers\CampaignDashboardObserver');
         Application::observe('App\Observers\ApplicationObserver');
         CampaignStyle::observe('App\Observers\CampaignStyleObserver');
         Character::observe(CharacterObserver::class);

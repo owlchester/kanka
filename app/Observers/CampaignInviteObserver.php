@@ -2,6 +2,8 @@
 
 namespace App\Observers;
 
+use App\Events\Campaigns\Invites\InviteCreated;
+use App\Events\Campaigns\Invites\InviteDeleted;
 use App\Models\CampaignInvite;
 use Illuminate\Support\Str;
 
@@ -15,11 +17,11 @@ class CampaignInviteObserver
 
     public function created(CampaignInvite $campaignInvite)
     {
-        auth()->user()->campaignLog($campaignInvite->campaign_id, 'invites', 'created', ['id' => $campaignInvite->id]);
+        InviteCreated::dispatch($campaignInvite);
     }
 
     public function deleted(CampaignInvite $campaignInvite)
     {
-        auth()->user()->campaignLog($campaignInvite->campaign_id, 'invites', 'deleted', ['id' => $campaignInvite->id]);
+        InviteDeleted::dispatch($campaignInvite);
     }
 }

@@ -4,11 +4,14 @@ namespace App\Providers;
 
 use App\Events\Campaigns\Followers\FollowerCreated;
 use App\Events\Campaigns\Followers\FollowerRemoved;
+use App\Events\Campaigns\Invites\InviteCreated;
+use App\Events\Campaigns\Invites\InviteDeleted;
 use App\Events\Campaigns\Members\RoleUserAdded;
 use App\Events\Campaigns\Members\RoleUserRemoved;
 use App\Events\FeatureCreated;
 use App\Listeners\Campaigns\ClearCampaignCache;
 use App\Listeners\Campaigns\Followers\UpdateFollowerCount;
+use App\Listeners\Campaigns\Invites\LogInvite;
 use App\Listeners\Campaigns\Members\LogUserRoleChanged;
 use App\Listeners\Campaigns\Members\RunRoleUserJob;
 use App\Listeners\SendFeatureNotification;
@@ -45,6 +48,12 @@ class EventServiceProvider extends ServiceProvider
         ],
         FollowerRemoved::class => [
             UpdateFollowerCount::class,
+        ],
+        InviteCreated::class => [
+            LogInvite::class,
+        ],
+        InviteDeleted::class => [
+            LogInvite::class,
         ],
     ];
 
