@@ -11,11 +11,9 @@ use App\Services\Campaign\AchievementService;
  */
 class AchievementController extends Controller
 {
-    protected AchievementService $service;
 
-    public function __construct(AchievementService $service)
+    public function __construct(protected AchievementService $service)
     {
-        $this->service = $service;
     }
 
     public function index(Campaign $campaign)

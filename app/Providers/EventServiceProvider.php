@@ -70,7 +70,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         PluginImported::class => [
             LogPlugin::class,
-        ]
+        ],
     ];
 
     /**
