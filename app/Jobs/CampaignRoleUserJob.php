@@ -9,8 +9,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
-class CampaignRoleUserJob implements ShouldQueue
+class CampaignRoleUserJob
 {
     use Dispatchable;
     use InteractsWithQueue;
@@ -24,22 +25,15 @@ class CampaignRoleUserJob implements ShouldQueue
      */
     public $tries = 1;
 
-    /** @var int Campaign role user id */
-    public $id;
-
-    /** @var bool if new or deleted */
-    public $new;
-
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(CampaignRoleUser $campaignRoleUser, bool $new = true)
-    {
-        $this->id = $campaignRoleUser->id;
-        $this->new = $new;
-    }
+    public function __construct(
+        public CampaignRoleUser $campaignRoleUser,
+        public bool $new = true
+    ) {}
 
     /**
      * Execute the job.
@@ -48,24 +42,23 @@ class CampaignRoleUserJob implements ShouldQueue
      */
     public function handle()
     {
-        $campaignRoleUser = CampaignRoleUser::find($this->id);
-
         // If the role was deleted, don't notify anyone
-        if (empty($campaignRoleUser) || empty($campaignRoleUser->campaignRole)) {
+        if (empty($this->campaignRoleUser) || empty($this->campaignRoleUser->campaignRole)) {
+            Log::info('no role found', [$this->campaignRoleUser]);
             return;
         }
 
         $notification = new Header(
-            // 'campaign.role.add',
             'campaign.role.' . ($this->new ? 'add' : 'remove'),
             'user',
             'green',
             [
-                'role' => e($campaignRoleUser->campaignRole->name),
-                'campaign' => e($campaignRoleUser->campaignRole->campaign->name),
+                'role' => e($this->campaignRoleUser->campaignRole->name),
+                'campaign' => e($this->campaignRoleUser->campaignRole->campaign->name),
+                'link' => route('dashboard', $this->campaignRoleUser->campaignRole->campaign),
             ]
         );
 
-        $campaignRoleUser->user->notify($notification);
+        $this->campaignRoleUser->user->notify($notification);
     }
 }

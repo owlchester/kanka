@@ -2,8 +2,15 @@
 
 namespace App\Providers;
 
+use App\Events\Campaigns\Members\RoleUserAdded;
+use App\Events\Campaigns\Members\RoleUserRemoved;
 use App\Events\FeatureCreated;
+use App\Listeners\Campaigns\ClearCampaignCache;
+use App\Listeners\Campaigns\Members\ClearUserCacheOnRoleChange;
+use App\Listeners\Campaigns\Members\LogUserRoleChanged;
+use App\Listeners\Campaigns\Members\RunRoleUserJob;
 use App\Listeners\SendFeatureNotification;
+use App\Listeners\Users\ClearUserCache;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use PragmaRX\Google2FALaravel\Listeners\LoginViaRemember;
@@ -20,6 +27,17 @@ class EventServiceProvider extends ServiceProvider
         FeatureCreated::class => [
             SendFeatureNotification::class,
         ],
+        RoleUserAdded::class => [
+            RunRoleUserJob::class,
+            ClearUserCache::class,
+            LogUserRoleChanged::class,
+        ],
+        RoleUserRemoved::class => [
+            RunRoleUserJob::class,
+            LogUserRoleChanged::class,
+            ClearUserCache::class,
+            ClearCampaignCache::class
+        ]
     ];
 
     /**
