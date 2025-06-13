@@ -11,8 +11,8 @@ class EntityAssetObserver
     {
         // When adding or changing an asset to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
-        if ($entityAsset->entity->hasChild()) {
-            $entityAsset->entity->child->touchQuietly();
+        if ($entityAsset->entity) {
+            $entityAsset->entity->touchQuietly();
         }
     }
 
@@ -25,8 +25,8 @@ class EntityAssetObserver
 
     public function deleted(EntityAsset $entityAsset): void
     {
-        if ($entityAsset->entity->hasChild()) {
-            $entityAsset->entity->child->touchQuietly();
+        if ($entityAsset->entity) {
+            $entityAsset->entity->touchQuietly();
         }
     }
 }

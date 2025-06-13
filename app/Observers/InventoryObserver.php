@@ -17,8 +17,8 @@ class InventoryObserver
     {
         // When adding or changing an inventory to an entity, we want to update the
         // last updated date to reflect changes in the dashboard.
-        if ($inventory->entity && $inventory->entity->hasChild()) {
-            $inventory->entity->child->touchQuietly();
+        if ($inventory->entity) {
+            $inventory->entity->touchQuietly();
         }
     }
 
@@ -27,8 +27,8 @@ class InventoryObserver
         // When deleting an inventory, we want to update the entity's last update
         // for the dashboard. Careful of this when deleting an entity, we could be
         // entering a non-ending loop.
-        if ($inventory->entity && $inventory->entity->hasChild()) {
-            $inventory->entity->child->touchQuietly();
+        if ($inventory->entity) {
+            $inventory->entity->touchQuietly();
         }
     }
 }

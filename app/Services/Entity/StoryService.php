@@ -79,8 +79,5 @@ class StoryService
         $log->save();
 
         $this->entity->touchSilently();
-        if ($this->entity->hasChild()) {
-            $this->entity->child->touchSilently();
-        }
     }
 }

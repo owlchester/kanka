@@ -108,9 +108,6 @@ class AttributeService
             return $this;
         }
         $this->entity->touch();
-        if ($this->entity->hasChild()) {
-            $this->entity->child->touchSilently();
-        }
 
         return $this;
     }

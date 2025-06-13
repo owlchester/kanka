@@ -22,12 +22,12 @@ class MapMarkerObserver
 
     public function saved(MapMarker $mapMarker)
     {
-        $mapMarker->map->touch();
+        $mapMarker->map->touchSilently();
     }
 
     public function deleted(MapMarker $mapMarker)
     {
-        $mapMarker->map->touch();
+        $mapMarker->map->touchSilently();
     }
 
     /**

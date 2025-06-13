@@ -169,11 +169,6 @@ class EntityObserver
         if ($entity->campaign->premium()) {
             EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
         }
-
-        // Sometimes we just touch the entity, which should also touch the child
-        if ($entity->hasChild() && $entity->child && $entity->updated_at->greaterThan($entity->child->updated_at)) {
-            $entity->child->touchSilently();
-        }
     }
 
     public function savePremium(Entity $entity): void

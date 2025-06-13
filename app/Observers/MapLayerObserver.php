@@ -32,7 +32,7 @@ class MapLayerObserver
     public function deleted(MapLayer $mapLayer)
     {
         Images::cleanup($mapLayer);
-        $mapLayer->map->touch();
+        $mapLayer->map->touchSilently();
     }
 
     public function saved(MapLayer $mapLayer)
