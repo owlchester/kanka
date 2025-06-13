@@ -3,7 +3,9 @@
         @isset ($title)
             {{ $title }}
         @elseif ($legacy)
-            @if ($superboosted)
+            @if ($premium)
+                {{ __('callouts.premium.title') }}
+            @elseif ($superboosted)
                 {{ __('callouts.booster.titles.superboosted') }}
             @else
                 {{ __('callouts.booster.titles.boosted') }}
