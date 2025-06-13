@@ -23,7 +23,7 @@ class LogInvite
     public function handle(InviteCreated|InviteDeleted $event): void
     {
         $action = $event instanceof InviteCreated ? 'created' : 'deleted';
-        auth()->user()->campaignLog(
+        $event->user->campaignLog(
             $event->campaignInvite->campaign_id,
             'invites',
             $action,

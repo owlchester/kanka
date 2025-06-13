@@ -22,7 +22,7 @@ class LogUserRoleChanged
     {
         $action = $event instanceof RoleUserAdded ? 'created' : 'deleted';
 
-        auth()->user()?->campaignLog(
+        $event->user->campaignLog(
             $event->campaignRoleUser->campaignRole->campaign_id,
             'user-role',
             $action,

@@ -17,11 +17,11 @@ class CampaignInviteObserver
 
     public function created(CampaignInvite $campaignInvite)
     {
-        InviteCreated::dispatch($campaignInvite);
+        InviteCreated::dispatch($campaignInvite, auth()->user());
     }
 
     public function deleted(CampaignInvite $campaignInvite)
     {
-        InviteDeleted::dispatch($campaignInvite);
+        InviteDeleted::dispatch($campaignInvite, auth()->user());
     }
 }
