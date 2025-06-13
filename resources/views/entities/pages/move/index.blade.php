@@ -32,7 +32,7 @@
                 <input type="hidden" name="copy" value="1" />
             @endcan
 
-            @if ($entity->entityType->isSpecial())
+            @if ($entity->entityType->isCustom())
                 <x-alert type="warning">
                     {!! __('entities/move.warnings.custom', ['module' => $entity->entityType->plural()]) !!}
                 </x-alert>

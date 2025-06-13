@@ -56,7 +56,7 @@ class ProcessService
 
         // Prepare the validator
         $requestValidator = '\App\Http\Requests\Store' . ucfirst(Str::camel($this->entityType->code));
-        if ($this->entityType->isSpecial()) {
+        if ($this->entityType->isCustom()) {
             $requestValidator = \App\Http\Requests\StoreCustomEntity::class;
         }
 
@@ -91,7 +91,7 @@ class ProcessService
             $values['name'] = $name;
             $this->validateEntity($values, $validator->rules());
 
-            if ($this->entityType->isSpecial()) {
+            if ($this->entityType->isCustom()) {
                 $this->entity = new Entity($values);
                 $this->entity->campaign_id = $this->campaign->id;
                 $this->entity->type_id = $this->entityType->id;
@@ -388,7 +388,7 @@ class ProcessService
         if ($template->type_id !== $this->entityType->id) {
             return $this;
         }
-        if (! $this->entityType->isSpecial() && $template->isMissingChild()) {
+        if ($this->entityType->isStandard() && $template->isMissingChild()) {
             return $this;
         }
 
@@ -407,7 +407,7 @@ class ProcessService
             $this->inputFields[$field] = $template->{$field};
         }
 
-        if (! $this->entityType->isSpecial()) {
+        if ($this->entityType->isStandard()) {
             $this->loadTemplateChild();
         }
 

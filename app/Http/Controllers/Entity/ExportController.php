@@ -54,7 +54,7 @@ class ExportController extends Controller
         return view('entities.pages.print.print')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
-            ->with('model', ! $entity->entityType->isSpecial() ? $entity->child : null)
+            ->with('model', $entity->entityType->isStandard() ? $entity->child : null)
             ->with('name', $entity->entityType->pluralCode())
             ->with('printing', true);
     }

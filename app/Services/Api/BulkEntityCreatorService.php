@@ -31,7 +31,7 @@ class BulkEntityCreatorService
 
     public function create(): Entity
     {
-        if ($this->entityType->isSpecial()) {
+        if ($this->entityType->isCustom()) {
             return $this->createEntity();
         }
         $this->new = $this->entityType->getMiscClass();

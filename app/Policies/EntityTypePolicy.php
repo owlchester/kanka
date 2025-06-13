@@ -20,7 +20,7 @@ class EntityTypePolicy
         if (! $entityType->isEnabled()) {
             return false;
         }
-        if ($entityType->isSpecial() && ! $campaign->premium()) {
+        if ($entityType->isCustom() && ! $campaign->premium()) {
             return false;
         }
 
@@ -38,7 +38,7 @@ class EntityTypePolicy
 
     public function delete(User $user, EntityType $entityType, Campaign $campaign)
     {
-        return $entityType->campaign_id === $campaign->id && $entityType->isSpecial();
+        return $entityType->campaign_id === $campaign->id && $entityType->isCustom();
     }
 
     public function deleteEntities(User $user, EntityType $entityType, Campaign $campaign)

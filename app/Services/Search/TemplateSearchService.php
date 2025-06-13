@@ -25,7 +25,7 @@ class TemplateSearchService
         if (! empty($excludes)) {
             $query->whereNotIn('id', [$excludes]);
         }
-        if (! $this->entityType->isSpecial()) {
+        if ($this->entityType->isStandard()) {
             $with[] = Str::camel($this->entityType->code);
         }
         $query->with($with);
@@ -48,7 +48,7 @@ class TemplateSearchService
         $list = [];
         /** @var Entity $entity */
         foreach ($entities as $entity) {
-            if (! $this->entityType->isSpecial() && empty($entity->{$this->entityType->code})) {
+            if ($this->entityType->isStandard() && empty($entity->{$this->entityType->code})) {
                 continue;
             }
             $format = [

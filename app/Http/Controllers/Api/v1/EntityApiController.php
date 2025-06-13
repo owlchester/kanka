@@ -68,7 +68,7 @@ class EntityApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
 
-        if (! $entity->entityType->isSpecial()) {
+        if ($entity->entityType->isStandard()) {
             return response()->json(['error' => 'Only entities of custom modules can be deleted here'], 401);
         }
 
@@ -82,7 +82,7 @@ class EntityApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
         $keys = ['name', 'type', 'is_private', 'is_template', 'tooltip', 'entry', 'image_uuid', 'header_uuid'];
-        if ($entity->entityType->isSpecial()) {
+        if ($entity->entityType->isCustom()) {
             $keys[] = 'parent_id';
         }
 
@@ -99,7 +99,7 @@ class EntityApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('delete', $entity);
 
-        if (! $entity->entityType->isSpecial()) {
+        if ($entity->entityType->isStandard()) {
             return response()->json(['error' => 'Only entities of custom modules can be deleted here'], 401);
         }
 

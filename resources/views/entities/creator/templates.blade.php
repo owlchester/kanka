@@ -13,7 +13,7 @@
             <ul>
                 @foreach ($templates as $template)
                     <li>
-                        @if ($entityType->isSpecial())
+                        @if ($entityType->isCustom())
 
                             <a href="{{ route('entities.create', [$campaign, $entityType, 'copy' => $template->id, 'template' => true]) }}" class="new-entity-from-template" data-entity-type="{{ $entityType->plural() }}">
                                 {{ $template->name  }}

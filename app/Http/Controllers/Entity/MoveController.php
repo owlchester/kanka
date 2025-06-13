@@ -71,7 +71,7 @@ class MoveController extends Controller
                 ->process();
 
             return redirect()
-                ->route($entity->entityType->isSpecial() ? 'entities.index' : $entity->entityType->pluralCode() . '.index', [$campaign, $entity->entityType])
+                ->route($entity->entityType->isCustom() ? 'entities.index' : $entity->entityType->pluralCode() . '.index', [$campaign, $entity->entityType])
                 ->with('success_raw', __('entities/move.success' . ($copied ? '_copy' : null), ['name' => $entity->name, 'campaign' => '<a href=\'' . route('dashboard', $this->service->target()) . '\'>' . $this->service->target()->name . '</a>']));
         } catch (TranslatableException $ex) {
             return redirect()

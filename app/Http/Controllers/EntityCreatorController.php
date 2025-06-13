@@ -184,7 +184,7 @@ class EntityCreatorController extends Controller
         if (isset($entityType)) {
             $newLabel = __($entityType->pluralCode() . '.create.title');
             $singular = Module::singular($entityType->id);
-            if ($entityType->isSpecial()) {
+            if ($entityType->isCustom()) {
                 $singular = $entityType->name();
             }
             if (! empty($singular)) {

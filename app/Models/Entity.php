@@ -449,12 +449,12 @@ class Entity extends Model
 
     public function hasChild(): bool
     {
-        return ! $this->entityType->isSpecial();
+        return $this->entityType->isStandard();
     }
 
     public function isMissingChild(): bool
     {
-        return ! $this->entityType->isSpecial() && empty($this->child);
+        return $this->entityType->isStandard() && empty($this->child);
     }
 
     /**

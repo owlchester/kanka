@@ -94,7 +94,7 @@ class RoutingService
             $filters .= '&n=1';
         }
         try {
-            if ($this->bookmark->entityType->isSpecial()) {
+            if ($this->bookmark->entityType->isCustom()) {
                 return route('entities.index', [$this->campaign, $this->bookmark->entityType, $filters]);
             } else {
                 return route($this->bookmark->entityType->pluralCode() . '.index', [$this->campaign, $filters]);

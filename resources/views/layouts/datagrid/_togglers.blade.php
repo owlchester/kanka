@@ -1,4 +1,4 @@
-@if (isset($model) && $mode === 'grid' && auth()->check() && !$entityType->isSpecial())
+@if (isset($model) && $mode === 'grid' && auth()->check() && $entityType->isStandard())
     <div class="dropdown">
         <a role="button" tabindex="0" class="btn2" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="toggler-submenu" aria-label="Order by">
             <i class="fa-regular fa-arrow-down-a-z" aria-hidden="true" data-tree="escape"></i>
@@ -43,14 +43,14 @@
     @endif
 @endif
 
-@if ((isset($nestable) && empty($forceMode)) || (isset($entityType) && $entityType->isSpecial()))
+@if ((isset($nestable) && empty($forceMode)) || (isset($entityType) && $entityType->isCustom()))
     @if ($nestable)
-        <a class="btn2" href="{{ route($route, array_merge([$campaign, 'n' => false, 'bookmark' => $bookmark ?? null], [isset($entityType) && $entityType->isSpecial() ? $entityType : null])) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.flatten') }}">
+        <a class="btn2" href="{{ route($route, array_merge([$campaign, 'n' => false, 'bookmark' => $bookmark ?? null], [isset($entityType) && $entityType->isCustom() ? $entityType : null])) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.flatten') }}">
             <x-icon class="fa-regular fa-boxes-stacked" />
             <span class="sr-only">{{ __('datagrids.modes.flatten') }}</span>
         </a>
     @else
-        <a class="btn2" href="{{ route($route, array_merge([$campaign, 'n' => true, 'bookmark' => $bookmark ?? null], [isset($entityType) && $entityType->isSpecial() ? $entityType : null])) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.nested') }}">
+        <a class="btn2" href="{{ route($route, array_merge([$campaign, 'n' => true, 'bookmark' => $bookmark ?? null], [isset($entityType) && $entityType->isCustom() ? $entityType : null])) }}" data-toggle="tooltip" data-title="{{ __('datagrids.modes.nested') }}">
             <x-icon class="fa-regular fa-layer-group" />
             <span class="sr-only">{{ __('datagrids.modes.nested') }}</span>
         </a>

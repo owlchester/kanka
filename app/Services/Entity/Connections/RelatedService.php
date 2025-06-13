@@ -342,7 +342,7 @@ class RelatedService
      */
     protected function loadLocation(): self
     {
-        if ($this->entity->entityType->isSpecial()) {
+        if ($this->entity->entityType->isCustom()) {
             return $this;
         }
         if (

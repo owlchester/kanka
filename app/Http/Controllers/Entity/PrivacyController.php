@@ -43,7 +43,7 @@ class PrivacyController extends Controller
     {
         $this->authorize('privacy', $entity);
 
-        if ($entity->entityType->isSpecial()) {
+        if ($entity->entityType->isCustom()) {
             $entity->update(['is_private' => ! $entity->is_private]);
         } else {
             $misc = $entity->child;

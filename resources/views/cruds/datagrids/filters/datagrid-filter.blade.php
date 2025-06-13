@@ -26,7 +26,7 @@ $activeFilters = $filterService->activeFiltersCount();
             </div>
         @endcan
         @endif
-        @if (isset($entityType) && $entityType->isSpecial())
+        @if (isset($entityType) && $entityType->isCustom())
             <a href="{{ route('entities.index', [$campaign, $entityType, 'reset-filter' => 'true']) }}" class="btn2 btn-ghost btn-sm">
                 <x-icon class="fa-regular fa-eraser" /> {{ __('crud.filters.clear') }}
             </a>

@@ -315,13 +315,13 @@ class Bookmark extends Model
             return null;
         }
         if ($current instanceof EntityType) {
-            if (! $current->isSpecial() || $current->id != $this->entity_type_id) {
+            if ($current->isStandard() || $current->id != $this->entity_type_id) {
                 return null;
             }
 
             return 'active';
         }
-        if ($current instanceof Entity && (! $current->entityType->isSpecial() || $current->type_id != $this->entity_type_id)) {
+        if ($current instanceof Entity && ($current->entityType->isStandard() || $current->type_id != $this->entity_type_id)) {
             return null;
         }
 

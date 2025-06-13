@@ -277,7 +277,7 @@ class CampaignDashboardWidget extends Model
 
         // If an entity type is provided, we can combine that with filters. We need to get the list of the misc
         // ids first to pass on to the entity query.
-        if ($this->entityType && ! empty($this->config['filters']) && ! $this->entityType->isSpecial()) {
+        if ($this->entityType && ! empty($this->config['filters']) && $this->entityType->isStandard()) {
             /** @var Character|mixed $model */
             $model = $this->entityType->getClass();
             if ($this->entityType->id === config('entities.ids.quest')) {
@@ -322,7 +322,7 @@ class CampaignDashboardWidget extends Model
         $base = new Entity;
 
         if ($this->entityType) {
-            if ($this->entityType->isSpecial()) {
+            if ($this->entityType->isCustom()) {
                 return $base
                     ->filter($this->filterOptions())
                     ->inTags($this->tags->pluck('id')->toArray())

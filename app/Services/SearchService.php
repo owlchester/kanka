@@ -255,7 +255,7 @@ class SearchService
         foreach ($query->get() as $model) {
             /** @var ?MiscModel $child */
             // Force having a child for "ghost" entities.
-            if (! $model->entityType->isSpecial()) {
+            if ($model->entityType->isStandard()) {
                 $child = $model->child;
                 if ($child === null || in_array($model->id, $foundEntityIds)) {
                     continue;
@@ -400,7 +400,7 @@ class SearchService
 
         // Re-order alphabetically and in groups of custom vs default
 
-        $available = $available->sortBy(fn (EntityType $a) => ! $a->isSpecial() . '.' . $a->name());
+        $available = $available->sortBy(fn (EntityType $a) => $a->isStandard() . '.' . $a->name());
 
         foreach ($available as $entityType) {
             $options[] = [

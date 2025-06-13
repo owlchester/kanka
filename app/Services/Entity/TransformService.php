@@ -39,7 +39,7 @@ class TransformService
     public function transform(): Entity
     {
         // Custom to custom, just update the type_id
-        if ($this->entity->entityType->isSpecial() && $this->entityType->isSpecial()) {
+        if ($this->entity->entityType->isCustom() && $this->entityType->isCustom()) {
             $this->orphanChildren();
             $this->entity->type_id = $this->entityType->id;
             $this->entity->parent_id = null;
@@ -49,9 +49,9 @@ class TransformService
         }
 
         // Custom to child
-        if ($this->entity->entityType->isSpecial() && ! $this->entityType->isSpecial()) {
+        if ($this->entity->entityType->isCustom() && $this->entityType->isStandard()) {
             return $this->specialToMisc();
-        } elseif (! $this->entity->entityType->isSpecial() && $this->entityType->isSpecial()) {
+        } elseif ($this->entity->entityType->isStandard() && $this->entityType->isCustom()) {
             return $this->miscToSpecial();
         }
 
