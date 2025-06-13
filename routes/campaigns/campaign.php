@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\Campaign\ModuleController;
+use App\Http\Controllers\Campaign\Plugins\BulkController;
+use App\Http\Controllers\Campaign\Plugins\CssController;
+use App\Http\Controllers\Campaign\Plugins\ImportController;
+use App\Http\Controllers\Campaign\Plugins\ToggleController;
+use App\Http\Controllers\Campaign\Plugins\UpdateController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/w/{campaign}', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
@@ -119,16 +125,16 @@ Route::get('/w/{campaign}/campaign-roles/{campaign_role}/duplicate', 'Campaign\R
 if (config('marketplace.enabled')) {
     Route::get('/w/{campaign}/plugins', 'Campaign\PluginController@index')->name('campaign_plugins.index');
     Route::delete('/w/{campaign}/plugins/{plugin}/delete', 'Campaign\PluginController@delete')->name('campaign_plugins.destroy');
-    Route::get('/w/{campaign}/plugins/{plugin}/enable', 'Campaign\Plugins\ToggleController@enable')->name('campaign_plugins.enable');
-    Route::get('/w/{campaign}/plugins/{plugin}/disable', 'Campaign\Plugins\ToggleController@disable')->name('campaign_plugins.disable');
+    Route::get('/w/{campaign}/plugins/{plugin}/enable', [ToggleController::class, 'enable'])->name('campaign_plugins.enable');
+    Route::get('/w/{campaign}/plugins/{plugin}/disable', [ToggleController::class, 'disable'])->name('campaign_plugins.disable');
 
-    Route::get('/w/{campaign}/plugins/{plugin}/confirm-import', 'Campaign\Plugins\ImportController@index')->name('campaign_plugins.confirm-import');
-    Route::post('/w/{campaign}/plugins/{plugin}/import', 'Campaign\Plugins\ImportController@process')->name('campaign_plugins.import');
+    Route::get('/w/{campaign}/plugins/{plugin}/confirm-import', [ImportController::class, 'index'])->name('campaign_plugins.confirm-import');
+    Route::post('/w/{campaign}/plugins/{plugin}/import', [ImportController::class, 'process'])->name('campaign_plugins.import');
 
-    Route::get('/w/{campaign}/plugins/{plugin}/update', 'Campaign\Plugins\UpdateController@index')->name('campaign_plugins.update-info');
-    Route::post('/w/{campaign}/plugins/{plugin}/update', 'Campaign\Plugins\UpdateController@update')->name('campaign_plugins.update');
+    Route::get('/w/{campaign}/plugins/{plugin}/update', [UpdateController::class, 'index'])->name('campaign_plugins.update-info');
+    Route::post('/w/{campaign}/plugins/{plugin}/update', [UpdateController::class, 'update'])->name('campaign_plugins.update');
 
-    Route::post('/w/{campaign}/plugins/bulk', 'Campaign\Plugins\BulkController@index')->name('campaign_plugins.bulk');
+    Route::post('/w/{campaign}/plugins/bulk', [BulkController::class, 'index'])->name('campaign_plugins.bulk');
 }
 
 Route::get('/w/{campaign}/redirect', 'RedirectController@index')->name('redirect');
@@ -145,8 +151,8 @@ Route::get('/w/{campaign}/dashboard/widgets/{campaignDashboardWidget}/render', [
 // The campaign management subpages
 Route::get('/w/{campaign}/overview', 'Crud\CampaignController@show')->name('overview');
 Route::get('/w/{campaign}/modules', 'Campaign\ModuleController@index')->name('campaign.modules');
-Route::post('/w/{campaign}/modules/toggle/{entity_type}', [App\Http\Controllers\Campaign\ModuleController::class, 'toggle'])->name('campaign.modules.toggle');
-Route::post('/w/{campaign}/features/toggle/{module}', [App\Http\Controllers\Campaign\ModuleController::class, 'toggleFeature'])->name('campaign.features.toggle');
+Route::post('/w/{campaign}/modules/toggle/{entity_type}', [ModuleController::class, 'toggle'])->name('campaign.modules.toggle');
+Route::post('/w/{campaign}/features/toggle/{module}', [ModuleController::class, 'toggleFeature'])->name('campaign.features.toggle');
 
 // Route::get('/w/{campaign}/entity_types/create', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'create'])->name('campaign.entity_types.create');
 // Route::post('/w/{campaign}/entity_types/create', [\App\Http\Controllers\Campaign\EntityTypeController::class, 'store'])->name('campaign.entity_types.store');
@@ -163,14 +169,14 @@ Route::get('/w/{campaign}/campaign-export', 'Campaign\ExportController@index')->
 Route::post('/w/{campaign}/campaign-export', 'Campaign\ExportController@export')->name('campaign.export-process');
 Route::get('/w/{campaign}/campaign-import', 'Campaign\ImportController@index')->name('campaign.import');
 Route::post('/w/{campaign}/campaign-import', 'Campaign\ImportController@store')->name('campaign.import-process');
-Route::get('/w/{campaign}/campaign-{ts}.styles', [App\Http\Controllers\Campaign\CssController::class, 'index'])->name('campaign.css');
+Route::get('/w/{campaign}/campaign-{ts}.styles', [CssController::class, 'index'])->name('campaign.css');
 Route::get('/w/{campaign}/campaign_plugin-{ts}.styles', 'Campaign\Plugins\CssController@index')->name('campaign_plugins.css');
 Route::get('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@edit')->name('campaign-visibility');
 Route::post('/w/{campaign}/campaign-visibility', 'Campaign\VisibilityController@save')->name('campaign-visibility.save');
 
-Route::get('/w/{campaign}/modules/{entity_type}/edit', [App\Http\Controllers\Campaign\ModuleController::class, 'edit'])->name('modules.edit');
-Route::patch('/w/{campaign}/modules/{entity_type}/update', [App\Http\Controllers\Campaign\ModuleController::class, 'update'])->name('modules.update');
-Route::delete('/w/{campaign}/modules/reset', [App\Http\Controllers\Campaign\ModuleController::class, 'reset'])->name('modules.reset');
+Route::get('/w/{campaign}/modules/{entity_type}/edit', [ModuleController::class, 'edit'])->name('modules.edit');
+Route::patch('/w/{campaign}/modules/{entity_type}/update', [ModuleController::class, 'update'])->name('modules.update');
+Route::delete('/w/{campaign}/modules/reset', [ModuleController::class, 'reset'])->name('modules.reset');
 
 Route::get('/w/{campaign}/campaign-applications', 'Campaign\ApplicationController@toggle')->name('campaign-applications');
 Route::post('/w/{campaign}/campaign-applications', 'Campaign\ApplicationController@toggleSave')->name('campaign-applications.save');
