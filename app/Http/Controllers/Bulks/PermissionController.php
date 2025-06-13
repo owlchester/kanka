@@ -35,6 +35,8 @@ class PermissionController extends Controller
 
         $count = $this
             ->bulkService
+            ->campaign($campaign)
+            ->user($request->user())
             ->entityType($entityType)
             ->entities($models)
             ->permissions(

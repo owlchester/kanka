@@ -49,6 +49,7 @@ class CopyController extends Controller
             ->bulkService
             ->entityType($entityType)
             ->campaign($campaign)
+            ->user($request->user())
             ->entities($models)
             ->copyToCampaign($target);
 

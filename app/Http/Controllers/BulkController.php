@@ -91,6 +91,7 @@ class BulkController extends Controller
         $count = $this
             ->bulkService
             ->entities($models)
+            ->user($this->request->user())
             ->editing($this->request->all(), $this->bulkModel($entityObj));
         $total = $this->bulkService->total();
 

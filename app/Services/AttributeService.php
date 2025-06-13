@@ -12,6 +12,7 @@ use App\Services\Attributes\RandomService;
 use App\Services\Attributes\TemplateService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
@@ -22,6 +23,7 @@ class AttributeService
 {
     use CampaignAware;
     use EntityAware;
+    use UserAware;
 
     protected array $purifyConfig;
 
@@ -171,7 +173,7 @@ class AttributeService
     public function updateVisibility(bool $privateAttributes): self
     {
         // Only admins can update this value
-        if (! auth()->user()->isAdmin()) {
+        if (! $this->user->isAdmin()) {
             return $this;
         }
         $this->entity->is_attributes_private = $privateAttributes ? 1 : 0;

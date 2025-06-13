@@ -396,7 +396,7 @@ class SearchService
     {
         $options = [];
         $term = str_replace('_', ' ', $this->term);
-        $available = $this->newService->campaign($this->campaign)->available();
+        $available = $this->newService->campaign($this->campaign)->user($this->user)->available();
 
         // Re-order alphabetically and in groups of custom vs default
 
@@ -445,7 +445,7 @@ class SearchService
             ->addCampaignPage('campaigns.show.tabs.achievements', 'campaign.achievements')
             ->addCampaignPage('campaigns.show.tabs.stats', 'campaign.stats');
 
-        if (auth()->check()) {
+        if (isset($this->user)) {
             $this
                 ->addCampaignPage('campaigns.show.tabs.members', 'campaign_users.index', 'members')
                 ->addCampaignPage('campaigns.show.tabs.roles', 'campaign_roles.index', 'roles')
@@ -466,7 +466,7 @@ class SearchService
             ->add(['name' => __('footer.documentation'), 'url' => 'https://docs.kanka.io/en/latest/index.html'])
             ->add(['name' => __('front.features.api.link'), 'url' => route('larecipe.index')]);
 
-        if (auth()->check()) {
+        if (isset($this->user)) {
             $this->pages
                 ->add(['name' => __('settings.menu.premium'), 'url' => route('settings.premium')])
                 ->add(['name' => __('Dark mode'), 'url' => route('settings.appearance', ['highlight' => 'dark'])])
@@ -482,7 +482,7 @@ class SearchService
 
     protected function addCampaignPage(string $name, string $route, ?string $perm = null): self
     {
-        if (! empty($perm) && (auth()->guest() || ! auth()->user()->can($perm, $this->campaign))) {
+        if (! empty($perm) && (! isset($this->user) || ! $this->user->can($perm, $this->campaign))) {
             return $this;
         }
         $this->pages->add(['name' => __($name), 'url' => route($route, [$this->campaign])]);
@@ -492,7 +492,7 @@ class SearchService
 
     protected function addCampaignRoles(): self
     {
-        if (auth()->guest() || ! auth()->user()->can('roles', $this->campaign)) {
+        if (! isset($this->user) || ! $this->user->can('roles', $this->campaign)) {
             return $this;
         }
 

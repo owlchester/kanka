@@ -41,7 +41,7 @@ class PaymentMethodController extends Controller
         ];
         $translations = json_encode($translations);
 
-        $currencies = $this->currencyService->availableCurrencies();
+        $currencies = $this->currencyService->user($user)->availableCurrencies();
 
         return view('billing.payment-method', compact(
             'stripeApiToken',
@@ -58,7 +58,7 @@ class PaymentMethodController extends Controller
 
         return view('settings.subscription.currency.edit')
             ->with('content', $content)
-            ->with('currencies', $this->currencyService->availableCurrencies());
+            ->with('currencies', $this->currencyService->user(auth()->user())->availableCurrencies());
     }
 
     public function save(UserBillingStore $request)

@@ -17,6 +17,7 @@ use App\Services\Permissions\BulkPermissionService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
+use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -28,6 +29,7 @@ class BulkService
     use EntityTypeAware;
     use RequestAware;
     use SaveLocations;
+    use UserAware;
 
     /** Ids of entities */
     protected array $ids;
@@ -151,7 +153,7 @@ class BulkService
 
         // First we make sure we have access to the new campaign.
         // todo: move this to the request validator
-        $check = auth()->user()->campaigns()->where('campaign_id', $campaign->id)->first();
+        $check = $this->user->campaigns()->where('campaign_id', $campaign->id)->first();
         if (empty($check)) {
             throw new TranslatableException('crud.move.errors.unknown_campaign');
         }
@@ -399,7 +401,7 @@ class BulkService
                 /** @var TagService $tagService */
                 $tagService = app()->make(TagService::class);
                 $tagService
-                    ->user(auth()->user())
+                    ->user($this->user)
                     ->entity($realEntity)
                     ->withNew()
                     ->add($tagIds);
@@ -469,7 +471,7 @@ class BulkService
         /** @var Relation $relation */
         foreach ($relations as $relation) {
             $this->total++;
-            if (! auth()->user()->can('update', $relation)) {
+            if (! $this->user->can('update', $relation)) {
                 // Can't update this? Technically not possible since bulk editing is only available
                 // for admins, but better safe than sorry
                 continue;
@@ -502,9 +504,9 @@ class BulkService
     protected function can(string $action, $entity): bool
     {
         if (! isset($this->entityType) || ! $this->entityType->hasEntity() || $entity instanceof Entity) {
-            return auth()->user()->can($action, $entity);
+            return $this->user->can($action, $entity);
         }
 
-        return auth()->user()->can($action, $entity->entity);
+        return $this->user->can($action, $entity->entity);
     }
 }

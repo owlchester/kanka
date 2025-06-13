@@ -2,11 +2,15 @@
 
 namespace App\Services;
 
+use App\Traits\UserAware;
+
 /**
  * Class PaginationService
  */
 class PaginationService
 {
+    use UserAware;
+
     public const MAX = 100;
 
     /**
@@ -21,7 +25,7 @@ class PaginationService
             self::MAX => __('settings/appearance.values.pagination', ['amount' => self::MAX]),
         ];
 
-        if (! auth()->user()->isSubscriber()) {
+        if (! $this->user->isSubscriber()) {
             $options[self::MAX] = __('settings/appearance.values.pagination-sub', ['amount' => self::MAX]);
         }
 
@@ -35,7 +39,7 @@ class PaginationService
     {
         $disabled = [];
 
-        if (! auth()->user()->isSubscriber()) {
+        if (! $this->user->isSubscriber()) {
             $disabled[self::MAX] = ['disabled' => true];
         }
 
@@ -47,6 +51,6 @@ class PaginationService
      */
     public function max(): int
     {
-        return auth()->check() && auth()->user()->isSubscriber() ? self::MAX : 45;
+        return isset($this->user) && $this->user->isSubscriber() ? self::MAX : 45;
     }
 }

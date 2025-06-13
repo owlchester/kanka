@@ -50,6 +50,7 @@ class TransformController extends Controller
             ->entities($models)
             ->entityType($entityType)
             ->campaign($campaign)
+            ->user($request->user())
             ->transform($newEntityType);
 
         $link = '<a href="' . ($newEntityType->isCustom() ? route('entities.index', [$campaign, $newEntityType]) : route($newEntityType->pluralCode() . '.index', [$campaign])) . '">' . $newEntityType->name() . '</a>';

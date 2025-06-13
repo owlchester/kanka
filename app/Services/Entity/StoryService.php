@@ -8,10 +8,12 @@ use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Post;
 use App\Traits\EntityAware;
+use App\Traits\UserAware;
 
 class StoryService
 {
     use EntityAware;
+    use UserAware;
 
     public function reorder(ReorderStories $request): bool
     {
@@ -73,7 +75,7 @@ class StoryService
     {
         $log = new EntityLog;
         $log->entity_id = $this->entity->id;
-        $log->created_by = auth()->user()->id;
+        $log->created_by = $this->user->id;
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = EntityLog::ACTION_REORDER_POST;
         $log->save();

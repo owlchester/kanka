@@ -30,6 +30,9 @@ class ApiController extends Controller
     public function index(Campaign $campaign, Family $family): JsonResponse
     {
         $this->campaign($campaign)->authEntityView($family->entity);
+        if (auth()->check()) {
+            $this->service->user(auth()->user());
+        }
 
         return response()->json(
             $this

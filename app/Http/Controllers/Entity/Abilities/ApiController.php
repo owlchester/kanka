@@ -18,6 +18,10 @@ class ApiController extends Controller
 
     public function index(Campaign $campaign, Entity $entity)
     {
+        if (auth()->check()) {
+            $this->service->user(auth()->user());
+        }
+
         return response()->json([
             'data' => $this->service
                 ->campaign($campaign)

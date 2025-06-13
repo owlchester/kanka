@@ -42,7 +42,12 @@ class FamilyTreeApiController extends ApiController
 
         $data = $request->input('tree');
 
-        $model = $this->treeService->family($family)->save($data)->familyTree();
+        $model = $this
+            ->treeService
+            ->family($family)
+            ->user($request->user())
+            ->save($data)
+            ->familyTree();
 
         return new Resource($model);
     }

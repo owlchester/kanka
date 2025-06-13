@@ -43,6 +43,7 @@ class MoveController extends Controller
             }
             $newPost = $this->service
                 ->post($post)
+                ->user($request->user())
                 ->handle($request);
             $success = 'move_success';
             if (isset($request['copy'])) {

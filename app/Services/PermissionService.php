@@ -7,6 +7,7 @@ use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\Entity;
 use App\Traits\CampaignAware;
+use App\Traits\EntityAware;
 use App\Traits\RoleAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
@@ -17,6 +18,7 @@ use Illuminate\Support\Arr;
 class PermissionService
 {
     use CampaignAware;
+    use EntityAware;
     use RoleAware;
     use UserAware;
 
@@ -49,10 +51,10 @@ class PermissionService
         return $this;
     }
 
-    public function saveEntity(array $request, Entity $entity): void
+    public function save(array $request): void
     {
         // First, let's get all the stuff for this entity
-        $permissions = $this->entityPermissions($entity);
+        $permissions = $this->entityPermissions($this->entity);
 
         // Next, start looping the data
         if (! empty($request['role'])) {
@@ -62,10 +64,10 @@ class PermissionService
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
                                 'campaign_role_id' => $roleId,
-                                'campaign_id' => $entity->campaign_id,
-                                'entity_type_id' => $entity->type_id,
-                                'entity_id' => $entity->id,
-                                'misc_id' => $entity->entityType->isCustom() ? null : $entity->child->id,
+                                'campaign_id' => $this->entity->campaign_id,
+                                'entity_type_id' => $this->entity->type_id,
+                                'entity_id' => $this->entity->id,
+                                'misc_id' => $this->entity->entityType->isCustom() ? null : $this->entity->child->id,
                                 'action' => $perm,
                                 'access' => true,
                             ]);
@@ -77,10 +79,10 @@ class PermissionService
                         if (empty($permissions['role'][$roleId][$perm])) {
                             CampaignPermission::create([
                                 'campaign_role_id' => $roleId,
-                                'campaign_id' => $entity->campaign_id,
-                                'entity_type_id' => $entity->type_id,
-                                'entity_id' => $entity->id,
-                                'misc_id' => $entity->entityType->isCustom() ? null : $entity->child->id,
+                                'campaign_id' => $this->entity->campaign_id,
+                                'entity_type_id' => $this->entity->type_id,
+                                'entity_id' => $this->entity->id,
+                                'misc_id' => $this->entity->entityType->isCustom() ? null : $this->entity->child->id,
                                 'action' => $perm,
                                 'access' => false,
                             ]);
@@ -104,10 +106,10 @@ class PermissionService
                         if (empty($permissions['user'][$userId][$perm])) {
                             CampaignPermission::create([
                                 'user_id' => $userId,
-                                'campaign_id' => $entity->campaign_id,
-                                'entity_type_id' => $entity->type_id,
-                                'entity_id' => $entity->id,
-                                'misc_id' => $entity->entityType->isCustom() ? null : $entity->child->id,
+                                'campaign_id' => $this->entity->campaign_id,
+                                'entity_type_id' => $this->entity->type_id,
+                                'entity_id' => $this->entity->id,
+                                'misc_id' => $this->entity->entityType->isCustom() ? null : $this->entity->child->id,
                                 'action' => $perm,
                                 'access' => true,
                             ]);
@@ -119,10 +121,10 @@ class PermissionService
                         if (empty($permissions['user'][$userId][$perm])) {
                             CampaignPermission::create([
                                 'user_id' => $userId,
-                                'campaign_id' => $entity->campaign_id,
-                                'entity_type_id' => $entity->type_id,
-                                'entity_id' => $entity->id,
-                                'misc_id' => $entity->entityType->isCustom() ? null : $entity->child->id,
+                                'campaign_id' => $this->entity->campaign_id,
+                                'entity_type_id' => $this->entity->type_id,
+                                'entity_id' => $this->entity->id,
+                                'misc_id' => $this->entity->entityType->isCustom() ? null : $this->entity->child->id,
                                 'action' => $perm,
                                 'access' => false,
                             ]);
@@ -155,9 +157,9 @@ class PermissionService
         }
 
         // Campaign admins can hide all attributes from an entity
-        if (auth()->user()->isAdmin()) {
+        if ($this->user->isAdmin()) {
             $privateAttributes = Arr::get($request, 'is_attributes_private', false);
-            $entity->is_attributes_private = $privateAttributes ? 1 : 0;
+            $this->entity->is_attributes_private = $privateAttributes ? 1 : 0;
         }
     }
 

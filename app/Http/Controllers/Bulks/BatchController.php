@@ -38,6 +38,7 @@ class BatchController extends Controller
         $count = $this
             ->bulkService
             ->entityType($entityType)
+            ->user($request->user())
             ->campaign($campaign)
             ->entities($models)
             ->editing($request->all(), new EntityBulk);

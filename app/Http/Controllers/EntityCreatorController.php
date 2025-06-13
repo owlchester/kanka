@@ -56,6 +56,7 @@ class EntityCreatorController extends Controller
 
         $this->processService
             ->campaign($campaign)
+            ->user($request->user())
             ->entityType($entityType)
             ->request($request)
             ->entity();

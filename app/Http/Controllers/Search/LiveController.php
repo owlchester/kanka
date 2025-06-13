@@ -22,6 +22,9 @@ class LiveController extends Controller
         if ($exclude === 'undefined') {
             $exclude = null;
         }
+        if (auth()->check()) {
+            $this->searchService->user(auth()->user());
+        }
         if (request()->has('new')) {
             $this->searchService->new(true);
         }

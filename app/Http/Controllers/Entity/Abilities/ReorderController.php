@@ -6,19 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ReorderAbility;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\Abilities\AbilityService;
 use App\Services\Abilities\ReorderService;
 use Illuminate\Database\Query\JoinClause;
 
 class ReorderController extends Controller
 {
-    protected AbilityService $service;
-
     protected ReorderService $reorderService;
 
-    public function __construct(AbilityService $abilityService, ReorderService $reorderService)
+    public function __construct(ReorderService $reorderService)
     {
-        $this->service = $abilityService;
         $this->reorderService = $reorderService;
     }
 

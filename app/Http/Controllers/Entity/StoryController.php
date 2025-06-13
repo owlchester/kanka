@@ -39,6 +39,7 @@ class StoryController extends Controller
 
         $this->service
             ->entity($entity)
+            ->user($request->user())
             ->reorder($request);
 
         return redirect()

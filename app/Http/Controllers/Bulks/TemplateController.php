@@ -42,6 +42,8 @@ class TemplateController extends Controller
         $target = $request->get('template_id');
 
         $count = $this->bulkService
+            ->campaign($campaign)
+            ->user($request->user())
             ->entityType($entityType)
             ->entities($models)
             ->templates($target);

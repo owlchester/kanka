@@ -117,7 +117,10 @@ class EntityObserver
             }
         }
 
-        $this->permissionService->saveEntity($data, $entity);
+        $this->permissionService
+            ->user(auth()->user())
+            ->entity($entity)
+            ->save($data);
     }
 
     public function created(Entity $entity)

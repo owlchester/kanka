@@ -29,7 +29,7 @@ class CurrencyService
             'eur' => __('settings.subscription.currencies.eur'),
         ];
         // Brazil
-        if ($this->countryService->getCountry() === 'BR' || auth()->user()->currency() === 'brl') {
+        if ($this->countryService->getCountry() === 'BR' || $this->user->currency() === 'brl') {
             $currencies['brl'] = __('settings.subscription.currencies.brl');
         }
 

@@ -197,7 +197,7 @@ class SaveService
             return $name;
         }
 
-        $types = $this->newService->campaign($this->campaign)->available();
+        $types = $this->newService->campaign($this->campaign)->user($this->user)->available();
 
         /** @var ?EntityType $entityType */
         $entityType = $types->where('code', $type)->first();

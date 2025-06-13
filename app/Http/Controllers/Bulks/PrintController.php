@@ -22,6 +22,7 @@ class PrintController extends Controller
         Mentions::campaign($campaign);
         $entities = $this->bulkService
             ->campaign($campaign)
+            ->user($request->user())
             ->entityType($entityType)
             ->entities($request->get('model'))
             ->export();

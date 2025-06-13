@@ -4,10 +4,12 @@ namespace App\Services\Gallery;
 
 use App\Models\Image;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 
 class BrowseService
 {
     use CampaignAware;
+    use UserAware;
 
     protected ?string $folder;
 
@@ -31,7 +33,7 @@ class BrowseService
     {
         $results = [];
 
-        $canBrowse = auth()->user()->can('galleryBrowse', $this->campaign);
+        $canBrowse = $this->user->can('galleryBrowse', $this->campaign);
 
         if (! empty($this->folder)) {
             $image = Image::where('is_folder', true)->where('id', $this->folder)->firstOrFail();

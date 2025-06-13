@@ -23,6 +23,7 @@ class BrowseController extends Controller
         return response()->json(
             $this->service
                 ->campaign($campaign)
+                ->user($request->user())
                 ->folder($request->get('folder'))
                 ->term($request->get('term'))
                 ->images()

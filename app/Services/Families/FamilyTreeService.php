@@ -7,11 +7,13 @@ use App\Models\Entity;
 use App\Models\Family;
 use App\Models\FamilyTree;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Str;
 
 class FamilyTreeService
 {
     use CampaignAware;
+    use UserAware;
 
     protected Family $family;
 
@@ -247,7 +249,7 @@ class FamilyTreeService
         return (bool) (
             ! isset($relation['visibility']) ||
             $relation['visibility'] == \App\Enums\Visibility::All->value ||
-            ($relation['visibility'] == \App\Enums\Visibility::Admin->value && auth()->user()->isAdmin()) ||
+            ($relation['visibility'] == \App\Enums\Visibility::Admin->value && isset($this->user) && $this->user->isAdmin()) ||
             ($relation['visibility'] == \App\Enums\Visibility::Member->value && $this->campaign->userIsMember())
         );
     }

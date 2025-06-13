@@ -50,7 +50,7 @@ class InviteService
             throw new Exception(__('campaigns/limits.members'));
         }
 
-        if (auth()->guest()) {
+        if (! isset($this->user)) {
             Session::put('invite_token', $invite->token);
             throw new RequireLoginException(__('campaigns.invites.error.join', ['campaign' => '<strong>' . $invite->campaign->name . '</strong>']));
         }

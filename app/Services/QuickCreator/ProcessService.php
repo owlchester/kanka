@@ -17,6 +17,7 @@ use App\Services\Entity\TagService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -26,6 +27,7 @@ class ProcessService
     use CampaignAware;
     use EntityTypeAware;
     use RequestAware;
+    use UserAware;
 
     /** @var Entity[]|Post[] */
     protected array $new = [];
@@ -221,7 +223,7 @@ class ProcessService
         if (! request()->has('location_id')) {
             return $this;
         }
-        $canCreate = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $this->campaign]);
+        $canCreate = $this->user->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $this->campaign]);
 
         $location = $this->request->get('location_id');
         if (is_numeric($location)) {
@@ -243,12 +245,12 @@ class ProcessService
         if (! $this->request->has('tags') && ! $this->request->has('save-tags')) {
             return $this;
         }
-        $canCreateTags = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.tag'))->first(), $this->campaign]);
+        $canCreateTags = $this->user->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.tag'))->first(), $this->campaign]);
 
         /** @var TagService $tagService */
         $tagService = app()->make(TagService::class);
         $tagService
-            ->user(auth()->user())
+            ->user($this->user)
             ->campaign($this->campaign);
 
         // Exclude existing tags to avoid adding a tag several times
@@ -275,7 +277,7 @@ class ProcessService
         if (! $this->request->has('locations') && ! $this->request->has('save_locations')) {
             return $this;
         }
-        $canCreate = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $this->campaign]);
+        $canCreate = $this->user->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $this->campaign]);
 
         // Exclude existing locations to avoid adding a location several times
         $locations = $this->request->get('locations', []);
@@ -301,7 +303,7 @@ class ProcessService
         if (! $this->request->has('races') && ! $this->request->has('save_races')) {
             return $this;
         }
-        $canCreate = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.race'))->first(), $this->campaign]);
+        $canCreate = $this->user->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.race'))->first(), $this->campaign]);
 
         // Exclude existing races to avoid adding a race several times
         $races = $this->request->get('races', []);
@@ -327,7 +329,7 @@ class ProcessService
         if (! $this->request->has('families') && ! $this->request->has('save_families')) {
             return $this;
         }
-        $canCreate = auth()->user()->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.family'))->first(), $this->campaign]);
+        $canCreate = $this->user->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.family'))->first(), $this->campaign]);
 
         // Exclude existing families to avoid adding a family several times
         $families = $this->request->get('families', []);

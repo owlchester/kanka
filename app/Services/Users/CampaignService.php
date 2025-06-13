@@ -41,7 +41,7 @@ class CampaignService
     public function next(): self
     {
         // Switch to the next available campaign?
-        $member = CampaignUser::where('user_id', auth()->user()->id)->first();
+        $member = CampaignUser::where('user_id', $this->user->id)->first();
         if ($member && $member->campaign) {
             // Just switch to the first one available.
             return $this->campaign($member->campaign)->set();

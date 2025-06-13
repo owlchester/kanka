@@ -30,6 +30,7 @@ class DeleteRelationController extends Controller
         $count = $this->bulkService
             ->entities($models)
             ->campaign($campaign)
+            ->user(auth()->user())
             ->delete();
         $key = 'entities/relations.bulk.delete';
 

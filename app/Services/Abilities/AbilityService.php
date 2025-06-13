@@ -10,6 +10,7 @@ use App\Models\EntityAbility;
 use App\Models\Tag;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use App\Traits\UserAware;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -18,6 +19,7 @@ class AbilityService extends BaseAbilityService
 {
     use CampaignAware;
     use EntityAware;
+    use UserAware;
 
     /** @var array All the abilities of this entity, nicely prepared */
     protected array $abilities = [
@@ -68,8 +70,8 @@ class AbilityService extends BaseAbilityService
         // Meta
         $this->abilities['meta'] = [
             'add_url' => route('entities.entity_abilities.create', [$this->campaign, $this->entity]),
-            'user_id' => auth()->check() ? auth()->user()->id : 0,
-            'is_admin' => auth()->check() && auth()->user()->isAdmin(),
+            'user_id' => $this->user->id ?? 0,
+            'is_admin' => $this->user->isAdmin() ?? false,
         ];
 
         return $this->abilities;

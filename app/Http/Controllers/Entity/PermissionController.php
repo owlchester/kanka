@@ -29,7 +29,9 @@ class PermissionController extends Controller
         $this->authorize('permissions', $entity);
 
         $this->permissionService
-            ->saveEntity($request->only('role', 'user'), $entity);
+            ->user($request->user())
+            ->entity($entity)
+            ->save($request->only('role', 'user'));
 
         return redirect()->back()
             ->with('success_raw', __('crud.permissions.success'));

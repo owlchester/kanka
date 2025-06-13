@@ -38,7 +38,7 @@ class NewService
         }
         $this->available = new Collection;
 
-        if (auth()->guest()) {
+        if (! isset($this->user)) {
             return $this->available;
         }
 
@@ -59,7 +59,7 @@ class NewService
                 continue;
             }
             // Check permission
-            if (! auth()->user()->can('create', [$entityType, $this->campaign])) {
+            if (! $this->user->can('create', [$entityType, $this->campaign])) {
                 continue;
             }
             $this->available->add($entityType);

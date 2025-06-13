@@ -9,25 +9,21 @@ use App\Models\Entity;
 use App\Models\EntityLog;
 use App\Models\Post;
 use App\Services\EntityMappingService;
+use App\Traits\PostAware;
+use App\Traits\UserAware;
 
 class PostService
 {
-    protected EntityMappingService $mappingService;
+    use PostAware;
+    use UserAware;
 
-    protected Post $post;
+    protected EntityMappingService $mappingService;
 
     protected int $entityId;
 
     public function __construct(EntityMappingService $mappingService)
     {
         $this->mappingService = $mappingService;
-    }
-
-    public function post(Post $post): self
-    {
-        $this->post = $post;
-
-        return $this;
     }
 
     /**
@@ -83,7 +79,7 @@ class PostService
     {
         $log = new EntityLog;
         $log->entity_id = $post->entity->id;
-        $log->created_by = auth()->user()->id;
+        $log->created_by = $this->user->id;
         $log->post_id = $post->id;
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = $action;
