@@ -5,7 +5,6 @@ namespace App\Observers;
 use App\Events\Campaigns\Styles\StyleCreated;
 use App\Events\Campaigns\Styles\StyleDeleted;
 use App\Events\Campaigns\Styles\StyleUpdated;
-use App\Facades\CampaignCache;
 use App\Models\CampaignStyle;
 
 class CampaignStyleObserver
