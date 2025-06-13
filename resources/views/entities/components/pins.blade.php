@@ -1,7 +1,7 @@
 @php
 /** @var \App\Models\Entity $entity */
 $forceShow = false;
-if (!$entity->entityType->isSpecial() && method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty()) {
+if ($entity->entityType->isStandard() && method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty()) {
     $forceShow = true;
 }
 if (auth()->check() && auth()->user()->can('update', $entity)) {
@@ -27,7 +27,7 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
                 <div class="pins flex flex-col gap-2">
                     @includeWhen(!$entity->pinnedFiles->isEmpty() || !$entity->pinnedAliases->isEmpty(), 'entities.components.assets')
                     @include('entities.components.relations')
-                    @includeWhen(!$entity->entityType->isSpecial() && method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty(), 'entities.components.members')
+                    @includeWhen($entity->entityType->isStandard() && method_exists($entity->child, 'pinnedMembers') && !$entity->child->pinnedMembers->isEmpty(), 'entities.components.members')
                     @can('view-attributes', [$entity, $campaign])
                         @include('entities.components.attributes')
                     @endcan
@@ -36,7 +36,7 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
         </div>
     @endif
 
-    @if ($entity->entityType->isSpecial())
+    @if ($entity->entityType->isCustom())
             @includeIf('entities.components.profile.custom')
     @else
         @includeIf('entities.components.profile.' . $entity->entityType->pluralCode())

@@ -13,7 +13,7 @@ trait GuestAuthTrait
         if (empty($entity)) {
             abort(403);
         }
-        if (! $entity->entityType->isSpecial() && $entity->isMissingChild()) {
+        if ($entity->entityType->isStandard() && $entity->isMissingChild()) {
             abort(403);
         }
         if (auth()->check()) {

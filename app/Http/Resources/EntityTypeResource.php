@@ -22,7 +22,7 @@ class EntityTypeResource extends JsonResource
             'singular' => $this->name(),
             'plural' => $this->plural(),
             'icon' => $this->icon,
-            'is_special' => $this->isSpecial(),
+            'is_special' => $this->isCustom(),
             'is_enabled' => $this->isEnabled(),
             'is_nested' => $this->isNested(),
             'has_table' => $this->hasTable(),

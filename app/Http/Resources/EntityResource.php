@@ -44,7 +44,7 @@ class EntityResource extends JsonResource
         /** @var \App\Models\Entity $entity */
         $entity = $this->resource;
         $url = $entity->url();
-        if ($entity->entityType->isSpecial()) {
+        if ($entity->entityType->isCustom()) {
             $apiViewUrl = 'campaigns.entities.show';
         } else {
             $apiViewUrl = 'campaigns.' . $entity->entityType->pluralCode() . '.show';
@@ -83,7 +83,7 @@ class EntityResource extends JsonResource
             ],
         ];
 
-        if ($entity->entityType->isSpecial()) {
+        if ($entity->entityType->isCustom()) {
             $data['entry'] = $entity->entry;
             $data['entry_parsed'] = $entity->parsedEntry();
             $data['parent_id'] = $entity->parent_id;

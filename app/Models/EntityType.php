@@ -174,14 +174,14 @@ class EntityType extends Model
         return $this->belongsTo(Campaign::class);
     }
 
-    public function isSpecial(): bool
+    public function isCustom(): bool
     {
         return (bool) $this->is_special;
     }
 
     public function isStandard(): bool
     {
-        return ! $this->isSpecial();
+        return ! $this->isCustom();
     }
 
     public function isEnabled(): bool
@@ -196,7 +196,7 @@ class EntityType extends Model
 
     public function createRoute(Campaign $campaign, array $params = []): string
     {
-        if ($this->isSpecial()) {
+        if ($this->isCustom()) {
             return route('entities.create', [$campaign, $this] + $params);
         }
 
@@ -218,7 +218,7 @@ class EntityType extends Model
 
     public function isNested(): bool
     {
-        if ($this->isSpecial()) {
+        if ($this->isCustom()) {
             return true;
         }
         $model = $this->getClass();
@@ -228,6 +228,6 @@ class EntityType extends Model
 
     public function hasTable(): bool
     {
-        return $this->isSpecial();
+        return $this->isCustom();
     }
 }

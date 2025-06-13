@@ -741,7 +741,7 @@ class SidebarService
         }, 'entityType', 'target.entityType'])->get();
         /** @var Bookmark $bookmark */
         foreach ($bookmarks as $bookmark) {
-            if ($bookmark->entityType && $bookmark->entityType->isSpecial() && ! $bookmark->entityType->isEnabled()) {
+            if ($bookmark->entityType && $bookmark->entityType->isCustom() && ! $bookmark->entityType->isEnabled()) {
                 continue;
             }
             $parent = 'bookmarks';

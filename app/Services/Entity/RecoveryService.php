@@ -41,7 +41,7 @@ class RecoveryService
         }
 
         $entity->restore();
-        if ($entity->entityType->isSpecial()) {
+        if ($entity->entityType->isCustom()) {
             return $entity->url();
         }
 

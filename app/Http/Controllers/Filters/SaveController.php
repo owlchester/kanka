@@ -41,7 +41,7 @@ class SaveController extends Controller
         }
 
         $filters = '';
-        if ($entityType->isSpecial()) {
+        if ($entityType->isCustom()) {
             $filters = $this->filterService->clipboardFilters();
             $this->filterService
                 ->entityType($entityType)
@@ -59,7 +59,7 @@ class SaveController extends Controller
         $bookmark->icon = request()->get('icon', null);
         $bookmark->entity_type_id = $entityType->id;
         $bookmark->filters = $filters;
-        $bookmark->parent = $entityType->isSpecial() ? null : $entityType->pluralCode();
+        $bookmark->parent = $entityType->isCustom() ? null : $entityType->pluralCode();
         $bookmark->save();
 
         $route = $this->routingService->campaign($campaign)->bookmark($bookmark)->url();

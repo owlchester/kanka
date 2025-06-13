@@ -65,7 +65,7 @@ class PermissionService
                                 'campaign_id' => $entity->campaign_id,
                                 'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
-                                'misc_id' => $entity->entityType->isSpecial() ? null : $entity->child->id,
+                                'misc_id' => $entity->entityType->isCustom() ? null : $entity->child->id,
                                 'action' => $perm,
                                 'access' => true,
                             ]);
@@ -80,7 +80,7 @@ class PermissionService
                                 'campaign_id' => $entity->campaign_id,
                                 'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
-                                'misc_id' => $entity->entityType->isSpecial() ? null : $entity->child->id,
+                                'misc_id' => $entity->entityType->isCustom() ? null : $entity->child->id,
                                 'action' => $perm,
                                 'access' => false,
                             ]);
@@ -107,7 +107,7 @@ class PermissionService
                                 'campaign_id' => $entity->campaign_id,
                                 'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
-                                'misc_id' => $entity->entityType->isSpecial() ? null : $entity->child->id,
+                                'misc_id' => $entity->entityType->isCustom() ? null : $entity->child->id,
                                 'action' => $perm,
                                 'access' => true,
                             ]);
@@ -122,7 +122,7 @@ class PermissionService
                                 'campaign_id' => $entity->campaign_id,
                                 'entity_type_id' => $entity->type_id,
                                 'entity_id' => $entity->id,
-                                'misc_id' => $entity->entityType->isSpecial() ? null : $entity->child->id,
+                                'misc_id' => $entity->entityType->isCustom() ? null : $entity->child->id,
                                 'action' => $perm,
                                 'access' => false,
                             ]);

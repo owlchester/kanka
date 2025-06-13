@@ -149,7 +149,7 @@ class AvatarService
                 ->url(CampaignCache::defaultImages()[$this->entity->entityType->code]);
 
             return $this->return($url);
-        } elseif (! $this->entity->entityType->isSpecial() && ($this->campaign->premium() || (auth()->check() && auth()->user()->isGoblin()))) {
+        } elseif ($this->entity->entityType->isStandard() && ($this->campaign->premium() || (auth()->check() && auth()->user()->isGoblin()))) {
             return $this->return($cloudfront . '/images/defaults/subscribers/' . $this->entity->entityType->pluralCode() . '.jpeg');
         }
 

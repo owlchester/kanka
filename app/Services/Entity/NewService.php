@@ -49,10 +49,10 @@ class NewService
 
         foreach ($this->campaign->getEntityTypes() as $entityType) {
             // Skip disabled modules
-            if ($entityType->isSpecial() && ! $entityType->isEnabled()) {
+            if ($entityType->isCustom() && ! $entityType->isEnabled()) {
                 continue;
             }
-            if (! $entityType->isSpecial() && ! $this->campaign->enabled($entityType)) {
+            if ($entityType->isStandard() && ! $this->campaign->enabled($entityType)) {
                 continue;
             }
             if (in_array($entityType->id, $excludedTypes)) {
@@ -71,7 +71,7 @@ class NewService
     public function create(string $name): Entity
     {
         $name = Str::replace(['&lt;', '&gt;'], ['<', '>'], $name);
-        if ($this->entityType->isSpecial()) {
+        if ($this->entityType->isCustom()) {
             $this->entity = new Entity;
             $this->entity->campaign_id = $this->campaign->id;
             $this->entity->type_id = $this->entityType->id;

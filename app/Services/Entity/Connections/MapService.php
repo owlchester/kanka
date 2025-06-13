@@ -112,7 +112,7 @@ class MapService
             $this->loadRelations();
 
             if ($this->withRelated()) {
-                if (! $this->entity->entityType->isSpecial()) {
+                if ($this->entity->entityType->isStandard()) {
                     $this->addParent()
                         ->addLocation()
                         ->addQuests()

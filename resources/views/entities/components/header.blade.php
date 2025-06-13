@@ -200,7 +200,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
             </div>
         @endif
 
-        @if (!$entity->entityType->isSpecial() && !empty($entity->child->type))
+        @if ($entity->entityType->isStandard() && !empty($entity->child->type))
             <div class="entity-type entity-header-line">
                 {{ $entity->child->type }}
             </div>
@@ -229,7 +229,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         </div>
 
         <div class="entity-header-sub flex gap-4 items-center flex-wrap">
-            @if ($entity->entityType->isSpecial())
+            @if ($entity->entityType->isCustom())
                 @includeIf('entities.headers._custom')
             @endif
             @includeIf('entities.headers._' . $entity->entityType->code)

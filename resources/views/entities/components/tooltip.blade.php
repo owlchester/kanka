@@ -22,7 +22,7 @@
             </div>
 
 
-            @if (!$entity->entityType->isSpecial() && method_exists($entity->child, 'tooltipSubtitle'))
+            @if ($entity->entityType->isStandard() && method_exists($entity->child, 'tooltipSubtitle'))
                 <span class="entity-subtitle italic">{!! $entity->child->tooltipSubtitle() !!}</span>
             @endif
         </div>

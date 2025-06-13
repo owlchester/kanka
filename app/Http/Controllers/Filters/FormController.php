@@ -27,7 +27,7 @@ class FormController extends Controller
         $plural = Str::plural(Str::remove('-', $entityType->code));
         $route = $plural . '.index';
 
-        if ($entityType->isSpecial()) {
+        if ($entityType->isCustom()) {
             $this->filterService->entityType($entityType)->build();
 
             return view('entities.index.filters')

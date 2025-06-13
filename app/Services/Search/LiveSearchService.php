@@ -29,7 +29,7 @@ class LiveSearchService
         if (! empty($excludes)) {
             $query->whereNotIn('id', [$excludes]);
         }
-        if (! $this->entityType->isSpecial()) {
+        if ($this->entityType->isStandard()) {
             $with[] = Str::camel($this->entityType->code);
         }
         $query->with($with);
@@ -52,11 +52,11 @@ class LiveSearchService
         $child = Str::camel($this->entityType->code);
         /** @var Entity $entity */
         foreach ($entities as $entity) {
-            if (! $this->entityType->isSpecial() && empty($entity->{$child})) {
+            if ($this->entityType->isStandard() && empty($entity->{$child})) {
                 continue;
             }
             $format = [
-                'id' => $this->entityType->isSpecial() ? $entity->id : $entity->{$child}->id,
+                'id' => $this->entityType->isCustom() ? $entity->id : $entity->{$child}->id,
                 'entity_id' => $entity->id,
                 'name' => $entity->name,
                 'text' => $entity->name,

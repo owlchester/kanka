@@ -128,7 +128,7 @@ class SubmenuService
 
     protected function custom(): self
     {
-        if ($this->entity->entityType->isSpecial()) {
+        if ($this->entity->entityType->isCustom()) {
             return $this->customEntityType();
         }
         // Get the custom one based on the model name?

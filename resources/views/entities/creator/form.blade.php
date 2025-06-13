@@ -73,7 +73,7 @@
         <div class="qq-more-fields flex flex-col gap-5 {{ isset($entityType) ? 'hidden' : null }}">
             @php $allowNew = false; $dropdownParent = '#primary-dialog';@endphp
             @if (isset($entityType))
-                @if ($entityType->isSpecial())
+                @if ($entityType->isCustom())
                     @include('entities.creator.forms.custom')
                 @else
                     @include('entities.creator.forms.' . $entityType->code)

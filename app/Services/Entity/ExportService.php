@@ -30,7 +30,7 @@ class ExportService
             $resource = new $className($this->entity->child);
 
             return $resource->withRelated();
-        } elseif ($this->entity->entityType->isSpecial()) {
+        } elseif ($this->entity->entityType->isCustom()) {
             return new EntityResource($this->entity);
         } else {
             return ['error' => 'unknown resource ' . $className];

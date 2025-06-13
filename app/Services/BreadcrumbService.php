@@ -20,9 +20,9 @@ class BreadcrumbService
 
         // If the user activated nested views by default, go back to it.
         if (
-            (isset($this->entityType) && $this->entityType->isSpecial())
+            (isset($this->entityType) && $this->entityType->isCustom())
                 ||
-                (isset($this->entity) && $this->entity->entityType->isSpecial())
+                (isset($this->entity) && $this->entity->entityType->isCustom())
         ) {
             $params['entityType'] = $this->entityType ?? $this->entity->entityType;
 

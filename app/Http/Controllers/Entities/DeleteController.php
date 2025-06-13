@@ -22,8 +22,8 @@ class DeleteController extends Controller
             $entity->child->delete();
         }
 
-        $routeName = $entity->entityType->isSpecial() ? 'entities' : $entity->entityType->pluralCode();
-        $params = $entity->entityType->isSpecial() ? [$campaign, $entity->entityType] : [$campaign];
+        $routeName = $entity->entityType->isCustom() ? 'entities' : $entity->entityType->pluralCode();
+        $params = $entity->entityType->isCustom() ? [$campaign, $entity->entityType] : [$campaign];
 
         return redirect()->route($routeName . '.index', $params)
             ->with('success_raw', __('general.success.deleted-cancel', [

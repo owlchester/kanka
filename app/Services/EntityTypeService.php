@@ -72,7 +72,7 @@ class EntityTypeService
                 continue;
             }
             // Skip disabled standard modules
-            if (! $this->withDisabled && ! $entityType->isSpecial() && ! $this->campaign->enabled($entityType)) {
+            if (! $this->withDisabled && $entityType->isStandard() && ! $this->campaign->enabled($entityType)) {
                 continue;
             }
             if ($this->creatable && ! $this->user->can('create', [$entityType, $this->campaign])) {

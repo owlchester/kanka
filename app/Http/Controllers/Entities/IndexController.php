@@ -39,7 +39,7 @@ class IndexController extends Controller
         }
 
         // If not a special entity type, redirect to their "old" route
-        if (! $entityType->isSpecial()) {
+        if ($entityType->isStandard()) {
             return redirect()->route($entityType->pluralCode() . '.index', $campaign);
         }
 

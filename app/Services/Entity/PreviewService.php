@@ -53,7 +53,7 @@ class PreviewService
      */
     protected function profile(): array
     {
-        if ($this->entity->entityType->isSpecial()) {
+        if ($this->entity->entityType->isCustom()) {
             if (! empty($this->entity->type)) {
                 $this->addProfile('crud.fields.type', 'type', $this->entity->type);
             }
@@ -126,7 +126,7 @@ class PreviewService
 
     protected function location(): mixed
     {
-        if ($this->entity->entityType->isSpecial()) {
+        if ($this->entity->entityType->isCustom()) {
             return null;
         }
         /** @var ?Location $loc */

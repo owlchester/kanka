@@ -69,7 +69,7 @@ class BulkService
     {
         $model = $this->getEntity();
         if (isset($this->entityType)) {
-            if (! $this->entityType->isSpecial() && ! $this->entityType->isBookmark()) {
+            if ($this->entityType->isStandard() && ! $this->entityType->isBookmark()) {
                 $with = ['entity', 'entity.entityType', 'entity.campaign'];
                 if ($this->entityType->isNested()) {
                     $with[] = 'children';
@@ -121,7 +121,7 @@ class BulkService
         $model = $this->getEntity();
 
         $with = [];
-        if (! $this->entityType->isSpecial()) {
+        if ($this->entityType->isStandard()) {
             $with = ['entity'];
         }
         $entities = $model->with($with)->whereIn('id', $this->ids)->get();
@@ -161,7 +161,7 @@ class BulkService
             ->copy(true)
             ->to($campaign);
 
-        $with = isset($this->entityType) && $this->entityType->isSpecial() ? [
+        $with = isset($this->entityType) && $this->entityType->isCustom() ? [
             'entityType', 'image', 'inventories', 'attributes',
         ] : [
             'entity',
@@ -197,7 +197,7 @@ class BulkService
             ->campaign($this->campaign);
 
         $model = $this->getEntity();
-        $with = ! $this->entityType->isSpecial() ? ['entity'] : [];
+        $with = $this->entityType->isStandard() ? ['entity'] : [];
 
         foreach ($this->ids as $id) {
             $entity = $model->with($with)->findOrFail($id);
@@ -205,7 +205,7 @@ class BulkService
                 continue;
             }
 
-            if ($this->entityType->isSpecial()) {
+            if ($this->entityType->isCustom()) {
                 $this->transformService->entity($entity);
             } else {
                 $this->transformService->child($entity);
@@ -319,7 +319,7 @@ class BulkService
         // Todo: move model fetch above to actually use with()
         foreach ($this->ids as $id) {
             /** @var MiscModel|Entity $entity */
-            $with = ! $this->entityType->isSpecial() ? ['entity', 'entity.tags'] : ['tags'];
+            $with = $this->entityType->isStandard() ? ['entity', 'entity.tags'] : ['tags'];
             $entity = $model->with($with)->findOrFail($id);
             $this->total++;
             if (! $this->can('update', $entity)) {
@@ -351,10 +351,10 @@ class BulkService
 
             // We have to still update the entity object (except for bookmarks)
             $realEntity = null;
-            if ($this->entityType->isSpecial()) {
+            if ($this->entityType->isCustom()) {
                 $realEntity = $entity;
                 // @phpstan-ignore-next-line
-            } elseif (! $this->entityType->isSpecial() && ! empty($entity->entity)) {
+            } elseif ($this->entityType->isStandard() && ! empty($entity->entity)) {
                 $realEntity = $entity->entity;
             }
             // Todo: refactor into a trait or function
@@ -424,7 +424,7 @@ class BulkService
         /** @var AttributeService $service */
         $service = app()->make('App\Services\AttributeService');
 
-        $with = isset($this->entityType) && $this->entityType->isSpecial() ? [] : ['entity', 'entity.campaign'];
+        $with = isset($this->entityType) && $this->entityType->isCustom() ? [] : ['entity', 'entity.campaign'];
         $entities = $model->with($with)->whereIn('id', $this->ids)->get();
 
         foreach ($entities as $entity) {
@@ -447,7 +447,7 @@ class BulkService
     protected function getEntity()
     {
         if (isset($this->entityType)) {
-            if ($this->entityType->isSpecial()) {
+            if ($this->entityType->isCustom()) {
                 return new Entity;
             }
 
