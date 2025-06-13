@@ -5,8 +5,6 @@ namespace App\Listeners\Campaigns\Followers;
 use App\Events\Campaigns\Followers\FollowerCreated;
 use App\Events\Campaigns\Followers\FollowerRemoved;
 use App\Facades\UserCache;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class UpdateFollowerCount
 {

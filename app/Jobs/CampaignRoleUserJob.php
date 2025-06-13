@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Models\CampaignRoleUser;
 use App\Notifications\Header;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -45,6 +44,7 @@ class CampaignRoleUserJob
         // If the role was deleted, don't notify anyone
         if (empty($this->campaignRoleUser) || empty($this->campaignRoleUser->campaignRole)) {
             Log::info('no role found', [$this->campaignRoleUser]);
+
             return;
         }
 

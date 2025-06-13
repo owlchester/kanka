@@ -16,8 +16,7 @@ class DiscordFeatureJob implements ShouldQueue
      */
     public function __construct(
         public Feature $feature
-    )
-    {
+    ) {
         //
     }
 

@@ -14,9 +14,13 @@ use Livewire\Component;
 class RandomEntity extends Component
 {
     public CampaignDashboardWidget $widget;
+
     public Entity $entity;
+
     public Campaign $campaign;
+
     public ?string $customName;
+
     public string $specificPreview;
 
     public bool $readyToLoad = false;
@@ -37,16 +41,15 @@ class RandomEntity extends Component
         CampaignCache::campaign($this->campaign);
 
         $entity = $this->widget->randomEntity();
-        if (!$entity) {
+        if (! $entity) {
             return;
         }
         $this->entity = $entity;
         \App\Facades\Dashboard::add($this->entity);
         $this->widget->setEntity($this->entity);
 
-
         $this->specificPreview = 'dashboard.widgets.previews.' . $this->entity->entityType->code;
-        $this->customName = !empty($this->widget->conf('text')) ? str_replace('{name}', $this->entity->name, $this->widget->conf('text')) : null;
+        $this->customName = ! empty($this->widget->conf('text')) ? str_replace('{name}', $this->entity->name, $this->widget->conf('text')) : null;
     }
 
     public function render()

@@ -464,15 +464,15 @@ class PermissionService
 
     protected function tune(string $log): void
     {
-        return;
-//        if (!isset($this->campaign)) {
-//            return;
-//        }
-//        if ($this->campaign->id !== 1) {
-//            return;
-//        }
-//
-//        Log::info($log . ' in ' . round(microtime(true) - $this->start, 3) . 's');
+
+        //        if (!isset($this->campaign)) {
+        //            return;
+        //        }
+        //        if ($this->campaign->id !== 1) {
+        //            return;
+        //        }
+        //
+        //        Log::info($log . ' in ' . round(microtime(true) - $this->start, 3) . 's');
     }
 
     protected function userRoles(): array

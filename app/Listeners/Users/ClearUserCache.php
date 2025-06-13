@@ -2,11 +2,7 @@
 
 namespace App\Listeners\Users;
 
-use App\Events\Campaigns\Members\RoleUserAdded;
-use App\Events\Campaigns\Members\RoleUserRemoved;
 use App\Facades\UserCache;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class ClearUserCache
 {

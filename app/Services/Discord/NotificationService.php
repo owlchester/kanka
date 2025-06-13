@@ -4,46 +4,55 @@ namespace App\Services\Discord;
 
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class NotificationService
 {
     use UserAware;
 
     protected ?string $webhook;
+
     protected string $title;
+
     protected string $content;
+
     protected string $description;
+
     protected string $url;
+
     protected array $json;
 
     public function title(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
     public function content(string $content): self
     {
         $this->content = $content;
+
         return $this;
     }
 
     public function description(string $description): self
     {
         $this->description = strip_tags($description);
+
         return $this;
     }
 
     public function url(string $url): self
     {
         $this->url = $url;
+
         return $this;
     }
 
     public function webhook(string $webhook): self
     {
         $this->webhook = $webhook;
+
         return $this;
     }
 
@@ -59,7 +68,7 @@ class NotificationService
         $response = Http::post($this->webhook . '?wait=true', [
             'content' => $this->content,
             'embeds' => [
-                $embeds
+                $embeds,
             ],
             'wait' => true,
         ]);

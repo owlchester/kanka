@@ -9,7 +9,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class SendNewFeature implements ShouldQueue
@@ -52,7 +51,6 @@ class SendNewFeature implements ShouldQueue
             return;
         }
         Log::info('Jobs/Discord/SendNewFeature', ['start', 'feature' => $feature->id]);
-
 
         /** @var NotificationService $service */
         $service = app()->make(NotificationService::class);

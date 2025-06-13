@@ -5,13 +5,12 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Requests\Campaigns\ApproveApplication;
 use App\Http\Requests\Campaigns\RejectApplication;
 use App\Http\Resources\ApplicationResource as Resource;
-use App\Models\Campaign;
 use App\Models\Application;
+use App\Models\Campaign;
 use App\Services\Campaign\ApplicationService;
 
 class ApplicationApiController extends ApiController
 {
-
     public function __construct(protected ApplicationService $service)
     {
         $this->middleware('auth');

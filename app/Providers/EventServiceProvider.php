@@ -9,7 +9,6 @@ use App\Events\Campaigns\Members\RoleUserRemoved;
 use App\Events\FeatureCreated;
 use App\Listeners\Campaigns\ClearCampaignCache;
 use App\Listeners\Campaigns\Followers\UpdateFollowerCount;
-use App\Listeners\Campaigns\Members\ClearUserCacheOnRoleChange;
 use App\Listeners\Campaigns\Members\LogUserRoleChanged;
 use App\Listeners\Campaigns\Members\RunRoleUserJob;
 use App\Listeners\SendFeatureNotification;
@@ -39,7 +38,7 @@ class EventServiceProvider extends ServiceProvider
             RunRoleUserJob::class,
             LogUserRoleChanged::class,
             ClearUserCache::class,
-            ClearCampaignCache::class
+            ClearCampaignCache::class,
         ],
         FollowerCreated::class => [
             UpdateFollowerCount::class,

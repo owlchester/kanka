@@ -15,6 +15,5 @@ class FeatureCreated
      */
     public function __construct(
         public Feature $feature,
-    )
-    {}
+    ) {}
 }

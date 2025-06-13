@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Observers\FeatureObserver;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Sanitizable;
+use App\Observers\FeatureObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

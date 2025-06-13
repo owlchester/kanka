@@ -62,9 +62,7 @@ class CampaignObserver
         $campaign->follower = 0;
     }
 
-    public function created(Campaign $campaign)
-    {
-    }
+    public function created(Campaign $campaign) {}
 
     public function saved(Campaign $campaign)
     {

@@ -3,7 +3,6 @@
 namespace App\Livewire\Roadmap;
 
 use App\Enums\FeatureStatus;
-use App\Jobs\Emails\NewFeatureEmailJob;
 use App\Models\Feature;
 use App\Models\FeatureFile;
 use App\Models\FeatureVote;

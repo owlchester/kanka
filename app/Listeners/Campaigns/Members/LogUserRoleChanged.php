@@ -4,8 +4,6 @@ namespace App\Listeners\Campaigns\Members;
 
 use App\Events\Campaigns\Members\RoleUserAdded;
 use App\Events\Campaigns\Members\RoleUserRemoved;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class LogUserRoleChanged
 {
