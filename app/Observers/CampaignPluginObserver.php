@@ -2,37 +2,19 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignCache;
+use App\Events\Campaigns\Plugins\PluginDeleted;
+use App\Events\Campaigns\Plugins\PluginUpdated;
 use App\Models\CampaignPlugin;
 
 class CampaignPluginObserver
 {
-    /**
-     * Handle the models campaign plugin "updated" event.
-     *
-     * @return void
-     */
     public function updated(CampaignPlugin $campaignPlugin)
     {
-        // If we changed the theme we'll need to re-think it
-        if ($campaignPlugin->plugin->type() == 'theme') {
-            CampaignCache::clearTheme();
-        }
-
-        $campaignPlugin->campaign->touchQuietly();
-        auth()->user()->campaignLog($campaignPlugin->campaign_id, 'plugins', 'updated', ['id' => $campaignPlugin->id, 'plugin' => $campaignPlugin->plugin_id]);
+        PluginUpdated::dispatch($campaignPlugin, auth()->user());
     }
 
-    /**
-     * Handle the models campaign plugin "deleted" event.
-     *
-     * @return void
-     */
     public function deleted(CampaignPlugin $campaignPlugin)
     {
-        // Remove the theme from the campaign in case it was added
-        if ($campaignPlugin->plugin->type() == 'theme') {
-            CampaignCache::clearTheme();
-        }
+        PluginDeleted::dispatch($campaignPlugin, auth()->user());
     }
 }

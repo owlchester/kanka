@@ -8,12 +8,17 @@ use App\Events\Campaigns\Invites\InviteCreated;
 use App\Events\Campaigns\Invites\InviteDeleted;
 use App\Events\Campaigns\Members\RoleUserAdded;
 use App\Events\Campaigns\Members\RoleUserRemoved;
+use App\Events\Campaigns\Plugins\PluginDeleted;
+use App\Events\Campaigns\Plugins\PluginImported;
+use App\Events\Campaigns\Plugins\PluginUpdated;
 use App\Events\FeatureCreated;
 use App\Listeners\Campaigns\ClearCampaignCache;
 use App\Listeners\Campaigns\Followers\UpdateFollowerCount;
 use App\Listeners\Campaigns\Invites\LogInvite;
 use App\Listeners\Campaigns\Members\LogUserRoleChanged;
 use App\Listeners\Campaigns\Members\RunRoleUserJob;
+use App\Listeners\Campaigns\Plugins\ClearThemeCache;
+use App\Listeners\Campaigns\Plugins\LogPlugin;
 use App\Listeners\SendFeatureNotification;
 use App\Listeners\Users\ClearUserCache;
 use Illuminate\Auth\Events\Login;
@@ -55,6 +60,17 @@ class EventServiceProvider extends ServiceProvider
         InviteDeleted::class => [
             LogInvite::class,
         ],
+        PluginUpdated::class => [
+            LogPlugin::class,
+            ClearThemeCache::class,
+        ],
+        PluginDeleted::class => [
+            LogPlugin::class,
+            ClearThemeCache::class,
+        ],
+        PluginImported::class => [
+            LogPlugin::class,
+        ]
     ];
 
     /**

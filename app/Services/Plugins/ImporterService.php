@@ -3,11 +3,14 @@
 namespace App\Services\Plugins;
 
 use App\Enums\Visibility;
+use App\Events\Campaigns\Plugins\PluginImported;
+use App\Events\Campaigns\Plugins\PluginUpdated;
 use App\Models\CampaignPlugin;
 use App\Models\Character;
 use App\Models\CharacterTrait;
 use App\Models\Entity;
 use App\Models\EntityTag;
+use App\Models\Family;
 use App\Models\Image;
 use App\Models\MiscModel;
 use App\Models\OrganisationMember;
@@ -18,6 +21,7 @@ use App\Models\QuestElement;
 use App\Models\Race;
 use App\Models\Relation;
 use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -28,6 +32,7 @@ use Illuminate\Support\Str;
 class ImporterService
 {
     use CampaignAware;
+    use UserAware;
 
     protected Plugin $plugin;
 
@@ -113,6 +118,9 @@ class ImporterService
             $this->importFields($pluginEntity);
             $count++;
         }
+
+
+        PluginImported::dispatch($campaignPlugin, $this->user);
 
         return $count;
     }
@@ -241,6 +249,11 @@ class ImporterService
 
             return;
         }
+        elseif ($field == 'family_id' && $this->model instanceof Character) {
+            $this->importCharacterFamily($value);
+
+            return;
+        }
         if (empty($value)) {
             $this->model->$field = null;
         } elseif (isset($this->miscIds[$value])) {
@@ -267,6 +280,19 @@ class ImporterService
             $race = Race::find($raceID);
             if ($race) {
                 $this->model->races()->attach($race);
+            }
+        }
+    }
+
+    protected function importCharacterFamily(mixed $value): void
+    {
+        if (empty($value)) {
+            $this->model->families()->detach();
+        } elseif (isset($this->miscIds[$value])) {
+            $raceID = $this->miscIds[$value];
+            $race = Family::find($raceID);
+            if ($race) {
+                $this->model->families()->attach($race);
             }
         }
     }
