@@ -28,6 +28,7 @@ class ApiController extends Controller
             $source = Entity::findOrFail((int) request()->get('source'));
 
             $this->apiService
+                ->user(auth()->user())
                 ->copy()
                 ->entityType($entityType);
 
@@ -54,6 +55,7 @@ class ApiController extends Controller
 
         return response()->json(
             $this->apiService
+                ->user(auth()->user())
                 ->campaign($campaign)
                 ->build()
         );

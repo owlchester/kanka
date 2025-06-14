@@ -355,7 +355,6 @@ class BulkService
             $realEntity = null;
             if ($this->entityType->isCustom()) {
                 $realEntity = $entity;
-                // @phpstan-ignore-next-line
             } elseif ($this->entityType->isStandard() && ! empty($entity->entity)) {
                 $realEntity = $entity->entity;
             }

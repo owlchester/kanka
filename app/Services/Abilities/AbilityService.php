@@ -71,7 +71,7 @@ class AbilityService extends BaseAbilityService
         $this->abilities['meta'] = [
             'add_url' => route('entities.entity_abilities.create', [$this->campaign, $this->entity]),
             'user_id' => $this->user->id ?? 0,
-            'is_admin' => $this->user->isAdmin() ?? false,
+            'is_admin' => isset($this->user) && $this->user->isAdmin(),
         ];
 
         return $this->abilities;

@@ -39,7 +39,7 @@ class UpdateController extends Controller
     {
         $this->authorize('recover', $campaign);
 
-        if ($request->isAjax()) {
+        if ($request->ajax()) {
             return response()->json();
         }
 

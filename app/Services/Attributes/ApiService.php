@@ -8,6 +8,7 @@ use App\Models\CampaignPlugin;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Collection;
 
 class ApiService
@@ -15,6 +16,7 @@ class ApiService
     use CampaignAware;
     use EntityAware;
     use EntityTypeAware;
+    use UserAware;
 
     protected Collection $attributes;
 
@@ -103,7 +105,7 @@ class ApiService
     {
         return [
             'has_hidden' => false,
-            'is_admin' => auth()->check() && auth()->user()->isAdmin(),
+            'is_admin' => isset($this->user) && $this->user->isAdmin(),
             'template' => route('templates.load-attributes', $this->campaign),
             'mentions' => route('search.live', $this->campaign),
             'max' => $this->maxFields(),
