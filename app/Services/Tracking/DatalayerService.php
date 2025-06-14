@@ -4,10 +4,15 @@ namespace App\Services\Tracking;
 
 use App\Facades\AdCache;
 use App\Models\Campaign;
+use App\Traits\CampaignAware;
+use App\Traits\UserAware;
 use Carbon\Carbon;
 
 class DatalayerService
 {
+    use CampaignAware;
+    use UserAware;
+
     /** Group name: a|b */
     protected string $group;
 
@@ -23,8 +28,6 @@ class DatalayerService
     /** @var bool If the user is newly cancelled */
     protected bool $newCancelledSubscriber = false;
 
-    protected ?Campaign $campaign;
-
     public function base(): string
     {
         $data = array_merge([
@@ -38,17 +41,17 @@ class DatalayerService
             'userID' => null,
         ], $this->additional);
 
-        if (auth()->check()) {
+        if (isset($this->user)) {
             $data['userType'] = 'registered';
-            $data['userTier'] = ! empty(auth()->user()->pledge) ? auth()->user()->pledge : null;
-            $data['userSubbed'] = ! empty(auth()->user()->pledge) ? 'true' : 'false';
-            $data['userID'] = auth()->user()->id;
+            $data['userTier'] = ! empty($this->user->pledge) ? $this->user->pledge : null;
+            $data['userSubbed'] = ! empty($this->user->pledge) ? 'true' : 'false';
+            $data['userID'] = $this->user->id;
 
             if ($this->newCancelledSubscriber) {
                 $data['newCancelled'] = '1';
             }
             if ($this->newAccount || $this->newSubscriber) {
-                $data['userEmail'] = auth()->user()->email;
+                $data['userEmail'] = $this->user->email;
             }
         }
 
@@ -60,16 +63,9 @@ class DatalayerService
         return json_encode($data);
     }
 
-    public function campaign(?Campaign $campaign)
-    {
-        $this->campaign = $campaign;
-
-        return $this;
-    }
-
     protected function showAds(): bool
     {
-        if ($this->campaign && $this->campaign->boosted()) {
+        if (isset($this->campaign) && $this->campaign->boosted()) {
             return false;
             //        } elseif (!AdCache::canHaveAds()) {
             //            return false;
@@ -94,8 +90,8 @@ class DatalayerService
             return $this->group;
         }
 
-        if (auth()->check()) {
-            $this->group = auth()->user()->id % 2 == 0 ? 'a' : 'b';
+        if (isset($this->user)) {
+            $this->group = $this->user->id % 2 == 0 ? 'a' : 'b';
 
             return $this->group;
         }
