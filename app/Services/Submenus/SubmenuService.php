@@ -5,12 +5,14 @@ namespace App\Services\Submenus;
 use App\Facades\Module;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 
 class SubmenuService
 {
     use CampaignAware;
     use EntityAware;
+    use UserAware;
 
     protected array $items = [];
 
@@ -29,7 +31,7 @@ class SubmenuService
             'name' => 'crud.tabs.story',
             'route' => 'entities.show',
             'entity' => true,
-            'button' => auth()->check() && auth()->user()->can('update', $this->entity) ? [
+            'button' => isset($this->user) && $this->user->can('update', $this->entity) ? [
                 'url' => route('entities.story.reorder', [$this->campaign, $this->entity]),
                 'icon' => 'fa-regular fa-arrow-up-arrow-down',
                 'tooltip' => __('entities/story.reorder.icon_tooltip'),
@@ -102,7 +104,7 @@ class SubmenuService
 
         // Check if and how many times entity has been mentioned
         $mentionsCount = $this->entity->mentionsCount();
-        if (auth()->check() && $mentionsCount > 0) {
+        if (isset($this->user) && $mentionsCount > 0) {
             $this->items['fourth']['mentions'] = [
                 'name' => 'crud.tabs.mentions',
                 'route' => 'entities.mentions',
@@ -112,7 +114,7 @@ class SubmenuService
         }
 
         // Permissions for the admin?
-        if (auth()->check() && auth()->user()->can('permissions', $this->entity)) {
+        if (isset($this->user) && $this->user->can('permissions', $this->entity)) {
             $this->items['fourth']['permissions'] = [
                 'name' => 'crud.tabs.permissions',
                 'route' => 'entities.permissions',
@@ -137,6 +139,10 @@ class SubmenuService
         try {
             /** @var CharacterSubmenu $object */
             $object = app()->make($submenuName);
+            if (isset($this->user)) {
+                $object->user($this->user);
+            }
+
             // @phpstan-ignore-next-line
             $this->items += $object->entity($this->entity)->campaign($this->campaign)->extra();
         } catch (\Exception $e) {

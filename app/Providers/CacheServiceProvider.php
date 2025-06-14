@@ -50,6 +50,9 @@ class CacheServiceProvider extends ServiceProvider
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+            if (auth()->check()) {
+                $service->user(auth()->user());
+            }
 
             return $service;
         });

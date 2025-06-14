@@ -17,7 +17,7 @@ class TimelineSubmenu extends BaseSubmenu implements EntitySubmenu
             'route' => 'timelines.timelines',
             'count' => $model->descendants()->has('entity')->count(),
         ];
-        if (auth()->check() && auth()->user()->can('update', $this->entity)) {
+        if (isset($this->user) && $this->user->can('update', $this->entity)) {
             $items['second']['eras'] = [
                 'name' => 'timelines.fields.eras',
                 'route' => 'timelines.timeline_eras.index',

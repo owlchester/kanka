@@ -14,6 +14,14 @@ class DatalayerServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(DatalayerService::class, function () {
+            $service = new DatalayerService;
+            if (auth()->check()) {
+                $service->user(auth()->user());
+            }
+
+            return $service;
+        });
         $this->app->alias(DatalayerService::class, 'datalayer');
     }
 }

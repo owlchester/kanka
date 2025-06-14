@@ -22,21 +22,6 @@ class UserCacheService extends BaseCache
     use TutorialCache;
     use UserAware;
 
-    public function user(User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    public function __construct()
-    {
-        // Move this to cache service provider?
-        if (auth()->check()) {
-            $this->user(auth()->user());
-        }
-    }
-
     /**
      * Get the username
      *

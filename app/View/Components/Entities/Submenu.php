@@ -35,6 +35,9 @@ class Submenu extends Component
     {
         /** @var SubmenuService $service */
         $service = app()->make(SubmenuService::class);
+        if (auth()->check()) {
+            $service->user(auth()->user());
+        }
 
         return $service
             ->campaign($this->campaign)

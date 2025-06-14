@@ -7,6 +7,7 @@ use App\Facades\Img;
 use App\Models\MiscModel;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
+use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +16,7 @@ class AvatarService
 {
     use CampaignAware;
     use EntityAware;
+    use UserAware;
 
     protected MiscModel $child;
 
@@ -149,7 +151,7 @@ class AvatarService
                 ->url(CampaignCache::defaultImages()[$this->entity->entityType->code]);
 
             return $this->return($url);
-        } elseif ($this->entity->entityType->isStandard() && ($this->campaign->premium() || (auth()->check() && auth()->user()->isGoblin()))) {
+        } elseif ($this->entity->entityType->isStandard() && ($this->campaign->premium() || (isset($this->user) && $this->user->isGoblin()))) {
             return $this->return($cloudfront . '/images/defaults/subscribers/' . $this->entity->entityType->pluralCode() . '.jpeg');
         }
 
