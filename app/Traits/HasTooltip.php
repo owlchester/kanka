@@ -13,10 +13,6 @@ trait HasTooltip
      */
     public function ajaxTooltip(): string
     {
-        if ($this->isMissingChild()) {
-            return '';
-        }
-
         $text = null;
 
         $campaign = CampaignLocalization::getCampaign();
