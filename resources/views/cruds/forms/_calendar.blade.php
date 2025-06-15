@@ -26,10 +26,10 @@ $opened = (isset($model) && $model->hasCalendar()) || !empty($oldCalendarID);
 <div class="field-calendar-date flex flex-col gap-4" x-data="{ opened: {{ $opened ? 'true' : 'false' }} }">
     <div class="flex flex-col gap-1 items-start" >
         <label>{{ __('crud.fields.calendar_date') }}</label>
-        <a href="#" id="entity-calendar-form-add" class="btn2 btn-sm btn-outline <?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "hidden" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}" @click="opened = !opened" x-show="!opened">
+        <span role="button" id="entity-calendar-form-add" class="btn2 btn-sm btn-outline <?=(!empty($model) && $model->hasCalendar() || !empty($oldCalendarID) ? "hidden" : null)?>" data-default-calendar="{{ ($onlyOneCalendar ? $calendars->first()->id : null) }}" @click="opened = !opened" x-show="!opened">
             <x-icon entity="calendar" />
             {{ __('entities/reminders.actions.add') }}
-        </a>
+        </span>
 
         <x-helper>
             <p class="text-xs">{{ __('entities/reminders.helpers.pitch') }}</p>

@@ -28,6 +28,7 @@ const registercalendarForm = () => {
             let defaultCalendarId = calendarAdd.dataset.defaultCalendar;
             if (defaultCalendarId) {
                 calendarHiddenField.value = defaultCalendarId;
+                calendarSubForm.classList.remove('hidden');
                 loadCalendarDates(defaultCalendarId);
             }
             return false;
@@ -46,8 +47,10 @@ const registercalendarForm = () => {
         calendarField.onchange = element => {
             // No new calendar selected? hide everything again
             if (!calendarField.value) {
+                calendarSubForm.classList.add('hidden');
                 return false;
             }
+            calendarSubForm.classList.remove('hidden');
             // Load month list
             calendarYearField = document.querySelector('input[name="calendar_year"]');
             calendarMonthField = document.querySelector('[name="calendar_month"]');
