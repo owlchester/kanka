@@ -183,9 +183,6 @@ class Entity extends Model
      */
     public function mappedPreview(): string
     {
-        if ($this->isMissingChild()) {
-            return '';
-        }
         $campaign = CampaignLocalization::getCampaign();
         if ($campaign->boosted()) {
             $boostedTooltip = strip_tags($this->tooltip);

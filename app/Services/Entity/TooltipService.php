@@ -16,10 +16,6 @@ class TooltipService
      */
     public function tooltip(): string
     {
-        if ($this->entity->isMissingChild()) {
-            return '';
-        }
-
         $limit = 500;
         if ($this->campaign->boosted()) {
             $limit = 1000;

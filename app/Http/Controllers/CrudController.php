@@ -519,7 +519,7 @@ class CrudController extends Controller
             'tabCopy' => $this->tabCopy,
             'editingUsers' => $editingUsers,
         ]);
-        if ($model->entity) {
+        if (!$model instanceof Bookmark && $model->entity) {
             $params['entity'] = $model->entity;
         }
 

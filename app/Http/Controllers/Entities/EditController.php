@@ -95,7 +95,8 @@ class EditController extends Controller
                     $entity->touch();
                 }
             } else {
-                $entity->update($request->all());
+                $preparedData = $this->fixRequestData($request, $entity);
+                $entity->update($preparedData);
                 $entity->crudSaved();
             }
 
@@ -152,14 +153,23 @@ class EditController extends Controller
         }
     }
 
-    /**
-     * @return array
-     */
-    protected function prepareData(Request $request, MiscModel $model)
+    protected function prepareData(Request $request, MiscModel $model): array
     {
         $data = $request->all();
         foreach ($model->nullableForeignKeys as $field) {
-            if (! request()->has($field) && ! isset($data[$field])) {
+            if (! $request->has($field) && ! isset($data[$field])) {
+                $data[$field] = null;
+            }
+        }
+
+        return $data;
+    }
+
+    protected function fixRequestData(Request $request, Entity $entity): array
+    {
+        $data = $request->all();
+        foreach (['parent_id'] as $field) {
+            if (! $request->has($field) && ! isset($data[$field])) {
                 $data[$field] = null;
             }
         }

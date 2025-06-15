@@ -73,7 +73,7 @@ class ReminderController extends Controller
     public function show(Campaign $campaign, Entity $entity, Reminder $reminder)
     {
         return redirect()
-            ->route('entities.entity_events.index', [$campaign, $entity]);
+            ->route('entities.reminders.index', [$campaign, $entity]);
     }
 
     public function create(Campaign $campaign, Entity $entity)
