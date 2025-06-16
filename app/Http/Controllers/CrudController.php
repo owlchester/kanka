@@ -324,7 +324,7 @@ class CrudController extends Controller
                     abort(404);
                 }
                 $params['source'] = $model;
-                FormCopy::source($params['source']);
+                FormCopy::request(request())->source($params['source']);
             } else {
                 $params['source'] = null;
             }

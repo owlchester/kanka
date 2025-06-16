@@ -3,6 +3,7 @@
 namespace App\Services\Campaign;
 
 use App\Enums\UserAction;
+use App\Events\Campaigns\Created;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
@@ -11,6 +12,7 @@ use App\Models\CampaignRoleUser;
 use App\Models\CampaignSetting;
 use App\Models\CampaignUser;
 use App\Models\EntityType;
+use App\Notifications\Header;
 use App\Services\Users\CampaignService;
 use App\Traits\RequestAware;
 use App\Traits\UserAware;
@@ -38,9 +40,10 @@ class CreateService
             $this->campaign = Campaign::create($data);
 
             $this
+                ->slug()
+                ->notify()
                 ->roles()
                 ->settings()
-                ->slug()
                 ->log();
 
             DB::commit();
@@ -50,6 +53,20 @@ class CreateService
         }
 
         return $this->campaign;
+    }
+
+    protected function notify(): self
+    {
+        $this->user->notify(new Header(
+            'campaign.created',
+            'check',
+            'green',
+            [
+                'campaign' => $this->campaign->name,
+                'link' => route('dashboard', ['campaign' => $this->campaign]),
+            ]
+        ));
+        return $this;
     }
 
     protected function roles(): self
@@ -92,10 +109,11 @@ class CreateService
             }
         }
 
-        CampaignRoleUser::create([
+        $member = new CampaignRoleUser([
             'campaign_role_id' => $role->id,
             'user_id' => $this->user->id,
         ]);
+        $member->save();
 
         return $this;
     }

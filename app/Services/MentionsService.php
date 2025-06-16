@@ -323,7 +323,7 @@ class MentionsService
                 }
 
                 // If this request is through the API, we need to inject the language in the url
-                if (request()->is('api/*') || Domain::isApi()) {
+                if (Domain::isApi()) {
                     $url = Str::replaceFirst('/campaign/', '/w/', $url);
                     $dataUrl = Str::replaceFirst('/w/', '/w/', $dataUrl);
                 }

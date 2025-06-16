@@ -76,7 +76,7 @@ class MarkerController extends Controller
         $source = null;
         if (request()->has('source')) {
             $source = MapMarker::findOrFail(request()->get('source'));
-            FormCopy::source($source);
+            FormCopy::request($request)->source($source);
         }
 
         $activeTab = 1;

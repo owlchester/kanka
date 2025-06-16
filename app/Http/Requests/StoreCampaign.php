@@ -40,7 +40,7 @@ class StoreCampaign extends FormRequest
             'theme_id' => 'nullable|exists:themes,id',
         ];
 
-        if ((request()->is('api/*') || Domain::isApi()) && ! request()->isMethod('POST')) {
+        if ((Domain::isApi()) && ! request()->isMethod('POST')) {
             $rules['name'] = 'string|min:4';
         }
 

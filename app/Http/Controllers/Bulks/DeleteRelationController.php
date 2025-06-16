@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Bulks;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\BulkService;
+use Illuminate\Http\Request;
 
 class DeleteRelationController extends Controller
 {
@@ -23,7 +24,7 @@ class DeleteRelationController extends Controller
             ->with('datagrid', $datagrid);
     }
 
-    public function apply(Campaign $campaign)
+    public function apply(Request $request, Campaign $campaign)
     {
         $models = explode(',', request()->get('models'));
 
@@ -31,6 +32,7 @@ class DeleteRelationController extends Controller
             ->entities($models)
             ->campaign($campaign)
             ->user(auth()->user())
+            ->request($request)
             ->delete();
         $key = 'entities/relations.bulk.delete';
 

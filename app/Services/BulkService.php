@@ -88,7 +88,7 @@ class BulkService
             if (! $this->can('delete', $entity)) {
                 continue;
             }
-            if (request()->delete_mirrored && $entity->mirror) {
+            if ($this->request->get('delete_mirrored') && $entity->mirror) {
                 $entity->mirror->delete();
                 $this->count++;
             }

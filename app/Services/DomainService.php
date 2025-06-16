@@ -2,14 +2,18 @@
 
 namespace App\Services;
 
+use App\Traits\RequestAware;
+
 class DomainService
 {
+    use RequestAware;
+
     /**
      * Check if the request is for the app/backend
      */
     public function isApp(): bool
     {
-        return request()->host() === $this->app();
+        return $this->request->host() === $this->app();
     }
 
     /**
@@ -17,7 +21,7 @@ class DomainService
      */
     public function isApi(): bool
     {
-        return request()->host() === $this->api();
+        return $this->request->is('api/*') || $this->request->host() === $this->api();
     }
 
     /**
@@ -25,7 +29,7 @@ class DomainService
      */
     public function isFront(): bool
     {
-        return request()->host() === $this->front();
+        return $this->request->host() === $this->front();
     }
 
     public function app(): string

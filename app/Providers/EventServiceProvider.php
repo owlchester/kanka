@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Events\Campaigns\Applications\Accepted;
 use App\Events\Campaigns\Applications\Rejected;
+use App\Events\Campaigns\Deleted;
 use App\Events\Campaigns\Followers\FollowerCreated;
 use App\Events\Campaigns\Followers\FollowerRemoved;
 use App\Events\Campaigns\Invites\InviteCreated;
@@ -13,13 +14,16 @@ use App\Events\Campaigns\Members\RoleUserRemoved;
 use App\Events\Campaigns\Plugins\PluginDeleted;
 use App\Events\Campaigns\Plugins\PluginImported;
 use App\Events\Campaigns\Plugins\PluginUpdated;
+use App\Events\Campaigns\Saved;
 use App\Events\Campaigns\Styles\StyleCreated;
 use App\Events\Campaigns\Styles\StyleDeleted;
 use App\Events\Campaigns\Styles\StyleUpdated;
 use App\Events\FeatureCreated;
 use App\Listeners\Campaigns\Applications\LogApplication;
+use App\Listeners\Campaigns\Cleanup;
 use App\Listeners\Campaigns\ClearCampaignCache;
 use App\Listeners\Campaigns\ClearCampaignThemeCache;
+use App\Listeners\Campaigns\ClearCampaignUsersSaved;
 use App\Listeners\Campaigns\Followers\UpdateFollowerCount;
 use App\Listeners\Campaigns\Invites\LogInvite;
 use App\Listeners\Campaigns\Members\LogUserRoleChanged;
@@ -99,6 +103,13 @@ class EventServiceProvider extends ServiceProvider
         Rejected::class => [
             LogApplication::class,
             ClearCampaignCache::class,
+        ],
+        Saved::class => [
+            ClearCampaignUsersSaved::class,
+        ],
+        Deleted::class => [
+            Cleanup::class,
+            ClearCampaignUsersSaved::class,
         ],
     ];
 

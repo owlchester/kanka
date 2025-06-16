@@ -6,12 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaign;
 use App\Models\Campaign;
 use App\Services\Campaign\CreateService;
+use App\Services\Campaign\GenreService;
+use App\Services\Campaign\SystemService;
 use Illuminate\Http\Request;
 
 class CreateController extends Controller
 {
-    public function __construct(protected CreateService $createService)
-    {
+    public function __construct(
+        protected CreateService $createService,
+        protected GenreService $genreService,
+        protected SystemService $systemService,
+    ) {
         $this->middleware('auth');
     }
 
@@ -45,6 +50,9 @@ class CreateController extends Controller
             ->request($request)
             ->user($request->user())
             ->create();
+
+        $this->genreService->campaign($campaign)->save($request->post('genres', []));
+        $this->systemService->campaign($campaign)->save($request->post('systems', []));
 
         if ($request->has('submit-update')) {
             return redirect()

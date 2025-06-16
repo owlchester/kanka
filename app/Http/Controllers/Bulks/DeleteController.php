@@ -44,6 +44,7 @@ class DeleteController extends Controller
             ->entities($models)
             ->campaign($campaign)
             ->user($request->user())
+            ->request($request)
             ->delete();
         $key = 'crud.destroy_many.success';
 
