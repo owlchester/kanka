@@ -5,7 +5,7 @@ foreach (\App\Models\Theme::all() as $theme):
     $themes[$theme->id] = $theme->__toString();
 endforeach;
 
-$role = isset($model) ? \App\Facades\CampaignCache::adminRole() : null;
+$role = isset($model) ? $model->adminRole() : null;
 $boostedFormFields = [
     'class' => 'w-full',
 ];
