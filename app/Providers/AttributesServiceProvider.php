@@ -16,12 +16,7 @@ class AttributesServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(AttributeMentionService::class, function () {
-            $service = new AttributeMentionService;
-            if (CampaignLocalization::hasCampaign()) {
-                $service->campaign(CampaignLocalization::getCampaign());
-            }
-
-            return $service;
+            return new AttributeMentionService;
         });
 
         $this->app->alias(AttributeMentionService::class, 'attributes');

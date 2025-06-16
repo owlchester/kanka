@@ -12,8 +12,6 @@ use Illuminate\Support\Str;
 
 class AttributeMentionService
 {
-    use CampaignAware;
-
     protected array $loadedAttributes = [];
 
     protected Entity $loadedEntity;
