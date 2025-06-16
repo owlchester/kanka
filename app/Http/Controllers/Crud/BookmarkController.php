@@ -8,6 +8,7 @@ use App\Http\Requests\StoreBookmark;
 use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\EntityType;
+use App\Services\Campaign\Sidebar\SetupService;
 use App\Services\DashboardService;
 use Illuminate\Http\Request;
 
@@ -69,7 +70,10 @@ class BookmarkController extends CrudController
 
     public function create(Campaign $campaign)
     {
-        return $this->campaign($campaign)->crudCreate(['dashboards' => $this->dashboardOptions($campaign)]);
+        return $this->campaign($campaign)->crudCreate([
+            'dashboards' => $this->dashboardOptions(),
+            'parents' => $this->sidebarParents()
+        ]);
     }
 
     /**
@@ -162,16 +166,23 @@ class BookmarkController extends CrudController
         return EntityType::where('id', config('entities.ids.bookmark'))->first();
     }
 
-    protected function dashboardOptions(Campaign $campaign): array
+    protected function dashboardOptions(): array
     {
         /** @var DashboardService $service */
         $service = app()->make(DashboardService::class);
-        $dashboards = $service->campaign($campaign)->user(auth()->user())->getDashboards();
+        $dashboards = $service->campaign($this->campaign)->user(auth()->user())->getDashboards();
         $dashboardOptions = ['' => ''];
         foreach ($dashboards as $dashboard) {
             $dashboardOptions[$dashboard->id] = $dashboard->name;
         }
 
         return $dashboardOptions;
+    }
+
+    protected function sidebarParents(): array
+    {
+        /** @var SetupService $service */
+        $service = app()->make(SetupService::class);
+        return $service->campaign($this->campaign)->availableParents();
     }
 }

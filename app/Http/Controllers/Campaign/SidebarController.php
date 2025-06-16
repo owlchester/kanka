@@ -4,19 +4,16 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Services\SidebarService;
+use App\Services\Campaign\Sidebar\SaveService;
+use App\Services\Campaign\Sidebar\SetupService;
 use Illuminate\Http\Request;
 
 class SidebarController extends Controller
 {
-    protected SidebarService $service;
-
-    public function __construct(SidebarService $service)
+    public function __construct(protected SetupService $service, protected SaveService $saveService)
     {
         $this->middleware('auth');
         $this->middleware('campaign.boosted', ['except' => 'index']);
-
-        $this->service = $service;
     }
 
     public function index(Campaign $campaign)
@@ -41,8 +38,8 @@ class SidebarController extends Controller
             return response()->json();
         }
 
-        // Good luck
-        $this->service->campaign($campaign)
+        $this->saveService
+            ->campaign($campaign)
             ->user(auth()->user())
             ->save(request()->all());
 
@@ -55,7 +52,7 @@ class SidebarController extends Controller
     {
         $this->authorize('update', $campaign);
 
-        $this->service
+        $this->saveService
             ->campaign($campaign)
             ->user(auth()->user())
             ->reset();

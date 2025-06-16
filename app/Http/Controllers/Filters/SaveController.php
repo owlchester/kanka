@@ -7,13 +7,15 @@ use App\Models\Bookmark;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\Bookmarks\RoutingService;
+use App\Services\Campaign\Sidebar\SetupService;
 use App\Services\FilterService;
 
 class SaveController extends Controller
 {
     public function __construct(
         protected FilterService $filterService,
-        protected RoutingService $routingService)
+        protected RoutingService $routingService,
+        protected SetupService $sidebarService)
     {
         $this->middleware(['auth']);
     }
@@ -21,10 +23,12 @@ class SaveController extends Controller
     protected function render(Campaign $campaign, EntityType $entityType)
     {
         $mode = request()->get('m');
+        $parents = $this->sidebarService->campaign($campaign)->availableParents();
 
         return view('filters.save_form')
             ->with('campaign', $campaign)
             ->with('entityType', $entityType)
+            ->with('parents', $parents)
             ->with('mode', $mode);
     }
 

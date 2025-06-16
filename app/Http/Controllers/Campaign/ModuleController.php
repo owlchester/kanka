@@ -8,13 +8,13 @@ use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\Campaign\ModuleEditService;
 use App\Services\EntityTypeService;
-use App\Services\SidebarService;
+use App\Services\Campaign\Sidebar\SaveService;
 use Exception;
 
 class ModuleController extends Controller
 {
     public function __construct(
-        protected SidebarService $sidebarService,
+        protected SaveService      $sidebarService,
         protected ModuleEditService $moduleEditService,
         protected EntityTypeService $entityTypeService
     ) {}

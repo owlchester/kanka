@@ -277,14 +277,20 @@ class Bookmark extends Model
 
     public function customClass(Campaign $campaign): string
     {
-        if (! $campaign->boosted()) {
-            return '';
-        }
-        if (empty($this->css)) {
-            return '';
+        $class = '';
+        $request = request()->get('bookmark');
+        if (!empty($request) && $request == $this->id) {
+            $class = 'active ';
         }
 
-        return (string) $this->css;
+        if (! $campaign->boosted()) {
+            return $class;
+        }
+        if (empty($this->css)) {
+            return $class;
+        }
+
+        return (string) $class . $this->css;
     }
 
     /**

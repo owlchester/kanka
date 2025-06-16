@@ -1,9 +1,10 @@
 @if (!empty(config('tracking.ga')))
+    @php isset($campaign) ? \App\Facades\DataLayer::campaign($campaign) : null @endphp
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('tracking.ga') }}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        dataLayer.push({!! \App\Facades\DataLayer::campaign($campaign ?? null)->base() !!});
+        dataLayer.push({!! \App\Facades\DataLayer::base() !!});
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', '{{ config('tracking.ga') }}');

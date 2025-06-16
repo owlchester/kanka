@@ -1,116 +1,21 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Campaign\Sidebar;
 
 use App\Facades\Module;
-use App\Models\Bookmark;
-use App\Models\Entity;
 use App\Traits\CampaignAware;
+use App\Traits\RequestAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Str;
-use Stevebauman\Purify\Facades\Purify;
 
-class SidebarService
+class SetupService
 {
     use CampaignAware;
     use UserAware;
+    use RequestAware;
 
-    /**
-     * List of the campaign's quick links
-     */
-    protected array $bookmarks = [];
 
-    protected array $rules = [
-        'dashboard' => [
-            null,
-            'dashboard',
-            'dashboard-setup',
-        ],
-        'characters' => [
-            'characters',
-        ],
-        'conversations' => [
-            'conversations',
-            'conversation_messages',
-        ],
-        'events' => [
-            'events',
-        ],
-        'families' => [
-            'families',
-        ],
-        'items' => [
-            'items',
-        ],
-        'journals' => [
-            'journals',
-        ],
-        'locations' => [
-            'locations',
-        ],
-        'maps' => [
-            'maps',
-        ],
-        'notes' => [
-            'notes',
-        ],
-        'organisations' => [
-            'organisations',
-            'organisation_member',
-        ],
-        'other' => [
-            'releases',
-            'team',
-        ],
-        'quests' => [
-            'quests',
-        ],
-        'calendars' => [
-            'calendars',
-        ],
-        'releases' => [
-            'releases',
-        ],
-        'team' => [
-            'team',
-        ],
-        'attribute_templates' => [
-            'attribute_templates',
-        ],
-        'tags' => [
-            'tags',
-        ],
-        'timelines' => [
-            'timelines',
-        ],
-        'dice_rolls' => [
-            'dice_rolls',
-            'dice_roll_results',
-        ],
-        'bookmarks' => [
-            'bookmarks',
-        ],
-        'races' => [
-            'races',
-        ],
-        'creatures' => [
-            'creatures',
-        ],
-        'abilities' => [
-            'abilities',
-        ],
-        'relations' => [
-            'relations',
-        ],
-        'history' => [
-            'history',
-        ],
-        'gallery' => [
-            'gallery',
-        ],
-    ];
 
     protected array $elements;
 
@@ -351,88 +256,6 @@ class SidebarService
         return $this;
     }
 
-    public function active(string $menu = '', string $class = 'active'): string
-    {
-        if (empty($this->rules[$menu])) {
-            return '';
-        }
-
-        if (request()->has('bookmark')) {
-            return '';
-        }
-
-        foreach ($this->rules[$menu] as $rule) {
-            if (request()->segment(3) == $rule) {
-                return " {$class}";
-            }
-        }
-
-        // Entities? It's complicated
-        /** @var ?Entity $entity */
-        $entity = request()->route('entity');
-        if ($entity) {
-            if ($entity->entityType->pluralCode() == $menu) {
-                return " {$class}";
-            }
-        }
-
-        return '';
-    }
-
-    public function activeBookmark(Bookmark $bookmark): string
-    {
-        $request = request()->get('bookmark');
-        if (empty($request) || $request != $bookmark->id) {
-            return '';
-        }
-
-        return 'active';
-    }
-
-    public function activeCampaign(mixed $options): ?string
-    {
-        if (! is_array($options)) {
-            $options = [$options];
-        }
-        if (in_array(request()->segment(3), $options)) {
-            return ' active';
-        }
-
-        return null;
-    }
-
-    /**
-     * Settings menu active
-     */
-    public function settings(string $menu, int $segment = 2): string
-    {
-        $current = request()->segment($segment);
-        if ($current == $menu) {
-            return ' active';
-        }
-
-        return '';
-    }
-
-    /**
-     * @param  string  $css
-     * @return null|string
-     */
-    public function open(string $menu = '', $css = 'menu-open')
-    {
-        if (empty($this->rules[$menu])) {
-            return null;
-        }
-
-        foreach ($this->rules[$menu] as $rule) {
-            if (request()->segment(4) == $rule) {
-                return $css;
-            }
-        }
-
-        return null;
-    }
-
     /**
      * Generate an array of the sidebar elements
      */
@@ -463,7 +286,7 @@ class SidebarService
                 dd('E601 - cant find element ' . $name);
             }
             $element = $this->customElement($name);
-            // Add route if it should have one
+            // Add a route if it should have one
             if (! isset($element['route'])) {
                 $element['route'] = $name . '.index';
             }
@@ -514,98 +337,6 @@ class SidebarService
         }
 
         return $layout;
-    }
-
-    /**
-     * Save the new config into the database, somehow.
-     */
-    public function save(array $data)
-    {
-        // Prepare the data for the database
-        $ui = $this->campaign->ui_settings;
-
-        // First we want to figure out the new "order", and later we can worry about the "overrides".
-        $order = [];
-        $parent = null;
-        foreach ($data['order'] as $field => $value) {
-            if (Str::endsWith($field, '_start')) {
-                $parent = Str::before($field, '_start');
-                $order[$parent] = [];
-
-                continue;
-            } elseif (Str::endsWith($field, '_end')) {
-                $parent = null;
-
-                continue;
-            }
-
-            if (! empty($parent)) {
-                $order[$parent][$field] = $field;
-            } else {
-                $order[$field] = null;
-            }
-        }
-
-        $ui['sidebar'] = [
-            'order' => $order,
-        ];
-
-        // Now let's build the config.
-        $labels = [];
-        $icons = [];
-
-        foreach ($data as $field => $value) {
-            if (empty($value)) {
-                continue;
-            }
-            if (Str::endsWith($field, '_label')) {
-                $labels[Str::before($field, '_label')] = Purify::clean(strip_tags($value));
-
-                continue;
-            } elseif (Str::endsWith($field, '_icon')) {
-                $icons[Str::before($field, '_icon')] = Purify::clean(strip_tags($value));
-
-                continue;
-            }
-            // Nothing of value
-        }
-
-        // Save the new data to the campaign config
-        if (! empty($labels)) {
-            $ui['sidebar']['labels'] = $labels;
-        } elseif (isset($ui['sidebar']['labels'])) { // @phpstan-ignore-line
-            unset($ui['sidebar']['labels']);
-        }
-
-        if (! empty($icons)) {
-            $ui['sidebar']['icons'] = $icons;
-        } elseif (isset($ui['sidebar']['icons'])) { // @phpstan-ignore-line
-            unset($ui['sidebar']['icons']);
-        }
-
-        $this->campaign->ui_settings = $ui;
-        $this->campaign->save();
-
-        $this->user->campaignLog($this->campaign->id, 'sidebar', 'updated');
-
-        $this->clearCache();
-    }
-
-    public function reset()
-    {
-        $ui = $this->campaign->ui_settings;
-        unset($ui['sidebar']);
-        $this->campaign->ui_settings = $ui;
-        $this->campaign->save();
-
-        $this->user->campaignLog($this->campaign->id, 'sidebar', 'reset');
-
-        $this->clearCache();
-    }
-
-    public function clearCache()
-    {
-        Cache::forget($this->cacheKey());
     }
 
     protected function customLayout(): array
@@ -723,52 +454,5 @@ class SidebarService
         }
 
         return $labels;
-    }
-
-    /**
-     * Prepare the quick links by figuring out where they will be rendered
-     */
-    public function prepareBookmarks(): void
-    {
-        $this->bookmarks = [];
-
-        // Quick menu module not activated on the campaign, no need to go further
-        if (! $this->campaign->enabled('bookmarks')) {
-            return;
-        }
-        $bookmarks = $this->campaign->bookmarks()->active()->ordered()->with(['target' => function ($sub) {
-            return $sub->select('id', 'type_id', 'entity_id');
-        }, 'entityType', 'target.entityType'])->get();
-        /** @var Bookmark $bookmark */
-        foreach ($bookmarks as $bookmark) {
-            if ($bookmark->entityType && $bookmark->entityType->isCustom() && ! $bookmark->entityType->isEnabled()) {
-                continue;
-            }
-            $parent = 'bookmarks';
-            if (! empty($bookmark->parent)) {
-                $parent = $bookmark->parent;
-            }
-            $this->bookmarks[$parent][] = $bookmark;
-        }
-    }
-
-    /**
-     * Get the quick links for a specified section/parent
-     */
-    public function bookmarks(?string $parent = null): array
-    {
-        if (! $this->hasBookmarks($parent)) {
-            return [];
-        }
-
-        return $this->bookmarks[$parent];
-    }
-
-    /**
-     * Determine if a section has quick links in it
-     */
-    public function hasBookmarks(string $parent): bool
-    {
-        return array_key_exists($parent, $this->bookmarks) && ! empty($this->bookmarks[$parent]);
     }
 }
