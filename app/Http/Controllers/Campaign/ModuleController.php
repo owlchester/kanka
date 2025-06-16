@@ -7,14 +7,14 @@ use App\Http\Requests\UpdateModuleName;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\Campaign\ModuleEditService;
-use App\Services\EntityTypeService;
 use App\Services\Campaign\Sidebar\SaveService;
+use App\Services\EntityTypeService;
 use Exception;
 
 class ModuleController extends Controller
 {
     public function __construct(
-        protected SaveService      $sidebarService,
+        protected SaveService $sidebarService,
         protected ModuleEditService $moduleEditService,
         protected EntityTypeService $entityTypeService
     ) {}

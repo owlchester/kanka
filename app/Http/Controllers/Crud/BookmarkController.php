@@ -72,7 +72,7 @@ class BookmarkController extends CrudController
     {
         return $this->campaign($campaign)->crudCreate([
             'dashboards' => $this->dashboardOptions(),
-            'parents' => $this->sidebarParents()
+            'parents' => $this->sidebarParents(),
         ]);
     }
 
@@ -183,6 +183,7 @@ class BookmarkController extends CrudController
     {
         /** @var SetupService $service */
         $service = app()->make(SetupService::class);
+
         return $service->campaign($this->campaign)->availableParents();
     }
 }
