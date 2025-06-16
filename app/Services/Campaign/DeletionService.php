@@ -7,6 +7,7 @@ use App\Notifications\Header;
 use App\Services\Users\CampaignService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Facades\Storage;
 
 class DeletionService
 {
@@ -44,5 +45,22 @@ class DeletionService
         }
 
         $this->campaignService->user($this->user)->next();
+    }
+
+    public function cleanup(): void
+    {
+        // Since these are generally s3/minio storages, we need this mumbo jumbo
+        $folders = ['campaign', 'campaigns', 'w'];
+        foreach ($folders as $folder) {
+            $path = $folder . '/' . $this->campaign->id;
+            if (!Storage::directoryExists($path)) {
+                continue;
+            }
+            $files = Storage::allFiles($path);
+            if (!empty($files)) {
+                Storage::delete($files);
+            }
+            Storage::deleteDirectory($path);
+        }
     }
 }

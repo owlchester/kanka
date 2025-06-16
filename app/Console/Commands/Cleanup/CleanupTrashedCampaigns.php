@@ -27,19 +27,13 @@ class CleanupTrashedCampaigns extends Command
     protected $description = 'Delete old trashed campaigns';
 
     /**
-     * The recovery service
-     */
-    protected PurgeService $service;
-
-    /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(PurgeService $service)
+    public function __construct(protected PurgeService $service)
     {
         parent::__construct();
-        $this->service = $service;
     }
 
     /**
