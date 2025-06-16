@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Facades\ApiLog;
 use App\Facades\Domain;
 use App\Models\Campaign;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -164,6 +165,8 @@ class Handler extends ExceptionHandler
 
         $limit = app()->isProduction() ? 100 : 2000;
         $trace = app()->hasDebugModeEnabled() ? $exception->getTrace() : null;
+
+        ApiLog::exception($exception);
 
         return response()
             ->json([
