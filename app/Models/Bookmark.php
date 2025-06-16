@@ -272,7 +272,7 @@ class Bookmark extends Model
      */
     public function isValidDashboard(): bool
     {
-        return Dashboard::getDashboard($this->dashboard_id) !== null;
+        return Dashboard::campaign($this->campaign)->getDashboard($this->dashboard_id) !== null;
     }
 
     public function customClass(Campaign $campaign): string
@@ -292,6 +292,7 @@ class Bookmark extends Model
      */
     public function valid(Campaign $campaign): bool
     {
+        $this->setRelation('campaign', $campaign);
         if ($this->dashboard) {
             return $campaign->boosted() && $this->isValidDashboard();
         } elseif ($this->target) {
