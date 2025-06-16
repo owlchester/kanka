@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Models\Attribute;
 use App\Models\Entity;
-use App\Traits\CampaignAware;
 use ChrisKonnertz\StringCalc\StringCalc;
 use Exception;
 use Illuminate\Support\Collection;

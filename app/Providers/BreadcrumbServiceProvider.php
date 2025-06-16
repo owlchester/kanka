@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Facades\CampaignLocalization;
 use App\Services\BreadcrumbService;
 use Illuminate\Support\ServiceProvider;
 

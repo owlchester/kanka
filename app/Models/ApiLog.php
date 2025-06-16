@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
 
+/**
+ * @property int $int
+ * @property int $user_id
+ * @property int $campaign_id
+ * @property ?string $uri
+ * @property array $params
+ * @property ?float $duration
+ * @property ?string $response
+ */
 class ApiLog extends Model
 {
     use Prunable;
@@ -21,6 +30,8 @@ class ApiLog extends Model
         'campaign_id',
         'uri',
         'params',
+        'duration',
+        'response',
     ];
 
     /**
