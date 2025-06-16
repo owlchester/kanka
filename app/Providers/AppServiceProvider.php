@@ -76,6 +76,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Cashier\Cashier;
+use Laravel\Passport\Passport;
 use Symfony\Component\Console\Exception\InvalidOptionException;
 use Symfony\Component\Process\Process;
 
@@ -90,6 +91,8 @@ class AppServiceProvider extends ServiceProvider
     {
         // Fix setups for utf8_mb4 mysql strings (emoji support)
         Schema::defaultStringLength(191);
+
+        Passport::$clientUuids = false;
 
         $this->registerDevelopWarning();
 

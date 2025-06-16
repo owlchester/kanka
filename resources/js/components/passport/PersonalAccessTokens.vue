@@ -220,7 +220,7 @@
                             this.form.scopes = [];
                             this.form.errors = [];
 
-                            this.tokens.push(response.data.token);
+                            this.getTokens();
 
                             this.showAccessToken(response.data.accessToken);
                         })
