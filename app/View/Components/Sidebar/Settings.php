@@ -14,9 +14,7 @@ class Settings extends Component
      */
     public function __construct(
         public Campaign $campaign,
-    )
-    {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

@@ -110,7 +110,7 @@ class Campaign extends Component
      */
     public function __construct(
         public \App\Models\Campaign $campaign,
-        protected SetupService      $sidebar)
+        protected SetupService $sidebar)
     {
         $sidebar
             ->campaign($campaign)
@@ -158,7 +158,6 @@ class Campaign extends Component
 
         return null;
     }
-
 
     /**
      * Prepare the quick links by figuring out where they will be rendered

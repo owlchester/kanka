@@ -12,10 +12,8 @@ use Illuminate\Support\Facades\Cache;
 class SetupService
 {
     use CampaignAware;
-    use UserAware;
     use RequestAware;
-
-
+    use UserAware;
 
     protected array $elements;
 

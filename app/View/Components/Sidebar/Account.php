@@ -14,8 +14,7 @@ class Account extends Component
      */
     public function __construct(
         public User $user
-    )
-    {
+    ) {
         //
     }
 
@@ -26,7 +25,6 @@ class Account extends Component
     {
         return view('components.sidebar.account');
     }
-
 
     /**
      * Settings menu active

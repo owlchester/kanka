@@ -279,7 +279,7 @@ class Bookmark extends Model
     {
         $class = '';
         $request = request()->get('bookmark');
-        if (!empty($request) && $request == $this->id) {
+        if (! empty($request) && $request == $this->id) {
             $class = 'active ';
         }
 
