@@ -50,15 +50,12 @@
 </div>
 
 @can('admin', $campaign)
-    @php
-        $role = \App\Facades\CampaignCache::adminRole();
-    @endphp
     <hr />
     <x-forms.field field="attributes-private"
                    :label="__('entities/attributes.fields.is_private')">
         <input type="hidden" name="is_attributes_private" value="0" />
         <x-checkbox :text="__('entities/attributes.helpers.is_private', [
-    'admin-role' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' target=\'_blank\'>' . \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>',
+    'admin-role' => '<a href=\'' . route('campaigns.campaign_roles.admin', $campaign) . '\' target=\'_blank\'>' . $campaign->adminRoleName() . '</a>',
     ])">
             <input type="checkbox" name="is_attributes_private" value="1" @if (old('is_attributes_private', $entity->is_attributes_private ?? false)) checked="checked" @endif />
         </x-checkbox>

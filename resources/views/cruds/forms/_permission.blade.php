@@ -22,7 +22,6 @@ $actions = [
     'inherit' => __('crud.permissions.actions.bulk_entity.inherit'),
 ];
 
-$role = \App\Facades\CampaignCache::adminRole();
 $hidden = false;
 if (!empty($source) && $source->is_private) {
     $hidden = true;
@@ -43,7 +42,7 @@ if (!empty($source) && $source->is_private) {
             'campaigns.campaign_roles.admin',
             $campaign,
         ) . '">' .
-        \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>',
+        $campaign->adminRoleName() . '</a>',
     ]) !!}</p>
     </x-alert>
 

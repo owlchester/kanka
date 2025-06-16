@@ -44,12 +44,12 @@ class ExportController extends Controller
             ->user($request->user())
             ->queue();
 
-        $role = \App\Facades\CampaignCache::adminRole();
+        $adminRoleName = $campaign->adminRoleName();
 
         return redirect()
             ->route('campaign.export', $campaign)
             ->withSuccess(__('campaigns/export.success', [
-                'admin' => \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')),
+                'admin' => $adminRoleName,
             ]));
     }
 }

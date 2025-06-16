@@ -14,7 +14,6 @@ $imageVisibility = $entity->image ? $entity->image->visibility_id : null;
 $imageClass = (!empty($imageVisibility) ? 'visibility-' . strtolower($imageVisibility->name) : null);
 
 $addTagsUrl = route('entity.tags-add', [$campaign, $entity]);
-$adminRole = \App\Facades\CampaignCache::adminRole();
 
 /** @var \App\Models\Tag[] $entityTags */
 $entityTags = $entity->visibleTags;
@@ -60,7 +59,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
             <div class="dropdown">
                 <div class="cursor-pointer hidden sm:block print-none entity-picture relative {{ $imageClass }}" data-dropdown aria-expanded="false">
                     @if ($imageVisibility && $imageVisibility !== \App\Enums\Visibility::All)
-                        <div class="absolute bottom-0 right-0 flex items-center justify-center w-6 h-6" data-toggle="tooltip" data-title="{{ __('entities/image.gallery_permissions.' . strtolower($entity->image->visibility_id->name), ['admin' => \Illuminate\Support\Arr::get($adminRole, 'name', __('campaigns.roles.admin_role')), 'creator' => $entity->image->creator?->name]) }}">
+                        <div class="absolute bottom-0 right-0 flex items-center justify-center w-6 h-6" data-toggle="tooltip" data-title="{{ __('entities/image.gallery_permissions.' . strtolower($entity->image->visibility_id->name), ['admin' => $campaign->adminRoleName(), 'creator' => $entity->image->creator?->name]) }}">
                             <x-icon :class="$entity->image->visibilityIcon()['class']" />
                         </div>
                     @endif
@@ -240,7 +239,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
 
     @if ($hasBanner && $entity->header && $entity->header->visibility_id !== \App\Enums\Visibility::All)
         @php
-            $headerHelper = __('entities/image.gallery_permissions.' . strtolower($entity->header->visibility_id->name), ['admin' => \Illuminate\Support\Arr::get($adminRole, 'name', __('campaigns.roles.admin_role')), 'creator' => $entity->header->creator?->name]);
+            $headerHelper = __('entities/image.gallery_permissions.' . strtolower($entity->header->visibility_id->name), ['admin' => $campaign->adminRoleName(), 'creator' => $entity->header->creator?->name]);
         @endphp
         @can('visibility', $entity->header)
         <span

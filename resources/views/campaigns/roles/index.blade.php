@@ -48,9 +48,6 @@
     @parent
     @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms()])
 
-    @php
-        $role = \App\Facades\CampaignCache::adminRole();
-    @endphp
     @include('partials.helper-modal', [
         'id' => 'roles-help',
         'title' => __('campaigns.show.tabs.roles'),
@@ -59,8 +56,8 @@
                 'admin' => '<a href="' . route(
                     'campaigns.campaign_roles.admin',
                     $campaign,
-                ) . '" target="_blank">' .
-                    \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>',
+                ) . '">' .
+                    $campaign->adminRoleName() . '</a>',
             ]),
             __('campaigns.roles.helper.2'),
             __('campaigns.roles.helper.3'),

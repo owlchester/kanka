@@ -9,9 +9,6 @@
     'centered' => true,
 ])
 
-@php
-    $role = \App\Facades\CampaignCache::adminRole();
-@endphp
 @section('content')
     @include('ads.top')
     @include('partials.errors')

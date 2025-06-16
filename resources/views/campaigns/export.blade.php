@@ -37,7 +37,6 @@
     @parent
     <x-dialog id="export-confirm" :title="__('campaigns/export.confirm.title')">
         @can('export', $campaign)
-            @php $role = \App\Facades\CampaignCache::adminRole(); @endphp
             <x-helper>
                 <p>{!! __('campaigns/export.confirm.warning', ['name' => '<strong>' . $campaign->name . '</strong>']) !!}</p>
             </x-helper>
@@ -45,8 +44,7 @@
                 <p>{!! __('campaigns/export.confirm.notification', ['admin' => '<a href="' . route(
             'campaigns.campaign_roles.admin',
             $campaign,
-        ) . '">' .
-        \Illuminate\Support\Arr::get($role, 'name', __('campaigns.roles.admin_role')) . '</a>']) !!}</p>
+        ) . '">' . $campaign->adminRoleName() . '</a>']) !!}</p>
             </x-helper>
 
             <div class="grid grid-cols-2 gap-2 w-full">

@@ -210,7 +210,7 @@ class RoleController extends Controller
     {
         $this->authorize('roles', $campaign);
 
-        $adminRole = $campaign->roles()->where('is_admin', true)->firstOrFail();
+        $adminRole = $campaign->roles()->admin()->firstOrFail();
 
         return $this->show($campaign, $adminRole);
     }

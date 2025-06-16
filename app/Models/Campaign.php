@@ -546,4 +546,15 @@ class Campaign extends Model
     {
         return '<a href="' . route('dashboard', $this) . '">' . $this->name . '</a>';
     }
+
+    public function adminRole(): array
+    {
+        return CampaignCache::campaign($this)->adminRole();
+    }
+
+    public function adminRoleName(): string
+    {
+        $role = $this->adminRole();
+        return Arr::get($role, 'name', __('campaigns.roles.admin_role'));
+    }
 }
