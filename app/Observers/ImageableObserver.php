@@ -12,7 +12,10 @@ class ImageableObserver
         // @phpstan-ignore-next-line
         foreach ($model->getImageFields() as $field) {
             // @phpstan-ignore-next-line
-            Images::handle($model, $model->imageStoragePath(), $field);
+            Images::model($model)
+                ->folder($model->imageStoragePath())
+                ->field($field)
+                ->handle();
         }
         $model->saveQuietly();
     }
@@ -21,7 +24,9 @@ class ImageableObserver
     {
         // @phpstan-ignore-next-line
         foreach ($model->getImageFields() as $field) {
-            Images::cleanup($model, $field);
+            Images::model($model)
+                ->field($field)
+                ->cleanup();
         }
     }
 }

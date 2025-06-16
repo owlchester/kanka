@@ -19,7 +19,7 @@ class EntityAssetObserver
     public function deleting(EntityAsset $entityAsset): void
     {
         if ($entityAsset->isFile() && ! $entityAsset->image) {
-            Images::cleanup($entityAsset, 'imagePath');
+            Images::model($entityAsset)->field('imagePath')->cleanup();
         }
     }
 

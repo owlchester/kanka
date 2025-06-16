@@ -9,8 +9,8 @@ use App\Traits\UserAware;
 
 class DeletionService
 {
-    use UserAware;
     use RequestAware;
+    use UserAware;
 
     public function delete(): bool
     {

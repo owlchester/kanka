@@ -44,7 +44,7 @@ class PurgeService
         $entity->forceDelete();
 
         if (isset($child)) {
-            Images::cleanup($child);
+            Images::model($child)->field('image')->cleanup();
         }
 
         $this->count++;
@@ -98,10 +98,10 @@ class PurgeService
         $this->childIds[$entity->entityType->code][] = $child->id;
 
         // Cleanup any images attached to the child.
-        Images::cleanup($child);
+        Images::model($child)->field('image')->cleanup();
 
         if ($child instanceof Location && ! empty($child->map)) {
-            Images::cleanup($child, 'map');
+            Images::model($child)->field('map')->cleanup();
         }
 
         CharacterCache::campaign($entity->campaign);

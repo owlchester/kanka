@@ -45,7 +45,7 @@ class CleanupService
             // Delete a campaign if no one is left in it. Since we did the "with", it's cached, hence checking on 1
             if ($member->campaign->members->count() <= 1) {
                 SearchCleanupService::cleanup($member->campaign);
-                Images::cleanup($member->campaign);
+                Images::model($member->campaign)->field('image')->cleanup();
                 $member->campaign->forceDelete();
             }
         }
@@ -81,7 +81,7 @@ class CleanupService
     protected function removeAvatar(): self
     {
         if ($this->user->hasAvatar()) {
-            Images::cleanup($this->user, 'avatar');
+            Images::model($this->user)->field('avatar')->cleanup();
         }
 
         return $this;

@@ -42,10 +42,10 @@ class EntityObserver
         }
 
         if (request()->post('remove-image') == '1') {
-            Images::cleanup($entity, 'image');
+            Images::model($entity)->field('image')->cleanup();
         }
         if (request()->post('remove-header_image') == '1') {
-            Images::cleanup($entity, 'header_image');
+            Images::model($entity)->field('header_image')->cleanup();
         }
         $this->saveTags($entity);
         $this->savePermissions($entity);

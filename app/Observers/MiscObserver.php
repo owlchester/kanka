@@ -27,7 +27,7 @@ abstract class MiscObserver
             return;
         }
 
-        Images::cleanup($model);
+        Images::model($model)->cleanup();
     }
 
     public function saved(MiscModel $model)

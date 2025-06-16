@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\Facades\Limit;
 use App\Models\Entity;
-use App\Models\MiscModel;
 use App\Sanitizers\SvgAllowedAttributes;
 use App\Traits\CampaignAware;
 use enshrined\svgSanitize\Sanitizer;
@@ -20,27 +19,54 @@ class ImagesService
 {
     use CampaignAware;
 
-    public function handle(MiscModel|Model|Entity $model, string $folder = '', string $field = 'image')
+    protected Model $model;
+
+    protected string $field = 'image';
+
+    protected string $folder;
+
+    public function model(Model $model): self
+    {
+        $this->model = $model;
+
+        return $this;
+    }
+
+    public function field(string $field): self
+    {
+        $this->field = $field;
+
+        return $this;
+    }
+
+    public function folder(string $folder): self
+    {
+        $this->folder = $folder;
+
+        return $this;
+    }
+
+    public function handle()
     {
         // Remove the old image
-        if (request()->post('remove-' . $field) == '1') {
-            $this->cleanup($model, $field);
+        if (request()->post('remove-' . $this->field) == '1') {
+            $this->cleanup($this->model, $this->field);
 
             return;
         }
 
         // No new image
-        if (! request()->has($field) && ! request()->filled($field . '_url')) {
+        if (! request()->has($this->field) && ! request()->filled($this->field . '_url')) {
             return;
         }
 
         try {
-            $file = $path = $cleanSVG = null;
-            $url = request()->filled($field . '_url');
+            $cleanSVG = null;
+            $url = request()->filled($this->field . '_url');
 
             // Download the file locally to check it out
             if ($url) {
-                $externalUrl = request()->input($field . '_url');
+                $externalUrl = request()->input($this->field . '_url');
                 $externalFile = basename($externalUrl);
 
                 $tempImage = tempnam(sys_get_temp_dir(), $externalFile);
@@ -56,7 +82,7 @@ class ImagesService
                     )
                 );
                 $cleanImageName = str_replace(['.', '/'], ['', ''], $cleanImageName);
-                $path = "{$folder}/" . uniqid() . '_' . Str::limit($cleanImageName, 20, '');
+                $path = "{$this->folder}/" . uniqid() . '_' . Str::limit($cleanImageName, 20, '');
 
                 // Check if file is too big
                 $copiedFileSize = ceil(filesize($tempImage) / 1000);
@@ -72,8 +98,8 @@ class ImagesService
                     $path = $path . mb_strtolower($imageUrlExt);
                 }
             } else {
-                $file = request()->file($field);
-                $path = $file->hashName($folder);
+                $file = request()->file($this->field);
+                $path = $file->hashName($this->folder);
             }
 
             // Sanitize SVGs to avoid any XSS attacks
@@ -91,9 +117,9 @@ class ImagesService
 
             if (! empty($path)) {
                 // Remove old
-                $this->cleanup($model, $field);
+                $this->cleanup($this->model, $this->field);
 
-                // Save new image
+                // Save the new image
                 if ($url) {
                     if ($file->getMimeType() == 'image/svg+xml') {
                         // GD can't handle svgs, so we need to move them directly
@@ -106,12 +132,12 @@ class ImagesService
                         Storage::put($path, (string) $image->toJpeg(), 'public');
                     }
                 } else {
-                    $path = request()->file($field)->storePublicly($folder);
+                    $path = request()->file($this->field)->storePublicly($this->folder);
                 }
-                if ($model instanceof Entity) {
-                    $model->image_path = $path;
+                if ($this->model instanceof Entity) {
+                    $this->model->image_path = $path;
                 } else {
-                    $model->$field = $path;
+                    $this->model->{$this->field} = $path;
                 }
             }
         } catch (Exception $e) {
@@ -123,34 +149,32 @@ class ImagesService
 
     /**
      * Delete old image and thumb
-     *
-     * @param  MiscModel|Entity|Model  $model
      */
-    public function cleanup($model, $field = 'image')
+    public function cleanup()
     {
-        if ($model instanceof Entity && $field === 'image') {
-            $field = 'image_path';
+        if ($this->model instanceof Entity && $this->field === 'image') {
+            $this->field = 'image_path';
         }
-        if (empty($model->$field)) {
+        if (empty($this->model->{$this->field})) {
             return;
         }
 
         try {
-            Storage::delete($model->$field);
+            Storage::delete($this->model->{$this->field});
             // Leave removing thumbs for old campaigns
-            $thumb = str_replace('.', '_thumb.', $model->$field);
+            $thumb = str_replace('.', '_thumb.', $this->model->{$this->field});
             if (Storage::has($thumb)) {
                 Storage::delete($thumb);
             }
             // If it's a map, reset its height to be re-calculated
-            if ($model instanceof Entity && $model->isMap()) {
-                $model->map->height = null;
-                $model->map->width = null;
-                $model->map->saveQuietly();
+            if ($this->model instanceof Entity && $this->model->isMap()) {
+                $this->model->map->height = null;
+                $this->model->map->width = null;
+                $this->model->map->saveQuietly();
             }
         } catch (Exception $e) {
             // silence exception, didn't find the image to delete.
         }
-        $model->$field = null;
+        $this->model->{$this->field} = null;
     }
 }
