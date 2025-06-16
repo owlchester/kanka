@@ -2,10 +2,11 @@ name: Fix Code Style
 
 on:
   pull_request:
-    branches: [ "develop" ]
-    paths:
-      - '**.php'
-  workflow_dispatch:
+    branches:
+      - develop
+  push:
+    branches:
+      - main
 
 jobs:
   lint:
