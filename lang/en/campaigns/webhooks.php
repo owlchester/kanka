@@ -25,6 +25,9 @@ return [
         'success'   => 'Webhook updated successfully',
         'title'     => 'Update webhook',
     ],
+    'error'         => [
+        'pitch' => 'Webhooks is a feature only available to premium campaigns.',
+    ],
     'fields'        => [
         'enabled'           => 'Enabled',
         'event'             => 'Event',

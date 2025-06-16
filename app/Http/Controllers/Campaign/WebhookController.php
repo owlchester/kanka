@@ -61,12 +61,26 @@ class WebhookController extends Controller
     {
         $this->authorize('webhooks', $campaign);
 
+        if (! $campaign->premium()) {
+            return view('campaigns.webhooks.unboosted')
+                ->with('campaign', $campaign);
+        }
+
         return view('campaigns.webhooks.create', ['campaign' => $campaign]);
     }
 
     public function store(StoreWebhook $request, Campaign $campaign)
     {
         $this->authorize('webhooks', $campaign);
+
+        if (! $campaign->premium()) {
+            return redirect()->route('webhooks.index', $campaign)
+                ->with(
+                    'error',
+                    __('campaigns/webhooks.error.pitch')
+            );
+        }
+
         if ($request->ajax()) {
             return response()->json();
         }
@@ -181,6 +195,14 @@ class WebhookController extends Controller
     public function test(Campaign $campaign, Webhook $webhook)
     {
         $this->authorize('webhooks', $campaign);
+        
+        if (! $campaign->premium()) {
+            return redirect()->route('webhooks.index', $campaign)
+                ->with(
+                    'error',
+                    __('campaigns/webhooks.error.pitch')
+            );
+        }
 
         TestWebhookJob::dispatch($campaign, auth()->user(), $webhook);
 
