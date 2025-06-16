@@ -8,7 +8,7 @@
         __('bookmarks.reorder.title')
     ],
     'mainTitle' => false,
-    'bodyClass' => 'quick-links-reorder'
+    'bodyClass' => 'bookmarks-reorder'
 ])
 
 

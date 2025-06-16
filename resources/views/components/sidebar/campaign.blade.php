@@ -12,7 +12,7 @@
             @foreach ($layout as $name => $element)
                 @if ($name === 'bookmarks')
                     @if ($campaign->enabled('bookmarks'))
-                        <li class="px-2 {{ $active('bookmarks') }} sidebar-quick-links">
+                        <li class="px-2 {{ $active('bookmarks') }} sidebar-quick-links sidebar-bookmarks">
                             <x-sidebar.element
                                 :url="auth()->check() && auth()->user()->can('create', new App\Models\Bookmark()) ? route('bookmarks.index', $campaign) : null"
                                 :icon="$element['custom_icon'] ?? $element['icon']"
