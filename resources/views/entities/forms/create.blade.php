@@ -7,7 +7,7 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('entities.creator.title') . ' - ' . $entityType->name(),
     'breadcrumbs' => [
-        ['url' => Breadcrumb::entityType($entityType)->index(), 'label' => $entityType->plural()],
+        ['url' => Breadcrumb::campaign($campaign)->entityType($entityType)->index(), 'label' => $entityType->plural()],
         __('crud.create'),
     ],
     'mainTitle' => false,

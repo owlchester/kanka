@@ -10,8 +10,8 @@
     'title' => __('crud.permissions.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        Breadcrumb::entity($entity)->list(),
-        Breadcrumb::show($entity),
+        Breadcrumb::campaign($campaign)->entity($entity)->list(),
+        Breadcrumb::show(),
         __('crud.edit'),
     ]
 ])

@@ -1,8 +1,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('tags.transfer.entities.title'),
     'breadcrumbs' => [
-        Breadcrumb::entity($tag->entity)->list(),
-        Breadcrumb::show($tag),
+        Breadcrumb::campaign($campaign)->entity($tag->entity)->list(),
+        Breadcrumb::show(),
         __('tags.transfer.transfer'),
     ],
     'centered' => true,

@@ -7,8 +7,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('maps/markers.edit.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        Breadcrumb::entity($map->entity)->list(),
-        Breadcrumb::show($map),
+        Breadcrumb::campaign($campaign)->entity($map->entity)->list(),
+        Breadcrumb::show(),
         __('maps/markers.edit.title', ['name' => $model->name])
     ],
     'centered' => true,

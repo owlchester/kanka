@@ -460,7 +460,7 @@ class CrudController extends Controller
 
                 return response()->redirectTo($route);
             }
-            $route = Breadcrumb::index($this->route);
+            $route = Breadcrumb::campaign($this->campaign)->index($this->route);
 
             return response()->redirectTo($route);
         } catch (LogicException $exception) {

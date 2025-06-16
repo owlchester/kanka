@@ -1,8 +1,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('calendars/weather.create.title', ['name' => $calendar->name]),
     'breadcrumbs' => [
-        Breadcrumb::entity($calendar->entity)->list(),
-        Breadcrumb::show($calendar),
+        Breadcrumb::campaign($campaign)->entity($calendar->entity)->list(),
+        Breadcrumb::show(),
         __('calendars.show.tabs.weather'),
     ],
     'canonical' => true,

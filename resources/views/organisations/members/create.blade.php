@@ -2,8 +2,8 @@
     'title' => __('organisations.members.create.title_multiple', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        Breadcrumb::entity($model->entity)->list(),
-        Breadcrumb::show($model)
+        Breadcrumb::campaign($campaign)->entity($model->entity)->list(),
+        Breadcrumb::show()
     ]
 ])
 

@@ -29,7 +29,7 @@ $translations = json_encode([
 
     @include('entities.components.header', [
         'breadcrumb' => [
-            Breadcrumb::entity($entity)->list(),
+            Breadcrumb::campaign($campaign)->entity($entity)->list(),
         ],
         'entityHeaderActions' => 'entity-header-actions-override',
     ])

@@ -9,8 +9,8 @@
     'title' => __('maps/markers.create.title', ['name' => $map->name]),
     'description' => '',
     'breadcrumbs' => [
-        Breadcrumb::entity($map->entity)->list(),
-        Breadcrumb::show($map),
+        Breadcrumb::campaign($campaign)->entity($map->entity)->list(),
+        Breadcrumb::show(),
         __('maps/markers.create.title')
     ],
     'centered' => true,

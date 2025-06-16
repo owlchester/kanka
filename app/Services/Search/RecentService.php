@@ -130,7 +130,7 @@ class RecentService
             $indexes[] = [
                 'name' => $entityType->plural(),
                 'icon' => $entityType->icon(),
-                'url' => Breadcrumb::entityType($entityType)->index(),
+                'url' => Breadcrumb::campaign($this->campaign)->entityType($entityType)->index(),
             ];
         }
 

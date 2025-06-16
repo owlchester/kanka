@@ -1,8 +1,8 @@
 @extends('layouts.app', [
     'title' => __('quests.elements.create.title', ['name' => $quest->name]),
     'breadcrumbs' => [
-        Breadcrumb::entity($quest->entity)->list(),
-        Breadcrumb::show($quest),
+        Breadcrumb::campaign($campaign)->entity($quest->entity)->list(),
+        Breadcrumb::show(),
         ['url' => route('quests.quest_elements.index', [$campaign, $quest->id]), 'label' => __('quests.show.tabs.elements')],
         __('crud.create'),
     ],

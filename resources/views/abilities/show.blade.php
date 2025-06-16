@@ -4,7 +4,7 @@
 
     @include('entities.components.header', [
         'breadcrumb' => [
-            Breadcrumb::entity($entity)->list(),
+            Breadcrumb::campaign($campaign)->entity($entity)->list(),
         ]
     ])
 

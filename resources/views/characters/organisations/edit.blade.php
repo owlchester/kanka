@@ -1,8 +1,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => trans('characters.organisations.edit.title', ['name' => $model->name]),
     'breadcrumbs' => [
-        Breadcrumb::entity($model->entity)->list(),
-        Breadcrumb::show($model)
+        Breadcrumb::campaign($campaign)->entity($model->entity)->list(),
+        Breadcrumb::show()
     ],
     'centered' => true,
 ])

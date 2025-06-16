@@ -1,7 +1,7 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('posts.move.title'),
     'breadcrumbs' => [
-        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
         __('crud.actions.move'),
     ],

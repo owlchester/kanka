@@ -2,8 +2,8 @@
     'title' => __('maps/groups.create.title', ['name' => $map->name]),
     'description' => '',
     'breadcrumbs' => [
-        Breadcrumb::entity($map->entity)->list(),
-        Breadcrumb::show($map),
+        Breadcrumb::campaign($campaign)->entity($map->entity)->list(),
+        Breadcrumb::show(),
         ['url' => route('maps.map_groups.index', [$campaign, $map]), 'label' => __('maps.panels.groups')],
         __('maps/groups.create.title')
     ]

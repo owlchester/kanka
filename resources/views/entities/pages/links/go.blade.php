@@ -3,7 +3,7 @@
 @extends('layouts.app', [
     'title' => __('entities/links.go.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
         __('crud.tabs.links')
     ],

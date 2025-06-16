@@ -2,7 +2,7 @@
     'title' => __('entities/attributes.template.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
         __('entities.attribute_template')
     ],

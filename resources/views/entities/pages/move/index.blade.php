@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => __('entities/move.title', ['name' => $entity->name]),
     'breadcrumbs' => [
-        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
         __('crud.actions.move'),
     ],

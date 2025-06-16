@@ -8,8 +8,8 @@
     'title' => __('timelines/elements.edit.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
-        Breadcrumb::entity($timeline->entity)->list(),
-        Breadcrumb::show($timeline),
+        Breadcrumb::campaign($campaign)->entity($timeline->entity)->list(),
+        Breadcrumb::show(),
         __('timelines/elements.edit.title', ['name' => $model->name])
     ],
     'centered' => true,

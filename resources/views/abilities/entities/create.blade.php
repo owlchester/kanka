@@ -2,8 +2,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('abilities.children.create.title'),
     'breadcrumbs' => [
-        Breadcrumb::entity($model->entity)->list(),
-        Breadcrumb::show($model),
+        Breadcrumb::campaign($campaign)->entity($model->entity)->list(),
+        Breadcrumb::show(),
     ],
     'centered' => true,
 ])

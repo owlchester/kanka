@@ -2,7 +2,7 @@
     'title' => trans('entities/abilities.update.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
         ['url' => route('entities.entity_abilities.index', [$campaign, $entity]), 'label' => __('entities.ability')],
     ],

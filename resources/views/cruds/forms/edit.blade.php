@@ -4,7 +4,7 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('crud.titles.editing', ['name' => $entity->name])  . ' - ' . __('entities.' . $name),
     'breadcrumbs' => (isset($entity) ? [
-        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
         __('crud.edit'),
     ] : [

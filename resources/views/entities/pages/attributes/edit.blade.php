@@ -9,7 +9,7 @@ $isAdmin = auth()->user()->isAdmin();
     'title' => __('entities/attributes.index.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
         __('crud.tabs.attributes'),
     ],

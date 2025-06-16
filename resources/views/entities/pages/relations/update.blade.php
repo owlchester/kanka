@@ -3,7 +3,7 @@
     'title' => __('entities/relations.update.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        Breadcrumb::entity($entity)->list(),
+        Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
         ['url' => route('entities.relations.index', [$campaign, $entity->id]), 'label' => __('crud.tabs.relations')],
     ],

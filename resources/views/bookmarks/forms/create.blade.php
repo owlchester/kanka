@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'title' => $title,
     'breadcrumbs' => [
-        ['url' => Breadcrumb::index($name), 'label' => $plural],
+        ['url' => Breadcrumb::campaign($campaign)->index($name), 'label' => $plural],
         __('crud.create'),
     ],
     'mainTitle' => false,

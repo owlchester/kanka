@@ -2,8 +2,8 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
     'title' => __('calendars/weather.edit.title'),
     'breadcrumbs' => [
-        Breadcrumb::entity($weather->calendar->entity)->list(),
-        Breadcrumb::show($weather->calendar),
+        Breadcrumb::campaign($campaign)->entity($weather->calendar->entity)->list(),
+        Breadcrumb::show(),
         __('calendars.show.tabs.weather'),
         __('crud.update'),
     ],

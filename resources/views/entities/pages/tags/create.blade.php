@@ -3,8 +3,8 @@
     'title' => __('entities/tags.create.title', ['name' => $entity->name]),
     'description' => '',
     'breadcrumbs' => [
-        Breadcrumb::entity($entity)->list(),
-        Breadcrumb::show($entity),
+        Breadcrumb::campaign($campaign)->entity($entity)->list(),
+        Breadcrumb::show(),
     ],
     'centered' => true,
 ])

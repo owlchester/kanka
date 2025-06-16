@@ -6,8 +6,8 @@
         __('crud.tabs.reminders'),
         __('crud.update'),
     ] : [
-        Breadcrumb::entity($reminder->calendar->entity)->list(),
-        Breadcrumb::show($reminder->calendar),
+        Breadcrumb::campaign($campaign)->entity($reminder->calendar->entity)->list(),
+        Breadcrumb::show(),
         __('crud.tabs.reminders'),
         __('crud.update'),
     ],
