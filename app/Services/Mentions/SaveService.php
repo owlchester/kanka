@@ -29,6 +29,7 @@ class SaveService
     protected bool $createdNewEntities = false;
 
     protected string $advancedMentionClass = 'advanced-mention';
+    protected string $advancedMentionNameClass = 'advanced-mention-name';
 
     public function __construct(
         protected NewService $newService,
@@ -174,7 +175,7 @@ class SaveService
     protected function cleanup(): self
     {
         // Remove legacy <ins> and <span> advanced-mention elements
-        $advancedNodes = $this->xpath->query('//ins[@class="' . $this->advancedMentionClass . '" and @data-name] | //span[@class="' . $this->advancedMentionClass . '" and @data-name]');
+        $advancedNodes = $this->xpath->query('//ins[@class="' . $this->advancedMentionNameClass . '" and @data-name] | //span[@class="' . $this->advancedMentionNameClass . '" and @data-name]');
         foreach ($advancedNodes as $node) {
             $node->parentNode->removeChild($node);
         }
