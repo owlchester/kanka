@@ -21,6 +21,7 @@ class DeleteController extends Controller
         }
         $this->deletionService
             ->user($request->user())
+            ->request($request)
             ->delete();
 
         return redirect()->to(Domain::toFront('goodbye') . '?deleted=true');

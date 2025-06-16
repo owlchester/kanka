@@ -220,7 +220,7 @@ class ProcessService
 
     protected function dynamicLocation(): self
     {
-        if (! request()->has('location_id')) {
+        if (! $this->request->has('location_id')) {
             return $this;
         }
         $canCreate = $this->user->can('create', [$this->campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $this->campaign]);

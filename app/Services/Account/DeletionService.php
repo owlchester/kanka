@@ -4,11 +4,13 @@ namespace App\Services\Account;
 
 use App\Jobs\Users\DeleteUser;
 use App\Models\User;
+use App\Traits\RequestAware;
 use App\Traits\UserAware;
 
 class DeletionService
 {
     use UserAware;
+    use RequestAware;
 
     public function delete(): bool
     {
@@ -16,12 +18,12 @@ class DeletionService
         DeleteUser::dispatch($this->user);
 
         auth()->logout();
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
+        $this->request->session()->invalidate();
+        $this->request->session()->regenerateToken();
 
         // We also need to flush the session (campaign_id and other things) since this could cause
-        // weird behaviour if the user registers a new account.
-        request()->session()->flush();
+        // unexpected behaviour if the user registers a new account.
+        $this->request->session()->flush();
 
         return true;
     }
