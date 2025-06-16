@@ -104,4 +104,9 @@ class SaveService
     {
         Cache::forget($this->cacheKey());
     }
+
+    protected function cacheKey(): string
+    {
+        return 'campaign_' . $this->campaign->id . '_sidebar';
+    }
 }

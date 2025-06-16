@@ -101,7 +101,10 @@ class BookmarkController extends CrudController
      */
     public function edit(Campaign $campaign, Bookmark $bookmark)
     {
-        return $this->campaign($campaign)->crudEdit($bookmark, ['dashboards' => $this->dashboardOptions($campaign)]);
+        return $this->campaign($campaign)->crudEdit($bookmark, [
+            'dashboards' => $this->dashboardOptions(),
+            'parents' => $this->sidebarParents(),
+        ]);
     }
 
     /**
