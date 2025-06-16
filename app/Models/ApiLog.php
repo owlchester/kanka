@@ -31,7 +31,7 @@ class ApiLog extends Model
         'uri',
         'params',
         'duration',
-        'response'
+        'response',
     ];
 
     /**

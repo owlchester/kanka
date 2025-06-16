@@ -3,7 +3,6 @@
 namespace App\Services\Tracking;
 
 use App\Facades\AdCache;
-use App\Models\Campaign;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Carbon\Carbon;

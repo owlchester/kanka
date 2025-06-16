@@ -555,6 +555,7 @@ class Campaign extends Model
     public function adminRoleName(): string
     {
         $role = $this->adminRole();
+
         return Arr::get($role, 'name', __('campaigns.roles.admin_role'));
     }
 }

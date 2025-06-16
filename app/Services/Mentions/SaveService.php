@@ -29,6 +29,7 @@ class SaveService
     protected bool $createdNewEntities = false;
 
     protected string $advancedMentionClass = 'advanced-mention';
+
     protected string $advancedMentionNameClass = 'advanced-mention-name';
 
     public function __construct(

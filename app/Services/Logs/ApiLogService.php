@@ -24,18 +24,21 @@ class ApiLogService
     public function duration($duration): self
     {
         $this->duration = $duration;
+
         return $this;
     }
 
     public function response(JsonResponse $response): self
     {
         $this->response = $response;
+
         return $this;
     }
 
     public function exception(Throwable $exception): self
     {
         $this->exception = $exception;
+
         return $this;
     }
 

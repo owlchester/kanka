@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Facades\CampaignLocalization;
 use App\Services\AttributeMentionService;
 use Illuminate\Support\ServiceProvider;
 
