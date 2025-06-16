@@ -23,7 +23,6 @@ class ClearCampaignUsersSaved
     public function handle(Saved|Deleted $event): void
     {
         // Whenever a campaign is changed, clear the cache for users and followers
-        /** @var CampaignUser $member */
         if ($event instanceof Deleted || $event->campaign->wasChanged(['visibility_id', 'name', 'image'])) {
             foreach ($event->campaign->users as $member) {
                 UserCache::user($member)->clear();

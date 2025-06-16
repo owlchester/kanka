@@ -49,7 +49,7 @@ class CleanupService
             if ($member->campaign->members->count() <= 1) {
                 Images::model($member->campaign)->field('image')->cleanup();
                 $member->campaign->forceDelete();
-                Deleted::dispatch($member->campaign);
+                Deleted::dispatch($member->campaign, $this->user);
             }
         }
 

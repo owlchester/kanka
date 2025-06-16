@@ -13,6 +13,7 @@ use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
+use Illuminate\Http\Request;
 
 class MarkerController extends Controller
 {
@@ -69,7 +70,7 @@ class MarkerController extends Controller
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function create(Campaign $campaign, Map $map)
+    public function create(Request $request, Campaign $campaign, Map $map)
     {
         $this->authorize('update', $map->entity);
 

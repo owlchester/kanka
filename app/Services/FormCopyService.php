@@ -73,7 +73,7 @@ class FormCopyService
             }
         }
 
-        $parent = isset($this->request) ? $this->request?->get('parent_id', false) : false;
+        $parent = isset($this->request) ? $this->request->get('parent_id', false) : false;
         if ($checkForParent && $parent !== false) {
             /** @var Model $class */
             $class = new $parentClass;
