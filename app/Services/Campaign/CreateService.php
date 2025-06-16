@@ -3,7 +3,6 @@
 namespace App\Services\Campaign;
 
 use App\Enums\UserAction;
-use App\Events\Campaigns\Created;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignPermission;
@@ -66,6 +65,7 @@ class CreateService
                 'link' => route('dashboard', ['campaign' => $this->campaign]),
             ]
         ));
+
         return $this;
     }
 

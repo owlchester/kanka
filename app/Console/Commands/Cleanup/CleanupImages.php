@@ -74,7 +74,7 @@ class CleanupImages extends Command
                 }
                 if (! $this->dry) {
                     $files = Storage::allFiles($folder . '/' . $id);
-                    if (!empty($files)) {
+                    if (! empty($files)) {
                         Storage::delete($files);
                     }
                     Storage::deleteDirectory($folder . '/' . $id);

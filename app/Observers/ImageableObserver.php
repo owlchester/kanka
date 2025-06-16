@@ -9,8 +9,7 @@ class ImageableObserver
 {
     public function saved(
         Model $model
-    ): void
-    {
+    ): void {
 
         // @phpstan-ignore-next-line
         foreach ($model->getImageFields() as $field) {
@@ -20,9 +19,6 @@ class ImageableObserver
                 ->field($field)
                 ->handle();
         }
-
-
-
 
         $model->saveQuietly();
     }
