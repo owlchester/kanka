@@ -42,7 +42,7 @@ class CleanupImages extends Command
             $this->dry = false;
         }
 
-        $this->info('Cleaning up ' . $folder);
+        $this->info('Cleaning up ' . $folder . '/');
         if ($this->dry) {
             $this->warn('This is a dry run. Nothing will get deleted.');
         }
@@ -73,11 +73,16 @@ class CleanupImages extends Command
                     continue;
                 }
                 if (! $this->dry) {
+                    $files = Storage::allFiles($folder . '/' . $id);
+                    if (!empty($files)) {
+                        Storage::delete($files);
+                    }
                     Storage::deleteDirectory($folder . '/' . $id);
                 }
                 $this->count++;
             }
             if ($this->dry) {
+                $this->info('Would delete ' . $this->count . ' images/folders.');
                 $this->info(implode(',', $nullCampaigns));
             }
             if ($this->count > $this->max) {
