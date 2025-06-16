@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImageableObserver
 {
-    public function saved(Model $model): void
+    public function saved(
+        Model $model
+    ): void
     {
+
         // @phpstan-ignore-next-line
         foreach ($model->getImageFields() as $field) {
             Images::model($model)
@@ -17,6 +20,10 @@ class ImageableObserver
                 ->field($field)
                 ->handle();
         }
+
+
+
+
         $model->saveQuietly();
     }
 
