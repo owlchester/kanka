@@ -70,13 +70,13 @@ class DatalayerService
             return false;
             //        } elseif (!AdCache::canHaveAds()) {
             //            return false;
-        } elseif (auth()->guest()) {
+        } elseif (!isset($this->user)) {
             return true;
-        } elseif (auth()->user()->isSubscriber()) {
+        } elseif ($this->user->isSubscriber()) {
             return false;
         }
 
-        return auth()->user()->created_at->diffInHours(Carbon::now()) > 24;
+        return $this->user->created_at->diffInHours(Carbon::now()) > 24;
     }
 
     public function userGroup(): string

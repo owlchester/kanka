@@ -11,6 +11,7 @@ use App\Models\Location;
 use App\Models\MiscModel;
 use App\Services\FilterService;
 use App\Traits\CampaignAware;
+use App\Traits\RequestAware;
 use App\Traits\UserAware;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
@@ -24,6 +25,7 @@ class DatagridRenderer
 {
     use CampaignAware;
     use UserAware;
+    use RequestAware;
 
     protected string $hidden = ' hidden lg:table-cell';
 
@@ -253,19 +255,19 @@ class DatagridRenderer
         $routeOptions = [
             'campaign' => $this->campaign,
             'order' => $field,
-            'page' => request()->get('page'),
+            'page' => $this->request->get('page'),
         ];
 
         if (isset($this->bookmark)) {
             $routeOptions['bookmark'] = $this->bookmark;
         }
 
-        if (request()->get('_from', false) == 'quicklink') {
-            $routeOptions['_from'] = 'quicklink';
+        if ($this->request->get('_from', false) == 'bookmark') {
+            $routeOptions['_from'] = 'bookmark';
         }
 
         if (! empty($this->nestedFilter)) {
-            $val = request()->get($this->nestedFilter, null);
+            $val = $this->request->get($this->nestedFilter, null);
             if (! empty($val)) {
                 $routeOptions[$this->nestedFilter] = $val;
             }
@@ -365,7 +367,7 @@ class DatagridRenderer
         if (! config('tracking.venatus.enabled')) {
             return $this->showAds = false;
         }
-        if (request()->has('_showads')) {
+        if ($this->request->has('_showads')) {
             return $this->showAds = true;
         }
         if (isset($this->user)) {
