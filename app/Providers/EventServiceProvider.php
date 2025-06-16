@@ -108,7 +108,6 @@ class EventServiceProvider extends ServiceProvider
             ClearCampaignUsersSaved::class,
         ],
         Deleted::class => [
-            Cleanup::class,
             ClearCampaignUsersSaved::class,
         ],
     ];
