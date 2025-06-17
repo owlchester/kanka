@@ -398,7 +398,7 @@ class MentionsService
                         }
 
                         return '<iframe src="' . route('maps.preview', [$this->campaign, $child]) . '" class="map-preview" data-map="{{ $entity->id }}" width="' . $width . '" height="' . $height . '"></iframe>';
-                    } elseif (! $entity->isMissingChild() && isset($entity->child->$field)) {
+                    } elseif ($entity->hasChild() && ! $entity->isMissingChild() && isset($entity->child->$field)) {
                         $foreign = $entity->child->$field;
                         if ($foreign instanceof Model) {
                             if (isset($foreign->name) && ! empty($foreign->name)) {
@@ -491,7 +491,7 @@ class MentionsService
             if ($hasCustom || auth()->user()->alwaysAdvancedMentions()) {
                 // Still need to show the target's name in the advanced mention
                 $entity = $this->entity($data['id']);
-                if (empty($entity) || $entity->isMissingChild()) {
+                if (empty($entity) || ($entity->hasChild() && $entity->isMissingChild())) {
                     return $matches[0];
                 }
 
@@ -521,7 +521,7 @@ class MentionsService
             $entity = $this->entity($data['id']);
 
             // No entity found, the user might not be allowed to see it
-            if (empty($entity) || $entity->isMissingChild()) {
+            if (empty($entity) || ($entity->hasChild() && $entity->isMissingChild())) {
                 $name = __('crud.history.unknown');
                 $dataName = $name;
             } else {
