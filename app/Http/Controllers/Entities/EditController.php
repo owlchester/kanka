@@ -7,6 +7,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Services\AttributeService;
+use App\Services\Models\SaveService;
 use App\Services\MultiEditingService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
@@ -20,7 +21,8 @@ class EditController extends Controller
 
     public function __construct(
         protected AttributeService $attributeService,
-        protected MultiEditingService $multiEditingService
+        protected MultiEditingService $multiEditingService,
+        protected SaveService $saveService
     ) {}
 
     public function index(Campaign $campaign, Entity $entity)
@@ -81,19 +83,14 @@ class EditController extends Controller
 
             if ($entity->hasChild()) {
                 $data = $this->prepareData($request, $entity->child);
-                $entity->child->update($data);
 
-                // Fire an event for the Entity Observer
-                $entity->child->crudSaved();
-
-                $entity->name = $entity->child->name;
-                $entity->is_private = $entity->child->is_private;
-                $entity->crudSaved();
-
-                // If the child was changed but nothing changed on the entity, we still want to trigger an update
-                if ($entity->child->wasChanged() && ! $entity->wasChanged()) {
-                    $entity->touch();
-                }
+                $this->saveService
+                    ->user(auth()->user())
+                    ->request($request)
+                    ->campaign($campaign)
+                    ->model($entity->child)
+                    ->entity($entity)
+                    ->update($data);
             } else {
                 $preparedData = $this->fixRequestData($request, $entity);
                 $entity->update($preparedData);

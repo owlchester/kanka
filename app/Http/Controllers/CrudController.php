@@ -16,8 +16,9 @@ use App\Models\MiscModel;
 use App\Renderers\DatagridRenderer;
 use App\Sanitizers\MiscSanitizer;
 use App\Services\AttributeService;
-use App\Services\Entity\CopyService;
 use App\Services\FilterService;
+use App\Services\Forms\RelatedService;
+use App\Services\Models\SaveService;
 use App\Services\MultiEditingService;
 use App\Traits\BulkControllerTrait;
 use App\Traits\CampaignAware;
@@ -390,42 +391,14 @@ class CrudController extends Controller
             $data = $request->all();
             $data['campaign_id'] = $this->campaign->id;
 
-            /** @var MiscModel $model */
-            $model = new $this->model;
-            /** @var MiscModel $new */
-            $new = $model->create($data);
-
-            // Fire an event for the Entity Observer.
-            if (method_exists($model, 'crudSaved')) {
-                $new->crudSaved();
-            }
-
-            // Bookmarks have no entity attached to them.
-            if (! ($new instanceof Bookmark) && $new->entity) {
-                $new->entity->crudSaved();
-                // Weird hack for prod issues
-                if (! $new->entity->child) {
-                    $new->entity->child = $new;
-                }
-
-                /** @var CopyService $copyService */
-                $copyService = app()->make(CopyService::class);
-                // First copy stuff like posts, since we might replace attribute mentions next
-                $copyService->entity($new->entity)->request($request)->fromId()->copy();
-
-                if (auth()->user()->can('attributes', $new->entity)) {
-                    $this->attributeService
-                        ->campaign($this->campaign)
-                        ->entity($new->entity)
-                        ->save($request->get('attribute', []));
-
-                    // When copying an entity, the user probably wants to update all mentions of attributes to ones on the new entity.
-                    if ($request->has('replace_mentions') && $request->filled('replace_mentions') && $new->entity->isFillable('entry')) {
-                        $this->attributeService
-                            ->replaceMentions((int) $request->post('copy_source_id'));
-                    }
-                }
-            }
+            /** @var SaveService $saver */
+            $saver = app()->make(SaveService::class);
+            $new = $saver
+                ->campaign($this->campaign)
+                ->user(auth()->user())
+                ->request($request)
+                ->model(new $this->model)
+                ->create($data, $this->model);
 
             $link = '<a href="' . route(
                 $new->entity ? 'entities.show' : $this->view . '.show',
@@ -565,6 +538,14 @@ class CrudController extends Controller
             // Fire an event for the Entity Observer
             $model->crudSaved();
 
+            /** @var RelatedService $related */
+            $related = app()->make(RelatedService::class);
+            $related->user(auth()->user())
+                ->campaign($this->campaign)
+                ->request($request)
+                ->model($model)
+                ->process();
+
             // Bookmarks have no entity attached to them.
             if ($model->entity) {
                 $model->entity->name = $model->name;
@@ -657,10 +638,7 @@ class CrudController extends Controller
             ]));
     }
 
-    /**
-     * @return array
-     */
-    protected function prepareData(Request $request, MiscModel $model)
+    protected function prepareData(Request $request, MiscModel $model): array
     {
         $data = $request->all();
         foreach ($model->nullableForeignKeys as $field) {

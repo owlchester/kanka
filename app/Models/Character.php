@@ -10,6 +10,9 @@ use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\HasLocation;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
+use App\Services\Characters\AppearanceService;
+use App\Services\Characters\OrganisationService;
+use App\Services\Characters\PersonalityService;
 use App\Traits\ExportableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -103,6 +106,12 @@ class Character extends MiscModel
 
     protected array $suggestions = [
         CharacterCache::class => 'clearSuggestion',
+    ];
+
+    public array $related = [
+        AppearanceService::class,
+        PersonalityService::class,
+        OrganisationService::class,
     ];
 
     protected array $sanitizable = [

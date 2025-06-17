@@ -7,9 +7,12 @@ use App\Http\Resources\CharacterResource;
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\EntityType;
+use App\Services\Models\SaveService;
 
 class CharacterApiController extends ApiController
 {
+    public function __construct(protected SaveService $saveService)
+    {}
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
@@ -52,9 +55,12 @@ class CharacterApiController extends ApiController
 
         $data = $request->all();
         $data['campaign_id'] = $campaign->id;
-        /** @var Character $model */
-        $model = Character::create($data);
-        $this->crudSave($model);
+
+        $model = $this->saveService
+            ->user(auth()->user())
+            ->campaign($campaign)
+            ->request($request)
+            ->create($data, Character::class);
 
         return new CharacterResource($model);
     }
@@ -68,8 +74,13 @@ class CharacterApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $character->entity);
-        $character->update($request->all());
-        $this->crudSave($character);
+
+        $this->saveService
+            ->user(auth()->user())
+            ->campaign($campaign)
+            ->request($request)
+            ->model($character)
+            ->update($request->all());
 
         return new CharacterResource($character);
     }
