@@ -86,7 +86,7 @@ class ProcessService
         }
 
         foreach ($names as $name) {
-            if (empty($name)) {
+            if ($name === '' || $name === null) {
                 continue;
             }
 
@@ -185,7 +185,7 @@ class ProcessService
 
     public function first(): Post|Entity
     {
-        return $this->new[0];
+        return Arr::first($this->new);
     }
 
     public function count(): int
