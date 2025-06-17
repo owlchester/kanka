@@ -103,17 +103,18 @@
         </div>
     </div>
     <div
-        v-if="entity.children && !isGrid() && !loadingChildren && !children"
+        v-if="notFlatTable() && showChildren()"
         @click="loadChildren()"
         :title="entity.name"
-        class="flex items-center justify-center gap-2 cursor-pointer text-xs p-0.5 hover:bg-base-200 rounded-xl">
+        class="flex items-center justify-center gap-2 cursor-pointer text-xs p-0.5 hover:bg-base-200 rounded-xl"
+        aria-label="Show children">
         <i class="fa-regular fa-angles-down" aria-hidden="true" />
         <span v-html="entity.children" />
     </div>
     <span v-if="loadingChildren" class="text-center">
         <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
     </span>
-    <div class="flex flex-col gap-1 pl-2" v-if="children">
+    <div class="flex flex-col gap-1 pl-2" v-if="notFlatTable() && children">
         <Entity
             v-for="child in children"
             :key="child.id"
@@ -122,6 +123,7 @@
             :i18n="i18n"
             :selecting="selecting"
             :layout="layout"
+            :nesting="nesting"
             ></Entity>
     </div>
 </template>
@@ -138,6 +140,7 @@ const props = defineProps<{
     selecting: boolean,
     i18n: object,
     layout: string,
+    nesting: boolean,
 }>()
 
 const entityClass = () => {
@@ -166,6 +169,18 @@ const entityImage = () => {
     }
 }
 
+const notFlatTable = () => {
+    // If in table view and not nesting (flat), don't show children
+    if (!isGrid() && !props.nesting) {
+        return false;
+    }
+    return true;
+}
+
+const showChildren = () => {
+    return props.entity.children && !isGrid() && !loadingChildren.value && !children.value
+}
+
 const dataAttributes = () => {
     let attributes = {};
 
@@ -186,7 +201,8 @@ const stacked = () => {
 const selectingAction = (event: Event) => {
     if (props.selecting) {
         toggleSelect();
-    } else {
+    } else if (event.target && (event.target as HTMLAnchorElement).href) {
+        // If the target is an anchor element, go to it
         window.location.href = (event.target as HTMLAnchorElement).href;
     }
 };
@@ -216,7 +232,7 @@ const loadChildren = () => {
 }
 
 const importChildren = (response: any) => {
-    console.log('children', response.entities.data);
+    //console.log('children', response.entities.data);
     children.value = [];
     response.entities.data.forEach(a => {
         children.value.push(a)
