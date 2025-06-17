@@ -454,6 +454,12 @@ class FamilyTreeService
                         'confirm' => __('families/trees.modals.entity.remove.confirm'),
                     ],
                 ],
+                'pitch' => [
+                    'title' =>  __('concept.premium-feature'),
+                    'content' =>  __('families/trees.pitch'),
+                    'more' =>  __('callouts.premium.learn-more'),
+                    'subscription' => __('callouts.actions.subscription'),
+                ],
                 'reset' => [
                     'confirm' => __('families/trees.modals.reset.confirm'),
                 ],
