@@ -85,12 +85,12 @@
                         <i class="fa-solid fa-spinner fa-spin" aria-label="Loading"></i>
                     </button>
                     <button @click="switchMode()" class="btn2" v-if="nested && !nesting" :title="i18n.flatten">
-                        <i class="fa-regular fa-layer-group" aria-hidden="true"></i>
+                        <i class="fa-regular fa-boxes-stacked" aria-hidden="true"></i>
                         <span class="sr-only" v-html="i18n.flatten"></span>
                     </button>
                     <button @click="switchMode()" class="btn2" v-else-if="!nesting" :title="i18n.nest">
-                        <i class="fa-regular fa-boxes-stacked" aria-hidden="true"></i>
-                        <span class="sr-only" v-html="i18n.next"></span>
+                        <i class="fa-regular fa-layer-group" aria-hidden="true"></i>
+                        <span class="sr-only" v-html="i18n.nest"></span>
                     </button>
                 </div>
                 <div v-if="entityType.has_table">
@@ -233,6 +233,7 @@
                     :i18n="i18n"
                     :selecting="selecting"
                     :layout="layout"
+                    :nesting="nested"
                 >
                 </entities-entity>
 
