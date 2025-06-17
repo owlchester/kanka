@@ -25,6 +25,9 @@ return [
         'success'   => 'Webhook updated successfully',
         'title'     => 'Update webhook',
     ],
+    'error'         => [
+        'pitch' => 'Unlock premium features to access webhooks.',
+    ],
     'fields'        => [
         'enabled'           => 'Enabled',
         'event'             => 'Event',
