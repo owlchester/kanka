@@ -93,6 +93,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Passport::$clientUuids = false;
+        Passport::authorizationView('auth.oauth.authorize');
 
         $this->registerDevelopWarning();
 
