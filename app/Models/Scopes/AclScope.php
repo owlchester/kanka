@@ -109,14 +109,14 @@ class AclScope implements Scope
         return $query
             // ->leftJoin('tmp_permissions as per', 'entities.id', 'per.id')
             ->private(false)
-            ->where(function ($subquery) {
+            ->where(function ($subquery) use ($model) {
                 return $subquery
-                    ->where(function ($sub) {
+                    ->where(function ($sub) use ($model) {
                         return $sub
-                            ->whereRaw(DB::raw('EXISTS (SELECT * FROM tmp_permissions as perm WHERE perm.id = entities.id)'))
-                            ->orWhereIn('entities.type_id', Permissions::allowedEntityTypes());
+                            ->whereRaw(DB::raw('EXISTS (SELECT * FROM tmp_permissions as perm WHERE perm.id = ' . $model->getTable() . '.id)'))
+                            ->orWhereIn($model->getTable() . '.type_id', Permissions::allowedEntityTypes());
                     })
-                    ->whereNotIn('entities.id', Permissions::deniedEntities());
+                    ->whereNotIn($model->getTable() . '.id', Permissions::deniedEntities());
             });
     }
 
