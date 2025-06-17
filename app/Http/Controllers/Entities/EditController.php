@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Entities;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCustomEntity;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\MiscModel;
@@ -69,6 +70,9 @@ class EditController extends Controller
                 $validator = app()->make($validationClass);
                 $this->validate($request, $validator->rules());
             }
+        } else {
+            $validator = app()->make(StoreCustomEntity::class);
+            $this->validate($request, $validator->rules());
         }
 
         try {
