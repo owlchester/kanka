@@ -62,7 +62,7 @@ class WebhookController extends Controller
         $this->authorize('webhooks', $campaign);
 
         if (! $campaign->premium()) {
-            return view('campaigns.webhooks.unboosted')
+            return view('campaigns.webhooks.not-premium')
                 ->with('campaign', $campaign);
         }
 
