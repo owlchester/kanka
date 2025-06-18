@@ -9,18 +9,16 @@ use App\Services\Bragi\BragiService;
 
 class BragiController extends Controller
 {
-    protected BragiService $service;
-
-    public function __construct(BragiService $service)
+    public function __construct(protected BragiService $service)
     {
         $this->middleware('auth');
-        $this->service = $service;
     }
 
     public function index(Campaign $campaign)
     {
         return response()->json(
             $this->service
+                ->campaign($campaign)
                 ->user(auth()->user())
                 ->prepare()
         );
