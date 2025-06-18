@@ -13,6 +13,7 @@ Route::get('/login-as', [LoginController::class, 'loginAs'])->name('login-as');
 // OAuth Routes
 Route::get('auth/{provider}', [AuthController::class, 'redirectToProvider'])->name('auth.provider');
 
+include('oauth.php');
 /*
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login');

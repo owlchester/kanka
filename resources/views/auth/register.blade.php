@@ -10,18 +10,18 @@
 @endphp
 
 @section('content')
-    <h1 class="text-2xl leading-tight mb-3 dark:text-slate-200">
+    <h1 class="text-2xl leading-tight dark:text-slate-200">
         {{ __('auth.register.title') }}
     </h1>
 
 
     @if (session()->has('info'))
-        <div class="p-4 rounded bg-blue-200 text-blue-800 mb-2">
+        <div class="p-4 rounded bg-blue-200 text-blue-800">
             {!! session()->get('info') !!}
         </div>
     @endif
     @if (count($errors) > 0)
-        <div class="p-4 rounded bg-red-200 text-red-800 mb-2">
+        <div class="p-4 rounded bg-red-200 text-red-800">
             <strong>{{ trans('partials.errors.title') }}</strong>
             {{ trans('partials.errors.description') }}<br>
             <ul>
@@ -88,11 +88,11 @@
     </form>
 
 
-    <p class="text-center my-2 text-sm">
+    <p class="text-center text-sm">
         {!! __('auth.register.already', ['login' => '<a href="' . route('login') . '" class="text-blue-500" hover:text-blue-800">' . __('auth.register.log-in') . '</a>']) !!}
     </p>
 
-    <div class="social-auth-links text-center mb-3">
+    <div class="social-auth-links text-center">
         <p class="mb-2 text-gray-500 dark:text-slate-200">- {{ __('auth.login.or') }} -</p>
 
         <div class="flex flex-col gap-2">
@@ -119,7 +119,7 @@
         </div>
     </div>
 
-    <div class="grow text-sm text-gray-500 mb-3">
+    <div class="grow text-sm text-gray-500">
         {!! __('auth.register.tos', [
 'terms' => '<a href="https://kanka.io/terms-and-conditions" class="text-blue-500 hover:text-blue-800">' . __('footer.terms') . '</a>',
 'privacy' => '<a href="https://kanka.io/privacy-policy" class="text-blue-500 hover:text-blue-800">' . __('footer.privacy') . '</a>',
