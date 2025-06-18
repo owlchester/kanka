@@ -222,7 +222,7 @@ class AssetController extends Controller
     protected function createLink(Campaign $campaign, Entity $entity)
     {
         if (! $campaign->boosted()) {
-            return view('entities.pages.links.unboosted')
+            return view('entities.pages.links.not-premium')
                 ->with('campaign', $campaign);
         }
 
@@ -240,7 +240,7 @@ class AssetController extends Controller
     protected function createAlias(Campaign $campaign, Entity $entity)
     {
         if (! $campaign->boosted()) {
-            return view('entities.pages.aliases.unboosted')
+            return view('entities.pages.aliases.not-premium')
                 ->with('campaign', $campaign);
         }
 

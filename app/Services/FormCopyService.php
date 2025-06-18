@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Entity;
 use App\Models\MiscModel;
+use App\Traits\RequestAware;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class FormCopyService
 {
+    use RequestAware;
+
     protected Entity|Model $source;
 
     /**
@@ -70,7 +73,7 @@ class FormCopyService
             }
         }
 
-        $parent = request()->get('parent_id', false);
+        $parent = isset($this->request) ? $this->request->get('parent_id', false) : false;
         if ($checkForParent && $parent !== false) {
             /** @var Model $class */
             $class = new $parentClass;

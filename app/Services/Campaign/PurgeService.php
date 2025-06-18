@@ -16,6 +16,10 @@ class PurgeService
 
     protected array $ids = [];
 
+    public function __construct(
+        protected DeletionService $deletionService,
+    ) {}
+
     public function real(): self
     {
         $this->dry = false;
@@ -37,6 +41,7 @@ class PurgeService
                 foreach ($campaigns as $campaign) {
                     if (! $this->dry) {
                         $campaign->forceDelete();
+                        $this->deletionService->campaign($campaign)->cleanup();
                         Log::info('Services\Campaigns\PurgeService', ['campaign' => $campaign->id]);
                     }
                     $this->count++;
@@ -57,6 +62,8 @@ class PurgeService
                 foreach ($campaigns as $campaign) {
                     $this->ids[] = $campaign->id;
                     $campaign->forceDelete();
+                    $this->deletionService->campaign($campaign)->cleanup();
+
                     Log::info('Services\Campaigns\PurgeService', ['campaign' => $campaign->id]);
                     $this->count++;
                 }

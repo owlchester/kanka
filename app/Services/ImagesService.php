@@ -6,6 +6,7 @@ use App\Facades\Limit;
 use App\Models\Entity;
 use App\Sanitizers\SvgAllowedAttributes;
 use App\Traits\CampaignAware;
+use App\Traits\RequestAware;
 use enshrined\svgSanitize\Sanitizer;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,7 @@ use Intervention\Image\ImageManager;
 class ImagesService
 {
     use CampaignAware;
+    use RequestAware;
 
     protected Model $model;
 
@@ -49,24 +51,24 @@ class ImagesService
     public function handle()
     {
         // Remove the old image
-        if (request()->post('remove-' . $this->field) == '1') {
+        if ($this->request->post('remove-' . $this->field) == '1') {
             $this->cleanup();
 
             return;
         }
 
         // No new image
-        if (! request()->has($this->field) && ! request()->filled($this->field . '_url')) {
+        if (! $this->request->has($this->field) && ! $this->request->filled($this->field . '_url')) {
             return;
         }
 
         try {
             $cleanSVG = null;
-            $url = request()->filled($this->field . '_url');
+            $url = $this->request->filled($this->field . '_url');
 
             // Download the file locally to check it out
             if ($url) {
-                $externalUrl = request()->input($this->field . '_url');
+                $externalUrl = $this->request->input($this->field . '_url');
                 $externalFile = basename($externalUrl);
 
                 $tempImage = tempnam(sys_get_temp_dir(), $externalFile);
@@ -98,7 +100,7 @@ class ImagesService
                     $path = $path . mb_strtolower($imageUrlExt);
                 }
             } else {
-                $file = request()->file($this->field);
+                $file = $this->request->file($this->field);
                 $path = $file->hashName($this->folder);
             }
 
@@ -132,7 +134,7 @@ class ImagesService
                         Storage::put($path, (string) $image->toJpeg(), 'public');
                     }
                 } else {
-                    $path = request()->file($this->field)->storePublicly($this->folder);
+                    $path = $this->request->file($this->field)->storePublicly($this->folder);
                 }
                 if ($this->model instanceof Entity) {
                     $this->model->image_path = $path;

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\Tracking\DatalayerService;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Http\Request;
 
 class DatalayerServiceProvider extends ServiceProvider
 {
@@ -14,11 +15,9 @@ class DatalayerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(DatalayerService::class, function () {
+        $this->app->singleton(DatalayerService::class, function ($app) {
             $service = new DatalayerService;
-            if (auth()->check()) {
-                $service->user(auth()->user());
-            }
+            $service->request($app->make(Request::class));
 
             return $service;
         });

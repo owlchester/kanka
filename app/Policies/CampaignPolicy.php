@@ -40,7 +40,7 @@ class CampaignPolicy
     /**
      * Can't create a campaign while impersonating another user. Should be handled in the controller?
      */
-    public function create(): bool
+    public function create(User $user): bool
     {
         return ! Identity::isImpersonating();
     }

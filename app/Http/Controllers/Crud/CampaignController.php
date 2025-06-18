@@ -5,14 +5,19 @@ namespace App\Http\Controllers\Crud;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCampaign;
 use App\Models\Campaign;
+use App\Services\Campaign\GenreService;
+use App\Services\Campaign\SystemService;
 use App\Services\MultiEditingService;
 
 class CampaignController extends Controller
 {
     protected string $view = 'campaigns';
 
-    public function __construct()
-    {
+    public function __construct(
+        protected MultiEditingService $editingService,
+        protected GenreService $genreService,
+        protected SystemService $systemService,
+    ) {
         $this->middleware('auth', ['except' => ['index', 'show', 'css']]);
     }
 
@@ -28,12 +33,13 @@ class CampaignController extends Controller
         $editingUsers = null;
 
         if ($campaign->hasEditingWarning()) {
-            /** @var MultiEditingService $editingService */
-            $editingService = app()->make(MultiEditingService::class);
-            $editingUsers = $editingService->model($campaign)->user(auth()->user())->users();
+            $editingUsers = $this->editingService
+                ->model($campaign)
+                ->user(auth()->user())
+                ->users();
             // If no one is editing the model, we are now editing it
             if (empty($editingUsers)) {
-                $editingService->edit();
+                $this->editingService->edit();
             }
         }
 
@@ -75,10 +81,11 @@ class CampaignController extends Controller
         }
 
         $campaign->update($data);
+        $this->genreService->campaign($campaign)->save($request->post('genres', []));
+        $this->systemService->campaign($campaign)->save($request->post('systems', []));
 
-        /** @var MultiEditingService $editingService */
-        $editingService = app()->make(MultiEditingService::class);
-        $editingService->model($campaign)
+        $this->editingService
+            ->model($campaign)
             ->user($request->user())
             ->finish();
 

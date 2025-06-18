@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Facades\CampaignLocalization;
 use App\Services\ImagesService;
 use App\Services\ImgService;
+use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 
 class ImgServiceProvider extends ServiceProvider
@@ -19,11 +20,12 @@ class ImgServiceProvider extends ServiceProvider
         $this->app->singleton(ImgService::class, function () {
             return new ImgService;
         });
-        $this->app->singleton(ImagesService::class, function () {
+        $this->app->singleton(ImagesService::class, function ($app) {
             $service = new ImagesService;
             if (CampaignLocalization::hasCampaign()) {
                 $service->campaign(CampaignLocalization::getCampaign());
             }
+            $service->request($app->make(Request::class));
 
             return $service;
         });

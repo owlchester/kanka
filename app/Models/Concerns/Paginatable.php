@@ -28,7 +28,7 @@ trait Paginatable
             return 100;
         }
 
-        if (request()->is('api/*') || Domain::isApi()) {
+        if (Domain::isApi()) {
             $this->pageSizeMinimum = 45;
         }
 

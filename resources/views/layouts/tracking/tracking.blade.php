@@ -1,5 +1,8 @@
 @if (!empty(config('tracking.ga')))
     @php isset($campaign) ? \App\Facades\DataLayer::campaign($campaign) : null @endphp
+    @php if (auth()->check()) {
+        \App\Facades\DataLayer::user(auth()->user());
+    } @endphp
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('tracking.ga') }}"></script>
     <script>

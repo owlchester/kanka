@@ -9,12 +9,14 @@ use App\Models\EntityEventType;
 use App\Models\Post;
 use App\Models\Reminder;
 use App\Traits\CampaignAware;
+use App\Traits\RequestAware;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 class CalendarRenderer
 {
     use CampaignAware;
+    use RequestAware;
 
     protected Calendar $calendar;
 
@@ -711,11 +713,11 @@ class CalendarRenderer
         $this->setMonth((int) $segments[1])
             ->setYear($segments[0]);
 
-        if (request()->filled('month')) {
-            $this->setMonth((int) request()->input('month'));
+        if ($this->request->filled('month')) {
+            $this->setMonth((int) $this->request->input('month'));
         }
-        if (request()->filled('year')) {
-            $this->setYear((int) request()->input('year'));
+        if ($this->request->filled('year')) {
+            $this->setYear((int) $this->request->input('year'));
         }
 
         if (empty($this->getMonth())) {
@@ -728,7 +730,7 @@ class CalendarRenderer
         }
 
         // Yearly layout does things a bit differently, reset month to first
-        $this->layout = request()->get('layout', $this->calendar->defaultLayout());
+        $this->layout = $this->request->get('layout', $this->calendar->defaultLayout());
         if ($this->isYearlyLayout()) {
             $this->setMonth(1);
         }

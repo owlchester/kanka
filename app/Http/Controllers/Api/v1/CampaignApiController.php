@@ -6,10 +6,11 @@ use App\Http\Requests\StoreCampaign as Request;
 use App\Http\Resources\CampaignResource;
 use App\Models\Campaign;
 use App\Services\Campaign\CreateService;
+use App\Services\Campaign\DeletionService;
 
 class CampaignApiController extends ApiController
 {
-    public function __construct(protected CreateService $createService) {}
+    public function __construct(protected CreateService $createService, protected DeletionService $deletionService) {}
 
     public function index(\Illuminate\Http\Request $request)
     {
@@ -54,7 +55,11 @@ class CampaignApiController extends ApiController
     public function destroy(Request $request, Campaign $campaign)
     {
         $this->authorize('delete', $campaign);
-        $campaign->delete();
+
+        $this->deletionService
+            ->campaign($campaign)
+            ->user($request->user())
+            ->delete();
 
         return response()->json(null, 204);
     }

@@ -277,6 +277,7 @@ class CrudController extends Controller
         $this->datagrid
             ->models($models)
             ->campaign($campaign)
+            ->request($request)
             ->service($this->filterService);
         if (auth()->check()) {
             $this->datagrid->user(auth()->user());
@@ -324,7 +325,7 @@ class CrudController extends Controller
                     abort(404);
                 }
                 $params['source'] = $model;
-                FormCopy::source($params['source']);
+                FormCopy::request(request())->source($params['source']);
             } else {
                 $params['source'] = null;
             }

@@ -29,7 +29,7 @@ class CreateController extends Controller
         if ($request->filled('copy')) {
             $source = Entity::inTypes([$entityType->id])->find($request->get('copy'));
             if ($source) {
-                FormCopy::source($source);
+                FormCopy::request($request)->source($source);
                 $tabCopy = true;
             }
         }

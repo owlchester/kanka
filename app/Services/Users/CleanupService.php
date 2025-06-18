@@ -2,6 +2,7 @@
 
 namespace App\Services\Users;
 
+use App\Events\Campaigns\Deleted;
 use App\Facades\Images;
 use App\Facades\UserCache;
 use App\Jobs\Users\UnsubscribeUser;
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Log;
 class CleanupService
 {
     use UserAware;
+
+    public function __construct(protected SearchCleanupService $cleanupService) {}
 
     public function delete(): self
     {
@@ -44,9 +47,9 @@ class CleanupService
 
             // Delete a campaign if no one is left in it. Since we did the "with", it's cached, hence checking on 1
             if ($member->campaign->members->count() <= 1) {
-                SearchCleanupService::cleanup($member->campaign);
                 Images::model($member->campaign)->field('image')->cleanup();
                 $member->campaign->forceDelete();
+                Deleted::dispatch($member->campaign, $this->user);
             }
         }
 

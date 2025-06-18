@@ -16,11 +16,7 @@
         </a>
     @endif
 </div>
-@if (!$campaign->premium())
-    <x-premium-cta :campaign="$campaign" premium>
-        <p>{!! __('campaigns/webhooks.pitch') !!}</p>
-    </x-premium-cta>
-@else
+
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\Webhook $webhook
  */?>
@@ -35,7 +31,6 @@
         @include('layouts.datagrid._table')
     </div>
     @endif
-@endif
 @section('modals')
     @parent
     @include('layouts.datagrid.delete-forms', ['models' => Datagrid::deleteForms()])

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\DomainService;
+use Illuminate\Http\Request;
 use Illuminate\Support\ServiceProvider;
 
 class DomainServiceProvider extends ServiceProvider
@@ -14,8 +15,11 @@ class DomainServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(DomainService::class, function () {
-            return new DomainService;
+        $this->app->singleton(DomainService::class, function ($app) {
+            $service = new DomainService;
+            $service->request($app->make(Request::class));
+
+            return $service;
         });
 
         $this->app->alias(DomainService::class, 'domain');

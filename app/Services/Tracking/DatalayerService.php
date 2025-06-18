@@ -4,12 +4,14 @@ namespace App\Services\Tracking;
 
 use App\Facades\AdCache;
 use App\Traits\CampaignAware;
+use App\Traits\RequestAware;
 use App\Traits\UserAware;
 use Carbon\Carbon;
 
 class DatalayerService
 {
     use CampaignAware;
+    use RequestAware;
     use UserAware;
 
     /** Group name: a|b */
@@ -68,13 +70,13 @@ class DatalayerService
             return false;
             //        } elseif (!AdCache::canHaveAds()) {
             //            return false;
-        } elseif (auth()->guest()) {
+        } elseif (!isset($this->user)) {
             return true;
-        } elseif (auth()->user()->isSubscriber()) {
+        } elseif ($this->user->isSubscriber()) {
             return false;
         }
 
-        return auth()->user()->created_at->diffInHours(Carbon::now()) > 24;
+        return $this->user->created_at->diffInHours(Carbon::now()) > 24;
     }
 
     public function userGroup(): string
@@ -116,11 +118,11 @@ class DatalayerService
 
     protected function route(): string
     {
-        if (empty(request()->route())) {
+        if (empty($this->request->route())) {
             return '';
         }
 
-        return (string) request()->route()->getName();
+        return (string) $this->request->route()->getName();
     }
 
     /**
