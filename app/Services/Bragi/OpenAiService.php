@@ -93,7 +93,7 @@ class OpenAiService
         }
         if ($this->campaign->genres) {
             // Comma-separated list of campaign genres
-            $list = new Collection();
+            $list = new Collection;
             foreach ($this->campaign->genres as $genre) {
                 $list->push(__('genres.' . $genre->slug));
             }
@@ -108,7 +108,7 @@ class OpenAiService
         }
         $prompts[] = [
             'role' => 'user',
-            'content' => implode("\n", $roles)
+            'content' => implode("\n", $roles),
         ];
 
         return $prompts;
