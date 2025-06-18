@@ -3,11 +3,15 @@
 namespace App\Services\Bragi;
 
 use App\Exceptions\OpenAiException;
+use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Orhanerday\OpenAi\OpenAi;
 
 class OpenAiService
 {
+    use CampaignAware;
+
     protected string $prompt;
 
     protected ?string $name;
@@ -50,7 +54,7 @@ class OpenAiService
             'messages' => $prompt,
             'temperature' => 0.9,
             'max_tokens' => $maxTokens,
-            'frequency_penalty' => 0,
+            'frequency_penalty' => 0.2,
             'presence_penalty' => 0.6,
         ]);
 
@@ -67,33 +71,37 @@ class OpenAiService
         $prompts = [
             [
                 'role' => 'system',
-                'content' => __('openai.intro'),
+                'content' => __('bragi/backstory.system'),
             ],
         ];
 
         $roles = [];
         if (! empty($this->name)) {
-            $roles[] = __('openai.intro-named', ['name' => $this->name]);
+            $roles[] = __('bragi/backstory.setup.name', ['name' => $this->name]);
         }
 
         if (! empty($this->pronouns)) {
-            $roles[] = __('openai.intro-gender', ['gender' => $this->gender]);
+            $roles[] = __('bragi/backstory.setup.gender', ['gender' => $this->gender]);
         }
 
         if (! empty($this->gender)) {
-            $roles[] = __('openai.intro-pronouns', ['pronouns' => $this->pronouns]);
+            $roles[] = __('bragi/backstory.setup.pronouns', ['pronouns' => $this->pronouns]);
         }
 
-        $option = mt_rand(0, count(config('openai.prompts.first')) - 1);
-        $roles[] = __('openai.paragraphs.first', ['option' => config('openai.prompts.first')[$option]]);
+        if ($this->campaign->systems) {
+            $roles[] = __('bragi/backstory.setup.systems', ['systems' => $this->campaign->systems->pluck('name')->implode(', ')]);
+        }
+        if ($this->campaign->genres) {
+            // Comma-separated list of campaign genres
+            $list = new Collection();
+            foreach ($this->campaign->genres as $genre) {
+                $list->push(__('genres.' . $genre->slug));
+            }
+            $roles[] = __('bragi/backstory.setup.genres', ['genres' => $list->implode(', ')]);
+        }
 
-        $option = mt_rand(0, count(config('openai.prompts.second')) - 1);
-        $roles[] = __('openai.paragraphs.second', ['option' => config('openai.prompts.second')[$option]]);
-
-        $option = mt_rand(0, count(config('openai.prompts.third')) - 1);
-        $roles[] = __('openai.paragraphs.third', ['option' => config('openai.prompts.third')[$option]]);
-
-        $roles[] = __('openai.closing', ['prompt' => $this->prompt]);
+        $roles[] = __('bragi/backstory.setup.prompt', ['prompt' => $this->prompt]);
+        $roles[] = __('bragi/backstory.closing');
 
         foreach ($roles as $role) {
             $prompts[] = ['role' => 'user', 'content' => $role];
