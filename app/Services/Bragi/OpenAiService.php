@@ -43,19 +43,19 @@ class OpenAiService
         $prompt = $this->preparePrompt();
 
         // Choosing model
-        $engine = config('openai.engine');
+        $engine = config('bragi.backstory.engine');
 
         // Defining max tokens
         // 1 token is almost 0.75 word
-        $maxTokens = config('openai.tokens');
+        $maxTokens = config('bragi.backstory.tokens');
 
         $complete = $openAi->chat([
             'model' => $engine,
             'messages' => $prompt,
-            'temperature' => 0.9,
+            'temperature' => config('bragi.backstory.temperature'),
             'max_tokens' => $maxTokens,
-            'frequency_penalty' => 0.2,
-            'presence_penalty' => 0.6,
+            'frequency_penalty' => config('bragi.backstory.frequency_penalty'),
+            'presence_penalty' => config('bragi.backstory.presence_penalty'),
         ]);
 
         $this->output = json_decode($complete, true);
@@ -104,8 +104,12 @@ class OpenAiService
         $roles[] = __('bragi/backstory.closing');
 
         foreach ($roles as $role) {
-            $prompts[] = ['role' => 'user', 'content' => $role];
+
         }
+        $prompts[] = [
+            'role' => 'user',
+            'content' => implode("\n", $roles)
+        ];
 
         return $prompts;
     }
