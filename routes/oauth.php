@@ -17,7 +17,7 @@ Route::prefix('oauth')->group(function () {
     ]);
 
     Route::post('/clients', [
-        'uses' => '\Laravel\Passport\Http\Controllers\ClientController@store',
+        'uses' => '\App\Http\Controllers\Passport\ClientController@store',
         'as' => 'clients.store',
     ]);
 

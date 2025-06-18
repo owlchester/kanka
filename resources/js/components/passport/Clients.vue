@@ -206,7 +206,7 @@
                     Here is your oauth client secret token. This is the only time it will be shown so don't lose it!
                     You may now use this token to make API requests.
                 </p>
-                <textarea class="w-full" rows="10">{{ secret }}</textarea>
+                <input type="text" class="w-full" rows="1">{{ secret }}</input>
 
                 <button type="button" class="btn2 btn-outline" @click="closeModal('accessModal')">Close</button>
             </article>

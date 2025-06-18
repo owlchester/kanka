@@ -65,7 +65,6 @@
         "pestphp/pest": "^3",
         "pestphp/pest-plugin-laravel": "^3",
         "phpmd/phpmd": "^2.13",
-        "phpstan/phpstan": "^1.0",
         "spatie/laravel-ignition": "^2.9",
         "squizlabs/php_codesniffer": "^3.4"
     },
