@@ -31,7 +31,7 @@ class FamilyTreeApiController extends ApiController
     }
 
     /**
-     * @return resource || \Illuminate\Http\JsonResponse
+     * @return resource | \Illuminate\Http\JsonResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */

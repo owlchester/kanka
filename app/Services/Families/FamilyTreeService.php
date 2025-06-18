@@ -338,6 +338,11 @@ class FamilyTreeService
      */
     public function save(array $data = []): self
     {
+        // If the campaign is not premium dont save the tree.
+        if (! $this->campaign->premium()) {
+            return $this;
+        }
+
         $this->loadFamilyTree();
         if (empty($data)) {
             $this->familyTree->config = [];
