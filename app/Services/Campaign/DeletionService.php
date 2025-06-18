@@ -17,8 +17,7 @@ class DeletionService
     public function __construct(
         protected CampaignService $campaignService,
         protected SearchCleanupService $searchCleanupService,
-    ) {
-    }
+    ) {}
 
     public function delete(): void
     {
@@ -53,11 +52,11 @@ class DeletionService
         $folders = ['campaign', 'campaigns', 'w'];
         foreach ($folders as $folder) {
             $path = $folder . '/' . $this->campaign->id;
-            if (!Storage::directoryExists($path)) {
+            if (! Storage::directoryExists($path)) {
                 continue;
             }
             $files = Storage::allFiles($path);
-            if (!empty($files)) {
+            if (! empty($files)) {
                 Storage::delete($files);
             }
             Storage::deleteDirectory($path);

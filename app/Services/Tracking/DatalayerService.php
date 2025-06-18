@@ -70,7 +70,7 @@ class DatalayerService
             return false;
             //        } elseif (!AdCache::canHaveAds()) {
             //            return false;
-        } elseif (!isset($this->user)) {
+        } elseif (! isset($this->user)) {
             return true;
         } elseif ($this->user->isSubscriber()) {
             return false;

@@ -86,7 +86,7 @@ class ProcessService
         }
 
         foreach ($names as $name) {
-            if ($name === '' || $name === null) {
+            if ($name === '' || $name == null) {
                 continue;
             }
 

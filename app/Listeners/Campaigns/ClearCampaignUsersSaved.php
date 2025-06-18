@@ -5,7 +5,6 @@ namespace App\Listeners\Campaigns;
 use App\Events\Campaigns\Deleted;
 use App\Events\Campaigns\Saved;
 use App\Facades\UserCache;
-use App\Models\CampaignUser;
 
 class ClearCampaignUsersSaved
 {
