@@ -122,8 +122,8 @@ class AttributeService
             if (empty($attr->name)) {
                 return $this;
             }
-            $name = Purify::clean($attr->name, $this->purifyConfig);
-            $value = Purify::clean($attr->value ?? '', $this->purifyConfig);
+            $name = Purify::config($this->purifyConfig)->clean($attr->name);
+            $value = Purify::config($this->purifyConfig)->clean($attr->value ?? '');
             // Save empty strings as null
             $value = $value === '' ? null : $value;
 

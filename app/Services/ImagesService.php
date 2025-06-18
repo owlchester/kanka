@@ -50,7 +50,7 @@ class ImagesService
     {
         // Remove the old image
         if (request()->post('remove-' . $this->field) == '1') {
-            $this->cleanup($this->model, $this->field);
+            $this->cleanup();
 
             return;
         }
@@ -117,7 +117,7 @@ class ImagesService
 
             if (! empty($path)) {
                 // Remove old
-                $this->cleanup($this->model, $this->field);
+                $this->cleanup();
 
                 // Save the new image
                 if ($url) {
@@ -150,7 +150,7 @@ class ImagesService
     /**
      * Delete old image and thumb
      */
-    public function cleanup()
+    public function cleanup(): void
     {
         if ($this->model instanceof Entity && $this->field === 'image') {
             $this->field = 'image_path';

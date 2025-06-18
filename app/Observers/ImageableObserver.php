@@ -11,8 +11,8 @@ class ImageableObserver
     {
         // @phpstan-ignore-next-line
         foreach ($model->getImageFields() as $field) {
-            // @phpstan-ignore-next-line
             Images::model($model)
+                // @phpstan-ignore-next-line
                 ->folder($model->imageStoragePath())
                 ->field($field)
                 ->handle();
