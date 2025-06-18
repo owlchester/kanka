@@ -99,7 +99,7 @@
     ]
   },
   "resources/js/api.js": {
-    "file": "assets/api-nuTFGdaY.js",
+    "file": "assets/api-DCpH0zHz.js",
     "name": "api",
     "src": "resources/js/api.js",
     "isEntry": true,
@@ -211,7 +211,7 @@
     "isEntry": true
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-Cr8BNhzJ.js",
+    "file": "assets/explore-BIpiQShF.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,
@@ -341,12 +341,12 @@
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-DDkXVwxi.css",
+    "file": "assets/app-Be7yw9gk.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-CBglVPiT.css",
+    "file": "assets/auth-BcJcJbcx.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -371,7 +371,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-DIYQ6etS.css",
+    "file": "assets/front-DmX2ZYoX.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },

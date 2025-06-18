@@ -73,7 +73,7 @@
                 </div>
 
                 <!-- Create Token Form -->
-                <form role="form" class="w-full mb-5" @submit.prevent="store" autocomplete="off">
+                <form role="form" class="w-full p-4" @submit.prevent="store" autocomplete="off">
                     <!-- Name -->
                     <label class="font-extrabold required">Token name</label>
 
@@ -100,8 +100,8 @@
                     </div>
                 </form>
 
-                <div class="flex justify-between items-center gap-2 w-full">
-                    <button type="button" class="btn2 btn-ghost" @click="closeModal('createModal')">Close</button>
+                <div class="flex justify-between items-center gap-2 p-4 w-full">
+                    <button type="button" class="btn2 btn-outline" @click="closeModal('createModal')">Close</button>
 
                     <button type="button" class="btn2 btn-primary" @click="store">
                         Create
@@ -121,14 +121,14 @@
                     <span class="sr-only">Close</span>
                 </button>
             </header>
-            <article class="text-justify">
+            <article class="text-justify p-4">
                 <p class="mb-2">
                     Here is your new personal access token. This is the only time it will be shown so don't lose it!
                     You may now use this token to make API requests.
                 </p>
                 <textarea class="w-full" rows="10">{{ accessToken }}</textarea>
 
-                <button type="button" class="btn2 btn-ghost" @click="closeModal('accessModal')">Close</button>
+                <button type="button" class="btn2 btn-outline" @click="closeModal('accessModal')">Close</button>
             </article>
         </dialog>
     </div>
@@ -220,7 +220,7 @@
                             this.form.scopes = [];
                             this.form.errors = [];
 
-                            this.tokens.push(response.data.token);
+                            this.getTokens();
 
                             this.showAccessToken(response.data.accessToken);
                         })

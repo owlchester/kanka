@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Events\Campaigns\Created;
 use App\Events\Campaigns\Deleted;
 use App\Events\Campaigns\Saved;
 use App\Models\Campaign;
