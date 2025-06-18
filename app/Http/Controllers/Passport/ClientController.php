@@ -19,8 +19,7 @@ class ClientController extends Controller
         protected ClientRepository $clients,
         protected ValidationFactory $validation,
         protected RedirectRule $redirectRule
-    ) {
-    }
+    ) {}
 
     /**
      * Store a new client.
