@@ -40,7 +40,7 @@ class TrialService
         $flag->flag = UserFlags::startTrial;
         $flag->save();
 
-        TrialAcceptedEmailJob::dispatch($this->user, $sub);
+        TrialAcceptedEmailJob::dispatch($this->user);
     }
 
     protected function removeFlag(): void
