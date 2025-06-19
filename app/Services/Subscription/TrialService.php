@@ -3,6 +3,7 @@
 namespace App\Services\Subscription;
 
 use App\Enums\UserFlags;
+use App\Jobs\Emails\TrialAcceptedEmailJob;
 use App\Models\UserFlag;
 use App\Traits\UserAware;
 use Laravel\Cashier\Subscription;
@@ -38,6 +39,8 @@ class TrialService
         $flag->user_id = $this->user->id;
         $flag->flag = UserFlags::startTrial;
         $flag->save();
+
+        TrialAcceptedEmailJob::dispatch($this->user);
     }
 
     protected function removeFlag(): void
