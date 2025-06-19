@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Campaigns;
 
 use App\Models\Campaign;
+use App\Services\Campaign\Counters\FollowerCountService;
 use Illuminate\Console\Command;
 
 class FollowerCountCommand extends Command
@@ -31,7 +32,7 @@ class FollowerCountCommand extends Command
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(protected FollowerCountService $countService)
     {
         parent::__construct();
     }
@@ -44,9 +45,9 @@ class FollowerCountCommand extends Command
     public function handle()
     {
         // @phpstan-ignore-next-line
-        Campaign::public()->with('followers')->chunk(500, function ($campaigns): void {
+        Campaign::public()->withCount('followers')->chunk(1000, function ($campaigns): void {
             foreach ($campaigns as $campaign) {
-                $this->processCampaign($campaign);
+                $this->countService->campaign($campaign)->process();
                 $this->count++;
             }
         });
@@ -54,11 +55,5 @@ class FollowerCountCommand extends Command
         $this->info('Updated ' . $this->count . ' campaign followers.');
 
         return 0;
-    }
-
-    protected function processCampaign(Campaign $campaign): void
-    {
-        $campaign->follower = $campaign->followers->count();
-        $campaign->updateQuietly(['follower']);
     }
 }
