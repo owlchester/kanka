@@ -45,7 +45,7 @@ class AdvancerService
             $year++;
         }
         $this->calendar->date = $year . '-' . $month . ($day !== false ? '-' . $day : null);
-        $this->calendar->save();
+        $this->calendar->saveQuietly();
 
         return $this;
     }

@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\Tests;
 
-use App\Jobs\Emails\NewFeatureEmailJob;
+use App\Events\FeatureCreated;
 use App\Jobs\Emails\Purge\FirstWarningJob;
 use App\Jobs\Emails\Purge\SecondWarningJob;
 use App\Jobs\Emails\SubscriptionCancelEmailJob;
@@ -70,7 +70,7 @@ class TestEmail extends Command
             SecondWarningJob::dispatch($user->id);
         } elseif ($template === 'feature') {
             $feature = Feature::latest()->first();
-            NewFeatureEmailJob::dispatch($feature);
+            FeatureCreated::dispatch($feature);
         } else {
             $this->warn('Unknown template ' . $template);
         }
