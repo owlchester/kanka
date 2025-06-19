@@ -22,6 +22,11 @@ class Mailerlite extends Command
      */
     protected $description = 'Test the mailerlite integration';
 
+    public function __construct(protected NewsletterService $service)
+    {
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      *
@@ -29,19 +34,16 @@ class Mailerlite extends Command
      */
     public function handle()
     {
-        /** @var NewsletterService $newsletter */
-        $newsletter = app()->make(NewsletterService::class);
-
         $user = User::findorFail(13);
 
-        if ($newsletter->user($user)->isSubscribed()) {
-            $newsletter->remove();
+        if ($this->service->user($user)->isSubscribed()) {
+            $this->service->remove();
         } else {
             $options = [
                 'releases' => (bool) $user->mail_release,
             ];
 
-            $newsletter->update($options);
+            $this->service->update($options);
         }
 
         return Command::SUCCESS;

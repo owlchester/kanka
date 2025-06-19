@@ -22,16 +22,18 @@ class NewsletterSubCommand extends Command
      */
     protected $description = 'Update users who are subbed and want the newsletter to be in the correct mailerlite group';
 
-    protected NewsletterService $service;
-
     protected int $count = 0;
+
+    public function __construct(protected NewsletterService $service)
+    {
+        parent::__construct();
+    }
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $this->service = app()->make(NewsletterService::class);
         User::whereNotNull('pledge')
             ->where('pledge', '<>', '')
             ->where('settings', 'like', '%mail_release%')

@@ -24,6 +24,11 @@ class CleanupCommand extends Command
      */
     protected $description = 'Delete empty campaigns';
 
+    public function __construct(protected PurgeService $service)
+    {
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      */
@@ -32,15 +37,12 @@ class CleanupCommand extends Command
         $this->info(Carbon::now());
         Campaign::observe(CampaignObserver::class);
 
-        /** @var PurgeService $service */
-        $service = app()->make(PurgeService::class);
-
         $dry = $this->argument('dry');
         if ($dry === '0') {
-            $service->real();
+            $this->service->real();
         }
 
-        $count = $service->purgeEmpty();
+        $count = $this->service->purgeEmpty();
 
         if ($dry === '0') {
             $this->info(Carbon::now() . ': Deleted ' . $count . ' empty campaigns.');

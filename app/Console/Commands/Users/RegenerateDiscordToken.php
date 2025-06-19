@@ -22,7 +22,10 @@ class RegenerateDiscordToken extends Command
      */
     protected $description = 'Renew a user\'s discord api token.';
 
-    protected DiscordService $service;
+    public function __construct(protected DiscordService $service)
+    {
+        parent::__construct();
+    }
 
     /**
      * Execute the console command.
@@ -31,8 +34,6 @@ class RegenerateDiscordToken extends Command
      */
     public function handle()
     {
-        $this->service = app()->make(DiscordService::class);
-
         $tokens = UserApp::select(['id', 'user_id', 'access_token', 'refresh_token', 'expires_at', 'updated_at', 'settings'])
             ->with('user')
             ->where('app', '=', 'discord')

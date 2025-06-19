@@ -22,16 +22,13 @@ class SyncUserRoles extends Command
      */
     protected $description = 'Sync a user\'s discord roles.';
 
-    protected DiscordService $service;
-
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(DiscordService $service)
+    public function __construct(protected DiscordService $service)
     {
-        $this->service = $service;
         parent::__construct();
     }
 
