@@ -16,7 +16,7 @@
             <i class="fa-regular fa-eraser" aria-hidden="true"></i>
             {{ this.texts.actions.clear }}
         </a>
-        <button class="btn2 btn-sm btn-primary" :disabled="!isDirty" v-if="isEditing" v-on:click="saveTree()">
+        <button class="btn2 btn-sm btn-primary" v-if="isEditing && (isDirty || !this.is_premium)" v-on:click="saveTree()">
             <i class="fa-regular fa-save" aria-hidden="true"></i>
             {{ this.texts.actions.save }}
         </button>
@@ -82,13 +82,19 @@
       <h4 v-else-if="isAddingRelation" class="text-lg font-normal">{{ this.texts.modals.relation.add.title }}</h4>
       <h4 v-else-if="isEditingRelation" class="text-lg font-normal">{{ this.texts.modals.relation.edit.title }}</h4>
       <h4 v-else-if="isAddingNewFounder" class="text-lg font-normal">{{ this.texts.modals.entity.founder.title }}</h4>
+      <h4 v-else-if="isNotPremium" class="text-lg font-normal">{{ this.texts.modals.pitch.title }}</h4>
 
       <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="closeModal()">
         <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
         <span class="sr-only">Close</span>
       </button>
     </header>
-    <article>
+    <article v-if="isNotPremium" class="max-w-2xl py-4 px-4 md:px-6">
+        <p>
+            {{ this.texts.modals.pitch.content }}
+        </p>
+    </article>
+    <article class="max-w-2xl py-4 px-4 md:px-6" v-if="!isNotPremium">
       <div class="flex flex-col gap-5 w-full">
         <div class="field field-founder flex flex-col gap-1 w-full" v-show="isAddingNewFounder">
           <label>{{ this.texts.modals.fields.founder }}</label>
@@ -147,7 +153,15 @@
       </div>
     </article>
     <footer class="flex flex-wrap gap-3 justify-end items-center p-4 md:px-6">
-        <menu class="flex flex-wrap gap-3 ps-0">
+        <div class="flex flex-wrap gap-3 ps-0" v-if="isNotPremium">
+            <a href="https://kanka.io/premium" class="btn2 btn-outline btn-sm">
+                {{ this.texts.modals.pitch.more }}
+            </a>
+            <a :href=this.subscribe_url class="btn2 bg-boost text-white btn-sm">
+                {{ this.texts.modals.pitch.subscription }}
+            </a>
+        </div>
+        <menu class="flex flex-wrap gap-3 ps-0" v-if="!isNotPremium">
           <div class="submit-group">
             <button class="btn2 btn-primary" @click="saveModal()">
               Save
@@ -169,6 +183,8 @@ export default {
         entity_api: undefined,
         search_api: undefined,
         permission: undefined,
+        is_premium: undefined,
+        subscribe_url: undefined,
     },
     components: {
         PinchScrollZoom,
@@ -193,6 +209,7 @@ export default {
             isAddingCharacter: false,
             isEditingRelation: false,
             isAddingNewFounder: false,
+            isNotPremium: false,
 
             relation: undefined,
             entity: undefined,
@@ -256,12 +273,17 @@ export default {
             }
         },
         saveTree() {
-            axios.post(this.save_api, {data: this.nodes})
-                .then((resp) => {
-                    //console.log('Saved Tree');
-                    window.showToast(this.texts.toasts.saved);
-                    this.isDirty = false;
-                });
+            if (this.is_premium) {
+                axios.post(this.save_api, {data: this.nodes})
+                    .then((resp) => {
+                        window.showToast(this.texts.toasts.saved);
+                        this.isDirty = false;
+                    });
+            } else {
+                this.isNotPremium = true;
+                this.showDialog();
+            }
+
         },
         clearTree() {
             if (confirm(this.texts.modals.clear.confirm)) {
@@ -307,6 +329,7 @@ export default {
             return array.reduce(getNodes, []);
         },
         closeModal() {
+            this.isNotPremium = false;
             this.isAddingChild = false;
             this.isAddingRelation = false;
             this.isEditingRelation = false;
@@ -331,6 +354,7 @@ export default {
           window.triggerEvent();
         },
         resetVariables() {
+            this.isNotPremium = false;
             this.isAddingChild = false;
             this.isAddingRelation = false;
             this.isEditingRelation = false;

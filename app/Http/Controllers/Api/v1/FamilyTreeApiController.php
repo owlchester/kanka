@@ -31,7 +31,7 @@ class FamilyTreeApiController extends ApiController
     }
 
     /**
-     * @return resource
+     * @return resource | \Illuminate\Http\JsonResponse
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
@@ -39,6 +39,10 @@ class FamilyTreeApiController extends ApiController
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $family->entity);
+
+        if (! $campaign->premium()) {
+            return response()->json('You need to activate premium functions on the campaign to use this feature', 204);
+        }
 
         $data = $request->input('tree');
 
