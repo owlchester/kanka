@@ -4,18 +4,18 @@
             <i class="fa-regular fa-edit" aria-hidden="true"></i>
             {{ this.texts.actions.edit }}
         </button>
-        <a class="btn2 btn-ghost btn-sm " v-if="showEditFounder()" v-on:click="createNewFounder()">
+        <button class="btn2 btn-ghost btn-sm " v-if="showEditFounder()" v-on:click="createNewFounder()">
             <i class="fa-regular fa-user" aria-hidden="true"></i>
             {{ this.texts.actions.founder }}
-        </a>
-        <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="resetTree()">
+        </button>
+        <button class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="resetTree()">
             <i class="fa-regular fa-redo" aria-hidden="true"></i>
             {{ this.texts.actions.reset }}
-        </a>
-        <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="clearTree()">
+        </button>
+        <button class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="clearTree()">
             <i class="fa-regular fa-eraser" aria-hidden="true"></i>
             {{ this.texts.actions.clear }}
-        </a>
+        </button>
         <button class="btn2 btn-sm btn-primary" v-if="isEditing && (isDirty || !this.is_premium)" v-on:click="saveTree()">
             <i class="fa-regular fa-save" aria-hidden="true"></i>
             {{ this.texts.actions.save }}
@@ -82,19 +82,13 @@
       <h4 v-else-if="isAddingRelation" class="text-lg font-normal">{{ this.texts.modals.relation.add.title }}</h4>
       <h4 v-else-if="isEditingRelation" class="text-lg font-normal">{{ this.texts.modals.relation.edit.title }}</h4>
       <h4 v-else-if="isAddingNewFounder" class="text-lg font-normal">{{ this.texts.modals.entity.founder.title }}</h4>
-      <h4 v-else-if="isNotPremium" class="text-lg font-normal">{{ this.texts.modals.pitch.title }}</h4>
 
       <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="closeModal()">
         <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
         <span class="sr-only">Close</span>
       </button>
     </header>
-    <article v-if="isNotPremium" class="max-w-2xl py-4 px-4 md:px-6">
-        <p>
-            {{ this.texts.modals.pitch.content }}
-        </p>
-    </article>
-    <article class="max-w-2xl py-4 px-4 md:px-6" v-if="!isNotPremium">
+    <article class="max-w-2xl py-4 px-4 md:px-6">
       <div class="flex flex-col gap-5 w-full">
         <div class="field field-founder flex flex-col gap-1 w-full" v-show="isAddingNewFounder">
           <label>{{ this.texts.modals.fields.founder }}</label>
@@ -152,24 +146,32 @@
         </div>
       </div>
     </article>
-    <footer class="flex flex-wrap gap-3 justify-end items-center p-4 md:px-6">
-        <div class="flex flex-wrap gap-3 ps-0" v-if="isNotPremium">
-            <a href="https://kanka.io/premium" class="btn2 btn-outline btn-sm">
-                {{ this.texts.modals.pitch.more }}
-            </a>
-            <a :href=this.subscribe_url class="btn2 bg-boost text-white btn-sm">
-                {{ this.texts.modals.pitch.subscription }}
-            </a>
-        </div>
-        <menu class="flex flex-wrap gap-3 ps-0" v-if="!isNotPremium">
-          <div class="submit-group">
-            <button class="btn2 btn-primary" @click="saveModal()">
-              Save
-            </button>
-          </div>
-        </menu>
-    </footer>
+      <footer class="flex flex-wrap gap-3 justify-end items-center p-4 md:px-6">
+          <menu class="flex flex-wrap gap-3 ps-0" >
+              <div class="submit-group">
+                  <button class="btn2 btn-primary" @click="saveModal()" v-html="texts.actions.save"></button>
+              </div>
+          </menu>
+      </footer>
   </dialog>
+    <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="family-tree-pitch" aria-modal="true" v-if="!isLoading">
+      <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+          <h4 class="text-lg font-normal" v-html="texts.modals.pitch.title"></h4>
+
+          <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="closePitchModal()">
+              <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
+              <span class="sr-only">Close</span>
+          </button>
+      </header>
+      <article class="max-w-2xl py-4 px-4 md:px-6">
+          <p v-html="texts.modals.pitch.content" class="text-neutral-content"></p>
+          <div class="flex flex-col sm:flex-row gap-3 flex-wrap w-full">
+              <a href="https://kanka.io/premium" class="btn2 btn-outline btn-sm" v-html="texts.modals.pitch.more"></a>
+              <a :href=this.subscribe_url class="btn2 bg-boost text-white btn-sm" v-html="texts.modals.pitch.subscription">
+              </a>
+          </div>
+      </article>
+    </dialog>
 </template>
 
 <script>
@@ -222,6 +224,7 @@ export default {
             maxY: 0,
 
             modal: 'family-tree-modal',
+            pitchModal: 'family-tree-pitch',
             founderField: 'select[name="founder_id_ft"]',
             entityField: 'select[name="character_id_ft"]',
             newUuid: 1,
@@ -280,8 +283,7 @@ export default {
                         this.isDirty = false;
                     });
             } else {
-                this.isNotPremium = true;
-                this.showDialog();
+                this.showPitchDialog();
             }
 
         },
@@ -328,8 +330,10 @@ export default {
             }
             return array.reduce(getNodes, []);
         },
+        closePitchModal() {
+            window.closeDialog(this.pitchModal);
+        },
         closeModal() {
-            this.isNotPremium = false;
             this.isAddingChild = false;
             this.isAddingRelation = false;
             this.isEditingRelation = false;
@@ -351,10 +355,12 @@ export default {
         showDialog() {
             window.openDialog(this.modal);
             window.initForeignSelect();
-          window.triggerEvent();
+            window.triggerEvent();
+        },
+        showPitchDialog() {
+            window.openDialog(this.pitchModal);
         },
         resetVariables() {
-            this.isNotPremium = false;
             this.isAddingChild = false;
             this.isAddingRelation = false;
             this.isEditingRelation = false;
