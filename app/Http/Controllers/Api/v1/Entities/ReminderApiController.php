@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1;
+namespace App\Http\Controllers\Api\v1\Entities;
 
 use App\Http\Controllers\Api\v1\ApiController;
 use App\Http\Requests\API\StoreReminder as Request;
@@ -11,11 +11,6 @@ use App\Models\Reminder;
 
 class ReminderApiController extends ApiController
 {
-    /**
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
@@ -24,52 +19,41 @@ class ReminderApiController extends ApiController
         return Resource::collection($entity->reminders()->paginate());
     }
 
-    /**
-     * @return resource
-     */
     public function show(Campaign $campaign, Entity $entity, Reminder $reminder)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
+        $this->authorize('entity', [$reminder, $entity]);
 
         return new Resource($reminder);
     }
 
-    /**
-     * @return resource
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function store(Request $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
         $data = $request->all();
-        $data['entity_id'] = $entity->id;
-        $model = Reminder::create($data);
-        $model->refresh();
+        if (!isset($data['length'])) {
+            $data['length'] = 1;
+        }
+        $model = new Reminder($data);
+        $model->remindable_id = $entity->id;
+        $model->remindable_type = Entity::class;
+        $model->save();
 
         return new Resource($model);
     }
 
-    /**
-     * @return resource
-     */
     public function update(Request $request, Campaign $campaign, Entity $entity, Reminder $reminder)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
+        $this->authorize('entity', [$reminder, $entity]);
         $reminder->update($request->all());
 
         return new Resource($reminder);
     }
 
-    /**
-     * @param  Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function destroy(
         \Illuminate\Http\Request $request,
         Campaign $campaign,
@@ -78,6 +62,7 @@ class ReminderApiController extends ApiController
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
+        $this->authorize('entity', [$reminder, $entity]);
         $reminder->delete();
 
         return response()->json(null, 204);
