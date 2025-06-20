@@ -49,7 +49,7 @@ The list of returned entities can be filtered. The available filters are [availa
             "type": "Session",
             "calendar_id": 102,
             "calendar_year": 2020,
-            "calendar_month": "Novus",
+            "calendar_month": 3,
             "calendar_day": 2,
             "calendar_event_length": 3
         }
@@ -91,7 +91,7 @@ To get the details of a single journal, use the following endpoint.
         "type": "Session",
         "calendar_id": 102,
         "calendar_year": 2020,
-        "calendar_month": "Novus",
+        "calendar_month": 3,
         "calendar_day": 2,
         "calendar_event_length": 3,
     }
