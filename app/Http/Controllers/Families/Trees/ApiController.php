@@ -67,6 +67,10 @@ class ApiController extends Controller
     {
         $this->authorize('update', $family->entity);
 
+        if (! $campaign->premium()) {
+            return response()->json('You need to activate premium functions on the campaign to use this feature', 204);
+        }
+
         return response()->json(
             $this
                 ->service

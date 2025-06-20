@@ -338,6 +338,11 @@ class FamilyTreeService
      */
     public function save(array $data = []): self
     {
+        // If the campaign is not premium dont save the tree.
+        if (! $this->campaign->premium()) {
+            return $this;
+        }
+
         $this->loadFamilyTree();
         if (empty($data)) {
             $this->familyTree->config = [];
@@ -453,6 +458,12 @@ class FamilyTreeService
                         'title' => __('crud.remove'),
                         'confirm' => __('families/trees.modals.entity.remove.confirm'),
                     ],
+                ],
+                'pitch' => [
+                    'title' =>  __('concept.premium-feature'),
+                    'content' =>  __('families/trees.pitch'),
+                    'more' =>  __('callouts.premium.learn-more'),
+                    'subscription' => __('callouts.actions.subscription'),
                 ],
                 'reset' => [
                     'confirm' => __('families/trees.modals.reset.confirm'),

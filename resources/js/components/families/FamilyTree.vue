@@ -4,19 +4,19 @@
             <i class="fa-regular fa-edit" aria-hidden="true"></i>
             {{ this.texts.actions.edit }}
         </button>
-        <a class="btn2 btn-ghost btn-sm " v-if="showEditFounder()" v-on:click="createNewFounder()">
+        <button class="btn2 btn-sm " v-if="showEditFounder()" v-on:click="createNewFounder()">
             <i class="fa-regular fa-user" aria-hidden="true"></i>
             {{ this.texts.actions.founder }}
-        </a>
-        <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="resetTree()">
+        </button>
+        <button class="btn2 btn-sm " v-if="isEditing" v-on:click="resetTree()">
             <i class="fa-regular fa-redo" aria-hidden="true"></i>
             {{ this.texts.actions.reset }}
-        </a>
-        <a class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="clearTree()">
+        </button>
+        <button class="btn2 btn-sm " v-if="isEditing" v-on:click="clearTree()">
             <i class="fa-regular fa-eraser" aria-hidden="true"></i>
             {{ this.texts.actions.clear }}
-        </a>
-        <button class="btn2 btn-sm btn-primary" :disabled="!isDirty" v-if="isEditing" v-on:click="saveTree()">
+        </button>
+        <button class="btn2 btn-primary" v-if="isEditing && (isDirty)" v-on:click="saveTree()">
             <i class="fa-regular fa-save" aria-hidden="true"></i>
             {{ this.texts.actions.save }}
         </button>
@@ -88,7 +88,7 @@
         <span class="sr-only">Close</span>
       </button>
     </header>
-    <article>
+    <article class="max-w-2xl py-4 px-4 md:px-6">
       <div class="flex flex-col gap-5 w-full">
         <div class="field field-founder flex flex-col gap-1 w-full" v-show="isAddingNewFounder">
           <label>{{ this.texts.modals.fields.founder }}</label>
@@ -146,16 +146,32 @@
         </div>
       </div>
     </article>
-    <footer class="flex flex-wrap gap-3 justify-end items-center p-4 md:px-6">
-        <menu class="flex flex-wrap gap-3 ps-0">
-          <div class="submit-group">
-            <button class="btn2 btn-primary" @click="saveModal()">
-              Save
-            </button>
-          </div>
-        </menu>
-    </footer>
+      <footer class="flex flex-wrap gap-3 justify-end items-center p-4 md:px-6">
+          <menu class="flex flex-wrap gap-3 ps-0" >
+              <div class="submit-group">
+                  <button class="btn2 btn-primary" @click="saveModal()" v-html="texts.actions.save"></button>
+              </div>
+          </menu>
+      </footer>
   </dialog>
+    <dialog class="dialog rounded-top md:rounded-2xl bg-base-100 min-w-fit shadow-md text-base-content" id="family-tree-pitch" aria-modal="true" v-if="!isLoading">
+      <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+          <h4 class="text-lg font-normal" v-html="texts.modals.pitch.title"></h4>
+
+          <button autofocus type="button" class="text-xl opacity-50 hover:opacity-100 focus:opacity-100 cursor-pointer text-decoration-none" aria-label="Close" v-on:click="closePitchModal()">
+              <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
+              <span class="sr-only">Close</span>
+          </button>
+      </header>
+      <article class="max-w-2xl py-4 px-4 md:px-6">
+          <p v-html="texts.modals.pitch.content" class="text-neutral-content"></p>
+          <div class="flex flex-col sm:flex-row gap-3 flex-wrap w-full">
+              <a href="https://kanka.io/premium" class="btn2 btn-outline btn-sm" v-html="texts.modals.pitch.more"></a>
+              <a :href=this.subscribe_url class="btn2 bg-boost text-white btn-sm" v-html="texts.modals.pitch.subscription">
+              </a>
+          </div>
+      </article>
+    </dialog>
 </template>
 
 <script>
@@ -169,6 +185,7 @@ export default {
         entity_api: undefined,
         search_api: undefined,
         permission: undefined,
+        subscribe_url: undefined,
     },
     components: {
         PinchScrollZoom,
@@ -193,6 +210,7 @@ export default {
             isAddingCharacter: false,
             isEditingRelation: false,
             isAddingNewFounder: false,
+            isNotPremium: false,
 
             relation: undefined,
             entity: undefined,
@@ -205,6 +223,7 @@ export default {
             maxY: 0,
 
             modal: 'family-tree-modal',
+            pitchModal: 'family-tree-pitch',
             founderField: 'select[name="founder_id_ft"]',
             entityField: 'select[name="character_id_ft"]',
             newUuid: 1,
@@ -258,10 +277,17 @@ export default {
         saveTree() {
             axios.post(this.save_api, {data: this.nodes})
                 .then((resp) => {
-                    //console.log('Saved Tree');
+                    if (resp.status === 204) {
+                        this.showPitchDialog();
+                        return;
+                    }
                     window.showToast(this.texts.toasts.saved);
                     this.isDirty = false;
-                });
+                }).catch((err) => {
+                    console.log('save tree error', err);
+                this.showPitchDialog();
+            });
+
         },
         clearTree() {
             if (confirm(this.texts.modals.clear.confirm)) {
@@ -306,6 +332,9 @@ export default {
             }
             return array.reduce(getNodes, []);
         },
+        closePitchModal() {
+            window.closeDialog(this.pitchModal);
+        },
         closeModal() {
             this.isAddingChild = false;
             this.isAddingRelation = false;
@@ -328,7 +357,10 @@ export default {
         showDialog() {
             window.openDialog(this.modal);
             window.initForeignSelect();
-          window.triggerEvent();
+            window.triggerEvent();
+        },
+        showPitchDialog() {
+            window.openDialog(this.pitchModal);
         },
         resetVariables() {
             this.isAddingChild = false;

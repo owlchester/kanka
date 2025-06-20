@@ -1,4 +1,4 @@
-<div class="rounded-xl bg-box p-6 flex flex-col gap-4 shadow-xs">
+<div class="rounded-xl bg-box p-4 md:p-6 flex flex-col gap-4 shadow-xs">
     <h2 class="text-2xl">
         @isset ($title)
             {{ $title }}
