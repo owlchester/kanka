@@ -89,12 +89,12 @@
         <span class="sr-only">Close</span>
       </button>
     </header>
-    <article v-if="isNotPremium" class= "py-4 px-4 md:px-6">
+    <article v-if="isNotPremium" class="max-w-2xl py-4 px-4 md:px-6">
         <p>
             {{ this.texts.modals.pitch.content }}
         </p>
     </article>
-    <article v-if="!isNotPremium">
+    <article class="max-w-2xl py-4 px-4 md:px-6" v-if="!isNotPremium">
       <div class="flex flex-col gap-5 w-full">
         <div class="field field-founder flex flex-col gap-1 w-full" v-show="isAddingNewFounder">
           <label>{{ this.texts.modals.fields.founder }}</label>
@@ -157,7 +157,7 @@
             <a href="https://kanka.io/premium" class="btn2 btn-outline btn-sm">
                 {{ this.texts.modals.pitch.more }}
             </a>
-            <a href="{{this.subscribe_url}}" class="btn2 bg-boost text-white btn-sm">
+            <a :href=this.subscribe_url class="btn2 bg-boost text-white btn-sm">
                 {{ this.texts.modals.pitch.subscription }}
             </a>
         </div>
@@ -184,6 +184,7 @@ export default {
         search_api: undefined,
         permission: undefined,
         is_premium: undefined,
+        subscribe_url: undefined,
     },
     components: {
         PinchScrollZoom,
@@ -272,7 +273,6 @@ export default {
             }
         },
         saveTree() {
-            console.log(this.is_premium);
             if (this.is_premium) {
                 axios.post(this.save_api, {data: this.nodes})
                     .then((resp) => {
