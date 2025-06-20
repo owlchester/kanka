@@ -25,6 +25,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -43,4 +46,3 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: Fix styling
-          branch: ${{ github.head_ref || github.ref_name }}
