@@ -4,19 +4,19 @@
             <i class="fa-regular fa-edit" aria-hidden="true"></i>
             {{ this.texts.actions.edit }}
         </button>
-        <button class="btn2 btn-ghost btn-sm " v-if="showEditFounder()" v-on:click="createNewFounder()">
+        <button class="btn2 btn-sm " v-if="showEditFounder()" v-on:click="createNewFounder()">
             <i class="fa-regular fa-user" aria-hidden="true"></i>
             {{ this.texts.actions.founder }}
         </button>
-        <button class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="resetTree()">
+        <button class="btn2 btn-sm " v-if="isEditing" v-on:click="resetTree()">
             <i class="fa-regular fa-redo" aria-hidden="true"></i>
             {{ this.texts.actions.reset }}
         </button>
-        <button class="btn2 btn-ghost btn-sm " v-if="isEditing" v-on:click="clearTree()">
+        <button class="btn2 btn-sm " v-if="isEditing" v-on:click="clearTree()">
             <i class="fa-regular fa-eraser" aria-hidden="true"></i>
             {{ this.texts.actions.clear }}
         </button>
-        <button class="btn2 btn-sm btn-primary" v-if="isEditing && (isDirty)" v-on:click="saveTree()">
+        <button class="btn2 btn-primary" v-if="isEditing && (isDirty)" v-on:click="saveTree()">
             <i class="fa-regular fa-save" aria-hidden="true"></i>
             {{ this.texts.actions.save }}
         </button>
