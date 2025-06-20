@@ -42,9 +42,9 @@ class TrialAcceptedEmailJob implements ShouldQueue
 
         // Send an email to the admins
         Mail::to('hello@kanka.io')
-        ->send(
-            new NewTrialAcceptedMail($user)
-        );
-        
+            ->send(
+                new NewTrialAcceptedMail($user)
+            );
+
     }
 }

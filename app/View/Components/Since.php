@@ -4,10 +4,10 @@ namespace App\View\Components;
 
 use Carbon\Carbon;
 use Closure;
+use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
-use Exception;
 
 class Since extends Component
 {
@@ -21,8 +21,7 @@ class Since extends Component
     public function __construct(
         public Carbon $date,
         public bool $withTime = true
-    )
-    {
+    ) {
         //
     }
 
@@ -50,6 +49,7 @@ class Since extends Component
         if ($this->date->diffInMonths() <= 2) {
             return $this->date->diffForHumans();
         }
+
         return $this->date->isoFormat($this->dateFormat);
     }
 

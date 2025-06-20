@@ -31,6 +31,7 @@ class Standard extends Column
     public const DATE = 'date';
 
     public const TAGS = 'tags';
+
     public const SINCE = 'since';
 
     public function __toString(): string

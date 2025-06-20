@@ -92,8 +92,6 @@ class AppServiceProvider extends ServiceProvider
         // Fix setups for utf8_mb4 mysql strings (emoji support)
         Schema::defaultStringLength(191);
 
-
-
         Passport::$clientUuids = false;
         Passport::authorizationView('vendor.passport.authorize');
 

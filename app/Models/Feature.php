@@ -110,6 +110,7 @@ class Feature extends Model
         if (Str::startsWith($this->description, '<p>')) {
             return $this->description;
         }
-        return '<p>' . nl2br($this->description) .'</p>';
+
+        return '<p>' . nl2br($this->description) . '</p>';
     }
 }

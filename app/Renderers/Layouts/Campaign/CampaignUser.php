@@ -80,6 +80,7 @@ class CampaignUser extends Layout
                             new \App\View\Components\Since(date: $model->user->last_login_at, withTime: false)
                         );
                     }
+
                     return '';
                 },
             ],
