@@ -16,7 +16,7 @@
             <i class="fa-regular fa-eraser" aria-hidden="true"></i>
             {{ this.texts.actions.clear }}
         </button>
-        <button class="btn2 btn-sm btn-primary" v-if="isEditing && (isDirty || !this.is_premium)" v-on:click="saveTree()">
+        <button class="btn2 btn-sm btn-primary" v-if="isEditing && (isDirty)" v-on:click="saveTree()">
             <i class="fa-regular fa-save" aria-hidden="true"></i>
             {{ this.texts.actions.save }}
         </button>
@@ -185,7 +185,6 @@ export default {
         entity_api: undefined,
         search_api: undefined,
         permission: undefined,
-        is_premium: undefined,
         subscribe_url: undefined,
     },
     components: {
@@ -276,15 +275,18 @@ export default {
             }
         },
         saveTree() {
-            if (this.is_premium) {
-                axios.post(this.save_api, {data: this.nodes})
-                    .then((resp) => {
-                        window.showToast(this.texts.toasts.saved);
-                        this.isDirty = false;
-                    });
-            } else {
+            axios.post(this.save_api, {data: this.nodes})
+                .then((resp) => {
+                    if (resp.status === 204) {
+                        this.showPitchDialog();
+                        return;
+                    }
+                    window.showToast(this.texts.toasts.saved);
+                    this.isDirty = false;
+                }).catch((err) => {
+                    console.log('save tree error', err);
                 this.showPitchDialog();
-            }
+            });
 
         },
         clearTree() {
