@@ -8,7 +8,7 @@
     </div>
     <div class="bg-gray-200 p-5 flex-grow flex flex-col gap-5">
         <h2 class="text-md">{{ $feature->name }}</h2>
-        <p>{!! nl2br($feature->description) !!}</p>
+        {!! $feature->cleanDescription() !!}
     </div>
 </div>
 

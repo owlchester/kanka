@@ -14,7 +14,7 @@
                 </div>
                 <div class="bg-gray-200 p-5 flex-grow flex flex-col gap-5 cursor-pointer hover:bg-light transition-all duration-300" wire:click="open({{ $idea }})">
                     <h2 class="text-md">{{ $idea->name }}</h2>
-                    <p>{!! nl2br($idea->description) !!}</p>
+                    {!! $idea->cleanDescription() !!}
                 </div>
             </div>
         @endforeach

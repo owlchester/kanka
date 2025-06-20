@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Str;
 
 /**
  * @property int $id
@@ -102,5 +103,13 @@ class Feature extends Model
         }
 
         return auth()->user()->upvotes()->forFeature($this)->count() === 1;
+    }
+
+    public function cleanDescription(): string
+    {
+        if (Str::startsWith($this->description, '<p>')) {
+            return $this->description;
+        }
+        return '<p>' . nl2br($this->description) .'</p>';
     }
 }
