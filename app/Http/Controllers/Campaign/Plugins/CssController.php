@@ -10,9 +10,12 @@ class CssController extends Controller
 {
     public function index(Campaign $campaign)
     {
-        $themes = CampaignCache::themes();
+        $css = null;
+        if ($campaign->boosted()) {
+            $css = CampaignCache::styles();
+        }
 
-        $response = \Illuminate\Support\Facades\Response::make($themes);
+        $response = \Illuminate\Support\Facades\Response::make($css);
         $response->header('Content-Type', 'text/css');
         // $response->header('Expires', Carbon::now()->addMonth()->toDateTimeString());
         $month = 31536000;

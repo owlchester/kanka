@@ -34,6 +34,9 @@ class Children extends Layout
                 'key' => 'parent.name',
                 'label' => 'crud.fields.parent',
                 'render' => Standard::ParentLink,
+                'visible' => function () {
+                    return request()->get('m') != 0;
+                },
             ],
             'children' => [
                 'label' => __('tags.fields.children'),
