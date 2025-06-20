@@ -32,23 +32,17 @@
                 </div>
                 <div class="text-sm text-neutral-content text-center max-w-md flex flex-col gap-4">
                     <p>{!! __('campaigns/logs.helpers.nothing', ['amount' => '<code>' . $cutoff . '</code>']) !!}</p>
-                    @if (!$campaign->premium())
-                        <hr />
-                        <p>
-                            {!! __('campaigns/logs.premium.helper', ['amount' => '<code>' . config('limits.campaigns.logs.premium') . '</code>']) !!}
-                        </p>
-                        @can('boost', auth()->user())
-                            <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="btn2 bg-boost text-white btn-lg btn-block">
-                                {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
-                            </a>
-                        @else
-                            <a href="https://kanka.io/premium" class="btn2 bg-boost text-white btn-sm btn-block">
-                                {!! __('callouts.premium.learn-more') !!}
-                            </a>
-                        @endif
-                    @endif
                 </div>
             </div>
+        @endif
+
+
+        @if (!$campaign->premium())
+            <x-premium-cta :campaign="$campaign" premium>
+                <p>
+                    {!! __('campaigns/logs.pitch', ['amount' => '<code>' . config('limits.campaigns.logs.premium') . '</code>']) !!}
+                </p>
+            </x-premium-cta>
         @endif
     </div>
 @endsection

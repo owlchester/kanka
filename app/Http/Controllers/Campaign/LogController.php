@@ -15,11 +15,7 @@ class LogController extends Controller
 
     public function index(Campaign $campaign)
     {
-        $this->authorize('update', $campaign);
-
-        if (! app()->hasDebugModeEnabled()) {
-            abort(404);
-        }
+        $this->authorize('recover', $campaign);
 
         $cutoff = $campaign->premium() ? config('limits.campaigns.logs.premium') : config('limits.campaigns.logs.standard');
         $premium = config('limits.campaigns.logs.premium');

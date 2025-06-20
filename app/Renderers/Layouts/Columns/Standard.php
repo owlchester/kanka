@@ -31,6 +31,7 @@ class Standard extends Column
     public const DATE = 'date';
 
     public const TAGS = 'tags';
+    public const SINCE = 'since';
 
     public function __toString(): string
     {
@@ -74,6 +75,7 @@ class Standard extends Column
             self::DATE,
             self::MENTION_LINK,
             self::VIEW,
+            self::SINCE,
         ]);
     }
 
@@ -85,6 +87,7 @@ class Standard extends Column
         return view('layouts.datagrid.rows.' . $view)
             ->with('model', $this->model)
             ->with('with', $extra)
+            ->with('key', $this->config['key'] ?? '')
             ->with('campaign', $this->campaign)
             ->render();
     }

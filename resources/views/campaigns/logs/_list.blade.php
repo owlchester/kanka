@@ -1,5 +1,6 @@
 <?php
 /**
+ * @var \App\Models\Campaign $campaign
  * @var \App\Models\UserLog $log
  * @var \Illuminate\Support\Collection $users
  */
@@ -25,29 +26,20 @@
                 <td colspan="4" class="text-neutral-content text-xs">
                     <span class="">
                         <x-icon class="premium" />
-                        {{ __('campaigns/logs.premium.helper', ['amount' => $cutoff]) }}
+                        {!! __('campaigns/logs.premium.helper', ['amount' => '<strong>' . $cutoff . '</strong>']) !!}
                     </span>
-                    @can('boost', auth()->user())
-                        <a href="{{ route('settings.premium', ['campaign' => $campaign]) }}" class="">
-                            {!! __('callouts.premium.unlock', ['campaign' => $campaign->name]) !!}
-                        </a>
-                    @else
-                        <a href="https://kanka.io/premium" class="">
-                            {!! __('callouts.premium.learn-more') !!}
-                        </a>
-                    @endif
                 </td>
                 <td>
-                <span data-toggle="tooltip" data-title="{{ $log->created_at }} UTC">
-                    {{ $log->created_at->diffForHumans() }}
-                </span>
+                    <x-since :date="$log->created_at" />
                 </td>
             </tr>
         @else
         <tr>
             <td>
                 @if ($log->user)
+                    <a href="{{ route('users.profile', $log->user) }}">
                     {!! $log->user->name !!}
+                    </a>
                 @else
                     <span>[deleted user]</span>
                 @endif
@@ -73,9 +65,7 @@
                 @endforeach
             </td>
             <td>
-                <span data-toggle="tooltip" data-title="{{ $log->created_at }} UTC">
-                    {{ $log->created_at->diffForHumans() }}
-                </span>
+                <x-since :date="$log->created_at" />
             </td>
         </tr>
        @endif
