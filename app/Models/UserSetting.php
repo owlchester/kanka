@@ -111,7 +111,7 @@ trait UserSetting
                 unset($settings[$key], $settings[$key]);
             } elseif (! empty($value)) {
                 if ($key == 'link') {
-                    $settings[$key] = Purify::clean($value, ['URI.AllowedSchemes' => ['https']]); // Allows https URLs
+                    $settings[$key] = Purify::config(['URI.AllowedSchemes' => ['https']])->clean($value); // Allows https URLs
                 } else {
                     $settings[$key] = Purify::clean($value);
                 }

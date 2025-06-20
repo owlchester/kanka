@@ -24,8 +24,8 @@ use Illuminate\Support\Str;
 class DatagridRenderer
 {
     use CampaignAware;
-    use UserAware;
     use RequestAware;
+    use UserAware;
 
     protected string $hidden = ' hidden lg:table-cell';
 

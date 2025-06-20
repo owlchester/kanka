@@ -21,6 +21,11 @@ class EndSubscriptions extends Command
      */
     protected $description = 'End custom subscriptions (sofort) that have expired';
 
+    public function __construct(protected SubscriptionEndService $service)
+    {
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      *
@@ -28,12 +33,9 @@ class EndSubscriptions extends Command
      */
     public function handle()
     {
-        /** @var SubscriptionEndService $service */
-        $service = app()->make(SubscriptionEndService::class);
-
         $fake = $this->argument('fake');
 
-        $count = $service->run($fake === 'false');
+        $count = $this->service->run($fake === 'false');
         $this->info('Ended ' . $count . ' subscriptions.');
 
         return 0;

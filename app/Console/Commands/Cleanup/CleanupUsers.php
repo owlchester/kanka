@@ -22,21 +22,24 @@ class CleanupUsers extends Command
      */
     protected $description = 'Purge accounts';
 
+    public function __construct(protected PurgeService $service)
+    {
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      */
     public function handle(): void
     {
         $this->info(Carbon::now());
-        /** @var PurgeService $service */
-        $service = app()->make(PurgeService::class);
 
         $dry = $this->argument('dry');
         if ($dry === '0') {
-            $service->real();
+            $this->service->real();
         }
         $limit = (int) $this->argument('limit');
-        $service->limit($limit);
+        $this->service->limit($limit);
 
         /*
         $cutoff = Carbon::now()->subYears(1);
@@ -49,13 +52,13 @@ class CleanupUsers extends Command
         $this->info(Carbon::now() . ': Example  scheduled ' . $count . ' users for cleanup.');
          */
 
-        $count = $service->firstWarning();
+        $count = $this->service->firstWarning();
         $this->info(Carbon::now() . ': ' . $count . ' inactive users notified (first warning)');
 
-        $count = $service->secondWarning();
+        $count = $this->service->secondWarning();
         $this->info(Carbon::now() . ': ' . $count . ' inactive users notified (second warning)');
 
-        $count = $service->purge();
+        $count = $this->service->purge();
         $this->info(Carbon::now() . ': ' . $count . ' inactive users purged');
     }
 }

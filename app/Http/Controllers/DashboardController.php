@@ -44,14 +44,17 @@ class DashboardController extends Controller
             $welcome = true;
         }
 
-        $hasMap = false;
-        $hasCampaignHeader = $requestedDashboard === null;
+        $hasMap = $hasCampaignHeader = false;
+        $requestedDashboard === null;
         foreach ($widgets as $w) {
             if ($w->widget === Widget::Preview && $w->entity && $w->visible() && $w->entity->isMap()) {
                 $hasMap = true;
             } elseif ($w->widget === Widget::Campaign) {
                 $hasCampaignHeader = true;
             }
+        }
+        if (empty($requestedDashboard)) {
+            $hasCampaignHeader = true;
         }
 
         return view('home', compact(

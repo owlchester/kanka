@@ -47,7 +47,7 @@
 
                             <!-- Secret -->
                             <td style="vertical-align: middle;">
-                                <code>{{ client.secret }}</code>
+                                <code>******</code>
                             </td>
 
                             <!-- Edit Button -->
@@ -73,7 +73,7 @@
         </div>
 
         <!-- Create Client Modal -->
-        <dialog class="dialog rounded-2xl text-center" id="modal-create-client" ref="createModal" aria-modal="true" aria-labelledby="modal-create-client-label">
+        <dialog class="dialog rounded-2xl" id="modal-create-client" ref="createModal" aria-modal="true" aria-labelledby="modal-create-client-label">
             <header class="flex gap-6 items-center p-4 md:p-6 justify-between w-full">
                 <h4 id="modal-create-client-label" class="text-lg font-normal">
                     Create Client
@@ -83,7 +83,7 @@
                     <span class="sr-only">Close</span>
                 </button>
             </header>
-            <article class="text-justify">
+            <article class="p-4">
                 <!-- Form Errors -->
                 <div class="rounded p-4 bg-red-100 text-red-800 w-full" v-if="createForm.errors.length > 0">
                     <p class="mb-0"><strong>Whoops!</strong> Something went wrong!</p>
@@ -103,30 +103,26 @@
 
                         <input id="create-client-name" type="text" class="rounded border w-full p-2" name="name" placeholder="Name the token" v-model="createForm.name" @keyup.enter="store" ref="createName">
 
-                        <span class="text-sm text-muted">
+                        <span class="text-sm text-neutral-content">
                             Something your users will recognize and trust.
                         </span>
                     </div>
 
                     <!-- Redirect URL -->
-                    <div class="mb-5">
+                    <div class="">
                         <label class="font-extrabold required">Redirect URL</label>
 
                         <input type="text" class="rounded border w-full p-2" name="redirect"
                                @keyup.enter="store" v-model="createForm.redirect">
 
-                        <span class="text-sm text-muted">
+                        <span class="text-sm text-neutral-content">
                             Your application's authorization callback URL.
                         </span>
                     </div>
                 </form>
-                <form role="form" class="w-full mb-5" @submit.prevent="store" autocomplete="off">
-                    <!-- Name -->
-
-                </form>
 
                 <div class="flex justify-between items-center gap-2 w-full">
-                    <button type="button" class="btn2 btn-ghost" @click="closeModal('createModal')">Close</button>
+                    <button type="button" class="btn2 btn-outline" @click="closeModal('createModal')">Close</button>
 
                     <button type="button" class="btn2 btn-primary" @click="store">
                         Create
@@ -136,7 +132,7 @@
         </dialog>
 
         <!-- Edit Client Modal -->
-        <dialog class="dialog rounded-2xl text-center" id="modal-edit-client" ref="editModal" aria-modal="true" aria-labelledby="modal-edit-client-label">
+        <dialog class="dialog rounded-2xl" id="modal-edit-client" ref="editModal" aria-modal="true" aria-labelledby="modal-edit-client-label">
             <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
                 <h4 id="modal-edit-client-label" class="text-lg font-normal">
                     Create Client
@@ -146,11 +142,10 @@
                     <span class="sr-only">Close</span>
                 </button>
             </header>
-            <article class="text-justify">
+            <article class="p-4">
                 <!-- Form Errors -->
                 <div class="alert alert-danger" v-if="editForm.errors.length > 0">
                     <p class="mb-0"><strong>Whoops!</strong> Something went wrong!</p>
-                    <br>
                     <ul>
                         <li v-for="error in editForm.errors">
                             {{ error }}
@@ -159,43 +154,61 @@
                 </div>
 
                 <!-- Edit Client Form -->
-                <form role="form" autocomplete="off">
+                <form role="form" class="flex flex-col gap-5" autocomplete="off">
                     <!-- Name -->
-                    <div class="form-group grid grid-cols-2 gap-5">
-                        <label class="col-md-3 col-form-label">Name</label>
+                    <div class="">
+                        <label class="font-extrabold required">Name</label>
 
-                        <div class="col-md-9">
-                            <input id="edit-client-name" type="text" class="w-full"
-                                                        @keyup.enter="update" v-model="editForm.name" ref="editName">
+                        <input id="edit-client-name" type="text" class="w-full"
+                                                    @keyup.enter="update" v-model="editForm.name" ref="editName">
 
-                            <span class="form-text text-muted">
-                                Something your users will recognize and trust.
-                            </span>
-                        </div>
+                        <span class="text-sm text-neutral-content">
+                            Something your users will recognize and trust.
+                        </span>
                     </div>
 
                     <!-- Redirect URL -->
-                    <div class="form-group grid grid-cols-2 gap-5">
-                        <label class="col-md-3 col-form-label">Redirect URL</label>
+                    <div class="">
+                        <label class="font-extrabold required">Redirect URL</label>
 
-                        <div class="col-md-9">
-                            <input type="text" class="w-full" name="redirect"
-                                            @keyup.enter="update" v-model="editForm.redirect">
+                        <input type="text" class="w-full" name="redirect"
+                                        @keyup.enter="update" v-model="editForm.redirect">
 
-                            <span class="form-text text-muted">
-                                Your application's authorization callback URL.
-                            </span>
-                        </div>
+                        <span class="text-sm text-neutral-content">
+                            Your application's authorization callback URL.
+                        </span>
                     </div>
                 </form>
 
                 <div class="flex justify-between items-center gap-2 w-full">
-                    <button type="button" class="btn2 btn-ghost" @click="closeModal('editModal')">Close</button>
+                    <button type="button" class="btn2 btn-outline" @click="closeModal('editModal')">Close</button>
 
                     <button type="button" class="btn2 btn-primary" @click="update">
                         Create
                     </button>
                 </div>
+            </article>
+        </dialog>
+
+        <!-- Access Token Modal -->
+        <dialog class="dialog rounded-2xl" id="modal-access-token" ref="accessModal" aria-modal="true" aria-labelledby="modal-access-token-label">
+            <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
+                <h4 id="modal-access-token-label" class="text-lg font-normal">
+                    OAuth Client Secret
+                </h4>
+                <button type="button" class="rounded-full" @click="closeModal('accessModal')" title="Close">
+                    <i class="fa-solid fa-times" aria-hidden="true"></i>
+                    <span class="sr-only">Close</span>
+                </button>
+            </header>
+            <article class="text-justify p-4">
+                <p class="mb-2">
+                    Here is your oauth client secret token. This is the only time it will be shown so don't lose it!
+                    You may now use this token to make API requests.
+                </p>
+                <input type="text" class="w-full" rows="1">{{ secret }}</input>
+
+                <button type="button" class="btn2 btn-outline" @click="closeModal('accessModal')">Close</button>
             </article>
         </dialog>
     </div>
@@ -208,6 +221,8 @@
          */
         data() {
             return {
+                secret: null,
+
                 clients: [],
                 confirmClient: null,
 
@@ -311,6 +326,10 @@
                         form.redirect = '';
                         form.errors = [];
 
+                        if (method === 'post') {
+                            this.showSecret(response.data.secret);
+                        }
+
                         this.closeModal(modal);
                     })
                     .catch(error => {
@@ -353,7 +372,19 @@
                     return this.destroy(client);
                 }
                 this.confirmClient = client;
-            }
+            },
+
+
+            /**
+             * Show the given access token to the user.
+             */
+            showSecret(secret) {
+                this.closeModal('createModal');
+
+                this.secret = secret;
+
+                this.openModal('accessModal');
+            },
         }
     }
 </script>

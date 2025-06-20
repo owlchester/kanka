@@ -21,14 +21,17 @@ class OfferFreeTrial extends Command
      */
     protected $description = 'Offer a free trial to some users';
 
+    public function __construct(protected OfferTrialService $service)
+    {
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        /** @var OfferTrialService $service */
-        $service = app()->make(OfferTrialService::class);
-        $count = $service->run();
+        $count = $this->service->run();
         $this->info('Offered free trial to ' . $count . ' users.');
     }
 }

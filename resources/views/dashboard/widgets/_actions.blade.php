@@ -31,15 +31,15 @@
             </button>
             <div class="dropdown-menu hidden" role="menu">
                 @if (!empty($dashboard))
-                    <a href="{{ route('dashboard', [$campaign, 'dashboard' => 'default']) }}">
+                    <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => 'default'])" icon="fa-regular fa-home">
                         {{ __('dashboard.dashboards.default.title')}}
-                    </a>
+                    </x-dropdowns.item>
                 @endif
                 @foreach ($dashboards as $dash)
                     @if (!empty($dashboard) && $dash->id == $dashboard->id)
                         @continue
                     @endif
-                    <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => $dash->id])">
+                    <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => $dash->id])" icon="fa-regular fa-th-large">
                         {!! $dash->name !!}
                     </x-dropdowns.item>
                 @endforeach
@@ -47,16 +47,16 @@
                 @can('dashboard', $campaign)
                     <x-dropdowns.divider />
 
-                    <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}">
+                    <x-dropdowns.item :link="route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign])" icon="cog">
                         {{ __('dashboard.actions.customise') }}
-                    </a>
+                    </x-dropdowns.item>
                 @endcan
             </div>
         </div>
     @else
         @can('dashboard', $campaign)
-            <a href="{{ route('dashboard.setup', $campaign) }}" class="btn2" title="{{ __('dashboard.actions.customise') }}">
-                <x-icon class="fa-regular fa-th-large" />
+            <a href="{{ route('dashboard.setup', [$campaign]) }}" class="btn2 btn-sm">
+                <x-icon class="cog" /> {{ __('dashboard.actions.customise') }}
             </a>
         @endcan
     @endif
@@ -70,7 +70,7 @@
         </button>
         <div class="dropdown-menu hidden" role="menu">
             @if (!empty($dashboard))
-                <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => 'default'])" icon="fa-regular fa-th-large">
+                <x-dropdowns.item :link="route('dashboard', [$campaign, 'dashboard' => 'default'])" icon="fa-regular fa-home">
                     {{ __('dashboard.dashboards.default.title')}}
                 </x-dropdowns.item>
             @endif

@@ -40,13 +40,13 @@ class Reminder extends Layout
             ],
             'comment' => [
                 'key' => 'comment',
-                'label' => 'calendars.fields.comment',
+                'label' => '<i class="fa-regular fa-comments" data-title="' . __('calendars.fields.comment') . '" data-toggle="tooltip" aria-hidden="true"></i><span class="sr-only">' . __('calendars.fields.comment') . '</span>',
                 'render' => function (Model $reminder) {
-                    return $reminder->comment;
+                    return '<p class="text-xs text-neutral-content">' . $reminder->comment . '</p>';
                 },
             ],
             'recurring' => [
-                'label' => 'calendars.fields.is_recurring',
+                'label' => '<i class="fa-regular fa-arrows-rotate" data-title="' . __('calendars.fields.is_recurring') . '" data-toggle="tooltip" aria-hidden="true"></i><span class="sr-only">' . __('calendars.fields.is_recurring') . '</span>',
                 'render' => function (Model $reminder) {
                     if ($reminder->is_recurring) {
                         return '<i class="fa-solid fa-redo" data-title="' . __('calendars.fields.is_recurring') . '" data-toggle="tooltip" aria-hidden="true" ></i>';

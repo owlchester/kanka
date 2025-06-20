@@ -31,7 +31,7 @@ class StoreReminder extends FormRequest
             'day' => 'required|integer|min:1',
             'month' => 'required|integer|min:1',
             'year' => 'required|integer',
-            'length' => 'required|integer|min:1',
+            'length' => 'integer|min:1',
             'is_recurring' => 'nullable',
             'recurring_until' => 'nullable',
             'recurring_periodicity' => 'nullable|max:5',

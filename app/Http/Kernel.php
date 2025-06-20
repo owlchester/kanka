@@ -6,7 +6,7 @@ use App\Http\Middleware\FullSetup;
 use App\Http\Middleware\PasswordConfirm;
 use App\Http\Middleware\Tracking;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
-use Laravel\Passport\Http\Middleware\CheckClientCredentials;
+use Laravel\Passport\Http\Middleware\ValidateToken;
 
 class Kernel extends HttpKernel
 {
@@ -71,7 +71,7 @@ class Kernel extends HttpKernel
         'localeSessionRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
         'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'localizeDatetime' => Middleware\LocalizeDatetime::class,
-        'client' => CheckClientCredentials::class, // Laravel Passport
+        'client' => ValidateToken::class, // Laravel Passport
 
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

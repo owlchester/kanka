@@ -78,7 +78,7 @@ class WebhookController extends Controller
                 ->with(
                     'error',
                     __('campaigns/webhooks.error.pitch')
-            );
+                );
         }
 
         if ($request->ajax()) {
@@ -195,13 +195,13 @@ class WebhookController extends Controller
     public function test(Campaign $campaign, Webhook $webhook)
     {
         $this->authorize('webhooks', $campaign);
-        
+
         if (! $campaign->premium()) {
             return redirect()->route('webhooks.index', $campaign)
                 ->with(
                     'error',
                     __('campaigns/webhooks.error.pitch')
-            );
+                );
         }
 
         TestWebhookJob::dispatch($campaign, auth()->user(), $webhook);

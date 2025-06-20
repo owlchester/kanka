@@ -11,14 +11,10 @@ use App\Services\DashboardService;
 
 class DashboardController extends Controller
 {
-    protected DashboardService $service;
-
-    public function __construct(DashboardService $dashboardsService)
+    public function __construct(protected DashboardService $service)
     {
         $this->middleware('auth');
         $this->middleware('campaign.boosted', ['except' => ['index', 'create']]);
-
-        $this->service = $dashboardsService;
     }
 
     /**

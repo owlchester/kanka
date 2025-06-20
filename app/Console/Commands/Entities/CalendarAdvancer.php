@@ -33,16 +33,13 @@ class CalendarAdvancer extends Command
     /** Errors that happened */
     protected array $errors = [];
 
-    protected AdvancerService $service;
-
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(AdvancerService $advancerService)
+    public function __construct(protected AdvancerService $service)
     {
-        $this->service = $advancerService;
         parent::__construct();
     }
 

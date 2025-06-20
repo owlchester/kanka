@@ -77,6 +77,7 @@ class BragiService
         $openAI = $this
             ->openAI
             ->input($prompt, $context)
+            ->campaign($this->campaign)
             ->generate();
 
         try {

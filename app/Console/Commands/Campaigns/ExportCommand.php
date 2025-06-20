@@ -24,6 +24,11 @@ class ExportCommand extends Command
      */
     protected $description = 'Export a campaign';
 
+    public function __construct(protected ExportService $service)
+    {
+        parent::__construct();
+    }
+
     /**
      * Execute the console command.
      */
@@ -31,14 +36,11 @@ class ExportCommand extends Command
     {
         $this->info(Carbon::now());
 
-        /** @var ExportService $service */
-        $service = app()->make(ExportService::class);
-
         $campaignID = $this->argument('campaign');
         $campaign = Campaign::find($campaignID);
         $user = User::find(1);
 
-        $service
+        $this->service
             ->campaign($campaign)
             ->user($user)
             ->queue();

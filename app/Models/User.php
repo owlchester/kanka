@@ -49,7 +49,7 @@ use Laravel\Passport\HasApiTokens;
  * @property Campaign $campaign
  * @property ?string $stripe_id
  */
-class User extends \Illuminate\Foundation\Auth\User
+class User extends \Illuminate\Foundation\Auth\User implements \Laravel\Passport\Contracts\OAuthenticatable
 {
     use Billable;
     use HasApiTokens;

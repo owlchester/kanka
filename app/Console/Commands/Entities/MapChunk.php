@@ -4,7 +4,6 @@ namespace App\Console\Commands\Entities;
 
 use App\Jobs\ChunkMapJob;
 use App\Models\Map;
-use App\Services\Maps\ChunkingService;
 use Illuminate\Console\Command;
 
 class MapChunk extends Command
@@ -58,27 +57,5 @@ class MapChunk extends Command
     protected function dispatch(int $mapID)
     {
         return ChunkMapJob::dispatch($mapID);
-
-        /** @var ChunkingService $service */
-        /*$service = app()->make(ChunkingService::class);
-
-        $map = Map::find($mapID);
-        if (empty($map)) {
-            Log::error('Chunking map: unknown map #' . $mapID);
-            return;
-        }
-
-        $now = Carbon::now();
-        Log::info('Chunking map #' . $mapID);
-        try {
-            $service
-                ->map($map)
-                ->chunk();
-
-            $elapsed = Carbon::now()->diffInMinutes($now);
-            Log::info('Chunked map #' . $mapID . ' in ' . $elapsed . ' minutes.');
-        } catch (\Exception $e) {
-            throw $e;
-        }*/
     }
 }

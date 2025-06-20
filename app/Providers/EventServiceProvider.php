@@ -20,7 +20,6 @@ use App\Events\Campaigns\Styles\StyleDeleted;
 use App\Events\Campaigns\Styles\StyleUpdated;
 use App\Events\FeatureCreated;
 use App\Listeners\Campaigns\Applications\LogApplication;
-use App\Listeners\Campaigns\Cleanup;
 use App\Listeners\Campaigns\ClearCampaignCache;
 use App\Listeners\Campaigns\ClearCampaignThemeCache;
 use App\Listeners\Campaigns\ClearCampaignUsersSaved;
