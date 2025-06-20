@@ -2,22 +2,25 @@
 
 namespace App\Observers;
 
+use App\Events\Campaigns\Webhooks\WebhookCreated;
+use App\Events\Campaigns\Webhooks\WebhookDeleted;
+use App\Events\Campaigns\Webhooks\WebhookUpdated;
 use App\Models\Webhook;
 
 class WebhookObserver
 {
     public function created(Webhook $webhook)
     {
-        auth()->user()->campaignLog($webhook->campaign_id, 'webhooks', 'created', ['id' => $webhook->id]);
+        WebhookCreated::dispatch($webhook, auth()->user());
     }
 
     public function updated(Webhook $webhook)
     {
-        auth()->user()->campaignLog($webhook->campaign_id, 'webhooks', 'updated', ['id' => $webhook->id]);
+        WebhookUpdated::dispatch($webhook, auth()->user());    
     }
 
     public function deleted(Webhook $webhook)
     {
-        auth()->user()->campaignLog($webhook->campaign_id, 'webhooks', 'deleted', ['id' => $webhook->id]);
+        WebhookDeleted::dispatch($webhook, auth()->user());
     }
 }

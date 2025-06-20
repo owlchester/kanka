@@ -18,6 +18,10 @@ use App\Events\Campaigns\Saved;
 use App\Events\Campaigns\Styles\StyleCreated;
 use App\Events\Campaigns\Styles\StyleDeleted;
 use App\Events\Campaigns\Styles\StyleUpdated;
+use App\Events\Campaigns\Webhooks\WebhookCreated;
+use App\Events\Campaigns\Webhooks\WebhookDeleted;
+use App\Events\Campaigns\Webhooks\WebhookTested;
+use App\Events\Campaigns\Webhooks\WebhookUpdated;
 use App\Events\FeatureCreated;
 use App\Listeners\Campaigns\Applications\LogApplication;
 use App\Listeners\Campaigns\ClearCampaignCache;
@@ -30,6 +34,7 @@ use App\Listeners\Campaigns\Members\RunRoleUserJob;
 use App\Listeners\Campaigns\Plugins\ClearThemeCache;
 use App\Listeners\Campaigns\Plugins\LogPlugin;
 use App\Listeners\Campaigns\Styles\LogStyle;
+use App\Listeners\Campaigns\Webhooks\LogWebhook;
 use App\Listeners\SendFeatureNotification;
 use App\Listeners\Users\ClearUserCache;
 use Illuminate\Auth\Events\Login;
@@ -108,6 +113,18 @@ class EventServiceProvider extends ServiceProvider
         ],
         Deleted::class => [
             ClearCampaignUsersSaved::class,
+        ],
+        WebhookCreated::class => [
+            LogWebhook::class,
+        ],
+        WebhookUpdated::class => [
+            LogWebhook::class,
+        ],
+        WebhookDeleted::class => [
+            LogWebhook::class,
+        ],
+        WebhookTested::class => [
+            LogWebhook::class,
         ],
     ];
 
