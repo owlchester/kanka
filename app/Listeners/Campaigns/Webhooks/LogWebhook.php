@@ -26,14 +26,11 @@ class LogWebhook
             $event instanceof WebhookCreated => 'created',
             $event instanceof WebhookUpdated => 'updated',
             $event instanceof WebhookDeleted => 'deleted',
+            $event instanceof WebhookTested => 'tested',
         };
 
         if ($event instanceof WebhookUpdated && $event->webhook->wasChanged('status')) {
             $action = $event->webhook->status ? 'enabled' : 'disabled';
-        }
-
-        if ($event instanceof WebhookTested) {
-            $action = 'tested';
         }
 
         $event->user->campaignLog(
