@@ -84,7 +84,7 @@ class SubscriptionEndJob implements ShouldQueue
         $user->notify(
             new Header(
                 'subscriptions.' . ($this->cancelled ? 'failed' : 'ended'),
-                'fa-solid fa-credit-card',
+                'fa-regular fa-credit-card',
                 'orange'
             )
         );

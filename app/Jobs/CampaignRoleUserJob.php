@@ -51,7 +51,7 @@ class CampaignRoleUserJob
         $notification = new Header(
             'campaign.role.' . ($this->new ? 'add' : 'remove'),
             'user',
-            'green',
+            'success',
             [
                 'role' => e($this->campaignRoleUser->campaignRole->name),
                 'campaign' => e($this->campaignRoleUser->campaignRole->campaign->name),

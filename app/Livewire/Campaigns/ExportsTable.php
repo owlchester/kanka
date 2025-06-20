@@ -127,10 +127,10 @@ class ExportsTable extends Component
     public function sortIcon(): string
     {
 
-        $icon = 'fa-solid fa-arrow-down-z-a';
+        $icon = 'fa-regular fa-arrow-down-z-a';
 
         if ($this->sortDirection == 'asc') {
-            $icon = 'fa-solid fa-arrow-up-a-z';
+            $icon = 'fa-regular fa-arrow-up-a-z';
         }
 
         return '<i class="' . $icon . ' !mr-0"></i>';

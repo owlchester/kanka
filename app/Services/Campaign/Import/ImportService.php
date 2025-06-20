@@ -211,7 +211,7 @@ class ImportService
         $colour = 'red';
         if (! $this->job->isFailed()) {
             $key = 'success';
-            $colour = 'green';
+            $colour = 'success';
         }
         $this->campaign->notifyAdmins(
             new Header(

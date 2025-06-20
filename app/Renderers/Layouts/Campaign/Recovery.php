@@ -60,7 +60,7 @@ class Recovery extends Layout
             [
                 'action' => 'recover',
                 'label' => 'campaigns/recovery.actions.recover',
-                'icon' => 'fa-solid fa-history',
+                'icon' => 'fa-regular fa-history',
                 'can' => 'campaign:recover',
             ],
         ];

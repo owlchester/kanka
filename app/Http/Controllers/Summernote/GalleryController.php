@@ -41,7 +41,7 @@ class GalleryController extends Controller
                 'title' => __('crud.actions.back'),
                 'folder' => $image->is_folder,
                 'id' => $image->id,
-                'icon' => 'fa-solid fa-arrow-left',
+                'icon' => 'fa-regular fa-arrow-left',
                 'url' => route('campaign.gallery.summernote', $image->folder_id ? [$campaign, 'folder_id' => $image->folder_id] : [$campaign]),
             ];
         }
@@ -60,7 +60,7 @@ class GalleryController extends Controller
                 'src' => Storage::url($image->path),
                 'title' => $image->name,
                 'folder' => $image->is_folder,
-                'icon' => 'fa-solid fa-folder',
+                'icon' => 'fa-regular fa-folder',
                 'id' => $image->id,
                 'url' => $image->is_folder ? route('campaign.gallery.summernote', [$campaign, 'folder_id' => $image->id]) : [$campaign],
                 'thumb' => $image->getImagePath(120, 120),

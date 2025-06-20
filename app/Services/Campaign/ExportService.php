@@ -421,7 +421,7 @@ class ExportService
         $this->user->notify(new Header(
             'campaign.export',
             'download',
-            'green',
+            'success',
             [
                 'link' => route('campaign.export', $this->campaign),
                 'time' => 120,

@@ -115,7 +115,7 @@ class ApplicationService
                 new Header(
                     $key,
                     'user',
-                    'green',
+                    'success',
                     [
                         'campaign' => $this->campaign->name,
                         'reason' => $message,

@@ -643,17 +643,17 @@ class Map extends MiscModel
             $newActions[] = null;
             $newActions[] = [
                 'route' => route('maps.map_layers.index', [$campaign, $this]),
-                'icon' => 'fa-solid fa-layer-group',
+                'icon' => 'fa-regular fa-layer-group',
                 'label' => 'maps.panels.layers',
             ];
             $newActions[] = [
                 'route' => route('maps.map_groups.index', [$campaign, $this]),
-                'icon' => 'fa-solid fa-map-signs',
+                'icon' => 'fa-regular fa-map-signs',
                 'label' => 'maps.panels.groups',
             ];
             $newActions[] = [
                 'route' => route('maps.map_markers.index', [$campaign, $this]),
-                'icon' => 'fa-solid fa-map-pin',
+                'icon' => 'fa-regular fa-map-pin',
                 'label' => 'maps.panels.markers',
             ];
         }

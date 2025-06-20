@@ -14,7 +14,7 @@ class HideService
      */
     public function notify(): void
     {
-        $colour = 'green';
+        $colour = 'success';
         $icon = 'eye';
         $key = 'shown';
         if ($this->campaign->isHidden()) {

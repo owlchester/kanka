@@ -59,7 +59,7 @@ class CreateService
         $this->user->notify(new Header(
             'campaign.created',
             'check',
-            'green',
+            'success',
             [
                 'campaign' => $this->campaign->name,
                 'link' => route('dashboard', ['campaign' => $this->campaign]),

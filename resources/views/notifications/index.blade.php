@@ -1,6 +1,5 @@
 <?php /** @var \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Pagination\LengthAwarePaginator  $notifications */
-use \Illuminate\Support\Arr;
-use \Illuminate\Support\Str;
+
 ?>
 @extends('layouts.app', [
     'title' => __('notifications.index.title'),
@@ -31,41 +30,8 @@ use \Illuminate\Support\Str;
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
                     <tbody>
-                    <?php /** @var \Illuminate\Notifications\DatabaseNotification $notification */?>
                     @foreach ($notifications as $notification)
-                        <tr class="@if(!$notification->read()) info @endif">
-                            <td>
-                            @if (!empty($notification->data['icon']))
-                                <i class="fa-regular fa-{{ $notification->data['icon'] }} text-{{ $notification->data['colour'] }}"></i>
-                                    @if(Arr::has($notification->data['params'], 'link'))
-        @php
-        $url = $notification->data['params']['link'];
-        if (!Str::startsWith($url, 'http')) {
-            $url = url(app()->getLocale() . '/' . $url);
-        }
-        // Fix to new links?
-        //$url = \Illuminate\Support\Str::replace(['/campaign/'], ['/w/'], $url);
-        @endphp
-                                        <a href="{{ $url }}">
-                                            {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
-                                        </a>
-                                    @elseif (Arr::has($notification->data['params'], 'route'))
-                                        <a href="{{ route($notification->data['params']['route']) }}">
-                                            {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
-                                        </a>
-                                    @else
-                                        {!! __('notifications.' . $notification->data['key'], $notification->data['params']) !!}
-                                    @endif
-                                @else
-                                    <p>{!! __('notifications.' . $notification->data['key'] . '.body')!!}</p>
-                                @endif
-                            </td>
-                            <td class="text-right">
-                                <span class="text-neutral-content " title="{{ $notification->created_at }}">
-                                    {{ $notification->created_at->diffForHumans() }}
-                                </span>
-                            </td>
-                        </tr>
+                        @include('notifications._notification')
                     @endforeach
                     </tbody>
                 </table>

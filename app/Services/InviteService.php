@@ -124,7 +124,7 @@ class InviteService
             new Header(
                 'campaign.join',
                 'user',
-                'green',
+                'success',
                 [
                     'user' => $this->user->name,
                     'campaign' => $campaign->name,
