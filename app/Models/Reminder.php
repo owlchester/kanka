@@ -566,7 +566,6 @@ class Reminder extends Model
             ->where('type_id', EntityEventType::DEATH);
     }
 
-
     /**
      * Patch an entity from the datagrid2 batch editing
      */

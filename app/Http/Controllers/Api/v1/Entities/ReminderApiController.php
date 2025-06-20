@@ -33,7 +33,7 @@ class ReminderApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
         $data = $request->all();
-        if (!isset($data['length'])) {
+        if (! isset($data['length'])) {
             $data['length'] = 1;
         }
         $model = new Reminder($data);
