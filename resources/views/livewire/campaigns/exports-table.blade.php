@@ -49,9 +49,7 @@
                         @endif
                     </td>
                     <td>
-                        <span class="elapsed text-neutral-content text-xs" title="{{ $campaignExport->created_at }} UTC">
-                            {{ $campaignExport->created_at->diffForHumans() }}
-                        </span>
+                        <x-since :date="$campaignExport->created_at" />
                     </td>
                     <td>
                         {!! $this->progress($campaignExport) !!}

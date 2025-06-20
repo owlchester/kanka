@@ -4,6 +4,7 @@ namespace App\Renderers\Layouts\Campaign;
 
 use App\Facades\CampaignLocalization;
 use App\Models\CampaignRole;
+use App\Renderers\Layouts\Columns\Standard;
 use App\Renderers\Layouts\Layout;
 
 class CampaignUser extends Layout
@@ -67,26 +68,19 @@ class CampaignUser extends Layout
             'created_at' => [
                 'key' => 'created_at',
                 'label' => 'campaigns.members.fields.joined',
-                'render' => function (\App\Models\CampaignUser $model) {
-                    $html = '';
-
-                    if (! empty($model->created_at)) {
-                        $html = '<span data-title="' . $model->created_at . 'UTC" data-toggle="tooltip">' . $model->created_at->diffForHumans() . '</span>';
-                    }
-
-                    return $html;
-                },
+                'render' => Standard::SINCE,
             ],
             'last_login' => [
                 'key' => 'user.last_login',
                 'label' => 'campaigns.members.fields.last_login',
                 'render' => function (\App\Models\CampaignUser $model) {
-                    $html = '';
-                    if ($model->user->has_last_login_sharing && ! empty($model->user->last_login_at)) {
-                        $html = '<span data-title="' . $model->user->last_login_at . 'UTC" data-toggle="tooltip">' . $model->user->last_login_at->diffForHumans() . '</span>';
-                    }
 
-                    return $html;
+                    if ($model->user->has_last_login_sharing && ! empty($model->user->last_login_at)) {
+                        return \Illuminate\Support\Facades\Blade::renderComponent(
+                            new \App\View\Components\Since(date: $model->user->last_login_at, withTime: false)
+                        );
+                    }
+                    return '';
                 },
             ],
 
