@@ -44,7 +44,7 @@ You can get a list of all the posts of an entity by using the following endpoint
             "tags": [],
             "calendar_id": 102,
             "calendar_year": 2020,
-            "calendar_month": "Novus",
+            "calendar_month": 3,
             "calendar_day": 2,
             "calendar_reminder_length": 3
         }
@@ -83,7 +83,7 @@ To get the details of a single post, use the following endpoint.
         "tags": [],
         "calendar_id": 102,
         "calendar_year": 2020,
-        "calendar_month": "Novus",
+        "calendar_month": 3,
         "calendar_day": 2,
         "calendar_reminder_length": 3
     }
