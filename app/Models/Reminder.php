@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Str;
 
 /**
@@ -558,12 +559,13 @@ class Reminder extends Model
         return $month--;
     }
 
-    public function death()
+    public function death(): MorphOne
     {
         return $this->morphOne(Reminder::class, 'remindable')
             ->whereColumn('calendar_id', 'reminders.calendar_id')
             ->where('type_id', EntityEventType::DEATH);
     }
+
 
     /**
      * Patch an entity from the datagrid2 batch editing

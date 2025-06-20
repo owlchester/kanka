@@ -78,7 +78,9 @@ class StatService
         // @phpstan-ignore-next-line
         $this->stats['modules']['abilities'] = EntityAbility::withPrivate()->leftJoin('entities', 'entities.id', 'entity_abilities.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
         // @phpstan-ignore-next-line
-        $this->stats['modules']['reminders'] = Reminder::withPrivate()->leftJoin('entities', 'entities.id', 'reminders.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
+        $this->stats['modules']['reminders'] = Reminder::withPrivate()->whereHas('remindable', function ($query) {
+            $query->where('campaign_id', $this->campaign->id);
+        })->count();
         // @phpstan-ignore-next-line
         $this->stats['modules']['inventories'] = Inventory::withPrivate()->leftJoin('entities', 'entities.id', 'inventories.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
         // @phpstan-ignore-next-line
