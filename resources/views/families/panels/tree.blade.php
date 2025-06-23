@@ -1,7 +1,6 @@
 
 <div id="family-tree">
     <family-tree
-        is_premium="{{ $campaign->premium() }}"
         permission="{{ auth()->check() && auth()->user()->can('update', $family->entity) }}"
         api="{{ route('families.family-tree.api', [$campaign, $family]) }}"
         save_api="{{ route('families.family-tree.api-save', [$campaign, $family]) }}"

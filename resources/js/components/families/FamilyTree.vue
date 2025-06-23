@@ -328,7 +328,7 @@ export default {
             };
             // If the first node is the uuid, delete everything
             if (array[0].uuid === uuid) {
-                return array.splice(0, 1);
+                return [];
             }
             return array.reduce(getNodes, []);
         },
