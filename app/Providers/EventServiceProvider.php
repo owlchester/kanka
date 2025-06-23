@@ -12,6 +12,7 @@ use App\Events\Campaigns\Invites\InviteCreated;
 use App\Events\Campaigns\Invites\InviteDeleted;
 use App\Events\Campaigns\Members\RoleUserAdded;
 use App\Events\Campaigns\Members\RoleUserRemoved;
+use App\Events\Campaigns\Members\Switched;
 use App\Events\Campaigns\Members\UserJoined;
 use App\Events\Campaigns\Members\UserLeft;
 use App\Events\Campaigns\Plugins\PluginDeleted;
@@ -33,7 +34,9 @@ use App\Events\Campaigns\Webhooks\WebhookCreated;
 use App\Events\Campaigns\Webhooks\WebhookDeleted;
 use App\Events\Campaigns\Webhooks\WebhookTested;
 use App\Events\Campaigns\Webhooks\WebhookUpdated;
+use App\Events\Entities\EntityRestored;
 use App\Events\FeatureCreated;
+use App\Events\Posts\PostRestored;
 use App\Listeners\Campaigns\Admins\Notify;
 use App\Listeners\Campaigns\Applications\LogApplication;
 use App\Listeners\Campaigns\Campaigns\LogCampaign;
@@ -53,6 +56,8 @@ use App\Listeners\Campaigns\Sidebar\LogSidebar;
 use App\Listeners\Campaigns\Styles\LogStyle;
 use App\Listeners\Campaigns\Thumbnails\LogThumbnail;
 use App\Listeners\Campaigns\Webhooks\LogWebhook;
+use App\Listeners\Entities\LogEntity;
+use App\Listeners\Posts\LogPost;
 use App\Listeners\SendFeatureNotification;
 use App\Listeners\Users\ClearUserCache;
 use Illuminate\Auth\Events\Login;
@@ -185,6 +190,15 @@ class EventServiceProvider extends ServiceProvider
             Notify::class,
             ClearUserCache::class,
             LogMember::class,
+        ],
+        Switched::class => [
+            LogMember::class,
+        ],
+        EntityRestored::class => [
+            LogEntity::class,
+        ],
+        PostRestored::class => [
+            LogPost::class,
         ],
     ];
 

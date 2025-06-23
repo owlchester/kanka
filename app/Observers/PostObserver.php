@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Enums\UserAction;
+use App\Events\Posts\PostRestored;
 use App\Facades\Identity;
 use App\Models\EntityLog;
 use App\Models\Post;
@@ -178,5 +179,10 @@ class PostObserver
         }
 
         return true;
+    }
+
+    public function restored(Post $post)
+    {
+        PostRestored::dispatch($post, auth()->user());
     }
 }

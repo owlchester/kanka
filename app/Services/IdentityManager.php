@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Enums\UserAction;
+use App\Events\Campaigns\Members\Switched;
 use App\Models\CampaignUser;
 use App\Models\User;
 use App\Traits\CampaignAware;
@@ -29,8 +30,7 @@ class IdentityManager
     public function switch(CampaignUser $campaignUser): bool
     {
         try {
-
-            auth()->user()->campaignLog($campaignUser->campaign_id, 'members', 'switch', ['to' => $campaignUser->user->name]);
+            Switched::dispatch($campaignUser->campaign, auth()->user(), $campaignUser);
 
             // Save the current user in the session to know we have limitation on the current user.
             session()->put($this->getSessionKey(), $this->app['auth']->user()->id);
