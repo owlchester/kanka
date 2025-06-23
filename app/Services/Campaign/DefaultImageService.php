@@ -2,7 +2,8 @@
 
 namespace App\Services\Campaign;
 
-use App\Facades\CampaignCache;
+use App\Events\Campaigns\Thumbnails\ThumbnailCreated;
+use App\Events\Campaigns\Thumbnails\ThumbnailDeleted;
 use App\Models\Image;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
@@ -47,9 +48,7 @@ class DefaultImageService
         $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
 
-        CampaignCache::clear();
-
-        $this->user->campaignLog($this->campaign->id, 'thumbnails', 'created', ['type' => $this->entityType->code]);
+        ThumbnailCreated::dispatch($this->campaign, $this->entityType, $this->user);
 
         return true;
     }
@@ -78,9 +77,7 @@ class DefaultImageService
         $this->campaign->default_images = $images;
         $this->campaign->saveQuietly();
 
-        CampaignCache::clear();
-
-        $this->user->campaignLog($this->campaign->id, 'thumbnails', 'deleted', ['type' => $this->entityType->code]);
+        ThumbnailDeleted::dispatch($this->campaign, $this->entityType, $this->user);
 
         return true;
     }

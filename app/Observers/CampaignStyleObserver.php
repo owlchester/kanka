@@ -22,7 +22,7 @@ class CampaignStyleObserver
 
     public function created(CampaignStyle $campaignStyle)
     {
-        StyleCreated::dispatch($campaignStyle, auth()->user());
+        ThumbnailCreated::dispatch($campaignStyle, auth()->user());
     }
 
     public function updated(CampaignStyle $campaignStyle)

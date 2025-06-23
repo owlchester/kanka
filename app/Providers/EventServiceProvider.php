@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\Campaigns\Applications\Accepted;
 use App\Events\Campaigns\Applications\Rejected;
 use App\Events\Campaigns\Deleted;
+use App\Events\Campaigns\Exports\ExportCreated;
 use App\Events\Campaigns\Followers\FollowerCreated;
 use App\Events\Campaigns\Followers\FollowerRemoved;
 use App\Events\Campaigns\Invites\InviteCreated;
@@ -18,9 +19,13 @@ use App\Events\Campaigns\Roles\RoleCreated;
 use App\Events\Campaigns\Roles\RoleDeleted;
 use App\Events\Campaigns\Roles\RoleUpdated;
 use App\Events\Campaigns\Saved;
+use App\Events\Campaigns\Sidebar\SidebarReset;
+use App\Events\Campaigns\Sidebar\SidebarSaved;
 use App\Events\Campaigns\Styles\StyleCreated;
 use App\Events\Campaigns\Styles\StyleDeleted;
 use App\Events\Campaigns\Styles\StyleUpdated;
+use App\Events\Campaigns\Thumbnails\ThumbnailCreated;
+use App\Events\Campaigns\Thumbnails\ThumbnailDeleted;
 use App\Events\Campaigns\Updated;
 use App\Events\Campaigns\Webhooks\WebhookCreated;
 use App\Events\Campaigns\Webhooks\WebhookDeleted;
@@ -32,6 +37,7 @@ use App\Listeners\Campaigns\Campaigns\LogCampaign;
 use App\Listeners\Campaigns\ClearCampaignCache;
 use App\Listeners\Campaigns\ClearCampaignThemeCache;
 use App\Listeners\Campaigns\ClearCampaignUsersSaved;
+use App\Listeners\Campaigns\Exports\LogExport;
 use App\Listeners\Campaigns\Followers\UpdateFollowerCount;
 use App\Listeners\Campaigns\Invites\LogInvite;
 use App\Listeners\Campaigns\Members\LogUserRoleChanged;
@@ -39,7 +45,9 @@ use App\Listeners\Campaigns\Members\RunRoleUserJob;
 use App\Listeners\Campaigns\Plugins\ClearThemeCache;
 use App\Listeners\Campaigns\Plugins\LogPlugin;
 use App\Listeners\Campaigns\Roles\LogRole;
+use App\Listeners\Campaigns\Sidebar\LogSidebar;
 use App\Listeners\Campaigns\Styles\LogStyle;
+use App\Listeners\Campaigns\Thumbnails\LogThumbnail;
 use App\Listeners\Campaigns\Webhooks\LogWebhook;
 use App\Listeners\SendFeatureNotification;
 use App\Listeners\Users\ClearUserCache;
@@ -145,6 +153,23 @@ class EventServiceProvider extends ServiceProvider
         ],
         RoleDeleted::class => [
             LogRole::class,
+            ClearCampaignCache::class,
+        ],
+        ExportCreated::class => [
+            LogExport::class,
+        ],
+        SidebarSaved::class => [
+            LogSidebar::class,
+        ],
+        SidebarReset::class => [
+            LogSidebar::class,
+        ],
+        ThumbnailCreated::class => [
+            LogThumbnail::class,
+            ClearCampaignCache::class,
+        ],
+        ThumbnailDeleted::class => [
+            LogThumbnail::class,
             ClearCampaignCache::class,
         ],
     ];

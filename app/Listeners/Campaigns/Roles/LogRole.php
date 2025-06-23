@@ -5,8 +5,6 @@ namespace App\Listeners\Campaigns\Roles;
 use App\Events\Campaigns\Roles\RoleCreated;
 use App\Events\Campaigns\Roles\RoleDeleted;
 use App\Events\Campaigns\Roles\RoleUpdated;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class LogRole
 {

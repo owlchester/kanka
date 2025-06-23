@@ -2,6 +2,8 @@
 
 namespace App\Services\Campaign\Sidebar;
 
+use App\Events\Campaigns\Sidebar\SidebarReset;
+use App\Events\Campaigns\Sidebar\SidebarSaved;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Cache;
@@ -16,7 +18,7 @@ class SaveService
     /**
      * Save the new config into the database, somehow.
      */
-    public function save(array $data)
+    public function save(array $data): void
     {
         // Prepare the data for the database
         $ui = $this->campaign->ui_settings;
@@ -83,24 +85,24 @@ class SaveService
         $this->campaign->ui_settings = $ui;
         $this->campaign->save();
 
-        $this->user->campaignLog($this->campaign->id, 'sidebar', 'updated');
+        SidebarSaved::dispatch($this->campaign, $this->user);
 
         $this->clearCache();
     }
 
-    public function reset()
+    public function reset(): void
     {
         $ui = $this->campaign->ui_settings;
         unset($ui['sidebar']);
         $this->campaign->ui_settings = $ui;
         $this->campaign->save();
 
-        $this->user->campaignLog($this->campaign->id, 'sidebar', 'reset');
+        SidebarReset::dispatch($this->campaign, $this->user);
 
         $this->clearCache();
     }
 
-    public function clearCache()
+    public function clearCache(): void
     {
         Cache::forget($this->cacheKey());
     }

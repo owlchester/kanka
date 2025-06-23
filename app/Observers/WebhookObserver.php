@@ -16,7 +16,7 @@ class WebhookObserver
 
     public function updated(Webhook $webhook)
     {
-        WebhookUpdated::dispatch($webhook, auth()->user());    
+        WebhookUpdated::dispatch($webhook, auth()->user());
     }
 
     public function deleted(Webhook $webhook)

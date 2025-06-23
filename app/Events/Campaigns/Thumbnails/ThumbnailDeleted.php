@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Events\Campaigns\Webhooks;
+namespace App\Events\Campaigns\Thumbnails;
 
+use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\User;
-use App\Models\Webhook;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class WebhookCreated
+class ThumbnailDeleted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -17,8 +18,9 @@ class WebhookCreated
      * Create a new event instance.
      */
     public function __construct(
-        public Webhook $webhook,
-        public ?User $user,
+        public Campaign $campaign,
+        public EntityType $entityType,
+        public User $user,
     ) {
         //
     }

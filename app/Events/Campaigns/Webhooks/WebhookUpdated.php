@@ -2,8 +2,8 @@
 
 namespace App\Events\Campaigns\Webhooks;
 
-use App\Models\Webhook;
 use App\Models\User;
+use App\Models\Webhook;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Events\Campaigns\Webhooks;
+namespace App\Events\Campaigns\Sidebar;
 
+use App\Models\Campaign;
 use App\Models\User;
-use App\Models\Webhook;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class WebhookCreated
+class SidebarReset
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -17,7 +17,7 @@ class WebhookCreated
      * Create a new event instance.
      */
     public function __construct(
-        public Webhook $webhook,
+        public Campaign $campaign,
         public ?User $user,
     ) {
         //
