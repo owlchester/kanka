@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Enums\UserAction;
 use App\Models\User;
 use Closure;
+use App\Facades\Identity as IdentityFacade;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -38,6 +39,11 @@ class LocaleChange
             $locale = $this->currentLocale();
             LaravelLocalization::setLocale($locale);
 
+            return $next($request);
+        }
+
+        // If we are impersonating someone, you guessed it, don't touch it either
+        if (IdentityFacade::isImpersonating()) {
             return $next($request);
         }
 
