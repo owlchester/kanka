@@ -9,6 +9,7 @@ use App\Models\Entity;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Services\MultiEditingService;
+use App\Services\Posts\Permissions\SavePermissionsService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 
@@ -16,6 +17,11 @@ class PostController extends Controller
 {
     use CampaignAware;
     use GuestAuthTrait;
+
+    public function __construct(
+        protected SavePermissionsService $savePermissionsService,
+        protected MultiEditingService $editingService,
+    ) {}
 
     public function index(Campaign $campaign, Entity $entity)
     {
@@ -71,6 +77,8 @@ class PostController extends Controller
         $data['entity_id'] = $entity->id;
         $post = Post::create($data);
 
+        $this->savePermissionsService->post($post)->request($request)->save();
+
         if ($request->has('submit-new')) {
             $route = route('entities.posts.create', [$campaign, $entity]);
 
@@ -97,12 +105,10 @@ class PostController extends Controller
         $model = $post;
 
         if ($campaign->hasEditingWarning()) {
-            /** @var MultiEditingService $editingService */
-            $editingService = app()->make(MultiEditingService::class);
-            $editingUsers = $editingService->model($model)->user(auth()->user())->users();
+            $editingUsers = $this->editingService->model($model)->user(auth()->user())->users();
             // If no one is editing the model, we are now editing it
             if (empty($editingUsers)) {
-                $editingService->edit();
+                $this->editingService->edit();
             }
         }
 
@@ -134,10 +140,12 @@ class PostController extends Controller
             unset($data['position']);
         }
         $post->update($data);
+        $this->savePermissionsService
+            ->post($post)
+            ->request($request)
+            ->save();
 
-        /** @var MultiEditingService $editingService */
-        $editingService = app()->make(MultiEditingService::class);
-        $editingService->model($post)
+        $this->editingService->model($post)
             ->user($request->user())
             ->finish();
 

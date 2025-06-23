@@ -36,7 +36,10 @@ use App\Events\Campaigns\Webhooks\WebhookTested;
 use App\Events\Campaigns\Webhooks\WebhookUpdated;
 use App\Events\Entities\EntityRestored;
 use App\Events\FeatureCreated;
+use App\Events\Posts\PostCreated;
+use App\Events\Posts\PostDeleted;
 use App\Events\Posts\PostRestored;
+use App\Events\Posts\PostUpdated;
 use App\Listeners\Campaigns\Admins\Notify;
 use App\Listeners\Campaigns\Applications\LogApplication;
 use App\Listeners\Campaigns\Campaigns\LogCampaign;
@@ -198,6 +201,15 @@ class EventServiceProvider extends ServiceProvider
             LogEntity::class,
         ],
         PostRestored::class => [
+            LogPost::class,
+        ],
+        PostCreated::class => [
+            LogPost::class,
+        ],
+        PostUpdated::class => [
+            LogPost::class,
+        ],
+        PostDeleted::class => [
             LogPost::class,
         ],
     ];
