@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Events\Campaigns\Dashboards\DashboardCreated;
+use App\Events\Campaigns\Dashboards\DashboardUpdated;
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Models\CampaignDashboard;
@@ -127,7 +129,7 @@ class DashboardService
             ->roles()
             ->copy();
 
-        CampaignCache::clear();
+        DashboardCreated::dispatch($this->dashboard, auth()->user());
 
         return $this->dashboard;
     }
@@ -240,7 +242,7 @@ class DashboardService
             $role->delete();
         }
 
-        CampaignCache::clear();
+        DashboardUpdated::dispatch($this->dashboard, auth()->user());
 
         return $this->dashboard;
     }

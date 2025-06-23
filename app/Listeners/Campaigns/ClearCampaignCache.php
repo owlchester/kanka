@@ -21,6 +21,7 @@ class ClearCampaignCache
     {
         $campaign = $event->campaignRoleUser->campaignRole->campaign
             ?? $event->campaign
+            ?? $event->campaignDashboard->campaign
             ?? null;
 
         CampaignCache::campaign($campaign)->clear();
