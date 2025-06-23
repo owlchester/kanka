@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
+use App\Events\Campaigns\Members\UserJoined;
 use App\Exceptions\RequireLoginException;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\CampaignInvite;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
-use App\Notifications\Header;
 use App\Services\Campaign\FollowService;
 use App\Traits\UserAware;
 use Exception;
@@ -119,24 +119,7 @@ class InviteService
                 ->remove();
         }
 
-        // Notify all admins of the campaign
-        $campaign->notifyAdmins(
-            new Header(
-                'campaign.join',
-                'user',
-                'success',
-                [
-                    'user' => $this->user->name,
-                    'campaign' => $campaign->name,
-                    'link' => route('dashboard', $campaign),
-                ]
-            )
-        );
-
-        $this->user->campaignLog($campaign->id, 'members', 'join', ['invite' => $invite->id]);
-
-        // Make sure the user's cache is cleared
-        UserCache::clear();
+        UserJoined::dispatch($campaign, $this->user, $invite);
 
         return $role->campaign;
     }

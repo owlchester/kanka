@@ -12,6 +12,8 @@ use App\Events\Campaigns\Invites\InviteCreated;
 use App\Events\Campaigns\Invites\InviteDeleted;
 use App\Events\Campaigns\Members\RoleUserAdded;
 use App\Events\Campaigns\Members\RoleUserRemoved;
+use App\Events\Campaigns\Members\UserJoined;
+use App\Events\Campaigns\Members\UserLeft;
 use App\Events\Campaigns\Plugins\PluginDeleted;
 use App\Events\Campaigns\Plugins\PluginImported;
 use App\Events\Campaigns\Plugins\PluginUpdated;
@@ -32,6 +34,7 @@ use App\Events\Campaigns\Webhooks\WebhookDeleted;
 use App\Events\Campaigns\Webhooks\WebhookTested;
 use App\Events\Campaigns\Webhooks\WebhookUpdated;
 use App\Events\FeatureCreated;
+use App\Listeners\Campaigns\Admins\Notify;
 use App\Listeners\Campaigns\Applications\LogApplication;
 use App\Listeners\Campaigns\Campaigns\LogCampaign;
 use App\Listeners\Campaigns\ClearCampaignCache;
@@ -40,6 +43,7 @@ use App\Listeners\Campaigns\ClearCampaignUsersSaved;
 use App\Listeners\Campaigns\Exports\LogExport;
 use App\Listeners\Campaigns\Followers\UpdateFollowerCount;
 use App\Listeners\Campaigns\Invites\LogInvite;
+use App\Listeners\Campaigns\Members\LogMember;
 use App\Listeners\Campaigns\Members\LogUserRoleChanged;
 use App\Listeners\Campaigns\Members\RunRoleUserJob;
 use App\Listeners\Campaigns\Plugins\ClearThemeCache;
@@ -171,6 +175,16 @@ class EventServiceProvider extends ServiceProvider
         ThumbnailDeleted::class => [
             LogThumbnail::class,
             ClearCampaignCache::class,
+        ],
+        UserJoined::class => [
+            Notify::class,
+            ClearUserCache::class,
+            LogMember::class,
+        ],
+        UserLeft::class => [
+            Notify::class,
+            ClearUserCache::class,
+            LogMember::class,
         ],
     ];
 

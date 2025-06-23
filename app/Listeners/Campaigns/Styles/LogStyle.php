@@ -2,7 +2,6 @@
 
 namespace App\Listeners\Campaigns\Styles;
 
-use App\Events\Campaigns\Styles\StyleCreated;
 use App\Events\Campaigns\Styles\StyleDeleted;
 use App\Events\Campaigns\Styles\StyleUpdated;
 
