@@ -4,12 +4,15 @@ namespace App\Events\Campaigns;
 
 use App\Models\Campaign;
 use App\Models\User;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class Saved
+class Updated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,7 +22,8 @@ class Saved
     public function __construct(
         public Campaign $campaign,
         public User $user,
-    ) {
+    )
+    {
         //
     }
 

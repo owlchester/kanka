@@ -105,12 +105,6 @@ class ApplicationController extends Controller
         $campaign->update([
             'is_open' => $request->get('status'),
         ]);
-        auth()->user()->campaignLog(
-            $campaign->id,
-            'applications',
-            'switch',
-            ['new' => $campaign->isOpen() ? 'open' : 'closed']
-        );
 
         return redirect()
             ->route('applications.index', $campaign)

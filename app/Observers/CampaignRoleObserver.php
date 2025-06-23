@@ -2,35 +2,25 @@
 
 namespace App\Observers;
 
-use App\Facades\CampaignCache;
+use App\Events\Campaigns\Roles\RoleCreated;
+use App\Events\Campaigns\Roles\RoleDeleted;
+use App\Events\Campaigns\Roles\RoleUpdated;
 use App\Models\CampaignRole;
 
 class CampaignRoleObserver
 {
-    /**
-     * Created or updated role, clear the cache
-     */
-    public function saved(CampaignRole $campaignRole)
-    {
-        CampaignCache::clear();
-    }
-
     public function created(CampaignRole $campaignRole)
     {
-        auth()->user()->campaignLog($campaignRole->campaign_id, 'roles', 'created', ['id' => $campaignRole->id, 'name' => $campaignRole->name]);
+        RoleCreated::dispatch($campaignRole, auth()->user());
     }
 
     public function deleted(CampaignRole $campaignRole)
     {
-        CampaignCache::clear();
-        auth()->user()->campaignLog($campaignRole->campaign_id, 'roles', 'deleted', ['id' => $campaignRole->id, 'name' => $campaignRole->name]);
+        RoleDeleted::dispatch($campaignRole, auth()->user());
     }
 
     public function updated(CampaignRole $campaignRole)
     {
-        if ($campaignRole->isAdmin()) {
-            CampaignCache::clear();
-        }
-        auth()->user()->campaignLog($campaignRole->campaign_id, 'roles', 'updated', ['id' => $campaignRole->id, 'name' => $campaignRole->name]);
+        RoleUpdated::dispatch($campaignRole, auth()->user());
     }
 }

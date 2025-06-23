@@ -14,16 +14,21 @@ use App\Events\Campaigns\Members\RoleUserRemoved;
 use App\Events\Campaigns\Plugins\PluginDeleted;
 use App\Events\Campaigns\Plugins\PluginImported;
 use App\Events\Campaigns\Plugins\PluginUpdated;
+use App\Events\Campaigns\Roles\RoleCreated;
+use App\Events\Campaigns\Roles\RoleDeleted;
+use App\Events\Campaigns\Roles\RoleUpdated;
 use App\Events\Campaigns\Saved;
 use App\Events\Campaigns\Styles\StyleCreated;
 use App\Events\Campaigns\Styles\StyleDeleted;
 use App\Events\Campaigns\Styles\StyleUpdated;
+use App\Events\Campaigns\Updated;
 use App\Events\Campaigns\Webhooks\WebhookCreated;
 use App\Events\Campaigns\Webhooks\WebhookDeleted;
 use App\Events\Campaigns\Webhooks\WebhookTested;
 use App\Events\Campaigns\Webhooks\WebhookUpdated;
 use App\Events\FeatureCreated;
 use App\Listeners\Campaigns\Applications\LogApplication;
+use App\Listeners\Campaigns\Campaigns\LogCampaign;
 use App\Listeners\Campaigns\ClearCampaignCache;
 use App\Listeners\Campaigns\ClearCampaignThemeCache;
 use App\Listeners\Campaigns\ClearCampaignUsersSaved;
@@ -33,6 +38,7 @@ use App\Listeners\Campaigns\Members\LogUserRoleChanged;
 use App\Listeners\Campaigns\Members\RunRoleUserJob;
 use App\Listeners\Campaigns\Plugins\ClearThemeCache;
 use App\Listeners\Campaigns\Plugins\LogPlugin;
+use App\Listeners\Campaigns\Roles\LogRole;
 use App\Listeners\Campaigns\Styles\LogStyle;
 use App\Listeners\Campaigns\Webhooks\LogWebhook;
 use App\Listeners\SendFeatureNotification;
@@ -111,6 +117,9 @@ class EventServiceProvider extends ServiceProvider
         Saved::class => [
             ClearCampaignUsersSaved::class,
         ],
+        Updated::class => [
+            LogCampaign::class,
+        ],
         Deleted::class => [
             ClearCampaignUsersSaved::class,
         ],
@@ -125,6 +134,18 @@ class EventServiceProvider extends ServiceProvider
         ],
         WebhookTested::class => [
             LogWebhook::class,
+        ],
+        RoleCreated::class => [
+            LogRole::class,
+            ClearCampaignCache::class,
+        ],
+        RoleUpdated::class => [
+            LogRole::class,
+            ClearCampaignCache::class,
+        ],
+        RoleDeleted::class => [
+            LogRole::class,
+            ClearCampaignCache::class,
         ],
     ];
 

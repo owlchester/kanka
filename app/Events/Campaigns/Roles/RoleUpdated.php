@@ -1,15 +1,18 @@
 <?php
 
-namespace App\Events\Campaigns;
+namespace App\Events\Campaigns\Roles;
 
-use App\Models\Campaign;
+use App\Models\CampaignRole;
 use App\Models\User;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class Saved
+class RoleUpdated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -17,9 +20,10 @@ class Saved
      * Create a new event instance.
      */
     public function __construct(
-        public Campaign $campaign,
-        public User $user,
-    ) {
+        public CampaignRole $campaignRole,
+        public User $user
+    )
+    {
         //
     }
 

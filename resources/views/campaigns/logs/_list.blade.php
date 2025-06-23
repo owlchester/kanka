@@ -56,13 +56,15 @@
             <td>
                 {{ \Illuminate\Support\Arr::get($log->data, 'action') }}
             </td>
-            <td>
+            <td class="">
+                <div class="flex flex-wrap gap-1">
                 @foreach ($log->data as $key => $val)
                     @if (in_array($key, ['module', 'action'])) @continue @endif
-                        <div class="text-xs">
+                        <div class="text-xs rounded-2xl px-2 py-1 border border-base-300">
                             {{ $key }}: {{ $val }}
                         </div>
                 @endforeach
+                </div>
             </td>
             <td>
                 <x-since :date="$log->created_at" />

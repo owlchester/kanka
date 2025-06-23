@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Events\Campaigns\Deleted;
 use App\Events\Campaigns\Saved;
+use App\Events\Campaigns\Updated;
 use App\Models\Campaign;
 use App\Services\Mentions\SaveService;
 
@@ -49,7 +50,12 @@ class CampaignObserver
 
     public function saved(Campaign $campaign)
     {
-        Saved::dispatch($campaign);
+        Saved::dispatch($campaign, auth()->user());
+    }
+
+    public function updated(Campaign $campaign)
+    {
+        Updated::dispatch($campaign, auth()->user());
     }
 
     public function deleted(Campaign $campaign)
