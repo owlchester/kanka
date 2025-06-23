@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Campaign;
 
+use App\Events\Campaigns\Webhooks\WebhookTested;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWebhook;
@@ -143,7 +144,6 @@ class WebhookController extends Controller
         }
 
         $webhook->update(['status' => ! $webhook->status]);
-        auth()->user()->campaignLog($campaign->id, 'webhooks', 'toggle', ['id' => $webhook->id]);
 
         return redirect()->route('webhooks.index', $campaign)
             ->with(
@@ -206,7 +206,7 @@ class WebhookController extends Controller
 
         TestWebhookJob::dispatch($campaign, auth()->user(), $webhook);
 
-        auth()->user()->campaignLog($campaign->id, 'webhooks', 'test', ['id' => $webhook->id]);
+        WebhookTested::dispatch($webhook, auth()->user());
 
         return redirect()->route('webhooks.index', $campaign)
             ->with(
