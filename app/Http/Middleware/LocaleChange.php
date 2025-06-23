@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use App\Enums\UserAction;
+use App\Facades\Identity as IdentityFacade;
 use App\Models\User;
 use Closure;
-use App\Facades\Identity as IdentityFacade;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
