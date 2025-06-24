@@ -229,7 +229,7 @@ class EntityMappingService
                 continue;
             }
 
-            /** @var Entity|Post|null $target */
+            /** @var ?Entity $target */
             $target = $this->getTarget($id, $entityType);
             if (! $target) {
                 continue;

@@ -85,8 +85,6 @@ class User extends \Illuminate\Foundation\Auth\User implements \Laravel\Passport
 
     /**
      * The attributes that should be hidden for arrays.
-     *
-     * @var array<int, string>
      */
     protected $hidden = [
         'password', 'remember_token', 'card_expires_at',

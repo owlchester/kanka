@@ -43,7 +43,6 @@ class CampaignUserPolicy
         }
 
         // Check if the user was added to the admin role recently
-        /** @var CampaignRole $adminRole */
         $adminRole = UserCache::adminRole();
         $role = $campaignUser->user->campaignRoleUser->where('campaign_role_id', $adminRole['id'])->first();
 

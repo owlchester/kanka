@@ -833,6 +833,7 @@ class MentionsService
     protected function mapCodes()
     {
         // Re-use the same markupFixer to keep references of previously generated slugs on this page
+        // @phpstan-ignore-next-line
         if (! isset($this->markupFixer)) {
             $this->markupFixer = new MarkupFixer(null, new TocSlugify);
         }

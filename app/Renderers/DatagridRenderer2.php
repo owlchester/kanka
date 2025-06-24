@@ -261,7 +261,7 @@ class DatagridRenderer2
      */
     public function isHighlighted(mixed $row): bool
     {
-        if (! isset($this->highlight) || ! $this->highlight instanceof Closure) {
+        if (! isset($this->highlight)) {
             return false;
         }
 

@@ -128,10 +128,11 @@ class ImporterService
         // Updating?
         /** @var ?Entity $model */
         $model = null;
-        /** @var ?Entity $modifiedEntity */
+        /** @var ?Entity $entity */
         $entity = $this->importedEntities
             ->where('marketplace_uuid', $pluginEntity->uuid)
-            ->where('type_id', $pluginEntity->type_id)->first();
+            ->where('type_id', $pluginEntity->type_id)
+            ->first();
         /** @var ?Entity $modifiedEntity */
         $modifiedEntity = $this->importedEntities
             ->where('marketplace_uuid', $pluginEntity->uuid)
