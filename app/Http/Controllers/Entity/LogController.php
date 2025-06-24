@@ -31,17 +31,17 @@ class LogController extends Controller
                 $sub->where('parent_type', Entity::class)
                     ->where('parent_id', $entity->id);
             })
-            ->orWhere(function ($sub) use ($postIds) {
-                $sub->where('parent_type', Post::class)
-                    ->whereIn('parent_id', $postIds);
-            });
-            })
+                ->orWhere(function ($sub) use ($postIds) {
+                    $sub->where('parent_type', Post::class)
+                        ->whereIn('parent_id', $postIds);
+                });
+        })
             ->filter($request->only($fields))
             ->with([
-                'user',
-                'impersonator',
-                'parent',
-            ])
+            'user',
+            'impersonator',
+            'parent',
+        ])
             ->recent()
             ->paginate(config('limits.pagination'));
 

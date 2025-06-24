@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,7 +22,6 @@ use Illuminate\Support\Str;
  * @property ?User|null $impersonator
  * @property Campaign $campaign
  * @property Carbon $created_at
- *
  * @property int $parent_id
  * @property string $parent_type
  * @property-read Entity|Post $parent
