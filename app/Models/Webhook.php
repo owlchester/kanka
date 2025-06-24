@@ -48,6 +48,9 @@ class Webhook extends Model
         'action',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Tag, $this>
+     */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(

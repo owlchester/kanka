@@ -70,12 +70,16 @@ class DiceRoll extends MiscModel
 
     /**
      * Who created this entry
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
      */
     public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\DiceRollResult, $this>
+     */
     public function diceRollResults(): HasMany
     {
         return $this->hasMany('App\Models\DiceRollResult', 'dice_roll_id');

@@ -59,16 +59,25 @@ class Inventory extends Model
         'description',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Item, $this>
+     */
     public function item(): BelongsTo
     {
         return $this->belongsTo('App\Models\Item');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Image, $this>
+     */
     public function image(): HasOne
     {
         return $this->hasOne('App\Models\Image', 'id', 'image_uuid');

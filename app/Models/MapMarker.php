@@ -126,16 +126,25 @@ class MapMarker extends Model
     /** size multiplier for circles */
     protected int $sizeMultiplier = 1;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Map, $this>
+     */
     public function map(): BelongsTo
     {
         return $this->belongsTo(Map::class, 'map_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class, 'entity_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\MapGroup, $this>
+     */
     public function group(): BelongsTo
     {
         return $this->belongsTo(MapGroup::class, 'group_id');

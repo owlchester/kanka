@@ -73,6 +73,9 @@ class Plugin extends Model
             ->count() > 0;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\PluginVersion, $this>
+     */
     public function versions(): HasMany
     {
         return $this->hasMany(PluginVersion::class);

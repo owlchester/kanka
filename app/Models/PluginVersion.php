@@ -561,6 +561,9 @@ class PluginVersion extends Model
         return $query->where('status_id', 3);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\PluginVersionEntity, $this>
+     */
     public function entities(): HasMany
     {
         return $this->hasMany(PluginVersionEntity::class);

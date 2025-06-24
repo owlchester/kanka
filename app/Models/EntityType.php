@@ -76,21 +76,33 @@ class EntityType extends Model
         return $query->whereNotIn('id', $exclude);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Entity, $this>
+     */
     public function entities(): HasMany
     {
         return $this->hasMany(Entity::class, 'type_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\AttributeTemplate, $this>
+     */
     public function attributeTemplates(): HasMany
     {
         return $this->hasMany(AttributeTemplate::class, 'entity_type_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Bookmark, $this>
+     */
     public function bookmarks(): HasMany
     {
         return $this->hasMany(Bookmark::class, 'entity_type_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboardWidget, $this>
+     */
     public function widgets(): HasMany
     {
         return $this->hasMany(CampaignDashboardWidget::class, 'entity_type_id');
@@ -169,6 +181,9 @@ class EntityType extends Model
         return $this->name();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     */
     public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class);

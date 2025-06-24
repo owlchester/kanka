@@ -105,16 +105,25 @@ class Timeline extends MiscModel
         return ['timeline_id'];
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Calendar, $this>
+     */
     public function calendar(): BelongsTo
     {
         return $this->belongsTo('App\Models\Calendar', 'calendar_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\TimelineEra, $this>
+     */
     public function eras(): HasMany
     {
         return $this->hasMany('App\Models\TimelineEra');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\TimelineElement, $this>
+     */
     public function elements(): HasMany
     {
         return $this->hasMany(

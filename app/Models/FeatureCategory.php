@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class FeatureCategory extends Model
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Feature, $this>
+     */
     public function features(): HasMany
     {
         return $this->hasMany(Feature::class, 'category_id', 'id');

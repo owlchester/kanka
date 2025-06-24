@@ -152,11 +152,17 @@ class Journal extends MiscModel
             ->with('parent');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     */
     public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function author(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'author_id');

@@ -15,6 +15,9 @@ class FeatureUpvote extends Model
 {
     use HasUser;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Feature, $this>
+     */
     public function feature(): BelongsTo
     {
         return $this->belongsTo(Feature::class);

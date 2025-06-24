@@ -77,16 +77,25 @@ class TimelineElement extends Model
         'icon',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Timeline, $this>
+     */
     public function timeline(): BelongsTo
     {
         return $this->belongsTo(Timeline::class, 'timeline_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\TimelineEra, $this>
+     */
     public function era(): BelongsTo
     {
         return $this->belongsTo(TimelineEra::class, 'era_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class, 'entity_id');
@@ -143,6 +152,9 @@ class TimelineElement extends Model
         return empty($this->entity);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\User, $this>
+     */
     public function editingUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'entity_user')
@@ -152,6 +164,7 @@ class TimelineElement extends Model
 
     /**
      * List of entities that mention this entity
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityMention, $this>
      */
     public function mentions(): HasMany
     {

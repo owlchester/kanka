@@ -31,6 +31,7 @@ trait Blameable
 
     /**
      * Get the user who created this model
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
      */
     public function creator(): BelongsTo
     {
@@ -39,6 +40,7 @@ trait Blameable
 
     /**
      * Get the user who updated this model
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
      */
     public function updater(): BelongsTo
     {
@@ -47,6 +49,7 @@ trait Blameable
 
     /**
      * Get the user who deleted this model
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
      */
     public function remover(): BelongsTo
     {

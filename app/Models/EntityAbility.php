@@ -55,11 +55,17 @@ class EntityAbility extends Model
         'note',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Ability, $this>
+     */
     public function ability(): BelongsTo
     {
         return $this->belongsTo('App\Models\Ability');

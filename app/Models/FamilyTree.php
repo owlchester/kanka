@@ -20,6 +20,9 @@ class FamilyTree extends Model
         'config' => 'array',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Family, $this>
+     */
     public function family(): BelongsTo
     {
         return $this->belongsTo(Family::class);

@@ -37,11 +37,17 @@ class CharacterRace extends Model
         'character.type',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     */
     public function character(): BelongsTo
     {
         return $this->belongsTo(Character::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Race, $this>
+     */
     public function race(): BelongsTo
     {
         return $this->belongsTo(Race::class);

@@ -16,6 +16,9 @@ class CampaignSystem extends Pivot
 {
     use HasCampaign;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\GameSystem, $this>
+     */
     public function gameSystem(): BelongsTo
     {
         return $this->belongsTo(GameSystem::class);

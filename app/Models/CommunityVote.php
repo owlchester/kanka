@@ -46,6 +46,9 @@ class CommunityVote extends Model
         'published_at' => 'date',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CommunityVoteBallot, $this>
+     */
     public function ballots(): HasMany
     {
         return $this->hasMany(CommunityVoteBallot::class);

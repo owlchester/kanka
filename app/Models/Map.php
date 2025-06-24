@@ -193,23 +193,35 @@ class Map extends MiscModel
         return ['map_id', 'location_id'];
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapLayer, $this>
+     */
     public function layers(): HasMany
     {
         return $this->hasMany('App\Models\MapLayer', 'map_id', 'id')
             ->with('image');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapGroup, $this>
+     */
     public function groups(): HasMany
     {
         return $this->hasMany('App\Models\MapGroup', 'map_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapMarker, $this>
+     */
     public function markers(): HasMany
     {
         return $this->hasMany('App\Models\MapMarker', 'map_id', 'id')
             ->with(['entity', 'entity.entityType', 'group', 'map', 'entity.image']);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\MapMarker, $this>
+     */
     public function centerMarker(): HasOne
     {
         return $this->hasOne('App\Models\MapMarker', 'id', 'center_marker_id');

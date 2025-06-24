@@ -27,6 +27,9 @@ class CommunityVoteBallot extends Model
         'vote',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CommunityVote, $this>
+     */
     public function vote(): BelongsTo
     {
         return $this->belongsTo(CommunityVote::class);

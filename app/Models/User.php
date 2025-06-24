@@ -350,6 +350,7 @@ class User extends \Illuminate\Foundation\Auth\User implements \Laravel\Passport
 
     /**
      * Check if user has 2FA.
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\PasswordSecurity, $this>
      */
     public function passwordSecurity(): HasOne
     {

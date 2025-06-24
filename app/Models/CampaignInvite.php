@@ -35,6 +35,9 @@ class CampaignInvite extends Model
         'validity',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignRole, $this>
+     */
     public function role(): BelongsTo
     {
         return $this->belongsTo('App\Models\CampaignRole', 'role_id', 'id');

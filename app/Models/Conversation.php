@@ -77,11 +77,17 @@ class Conversation extends MiscModel
      */
     public array $apiWith = ['messages', 'participants'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ConversationMessage, $this>
+     */
     public function messages(): HasMany
     {
         return $this->hasMany('App\Models\ConversationMessage', 'conversation_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ConversationParticipant, $this>
+     */
     public function participants(): HasMany
     {
         return $this->hasMany('App\Models\ConversationParticipant', 'conversation_id')
