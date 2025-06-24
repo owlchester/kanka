@@ -78,9 +78,9 @@ class PostService
     private function log(Post $post, int $action)
     {
         $log = new EntityLog;
-        $log->entity_id = $post->entity->id;
+        $log->parent_id = $post->id;
+        $log->parent_type = Post::class;
         $log->created_by = $this->user->id;
-        $log->post_id = $post->id;
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = $action;
         $log->save();

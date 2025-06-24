@@ -50,93 +50,96 @@
     @if ($models->count() > 0)
         @php $count = 0; @endphp
         @foreach ($models as $log)
-            @if ($log->action < 7 || $log->post)
-                @if ($log->day() !== $previous)
-                    @if ($previous !== null) </div> @endif
-                    <div class="font-bold">{{ $log->created_at->format('M d, Y') }}</div>
-                    <div class="rounded bg-box border border-b-0 ">
-                @endif
-                <div class="p-2 border-solid border-b" x-data="{opened: false}">
-                    <div class="flex justify-center items-center gap-2 {{ $count > 0 && !$superboosted ? 'blur' : null }}">
-                        <div class="flex-none rounded-full {{ $log->actionBackground() }} inline-block text-center text-xs p-1 h-6 w-6 ">
-                            <x-icon class="fa-regular {{ $log->actionIcon() }}" />
-                        </div>
-                        <div class="grow">
-                            @if ($superboosted || $count === 0)
+            @if ($log->day() !== $previous)
+                @if ($previous !== null) </div> @endif
+                <div class="font-bold">{{ $log->created_at->format('M d, Y') }}</div>
+                <div class="rounded bg-box border border-b-0 ">
+            @endif
+            <div class="p-2 border-solid border-b" x-data="{opened: false}">
+                <div class="flex justify-center items-center gap-2 {{ $count > 0 && !$superboosted ? 'blur' : null }}">
+                    <div class="flex-none rounded-full {{ $log->actionBackground() }} inline-block text-center text-xs p-1 h-6 w-6 ">
+                        <x-icon class="fa-regular {{ $log->actionIcon() }}" />
+                    </div>
+                    <div class="grow">
+                        @if ($superboosted || $count === 0)
 @php
 $postLink = null;
-if (!$log->entity) {
-    $entityLink = '<a href="' . route('recovery', $campaign) . '">' . __('history.unknown.entity') . '</a>';
+/** @var \App\Models\Entity $entity */
+$entity = $log->isPost() ? $log->parent->entity : $log->parent;
+if (!$entity || $entity->trashed()) {
+$entityLink = '<a href="' . route('recovery', $campaign) . '">' . ($entity ? $entity->name : __('history.unknown.entity')) . '</a>';
 } else {
-    $entityLink = \Illuminate\Support\Facades\Blade::renderComponent(
-        new \App\View\Components\EntityLink($log->entity, $campaign)
-    );
+$entityLink = \Illuminate\Support\Facades\Blade::renderComponent(
+    new \App\View\Components\EntityLink($entity, $campaign)
+);
 }
 @endphp
-                                {!! __('history.log.' . $log->actionCode(), [
-                                    'user' => $log->userLink(),
-                                    'entity' => $entityLink,
-                                ]) !!}
-                                @if ($log->post) -
-                                    @if ($log->entity) <a href="{{ route('entities.show', [$campaign, $log->entity, '#post-' . $log->post->id]) }}">{!! $log->post->name !!}</a>
-                                    @else
-                                        {!! $log->post->name !!}
-                                    @endif
-                               @endif
-                                @if ($log->impersonator)
-                                    <span class="ml-5 text-warning">
-                                        <x-icon class="fa-regular fa-exclamation-triangle" />
-                                    {{ __('entities/logs.impersonated', ['name' => $log->impersonator->name]) }}
-                                    </span>
+                            {!! __('history.log.' . $log->actionCode(), [
+                                'user' => $log->userLink(),
+                                'entity' => $entityLink,
+                            ]) !!}
+                            @if ($log->isPost()) -
+                                @if ($log->parent->trashed() || $entity->trashed())
+                                    {!! $log->parent->name !!}
+                                @else
+                                <a href="{{ route('entities.show', [$campaign, $entity, '#post-' . $log->parent->id]) }}">
+                                    {!! $log->parent->name !!}
+                                </a>
                                 @endif
-                            @else
-                            {{ \Illuminate\Support\Str::random(30) }} <a href="#" class="cursor-none">changes</a>
-                            @endif
-                        </div>
-                        @if(!empty($log->changes))
-                            <div class="flex-end">
-                                <span class="btn2 btn-xs btn-outline" @click="opened = !opened">
-                                    <x-icon class="fa-regular fa-eye" show="!opened" />
-                                    <x-icon class="fa-regular fa-eye-slash" show="opened" />
-                                    {{ __('entities/logs.actions.reveal') }}
+                           @endif
+                            @if ($log->impersonator)
+                                <span class="ml-5 text-warning">
+                                    <x-icon class="fa-regular fa-exclamation-triangle" />
+                                {{ __('entities/logs.impersonated', ['name' => $log->impersonator->name]) }}
                                 </span>
-                            </div>
+                            @endif
+                        @else
+                        {{ \Illuminate\Support\Str::random(30) }}
                         @endif
-                        <div class="text-xs text-muted flex-end text-right">
-                            @if ($superboosted || $count === 0)
-                                <span data-toggle="tooltip" data-title="{{ $log->created_at }} UTC">
-                                    {{ $log->created_at->diffForHumans() }}
-                                </span>
-                            @else
-                                Time since change
-                            @endif
+                    </div>
+                    @if(!empty($log->changes))
+                        <div class="flex-end">
+                            <span class="btn2 btn-xs btn-outline" @click="opened = !opened">
+                                <x-icon class="fa-regular fa-eye" show="!opened" />
+                                <x-icon class="fa-regular fa-eye-slash" show="opened" />
+                                {{ __('entities/logs.actions.reveal') }}
+                            </span>
                         </div>
-                    </div>
-                    @if (!empty($log->changes) && $superboosted)
-                    <div x-show="opened" class="py-2 flex flex-col gap-2">
-                        <p class="text-neutral-content">{{ __('history.helpers.changes') }}</p>
-                        @foreach ($log->changes as $attribute => $value)
-                            @if (is_array($value)) @continue @endif
-                            <div class="flex">
-                                <div class="flex-initial w-32 font-bold" data-attribute="{{ $attribute }}">
-                                    {!! $log->attributeKey($log->entity->entityType->pluralCode(), $attribute) !!}
-                                </div>
-                                <div class="flex-1 break-all">
-                                    @if (\Illuminate\Support\Str::contains($attribute, ['has_', 'is_']))
-                                        @if ($value) {{ __('general.yes') }} @else {{ __('general.no') }} @endif
-                                    @elseif (empty($value))
-                                        <i>{{ __('history.empty') }}</i>
-                                    @else
-                                        {!! $value !!}
-                                    @endif
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
                     @endif
+                    <div class="flex-end text-right">
+                        @if ($superboosted || $count === 0)
+                            <x-since :date="$log->created_at" />
+                        @else
+                            <span class="text-neutral-content text-xs">
+                                {{ \Illuminate\Support\Str::random(12) }}
+                            </span>
+                        @endif
+                    </div>
                 </div>
-                @php $previous = $log->day(); $count++; @endphp
-            @endif
+                @if (!empty($log->changes) && $superboosted)
+                <div x-show="opened" class="py-2 flex flex-col gap-2">
+                    <p class="text-neutral-content">{{ __('history.helpers.changes') }}</p>
+                    @foreach ($log->changes as $attribute => $value)
+                        @if (is_array($value)) @continue @endif
+                        <div class="flex">
+                            <div class="flex-initial w-32 font-bold" data-attribute="{{ $attribute }}">
+                                {!! $log->attributeKey($entity->entityType->pluralCode(), $attribute) !!}
+                            </div>
+                            <div class="flex-1 break-all">
+                                @if (\Illuminate\Support\Str::contains($attribute, ['has_', 'is_']))
+                                    @if ($value) {{ __('general.yes') }} @else {{ __('general.no') }} @endif
+                                @elseif (empty($value))
+                                    <i>{{ __('history.empty') }}</i>
+                                @else
+                                    {!! $value !!}
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                @endif
+            </div>
+            @php $previous = $log->day(); $count++; @endphp
         @endforeach
         </div>
     @else

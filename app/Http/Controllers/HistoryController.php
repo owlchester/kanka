@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\HistoryRequest;
 use App\Models\Campaign;
+use App\Models\Entity;
 use App\Models\EntityLog;
+use App\Models\Post;
 
 class HistoryController extends Controller
 {
@@ -18,12 +20,38 @@ class HistoryController extends Controller
         $this->authorize('recover', $campaign);
 
         $pagnation = $campaign->superboosted() ? 25 : 10;
-        $models = EntityLog::select(['entity_logs.*'])
-            ->with(['user', 'entity' => fn ($q) => $q->withTrashed(), 'impersonator', 'post', 'entity.entityType'])
-            ->leftJoin('entities as e', 'e.id', 'entity_logs.entity_id')
+        $models = EntityLog::where(function ($query) use ($campaign) {
+            $query->where(function ($sub) use ($campaign) {
+                $sub->where('parent_type', Entity::class)
+                    ->whereIn('parent_id', function ($entities) use ($campaign) {
+                        $entities
+                            ->select('id')
+                            ->from('entities')
+                            ->where('entities.campaign_id', $campaign->id);
+                    });
+            })->orWhere(function ($query) use ($campaign) {
+                $query->where('parent_type', Post::class)
+                    ->whereIn('parent_id', function ($subquery) use ($campaign) {
+                        $subquery->select('posts.id')
+                            ->from('posts')
+                            ->join('entities', 'entities.id', '=', 'posts.entity_id')
+                            ->where('entities.campaign_id', $campaign->id);
+                    });
+            });
+            })
+            ->with([
+                'user',
+                'impersonator',
+                'parent' => function ($morphTo) {
+                    $morphTo->withTrashed()->morphWith([
+                        Entity::class => ['entityType'],
+                        Post::class => ['entity' =>  fn ($q) => $q->withTrashed(), 'entity.entityType'],
+                    ]);
+                },
+            ])
             ->filter($request->only('action', 'user'))
             ->orderBy('entity_logs.created_at', 'desc')
-            ->where('e.campaign_id', '=', $campaign->id)
+            //->where('parent.campaign_id', '=', $campaign->id)
             ->paginate($pagnation);
 
         $previous = null;

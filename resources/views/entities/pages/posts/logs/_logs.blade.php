@@ -1,7 +1,7 @@
 <?php /** @var \App\Models\EntityLog $log */ ?>
 <div class="entity-logs">
     <div class="flex flex-col gap-2 lg:gap-5">
-        <x-form :action="['entities.logs', $campaign, $entity]" method="GET">
+        <x-form :action="['entities.posts.logs', $campaign, $entity, $post]" method="GET">
             <div class="flex gap-2 justify-between">
                 <div class="flex gap-2 items-center">
                     <input type="text" name="q"  class="grow" value="{!! old('q', htmlentities($q)) !!}" placeholder="{{ __('entities/logs.filters.keywords') }}" />
@@ -15,14 +15,9 @@
         @foreach ($logs as $log)
             <div class="rounded p-4 shadow-xs bg-box entity-log flex flex-col gap-2" x-data="{ opened: @if (!$expanded) false @else true @endif }">
                 <div class="log-title flex gap-2">
-                    <div class="grow action flex gap-2 items-center">
-                        @if ($log->isPost())
-                            <a href="{{ route('entities.show', [$campaign, $entity, '#post-' . $log->parent->id]) }}" data-title="{{ __('entities/logs.tooltips.post') }}" data-toggle="tooltip">
-                                {!! $log->parent->name !!}
-                            </a>
-                            <x-icon class="fa-regular fa-chevron-right" />
-                        @endif
-                        <span class="font-extrabold ">{!! __('entities/logs.actions.' . $log->actionCode()) !!}</span>
+                    <div class="grow font-extrabold action">
+                        {!! __('entities/logs.actions.' . $log->actionCode()) !!}
+                        - {!! $post->name !!}
                     </div>
                     <div class="flex-0">
                         <span data-title="{{ $log->created_at }} UTC" data-toggle="tooltip" class="text-neutral-content">
@@ -33,7 +28,7 @@
                 <div class="flex gap-2 justify-between">
                     <div class="log-author">
                         @if ($log->user)
-                            <x-users.link :user="$log->user" class="w-10 h-10" />
+                            <x-users.link :user="$log->user" />
                         @else
                             <span class="text-italic unknown-author">
                                 {{  __('crud.history.unknown') }}
@@ -60,7 +55,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="log-cta" x-show="opened" id="log-cta-{{ $log->id }} x-cloak">
+                <div class="log-cta" x-show="opened" id="log-cta-{{ $log->id }}" x-cloak>
                     @if ($campaign->superboosted() && !empty($log->changes))
                         <p class="text-neutral-content">{{ __('history.helpers.changes') }}</p>
                         <ul>

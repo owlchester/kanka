@@ -128,14 +128,6 @@ class Post extends Model
     }
 
     /**
-     * List of logs for this post
-     */
-    public function logs(): HasMany
-    {
-        return $this->hasMany('App\Models\EntityLog', 'post_id', 'id');
-    }
-
-    /**
      * List of images that mention this entity
      */
     public function imageMentions(): HasMany
@@ -258,6 +250,11 @@ class Post extends Model
     public function reminders(): MorphMany
     {
         return $this->morphMany(Reminder::class, 'remindable');
+    }
+
+    public function logs(): MorphMany
+    {
+        return $this->morphMany(EntityLog::class, 'parent');
     }
 
     /**

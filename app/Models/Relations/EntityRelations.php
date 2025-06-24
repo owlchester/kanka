@@ -13,6 +13,7 @@ use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
 use App\Models\EntityEventType;
+use App\Models\EntityLog;
 use App\Models\EntityTag;
 use App\Models\EntityType;
 use App\Models\EntityUser;
@@ -30,6 +31,7 @@ use App\Models\Reminder;
 use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -37,6 +39,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * Trait EntityRelations
@@ -306,9 +309,9 @@ trait EntityRelations
         return $this->reminders()->with('calendar')->whereNotNull('type_id');
     }
 
-    public function logs(): HasMany
+    public function logs(): MorphMany
     {
-        return $this->hasMany('App\Models\EntityLog', 'entity_id', 'id');
+        return $this->morphMany(EntityLog::class, 'parent');
     }
 
     public function permissions(): HasMany

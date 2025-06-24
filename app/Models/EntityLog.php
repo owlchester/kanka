@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasUser;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,18 +15,18 @@ use Illuminate\Support\Str;
 /**
  * Class EntityLog
  *
- * @property int $entity_id
  * @property int $campaign_id
  * @property int $created_by
  * @property int $impersonated_by
  * @property int $action
- * @property int $post_id
  * @property null|string|array $changes
- * @property ?Entity $entity
- * @property User|null $impersonator
- * @property Post|null $post
+ * @property ?User|null $impersonator
  * @property Campaign $campaign
  * @property Carbon $created_at
+ *
+ * @property int $parent_id
+ * @property string $parent_type
+ * @property-read Entity|Post $parent
  */
 class EntityLog extends Model
 {
@@ -49,7 +50,6 @@ class EntityLog extends Model
     public const ACTION_UPDATE_POST = 8;
 
     public $fillable = [
-        'entity_id',
         'created_by',
         'impersonated_by',
         'action',
@@ -69,9 +69,9 @@ class EntityLog extends Model
 
     protected string $userField = 'created_by';
 
-    public function entity(): BelongsTo
+    public function parent()
     {
-        return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
+        return $this->morphTo();
     }
 
     public function campaign(): BelongsTo
@@ -82,11 +82,6 @@ class EntityLog extends Model
     public function impersonator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'impersonated_by');
-    }
-
-    public function post(): BelongsTo
-    {
-        return $this->belongsTo('App\Models\Post', 'post_id');
     }
 
     public function actionCode(): string
@@ -264,5 +259,10 @@ class EntityLog extends Model
         }
 
         return $builder;
+    }
+
+    public function isPost(): bool
+    {
+        return $this->parent_type == Post::class;
     }
 }
