@@ -38,7 +38,7 @@ class EntityTypeController extends Controller
         $this->authorize('setting', $campaign);
 
         if (! $campaign->premium()) {
-            return view('campaign.modules')
+            return view('campaigns.modules')
                 ->with('errors', __('This feature is only available on premium campaigns'));
         } elseif ($campaign->entityTypes->count() > config('limits.campaigns.modules')) {
             return view('campaigns.entity-types.max-reached')
@@ -79,7 +79,7 @@ class EntityTypeController extends Controller
         $this->authorize('update', [$entityType, $campaign]);
 
         if (! $campaign->premium()) {
-            return view('campaign.modules')
+            return view('campaigns.modules')
                 ->with('errors', __('This feature is only available on premium campaigns'));
         }
         if (request()->ajax()) {

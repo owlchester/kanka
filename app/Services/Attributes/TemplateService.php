@@ -223,6 +223,7 @@ class TemplateService
         $templates = config('attribute-templates.templates');
         if (Arr::exists($templates, $template)) {
             /** @var Template $template */
+            // @phpstan-ignore-next-line
             return new $templates[$template];
         }
 
