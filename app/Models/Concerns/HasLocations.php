@@ -24,6 +24,7 @@ trait HasLocations
 
     /**
      * Model have multiple locations through a pivot table
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Location, $this>
      */
     public function locations(): BelongsToMany

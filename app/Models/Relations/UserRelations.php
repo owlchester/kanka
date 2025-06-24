@@ -49,6 +49,7 @@ trait UserRelations
 {
     /**
      * Last campaign the user switched to.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
      */
     public function lastCampaign(): BelongsTo
@@ -58,6 +59,7 @@ trait UserRelations
 
     /**
      * List of campaigns the user is a member of
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Campaign, $this>
      */
     public function campaigns(): BelongsToMany
@@ -69,6 +71,7 @@ trait UserRelations
 
     /**
      * List of campaigns the user is following
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Campaign, $this>
      */
     public function following(): BelongsToMany
@@ -95,6 +98,7 @@ trait UserRelations
 
     /**
      * List of campaign roles the user is part of
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignRoleUser, $this>
      */
     public function campaignRoleUser(): HasMany
@@ -104,6 +108,7 @@ trait UserRelations
 
     /**
      * List of boosts the user is giving
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignBoost, $this>
      */
     public function boosts(): HasMany
@@ -113,6 +118,7 @@ trait UserRelations
 
     /**
      * List of logs the user has recently done
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\UserLog, $this>
      */
     public function logs(): HasMany
@@ -122,6 +128,7 @@ trait UserRelations
 
     /**
      * List of connected apps (Discord) the user has set up
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\UserApp, $this>
      */
     public function apps(): HasMany
@@ -131,6 +138,7 @@ trait UserRelations
 
     /**
      * List of campaign permissions the user has
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignPermission, $this>
      */
     public function permissions(): HasMany
@@ -140,6 +148,7 @@ trait UserRelations
 
     /**
      * The referral code a user used
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Referral, $this>
      */
     public function referrer(): BelongsTo
@@ -149,6 +158,7 @@ trait UserRelations
 
     /**
      * List of campaign applications the user is trying to join
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Application, $this>
      */
     public function applications(): HasMany
@@ -158,6 +168,7 @@ trait UserRelations
 
     /**
      * List of entities the user is currently editing
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Entity, $this>
      */
     public function entities(): BelongsToMany
@@ -176,6 +187,7 @@ trait UserRelations
 
     /**
      * Return alternative User Roles.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Role, $this>
      */
     public function roles(): BelongsToMany
@@ -185,6 +197,7 @@ trait UserRelations
 
     /**
      * Logs created each time a user uses Bragi
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\BragiLog, $this>
      */
     public function bragiLogs(): HasMany
@@ -194,6 +207,7 @@ trait UserRelations
 
     /**
      * List of subscription cancellations for the user
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\SubscriptionCancellation, $this>
      */
     public function cancellations(): HasMany
@@ -203,6 +217,7 @@ trait UserRelations
 
     /**
      * List of the user's flags, used to know when a user can be deleted
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\UserFlag, $this>
      */
     public function flags(): HasMany
@@ -212,6 +227,7 @@ trait UserRelations
 
     /**
      * List of tutorials the user has completed
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Users\Tutorial, $this>
      */
     public function tutorials(): HasMany
@@ -221,6 +237,7 @@ trait UserRelations
 
     /**
      * List of ideas the user has upvoted in the roadmap
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\FeatureVote, $this>
      */
     public function upvotes(): HasMany

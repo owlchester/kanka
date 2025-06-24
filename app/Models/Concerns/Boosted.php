@@ -8,6 +8,7 @@ trait Boosted
 {
     /**
      * List of boosts the campaign is receiving
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignBoost, $this>
      */
     public function boosts(): HasMany

@@ -130,6 +130,7 @@ class Post extends Model
 
     /**
      * List of entities that mention this entity
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityMention, $this>
      */
     public function mentions(): HasMany
@@ -139,6 +140,7 @@ class Post extends Model
 
     /**
      * List of logs for this post
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityLog, $this>
      */
     public function logs(): HasMany
@@ -148,6 +150,7 @@ class Post extends Model
 
     /**
      * List of images that mention this entity
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ImageMention, $this>
      */
     public function imageMentions(): HasMany

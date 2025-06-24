@@ -33,6 +33,7 @@ class ConversationParticipant extends Model
 
     /**
      * Who created this entry
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
      */
     public function creator(): BelongsTo

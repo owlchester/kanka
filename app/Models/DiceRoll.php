@@ -70,6 +70,7 @@ class DiceRoll extends MiscModel
 
     /**
      * Who created this entry
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
      */
     public function character(): BelongsTo

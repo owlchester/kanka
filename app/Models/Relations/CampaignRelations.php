@@ -330,6 +330,7 @@ trait CampaignRelations
 
     /**
      * List of entities that are mentioned in the campaign's description
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityMention, $this>
      */
     public function mentions(): HasMany

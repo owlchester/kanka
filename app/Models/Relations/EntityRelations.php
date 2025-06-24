@@ -436,6 +436,7 @@ trait EntityRelations
 
     /**
      * Entity image stored in the gallery
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Image, $this>
      */
     public function image(): HasOne
@@ -445,6 +446,7 @@ trait EntityRelations
 
     /**
      * Header image stored in the gallery
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Image, $this>
      */
     public function header(): HasOne

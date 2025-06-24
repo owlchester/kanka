@@ -20,6 +20,7 @@ class Referral extends Model
 
     /**
      * Users who used the referral
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\User, $this>
      */
     public function users(): HasMany

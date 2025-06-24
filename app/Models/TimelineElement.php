@@ -164,6 +164,7 @@ class TimelineElement extends Model
 
     /**
      * List of entities that mention this entity
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityMention, $this>
      */
     public function mentions(): HasMany

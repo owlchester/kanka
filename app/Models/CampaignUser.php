@@ -43,6 +43,7 @@ class CampaignUser extends Pivot
 
     /**
      * Get the user's roles
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\CampaignRole, \App\Models\CampaignRoleUser, $this>
      */
     public function roles(): HasManyThrough
