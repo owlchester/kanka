@@ -2,6 +2,7 @@
 
 namespace App\Listeners\Campaigns\Styles;
 
+use App\Events\Campaigns\Styles\StyleCreated;
 use App\Events\Campaigns\Styles\StyleDeleted;
 use App\Events\Campaigns\Styles\StyleUpdated;
 
@@ -18,10 +19,10 @@ class LogStyle
     /**
      * Handle the event.
      */
-    public function handle(ThumbnailCreated|StyleUpdated|StyleDeleted $event): void
+    public function handle(StyleCreated|StyleUpdated|StyleDeleted $event): void
     {
         $action = match (true) {
-            $event instanceof ThumbnailCreated => 'created',
+            $event instanceof StyleCreated => 'created',
             $event instanceof StyleUpdated => 'updated',
             $event instanceof StyleDeleted => 'deleted',
         };
