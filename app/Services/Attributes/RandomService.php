@@ -16,7 +16,7 @@ class RandomService
     /**
      * Rewrite an attribute if it's a random value
      *
-     * @return array[AttributeType, string]
+     * @return array[AttributeType, mixed]
      */
     public function randomAttribute(AttributeType $type, mixed $value): array
     {

@@ -126,11 +126,13 @@ class ImporterService
     protected function importModel(PluginVersionEntity $pluginEntity)
     {
         // Updating?
-        /** @var Entity $model */
+        /** @var ?Entity $model */
         $model = null;
+        /** @var ?Entity $modifiedEntity */
         $entity = $this->importedEntities
             ->where('marketplace_uuid', $pluginEntity->uuid)
             ->where('type_id', $pluginEntity->type_id)->first();
+        /** @var ?Entity $modifiedEntity */
         $modifiedEntity = $this->importedEntities
             ->where('marketplace_uuid', $pluginEntity->uuid)
             ->first();

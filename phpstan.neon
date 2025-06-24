@@ -2,6 +2,10 @@ includes:
     - ./vendor/larastan/larastan/extension.neon
 
 parameters:
+    ignoreErrors:
+        - identifier: unset.possiblyHookedProperty
+        - identifier: function.alreadyNarrowedType
+
 
     paths:
         - app/

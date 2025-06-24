@@ -30,9 +30,6 @@ class Since extends Component
      */
     public function render(): View|Closure|string
     {
-        if (empty($this->date)) {
-            return '';
-        }
         $this->loadUserFormat();
         try {
             $this->formattedDate = $this->date->isoFormat($this->dateFormat . ($this->withTime ? ' HH:mm:ss' : null));
