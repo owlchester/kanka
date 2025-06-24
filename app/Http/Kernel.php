@@ -83,7 +83,6 @@ class Kernel extends HttpKernel
         'login.redirect' => Middleware\LoginRedirect::class,
         'translator' => Middleware\Translator::class,
         'identity' => Middleware\Identity::class,
-        'partner' => Middleware\Partner::class,
         'password.confirm' => PasswordConfirm::class,
         'subscriptions' => Middleware\Subscriptions::class,
         'fullsetup' => FullSetup::class,
