@@ -3,6 +3,7 @@
 return [
     'actions'       => [],
     'create'        => [
+        'helper'    => 'Agrega información meteorológica que aparecerá en el calendario.',
         'success'   => 'Clima añadido.',
         'title'     => 'Nuevo fenómeno climático',
     ],

@@ -17,7 +17,13 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'   => 'Adicionar um membro',
+            'add'           => 'Adicionar um membro',
+            'add_multiple'  => 'Adicionar membros',
+        ],
+        'create'        => [
+            'helper'            => 'Adicionar um ou vários membros à :name.',
+            'success_multiple'  => '{1} Adicionado :count membro a :name.|[2,*] Adicionados :count membros a :name.',
+            'title_multiple'    => 'Novos Membros',
         ],
         'destroy'       => [
             'success'   => 'Membro removido da organização.',
@@ -38,8 +44,8 @@ return [
             'pinned'        => 'Escolha se este membro deve ser exibido na seção fixada da visão geral de suas entidades associadas.',
         ],
         'pinned'        => [
-            'both'  => 'Ambos',
-            'none'  => 'Nenhum',
+            'both'  => 'Fixado em ambos',
+            'none'  => 'Fixado em nenhum lugar',
         ],
         'placeholders'  => [
             'parent'    => 'Quem é o superior desse membro',

@@ -7,8 +7,10 @@ return [
     'dead'              => '{0} Ningún asesinato misterioso|{1} Un asesinato misterioso|[2,*] :amount asesinatos misteriosos',
     'goal'              => 'Meta :number',
     'goal_reached'      => 'Logro desbloqueado',
+    'level'             => 'nivel :number',
     'markers'           => '{0} Ningún marcador de mapa creado|{1} Un marcador de mapa creado|[2,*] :amount marcadores de mapa creados',
     'painter'           => '{0} Ningún tema creado|{1} Un tema creado|[2,*] :amount temas creados',
+    'pitch'             => 'Los logros de campaña son una forma divertida de celebrar hitos en tu viaje de creación de mundos. Sigue el progreso, motiva a tus jugadores y muestra tus logros con una campaña premium.',
     'plugins'           => '{0} Ningún plugin instalado|{1} Un plugin instalado|[2,*] :amount plugins instalados',
     'remaining'         => [
         'generic'   => 'Más y se desbloqueará el siguiente nivel.',

@@ -10,6 +10,7 @@ return [
     'level'             => 'Stufe :number',
     'markers'           => '{0} Keine Kartenmarkierungen erstellt|{1} Eine Kartenmarkierung erstellt|[2,*] :amountder erstellten Kartenmarkierungen',
     'painter'           => '{0} Keine Themen erstellt|{1} Ein Thema erstellt|[2,*] :amount der erstellten Themen',
+    'pitch'             => 'Kampagnenerfolge sind eine unterhaltsame Art und Weise, Meilensteine auf deiner Reise durch die Welt zu feiern. Verfolge den Fortschritt, binde deine Spieler ein und präsentiere deine Errungenschaften mit einer Premium-Kampagne.',
     'plugins'           => '{0} Keine Plugins installiert|{1} Ein Plugin installiert|[2,*] :amountder installierten Plugins',
     'remaining'         => [
         'generic'   => 'Mehr und das nächste Level wird freigeschaltet.',

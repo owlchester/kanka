@@ -125,6 +125,7 @@ return [
         ],
     ],
     'leave'                             => [
+        'action'            => 'Kampagne verlassen',
         'confirm'           => 'Bist du sicher, dass du die Kampagne :name verlassen möchtest? Du hast danach keinen Zugang mehr, außer ein Besitzer der Kampagne lädt dich erneut ein.',
         'confirm-button'    => 'Ja, Kampagne verlassen',
         'error'             => 'Kann die Kampagne nicht verlassen.',
@@ -388,6 +389,7 @@ TEXT
             'deletion'          => 'Löschung',
             'export'            => 'Export',
             'import'            => 'Importieren',
+            'logs'              => 'Logs',
             'management'        => 'Management',
             'members'           => 'Mitglieder',
             'modules'           => 'Module',

@@ -52,6 +52,10 @@ return [
         'title'     => 'Aktualisieren Sie das Kampagnenthema',
     ],
     'title'         => 'Kampagnen Theming',
+    'toggle'        => [
+        'disable'   => 'Stil erfolgreich deaktiviert.',
+        'enable'    => 'Stil erfolgreich aktiviert.',
+    ],
     'update'        => [
         'success'   => 'Design :name aktualisiert.',
         'title'     => 'Aktualisiere Design',

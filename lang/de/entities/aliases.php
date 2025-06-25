@@ -5,6 +5,7 @@ return [
         'add'   => 'Alias hinzufügen',
     ],
     'create'        => [
+        'helper'    => 'Erstelle einen Alias für :name, damit er in der globalen Suche und durch :code-Erwähnungen gefunden werden kann.',
         'success'   => 'Alias ​​:name zu :entity hinzugefügt.',
         'title'     => 'Add an alias to :name',
     ],

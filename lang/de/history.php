@@ -6,6 +6,13 @@ return [
     ],
     'cta'       => 'Zeige ein Protokoll aller letzten Änderungen an der Kampagne an.',
     'empty'     => 'Kein Wert',
+    'fields'    => [
+        'action'    => 'Aktion',
+        'details'   => 'Details',
+        'module'    => 'Modul',
+        'when'      => 'Wann',
+        'who'       => 'Wer',
+    ],
     'filters'   => [
         'all-actions'   => 'Alle Aktionen',
         'all-users'     => 'Alle Mitglieder',

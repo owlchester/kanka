@@ -18,6 +18,7 @@ return [
     'made'              => 'Hecho con ❤️ en Ginebra, Suiza',
     'newsletter'        => 'Boletín de noticias',
     'platform'          => 'Plataforma',
+    'plugins'           => 'Biblioteca de plugins',
     'premium'           => 'Campañas Premium',
     'press-kit'         => 'Kit de prensa',
     'pricing'           => 'Precios',

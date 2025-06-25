@@ -15,6 +15,7 @@ return [
         'email'                     => 'Correo Electronico',
         'hide_subscription'         => 'Ocultar mi nombre del :hall_of_fame.',
         'last_login_share'          => 'Compartir la última vez que estuve en línea con otros miembros de la campaña.',
+        'link'                      => 'Enlace social',
         'login_sharing'             => 'Compartir la última conexión',
         'name'                      => 'Nombre',
         'new_password'              => 'Contraseña nueva',
@@ -22,12 +23,18 @@ return [
         'newsletter'                => 'Me gustaría recibir noticias de la web por correo electrónico.',
         'password'                  => 'Contraseña actual',
         'profile-name'              => 'Nombre del perfil',
+        'pronouns'                  => 'Pronombres',
         'settings'                  => 'Ajustes',
         'subscription_hiding'       => 'Ocultar suscripción',
         'theme'                     => 'Tema',
     ],
     'helpers'                       => [
+        'link'          => 'Cambia la forma en que aparece un enlace a tu perfil social en tu :profile y en el :marketplace. Si se deja en blanco, no se mostrará ningún enlace.',
         'profile-name'  => 'Cambia la forma en que aparece tu nombre en tu :profile y en el :marketplace. Si se deja en blanco, se utilizará el nombre de tu cuenta en su lugar.',
+        'pronouns'      => 'Cambia la forma en que aparecen tus pronombres en tu :profile y en el :marketplace. Si se deja en blanco, no se mostrarán pronombres.',
+    ],
+    'link'                          => [
+        'button'    => 'Perfil social de :name',
     ],
     'newsletter'                    => [
         'helpers'   => [

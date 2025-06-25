@@ -6,5 +6,6 @@ return [
     'helper'                => 'Este post está configurado para exibir a subpágina :subpage da entidade.',
     'location_characters'   => 'Local dos personagens',
     'location_events'       => 'Local dos eventos',
+    'location_quests'       => 'Local das missões',
     'quest_elements'        => 'Elementos da Missão',
 ];

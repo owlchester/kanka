@@ -4,8 +4,9 @@ return [
     'account'       => [
         '2fa'               => [
             'actions'               => [
-                'disable'   => 'Deshabilitar la autenticación de dos factores',
-                'finish'    => 'Finalizar la configuración e iniciar sesión',
+                'disable'           => 'Deshabilitar la autenticación de dos factores',
+                'disable-confirm'   => 'Haz clic de nuevo para confirmar',
+                'finish'            => 'Finalizar la configuración e iniciar sesión',
             ],
             'activation_helper'     => 'Para terminar de configurar la autenticación de dos factores de tu cuenta, sigue estas instrucciones.',
             'disable'               => [
@@ -155,6 +156,7 @@ return [
                 'not_playing'       => 'Ya no juego o la campaña está en pausa',
                 'not_using'         => 'Actualmente no utilizo Kanka',
                 'other'             => 'Otro',
+                'testing'           => 'Solo probando Kanka',
             ],
             'text'      => '¡Lamentamos verte marchar! Al cancelar tu suscripción, esta seguirá activa hasta el nuevo ciclo de facturación, tras lo cual perderás tus mejoras de campaña y otros beneficios relacionados. No tengas miedo de informarnos sobre cómo podemos mejorar o qué te ha llevado a tomar esta decisión.',
             'title'     => 'Cancelar suscripción',
