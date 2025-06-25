@@ -40,15 +40,15 @@ class HistoryController extends Controller
             });
         })
             ->with([
-            'user',
-            'impersonator',
-            'parent' => function ($morphTo) {
-                $morphTo->withTrashed()->morphWith([
-                    Entity::class => ['entityType'],
-                    Post::class => ['entity' => fn ($q) => $q->withTrashed(), 'entity.entityType'],
-                ]);
-            },
-        ])
+                'user',
+                'impersonator',
+                'parent' => function ($morphTo) {
+                    $morphTo->withTrashed()->morphWith([
+                        Entity::class => ['entityType'],
+                        Post::class => ['entity' => fn ($q) => $q->withTrashed(), 'entity.entityType'],
+                    ]);
+                },
+            ])
             ->filter($request->only('action', 'user'))
             ->orderBy('entity_logs.created_at', 'desc')
             // ->where('parent.campaign_id', '=', $campaign->id)

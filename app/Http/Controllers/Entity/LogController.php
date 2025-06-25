@@ -38,10 +38,10 @@ class LogController extends Controller
         })
             ->filter($request->only($fields))
             ->with([
-            'user',
-            'impersonator',
-            'parent',
-        ])
+                'user',
+                'impersonator',
+                'parent',
+            ])
             ->recent()
             ->paginate(config('limits.pagination'));
 
