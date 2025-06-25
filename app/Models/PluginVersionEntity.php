@@ -29,11 +29,17 @@ class PluginVersionEntity extends Model
         'posts' => 'array',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\PluginVersion, $this>
+     */
     public function version(): BelongsTo
     {
         return $this->belongsTo(PluginVersion::class, 'plugin_version_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityType, $this>
+     */
     public function type(): BelongsTo
     {
         return $this->belongsTo(EntityType::class, 'type_id');

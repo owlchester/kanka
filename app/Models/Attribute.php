@@ -84,11 +84,17 @@ class Attribute extends Model
 
     protected string $mappedName;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Attribute, $this>
+     */
     public function origin(): BelongsTo
     {
         return $this->belongsTo('App\Models\Attribute', 'origin_attribute_id', 'id');

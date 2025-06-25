@@ -25,11 +25,17 @@ class PostTag extends Model
         'tag_id',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Tag, $this>
+     */
     public function tag(): BelongsTo
     {
         return $this->belongsTo('App\Models\Tag', 'tag_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Post, $this>
+     */
     public function post(): BelongsTo
     {
         return $this->belongsTo('App\Models\Post', 'post_id');

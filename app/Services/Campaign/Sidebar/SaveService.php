@@ -78,7 +78,7 @@ class SaveService
 
         if (! empty($icons)) {
             $ui['sidebar']['icons'] = $icons;
-        } elseif (isset($ui['sidebar']['icons'])) { // @phpstan-ignore-line
+        } elseif (isset($ui['sidebar']['icons'])) {
             unset($ui['sidebar']['icons']);
         }
 

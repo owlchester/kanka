@@ -184,26 +184,41 @@ class Bookmark extends Model
             ->orderBy('name', 'ASC');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function target(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignDashboard, $this>
+     */
     public function dashboard(): BelongsTo
     {
         return $this->belongsTo('App\Models\CampaignDashboard', 'dashboard_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityType, $this>
+     */
     public function entityType(): BelongsTo
     {
         return $this->belongsTo(EntityType::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityType, $this>
+     */
     public function randomEntityType(): BelongsTo
     {
         return $this->belongsTo(EntityType::class, 'random_entity_type');
@@ -328,7 +343,7 @@ class Bookmark extends Model
 
             return 'active';
         }
-        if ($current instanceof Entity && ($current->entityType->isStandard() || $current->type_id != $this->entity_type_id)) {
+        if ($current->entityType->isStandard() || $current->type_id != $this->entity_type_id) {
             return null;
         }
 

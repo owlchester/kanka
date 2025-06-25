@@ -64,21 +64,37 @@ class CampaignDashboardWidget extends Model
 
     protected LengthAwarePaginator $cachedEntities;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityType, $this>
+     */
     public function entityType(): BelongsTo
     {
         return $this->belongsTo(EntityType::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignDashboard, $this>
+     */
     public function dashboard(): BelongsTo
     {
         return $this->belongsTo(CampaignDashboard::class, 'dashboard_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
+     *     \App\Models\Tag,
+     *     $this,
+     *     \App\Models\CampaignDashboardWidgetTag
+     * >
+     */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -91,6 +107,9 @@ class CampaignDashboardWidget extends Model
             ->has('entity');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboardWidgetTag, $this>
+     */
     public function dashboardWidgetTags(): HasMany
     {
         return $this->hasMany(CampaignDashboardWidgetTag::class, 'widget_id', 'id');
@@ -336,9 +355,8 @@ class CampaignDashboardWidget extends Model
 
             /** @var FilterService $filterService */
             $filterService = app()->make('App\Services\FilterService');
-            if ($this->entityType) {
-                $filterService->entityType($this->entityType);
-            }
+            $filterService->entityType($this->entityType);
+
             $filterService
                 ->session(false)
                 ->options($this->filterOptions())

@@ -5,7 +5,6 @@ namespace App\Policies;
 use App\Facades\Identity;
 use App\Facades\UserCache;
 use App\Models\Campaign;
-use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
 use App\Models\User;
 use App\Traits\AdminPolicyTrait;
@@ -43,7 +42,6 @@ class CampaignUserPolicy
         }
 
         // Check if the user was added to the admin role recently
-        /** @var CampaignRoleUser $adminRole */
         $adminRole = UserCache::adminRole();
         $role = $campaignUser->user->campaignRoleUser->where('campaign_role_id', $adminRole['id'])->first();
 

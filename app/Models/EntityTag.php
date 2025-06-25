@@ -23,11 +23,17 @@ class EntityTag extends Model
         'tag_id',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Tag, $this>
+     */
     public function tag(): BelongsTo
     {
         return $this->belongsTo('App\Models\Tag', 'tag_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');

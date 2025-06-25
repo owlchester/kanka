@@ -35,11 +35,17 @@ class CampaignDashboard extends Model
         'name',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboardWidget, $this>
+     */
     public function widgets(): HasMany
     {
         return $this->hasMany(CampaignDashboardWidget::class, 'dashboard_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboardRole, $this>
+     */
     public function roles(): HasMany
     {
         return $this->hasMany(CampaignDashboardRole::class, 'campaign_dashboard_id', 'id');

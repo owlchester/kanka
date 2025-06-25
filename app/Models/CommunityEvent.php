@@ -65,6 +65,9 @@ class CommunityEvent extends Model
         return Img::crop($width, (! empty($height) ? $height : $width))->url($this->$field);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CommunityEventEntry, $this>
+     */
     public function entries(): HasMany
     {
         return $this->hasMany(CommunityEventEntry::class);
@@ -105,6 +108,9 @@ class CommunityEvent extends Model
         return ! $this->rankedResults->where('rank', 1)->isEmpty();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     */
     public function jury(): BelongsTo
     {
         return $this->belongsTo(User::class, 'jury_id');

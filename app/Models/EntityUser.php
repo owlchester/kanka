@@ -31,26 +31,41 @@ class EntityUser extends Pivot
 
     public const int TYPE_KEEPALIVE = 1;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class, 'entity_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     */
     public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class, 'campaign_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Post, $this>
+     */
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class, 'post_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\TimelineElement, $this>
+     */
     public function timelineElement(): BelongsTo
     {
         return $this->belongsTo(TimelineElement::class, 'timeline_element_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\QuestElement, $this>
+     */
     public function questElement(): BelongsTo
     {
         return $this->belongsTo(QuestElement::class, 'quest_element_id');

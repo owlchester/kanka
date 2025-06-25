@@ -65,11 +65,17 @@ class QuestElement extends Model
         QuestCache::class => 'clearSuggestion',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Quest, $this>
+     */
     public function quest(): BelongsTo
     {
         return $this->belongsTo('App\Models\Quest', 'quest_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
@@ -103,12 +109,21 @@ class QuestElement extends Model
 
     /**
      * List of entities that mention this entity
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityMention, $this>
      */
     public function mentions(): HasMany
     {
         return $this->hasMany('App\Models\EntityMention', 'quest_element_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
+     *     \App\Models\User,
+     *     $this,
+     *     \App\Models\EntityUser
+     * >
+     */
     public function editingUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'entity_user')

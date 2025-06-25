@@ -58,6 +58,9 @@ class DiceRollResult extends Model
     /** @var bool No relations for this entity "type" */
     protected bool $hasRelations = false;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\DiceRoll, $this>
+     */
     public function diceRoll(): BelongsTo
     {
         return $this->belongsTo('App\Models\DiceRoll', 'dice_roll_id');

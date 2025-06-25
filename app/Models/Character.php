@@ -227,6 +227,9 @@ class Character extends MiscModel
         return ['title', 'location_id', 'sex', 'is_dead'];
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Family, $this>
+     */
     public function families(): BelongsToMany
     {
         return $this->belongsToMany(Family::class)
@@ -238,6 +241,9 @@ class Character extends MiscModel
             ]);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterFamily, $this>
+     */
     public function characterFamilies(): HasMany
     {
         return $this->hasMany(CharacterFamily::class, 'character_id')
@@ -254,6 +260,9 @@ class Character extends MiscModel
             ]);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterRace, $this>
+     */
     public function characterRaces(): HasMany
     {
         return $this->hasMany(CharacterRace::class, 'character_id')
@@ -270,6 +279,9 @@ class Character extends MiscModel
             ]);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Race, $this>
+     */
     public function races(): BelongsToMany
     {
         return $this->belongsToMany(Race::class)
@@ -281,11 +293,17 @@ class Character extends MiscModel
             ]);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\OrganisationMember, $this>
+     */
     public function organisationMemberships(): HasMany
     {
         return $this->hasMany('App\Models\OrganisationMember', 'character_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Organisation, $this>
+     */
     public function organisations(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Organisation', 'organisation_member')
@@ -297,16 +315,25 @@ class Character extends MiscModel
             ]);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Item, $this>
+     */
     public function items(): HasMany
     {
         return $this->hasMany('App\Models\Item', 'character_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\DiceRoll, $this>
+     */
     public function diceRolls(): HasMany
     {
         return $this->hasMany('App\Models\DiceRoll', 'character_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\Conversation, \App\Models\ConversationParticipant, $this>
+     */
     public function conversations(): HasManyThrough
     {
         return $this->hasManyThrough(
@@ -319,11 +346,17 @@ class Character extends MiscModel
         );
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ConversationParticipant, $this>
+     */
     public function conversationParticipants(): HasMany
     {
         return $this->hasMany('App\Models\ConversationParticipant', 'character_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterTrait, $this>
+     */
     public function characterTraits(): HasMany
     {
         return $this->hasMany('App\Models\CharacterTrait', 'character_id', 'id');

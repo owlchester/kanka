@@ -137,6 +137,9 @@ class Race extends MiscModel
         return $query;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterRace, $this>
+     */
     public function characterRaces(): HasMany
     {
         return $this->hasMany(CharacterRace::class, 'race_id')
@@ -206,6 +209,9 @@ class Race extends MiscModel
         ];
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\RaceLocation, $this>
+     */
     public function pivotLocations(): HasMany
     {
         return $this->hasMany('App\Models\RaceLocation');

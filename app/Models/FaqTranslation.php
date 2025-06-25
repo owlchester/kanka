@@ -27,6 +27,9 @@ class FaqTranslation extends Model
         'locale',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Faq, $this>
+     */
     public function faq(): BelongsTo
     {
         return $this->belongsTo('App\Models\Faq', 'faq_id', 'id');

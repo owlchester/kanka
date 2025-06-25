@@ -27,6 +27,9 @@ class CampaignBoost extends Model
 
     protected $fillable = ['user_id', 'campaign_id'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     */
     public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');

@@ -64,16 +64,25 @@ class CampaignRole extends Model
         return $this->is_admin;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     */
     public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignRoleUser, $this>
+     */
     public function users(): HasMany
     {
         return $this->hasMany('App\Models\CampaignRoleUser', 'campaign_role_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignDashboardRole, $this>
+     */
     public function dashboardRoles(): HasMany
     {
         return $this->hasMany(CampaignDashboardRole::class, 'campaign_role_id', 'id');
@@ -104,6 +113,9 @@ class CampaignRole extends Model
         return $query->where('is_admin', $with);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignPermission, $this>
+     */
     public function permissions(): HasMany
     {
         return $this->hasMany('App\Models\CampaignPermission', 'campaign_role_id');

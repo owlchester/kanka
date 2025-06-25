@@ -24,6 +24,9 @@ trait Taggable
         static::observe(app(TaggableObserver::class));
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Tag, $this>
+     */
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, $this->getTagPivotTableName())

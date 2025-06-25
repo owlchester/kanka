@@ -23,16 +23,25 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class CampaignPlugin extends Model
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Plugin, $this>
+     */
     public function plugin(): BelongsTo
     {
         return $this->belongsTo(Plugin::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     */
     public function campaign(): BelongsTo
     {
         return $this->belongsTo(Campaign::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\PluginVersion, $this>
+     */
     public function version(): BelongsTo
     {
         return $this->belongsTo(PluginVersion::class, 'plugin_version_id');

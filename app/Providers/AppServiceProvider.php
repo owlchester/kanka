@@ -130,6 +130,7 @@ class AppServiceProvider extends ServiceProvider
         $command = 'git symbolic-ref -q --short HEAD || git describe --tags --exact-match';
         if (class_exists('\Symfony\Component\Process\Process')) {
             try {
+                // @phpstan-ignore-next-line
                 if (method_exists(Process::class, 'fromShellCommandline')) {
                     $process = Process::fromShellCommandline($command, $path);
                 } else {

@@ -69,21 +69,33 @@ class EntityLog extends Model
 
     protected string $userField = 'created_by';
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     */
     public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     */
     public function impersonator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'impersonated_by');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Post, $this>
+     */
     public function post(): BelongsTo
     {
         return $this->belongsTo('App\Models\Post', 'post_id');

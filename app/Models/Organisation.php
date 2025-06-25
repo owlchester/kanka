@@ -183,11 +183,17 @@ class Organisation extends MiscModel
         return 'organisation_id';
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\OrganisationLocation, $this>
+     */
     public function pivotLocations(): HasMany
     {
         return $this->hasMany('App\Models\OrganisationLocation');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\OrganisationMember, $this>
+     */
     public function members(): HasMany
     {
         return $this->hasMany('App\Models\OrganisationMember', 'organisation_id', 'id');

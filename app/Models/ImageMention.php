@@ -34,11 +34,17 @@ class ImageMention extends Model
         'type',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Post, $this>
+     */
     public function post(): BelongsTo
     {
         return $this->belongsTo('App\Models\Post', 'post_id', 'id');

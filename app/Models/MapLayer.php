@@ -67,11 +67,17 @@ class MapLayer extends Model
         'name',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Map, $this>
+     */
     public function map(): BelongsTo
     {
         return $this->belongsTo(Map::class, 'map_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Image, $this>
+     */
     public function image(): BelongsTo
     {
         return $this->belongsTo(Image::class, 'image_uuid');

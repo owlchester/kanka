@@ -57,6 +57,9 @@ class CalendarWeather extends Model
         'name',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Calendar, $this>
+     */
     public function calendar(): BelongsTo
     {
         return $this->belongsTo(Calendar::class);

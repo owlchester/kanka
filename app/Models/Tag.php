@@ -161,6 +161,9 @@ class Tag extends MiscModel
             ->whereNotIn('type_id', [config('entities.ids.tag')]);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Entity, $this>
+     */
     public function entities(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -173,11 +176,17 @@ class Tag extends MiscModel
         );
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityTag, $this>
+     */
     public function entityTags(): HasMany
     {
         return $this->hasMany(EntityTag::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Post, $this>
+     */
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(
@@ -190,6 +199,9 @@ class Tag extends MiscModel
         );
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\PostTag, $this>
+     */
     public function postTags(): HasMany
     {
         return $this->hasMany(PostTag::class);

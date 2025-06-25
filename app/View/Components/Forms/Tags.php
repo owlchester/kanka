@@ -5,6 +5,7 @@ namespace App\View\Components\Forms;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Post;
+use App\Models\Tag;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -63,18 +64,21 @@ class Tags extends Component
     {
         $this->tags = [];
         if (! empty($this->model) && $this->model instanceof Entity) {
+            /** @var Tag $tag */
             foreach ($this->model->tags()->with('entity')->get() as $tag) {
                 if ($tag->entity) {
                     $this->tags[$tag->id] = $tag;
                 }
             }
         } elseif (! empty($this->model) && ! empty($this->model->entity) && ! $this->model instanceof Post) {
+            /** @var Tag $tag */
             foreach ($this->model->entity->tags()->with('entity')->get() as $tag) {
                 if ($tag->entity) {
                     $this->tags[$tag->id] = $tag;
                 }
             }
         } elseif (! empty($this->model) && ($this->model instanceof \App\Models\CampaignDashboardWidget || $this->model instanceof Post || $this->model instanceof \App\Models\Bookmark || $this->model instanceof \App\Models\Webhook)) {
+            /** @var Tag $tag */
             foreach ($this->model->tags()->with('entity')->get() as $tag) {
                 $this->tags[$tag->id] = $tag;
             }
@@ -89,6 +93,7 @@ class Tags extends Component
             }
         } elseif (empty($this->model) && $this->enableAuto) {
             $tags = \App\Models\Tag::autoApplied()->with('entity')->get();
+            /** @var Tag $tag */
             foreach ($tags as $tag) {
                 if ($tag && $tag->entity) {
                     $this->tags[$tag->id] = $tag;

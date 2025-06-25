@@ -61,6 +61,9 @@ class CampaignExport extends Model
         return static::where('updated_at', '<=', now()->subDays(90));
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     */
     public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');

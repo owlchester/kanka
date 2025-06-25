@@ -57,11 +57,17 @@ class ConversationMessage extends Model
      */
     protected string $entityType = 'conversation_messages';
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     */
     public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Conversation, $this>
+     */
     public function conversation(): BelongsTo
     {
         return $this->belongsTo('App\Models\Conversation', 'conversation_id');

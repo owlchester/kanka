@@ -25,11 +25,17 @@ class CreatureLocation extends Pivot
 
     protected $fillable = ['creature_id', 'location_id'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Creature, $this>
+     */
     public function creature(): BelongsTo
     {
         return $this->belongsTo('App\Models\Creature', 'creature_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Location, $this>
+     */
     public function location(): BelongsTo
     {
         return $this->belongsTo('App\Models\Location', 'location_id', 'id');

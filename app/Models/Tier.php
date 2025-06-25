@@ -25,6 +25,9 @@ class Tier extends Model
         'position',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\TierPrice, $this>
+     */
     public function prices(): HasMany
     {
         return $this->hasMany(TierPrice::class);

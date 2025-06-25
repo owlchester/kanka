@@ -86,11 +86,17 @@ class Reminder extends Model
     /** Next occurrence of the reminder */
     protected int $cachedNext;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Calendar, $this>
+     */
     public function calendar(): BelongsTo
     {
         return $this->belongsTo(Calendar::class, 'calendar_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityEventType, $this>
+     */
     public function type(): BelongsTo
     {
         return $this->belongsTo(EntityEventType::class, 'type_id');
@@ -559,6 +565,9 @@ class Reminder extends Model
         return $month--;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne<\App\Models\Reminder, $this>
+     */
     public function death(): MorphOne
     {
         return $this->morphOne(Reminder::class, 'remindable')

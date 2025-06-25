@@ -27,6 +27,9 @@ class CommunityEventEntry extends Model
         'link',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CommunityEvent, $this>
+     */
     public function event(): BelongsTo
     {
         return $this->belongsTo(CommunityEvent::class, 'community_event_id');

@@ -76,16 +76,25 @@ class OrganisationMember extends Model
         'role',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     */
     public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Organisation, $this>
+     */
     public function organisation(): BelongsTo
     {
         return $this->belongsTo('App\Models\Organisation', 'organisation_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\OrganisationMember, $this>
+     */
     public function parent(): BelongsTo
     {
         return $this->belongsTo('App\Models\OrganisationMember', 'parent_id');

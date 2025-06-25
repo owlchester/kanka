@@ -18,6 +18,8 @@ trait HasMentions
 {
     /**
      * List of entities that this entity mentions
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityMention, $this>
      */
     public function mentions(): HasMany
     {
@@ -26,6 +28,8 @@ trait HasMentions
 
     /**
      * List of images used by this entity
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ImageMention, $this>
      */
     public function imageMentions(): HasMany
     {
@@ -34,6 +38,8 @@ trait HasMentions
 
     /**
      * List of entities that mention this entity
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityMention, $this>
      */
     public function targetMentions(): HasMany
     {

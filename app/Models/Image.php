@@ -84,37 +84,58 @@ class Image extends Model
         'name',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Image, $this>
+     */
     public function imageFolder(): BelongsTo
     {
         return $this->belongsTo(Image::class, 'folder_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Image, $this>
+     */
     public function images(): HasMany
     {
         return $this->hasMany(Image::class, 'folder_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Image, $this>
+     */
     public function folders(): HasMany
     {
         return $this->hasMany(Image::class, 'folder_id', 'id')
             ->where('is_folder', true);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Entity, $this>
+     */
     public function entities(): HasMany
     {
         return $this->hasMany(Entity::class, 'image_uuid', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapLayer, $this>
+     */
     public function mapLayers(): HasMany
     {
         return $this->hasMany(MapLayer::class, 'image_uuid', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Inventory, $this>
+     */
     public function inventories(): HasMany
     {
         return $this->hasMany(Inventory::class, 'image_uuid', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityAsset, $this>
+     */
     public function entityAssets(): HasMany
     {
         return $this->hasMany(EntityAsset::class, 'image_uuid', 'id')
@@ -122,11 +143,17 @@ class Image extends Model
             ->has('entity');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Entity, $this>
+     */
     public function headers(): HasMany
     {
         return $this->hasMany(Entity::class, 'header_uuid', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ImageMention, $this>
+     */
     public function mentions(): HasMany
     {
         return $this->hasMany(ImageMention::class, 'image_id', 'id')

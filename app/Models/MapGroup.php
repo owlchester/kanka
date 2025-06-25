@@ -56,6 +56,9 @@ class MapGroup extends Model
         'name',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Map, $this>
+     */
     public function map(): BelongsTo
     {
         return $this->belongsTo(Map::class, 'map_id');
@@ -71,11 +74,17 @@ class MapGroup extends Model
             ->orderBy('name');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapMarker, $this>
+     */
     public function markers(): HasMany
     {
         return $this->hasMany(MapMarker::class, 'group_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapMarker, $this>
+     */
     public function markersWithEntity(): HasMany
     {
         return $this->hasMany(MapMarker::class, 'group_id')

@@ -274,12 +274,12 @@ class BulkService
         }
 
         // Private
-        if (isset($fields['is_private']) && $fields['is_private'] !== null) {
+        if (isset($fields['is_private']) && $fields['is_private'] != null) {
             $filledFields['is_private'] = $fields['is_private'] === '0';
         }
 
         // Active
-        if (isset($fields['is_active']) && $fields['is_active'] !== null) {
+        if (isset($fields['is_active']) && $fields['is_active'] != null) {
             $filledFields['is_active'] = $fields['is_active'] === '1';
         }
 
