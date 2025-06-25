@@ -21,7 +21,7 @@ use Illuminate\Support\Str;
  * @property ?string $icon
  * @property bool|int $is_special
  * @property bool|int $is_enabled
- * @property AttributeTemplates[]|Collection $attributeTemplates
+ * @property AttributeTemplate[]|Collection $attributeTemplates
  * @property Bookmark[]|Collection $bookmarks
  * @property Entity[]|Collection $entities
  * @property CampaignDashboardWidget[]|Collection $widgets

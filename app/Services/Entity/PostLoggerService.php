@@ -7,6 +7,7 @@ use App\Models\Location;
 use App\Models\MiscModel;
 use App\Models\Post;
 use App\Traits\CampaignAware;
+use App\Traits\PostAware;
 use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Facades\Log;
@@ -15,6 +16,7 @@ use Illuminate\Support\Str;
 class PostLoggerService
 {
     use CampaignAware;
+    use PostAware;
     use UserAware;
 
     protected array $logged = [];
@@ -24,11 +26,16 @@ class PostLoggerService
 
     protected EntityLog $log;
 
-    protected Post $post;
-
-    public function postDirty(Post $post): array
+    public function change(string $property, mixed $values = null): self
     {
-        $dirty = $post->getDirty();
+        $this->changes[$property] = $values;
+
+        return $this;
+    }
+
+    public function dirty(): array
+    {
+        $dirty = $this->post->getDirty();
         $ignoredAttributes = ['created_at', 'updated_at', 'updated_by', 'deleted_by', 'deleted_at', 'words'];
         foreach ($dirty as $attribute => $value) {
             // If the model has this attribute as ignored for logs, skip it
@@ -36,7 +43,7 @@ class PostLoggerService
                 continue;
             }
             // We log the old value
-            $value = $post->getOriginal($attribute);
+            $value = $this->post->getOriginal($attribute);
             if (Str::endsWith($attribute, '_id')) {
                 // Foreign? Try and get the related model
                 $value = $this->getForeignOriginal($attribute, $value);

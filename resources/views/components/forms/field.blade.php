@@ -1,9 +1,8 @@
-<div class="field field-{{ $field }} flex flex-col gap-1
-    @if (isset($required) && $required) required @endif {{ $css ?? null }}
+<div class="field field-{{ $field }} flex flex-col gap-1 {{ $css ?? null }}
     @if ($hidden) hidden @endif"
 >
     @if (isset($label) && !empty($label))
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between @if (isset($required) && $required) required @endif">
             <label class="" @if (isset($id)) for="{{ $id }}" @endif>
                 {!! $label !!}
                 @if ($tooltip && isset($helper))

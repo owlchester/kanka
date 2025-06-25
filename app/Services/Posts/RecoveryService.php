@@ -11,28 +11,14 @@ class RecoveryService
     use CampaignAware;
     use UserAware;
 
-    /** @var array Entity IDs to be deleted */
-    protected array $entityIds = [];
-
-    /** @var array Post IDs to be deleted */
-    protected array $postIds = [];
-
-    /** @var array Child IDs to be deleted */
-    protected array $childIds = [];
-
     public function recover(array $ids): array
     {
-        $posts = $log = [];
+        $posts = [];
         foreach ($ids as $id) {
             $url = $this->post($id);
             if ($url) {
                 $posts[$id] = $url;
-                $log[] = $id;
             }
-        }
-
-        if (! empty($posts)) {
-            $this->user->campaignLog($this->campaign->id, 'recovery', 'posts', ['ids' => $log]);
         }
 
         return $posts;

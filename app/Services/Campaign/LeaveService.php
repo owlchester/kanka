@@ -2,9 +2,7 @@
 
 namespace App\Services\Campaign;
 
-use App\Facades\CampaignCache;
-use App\Facades\UserCache;
-use App\Jobs\Campaigns\NotifyAdmins;
+use App\Events\Campaigns\Members\UserLeft;
 use App\Models\CampaignRoleUser;
 use App\Models\CampaignUser;
 use App\Traits\CampaignAware;
@@ -39,23 +37,6 @@ class LeaveService
             $role->delete();
         }
 
-        // Notify admins
-        NotifyAdmins::dispatch(
-            $this->campaign,
-            'leave',
-            'user',
-            'yellow',
-            [
-                'user' => $this->user->name,
-                'campaign' => $this->campaign->name,
-                'link' => route('dashboard', $this->campaign),
-            ]
-        );
-
-        // Clear cache
-        UserCache::user($this->user)->clear();
-        CampaignCache::campaign($this->campaign)->clear();
-
-        $this->user->campaignLog($this->campaign->id, 'members', 'leave');
+        UserLeft::dispatch($this->campaign, $this->user);
     }
 }

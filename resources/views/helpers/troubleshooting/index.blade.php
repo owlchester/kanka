@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('helpers.troubleshooting.title'),
+    'title' => __('assistance.title'),
     'breadcrumbs' => false,
 ])
 
@@ -9,24 +9,33 @@
         <h1 class="mb-3">{{ __('helpers.troubleshooting.subtitle') }}</h1>
 
         <x-form action="troubleshooting.generate">
-        <x-box>
+        <x-box class="rounded-2xl">
             <x-grid type="1/1">
-                <p class="">
-                    {{ __('helpers.troubleshooting.description') }}
-                </p>
 
             @if($token)
-                <x-alert type="success">
-                    <x-grid type="1/1">
-                        <p class="">{{ __('helpers.troubleshooting.success') }}</p>
-                        <a href="#" data-clipboard="{{ $token }}" data-toggle="tooltip" data-toast="Token copied to the clipboard" data-title="{{__('campaigns.invites.actions.copy') }}">
-                            <x-icon class="fa-regular fa-copy" />
-                            {{ $token }}
-                        </a>
-                    </x-grid>
-                </x-alert>
+                <p class="">{!! __('assistance.success.opening', [
+'discord' => '<a href="https://kanka.io/go/discord">Discord</a>'
+]) !!}</p>
+                <p>
+                    <strong>{{ __('assistance.success.token') }}</strong><br />
+                    <a href="#" data-clipboard="{{ $token }}" data-toggle="tooltip" data-toast="Token copied to the clipboard" data-title="{{__('campaigns.invites.actions.copy') }}">
+                        <x-icon class="fa-regular fa-copy" />
+                        {{ $token }}
+                    </a>
+                </p>
+
+                <p>{{ __('assistance.success.secret') }}</p>
             @else
-                <x-forms.field field="campaign" :label="__('entities/move.fields.campaign')">
+                    <x-helper>
+                        <p class="">
+                            {{ __('assistance.opening') }}
+                        </p>
+                        <p class="">
+                            {{ __('assistance.select') }}
+                        </p>
+                    </x-helper>
+
+                <x-forms.field field="campaign" :label="__('assistance.fields.campaign')">
                     <x-forms.select name="campaign" :options="$campaigns" class="w-full" />
                 </x-forms.field>
             @endif

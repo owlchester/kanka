@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Services\Campaign\ExportService;
+use App\Services\Campaign\Exports\QueueService;
 use Illuminate\Http\Request;
 
 class ExportController extends Controller
 {
-    public function __construct(public ExportService $exportService)
+    public function __construct(protected QueueService $queueService)
     {
         $this->middleware('auth');
     }
@@ -39,7 +39,7 @@ class ExportController extends Controller
                 ->withError(__('campaigns/export.errors.limit'));
         }
 
-        $this->exportService
+        $this->queueService
             ->campaign($campaign)
             ->user($request->user())
             ->queue();

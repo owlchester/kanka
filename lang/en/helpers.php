@@ -31,7 +31,7 @@ return [
         'select_campaign'   => 'Select a campaign',
         'subtitle'          => 'Please send help!',
         'success'           => 'Please copy the following token and send it to someone on Kanka\'s team.',
-        'title'             => 'Troubleshooting',
+        'title'             => 'Assistance',
     ],
     'widget-filters'    => [
         'description'   => 'You can filter entities displayed on the recently modified widget by providing a list of fields of the entity and values. For example, you can use :example to filter on dead characters of the NPC type.',

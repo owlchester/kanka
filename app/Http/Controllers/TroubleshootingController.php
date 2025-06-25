@@ -9,13 +9,9 @@ use App\Services\TroubleshootingService;
 
 class TroubleshootingController extends Controller
 {
-    protected TroubleshootingService $service;
-
-    public function __construct(TroubleshootingService $service)
+    public function __construct(protected TroubleshootingService $service)
     {
         $this->middleware(['auth', 'identity']);
-
-        $this->service = $service;
     }
 
     public function index()

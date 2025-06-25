@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Enums\Permission;
 use App\Enums\WebhookAction;
+use App\Events\Entities\EntityRestored;
 use App\Facades\Domain;
 use App\Facades\EntityLogger;
 use App\Facades\Images;
@@ -214,5 +215,10 @@ class EntityObserver
         // Todo: Why is this not handled by the database?
         $entity->permissions()->delete();
         $entity->widgets()->delete();
+    }
+
+    public function restored(Entity $entity)
+    {
+        EntityRestored::dispatch($entity, auth()->user());
     }
 }

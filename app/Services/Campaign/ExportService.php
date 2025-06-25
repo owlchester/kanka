@@ -3,7 +3,6 @@
 namespace App\Services\Campaign;
 
 use App\Facades\CampaignCache;
-use App\Jobs\Campaigns\Export;
 use App\Models\CampaignExport;
 use App\Models\Entity;
 use App\Models\EntityAsset;
@@ -56,24 +55,6 @@ class ExportService
     public function log(CampaignExport $campaignExport): self
     {
         $this->log = $campaignExport;
-
-        return $this;
-    }
-
-    public function queue(): self
-    {
-        $this->campaign->export_date = date('Y-m-d');
-        $this->campaign->saveQuietly();
-
-        $entitiesExport = CampaignExport::create([
-            'campaign_id' => $this->campaign->id,
-            'created_by' => $this->user->id,
-            'type' => 1,
-            'status' => CampaignExport::STATUS_SCHEDULED,
-        ]);
-
-        $this->user->campaignLog($this->campaign->id, 'export', 'created');
-        Export::dispatch($this->campaign, $this->user, $entitiesExport)->onQueue('heavy');
 
         return $this;
     }

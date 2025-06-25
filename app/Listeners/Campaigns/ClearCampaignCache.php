@@ -20,6 +20,7 @@ class ClearCampaignCache
     public function handle(object $event): void
     {
         $campaign = $event->campaignRoleUser->campaignRole->campaign
+            ?? $event->campaignRole->campaign
             ?? $event->campaign
             ?? $event->campaignDashboard->campaign
             ?? null;

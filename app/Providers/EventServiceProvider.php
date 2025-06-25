@@ -8,32 +8,63 @@ use App\Events\Campaigns\Dashboards\DashboardCreated;
 use App\Events\Campaigns\Dashboards\DashboardDeleted;
 use App\Events\Campaigns\Dashboards\DashboardUpdated;
 use App\Events\Campaigns\Deleted;
+use App\Events\Campaigns\Exports\ExportCreated;
 use App\Events\Campaigns\Followers\FollowerCreated;
 use App\Events\Campaigns\Followers\FollowerRemoved;
 use App\Events\Campaigns\Invites\InviteCreated;
 use App\Events\Campaigns\Invites\InviteDeleted;
 use App\Events\Campaigns\Members\RoleUserAdded;
 use App\Events\Campaigns\Members\RoleUserRemoved;
+use App\Events\Campaigns\Members\Switched;
+use App\Events\Campaigns\Members\UserJoined;
+use App\Events\Campaigns\Members\UserLeft;
 use App\Events\Campaigns\Plugins\PluginDeleted;
 use App\Events\Campaigns\Plugins\PluginImported;
 use App\Events\Campaigns\Plugins\PluginUpdated;
+use App\Events\Campaigns\Roles\RoleCreated;
+use App\Events\Campaigns\Roles\RoleDeleted;
+use App\Events\Campaigns\Roles\RoleUpdated;
 use App\Events\Campaigns\Saved;
+use App\Events\Campaigns\Sidebar\SidebarReset;
+use App\Events\Campaigns\Sidebar\SidebarSaved;
 use App\Events\Campaigns\Styles\StyleCreated;
 use App\Events\Campaigns\Styles\StyleDeleted;
 use App\Events\Campaigns\Styles\StyleUpdated;
+use App\Events\Campaigns\Thumbnails\ThumbnailCreated;
+use App\Events\Campaigns\Thumbnails\ThumbnailDeleted;
+use App\Events\Campaigns\Updated;
+use App\Events\Campaigns\Webhooks\WebhookCreated;
+use App\Events\Campaigns\Webhooks\WebhookDeleted;
+use App\Events\Campaigns\Webhooks\WebhookTested;
+use App\Events\Campaigns\Webhooks\WebhookUpdated;
+use App\Events\Entities\EntityRestored;
 use App\Events\FeatureCreated;
+use App\Events\Posts\PostCreated;
+use App\Events\Posts\PostDeleted;
+use App\Events\Posts\PostRestored;
+use App\Events\Posts\PostUpdated;
+use App\Listeners\Campaigns\Admins\Notify;
 use App\Listeners\Campaigns\Applications\LogApplication;
+use App\Listeners\Campaigns\Campaigns\LogCampaign;
 use App\Listeners\Campaigns\ClearCampaignCache;
 use App\Listeners\Campaigns\ClearCampaignThemeCache;
 use App\Listeners\Campaigns\ClearCampaignUsersSaved;
 use App\Listeners\Campaigns\Dashboards\LogDashboard;
+use App\Listeners\Campaigns\Exports\LogExport;
 use App\Listeners\Campaigns\Followers\UpdateFollowerCount;
 use App\Listeners\Campaigns\Invites\LogInvite;
+use App\Listeners\Campaigns\Members\LogMember;
 use App\Listeners\Campaigns\Members\LogUserRoleChanged;
 use App\Listeners\Campaigns\Members\RunRoleUserJob;
 use App\Listeners\Campaigns\Plugins\ClearThemeCache;
 use App\Listeners\Campaigns\Plugins\LogPlugin;
+use App\Listeners\Campaigns\Roles\LogRole;
+use App\Listeners\Campaigns\Sidebar\LogSidebar;
 use App\Listeners\Campaigns\Styles\LogStyle;
+use App\Listeners\Campaigns\Thumbnails\LogThumbnail;
+use App\Listeners\Campaigns\Webhooks\LogWebhook;
+use App\Listeners\Entities\LogEntity;
+use App\Listeners\Posts\LogPost;
 use App\Listeners\SendFeatureNotification;
 use App\Listeners\Users\ClearUserCache;
 use Illuminate\Auth\Events\Login;
@@ -110,6 +141,9 @@ class EventServiceProvider extends ServiceProvider
         Saved::class => [
             ClearCampaignUsersSaved::class,
         ],
+        Updated::class => [
+            LogCampaign::class,
+        ],
         Deleted::class => [
             ClearCampaignUsersSaved::class,
         ],
@@ -124,6 +158,75 @@ class EventServiceProvider extends ServiceProvider
         DashboardDeleted::class => [
             LogDashboard::class,
             ClearCampaignCache::class,
+        ],
+        WebhookCreated::class => [
+            LogWebhook::class,
+        ],
+        WebhookUpdated::class => [
+            LogWebhook::class,
+        ],
+        WebhookDeleted::class => [
+            LogWebhook::class,
+        ],
+        WebhookTested::class => [
+            LogWebhook::class,
+        ],
+        RoleCreated::class => [
+            LogRole::class,
+            ClearCampaignCache::class,
+        ],
+        RoleUpdated::class => [
+            LogRole::class,
+            ClearCampaignCache::class,
+        ],
+        RoleDeleted::class => [
+            LogRole::class,
+            ClearCampaignCache::class,
+        ],
+        ExportCreated::class => [
+            LogExport::class,
+        ],
+        SidebarSaved::class => [
+            LogSidebar::class,
+        ],
+        SidebarReset::class => [
+            LogSidebar::class,
+        ],
+        ThumbnailCreated::class => [
+            LogThumbnail::class,
+            ClearCampaignCache::class,
+        ],
+        ThumbnailDeleted::class => [
+            LogThumbnail::class,
+            ClearCampaignCache::class,
+        ],
+        UserJoined::class => [
+            Notify::class,
+            ClearUserCache::class,
+            LogMember::class,
+        ],
+        UserLeft::class => [
+            Notify::class,
+            ClearUserCache::class,
+            LogMember::class,
+        ],
+        Switched::class => [
+            LogMember::class,
+        ],
+        EntityRestored::class => [
+            LogEntity::class,
+        ],
+        PostRestored::class => [
+            LogPost::class,
+        ],
+        PostCreated::class => [
+            LogPost::class,
+        ],
+        PostUpdated::class => [
+            LogPost::class,
+        ],
+        PostDeleted::class => [
+            LogPost::class,
         ],
     ];
 

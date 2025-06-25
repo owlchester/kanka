@@ -13,17 +13,12 @@ class RecoveryService
 
     public function recover(array $ids): array
     {
-        $entities = $log = [];
+        $entities = [];
         foreach ($ids as $id) {
             $url = $this->entity($id);
             if ($url) {
                 $entities[$id] = $url;
-                $log[] = $id;
             }
-        }
-
-        if (! empty($entities)) {
-            $this->user->campaignLog($this->campaign->id, 'recovery', 'entities', ['ids' => $log]);
         }
 
         return $entities;
@@ -32,7 +27,7 @@ class RecoveryService
     /**
      * Restore an entity and it's child
      */
-    protected function entity(int $id): mixed
+    protected function entity(int $id): ?string
     {
         /** @var ?Entity $entity */
         $entity = Entity::onlyTrashed()->find($id);
