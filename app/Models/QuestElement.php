@@ -118,7 +118,11 @@ class QuestElement extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\User, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
+     *     \App\Models\User,
+     *     self,
+     *     \App\Models\EntityUser
+     * >
      */
     public function editingUsers(): BelongsToMany
     {

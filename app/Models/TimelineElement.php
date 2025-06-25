@@ -153,7 +153,11 @@ class TimelineElement extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\User, self, \App\Models\EntityUser>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
+     *     \App\Models\User,
+     *     self,
+     *     \App\Models\EntityUser
+     * >
      */
     public function editingUsers(): BelongsToMany
     {

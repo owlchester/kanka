@@ -89,7 +89,11 @@ class CampaignDashboardWidget extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Tag, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
+     *     \App\Models\Tag,
+     *     self,
+     *     \App\Models\CampaignDashboardWidgetTag
+     * >
      */
     public function tags(): BelongsToMany
     {
@@ -351,9 +355,8 @@ class CampaignDashboardWidget extends Model
 
             /** @var FilterService $filterService */
             $filterService = app()->make('App\Services\FilterService');
-            if ($this->entityType) {
-                $filterService->entityType($this->entityType);
-            }
+            $filterService->entityType($this->entityType);
+            
             $filterService
                 ->session(false)
                 ->options($this->filterOptions())
