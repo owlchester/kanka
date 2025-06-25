@@ -16,7 +16,6 @@ use App\Models\Tier;
 use App\Models\TierPrice;
 use App\Traits\UserAware;
 use Carbon\Carbon;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Laravel\Cashier\PaymentMethod;

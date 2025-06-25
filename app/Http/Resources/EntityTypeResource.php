@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\EntityType;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityTypeResource extends JsonResource
