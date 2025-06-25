@@ -101,7 +101,7 @@ class PostController extends Controller
         $this->authorize('post', [$entity, 'edit', $post]);
         $editingUsers = null;
 
-        /** @var MiscModel $model */
+        /** @var MiscModel|Post $model */
         $model = $post;
 
         if ($campaign->hasEditingWarning()) {

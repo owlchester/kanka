@@ -66,9 +66,6 @@ class SubscriptionService
         return $this;
     }
 
-    /**
-     * @throws Exception
-     */
     public function period(PricingPeriod $period): self
     {
         $this->period = $period;

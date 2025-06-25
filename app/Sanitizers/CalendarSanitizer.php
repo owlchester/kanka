@@ -8,8 +8,6 @@ class CalendarSanitizer extends MiscSanitizer
 
     public function sanitize(): array
     {
-        parent::sanitize();
-
         // Handle months
         $months = $this->cleanMonths();
 

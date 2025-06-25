@@ -30,7 +30,6 @@ class AbilityController extends Controller
         Datagrid::layout(\App\Renderers\Layouts\Ability\Ability::class)
             ->route('abilities.abilities', $options);
 
-        // @phpstan-ignore-next-line
         $this->rows = $ability
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])

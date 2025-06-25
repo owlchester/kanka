@@ -111,7 +111,7 @@ class TimelineElement extends Model
     public function elementName(): string
     {
         if (! empty($this->entity_id)) {
-            return $this->entity?->name ?? __('crud.history.unknown');
+            return $this->entity->name ?? __('crud.history.unknown');
         }
 
         return $this->name;
@@ -153,7 +153,7 @@ class TimelineElement extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\User, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\User, self, \App\Models\EntityUser>
      */
     public function editingUsers(): BelongsToMany
     {

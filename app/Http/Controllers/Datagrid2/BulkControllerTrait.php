@@ -46,6 +46,7 @@ trait BulkControllerTrait
                 $model->delete();
                 $count++;
             } elseif ($action === 'patch') {
+                /** @var MapGroup $model */
                 $model->patch($patch);
                 $count++;
             }
