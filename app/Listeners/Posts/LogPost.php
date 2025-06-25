@@ -9,6 +9,7 @@ use App\Events\Posts\PostRestored;
 use App\Events\Posts\PostUpdated;
 use App\Facades\Identity;
 use App\Models\EntityLog;
+use App\Models\Post;
 use App\Services\Entity\PostLoggerService;
 
 class LogPost
@@ -40,9 +41,9 @@ class LogPost
         };
 
         $log = new EntityLog;
-        $log->entity_id = $event->post->entity->id;
         $log->created_by = $event->user->id;
-        $log->post_id = $event->post->id;
+        $log->parent_id = $event->post->id;
+        $log->parent_type = Post::class;
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = $actionId;
         $changes = $this->postLoggerService->post($event->post)->dirty();

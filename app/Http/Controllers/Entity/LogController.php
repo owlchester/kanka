@@ -7,6 +7,7 @@ use App\Http\Requests\HistoryRequest;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityLog;
+use App\Models\Post;
 
 class LogController extends Controller
 {
@@ -23,10 +24,24 @@ class LogController extends Controller
                 $expanded = true;
             }
         }
-        $logs = $entity
-            ->logs()
+
+        $postIds = $entity->posts()->pluck('id');
+        $logs = EntityLog::where(function ($query) use ($entity, $postIds) {
+            $query->where(function ($sub) use ($entity) {
+                $sub->where('parent_type', Entity::class)
+                    ->where('parent_id', $entity->id);
+            })
+                ->orWhere(function ($sub) use ($postIds) {
+                    $sub->where('parent_type', Post::class)
+                        ->whereIn('parent_id', $postIds);
+                });
+        })
             ->filter($request->only($fields))
-            ->with(['user', 'impersonator', 'post'])
+            ->with([
+                'user',
+                'impersonator',
+                'parent',
+            ])
             ->recent()
             ->paginate(config('limits.pagination'));
 

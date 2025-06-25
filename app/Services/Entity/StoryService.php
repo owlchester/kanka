@@ -74,7 +74,8 @@ class StoryService
     private function log()
     {
         $log = new EntityLog;
-        $log->entity_id = $this->entity->id;
+        $log->parent_id = $this->entity->id;
+        $log->parent_type = Entity::class;
         $log->created_by = $this->user->id;
         $log->impersonated_by = Identity::getImpersonatorId();
         $log->action = EntityLog::ACTION_REORDER_POST;

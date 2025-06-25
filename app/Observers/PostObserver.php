@@ -33,8 +33,6 @@ class PostObserver
     public function created(Post $post)
     {
         PostCreated::dispatch($post, auth()->user());
-
-        // $entity->is_created_now = true;
     }
 
     public function updated(Post $post)

@@ -16,6 +16,10 @@ if ($firstPost && $firstPost->position >= 0) {
     $hasEntry = true;
 }
 ?>
+
+<x-tutorial code="abilities" >
+    <p>{!! __('entities/story.reorder.helper') !!}</p>
+</x-tutorial>
 <x-form :action="['entities.story.reorder-save', $campaign, $entity]">
 <div class="box-entity-story-reorder max-w-4xl flex flex-col gap-5">
     <div class="element-live-reorder sortable-elements flex flex-col gap-1">
@@ -36,15 +40,13 @@ if ($firstPost && $firstPost->position >= 0) {
                 <div class="truncate flex-grow">
                     {!! $note->name !!}
                 </div>
-                <div class="px-2 grow-0">
-                    <select name="posts[{{ $note->id }}][collapsed]" class="">
+
+                <div class="self-end flex gap-1">
+                    <select name="posts[{{ $note->id }}][collapsed]" class="w-full md:w-fit">
                         <option value="0">{{ __('entities/notes.states.expanded') }}</option>
                         <option value="1" @if ($note->collapsed()) selected="selected" @endif>{{ __('entities/notes.states.collapsed') }}</option>
                     </select>
-                </div>
-
-                <div class="self-end">
-                    <select name="posts[{{ $note->id }}][visibility_id]" class="">
+                    <select name="posts[{{ $note->id }}][visibility_id]" class="w-full md:w-fit">
                         @foreach ($note->visibilityOptions() as $key => $value)
                             <option value="{{ $key }}" @if ($key == $note->visibility_id->value) selected="selected" @endif>
                                 {{ $value }}

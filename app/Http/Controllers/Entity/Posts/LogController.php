@@ -25,11 +25,10 @@ class LogController extends Controller
             }
         }
 
-        $logs = $entity
+        $logs = $post
             ->logs()
-            ->where('post_id', $post->id)
             ->filter($request->only($fields))
-            ->with(['user', 'impersonator', 'post'])
+            ->with(['user', 'impersonator'])
             ->recent()
             ->paginate(config('limits.pagination'));
 
@@ -44,7 +43,7 @@ class LogController extends Controller
             EntityLog::ACTION_DELETE => __('entities/logs.actions.delete'),
         ];
 
-        return view('entities.pages.logs.index', compact(
+        return view('entities.pages.posts.logs.index', compact(
             'post',
             'campaign',
             'entity',

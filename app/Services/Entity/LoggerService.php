@@ -130,7 +130,8 @@ class LoggerService
     protected function log(int $action)
     {
         $this->log = new EntityLog;
-        $this->log->entity_id = $this->entity->id;
+        $this->log->parent_id = $this->entity->id;
+        $this->log->parent_type = Entity::class;
         $this->log->created_by = isset($this->user) ? $this->user->id : null;
         $this->log->action = $action;
         $this->log->impersonated_by = Identity::getImpersonatorId();
@@ -205,7 +206,7 @@ class LoggerService
             return;
         }
         $dirty = $this->entity->getDirty();
-        $ignoredAttributes = ['created_at', 'updated_at', 'updated_by', 'deleted_by', 'deleted_at', 'type_id'];
+        $ignoredAttributes = ['created_at', 'updated_at', 'updated_by', 'deleted_by', 'deleted_at', 'type_id', 'words'];
         foreach ($dirty as $attribute => $value) {
             // If the model has this attribute as ignored for logs, skip it
             if (in_array($attribute, $ignoredAttributes)) {

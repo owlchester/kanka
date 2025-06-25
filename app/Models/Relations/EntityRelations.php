@@ -13,6 +13,7 @@ use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
 use App\Models\EntityEventType;
+use App\Models\EntityLog;
 use App\Models\EntityTag;
 use App\Models\EntityType;
 use App\Models\EntityUser;
@@ -403,11 +404,11 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityLog, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<\App\Models\EntityLog, $this>
      */
-    public function logs(): HasMany
+    public function logs(): MorphMany
     {
-        return $this->hasMany('App\Models\EntityLog', 'entity_id', 'id');
+        return $this->morphMany(EntityLog::class, 'parent');
     }
 
     /**
