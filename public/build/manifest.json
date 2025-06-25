@@ -205,7 +205,7 @@
     ]
   },
   "resources/js/editors/summernote.js": {
-    "file": "assets/summernote-DtttJDdT.js",
+    "file": "assets/summernote-C70z6vPj.js",
     "name": "summernote",
     "src": "resources/js/editors/summernote.js",
     "isEntry": true
@@ -341,12 +341,12 @@
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-BuaBhWdL.css",
+    "file": "assets/app-LEI6-McI.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-9jGosM8P.css",
+    "file": "assets/auth-CIuAfuyB.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -371,7 +371,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-CvnpdZkA.css",
+    "file": "assets/front-BmeSsRva.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },
