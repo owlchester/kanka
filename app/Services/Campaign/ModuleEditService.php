@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Events\Campaigns\EntityTypes\EntityTypeToggled;
 use App\Facades\CampaignCache;
 use App\Http\Requests\UpdateModuleName;
 use App\Observers\PurifiableTrait;
@@ -89,18 +90,8 @@ class ModuleEditService
 
         $this->campaign->setting->{$this->entityType->pluralCode()} = ! $this->campaign->setting->{$this->entityType->pluralCode()};
         $this->campaign->setting->saveQuietly();
-        CampaignCache::clear();
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
-        $this->user->campaignLog(
-            $this->campaign->id,
-            'modules',
-            'toggle',
-            [
-                'id' => $this->entityType->id,
-                'code' => $this->entityType->code,
-                'new' => $this->campaign->setting->{$this->entityType->pluralCode()} ? 'enabled' : 'disabled',
-            ]
-        );
+        EntityTypeToggled::dispatch($this->entityType, auth()->user(), $this->campaign);
 
         return (bool) $this->campaign->setting->{$this->entityType->pluralCode()};
     }

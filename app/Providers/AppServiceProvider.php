@@ -28,6 +28,7 @@ use App\Models\DiceRollResult;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
+use App\Models\EntityType;
 use App\Models\Event;
 use App\Models\Family;
 use App\Models\Image;
@@ -196,6 +197,7 @@ class AppServiceProvider extends ServiceProvider
         DiceRollResult::observe('App\Observers\DiceRollResultObserver');
         Event::observe(EventObserver::class);
         Entity::observe('App\Observers\EntityObserver');
+        EntityType::observe('App\Observers\EntityTypeObserver');
         EntityAbility::observe('App\Observers\EntityAbilityObserver');
         EntityAsset::observe('App\Observers\EntityAssetObserver');
         Location::observe(LocationObserver::class);

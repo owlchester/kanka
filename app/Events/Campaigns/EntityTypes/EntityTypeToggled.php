@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Events\Campaigns\Webhooks;
+namespace App\Events\Campaigns\EntityTypes;
 
+use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Models\User;
-use App\Models\Webhook;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class WebhookTested
+class EntityTypeToggled
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -17,8 +18,9 @@ class WebhookTested
      * Create a new event instance.
      */
     public function __construct(
-        public Webhook $webhook,
-        public ?User $user
+        public EntityType $entityType,
+        public ?User $user,
+        public ?Campaign $campaign
     ) {
         //
     }

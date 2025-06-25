@@ -135,26 +135,6 @@ class EntityTypeService
 
         if ($this->entityType->wasRecentlyCreated) {
             $this->permissions()->bookmark();
-
-            $this->user->campaignLog(
-                $this->campaign->id,
-                'modules',
-                'created',
-                [
-                    'id' => $this->entityType->id,
-                    'code' => $this->entityType->code,
-                ]
-            );
-        } else {
-            $this->user->campaignLog(
-                $this->campaign->id,
-                'modules',
-                'updated',
-                [
-                    'id' => $this->entityType->id,
-                    'code' => $this->entityType->code,
-                ]
-            );
         }
 
         return $this->entityType;
@@ -164,17 +144,6 @@ class EntityTypeService
     {
         $this->entityType->is_enabled = ! $this->entityType->is_enabled;
         $this->entityType->save();
-
-        $this->user->campaignLog(
-            $this->campaign->id,
-            'modules',
-            'toggle',
-            [
-                'id' => $this->entityType->id,
-                'code' => $this->entityType->code,
-                'new' => $this->entityType->is_enabled ? 'enabled' : 'disabled',
-            ]
-        );
     }
 
     protected function bookmark(): self
@@ -219,15 +188,5 @@ class EntityTypeService
         $this->entityType->attributeTemplates()->delete();
         $this->entityType->entities()->delete();
         $this->entityType->delete();
-
-        $this->user->campaignLog(
-            $this->campaign->id,
-            'modules',
-            'deleted',
-            [
-                'id' => $this->entityType->id,
-                'code' => $this->entityType->code,
-            ]
-        );
     }
 }
