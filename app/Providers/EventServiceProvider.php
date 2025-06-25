@@ -241,6 +241,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         EntityTypeToggled::class => [
             LogEntityType::class,
+            ClearCampaignCache::class,
         ],
         EntityTypeDeleted::class => [
             LogEntityType::class,
