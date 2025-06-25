@@ -68,9 +68,6 @@ class EntityLog extends Model
 
     protected string $userField = 'created_by';
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo<\App\Models\Entity, $this>
-     */
     public function parent(): MorphTo
     {
         return $this->morphTo();
