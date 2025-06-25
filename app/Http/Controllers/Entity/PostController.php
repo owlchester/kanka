@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePost;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\MiscModel;
 use App\Models\Post;
 use App\Services\MultiEditingService;
 use App\Services\Posts\Permissions\SavePermissionsService;
