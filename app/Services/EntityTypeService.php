@@ -133,6 +133,10 @@ class EntityTypeService
         $this->entityType->icon = $this->request->get('icon');
         $this->entityType->save();
 
+        if ($this->entityType->wasRecentlyCreated) {
+            $this->permissions()->bookmark();
+        }
+
         return $this->entityType;
     }
 

@@ -29,8 +29,10 @@ class LogEntityType
             $event instanceof EntityTypeToggled => 'toggled',
         };
 
-        if (($event instanceof EntityTypeUpdated && $event->entityType->wasChanged('is_enabled')) || $event instanceof EntityTypeToggled) {
+        if ($event instanceof EntityTypeUpdated && $event->entityType->wasChanged('is_enabled')) {
             $action = $event->entityType->is_enabled ? 'enabled' : 'disabled';
+        } elseif ($event instanceof EntityTypeToggled) {
+            $action = $event->campaign->setting->{$event->entityType->pluralCode()} ? 'enabled' : 'disabled';
         }
 
         $event->user->campaignLog(
