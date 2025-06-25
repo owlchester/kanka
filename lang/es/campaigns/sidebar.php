@@ -6,8 +6,9 @@ return [
     ],
     'call-to-action'    => 'Personaliza el orden, los iconos y los nombres de los elementos de la barra lateral de la campaña.',
     'helpers'           => [
-        'image'         => 'Añade una imagen para representar la campaña. Esta imagen se utilizará en la barra lateral y en la interfaz del selector de campañas. Puedes cambiarla en cualquier momento editando la campaña.',
-        'reordering'    => 'Reordena la barra lateral arrastrando y soltando los iconos del lado izquierdo.',
+        'bookmarks' => 'Los marcadores no aparecen aquí porque cada uno tiene su propia configuración de :position que determina dónde aparece en la barra lateral.',
+        'image'     => 'Añade una imagen para representar la campaña. Esta imagen se utilizará en la barra lateral y en la interfaz del selector de campañas. Puedes cambiarla en cualquier momento editando la campaña.',
+        'reordering'=> 'Reordena la barra lateral arrastrando y soltando los iconos del lado izquierdo.',
     ],
     'image-success'     => 'Se ha guardado la nueva imagen de la campaña. Esta imagen se puede volver a cambiar editando la campaña.',
     'reset'             => [

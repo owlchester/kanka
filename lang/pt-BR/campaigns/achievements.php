@@ -10,6 +10,7 @@ return [
     'level'             => 'nível :number',
     'markers'           => '{0} Nenhum marcador de mapa criado|{1} Um marcador de mapa criado|[2,*] :amount de marcadores de mapa criados',
     'painter'           => '{0} Nenhum tema criado|{1} Um tema criado|[2,*] :amount de temas criados',
+    'pitch'             => 'Conquistas de campanha são uma maneira divertida de celebrar marcos na sua jornada de construção de mundo. Acompanhe o progresso, interaja com seus jogadores e exiba suas conquistas com uma campanha premium.',
     'plugins'           => '{0} Nenhum plugin instalado|{1} Um plugin instalado|[2,*] :amount de plugins instalados',
     'remaining'         => [
         'generic'   => 'Mais e o próximo nível será desbloqueado.',
@@ -25,6 +26,7 @@ return [
         'families'      => 'Planejador de família',
         'locations'     => 'Construtor',
         'markers'       => 'Cartógrafo',
+        'organisations' => 'Fusões e aquisições',
         'plugins'       => 'Conhecedor de plugins',
         'quests'        => 'Mente brilhante',
         'tags'          => 'Sob controle',

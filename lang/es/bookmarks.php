@@ -23,7 +23,8 @@ return [
         'target'            => 'Destino',
     ],
     'helpers'           => [
-        'active'            => 'Los enlaces rápidos inactivos no aparecerán en la barra lateral.',
+        'active'            => 'Los accesos directos inactivos no aparecerán en la barra lateral.',
+        'css'               => 'Agrega una clase CSS que se añadirá al enlace del acceso directo en la barra lateral.',
         'dashboard'         => 'Puedes hacer que un acceso directo lleve directamente a uno de los tableros personalizados de la campaña.',
         'default_dashboard' => 'Enlace al panel de control predeterminado de la campaña. Es necesario seleccionar un panel de control personalizado.',
         'entity'            => 'Configura este acceso directo para acceder directamente a una entidad. El campo de :tab controla qué pestaña estará seleccionada. El campo de :menu controla qué subpágina de la entidad se abrirá.',
@@ -47,7 +48,14 @@ return [
         'title'     => 'Reordenar los enlaces',
     ],
     'show'              => [],
+    'targets'           => [
+        'dashboard' => 'Uno de los paneles de la campaña',
+        'entity'    => 'Una sola entidad',
+        'random'    => 'Una entidad aleatoria',
+        'select'    => 'Elige una opción',
+        'type'      => 'Lista de entidades de un tipo/módulo específico',
+    ],
     'visibilities'      => [
-        'is_active' => 'Mostrar el enlace rápido en la barra lateral',
+        'is_active' => 'Mostrar el acceso directo en la barra lateral',
     ],
 ];

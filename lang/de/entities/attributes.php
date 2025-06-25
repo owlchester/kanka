@@ -85,6 +85,7 @@ return [
             'success'   => 'Vorlage geladen',
             'title'     => 'Aus Vorlage laden',
         ],
+        'pitch'     => 'Lade Attribute aus einer Attributvorlage oder installierte Plugins aus dem :plugin. 	Gib diesem Lesezeichen ein spezielles :fontawesome Symbol, wie :example, mit einem :premium.',
         'success'   => 'Attributvorlage :name wird auf :entity angewendet',
         'title'     => 'Wende eine Attributvorlage auf :name an',
     ],

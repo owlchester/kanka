@@ -15,6 +15,7 @@ return [
             'switch'    => 'Cambiar a otro tablero',
         ],
         'create'        => [
+            'helper'    => 'Crea un nuevo panel para :name y asigna qué roles pueden verlo o tenerlo como su panel predeterminado.',
             'success'   => 'Tablero :name creado.',
             'title'     => 'Nuevo tablero de campaña',
         ],
@@ -100,8 +101,10 @@ return [
             'helper'    => 'Este widget muestra el encabezado de la campaña. Siempre se muestra en el tablero por defecto.',
         ],
         'create'                    => [
-            'success'   => 'Widget añadido al tablero.',
-            'title'     => 'Nuevo widget',
+            'helper'            => 'Selecciona un tipo de widget para añadir al panel :name.',
+            'helper-default'    => 'Selecciona un tipo de widget para añadir al panel predeterminado.',
+            'success'           => 'Widget añadido al tablero.',
+            'title'             => 'Nuevo widget',
         ],
         'delete'                    => [
             'success'   => 'Widget eliminado del tablero.',

@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'apps'              => [
+        'discord'   => [
+            'invalid'   => 'Dein Discord-Token ist abgelaufen. Bitte synchronisiere dein Discord- und Kanka-Konto erneut.',
+        ],
+    ],
     'campaign'          => [
         'application'           => [
             'approved'              => 'Ihre Bewerbung für die Kampagne :campaign wurde genehmigt.',
@@ -26,6 +31,7 @@ return [
         ],
         'join'                  => ':user ist der Kampagne :campaign beigetreten.',
         'leave'                 => ':user hat die Kampagne :campaign verlassen.',
+        'new_owner'             => 'Du wurdest zum Administrator von :campaign ernannt.',
         'plugin'                => [
             'deleted'   => 'Das Plugin :plugin wurde vom Marktplatz gelöscht und aus Ihrer Kampagne :campaign entfernt.',
         ],
@@ -61,6 +67,12 @@ return [
         'chunked'   => 'Karte :name ist mit dem aufteilen fertig und kann jetzt verwendet werden.',
     ],
     'no_notifications'  => 'Es gibt aktuell keine Benachrichtigungen.',
+    'plugins'           => [
+        'comments'  => [
+            'new_comment'   => ':user hat einen neuen Kommentar zu dem Plugin :plugin hinterlassen.',
+            'new_reply'     => ':user hat auf Ihren Kommentar in :plugin geantwortet.',
+        ],
+    ],
     'subscriptions'     => [
         'charge_fail'   => 'Bei der Verarbeitung Ihrer Zahlungsmethode ist ein Fehler aufgetreten. Bitte warten Sie einen Moment, während wir es erneut versuchen. Wenn sich nichts ändert, kontaktieren Sie uns bitte.',
         'deleted'       => 'Ihr Abonnement für Kanka wurde nach zu vielen fehlgeschlagenen Versuchen, Ihre Karte zu belasten, gekündigt. Bitte gehen Sie zu Ihren Abonnementeinstellungen und versuchen Sie, Ihre Zahlungsdetails zu aktualisieren.',

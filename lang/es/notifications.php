@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'apps'              => [
+        'discord'   => [
+            'invalid'   => 'Tu token de Discord ha expirado. Por favor, vuelve a sincronizar tu cuenta de Discord con Kanka.',
+        ],
+    ],
     'campaign'          => [
         'application'           => [
             'approved'              => 'Tu solicitud para la campaña :campaign ha sido aprobada.',
@@ -26,6 +31,7 @@ return [
         ],
         'join'                  => ':user se ha unido a la campaña :campaign.',
         'leave'                 => ':user ha abandonado la campaña :campaign.',
+        'new_owner'             => 'Has sido designado administrador de :campaign.',
         'plugin'                => [
             'deleted'   => 'El plugin :plugin se ha eliminado del marketplace y de tu campaña :campaign.',
         ],
@@ -61,6 +67,12 @@ return [
         'chunked'   => 'El mapa :name ha terminado de fragmentarse y ya puede utilizarse.',
     ],
     'no_notifications'  => 'No tienes ninguna notificación.',
+    'plugins'           => [
+        'comments'  => [
+            'new_comment'   => ':user ha dejado un nuevo comentario en el plugin :plugin.',
+            'new_reply'     => ':user ha respondido a tu comentario en :plugin.',
+        ],
+    ],
     'subscriptions'     => [
         'charge_fail'   => 'Ha habido un error procesando tu pago. Espera un momento mientras volvemos a intentarlo. Si no se producen cambios, contacta con nosotros.',
         'deleted'       => 'Tu suscripción a Kanka se ha cancelado tras demasiados intentos fallidos de hacer el cobro en tu tarjeta. Dirígete a la configuración de tu suscripción e intenta actualizar tus datos de pago.',

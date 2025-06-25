@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'   => [
+        'subscription'  => 'Aprende más sobre las suscripciones',
+    ],
     'booster'   => [
         'actions'       => [
             'boost'         => 'Mejorar :campaign',
@@ -25,6 +28,7 @@ return [
     'premium'   => [
         'learn-more'    => '¿Qué son las campañas premium?',
         'limitation'    => 'Para acceder a esta función, es necesario activar las funciones Premium.',
+        'multiple'      => 'Para acceder a estas funciones, es necesario habilitar las funciones premium para :campaign.',
         'title'         => 'Característica de campaña Premium',
         'unlock'        => 'Desbloquea funciones premium para :campaña',
     ],

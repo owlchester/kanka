@@ -17,6 +17,7 @@ return [
     'index'         => [],
     'members'       => [
         'create'    => [
+            'helper'    => 'Füge ein oder mehrere Charaktere zu :name hinzu.',
             'submit'    => 'Mitlgied hinzufügen',
             'success'   => '{0} Kein Mitglied wurde hinzugefügt.|{1} 1 Mitglied wurde hinzugefügt.|[2,*] :count Mitglieder wurden hinzugefügt.',
             'title'     => 'Neue Mitglieder',

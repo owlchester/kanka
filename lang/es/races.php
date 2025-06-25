@@ -17,6 +17,7 @@ return [
     'index'         => [],
     'members'       => [
         'create'    => [
+            'helper'    => 'Agrega uno o varios personajes a :name.',
             'submit'    => 'Añadir miembros',
             'success'   => '{0} No se ha añadido ningún miembro. |{1} Se ha añadido 1 miembro. |[2,*] :se han añadido un número de miembros.',
             'title'     => 'Nuevos miembros',

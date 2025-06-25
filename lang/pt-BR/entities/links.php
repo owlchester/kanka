@@ -6,6 +6,7 @@ return [
     ],
     'call-to-action'    => 'Adicione links para fontes externas nesta entidade, como DnDBeyond, e eles serão exibidos diretamente na visão geral da entidade.',
     'create'            => [
+        'helper'    => 'Adicione um link externo para :name, por exemplo, para a página DnDBeyond.',
         'success'   => 'Link :name adicionado para :entity.',
         'title'     => 'Adicionar um link para :name',
     ],

@@ -8,6 +8,7 @@ return [
         'delete_post'   => 'Entrada eliminada',
         'reorder_post'  => 'Entradas reordenadas',
         'restore'       => 'Restaurar',
+        'reveal'        => 'Mostrar detalles',
         'update'        => 'Actualizar',
         'update_post'   => 'Entrada ":post" actualizada',
         'view'          => 'Ver cambios',

@@ -10,6 +10,7 @@ return [
         'left'  => ':amount restante',
     ],
     'create'    => [
+        'helper'            => 'Vincula una o varias habilidades a :name.',
         'success'           => 'Habilidad :ability añadida a :entity.',
         'success_multiple'  => 'Habilidades :abilities añadidas a :entity.',
         'title'             => 'Añadir habilidad a :name',

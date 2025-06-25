@@ -10,6 +10,7 @@ return [
     'helpers'   => [],
     'list'      => [
         'campaign'  => 'Kampagnenvorlagen',
+        'sheets'    => 'Charakterbögen',
     ],
     'pitch'     => 'Suche und füge Charakterbögen auf dem :marketplace einer :boosted-campaign hinzu.',
 ];

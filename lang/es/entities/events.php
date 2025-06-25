@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'create'    => [
+        'helper'    => 'Crea un recordatorio para vincular :name a un calendario.',
+    ],
     'fields'    => [
         'type'  => 'Tipo de evento',
     ],

@@ -82,6 +82,7 @@ return [
             'success'   => 'Plantilla cargada',
             'title'     => 'Cargar desde plantilla',
         ],
+        'pitch'     => 'Carga atributos desde una plantilla de atributos o desde plugins instalados desde :plugin.',
         'success'   => 'Plantilla de atributos :name aplicada a :entity',
         'title'     => 'Aplicar plantilla de atributos a :name',
     ],

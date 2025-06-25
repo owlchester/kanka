@@ -9,7 +9,9 @@ return [
     'edit'          => [],
     'events'        => [],
     'families'      => [],
-    'fields'        => [],
+    'fields'        => [
+        'is_destroyed'  => 'Destruído',
+    ],
     'helpers'       => [
         'characters'    => 'Ver todos personagens neste local e em seus locais secundários, ou apenas aqueles localizados diretamente aqui.',
     ],

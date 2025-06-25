@@ -52,6 +52,10 @@ return [
         'title'     => 'Actualizar el tema de la campaña',
     ],
     'title'         => 'Personalizar la campaña',
+    'toggle'        => [
+        'disable'   => 'Estilo deshabilitado correctamente.',
+        'enable'    => 'Estilo habilitado correctamente.',
+    ],
     'update'        => [
         'success'   => 'Se ha actualizado el estilo :name.',
         'title'     => 'Actualizar estilo',

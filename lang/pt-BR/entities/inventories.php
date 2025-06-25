@@ -6,8 +6,11 @@ return [
         'copy_from'         => 'Copiar de',
         'copy_inventory'    => 'Copiar inventário',
     ],
-    'copy'              => [],
+    'copy'              => [
+        'helper'    => 'Copiar o inventário inteiro de uma entidade para :name',
+    ],
     'create'            => [
+        'helper'        => 'Adicione um item ao inventário de :name. Opcionalmente, ele pode ser vinculado a um objeto existente da campanha.',
         'success'       => 'Item :item adicionado a :entity.',
         'success_bulk'  => '{0} Nenhum item adicionado à :entity.|{1} :count item adicionado à :entity.|[2,*] :count itens adicionados à :entity.',
         'title'         => 'Adicionar um item a :name',
@@ -46,6 +49,11 @@ return [
     ],
     'tooltips'          => [
         'equipped'  => 'Este item está equipado',
+    ],
+    'tutorials'         => [
+        'character' => 'Acompanhe o que :name possui ou tem para vender adicionando itens ao seu inventário.',
+        'location'  => 'Acompanhe o que :name tem para vender ou saquear adicionando itens ao seu inventário.',
+        'other'     => 'Acompanhe o que :name possui adicionando itens ao seu inventário.',
     ],
     'update'            => [
         'success'   => 'Item :item de :entity atualizado.',

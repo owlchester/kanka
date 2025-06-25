@@ -8,6 +8,8 @@ return [
         ],
         'create'        => [
             'attach_success'    => '{1} Die Fähigkeit :name wurde an :count Objekt angehängt.|[2,*] Die Fähigkeit :name wurde an :count Objekte angehängt.',
+            'helper'            => 'Anhängen von :name an ein oder mehrere Objekten.',
+            'title'             => 'Objekte anhängen',
         ],
         'description'   => 'Objekte mit dieser Fähigkeit',
         'title'         => 'Fähigkeit :name Objekt',

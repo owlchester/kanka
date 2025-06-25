@@ -33,6 +33,7 @@ return [
         'destroy'   => [
             'success'   => 'Teilnehmer :entity von Unterhaltung entfernt.',
         ],
+        'helper'    => 'Hinzufügen und Entfernen von Teilnehmern aus :name.',
         'modal'     => 'Teilnehmer',
         'title'     => 'Teilnehmer von :name',
     ],
