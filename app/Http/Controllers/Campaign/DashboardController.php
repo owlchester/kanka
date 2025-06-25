@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Campaign;
 
+use App\Events\Campaigns\Dashboards\DashboardDeleted;
 use App\Facades\CampaignCache;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignDashboard;
@@ -99,7 +100,6 @@ class DashboardController extends Controller
         }
 
         $campaignDashboard->delete();
-        CampaignCache::clear();
 
         return redirect()->route('dashboard.setup', $campaign)
             ->with('success', __('dashboard.dashboards.delete.success', ['name' => $campaignDashboard->name]));

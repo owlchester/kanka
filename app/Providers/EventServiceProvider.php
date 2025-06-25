@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use App\Events\Campaigns\Applications\Accepted;
 use App\Events\Campaigns\Applications\Rejected;
+use App\Events\Campaigns\Dashboards\DashboardCreated;
+use App\Events\Campaigns\Dashboards\DashboardDeleted;
+use App\Events\Campaigns\Dashboards\DashboardUpdated;
 use App\Events\Campaigns\Deleted;
 use App\Events\Campaigns\Exports\ExportCreated;
 use App\Events\Campaigns\Followers\FollowerCreated;
@@ -46,6 +49,7 @@ use App\Listeners\Campaigns\Campaigns\LogCampaign;
 use App\Listeners\Campaigns\ClearCampaignCache;
 use App\Listeners\Campaigns\ClearCampaignThemeCache;
 use App\Listeners\Campaigns\ClearCampaignUsersSaved;
+use App\Listeners\Campaigns\Dashboards\LogDashboard;
 use App\Listeners\Campaigns\Exports\LogExport;
 use App\Listeners\Campaigns\Followers\UpdateFollowerCount;
 use App\Listeners\Campaigns\Invites\LogInvite;
@@ -142,6 +146,18 @@ class EventServiceProvider extends ServiceProvider
         ],
         Deleted::class => [
             ClearCampaignUsersSaved::class,
+        ],
+        DashboardCreated::class => [
+            LogDashboard::class,
+            ClearCampaignCache::class,
+        ],
+        DashboardUpdated::class => [
+            LogDashboard::class,
+            ClearCampaignCache::class,
+        ],
+        DashboardDeleted::class => [
+            LogDashboard::class,
+            ClearCampaignCache::class,
         ],
         WebhookCreated::class => [
             LogWebhook::class,
