@@ -356,7 +356,7 @@ class CampaignDashboardWidget extends Model
             /** @var FilterService $filterService */
             $filterService = app()->make('App\Services\FilterService');
             $filterService->entityType($this->entityType);
-            
+
             $filterService
                 ->session(false)
                 ->options($this->filterOptions())
