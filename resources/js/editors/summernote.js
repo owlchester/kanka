@@ -26,10 +26,10 @@ const initField = (field) => {
             ['kanka', ['aroba', (summernoteConfig.dataset.bragi !== undefined ? 'bragi' : null)]],
             ['para', ['ul', 'ol', 'kanka-indent', 'kanka-outdent', 'paragraph']],
             ['table', ['table', 'tableofcontent']],
-            ['insert', ['link', 'picture', 'video', 'embed', 'hr']],
+            ['insert', ['link', 'picture', (summernoteConfig.dataset.gallery !== undefined ? 'summernoteGallery' : null), 'video', 'embed', 'hr']],
             //['dir', ['ltr', 'rtl']],
             ['view', ['fullscreen', 'codeview', 'prettify']],
-            (summernoteConfig.dataset.gallery ? ['extensions', ['summernoteGallery', 'help']] : null),
+            ['extensions', ['help']],
         ],
 
         popover: {
@@ -61,6 +61,8 @@ const initField = (field) => {
             },*/
         },
         summernoteGallery: {
+            buttonLabel: '<i class="fa-regular fa-folder-image"></i>',
+            tooltip: summernoteConfig.dataset.galleryTitle,
             source: {
                 // data: [],
                 url: summernoteConfig.dataset.gallery,

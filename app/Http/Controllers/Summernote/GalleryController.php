@@ -24,6 +24,7 @@ class GalleryController extends Controller
     public function index(Campaign $campaign)
     {
         $start = request()->get('page', 0);
+        $name = request()->get('name');
         $perPage = 20;
         $offset = $start * $perPage;
 
@@ -52,8 +53,11 @@ class GalleryController extends Controller
             ->orderBy('updated_at', 'desc')
             ->imageFolder($folderId)
             ->offset($offset)
-            ->take(20)
-            ->get();
+            ->take(20);
+        if ($name) {
+            $images->where('name', 'like', "%{$name}%");
+        }
+        $images = $images->get();
         /** @var Image $image */
         foreach ($images as $image) {
             $response['data'][] = [
@@ -63,7 +67,7 @@ class GalleryController extends Controller
                 'icon' => 'fa-solid fa-folder',
                 'id' => $image->id,
                 'url' => $image->is_folder ? route('campaign.gallery.summernote', [$campaign, 'folder_id' => $image->id]) : [$campaign],
-                'thumb' => $image->getImagePath(120, 120),
+                'thumb' => $image->getImagePath(128, 128),
             ];
         }
 
