@@ -38,7 +38,7 @@ class EntityTypeController extends Controller
         $this->authorize('setting', $campaign);
 
         if (! $campaign->premium()) {
-        return redirect()->route('campaign.modules', $campaign)
+            return redirect()->route('campaign.modules', $campaign)
                 ->with('error', __('This feature is only available on premium campaigns'));
         } elseif ($campaign->entityTypes->count() > config('limits.campaigns.modules')) {
             return view('campaigns.entity-types.max-reached')

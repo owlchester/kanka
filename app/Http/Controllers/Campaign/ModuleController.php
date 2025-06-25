@@ -65,7 +65,7 @@ class ModuleController extends Controller
         $this->authorize('setting', $campaign);
 
         if (! $campaign->boosted()) {
-        return redirect()->route('campaign.modules', $campaign)
+            return redirect()->route('campaign.modules', $campaign)
                 ->with('error', __('This feature is only available on premium and boosted campaigns'));
         }
         if (request()->ajax()) {
