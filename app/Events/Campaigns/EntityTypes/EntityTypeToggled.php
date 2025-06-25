@@ -2,8 +2,8 @@
 
 namespace App\Events\Campaigns\EntityTypes;
 
-use App\Models\User;
 use App\Models\EntityType;
+use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
