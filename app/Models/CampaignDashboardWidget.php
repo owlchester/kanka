@@ -91,7 +91,7 @@ class CampaignDashboardWidget extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
      *     \App\Models\Tag,
-     *     self,
+     *     \App\Models\CampaignDashboardWidget,
      *     \App\Models\CampaignDashboardWidgetTag
      * >
      */

@@ -83,7 +83,11 @@ trait CampaignRelations
     protected Collection $nonAdmins;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\User, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
+     *     \App\Models\User,
+     *     \App\Models\Campaign,
+     *     \App\Models\CampaignUser
+     * >
      */
     public function users(): BelongsToMany
     {
@@ -91,7 +95,11 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\User, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
+     *     \App\Models\User,
+     *     \App\Models\Campaign,
+     *     \App\Models\CampaignFollower
+     * >
      */
     public function followers(): BelongsToMany
     {
@@ -444,7 +452,11 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\User, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
+     *     \App\Models\User,
+     *     \App\Models\Campaign,
+     *     \App\Models\EntityUser
+     * >
      */
     public function editingUsers(): BelongsToMany
     {

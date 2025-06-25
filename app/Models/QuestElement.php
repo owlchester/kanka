@@ -120,7 +120,7 @@ class QuestElement extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
      *     \App\Models\User,
-     *     self,
+     *     \App\Models\QuestElement,
      *     \App\Models\EntityUser
      * >
      */

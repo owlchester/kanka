@@ -60,7 +60,11 @@ trait UserRelations
     /**
      * List of campaigns the user is a member of
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Campaign, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
+     *     \App\Models\Campaign,
+     *     \App\Models\User,
+     *     \App\Models\CampaignUser
+     * >
      */
     public function campaigns(): BelongsToMany
     {
@@ -72,7 +76,11 @@ trait UserRelations
     /**
      * List of campaigns the user is following
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Campaign, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
+     *     \App\Models\Campaign,
+     *     \App\Models\User,
+     *     \App\Models\CampaignFollower
+     * >
      */
     public function following(): BelongsToMany
     {
@@ -169,7 +177,11 @@ trait UserRelations
     /**
      * List of entities the user is currently editing
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Entity, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
+     *     \App\Models\Entity,
+     *     \App\Models\User,
+     *     \App\Models\EntityUser
+     * >
      */
     public function entities(): BelongsToMany
     {

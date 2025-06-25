@@ -155,7 +155,7 @@ class TimelineElement extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
      *     \App\Models\User,
-     *     self,
+     *     \App\Models\TimelineElement
      *     \App\Models\EntityUser
      * >
      */
