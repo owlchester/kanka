@@ -18,11 +18,15 @@ return [
         'success'   => 'El webhook se ha creado con éxito',
         'title'     => 'Añadir nuevo webhook',
     ],
+    'destroy'       => [
+        'success'   => 'Webhook eliminado correctamente.',
+    ],
     'edit'          => [
         'success'   => 'Webhook actualizado correctamente',
         'title'     => 'Actualizar webhook',
     ],
     'fields'        => [
+        'enabled'           => 'Habilitado',
         'event'             => 'Evento',
         'events'            => [
             'deleted'   => 'Entidad eliminada',
@@ -55,4 +59,8 @@ return [
         'success'   => 'Solicitud de prueba enviada',
     ],
     'title'         => 'Webhooks',
+    'toggle'        => [
+        'disable'   => 'Webhook deshabilitado correctamente.',
+        'enable'    => 'Webhook habilitado correctamente.',
+    ],
 ];

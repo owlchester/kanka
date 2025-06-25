@@ -63,6 +63,7 @@ class SubscriptionUpgradeService
             // If going from monthly to yearly, we divide the current sub up on a month
             $duration = $monthly ? 31 : 365;
             $price = round(($price - ($oldPrice)) * ($endPeriod->diffInDays(Carbon::now(), true) / $duration), 2);
+            // @phpstan-ignore-next-line
         } elseif ($monthly && $this->period === PricingPeriod::Monthly) {
             // Prorated Cost = (New Tier Cost - Old Tier Cost) x (Number of Days Remaining / Total Days in the Month)
             //            dump($price);

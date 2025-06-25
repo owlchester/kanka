@@ -173,16 +173,25 @@ class Item extends MiscModel
         return ['character_id', 'location_id', 'price', 'size', 'item_id', 'weight'];
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     */
     public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Inventory, $this>
+     */
     public function inventories(): HasMany
     {
         return $this->hasMany('App\Models\Inventory', 'item_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\Entity, \App\Models\Inventory, $this>
+     */
     public function entities(): HasManyThrough
     {
         return $this->hasManyThrough(

@@ -26,6 +26,9 @@ return [
         'bulk_names'                => 'Añadir un nombre por línea',
         'duplicate'                 => 'Ya existen otras entidades de este tipo con el mismo nombre.',
         'helper_v2'                 => 'Crea rápidamente los cimientos de una nueva entidad sin interrumpir tu flujo actual.',
+        'helpers'                   => [
+            'template'  => 'Selecciona una plantilla de la cual se copiarán las nuevas entidades.',
+        ],
         'missing_v2'                => 'En esta interfaz sólo están disponibles los módulos que están activados y que tienes permiso para crear. :learn-more.',
         'modes'                     => [
             'bulk'      => 'Añadir en bloque',

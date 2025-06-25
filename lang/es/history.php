@@ -6,6 +6,13 @@ return [
     ],
     'cta'       => 'Mostrar un registro de todos los cambios recientes en la campaña.',
     'empty'     => 'Sin valor',
+    'fields'    => [
+        'action'    => 'Acción',
+        'details'   => 'Detalles',
+        'module'    => 'Módulo',
+        'when'      => 'Cuándo',
+        'who'       => 'Quién',
+    ],
     'filters'   => [
         'all-actions'   => 'Todas las acciones',
         'all-users'     => 'Todos los miembros',

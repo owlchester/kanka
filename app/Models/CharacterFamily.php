@@ -28,11 +28,17 @@ class CharacterFamily extends Model
 
     public $table = 'character_family';
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     */
     public function character(): BelongsTo
     {
         return $this->belongsTo(Character::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Family, $this>
+     */
     public function family(): BelongsTo
     {
         return $this->belongsTo(Family::class);

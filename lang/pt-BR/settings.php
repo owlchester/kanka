@@ -4,8 +4,9 @@ return [
     'account'       => [
         '2fa'               => [
             'actions'               => [
-                'disable'   => 'Desativar autenticação de dois fatores',
-                'finish'    => 'Conclua a configuração e faça login',
+                'disable'           => 'Desativar autenticação de dois fatores',
+                'disable-confirm'   => 'Clique novamente para confirmar',
+                'finish'            => 'Conclua a configuração e faça login',
             ],
             'activation_helper'     => 'Para concluir a configuração da autenticação de dois fatores da sua conta, siga estas instruções.',
             'disable'               => [
@@ -143,6 +144,10 @@ return [
             'saved'     => 'Método de pagamento salvo',
         ],
         'cancel'                => [
+            'grace'     => [
+                'text'  => 'Sua assinatura já está definida para terminar em :data, após a qual suas campanhas premium voltarão a ser campanhas padrão e outros benefícios relacionados ao suporte ao Kanka serão desativados.',
+                'title' => 'Período de carência',
+            ],
             'options'   => [
                 'competitor'        => 'Alterar para um concorrente',
                 'financial'         => 'A assinatura é muito cara',
@@ -151,8 +156,10 @@ return [
                 'not_playing'       => 'Não está mais jogando ou fazendo campanha em hiato',
                 'not_using'         => 'Não estou usando o Kanka no momento',
                 'other'             => 'Outro',
+                'testing'           => 'Apenas testando Kanka',
             ],
             'text'      => 'Lamento ver você ir! Cancelar sua assinatura a manterá ativa até :date, após a qual você perderá seus impulsos de campanha e outros benefícios relacionados ao apoio a Kanka. Sinta-se à vontade para preencher o seguinte formulário para nos informar o que podemos fazer melhor ou o que levou à sua decisão.',
+            'title'     => 'Cancelando a assinatura',
         ],
         'cancelled'             => 'Sua assinatura foi cancelada. Você pode renovar uma assinatura assim que sua assinatura atual terminar depois de :date.',
         'change'                => [

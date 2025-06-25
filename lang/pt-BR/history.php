@@ -6,6 +6,13 @@ return [
     ],
     'cta'       => 'Exiba um log de todas as alterações recentes na campanha.',
     'empty'     => 'Vazio',
+    'fields'    => [
+        'action'    => 'Ação',
+        'details'   => 'Detalhes',
+        'module'    => 'Módulo',
+        'when'      => 'Quando',
+        'who'       => 'Quem',
+    ],
     'filters'   => [
         'all-actions'   => 'Todas as ações',
         'all-users'     => 'Todos os membros',

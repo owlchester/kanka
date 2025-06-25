@@ -119,26 +119,41 @@ class Location extends MiscModel
         return ['location_id', 'is_destroyed'];
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Character, $this>
+     */
     public function characters(): HasMany
     {
         return $this->hasMany('App\Models\Character', 'location_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Race, $this>
+     */
     public function races(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Race', 'race_location');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Creature, $this>
+     */
     public function creatures(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Creature', 'creature_location');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Item, $this>
+     */
     public function items(): HasMany
     {
         return $this->hasMany('App\Models\Item', 'location_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Map, $this>
+     */
     public function maps(): HasMany
     {
         return $this->hasMany('App\Models\Map', 'location_id', 'id')
@@ -148,6 +163,9 @@ class Location extends MiscModel
             ->select(['id', 'name', 'is_real']);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Event, $this>
+     */
     public function events(): HasMany
     {
         return $this->hasMany('App\Models\Event', 'location_id', 'id');
@@ -204,16 +222,25 @@ class Location extends MiscModel
             ->has('entity');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Family, $this>
+     */
     public function families(): HasMany
     {
         return $this->hasMany('App\Models\Family', 'location_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Journal, $this>
+     */
     public function journals(): HasMany
     {
         return $this->hasMany('App\Models\Journal', 'location_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Organisation, $this>
+     */
     public function organisations(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Organisation', 'organisation_location');

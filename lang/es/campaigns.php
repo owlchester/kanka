@@ -125,6 +125,7 @@ return [
         ],
     ],
     'leave'                             => [
+        'action'            => 'Salir de la campaña',
         'confirm'           => '¿Seguro que quieres abandonar la campaña :name? No tendrás acceso a ella, a no ser que un administrador te invite de nuevo.',
         'confirm-button'    => 'Sí, abandonar la campaña',
         'error'             => 'No puedes abandonar la campaña.',
@@ -384,6 +385,7 @@ return [
             'deletion'          => 'Eliminación',
             'export'            => 'Exportar',
             'import'            => 'Importar',
+            'logs'              => 'Registros',
             'management'        => 'Gestión',
             'members'           => 'Miembros',
             'modules'           => 'Módulos',
@@ -399,6 +401,9 @@ return [
     ],
     'status'                            => [
         'free'      => 'Funciones Premium desactivadas.',
+        'legacy'    => [
+            'title' => 'Funciones mejoradas (antiguas)',
+        ],
         'premium'   => 'Funciones premium desbloqueadas por :name.',
         'title'     => 'Funciones Premium',
     ],

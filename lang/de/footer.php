@@ -18,6 +18,7 @@ return [
     'made'              => 'Hergestellt mit ❤️ in Genf, Schweiz',
     'newsletter'        => 'Newsletter',
     'platform'          => 'Plattform',
+    'plugins'           => 'Plugin-Bibliothek',
     'premium'           => 'Premium Kampagnen',
     'press-kit'         => 'Pressemappe',
     'pricing'           => 'Preisgestaltung',

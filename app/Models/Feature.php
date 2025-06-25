@@ -46,22 +46,34 @@ class Feature extends Model
         'description',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\FeatureCategory, $this>
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo(FeatureCategory::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\FeatureStatus, $this>
+     */
     public function status(): BelongsTo
     {
         return $this->belongsTo(FeatureStatus::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\FeatureVote, $this>
+     */
     public function uservote(): HasOne
     {
         return $this->hasOne(FeatureVote::class)
             ->where('user_id', auth()->user()->id);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\FeatureFile, $this>
+     */
     public function featureFiles(): HasMany
     {
         return $this->hasMany(FeatureFile::class, 'feature_id', 'id');

@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\Models\EntityType;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntityTypeResource extends JsonResource
@@ -15,17 +14,19 @@ class EntityTypeResource extends JsonResource
      */
     public function toArray($request)
     {
-        /** @var EntityType $this */
+        /** @var \App\Models\EntityType $entityType */
+        $entityType = $this->resource;
+
         return [
-            'id' => $this->id,
-            'code' => $this->code,
-            'singular' => $this->name(),
-            'plural' => $this->plural(),
-            'icon' => $this->icon,
-            'is_special' => $this->isCustom(),
-            'is_enabled' => $this->isEnabled(),
-            'is_nested' => $this->isNested(),
-            'has_table' => $this->hasTable(),
+            'id' => $entityType->id,
+            'code' => $entityType->code,
+            'singular' => $entityType->name(),
+            'plural' => $entityType->plural(),
+            'icon' => $entityType->icon,
+            'is_special' => $entityType->isCustom(),
+            'is_enabled' => $entityType->isEnabled(),
+            'is_nested' => $entityType->isNested(),
+            'has_table' => $entityType->hasTable(),
         ];
     }
 }

@@ -4,8 +4,9 @@ return [
     'account'       => [
         '2fa'               => [
             'actions'               => [
-                'disable'   => 'Zwei-Faktor authentifizierung deaktivieren',
-                'finish'    => 'Beende die Einrichtung und melde dich an',
+                'disable'           => 'Zwei-Faktor authentifizierung deaktivieren',
+                'disable-confirm'   => 'Zum Bestätigen erneut klicken',
+                'finish'            => 'Beende die Einrichtung und melde dich an',
             ],
             'activation_helper'     => 'Um die Einrichtung der Zwei-Faktor-Authentifizierung deines Kontos abzuschließen, befolge bitte diese Anweisungen.',
             'disable'               => [
@@ -155,6 +156,7 @@ return [
                 'not_playing'       => 'Nicht mehr spielen oder die Kampagne macht eine Pause',
                 'not_using'         => 'Kanka wird derzeit nicht verwendet',
                 'other'             => 'Andere',
+                'testing'           => 'teste kanka',
             ],
             'text'      => 'Es tut uns leid dich gehen zu sehen! Wenn Sie Ihr Abonnement kündigen, bleibt es bis zu Ihrem nächsten Abrechnungszyklus aktiv. Danach verlieren Sie Ihre Kampagnen-Boosts und andere Vorteile im Zusammenhang mit der Unterstützung von Kanka. Füllen Sie das folgende Formular aus, um uns mitzuteilen, was wir besser machen können oder was zu Ihrer Entscheidung geführt hat.',
             'title'     => 'Abonnement kündigen',

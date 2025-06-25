@@ -65,11 +65,17 @@ class TimelineEra extends Model
         'end_year',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Timeline, $this>
+     */
     public function timeline(): BelongsTo
     {
         return $this->belongsTo(Timeline::class, 'timeline_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\TimelineElement, $this>
+     */
     public function elements(): HasMany
     {
         return $this->hasMany(TimelineElement::class, 'era_id');

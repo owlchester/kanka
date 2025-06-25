@@ -24,4 +24,6 @@ This file is never loaded, but needed to trick tailwind to include some classes 
     <div class="text-teal-500"></div>
     <div class="text-yellow-500"></div>
     <div class="text-gray-500"></div>
+
+    <div class="inset-x-0"></div>
 </template>

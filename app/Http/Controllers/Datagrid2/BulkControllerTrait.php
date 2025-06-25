@@ -35,7 +35,7 @@ trait BulkControllerTrait
             }
         }
         foreach ($models as $id) {
-            /** @var mixed|MapGroup|Model|null $modelClass */
+            /** @var MapGroup|Model $modelClass */
             $modelClass = new $className;
             $model = $modelClass->find($id);
             if (empty($model)) {
@@ -46,6 +46,7 @@ trait BulkControllerTrait
                 $model->delete();
                 $count++;
             } elseif ($action === 'patch') {
+                /** @var MapGroup $model */
                 $model->patch($patch);
                 $count++;
             }

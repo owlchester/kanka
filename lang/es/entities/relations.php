@@ -30,6 +30,7 @@ return [
         'timeline_element'  => 'Elemento de una línea de tiempo',
     ],
     'create'            => [
+        'helper'        => 'Crea una conexión entre :name y una o varias entidades.',
         'new_title'     => 'Nueva relación',
         'success_bulk'  => '{1} Se ha añadido :count conexión a :entity.|[2,*] Se han añadido :count conexiones a :entity.',
     ],
@@ -49,6 +50,7 @@ return [
         'relation'          => 'Relación',
         'target'            => 'Objetivo',
         'target_relation'   => 'Relación objetivo',
+        'targets'           => 'Entidades objetivo',
         'two_way'           => 'Reflejar relación',
         'unmirror'          => 'Desenlaza esta conexión.',
     ],
@@ -58,6 +60,7 @@ return [
     ],
     'helper'            => 'Crea relaciones entre entidades y configura su actitud y visibilidad. Las relaciones también se pueden fijar al menú de la entidad.',
     'helpers'           => [
+        'description'   => 'Detalla la naturaleza de la conexión entre las dos entidades.',
         'no_relations'  => 'Esta entidad no tiene actualmente ninguna conexión con otras entidades de la campaña.',
     ],
     'hints'             => [

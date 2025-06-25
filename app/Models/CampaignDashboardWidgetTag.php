@@ -19,11 +19,17 @@ class CampaignDashboardWidgetTag extends Pivot
 
     public $table = 'campaign_dashboard_widget_tags';
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Tag, $this>
+     */
     public function tag(): BelongsTo
     {
         return $this->belongsTo(Tag::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignDashboardWidget, $this>
+     */
     public function widget(): BelongsTo
     {
         return $this->belongsTo(CampaignDashboardWidget::class, 'id', 'widget_id');

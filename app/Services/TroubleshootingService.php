@@ -21,7 +21,7 @@ class TroubleshootingService
     public function campaigns(): array
     {
         $campaigns = [
-            '' => __('helpers.troubleshooting.select_campaign'),
+            '' => __('assistance.placeholders.campaign'),
         ];
         foreach ($this->adminCampaigns() as $id => $name) {
             $campaigns[$id] = $name;

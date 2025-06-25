@@ -448,7 +448,7 @@ class Campaign extends Model
     {
         $members = CampaignCache::members();
 
-        return $members !== null && $members->count() > 1;
+        return $members->count() > 1;
     }
 
     /**

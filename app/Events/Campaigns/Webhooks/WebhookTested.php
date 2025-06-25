@@ -17,7 +17,7 @@ class WebhookTested
      * Create a new event instance.
      */
     public function __construct(
-        public Webhook $campaignWebhook,
+        public Webhook $webhook,
         public ?User $user
     ) {
         //

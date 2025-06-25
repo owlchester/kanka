@@ -39,6 +39,9 @@ class AppRelease extends Model
         'end_at' => 'date',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     */
     public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');

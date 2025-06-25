@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\MassPrunable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
@@ -19,7 +20,7 @@ use Illuminate\Support\Str;
  * @property int $impersonated_by
  * @property int $action
  * @property null|string|array $changes
- * @property ?User|null $impersonator
+ * @property ?User $impersonator
  * @property Campaign $campaign
  * @property Carbon $created_at
  * @property int $parent_id
@@ -67,16 +68,25 @@ class EntityLog extends Model
 
     protected string $userField = 'created_by';
 
-    public function parent()
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo<\App\Models\Entity, $this>
+     */
+    public function parent(): MorphTo
     {
         return $this->morphTo();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Campaign, $this>
+     */
     public function campaign(): BelongsTo
     {
         return $this->belongsTo('App\Models\Campaign', 'campaign_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     */
     public function impersonator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'impersonated_by');

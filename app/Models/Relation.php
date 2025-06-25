@@ -100,16 +100,25 @@ class Relation extends Model
             ->orderBy('attitude', 'asc');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function owner(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'owner_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function target(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'target_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Relation, $this>
+     */
     public function mirror(): BelongsTo
     {
         return $this->belongsTo('App\Models\Relation', 'mirror_id', 'id');

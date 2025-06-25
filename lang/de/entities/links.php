@@ -6,6 +6,7 @@ return [
     ],
     'call-to-action'    => 'Füge Links zu externen Ressourcen auf diesem Objekt hinzu, wie z. B. zu DnDBeyond, und sie werden direkt in der Übersicht des Objekts angezeigt.',
     'create'            => [
+        'helper'    => 'Füge einen externen Link zu :name hinzu, zum Beispiel zu deiner DnDBeyond-Seite.',
         'success'   => 'Link :name hinzugefügt zu :entity.',
         'title'     => 'Fügen Sie einen Link hinzu zu :name',
     ],

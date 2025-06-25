@@ -31,7 +31,16 @@ return [
     'index'         => [
         'title' => 'ebene von :name',
     ],
-    'pitch'         => [],
+    'pitch'         => [
+        'max'       => [
+            'helper'    => 'Du kannst keine weiteren Ebenen hinzufügen, wenn du nicht eine bestehende Ebene entfernst.',
+            'limit'     => 'Diese Karte hat ihre Ebenenmaximum erreicht',
+        ],
+        'upgrade'   => [
+            'limit'     => 'Du hast das Limit von :limit layers für diese Karte erreicht',
+            'upgrade'   => 'Mit einem Upgrade auf eine Premium-Kampagne kannst du bis zu :limit layers hinzufügen und so noch mehr kreative Flexibilität freischalten.',
+        ],
+    ],
     'placeholders'  => [
         'name'          => 'Untergrund, Ebene 2, Schiffbruch',
         'position'      => 'Optionales Feld zum Festlegen der Reihenfolge, in der die Ebenen angezeigt werden.',

@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'   => [
+        'subscription'  => 'Saiba mais sobre assinaturas',
+    ],
     'booster'   => [
         'actions'       => [
             'boost'         => 'Impulsionar :campaign',
@@ -25,6 +28,7 @@ return [
     'premium'   => [
         'learn-more'    => 'O que são campanhas premium?',
         'limitation'    => 'Para acessar esse recurso, os recursos premium precisam estar ativados.',
+        'multiple'      => 'Para acessar esses recursos, os recursos premium precisam ser habilitados para :campaign.',
         'title'         => 'Recurso de campanha premium',
         'unlock'        => 'Desbloqueie recursos premium para :campaign',
     ],

@@ -10,6 +10,7 @@ return [
         'left'  => ':amount verbleibend',
     ],
     'create'    => [
+        'helper'            => 'Verknüpfe eine von mehreren Fähigkeiten mit :name.',
         'success'           => 'Fähigkeit :ability hinzugefügt zu :entity',
         'success_multiple'  => 'Fähigkeiten :abilities hinzugefügt zu :entity',
         'title'             => 'Fügen Sie eine Fähigkeit hinzu zu :name',

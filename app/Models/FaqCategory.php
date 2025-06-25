@@ -63,6 +63,9 @@ class FaqCategory extends Model
         return $query->orderBy('order', $order);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Faq, $this>
+     */
     public function faqs(): HasMany
     {
         return $this->hasMany('App\Models\Faq', 'faq_category_id', 'id');

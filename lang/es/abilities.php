@@ -8,6 +8,8 @@ return [
         ],
         'create'        => [
             'attach_success'    => '{1}Se ha vinculado la habilidad :name a :count entidad.|[2,*] Se ha vinculado la habilidad :name a :count entidades.',
+            'helper'            => 'Vincular :name a una o varias entidades.',
+            'title'             => 'Vincular entidades',
         ],
         'description'   => 'Entidades con esta habilidad',
         'title'         => 'Entidades de la habilidad :name',

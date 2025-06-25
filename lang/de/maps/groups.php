@@ -9,6 +9,7 @@ return [
         'patch'     => '{1} aktualisiere :count group.|[2,*] aktualisiere :count groups.',
     ],
     'create'        => [
+        'helper'    => 'Füge eine neue Gruppe :name hinzu. Dieser Gruppe können dann Markierungen zugewiesen werden.',
         'success'   => 'Gruppe :name erzeugen',
         'title'     => 'neue Gruppe',
     ],
@@ -32,7 +33,16 @@ return [
     'index'         => [
         'title' => 'Gruppe von :name',
     ],
-    'pitch'         => [],
+    'pitch'         => [
+        'max'       => [
+            'helper'    => 'Du kannst keine weiteren Gruppen hinzufügen, es sei denn, du entfernst eine bestehende Gruppe.',
+            'limit'     => 'Diese Karte hat ihre Gruppengrenze erreicht',
+        ],
+        'upgrade'   => [
+            'limit'     => 'Du hast das Limit von :limit groups für diese Karte erreicht',
+            'upgrade'   => 'Wenn du auf eine Premium-Kampagne upgradest, kannst du bis zu :limit groups hinzufügen und noch mehr kreative Flexibilität freischalten.',
+        ],
+    ],
     'placeholders'  => [
         'name'          => 'Geschäfte, Schatz, NSC,',
         'position'      => 'Optionales Feld zum Festlegen der Reihenfolge, in der die Gruppen angezeigt werden.',

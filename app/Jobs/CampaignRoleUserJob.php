@@ -42,6 +42,7 @@ class CampaignRoleUserJob
     public function handle()
     {
         // If the role was deleted, don't notify anyone
+        // @phpstan-ignore-next-line
         if (empty($this->campaignRoleUser) || empty($this->campaignRoleUser->campaignRole)) {
             Log::info('no role found', [$this->campaignRoleUser]);
 

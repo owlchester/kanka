@@ -26,11 +26,17 @@ class PostPermission extends Model
         'permission',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\CampaignRole, $this>
+     */
     public function role(): BelongsTo
     {
         return $this->belongsTo(CampaignRole::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Post, $this>
+     */
     public function post(): BelongsTo
     {
         return $this->belongsTo(Post::class, 'post_id', 'id');

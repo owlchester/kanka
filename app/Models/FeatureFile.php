@@ -18,6 +18,9 @@ class FeatureFile extends Model
         'path',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Feature, $this>
+     */
     public function feature(): BelongsTo
     {
         return $this->belongsTo(Feature::class, 'feature_id');

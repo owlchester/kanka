@@ -74,11 +74,17 @@ class Faq extends Model
         return $query->orderBy('order', $order);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\FaqCategory, $this>
+     */
     public function category(): BelongsTo
     {
         return $this->belongsTo('App\Models\FaqCategory', 'faq_category_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\FaqTranslation, $this>
+     */
     public function translations(): HasMany
     {
         return $this->hasMany(FaqTranslation::class);

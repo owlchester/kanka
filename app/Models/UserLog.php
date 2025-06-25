@@ -60,6 +60,9 @@ class UserLog extends Model
         return $builder->whereIn('type_id', [UserAction::login->value, UserAction::autoLogin->value]);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     */
     public function impersonator(): BelongsTo
     {
         $this->setConnection(config('database.default'));
@@ -67,6 +70,9 @@ class UserLog extends Model
         return $this->belongsTo(User::class, 'impersonated_by');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     */
     public function user(): BelongsTo
     {
         $this->setConnection(config('database.default'));

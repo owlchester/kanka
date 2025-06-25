@@ -42,6 +42,9 @@ class Preset extends Model
         'name',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\PresetType, $this>
+     */
     public function type(): BelongsTo
     {
         return $this->belongsTo(PresetType::class);

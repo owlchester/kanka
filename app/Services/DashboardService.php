@@ -127,8 +127,6 @@ class DashboardService
             ->roles()
             ->copy();
 
-        CampaignCache::clear();
-
         return $this->dashboard;
     }
 
@@ -239,8 +237,6 @@ class DashboardService
         foreach ($roles as $role) {
             $role->delete();
         }
-
-        CampaignCache::clear();
 
         return $this->dashboard;
     }

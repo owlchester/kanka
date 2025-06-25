@@ -38,6 +38,9 @@ class CharacterTrait extends Model
         'default_order',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     */
     public function character(): BelongsTo
     {
         return $this->belongsTo('App\Models\Character', 'character_id');

@@ -30,6 +30,10 @@ return [
         'success'   => 'Linha do tempo reordenada com sucesso.',
         'title'     => 'Reordenar a linha do tempo',
     ],
-    'show'          => [],
+    'show'          => [
+        'tabs'  => [
+            'reorder-elements'  => 'Reordenar elementos',
+        ],
+    ],
     'timelines'     => [],
 ];

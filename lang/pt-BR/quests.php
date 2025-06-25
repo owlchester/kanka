@@ -30,6 +30,7 @@ return [
         'element_role'  => 'Função',
         'instigator'    => 'Instigador',
         'is_completed'  => 'Concluída',
+        'location'      => 'Local inicial',
         'role'          => 'Função',
     ],
     'helpers'       => [
@@ -42,6 +43,7 @@ return [
     'placeholders'  => [
         'date'      => 'Data do mundo real para a missão',
         'entity'    => 'Nome de um elemento da missão',
+        'location'  => 'O local de início da missão',
         'role'      => 'A função desta entidade na missão',
         'type'      => 'Arco de Personagem, Missão Secundária, Missão Principal',
     ],

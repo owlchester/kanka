@@ -104,16 +104,25 @@ class Post extends Model
         'name',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo('App\Models\Entity', 'entity_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\PostLayout, $this>
+     */
     public function layout(): BelongsTo
     {
         return $this->belongsTo('App\Models\PostLayout', 'layout_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\PostPermission, $this>
+     */
     public function permissions(): HasMany
     {
         return $this->hasMany(PostPermission::class, 'post_id', 'id');
@@ -121,6 +130,8 @@ class Post extends Model
 
     /**
      * List of entities that mention this entity
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityMention, $this>
      */
     public function mentions(): HasMany
     {
@@ -129,6 +140,8 @@ class Post extends Model
 
     /**
      * List of images that mention this entity
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\ImageMention, $this>
      */
     public function imageMentions(): HasMany
     {
@@ -171,6 +184,9 @@ class Post extends Model
         return $new;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\PostTag, $this>
+     */
     public function postTags(): HasMany
     {
         return $this->hasMany(PostTag::class, 'post_id', 'id');
@@ -200,6 +216,13 @@ class Post extends Model
         return Arr::get($this->settings, 'collapsed', false);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
+     *     \App\Models\User,
+     *     $this,
+     *     \App\Models\EntityUser
+     * >
+     */
     public function editingUsers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'entity_user', 'post_id')
@@ -247,11 +270,17 @@ class Post extends Model
         ];
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<\App\Models\Reminder, $this>
+     */
     public function reminders(): MorphMany
     {
         return $this->morphMany(Reminder::class, 'remindable');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany<\App\Models\EntityLog, $this>
+     */
     public function logs(): MorphMany
     {
         return $this->morphMany(EntityLog::class, 'parent');
@@ -268,6 +297,9 @@ class Post extends Model
             ->calendarDate();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne<\App\Models\Reminder, $this>
+     */
     public function calendarDate(): MorphOne
     {
         return $this->morphOne(Reminder::class, 'remindable')

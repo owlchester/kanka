@@ -37,7 +37,7 @@
         data-mention="{{ isset($campaign) ? route('search.live', $campaign) : null }}"
         data-advanced-mention="{{ auth()->user()->alwaysAdvancedMentions() }}"
         data-months="{{ isset($campaign) ? route('search.calendar-months', $campaign) : null }}"
-        data-gallery-title="Premium Gallery"
+        data-gallery-title="{{ __('sidebar.gallery') }}"
         data-gallery-close="{{ __('crud.actions.close') }}"
         data-gallery-add="{{ __('crud.add') }}"
         data-gallery-select-all="{{ __('general.select_all') }}"

@@ -26,6 +26,9 @@ return [
         'bulk_names'                => 'Füge einen Namen pro Zeile hinzu',
         'duplicate'                 => 'Es gibt andere Objekte dieses Typs mit demselben Namen.',
         'helper_v2'                 => 'Erstelle schnell die Grundlage für ein neues Objekt, ohne deinen aktuellen Fluss zu unterbrechen.',
+        'helpers'                   => [
+            'template'  => 'Wähle eine Vorlage, von der die neuen Objekte eine Kopie sein sollen',
+        ],
         'missing_v2'                => 'In dieser Oberfläche sind nur Module verfügbar, die aktiviert sind und für die du die Berechtigung zum Erstellen hast. :learn-more.',
         'modes'                     => [
             'bulk'      => 'Bulk hinzufügen',

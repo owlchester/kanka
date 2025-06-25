@@ -360,6 +360,7 @@ class SearchService
             }
         }
 
+        // @phpstan-ignore-next-line
         return array_merge(array_values($searchResults), array_values($this->newOptions()));
     }
 

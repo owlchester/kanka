@@ -651,7 +651,7 @@ class MapService
             return $this;
         }
 
-        /** @var Character|mixed $child */
+        /** @var Character $child */
         $child = $this->entity->child;
         $this->addEntity($child->location->entity);
         $this->relations[] = [

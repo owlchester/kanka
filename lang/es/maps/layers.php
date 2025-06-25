@@ -31,7 +31,16 @@ return [
     'index'         => [
         'title' => 'Capas de :name',
     ],
-    'pitch'         => [],
+    'pitch'         => [
+        'max'       => [
+            'helper'    => 'No puedes agregar más capas a menos que elimines una existente.',
+            'limit'     => 'Este mapa ha alcanzado su límite de capas.',
+        ],
+        'upgrade'   => [
+            'limit'     => 'Has alcanzado el límite de :limit capas para este mapa.',
+            'upgrade'   => 'Actualiza a una campaña premium para agregar hasta :limit capas y desbloquear aún más flexibilidad creativa.',
+        ],
+    ],
     'placeholders'  => [
         'name'          => 'Subterráneo, nivel 2, naufragio...',
         'position'      => 'Campo opcional para definir en qué orden se apilan las capas.',

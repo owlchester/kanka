@@ -9,6 +9,7 @@ use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\Calendar;
 use App\Models\Campaign;
+use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignFollower;
 use App\Models\CampaignInvite;
@@ -27,6 +28,7 @@ use App\Models\DiceRollResult;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
+use App\Models\EntityType;
 use App\Models\Event;
 use App\Models\Family;
 use App\Models\Image;
@@ -129,6 +131,7 @@ class AppServiceProvider extends ServiceProvider
         $command = 'git symbolic-ref -q --short HEAD || git describe --tags --exact-match';
         if (class_exists('\Symfony\Component\Process\Process')) {
             try {
+                // @phpstan-ignore-next-line
                 if (method_exists(Process::class, 'fromShellCommandline')) {
                     $process = Process::fromShellCommandline($command, $path);
                 } else {
@@ -179,6 +182,7 @@ class AppServiceProvider extends ServiceProvider
         CampaignRole::observe('App\Observers\CampaignRoleObserver');
         CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
         CampaignInvite::observe('App\Observers\CampaignInviteObserver');
+        CampaignDashboard::observe('App\Observers\CampaignDashboardObserver');
         CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
         CampaignFollower::observe('App\Observers\CampaignFollowerObserver');
         CampaignPlugin::observe('App\Observers\CampaignPluginObserver');
@@ -193,6 +197,7 @@ class AppServiceProvider extends ServiceProvider
         DiceRollResult::observe('App\Observers\DiceRollResultObserver');
         Event::observe(EventObserver::class);
         Entity::observe('App\Observers\EntityObserver');
+        EntityType::observe('App\Observers\EntityTypeObserver');
         EntityAbility::observe('App\Observers\EntityAbilityObserver');
         EntityAsset::observe('App\Observers\EntityAssetObserver');
         Location::observe(LocationObserver::class);

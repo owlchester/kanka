@@ -26,6 +26,9 @@ return [
         'bulk_names'                => 'Adicione um nome por linha',
         'duplicate'                 => 'Atenção! Já existem outras entidades deste tipo com um nome semelhante.',
         'helper_v2'                 => 'Crie rapidamente a base de uma nova entidade sem interromper seu fluxo atual.',
+        'helpers'                   => [
+            'template'  => 'Selecione um modelo do qual as novas entidades serão uma cópia',
+        ],
         'missing_v2'                => 'Apenas os módulos habilitados e que você tem permissão para criar estão disponíveis nesta interface. :learn-more.',
         'modes'                     => [
             'bulk'      => 'Adição em massa',
@@ -55,6 +58,7 @@ return [
     'dice_roll'             => 'Rolagem de Dado',
     'dice_rolls'            => 'Rolagem de Dados',
     'entities'              => 'Entidades',
+    'entity'                => 'Entidade',
     'entity_attributes'     => 'Atributos',
     'event'                 => 'Evento',
     'events'                => 'Eventos',
@@ -97,8 +101,10 @@ return [
     'races'                 => 'Raças',
     'relation'              => 'Relação',
     'relations'             => 'Relações',
+    'reminders'             => 'Lembretes',
     'tag'                   => 'Tag',
     'tags'                  => 'Tags',
+    'templates'             => 'Modelos',
     'timeline'              => 'Linha do Tempo',
     'timeline_element'      => 'Elemento da linha do tempo',
     'timelines'             => 'Linhas do Tempo',

@@ -30,6 +30,7 @@ return [
         'timeline_element'  => 'Zeitstrahlelement',
     ],
     'create'            => [
+        'helper'        => 'Erstelle eine Verbindung zwischen :name und einer oder mehreren Objekten.',
         'new_title'     => 'Neue Beziehungen',
         'success_bulk'  => '{1} :count-Verbindung zu :entity.|[2,*] hinzugefügt :count-Verbindungen zu :entity.',
     ],
@@ -49,6 +50,7 @@ return [
         'relation'          => 'Beziehung',
         'target'            => 'Ziel',
         'target_relation'   => 'Zielbeziehung',
+        'targets'           => 'Zielobjekt',
         'two_way'           => 'Gespiegelte Beziehung erstellen',
         'unmirror'          => 'Hebe die Spiegelung dieser Beziehung auf.',
     ],
@@ -58,6 +60,7 @@ return [
     ],
     'helper'            => 'Richten Sie Beziehungen zwischen Objekten mit Einstellungen und Sichtbarkeit ein. Beziehungen können auch an das Menü der Berechtigung angeheftet werden.',
     'helpers'           => [
+        'description'   => 'Gib die Art der Verbindung zwischen den beiden Objekte an.',
         'no_relations'  => 'Dieses Objekt hat derzeit keine Beziehungen zu anderen Objekten der Kampagne.',
     ],
     'hints'             => [

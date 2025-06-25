@@ -68,6 +68,7 @@ trait ExportableTrait
 
     public function exportRelations(): array
     {
+        // @phpstan-ignore-next-line
         if (! property_exists($this, 'foreignExport')) {
             return [];
         }

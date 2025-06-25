@@ -180,6 +180,9 @@ class Family extends MiscModel
         return ['family_id', 'location_id', 'is_extinct'];
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\FamilyTree, $this>
+     */
     public function familyTree(): HasOne
     {
         return $this->hasOne(FamilyTree::class);
@@ -195,6 +198,9 @@ class Family extends MiscModel
         return $query;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CharacterFamily, $this>
+     */
     public function pivotMembers(): HasMany
     {
         return $this->hasMany(CharacterFamily::class)

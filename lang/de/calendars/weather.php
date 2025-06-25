@@ -3,6 +3,7 @@
 return [
     'actions'       => [],
     'create'        => [
+        'helper'    => 'Füge Wetterinformationen hinzu, die im Kalender angezeigt werden sollen.',
         'success'   => 'Wetter hinzugefügt.',
         'title'     => 'Neuer Wettereffekt',
     ],

@@ -45,7 +45,6 @@ class DashboardController extends Controller
         }
 
         $hasMap = $hasCampaignHeader = false;
-        $requestedDashboard === null;
         foreach ($widgets as $w) {
             if ($w->widget === Widget::Preview && $w->entity && $w->visible() && $w->entity->isMap()) {
                 $hasMap = true;

@@ -6,8 +6,11 @@ return [
         'copy_from'         => 'Copiar de',
         'copy_inventory'    => 'Copiar inventario',
     ],
-    'copy'              => [],
+    'copy'              => [
+        'helper'    => 'Copiar todo el inventario de una entidad a :name.',
+    ],
     'create'            => [
+        'helper'        => 'Agrega un objeto al inventario de :name. Opcionalmente, puede estar vinculado a un objeto existente de la campaña.',
         'success'       => 'Objeto :item añadido a :name',
         'success_bulk'  => '{0} No se ha añadido ningún objeto a :entity.|{1} Se ha añadido :count objeto a :entity.|[2,*] Se han añadido :count objetos a :entity.',
         'title'         => 'Añade un objeto a :name',

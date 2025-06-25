@@ -11,6 +11,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class GameSystem extends Model
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignSystem, $this>
+     */
     public function campaignSystem(): HasMany
     {
         return $this->hasMany(CampaignSystem::class, 'system_id', 'id');

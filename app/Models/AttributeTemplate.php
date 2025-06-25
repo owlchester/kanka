@@ -64,6 +64,9 @@ class AttributeTemplate extends MiscModel
     /** @var bool Attribute templates don't have inventory, relations or abilities */
     public bool $hasRelations = false;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\EntityType, $this>
+     */
     public function entityType(): BelongsTo
     {
         return $this->belongsTo('App\Models\EntityType', 'entity_type_id', 'id');

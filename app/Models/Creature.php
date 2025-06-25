@@ -149,6 +149,9 @@ class Creature extends MiscModel
         ];
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CreatureLocation, $this>
+     */
     public function pivotLocations(): HasMany
     {
         return $this->hasMany('App\Models\CreatureLocation');

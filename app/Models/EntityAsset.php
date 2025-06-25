@@ -73,11 +73,17 @@ class EntityAsset extends Model
         EntityAssetCache::class => 'clearSuggestion',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
+     */
     public function entity(): BelongsTo
     {
         return $this->belongsTo(Entity::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Image, $this>
+     */
     public function image(): HasOne
     {
         return $this->hasOne(Image::class, 'id', 'image_uuid');

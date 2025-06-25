@@ -10,6 +10,7 @@ return [
         'changelog'         => 'Registro de cambios',
         'disable'           => 'Desactivar plugin',
         'enable'            => 'Activar plugin',
+        'find-plugins'      => 'Buscar plugins',
         'import'            => 'Importar',
         'update'            => 'Actualizar plugin',
         'update_available'  => '¡Actualización disponible!',
@@ -42,6 +43,10 @@ return [
     'import'        => [
         'button'                => 'Importar',
         'created'               => 'Se han creado las siguientes entidades:',
+        'fields'                => [
+            'only_new'  => 'Solo nuevas entidades',
+            'private'   => 'Entidades privadas',
+        ],
         'helper'                => 'Se van a importar :count entidades del plugin :plugin. Si este plugin ya estaba importado, los cambios que hayas hecho a las entidades importadas podrían perderse.',
         'no_new_entities'       => 'No hay nuevas entidades que importar.',
         'option_only_import'    => 'Importa solo las entidades nuevas, omitiendo las previamente importadas.',
@@ -54,6 +59,7 @@ return [
         'helper'        => 'Cuando salga una nueva versión de un plugin, puedes actualizarla a la nueva versión.',
         'title'         => 'Actualitzaciones del plugin :plugin',
         'updates'       => 'Actualizaciones',
+        'versions'      => 'Versiones',
         'your_version'  => 'Tu versión',
     ],
     'pitch'         => 'Instale y gestione plugins desde el :marketplace.',

@@ -27,6 +27,9 @@ class TierPrice extends Model
         'period' => PricingPeriod::class,
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Tier, $this>
+     */
     public function tier(): BelongsTo
     {
         return $this->belongsTo(Tier::class);

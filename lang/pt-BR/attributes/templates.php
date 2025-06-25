@@ -10,6 +10,7 @@ return [
     'helpers'   => [],
     'list'      => [
         'campaign'  => 'Modelos da Campanha',
+        'sheets'    => 'Planilhas de Personagem',
     ],
     'pitch'     => 'Encontre e adicione planilhas de personagens do :marketplace em uma :boosted-campaign.',
 ];
