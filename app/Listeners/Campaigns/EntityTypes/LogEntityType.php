@@ -34,7 +34,7 @@ class LogEntityType
         }
 
         $event->user->campaignLog(
-            $event->entityType->campaign_id,
+            $event->entityType->campaign_id ?? $event->campaign->id,
             'entityTypes',
             $action,
             [

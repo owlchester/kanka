@@ -2,6 +2,7 @@
 
 namespace App\Events\Campaigns\EntityTypes;
 
+use App\Models\Campaign;
 use App\Models\User;
 use App\Models\EntityType;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -18,7 +19,8 @@ class EntityTypeToggled
      */
     public function __construct(
         public EntityType $entityType,
-        public ?User $user
+        public ?User $user,
+        public ?Campaign $campaign
     ) {
         //
     }
