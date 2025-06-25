@@ -3,6 +3,7 @@ includes:
 
 parameters:
     ignoreErrors:
+        - identifier: unset.possiblyHookedProperty
         - identifier: function.alreadyNarrowedType
         - identifier: trait.unused
 
