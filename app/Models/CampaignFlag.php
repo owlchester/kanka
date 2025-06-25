@@ -8,15 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property \App\Enums\CampaignFlags $flag
- *
  */
 class CampaignFlag extends Model
 {
-    use HasFactory;
     use HasCampaign;
+    use HasFactory;
 
     public $casts = [
         'flag' => \App\Enums\CampaignFlags::class,
     ];
-
 }
