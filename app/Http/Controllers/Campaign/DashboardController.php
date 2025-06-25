@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Events\Campaigns\Dashboards\DashboardDeleted;
-use App\Facades\CampaignCache;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignDashboard;
 use App\Models\Campaign;

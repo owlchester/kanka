@@ -10,6 +10,7 @@ use App\Models\Calendar;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignExport;
+use App\Models\CampaignFlag;
 use App\Models\CampaignFollower;
 use App\Models\CampaignImport;
 use App\Models\CampaignPlugin;
@@ -77,6 +78,7 @@ use Illuminate\Support\Collection;
  * @property Collection|CampaignExport[] $campaignExports
  * @property Collection|CampaignExport[] $queuedCampaignExports
  * @property Collection|EntityType[] $entityTypes
+ * @property Collection|CampaignFlag[] $flags
  */
 trait CampaignRelations
 {
@@ -352,5 +354,15 @@ trait CampaignRelations
     public function entityTypes(): HasMany
     {
         return $this->hasMany(EntityType::class);
+    }
+
+    /**
+     * List of the campaign's flags
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignFlag, $this>
+     */
+    public function flags(): HasMany
+    {
+        return $this->hasMany(CampaignFlag::class, 'campaign_id', 'id');
     }
 }
