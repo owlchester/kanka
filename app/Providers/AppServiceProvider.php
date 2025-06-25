@@ -9,6 +9,7 @@ use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\Calendar;
 use App\Models\Campaign;
+use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignFollower;
 use App\Models\CampaignInvite;
@@ -179,6 +180,7 @@ class AppServiceProvider extends ServiceProvider
         CampaignRole::observe('App\Observers\CampaignRoleObserver');
         CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');
         CampaignInvite::observe('App\Observers\CampaignInviteObserver');
+        CampaignDashboard::observe('App\Observers\CampaignDashboardObserver');
         CampaignDashboardWidget::observe('App\Observers\CampaignDashboardWidgetObserver');
         CampaignFollower::observe('App\Observers\CampaignFollowerObserver');
         CampaignPlugin::observe('App\Observers\CampaignPluginObserver');

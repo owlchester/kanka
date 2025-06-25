@@ -129,8 +129,6 @@ class DashboardService
             ->roles()
             ->copy();
 
-        DashboardCreated::dispatch($this->dashboard, auth()->user());
-
         return $this->dashboard;
     }
 
@@ -241,8 +239,6 @@ class DashboardService
         foreach ($roles as $role) {
             $role->delete();
         }
-
-        DashboardUpdated::dispatch($this->dashboard, auth()->user());
 
         return $this->dashboard;
     }

@@ -100,7 +100,6 @@ class DashboardController extends Controller
         }
 
         $campaignDashboard->delete();
-        DashboardDeleted::dispatch($campaignDashboard, auth()->user());
 
         return redirect()->route('dashboard.setup', $campaign)
             ->with('success', __('dashboard.dashboards.delete.success', ['name' => $campaignDashboard->name]));
