@@ -62,7 +62,7 @@ trait UserRelations
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
      *     \App\Models\Campaign,
-     *     \App\Models\User,
+     *     $this,
      *     \App\Models\CampaignUser
      * >
      */
@@ -78,7 +78,7 @@ trait UserRelations
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
      *     \App\Models\Campaign,
-     *     \App\Models\User,
+     *     $this,
      *     \App\Models\CampaignFollower
      * >
      */
@@ -179,7 +179,7 @@ trait UserRelations
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
      *     \App\Models\Entity,
-     *     \App\Models\User,
+     *     $this,
      *     \App\Models\EntityUser
      * >
      */

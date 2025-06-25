@@ -489,7 +489,7 @@ trait EntityRelations
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
      *     \App\Models\User,
-     *     \App\Models\Entity,,
+     *     $this,
      *     \App\Models\EntityUser
      * >
      */

@@ -229,7 +229,7 @@ class Post extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<
      *     \App\Models\User,
-     *     \App\Models\Post,
+     *     $this,
      *     \App\Models\EntityUser
      * >
      */
