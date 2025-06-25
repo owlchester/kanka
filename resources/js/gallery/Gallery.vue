@@ -139,7 +139,7 @@
         </div>
     </div>
 
-    <dialog ref="newDialog" class="dialog rounded-2xl text-center" v-if="initiated">
+    <dialog ref="newDialog" class="dialog rounded-2xl text-center bg-base-100 text-base-content" v-if="initiated">
         <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
             <h4 v-html="trans('new_folder')" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeModal(newDialog)" title="Close">
@@ -167,7 +167,7 @@
         </footer>
     </dialog>
 
-    <dialog ref="updateDialog" class="dialog rounded-2xl text-center" v-if="initiated">
+    <dialog ref="updateDialog" class="dialog rounded-2xl text-center bg-base-100 text-base-content" v-if="initiated">
         <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
             <h4 v-html="trans('update')" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeModal(updateDialog)" title="Close">

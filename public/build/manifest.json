@@ -99,7 +99,7 @@
     ]
   },
   "resources/js/api.js": {
-    "file": "assets/api-nuTFGdaY.js",
+    "file": "assets/api-DCpH0zHz.js",
     "name": "api",
     "src": "resources/js/api.js",
     "isEntry": true,
@@ -112,7 +112,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-BFppbnNu.js",
+    "file": "assets/app-C8k1XF27.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -223,7 +223,7 @@
     ]
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-DPzHywFf.js",
+    "file": "assets/family-tree-vue-BMnfRfro.js",
     "name": "family-tree-vue",
     "src": "resources/js/family-tree-vue.js",
     "isEntry": true,
@@ -265,7 +265,7 @@
     ]
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-BssBkaOU.js",
+    "file": "assets/gallery-CD2ktn71.js",
     "name": "gallery",
     "src": "resources/js/gallery/gallery.js",
     "isEntry": true,
@@ -341,12 +341,12 @@
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-LEI6-McI.css",
+    "file": "assets/app-CFzmNrXj.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-CIuAfuyB.css",
+    "file": "assets/auth-DCPzfeH2.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -371,7 +371,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-BmeSsRva.css",
+    "file": "assets/front-C6auLGmV.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },

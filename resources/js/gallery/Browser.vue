@@ -3,7 +3,7 @@
         <i class="fa-solid fa-spin fa-spinner2" aria-label="Loading"></i>
     </div>
 
-    <dialog class="dialog rounded-2xl text-center" id="gallery-dialog" ref="galleryDialog" aria-modal="true" aria-labelledby="modal-card-label">
+    <dialog class="dialog rounded-2xl text-center bg-base-100 text-base-content" id="gallery-dialog" ref="galleryDialog" aria-modal="true" aria-labelledby="modal-card-label">
         <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
             <h4 v-html="trans.browse.title" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeBrowser()" title="Close">
@@ -30,12 +30,12 @@
             </div>
 
             <div :class="gridClass()" v-else>
-                <div v-for="image in images" class="cursor-pointer shadow rounded overflow-hidden hover:shadow-lg" @click="selectImage(image)">
+                <div v-for="image in images" class="cursor-pointer shadow rounded hover:shadow-lg overflow-hidden" @click="selectImage(image)">
                     <div :class="previewSize('cover-background')" :style="{'backgroundImage': 'url(\'' + image.thumbnail + '\')'}" v-if="!image.folder" />
                     <div :class="previewSize('flex items-center align-middle justify-center text-4xl')" v-else>
                         <i :class="image.icon" aria-label="Folder" />
                     </div>
-                    <div :class="widthSize('truncate p-2')" :title="image.name">
+                    <div :class="widthSize('truncate px-2 py-1 ')" :title="image.name">
                         <span v-html="image.name"></span>
                     </div>
                 </div>
