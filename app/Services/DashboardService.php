@@ -2,8 +2,6 @@
 
 namespace App\Services;
 
-use App\Events\Campaigns\Dashboards\DashboardCreated;
-use App\Events\Campaigns\Dashboards\DashboardUpdated;
 use App\Facades\CampaignCache;
 use App\Facades\UserCache;
 use App\Models\CampaignDashboard;
