@@ -217,11 +217,11 @@ return [
     'helpers'           => [
         'copy_options'  => 'Copy the following related elements from the source to the new entity.',
         'linking'       => 'Linking to other entities',
-        'nested_parent' => 'Displaying the children of :parent.',
         'pagination'    => [
             'settings'  => 'appearance settings',
             'text'      => 'More results per page can be shown by changing your :settings.',
         ],
+        'parent' => 'Select a parent the entity will be a child to.',
     ],
     'hidden'            => 'Hidden',
     'hints'             => [
@@ -291,7 +291,7 @@ return [
         'event'         => 'Choose an event',
         'fallback'      => 'Choose :module',
         'family'        => 'Choose a family',
-        'gallery_image' => 'Choose an image from the campaign gallery',
+        'gallery_image' => 'Choose an image from the gallery',
         'image_url'     => 'Upload an image from a URL instead',
         'item'          => 'Choose an object',
         'journal'       => 'Choose a journal',

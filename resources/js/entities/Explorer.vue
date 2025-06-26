@@ -396,7 +396,8 @@ const switchLayout = () => {
 
 const getEntities = async (page = 1) => {
     paginating.value = true
-    loadEntities(`${props.api}?page=${page}`);
+
+    loadEntities(addToUrl(props.api, 'page', page));
 }
 
 const loadEntities = (url) => {

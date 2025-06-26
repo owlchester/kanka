@@ -54,7 +54,7 @@ if (!empty($onload)) {
     </div>
 </div>
 @endif
-<div id="abilities-abilities" class="overflow-auto">
+<div id="abilities-abilities" class="overflow-x-auto">
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table', $datagridOptions)
     </div>

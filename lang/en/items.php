@@ -11,14 +11,11 @@ return [
         'size'          => 'Size',
         'weight'        => 'Weight',
     ],
-    'hints'         => [
-        'items' => 'Organise items by using the parent item field.',
-    ],
     'placeholders'  => [
-        'price' => 'Price of the item',
+        'price' => 'Price of the object',
         'size'  => 'Size, Dimensions, Capacity',
         'type'  => 'Weapon, Potion, Artefact',
-        'weight'=> 'Weight of the item',
+        'weight'=> 'Weight of the object',
     ],
     'show'          => [
         'tabs'  => [

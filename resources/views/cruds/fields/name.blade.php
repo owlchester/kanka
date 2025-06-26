@@ -15,10 +15,8 @@ $fieldID = uniqid('name_');
            @if ($required) required="required" @endif
     value="{!! htmlspecialchars(old('name', str_replace('&amp;', '&', $model->name ?? ''))) !!}" />
 
-    @if ($allowNew ?? false)
     <div class="text-warning-content duplicate-warning flex flex-col gap-1 hidden">
         <span>{{ __('entities.creator.duplicate') }}</span>
         <div class="duplicates flex flex-wrap gap-2 items-center"></div>
     </div>
-    @endif
 </x-forms.field>
