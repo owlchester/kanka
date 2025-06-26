@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\AdminInviteCreated;
 use App\Events\Campaigns\Applications\Accepted;
 use App\Events\Campaigns\Applications\Rejected;
 use App\Events\Campaigns\Dashboards\DashboardCreated;
@@ -70,6 +71,7 @@ use App\Listeners\Campaigns\Thumbnails\LogThumbnail;
 use App\Listeners\Campaigns\Webhooks\LogWebhook;
 use App\Listeners\Entities\LogEntity;
 use App\Listeners\Posts\LogPost;
+use App\Listeners\SendAdminInviteNotification;
 use App\Listeners\SendFeatureNotification;
 use App\Listeners\Users\ClearUserCache;
 use Illuminate\Auth\Events\Login;
@@ -84,6 +86,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Login::class => [
             LoginViaRemember::class,
+        ],
+        AdminInviteCreated::class => [
+            SendAdminInviteNotification::class,
         ],
         FeatureCreated::class => [
             SendFeatureNotification::class,
