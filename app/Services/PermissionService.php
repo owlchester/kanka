@@ -67,7 +67,6 @@ class PermissionService
                                 'campaign_id' => $this->entity->campaign_id,
                                 'entity_type_id' => $this->entity->type_id,
                                 'entity_id' => $this->entity->id,
-                                'misc_id' => $this->entity->entityType->isCustom() ? null : $this->entity->child->id,
                                 'action' => $perm,
                                 'access' => true,
                             ]);
@@ -82,7 +81,6 @@ class PermissionService
                                 'campaign_id' => $this->entity->campaign_id,
                                 'entity_type_id' => $this->entity->type_id,
                                 'entity_id' => $this->entity->id,
-                                'misc_id' => $this->entity->entityType->isCustom() ? null : $this->entity->child->id,
                                 'action' => $perm,
                                 'access' => false,
                             ]);
@@ -109,7 +107,6 @@ class PermissionService
                                 'campaign_id' => $this->entity->campaign_id,
                                 'entity_type_id' => $this->entity->type_id,
                                 'entity_id' => $this->entity->id,
-                                'misc_id' => $this->entity->entityType->isCustom() ? null : $this->entity->child->id,
                                 'action' => $perm,
                                 'access' => true,
                             ]);
@@ -124,7 +121,6 @@ class PermissionService
                                 'campaign_id' => $this->entity->campaign_id,
                                 'entity_type_id' => $this->entity->type_id,
                                 'entity_id' => $this->entity->id,
-                                'misc_id' => $this->entity->entityType->isCustom() ? null : $this->entity->child->id,
                                 'action' => $perm,
                                 'access' => false,
                             ]);

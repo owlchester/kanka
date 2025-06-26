@@ -274,17 +274,6 @@ class TransformService
         if (isset($this->child)) {
             $this->child->entity = null;
 
-            // Change the permission's misc_id to be the new one
-            if (isset($this->new)) {
-                CampaignPermission::where('entity_id', $this->entity->id)
-                    ->where('misc_id', $this->child->id)
-                    ->update(['misc_id' => $this->new->id]);
-            } else {
-                CampaignPermission::where('entity_id', $this->entity->id)
-                    ->where('misc_id', $this->child->id)
-                    ->update(['misc_id' => null]);
-            }
-
             // Force delete the old entity to avoid it creating weird issues in the db by being soft deleted.
             $this->child->forceDelete();
         }

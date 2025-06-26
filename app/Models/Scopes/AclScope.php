@@ -91,8 +91,6 @@ class AclScope implements Scope
 
         if ($model instanceof Entity) {
             return $this->applyToEntity($query, $model);
-        } elseif ($model instanceof MiscModel) {
-            // return $this->applyToMisc($query, $model);
         }
 
         return $query;
@@ -118,57 +116,6 @@ class AclScope implements Scope
                     })
                     ->whereNotIn($model->getTable() . '.id', Permissions::deniedEntities());
             });
-    }
-
-    /**
-     * Permission scope on a Misc model
-     */
-    protected function applyToMisc(Builder $query, MiscModel $model): Builder
-    {
-        $table = $model->getTable();
-        $primaryKey = 'id';
-        $type = $this->entityType($model);
-
-        if (empty($type)) {
-            return $query;
-        }
-
-        // Limit the scope to reduce the number of queries
-        Permissions::entityType($type);
-
-        // If the user has a role which can read all entities, only check on denied elements
-        if (Permissions::canRole()) {
-            return $query->private(false) // @phpstan-ignore-line
-                ->whereNotIn($table . '.' . $primaryKey, Permissions::deniedModels());
-        }
-
-        /*if (request()->has('_debug_perm')) {
-            return $query
-                ->whereIn($table . '.' . $primaryKey, Permissions::allowedModels())
-                ->whereNotIn($table . '.' . $primaryKey, [])
-                ;
-        }*/
-
-        $allowed = Permissions::allowedModels();
-        if (count($allowed) > 0) {
-            $query->where(function ($sub) use ($table, $primaryKey, $allowed) {
-                // Defined by mariadb's `in_predicate_conversion_threshold`
-                // See https://bugs.launchpad.net/ubuntu/+source/mariadb-10.3/+bug/1964622
-                $max = 999;
-                $loops = floor(count($allowed) / $max);
-                for ($i = 0; $i <= $loops; $i++) {
-                    $slice = array_slice($allowed, $i * $max, $max);
-                    $sub->orWhereIn($table . '.' . $primaryKey, $slice);
-                }
-            });
-        }
-
-        $denied = Permissions::deniedModels();
-        if (! empty($denied)) {
-            $query->whereNotIn($table . '.' . $primaryKey, $denied);
-        }
-
-        return $query->private(false); // @phpstan-ignore-line
     }
 
     /**
