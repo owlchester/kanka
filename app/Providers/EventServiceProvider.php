@@ -47,6 +47,7 @@ use App\Events\Posts\PostCreated;
 use App\Events\Posts\PostDeleted;
 use App\Events\Posts\PostRestored;
 use App\Events\Posts\PostUpdated;
+use App\Events\Users\EmailChanged;
 use App\Listeners\Campaigns\Admins\Notify;
 use App\Listeners\Campaigns\Applications\LogApplication;
 use App\Listeners\Campaigns\Campaigns\LogCampaign;
@@ -72,6 +73,7 @@ use App\Listeners\Entities\LogEntity;
 use App\Listeners\Posts\LogPost;
 use App\Listeners\SendFeatureNotification;
 use App\Listeners\Users\ClearUserCache;
+use App\Listeners\Users\SendEmailUpdate;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use PragmaRX\Google2FALaravel\Listeners\LoginViaRemember;
@@ -245,6 +247,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         EntityTypeDeleted::class => [
             LogEntityType::class,
+        ],
+        EmailChanged::class => [
+            SendEmailUpdate::class,
         ],
     ];
 
