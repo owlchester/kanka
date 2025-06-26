@@ -2,16 +2,13 @@
 
 return [
     'gallery'           => [
-        'placeholder'   => 'Choose an image from the campaign gallery',
+        'placeholder'   => 'Choose an image from the gallery',
     ],
     'gallery-header'    => [
-        'boosted-description'   => 'Display a header image from the campaign gallery with a :superboosted-campaign.',
-        'description'           => 'If the entity has no header image, display an image from the campaign gallery instead.',
+        'description'           => 'If the entity has no header image, display an image from the gallery instead.',
     ],
     'gallery-image'     => [
-        'boosted-description'   => 'Display an image from the campaign gallery with a :superboosted-campaign.',
-        'description'           => 'If the entity has no image, display an image from the campaign gallery instead.',
-        'title'                 => 'Gallery Image',
+        'description'           => 'If the entity has no image, display an image from the gallery instead.',
     ],
     'header-image'      => [
         'boosted-description'   => 'Display a background image in the entity\'s header with a :boosted-campaign.',

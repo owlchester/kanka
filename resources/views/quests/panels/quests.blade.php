@@ -17,9 +17,6 @@ $all = $entity->child->descendants()->has('parent')->count();
         {!! \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests')) !!}
     </h3>
     <div class="flex-none flex gap-2 flex-wrap">
-        <a href="#" class="btn2 btn-sm" data-toggle="dialog" data-target="help-modal">
-            <x-icon class="question" /> {{ __('crud.actions.help') }}
-        </a>
         @if (request()->has('parent_id'))
             <a href="{{ $entity->url() }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
@@ -48,14 +45,3 @@ $all = $entity->child->descendants()->has('parent')->count();
         @include('layouts.datagrid._table', ['datagridUrl' => route('quests.quests', $datagridOptions)])
     </div>
 </div>
-
-@section('modals')
-    @parent
-    @include('partials.helper-modal', [
-        'id' => 'help-modal',
-        'title' => __('crud.actions.help'),
-        'textes' => [
-            __('quests.hints.quests')
-        ]
-    ])
-@endsection
