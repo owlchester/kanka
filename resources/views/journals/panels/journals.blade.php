@@ -4,7 +4,7 @@
  * @var \App\Models\Journal $journal
  */
 ?>
-<div id="journal-journals">
+<div id="journal-journals" class="overflow-x-auto">
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table')
     </div>

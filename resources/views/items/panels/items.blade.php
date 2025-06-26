@@ -7,7 +7,7 @@ $datagridOptions = [
 $datagridOptions = Datagrid::initOptions($datagridOptions);
 ?>
 
-<div class="item-subitems" id="subitems">
+<div class="item-subitems overflow-x-auto" id="subitems">
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table', ['datagridUrl' => route('items.items', $datagridOptions)])
     </div>

@@ -61,7 +61,7 @@ $all = $entity->child->allMembers()->has('character')->count();
         @endcan
     </div>
 </div>
-<div id="organisation-members" class="overflow-auto">
+<div id="organisation-members" class="overflow-x-auto">
     @if ($direct === 0 && !$allMembers)
         <x-box>
             <x-helper>

@@ -1,4 +1,4 @@
-<div id="event-events">
+<div id="event-events" class="overflow-x-auto">
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table')
     </div>

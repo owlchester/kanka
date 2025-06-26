@@ -40,7 +40,7 @@ $all = $entity->child->descendants()->has('parent')->count();
         @endif
     </div>
 </div>
-<div class="quest-subquests" id="subquests">
+<div class="quest-subquests overflow-x-auto" id="subquests">
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table', ['datagridUrl' => route('quests.quests', $datagridOptions)])
     </div>
