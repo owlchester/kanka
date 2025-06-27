@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\Validators\HashValidator;
 use App\Models\Ability;
+use App\Models\AdminInvite;
 use App\Models\Application;
 use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
@@ -56,6 +57,7 @@ use App\Models\TimelineEra;
 use App\Models\User;
 use App\Models\UserLog;
 use App\Models\Webhook;
+use App\Observers\AdminInviteObserver;
 use App\Observers\CalendarObserver;
 use App\Observers\CampaignObserver;
 use App\Observers\CampaignUserObserver;
@@ -175,6 +177,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Model observers. Lots of magic.
         Ability::observe('App\Observers\AbilityObserver');
+        AdminInvite::observe(AdminInviteObserver::class);
         AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
         Calendar::observe(CalendarObserver::class);
         Campaign::observe(CampaignObserver::class);
