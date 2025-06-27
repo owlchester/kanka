@@ -168,7 +168,11 @@ const placeholderName = (attribute) => {
     }
     return trans('placeholders.name')
 }
+
 const placeholderValue = (attribute) => {
+    if (attribute.placeholder) {
+        return attribute.placeholder;
+    }
     return trans('placeholders.value')
 }
 

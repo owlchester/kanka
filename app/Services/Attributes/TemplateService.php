@@ -234,7 +234,7 @@ class TemplateService
     {
         $templateIdInt = (int) $template;
         if (Str::isUuid($template)) {
-            return $this->loadMarketplaceTemplate($template);
+            return $this->loadCharacterSheet($template);
         } elseif (is_int($templateIdInt) && ! empty($templateIdInt)) {
             return $this->loadCampaignTemplate($template);
         }
@@ -242,7 +242,7 @@ class TemplateService
         return [];
     }
 
-    protected function loadMarketplaceTemplate(string $template): array
+    protected function loadCharacterSheet(string $template): array
     {
         $plugin = $this->getMarketplacePlugin($template, $this->campaign);
         if (empty($plugin)) {
@@ -277,6 +277,7 @@ class TemplateService
                 'is_multiline' => $type === AttributeType::Block,
                 'is_section' => $type === AttributeType::Section,
                 'is_number' => $type === AttributeType::Number,
+                'placeholder' => Arr::get($attribute, 'placeholder', ''),
             ];
         }
 

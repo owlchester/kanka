@@ -10,6 +10,7 @@ use App\Traits\EntityAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class ApiService
 {
@@ -121,6 +122,7 @@ class ApiService
             }
         }
         $this->buildAutoTemplates();
+        $this->buildPlaceholders();
     }
 
     protected function buildAutoTemplates(): void
@@ -143,6 +145,42 @@ class ApiService
                     $attributeTemplates[] = $child;
                 }*/
                 $this->addTemplate($child);
+            }
+        }
+    }
+
+    protected function buildPlaceholders(): void
+    {
+        /** @var ?Attribute $layout */
+        $layout = $this->attributes->where('name', '_layout')->first();
+        if (!$layout || !Str::isUuid($layout['value'])) {
+            return;
+        }
+
+        /** @var ?CampaignPlugin $plugin */
+        $plugin = CampaignPlugin::templates($this->campaign)
+            ->select('campaign_plugins.*')
+            ->leftJoin('plugin_versions as pv', 'pv.plugin_id', 'campaign_plugins.plugin_id')
+            ->where('pv.uuid', $layout['value'])
+            ->has('plugin')
+            ->first();
+
+        // If the plugin is published, we're good. Otherwise, it's
+        if (empty($plugin) || ! $plugin->renderable()) {
+            return;
+        }
+
+        foreach ($plugin->version->attributes as $attribute) {
+            if (!isset($attribute['placeholder']) || empty($attribute['placeholder'])) {
+                continue;
+            }
+            $index = $this->attributes->search(function ($item) use ($attribute) {
+                return $item['name'] === $attribute['name'];
+            });
+            if ($index !== false) {
+                $ex = $this->attributes->get($index);
+                $ex['placeholder'] = $attribute['placeholder'];
+                $this->attributes->put($index, $ex);
             }
         }
     }
