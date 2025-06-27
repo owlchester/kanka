@@ -25,9 +25,9 @@ class LogPremium
     public function handle(Boost|SuperBoost|Upgrade|Premium|AutoRemove|Disable $event): void
     {
         $action = match (true) {
-            $event instanceof Boost => 'boost',
-            $event instanceof SuperBoost => 'updated',
-            $event instanceof Upgrade => 'deleted',
+            $event instanceof Boost => 'boosted',
+            $event instanceof SuperBoost => 'superboosted',
+            $event instanceof Upgrade => 'upgraded',
             $event instanceof Premium => 'premium',
             $event instanceof AutoRemove => 'auto-removed',
             $event instanceof Disable => 'disabled',
