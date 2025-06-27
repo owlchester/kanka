@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\Subscriptions\AutoRemove;
 use App\Models\CampaignBoost;
 use App\Models\Pledge;
 use App\Models\Role;
@@ -70,7 +71,7 @@ class SubscriptionEndJob implements ShouldQueue
                 ->user($boost->user)
                 ->unboost($boost);
             if (! in_array($boost->campaign_id, $unboostedCampaigns)) {
-                $boost->user->campaignLog($boost->campaign_id, 'premium', 'auto-remove');
+                AutoRemove::dispatch($boost->campaign, $user);
                 $unboostedCampaigns[] = $boost->campaign_id;
             }
         }

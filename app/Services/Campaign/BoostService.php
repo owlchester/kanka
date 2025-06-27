@@ -2,6 +2,11 @@
 
 namespace App\Services\Campaign;
 
+use App\Events\Subscriptions\Boost;
+use App\Events\Subscriptions\Disable;
+use App\Events\Subscriptions\Premium;
+use App\Events\Subscriptions\SuperBoost;
+use App\Events\Subscriptions\Upgrade;
 use App\Exceptions\Campaign\AlreadyBoostedException;
 use App\Exceptions\Campaign\ExhaustedBoostsException;
 use App\Exceptions\Campaign\ExhaustedSuperboostsException;
@@ -55,12 +60,12 @@ class BoostService
         $amount = 1;
         if ($this->upgrade) {
             $amount = 2;
-            $this->user->campaignLog($this->campaign->id, 'premium', 'upgrade');
+            Upgrade::dispatch($this->campaign, $this->user);
         } elseif ($this->action === 'superboost') {
             $amount = 3;
-            $this->user->campaignLog($this->campaign->id, 'premium', 'superboost');
+            SuperBoost::dispatch($this->campaign, $this->user);
         } else {
-            $this->user->campaignLog($this->campaign->id, 'premium', 'boost');
+            Boost::dispatch($this->campaign, $this->user);
         }
 
         for ($i = 0; $i < $amount; $i++) {
@@ -85,7 +90,7 @@ class BoostService
         }
 
         $amount = 4;
-        $this->user->campaignLog($this->campaign->id, 'premium', 'premium');
+        Premium::dispatch($this->campaign, $this->user);
 
         for ($i = 0; $i < $amount; $i++) {
             CampaignBoost::create([
@@ -113,7 +118,7 @@ class BoostService
             foreach ($this->user->boosts()->where('campaign_id', $campaignBoost->campaign_id)->get() as $boost) {
                 $boost->delete();
             }
-            $this->user->campaignLog($campaignBoost->campaign_id, 'premium', 'disable');
+            Disable::dispatch($this->campaign, $this->user);
         }
         $boostCount = $this->campaign->boosts()->count();
         $this->campaign->boost_count = $boostCount;

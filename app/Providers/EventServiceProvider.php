@@ -47,6 +47,12 @@ use App\Events\Posts\PostCreated;
 use App\Events\Posts\PostDeleted;
 use App\Events\Posts\PostRestored;
 use App\Events\Posts\PostUpdated;
+use App\Events\Subscriptions\AutoRemove;
+use App\Events\Subscriptions\Boost;
+use App\Events\Subscriptions\Disable;
+use App\Events\Subscriptions\Premium;
+use App\Events\Subscriptions\SuperBoost;
+use App\Events\Subscriptions\Upgrade;
 use App\Listeners\Campaigns\Admins\Notify;
 use App\Listeners\Campaigns\Applications\LogApplication;
 use App\Listeners\Campaigns\Campaigns\LogCampaign;
@@ -72,6 +78,7 @@ use App\Listeners\Entities\LogEntity;
 use App\Listeners\Posts\LogPost;
 use App\Listeners\SendFeatureNotification;
 use App\Listeners\Users\ClearUserCache;
+use App\Listeners\Users\Subscriptions\LogPremium;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use PragmaRX\Google2FALaravel\Listeners\LoginViaRemember;
@@ -245,6 +252,24 @@ class EventServiceProvider extends ServiceProvider
         ],
         EntityTypeDeleted::class => [
             LogEntityType::class,
+        ],
+        Boost::class => [
+            LogPremium::class,
+        ],
+        Premium::class => [
+            LogPremium::class,
+        ],
+        Upgrade::class => [
+            LogPremium::class,
+        ],
+        AutoRemove::class => [
+            LogPremium::class,
+        ],
+        SuperBoost::class => [
+            LogPremium::class,
+        ],
+        Disable::class => [
+            LogPremium::class,
         ],
     ];
 
