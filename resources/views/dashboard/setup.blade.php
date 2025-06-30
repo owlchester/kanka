@@ -8,7 +8,6 @@
 ])
 
 @php
-use App\Enums\Widget;
 $widgetClass = 'widget rounded-xl h-28 shadow-xs hover:shadow cursor-pointer bg-box' ;
 $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
 @endphp
@@ -73,7 +72,10 @@ $overlayClass = 'rounded-xl flex gap-2 flex-col p-2 items-center h-full';
                             </x-dropdowns.item>
                         @endif
                         @if(!$dashboards->isEmpty() || !empty($dashboard))
-                            <span class="px-2 pt-3">{{ __('dashboard.dashboards.actions.switch') }}</span>
+                            <x-dropdowns.section>
+                                {{ __('dashboard.dashboards.actions.switch') }}
+                            </x-dropdowns.section>
+                            <span class="" ></span>
                             @if (!empty($dashboard))
                                 <x-dropdowns.item :link="route('dashboard.setup', $campaign)" icon="cog">
                                     {{ __('dashboard.dashboards.default.title')}}
