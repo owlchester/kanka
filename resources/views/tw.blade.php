@@ -6,7 +6,7 @@ This file is never loaded, but needed to trick tailwind to include some classes 
 
 <div class="border-red-500 "></div>
 
-<div class="md:table-cell sm:table-cell lg:table-cell"></div>
+<div class="md:table-cell sm:table-cell lg:table-cell rounded-tl-2xl rounded-tr-2xl rounded-l-2xl rounded-r-2xl"></div>
 <div class="bg-green-500 bg-orange-400 bg-red-500 mix-blend-color-dodge"></div>
 
 <template id="moon-colours">

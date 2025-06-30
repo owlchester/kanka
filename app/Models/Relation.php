@@ -64,6 +64,8 @@ class Relation extends Model
     ];
 
     protected array $sortable = [
+        'owner',
+        'owner.name',
         'relation',
         'target.name',
         'attitude',
@@ -74,8 +76,8 @@ class Relation extends Model
      * Fields that can be sorted on
      */
     public array $sortableColumns = [
-        'owner_id',
-        'target_id',
+        'owner.name',
+        'target.name',
         'relation',
         'attitude',
         'is_pinned',
@@ -175,8 +177,14 @@ class Relation extends Model
      */
     public function scopePreparedSelect(Builder $query): Builder
     {
-        return $query
-            ->select(['id', 'target_id', 'owner_id', 'relation', 'mirror_id', 'is_pinned', 'attitude', 'visibility_id', 'colour']);
+        $defaults = ['id', 'target_id', 'owner_id', 'relation', 'mirror_id', 'is_pinned', 'attitude', 'visibility_id', 'colour'];
+        $tableName = $this->getTable();
+        $prefixedFields = [];
+        foreach ($defaults as $field) {
+            $prefixedFields[] = $tableName . '.' . $field;
+        }
+
+        return $query->select($prefixedFields);
     }
 
     /**
