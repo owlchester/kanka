@@ -40,7 +40,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
         @endcan
     </div>
 </div>
-<div id="family-members" class="overflow-auto">
+<div id="family-members" class="overflow-x-auto">
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table', ['datagridUrl' => route('families.members', $datagridOptions)])
     </div>

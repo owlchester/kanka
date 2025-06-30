@@ -18,6 +18,7 @@ use Illuminate\Support\Str;
 /**
  * Class PluginVersion
  *
+ * @property int $id
  * @property int $plugin_id
  * @property string $uuid
  * @property string $version

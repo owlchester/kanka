@@ -31,10 +31,6 @@ class PermissionService
 
     protected array $deniedIds = [];
 
-    protected array $allowedModels = [];
-
-    protected array $deniedModels = [];
-
     protected bool $loadedPermissions = false;
 
     protected bool $tempPermissionCreated = false;
@@ -187,20 +183,6 @@ class PermissionService
         return $this->deniedPostIDs;
     }
 
-    public function allowedModels(): array
-    {
-        $this->loadPermissions();
-
-        return $this->allowedModels;
-    }
-
-    public function deniedModels(): array
-    {
-        $this->loadPermissions();
-
-        return $this->deniedModels;
-    }
-
     public function canRole(): bool
     {
         $this->loadPermissions();
@@ -215,7 +197,6 @@ class PermissionService
     {
         $this->granted = true;
         $this->entityIds[] = $entity->id;
-        $this->allowedModels[] = $entity->entity_id;
         $this->tempPermissionFilled = false;
 
         return $this;
@@ -392,16 +373,9 @@ class PermissionService
         } elseif ($permission->access && ! in_array($permission->entity_id, $this->entityIds)) {
             // This permission targets an entity directly
             $this->entityIds[] = $permission->entity_id;
-
-            if (! empty($permission->misc_id)) {
-                $this->allowedModels[] = $permission->misc_id;
-            }
         } elseif (! $permission->access && ! in_array($permission->entity_id, $this->deniedIds)) {
             // This permission targets an entity directly
             $this->deniedIds[] = $permission->entity_id;
-            if (! empty($permission->misc_id)) {
-                $this->deniedModels[] = $permission->misc_id;
-            }
         }
     }
 
@@ -437,18 +411,10 @@ class PermissionService
         if ($permission->access) {
             if (! in_array($permission->entity_id, $this->entityIds)) {
                 $this->entityIds[] = $permission->entity_id;
-                if (! empty($permission->misc_id)) {
-                    $this->allowedModels[] = $permission->misc_id;
-                }
             }
             // If the user was denied through a role but has access through a direct permissions, still allow them
             if (($key = array_search($permission->entity_id, $this->deniedIds)) !== false) {
                 unset($this->deniedIds[$key]);
-                if (! empty($permission->misc_id)) {
-                    if (($key = array_search($permission->misc_id, $this->deniedModels)) !== false) {
-                        unset($this->deniedModels[$key]);
-                    }
-                }
             }
 
             return;
@@ -456,9 +422,6 @@ class PermissionService
 
         if (! in_array($permission->entity_id, $this->deniedIds)) {
             $this->deniedIds[] = $permission->entity_id;
-            if (! empty($permission->misc_id)) {
-                $this->deniedModels[] = $permission->misc_id;
-            }
         }
     }
 

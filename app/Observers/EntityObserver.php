@@ -149,9 +149,6 @@ class EntityObserver
     {
         $permission = new CampaignPermission;
         $permission->entity_id = $entity->id;
-        if ($entity->entityType->isStandard()) {
-            $permission->misc_id = $entity->entity_id;
-        }
         $permission->entity_type_id = $entity->type_id;
         $permission->campaign_id = $entity->campaign_id;
         $permission->user_id = auth()->user()->id;

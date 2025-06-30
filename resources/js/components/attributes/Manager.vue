@@ -310,7 +310,6 @@ const importAttribute = (attribute) => {
         return
     }
 
-
     attribute['id'] = newAttributeID.value--
     attributes.value.push(attribute)
     visibleAttributes.value.push(attribute)

@@ -81,7 +81,7 @@ $direct = $entity->child->entities()->count();
     </x-box>
 </div>
 @else
-<div class="" id="tag-children">
+<div class="overflow-x-auto" id="tag-children">
     <div id="datagrid-parent" class="table-responsive">
         @include('layouts.datagrid._table', $datagridOptions)
     </div>

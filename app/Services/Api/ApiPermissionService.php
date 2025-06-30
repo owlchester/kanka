@@ -55,7 +55,6 @@ class ApiPermissionService
                 $permission['campaign_id'] = $entity->campaign_id;
                 $permission['entity_type_id'] = $entity->type_id;
                 $permission['entity_id'] = $entity->id;
-                $permission['misc_id'] = $entity->child->id;
                 array_push($model, CampaignPermission::create($permission));
             }
         }

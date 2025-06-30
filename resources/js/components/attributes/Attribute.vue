@@ -65,7 +65,7 @@
                 />
             </div>
             <div v-else-if="isDisabled(attribute)" class="grow bg-base-200 rounded flex items-center select-none">
-                <div class="w-full break-normal px-2" v-html="attribute.value"></div>
+                <div class="w-full break-normal px-2 text-xs" v-html="attribute.value"></div>
             </div>
             <div v-else-if="!attribute.is_section" class="grow">
                 <attributes-manager-mention-field
@@ -168,7 +168,11 @@ const placeholderName = (attribute) => {
     }
     return trans('placeholders.name')
 }
+
 const placeholderValue = (attribute) => {
+    if (attribute.placeholder) {
+        return attribute.placeholder;
+    }
     return trans('placeholders.value')
 }
 

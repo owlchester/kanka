@@ -53,7 +53,6 @@ class BulkPermissionService
                             'campaign_role_id' => $roleId,
                             'campaign_id' => $this->entity->campaign_id,
                             'entity_id' => $this->entity->id,
-                            'misc_id' => $this->entity->hasChild() ? $this->entity->child->id : null,
                             'action' => $perm,
                             'access' => true,
                         ]);
@@ -72,7 +71,6 @@ class BulkPermissionService
                             'campaign_role_id' => $roleId,
                             'campaign_id' => $this->entity->campaign_id,
                             'entity_id' => $this->entity->id,
-                            'misc_id' => $this->entity->hasChild() ? $this->entity->child->id : null,
                             'action' => $perm,
                             'access' => false,
                         ]);
@@ -107,7 +105,6 @@ class BulkPermissionService
                             'campaign_id' => $this->entity->campaign_id,
                             'entity_id' => $this->entity->id,
                             // 'entity_type_id' => $this->entity->type_id,
-                            'misc_id' => $this->entity->child->id,
                             'action' => $perm,
                             'access' => true,
                         ]);
@@ -127,7 +124,6 @@ class BulkPermissionService
                             'user_id' => $userId,
                             'campaign_id' => $this->entity->campaign_id,
                             'entity_id' => $this->entity->id,
-                            'misc_id' => $this->entity->child->id,
                             'action' => $perm,
                             'access' => false,
                         ]);

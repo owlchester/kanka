@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\AdminInviteCreated;
 use App\Events\Campaigns\Applications\Accepted;
 use App\Events\Campaigns\Applications\Rejected;
 use App\Events\Campaigns\Dashboards\DashboardCreated;
@@ -53,6 +54,7 @@ use App\Events\Subscriptions\Disable;
 use App\Events\Subscriptions\Premium;
 use App\Events\Subscriptions\SuperBoost;
 use App\Events\Subscriptions\Upgrade;
+use App\Events\Users\EmailChanged;
 use App\Listeners\Campaigns\Admins\Notify;
 use App\Listeners\Campaigns\Applications\LogApplication;
 use App\Listeners\Campaigns\Campaigns\LogCampaign;
@@ -76,9 +78,11 @@ use App\Listeners\Campaigns\Thumbnails\LogThumbnail;
 use App\Listeners\Campaigns\Webhooks\LogWebhook;
 use App\Listeners\Entities\LogEntity;
 use App\Listeners\Posts\LogPost;
+use App\Listeners\SendAdminInviteNotification;
 use App\Listeners\SendFeatureNotification;
 use App\Listeners\Users\ClearUserCache;
 use App\Listeners\Users\Subscriptions\LogPremium;
+use App\Listeners\Users\SendEmailUpdate;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use PragmaRX\Google2FALaravel\Listeners\LoginViaRemember;
@@ -91,6 +95,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Login::class => [
             LoginViaRemember::class,
+        ],
+        AdminInviteCreated::class => [
+            SendAdminInviteNotification::class,
         ],
         FeatureCreated::class => [
             SendFeatureNotification::class,
@@ -270,6 +277,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         Disable::class => [
             LogPremium::class,
+        ],
+        EmailChanged::class => [
+            SendEmailUpdate::class,
         ],
     ];
 

@@ -79,7 +79,7 @@ return [
         'creature'      => 'New creature',
         'event'         => 'New event',
         'family'        => 'New family',
-        'item'          => 'New item',
+        'item'          => 'New object',
         'journal'       => 'New journal',
         'location'      => 'New location',
         'note'          => 'New note',

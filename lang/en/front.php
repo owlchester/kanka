@@ -20,7 +20,6 @@ return [
         'patreon'   => [
             'api_calls'         => 'Increased API calls (90 per minute)',
             'boosts'            => 'Campaign Boosters',
-            'curation'          => 'Help curate the community vote items',
             'default_image'     => 'Nicer default images for entities in lists',
             'discord'           => 'Private :discord channel',
             'free'              => 'Free',
