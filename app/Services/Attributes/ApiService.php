@@ -153,7 +153,7 @@ class ApiService
     {
         /** @var ?Attribute $layout */
         $layout = $this->attributes->where('name', '_layout')->first();
-        if (!$layout || !Str::isUuid($layout['value'])) {
+        if (! $layout || ! Str::isUuid($layout['value'])) {
             return;
         }
 
@@ -171,7 +171,7 @@ class ApiService
         }
 
         foreach ($plugin->version->attributes as $attribute) {
-            if (!isset($attribute['placeholder']) || empty($attribute['placeholder'])) {
+            if (! isset($attribute['placeholder']) || empty($attribute['placeholder'])) {
                 continue;
             }
             $index = $this->attributes->search(function ($item) use ($attribute) {
