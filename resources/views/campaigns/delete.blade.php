@@ -24,7 +24,7 @@
 ]) !!}
         </p>
 
-        <x-box>
+        <x-box class="rounded-xl">
             @cannot('delete', $campaign)
                 <p class="mb-2">{{ __('campaigns/delete.issue') }}</p>
 

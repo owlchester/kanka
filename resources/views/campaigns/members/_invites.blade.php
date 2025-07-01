@@ -24,9 +24,8 @@
     </div>
 
     @if($invitations->count() > 0)
-        <x-box :padding="false">
             <div class="table-responsive">
-                <table id="campaign-invites" class="table table-hover">
+                <table id="campaign-invites" class="table table-hover rounded-xl bg-base-100">
                     <thead>
                         <tr>
                             <th>{{ __('campaigns.invites.fields.token') }}</th>
@@ -70,7 +69,6 @@
                     {{ $invitations->links() }}
                 </div>
             @endif
-        </x-box>
         @else
         <x-box>
             <x-helper>

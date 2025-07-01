@@ -33,8 +33,7 @@
                 </div>
             @else
                 @if($token->isPrepared())
-                    <form id="campaign-import-form" method="post" action="{{ \App\Facades\Domain::importer() }}">
-                        <x-box>
+                    <form id="campaign-import-form" class="p-4 rounded-xl bg-base-100" method="post" action="{{ \App\Facades\Domain::importer() }}">
                         {{ csrf_field() }}
                             <x-grid type="1/1">
                                 <h4>{{ __('campaigns/import.form') }}</h4>
@@ -55,7 +54,6 @@
                                 <input type="hidden" name="campaign" value="{{ $campaign->id }}" />
                                 <input type="hidden" name="token" value="{{ $token->id }}" />
                             </x-grid>
-                        </x-box>
                     </form>
 
                     <div class="progress w-full bg-gray hidden">

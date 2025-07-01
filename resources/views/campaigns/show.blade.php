@@ -55,7 +55,7 @@
             </div>
         </div>
         <div class="flex flex-col gap-2">
-            <x-box>
+            <x-box class="rounded-xl">
                 @if (auth()->check() && auth()->user()->can('update', $campaign) && empty($campaign->entry))
                     <a href="{{ route('campaigns.edit', $campaign) }}">
                         {{ __('campaigns.helpers.no_entry') }}

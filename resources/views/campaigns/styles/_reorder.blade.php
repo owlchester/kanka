@@ -8,7 +8,7 @@
             @foreach($reorderStyles as $style)
                 <x-reorder.child :id="$style->id">
                     <input type="hidden" name="style[]" value="{{ $style->id }}"/>
-                    <div class="pr-3">
+                    <div class="">
                         <span class="fa-regular fa-ellipsis-v"></span>
                     </div>
                     <div class="name overflow-hidden grow">
