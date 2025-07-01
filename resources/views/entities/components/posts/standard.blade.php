@@ -23,8 +23,8 @@ $entityTags = $post->visibleTags;
             @can('post', [$entity, 'edit', $post])
                 @can('visibility', $post)
                     <span id="visibility-icon-{{ $post->id }}" class="btn2 btn-ghost btn-sm" data-toggle="dialog" data-url="{{ route('posts.edit.visibility', [$campaign, $entity->id, $post->id]) }}" data-target="primary-dialog">
-                    @include('icons.visibility', ['icon' => $post->visibilityIcon()])
-                </span>
+                        @include('icons.visibility', ['icon' => $post->visibilityIcon()])
+                    </span>
                 @else
                     @include('icons.visibility', ['icon' => $post->visibilityIcon()])
                 @endif
