@@ -42,6 +42,42 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="relative">
+                    <button class="btn2 btn-default btn-sm" @click="toggleSort">
+                        <i class="fa-regular fa-arrow-up-arrow-down" aria-hidden="true" />
+                        <span v-html="trans('sort')" class="hidden md:inline"></span>
+                        <span v-if="sortAsc || sortDesc">(1)</span>
+                    </button>
+                    <div
+                    class="border shadow rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-2 w-60"
+                    v-if="showSort"
+                    v-click-outside="onClickOutside"
+                    >
+                        <ul class="flex flex-col gap-2">
+                            <li>
+                            <span class="cursor-pointer flex items-center gap-2" @click="sort('default')">
+                                <span v-html="trans('sort_default')" class="hidden md:inline"></span>
+                                <i v-if="sortDefault" class="fa-regular fa-check" aria-hidden="true" />
+                            </span>
+                            </li>
+
+                            <li>
+                            <span class="cursor-pointer flex items-center gap-2" @click="sort('asc')">
+                                <span v-html="trans('sort_asc')" class="hidden md:inline"></span>
+                                <i v-if="sortAsc" class="fa-regular fa-check" aria-hidden="true" />
+                            </span>
+                            </li>
+
+                            <li>
+                            <span class="cursor-pointer flex items-center gap-2" @click="sort('desc')">
+                                <span v-html="trans('sort_desc')" class="hidden md:inline"></span>
+                                <i v-if="sortDesc" class="fa-regular fa-check" aria-hidden="true" />
+                            </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="flex gap-2 self-end flex-wrap">
 
@@ -117,10 +153,6 @@
                         @select="selectFile(file)"
                     >
                     </Preview>
-
-                    <div class="flex items-center justify-center grow" v-if="nextPage">
-                        <button :class="loadMoreClass()" @click="openNextPage()" v-html="trans('load_more')"></button>
-                    </div>
                 </div>
 
                 <div class="fixed bottom-0 w-full left-0 right-0 shadow-md md:shadow-none md:relative md:basis-1/4 " v-if="currentFile">
@@ -266,6 +298,10 @@ const progress = ref(0)
 // Filters
 const showFilters = ref(false)
 const showUnused = ref(false)
+const showSort = ref(false)
+const sortAsc = ref(false)
+const sortDesc = ref(false)
+const sortDefault = ref(true)
 
 // Space
 const total = ref()
@@ -769,8 +805,13 @@ const toggleFilters = () => {
     showFilters.value = !showFilters.value;
 }
 
+const toggleSort = () => {
+    showSort.value = !showSort.value;
+}
+
 const onClickOutside = () => {
-    showFilters.value = false
+    showFilters.value = false;
+    showSort.value = false;
 }
 
 const toggleUnused = () => {
@@ -785,6 +826,31 @@ const toggleUnused = () => {
         api += 'term=' + searchTerm.value + '&'
     }
     api += 'unused=1'
+    axios.get(api).then(res => {
+        showSearchResults(res.data)
+    })
+}
+
+const sort = (order = 'default') => {
+
+    if (order == 'asc') {
+        sortDesc.value = false;
+        sortDefault.value = false;
+        sortAsc.value = true;
+    } else if (order == 'desc') {
+        sortAsc.value = false;
+        sortDefault.value = false;
+        sortDesc.value = true;
+    } else if (order == 'default') {
+        sortAsc.value = false;
+        sortDesc.value = false;
+        sortDefault.value = true;
+    }
+
+    loading.value = true
+    let api = searchApi.value + '/?'
+
+    api += 'sort=' + order
     axios.get(api).then(res => {
         showSearchResults(res.data)
     })

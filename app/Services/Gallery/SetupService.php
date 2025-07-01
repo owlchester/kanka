@@ -26,6 +26,8 @@ class SetupService
 
     protected array $filters;
 
+    protected array $sort;
+
     protected StorageService $storage;
 
     public function __construct(StorageService $storage)
@@ -50,6 +52,13 @@ class SetupService
     public function filters(array $filters): self
     {
         $this->filters = $filters;
+
+        return $this;
+    }
+
+    public function sort(array $sort): self
+    {
+        $this->sort = $sort;
 
         return $this;
     }
@@ -109,8 +118,13 @@ class SetupService
         $query = $this
             ->campaign
             ->images()
-            ->with(['images', 'creator'])
-            ->defaultOrder();
+            ->with(['images', 'creator']);
+
+        if (isset($this->sort) && Arr::has($this->sort, 'sort') && in_array($this->sort['sort'], ['asc', 'desc'])) {
+            $query->sortOrder($this->sort['sort']);
+        } else {
+            $query->defaultOrder();
+        }
 
         if (isset($this->filters) && Arr::has($this->filters, 'unused')) {
             $query
@@ -192,6 +206,11 @@ class SetupService
             'visibility.3' => __('crud.visibilities.admin-self'),
             'visibility.4' => __('crud.visibilities.self'),
             'visibility.5' => __('crud.visibilities.members'),
+
+            'sort' => __('gallery.filters.sort'),
+            'sort_asc'  => __('crud.filters.sorting.asc', ['field' => 'Name']),
+            'sort_desc'  => __('crud.filters.sorting.desc', ['field' => 'Name']),
+            'sort_default' => __('dashboard.widgets.orders.recent'),
         ];
     }
 
