@@ -263,6 +263,14 @@ class Image extends Model
             ->orderBy('name', 'asc');
     }
 
+    public function scopeSortOrder(Builder $query, string $sort = 'asc'): Builder
+    {
+        return $query
+            ->orderBy('is_folder', 'desc')
+            ->orderBy('name', $sort)
+            ->orderBy('updated_at', 'desc');
+    }
+
     public function scopeFolders(Builder $query): Builder
     {
         return $query

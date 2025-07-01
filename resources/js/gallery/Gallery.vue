@@ -42,6 +42,42 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="relative">
+                    <button class="btn2 btn-default btn-sm" @click="toggleSort">
+                        <i class="fa-regular fa-arrow-up-arrow-down" aria-hidden="true" />
+                        <span v-html="trans('sort')" class="hidden md:inline"></span>
+                        <span v-if="sortAsc || sortDesc">(1)</span>
+                    </button>
+                    <div
+                        class="border shadow rounded bg-base-100 p-4 absolute right-0 top-full mt-2 flex flex-col gap-2 w-60 z-50"
+                        v-if="showSort"
+                        v-click-outside="onClickOutside"
+                    >
+                        <ul class="flex flex-col gap-2 list-none">
+                            <li>
+                            <span class="cursor-pointer flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 transition" @click="sort('default')">
+                                <i v-if="sortDefault" class="fa-regular fa-check" aria-hidden="true" />
+                                <span v-html="trans('sort_default')" class="inline"></span>
+                            </span>
+                            </li>
+
+                            <li>
+                            <span class="cursor-pointer flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 transition" @click="sort('asc')">
+                                <i v-if="sortAsc" class="fa-regular fa-check" aria-hidden="true" />
+                                <span v-html="trans('sort_asc')" class="inline"></span>
+                            </span>
+                            </li>
+
+                            <li>
+                            <span class="cursor-pointer flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 transition" @click="sort('desc')">
+                                <i v-if="sortDesc" class="fa-regular fa-check" aria-hidden="true" />
+                                <span v-html="trans('sort_desc')" class="inline"></span>
+                            </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="flex gap-2 self-end flex-wrap">
 
@@ -117,10 +153,6 @@
                         @select="selectFile(file)"
                     >
                     </Preview>
-
-                    <div class="flex items-center justify-center grow" v-if="nextPage">
-                        <button :class="loadMoreClass()" @click="openNextPage()" v-html="trans('load_more')"></button>
-                    </div>
                 </div>
 
                 <div class="fixed bottom-0 w-full left-0 right-0 shadow-md md:shadow-none md:relative md:basis-1/4 " v-if="currentFile">
@@ -136,6 +168,12 @@
                     ></File>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div ref="infiniteScrollTrigger" class="h-4">
+        <div v-if="loadingMore" class="text-center text-4xl p-4">
+            <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
         </div>
     </div>
 
@@ -200,7 +238,7 @@
 
 <script setup lang="ts">
 
-import {onMounted, onUnmounted, ref} from "vue";
+import {onMounted, onUnmounted, onBeforeUnmount, ref} from "vue";
 import Preview from "./Preview.vue";
 import File from "./File.vue";
 
@@ -227,6 +265,7 @@ const lastTerm = ref()
 const searching = ref(false)
 const typingTimeout = ref(null)
 const searchApi = ref()
+const apiParameters = ref([])
 
 const files = ref([])
 const homeFiles = ref([])
@@ -266,11 +305,19 @@ const progress = ref(0)
 // Filters
 const showFilters = ref(false)
 const showUnused = ref(false)
+const showSort = ref(false)
+const sortAsc = ref(false)
+const sortDesc = ref(false)
+const sortDefault = ref(true)
 
 // Space
 const total = ref()
 const used = ref()
 const upgradeLink = ref()
+
+//Infinite Scrolling
+const infiniteScrollTrigger = ref(null)
+let observer: IntersectionObserver | null = null
 
 onMounted(() => {
     axios.get(props.api)
@@ -298,7 +345,24 @@ onMounted(() => {
             upgradeLink.value = res.data.upgrade
         })
 
+    observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            openNextPage()
+        }
+        })
+    })
+
+    if (infiniteScrollTrigger.value) {
+        observer.observe(infiniteScrollTrigger.value)
+    }        
     window.addEventListener('keydown', handleEscapeKey)
+})
+
+onBeforeUnmount(() => {
+  if (observer && infiniteScrollTrigger.value) {
+    observer.unobserve(infiniteScrollTrigger.value)
+  }
 })
 
 onUnmounted(() => {
@@ -442,17 +506,38 @@ const search = () => {
 
     // Nothing? Go back home
     if (!searchTerm.value) {
+        apiParameters.value['searchParam'] = ''; 
         home()
         return;
     }
 
     loading.value = true
-    axios.get(searchApi.value + '/?term=' + searchTerm.value).then(res => {
+
+    apiParameters.value['searchParam'] = 'term=' + searchTerm.value;
+
+    var params = '';
+
+    if (apiParameters.value['searchParam']) {
+        params += apiParameters.value['searchParam'] + '&';
+    }
+
+    if (apiParameters.value['sortParam']) {
+        params += apiParameters.value['sortParam'] + '&';
+    }
+
+    if (apiParameters.value['toggleParam']) {
+        params += apiParameters.value['toggleParam'] + '&';
+    }
+
+    axios.get(searchApi.value + '/?' + params).then(res => {
         showSearchResults(res.data)
     })
 }
 
 const openNextPage = () => {
+    if (nextPage.value == null || loadingMore.value == true) {
+        return
+    }
     loadingMore.value = true
     axios.get(nextPage.value).then(res => {
         res.data.files.forEach(file => {
@@ -462,15 +547,6 @@ const openNextPage = () => {
         loadingMore.value = false
     })
 }
-
-const loadMoreClass = () => {
-    let css = 'btn2 btn-secondary'
-    if (loadingMore.value) {
-        css += ' loading btn-disabled'
-    }
-    return css
-}
-
 
 const openNewFolder = () => {
     openDialog(newDialog.value)
@@ -769,23 +845,81 @@ const toggleFilters = () => {
     showFilters.value = !showFilters.value;
 }
 
+const toggleSort = () => {
+    showSort.value = !showSort.value;
+}
+
 const onClickOutside = () => {
-    showFilters.value = false
+    showFilters.value = false;
+    showSort.value = false;
 }
 
 const toggleUnused = () => {
     if (!showUnused.value) {
+        apiParameters.value['toggleParam'] = '';
         home()
         return
     }
     console.log('filter')
     loading.value = true
-    let api = searchApi.value + '/?'
-    if (searchTerm.value) {
-        api += 'term=' + searchTerm.value + '&'
+
+    apiParameters.value['toggleParam'] = 'unused=1';
+
+    var params = '';
+
+    if (apiParameters.value['searchParam']) {
+        params += apiParameters.value['searchParam'] + '&';
     }
-    api += 'unused=1'
-    axios.get(api).then(res => {
+
+    if (apiParameters.value['sortParam']) {
+        params += apiParameters.value['sortParam'] + '&';
+    }
+
+    if (apiParameters.value['toggleParam']) {
+        params += apiParameters.value['toggleParam'] + '&';
+    }
+
+    axios.get(searchApi.value + '/?' + params).then(res => {
+        showSearchResults(res.data)
+    })
+}
+
+const sort = (order = 'default') => {
+
+    if (order == 'asc') {
+        sortDesc.value = false;
+        sortDefault.value = false;
+        sortAsc.value = true;
+    } else if (order == 'desc') {
+        sortAsc.value = false;
+        sortDefault.value = false;
+        sortDesc.value = true;
+    } else if (order == 'default') {
+        sortAsc.value = false;
+        sortDesc.value = false;
+        sortDefault.value = true;
+    }
+
+    loading.value = true
+
+    apiParameters.value['sortParam'] = 'sort=' + order;
+
+    var params = '';
+
+    if (apiParameters.value['searchParam']) {
+        params += apiParameters.value['searchParam'] + '&';
+    }
+
+    if (apiParameters.value['sortParam']) {
+        params += apiParameters.value['sortParam'] + '&';
+    }
+
+    if (apiParameters.value['toggleParam']) {
+        params += apiParameters.value['toggleParam'] + '&';
+    }
+
+
+    axios.get(searchApi.value + '/?' + params).then(res => {
         showSearchResults(res.data)
     })
 }

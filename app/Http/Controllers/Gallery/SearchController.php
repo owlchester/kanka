@@ -29,6 +29,7 @@ class SearchController extends Controller
                 ->campaign($campaign)
                 ->term($term)
                 ->filters($request->only('unused'))
+                ->sort($request->only('sort'))
                 ->search()
         );
     }
