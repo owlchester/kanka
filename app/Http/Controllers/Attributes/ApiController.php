@@ -15,9 +15,7 @@ class ApiController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
 
-    public function __construct(protected ApiService $apiService)
-    {
-    }
+    public function __construct(protected ApiService $apiService) {}
 
     public function index(Campaign $campaign, EntityType $entityType)
     {
