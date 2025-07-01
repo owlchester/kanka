@@ -265,7 +265,7 @@
     ]
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-BLpGybN3.js",
+    "file": "assets/gallery-Wq2oGLRX.js",
     "name": "gallery",
     "src": "resources/js/gallery/gallery.js",
     "isEntry": true,
@@ -341,12 +341,12 @@
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-BoGfOld5.css",
+    "file": "assets/app-De9zlKym.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-yAtHzRpM.css",
+    "file": "assets/auth-NSxhA70M.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -371,7 +371,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-d_byqlaX.css",
+    "file": "assets/front-zFUXNuT_.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },
