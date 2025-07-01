@@ -7,7 +7,7 @@
     <tr>
         <th colspan="2">{{ __('entities.item') }}</th>
         <th>{{ __('entities/inventories.fields.qty') }}</th>
-        @if (auth()->check())
+        @auth
             <th>
                 <i class="fa-regular fa-user-lock" data-title="{{ __('crud.fields.visibility') }}" data-toggle="tooltip" aria-hidden="true"></i>
                 <span class="sr-only">{{ __('crud.fields.visibility') }}</span>
@@ -28,7 +28,7 @@
                 <th colspan="@if (auth()->check())5 @else 4 @endif" class="text-neutral-content text-left">
                     {!! $item->position ?: '<i>' . __('entities/inventories.show.unsorted') . '</i>' !!}
 
-                    <a href="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $item->position]) }}"
+                    <a class="print-none" href="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $item->position]) }}"
                         data-toggle="dialog" data-target="primary-dialog"
                         data-url="{{ route('entities.inventories.create', [$campaign, $entity, 'position' => $item->position]) }}"
                     >
@@ -65,12 +65,12 @@
             <td>
                 {{ number_format($item->amount) }}
             </td>
-            @if (auth()->check())
+            @auth
                 <td>
                     @include('icons.visibility', ['icon' => $item->visibilityIcon()])
                 </td>
                 @can('inventory', $entity)
-                    <td class="text-right">
+                    <td class="text-right print-none">
                         <a href="{{ route('entities.inventories.edit', [$campaign, $entity, $item]) }}"
                            class="btn2 btn-outline btn-xs"
                            data-toggle="dialog" data-target="primary-dialog"
