@@ -208,8 +208,8 @@ class SetupService
             'visibility.5' => __('crud.visibilities.members'),
 
             'sort' => __('gallery.filters.sort'),
-            'sort_asc'  => __('crud.filters.sorting.asc', ['field' => 'Name']),
-            'sort_desc'  => __('crud.filters.sorting.desc', ['field' => 'Name']),
+            'sort_asc' => __('crud.filters.sorting.asc', ['field' => 'Name']),
+            'sort_desc' => __('crud.filters.sorting.desc', ['field' => 'Name']),
             'sort_default' => __('dashboard.widgets.orders.recent'),
         ];
     }
