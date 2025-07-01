@@ -117,10 +117,6 @@
                         @select="selectFile(file)"
                     >
                     </Preview>
-
-                    <div class="flex items-center justify-center grow" v-if="nextPage">
-                        <button :class="loadMoreClass()" @click="openNextPage()" v-html="trans('load_more')"></button>
-                    </div>
                 </div>
 
                 <div class="fixed bottom-0 w-full left-0 right-0 shadow-md md:shadow-none md:relative md:basis-1/4 " v-if="currentFile">
@@ -136,6 +132,12 @@
                     ></File>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div ref="infiniteScrollTrigger" class="h-4">
+        <div v-if="loadingMore" class="text-center text-4xl p-4">
+            <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
         </div>
     </div>
 
@@ -200,7 +202,7 @@
 
 <script setup lang="ts">
 
-import {onMounted, onUnmounted, ref} from "vue";
+import {onMounted, onUnmounted, onBeforeUnmount, ref} from "vue";
 import Preview from "./Preview.vue";
 import File from "./File.vue";
 
@@ -272,6 +274,10 @@ const total = ref()
 const used = ref()
 const upgradeLink = ref()
 
+//Infinite Scrolling
+const infiniteScrollTrigger = ref(null)
+let observer: IntersectionObserver | null = null
+
 onMounted(() => {
     axios.get(props.api)
         .then((res) => {
@@ -298,7 +304,24 @@ onMounted(() => {
             upgradeLink.value = res.data.upgrade
         })
 
+    observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            openNextPage()
+        }
+        })
+    })
+
+    if (infiniteScrollTrigger.value) {
+        observer.observe(infiniteScrollTrigger.value)
+    }        
     window.addEventListener('keydown', handleEscapeKey)
+})
+
+onBeforeUnmount(() => {
+  if (observer && infiniteScrollTrigger.value) {
+    observer.unobserve(infiniteScrollTrigger.value)
+  }
 })
 
 onUnmounted(() => {
@@ -453,6 +476,9 @@ const search = () => {
 }
 
 const openNextPage = () => {
+    if (nextPage.value == null || loadingMore.value == true) {
+        return
+    }
     loadingMore.value = true
     axios.get(nextPage.value).then(res => {
         res.data.files.forEach(file => {
@@ -462,15 +488,6 @@ const openNextPage = () => {
         loadingMore.value = false
     })
 }
-
-const loadMoreClass = () => {
-    let css = 'btn2 btn-secondary'
-    if (loadingMore.value) {
-        css += ' loading btn-disabled'
-    }
-    return css
-}
-
 
 const openNewFolder = () => {
     openDialog(newDialog.value)
@@ -770,7 +787,7 @@ const toggleFilters = () => {
 }
 
 const onClickOutside = () => {
-    showFilters.value = false
+    showFilters.value = false;
 }
 
 const toggleUnused = () => {
