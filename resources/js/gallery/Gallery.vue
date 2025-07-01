@@ -171,6 +171,12 @@
         </div>
     </div>
 
+    <div ref="infiniteScrollTrigger" class="h-4">
+        <div v-if="loadingMore" class="text-center text-4xl p-4">
+            <i class="fa-solid fa-spinner fa-spin" aria-label="Loading" />
+        </div>
+    </div>
+
     <dialog ref="newDialog" class="dialog rounded-2xl text-center bg-base-100 text-base-content" v-if="initiated">
         <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
             <h4 v-html="trans('new_folder')" class="text-lg font-normal"></h4>
@@ -232,7 +238,7 @@
 
 <script setup lang="ts">
 
-import {onMounted, onUnmounted, ref} from "vue";
+import {onMounted, onUnmounted, onBeforeUnmount, ref} from "vue";
 import Preview from "./Preview.vue";
 import File from "./File.vue";
 
@@ -308,6 +314,10 @@ const total = ref()
 const used = ref()
 const upgradeLink = ref()
 
+//Infinite Scrolling
+const infiniteScrollTrigger = ref(null)
+let observer: IntersectionObserver | null = null
+
 onMounted(() => {
     axios.get(props.api)
         .then((res) => {
@@ -334,7 +344,24 @@ onMounted(() => {
             upgradeLink.value = res.data.upgrade
         })
 
+    observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            openNextPage()
+        }
+        })
+    })
+
+    if (infiniteScrollTrigger.value) {
+        observer.observe(infiniteScrollTrigger.value)
+    }        
     window.addEventListener('keydown', handleEscapeKey)
+})
+
+onBeforeUnmount(() => {
+  if (observer && infiniteScrollTrigger.value) {
+    observer.unobserve(infiniteScrollTrigger.value)
+  }
 })
 
 onUnmounted(() => {
@@ -489,6 +516,9 @@ const search = () => {
 }
 
 const openNextPage = () => {
+    if (nextPage.value == null || loadingMore.value == true) {
+        return
+    }
     loadingMore.value = true
     axios.get(nextPage.value).then(res => {
         res.data.files.forEach(file => {
@@ -498,15 +528,6 @@ const openNextPage = () => {
         loadingMore.value = false
     })
 }
-
-const loadMoreClass = () => {
-    let css = 'btn2 btn-secondary'
-    if (loadingMore.value) {
-        css += ' loading btn-disabled'
-    }
-    return css
-}
-
 
 const openNewFolder = () => {
     openDialog(newDialog.value)

@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 
 class LoadController extends Controller
 {
-    public function __construct(protected TemplateService $templateService)
-    {
-    }
+    public function __construct(protected TemplateService $templateService) {}
 
     public function index(Request $request, Campaign $campaign)
     {

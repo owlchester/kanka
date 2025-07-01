@@ -3,7 +3,6 @@
 namespace App\Services\Entity;
 
 use App\Facades\EntityLogger;
-use App\Models\CampaignPermission;
 use App\Models\Character;
 use App\Models\Entity;
 use App\Models\MiscModel;
