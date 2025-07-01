@@ -28,18 +28,11 @@
     @include('ads.top')
 
     <div class="flex flex-col gap-5">
-    @if (auth()->guest())
-        <div class="text-muted grow">
-            <x-icon class="fa-regular fa-filter" />
-            {{ __('filters.helpers.guest') }}
+    @if (isset($route))
+        <div class="flex flex-stretch gap-2 items-center">
+            @includeWhen(auth()->check() && isset($model) && $model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => [$route . '.index', $campaign]])
+            @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index', $campaign])
         </div>
-    @else
-        @if (isset($route))
-            <div class="flex flex-stretch gap-2 items-center">
-                    @includeWhen(isset($model) && $model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => [$route . '.index', $campaign]])
-                    @includeWhen(isset($filter) && $filter !== false, 'cruds.datagrids.filters.datagrid-filter', ['route' => $route . '.index', $campaign])
-            </div>
-        @endif
     @endif
 
     @if (!isset($mode) || $mode === 'grid')

@@ -7,7 +7,7 @@ $activeFilters = $filterService->activeFiltersCount();
 
 
 <div class="grow flex gap-2">
-    <div class="inline-block cursor-pointer btn2 btn-sm break-keep" data-toggle="dialog" data-target="datagrid-filters" data-url="{{ isset($entityType) ? route('filters.form', [$campaign, $entityType, 'm' => $mode]) : route('filters.form-connection', [$campaign, 'm' => $mode]) }}">
+    <div class="inline-block cursor-pointer btn2 btn-sm break-keep" data-toggle="dialog" data-target="datagrid-filters" @auth data-url="{{ isset($entityType) ? route('filters.form', [$campaign, $entityType, 'm' => $mode]) : route('filters.form-connection', [$campaign, 'm' => $mode]) }}" @endif>
         <x-icon class="fa-regular fa-filter" />
         <span class="hidden sm:inline">{{ __('crud.filters.title') }}</span>
         @if ($activeFilters > 0)
@@ -40,7 +40,23 @@ $activeFilters = $filterService->activeFiltersCount();
 
 @section('modals')
     @parent()
+
+    @guest
+        <x-dialog id="datagrid-filters" full="true" :title="__('crud.filters.title')">
+            <x-helper>
+                <p>
+                    {{ __('filters.helpers.guest') }}
+                </p>
+                <a href="{{ route('login') }}">
+
+                    <x-icon class="fa-regular fa-arrow-right" />
+                    {{ __('auth.register.log-in') }}
+                </a>
+            </x-helper>
+        </x-dialog>
+    @else
     <x-dialog id="datagrid-filters" :loading="true" full="true">
 
     </x-dialog>
+    @endif
 @endsection

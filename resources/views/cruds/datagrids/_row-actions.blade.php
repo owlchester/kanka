@@ -5,7 +5,7 @@
 
 
 <div class="dropdown" >
-    <a role="button" class="cursor-pointer rounded-full w-8 h-8 aspect-square hover:bg-base-200 flex items-center justify-center" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="datagrid-submenu-{{ $model->id }}" aria-label="Quick actions menu" data-tree="escape">
+    <a role="button" class="btn2 btn-default btn-sm" data-dropdown aria-expanded="false" aria-haspopup="menu" aria-controls="datagrid-submenu-{{ $model->id }}" aria-label="Quick actions menu" data-tree="escape">
         <i class="fa-regular fa-ellipsis-v" data-tree="escape"></i>
         <span class="sr-only">{{ __('crud.actions.actions') }}</span>
     </a>

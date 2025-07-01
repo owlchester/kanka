@@ -1,9 +1,7 @@
-<div class="flex gap-1 items-start">
-    <x-box :padding="false" >
-        <div class="table-responsive">
-            @include($name . '.datagrid')
-        </div>
-    </x-box>
+<div class="flex flex-col gap-1">
+    <div class="table-responsive w-full">
+        @include($name . '.datagrid')
+    </div>
     @include('ads.siderail_right')
 </div>
 

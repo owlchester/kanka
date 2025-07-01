@@ -2,7 +2,6 @@
 table {
     tbody {
         td {
-            //vertical-align: middle !important;
         }
     }
     thead {
@@ -14,17 +13,11 @@ table {
 
 .table {
     width: 100%;
-    th, td {
-        line-height: 1.5rem;
-        padding: .5rem;
+    th {
+        padding: 0.25rem;
     }
-    thead th {
-        border-bottom-width: 2px;
-    }
-    tbody tr:not(:last-of-type) {
-        td {
-            border-bottom-width: 1px;
-        }
+    td {
+        padding: 0.5rem;
     }
 }
 

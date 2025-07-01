@@ -104,12 +104,12 @@ class DatagridRenderer
 
     public function __toString(): string
     {
-        $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-striped table-entities mb-0' .
+        $html = '<table id="' . $this->getOption('baseRoute') . '" class="table table-entities w-full' .
             ($this->nestedFilter ? ' table-nested' : null) . '">';
-        $html .= '<thead><tr>';
+        $html .= '<thead class=""><tr>';
         $html .= $this->renderColumns();
         $html .= '</tr></thead>';
-        $html .= '<tbody>';
+        $html .= '<tbody class="bg-base-100">';
         $html .= $this->renderRows();
         $html .= '</tbody></table>';
 
@@ -123,8 +123,8 @@ class DatagridRenderer
     {
         $html = '';
         // Checkbox for delete
-        if (auth()->check()) {
-            $html .= '<th class="col-checkbox"><input type="checkbox" name="all" value="1" id="datagrid-select-all" /></th>';
+        if (isset($this->user)) {
+            $html .= '<th class="col-checkbox text-center"><input type="checkbox" name="all" value="1" id="datagrid-select-all" /></th>';
         }
 
         foreach ($this->columns as $column) {
@@ -145,9 +145,9 @@ class DatagridRenderer
         // Easy mode: A string. We want to return it directly since it's so easy.
         if (is_string($column)) {
             if ($column == 'name') {
-                return "<th class='dg-name'>" . $this->route($column) . "</th>\n";
+                return "<th class='dg-name text-neutral-content font-medium'>" . $this->route($column) . "</th>\n";
             } else {
-                return "<th class='dg-" . $column . ' ' . $this->hidden . "'>" . $this->route($column) . "</th>\n";
+                return "<th class='dg-" . $column . ' ' . $this->hidden . " text-neutral-content font-medium'>" . $this->route($column) . "</th>\n";
             }
         }
 
@@ -237,7 +237,7 @@ class DatagridRenderer
             }
         }
 
-        return "<th class='dg-" . $type . ' ' . ($class ?? null) . "'>{$html}</th>\n";
+        return "<th class='dg-" . $type . ' ' . ($class ?? null) . " text-neutral-content font-medium'>{$html}</th>\n";
     }
 
     private function route(?string $field = null, ?string $label = null): string
@@ -248,7 +248,7 @@ class DatagridRenderer
         }
 
         // If we are in public mode (bots) don't make this links
-        if (! auth()->check()) {
+        if (!isset($this->user)) {
             return $label;
         }
 
@@ -277,16 +277,16 @@ class DatagridRenderer
         $order = $this->filterService->order();
         $orderImg = ' <i class="fa-regular fa-sort" aria-hidden="true"></i>';
         if (! empty($order) && isset($order[$field])) {
-            $direction = 'down';
+            $direction = 'down-z-a';
             if ($order[$field] != 'DESC') {
                 $routeOptions['desc'] = true;
-                $direction = 'up';
+                $direction = 'up-a-z';
             }
-            $orderImg = ' <i class="fa-regular fa-sort-' . $direction . '" aria-hidden="true"></i>';
+            $orderImg = ' <i class="fa-regular fa-arrow-' . $direction . '" aria-hidden="true"></i>';
         }
 
         return "<a href='" .
-            url()->route($this->getOption('route'), $routeOptions) . "'>" . $label . $orderImg . '</a>';
+            url()->route($this->getOption('route'), $routeOptions) . "' class='text-neutral-content'>" . $label . $orderImg . '</a>';
     }
 
     private function renderRows()
@@ -320,7 +320,7 @@ class DatagridRenderer
             return '';
         }
 
-        $html = '<tr data-id="' . $model->id . '" '
+        $html = '<tr data-id="' . $model->id . '" class="bg-base-100 hover:bg-base-200" '
             . (! empty($model->type) ? 'data-type="' . Str::slug($model->type) . '" ' : null)
             . ($useEntity ? 'data-entity-id="' . $model->entity->id . '" data-entity-type="' . $model->entity->entityType->code . '"' : null);
         /*if (!empty($this->options['row']) && !empty($this->options['row']['data'])) {
@@ -334,7 +334,7 @@ class DatagridRenderer
         $html .= '>';
 
         // Bulk
-        if (auth()->check()) {
+        if (isset($this->user)) {
             $html .= '<td class="w-8"><input type="checkbox" name="model[]" value="' . $model->id . '" /></td>';
         }
 
@@ -352,7 +352,7 @@ class DatagridRenderer
             return '';
         }
 
-        $colspan = count($this->columns) + (auth()->check() ? 2 : 0);
+        $colspan = count($this->columns) + (isset($this->user) ? 2 : 0);
 
         return '<tr><td class="adrow" colspan="' . $colspan . '">' .
             '<div class="vm-placement" data-id="' . config('tracking.venatus.inline') . '"></div>' .
@@ -554,7 +554,7 @@ class DatagridRenderer
             $actions .= ' <a href="'
                 . route($this->getOption('baseRoute') . '.edit', [$this->campaign, $model])
                 . '" title="' . __('crud.edit') . '">
-                <i class="fa-regular fa-edit" aria-hidden="true"></i>
+                <i class="fa-regular fa-pencil" aria-hidden="true"></i>
             </a>';
         }
 

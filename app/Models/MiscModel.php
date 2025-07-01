@@ -167,7 +167,7 @@ abstract class MiscModel extends Model
             if ($campaign->enabled('inventories')) {
                 $actions[] = [
                     'route' => route('entities.inventory', [$campaign, $this->entity]),
-                    'icon' => 'fa-regular fa-gem',
+                    'icon' => 'fa-regular fa-coins',
                     'label' => 'crud.tabs.inventory',
                 ];
             }
