@@ -50,29 +50,29 @@
                         <span v-if="sortAsc || sortDesc">(1)</span>
                     </button>
                     <div
-                    class="border shadow rounded bg-base-100 p-4 absolute right-0 flex flex-col gap-2 w-60"
-                    v-if="showSort"
-                    v-click-outside="onClickOutside"
+                        class="border shadow rounded bg-base-100 p-4 absolute right-0 top-full mt-2 flex flex-col gap-2 w-60 z-50"
+                        v-if="showSort"
+                        v-click-outside="onClickOutside"
                     >
-                        <ul class="flex flex-col gap-2">
+                        <ul class="flex flex-col gap-2 list-none">
                             <li>
-                            <span class="cursor-pointer flex items-center gap-2" @click="sort('default')">
-                                <span v-html="trans('sort_default')" class="hidden md:inline"></span>
+                            <span class="cursor-pointer flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 transition" @click="sort('default')">
                                 <i v-if="sortDefault" class="fa-regular fa-check" aria-hidden="true" />
+                                <span v-html="trans('sort_default')" class="inline"></span>
                             </span>
                             </li>
 
                             <li>
-                            <span class="cursor-pointer flex items-center gap-2" @click="sort('asc')">
-                                <span v-html="trans('sort_asc')" class="hidden md:inline"></span>
+                            <span class="cursor-pointer flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 transition" @click="sort('asc')">
                                 <i v-if="sortAsc" class="fa-regular fa-check" aria-hidden="true" />
+                                <span v-html="trans('sort_asc')" class="inline"></span>
                             </span>
                             </li>
 
                             <li>
-                            <span class="cursor-pointer flex items-center gap-2" @click="sort('desc')">
-                                <span v-html="trans('sort_desc')" class="hidden md:inline"></span>
+                            <span class="cursor-pointer flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 transition" @click="sort('desc')">
                                 <i v-if="sortDesc" class="fa-regular fa-check" aria-hidden="true" />
+                                <span v-html="trans('sort_desc')" class="inline"></span>
                             </span>
                             </li>
                         </ul>
