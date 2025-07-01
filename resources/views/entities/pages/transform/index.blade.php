@@ -20,6 +20,10 @@
                     <x-slot name="docs">guides/transform.html</x-slot>
                 </x-helper>
 
+                <x-forms.field field="current" :label="__('entities/transform.fields.current')">
+                    <p class="font-bold">{{ $entity->entityType->name() }}</p>
+                </x-forms.field>
+
 
                 <x-forms.field field="target" :label="__('entities/transform.fields.target')">
                     <x-forms.select name="target" :options="$entities" class="w-full" required />

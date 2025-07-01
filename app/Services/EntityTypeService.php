@@ -108,7 +108,7 @@ class EntityTypeService
         $options = $this->ordered();
         $values = [];
         foreach ($options as $entityType) {
-            $values[$entityType->id] = $entityType->plural();
+            $values[$entityType->id] = $entityType->name();
         }
 
         if (! isset($this->prepend)) {
