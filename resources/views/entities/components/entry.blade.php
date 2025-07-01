@@ -1,6 +1,6 @@
 @if ($entity->hasEntry())
     <article class="bg-box rounded box-entity-entry">
-    <div class="p-4 entity-content  overflow-x-auto" data-word-count="{{ $entity->words }}">
+    <div class="p-4 entity-content overflow-x-auto" data-word-count="{{ $entity->words }}">
         @if (auth()->check())
             @can('update', [$entity])
                 <div class="float-right ml-2 mb-2">

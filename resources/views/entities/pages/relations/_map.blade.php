@@ -25,7 +25,7 @@ $options = [
     <input type="hidden" name="mode" value="map" />
 </x-form>
 
-<x-box class="box box-solid box-entity-relations box-entity-relations-explorer">
+<x-box class="box-entity-relations box-entity-relations-explorer">
     <div class="text-center text-xg" id="spinner">
         <x-icon class="load" />
     </div>
