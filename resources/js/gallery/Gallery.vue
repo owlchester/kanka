@@ -265,6 +265,7 @@ const lastTerm = ref()
 const searching = ref(false)
 const typingTimeout = ref(null)
 const searchApi = ref()
+const apiParameters = ref([])
 
 const files = ref([])
 const homeFiles = ref([])
@@ -505,12 +506,30 @@ const search = () => {
 
     // Nothing? Go back home
     if (!searchTerm.value) {
+        apiParameters.value['searchParam'] = ''; 
         home()
         return;
     }
 
     loading.value = true
-    axios.get(searchApi.value + '/?term=' + searchTerm.value).then(res => {
+
+    apiParameters.value['searchParam'] = 'term=' + searchTerm.value;
+
+    var params = '';
+
+    if (apiParameters.value['searchParam']) {
+        params += apiParameters.value['searchParam'] + '&';
+    }
+
+    if (apiParameters.value['sortParam']) {
+        params += apiParameters.value['sortParam'] + '&';
+    }
+
+    if (apiParameters.value['toggleParam']) {
+        params += apiParameters.value['toggleParam'] + '&';
+    }
+
+    axios.get(searchApi.value + '/?' + params).then(res => {
         showSearchResults(res.data)
     })
 }
@@ -837,17 +856,30 @@ const onClickOutside = () => {
 
 const toggleUnused = () => {
     if (!showUnused.value) {
+        apiParameters.value['toggleParam'] = '';
         home()
         return
     }
     console.log('filter')
     loading.value = true
-    let api = searchApi.value + '/?'
-    if (searchTerm.value) {
-        api += 'term=' + searchTerm.value + '&'
+
+    apiParameters.value['toggleParam'] = 'unused=1';
+
+    var params = '';
+
+    if (apiParameters.value['searchParam']) {
+        params += apiParameters.value['searchParam'] + '&';
     }
-    api += 'unused=1'
-    axios.get(api).then(res => {
+
+    if (apiParameters.value['sortParam']) {
+        params += apiParameters.value['sortParam'] + '&';
+    }
+
+    if (apiParameters.value['toggleParam']) {
+        params += apiParameters.value['toggleParam'] + '&';
+    }
+
+    axios.get(searchApi.value + '/?' + params).then(res => {
         showSearchResults(res.data)
     })
 }
@@ -869,10 +901,25 @@ const sort = (order = 'default') => {
     }
 
     loading.value = true
-    let api = searchApi.value + '/?'
 
-    api += 'sort=' + order
-    axios.get(api).then(res => {
+    apiParameters.value['sortParam'] = 'sort=' + order;
+
+    var params = '';
+
+    if (apiParameters.value['searchParam']) {
+        params += apiParameters.value['searchParam'] + '&';
+    }
+
+    if (apiParameters.value['sortParam']) {
+        params += apiParameters.value['sortParam'] + '&';
+    }
+
+    if (apiParameters.value['toggleParam']) {
+        params += apiParameters.value['toggleParam'] + '&';
+    }
+
+
+    axios.get(searchApi.value + '/?' + params).then(res => {
         showSearchResults(res.data)
     })
 }
