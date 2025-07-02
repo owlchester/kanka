@@ -31,7 +31,7 @@ class LayerController extends Controller
             ->layers()
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
             ->with(['map', 'image'])
-            ->paginate(config('limits.pagination'));
+            ->paginate(config('limits.maps_pagination'));
         if (request()->ajax()) {
             return $this
                 ->campaign($campaign)
