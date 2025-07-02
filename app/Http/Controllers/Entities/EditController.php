@@ -58,11 +58,6 @@ class EditController extends Controller
 
     public function save(Request $request, Campaign $campaign, Entity $entity)
     {
-        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
-        if (request()->ajax()) {
-            return response()->json(['success' => true]);
-        }
-
         // We need to validate the request
         if ($entity->entityType->isStandard()) {
             $validationClass = 'App\Http\Requests\Store' . Str::studly($entity->entityType->code);
@@ -73,6 +68,11 @@ class EditController extends Controller
         } else {
             $validator = app()->make(StoreCustomEntity::class);
             $this->validate($request, $validator->rules());
+        }
+
+        // For ajax requests, send back that the validation succeeded, so we can really send the form to be saved.
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
         }
 
         try {

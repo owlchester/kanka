@@ -66,12 +66,10 @@ class StoreCalendar extends FormRequest
             ];
         }
 
-        $leapYear = request()->post('has_leap_year');
-        if (request()->post('has_leap_year') == true) {
-            $rules['leap_year_amount'] = 'required|numeric|min:-128|max:128';
-            $rules['leap_year_offset'] = 'required|numeric|min:1|max:255';
-            $rules['leap_year_start'] = 'required|numeric|min:1|max:255';
-        }
+        $rules['has_leap_year'] = 'boolean';
+        $rules['leap_year_amount'] = 'exclude_if:has_leap_year,0|numeric|min:-128|max:128';
+        $rules['leap_year_offset'] = 'exclude_if:has_leap_year,0|numeric|min:1|max:255';
+        $rules['leap_year_start'] = 'exclude_if:has_leap_year,0|numeric|min:1|max:255';
 
         /** @var Entity $self */
         $self = request()->route('entity');

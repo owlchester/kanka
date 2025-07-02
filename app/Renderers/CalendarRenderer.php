@@ -333,7 +333,7 @@ class CalendarRenderer
             if ($this->calendar->leap_year_month == $this->getMonth()) {
                 // Is this the starting year, or an increment of the offset?
                 $handle = $this->getYear() - $this->calendar->leap_year_start;
-                if ($handle % $this->calendar->leap_year_offset === 0) {
+                if ($handle % max(1, $this->calendar->leap_year_offset) === 0) {
                     $month['length'] += $this->calendar->leap_year_amount;
                 }
             }
@@ -509,7 +509,7 @@ class CalendarRenderer
                 if ($this->calendar->leap_year_month == $monthNumber) {
                     // Is this the starting year, or an increment of the offset?
                     $handle = $this->getYear() - $this->calendar->leap_year_start;
-                    if ($handle % $this->calendar->leap_year_offset === 0) {
+                    if ($handle % max(1, $this->calendar->leap_year_offset) === 0) {
                         $month['length'] += $this->calendar->leap_year_amount;
 
                         // If it also happens to add days on an intercalary day, we need to influence the number of days
