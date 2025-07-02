@@ -50,11 +50,11 @@
                         <span v-if="sortAsc || sortDesc">(1)</span>
                     </button>
                     <div
-                        class="border shadow rounded bg-base-100 p-4 absolute right-0 top-full mt-2 flex flex-col gap-2 w-60 z-50"
+                        class="border shadow rounded bg-base-100 p-4 absolute right-0 top-full mt-2 flex flex-col gap-1 w-60 z-50"
                         v-if="showSort"
                         v-click-outside="onClickOutside"
                     >
-                        <ul class="flex flex-col gap-2 list-none">
+                        <ul class="flex flex-col gap-1 list-none m-0 p-0">
                             <li>
                             <span class="cursor-pointer flex items-center gap-2 px-2 py-2 rounded hover:bg-gray-100 transition" @click="sort('default')">
                                 <i v-if="sortDefault" class="fa-regular fa-check" aria-hidden="true" />
@@ -539,7 +539,22 @@ const openNextPage = () => {
         return
     }
     loadingMore.value = true
-    axios.get(nextPage.value).then(res => {
+
+    var params = '';
+
+    if (apiParameters.value['searchParam']) {
+        params += apiParameters.value['searchParam'] + '&';
+    }
+
+    if (apiParameters.value['sortParam']) {
+        params += apiParameters.value['sortParam'] + '&';
+    }
+
+    if (apiParameters.value['toggleParam']) {
+        params += apiParameters.value['toggleParam'] + '&';
+    }
+
+    axios.get(nextPage.value + '&' + params).then(res => {
         res.data.files.forEach(file => {
             files.value.push(file)
         })
@@ -918,10 +933,21 @@ const sort = (order = 'default') => {
         params += apiParameters.value['toggleParam'] + '&';
     }
 
+    let api = searchApi.value
 
-    axios.get(searchApi.value + '/?' + params).then(res => {
-        showSearchResults(res.data)
+    if (folder.value?.open) {
+        api = folder.value.open
+    }
+
+    axios.get(api + '/?' + params).then(res => {
+        showFilterResults(res.data)
     })
+}
+
+const showFilterResults = (data) => {
+    files.value = data.files
+    nextPage.value = data.next
+    loading.value = false
 }
 
 const showSearchResults = (data) => {

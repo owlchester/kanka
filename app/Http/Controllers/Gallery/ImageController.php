@@ -27,6 +27,8 @@ class ImageController extends Controller
                     ->user(auth()->user())
                     ->campaign($campaign)
                     ->image($image)
+                    ->filters(request()->only('unused'))
+                    ->sort(request()->only('sort'))
                     ->open()
             );
         }
