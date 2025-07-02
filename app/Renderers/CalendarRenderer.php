@@ -3,11 +3,14 @@
 namespace App\Renderers;
 
 use App\Models\Calendar;
-use App\Models\CalendarWeather;
 use App\Models\Entity;
 use App\Models\EntityEventType;
 use App\Models\Post;
 use App\Models\Reminder;
+use App\Services\Calendars\MoonService;
+use App\Services\Calendars\SeasonService;
+use App\Services\Calendars\WeatherService;
+use App\Traits\CalendarAware;
 use App\Traits\CampaignAware;
 use App\Traits\RequestAware;
 use Illuminate\Support\Arr;
@@ -15,15 +18,14 @@ use Illuminate\Support\Collection;
 
 class CalendarRenderer
 {
+    use CalendarAware;
     use CampaignAware;
     use RequestAware;
-
-    protected Calendar $calendar;
 
     /**
      * Segments of the date
      */
-    protected bool $segments = false;
+    protected bool $segments;
 
     /**
      * Current month
@@ -34,21 +36,6 @@ class CalendarRenderer
      * Current Year
      */
     protected int $year;
-
-    /**
-     * Full moons
-     */
-    protected array $moons = [];
-
-    /**
-     * Weather
-     */
-    protected array $weather = [];
-
-    /**
-     * Season Changes
-     */
-    protected array $seasons = [];
 
     /**
      * Named Weeks
@@ -90,13 +77,17 @@ class CalendarRenderer
      */
     protected array $eventEnd = [];
 
-    /**
-     * Initializer
-     */
-    public function setCalendar(Calendar $calendar)
+    public function __construct(
+        protected MoonService $moonService,
+        protected SeasonService $seasonService,
+        protected WeatherService $weatherService,
+    ) {}
+
+    public function prepare(): self
     {
-        $this->calendar = $calendar;
         $this->buildCurrentSegments();
+
+        return $this;
     }
 
     /**
@@ -385,17 +376,17 @@ class CalendarRenderer
                     $dayData['isToday'] = true;
                 }
 
-                if (isset($this->moons[$day])) {
-                    $dayData['moons'] = $this->moons[$day];
+                if ($this->moonService->has($day)) {
+                    $dayData['moons'] = $this->moonService->get($day);
                 }
 
-                if (isset($this->weather[$exact])) {
-                    $dayData['weather'] = $this->weather[$exact];
+                if ($this->weatherService->has($exact)) {
+                    $dayData['weather'] = $this->weatherService->get($exact);
                 }
 
                 $monthday = $this->getMonth() . '-' . $day;
-                if (isset($this->seasons[$monthday])) {
-                    $dayData['season'] = $this->seasons[$monthday];
+                if ($this->seasonService->has($monthday)) {
+                    $dayData['season'] = $this->seasonService->get($monthday);
                 }
 
                 // Add recurring events that span multiple days from the previous call
@@ -564,11 +555,11 @@ class CalendarRenderer
                     $dayData['isToday'] = true;
                 }
 
-                if (isset($this->moons[$totalDay])) {
-                    $dayData['moons'] = $this->moons[$totalDay];
+                if ($this->moonService->has($totalDay)) {
+                    $dayData['moons'] = $this->moonService->get($totalDay);
                 }
-                if (isset($this->weather[$exact])) {
-                    $dayData['weather'] = $this->weather[$exact];
+                if ($this->weatherService->has($exact)) {
+                    $dayData['weather'] = $this->weatherService->get($exact);
                 }
 
                 // Add recurring events that span multiple days from the previous call
@@ -608,8 +599,8 @@ class CalendarRenderer
                 }
 
                 $monthday = $monthNumber . '-' . $day;
-                if (isset($this->seasons[$monthday])) {
-                    $dayData['season'] = $this->seasons[$monthday];
+                if ($this->seasonService->has($monthday)) {
+                    $dayData['season'] = $this->seasonService->get($monthday);
                 }
                 $data[] = $dayData;
 
@@ -684,10 +675,7 @@ class CalendarRenderer
         return (bool) ($this->year == $calendarYear && $this->month == $calendarMonth);
     }
 
-    /**
-     * @return bool
-     */
-    public function isIntercalaryMonth()
+    public function isIntercalaryMonth(): bool
     {
         $month = $this->currentMonthId() - 1;
         foreach ($this->calendar->months() as $k => $m) {
@@ -704,7 +692,7 @@ class CalendarRenderer
      */
     protected function buildCurrentSegments(): void
     {
-        if ($this->segments === true) {
+        if (isset($this->segments)) {
             return;
         }
         $this->segments = true;
@@ -1070,39 +1058,10 @@ class CalendarRenderer
             $length = $month['length'];
             $daysInAYear += $length;
         }
-        foreach ($this->calendar->moons() as $moon) {
-            $fullmoon = $moon['fullmoon'];
-            // Let's figure out how many full moons occurred until now
-            $numberOfFullMoons = $totalDays / $fullmoon;
 
-            // When was the last full moon?
-            $lastFullMoon = floor($numberOfFullMoons) * $fullmoon;
-
-            // Use that to see how many days it's been
-            $daysSinceLastFullMoon = round($totalDays - $lastFullMoon, 2);
-
-            // Next full moon? If it's 0, we want it today.
-            $nextFullMoon = (1 + $moon['offset']) + ($fullmoon - ($daysSinceLastFullMoon == 0 ? $fullmoon : $daysSinceLastFullMoon));
-
-            // Previous cycles. Twice because sometimes the first full moon appears at the end of a long month, so
-            // we need to fill up the month as much as we can.
-            // With a big enough offset and fullmoon cycle, the user can end up with no moon on their first month of
-            // the first year?
-            $maxCycles = max(2, 3);
-            for ($cycles = 1; $cycles <= $maxCycles; $cycles++) {
-                $this->addMoonPhases($nextFullMoon - ($moon['fullmoon'] * $cycles), $moon);
-            }
-
-            // Current cycles
-            $this->addMoonPhases($nextFullMoon, $moon);
-
-            // Now the full moon will appear several times on this month/year.
-            $fullMoonsPerYear = ceil($daysInAYear / $fullmoon);
-            for ($i = 0; $i < $fullMoonsPerYear; $i++) {
-                $nextFullMoon += $fullmoon;
-                $this->addMoonPhases($nextFullMoon, $moon);
-            }
-        }
+        $this->moonService
+            ->calendar($this->calendar)
+            ->build($totalDays, $daysInAYear);
     }
 
     /**
@@ -1110,26 +1069,14 @@ class CalendarRenderer
      */
     public function buildWeather(): void
     {
-        // First build parent weather, and override with local weather
-        if ($this->calendar->calendar) {
-            $weathers = $this->calendar->calendar->calendarWeather()->year($this->currentYear())->get();
-
-            /** @var CalendarWeather $weather */
-            foreach ($weathers as $weather) {
-                $this->weather[$weather->year . '-' . $weather->month . '-' . $weather->day] = $weather;
-            }
-        }
-
-        $weathers = $this->calendar->calendarWeather()->year($this->currentYear())->get();
-
-        /** @var CalendarWeather $weather */
-        foreach ($weathers as $weather) {
-            $this->weather[$weather->year . '-' . $weather->month . '-' . $weather->day] = $weather;
-        }
+        $this->weatherService
+            ->calendar($this->calendar)
+            ->currentYear($this->currentYear())
+            ->build();
     }
 
     /**
-     * Get the total amount of days since the beginning
+     * Get the total number of days since the beginning
      *
      * @return float|int|mixed
      */
@@ -1185,7 +1132,7 @@ class CalendarRenderer
             }
         }
 
-        // Amount of days since the beginning of the year
+        // Number of days since the beginning of the year
         if (! $this->calendar->hasYearZero() && $this->getYear() > 0) {
             return ($daysInAYear * ($this->getYear() - 1)) + $days + $leapDays;
         }
@@ -1193,88 +1140,14 @@ class CalendarRenderer
         return ($daysInAYear * $this->getYear()) + $days + $leapDays;
     }
 
-    protected function addMoonPhases(float $start, array $moon): void
-    {
-        // Full & New Moon
-        $this->addMoonPhase($start, $moon, 'full', 'far fa-circle');
-        $newMoon = $start + ($moon['fullmoon'] / 2);
-        $this->addMoonPhase($newMoon, $moon, 'new', 'fa-solid fa-circle');
-
-        if ($moon['fullmoon'] <= 10) {
-            return;
-        }
-        // Cycle is long enough for more phases to be displayed
-        $quarterMonth = $moon['fullmoon'] / 4;
-        $this->addMoonPhase($newMoon - $quarterMonth, $moon, 'last_quarter', 'fa-solid fa-circle-half-stroke fa-flip-horizontal');
-        $this->addMoonPhase($newMoon + $quarterMonth, $moon, '1first_quarter', 'fa-solid fa-circle-half-stroke');
-    }
-
-    protected function addMoonPhase(float $nextFullMoon, array $moon, string $type = 'full', string $class = 'fa-regular fa-circle'): void
-    {
-        // Moons can be float so we "floor" them
-        $nextFullMoon = floor($nextFullMoon);
-
-        // If the next full moon is before year 0... What?
-        if ($nextFullMoon < 0) {
-            // return;
-        }
-        if (! isset($this->moons[$nextFullMoon])) {
-            $this->moons[$nextFullMoon] = [];
-        }
-        $this->moons[$nextFullMoon][] = [
-            'name' => $moon['name'],
-            'type' => $type,
-            'class' => $class,
-            'colour' => $this->moonColour(Arr::get($moon, 'colour', 'grey')),
-            'id' => Arr::get($moon, 'id', null),
-        ];
-    }
-
-    protected function moonColour(string $colour): string
-    {
-        switch ($colour) {
-            case 'aqua':
-                return 'blue-500';
-            case 'black':
-                return 'black';
-            case 'brown':
-                return 'orange-900';
-                /*case 'green':
-                    return 'green-500';*/
-            case 'light-blue':
-                return 'blue-300';
-            case 'maroon':
-                return 'pink-800';
-            case 'navy':
-                return 'blue-900';
-                /*case 'orange':
-                    return 'orange-500';
-                case 'pink':
-                    return 'pink-500';
-                case 'purple':
-                    return 'purple-500';
-                case 'red':
-                    return 'red-500';
-                case 'teal':
-                    return 'teal-500';
-                case 'yellow':
-                    return 'yellow-500';*/
-            case 'grey':
-                return 'gray-500';
-        }
-
-        return $colour . '-500';
-    }
-
     /**
      * Prepare each of the calendar's seasons
      */
     protected function buildSeasons(): void
     {
-        foreach ($this->calendar->seasons() as $season) {
-            $date = $season['month'] . '-' . $season['day'];
-            $this->seasons[$date] = $season['name'];
-        }
+        $this->seasonService
+            ->calendar($this->calendar)
+            ->build();
     }
 
     /**

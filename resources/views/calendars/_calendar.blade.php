@@ -1,5 +1,6 @@
 <?php
 /** @var \App\Renderers\CalendarRenderer $renderer
+ * @var \App\Models\Campaign $campaign
  * @var \App\Models\Entity $entity
  * @var \App\Models\Calendar $model
  */
@@ -13,8 +14,14 @@ $weekNumber = 1;
 ?>
 @inject('renderer', 'App\Renderers\CalendarRenderer')
 @inject('colours', 'App\Services\ColourService')
-<?php $canEdit = auth()->check() && auth()->user()->can('update', $entity) ?>
-{{ $renderer->campaign($campaign)->request(request())->setCalendar($model) }}
+@php
+    $canEdit = auth()->check() && auth()->user()->can('update', $entity);
+    $renderer
+        ->campaign($campaign)
+        ->calendar($model)
+        ->request(request())
+        ->prepare()
+@endphp
 
 <div class="calendar-toolbar flex gap-2 items-center">
     <a
