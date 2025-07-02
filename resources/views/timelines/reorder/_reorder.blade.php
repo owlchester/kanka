@@ -38,7 +38,9 @@
                                 </div>
                                 <div class="overflow-hidden flex-grow">
                                     @if ($element->entity)
-                                        <x-entity-link :entity="$element->entity" :name="$element->name" :campaign="$campaign" />
+                                        <x-entity-link :entity="$element->entity" :campaign="$campaign">
+                                            {!! $element->name !!}
+                                        </x-entity-link>
                                     @else
                                         {!! $element->name !!}
                                     @endif

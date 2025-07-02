@@ -1,15 +1,19 @@
-<li data-ago="{{ isset($future) ? $reminder->inDays() : $reminder->daysAgo() }}" class="flex gap-2">
-    <div class="grow">
+<li data-ago="{{ isset($future) ? $reminder->inDays() : $reminder->daysAgo() }}" class="flex gap-2 justify-between overflow-hidden">
+    <div class="truncate">
         @if ($reminder->isPost())
-            <a href="{{ $reminder->remindable->entity->url() }}">{!! $reminder->remindable->name !!} ({!! $reminder->remindable->entity->name !!})</a>
+            <x-entity-link :entity="$reminder->remindable->entity" :campaign="$campaign">
+                {!! $reminder->remindable->name !!} ({!! $reminder->remindable->entity->name !!})
+            </x-entity-link>
         @else
-            <a href="{{ $reminder->remindable->url() }}">{!! $reminder->remindable->name !!}</a>
+            <x-entity-link :entity="$reminder->remindable" :campaign="$campaign">
+                {!! $reminder->remindable->name !!}
+            </x-entity-link>
         @endif
         @if (config('app.debug'))
             @if (isset($future))
-                <span class="text-xs">({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)</span>
+                <span class="text-xs text-neutral-content">({{ $reminder->date() }}, in {{ $reminder->inDays() }} days)</span>
             @else
-                <span class="text-xs">({{ $reminder->date() }}, {{ $reminder->daysAgo() }} days ago)</span>
+                <span class="text-xs text-neutral-content">({{ $reminder->date() }}, {{ $reminder->daysAgo() }} days ago)</span>
             @endif
         @endif
     </div>

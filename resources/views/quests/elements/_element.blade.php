@@ -14,8 +14,9 @@
                     @endif
                     <x-entity-link
                         :entity="$element->entity"
-                        :name="$element->name"
-                        :campaign="$campaign" />
+                        :campaign="$campaign">
+                        {!! $element->name !!}
+                    </x-entity-link>
                 @else
                     <span class="name truncate">
                                     {!! $element->name !!}

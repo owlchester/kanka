@@ -26,10 +26,11 @@
         <x-icon class="lock" :title="__('crud.is_private')" tooltip />
     @endif
     <x-entity-link
-        :name="$model->name . ' (' . $model->entity->name . ')'"
         :post="$model->id"
         :entity="$model->entity"
-        :campaign="$campaign" />
+        :campaign="$campaign">
+        {!! $model->name !!} ({!! $model->entity->name !!})
+    </x-entity-link>
 @elseif($model->entity)
     @if ($model->entity->is_private)
         <x-icon class="lock" :title="__('crud.is_private')" tooltip />
@@ -46,9 +47,10 @@
     @if ($model instanceof \App\Models\Reminder && $model->isPost())
         <x-entity-link
         :entity="$model->remindable->entity"
-        :name="$model->remindable->name . ' (' . $model->remindable->entity->name . ')'"
         :post="$model->remindable->id"
-        :campaign="$campaign" />
+        :campaign="$campaign">
+            {!! $model->remindable->name !!} ({!! $model->remindable->entity->name !!})
+        </x-entity-link>
     @else
         <x-entity-link
         :entity="$model->remindable"

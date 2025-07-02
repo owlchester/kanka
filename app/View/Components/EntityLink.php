@@ -16,7 +16,6 @@ class EntityLink extends Component
     public function __construct(
         public ?Entity $entity,
         public Campaign $campaign,
-        public ?string $name = null,
         public ?string $post = null,
         public bool $bottom = false,
     ) {}
@@ -31,15 +30,6 @@ class EntityLink extends Component
         }
 
         return view('components.entity-link');
-    }
-
-    public function name(): string
-    {
-        if (! empty($this->name)) {
-            return $this->name;
-        }
-
-        return $this->entity->name;
     }
 
     public function post(): string

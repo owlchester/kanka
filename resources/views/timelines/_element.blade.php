@@ -17,7 +17,9 @@
 
                     <span class="truncate">
                     @if ($element->entity)
-                        <x-entity-link :entity="$element->entity" :name="$element->name" :campaign="$campaign" />
+                        <x-entity-link :entity="$element->entity" :campaign="$campaign">
+                            {!! $element->name !!}
+                        </x-entity-link>
 
                         @if($element->entity && $element->entity->is_private)
                             <x-icon class="fa-solid fa-lock" title="{{ __('timelines/elements.helpers.entity_is_private') }}" tooltip />

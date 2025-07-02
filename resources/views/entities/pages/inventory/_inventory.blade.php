@@ -49,8 +49,9 @@
                 @if ($item->item)
                     <x-entity-link
                         :entity="$item->entity"
-                        :name="$item->name"
-                        :campaign="$campaign" />
+                        :campaign="$campaign">
+                        {!! $item->name !!}
+                    </x-entity-link>
                 @else
                     {!! $item->name !!}
                 @endif<br />
