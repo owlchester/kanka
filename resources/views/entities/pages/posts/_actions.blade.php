@@ -44,15 +44,16 @@
     </x-dropdowns.item>
 @endcan
 <x-dropdowns.divider />
-<x-dropdowns.item :link="route('entities.story.reorder', [$campaign, 'entity' => $entity])" icon="fa-regular fa-arrows-v">
+<x-dropdowns.item :link="route('entities.story.reorder', [$campaign, 'entity' => $entity])" icon="fa-regular fa-arrow-up-arrow-down">
     {{ __('entities/story.reorder.icon_tooltip') }}
 </x-dropdowns.item>
 
 @can('delete', $entity)
+    <x-dropdowns.divider />
     @php
         $url = route('confirm-delete', [$campaign, 'route' => route('entities.posts.destroy', [$campaign, $entity, $post]), 'name' => $post->name]);
     @endphp
     <x-dropdowns.item link="#" css="text-error hover:bg-error hover:text-error-content" :data="['toggle' => 'dialog', 'target' => 'primary-dialog', 'url' => $url]" icon="trash">
-        {{ __('crud.remove') }}
+        {{ __('posts.remove.title') }}
     </x-dropdowns.item>
 @endcan

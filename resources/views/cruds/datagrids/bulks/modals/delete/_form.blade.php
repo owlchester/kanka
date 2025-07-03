@@ -1,9 +1,9 @@
 <x-grid type="1/1">
-    <p class="m-0">
-        {{ __('crud.bulk.delete.warning') }}
+    <p class="text-neutral-content">
+        {{ __('confirm.delete.bulk') }}
     </p>
     @if(isset($datagrid) && !$datagrid->hasBulkPermissions())
-        <p class="m-0 permanent">
+        <p class="text-neutral-content permanent">
         {{ __('crud.delete_modal.permanent') }}
         </p>
     @endif

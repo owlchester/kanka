@@ -43,4 +43,7 @@ return [
         'helper'    => 'Change the visibility for the post :name.',
         'title'     => 'Post visibility',
     ],
+    'remove' => [
+        'title' => 'Remove post',
+    ]
 ];

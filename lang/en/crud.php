@@ -50,9 +50,6 @@ return [
         'buttons'       => [
             'label' => 'For selected',
         ],
-        'delete'        => [
-            'warning'   => 'You are deleting multiple entities.',
-        ],
         'edit'          => [
             'locations' => 'Action for locations',
             'tagging'   => 'Action for tags',
@@ -101,9 +98,8 @@ return [
     'delete_modal'      => [
         'callout'           => 'Psst!',
         'confirm'           => 'Confirm removal',
-        'description_v2'    => 'You are removing ":tag".',
-        'permanent'         => 'This action is permanent and cannot be undone.',
-        'recoverable'       => 'Entities can be recovered for up to :day days with a :boosted-campaign.',
+        'permanent'         => 'This will permanently remove this element and you won\'t be able to undo this action.',
+        'recoverable'       => 'Entities and posts can be recovered for up to :day days with a :boosted-campaign.',
         'title'             => 'Removal confirmation',
     ],
     'destroy_many'      => [

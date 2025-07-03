@@ -146,6 +146,10 @@
     --tw-border-opacity: 1;
     border-color: hsl(var(--er)/var(--tw-border-opacity));
 }
+.border-error-content {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--erc)/var(--tw-border-opacity));
+}
 .border-primary {
     --tw-border-opacity: 1;
     border-color: hsl(var(--p)/var(--tw-border-opacity));

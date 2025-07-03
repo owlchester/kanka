@@ -1,6 +1,6 @@
 
 <menu class="flex flex-wrap gap-3 ps-0 ms-0">
-    <button autofocus type="button" class="btn2 btn-ghost btn-full" onclick="this.closest('dialog').close('close')">
+    <button autofocus type="button" class="btn2 btn-outline btn-full" onclick="this.closest('dialog').close('close')">
         {{ __('crud.cancel') }}
     </button>
 </menu>

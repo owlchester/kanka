@@ -33,9 +33,9 @@ $hasOthers = false;
     @parent
     <x-dialog id="datagrid-bulk-delete" :title="__('crud.delete_modal.title')">
         <x-grid type="1/1">
-            <p class="m-0">
-                {{ __('crud.bulk.delete.warning') }}</p>
-            <p>
+            <p class="text-neutral-content">
+                {{ __('confirm.delete.bulk') }}</p>
+            <p class="text-neutral-content">
                 {{ __('crud.delete_modal.permanent') }}
             </p>
         </x-grid>
