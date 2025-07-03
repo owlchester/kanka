@@ -16,7 +16,5 @@
             'submit' => __('crud.add'),
             'dropdownParent' => '#primary-dialog',
         ])
-
-        <input type="hidden" name="character_id" value="{{ $model->id }}" />
     </x-form>
 @endsection

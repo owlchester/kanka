@@ -11,6 +11,5 @@
             'title' => __('organisations.members.edit.title', ['name' => $model->name]),
             'content' => 'organisations.members._form',
         ])
-        <input type="hidden" name="organisation_id" value="{{ $model->id }}" />
     </x-form>
 @endsection

@@ -48,7 +48,7 @@ Route::post('/w/{campaign}/maps/{map}/layers/{map_layer}/migrate', 'Maps\Layers\
 Route::post('/w/{campaign}/maps/{map}/markers/bulk', 'Maps\Bulks\MarkerController@index')->name('maps.markers.bulk');
 
 // Character
-Route::get('/w/{campaign}/characters/{character}/organisations', 'Characters\OrganisationController@index')->name('characters.organisations');
+Route::get('/w/{campaign}/characters/{character}/organisations', [\App\Http\Controllers\Characters\MemberController::class, 'index'])->name('characters.organisations');
 Route::get('/w/{campaign}/characters/{character}/races/management', 'Characters\Races\ManagementController@index')->name('characters.races.management');
 Route::post('/w/{campaign}/characters/{character}/races/save', 'Characters\Races\ManagementController@save')->name('characters.races.save');
 Route::get('/w/{campaign}/characters/{character}/families/management', 'Characters\Families\ManagementController@index')->name('characters.families.management');
@@ -238,7 +238,7 @@ Route::resources([
     '/w/{campaign}/calendars' => 'Crud\CalendarController',
     '/w/{campaign}/calendars.calendar_weather' => 'Calendar\CalendarWeatherController',
     '/w/{campaign}/characters' => 'Crud\CharacterController',
-    '/w/{campaign}/characters.character_organisations' => 'CharacterOrganisationController',
+    '/w/{campaign}/characters.character_organisations' => 'Characters\MembershipController',
     '/w/{campaign}/conversations' => 'Crud\ConversationController',
     '/w/{campaign}/conversations.conversation_participants' => 'ConversationParticipantController',
     '/w/{campaign}/conversations.conversation_messages' => 'ConversationMessageController',

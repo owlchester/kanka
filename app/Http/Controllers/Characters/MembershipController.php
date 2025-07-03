@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Characters;
 
-use App\Http\Requests\StoreOrganisationMember;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCharacterOrganisation;
 use App\Models\Campaign;
 use App\Models\Character;
 use App\Models\CharacterOrganisation;
 use App\Models\OrganisationMember;
 
-class CharacterOrganisationController extends Controller
+class MembershipController extends Controller
 {
     protected string $view = 'characters.organisations';
 
@@ -27,7 +28,7 @@ class CharacterOrganisationController extends Controller
      */
     public function index(Campaign $campaign, Character $character)
     {
-        return redirect()->to($character->getLink());
+        return redirect()->route('entities.show', [$campaign, $character->entity]);
     }
 
     /**
@@ -45,14 +46,14 @@ class CharacterOrganisationController extends Controller
     /**
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(StoreOrganisationMember $request, Campaign $campaign, Character $character)
+    public function store(StoreCharacterOrganisation $request, Campaign $campaign, Character $character)
     {
         $this->authorize('update', $character->entity);
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
 
-        $relation = OrganisationMember::create($request->all());
+        $relation = OrganisationMember::create(['character_id' => $character->id] + $request->all());
 
         return redirect()->route('characters.organisations', [$campaign, $character->id])
             ->with('success', __($this->view . '.create.success', [
@@ -89,7 +90,7 @@ class CharacterOrganisationController extends Controller
     }
 
     public function update(
-        StoreOrganisationMember $request,
+        StoreCharacterOrganisation $request,
         Campaign $campaign,
         Character $character,
         CharacterOrganisation $characterOrganisation

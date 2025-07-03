@@ -17,7 +17,6 @@
             'dropdownParent' => '#primary-dialog',
         ])
 
-        <input type="hidden" name="character_id" value="{{ $model->id }}" />
         @if (request()->has('from'))
             <input type="hidden" name="from" value="{{ request()->get('from') }}" />
         @endif

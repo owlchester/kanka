@@ -11,7 +11,7 @@ use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 
-class OrganisationController extends Controller
+class MemberController extends Controller
 {
     use CampaignAware;
     use GuestAuthTrait;
