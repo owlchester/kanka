@@ -5,4 +5,4 @@
    data-theme="entity-tooltip"
 @if ($bottom) data-placement="bottom" @endif
    href="{{ $entity->url('show') }}{{ $post() }}">
-    @if($slot->isNotEmpty()) {!! $slot !!} @else {!! $entity->name !!} @endif</a>
+    @if(isset($slot) && $slot->isNotEmpty()) {!! $slot !!} @else {!! $entity->name !!} @endif</a>

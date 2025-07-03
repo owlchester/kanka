@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Blade;
 if (!$campaign->enabled('locations') || !$entity->child->location || !$entity->child->location->entity) {
     return;
 }
@@ -7,10 +8,10 @@ if (!$campaign->enabled('locations') || !$entity->child->location || !$entity->c
     <x-icon :class="\App\Facades\Module::duoIcon('location')" :title="__('crud.fields.parent')" />
     @if ($entity->child->location->parent && $entity->child->location->parent->entity)
         {!! __('crud.fields.locations', [
-            'first' => \Illuminate\Support\Facades\Blade::renderComponent(
+            'first' => Blade::renderComponent(
                 new \App\View\Components\EntityLink($entity->child->location->entity, $campaign)
                 ),
-            'second' => \Illuminate\Support\Facades\Blade::renderComponent(
+            'second' => Blade::renderComponent(
                 new \App\View\Components\EntityLink($entity->child->location->parent->entity, $campaign)
                 ),
         ]) !!}
