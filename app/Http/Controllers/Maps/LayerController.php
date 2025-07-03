@@ -11,9 +11,7 @@ use App\Models\MapLayer;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 
 class LayerController extends Controller
 {

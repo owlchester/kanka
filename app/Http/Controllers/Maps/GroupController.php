@@ -36,7 +36,6 @@ class GroupController extends Controller
             ->with(['map'])
             ->paginate(config('limits.pagination'));
 
-
         $groups = $map
             ->groups()
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
@@ -45,12 +44,10 @@ class GroupController extends Controller
 
         $this->campaign($campaign);
 
-
         if (request()->ajax()) {
             return $this->datagridAjax();
         }
 
-        
         return view('cruds.subview')
             ->with([
                 'fullview' => 'maps.groups.index',
