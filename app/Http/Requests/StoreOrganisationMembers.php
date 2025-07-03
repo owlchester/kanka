@@ -27,7 +27,6 @@ class StoreOrganisationMembers extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'organisation_id' => 'required|exists:organisations,id',
             'characters' => 'required|array|min:1',
             'characters.*' => 'distinct|required|distinct|exists:characters,id',
             'role' => 'nullable',

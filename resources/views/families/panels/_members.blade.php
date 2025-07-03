@@ -32,7 +32,7 @@ $datagridOptions = Datagrid::initOptions($datagridOptions);
             </a>
         @endif
         @can('update', $entity)
-            <a href="{{ route('families.members.create', [$campaign, 'family' => $entity->child]) }}" class="btn2 btn-primary btn-sm"
+            <a href="{{ route('families.members.create', [$campaign, 'family' => $entity->child]) }}" class="btn2 btn-sm"
                data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('families.members.create', [$campaign, $entity->child]) }}">
                 <x-icon class="plus" />
                 <span class="hidden xl:inline">{{ __('organisations.members.actions.add') }}</span>

@@ -27,10 +27,8 @@ class StoreCharacterFamily extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'family_id' => 'required|exists:families,id',
-            'members' => [
-                '*' => 'exists:characters,id',
-            ],
+            'characters' => 'required|array|min:1',
+            'characters.*' => 'distinct|required|distinct|exists:characters,id',
         ]);
     }
 }

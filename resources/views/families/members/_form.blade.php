@@ -1,5 +1,7 @@
 <x-grid type="1/1">
-<x-forms.field field="members" :label="__('families.fields.members')">
-    <select multiple="multiple" name="members[]" id="members" class=" form-members" style="width: 100%" data-url="{{ route('search-list', [$campaign, config('entities.ids.character'), 'with-family' => '1']) }}" data-placeholder="{{ __('crud.placeholders.character') }}"></select>
-</x-forms.field>
+    <x-helper>
+        <p>{{ __('families.members.create.helper', ['name' => $model->name]) }}</p>
+    </x-helper>
+
+    @include('cruds.fields.characters', ['quickCreator' => false, 'required' => true, 'model' => null])
 </x-grid>

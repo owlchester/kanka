@@ -4,7 +4,8 @@
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($model->entity)->list(),
         Breadcrumb::show()
-    ]
+    ],
+    'centered' => true,
 ])
 
 @section('content')
@@ -14,6 +15,5 @@
             'content' => 'organisations.members._form',
             'submit' => __('organisations.members.actions.add_multiple'),
         ])
-        <input type="hidden" name="organisation_id" value="{{ $model->id }}" />
     </x-form>
 @endsection

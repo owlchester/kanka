@@ -17,7 +17,7 @@ if (!empty($previous)) {
     //dd($previous);
 }
 // If we didn't get anything, and there is a model sent, use that
-elseif(!empty($model)) {
+elseif(!empty($model) ) {
     /** @var \App\Models\Character $character */
     foreach ($model->members() as $character) {
         $selectedOption[$character->character->id] = strip_tags($character->character->name);

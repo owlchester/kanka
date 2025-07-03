@@ -69,7 +69,7 @@ class MemberController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $newMembers = $family->members()->syncWithoutDetaching($request->members);
+        $newMembers = $family->members()->syncWithoutDetaching($request->characters);
 
         return redirect()->route('entities.show', [$campaign, $family->entity])
             ->with('success', trans_choice('families.members.create.success', count($newMembers['attached']), ['count' => count($newMembers['attached'])]));

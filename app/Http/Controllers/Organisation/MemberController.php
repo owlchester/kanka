@@ -90,7 +90,7 @@ class MemberController extends Controller
         }
         $count = 0;
         foreach ($request->get('characters', []) as $character) {
-            $relation = OrganisationMember::create(['character_id' => $character] + $request->except('characters'));
+            $relation = OrganisationMember::create(['character_id' => $character, 'organisation_id' => $organisation->id] + $request->except('characters'));
             $count++;
         }
 
