@@ -44,7 +44,7 @@ class Quest extends Layout
                         return '';
                     }
 
-                    return '<i class="fa-solid fa-check-circle" data-title="' . __('quests.fields.is_completed') . '" aria-hidden="true"></i>';
+                    return '<i class="fa-regular fa-check-circle" data-title="' . __('quests.fields.is_completed') . '" aria-hidden="true"></i>';
                 },
             ],
             'location' => [

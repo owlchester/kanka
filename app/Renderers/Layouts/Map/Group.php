@@ -30,7 +30,7 @@ class Group extends Layout
                 'label' => 'maps/groups.fields.is_shown',
                 'render' => function ($model) {
                     if ($model->is_shown) {
-                        return '<i class="fa-solid fa-check"></i>';
+                        return '<i class="fa-regular fa-check" aria-hidden="true"></i>';
                     }
 
                     return '';

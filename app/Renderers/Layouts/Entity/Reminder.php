@@ -49,14 +49,14 @@ class Reminder extends Layout
                 'label' => '<i class="fa-regular fa-arrows-rotate" data-title="' . __('calendars.fields.is_recurring') . '" data-toggle="tooltip" aria-hidden="true"></i><span class="sr-only">' . __('calendars.fields.is_recurring') . '</span>',
                 'render' => function (Model $reminder) {
                     if ($reminder->is_recurring) {
-                        return '<i class="fa-solid fa-redo" data-title="' . __('calendars.fields.is_recurring') . '" data-toggle="tooltip" aria-hidden="true" ></i>';
+                        return '<i class="fa-regular fa-redo" data-title="' . __('calendars.fields.is_recurring') . '" data-toggle="tooltip" aria-hidden="true" ></i>';
                     }
                     if ($reminder->isBirth()) {
-                        return '<i class="fa-solid fa-birthday-cake" data-title="' . __('entities/events.types.birth') . '" data-toggle="tooltip" aria-hidden="true" ></i>';
+                        return '<i class="fa-regular fa-birthday-cake" data-title="' . __('entities/events.types.birth') . '" data-toggle="tooltip" aria-hidden="true" ></i>';
                     } elseif ($reminder->isDeath()) {
-                        return '<i class="fa-solid fa-skull" data-title="' . __('entities/events.types.death') . '" data-toggle="tooltip" aria-hidden="true"></i>';
+                        return '<i class="fa-regular fa-skull" data-title="' . __('entities/events.types.death') . '" data-toggle="tooltip" aria-hidden="true"></i>';
                     } elseif ($reminder->isFounded()) {
-                        return '<i class="fa-solid fa-building-columns" data-title="' . __('entities/events.types.founded') . '" data-toggle="tooltip" aria-hidden="true" ></i>';
+                        return '<i class="fa-regular fa-building-columns" data-title="' . __('entities/events.types.founded') . '" data-toggle="tooltip" aria-hidden="true" ></i>';
                     }
                 },
             ],

@@ -2,6 +2,7 @@
 
 namespace App\Renderers\Layouts\Timeline;
 
+use App\Models\TimelineEra;
 use App\Renderers\Layouts\Layout;
 
 class Era extends Layout
@@ -17,7 +18,7 @@ class Era extends Layout
             'name' => [
                 'key' => 'name',
                 'label' => 'crud.fields.name',
-                'render' => function ($model) {
+                'render' => function (TimelineEra $model) {
                     return '<a href="' . $model->getLink() . '">' . $model->name . '</a>';
                 },
             ],
@@ -40,9 +41,9 @@ class Era extends Layout
             'is_collapsed' => [
                 'key' => 'is_collapsed',
                 'label' => 'timelines/eras.fields.is_collapsed',
-                'render' => function ($model) {
+                'render' => function (TimelineEra $model) {
                     if ($model->is_collapsed) {
-                        return '<i class="fa-solid fa-check-circle" aria-hidden="true"></i>';
+                        return '<i class="fa-regular fa-check-circle" aria-hidden="true"></i>';
                     }
 
                     return '';

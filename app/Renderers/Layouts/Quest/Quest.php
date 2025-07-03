@@ -39,12 +39,12 @@ class Quest extends Layout
             'completed' => [
                 'key' => 'is_completed',
                 'label' => 'quests.fields.is_completed',
-                'render' => function ($model) {
-                    if (! $model->is_completed) {
+                'render' => function (\App\Models\Quest $model) {
+                    if (! $model->isCompleted()) {
                         return '';
                     }
 
-                    return '<i class="fa-solid fa-check-circle" data-title="' . __('quests.fields.is_completed') . '" aria-hidden="true"></i>';
+                    return '<i class="fa-regular fa-check-circle" data-title="' . __('quests.fields.is_completed') . '" aria-hidden="true"></i>';
                 },
             ],
             'tags' => [
