@@ -50,7 +50,6 @@ return [
     ],
 
     'pagination' => env('APP_PAGINATION', 15),
-    'maps_pagination' => env('APP_MAPS_PAGINATION', 20),
 
     'api' => [
         // Throttling values of requests per minute before a 421 "back down" response is thrown
