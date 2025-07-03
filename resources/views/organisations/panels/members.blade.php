@@ -2,11 +2,13 @@
 /**
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\Entity $entity
+ * @var \App\Models\Organisation $model
  */
 $allMembers = false;
+$model = $model ?? $entity->child;
 $datagridOptions = [
     $campaign,
-    $entity->child->id,
+    $model->id,
     'init' => 1,
 ];
 if (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->has('m') && $campaign->defaultDescendantsMode() === \App\Enums\Descendants::All)) {
@@ -19,8 +21,8 @@ $datagridCall = ['datagridUrl' => route('organisations.members', $datagridOption
 if (!empty($rows)) {
     $datagridCall = [];
 }
-$direct = $entity->child->members()->has('character')->count();
-$all = $entity->child->allMembers()->has('character')->count();
+$direct = $model->members()->has('character')->count();
+$all = $model->allMembers()->has('character')->count();
 ?>
 <div class="flex gap-2 items-center">
     <h3 class="grow">
@@ -28,7 +30,7 @@ $all = $entity->child->allMembers()->has('character')->count();
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">
         @if (!$allMembers)
-            <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::All, '#organisation-members']) }}" class="btn2 btn-sm">
+            <a href="{{ isset($from) && $from === 'overview' ? route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::All, '#organisation-members']) : route('organisations.members', [$campaign, $model, 'm' => \App\Enums\Descendants::All]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
                 <span class="hidden xl:inline">
                     {{ __('crud.filters.lists.desktop.all', ['count' => $all]) }}
@@ -38,7 +40,7 @@ $all = $entity->child->allMembers()->has('character')->count();
                 </span>
             </a>
         @else
-            <a href="{{ route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::Direct, '#organisation-members']) }}" class="btn2 btn-sm">
+            <a href="{{ isset($from) && $from === 'overview' ? route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::Direct, '#organisation-members']) : route('organisations.members', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
 
                 <span class="hidden xl:inline">
@@ -51,8 +53,8 @@ $all = $entity->child->allMembers()->has('character')->count();
         @endif
 
         @can('update', $entity)
-            <a href="{{ route('organisations.organisation_members.create', [$campaign, 'organisation' => $entity->child->id]) }}" class="btn2 btn-primary btn-sm"
-               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('organisations.organisation_members.create', [$campaign, $entity->child->id]) }}">
+            <a href="{{ route('organisations.organisation_members.create', [$campaign, 'organisation' => $model->id]) }}" class="btn2 btn-sm"
+               data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('organisations.organisation_members.create', [$campaign, $model->id]) }}">
                 <x-icon class="plus" />
                 <span class="hidden lg:inline">
                     {{ __('organisations.members.actions.add_multiple') }}

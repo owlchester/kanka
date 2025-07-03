@@ -46,9 +46,10 @@ $statuses = [
     <x-forms.field field="pinned" :label="__('organisations.members.fields.pinned')" :helper="__('organisations.members.helpers.pinned')" tooltip>
         <x-forms.select name="pin_id" :options="$options" :selected="$model->pin_id ?? null" />
     </x-forms.field>
+
+        @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])
 </x-grid>
 
 
-@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => !empty($member) ? $member : null])
 
 

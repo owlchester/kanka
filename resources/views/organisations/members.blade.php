@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => __('organisations.organisations.title', ['name' => $model->name]),
+    'title' =>  $model->name . ' ' . __('organisations.fields.members'),
     'breadcrumbs' => false,
     'mainTitle' => false,
 ])
@@ -7,7 +7,7 @@
 
 @section('content')
     @include('entities.pages.subpage', [
-        'active' => '',
+        'active' => 'members',
         'breadcrumb' => '',
         'view' => 'organisations.panels.members',
     ])

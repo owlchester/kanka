@@ -21,6 +21,15 @@ class OrganisationSubmenu extends BaseSubmenu implements EntitySubmenu
             ];
         }
 
+        $count = $model->allMembers()->count();
+        if ($this->campaign->enabled('characters') && $count > 0) {
+            $items['second']['members'] = [
+                'name' => __('organisations.fields.members'),
+                'route' => 'organisations.members',
+                'count' => $count,
+            ];
+        }
+
         return $items;
     }
 }
