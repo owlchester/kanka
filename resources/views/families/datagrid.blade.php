@@ -17,7 +17,7 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' => '<i class="fa-regular fa-users" title="' . trans('families.fields.members') . '"></i>',
+            'label' => '<i class="fa-regular fa-users" title="' . __('organisations.fields.members') . '"></i>',
             'visible' => $campaign->enabled('characters'),
             'render' => function($model) {
                 return number_format($model->members_count);

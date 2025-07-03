@@ -21,11 +21,11 @@ $datagridCall = ['datagridUrl' => route('organisations.members', $datagridOption
 if (!empty($rows)) {
     $datagridCall = [];
 }
-$direct = $model->members()->has('character')->count();
-$all = $model->allMembers()->has('character')->count();
+$direct = number_format($model->members()->has('character')->count());
+$all = number_format($model->allMembers()->count());
 ?>
-<div class="flex gap-2 items-center">
-    <h3 class="grow">
+<div class="flex gap-2 items-center justify-between flex-wrap">
+    <h3 class="members-title">
         {{ __('organisations.fields.members') }}
     </h3>
     <div class="flex gap-2 flex-wrap overflow-auto">
@@ -42,7 +42,6 @@ $all = $model->allMembers()->has('character')->count();
         @else
             <a href="{{ isset($from) && $from === 'overview' ? route('entities.show', [$campaign, $entity, 'm' => \App\Enums\Descendants::Direct, '#organisation-members']) : route('organisations.members', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct]) }}" class="btn2 btn-sm">
                 <x-icon class="filter" />
-
                 <span class="hidden xl:inline">
                     {{ __('crud.filters.lists.desktop.filtered', ['count' => $direct]) }}
                 </span>

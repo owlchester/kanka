@@ -95,7 +95,7 @@ class MemberController extends Controller
         }
 
         return redirect()->route('entities.show', [$campaign, $organisation->entity])
-            ->with('success', trans_choice($this->view . '.create.success_multiple', $count, ['name' => $organisation->name, 'count' => $count]));
+            ->with('success', trans_choice('organisations.members.create.success_multiple', $count, ['name' => $organisation->name, 'count' => $count]));
     }
 
     /**

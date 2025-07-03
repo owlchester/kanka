@@ -183,8 +183,8 @@ return [
         'filtered'          => 'Showing :count of :total :entity.',
         'lists'             => [
             'desktop'   => [
-                'all'       => 'Show all descendants (:count)',
-                'filtered'  => 'Show direct descendants (:count)',
+                'all'       => 'Show all :count descendants',
+                'filtered'  => 'Show direct :count descendants',
             ],
         ],
         'mobile'            => [

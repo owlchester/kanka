@@ -1,4 +1,3 @@
-<x-grid type="1/1">
 @php
 $options = [
 '' => __('organisations.members.pinned.none'),
@@ -14,6 +13,11 @@ $statuses = [
 
 $fromOrg = request()->get('from') === 'org';
 @endphp
+<x-grid type="1/1">
+    <x-helper>
+        <p>{!! __('organisations.members.edit.helper', ['name' => $member->character->name]) !!}</p>
+    </x-helper>
+
 @if ($fromOrg)
         <input type="hidden" name="organisation_id" value="{{ $member->organisation_id }}" />
 @else
@@ -59,9 +63,8 @@ $fromOrg = request()->get('from') === 'org';
         tooltip>
         <x-forms.select name="pin_id" :options="$options" :selected="$member->pin_id ?? null" />
     </x-forms.field>
-</div>
 
-@includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => $member ?? null])
+    @includeWhen(auth()->user()->isAdmin(), 'cruds.fields.privacy_callout', ['model' => $member ?? null])
 </x-grid>
 
 

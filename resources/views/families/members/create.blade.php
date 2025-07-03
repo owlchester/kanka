@@ -13,7 +13,7 @@
         @include('partials.forms._dialog', [
             'title' => __('families.members.create.title', ['name' => $model->name]),
             'content' => 'families.members._form',
-            'submit' => __('families.members.create.submit'),
+            'submit' => __('organisations.members.actions.add_multiple'),
         ])
     </x-form>
 @endsection

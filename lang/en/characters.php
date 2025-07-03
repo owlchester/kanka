@@ -60,7 +60,7 @@ return [
         ],
         'edit'      => [
             'success'   => 'Membership updated.',
-            'title'     => 'Update membership :name',
+            'title'     => 'Update membership',
         ],
         'fields'    => [
             'role'  => 'Role',

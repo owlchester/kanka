@@ -13,19 +13,17 @@ return [
     ],
     'members'       => [
         'actions'       => [
-            'add'           => 'Add a member',
             'add_multiple'  => 'Add members',
         ],
         'create'        => [
             'helper'            => 'Add one or several members to :name.',
             'success_multiple'  => '{1} Added :count member to :name.|[2,*] Added :count members to :name.',
-            'title_multiple'    => 'New Members',
         ],
         'destroy'       => [
             'success'   => 'Member removed from :name.',
         ],
         'edit'          => [
-            'success'   => 'Member updated.',
+            'helper' => 'Change the membership status for :name.',
             'title'     => 'Update Member for :name',
         ],
         'fields'        => [

@@ -1,5 +1,5 @@
 @extends('layouts.' . (request()->ajax() ? 'ajax' : 'app'), [
-    'title' => __('organisations.members.create.title_multiple', ['name' => $model->name]),
+    'title' => __('families.members.create.title', ['name' => $model->name]),
     'description' => '',
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($model->entity)->list(),
@@ -11,7 +11,7 @@
 @section('content')
     <x-form :action="['organisations.organisation_members.store', $campaign, $model->id]">
         @include('partials.forms._dialog', [
-            'title' => __('organisations.members.create.title_multiple', ['name' => $model->name]),
+            'title' => __('families.members.create.title', ['name' => $model->name]),
             'content' => 'organisations.members._form',
             'submit' => __('organisations.members.actions.add_multiple'),
         ])
