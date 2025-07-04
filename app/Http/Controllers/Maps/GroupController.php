@@ -35,13 +35,30 @@ class GroupController extends Controller
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
             ->with(['map'])
             ->paginate(config('limits.pagination'));
+
+        $groups = $map
+            ->groups()
+            ->orderBy('position', 'asc')
+            ->with(['map'])
+            ->get();
+
+        $this->campaign($campaign);
+
         if (request()->ajax()) {
-            return $this->campaign($campaign)->datagridAjax();
+            return $this->datagridAjax();
         }
 
-        return $this
-            ->campaign($campaign)
-            ->subview('maps.groups.index', $map);
+        return view('cruds.subview')
+            ->with([
+                'fullview' => 'maps.groups.index',
+                'model' => $map,
+                'entity' => $map->entity,
+                'campaign' => $this->campaign,
+                'rows' => $this->rows,
+                'groups' => $groups,
+                'mode' => $this->descendantsMode(),
+            ]);
+
     }
 
     public function show(Campaign $campaign, Map $map)

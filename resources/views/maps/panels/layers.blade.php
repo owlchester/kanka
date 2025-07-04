@@ -22,6 +22,6 @@
     @endif
 
 </div>
-@includeWhen($rows->count() > 1, 'maps.layers._reorder')
+@includeWhen($layers->count() > 1, 'maps.layers._reorder')
 
 

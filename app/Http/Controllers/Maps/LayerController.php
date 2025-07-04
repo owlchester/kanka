@@ -32,15 +32,29 @@ class LayerController extends Controller
             ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
             ->with(['map', 'image'])
             ->paginate(config('limits.pagination'));
+
+        $layers = $map
+            ->layers()
+            ->orderBy('position', 'asc')
+            ->with(['image'])
+            ->get();
+
+        $this->campaign($campaign);
+
         if (request()->ajax()) {
-            return $this
-                ->campaign($campaign)
-                ->datagridAjax();
+            return $this->datagridAjax();
         }
 
-        return $this
-            ->campaign($campaign)
-            ->subview('maps.layers.index', $map);
+        return view('cruds.subview')
+            ->with([
+                'fullview' => 'maps.layers.index',
+                'model' => $map,
+                'entity' => $map->entity,
+                'campaign' => $this->campaign,
+                'rows' => $this->rows,
+                'layers' => $layers,
+                'mode' => $this->descendantsMode(),
+            ]);
     }
 
     public function show(Campaign $campaign, Map $map)

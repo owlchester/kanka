@@ -5,7 +5,7 @@
 <x-form :action="['maps.groups.reorder-save', $campaign, 'map' => $model]">
 <div class="box-entity-story-reorder flex flex-col gap-5">
     <div class="element-live-reorder sortable-elements flex flex-col gap-1">
-        @foreach($rows as $group)
+        @foreach($groups as $group)
             <x-reorder.child :id="$group->id">
                 <input type="hidden" name="group[]" value="{{ $group->id }}" />
                 <div class="dragger">

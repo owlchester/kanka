@@ -22,11 +22,11 @@ return [
             // Maximum number of groups per map
             'groups' => [
                 'standard' => 1,
-                'premium' => 10,
+                'premium' => 20,
             ],
             'layers' => [
                 'standard' => 1,
-                'premium' => 10,
+                'premium' => 20,
             ],
         ],
         'logs' => [

@@ -4,7 +4,7 @@
 <x-form :action="['maps.layers.reorder-save', $campaign, 'map' => $model]">
 <div class="box-entity-story-reorder flex flex-col gap-5">
     <div class="element-live-reorder sortable-elements flex flex-col gap-1">
-        @foreach($rows as $layer)
+        @foreach($layers as $layer)
             <x-reorder.child :id="$layer->id">
                 <input type="hidden" name="layer[]" value="{{ $layer->id }}" />
                 <div class="dragger">

@@ -22,5 +22,5 @@
     @endif
 </div>
 
-@includeWhen($rows->count() > 1, 'maps.groups._reorder')
+@includeWhen($groups->count() > 1, 'maps.groups._reorder')
 
