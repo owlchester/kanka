@@ -38,7 +38,7 @@ class GroupController extends Controller
 
         $groups = $map
             ->groups()
-            ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
+            ->orderBy('position', 'asc')
             ->with(['map'])
             ->get();
 

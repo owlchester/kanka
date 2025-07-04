@@ -35,7 +35,7 @@ class LayerController extends Controller
 
         $layers = $map
             ->layers()
-            ->sort(request()->only(['o', 'k']), ['position' => 'asc'])
+            ->orderBy('position', 'asc')
             ->with(['image'])
             ->get();
 
