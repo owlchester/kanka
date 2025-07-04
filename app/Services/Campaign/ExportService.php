@@ -178,7 +178,6 @@ class ExportService
             throw new Exception('Could not create zip file');
         }
         Log::debug('Campaign export', ['action' => 'zip created', 'path' => $this->path]);
-        $this->archive->addFromString('aaaaa.json', 'hello');
 
         // Count the number of elements to export to get a rough idea of progress
         $this->totalElements =
@@ -375,9 +374,9 @@ class ExportService
         }
 
         if ($model instanceof Entity) {
-            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.json', json_encode(['entity' => $model->export()]));
+            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.json', ['entity' => $model->export()]);
         } else {
-            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.json', json_encode($model->export()));
+            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.json', $model->export());
         }
         $this->files++;
 
