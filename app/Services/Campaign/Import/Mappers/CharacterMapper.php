@@ -7,7 +7,7 @@ use App\Models\Character;
 use App\Models\CharacterOrganisation;
 use App\Models\CharacterTrait;
 
-class CharacterMapper extends MiscMFapper
+class CharacterMapper extends MiscMapper
 {
     protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'created_at', 'location_id', 'updated_at', 'race_id', 'family_id'];
 

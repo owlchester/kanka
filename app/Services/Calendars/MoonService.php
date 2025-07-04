@@ -11,12 +11,12 @@ class MoonService
 
     protected array $moons = [];
 
-    public function has(string $day): bool
+    public function has(int $day): bool
     {
         return isset($this->moons[$day]);
     }
 
-    public function get(string $day): array
+    public function get(int $day): array
     {
         return $this->moons[$day] ?? [];
     }
