@@ -6,7 +6,7 @@ use App\Models\Item;
 
 class ItemMapper extends MiscMapper
 {
-    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'item_id', 'character_id', 'created_at', 'updated_at', 'location_id'];
+    protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'item_id', 'character_id', 'created_at', 'updated_at', 'location_id'];
 
     protected string $className = Item::class;
 

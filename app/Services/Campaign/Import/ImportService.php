@@ -150,6 +150,7 @@ class ImportService
             Log::info('Want to download ' . $file);
             $s3 = Storage::disk('export')->get($file);
             $local = $path . uniqid() . '.zip';
+            Log::info('Will download from ' . $s3 . ' to local ' . $local);
             Storage::disk('local')->put($local, $s3);
 
             $this->archive = new ZipArchive;
@@ -552,7 +553,7 @@ class ImportService
     {
         $files = $this->job->config['files'];
         foreach ($files as $file) {
-            Storage::disk('s3')->delete($file);
+            Storage::disk('local')->delete($file);
         }
 
         // Finished with our core loop, now throw any exception for sentry to catch them

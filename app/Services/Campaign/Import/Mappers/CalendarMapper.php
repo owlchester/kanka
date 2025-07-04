@@ -7,7 +7,7 @@ use App\Models\CalendarWeather;
 
 class CalendarMapper extends MiscMapper
 {
-    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'calendar_id', 'created_at', 'updated_at'];
+    protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'calendar_id', 'created_at', 'updated_at'];
 
     protected string $className = Calendar::class;
 

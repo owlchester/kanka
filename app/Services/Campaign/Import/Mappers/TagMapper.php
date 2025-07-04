@@ -6,7 +6,7 @@ use App\Models\Tag;
 
 class TagMapper extends MiscMapper
 {
-    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'tag_id', 'created_at', 'updated_at'];
+    protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'tag_id', 'created_at', 'updated_at'];
 
     protected string $className = Tag::class;
 

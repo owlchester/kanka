@@ -6,7 +6,7 @@ use App\Models\Creature;
 
 class CreatureMapper extends MiscMapper
 {
-    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'creature_id', 'created_at', 'updated_at'];
+    protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'creature_id', 'created_at', 'updated_at'];
 
     protected string $className = Creature::class;
 

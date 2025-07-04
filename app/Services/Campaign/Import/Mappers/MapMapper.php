@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 
 class MapMapper extends MiscMapper
 {
-    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'map_id', 'created_at', 'updated_at', 'location_id', 'center_marker_id'];
+    protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'map_id', 'created_at', 'updated_at', 'location_id', 'center_marker_id'];
 
     protected string $className = Map::class;
 

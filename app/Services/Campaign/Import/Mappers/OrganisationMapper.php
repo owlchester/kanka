@@ -6,7 +6,7 @@ use App\Models\Organisation;
 
 class OrganisationMapper extends MiscMapper
 {
-    protected array $ignore = ['id', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'organisation_id', 'created_at', 'updated_at', 'location_id'];
+    protected array $ignore = ['id', 'entry', 'type', 'campaign_id', 'slug', 'image', '_lft', '_rgt', 'organisation_id', 'created_at', 'updated_at', 'location_id'];
 
     protected string $className = Organisation::class;
 
