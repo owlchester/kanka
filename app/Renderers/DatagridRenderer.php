@@ -187,8 +187,7 @@ class DatagridRenderer
                     'creator.name',
                     $label
                 );
-            }
-            elseif ($type == 'entity') {
+            } elseif ($type == 'entity') {
                 $class .= ' ' . $this->hidden;
                 $html = $this->route(
                     'entity.name',

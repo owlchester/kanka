@@ -177,7 +177,7 @@ class Item extends MiscModel
     {
         return $this->belongsTo('App\Models\Entity', 'creator_id', 'id');
     }
-  
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Inventory, $this>
      */
