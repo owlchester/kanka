@@ -45,7 +45,7 @@ The list of returned entities can be filtered. The available filters are [availa
             "updated_at":  "2019-08-29T13:48:54.000000Z",
             "updated_by": 1,
             "location_id": 4,
-            "character_id": 2,
+            "creator_id": 2,
             "type": "Weapon",
             "price": "25 gp",
             "size": "40 in.",
@@ -84,7 +84,7 @@ To get the details of a single item, use the following endpoint.
         "updated_at":  "2019-08-29T13:48:54.000000Z",
         "updated_by": 1,
         "location_id": 4,
-        "character_id": 2,
+        "creator_id": 2,
         "type": "Weapon",
         "price": "25 gp",
         "size": "30 in.",
@@ -113,7 +113,7 @@ To create a item, use the following endpoint.
 | `entry` | `string` | The html description of the item |
 | `type` | `string` | The item's type |
 | `location_id` | `integer` | The item's location |
-| `character_id` | `integer` | The item's owner |
+| `creator_id` | `integer` | The item's creator (entity) |
 | `price` | `string` | The item's price |
 | `size` | `string` | The item's size |
 | `weight` | `string` | The item's weight |

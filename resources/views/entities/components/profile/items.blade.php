@@ -32,11 +32,11 @@ $child = $entity->child;
 
     @include('entities.components.profile._location')
 
-    @if ($child->character)
-        <div class="element profile-character">
+    @if ($child->creator)
+        <div class="element profile-creator">
             <div class="title text-uppercase text-xs">{{ __('items.fields.character') }}</div>
             <x-entity-link
-                :entity="$child->character->entity"
+                :entity="$child->creator"
                 :campaign="$campaign" />
         </div>
     @endif

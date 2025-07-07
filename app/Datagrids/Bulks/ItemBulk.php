@@ -12,7 +12,7 @@ class ItemBulk extends Bulk
         'weight',
         'item_id',
         'location_id',
-        'character_id',
+        'creator_id',
         'tags',
         'private_choice',
         'entity_image',

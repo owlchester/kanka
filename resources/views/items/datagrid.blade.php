@@ -37,8 +37,7 @@
         ],
         [
             'label' => __('items.fields.character'),
-            'type' => 'character',
-            'visible' => $campaign->enabled('characters'),
+            'type' => 'creator',
         ],
         [
             'type' => 'is_private',

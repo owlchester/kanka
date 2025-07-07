@@ -26,8 +26,8 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property string $size
  * @property string $weight
  * @property ?int $item_id
- * @property ?int $character_id
- * @property ?Character $character
+ * @property ?int $creator_id
+ * @property ?Entity $creator
  */
 class Item extends MiscModel
 {
@@ -50,9 +50,9 @@ class Item extends MiscModel
         'size',
         'weight',
         'item_id',
-        'character_id',
         'location_id',
         'is_private',
+        'creator_id',
     ];
 
     /**
@@ -68,7 +68,7 @@ class Item extends MiscModel
         'size',
         'weight',
         'location.name',
-        'character.name',
+        'creator.name',
     ];
 
     protected array $sanitizable = [
@@ -94,7 +94,7 @@ class Item extends MiscModel
      */
     public array $nullableForeignKeys = [
         'location_id',
-        'character_id',
+        'creator_id',
         'item_id',
     ];
 
@@ -156,10 +156,7 @@ class Item extends MiscModel
             'location.entity' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
-            'character' => function ($sub) {
-                $sub->select('id', 'name');
-            },
-            'character.entity' => function ($sub) {
+            'creator' => function ($sub) {
                 $sub->select('id', 'name', 'entity_id', 'type_id');
             },
         ]));
@@ -170,17 +167,17 @@ class Item extends MiscModel
      */
     public function datagridSelectFields(): array
     {
-        return ['character_id', 'location_id', 'price', 'size', 'item_id', 'weight'];
+        return ['creator_id', 'location_id', 'price', 'size', 'item_id', 'weight'];
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Entity, $this>
      */
-    public function character(): BelongsTo
+    public function creator(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Character', 'character_id', 'id');
+        return $this->belongsTo('App\Models\Entity', 'creator_id', 'id');
     }
-
+  
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Inventory, $this>
      */
@@ -220,7 +217,7 @@ class Item extends MiscModel
         if (! empty($this->price) || ! empty($this->size) || ! empty($this->weight)) {
             return true;
         }
-        if ($this->character || $this->location) {
+        if ($this->creator || $this->location) {
             return true;
         }
 
@@ -236,7 +233,7 @@ class Item extends MiscModel
     {
         return [
             'location_id',
-            'character_id',
+            'creator_id',
             'price',
             'size',
             'weight',
