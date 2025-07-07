@@ -42,7 +42,7 @@ class Kernel extends HttpKernel
             Tracking::class,
             Middleware\CheckIfUserBanned::class,
             Middleware\OTP::class,
-            //ReplicationSwitcher::class,
+            ReplicationSwitcher::class,
         ],
 
         'api' => [
@@ -59,7 +59,7 @@ class Kernel extends HttpKernel
             Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             Middleware\HttpsProtocol::class,
-            //ReplicationSwitcher::class,
+            ReplicationSwitcher::class,
         ],
     ];
 
