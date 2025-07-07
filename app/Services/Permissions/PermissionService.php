@@ -42,6 +42,8 @@ class PermissionService
 
     protected array $deniedPostIDs = [];
 
+    protected int $publicRoleId;
+
     protected bool $loadedPosts = false;
 
     protected int $loadedRoles;
@@ -81,6 +83,11 @@ class PermissionService
         return $this;
     }
 
+    public function publicRoleId(): int
+    {
+        return $this->publicRoleId;
+    }
+
     public function reload(): self
     {
         $this->entityIds = [];
@@ -89,6 +96,7 @@ class PermissionService
         $this->deniedIds = [];
         unset($this->loadedRoles);
         $this->admin = false;
+        unset($this->publicRoleId);
 
         return $this;
     }
@@ -331,6 +339,7 @@ class PermissionService
     {
         // Loop through the permissions of the role to get any blanket _read permissions on entities
         $permissions = \App\Facades\RolePermission::role($role)->permissions();
+        $this->publicRoleId = $role->id;
         foreach ($permissions as $permission) {
             $this->parseRolePermission($permission);
         }

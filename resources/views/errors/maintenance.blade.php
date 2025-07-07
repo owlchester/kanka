@@ -28,12 +28,12 @@
 
 <section class="bg-purple text-white gap-16">
     <div class="px-6 py-20 lg:max-w-7xl mx-auto text-center flex flex-col gap-8">
-        @if (false)
+        @if (true)
         <h2 id="maintenance">Server maintenance</h2>
 
         <p class="lg:max-w-2xl mx-auto text-center">Kanka is currently unavailable due to planned server maintenance.</p>
 
-        <p class="lg:max-w-2xl mx-auto text-center">This maintenance is planned to last until <a href="https://everytimezone.com/s/6b4d2bc8" target="_blank" class="link-light"><x-icon class="link" />  15:30 UTC</a>.</p>
+        <p class="lg:max-w-2xl mx-auto text-center">This maintenance is planned to last until <a href="https://everytimezone.com/s/6d60e3d1" target="_blank" class="link-light"><x-icon class="link" />  15:30 UTC</a>.</p>
         @else
 
         <h2 id="maintenance">{{ __('errors.503.title') }}</h2>

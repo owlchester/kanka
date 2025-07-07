@@ -6,6 +6,14 @@
 {{--    </x-tutorial>--}}
 {{--@endif--}}
 
+<x-tutorial code="banner_maria11" type="warning" :auth="false">
+    <p>
+        We will be performing server maintenance work on Tuesday 8th of July 2025. As a result, Kanka will be completely unavailable from <a href="https://everytimezone.com/s/7ad382aa" target="_blank" class="underline"><x-icon class="fa-regular fa-external-link" /> 14:30 UTC</a> to 15:30 UTC. This impacts Kanka, Plugins, and the API.</p>
+
+    <p>
+        Join us on <a href="https://kanka.io/go/discord" target="_blank" class="underline">Discord</a> to get live updates.
+    </p>
+</x-tutorial>
 
 {{--<x-tutorial code="banner_kanka30" type="warning" :auth="false">--}}
 {{--    <p>--}}

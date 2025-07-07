@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\FullSetup;
 use App\Http\Middleware\PasswordConfirm;
+use App\Http\Middleware\ReplicationSwitcher;
 use App\Http\Middleware\Tracking;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use Laravel\Passport\Http\Middleware\ValidateToken;
@@ -41,6 +42,7 @@ class Kernel extends HttpKernel
             Tracking::class,
             Middleware\CheckIfUserBanned::class,
             Middleware\OTP::class,
+            ReplicationSwitcher::class,
         ],
 
         'api' => [
@@ -57,6 +59,7 @@ class Kernel extends HttpKernel
             Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             Middleware\HttpsProtocol::class,
+            ReplicationSwitcher::class,
         ],
     ];
 

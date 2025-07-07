@@ -4,6 +4,7 @@ namespace App\Models\Scopes;
 
 use App\Enums\Permission;
 use App\Enums\Visibility;
+use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Permissions;
 use App\Models\Entity;
@@ -101,17 +102,35 @@ class AclScope implements Scope
      */
     protected function applyToEntity(Builder $query, Entity $model): Builder
     {
-        Permissions::createTemporaryTable();
+        if (auth()->check()) {
+            Permissions::createTemporaryTable();
+
+            // @phpstan-ignore-next-line
+            return $query
+                ->private(false)
+                ->where(function ($subquery) use ($model) {
+                    return $subquery
+                        ->where(function ($sub) use ($model) {
+                            return $sub
+                                ->whereRaw(DB::raw('EXISTS (SELECT * FROM tmp_permissions as perm WHERE perm.id = ' . $model->getTable() . '.id)'))
+                                ->orWhereIn($model->getTable() . '.type_id', Permissions::allowedEntityTypes());
+                        })
+                        ->whereNotIn($model->getTable() . '.id', Permissions::deniedEntities());
+                });
+        }
+
+        // Unlogged users have a read-only replica db to query, so a left join is needed directly on the permission table
+        $publicRoleId = Permissions::publicRoleID();
 
         // @phpstan-ignore-next-line
         return $query
-            // ->leftJoin('tmp_permissions as per', 'entities.id', 'per.id')
             ->private(false)
-            ->where(function ($subquery) use ($model) {
+            ->where(function ($subquery) use ($model, $publicRoleId) {
                 return $subquery
-                    ->where(function ($sub) use ($model) {
+                    ->where(function ($sub) use ($model, $publicRoleId) {
                         return $sub
-                            ->whereRaw(DB::raw('EXISTS (SELECT * FROM tmp_permissions as perm WHERE perm.id = ' . $model->getTable() . '.id)'))
+                            ->whereRaw(DB::raw('EXISTS (SELECT * FROM campaign_permissions as perm WHERE perm.entity_id = ' . $model->getTable() . '.id AND perm.access = 1 AND perm.campaign_role_id = ' . $publicRoleId . ')'))
+                            //->orWhereIn($model->getTable() . '.id', Permissions::allowedEntities())
                             ->orWhereIn($model->getTable() . '.type_id', Permissions::allowedEntityTypes());
                     })
                     ->whereNotIn($model->getTable() . '.id', Permissions::deniedEntities());
