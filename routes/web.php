@@ -13,11 +13,6 @@ Route::group(['prefix' => 'subscription-api'], function () {
         ->name('subscription.check-coupon');
 });
 
-Route::post(
-    'stripe/webhook',
-    '\App\Http\Controllers\WebhookController@handleWebhook'
-)->name('cashier.webhook');
-
 Route::get('users/{user}', [App\Http\Controllers\User\ProfileController::class, 'show'])->name('users.profile');
 
 Route::get('/_ccapi/country', [App\Http\Controllers\CookieConsentController::class, 'index'])

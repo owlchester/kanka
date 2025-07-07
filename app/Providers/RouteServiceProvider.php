@@ -55,6 +55,7 @@ class RouteServiceProvider extends ServiceProvider
             ->campaign()
             ->settings()
             ->auth()
+            ->webhooks()
             ->vendor();
     }
 
@@ -160,6 +161,15 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware(['minimum'])
             ->namespace('\App\Http\Controllers')
             ->group(base_path('routes/vendor.php'));
+
+        return $this;
+    }
+
+    protected function webhooks(): self
+    {
+        Route::middleware(['webhooks'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/webhooks.php'));
 
         return $this;
     }
