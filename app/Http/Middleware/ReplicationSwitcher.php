@@ -18,7 +18,7 @@ class ReplicationSwitcher
     public function handle(Request $request, Closure $next): Response
     {
         // If the user is a guest and not on the login or register routes
-        if (Auth::guest() && !$request->routeIs('login', 'register', 'auth.*')) {
+        if (Auth::guest() && !$request->is('login', 'register', 'auth.*')) {
             DB::setDefaultConnection('replica');
         }
         return $next($request);
