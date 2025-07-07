@@ -102,8 +102,6 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Define the "campaign" routes for everything in a campaign
-     *
-     * Todo: one day, move from campaignLocalization in the controllers, and move the campaign in route binding
      */
     protected function campaign(): self
     {

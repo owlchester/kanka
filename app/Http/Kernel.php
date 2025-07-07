@@ -64,7 +64,7 @@ class Kernel extends HttpKernel
         'webhooks' => [
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             Middleware\HttpsProtocol::class,
-        ]
+        ],
     ];
 
     /**
