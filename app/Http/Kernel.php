@@ -61,6 +61,10 @@ class Kernel extends HttpKernel
             Middleware\HttpsProtocol::class,
             ReplicationSwitcher::class,
         ],
+        'webhooks' => [
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            Middleware\HttpsProtocol::class,
+        ]
     ];
 
     /**
