@@ -8,7 +8,7 @@ window.onEvent(function() {
     registercalendarModal();
 });
 
-const registercalendarForm = () => {
+const registerReminderForm = () => {
     calendarAdd = document.querySelector('#entity-calendar-form-add');
     calendarField = document.querySelector('select[name="calendar_id"]');
     calendarHiddenField = document.querySelector('[name="calendar_id"]'); // Campaigns with a single calendar
@@ -46,6 +46,7 @@ const registercalendarForm = () => {
     if (calendarField) {
         calendarField.onchange = element => {
             // No new calendar selected? hide everything again
+            console.log('hello mlord');
             if (!calendarField.value) {
                 calendarSubForm.classList.add('hidden');
                 return false;
@@ -84,10 +85,12 @@ const registercalendarModal = () => {
         calendarField.onchange = event => {
             // No new calendar selected? hide everything again
             if (!calendarField.value) {
+                calendarSubForm.classList.add('hidden');
                 return;
             }
             // Load month list
             loadCalendarDates(calendarField.value);
+            calendarSubForm.classList.remove('hidden');
         };
 
         //var defaultCalendarId = calendarAdd.data('default-calendar');
@@ -239,4 +242,4 @@ const rebuildCalendarDayList = (max) => {
     }
 };
 
-registercalendarForm();
+registerReminderForm();
