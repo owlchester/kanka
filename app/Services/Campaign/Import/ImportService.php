@@ -535,9 +535,10 @@ class ImportService
         $content = file_get_contents($fullpath);
         $data = json_decode($content, true);
 
-        if (!is_array($data)) {
+        if (! is_array($data)) {
             Log::info('Failed to open ' . $path . ' into a proper json', ['data' => $data]);
         }
+
         return $data;
     }
 
