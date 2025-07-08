@@ -138,8 +138,6 @@ class Tag extends MiscModel
 
     /**
      * Get all the children
-     *
-     * @return Builder
      */
     public function allChildren(): Builder
     {
