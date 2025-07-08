@@ -36,8 +36,16 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' => __('items.fields.character'),
-            'type' => 'creator',
+            'label' =>  __('items.fields.character'),
+            'field' => 'creator.name',
+            'render' => function($model) use ($campaign) {
+                if (!$model->creator) {
+                    return '';
+                }
+                return \Illuminate\Support\Facades\Blade::renderComponent(
+                    new \App\View\Components\EntityLink($model->creator, $campaign)
+                );
+            },
         ],
         [
             'type' => 'is_private',

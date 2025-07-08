@@ -180,13 +180,6 @@ class DatagridRenderer
                     'character.name',
                     $label
                 );
-            } elseif ($type == 'creator') {
-                $class .= ' ' . $this->hidden;
-                $label = Arr::get($column, 'label', Module::singular(config('entities.ids.character'), __('entities.character')));
-                $html = $this->route(
-                    'creator.name',
-                    $label
-                );
             } elseif ($type == 'entity') {
                 $class .= ' ' . $this->hidden;
                 $html = $this->route(
@@ -466,13 +459,6 @@ class DatagridRenderer
                 $class = $this->hidden;
                 if ($model->entity) {
                     $content = $this->entityLink($model->entity);
-                }
-            } elseif ($type == 'creator') {
-                $label = Arr::get($column, 'label', Module::singular(config('entities.ids.character'), __('entities.character')));
-
-                $class = $this->hidden;
-                if ($model->creator) {
-                    $content = $this->entityLink($model->creator);
                 }
             } elseif ($type == 'parent') {
                 $class = $this->hidden;
