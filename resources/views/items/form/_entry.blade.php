@@ -9,7 +9,7 @@
 
     @include('cruds.fields.location')
 
-    @include('cruds.fields.character', ['label' => __('items.fields.character'), 'name' => 'character_id'])
+    @include('cruds.fields.creator')
 
     @include('cruds.fields.entry2')
 

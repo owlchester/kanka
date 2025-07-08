@@ -9,5 +9,6 @@
 
     @include('cruds.fields.location', ['dynamicNew' => auth()->user()->can('create', [$campaign->getEntityTypes()->where('id', config('entities.ids.location'))->first(), $campaign])])
 
-    @include('cruds.fields.character', ['label' => __('items.fields.character')])
+    @include('cruds.fields.creator')
+
 </x-grid>
