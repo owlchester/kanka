@@ -142,6 +142,9 @@ class CopyService
             return $this;
         }
         foreach ($this->source->reminders as $reminder) {
+            if ($reminder->isCalendarDate()) {
+                continue;
+            }
             $reminder->copyTo($this->entity);
         }
 
