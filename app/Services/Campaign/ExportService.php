@@ -353,11 +353,11 @@ class ExportService
             $entity = $model->entity;
         }
 
+        $exportData = $model->export();
         if ($model instanceof Entity) {
-            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.json', ['entity' => $model->export()]);
-        } else {
-            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.json', $model->export());
+            $exportData = json_encode(['entity' => $exportData]);
         }
+        $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.json', $exportData);
         $this->files++;
 
         $path = $entity->image_path;
