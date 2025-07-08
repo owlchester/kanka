@@ -39,16 +39,7 @@ $entityTags = $post->visibleTags;
     <x-posts.tags :post="$post" :campaign="$campaign"></x-posts.tags>
 
     @if($post->layout?->code == 'inventory')
-        @php
-            $inventory = $entity
-                ->inventories()
-                ->with(['entity', 'item', 'item.entity'])
-                ->get()
-                ->sortBy(function ($model, $key) {
-                    return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
-                });
-        @endphp
-        @include('entities.pages.inventory._grid', ['inventory' => $inventory, 'isPost' => true, 'entity' => $entity, 'ajax' => null])
+        @include('entities.pages.inventory._grid', ['isPost' => true])
     @elseif ($post->layout?->code == 'attributes')
         <x-box class="box-entity-attributes">
             @include('entities.pages.attributes.render', ['isPost' => true])
@@ -63,16 +54,7 @@ $entityTags = $post->visibleTags;
     @elseif ($post->layout?->code == 'character_orgs' && $entity->isCharacter())
         @include('characters.panels.organisations', ['character' => $entity->child])
     @elseif ($post->layout?->code == 'quest_elements' && $entity->isQuest())
-        @php
-            $datagridSorter = new \App\Datagrids\Sorters\QuestElementSorter();
-                $elements = $entity->child
-                        ->elements()
-                        ->simpleSort($datagridSorter)
-                        ->paginate();
-                $elements->withPath(route('quests.quest_elements.index', [$campaign, $entity->child]));
-                $model = $entity->child;
-        @endphp
-        @include('quests.elements._elements', ['elements' => $elements])
+        @include('quests.elements._post')
     @elseif ($post->layout?->code == 'location_characters' && $entity->isLocation())
         @include('locations.panels.characters', ['init' => true])
     @elseif ($post->layout?->code == 'location_events' && $entity->isLocation())
@@ -80,20 +62,6 @@ $entityTags = $post->visibleTags;
     @elseif ($post->layout?->code == 'location_quests' && $entity->isLocation())
         @include('locations.panels.quests', ['init' => true])
     @elseif ($post->layout?->code == 'reminders')
-        @php
-            $routeOptions = [
-                $campaign,
-                'entity' => $entity,
-                'init' => 1
-            ];
-            $routeOptions = Datagrid::initOptions($routeOptions);
-            $datagridOptions =
-                ['datagridUrl' => route('entities.reminders.index', $routeOptions)]
-            ;
-        @endphp
-        <div id="datagrid-parent" class="table-responsive">
-            @include('layouts.datagrid._table', $datagridOptions)
-        </div>
-        @unset($datagridOptions)
+        @include('entities.pages.reminders._post')
     @endif
 </article>
