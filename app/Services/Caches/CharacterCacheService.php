@@ -14,41 +14,31 @@ class CharacterCacheService extends BaseCache
     public function genderSuggestion(): array
     {
         $key = $this->genderSuggestionKey();
-        if (Cache::has($key)) {
-            return Cache::get($key);
-        }
 
-        $data = Character::select(DB::raw('sex, MAX(created_at) as cmat'))
-            ->groupBy('sex')
-            ->whereNotNull('sex')
-            ->orderBy('cmat', 'DESC')
-            ->take(10)
-            ->pluck('sex')
-            ->all();
-
-        Cache::put($key, $data, 24 * 3600);
-
-        return $data;
+        return Cache::remember($key, 24 * 3600, function () {
+            return Character::select(DB::raw('sex, MAX(created_at) as cmat'))
+                ->groupBy('sex')
+                ->whereNotNull('sex')
+                ->orderBy('cmat', 'DESC')
+                ->take(10)
+                ->pluck('sex')
+                ->toArray();
+        });
     }
 
     public function pronounSuggestion(): array
     {
         $key = $this->pronounSuggestionKey();
-        if (Cache::has($key)) {
-            return Cache::get($key);
-        }
 
-        $data = Character::select(DB::raw('pronouns, MAX(created_at) as cmat'))
-            ->groupBy('pronouns')
-            ->whereNotNull('pronouns')
-            ->orderBy('cmat', 'DESC')
-            ->take(10)
-            ->pluck('pronouns')
-            ->all();
-
-        Cache::put($key, $data, 24 * 3600);
-
-        return $data;
+        return Cache::remember($key, 24 * 3600, function () {
+            return Character::select(DB::raw('pronouns, MAX(created_at) as cmat'))
+                ->groupBy('pronouns')
+                ->whereNotNull('pronouns')
+                ->orderBy('cmat', 'DESC')
+                ->take(10)
+                ->pluck('pronouns')
+                ->toArray();
+        });
     }
 
     public function clearSuggestion(): self

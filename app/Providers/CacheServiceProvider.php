@@ -9,11 +9,10 @@ use App\Services\Caches\CampaignCacheService;
 use App\Services\Caches\CharacterCacheService;
 use App\Services\Caches\EntityAssetCacheService;
 use App\Services\Caches\EntityCacheService;
-use App\Services\Caches\FrontCacheService;
 use App\Services\Caches\MapMarkerCacheService;
 use App\Services\Caches\MarketplaceCacheService;
-use App\Services\Caches\PostCacheService;
 use App\Services\Caches\QuestCacheService;
+use App\Services\Caches\ReleaseCacheService;
 use App\Services\Caches\SingleUserCacheService;
 use App\Services\Caches\TimelineElementCacheService;
 use App\Services\Caches\UserCacheService;
@@ -59,8 +58,8 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->singleton(SingleUserCacheService::class, function () {
             return new SingleUserCacheService;
         });
-        $this->app->singleton(PostCacheService::class, function () {
-            return new PostCacheService;
+        $this->app->singleton(ReleaseCacheService::class, function () {
+            return new ReleaseCacheService;
         });
         $this->app->singleton(CharacterCacheService::class, function () {
             $service = new CharacterCacheService;
@@ -118,10 +117,9 @@ class CacheServiceProvider extends ServiceProvider
         $this->app->alias(CampaignCacheService::class, 'campaigncache');
         $this->app->alias(UserCacheService::class, 'usercache');
         $this->app->alias(SingleUserCacheService::class, 'singleusercache');
-        $this->app->alias(PostCacheService::class, 'postcache');
+        $this->app->alias(ReleaseCacheService::class, 'releasecache');
         $this->app->alias(CharacterCacheService::class, 'charactercache');
         $this->app->alias(QuestCacheService::class, 'questcache');
-        $this->app->alias(FrontCacheService::class, 'frontcache');
         $this->app->alias(AdCacheService::class, 'adcache');
         $this->app->alias(MapMarkerCacheService::class, 'mapmarkercache');
         $this->app->alias(EntityAssetCacheService::class, 'entityassetcache');

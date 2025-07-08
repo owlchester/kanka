@@ -14,44 +14,39 @@ class TimelineElementCacheService extends BaseCache
     public function iconSuggestion(): array
     {
         $key = $this->iconSuggestionKey();
-        if (Cache::has($key)) {
-            return Cache::get($key);
-        }
 
-        $default = [
-            'ra ra-tower',
-            'fa-solid fa-home',
-            'ra ra-capitol',
-            'fa-solid fa-skull',
-            'fa-regular fa-coins',
-            'ra ra-beer',
-            'fa-solid fa-map-marker-alt',
-            'fa-solid fa-thumbtack',
-            'ra ra-wooden-sign',
-            'fa-solid fa-map-pin',
-        ];
+        return Cache::remember($key, 24 * 3600, function () {
+            $default = [
+                'ra ra-tower',
+                'fa-solid fa-home',
+                'ra ra-capitol',
+                'fa-solid fa-skull',
+                'fa-regular fa-coins',
+                'ra ra-beer',
+                'fa-solid fa-map-marker-alt',
+                'fa-solid fa-thumbtack',
+                'ra ra-wooden-sign',
+                'fa-solid fa-map-pin',
+            ];
 
-        $data = TimelineElement::leftJoin('timelines as t', 't.id', 'timeline_elements.timeline_id')
-            ->where('t.campaign_id', $this->campaign->id)
-            ->select(DB::raw('icon, MAX(timeline_elements.created_at) as cmat'))
-            ->groupBy('icon')
-            ->whereNotNull('icon')
-            ->orderBy('cmat', 'DESC')
-            ->take(10)
-            ->pluck('icon')
-            ->all();
+            $data = TimelineElement::leftJoin('timelines as t', 't.id', 'timeline_elements.timeline_id')
+                ->where('t.campaign_id', $this->campaign->id)
+                ->select(DB::raw('icon, MAX(timeline_elements.created_at) as cmat'))
+                ->groupBy('icon')
+                ->whereNotNull('icon')
+                ->orderBy('cmat', 'DESC')
+                ->take(10)
+                ->pluck('icon')
+                ->all();
 
-        foreach ($default as $value) {
-            if (! in_array($value, $data)) {
-                $data[] = $value;
+            foreach ($default as $value) {
+                if (! in_array($value, $data)) {
+                    $data[] = $value;
+                }
             }
-        }
 
-        $data = array_slice($data, 0, 10);
-
-        Cache::put($key, $data, 24 * 3600);
-
-        return $data;
+            return array_slice($data, 0, 10);
+        });
     }
 
     public function clearSuggestion(): self

@@ -13,22 +13,17 @@ class QuestCacheService extends BaseCache
 
     public function roleSuggestion(): array
     {
-        $key = $this->roleSuggestionKey();
-        if (Cache::has($key)) {
-            return Cache::get($key);
-        }
+        $key = $this->roleSuggestionKey() . '2';
 
-        $data = QuestElement::select(DB::raw('role, MAX(created_at) as cmat'))
-            ->groupBy('role')
-            ->whereNotNull('role')
-            ->orderBy('cmat', 'DESC')
-            ->take(10)
-            ->pluck('role')
-            ->all();
-
-        Cache::put($key, $data, 24 * 3600);
-
-        return $data;
+        return Cache::remember($key, 24 * 3600, function () {
+            return QuestElement::select(DB::raw('role, MAX(created_at) as cmat'))
+                ->groupBy('role')
+                ->whereNotNull('role')
+                ->orderBy('cmat', 'DESC')
+                ->take(10)
+                ->pluck('role')
+                ->toArray();
+        });
     }
 
     public function clearSuggestion(): self
