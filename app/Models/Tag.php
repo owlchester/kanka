@@ -127,7 +127,7 @@ class Tag extends MiscModel
     public function detach(): void
     {
         /** @var Entity $child */
-        foreach ($this->allChildren(true)->get() as $child) {
+        foreach ($this->allChildren()->get() as $child) {
             $child->tags()->detach($this->id);
             //            if (!empty($child->child)) {
             //                $child->child->tag_id = null;
@@ -141,7 +141,7 @@ class Tag extends MiscModel
      *
      * @return Builder
      */
-    public function allChildren(bool $withTags = false)
+    public function allChildren(): Builder
     {
         $children = [];
         foreach ($this->entities->pluck('id')->toArray() as $entity) {
@@ -153,12 +153,7 @@ class Tag extends MiscModel
             }
         }
 
-        if ($withTags) {
-            return Entity::whereIn('id', $children);
-        }
-
-        return Entity::whereIn('id', $children)
-            ->whereNotIn('type_id', [config('entities.ids.tag')]);
+        return Entity::whereIn('id', $children);
     }
 
     /**
