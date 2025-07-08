@@ -79,7 +79,6 @@ return [
             ],
         ],
 
-
         'logs' => [
             'driver' => 'mariadb',
             'read' => [
