@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\QuestElement $element */?>
 <article class="rounded overflow-hidden flex flex-col bg-box widget-user-2 box-quest-element" id="quest-element-{{ $element->id }}" @if ($element->entity)data-entity-id="{{ $element->entity->id }}" data-entity-type="{{ $element->entity->entityType->code }}"@endif data-word-count="{{ $element->words }}">
-    <div class="flex p-4 gap-4 items-center border-b h-20 {{ $element->colourClass() }}">
+    <div class="flex p-4 gap-4 items-center h-20 {{ $element->colourClass() }}">
         @if ($element->entity && $element->entity->hasImage())
             <img class="flex-none entity-image rounded-full pull-left w-10 h-10" src="{{ Avatar::entity($element->entity)->size(80)->thumbnail() }}" title="{{ $element->entity->name }}" alt="{{ $element->entity->name }}" />
 
