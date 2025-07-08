@@ -111,7 +111,7 @@ class Event extends MiscModel
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'name', 'date', 'type', 'location_id', 'is_private'])
+            ->select(['id', 'name', 'date', 'location_id', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'location', 'location.entity',
