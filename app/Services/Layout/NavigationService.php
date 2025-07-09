@@ -6,7 +6,7 @@ use App\Facades\Domain;
 use App\Facades\Identity;
 use App\Facades\Img;
 use App\Facades\MarketplaceCache;
-use App\Facades\PostCache;
+use App\Facades\ReleaseCache;
 use App\Facades\UserCache;
 use App\Models\AppRelease;
 use App\Models\Campaign;
@@ -249,7 +249,7 @@ class NavigationService
 
     protected function releases(): array
     {
-        $releases = PostCache::latest();
+        $releases = ReleaseCache::latest();
         $unreadReleases = [];
         /** @var AppRelease $release */
         foreach ($releases as $release) {

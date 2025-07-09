@@ -222,7 +222,6 @@ class FormCopyService
         if (! $this->valid()) {
             return null;
         }
-
         if (! $this->source instanceof Entity || ! $this->fromChild) {
             return $this->source->{$this->field};
         }

@@ -13,6 +13,4 @@
     </x-grid>
 </div>
 
-<div class="text-right">
-    {!! $elements->fragment('quest-elements')->links() !!}
-</div>
+{!! $elements->fragment('quest-elements')->links() !!}

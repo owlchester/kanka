@@ -15,7 +15,6 @@ $plural = \App\Facades\Module::plural(config('entities.ids.organisation'), __('e
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'organisations',
-        'breadcrumb' => $plural,
         'view' => 'organisations.panels.organisations',
     ])
 @endsection

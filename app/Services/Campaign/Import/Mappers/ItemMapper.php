@@ -24,7 +24,7 @@ class ItemMapper extends MiscMapper
         $this
             ->loadModel()
             ->foreign('locations', 'location_id')
-            ->foreign('characters', 'character_id')
+            ->foreign('entities', 'creator_id')
             ->saveModel()
             ->entitySecond();
     }

@@ -1,8 +1,5 @@
-@php
-    $plural = \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps'));
-@endphp
 @extends('layouts.app', [
-    'title' => $entity->name . ' ' . $plural,
+    'title' => $entity->name . ' ' . $entity->entityType->plural(),
     'description' => '',
     'breadcrumbs' => false,
     'mainTitle' => false,
@@ -31,7 +28,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'maps',
-        'breadcrumb' => $plural,
         'view' => 'maps.panels.maps',
     ])
 @endsection

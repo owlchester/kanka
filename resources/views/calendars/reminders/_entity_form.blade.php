@@ -23,12 +23,13 @@ $onlyOneCalendar = count($calendars) == 1;
             </x-forms.foreign>
         </div>
     </div>
+
+
+    <x-grid type="1/1" class="entity-calendar-subform {{ $onlyOneCalendar ? '' : 'hidden' }}">
+        @include('calendars.reminders._subform')
+    </x-grid>
+
 </x-grid>
-
-
-<div class="entity-calendar-subform {{ $onlyOneCalendar ? '' : 'hidden' }}">
-    @include('calendars.reminders._subform')
-</div>
 
 <div class="entity-calendar-loading hidden">
     <p class="text-center">

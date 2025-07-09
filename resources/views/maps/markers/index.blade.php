@@ -28,7 +28,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'markers',
-        'breadcrumb' => __('maps.panels.markers'),
         'view' => 'maps.panels.markers',
     ])
 @endsection

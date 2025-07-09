@@ -1,8 +1,5 @@
-@php
-    $plural = \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations'));
-@endphp
 @extends('layouts.app', [
-    'title' =>  $model->name . ' - ' . $plural,
+    'title' =>  $model->name . ' - ' . $entity->entityType->plural(),
     'breadcrumbs' => false,
     'mainTitle' => false,
 ])
@@ -30,7 +27,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'organisations',
-        'breadcrumb' => $plural,
         'view' => 'organisations.panels.organisations',
     ])
 @endsection

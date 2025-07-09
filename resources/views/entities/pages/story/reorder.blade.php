@@ -16,7 +16,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'story',
-        'breadcrumb' => __('entities/story.reorder.panel_title'),
         'view' => 'entities.pages.story._reorder',
         'entity' => $entity,
     ])

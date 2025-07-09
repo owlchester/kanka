@@ -25,7 +25,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'profile',
-        'breadcrumb' => __('crud.tabs.profile'),
         'view' => 'entities.pages.profile._' . $entity->entityType->code,
         'entity' => $entity,
     ])

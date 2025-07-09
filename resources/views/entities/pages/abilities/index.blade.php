@@ -22,7 +22,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'abilities',
-        'breadcrumb' => __('entities.abilities'),
         'view' => 'entities.pages.abilities.render',
         'entity' => $entity,
     ])

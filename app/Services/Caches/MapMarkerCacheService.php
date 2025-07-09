@@ -14,44 +14,39 @@ class MapMarkerCacheService extends BaseCache
     public function iconSuggestion(): array
     {
         $key = $this->iconSuggestionKey();
-        if (Cache::has($key)) {
-            return Cache::get($key);
-        }
 
-        $default = [
-            'ra ra-tower',
-            'fa-solid fa-home',
-            'ra ra-capitol',
-            'fa-solid fa-skull',
-            'fa-solid fa-coins',
-            'ra ra-beer',
-            'fa-solid fa-map-marker-alt',
-            'fa-solid fa-thumbtack',
-            'ra ra-wooden-sign',
-            'fa-solid fa-map-pin',
-        ];
+        return Cache::remember($key, 24 * 3600, function () {
+            $default = [
+                'ra ra-tower',
+                'fa-solid fa-home',
+                'ra ra-capitol',
+                'fa-solid fa-skull',
+                'fa-solid fa-coins',
+                'ra ra-beer',
+                'fa-solid fa-map-marker-alt',
+                'fa-solid fa-thumbtack',
+                'ra ra-wooden-sign',
+                'fa-solid fa-map-pin',
+            ];
 
-        $data = MapMarker::leftJoin('maps as m', 'm.id', 'map_markers.map_id')
-            ->where('m.campaign_id', $this->campaign->id)
-            ->select(DB::raw('custom_icon, MAX(map_markers.created_at) as cmat'))
-            ->groupBy('custom_icon')
-            ->whereNotNull('custom_icon')
-            ->orderBy('cmat', 'DESC')
-            ->take(10)
-            ->pluck('custom_icon')
-            ->all();
+            $data = MapMarker::leftJoin('maps as m', 'm.id', 'map_markers.map_id')
+                ->where('m.campaign_id', $this->campaign->id)
+                ->select(DB::raw('custom_icon, MAX(map_markers.created_at) as cmat'))
+                ->groupBy('custom_icon')
+                ->whereNotNull('custom_icon')
+                ->orderBy('cmat', 'DESC')
+                ->take(10)
+                ->pluck('custom_icon')
+                ->all();
 
-        foreach ($default as $value) {
-            if (! in_array($value, $data)) {
-                $data[] = $value;
+            foreach ($default as $value) {
+                if (! in_array($value, $data)) {
+                    $data[] = $value;
+                }
             }
-        }
 
-        $data = array_slice($data, 0, 10);
-
-        Cache::put($key, $data, 24 * 3600);
-
-        return $data;
+            return array_slice($data, 0, 10);
+        });
     }
 
     public function clearSuggestion(): self

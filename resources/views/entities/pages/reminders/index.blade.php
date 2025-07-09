@@ -29,7 +29,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'reminders',
-        'breadcrumb' => __('crud.tabs.reminders'),
         'view' => 'entities.pages.reminders._list',
         'entity' => $entity,
     ])

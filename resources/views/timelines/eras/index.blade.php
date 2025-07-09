@@ -22,7 +22,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'eras',
-        'breadcrumb' => __('timelines.fields.eras'),
         'view' => 'timelines.panels.eras',
     ])
 @endsection

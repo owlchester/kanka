@@ -34,7 +34,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'layers',
-        'breadcrumb' => __('maps.panels.layers'),
         'view' => 'maps.panels.layers',
     ])
 @endsection

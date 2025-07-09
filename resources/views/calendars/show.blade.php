@@ -23,10 +23,7 @@ if (!empty($redirect)) {
 @endsection
 
 <div class="entity-grid flex flex-col gap-5">
-    @include('entities.components.header', [
-        'breadcrumb' => [
-            Breadcrumb::campaign($campaign)->entity($entity)->list(),
-        ],
+    @include('entities.components.header', [,
         'entityHeaderActions' => 'entity-header-actions-override',
     ])
 

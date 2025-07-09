@@ -35,7 +35,6 @@
 
     @include('entities.pages.subpage', [
         'active' => 'groups',
-        'breadcrumb' => __('maps.panels.groups'),
         'view' => 'maps.panels.groups',
     ])
 @endsection

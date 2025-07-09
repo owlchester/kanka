@@ -21,7 +21,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'entities',
-        'breadcrumb' => __('abilities.show.tabs.entities'),
         'view' => 'abilities.panels.entities',
     ])
 @endsection

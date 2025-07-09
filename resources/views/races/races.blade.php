@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => $entity->name . ' - ' . \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')),
+    'title' => $entity->name . ' - ' . $entity->entityType->plural(),
     'breadcrumbs' => false,
     'mainTitle' => false,
 ])
@@ -24,13 +24,9 @@
     </div>
 @endsection
 
-@php
-    $plural = \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races'));
-@endphp
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'races',
-        'breadcrumb' => $plural,
         'view' => 'races.panels.races',
     ])
 @endsection

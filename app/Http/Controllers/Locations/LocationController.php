@@ -32,7 +32,7 @@ class LocationController extends Controller
 
         $this->rows = $location
             ->descendants()
-            ->select(['id', 'name', 'type', 'location_id', 'is_private'])
+            ->select(['id', 'name', 'location_id', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with([

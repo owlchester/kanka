@@ -371,7 +371,6 @@ class CrudController extends Controller
         if (request()->ajax()) {
             return response()->json(['success' => true]);
         }
-
         if ($this->hasLimitCheck) {
             // @phpstan-ignore-next-line
             if ($this->limitCheckReached()) {

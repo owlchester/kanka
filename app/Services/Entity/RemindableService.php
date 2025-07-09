@@ -74,6 +74,7 @@ class RemindableService
         $reminder->type_id = EntityEventType::CALENDAR_DATE;
         try {
             $reminder->save();
+            $model->setRelation('calendarDate', $reminder);
         } catch (Exception $e) {
             // Something went wrong, silence the issue
             throw $e;

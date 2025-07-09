@@ -31,7 +31,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'children',
-        'breadcrumb' => __('entities/children.title'),
         'view' => 'entities.pages.children.children',
         'entity' => $entity,
     ])

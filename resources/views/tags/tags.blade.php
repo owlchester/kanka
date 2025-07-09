@@ -1,8 +1,5 @@
-@php
-    $plural = \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags'));
-@endphp
 @extends('layouts.app', [
-    'title' => $entity->name . ' - ' . $plural,
+    'title' => $entity->name . ' - ' . $entity->entityType->plural(),
     'breadcrumbs' => false,
     'mainTitle' => false,
 ])
@@ -32,7 +29,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'tags',
-        'breadcrumb' => $plural,
         'view' => 'tags.panels.tags',
     ])
 @endsection

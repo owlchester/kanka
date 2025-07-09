@@ -1,10 +1,6 @@
 <?php /** @var \App\Models\Tag $model */?>
 <div class="entity-grid flex flex-col gap-5">
-    @include('entities.components.header', [
-        'breadcrumb' => [
-            Breadcrumb::campaign($campaign)->entity($entity)->list(),
-        ]
-    ])
+    @include('entities.components.header')
 
     <div class="entity-body flex flex-col md:flex-row gap-5">
         @include('entities.components.menu_v2', ['active' => 'story'])

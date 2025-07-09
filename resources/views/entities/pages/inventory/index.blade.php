@@ -24,7 +24,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'inventory',
-        'breadcrumb' => __('crud.tabs.inventory'),
         'view' => 'entities.pages.inventory.render',
         'entity' => $entity,
     ])

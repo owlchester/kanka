@@ -39,34 +39,13 @@ $entityTags = $post->visibleTags;
     <x-posts.tags :post="$post" :campaign="$campaign"></x-posts.tags>
 
     @if($post->layout?->code == 'inventory')
-        @php
-            $inventory = $entity
-                ->inventories()
-                ->with(['entity', 'item', 'item.entity'])
-                ->get()
-                ->sortBy(function ($model, $key) {
-                    return !empty($model->position) ? $model->position : 'zzzz' . $model->itemName();
-                });
-        @endphp
-        @include('entities.pages.inventory._grid', ['inventory' => $inventory, 'isPost' => true, 'entity' => $entity, 'ajax' => null])
+        @include('entities.pages.inventory._grid', ['isPost' => true])
     @elseif ($post->layout?->code == 'attributes')
         <x-box class="box-entity-attributes">
             @include('entities.pages.attributes.render', ['isPost' => true])
         </x-box>
         <input type="hidden" name="live-attribute-config" data-live="{{ route('entities.attributes.live.edit', [$campaign, $entity]) }}" />
     @elseif ($post->layout?->code == 'abilities')
-        @php
-        $translations = [
-            'all' => __('crud.visibilities.all'),
-            'members' => __('crud.visibilities.members'),
-            'admin-self' => __('crud.visibilities.admin-self'),
-            'admin' => __('crud.visibilities.admin'),
-            'self' => __('crud.visibilities.self'),
-            'update' => __('crud.update'),
-            'remove' => __('crud.remove'),
-        ];
-        $translations = json_encode($translations);
-        @endphp
         @include('entities.pages.abilities._abilities', ['isPost' => true])
     @elseif ($post->layout?->code == 'assets')
         @include('entities.pages.assets._assets', ['assets' => $entity->assets, 'isPost' => true])
@@ -77,97 +56,14 @@ $entityTags = $post->visibleTags;
     @elseif ($post->layout?->code == 'character_orgs' && $entity->isCharacter())
         @include('characters.panels.organisations', ['character' => $entity->child])
     @elseif ($post->layout?->code == 'quest_elements' && $entity->isQuest())
-        @php
-            $datagridSorter = new \App\Datagrids\Sorters\QuestElementSorter();
-                $elements = $entity->child
-                        ->elements()
-                        ->simpleSort($datagridSorter)
-                        ->paginate();
-                $elements->withPath(route('quests.quest_elements.index', [$campaign, $entity->child]));
-                $model = $entity->child;
-        @endphp
-        @include('quests.elements._elements', ['elements' => $elements])
+        @include('quests.elements._post')
     @elseif ($post->layout?->code == 'location_characters' && $entity->isLocation())
-        @php
-            $options = [$campaign, 'location' => $entity->child];
-
-            Datagrid::layout(\App\Renderers\Layouts\Location\Character::class)
-                ->route('locations.characters', $options);
-
-            $filters = [];
-            if ($campaign->defaultDescendantsMode() === \App\Enums\Descendants::Direct) {
-                $filters['location_id'] = $entity->child->id;
-            }
-
-            $rows = $entity->child
-                ->allCharacters()
-                ->filter($filters)
-                ->filteredCharacters()
-                ->paginate();
-            $rows->withPath(route('locations.characters', $options));
-
-        @endphp
-        @include('locations.panels.characters')
+        @include('locations.panels.characters', ['init' => true])
     @elseif ($post->layout?->code == 'location_events' && $entity->isLocation())
-        @php
-            $options = [$campaign, 'location' => $entity->child];
-
-            Datagrid::layout(\App\Renderers\Layouts\Location\Event::class)
-                ->route('locations.events', $options);
-
-            $filters = [];
-            if ($campaign->defaultDescendantsMode() === \App\Enums\Descendants::Direct) {
-                $filters['location_id'] = $entity->child->id;
-            }
-
-            $rows = $entity->child
-                ->allEvents()
-                ->filter($filters)
-                ->filteredEvents()
-                ->paginate();
-            $rows->withPath(route('locations.events', $options));
-
-        @endphp
-        @include('locations.panels.events')
+        @include('locations.panels.events', ['init' => true])
     @elseif ($post->layout?->code == 'location_quests' && $entity->isLocation())
-        @php
-            $options = [$campaign, 'location' => $entity->child];
-
-            Datagrid::layout(\App\Renderers\Layouts\Location\Quest::class)
-                ->route('locations.quests', $options);
-
-            $filters = [];
-            if ($campaign->defaultDescendantsMode() === \App\Enums\Descendants::Direct) {
-                $filters['location_id'] = $entity->child->id;
-            }
-
-            $rows = $entity->child
-                ->allQuests()
-                ->filter($filters)
-                ->filteredQuests()
-                ->paginate();
-            $rows->withPath(route('locations.quests', $options));
-
-        @endphp
-        @include('locations.panels.quests')
-
+        @include('locations.panels.quests', ['init' => true])
     @elseif ($post->layout?->code == 'reminders')
-        @php
-        Datagrid::layout(\App\Renderers\Layouts\Entity\Reminder::class)
-            ->route('entities.reminders.index', ['campaign' => $campaign, 'entity' => $entity]);
-
-        $rows = $entity
-            ->reminders()
-            ->has('calendar')
-            ->has('calendar.entity')
-            ->with(['calendar', 'calendar.entity', 'remindable'])
-            ->sort(request()->only(['o', 'k']))
-            ->paginate();
-        @endphp
-        @if ($rows->count() > 0)
-            <div id="datagrid-parent" class="table-responsive">
-                @include('layouts.datagrid._table')
-            </div>
-        @endif
+        @include('entities.pages.reminders._post')
     @endif
 </article>

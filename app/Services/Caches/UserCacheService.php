@@ -11,6 +11,7 @@ use App\Services\Caches\Traits\User\RoleCache;
 use App\Services\Caches\Traits\User\TutorialCache;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 class UserCacheService extends BaseCache
@@ -30,17 +31,13 @@ class UserCacheService extends BaseCache
     public function name(int $userId): string
     {
         $key = $this->nameKey($userId);
-        if ($this->has($key)) {
-            return (string) $this->get($key);
-        }
 
-        /** @var ?User $user */
-        $user = User::select('name')->find($userId);
-        $data = $user?->name;
+        return Cache::remember($key, 3600 * 24, function () use ($userId) {
+            /** @var ?User $user */
+            $user = User::select('name')->find($userId);
 
-        $this->forever($key, $data);
-
-        return $data;
+            return $user?->name;
+        });
     }
 
     public function clearName(): self
@@ -54,15 +51,10 @@ class UserCacheService extends BaseCache
     public function entitiesCreatedCount(): int
     {
         $key = 'user_' . $this->user->id . '_entities_created_count';
-        if ($this->has($key)) {
-            return (int) $this->get($key);
-        }
 
-        $data = DB::table('entities')->where('created_by', $this->user->id)->count();
-
-        $this->forever($key, $data, 1);
-
-        return $data;
+        return Cache::remember($key, 24 * 3600, function () {
+            return DB::table('entities')->where('created_by', $this->user->id)->count();
+        });
     }
 
     protected function nameKey(int $userId): string
