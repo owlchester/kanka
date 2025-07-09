@@ -36,13 +36,15 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
     $headerImageSquare = $entity->getHeaderUrl(400, 400);
     $headerImageS = $entity->getHeaderUrl(800, 267);
     $headerImageM = $entity->getHeaderUrl(1200, 400);
-    $headerImageL = $entity->getHeaderUrl(2400, 800);
-    $headerImageXL = $entity->getHeaderUrl(2400, 800);
+    $headerImageL = $entity->getHeaderUrl(1800, 400);
+    $headerImageXL = $entity->getHeaderUrl(2400, 400);
 
 }
 
+$breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
+
 ?>
-<div class="w-full h-full entity-header flex-wrap md:flex-no-wrap flex gap-2 md:gap-5 items-end relative @if ($hasBanner) with-entity-banner p-4 text-white aspect-[3/1] @endif">
+<div class="w-full h-full entity-header flex-wrap md:flex-no-wrap flex gap-2 md:gap-5 items-end relative @if ($hasBanner) with-entity-banner p-4 text-white aspect-[3/1] xl:aspect-auto @endif">
     @if ($imageUrl)
     <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto">
 
@@ -53,7 +55,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
 
             @if (!isset($printing))
             <a class="cursor-pointer relative cover-background sm:hidden" href="{{ $imageUrl }}" target="_blank" aria-label="Open original image">
-                <img src="{{ $imagePathMobile }}" lazy alt="{{ $entity->name }}" class="w-28" />
+                <img src="{{ $imagePathMobile }}" loading="lazy" alt="{{ $entity->name }}" class="w-28 " />
             </a>
             @endif
             <div class="dropdown">
@@ -63,9 +65,9 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
                             <x-icon :class="$entity->image->visibilityIcon()['class']" />
                         </div>
                     @endif
-                    <picture>
-                        <source media="(min-width:766px)" srcset="{{ $imagePathXL }}">
-                        <img src="{{ $imagePath }}" alt="{{ $entity->name }}" style="width:auto;">
+                    <picture class="">
+                        <source media="(min-width:766px)" srcset="{{ $imagePathXL }}" class="">
+                        <img src="{{ $imagePath }}" alt="{{ $entity->name }}" class="w-auto">
                     </picture>
                 </div>
 
@@ -111,27 +113,24 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
             @if(isset($printing) && $printing)
                 <img src="{{ $imagePath }}" class="entity-print-image" alt="{{ $entity->name }}"/>
             @else
-            <a class="entity-image cover-background block rounded-none" href="{{ $imageUrl }}" target="_blank" style="background-image: url('{{ $imagePath }}');"></a>
+            <a class="entity-image block" href="{{ $imageUrl }}" target="_blank" >
+                <picture class="">
+                    <source media="(min-width:766px)" srcset="{{ $imagePathXL }}" class="">
+                    <img src="{{ $imagePathMobile }}" alt="{{ $entity->name }}" loading="lazy" class="w-auto">
+                </picture>
+            </a>
             @endif
         @endcan
     </div>
     @endif
     <div class="entity-header-text grow flex flex-col gap-1 md:gap-2">
-        @if (!empty($breadcrumb))
             <ol class="entity-breadcrumb text-sm m-0 p-0">
-                @foreach ($breadcrumb as $bcdata)
-                    <li class="inline-block">
-                    @if (is_array($bcdata))
-                    <a href="{{ $bcdata['url'] }}" class="no-underline text-neutral-content" title="{{ $bcdata['label'] }}">
-                        {!! $bcdata['label'] !!}
+                <li class="inline-block">
+                    <a href="{{ $breadcrumb['url'] }}" class="" title="{{ $breadcrumb['label'] }}">
+                        {!! $breadcrumb['label'] !!}
                     </a>
-                    @elseif(!empty($bcdata))
-                        {!! $bcdata !!}
-                    @endif
-                    </li>
-                @endforeach
+                </li>
             </ol>
-        @endif
         <div class="entity-name-header flex gap-3 items-center">
             <h1 class="entity-name text-lg md:text-4xl break-all">
                 {!! $entity->name !!}
@@ -199,12 +198,6 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
             </div>
         @endif
 
-        @if ($entity->entityType->isStandard() && !empty($entity->child->type))
-            <div class="entity-type entity-header-line">
-                {{ $entity->child->type }}
-            </div>
-        @endif
-
         <div class="entity-tags entity-header-line text-xs">
             <div class="flex flex-wrap gap-2 items-center">
         @if($entityTags->count() > 0)
@@ -261,7 +254,7 @@ if($campaign->boosted() && $entity->hasHeaderImage()) {
         @endcan
     @endif
         @if ($hasBanner)
-            <picture class="entity-banner absolute top-0 left-0 -z-10 w-full aspect-[3/1]">
+            <picture class="entity-banner absolute top-0 left-0 -z-10 w-full h-full">
                 <source media="(min-width:2400px)" srcset="{{ $headerImageXL }}">
                 <source media="(min-width:1600px)" srcset="{{ $headerImageL }}">
                 <source media="(min-width:800px)" srcset="{{ $headerImageM }}">

@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\Entity $entity */?>
 @extends('layouts.app', [
-    'title' => $entity->name . ' - ' . \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')),
+    'title' => $entity->name . ' - ' . $entity->entityType->plural(),
     'breadcrumbs' => false,
     'mainTitle' => false,
 ])
@@ -22,13 +22,9 @@
     </div>
 @endsection
 
-@php
-    $plural = \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families'));
-@endphp
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'families',
-        'breadcrumb' => $plural,
         'view' => 'families.panels.families',
     ])
 @endsection

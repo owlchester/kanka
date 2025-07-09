@@ -7,7 +7,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'tree',
-        'breadcrumb' => __(''),
         'view' => 'families.panels.tree',
         'entity' => $family->entity,
         'model' => $family,

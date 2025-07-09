@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' => $entity->name . ' ' . \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations')),
+    'title' => $entity->name . ' ' . $entity->entityType->plural(),
     'breadcrumbs' => false,
     'canonical' => true,
     'mainTitle' => false,
@@ -24,13 +24,9 @@
     </div>
 @endsection
 
-@php
-    $plural = \App\Facades\Module::plural(config('entities.ids.location'), __('entities.locations'));
-@endphp
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'locations',
-        'breadcrumb' => $plural,
         'view' => 'locations.panels.locations',
     ])
 @endsection

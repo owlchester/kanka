@@ -32,7 +32,6 @@
 
     @include('entities.pages.subpage', [
         'active' => 'relations',
-        'breadcrumb' => __('crud.tabs.connections'),
         'view' => 'entities.pages.relations.render',
         'entity' => $entity,
     ])

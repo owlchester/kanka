@@ -31,42 +31,13 @@
 }
 
 .entity-header {
-
-    .entity-image {
-        width: 100%;
-        padding-top: 100%;
-        //background-size: contain;
-        z-index: 10;
-        border-radius: 0;
-    }
-
-    .tooltip {
-        .entity-image {
-            border-radius: 50%;
-            cursor: unset;
-            padding-top: 0;
-        }
-    }
-
     .entity-breadcrumb {
-
         li + li:before {
             content: ">\A0";
             padding: 0 5px;
             --tw-text-opacity: .6;
             color: hsl(var(--bc)/var(--tw-text-opacity));
         }
-    }
-
-    .entity-name-header {
-
-        .btn-group.open .dropdown-toggle {
-            box-shadow: unset;
-        }
-    }
-
-    .entity-type {
-        display: none;
     }
 }
 .entity-grid > .entity-header.with-entity-banner {

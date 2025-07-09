@@ -11,7 +11,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'reorder',
-        'breadcrumb' => __('crud.actions.reorder'),
         'model' => $timeline,
         'view' => 'timelines.reorder._reorder',
         'entity' => $timeline->entity,

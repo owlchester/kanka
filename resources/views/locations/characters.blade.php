@@ -32,7 +32,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'characters',
-        'breadcrumb' => \App\Facades\Module::plural(config('entities.ids.character'), __('entities.characters')),
         'view' => 'locations.panels.characters',
     ])
 @endsection

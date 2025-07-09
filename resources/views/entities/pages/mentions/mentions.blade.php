@@ -23,7 +23,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'mentions',
-        'breadcrumb' => __('crud.tabs.mentions'),
         'view' => 'entities.pages.mentions.render',
         'entity' => $entity,
     ])

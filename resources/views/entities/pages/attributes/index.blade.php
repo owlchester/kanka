@@ -24,7 +24,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'attributes',
-        'breadcrumb' => __('crud.tabs.attributes'),
         'view' => 'entities.pages.attributes.main',
         'entity' => $entity,
     ])

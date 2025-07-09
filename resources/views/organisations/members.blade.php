@@ -8,7 +8,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'members',
-        'breadcrumb' => '',
         'view' => 'organisations.panels.members',
     ])
 @endsection

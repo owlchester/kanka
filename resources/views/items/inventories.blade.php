@@ -9,7 +9,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'inventories',
-        'breadcrumb' => __('items.show.tabs.inventories'),
         'view' => 'items.panels.inventories',
     ])
 @endsection

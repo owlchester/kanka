@@ -29,7 +29,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'events',
-        'breadcrumb' => __('entities.entities'),
         'view' => 'calendars.panels.events',
     ])
 @endsection

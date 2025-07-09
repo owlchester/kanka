@@ -14,7 +14,6 @@
 @section('content')
     @include('entities.pages.subpage', [
         'active' => 'elements',
-        'breadcrumb' => __('quests.show.tabs.elements'),
         'view' => 'quests.elements._elements',
     ])
 @endsection
