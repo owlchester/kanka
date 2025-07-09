@@ -14,43 +14,28 @@ class EntityAssetCacheService extends BaseCache
     public function iconSuggestion(): array
     {
         $key = $this->iconSuggestionKey();
-        if (Cache::has($key)) {
-            return Cache::get($key);
-        }
 
-        $default = [
-            'fa-brands fa-d-and-d-beyond',
-            'ra ra-aura',
-        ];
+        return Cache::remember($key, 24 * 3600, function () {
+            $default = [
+                'fa-brands fa-d-and-d-beyond',
+                'ra ra-aura',
+            ];
 
-        $data = [];
+            $data = [];
 
-        $settings = EntityAsset::leftJoin('entities as e', 'e.id', 'entity_assets.entity_id')
-            ->where('e.campaign_id', $this->campaign->id)
-            ->select(DB::raw('metadata, MAX(entity_assets.created_at) as cmat'))
-            ->groupBy('metadata')
-            ->whereNotNull('metadata->icon')
-            ->where('entity_assets.type_id', EntityAsset::TYPE_LINK)
-            ->orderBy('cmat', 'DESC')
-            ->take(10)
-            ->pluck('metadata')
-            ->all();
+            $icons = EntityAsset::leftJoin('entities as e', 'e.id', 'entity_assets.entity_id')
+                ->where('e.campaign_id', $this->campaign->id)
+                ->select(DB::raw('metadata->icon as icon, MAX(entity_assets.created_at) as cmat'))
+                ->groupBy('metadata')
+                ->whereNotNull('metadata->icon')
+                ->where('entity_assets.type_id', EntityAsset::TYPE_LINK)
+                ->orderBy('cmat', 'DESC')
+                ->take(10)
+                ->pluck('icon')
+                ->all();
 
-        foreach ($settings as $setting) {
-            $data[] = $setting['icon'];
-        }
-
-        foreach ($default as $value) {
-            if (! in_array($value, $data)) {
-                $data[] = $value;
-            }
-        }
-
-        $data = array_slice($data, 0, 10);
-
-        Cache::put($key, $data, 24 * 3600);
-
-        return $data;
+            return array_slice(array_unique(array_merge($icons, $default)), 0, 10);
+        });
     }
 
     public function clearSuggestion(): self

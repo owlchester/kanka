@@ -4,7 +4,6 @@ namespace App\Models\Scopes;
 
 use App\Enums\Permission;
 use App\Enums\Visibility;
-use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\Permissions;
 use App\Models\Entity;
@@ -130,7 +129,7 @@ class AclScope implements Scope
                     ->where(function ($sub) use ($model, $publicRoleId) {
                         return $sub
                             ->whereRaw(DB::raw('EXISTS (SELECT * FROM campaign_permissions as perm WHERE perm.entity_id = ' . $model->getTable() . '.id AND perm.access = 1 AND perm.campaign_role_id = ' . $publicRoleId . ')'))
-                            //->orWhereIn($model->getTable() . '.id', Permissions::allowedEntities())
+                            // ->orWhereIn($model->getTable() . '.id', Permissions::allowedEntities())
                             ->orWhereIn($model->getTable() . '.type_id', Permissions::allowedEntityTypes());
                     })
                     ->whereNotIn($model->getTable() . '.id', Permissions::deniedEntities());

@@ -2,17 +2,15 @@
 
 namespace App\Facades;
 
-use App\Services\Caches\PostCacheService;
+use App\Services\Caches\ReleaseCacheService;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class PostCache
+ * @see ReleaseCacheService
  *
- * @see PostCacheService
- *
- * @mixin PostCacheService
+ * @mixin ReleaseCacheService
  */
-class PostCache extends Facade
+class ReleaseCache extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -21,6 +19,6 @@ class PostCache extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'postcache';
+        return 'releasecache';
     }
 }

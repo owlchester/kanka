@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Enums\UserAction;
 use App\Facades\CampaignLocalization;
 use App\Facades\Identity;
-use App\Facades\PostCache;
+use App\Facades\ReleaseCache;
 use App\Facades\SingleUserCache;
 use App\Models\Concerns\HasImage;
 use App\Models\Concerns\LastSync;
@@ -388,7 +388,7 @@ class User extends \Illuminate\Foundation\Auth\User implements \Laravel\Passport
         }
 
         // Unread notifications
-        $releases = PostCache::latest();
+        $releases = ReleaseCache::latest();
         /** @var AppRelease $release */
         foreach ($releases as $release) {
             if (! $release->alreadyRead()) {

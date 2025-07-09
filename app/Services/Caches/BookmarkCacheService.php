@@ -14,24 +14,17 @@ class BookmarkCacheService extends BaseCache
     public function iconSuggestion(): array
     {
         $key = $this->iconSuggestionKey();
-        if (Cache::has($key)) {
-            return Cache::get($key);
-        }
 
-        $data = Bookmark::where('campaign_id', $this->campaign->id)
-            ->whereNotNull('icon')
-            ->select(DB::raw('icon, MAX(created_at) as cmat'))
-            ->groupBy('icon')
-            ->orderBy('cmat', 'DESC')
-            ->take(10)
-            ->pluck('icon')
-            ->all();
-
-        $data = array_slice($data, 0, 10);
-
-        Cache::put($key, $data, 24 * 3600);
-
-        return $data;
+        return Cache::remember($key, 24 * 3600, function () {
+            return Bookmark::where('campaign_id', $this->campaign->id)
+                ->whereNotNull('icon')
+                ->select(DB::raw('icon, MAX(created_at) as cmat'))
+                ->groupBy('icon')
+                ->orderBy('cmat', 'DESC')
+                ->take(10)
+                ->pluck('icon')
+                ->toArray();
+        });
     }
 
     public function clearSuggestion(): self

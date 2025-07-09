@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Facades\CampaignLocalization;
 use App\Facades\Domain;
 use App\Http\Controllers\Api\v1\HealthController;
 use App\Http\Middleware\LastCampaign;

@@ -23,23 +23,16 @@ class EntityCacheService extends BaseCache
 
     public function typeSuggestion(EntityType $entityType): array
     {
-        $key = $this->typeSuggestionKey($entityType->code);
-        if (Cache::has($key)) {
-            return Cache::get($key);
-        }
-
-        $data = Entity::select(DB::raw('type, MAX(created_at) as cmat'))
-            ->groupBy('type')
-            ->whereNotNull('type')
-            ->where('type_id', $entityType->id)
-            ->orderBy('cmat', 'DESC')
-            ->take(20)
-            ->pluck('type')
-            ->all();
-
-        Cache::put($key, $data, 24 * 3600);
-
-        return $data;
+        return Cache::remember($this->typeSuggestionKey($entityType->code), 24 * 3600, function () use ($entityType) {
+            return Entity::select(DB::raw('type, MAX(created_at) as cmat'))
+                ->groupBy('type')
+                ->whereNotNull('type')
+                ->where('type_id', $entityType->id)
+                ->orderBy('cmat', 'DESC')
+                ->take(20)
+                ->pluck('type')
+                ->all();
+        });
     }
 
     public function clearSuggestion(EntityType $entityType): self

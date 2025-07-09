@@ -3,6 +3,7 @@
 namespace App\Services\Caches\Traits\Campaign;
 
 use App\Models\CampaignStyle;
+use Illuminate\Support\Facades\Cache;
 
 trait StyleCache
 {
@@ -12,24 +13,26 @@ trait StyleCache
     public function styles(): string
     {
         $key = $this->stylesKey();
-        if ($this->has($key)) {
-            // return (string) $this->get($key);
-        }
 
-        $css = "/**\n * Campaign Styles for campaign #" . $this->campaign->id . "\n */\n\n";
-        foreach ($this->campaign->styles()->enabled()->defaultOrder()->get() as $style) {
-            /** @var CampaignStyle $style */
-            if ($style->isTheme()) {
-                $css .= '/** Theme builder #' . $style->id . " */\n@layer theme {\n" . $style->content() . "\n}\n";
+        return Cache::remember($key, 24 * 3600, function () {
+            $css = "/**\n * Campaign Styles for campaign #" . $this->campaign->id . "\n */\n\n";
+            $styles = $this->campaign
+                ->styles()
+                ->enabled()
+                ->defaultOrder()
+                ->get();
+            foreach ($styles as $style) {
+                /** @var CampaignStyle $style */
+                if ($style->isTheme()) {
+                    $css .= '/** Theme builder #' . $style->id . " */\n@layer theme {\n" . $style->content() . "\n}\n";
 
-                continue;
+                    continue;
+                }
+                $css .= '/** Style ' . $style->name . '#' . $style->id . " */\n" . $style->content() . "\n";
             }
-            $css .= '/** Style ' . $style->name . '#' . $style->id . " */\n" . $style->content() . "\n";
-        }
 
-        $this->forever($key, $css);
-
-        return (string) $css;
+            return $css;
+        });
     }
 
     public function stylesTimestamp(): int

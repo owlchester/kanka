@@ -312,7 +312,6 @@ return [
         'FormCopy' => App\Facades\FormCopy::class,
         'EntityCache' => App\Facades\EntityCache::class,
         'CampaignCache' => App\Facades\CampaignCache::class,
-        'FrontCache' => App\Facades\FrontCache::class,
         'AdCache' => App\Facades\AdCache::class,
         'UserCache' => App\Facades\UserCache::class,
         'Img' => App\Facades\Img::class,

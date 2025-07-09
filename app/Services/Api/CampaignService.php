@@ -2,48 +2,35 @@
 
 namespace App\Services\Api;
 
-use App\Facades\CampaignCache;
 use App\Http\Resources\Public\CampaignResource;
 use App\Models\Campaign;
+use App\Models\GameSystem;
 use App\Services\GenreService;
+use App\Traits\RequestAware;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 
 class CampaignService
 {
+    use RequestAware;
+
     protected array $data = [];
 
-    protected Request $request;
-
-    protected GenreService $genreService;
-
-    public function __construct(GenreService $genreService)
-    {
-        $this->genreService = $genreService;
-    }
-
-    public function request(Request $request): self
-    {
-        $this->request = $request;
-
-        return $this;
-    }
+    public function __construct(protected GenreService $genreService) {}
 
     public function setup(): array
     {
-        $this->filters()
-            ->featured();
-
-        return $this->data;
+        return $this->filters()
+            ->featured()
+            ->data;
     }
 
     public function search(): array
     {
-        $this->campaigns();
-
-        return $this->data;
+        return $this->campaigns()
+            ->data;
     }
 
     protected function filters(): self
@@ -65,7 +52,7 @@ class CampaignService
             ],
             'system[]' => [
                 'title' => 'System',
-                'options' => CampaignCache::systems(),
+                'options' => $this->systemsOptions(),
             ],
             'is_boosted' => [
                 'title' => 'Premium campaigns',
@@ -94,11 +81,12 @@ class CampaignService
     protected function featured(): self
     {
 
-        $this->data['featured'] = [];
-        $campaigns = Campaign::public()->front()->featured()->discreet(false)->get();
-        foreach ($campaigns as $campaign) {
-            $this->data['featured'][] = new CampaignResource($campaign);
-        }
+        $this->data['featured'] = Campaign::public()
+            ->front()
+            ->featured()
+            ->discreet(false)
+            ->get()
+            ->map(fn ($campaign) => new CampaignResource($campaign));
 
         return $this;
     }
@@ -110,7 +98,7 @@ class CampaignService
     {
         $this->data['campaigns'] = [];
 
-        if ($this->isDefaultRequest()) {
+        if ($this->usesDefaultFilters()) {
             $this->data['campaigns'] = $this->cachedCampaigns();
         } else {
             $campaigns = Campaign::public()
@@ -130,7 +118,7 @@ class CampaignService
     /**
      * Determine if the request comes with any filters
      */
-    protected function isDefaultRequest(): bool
+    protected function usesDefaultFilters(): bool
     {
         return ! $this->request->anyFilled('sort_field_name', 'language', 'system', 'is_boosted', 'is_open', 'genre', 'page');
     }
@@ -140,21 +128,15 @@ class CampaignService
      */
     protected function cachedCampaigns(int $hours = 24): AnonymousResourceCollection
     {
-        $cacheKey = 'public-campaigns-page-1';
-        if (! app()->environment('testing') && cache()->has($cacheKey)) {
-            return cache()->get($cacheKey);
-        }
-        $campaigns = Campaign::public()
-            ->front()
-            ->featured(false)
-            ->filterPublic([])
-            ->paginate();
-        $cached = CampaignResource::collection($campaigns);
+        return Cache::remember('public-campaigns-page-1', 24 * 3600, function () {
+            $campaigns = Campaign::public()
+                ->front()
+                ->featured(false)
+                ->filterPublic([])
+                ->paginate();
 
-        Log::info('Create new cache', ['key' => $cacheKey, 'hours' => $hours]);
-        cache()->put($cacheKey, $cached, $hours * 3600);
-
-        return $cached;
+            return CampaignResource::collection($campaigns);
+        });
     }
 
     /**
@@ -171,5 +153,16 @@ class CampaignService
             'next' => $paginator->nextPageUrl(),
             'previous' => $paginator->previousPageUrl(),
         ];
+    }
+
+    protected function systemsOptions(): array
+    {
+        return Cache::remember('campaign_systems', 24 * 3600, function () {
+            return GameSystem::withCount('campaignSystem')
+                ->orderByDesc('campaign_system_count')
+                ->limit(20)
+                ->pluck('name', 'id')
+                ->toArray();
+        });
     }
 }
