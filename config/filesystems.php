@@ -94,12 +94,13 @@ return [
         ],
 
         's3-marketplace' => [
-            'driver' => 's3','key' => env('HETZNER_S3_ACCESS_KEY_ID'),
+            'driver' => 's3',
+            'key' => env('HETZNER_S3_ACCESS_KEY_ID'),
             'secret' => env('HETZNER_S3_ACCESS_KEY_SECRET'),
             'region' => env('HETZNER_S3_REGION'),
             'bucket' => env('AWS_BUCKET_MARKETPLACE'),
-            'root' => env('APP_ENV'),
             'endpoint' => env('HETZNER_S3_ENDPOINT'),
+            'root' => env('APP_ENV') != 'production' ? env('APP_ENV') : null,
             'use_path_style_endpoint' => true,
         ],
 
