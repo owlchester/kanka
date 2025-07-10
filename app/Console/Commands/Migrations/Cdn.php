@@ -60,6 +60,8 @@ class Cdn extends Command
 
         $tableName = 'plugin_versions';
         $column = 'json';
+        $old = 'https:\/\/kanka-user-assets.s3.eu-central-1.amazonaws.com\/';
+        $new = 'https:\/\/cdn-ugc.kanka.io\/';
         $this->info("Migrating $tableName ($column)...");
         do {
             $affected = DB::update("
