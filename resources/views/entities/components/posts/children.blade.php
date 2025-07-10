@@ -1,9 +1,22 @@
 <?php
 
 $route = 'entities.children';
+
+$routeOptions = [
+    $campaign,
+    $entity,
+    'init' => 1,
+];
+
 if ($entity->hasChild()) {
     // Get table name from the model
     $table = $entity->child->getTable();
+
+    $routeOptions = [
+        $campaign,
+        $entity->child,
+        'init' => 1,
+    ];
 
     // Make the route name.
     $route = $table . '.' . $table;
@@ -11,11 +24,6 @@ if ($entity->hasChild()) {
 
 $datagridOptions = [];
 
-$routeOptions = [
-    $campaign,
-    $entity->child,
-    'init' => 1,
-];
 if (request()->get('m') == \App\Enums\Descendants::All->value || (!request()->has('m') && $campaign->defaultDescendantsMode() === \App\Enums\Descendants::All)) {
     $routeOptions['m'] = \App\Enums\Descendants::All;
 }
