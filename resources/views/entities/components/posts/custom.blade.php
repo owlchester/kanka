@@ -51,6 +51,8 @@ $entityTags = $post->visibleTags;
         @include('entities.pages.assets._assets', ['assets' => $entity->assets, 'isPost' => true])
     @elseif ($post->layout?->code == 'connection_map')
         @include('entities.pages.relations._map', ['option' => null, 'isPost' => true, 'mode' => 'map'])
+    @elseif($post->layout?->code == 'children')
+        @include('entities.components.posts.children')
     @elseif ($post->layout?->code == 'character_orgs' && $entity->isCharacter())
         @include('characters.panels.organisations', ['character' => $entity->child])
     @elseif ($post->layout?->code == 'quest_elements' && $entity->isQuest())

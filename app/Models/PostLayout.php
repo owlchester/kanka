@@ -33,6 +33,10 @@ class PostLayout extends Model
 
     public function scopeEntity(Builder $query, int $type): Builder
     {
+        if (in_array($type, [config('entities.ids.character'), config('entities.ids.dice_roll'), config('entities.ids.conversation')])) {
+            return $query->where('code', '!=', 'children')->whereNull('entity_type_id')->orWhere('entity_type_id', $type);
+        }
+
         return $query->whereNull('entity_type_id')->orWhere('entity_type_id', $type);
     }
 
@@ -42,6 +46,8 @@ class PostLayout extends Model
             return __('crud.tabs.' . $this->code);
         } elseif ($this->code === 'entry') {
             return __('crud.fields.' . $this->code);
+        } elseif ($this->code === 'children') {
+            return __('tags.fields.' . $this->code);
         }
 
         return __('post_layouts.' . $this->code);
