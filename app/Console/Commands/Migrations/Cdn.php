@@ -27,11 +27,15 @@ class Cdn extends Command
     public function handle()
     {
         $tables = [
-            'posts' => 'entry',
-            'timeline_eras' => 'entry',
-            'timeline_elements' => 'entry',
-            'quest_elements' => 'description',
-            'attributes' => 'value'
+//            'posts' => 'entry',
+//            'timeline_eras' => 'entry',
+//            'timeline_elements' => 'entry',
+//            'quest_elements' => 'description',
+//            'attributes' => 'value',
+            'campaigns' => 'entry',
+            'entities' => 'entry',
+            'map_layers' => 'entry',
+            'character_traits' => 'entry',
         ];
         $old = 'https://kanka-user-assets.s3.eu-central-1.amazonaws.com/';
         $new = 'https://cdn-ugc.kanka.io/';
