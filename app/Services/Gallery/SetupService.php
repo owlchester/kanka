@@ -191,6 +191,7 @@ class SetupService
             'file_type' => __('campaigns/gallery.fields.file_type'),
             'uploaded_by' => __('campaigns/gallery.fields.created_by'),
             'focus_point' => __('campaigns/gallery.actions.focus_point'),
+            'update_image' => __('campaigns/gallery.actions.update_file'),
             'link' => __('campaigns/gallery.fields.link'),
             'open' => __('crud.actions.open'),
             'focus_locked' => __('campaigns/gallery.focus.locked'),

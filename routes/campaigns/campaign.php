@@ -22,6 +22,7 @@ Route::get('/w/{campaign}/gallery-index', 'GalleryController@index')->name('camp
 Route::post('/w/{campaign}/gallery/ajax-upload', 'Summernote\GalleryController@upload')->name('campaign.gallery.ajax-upload');
 Route::get('/w/{campaign}/gallery/ajax-gallery', 'Summernote\GalleryController@index')->name('campaign.gallery.summernote');
 
+Route::post('/w/{campaign}/gallery/{image}/upload/file', [App\Http\Controllers\Gallery\UploadController::class, 'updateFile'])->name('gallery.upload.update');
 Route::post('/w/{campaign}/gallery/upload/file', [App\Http\Controllers\Gallery\UploadController::class, 'file'])->name('gallery.upload.file');
 Route::post('/w/{campaign}/gallery/upload/files', [App\Http\Controllers\Gallery\UploadController::class, 'files'])->name('gallery.upload.files');
 Route::post('/w/{campaign}/gallery/upload/url', [App\Http\Controllers\Gallery\UploadController::class, 'url'])->name('gallery.upload.url');

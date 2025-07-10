@@ -2,6 +2,7 @@
 
 namespace App\Services\Gallery;
 
+use App\Facades\CampaignCache;
 use App\Facades\Limit;
 use App\Http\Resources\GalleryFile;
 use App\Models\Image;
@@ -85,6 +86,25 @@ class UploadService
 
         $file->storePubliclyAs($this->image->folder, $this->image->file);
         $this->storage->campaign($this->campaign)->clearCache();
+
+        return $this->format();
+    }
+
+    public function updatedFile(UploadedFile $file, Image $image): array
+    {
+        Storage::delete($image->path);
+
+        $this->image = $image;
+        $this->image->ext = Str::before($file->extension(), '?');
+        $this->image->size = (int) ceil($file->getSize() / 1024); // kb
+        $this->image->focus_x = null;
+        $this->image->focus_y = null;
+        $this->image->save();
+
+        $file->storePubliclyAs($this->image->folder, $this->image->file);
+        $this->storage->campaign($this->campaign)->clearCache();
+        CampaignCache::clear();
+
 
         return $this->format();
     }

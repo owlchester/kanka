@@ -54,6 +54,10 @@ class GalleryFile extends JsonResource
                     $this->campaign,
                     $file,
                 ]),
+                'image' => route('gallery.upload.update', [
+                    $this->campaign,
+                    $file,
+                ]),
             ],
         ];
     }
