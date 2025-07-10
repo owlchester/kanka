@@ -60,9 +60,8 @@ class Cdn extends Command
 
         $tableName = 'plugin_versions';
         $column = 'json';
-        $old = 'https://kanka-user-assets.s3.eu-central-1.amazonaws.com/';
-        $replace = 'https:\/\/kanka-user-assets.s3.eu-central-1.amazonaws.com\/';
-        $new = 'https:\/\/cdn-ugc.kanka.io\/';
+        $old = 'kanka-user-assets.s3.eu-central-1.amazonaws.com';
+        $new = 'cdn-ugc.kanka.io';
         $this->info("Migrating $tableName ($column)...");
         do {
             $affected = DB::update("
@@ -70,7 +69,7 @@ class Cdn extends Command
                 SET `$column` = REPLACE(`$column`, ?, ?)
                 WHERE `$column` LIKE ?
                 LIMIT $batchSize
-            ", [$old, $replace, "%$old%"]);
+            ", [$old, $new, "%$old%"]);
             $this->info(" Updated $affected rows...");
         } while ($affected > 0);
 
