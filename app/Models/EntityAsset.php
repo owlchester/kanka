@@ -205,9 +205,9 @@ class EntityAsset extends Model
         }
 
         $path = $this->metadata['path'];
-        $cloudfront = config('filesystems.disks.cloudfront.url');
-        if ($cloudfront) {
-            return Storage::disk('cloudfront')->url($path);
+        $cdn = config('cdn.ugc');
+        if ($cdn) {
+            return $cdn . '/' . $path;
         }
 
         return Storage::url($path);
