@@ -60,7 +60,8 @@ class Cdn extends Command
 
         $tableName = 'plugin_versions';
         $column = 'json';
-        $old = 'https:\/\/kanka-user-assets.s3.eu-central-1.amazonaws.com\/';
+        $old = 'https://kanka-user-assets.s3.eu-central-1.amazonaws.com/';
+        $replace = 'https:\/\/kanka-user-assets.s3.eu-central-1.amazonaws.com\/';
         $new = 'https:\/\/cdn-ugc.kanka.io\/';
         $this->info("Migrating $tableName ($column)...");
         do {
@@ -69,7 +70,7 @@ class Cdn extends Command
                 SET `$column` = REPLACE(`$column`, ?, ?)
                 WHERE `$column` LIKE ?
                 LIMIT $batchSize
-            ", [$old, $new, "%$old%"]);
+            ", [$old, $replace, "%$old%"]);
             $this->info(" Updated $affected rows...");
         } while ($affected > 0);
 
