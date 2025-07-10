@@ -36,31 +36,41 @@ class Cdn extends Command
 //            'entities' => 'entry',
 //            'map_layers' => 'entry',
 //            'character_traits' => 'entry',
-            'plugin_versions' => ['content', 'json'],
+            'plugin_versions' => 'content',
         ];
         $old = 'https://kanka-user-assets.s3.eu-central-1.amazonaws.com/';
         $new = 'https://cdn-ugc.kanka.io/';
         $batchSize = 1000;
 
-        foreach ($tables as $tableName => $columns) {
-            if (!is_array($columns)) {
-                $columns = [$columns];
-            }
-            foreach ($columns as $column) {
-                $this->info("Migrating $tableName ($column)...");
-                do {
-                    $affected = DB::update("
+        foreach ($tables as $tableName => $column) {
+            $this->info("Migrating $tableName ($column)...");
+            do {
+                $affected = DB::update("
+            UPDATE `$tableName`
+            SET `$column` = REPLACE(`$column`, ?, ?)
+            WHERE `$column` LIKE ?
+            LIMIT $batchSize
+        ", [$old, $new, "%$old%"]);
+
+                $this->info(" Updated $affected rows...");
+
+            } while ($affected > 0);
+
+        }
+
+        $tableName = 'plugin_versions';
+        $column = 'json';
+        $this->info("Migrating $tableName ($column)...");
+        do {
+            $affected = DB::update("
                 UPDATE `$tableName`
                 SET `$column` = REPLACE(`$column`, ?, ?)
                 WHERE `$column` LIKE ?
                 LIMIT $batchSize
             ", [$old, $new, "%$old%"]);
+            $this->info(" Updated $affected rows...");
+        } while ($affected > 0);
 
-                    $this->info(" Updated $affected rows...");
-
-                } while ($affected > 0);
-            }
-        }
 
         $this->info("URL replacement completed.");
     }
