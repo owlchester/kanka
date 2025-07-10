@@ -18,7 +18,7 @@ if (!isset($model) && !empty($campaign->ui_settings['post_collapsed'])) {
 if (isset($model)) {
     $hideLayout = 1;
     if ($model->layout_id) {
-        $layoutHelper = __('post_layouts.helper', ['subpage' => $model->layout->name()]);
+        $layoutHelper = __('post_layouts.helper', ['subpage' => '<span class="font-bold">' . $model->layout->name() . '</span>']);
     }
 }
 
@@ -31,17 +31,7 @@ if (isset($template)) {
 $last = array_key_last($options);
 
 $bragiName = $entity->isCharacter() ? $entity->name : null;
-$layouts = PostLayout::entity($entity->type_id)->get();
-$layoutDefault = ['' => __('crud.fields.entry')];
 
-foreach($layouts as $layout) {
-    $layoutOptions[$layout->id] = $layout->name();
-}
-
-$collator = new \Collator(app()->getLocale());
-$collator->asort($layoutOptions);
-
-$layoutOptions = $layoutDefault + $layoutOptions
 ?>
 <div class="nav-tabs-custom">
     <div class="flex gap-2 items-center ">
@@ -67,15 +57,21 @@ $layoutOptions = $layoutDefault + $layoutOptions
                            maxlength="191" data-bragi-name="{{ $bragiName }}" data-live-disabled="1" data-1p-ignore="true" />
                 </x-forms.field>
 
-                <x-forms.field field="layout" :hidden="isset($layoutHelper)">
+                @if (isset($layoutOptions))
+                <x-forms.field field="layout">
                     <x-forms.select name="layout_id" :options="$layoutOptions" :selected="$source->layout_id ?? $model->layout_id ?? null"  id="post-layout-selector" />
                     <div id="post-layout-subform" style="display: none">
                         @includeWhen(!$campaign->superboosted(), 'entities.pages.posts._boosted')
                     </div>
                 </x-forms.field>
+                @endif
 
                 @if (isset($layoutHelper))
-                    <p class="text-neutral-content m-0">{{ $layoutHelper }}</p>
+                    <x-helper>
+                        <p class="text-neutral-content">
+                            {!! $layoutHelper !!}
+                        </p>
+                    </x-helper>
                 @endif
 
                 <x-forms.field field="entry" css="md:col-span-2" id="field-entry" :hidden="isset($layoutHelper)">

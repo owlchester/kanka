@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $code
  * @property array $config
  * @property EntityType|null $entityType
+ *
+ *
+ * @method static self|Builder entity(EntityType $entityType)
  */
 class PostLayout extends Model
 {
@@ -31,13 +34,16 @@ class PostLayout extends Model
         return $this->belongsTo('App\Models\EntityType', 'entity_type_id', 'id');
     }
 
-    public function scopeEntity(Builder $query, int $type): Builder
+    public function scopeEntity(Builder $query, EntityType $entityType): Builder
     {
-        if (in_array($type, [config('entities.ids.character'), config('entities.ids.dice_roll'), config('entities.ids.conversation')])) {
-            return $query->where('code', '!=', 'children')->whereNull('entity_type_id')->orWhere('entity_type_id', $type);
+        if (!$entityType->isNested()) {
+            $query->where('code', '!=', 'children');
         }
 
-        return $query->whereNull('entity_type_id')->orWhere('entity_type_id', $type);
+        return $query->where(function ($sub) use ($entityType) {
+            $sub->whereNull('entity_type_id')
+                ->orWhere('entity_type_id', $entityType->id);
+        });
     }
 
     public function name(): string

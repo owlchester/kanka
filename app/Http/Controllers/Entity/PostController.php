@@ -7,10 +7,12 @@ use App\Http\Requests\StorePost;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\Post;
+use App\Models\PostLayout;
 use App\Services\MultiEditingService;
 use App\Services\Posts\Permissions\SavePermissionsService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
+use Collator;
 
 class PostController extends Controller
 {
@@ -40,9 +42,22 @@ class PostController extends Controller
             $template = Post::postTemplates($campaign)->where('posts.id', $template)->first();
         }
 
+        /** @var PostLayout[] $layouts */
+        $layouts = PostLayout::entity($entity->entityType)->get();
+        $layoutDefault = ['' => __('crud.fields.entry')];
+
+        foreach ($layouts as $layout) {
+            $layoutOptions[$layout->id] = $layout->name();
+        }
+
+        $collator = new Collator(app()->getLocale());
+        $collator->asort($layoutOptions);
+        $layoutOptions = $layoutDefault + $layoutOptions;
+
         return view('entities.pages.posts.create', compact(
             'campaign',
             'post',
+            'layoutOptions',
             'entity',
             'parentRoute',
             'templates',
