@@ -105,7 +105,6 @@ class UploadService
         $this->storage->campaign($this->campaign)->clearCache();
         CampaignCache::clear();
 
-
         return $this->format();
     }
 
