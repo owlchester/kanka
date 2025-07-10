@@ -61,7 +61,7 @@ class GalleryController extends Controller
         /** @var Image $image */
         foreach ($images as $image) {
             $response['data'][] = [
-                'src' => Storage::url($image->path),
+                'src' => $image->url(),
                 'title' => $image->name,
                 'folder' => $image->is_folder,
                 'icon' => 'fa-regular fa-folder',
