@@ -26,7 +26,6 @@ return [
         'patreon'   => [
             'api_calls'         => 'Więcej wywołań API (90 na minutę)',
             'boosts'            => 'Doładowania kampanii',
-            'curation'          => 'Udział w wyborze przedmiotu głosowania społeczności',
             'default_image'     => 'Własne domyślne ikony elementów kampanii',
             'discord'           => 'Prywatny kanał na Discordzie',
             'free'              => 'Darmowa',

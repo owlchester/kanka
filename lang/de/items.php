@@ -14,9 +14,7 @@ return [
         'weight'        => 'Gewicht',
     ],
     'helpers'       => [],
-    'hints'         => [
-        'items' => 'Organisiere Gegenstände mithilfe des übergeordneten Gegenstandfelds.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'inventories'   => [],
     'placeholders'  => [

@@ -5,13 +5,10 @@ return [
         'placeholder'   => 'Vybrať obrázok z galérie kampane',
     ],
     'gallery-header'    => [
-        'boosted-description'   => 'Zobraziť obrázok záhlavia z galérie kampane pomocou :superboosted-campaign.',
-        'description'           => 'Ak objekt nemá žiaden obrázok záhlavia, zobraziť namiesto toho obrázok z galérie kampane.',
+        'description'   => 'Ak objekt nemá žiaden obrázok záhlavia, zobraziť namiesto toho obrázok z galérie kampane.',
     ],
     'gallery-image'     => [
-        'boosted-description'   => 'Zobraziť obrázok z galérie kampane pomocou :superboosted-campaign.',
-        'description'           => 'Ak objekt nemá žiaden obrázok, zobraziť namiesto toho obrázok z galérie kampane.',
-        'title'                 => 'Obrázok z galérie',
+        'description'   => 'Ak objekt nemá žiaden obrázok, zobraziť namiesto toho obrázok z galérie kampane.',
     ],
     'header-image'      => [
         'boosted-description'   => 'Zobraziť obrázok pozadia v záhlaví objektu pomocou :boosted-campaign.',

@@ -26,7 +26,6 @@ return [
         'patreon'   => [
             'api_calls'         => 'Vyšší počet API volaní (90)',
             'boosts'            => 'Boosty pre kampane',
-            'curation'          => 'Navrhuj komunitné hlasovania',
             'default_image'     => 'Pekné prednastavené obrázky pre objekty',
             'discord'           => 'Privátny kanál na Discorde',
             'free'              => 'Zadarmo',

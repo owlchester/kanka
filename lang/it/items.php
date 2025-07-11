@@ -13,9 +13,7 @@ return [
         'size'          => 'Taglia',
     ],
     'helpers'       => [],
-    'hints'         => [
-        'items' => 'Organizza gli oggetti usando il campo dell\'oggetto genitore.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'inventories'   => [],
     'placeholders'  => [

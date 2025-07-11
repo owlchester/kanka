@@ -13,20 +13,17 @@ return [
     ],
     'members'       => [
         'actions'       => [
-            'add'           => 'Ajouter un membre',
             'add_multiple'  => 'Ajouter des membres',
         ],
         'create'        => [
             'helper'            => 'Ajouter un ou plusieurs membres à :name.',
             'success_multiple'  => '{1} Ajouté :count membre à :name.|[2,*] Ajouté :count membres à :name.',
-            'title_multiple'    => 'Nouveaux membres',
         ],
         'destroy'       => [
             'success'   => 'Membre retiré de l\'organisation',
         ],
         'edit'          => [
             'helper'    => 'Change le status de membre pour :name.',
-            'success'   => 'Membre modifié.',
             'title'     => 'Modifier Membre pour :name',
         ],
         'fields'        => [

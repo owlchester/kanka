@@ -26,7 +26,6 @@ return [
         'patreon'   => [
             'api_calls'         => 'Llamadas a la API aumentadas (90)',
             'boosts'            => 'Mejoras de campaña',
-            'curation'          => 'Ayuda a crear la lista mensual de votos',
             'default_image'     => 'Imágenes bonitas por defecto para las entidades',
             'discord'           => 'Canal privado de Discord',
             'free'              => 'Gratis',

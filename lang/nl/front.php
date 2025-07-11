@@ -18,7 +18,6 @@ return [
         'patreon'   => [
             'api_calls'         => 'Verhoogde API calls (90 per minuut)',
             'boosts'            => 'Campaign Boosters',
-            'curation'          => 'Help bij het samenstellen van de stem items van de community',
             'default_image'     => 'Custom standaard afbeeldingen voor entiteiten',
             'discord'           => 'Privé Discord kanaal',
             'free'              => 'Gratis',

@@ -29,9 +29,7 @@ return [
         'role'          => 'Uloga',
     ],
     'helpers'       => [],
-    'hints'         => [
-        'quests'    => 'Mreža isprepletenih zadataka se može napraviti korištenjem Zadatak roditelj polja.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Stvarni datum zadatka',

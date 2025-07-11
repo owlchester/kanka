@@ -33,9 +33,6 @@ return [
         'age'           => [
             'helper'    => 'Možeš koristiti + i - prije broja za ažuriranje dobi za taj iznos.',
         ],
-        'delete'        => [
-            'warning'   => 'Jesi li siguran/a da želiš izbrisati odabrane entitete?',
-        ],
         'edit'          => [
             'tagging'   => 'Akcija za oznake',
             'tags'      => [

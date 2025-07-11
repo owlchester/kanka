@@ -5,13 +5,10 @@ return [
         'placeholder'   => 'Elige una imagen de la galería',
     ],
     'gallery-header'    => [
-        'boosted-description'   => 'Muestra una imagen de cabecera desde la galería con una :superboosted-campaign.',
-        'description'           => 'Si la entidad no tiene imagen de cabecera, muestra una imagen de la galería.',
+        'description'   => 'Si la entidad no tiene imagen de cabecera, muestra una imagen de la galería.',
     ],
     'gallery-image'     => [
-        'boosted-description'   => 'Muestra una imagen de la galería con una :superboosted-campaign.',
-        'description'           => 'Si la entidad no tiene imagen, muestra una imagen de la galería.',
-        'title'                 => 'Imagen de galería',
+        'description'   => 'Si la entidad no tiene imagen, muestra una imagen de la galería.',
     ],
     'header-image'      => [
         'boosted-description'   => 'Muestra una imagen de fondo en la cabecera de la entidad con una :boosted-campaign.',

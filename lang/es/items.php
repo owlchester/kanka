@@ -14,9 +14,7 @@ return [
         'weight'        => 'Peso',
     ],
     'helpers'       => [],
-    'hints'         => [
-        'items' => 'Organice los ítems utilizando el campo del ítem padre.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'inventories'   => [],
     'placeholders'  => [

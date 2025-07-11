@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'families'      => [],
-    'fields'        => [
-        'members'   => 'Členovia',
-    ],
+    'fields'        => [],
     'helpers'       => [],
     'hints'         => [
         'is_extinct'    => 'Tento rod vyhynul.',
@@ -18,13 +16,8 @@ return [
     'index'         => [],
     'members'       => [
         'create'    => [
-            'submit'    => 'Pridať členov',
             'success'   => '{0} Žiaden člen nebol pridaný.|{1} 1 člen bol pridaný.|[2,4] :count členovia boli pridaní.|[5,*] :count členov bolo pridaných.',
             'title'     => 'Noví členovia',
-        ],
-        'helpers'   => [
-            'all_members'       => 'Nasledujúci zoznam zobrazuje všetky postavy, ktoré sú súčasťou tohto alebo podradeného rodu.',
-            'direct_members'    => 'Väčšina rodov má členov/ky, ktorí/é ich vedú alebo ich urobili slávnymi. Nasledujúci zoznam zobrazuje postavy, ktoré sú priamymi členmi/kami rodu.',
         ],
     ],
     'placeholders'  => [
@@ -33,8 +26,7 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'members'   => 'Členovia/ky',
-            'tree'      => 'Rodokmeň',
+            'tree'  => 'Rodokmeň',
         ],
     ],
 ];

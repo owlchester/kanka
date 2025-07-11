@@ -2,44 +2,42 @@
 
 return [
     'campaign'          => [
-        'application'           => [
+        'application'       => [
             'approved'              => 'La tua candidatura alla campagna :campaign è stata approvata.',
             'approved_message'      => 'La tua candidatura alla campagna :campaign è stata approvata. Messaggio allegato: :reason',
             'new'                   => 'Nuova candidatura per :campaign.',
             'rejected'              => 'La tua candidatura alla campagna :campaign è stata rifiutata. Motivo dichiarato: :reason',
             'rejected_no_message'   => 'La tua candidatura alla campagna :campaign è stata rifiutata.',
         ],
-        'asset_export'          => 'È disponibile l\'esportazione degli asset di una campagna. Il link è disponibile in :time minuti.',
-        'asset_export_error'    => 'Si è verificato un errore durante l\'esportazione degli asset della campagna. Questo accade nelle campagne di grandi dimensioni.',
-        'boost'                 => [
+        'asset_export'      => 'È disponibile l\'esportazione degli asset di una campagna. Il link è disponibile in :time minuti.',
+        'boost'             => [
             'add'           => 'La campagna :campaign viene potenziata da :user.',
             'remove'        => ':user non sta più potenziando la campagna :campaign.',
             'superboost'    => 'La campagna :campaign sta venendo supportata da :user.',
         ],
-        'deleted'               => 'La campagna :campaign è stata eliminata.',
-        'export'                => 'Un\'esportazione di una campagna è disponibile. Il link sarà disponibile in :time minuti.',
-        'export_error'          => 'Abbiamo riscontrato un errore nell\'esportazione delle entità della campagna. Per favore contattaci se questo problema dovesse persistere.',
-        'hidden'                => 'La campagna :campaign è ora nascosta dalla pagina delle campagne pubbliche.',
-        'import'                => [
+        'deleted'           => 'La campagna :campaign è stata eliminata.',
+        'export'            => 'Un\'esportazione di una campagna è disponibile. Il link sarà disponibile in :time minuti.',
+        'export_error'      => 'Abbiamo riscontrato un errore nell\'esportazione delle entità della campagna. Per favore contattaci se questo problema dovesse persistere.',
+        'hidden'            => 'La campagna :campaign è ora nascosta dalla pagina delle campagne pubbliche.',
+        'import'            => [
             'failed'    => 'L\'importazione della campagna :campaign non è riuscita.',
             'success'   => 'La campagna :campaign ha terminato l\'importazione.',
         ],
-        'join'                  => ':user si è unito alla campagna :campaign.',
-        'leave'                 => ':user ha lasciato la campagna :campaign.',
-        'plugin'                => [
+        'join'              => ':user si è unito alla campagna :campaign.',
+        'leave'             => ':user ha lasciato la campagna :campaign.',
+        'plugin'            => [
             'deleted'   => 'Il plugin :plugin è stato eliminato dal marketplace e rimosso dalla tua campagna :campagna.',
         ],
-        'premium'               => [
+        'premium'           => [
             'add'       => 'Le funzionalità premium sono state sbloccate per la campagna :campaign da :user.',
             'remove'    => 'L\'utente :user non sblocca più le funzioni premium per la campagna :campaign.',
         ],
-        'removed-image'         => 'L\'immagine o l\'intestazione di :entity è stata rimossa a causa di una violazione del copyright.',
-        'role'                  => [
+        'removed-image'     => 'L\'immagine o l\'intestazione di :entity è stata rimossa a causa di una violazione del copyright.',
+        'role'              => [
             'add'       => 'Sei stato aggiunto al ruolo :role nella campagna :campaign.',
             'remove'    => 'Sei stato rimosso dal ruolo :role nella campagna :campaign.',
         ],
-        'shown'                 => 'La campagna :campaign è ora visibile nella pagina delle campagne pubbliche.',
-        'troubleshooting'       => [
+        'troubleshooting'   => [
             'joined'    => 'Il membro del team Kanka :user ha aderito alla campagna :campaign.',
         ],
     ],

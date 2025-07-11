@@ -14,9 +14,7 @@ return [
         'weight'        => 'Waga',
     ],
     'helpers'       => [],
-    'hints'         => [
-        'items' => 'Porządkuj przedmioty według źródeł',
-    ],
+    'hints'         => [],
     'index'         => [],
     'inventories'   => [],
     'placeholders'  => [

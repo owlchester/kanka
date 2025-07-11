@@ -12,9 +12,7 @@ return [
         'size'      => 'Размеры',
     ],
     'helpers'       => [],
-    'hints'         => [
-        'items' => 'Организуйте предметы с помощью поля родительского предмета.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'inventories'   => [],
     'placeholders'  => [

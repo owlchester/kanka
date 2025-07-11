@@ -14,9 +14,7 @@ return [
         'weight'        => 'Váha',
     ],
     'helpers'       => [],
-    'hints'         => [
-        'items' => 'Organizuj predmety pomocou nadradených predmetov.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'inventories'   => [],
     'placeholders'  => [

@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'families'      => [],
-    'fields'        => [
-        'members'   => 'Miembros',
-    ],
+    'fields'        => [],
     'helpers'       => [],
     'hints'         => [
         'is_extinct'    => 'Esta familia está extinta.',
@@ -18,13 +16,8 @@ return [
     'index'         => [],
     'members'       => [
         'create'    => [
-            'submit'    => 'Añadir miembros',
             'success'   => '{0} No se ha añadido ningún miembro. |{1} Se ha añadido 1 miembro. |[2,*] Se han añadido :count miembros.',
             'title'     => 'Nuevos miembros',
-        ],
-        'helpers'   => [
-            'all_members'       => 'Aquí se muestran todos los personajes de esta familia y de todas sus subfamilias.',
-            'direct_members'    => 'Muchas familias tienen miembros que las hicieron famosas. Aquí se muestran los personajes que están directamente en esta familia.',
         ],
     ],
     'placeholders'  => [
@@ -33,8 +26,7 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'members'   => 'Miembros',
-            'tree'      => 'Árbol genealógico',
+            'tree'  => 'Árbol genealógico',
         ],
     ],
 ];

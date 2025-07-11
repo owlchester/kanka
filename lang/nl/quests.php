@@ -13,9 +13,7 @@ return [
         'role'          => 'Rol',
     ],
     'helpers'       => [],
-    'hints'         => [
-        'quests'    => 'Met het veld Bovenliggende Quest kan een web van in elkaar grijpende quests worden gebouwd.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'placeholders'  => [
         'date'  => 'Echte werelddatum voor de quest',

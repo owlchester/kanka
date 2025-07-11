@@ -35,9 +35,7 @@ return [
     'helpers'       => [
         'is_completed'  => 'Seleziona se la missione è considerata completata.',
     ],
-    'hints'         => [
-        'quests'    => 'Una ragnatela di missioni interconnesse può essere costruita utilizzando il campo "Missione Genitore".',
-    ],
+    'hints'         => [],
     'index'         => [],
     'placeholders'  => [
         'date'      => 'Data del mondo reale per la missione',

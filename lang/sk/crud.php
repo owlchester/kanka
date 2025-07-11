@@ -50,9 +50,6 @@ return [
         'buttons'       => [
             'label' => 'Pre vybrané',
         ],
-        'delete'        => [
-            'warning'   => 'Naozaj chceš odstrániť vybrané objekty?',
-        ],
         'edit'          => [
             'locations' => 'Akcie s lokáciami',
             'tagging'   => 'Akcie s kategóriami',
@@ -100,12 +97,11 @@ return [
         'empty' => 'Zatiaľ je tu prázdno.',
     ],
     'delete_modal'      => [
-        'callout'           => 'Psst!',
-        'confirm'           => 'Potvrdiť odstránenie',
-        'description_v2'    => 'Odstraňuješ ":tag".',
-        'permanent'         => 'Táto akcia je natrvalo.',
-        'recoverable'       => 'Objekty je možné obnoviť až do :day dní s :boosted-campaign.',
-        'title'             => 'Potvrdiť odstránenie',
+        'callout'       => 'Psst!',
+        'confirm'       => 'Potvrdiť odstránenie',
+        'permanent'     => 'Táto akcia je natrvalo.',
+        'recoverable'   => 'Objekty je možné obnoviť až do :day dní s :boosted-campaign.',
+        'title'         => 'Potvrdiť odstránenie',
     ],
     'destroy_many'      => [
         'success'   => ':count objekt zmazaný|:count objekty zmazané',
@@ -217,7 +213,6 @@ return [
     'helpers'           => [
         'copy_options'  => 'Kopírovať nasledujúce prepojené prvky zo zdroja do nového objektu.',
         'linking'       => 'Prepojenia s inými objektami',
-        'nested_parent' => 'Zobrazenie podobjektov :parent.',
         'pagination'    => [
             'settings'  => 'nastavení zobrazenia',
             'text'      => 'Viacero výsledkov na stránke zobrazíš zmenou tvojich :settings.',

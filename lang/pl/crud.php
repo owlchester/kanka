@@ -50,9 +50,6 @@ return [
         'buttons'       => [
             'label' => 'Dla wybranych',
         ],
-        'delete'        => [
-            'warning'   => 'Czy na pewno usunąć wybrane elementy?',
-        ],
         'edit'          => [
             'locations' => 'Działania miejsca',
             'tagging'   => 'Działania etykiety',
@@ -100,12 +97,11 @@ return [
         'empty' => 'Na razie nic tu nie ma.',
     ],
     'delete_modal'      => [
-        'callout'           => 'Psst!',
-        'confirm'           => 'Potwierdź usunięcie',
-        'description_v2'    => 'Usuwasz ":tag".',
-        'permanent'         => 'Tego działania nie można cofnąć.',
-        'recoverable'       => 'Usunięte elementy można odzyskiwać przez :day dni w :boosted-campaign.',
-        'title'             => 'Potwierdzanie usunięcia',
+        'callout'       => 'Psst!',
+        'confirm'       => 'Potwierdź usunięcie',
+        'permanent'     => 'Tego działania nie można cofnąć.',
+        'recoverable'   => 'Usunięte elementy można odzyskiwać przez :day dni w :boosted-campaign.',
+        'title'         => 'Potwierdzanie usunięcia',
     ],
     'destroy_many'      => [
         'success'   => 'Usunięto :count element|Usunięto :count elementy.|Usunięto :count elementów.',
@@ -217,7 +213,6 @@ return [
     'helpers'           => [
         'copy_options'  => 'Skopiuj następujące elementy elementu źródłowego do nowego elementu.',
         'linking'       => 'Łącza do innych elementów',
-        'nested_parent' => 'Wyświetl pochodne :parent',
         'pagination'    => [
             'settings'  => 'ustawienia wyglądu',
             'text'      => 'Możesz wyświetlać więcej wpisów na stronie, zmieniając swoje :settings.',

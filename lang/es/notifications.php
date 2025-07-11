@@ -7,45 +7,43 @@ return [
         ],
     ],
     'campaign'          => [
-        'application'           => [
+        'application'       => [
             'approved'              => 'Tu solicitud para la campaña :campaign ha sido aprobada.',
             'approved_message'      => 'Tu inscripción a la campaña :campaign ha sido aprobada. Mensaje proporcionado: :reason',
             'new'                   => 'Nueva solicitud para :campaign.',
             'rejected'              => 'Tu solicitud para la campaña :campaign ha sido rechazada. Motivo:',
             'rejected_no_message'   => 'Su inscripción a la campaña :campaign ha sido rechazada.',
         ],
-        'asset_export'          => 'Está disponible una exportación de la campaña. El enlace estará disponible durante :time minutos.',
-        'asset_export_error'    => 'Ha ocurrido un error durante la exportación de los assets de la campaña. Esto puede ocurrir en las campañas muy grandes.',
-        'boost'                 => [
+        'asset_export'      => 'Está disponible una exportación de la campaña. El enlace estará disponible durante :time minutos.',
+        'boost'             => [
             'add'           => ':user está mejorando la campaña :campaign.',
             'remove'        => ':user ya no está mejorando la campaña :campaign.',
             'superboost'    => ':user está supermejorando la campaña :campaign.',
         ],
-        'deleted'               => 'Se ha eliminado la campaña :campaign.',
-        'export'                => 'Ya se ha exportado tu campaña. El enlace estará disponible durante :time minutos.',
-        'export_error'          => 'Ha ocurrido un error mientras se exportaba tu campaña. Por favor, contáctanos si el error persiste.',
-        'hidden'                => 'La campaña :campaign está ahora oculta de la página de campañas públicas.',
-        'import'                => [
+        'deleted'           => 'Se ha eliminado la campaña :campaign.',
+        'export'            => 'Ya se ha exportado tu campaña. El enlace estará disponible durante :time minutos.',
+        'export_error'      => 'Ha ocurrido un error mientras se exportaba tu campaña. Por favor, contáctanos si el error persiste.',
+        'hidden'            => 'La campaña :campaign está ahora oculta de la página de campañas públicas.',
+        'import'            => [
             'failed'    => 'La importación de la campaña :campaign ha fallado.',
             'success'   => 'La campaña :campaign ha terminado de importarse.',
         ],
-        'join'                  => ':user se ha unido a la campaña :campaign.',
-        'leave'                 => ':user ha abandonado la campaña :campaign.',
-        'new_owner'             => 'Has sido designado administrador de :campaign.',
-        'plugin'                => [
+        'join'              => ':user se ha unido a la campaña :campaign.',
+        'leave'             => ':user ha abandonado la campaña :campaign.',
+        'new_owner'         => 'Has sido designado administrador de :campaign.',
+        'plugin'            => [
             'deleted'   => 'El plugin :plugin se ha eliminado del marketplace y de tu campaña :campaign.',
         ],
-        'premium'               => [
+        'premium'           => [
             'add'       => 'Se han desbloqueado funciones premium para la campaña :campaign por :user.',
             'remove'    => ':user ya no desbloquea funciones premium para la campaña :campaign.',
         ],
-        'removed-image'         => 'La imagen o cabecera de :entity se ha eliminado debido a un reclamo de derechos de autor.',
-        'role'                  => [
+        'removed-image'     => 'La imagen o cabecera de :entity se ha eliminado debido a un reclamo de derechos de autor.',
+        'role'              => [
             'add'       => 'Te han asignado el rol :role en la campaña :campaign.',
             'remove'    => 'Has sido eliminado del rol :role en la campaña :campaign.',
         ],
-        'shown'                 => 'La campaña :campaign es ahora visible en la página de campañas públicas.',
-        'troubleshooting'       => [
+        'troubleshooting'   => [
             'joined'    => ':user, miembro del equipo de Kanka, se ha unido a la campaña :campaign.',
         ],
     ],

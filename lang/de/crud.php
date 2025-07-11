@@ -50,9 +50,6 @@ return [
         'buttons'       => [
             'label' => 'Für ausgewählt',
         ],
-        'delete'        => [
-            'warning'   => 'Möchten Sie die ausgewählten Objekte wirklich löschen?',
-        ],
         'edit'          => [
             'locations' => 'Aktion für Standorte',
             'tagging'   => 'Aktion für Tags',
@@ -100,12 +97,11 @@ return [
         'empty' => 'Nichts zu sehen bisher.',
     ],
     'delete_modal'      => [
-        'callout'           => 'Psst!',
-        'confirm'           => 'Bestätige das Entfernen',
-        'description_v2'    => 'Du entfernst ":tag".',
-        'permanent'         => 'Diese Aktion ist dauerhaft.',
-        'recoverable'       => 'Objekte können mit einer :boosted-campaign bis zu :day Tage lang wiederhergestellt werden.',
-        'title'             => 'Löschen bestätigen',
+        'callout'       => 'Psst!',
+        'confirm'       => 'Bestätige das Entfernen',
+        'permanent'     => 'Diese Aktion ist dauerhaft.',
+        'recoverable'   => 'Objekte können mit einer :boosted-campaign bis zu :day Tage lang wiederhergestellt werden.',
+        'title'         => 'Löschen bestätigen',
     ],
     'destroy_many'      => [
         'success'   => ':count Objekt gelöscht|:count Objekte gelöscht',
@@ -217,7 +213,6 @@ return [
     'helpers'           => [
         'copy_options'  => 'Kopieren Sie die folgenden verwandten Elemente aus der Quelle in das neue Objekt.',
         'linking'       => 'Verknüpfung mit anderen Objekten',
-        'nested_parent' => 'Anzeige der untergeordneten Objekte von :parent.',
         'pagination'    => [
             'settings'  => 'Darstellungseinstellungen',
             'text'      => 'Durch Ändern deiner :settings können mehr Ergebnisse pro Seite angezeigt werden.',
