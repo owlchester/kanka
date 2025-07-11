@@ -39,6 +39,7 @@ return [
     ],
     'filters'   => [
         'only_unused'   => 'Afficher uniquement les fichiers inutilisés',
+        'sort'          => 'Ordonner',
     ],
     'move'      => [
         'success'   => '[0] Aucun élément déplacé|[1] Un élément déplacé|{2,*} :count éléments déplacés',

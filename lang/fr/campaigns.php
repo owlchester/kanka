@@ -382,6 +382,7 @@ return [
             'deletion'          => 'Suppression',
             'export'            => 'Export',
             'import'            => 'Import',
+            'logs'              => 'Journaux',
             'management'        => 'Gestion',
             'members'           => 'Membres',
             'modules'           => 'Modules',

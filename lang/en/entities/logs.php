@@ -26,7 +26,7 @@ return [
     'show'              => [
         'title' => ':name - Changes',
     ],
-    'tooltips' => [
-        'post' => 'Go to the post',
+    'tooltips'          => [
+        'post'  => 'Go to the post',
     ],
 ];

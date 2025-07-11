@@ -10,9 +10,9 @@ return [
     ],
     'members'       => [
         'create'    => [
+            'helper'    => 'Add one or several members to :name.',
             'success'   => '{0} No member was added.|{1} 1 member was added.|[2,*] :count members were added.',
             'title'     => 'New Members',
-            'helper' => 'Add one or several members to :name.'
         ],
     ],
     'placeholders'  => [
@@ -21,7 +21,7 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'tree'      => 'Family tree',
+            'tree'  => 'Family tree',
         ],
     ],
 ];

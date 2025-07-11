@@ -12,6 +12,6 @@ return [
     'what_4'    => 'La :doc couvre tous les aspects de manière plus approfondie.',
     'what_5'    => 'Enfin, les "campaigns présentent ce que d\'autres ont fait avec Kanka.',
     'what_new'  => 'en commencer une nouvelle',
-    'what_now'  => 'Et maintenant ?',
+    'what_now'  => 'Et maintenant?',
     'why'       => 'Tu as reçu cet e-mail parce que tu t\'es inscrit sur notre site web.',
 ];

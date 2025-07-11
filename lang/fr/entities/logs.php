@@ -26,4 +26,7 @@ return [
     'show'              => [
         'title' => 'Historique de :name',
     ],
+    'tooltips'          => [
+        'post'  => 'Aller à l\'article',
+    ],
 ];

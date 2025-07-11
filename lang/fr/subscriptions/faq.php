@@ -2,7 +2,7 @@
 
 return [
     'cancellation'  => [
-        'answer'    => 'Absolument ! Ton abonnement te permet d\'activer des campagnes premium dont tous les membres bénéficient. Peu importe leur propre abonnement, tous les participants d\'une campagne premium profitent des fonctionnalités avancées, ce qui fait de Kanka une plateforme idéale pour la création de mondes en collaboration.',
+        'answer'    => 'Absolument! Ton abonnement te permet d\'activer des campagnes premium dont tous les membres bénéficient. Peu importe leur propre abonnement, tous les participants d\'une campagne premium profitent des fonctionnalités avancées, ce qui fait de Kanka une plateforme idéale pour la création de mondes en collaboration.',
         'question'  => 'Est-ce que je peux annuler mon abonnement à tout moment?',
     ],
     'cost'          => [
@@ -14,7 +14,7 @@ return [
         'question'  => 'Qu\'advient-il de mes données si j\'annule mon abonnement?',
     ],
     'discount'      => [
-        'answer'    => 'Oui ! Nos abonnés annuels bénéficient de deux mois gratuits par rapport à la facturation mensuelle. C\'est notre façon de te remercier pour ton engagement à long terme avec Kanka.',
+        'answer'    => 'Oui! Nos abonnés annuels bénéficient de deux mois gratuits par rapport à la facturation mensuelle. C\'est notre façon de te remercier pour ton engagement à long terme avec Kanka.',
         'question'  => 'Existe-t-il des réductions pour les abonnements annuels?',
     ],
     'downgrade'     => [
@@ -30,7 +30,7 @@ return [
         'question'  => 'Quels sont les moyens de paiement acceptés?',
     ],
     'refund'        => [
-        'answer'    => 'Oui ! Nous offrons une politique de remboursement intégral sous 14 jours, sans poser de questions, pour tous les abonnements annuels. Il te suffit de nous envoyer un email à :email pour demander ton remboursement, et nous nous occupons du reste.',
+        'answer'    => 'Oui! Nous offrons une politique de remboursement intégral sous 14 jours, sans poser de questions, pour tous les abonnements annuels. Il te suffit de nous envoyer un email à :email pour demander ton remboursement, et nous nous occupons du reste.',
         'question'  => 'Offrez-vous des remboursements?',
     ],
     'renewal'       => [
@@ -42,16 +42,16 @@ return [
         'question'  => 'Mes informations de paiement sont-elles sécurisées?',
     ],
     'sharing'       => [
-        'answer'    => 'Absolument ! Ton abonnement te permet d\'activer des campagnes premium dont tous les membres bénéficient. Peu importe leur propre abonnement, tous les participants d\'une campagne premium profitent des fonctionnalités avancées, ce qui fait de Kanka une plateforme idéale pour la création de mondes en collaboration.',
+        'answer'    => 'Absolument! Ton abonnement te permet d\'activer des campagnes premium dont tous les membres bénéficient. Peu importe leur propre abonnement, tous les participants d\'une campagne premium profitent des fonctionnalités avancées, ce qui fait de Kanka une plateforme idéale pour la création de mondes en collaboration.',
         'question'  => 'Puis-je partager mon compte/abonnement avec d\'autres personnes?',
     ],
     'title'         => 'Questions fréquemment posées',
     'trial'         => [
         'answer'    => 'Nous ne proposons pas d\'essai gratuit traditionnel, mais la version gratuite de Kanka offre déjà de puissants outils de création de mondes et de gestion de campagnes pour bien commencer. Lorsque tu es prêt à aller plus loin, un abonnement débloque des fonctionnalités premium comme une limite d\'upload d\'images plus élevée, une expérience sans publicité, des rôles Discord exclusifs et d\'autres améliorations pour ton monde.',
-        'question'  => 'Existe-t-il une version d\'essai gratuite ?',
+        'question'  => 'Existe-t-il une version d\'essai gratuite?',
     ],
     'update'        => [
         'answer'    => 'Mettre à jour tes informations de facturation est simple : rends-toi sur la page :billing dans les paramètres de ton compte. Là, tu peux modifier tes méthodes de paiement, mettre à jour ta carte bancaire ou changer ton adresse de facturation si nécessaire.',
-        'question'  => 'Comment mettre à jour mes informations de facturation ?',
+        'question'  => 'Comment mettre à jour mes informations de facturation?',
     ],
 ];

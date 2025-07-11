@@ -25,6 +25,7 @@ return [
             'success'   => 'Membre retiré de l\'organisation',
         ],
         'edit'          => [
+            'helper'    => 'Change le status de membre pour :name.',
             'success'   => 'Membre modifié.',
             'title'     => 'Modifier Membre pour :name',
         ],

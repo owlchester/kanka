@@ -25,6 +25,9 @@ return [
         'success'   => 'Webhook modifié avec succès',
         'title'     => 'Modifier le webhook',
     ],
+    'error'         => [
+        'pitch' => 'Débloques les fonctionalités premium pour avoir accès aux webhooks.',
+    ],
     'fields'        => [
         'enabled'           => 'Activé',
         'event'             => 'Événement',

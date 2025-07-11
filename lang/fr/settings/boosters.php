@@ -50,7 +50,7 @@ return [
             'title'         => 'Les campagnes boostées ont',
             'upload'        => 'Taille de fichier plus grand pour tous les membres de la campagne',
         ],
-        'description'   => 'Assignes des boosters aux campagnes et aides à débloquer des fonctionnalités incroyables pour tous les membres de la campagne. Pas impressionné par les campagnes boostées ? Nous avons ce qu\'il te faut avec des campagnes superboostées!',
+        'description'   => 'Assignes des boosters aux campagnes et aides à débloquer des fonctionnalités incroyables pour tous les membres de la campagne. Pas impressionné par les campagnes boostées? Nous avons ce qu\'il te faut avec des campagnes superboostées!',
         'more'          => 'Jettes un coup d\'oeil sur la liste complète des fonctionnalités sur la page :boosters.',
         'title'         => 'Accèdes au niveau supérieur avec la personnalisation et des avantages pour tous les membres de la campagne.',
     ],

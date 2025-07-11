@@ -11,7 +11,7 @@ return [
         'success'   => '{1} :count entity transformed to new module :type.|[2,*] :count entities transformed to new module :type.',
     ],
     'fields'    => [
-        'current' => 'Current module',
+        'current'       => 'Current module',
         'select_one'    => 'Select one',
         'target'        => 'New module',
     ],

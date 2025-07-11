@@ -6,6 +6,13 @@ return [
     ],
     'cta'       => 'Afficher un journal de toutes les modifications récentes faites à la campagne.',
     'empty'     => 'Aucune valeure',
+    'fields'    => [
+        'action'    => 'Action',
+        'details'   => 'Détails',
+        'module'    => 'Module',
+        'when'      => 'Quand',
+        'who'       => 'Qui',
+    ],
     'filters'   => [
         'all-actions'   => 'Toutes les actions',
         'all-users'     => 'Tous les membres',

@@ -222,6 +222,7 @@ return [
             'settings'  => 'paramètres d\'affichage',
             'text'      => 'Plus de résultats par page peuvent être affiché en modifiant tes :settings.',
         ],
+        'parent'        => 'Sélectionne le parent duquel cette entité sera l\'enfant.',
     ],
     'hidden'            => 'Caché',
     'hints'             => [

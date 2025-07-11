@@ -7,44 +7,44 @@ return [
         ],
     ],
     'campaign'          => [
-        'application'           => [
+        'application'       => [
             'approved'              => 'Your application to the :campaign has been approved.',
             'approved_message'      => 'Your application to the :campaign has been approved. Message provided: :reason',
             'new'                   => 'New application for :campaign.',
             'rejected'              => 'Your application to the :campaign has been rejected. Reason provided: :reason',
             'rejected_no_message'   => 'Your application to the :campaign has been rejected.',
         ],
-        'asset_export'          => 'An export for :campaign\'s assets is available. The link is available for :time minutes.',
-        'boost'                 => [
+        'asset_export'      => 'An export for :campaign\'s assets is available. The link is available for :time minutes.',
+        'boost'             => [
             'add'           => ':user is now boosting :campaign.',
             'remove'        => ':user is no longer boosting :campaign.',
             'superboost'    => ':user is now superboosting :campaign.',
         ],
-        'created'               => 'You have created :campaign.',
-        'deleted'               => ':campaign was deleted.',
-        'export'                => 'An export for :campaign is available. The link is available for :time minutes.',
-        'export_error'          => 'An error occurred while exporting :campaign. Please contact us if this problem persists.',
-        'hidden'                => 'The campaign :campaign is now hidden from the public campaigns page.',
-        'import'                => [
+        'created'           => 'You have created :campaign.',
+        'deleted'           => ':campaign was deleted.',
+        'export'            => 'An export for :campaign is available. The link is available for :time minutes.',
+        'export_error'      => 'An error occurred while exporting :campaign. Please contact us if this problem persists.',
+        'hidden'            => 'The campaign :campaign is now hidden from the public campaigns page.',
+        'import'            => [
             'failed'    => 'The import for :campaign failed.',
             'success'   => 'The import finished for :campaign.',
         ],
-        'join'                  => ':user joined :campaign.',
-        'leave'                 => ':user left :campaign.',
-        'new_owner'             => 'You have been made an admin of :campaign.',
-        'plugin'                => [
+        'join'              => ':user joined :campaign.',
+        'leave'             => ':user left :campaign.',
+        'new_owner'         => 'You have been made an admin of :campaign.',
+        'plugin'            => [
             'deleted'   => 'The plugin :plugin was deleted from the marketplace and removed from :campaign.',
         ],
-        'premium'               => [
+        'premium'           => [
             'add'       => ':user has unlocked premium features for :campaign.',
             'remove'    => ':user has stopped unlocking premium features for :campaign.',
         ],
-        'removed-image'         => 'The image or header of :entity was removed due to a copyright claim.',
-        'role'                  => [
+        'removed-image'     => 'The image or header of :entity was removed due to a copyright claim.',
+        'role'              => [
             'add'       => 'You have been added to the :role role of :campaign.',
             'remove'    => 'You have been removed from the :role role of :campaign.',
         ],
-        'troubleshooting'       => [
+        'troubleshooting'   => [
             'joined'    => 'The Kanka team-member :user joined :campaign.',
         ],
     ],

@@ -21,6 +21,7 @@ return [
             'remove'        => ':user ne boost plus la campagne :campaign.',
             'superboost'    => 'La campagne :campaign est superboostée par :user.',
         ],
+        'created'               => 'Tu as créé :campaign.',
         'deleted'               => 'La campagne :campaign a été supprimée.',
         'export'                => 'Un export de la campagne est disponible. Ce lien est disponible pendant :time minutes.',
         'export_error'          => 'Une erreur est survenue lors de l\'export de la campagne. Prière de nous contacter si ce problème persiste.',
