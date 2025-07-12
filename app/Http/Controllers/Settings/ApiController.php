@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-use Laravel\Passport\Token;
 use Laravel\Passport\Client;
+use Laravel\Passport\Token;
 
 class ApiController extends Controller
 {
@@ -29,7 +28,7 @@ class ApiController extends Controller
             ->where('revoked', false)
             ->orderByDesc('created_at')
             ->get();
-        
+
         // Retrieving all the user's connections to third-party OAuth app clients.
         $applications = $tokens->load('client')
             ->reject(fn (Token $token) => $token->client->firstParty())

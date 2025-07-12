@@ -27,15 +27,15 @@ class Cdn extends Command
     public function handle()
     {
         $tables = [
-//            'posts' => 'entry',
-//            'timeline_eras' => 'entry',
-//            'timeline_elements' => 'entry',
-//            'quest_elements' => 'description',
-//            'attributes' => 'value',
-//            'campaigns' => 'entry',
-//            'entities' => 'entry',
-//            'map_layers' => 'entry',
-//            'character_traits' => 'entry',
+            //            'posts' => 'entry',
+            //            'timeline_eras' => 'entry',
+            //            'timeline_elements' => 'entry',
+            //            'quest_elements' => 'description',
+            //            'attributes' => 'value',
+            //            'campaigns' => 'entry',
+            //            'entities' => 'entry',
+            //            'map_layers' => 'entry',
+            //            'character_traits' => 'entry',
             'plugin_versions' => ['content', 'json'],
         ];
         $old = 'https://kanka-user-assets.s3.eu-central-1.amazonaws.com/';
@@ -43,7 +43,7 @@ class Cdn extends Command
         $batchSize = 1000;
 
         foreach ($tables as $tableName => $columns) {
-            if (!is_array($columns)) {
+            if (! is_array($columns)) {
                 $columns = [$columns];
             }
             foreach ($columns as $column) {
@@ -62,6 +62,6 @@ class Cdn extends Command
             }
         }
 
-        $this->info("URL replacement completed.");
+        $this->info('URL replacement completed.');
     }
 }
