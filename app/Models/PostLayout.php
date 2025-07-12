@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property array $config
  * @property EntityType|null $entityType
  *
- *
  * @method static self|Builder entity(EntityType $entityType)
  */
 class PostLayout extends Model
@@ -36,7 +35,7 @@ class PostLayout extends Model
 
     public function scopeEntity(Builder $query, EntityType $entityType): Builder
     {
-        if (!$entityType->isNested()) {
+        if (! $entityType->isNested()) {
             $query->where('code', '!=', 'children');
         }
 

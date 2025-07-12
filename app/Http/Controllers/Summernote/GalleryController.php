@@ -9,7 +9,6 @@ use App\Models\Image;
 use App\Services\Gallery\SummernoteService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
