@@ -121,6 +121,14 @@
                 </span>
 
                 <button v-if="!props.file.is_folder && canManage"
+                    @click="editImage"
+                    class="rounded border p-2 flex gap-1 items-center"
+                >
+                    <i class="fa-regular fa-pen" aria-hidden="true" />
+                    <span class="truncate" v-html="trans('update_image')"></span>
+                </button>
+
+                <button v-if="!props.file.is_folder && canManage"
                     @click="focus"
                     class="rounded border p-2 flex gap-1 items-center"
                 >
@@ -144,6 +152,9 @@
                 <span v-html="trans('saved')"></span>
             </div>
         </div>
+
+
+
         <div v-else class="flex flex-col gap-4 overflow-hidden">
             <div class="alert alert-warning p-4 flex flex-col gap-2" v-if="!props.premium">
                 <p v-html="trans('focus_locked')"></p>
@@ -198,7 +209,7 @@ const props = defineProps<{
     canManage: Boolean;
 }>();
 
-const emit = defineEmits(["updated", "deleted", "moved", "closed"]);
+const emit = defineEmits(["updated", "deleted", "moved", "closed", "updatedFiles"]);
 
 const mentions = ref();
 const name = ref();
@@ -210,6 +221,7 @@ const deleting = ref(false);
 const confirmed = ref(false);
 const showMentions = ref(true);
 const focusing = ref(false);
+const editingImage = ref(false);
 const focusImage = ref();
 const focusX = ref();
 const focusY = ref();
@@ -245,6 +257,7 @@ const open = () => {
     deleting.value = false;
     confirmed.value = false;
     focusing.value = false;
+    editingImage.value = false;
     axios.get(props.file.api.show).then((res) => {
         mentions.value = res.data.data.mentions;
         loading.value = false;
@@ -312,6 +325,13 @@ const closeFile = () => {
 
 const focus = () => {
     focusing.value = true;
+};
+
+const editImage = () => {
+    console.log(props.file.api.image);
+    emit('updatedFiles', {
+        fileApi: props.file.api.image,
+    })
 };
 
 const cancelFocus = () => {

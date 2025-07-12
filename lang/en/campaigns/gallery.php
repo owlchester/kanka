@@ -9,6 +9,7 @@ return [
         'reset_focus'   => 'Reset focus point',
         'save'          => 'Save',
         'upgrade'       => 'Upgrade storage space',
+        'update_file'   => 'Update file',
     ],
     'breadcrumb'    => 'Gallery',
     'bulk'          => [

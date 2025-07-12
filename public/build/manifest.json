@@ -112,7 +112,7 @@
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-CyVgTra0.js",
+    "file": "assets/app-t6NDTEdF.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -265,7 +265,7 @@
     ]
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-DGSgJLkQ.js",
+    "file": "assets/gallery-CFQcPDHK.js",
     "name": "gallery",
     "src": "resources/js/gallery/gallery.js",
     "isEntry": true,
@@ -341,12 +341,12 @@
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-7qMJVg1e.css",
+    "file": "assets/app-D3bZrFdk.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-mo9QB73K.css",
+    "file": "assets/auth-DqgaFriU.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -371,7 +371,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-D8y6ftti.css",
+    "file": "assets/front-BfuBq_cp.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },

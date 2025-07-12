@@ -8,6 +8,7 @@ use App\Http\Requests\Gallery\UploadFile;
 use App\Http\Requests\Gallery\UploadFiles;
 use App\Http\Requests\Gallery\UploadUrl;
 use App\Models\Campaign;
+use App\Models\Image;
 use App\Services\Gallery\StorageService;
 use App\Services\Gallery\UploadService;
 
@@ -33,6 +34,25 @@ class UploadController extends Controller
                     ->campaign($campaign)
                     ->user($request->user())
                     ->file($request->file('file'))
+            );
+        } catch (TranslatableException $e) {
+            return response()->json(
+                ['error' => $e->getTranslatedMessage()],
+                421
+            );
+        }
+    }
+
+    public function updateFile(UploadFile $request, Campaign $campaign, Image $image)
+    {
+        $this->authorize('galleryUpload', $campaign);
+
+        try {
+            return response()->json(
+                $this->service
+                    ->campaign($campaign)
+                    ->user($request->user())
+                    ->updatedFile($request->file('file'), $image)
             );
         } catch (TranslatableException $e) {
             return response()->json(

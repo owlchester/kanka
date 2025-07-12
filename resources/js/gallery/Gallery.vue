@@ -165,6 +165,7 @@
                         @updated="updatedFile"
                         @deleted="deletedFile"
                         @closed="closeFile"
+                        @updatedFiles="selectUpdatedFiles"
                     ></File>
                 </div>
             </div>
@@ -296,6 +297,7 @@ const updateApi = ref()
 // Upload
 const moving = ref(false)
 const uploadApi = ref()
+const updatedFileApi = ref(null)
 const fileField = ref()
 const uploading = ref(false)
 const imagePreview = ref(null)
@@ -715,6 +717,11 @@ const selectFiles = () => {
     fileField.value.click()
 }
 
+const selectUpdatedFiles = ({ fileApi }) => {
+    updatedFileApi.value = fileApi
+    fileField.value.click()
+}
+
 const filesSelected = async (event) => {
     const file = event.target.files[0]
     const selectedFiles = event.target.files
@@ -734,14 +741,20 @@ const filesSelected = async (event) => {
     fileField.value.disabled = true
 
     const formData = new FormData()
-    if (folder.value) {
-        formData.append('folder_id', folder.value.id)
+    let api = uploadApi.value
+    if (updatedFileApi.value != null) {
+        api = updatedFileApi.value;
+        formData.append('file', file)
+    } else {
+        if (folder.value) {
+            formData.append('folder_id', folder.value.id)
+        }
+        Array.from(selectedFiles).forEach(f => {
+            formData.append('files[]', f)
+        })
     }
-    Array.from(selectedFiles).forEach(f => {
-        formData.append('files[]', f)
-    })
-
-    axios.post(uploadApi.value, formData, {
+    
+    axios.post(api, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
@@ -755,20 +768,24 @@ const filesSelected = async (event) => {
             fileField.value.disabled = false
             fileField.value = null
             imagePreview.value = null
+            uploadApi.value = null
             // Find the index of the last folder
             const matchCriterion = f => f.is_folder;
             const lastIndex = files.value.map((file, index) => matchCriterion(file) ? index : -1)
                 .filter(index => index !== -1)
                 .pop();
-
-            res.data.files.forEach(f => {
-                if (lastIndex !== undefined) {
-                    files.value.splice(lastIndex + 1, 0, f);
-                } else {
-                    // If no match is found, you can push the item to the end or handle accordingly
-                    files.value.push(f);
-                }
-            })
+            if (res.data.files != null) {
+                res.data.files.forEach(f => {
+                    if (lastIndex !== undefined) {
+                        files.value.splice(lastIndex + 1, 0, f);
+                    } else {
+                        // If no match is found, you can push the item to the end or handle accordingly
+                        files.value.push(f);
+                    }
+                })
+            } else {
+                home()
+            }
 
             used.value = res.data.used
             //console.log(used.value, res.data.used)
@@ -777,6 +794,7 @@ const filesSelected = async (event) => {
             console.error(err)
             uploading.value = false
             fileField.value.disabled = false
+            uploadApi.value = null
             imagePreview.value = null
             if (axios.isCancel(err)) {
                 // User cancelled
