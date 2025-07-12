@@ -98,21 +98,8 @@
       "_vue.esm-bundler-6aPRuC-w.js"
     ]
   },
-  "resources/js/api.js": {
-    "file": "assets/api-CNxejRUU.js",
-    "name": "api",
-    "src": "resources/js/api.js",
-    "isEntry": true,
-    "imports": [
-      "_vue.esm-bundler-6aPRuC-w.js",
-      "__plugin-vue_export-helper-DlAUqK2U.js"
-    ],
-    "css": [
-      "assets/api-J8ee0CJ1.css"
-    ]
-  },
   "resources/js/app.js": {
-    "file": "assets/app-CyVgTra0.js",
+    "file": "assets/app-t6NDTEdF.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -341,12 +328,12 @@
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-7qMJVg1e.css",
+    "file": "assets/app-t0s4AR6n.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-mo9QB73K.css",
+    "file": "assets/auth-BBtL7VBT.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -371,7 +358,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-D8y6ftti.css",
+    "file": "assets/front-Da0i7PS3.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },
