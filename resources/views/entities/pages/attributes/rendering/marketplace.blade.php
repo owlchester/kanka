@@ -17,9 +17,7 @@ if (!isset($entity)) {
 @endif
 
 <div class="box-entity-attributes" data-plugin="{{ $plugin->id }}" data-version="{{ $plugin->version->id }}">
-    <div class="marketplace-template-{{ $plugin->plugin->uuid }}">
-        {!! $plugin->version->content($entity) !!}
-    </div>
+    <x-character-sheet :plugin="$plugin" :entity="$entity" :campaign="$campaign" />
 </div>
 
 @section('styles')

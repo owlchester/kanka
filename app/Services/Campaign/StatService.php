@@ -90,7 +90,7 @@ class StatService
                     $query->leftJoin('entities as e', 'e.id', '=', 'posts.entity_id')
                         ->where('e.campaign_id', $this->campaign->id);
                 }
-        })->count();
+            })->count();
         // @phpstan-ignore-next-line
         $this->stats['modules']['inventories'] = Inventory::withPrivate()->leftJoin('entities', 'entities.id', 'inventories.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
         // @phpstan-ignore-next-line
