@@ -22,7 +22,7 @@ class UpdateController extends Controller
 
         $versions = $plugin
             ->versions()
-            ->publishedVersions($plugin->created_by)
+            ->publishedVersions($plugin->created_by === auth()->user()->id)
             ->orderBy('id', 'desc')
             ->paginate();
 

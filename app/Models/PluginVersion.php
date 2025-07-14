@@ -63,13 +63,14 @@ class PluginVersion extends Model
         return (string) $this->css;
     }
 
-    public function scopePublishedVersions(Builder $query, int $pluginCreator): Builder
+    public function scopePublishedVersions(Builder $query, bool $withDrafts = false): Builder
     {
-        if ($pluginCreator === auth()->user()->id) {
-            return $query->whereIn('status_id', [1, 3]);
+        $ids = [3];
+        if ($withDrafts) {
+            $ids[] = 1;
         }
 
-        return $query->where('status_id', 3);
+        return $query->whereIn('status_id', $ids);
     }
 
     /**
