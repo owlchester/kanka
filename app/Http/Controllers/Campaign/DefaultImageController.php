@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\Campaigns\Boosted;
 use App\Http\Requests\Campaigns\DefaultImageDestroy;
 use App\Http\Requests\Campaigns\DefaultImageStore;
 use App\Models\Campaign;
@@ -16,7 +17,7 @@ class DefaultImageController extends Controller
         protected EntityTypeService $entityTypeService,
         protected DefaultImageService $service
     ) {
-        $this->middleware('campaign.boosted', ['except' => 'index']);
+        $this->middleware(Boosted::class, ['except' => 'index']);
     }
 
     /**

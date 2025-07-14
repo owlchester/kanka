@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\Campaigns\Boosted;
 use App\Models\Campaign;
 use App\Services\Campaign\Sidebar\SaveService;
 use App\Services\Campaign\Sidebar\SetupService;
@@ -13,7 +14,7 @@ class SidebarController extends Controller
     public function __construct(protected SetupService $service, protected SaveService $saveService)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.boosted', ['except' => 'index']);
+        $this->middleware(Boosted::class, ['except' => 'index']);
     }
 
     public function index(Campaign $campaign)

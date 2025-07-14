@@ -85,7 +85,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'campaign.boosted' => Middleware\Campaigns\Boosted::class,
         'login.redirect' => Middleware\LoginRedirect::class,
         'translator' => Middleware\Translator::class,
         'identity' => Middleware\Identity::class,
