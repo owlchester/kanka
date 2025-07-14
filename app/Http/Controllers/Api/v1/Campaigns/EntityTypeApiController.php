@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\v1\Campaigns;
 
 use App\Http\Controllers\Api\v1\ApiController;
-use App\Http\Middleware\PremiumCampaign;
+use App\Http\Middleware\Campaigns\Premium;
 use App\Http\Requests\StoreEntityType;
 use App\Http\Resources\EntityTypeResource as Resource;
 use App\Models\Campaign;
@@ -16,7 +16,7 @@ class EntityTypeApiController extends ApiController
     public function __construct(
         protected EntityTypeService $entityTypeService
     ) {
-        $this->middleware(PremiumCampaign::class, ['except' => ['index', 'show']]);
+        $this->middleware(Premium::class, ['except' => ['index', 'show']]);
     }
 
     /**

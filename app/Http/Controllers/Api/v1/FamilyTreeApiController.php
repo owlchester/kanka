@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Middleware\PremiumCampaign;
+use App\Http\Middleware\Campaigns\Premium;
 use App\Http\Requests\StoreFamilyTree as Request;
 use App\Http\Resources\FamilyTreeResource as Resource;
 use App\Models\Campaign;
@@ -16,7 +16,7 @@ class FamilyTreeApiController extends ApiController
     public function __construct(FamilyTreeService $treeService)
     {
         $this->treeService = $treeService;
-        $this->middleware(PremiumCampaign::class, ['except' => ['show']]);
+        $this->middleware(Premium::class, ['except' => ['show']]);
     }
 
     /**

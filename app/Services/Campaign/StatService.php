@@ -4,11 +4,13 @@ namespace App\Services\Campaign;
 
 use App\Models\Attribute;
 use App\Models\Bookmark;
+use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\Inventory;
 use App\Models\Post;
 use App\Models\Reminder;
 use App\Traits\CampaignAware;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
@@ -33,7 +35,7 @@ class StatService
             ->types()
             ->modules();
 
-        Cache::put($key, $this->stats, 3600 * 6);
+        Cache::put($key, $this->stats, 3600 * 24);
 
         return $this->stats;
     }
@@ -78,8 +80,16 @@ class StatService
         // @phpstan-ignore-next-line
         $this->stats['modules']['abilities'] = EntityAbility::withPrivate()->leftJoin('entities', 'entities.id', 'entity_abilities.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();
         // @phpstan-ignore-next-line
-        $this->stats['modules']['reminders'] = Reminder::withPrivate()->whereHas('remindable', function ($query) {
-            $query->where('campaign_id', $this->campaign->id);
+        $this->stats['modules']['reminders'] = Reminder::withPrivate()->whereHasMorph(
+            'remindable',
+            [Entity::class, Post::class],
+            function (Builder $query, string $type) {
+                if ($type === Entity::class) {
+                    $query->where('campaign_id', $this->campaign->id);
+                } else {
+                    $query->leftJoin('entities as e', 'e.id', '=', 'posts.entity_id')
+                        ->where('e.campaign_id', $this->campaign->id);
+                }
         })->count();
         // @phpstan-ignore-next-line
         $this->stats['modules']['inventories'] = Inventory::withPrivate()->leftJoin('entities', 'entities.id', 'inventories.entity_id')->where('entities.campaign_id', $this->campaign->id)->count();

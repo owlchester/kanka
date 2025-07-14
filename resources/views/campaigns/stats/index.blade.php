@@ -19,16 +19,16 @@
             </h3>
         </div>
 
-        <x-alert type="info">
+        <x-helper>
             <p>
-                {{ __('campaigns/stats.cached', ['amount' => 6]) }}
+                {{ __('campaigns/stats.cached', ['amount' => 24]) }}
             </p>
-        </x-alert>
+        </x-helper>
 
         <x-grid>
 
             <div class="flex flex-col gap-5 stats-entities">
-                <h3>{{ __('entities.entities') }}</h3>
+                <h3>{{ __('campaigns.show.tabs.modules') }}</h3>
                 <x-box>
                     <div class="grid grid-cols-2 gap-2 items-center">
                         <div class="entity-total font-bold">
@@ -55,7 +55,7 @@
 
             <div class="flex flex-col gap-5">
                 <div class="flex flex-col gap-5 stats-modules">
-                    <h3>{{ __('campaigns.show.tabs.modules') }}</h3>
+                    <h3>{{ __('campaigns/modules.sections.features') }}</h3>
                     <x-box>
                         <div class="grid grid-cols-2 gap-2 items-center">
                             @foreach ($stats['modules'] as $module => $count)
