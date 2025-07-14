@@ -55,7 +55,6 @@ return [
 
     'settings' => [
         'auth' => false,
-        'ga_id' => config('tracking.ga'),
     ],
 
     /*
