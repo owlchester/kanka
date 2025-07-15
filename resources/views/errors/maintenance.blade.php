@@ -28,7 +28,7 @@
 
 <section class="bg-purple text-white gap-16">
     <div class="px-6 py-20 lg:max-w-7xl mx-auto text-center flex flex-col gap-8">
-        @if (true)
+        @if (false)
         <h2 id="maintenance">Server maintenance</h2>
 
         <p class="lg:max-w-2xl mx-auto text-center">Kanka is currently unavailable due to planned server maintenance.</p>
