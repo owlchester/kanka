@@ -13,8 +13,9 @@
 
     @if(config('auth.user_list'))
         <ul class="mb-2">
-            @foreach (\App\Models\User::limit(5)->orderBy('last_login_at', 'desc')->get() as $user)
+            @foreach (\App\Models\User::with('passwordSecurity')->limit(10)->orderBy('last_login_at', 'desc')->get() as $user)
                 <li>
+                    @if ($user->passwordSecurity) <i class="fa-solid fa-qrcode" data-tooltip="2FA enabled"></i> @endif
                     <a href="{{ route('login-as-user', ['user' => $user]) }}" class="text-blue-500 hover:text-blue-900">
                         {!! $user->name !!} @if ($user->pledge) ({!! $user->pledge !!}) @endif
                     </a>
