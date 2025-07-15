@@ -42,29 +42,29 @@ class GenerateInventoryController extends Controller
                 ->limit($request->get('item_amount', 1))
                 ->get();
         } elseif ($request->has('tags') && $request->has('match_all') && $request['match_all'] == true) {
-            //Match all tags
+            // Match all tags
             $items = Item::whereHas('entity', function ($query) use ($request) {
                 $query
                     ->whereHas('entityTags', function ($tagQuery) use ($request) {
                         $tagQuery->whereIn('tag_id', $request->get('tags'));
                     }, '=', count($request->get('tags'))); // requires all tags
             })
-            ->limit($request->get('item_amount', 1))
-            ->get();
+                ->limit($request->get('item_amount', 1))
+                ->get();
 
         } else {
-            //Match one tag at least
+            // Match one tag at least
             $items = Item::whereHas('entity', function ($query) use ($request) {
                 $query->whereHas('entityTags', function ($tagQuery) use ($request) {
-                        $tagQuery->whereIn('tag_id', $request->get('tags'));
-                    });
-                })
+                    $tagQuery->whereIn('tag_id', $request->get('tags'));
+                });
+            })
                 ->limit($request->get('item_amount', 1))
                 ->get();
         }
 
         if ($request->has('replace') && $request['replace'] == true) {
-            //Replace current inventory
+            // Replace current inventory
             Inventory::where('entity_id', $entity->id)->delete();
         }
 
