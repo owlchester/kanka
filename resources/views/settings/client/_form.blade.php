@@ -3,20 +3,20 @@
     <x-forms.field
         field="name"
         required="true"
-        label="Client name">
-        <input type="text" name="name" placeholder="Name of the client" maxlength="40" value="{{ $client->name ?? '' }}"/>
+        label="{{ __('settings/api.clients.form.name') }}">
+        <input type="text" name="name" placeholder="{{ __('settings/api.clients.form.name_placeholder') }}" maxlength="40" value="{{ $client->name ?? '' }}"/>
         <span class="text-sm text-neutral-content">
-            Something your users will recognize and trust.
+            {{ __('settings/api.clients.form.name_helper') }}
         </span>
     </x-forms.field>
 
     <x-forms.field
         field="redirect"
         required="true"
-        label="Redirect URL">
-        <input type="text" name="redirect" placeholder="Name the token" maxlength="120" value="{{ $client->redirect ?? '' }}"/>
+        label="{{ __('settings/api.clients.form.redirect') }}">
+        <input type="text" name="redirect" placeholder="{{ __('settings/api.clients.form.redirect_placeholder') }}" maxlength="120" value="{{ $client->redirect ?? '' }}"/>
         <span class="text-sm text-neutral-content">
-            Your application's authorization callback URL.
+            {{ __('settings/api.clients.form.redirect_helper') }}
         </span>
     </x-forms.field>
 </x-grid>

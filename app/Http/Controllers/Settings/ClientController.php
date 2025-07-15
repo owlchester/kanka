@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Settings\StoreClient;
 use Illuminate\Http\Request;
 use Laravel\Passport\Client;
 use Laravel\Passport\ClientRepository;
@@ -33,6 +34,8 @@ class ClientController extends Controller
 
     public function edit(Client $client)
     {
+        $this->authorize('update', $client);
+        
         $client = Client::where('user_id', auth()->user()->id)
             ->where('id', $client->id)
             ->first();
@@ -40,34 +43,26 @@ class ClientController extends Controller
         return view('settings.client.update', ['client' => $client]);
     }
 
-    public function update(Request $request, Client $client)
+    public function update(StoreClient $request, Client $client)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:90'],
-            'redirect' => ['required', 'string', 'max:120', 'url', 'active_url'],
-        ]);
+        $this->authorize('update', $client);
 
         $updatedClient = Client::where('user_id', auth()->user()->id)
             ->where('id', $client->id)
             ->first();
 
-        $updatedClient->forceFill($validated)->save();
+        $updatedClient->forceFill($request->only(['name', 'redirect']))->save();
 
         return redirect()->route('settings.api')->with('success', 'Client updated successfully.');
     }
 
-    public function store(Request $request)
+    public function store(StoreClient $request)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:90'],
-            'redirect' => ['required', 'string', 'max:120', 'url', 'active_url'],
-        ]);
-
         // Creating an OAuth app client that belongs to the given user.
         $client = app(ClientRepository::class)->createAuthorizationCodeGrantClient(
             user: auth()->user(),
-            name: $validated['name'],
-            redirectUris: [$validated['redirect']],
+            name: $request['name'],
+            redirectUris: [$request['redirect']],
             confidential: true,
             enableDeviceFlow: true
         );
@@ -77,6 +72,8 @@ class ClientController extends Controller
 
     public function revoke(Request $request, Client $client)
     {
+        $this->authorize('update', $client);
+ 
         $client = Client::where('user_id', auth()->user()->id)
             ->where('id', $client->id)
             ->first();

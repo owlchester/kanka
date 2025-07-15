@@ -8,9 +8,9 @@
 @section('content')
     <x-form :action="['settings.client.store']">
         @include('partials.forms.form', [
-            'title' => 'Create Client',
+            'title' => __('settings/api.clients.new'),
             'content' => 'settings.client._form',
-            'submit' => 'Create',
+            'submit' => __('crud.save'),
         ])
     </x-form>
 @endsection

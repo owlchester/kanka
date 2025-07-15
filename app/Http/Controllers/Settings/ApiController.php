@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Settings\StoreApiToken;
 use Illuminate\Http\Request;
 use Laravel\Passport\Client;
 use Laravel\Passport\Token;
@@ -27,7 +28,7 @@ class ApiController extends Controller
         $tokens = Token::where('user_id', auth()->user()->id)
             ->where('revoked', false)
             ->orderByDesc('created_at')
-            ->get();
+            ->paginate(config('limits.pagination'), ['*'], 'tokensPage');
 
         // Retrieving all the user's connections to third-party OAuth app clients.
         $applications = $tokens->load('client')
@@ -37,7 +38,7 @@ class ApiController extends Controller
         $clients = Client::where('user_id', auth()->user()->id)
             ->where('revoked', false)
             ->orderByDesc('created_at')
-            ->get();
+            ->paginate(config('limits.pagination'), ['*'], 'clientsPage');
 
         return view('settings.api', compact('tokens', 'clients', 'applications'));
     }
@@ -54,19 +55,17 @@ class ApiController extends Controller
         return view('settings.api.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreApiToken $request)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:90'],
-        ]);
-
-        $accessToken = auth()->user()->createToken($validated['name'])->accessToken;
+        $accessToken = auth()->user()->createToken($request['name'])->accessToken;
 
         return redirect()->route('settings.api')->with('new_token', $accessToken);
     }
 
     public function revoke(Request $request, Token $token)
     {
+        $this->authorize('update', $token);
+
         $revokedToken = Token::where('user_id', auth()->user()->id)
             ->where('id', $token->id)
             ->first();

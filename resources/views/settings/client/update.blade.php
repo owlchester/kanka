@@ -8,9 +8,9 @@
 @section('content')
     <x-form :action="['settings.client.update', $client]" method="PUT">
         @include('partials.forms.form', [
-            'title' => 'Update Client',
+            'title' => __('settings/api.clients.update'),
             'content' => 'settings.client._form',
-            'submit' => 'Update',
+            'submit' => __('crud.save'),
         ])
     </x-form>
 @endsection
