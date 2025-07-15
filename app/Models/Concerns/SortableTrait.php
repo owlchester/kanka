@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
  */
 trait SortableTrait
 {
-    public function scopeSort(Builder $query, array $filters, array $defaultOrder = []): Builder
+    public function scopeSort(Builder $query, array $filters, array $defaultOrder = [], ?array $fields = null): Builder
     {
         if (empty($filters)) {
             if (empty($defaultOrder)) {
