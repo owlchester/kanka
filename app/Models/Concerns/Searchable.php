@@ -45,8 +45,6 @@ trait Searchable
 
         return [
             'name',
-            'type',
-            'entry',
         ];
     }
 }
