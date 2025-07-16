@@ -15,9 +15,10 @@ abstract class BaseCache
      */
     protected function forget(string $key): bool
     {
-        /*Log::info(class_basename($this), [
-            'forget' => $key,
-        ]);*/
+//        Log::info('Cache forget', [
+//            'cache' => class_basename($this),
+//            'key' => $key,
+//        ]);
         return Cache::forget($key);
     }
 
