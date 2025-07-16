@@ -11,10 +11,12 @@ class CampaignPluginObserver
     public function updated(CampaignPlugin $campaignPlugin)
     {
         PluginUpdated::dispatch($campaignPlugin, auth()->user());
+        $campaignPlugin->campaign->touchQuietly();
     }
 
     public function deleted(CampaignPlugin $campaignPlugin)
     {
         PluginDeleted::dispatch($campaignPlugin, auth()->user());
+        $campaignPlugin->campaign->touchQuietly();
     }
 }
