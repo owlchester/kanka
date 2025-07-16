@@ -39,7 +39,7 @@ class UpdateController extends Controller
             return response()->json();
         }
 
-        $this->service->plugin($plugin)->campaign($campaign)->update();
+        $this->service->plugin($plugin)->user(auth()->user())->campaign($campaign)->update();
 
         return redirect()->route('campaign_plugins.index', $campaign)
             ->with(
