@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Facades\CampaignCache;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\Campaigns\Boosted;
 use App\Http\Requests\ReorderStyles;
 use App\Http\Requests\StoreCampaignStyle;
 use App\Http\Requests\StoreCampaignTheme;
@@ -23,7 +24,7 @@ class StyleController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('campaign.boosted', ['except' => 'index']);
+        $this->middleware(Boosted::class, ['except' => 'index']);
     }
 
     /**

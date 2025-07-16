@@ -24,6 +24,10 @@ class Entity extends Layout
                 'render' => Standard::ENTITYLINK,
             ],
             'type' => [
+                'key' => 'type',
+                'label' => 'crud.fields.type',
+            ],
+            'module' => [
                 'key' => 'type_id',
                 'label' => 'crud.fields.entity_type',
                 'render' => function ($model) {

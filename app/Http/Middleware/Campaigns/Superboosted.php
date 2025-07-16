@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Campaigns;
 
 use App\Facades\CampaignLocalization;
 use App\Facades\Domain;
 use Closure;
 
-class CampaignBoosted
+class Superboosted
 {
     /**
      * Handle an incoming request.
@@ -18,18 +18,17 @@ class CampaignBoosted
         // Make sure we have an id
         $campaign = CampaignLocalization::getCampaign();
         if (empty($campaign)) {
-            return redirect()->route('login')
-                ->withErrors(__('You\'ve been banned'));
+            return redirect()->route('home');
         }
 
-        if (! $campaign->boosted()) {
+        if (! $campaign->superboosted()) {
             if ($request->is('api/*') || Domain::isApi()) {
                 return response()->json([
-                    'error' => 'This feature is reserved to boosted campaigns.',
+                    'error' => 'This feature is reserved to premium campaign.',
                 ]);
             }
 
-            return redirect()->route('dashboard', $campaign)->withErrors(__('crud.errors.boosted_campaigns', ['boosted' => __('concept.premium-campaigns')]));
+            return redirect()->route('dashboard', $campaign)->withErrors(__('campaigns.errors.premium'));
         }
 
         return $next($request);

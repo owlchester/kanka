@@ -133,7 +133,7 @@ $specificTheme = null;
     @yield('content')
 @endif
 
-@vite(['resources/js/vendor-final.js', 'resources/js/app.js', 'resources/js/cookieconsent.js'])
+@vite(['resources/js/vendor-final.js', 'resources/js/app.js'])
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
@@ -154,5 +154,6 @@ $specificTheme = null;
 @vite('resources/js/location/map-v3.js')
 @yield('scripts')
 @yield('modals')
+@includeWhen(config('tracking.consent'), 'partials.cookieconsent')
 </body>
 </html>

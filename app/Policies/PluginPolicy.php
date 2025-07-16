@@ -19,12 +19,12 @@ class PluginPolicy
 
     public function update(User $user, Plugin $plugin): bool
     {
-        return $user->isAdmin() && $plugin->hasUpdate();
+        return $user->isAdmin() && $plugin->hasUpdate($plugin->created_by === $user->id);
     }
 
     public function changelog(User $user, Plugin $plugin): bool
     {
-        return $user->isAdmin() && ! $plugin->hasUpdate();
+        return $user->isAdmin() && ! $plugin->hasUpdate($plugin->created_by === $user->id);
     }
 
     public function enable(User $user, Plugin $plugin): bool

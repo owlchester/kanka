@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Http\Middleware\Campaigns;
 
 use App\Facades\Domain;
 use App\Models\Campaign;
@@ -8,7 +8,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class PremiumCampaign
+class Premium
 {
     /**
      * Handle an incoming request.

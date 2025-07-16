@@ -43,7 +43,7 @@
                     <span class="sr-only">Close</span>
                 </button>
             </header>
-            <article class="text-justify">
+            <article class="text-justify py-4 px-4 md:px-6">
                 <div class="mb-2 w-full field text-left">
                     <label>{{ translate('card_name') }}</label>
                     <input id="card-holder-name" type="text" v-model="name" class="w-full">
@@ -63,7 +63,7 @@
                 </p>
 
                 <div class="flex justify-between items-center gap-2 w-full">
-                    <button type="button" class="btn2 btn-ghost" @click="closeModal('cardModal')">Close</button>
+                    <button type="button" class="btn2 btn-outline" @click="closeModal('cardModal')">Close</button>
 
                     <button type="button" v-bind:class="saveBtnClass()" @click="submitPaymentMethod" ref="formBtn">
                         {{ translate('actions.save') }}

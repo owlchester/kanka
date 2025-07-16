@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Middleware\Campaigns\Boosted;
 use App\Http\Requests\StoreCampaignStyle as Request;
 use App\Http\Resources\CampaignStyleResource as Resource;
 use App\Models\Campaign;
@@ -11,7 +12,7 @@ class CampaignStyleApiController extends ApiController
 {
     public function __construct()
     {
-        $this->middleware('campaign.boosted', ['except' => 'index']);
+        $this->middleware(Boosted::class, ['except' => 'index']);
     }
 
     /**

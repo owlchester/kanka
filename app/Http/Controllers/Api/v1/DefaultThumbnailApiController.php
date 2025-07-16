@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Middleware\Campaigns\Boosted;
 use App\Http\Requests\Campaigns\DestroyDefaultThumbnail;
 use App\Http\Requests\Campaigns\StoreDefaultThumbnail;
 use App\Http\Resources\EntityDefaultThumbnailResource as Resource;
@@ -13,7 +14,7 @@ class DefaultThumbnailApiController extends ApiController
 {
     public function __construct(protected DefaultImageService $defaultImageService)
     {
-        $this->middleware('campaign.boosted')->except('index');
+        $this->middleware(Boosted::class)->except('index');
     }
 
     /**

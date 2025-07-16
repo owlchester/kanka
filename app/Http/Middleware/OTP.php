@@ -18,7 +18,7 @@ class OTP
         if (! config('google2fa.enabled')) {
             return $next($request);
         }
-        if ($request->is('*/settings/security/cancel2fa')) {
+        if ($request->is('settings/security/cancel2fa')) {
             auth()->logout();
 
             return $next($request);

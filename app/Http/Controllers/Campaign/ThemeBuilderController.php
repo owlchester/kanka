@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Campaign;
 
 use App\Facades\CampaignCache;
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\Campaigns\Boosted;
 use App\Http\Requests\Campaigns\StoreTheme;
 use App\Models\Campaign;
 use App\Models\CampaignStyle;
@@ -11,25 +12,12 @@ use App\Services\Campaign\ThemeBuilderService;
 
 class ThemeBuilderController extends Controller
 {
-    protected ThemeBuilderService $themeBuilderService;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(ThemeBuilderService $themeBuilderService)
+    public function __construct(protected ThemeBuilderService $themeBuilderService)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.boosted', ['except' => 'index']);
-        $this->themeBuilderService = $themeBuilderService;
+        $this->middleware(Boosted::class, ['except' => 'index']);
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\JsonResponse
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
     public function index(Campaign $campaign)
     {
         $this->authorize('update', $campaign);

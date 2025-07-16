@@ -35,7 +35,7 @@ class Plugin extends Model
 
     protected string $userField = 'created_by';
 
-    protected bool $cachedHasUpdate;
+    protected ?PluginVersion $cachedHasUpdate;
 
     public $sortable = [
         'name',
@@ -55,22 +55,29 @@ class Plugin extends Model
         return 'pack';
     }
 
-    public function hasUpdate(): bool
+    public function hasUpdate(bool $withDraft = false): bool
     {
         if (isset($this->cachedHasUpdate)) {
-            return $this->cachedHasUpdate;
+            return !empty($this->cachedHasUpdate);
         }
 
         $statuses = [3];
-        if ($this->created_by === auth()->user()->id) {
+        if ($withDraft) {
             $statuses[] = 1;
         }
 
-        return $this->cachedHasUpdate = $this
+        $this->cachedHasUpdate = $this
             ->versions
             ->whereIn('status_id', $statuses)
             ->where('id', '>', $this->pivot->plugin_version_id) // @phpstan-ignore-line
-            ->count() > 0;
+            ->last();
+
+        return !empty($this->cachedHasUpdate);
+    }
+
+    public function updateVersionNumber(): string
+    {
+        return $this->cachedHasUpdate->version ?? '0.0.0';
     }
 
     /**

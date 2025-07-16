@@ -74,7 +74,7 @@ class PluginService
     {
         // Get latest
         $latest = $this->plugin->versions()
-            ->publishedVersions($this->plugin->created_by)
+            ->publishedVersions($this->plugin->created_by === $this->user->id)
             ->orderBy('id', 'desc')
             ->first();
         // The user could be submitting a plugin to update that was removed in another window
