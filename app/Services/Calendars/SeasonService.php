@@ -15,9 +15,9 @@ class SeasonService
         return isset($this->seasons[$day]);
     }
 
-    public function get(string $day): array
+    public function get(string $day): ?string
     {
-        return $this->seasons[$day] ?? [];
+        return $this->seasons[$day] ?? null;
     }
 
     public function build(): void
