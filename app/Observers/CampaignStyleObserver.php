@@ -22,16 +22,16 @@ class CampaignStyleObserver
 
     public function created(CampaignStyle $campaignStyle)
     {
-        StyleCreated::dispatch($campaignStyle, auth()->user());
+        StyleCreated::dispatch($campaignStyle, $campaignStyle->campaign, auth()->user());
     }
 
     public function updated(CampaignStyle $campaignStyle)
     {
-        StyleUpdated::dispatch($campaignStyle, auth()->user());
+        StyleUpdated::dispatch($campaignStyle, $campaignStyle->campaign, auth()->user());
     }
 
     public function deleted(CampaignStyle $campaignStyle)
     {
-        StyleDeleted::dispatch($campaignStyle, auth()->user());
+        StyleDeleted::dispatch($campaignStyle, $campaignStyle->campaign, auth()->user());
     }
 }
