@@ -106,6 +106,5 @@ if ($hasImage) {
                 <input name="from" type="hidden" value="explore" />
             </x-buttons.confirm-delete>
         </div>
-        </x-form>
     @endcan
 </div>
