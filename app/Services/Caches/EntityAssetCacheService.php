@@ -25,7 +25,8 @@ class EntityAssetCacheService extends BaseCache
 
             $icons = EntityAsset::leftJoin('entities as e', 'e.id', 'entity_assets.entity_id')
                 ->where('e.campaign_id', $this->campaign->id)
-                ->select(DB::raw('metadata->icon as icon, MAX(entity_assets.created_at) as cmat'))
+                ->select(DB::raw('JSON_UNQUOTE(JSON_EXTRACT(metadata, "$.icon")) as icon
+, MAX(entity_assets.created_at) as cmat'))
                 ->groupBy('metadata')
                 ->whereNotNull('metadata->icon')
                 ->where('entity_assets.type_id', EntityAsset::TYPE_LINK)
