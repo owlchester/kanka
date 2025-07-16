@@ -1,3 +1,3 @@
-@if ($model->calendarReminder())
-| {{ __('crud.fields.calendar_date') }} | {{ $model->calendarReminder()->readableDate() }} |
+@if ($entity->calendarReminder())
+| {{ __('crud.fields.calendar_date') }} | {{ $entity->calendarReminder()->readableDate() }} |
 @endif
