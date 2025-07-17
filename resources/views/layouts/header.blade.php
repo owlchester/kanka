@@ -1,6 +1,11 @@
 <header id="header" class="fixed top-0 h-12 w-full bg-navbar bg-base-100 z-[900]">
-    <nav class="flex gap-2 justify-center items-center h-full">
-        <div class="ml-1 flex-none flex md:w-sidebar justify-items items-center toggle-and-search">
+    <nav class="flex gap-2 justify-center items-center h-full px-3">
+        <noscript>
+                <span class="bg-error text-error-content p-1 rounded text-sm">
+                    Kanka requires Javascript to work properly. Please enable it.
+                </span>
+        </noscript>
+        <div class="flex-none flex md:w-sidebar justify-items items-center toggle-and-search gap-2">
         @if (isset($toggle) && $toggle)
             <nav-toggler
                 text="{{ __('header.toggle_navigation') }}"
@@ -22,7 +27,7 @@
         <div class="flex-none">
             <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="dialog" data-target="primary-dialog" class="quick-creator-button btn2 btn-primary btn-sm"
             tabindex="0">
-                <x-icon class="flex-none fa-regular fa-plus ml-1" />
+                <x-icon class="flex-none fa-regular fa-plus" />
                 <span class="grow hidden sm:inline-block">
                     {{ __('crud.create') }}
                 </span>
@@ -33,7 +38,7 @@
 
         <div class="flex-1 navbar-actions">
 
-            <div class="flex justify-end mr-3 items-center gap-2">
+            <div class="flex justify-end items-center gap-2">
                 @guest
                     <a href="{{ route('login') }}" class="">
                         {{ __('front.menu.login') }}
@@ -54,7 +59,7 @@
                             $premiumUrl .= \Illuminate\Support\Str::contains($premiumUrl, '?') ? '&' : '?';
                         @endphp
                         <div class="dropdown">
-                            <button type="button" class="rounded hover:text-accent text-2xl" data-dropdown aria-expanded="false">
+                            <button type="button" class="text-neutral-content hover:text-accent text-2xl" data-dropdown aria-expanded="false">
                                 <x-icon class="fa-regular fa-gem" />
                             </button>
                             <div class="dropdown-menu hidden" role="menu">
@@ -72,7 +77,7 @@
                             </div>
                         </div>
                         <div class="dropdown">
-                            <button type="button" class="rounded hover:text-accent text-2xl" data-dropdown aria-expanded="false">
+                            <button type="button" class="text-neutral-content hover:text-accent text-2xl" data-dropdown aria-expanded="false">
                                 <x-icon class="fa-regular fa-palette" />
                             </button>
                             <div class="dropdown-menu hidden" role="menu">
