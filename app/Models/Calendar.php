@@ -329,6 +329,10 @@ class Calendar extends MiscModel
             $month = $this->currentMonth();
         }
         $monthId = $month - ($month > 0 ? 1 : 0);
+        // if the current month no longer exists, reset it to the first month
+        if ($monthId > (count($this->months()) - 1)) {
+            $monthId = 0;
+        }
         $days = [];
         $currentMonth = $this->months()[$monthId];
         for ($i = 1; $i <= $currentMonth['length']; $i++) {
