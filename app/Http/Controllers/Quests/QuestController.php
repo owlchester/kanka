@@ -28,7 +28,7 @@ class QuestController extends Controller
             $filters['quest_id'] = $quest->id;
         }
 
-        Datagrid::layout(\App\Renderers\Layouts\Quest\Note::class)
+        Datagrid::layout(\App\Renderers\Layouts\Quest\Quest::class)
             ->route('quests.quests', $options);
 
         $this->rows = $quest
