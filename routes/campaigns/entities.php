@@ -86,6 +86,9 @@ Route::get('/w/{campaign}/items/{item}/items', 'Items\ItemController@index')->na
 // Quest menus
 Route::get('/w/{campaign}/quests/{quest}/quests', 'Quests\QuestController@index')->name('quests.quests');
 
+// Notes menus
+Route::get('/w/{campaign}/notes/{note}/notes', 'Notes\NoteController@index')->name('notes.notes');
+
 // Races
 Route::get('/w/{campaign}/races/{race}/characters', 'Races\MemberController@index')->name('races.characters');
 Route::get('/w/{campaign}/races/{race}/races', 'Races\RaceController@index')->name('races.races');
