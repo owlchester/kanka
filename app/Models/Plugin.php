@@ -58,7 +58,7 @@ class Plugin extends Model
     public function hasUpdate(bool $withDraft = false): bool
     {
         if (isset($this->cachedHasUpdate)) {
-            return !empty($this->cachedHasUpdate);
+            return ! empty($this->cachedHasUpdate);
         }
 
         $statuses = [3];
@@ -72,7 +72,7 @@ class Plugin extends Model
             ->where('id', '>', $this->pivot->plugin_version_id) // @phpstan-ignore-line
             ->last();
 
-        return !empty($this->cachedHasUpdate);
+        return ! empty($this->cachedHasUpdate);
     }
 
     public function updateVersionNumber(): string
