@@ -1,37 +1,37 @@
 <?php
 
-namespace App\Http\Controllers\Quests;
+namespace App\Http\Controllers\Notes;
 
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
-use App\Models\Quest;
+use App\Models\Note;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 
-class QuestController extends Controller
+class NoteController extends Controller
 {
     use CampaignAware;
     use GuestAuthTrait;
     use HasDatagrid;
     use HasSubview;
 
-    public function index(Campaign $campaign, Quest $quest)
+    public function index(Campaign $campaign, Note $note)
     {
-        $this->campaign($campaign)->authEntityView($quest->entity);
+        $this->campaign($campaign)->authEntityView($note->entity);
 
-        $options = ['campaign' => $campaign, 'quest' => $quest, 'm' => $this->descendantsMode()];
+        $options = ['campaign' => $campaign, 'note' => $note, 'm' => $this->descendantsMode()];
         $filters = [];
         if ($this->filterToDirect()) {
-            $filters['quest_id'] = $quest->id;
+            $filters['note_id'] = $note->id;
         }
 
-        Datagrid::layout(\App\Renderers\Layouts\Quest\Note::class)
-            ->route('quests.quests', $options);
+        Datagrid::layout(\App\Renderers\Layouts\Note\Note::class)
+            ->route('notes.notes', $options);
 
-        $this->rows = $quest
+        $this->rows = $note
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
@@ -47,6 +47,6 @@ class QuestController extends Controller
             return $this->campaign($campaign)->datagridAjax();
         }
 
-        return redirect()->to($quest->getLink());
+        return redirect()->to($note->getLink());
     }
 }
