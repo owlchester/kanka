@@ -114,7 +114,7 @@ You can filter the returned entities on the `entities/` endpoint with the follow
 | `tags[]`        | `array`            | Filter on tags. Ex `tags[]=5&tags[]=13`                                                                                        |
 
 
-For example, call `entities?types=item,quest` to get entities of the Item and Quest type.
+For example, call `entities?type_id[]=5&type_id[]=10` to get entities of the Object and Quest modules.
 
 <a name="related-entities"></a>
 ## Related Entities
