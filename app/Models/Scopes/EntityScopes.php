@@ -2,6 +2,8 @@
 
 namespace App\Models\Scopes;
 
+use App\Models\Campaign;
+use App\Models\EntityType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -76,7 +78,7 @@ trait EntityScopes
     /**
      * Default API filter options
      */
-    public function scopeApiFilter(Builder $query, array $request = []): Builder
+    public function scopeApiFilter(Builder $query, Campaign $campaign, array $request = []): Builder
     {
         $related = Arr::get($request, 'related', false);
         $types = Arr::get($request, 'types');
@@ -93,6 +95,14 @@ trait EntityScopes
             $query->whereIn('type_id', $typeIds);
         }
 
+        $modules = Arr::get($request, 'type_id');
+        if (! empty($modules) && is_array($modules)) {
+            $validateModules = EntityType::inCampaign($campaign)->whereIn('id', $modules)->pluck('id')->toArray();
+            if (!empty($validateModules)) {
+                $query->whereIn('type_id', $validateModules);
+            }
+        }
+
         // Other available:
         $filterableFields = [
             'name',
@@ -101,6 +111,7 @@ trait EntityScopes
             'created_by',
             'updated_by',
             'tags',
+            'type',
         ];
         foreach ($request as $field => $value) {
             if (! in_array($field, $filterableFields)) {

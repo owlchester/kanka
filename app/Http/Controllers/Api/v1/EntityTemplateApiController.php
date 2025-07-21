@@ -30,7 +30,7 @@ class EntityTemplateApiController extends ApiController
         $this->authorize('access', $campaign);
 
         return Resource::collection($campaign->entities()
-            ->apiFilter(request()->all())
+            ->apiFilter($campaign, request()->all())
             ->lastSync(request()->get('lastSync'))
             ->where('is_template', true)
             ->paginate()
