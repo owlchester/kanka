@@ -6,6 +6,7 @@ use App\Facades\ApiLog;
 use App\Models\Campaign;
 use Closure;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class ApiLogMiddleware
 {
@@ -19,8 +20,11 @@ class ApiLogMiddleware
         return $next($request);
     }
 
-    public function terminate($request, JsonResponse $response)
+    public function terminate($request, Response $response)
     {
+        if (! $request instanceof JsonResponse) {
+            return;
+        }
         $startTime = LARAVEL_START;
         $endTime = microtime(true);
         $duration = $endTime - $startTime;
