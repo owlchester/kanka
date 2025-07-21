@@ -5,8 +5,8 @@ namespace App\Providers;
 use App\Policies\ClientPolicy;
 use App\Policies\TokenPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Laravel\Passport\Passport;
 use Laravel\Passport\Client;
+use Laravel\Passport\Passport;
 use Laravel\Passport\Token;
 
 class AuthServiceProvider extends ServiceProvider
