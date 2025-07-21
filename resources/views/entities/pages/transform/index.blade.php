@@ -28,6 +28,23 @@
                 <x-forms.field field="target" :label="__('entities/transform.fields.target')">
                     <x-forms.select name="target" :options="$entities" class="w-full" required />
                 </x-forms.field>
+
+                @if (!empty($confirm))
+                    <x-forms.field field="confirm" required :label=" __('entities/transform.confirm.label')">
+                        <x-checkbox :text="__('entities/transform.confirm.checkbox', ['entity' => $entity->name])">
+                            <input type="checkbox" name="confirm" value="1" required/>
+                            <x-slot name="extra">
+                                <ul>
+                                    @foreach ($confirm as $label => $number)
+                                        <li>{{ __($label) }}: {{ number_format($number)  }}</li>
+                                    @endforeach
+                                </ul>
+                            </x-slot>
+                        </x-checkbox>
+                    </x-forms.field>
+                @else
+                    <input type="hidden" name="confirm" value="1" />
+                @endif
             </x-grid>
 
             <x-dialog.footer>

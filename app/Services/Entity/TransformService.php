@@ -35,6 +35,40 @@ class TransformService
         return $this;
     }
 
+    public function confirm(): array
+    {
+        $confirm = [];
+        if ($this->entity->isTimeline()) {
+            $eras = $this->entity->child->eras()->count();
+            if ($eras > 0) {
+                $confirm['timelines.fields.eras'] = $eras;
+            }
+            $elements = $this->entity->child->elements()->count();
+            if ($elements > 0) {
+                $confirm['quests.show.tabs.elements'] = $elements;
+            }
+        } elseif ($this->entity->isMap()) {
+            $layers = $this->entity->child->layers()->count();
+            if ($layers > 0) {
+                $confirm['maps.fields.layers'] = $layers;
+            }
+            $groups = $this->entity->child->groups()->count();
+            if ($groups > 0) {
+                $confirm['maps.fields.groups'] = $groups;
+            }
+            $markers = $this->entity->child->markers()->count();
+            if ($markers > 0) {
+                $confirm['maps.fields.markers'] = $markers;
+            }
+        } elseif ($this->entity->isQuest()) {
+            $elements = $this->entity->child->elements()->count();
+            if ($elements > 0) {
+                $confirm['quests.show.tabs.elements'] = $elements;
+            }
+        }
+        return $confirm;
+    }
+
     public function transform(): Entity
     {
         // Custom to custom, just update the type_id

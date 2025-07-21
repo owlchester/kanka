@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Bulks;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Bulks\Transform;
 use App\Http\Requests\TransformEntityRequest;
 use App\Models\Campaign;
 use App\Models\EntityType;
@@ -35,7 +36,7 @@ class TransformController extends Controller
             ->with('entityType', $entityType);
     }
 
-    public function apply(TransformEntityRequest $request, Campaign $campaign, EntityType $entityType)
+    public function apply(Transform $request, Campaign $campaign, EntityType $entityType)
     {
         $models = explode(',', $request->get('models'));
         if ($request->has('entities')) {

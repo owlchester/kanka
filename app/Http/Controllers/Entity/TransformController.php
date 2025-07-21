@@ -18,7 +18,6 @@ class TransformController extends Controller
     use GuestAuthTrait;
 
     public function __construct(
-        protected EntityService $service,
         protected EntityTypeService $entityTypeService,
         protected TransformService $transformService
     ) {}
@@ -34,11 +33,14 @@ class TransformController extends Controller
             ->prepend(['' => __('entities/transform.fields.select_one')])
             ->toSelect();
 
+        $confirm = $this->transformService->entity($entity)->confirm();
+
         return view('entities.pages.transform.index', compact(
             'campaign',
             'entity',
             'entities',
             'campaign',
+            'confirm'
         ));
     }
 
@@ -50,6 +52,7 @@ class TransformController extends Controller
         }
 
         try {
+            /** @var EntityType $entityType */
             $entityType = EntityType::inCampaign($campaign)->find($request->get('target'));
             $this->transformService
                 ->campaign($campaign)
