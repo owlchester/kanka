@@ -18,6 +18,7 @@ use App\Http\Controllers\Settings\AppearanceController;
 use App\Http\Controllers\Settings\Apps\DiscordController;
 use App\Http\Controllers\Settings\AppsController;
 use App\Http\Controllers\Settings\BoostController;
+use App\Http\Controllers\Settings\ClientController;
 use App\Http\Controllers\Settings\NewsletterApiController;
 use App\Http\Controllers\Settings\NewsletterController;
 use App\Http\Controllers\Settings\PatreonController;
@@ -68,6 +69,14 @@ Route::get('/patreon', [PatreonController::class, 'index'])->name('settings.patr
 Route::delete('/patreon-unlink', [PatreonController::class, 'unlink'])->name('settings.patreon.unlink');
 
 Route::get('/api', [ApiController::class, 'index'])->name('settings.api');
+Route::get('/api/create', [ApiController::class, 'create'])->name('settings.api.create');
+Route::post('/api/store', [ApiController::class, 'store'])->name('settings.api.store');
+Route::delete('/api/revoke/{token}', [ApiController::class, 'revoke'])->name('settings.api.revoke');
+Route::put('/client/update/{client}', [ClientController::class, 'update'])->name('settings.client.update');
+Route::get('/client/create', [ClientController::class, 'create'])->name('settings.client.create');
+Route::post('/client/store', [ClientController::class, 'store'])->name('settings.client.store');
+Route::get('/client/edit/{client}', [ClientController::class, 'edit'])->name('settings.client.edit');
+Route::delete('/client/revoke/{client}', [ClientController::class, 'revoke'])->name('settings.client.revoke');
 
 Route::get('/appearance', [AppearanceController::class, 'index'])->name('settings.appearance');
 Route::patch('/appearance', [AppearanceController::class, 'update'])->name('settings.appearance.update');

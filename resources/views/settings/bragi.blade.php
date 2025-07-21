@@ -1,6 +1,6 @@
 <?php /** @var \App\Models\BragiLog $log */?>
 @extends('layouts.app', [
-    'title' => __('Bragi'),
+    'title' => 'Bragi',
     'description' => '',
     'breadcrumbs' => false,
     'sidebar' => 'settings',
