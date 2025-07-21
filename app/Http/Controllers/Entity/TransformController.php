@@ -9,7 +9,6 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\Entity\TransformService;
-use App\Services\EntityService;
 use App\Services\EntityTypeService;
 use App\Traits\GuestAuthTrait;
 

@@ -66,6 +66,7 @@ class TransformService
                 $confirm['quests.show.tabs.elements'] = $elements;
             }
         }
+
         return $confirm;
     }
 

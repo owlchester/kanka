@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Bulks;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Bulks\Transform;
-use App\Http\Requests\TransformEntityRequest;
 use App\Models\Campaign;
 use App\Models\EntityType;
 use App\Services\BulkService;

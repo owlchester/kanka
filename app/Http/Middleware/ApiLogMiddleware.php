@@ -6,7 +6,6 @@ use App\Facades\ApiLog;
 use App\Models\Campaign;
 use Closure;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 
 class ApiLogMiddleware
 {
