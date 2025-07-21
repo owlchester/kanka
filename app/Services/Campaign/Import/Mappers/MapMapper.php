@@ -82,7 +82,7 @@ class MapMapper extends MiscMapper
     protected function layers(): self
     {
         $fields = [
-            'name', 'position', 'image_uuid', 'image', 'image_path', 'height', 'width', 'entry', 'visibility_id', 'type_id',
+            'name', 'position', 'image_uuid', 'image_path', 'height', 'width', 'entry', 'visibility_id', 'type_id',
         ];
         $this->layers = [];
         foreach ($this->data['layers'] as $data) {
