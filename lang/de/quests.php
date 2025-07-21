@@ -36,9 +36,7 @@ return [
     'helpers'       => [
         'is_completed'  => 'Wählen Sie aus, ob die Quest als abgeschlossen gilt.',
     ],
-    'hints'         => [
-        'quests'    => 'Ein Netz aus verknüpften Quests kann mit dem Elternquest-Feld erstellt werden.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'items'         => [],
     'locations'     => [],

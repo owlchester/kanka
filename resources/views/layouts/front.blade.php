@@ -65,6 +65,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @vite('resources/sass/front.scss')
     @livewireStyles
     @yield('styles')
+    @include('layouts.tracking.tracking', ['frontLayout' => true])
 </head>
 
 <body id="page-top" class="">
@@ -77,12 +78,11 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @yield('content')
 @include('front.footer')
 
-@vite('resources/js/front.js')
+@vite(['resources/js/front.js'])
 @if (config('fontawesome.kit'))
 <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')
-@include('layouts.tracking.tracking', ['frontLayout' => true])
 <div id="dialog-backdrop" class="z-[1000] fixed top-0 left-0 right-0 bottom-0 h-full w-full backdrop-blur-sm bg-base-100 hidden" style="--tw-bg-opacity: 0.2"></div>
 @yield('modals')
 @yield('scripts')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Campaign;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\Campaigns\Boosted;
 use App\Http\Requests\StoreCampaignDashboard;
 use App\Models\Campaign;
 use App\Models\CampaignDashboard;
@@ -13,7 +14,7 @@ class DashboardController extends Controller
     public function __construct(protected DashboardService $service)
     {
         $this->middleware('auth');
-        $this->middleware('campaign.boosted', ['except' => ['index', 'create']]);
+        $this->middleware(Boosted::class, ['except' => ['index', 'create']]);
     }
 
     /**

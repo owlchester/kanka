@@ -50,9 +50,6 @@ return [
         'buttons'       => [
             'label' => 'Pour la sélection',
         ],
-        'delete'        => [
-            'warning'   => 'Es-tu sûr de vouloir supprimer les entités sélectionnées?',
-        ],
         'edit'          => [
             'locations' => 'Action pour les lieux',
             'tagging'   => 'Action pour les étiquettes',
@@ -99,12 +96,11 @@ return [
         'empty' => 'Rien à afficher.',
     ],
     'delete_modal'      => [
-        'callout'           => 'Oyé!',
-        'confirm'           => 'Confirmer la suppression',
-        'description_v2'    => 'Tu supprimes ":tag".',
-        'permanent'         => 'Cette action est permanente.',
-        'recoverable'       => 'Les entités supprimées peuvent être récupérées pendant :day jours avec une :boosted-campaign.',
-        'title'             => 'Confirmation de la suppression',
+        'callout'       => 'Oyé!',
+        'confirm'       => 'Confirmer la suppression',
+        'permanent'     => 'Cette action est permanente.',
+        'recoverable'   => 'Les entités supprimées peuvent être récupérées pendant :day jours avec une :boosted-campaign.',
+        'title'         => 'Confirmation de la suppression',
     ],
     'destroy_many'      => [
         'success'   => ':count élément supprimé.|:count éléments supprimés.',
@@ -217,11 +213,11 @@ return [
     'helpers'           => [
         'copy_options'  => 'Copier les éléments liés suivant de la source à la nouvelle entité.',
         'linking'       => 'Lier d\'autres entités',
-        'nested_parent' => 'Affichage des enfants de :parent.',
         'pagination'    => [
             'settings'  => 'paramètres d\'affichage',
             'text'      => 'Plus de résultats par page peuvent être affiché en modifiant tes :settings.',
         ],
+        'parent'        => 'Sélectionne le parent duquel cette entité sera l\'enfant.',
     ],
     'hidden'            => 'Caché',
     'hints'             => [

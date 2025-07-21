@@ -36,9 +36,7 @@ return [
     'helpers'       => [
         'is_completed'  => 'A missão é considerada concluída.',
     ],
-    'hints'         => [
-        'quests'    => 'Uma rede de missões interligadas pode ser construída usando o campo de Missão Primária.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'placeholders'  => [
         'date'      => 'Data do mundo real para a missão',

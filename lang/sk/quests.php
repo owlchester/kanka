@@ -36,9 +36,7 @@ return [
     'helpers'       => [
         'is_completed'  => 'Zaškrtni, ak je daná úloha považovaná za splnenú.',
     ],
-    'hints'         => [
-        'quests'    => 'Sieť prepojených úloh je možné vytvoriť cez nadradenú úlohu.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'placeholders'  => [
         'date'      => 'Reálny dátum zadania úlohy',

@@ -50,9 +50,6 @@ return [
         'buttons'       => [
             'label' => 'Para la selección',
         ],
-        'delete'        => [
-            'warning'   => '¿Seguro que quieres eliminar las entidades seleccionadas?',
-        ],
         'edit'          => [
             'locations' => 'Acción para las ubicaciones',
             'tagging'   => 'Acción para las etiquetas',
@@ -100,12 +97,11 @@ return [
         'empty' => 'Aún no hay nada que mostrar.',
     ],
     'delete_modal'      => [
-        'callout'           => '¡Pssst!',
-        'confirm'           => 'Confirmar eliminación',
-        'description_v2'    => 'Estás eliminando ":tag".',
-        'permanent'         => 'Esta acción es permanente.',
-        'recoverable'       => 'Las entidades pueden recuperarse durante un máximo de :día días con una campaña :boosted.',
-        'title'             => 'Eliminar',
+        'callout'       => '¡Pssst!',
+        'confirm'       => 'Confirmar eliminación',
+        'permanent'     => 'Esta acción es permanente.',
+        'recoverable'   => 'Las entidades pueden recuperarse durante un máximo de :día días con una campaña :boosted.',
+        'title'         => 'Eliminar',
     ],
     'destroy_many'      => [
         'success'   => '{1} Se ha eliminado :count entidad .|[2,*] Se han eliminado :count entidades.',
@@ -219,7 +215,6 @@ return [
     'helpers'           => [
         'copy_options'  => 'Copia los siguientes elementos relacionados del origen a la nueva entidad.',
         'linking'       => 'Vinculando con otras entidades',
-        'nested_parent' => 'Mostrando los hijos de :parent.',
         'pagination'    => [
             'settings'  => 'ajustes de apariencia',
             'text'      => 'Se pueden mostrar más resultados por página cambiando la :settings.',

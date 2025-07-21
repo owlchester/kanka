@@ -5,13 +5,10 @@ return [
         'placeholder'   => 'Wybierz obraz z galerii kampanii',
     ],
     'gallery-header'    => [
-        'boosted-description'   => 'Wyświetlaj obrazy w nagłówkach z galerii kampanii w :superboosted-campaign.',
-        'description'           => 'Jeżeli element nie ma obrazu w nagłówku, wyświetlaj obraz z galerii kampanii.',
+        'description'   => 'Jeżeli element nie ma obrazu w nagłówku, wyświetlaj obraz z galerii kampanii.',
     ],
     'gallery-image'     => [
-        'boosted-description'   => 'Wyświetlaj obrazy z galerii kampanii w :superboosted-campaign',
-        'description'           => 'Jeżeli element nie ma własnego obrazu, wyświetlaj obraz z galerii kampanii.',
-        'title'                 => 'Obraz z galerii',
+        'description'   => 'Jeżeli element nie ma własnego obrazu, wyświetlaj obraz z galerii kampanii.',
     ],
     'header-image'      => [
         'boosted-description'   => 'Wyświetlaj obraz w tle nagłówka elementu w :boosted-campaign',

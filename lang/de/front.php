@@ -26,7 +26,6 @@ return [
         'patreon'   => [
             'api_calls'         => 'Erhöhte API-Aufrufe (90)',
             'boosts'            => 'Kampagnen Booster',
-            'curation'          => 'Helfen Sie mit, die Community-Abstimmungselemente zu verwalten',
             'default_image'     => 'Schöne Standardbilder für Objekte',
             'discord'           => 'Privater Discord-Kanal',
             'free'              => 'Kostenlos',

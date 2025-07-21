@@ -289,7 +289,7 @@ class ExportService
                 //                $saveFolder = storage_path($this->exportPath);
                 //                $this->archive->saveTo($saveFolder);
                 throw new Exception(
-                    'Missing campaign entity relation: ' . $entityType->singular . '? '
+                    'Missing campaign custom entity relation: ' . $entityType->singular . '? '
                     . $e->getMessage()
                 );
             }
@@ -381,15 +381,16 @@ class ExportService
             $this->addImage($path, $path);
         }
 
-        if ($model instanceof Map) {
-            foreach ($model->layers as $layer) {
-                $path = $layer->image;
-                if (! $path || ! Storage::exists($path)) {
-                    continue;
-                }
-                $this->addImage($path, $path);
-            }
-        }
+        // Layers are now stored in the gallery so this no longer applies
+        //        if ($model instanceof Map) {
+        //            foreach ($model->layers as $layer) {
+        //                $path = $layer->image;
+        //                if (! $path || ! Storage::exists($path)) {
+        //                    continue;
+        //                }
+        //                $this->addImage($path, $path);
+        //            }
+        //        }
 
         $this->progress();
 

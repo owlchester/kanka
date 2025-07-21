@@ -38,7 +38,7 @@ return [
         'question'  => '¿Se me cobrará automáticamente cuando se renueve mi suscripción?',
     ],
     'security'      => [
-        'answer'    => 'Tu seguridad financiera es nuestra prioridad. Trabajamos con \:stripe, un procesador de pagos que cumple con PCI y mantiene los más altos estándares en seguridad. Todos los datos sensibles de pago son gestionados y almacenados por Stripe bajo protocolos compatibles con el GDPR, no en nuestros servidores.',
+        'answer'    => 'Tu seguridad financiera es nuestra prioridad. Trabajamos con :stripe, un procesador de pagos que cumple con PCI y mantiene los más altos estándares en seguridad. Todos los datos sensibles de pago son gestionados y almacenados por Stripe bajo protocolos compatibles con el GDPR, no en nuestros servidores.',
         'question'  => '¿Qué tan segura está mi información de pago?',
     ],
     'sharing'       => [

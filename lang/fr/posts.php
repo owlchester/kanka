@@ -36,8 +36,11 @@ return [
     ],
     'position'      => [
         'dont_change'   => 'Tel quel',
-        'first'         => 'Début',
-        'last'          => 'Fin',
+        'first'         => 'Premier',
+        'last'          => 'Dernier',
+    ],
+    'remove'        => [
+        'title' => 'Supprimer l\'article',
     ],
     'visibility'    => [
         'helper'    => 'Modifier la visibilité de l\'article :name.',

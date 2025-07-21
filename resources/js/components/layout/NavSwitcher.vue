@@ -1,10 +1,10 @@
 <template>
-    <div class="nav-switcher flex items-center justify-center h-12">
-        <div class="campaigns inline cursor-pointer text-center px-3 text-2xl hover:text-primary-focus" v-on:click="openCampaigns()" aria-label="Switch campaigns" tabindex="0" role="button">
+    <div class="nav-switcher flex items-center justify-center align-middle h-12 gap-2">
+        <div class="campaigns inline cursor-pointer text-center text-2xl hover:text-primary-focus" v-on:click="openCampaigns()" aria-label="Switch campaigns" tabindex="0" role="button">
             <GridSvg :size="7" />
             <span class="sr-only">Campaigns</span>
         </div>
-        <div class="profile inline cursor-pointer text-center uppercase pt-1" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
+        <div class="profile flex items-center cursor-pointer text-center uppercase" v-on:click="openProfile()" aria-label="Profile settings" tabindex="0" role="button">
             <div class="indicator relative inline-flex w-max">
                 <span class="notification-badge left-auto top-auto w-fit inline-flex absolute content-center items-center z-10" v-if="show_alerts"></span>
                 <div class="profile-box rounded-lg p-2 text-center font-bold" v-if="showInitials()">

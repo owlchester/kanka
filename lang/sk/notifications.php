@@ -2,44 +2,42 @@
 
 return [
     'campaign'          => [
-        'application'           => [
+        'application'       => [
             'approved'              => 'Tvoja prihláška do kampane :campaign bola schválená.',
             'approved_message'      => 'Tvoja prihláška do kampane :campaign bola schválená. Správa: :reason',
             'new'                   => 'Nová prihláška pre :campaign.',
             'rejected'              => 'Tvoja prihláška do kampane :campaign bola odmietnutá. Uvedený dôvod: :reason',
             'rejected_no_message'   => 'Tvoja prihláška do kampane :campaign bola odmietnutá.',
         ],
-        'asset_export'          => 'Export materiálov kampane je dostupný. Link je dostupný na :time min.',
-        'asset_export_error'    => 'Vyskytla sa chyba pri exportovaní obsahu kampane. Táto je obvyklá pri veľkých kampaniach.',
-        'boost'                 => [
+        'asset_export'      => 'Export materiálov kampane je dostupný. Link je dostupný na :time min.',
+        'boost'             => [
             'add'           => 'Kampaň :campaign bola boostnutá používateľom :user.',
             'remove'        => 'Kampaň :campaign už nie je boostovaná používateľom :user.',
             'superboost'    => ':user superboostol kampaň :campaign.',
         ],
-        'deleted'               => 'Kampaň :campaign bola zmazaná.',
-        'export'                => 'Export kampane je dostupný. Link je platný po dobu :time minút.',
-        'export_error'          => 'Počas exportu tvojej kampane došlo k chybe. Prosím, kontaktuj nás, ak problém pretrváva.',
-        'hidden'                => 'Kampaň :campaign je teraz skrytá a nezobrazuje sa na stránke verejných kampaní.',
-        'import'                => [
+        'deleted'           => 'Kampaň :campaign bola zmazaná.',
+        'export'            => 'Export kampane je dostupný. Link je platný po dobu :time minút.',
+        'export_error'      => 'Počas exportu tvojej kampane došlo k chybe. Prosím, kontaktuj nás, ak problém pretrváva.',
+        'hidden'            => 'Kampaň :campaign je teraz skrytá a nezobrazuje sa na stránke verejných kampaní.',
+        'import'            => [
             'failed'    => 'Import kampane :campaign zlyhal.',
             'success'   => 'Import kampane :campaign skončil.',
         ],
-        'join'                  => ':user pristúpil do kampane :campaign.',
-        'leave'                 => ':user opustil kampaň :campaign.',
-        'plugin'                => [
+        'join'              => ':user pristúpil do kampane :campaign.',
+        'leave'             => ':user opustil kampaň :campaign.',
+        'plugin'            => [
             'deleted'   => 'Plugin :plugin bol odstránený z trhoviska a tvojej kampane :campaign.',
         ],
-        'premium'               => [
+        'premium'           => [
             'add'       => 'Prémiové funkcionality boli odomknuté pre kampaň :campaign užívateľom :user.',
             'remove'    => ':user už neposkytuje prémiové funkcionality pre kampaň :campaign.',
         ],
-        'removed-image'         => 'Obrázok alebo hlavička :entity bola odstránená kvôli žiadosti na základe autorských práv.',
-        'role'                  => [
+        'removed-image'     => 'Obrázok alebo hlavička :entity bola odstránená kvôli žiadosti na základe autorských práv.',
+        'role'              => [
             'add'       => 'Bola ti pridaná rola :role v kampani :campaign.',
             'remove'    => 'Bola ti odobraná rola :role v kampani :campaign.',
         ],
-        'shown'                 => 'Kampaň :campaign je teraz viditeľná na stránke verejných kampaní.',
-        'troubleshooting'       => [
+        'troubleshooting'   => [
             'joined'    => 'Člen tímu Kanky :user pristúpil do kampane :campaign.',
         ],
     ],

@@ -13,6 +13,7 @@ return [
         'find-plugins'      => 'Find plugins',
         'import'            => 'Import',
         'update'            => 'Update plugin',
+        'update-to'         => 'Update to version :version',
         'update_available'  => 'Update available!',
     ],
     'bulks'         => [
@@ -56,11 +57,12 @@ return [
         'updated'               => 'Updated the following entities:',
     ],
     'info'          => [
+        'description' => 'Showing the latest updates for the :plugin plugin.',
         'helper'        => 'When a new version of a plugin is released, you can update it to the latest version for your campaign.',
         'title'         => 'Plugin :plugin updates',
         'updates'       => 'Updates',
         'versions'      => 'Versions',
-        'your_version'  => 'Your version',
+        'installed'     => 'Installed',
     ],
     'pitch'         => 'Install and manage plugins from the :marketplace.',
     'status'        => [

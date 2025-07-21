@@ -59,7 +59,7 @@
             <td class="">
                 <div class="flex flex-wrap gap-1">
                 @foreach ($log->data as $key => $val)
-                    @if (in_array($key, ['module', 'action'])) @continue @endif
+                    @if (in_array($key, ['module', 'action']) || is_array($key)) @continue @endif
                         <div class="text-xs rounded-2xl px-2 py-1 border border-base-300">
                             {{ $key }}: {{ $val }}
                         </div>

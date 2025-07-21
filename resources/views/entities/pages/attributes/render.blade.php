@@ -1,12 +1,11 @@
-@inject('attributeService', 'App\Services\AttributeService')
 @inject('templateService', 'App\Services\Attributes\TemplateService')
 <?php
 /**
- * @var \App\Services\AttributeService $attributeService
  * @var \App\Services\Attributes\TemplateService $templateService
  * @var \App\Models\Campaign $campaign
  * @var \App\Models\Entity $entity
  */
+/** @var ?\App\Models\Attribute $layout */
 $layout = $entity->entityAttributes->where('name', '_layout')->first();
 
 if (!empty($layout)) {

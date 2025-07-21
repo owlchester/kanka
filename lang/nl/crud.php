@@ -30,9 +30,6 @@ return [
         'age'           => [
             'helper'    => 'Je kunt + en - voor het nummer gebruiken om de leeftijd met dat aantal bij te werken.',
         ],
-        'delete'        => [
-            'warning'   => 'Weet je zeker dat je de geselecteerde entiteiten wilt verwijderen?',
-        ],
         'edit'          => [
             'tagging'   => 'Acties voor tags',
             'tags'      => [

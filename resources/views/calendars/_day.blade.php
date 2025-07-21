@@ -84,10 +84,12 @@
                         @if ($canEdit && $event->isEntity())
                             @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
                             data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('reminders.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->id, 'next' => 'calendar.' . $model->id]) + $routeOptions) }}"
-                    
+
                         @elseif ($canEdit && $event->isPost())
                             @php unset($routeOptions[0]); unset($routeOptions['date']); @endphp
                             data-toggle="dialog" data-target="primary-dialog" data-url="{{ route('reminders.edit', ($event->calendar_id !== $model->id ? [$campaign, $event->id, 'from' => $model->calendar_id, 'next' => 'calendar.' . $model->id] : [$campaign, $event->id, 'next' => 'calendar.' . $model->id]) + $routeOptions) }}"
+                        @elseif ($event->isPost())
+                            data-url="{{ route('entities.show', [$campaign, $event->remindable->entity, '#post-' . $event->remindable_id]) }}"
                         @else
                             data-url="{{ $event->remindable->url() }}"
                         @endif

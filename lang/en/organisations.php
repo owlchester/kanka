@@ -23,7 +23,7 @@ return [
             'success'   => 'Member removed from :name.',
         ],
         'edit'          => [
-            'helper' => 'Change the membership status for :name.',
+            'helper'    => 'Change the membership status for :name.',
             'title'     => 'Update Member for :name',
         ],
         'fields'        => [

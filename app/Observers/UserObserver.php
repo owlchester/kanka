@@ -49,6 +49,7 @@ class UserObserver
         // Tell mailchimp about the user's new email
         if (! $user->wasRecentlyCreated && $user->isDirty('email') && $user->hasNewsletter()) {
             UpdateEmail::dispatch($user);
+            EmailChanged::dispatch($user, $user->getOriginal('email'));
         }
         if ($user->isDirty('name')) {
             UserCache::user($user)->clearName();
@@ -56,7 +57,6 @@ class UserObserver
 
         // Todo: move to the controller
         if ($user->isDirty('email')) {
-            EmailChanged::dispatch($user, $user->getOriginal('email'));
             $user->log(UserAction::emailUpdate);
         } elseif ($user->isDirty('provider')) {
             $user->log(UserAction::socialSwitch);

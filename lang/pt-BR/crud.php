@@ -48,9 +48,6 @@ return [
         'buttons'       => [
             'label' => 'Para selecionado(s)',
         ],
-        'delete'        => [
-            'warning'   => 'Você está removendo múltiplas entidades.',
-        ],
         'edit'          => [
             'locations' => 'Ação para locais',
             'tagging'   => 'Ação para tags',
@@ -98,12 +95,11 @@ return [
         'empty' => 'Nada para mostrar ainda',
     ],
     'delete_modal'      => [
-        'callout'           => 'Psst!',
-        'confirm'           => 'Confirmar remoção',
-        'description_v2'    => 'Você está removendo ":tag".',
-        'permanent'         => 'Essa ação é permanente.',
-        'recoverable'       => 'As entidades podem ser recuperadas por até :day dias com uma :boosted-campaign.',
-        'title'             => 'Confirmação de remoção',
+        'callout'       => 'Psst!',
+        'confirm'       => 'Confirmar remoção',
+        'permanent'     => 'Essa ação é permanente.',
+        'recoverable'   => 'As entidades podem ser recuperadas por até :day dias com uma :boosted-campaign.',
+        'title'         => 'Confirmação de remoção',
     ],
     'destroy_many'      => [
         'success'   => 'Deletado :count entity.|Deletado :count entities.',
@@ -210,7 +206,6 @@ return [
     'helpers'           => [
         'copy_options'  => 'Copie os seguintes elementos relacionados da origem para a nova entidade.',
         'linking'       => 'Vinculando a outras entidades',
-        'nested_parent' => 'Mostrando os filhos de :parent.',
         'pagination'    => [
             'settings'  => 'configurações de aparência',
             'text'      => 'Mais resultados por página podem ser exibidos alterando suas :settings.',

@@ -20,7 +20,6 @@ return [
         'patreon'   => [
             'api_calls'         => 'Limite de requête API (90)',
             'boosts'            => 'Boosters de campagne',
-            'curation'          => 'Aide à l\'établissement des votes communtaires',
             'default_image'     => 'Images par défaut pour les entités',
             'discord'           => 'Canal :discord privé',
             'free'              => 'Gratuit',

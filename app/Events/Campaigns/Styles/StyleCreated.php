@@ -2,6 +2,7 @@
 
 namespace App\Events\Campaigns\Styles;
 
+use App\Models\Campaign;
 use App\Models\CampaignStyle;
 use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -18,6 +19,7 @@ class StyleCreated
      */
     public function __construct(
         public CampaignStyle $campaignStyle,
+        public Campaign $campaign,
         public ?User $user,
     ) {
         //

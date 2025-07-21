@@ -67,9 +67,6 @@ class PostService
         $this->post->entity_id = $this->entityId;
         $this->post->save();
 
-        // Transfer post logs to new entity too.
-        $this->post->logs()->update(['entity_id' => $this->entityId]);
-
         $this->log($this->post, EntityLog::ACTION_UPDATE_POST);
 
         return $this->post;

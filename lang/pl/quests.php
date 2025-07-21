@@ -36,9 +36,7 @@ return [
     'helpers'       => [
         'is_completed'  => 'Wybierz, jeżeli zadanie można uznać za ukończone.',
     ],
-    'hints'         => [
-        'quests'    => 'Przy użyciu pola Zadania źródłowego można stworzyć sieć zazębiających się zadań.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'placeholders'  => [
         'date'      => 'Data zadania w prawdziwym świecie',

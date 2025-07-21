@@ -5,13 +5,10 @@ return [
         'placeholder'   => 'Wählen Sie ein Bild aus der Kampagnengalerie',
     ],
     'gallery-header'    => [
-        'boosted-description'   => 'Zeigen Sie ein Header-Bild aus der Kampagnengalerie mit einer :superboosted-campaign an.',
-        'description'           => 'Wenn das Objekt kein Kopfzeilenbild hat, zeigen Sie stattdessen ein Bild aus der Kampagnengalerie an.',
+        'description'   => 'Wenn das Objekt kein Kopfzeilenbild hat, zeigen Sie stattdessen ein Bild aus der Kampagnengalerie an.',
     ],
     'gallery-image'     => [
-        'boosted-description'   => 'Zeigen Sie ein Bild aus der Kampagnengalerie mit einer :superboosted-campaign an.',
-        'description'           => 'Wenn das Objekt kein Bild hat, zeigen Sie stattdessen ein Bild aus der Kampagnengalerie an.',
-        'title'                 => 'Kampagnengalerie',
+        'description'   => 'Wenn das Objekt kein Bild hat, zeigen Sie stattdessen ein Bild aus der Kampagnengalerie an.',
     ],
     'header-image'      => [
         'boosted-description'   => 'Zeigen Sie ein Hintergrundbild in der Kopfzeile des Objekts  mit einer :boosted-campaign an.',

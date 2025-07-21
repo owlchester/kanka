@@ -7,9 +7,7 @@ return [
     'destroy'       => [],
     'edit'          => [],
     'families'      => [],
-    'fields'        => [
-        'members'   => 'Członkowie',
-    ],
+    'fields'        => [],
     'helpers'       => [],
     'hints'         => [
         'is_extinct'    => 'Ta rodzina wymarła.',
@@ -18,13 +16,8 @@ return [
     'index'         => [],
     'members'       => [
         'create'    => [
-            'submit'    => 'Dodaj członków',
             'success'   => '{0} Nie dodano członków.|{1} Dodano 1 członka.|[2,*] Dodano :count członków.',
             'title'     => 'Nowi członkowie',
-        ],
-        'helpers'   => [
-            'all_members'       => 'Na liście znajdują się postaci należące do tej rodziny i wszystkich jej rodzin pochodnych.',
-            'direct_members'    => 'Większość rodzin posiada członków, którymi słynie. Na poniższej liście znajdują się postaci należące do tej rodziny bezpośrednio.',
         ],
     ],
     'placeholders'  => [
@@ -33,8 +26,7 @@ return [
     ],
     'show'          => [
         'tabs'  => [
-            'members'   => 'Członkowie',
-            'tree'      => 'Drzewo genealogiczne',
+            'tree'  => 'Drzewo genealogiczne',
         ],
     ],
 ];

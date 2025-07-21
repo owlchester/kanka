@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Campaign\CssController;
 use App\Http\Controllers\Campaign\ModuleController;
 use App\Http\Controllers\Campaign\Plugins\BulkController;
-use App\Http\Controllers\Campaign\Plugins\CssController;
 use App\Http\Controllers\Campaign\Plugins\ImportController;
 use App\Http\Controllers\Campaign\Plugins\ToggleController;
 use App\Http\Controllers\Campaign\Plugins\UpdateController;

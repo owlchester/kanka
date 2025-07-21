@@ -17,20 +17,17 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'           => 'Dodaj członka',
             'add_multiple'  => 'Dodaj członków',
         ],
         'create'        => [
             'helper'            => 'Dodaje jednego lub więcej członków do :name.',
             'success_multiple'  => '{1} Dodano :count członka do :name.|[2,*] Dodano :count członków do :name.',
-            'title_multiple'    => 'Nowi członkowie',
         ],
         'destroy'       => [
             'success'   => 'Usunięto członka organizacji.',
         ],
         'edit'          => [
-            'success'   => 'Zmieniono członka organizacji.',
-            'title'     => 'Edycja członka :name',
+            'title' => 'Edycja członka :name',
         ],
         'fields'        => [
             'parent'    => 'Zwierzchnik',

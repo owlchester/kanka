@@ -99,7 +99,7 @@ class Character extends MiscModel
     /**
      * Searchable fields
      */
-    protected array $searchableColumns = ['name', 'title', 'type', 'entry'];
+    protected array $searchableColumns = ['name', 'title'];
 
     protected array $suggestions = [
         CharacterCache::class => 'clearSuggestion',
@@ -519,7 +519,7 @@ class Character extends MiscModel
     {
         // @phpstan-ignore-next-line
         return $query
-            ->select(['id', 'name', 'title', 'location_id', 'is_dead', 'is_private'])
+            ->select(['id', 'title', 'location_id', 'is_dead', 'is_private'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'location', 'location.entity',

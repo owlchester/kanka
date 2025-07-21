@@ -19,15 +19,7 @@ class AttributeController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
 
-    protected AttributeService $service;
-
-    protected TemplateService $templateService;
-
-    public function __construct(AttributeService $attributeService, TemplateService $templateService)
-    {
-        $this->service = $attributeService;
-        $this->templateService = $templateService;
-    }
+    public function __construct(protected AttributeService $service, protected TemplateService $templateService) {}
 
     public function index(Campaign $campaign, Entity $entity)
     {

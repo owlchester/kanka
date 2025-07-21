@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-5">
+    <div class="">
         <span role="button" class="sidebar-toggle text-center cursor-pointer fill-current hover:text-primary-focus" data-toggle="tooltip" :data-title="props.title" data-placement="right" data-html="true" tabindex="" @click="toggleSidebar()">
           <svg class="h-6 w-6 transition-all duration-150 hover:rotate-45" data-sidebar="collapse" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 50 50">
 <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z"></path>

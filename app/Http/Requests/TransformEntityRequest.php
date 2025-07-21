@@ -25,6 +25,7 @@ class TransformEntityRequest extends FormRequest
     {
         return [
             'target' => 'required|exists:entity_types,id',
+            'confirm' => 'required|boolean',
         ];
     }
 }

@@ -20,7 +20,7 @@
             'class' => 'icon w-14'
         ],
         [
-            'label' => __('entities.families'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.family'), __('entities.families')),
             'visible' => $campaign->enabled('families'),
             'disableSort' => true,
             'render' => function ($model) use ($campaign) {
@@ -41,7 +41,7 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' => __('entities.races'),
+            'label' => \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')),
             'visible' => $campaign->enabled('races'),
             'disableSort' => true,
             'render' => function($model) use ($campaign) {

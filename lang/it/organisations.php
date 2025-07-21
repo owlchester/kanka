@@ -16,15 +16,11 @@ return [
     ],
     'index'         => [],
     'members'       => [
-        'actions'       => [
-            'add'   => 'Aggiungi un membro',
-        ],
         'destroy'       => [
             'success'   => 'Membro rimosso da :name.',
         ],
         'edit'          => [
-            'success'   => 'Membro aggiornato.',
-            'title'     => 'Membro Aggiornato per :name',
+            'title' => 'Membro Aggiornato per :name',
         ],
         'fields'        => [
             'parent'    => 'Superiore',

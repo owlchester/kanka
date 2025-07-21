@@ -59,7 +59,6 @@ use App\Listeners\Campaigns\Admins\Notify;
 use App\Listeners\Campaigns\Applications\LogApplication;
 use App\Listeners\Campaigns\Campaigns\LogCampaign;
 use App\Listeners\Campaigns\ClearCampaignCache;
-use App\Listeners\Campaigns\ClearCampaignThemeCache;
 use App\Listeners\Campaigns\ClearCampaignUsersSaved;
 use App\Listeners\Campaigns\Dashboards\LogDashboard;
 use App\Listeners\Campaigns\EntityTypes\LogEntityType;
@@ -73,6 +72,7 @@ use App\Listeners\Campaigns\Plugins\ClearThemeCache;
 use App\Listeners\Campaigns\Plugins\LogPlugin;
 use App\Listeners\Campaigns\Roles\LogRole;
 use App\Listeners\Campaigns\Sidebar\LogSidebar;
+use App\Listeners\Campaigns\Styles\ClearStylesCache;
 use App\Listeners\Campaigns\Styles\LogStyle;
 use App\Listeners\Campaigns\Thumbnails\LogThumbnail;
 use App\Listeners\Campaigns\Webhooks\LogWebhook;
@@ -138,15 +138,15 @@ class EventServiceProvider extends ServiceProvider
         ],
         StyleCreated::class => [
             LogStyle::class,
-            ClearCampaignThemeCache::class,
+            ClearStylesCache::class,
         ],
         StyleUpdated::class => [
             LogStyle::class,
-            ClearCampaignThemeCache::class,
+            ClearStylesCache::class,
         ],
         StyleDeleted::class => [
             LogStyle::class,
-            ClearCampaignThemeCache::class,
+            ClearStylesCache::class,
         ],
         Accepted::class => [
             LogApplication::class,

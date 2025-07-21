@@ -17,20 +17,17 @@ return [
     'index'         => [],
     'members'       => [
         'actions'       => [
-            'add'           => 'Adicionar um membro',
             'add_multiple'  => 'Adicionar membros',
         ],
         'create'        => [
             'helper'            => 'Adicionar um ou vários membros à :name.',
             'success_multiple'  => '{1} Adicionado :count membro a :name.|[2,*] Adicionados :count membros a :name.',
-            'title_multiple'    => 'Novos Membros',
         ],
         'destroy'       => [
             'success'   => 'Membro removido da organização.',
         ],
         'edit'          => [
-            'success'   => 'Membro da organização atualizado.',
-            'title'     => 'Atualizar Membro para :name',
+            'title' => 'Atualizar Membro para :name',
         ],
         'fields'        => [
             'parent'    => 'Superior',

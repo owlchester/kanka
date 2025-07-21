@@ -96,11 +96,11 @@ return [
         'empty' => 'Nothing to show yet.',
     ],
     'delete_modal'      => [
-        'callout'           => 'Psst!',
-        'confirm'           => 'Confirm removal',
-        'permanent'         => 'This will permanently remove this element and you won\'t be able to undo this action.',
-        'recoverable'       => 'Entities and posts can be recovered for up to :day days with a :boosted-campaign.',
-        'title'             => 'Removal confirmation',
+        'callout'       => 'Psst!',
+        'confirm'       => 'Confirm removal',
+        'permanent'     => 'This will permanently remove this element and you won\'t be able to undo this action.',
+        'recoverable'   => 'Entities and posts can be recovered for up to :day days with a :boosted-campaign.',
+        'title'         => 'Removal confirmation',
     ],
     'destroy_many'      => [
         'success'   => 'Deleted :count entity.|Deleted :count entities.',
@@ -217,7 +217,7 @@ return [
             'settings'  => 'appearance settings',
             'text'      => 'More results per page can be shown by changing your :settings.',
         ],
-        'parent' => 'Select a parent the entity will be a child to.',
+        'parent'        => 'Select a parent the entity will be a child to.',
     ],
     'hidden'            => 'Hidden',
     'hints'             => [

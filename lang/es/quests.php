@@ -36,9 +36,7 @@ return [
     'helpers'       => [
         'is_completed'  => 'Selecciona esto si la misión ya se ha completado.',
     ],
-    'hints'         => [
-        'quests'    => 'Se puede crear una red de misiones entrelazadas usando el campo Misión Superior.',
-    ],
+    'hints'         => [],
     'index'         => [],
     'placeholders'  => [
         'date'      => 'Fecha real de la misión',

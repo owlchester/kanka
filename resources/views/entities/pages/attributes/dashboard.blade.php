@@ -11,7 +11,7 @@
 
 
 @section('content')
-    <div class="entity-main-block">
+    <div class="entity-main-block flex flex-col gap-4">
         @include('entities.pages.attributes.render')
     </div>
 @endsection

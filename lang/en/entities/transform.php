@@ -10,8 +10,12 @@ return [
         ],
         'success'   => '{1} :count entity transformed to new module :type.|[2,*] :count entities transformed to new module :type.',
     ],
+    'confirm' => [
+        'label' => 'Confirm data loss',
+        'checkbox' => 'You understand that by transforming :entity to another module, the following elements will be lost:',
+    ],
     'fields'    => [
-        'current' => 'Current module',
+        'current'       => 'Current module',
         'select_one'    => 'Select one',
         'target'        => 'New module',
     ],

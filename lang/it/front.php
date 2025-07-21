@@ -26,7 +26,6 @@ return [
         'patreon'   => [
             'api_calls'         => 'Aumento delle chiamate API (90 al minuto)',
             'boosts'            => 'Potenziamenti della Campagna',
-            'curation'          => 'Contribuisci a gestire le votazioni della comunità',
             'default_image'     => 'Immagini predefinite più belle per le entità negli elenchi',
             'discord'           => 'Canale Privato di :discord',
             'free'              => 'Gratuito',

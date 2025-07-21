@@ -12,15 +12,11 @@ return [
     'helpers'       => [],
     'index'         => [],
     'members'       => [
-        'actions'       => [
-            'add'   => 'Voeg een lid toe',
-        ],
         'destroy'       => [
             'success'   => 'Lid verwijderd van de organisatie',
         ],
         'edit'          => [
-            'success'   => 'Organisatie lid bijgewerkt.',
-            'title'     => 'Werk Lid bij voor :name',
+            'title' => 'Werk Lid bij voor :name',
         ],
         'fields'        => [
             'role'  => 'Rol',

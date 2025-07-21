@@ -23,7 +23,7 @@ $weekNumber = 1;
         ->prepare()
 @endphp
 
-<div class="calendar-toolbar flex gap-2 items-center">
+<div class="calendar-toolbar flex gap-2 items-center flex-wrap">
     <a
         href="{{ route('entities.show', [$campaign, 'entity' => $entity, 'month' => $renderer->currentMonthId(), 'year' => $renderer->currentYear()]) }}"
         class="btn2 btn-sm @if ($renderer->todayButtonIsDisabled()) btn-disabled" disabled="disabled @endif"

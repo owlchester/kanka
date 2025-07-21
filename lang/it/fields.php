@@ -5,13 +5,10 @@ return [
         'placeholder'   => 'Scegli un\'immagine dalla galleria della campagna',
     ],
     'gallery-header'    => [
-        'boosted-description'   => 'Visualizza un\'immagine di intestazione dalla galleria della campagna con una :superboosted-campaign.',
-        'description'           => 'Se l\'entità non ha un\'immagine di intestazione, visualizza invece un\'immagine dalla galleria della campagna.',
+        'description'   => 'Se l\'entità non ha un\'immagine di intestazione, visualizza invece un\'immagine dalla galleria della campagna.',
     ],
     'gallery-image'     => [
-        'boosted-description'   => 'Visualizza un\'immagine dalla galleria della campagna con una :superboosted-campaign.',
-        'description'           => 'Se l\'entità non ha un\'immagine, visualizza invece un\'immagine dalla galleria della campagna.',
-        'title'                 => 'Immagine di Galleria',
+        'description'   => 'Se l\'entità non ha un\'immagine, visualizza invece un\'immagine dalla galleria della campagna.',
     ],
     'header-image'      => [
         'boosted-description'   => 'Visualizza un\'immagine di sfondo nell\'intestazione dell\'entità con una :boosted-campaign.',

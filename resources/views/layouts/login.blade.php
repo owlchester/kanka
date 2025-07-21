@@ -33,7 +33,7 @@
 @if (config('fontawesome.kit'))
     <script src="https://kit.fontawesome.com/{{ config('fontawesome.kit') }}.js" crossorigin="anonymous"></script>
 @endif
-    @vite(['resources/js/auth.js', 'resources/js/cookieconsent.js'])
+    @vite(['resources/js/auth.js'])
 @yield('scripts')
 
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')

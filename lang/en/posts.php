@@ -39,11 +39,11 @@ return [
         'first'         => 'First',
         'last'          => 'Last',
     ],
+    'remove'        => [
+        'title' => 'Remove post',
+    ],
     'visibility'    => [
         'helper'    => 'Change the visibility for the post :name.',
         'title'     => 'Post visibility',
     ],
-    'remove' => [
-        'title' => 'Remove post',
-    ]
 ];

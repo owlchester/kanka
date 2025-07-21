@@ -9,6 +9,7 @@ use App\Models\MapMarker;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\Storage;
 
 class ExploreController extends Controller
@@ -44,6 +45,16 @@ class ExploreController extends Controller
                 return redirect()
                     ->route('entities.show', [$campaign, $map->entity]);
             }
+        }
+        // Error handling
+        try {
+            $map->bounds();
+        } catch (Exception $e) {
+            return redirect()->route('entities.show', [$campaign, $map->entity])
+                ->with('error_raw', __('Error getting bounds from the map. This sometimes happens with animated WebP files, which aren\'t supported. Please contact us on :discord or at at :email.', [
+                    'discord' => '<a href="http://kanka.io/go/discord">Discord</a>',
+                    'email' => '<a href="mailto:' . config('app.email') . '">' . config('app.email') . '</a>',
+                ]));
         }
 
         return view('maps.explore')

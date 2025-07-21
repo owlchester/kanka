@@ -12,15 +12,11 @@ return [
     'helpers'       => [],
     'index'         => [],
     'members'       => [
-        'actions'       => [
-            'add'   => 'Dodaj člana',
-        ],
         'destroy'       => [
             'success'   => 'Član uklonjen iz organizacije.',
         ],
         'edit'          => [
-            'success'   => 'Član organizacije ažuriran.',
-            'title'     => 'Ažuriraj člana za :name',
+            'title' => 'Ažuriraj člana za :name',
         ],
         'fields'        => [
             'role'  => 'Uloga',

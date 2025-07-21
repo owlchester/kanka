@@ -2,7 +2,6 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\FullSetup;
 use App\Http\Middleware\PasswordConfirm;
 use App\Http\Middleware\ReplicationSwitcher;
 use App\Http\Middleware\Tracking;
@@ -19,7 +18,7 @@ class Kernel extends HttpKernel
     protected $middleware = [
         Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
-        Middleware\PreventRequestsDuringMaintenance::class,
+        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
@@ -86,13 +85,11 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'campaign.boosted' => Middleware\CampaignBoosted::class,
         'login.redirect' => Middleware\LoginRedirect::class,
         'translator' => Middleware\Translator::class,
         'identity' => Middleware\Identity::class,
         'password.confirm' => PasswordConfirm::class,
         'subscriptions' => Middleware\Subscriptions::class,
-        'fullsetup' => FullSetup::class,
         '2fa' => Middleware\OTP::class,
         'adless' => Middleware\Adless::class,
     ];

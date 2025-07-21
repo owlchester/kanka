@@ -11,6 +11,7 @@ return [
         'success'   => '{1} :count entité transformée au nouveau type: :type.|[2,*] :count entités transformées au nouveau type: :type.',
     ],
     'fields'    => [
+        'current'       => 'Module actuel',
         'select_one'    => 'Sélectionner un',
         'target'        => 'Nouveau type de l\'entité',
     ],

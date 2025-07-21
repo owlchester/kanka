@@ -11,9 +11,7 @@ return [
         'size'          => 'Taille',
         'weight'        => 'Poids',
     ],
-    'hints'         => [
-        'items' => 'Organises les objets en utilisant le champ objet parent.',
-    ],
+    'hints'         => [],
     'placeholders'  => [
         'price' => 'Prix de l\'objet',
         'size'  => 'Taille, Dimensions, Capacité',

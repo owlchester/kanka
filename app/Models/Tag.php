@@ -141,17 +141,13 @@ class Tag extends MiscModel
      */
     public function allChildren(): Builder
     {
-        $children = [];
-        foreach ($this->entities->pluck('id')->toArray() as $entity) {
-            $children[] = $entity;
-        }
-        foreach ($this->descendants as $desc) {
-            foreach ($desc->entities()->pluck('entities.id')->toArray() as $entity) {
-                $children[] = $entity;
-            }
-        }
+        $descendantIds = $this->descendants()->pluck($this->getKeyName());
 
-        return Entity::whereIn('id', $children);
+        return Entity::whereIn('id', function ($query) use ($descendantIds) {
+            $query->select('entity_id')
+                ->from('entity_tags')
+                ->whereIn('tag_id', $descendantIds->push($this->id));
+        });
     }
 
     /**

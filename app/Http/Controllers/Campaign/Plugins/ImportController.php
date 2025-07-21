@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Campaign\Plugins;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\Campaigns\Boosted;
 use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\Plugin;
@@ -14,8 +15,7 @@ class ImportController extends Controller
 {
     public function __construct(protected ImporterService $importerService)
     {
-        $this->middleware('auth');
-        $this->middleware('campaign.boosted');
+        $this->middleware(['auth', Boosted::class]);
     }
 
     public function index(Campaign $campaign, Plugin $plugin)

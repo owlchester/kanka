@@ -26,7 +26,6 @@ return [
         'patreon'   => [
             'api_calls'         => 'Aumento de requisições de API (90 por minuto)',
             'boosts'            => 'Impulsos de Campanha',
-            'curation'          => 'Ajude a selecionar os itens de votação da comunidade',
             'default_image'     => 'Imagens padrão mais agradáveis para entidades em listas',
             'discord'           => 'Canal privado no :discord',
             'free'              => 'Grátis',

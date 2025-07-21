@@ -18,7 +18,6 @@ return [
         'patreon'   => [
             'api_calls'         => 'Povećani API pozivi (90)',
             'boosts'            => 'Pojačivačima kampanje',
-            'curation'          => 'Pomognite s odabirom predmeta za glasanje zajednice',
             'default_image'     => 'Lijepe zadane slike za entitete',
             'discord'           => 'Privatni Discord kanal',
             'free'              => 'Besplatno',
