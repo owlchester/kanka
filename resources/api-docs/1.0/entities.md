@@ -103,16 +103,15 @@ The `child_id` property in this case is the location's id. So if you want to get
 You can filter the returned entities on the `entities/` endpoint with the following options.
 
 | Parameter     | Values             | Description                                                                                                                    |
-|:--------------|:-------------------|:-------------------------------------------------------------------------------------------------------------------------------|
-| `types`       | `character,family` | Filter the returned entities by the `type` field                                                                               |
-| `type_id[]`   | `1,420`            | Filter the returned entities by their [type_id](/api-docs/{{version}}/modules) field. For example `?type_id[]=1&type_id[]=420` |
+|:--------------|:-------------------|:-------------------------------------------------------------------------------------------------------------------------------||
+| `type_id[]`   | `array`            | Filter the returned entities by their [type_id](/api-docs/{{version}}/modules) field. Ex `type_id[]=1&type_id[]=420`            |
 | `name`        | `string`           | The name of the entity (like %% search)                                                                                        |
 | `type`        | `string`           | The type of the entity, for exmaple "NPC" on a character (like %% search)                                                      |
 | `is_private`  | `bool`             | Search for private entities with `is_private=true`                                                                             |
 | `is_template` | `bool`             | Search for entities that are set as templates                                                                                  |
 | `created_by`  | `int`              | User ID of entities created by that user                                                                                       |
 | `updated_by`  | `int`              | User ID of entities updated by that user                                                                                       |
-| `tags`        | `array`            | Filter on tags. Ex `tags[]=5&tags[]=13`                                                                                        |
+| `tags[]`        | `array`            | Filter on tags. Ex `tags[]=5&tags[]=13`                                                                                        |
 
 
 For example, call `entities?types=item,quest` to get entities of the Item and Quest type.
