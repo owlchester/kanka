@@ -305,6 +305,10 @@ Route::get('/w/{campaign}/entities/{entity}/mentions', 'Entity\MentionController
 // Inventory
 Route::get('/w/{campaign}/entities/{entity}/inventory', 'Entity\InventoryController@index')
     ->name('entities.inventory');
+Route::post('/w/{campaign}/entities/{entity}/inventory/generate/store', 'Entity\GenerateInventoryController@store')
+    ->name('entities.inventory.generate.store');
+Route::get('/w/{campaign}/entities/{entity}/inventory/generate', 'Entity\GenerateInventoryController@index')
+    ->name('entities.inventory.generate');
 Route::post('/w/{campaign}/entities/{entity}/inventory/copy_from', 'Entity\CopyInventoryController@store')
     ->name('entities.inventory.copy.store');
 Route::get('/w/{campaign}/entities/{entity}/inventory/copy', 'Entity\CopyInventoryController@index')
