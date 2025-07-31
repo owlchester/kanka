@@ -32,7 +32,7 @@ return [
         'excerpt'                           => 'Dashboard description',
         'followers'                         => 'Followers',
         'gallery_visibility'                => 'Default Gallery Image Visibility',
-        'genre'                             => 'Genre(s)',
+        'genre'                             => 'Genres',
         'header_image'                      => 'Dashboard background image',
         'image'                             => 'Sidebar image',
         'is_discreet'                       => 'Discreet',
@@ -361,7 +361,7 @@ return [
         ],
     ],
     'sharing'                           => [
-        'filters'   => 'Public campaigns are visible on the :public-campaigns page. Filling out these fields makes it easier for others to discover it.',
+        'filters'   => 'If the campaign is public, filling out these fields makes it easier for others to find it on the :public-campaigns page.',
         'language'  => 'The main language in which your content is written.',
         'system'    => 'If playing a TTRPG, the system used to play.',
     ],
