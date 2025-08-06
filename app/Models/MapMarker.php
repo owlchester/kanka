@@ -280,7 +280,7 @@ class MapMarker extends Model
                 fillOpacity: ' . $this->floatOpacity() . ',
                 className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . '\','
             . ($this->isDraggable() ? 'draggable: true' : null) . '
-            })' . $this->popup();
+            })' . $this->popup() .  $this->draggable();
     }
 
     /**
@@ -370,7 +370,9 @@ class MapMarker extends Model
                 <h4 class="marker-header">' . str_replace('`', '\'', $this->markerTitle(true)) . '</h4>
                 ' . (! empty($this->entry) ? '<p class="marker-text">' . Mentions::mapAny($this) . '</p>' : null) . '
             </div>
+            <div class="marker-popup-body">
             ' . $body . '
+            </div>
             <div class="marker-popup-actions flex gap-2">
                 ' . $editButton . $copyButton . $deleteButton . '
             </div>`
@@ -408,7 +410,7 @@ class MapMarker extends Model
 
             .on(\'dragend\', function() {
                 var coordinates = marker' . $this->id . '.getLatLng();
-                console.log(`dragend`, coordinates);
+                //console.log(`dragend`, coordinates);
                 $.ajax({
                     url: `' . route('maps.markers.move', [$campaign, $this->map_id, $this->id]) . '`,
                     type: `post`,

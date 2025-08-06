@@ -93,17 +93,6 @@ $mapSidebarWidth: 380px;
     }
 }
 
-
-.marker-popup-actions a:not(.btn) {
-    color: var(--link-text);
-}
-
-.marker-popup-actions a.btn {
-    color: var(--label-default-text);
-}
-
-
-
 .toast-container {
     bottom: 60px;
     z-index: 910;
@@ -226,11 +215,7 @@ body.map-drawing-mode {
 }
 
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-    background: var(--leaflet-popup-background, hsl(var(--b1)/1)) !important;
-
-    .leaflet-popup-content {
-        color: var(--leaflet-popup-text, hsl(var(--bc)/1)) !important;
-    }
+    background: var(--leaflet-popup-background, hsl(var(--b1)/1));
 }
 
 .leaflet-container {
