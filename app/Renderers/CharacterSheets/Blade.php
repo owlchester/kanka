@@ -65,7 +65,7 @@ class Blade extends Renderer
 
         $html = \Illuminate\Support\Facades\Blade::compileString($html);
 
-        [$data, $ids, $checkboxes] = $this->prepareEntityData($this->entity);
+        [$data, $ids, $checkboxes] = $this->prepareEntityData();
 
         $html = preg_replace_callback('`\@liveAttribute\(\'(.*?[^)])\'\)`i', function ($matches) use ($data, $ids, $checkboxes) {
             $attr = mb_trim((string) $matches[1]);
