@@ -46,7 +46,7 @@ class InventoryService
 
         $count = 0;
         foreach ($items as $item) {
-            $inventory = new Inventory();
+            $inventory = new Inventory;
             $inventory = $inventory->create(['item_id' => $item->id, 'entity_id' => $this->entity->id]);
             $count++;
         }
