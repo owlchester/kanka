@@ -2,9 +2,9 @@
 
 namespace App\Policies;
 
-use Laravel\Passport\Client;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Laravel\Passport\Client;
 
 class ClientPolicy
 {

@@ -35,7 +35,7 @@ class ClientController extends Controller
     public function edit(Client $client)
     {
         $this->authorize('update', $client);
-        
+
         $client = Client::where('user_id', auth()->user()->id)
             ->where('id', $client->id)
             ->first();
@@ -53,11 +53,15 @@ class ClientController extends Controller
 
         $updatedClient->forceFill($request->only(['name', 'redirect']))->save();
 
-        return redirect()->route('settings.api')->with('success', 'Client updated successfully.');
+        return redirect()->route('settings.api', ['clients' => 1])->with('success', 'Client updated successfully.');
     }
 
     public function store(StoreClient $request)
     {
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         // Creating an OAuth app client that belongs to the given user.
         $client = app(ClientRepository::class)->createAuthorizationCodeGrantClient(
             user: auth()->user(),
@@ -67,13 +71,13 @@ class ClientController extends Controller
             enableDeviceFlow: true
         );
 
-        return redirect()->route('settings.api')->with('new_token', $client->plainSecret);
+        return redirect()->route('settings.api', ['clients' => 1])->with('new_token', $client->plainSecret);
     }
 
     public function revoke(Request $request, Client $client)
     {
         $this->authorize('update', $client);
- 
+
         $client = Client::where('user_id', auth()->user()->id)
             ->where('id', $client->id)
             ->first();
