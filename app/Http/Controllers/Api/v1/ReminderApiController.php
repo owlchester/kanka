@@ -26,12 +26,12 @@ class ReminderApiController extends ApiController
     /**
      * @return resource
      */
-    public function show(Campaign $campaign, Entity $entity, Reminder $entityEvent)
+    public function show(Campaign $campaign, Entity $entity, Reminder $reminder)
     {
         $this->authorize('access', $campaign);
         $this->authorize('view', $entity);
 
-        return new Resource($entityEvent);
+        return new Resource($reminder);
     }
 
     /**
@@ -44,9 +44,10 @@ class ReminderApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
         $data = $request->all();
-        $data['entity_id'] = $entity->id;
-        $model = Reminder::create($data);
-        $model->refresh();
+        $model = new Reminder($data);
+        $model->remindable_id = $entity->id;
+        $model->remindable_type = Entity::class;
+        $model->save();
 
         return new Resource($model);
     }
@@ -54,13 +55,13 @@ class ReminderApiController extends ApiController
     /**
      * @return resource
      */
-    public function update(Request $request, Campaign $campaign, Entity $entity, Reminder $entityEvent)
+    public function update(Request $request, Campaign $campaign, Entity $entity, Reminder $reminder)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
-        $entityEvent->update($request->all());
+        $reminder->update($request->all());
 
-        return new Resource($entityEvent);
+        return new Resource($reminder);
     }
 
     /**
@@ -73,11 +74,11 @@ class ReminderApiController extends ApiController
         \Illuminate\Http\Request $request,
         Campaign $campaign,
         Entity $entity,
-        Reminder $entityEvent
+        Reminder $reminder
     ) {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
-        $entityEvent->delete();
+        $reminder->delete();
 
         return response()->json(null, 204);
     }
