@@ -11,7 +11,7 @@ class ConfirmDelete extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public string $route)
+    public function __construct(public string $route, public string $confirm = 'crud.delete_modal.confirm', public string $delete = 'crud.remove')
     {
         //
     }

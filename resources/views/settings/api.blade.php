@@ -95,14 +95,14 @@
                     @foreach ($applications as $application)
                         <tr class="border-b">
                             <td class="p-2 align-middle">
-                                {{ $application['name'] }}
+                                {{ $application->client['name'] }}
                             </td>
                             <td class="p-2 align-middle">
                                 {{implode(", ", $application['scopes'])}}
                             </td>
                             <td class="p-2 align-middle text-right">
                                 <form action="{{ route('settings.api.revoke', ['token' => $application['id']]) }}" method="POST" class="inline">
-                                    <x-buttons.confirm-delete :route="route('settings.api.revoke', ['token' => $application['id']])" />
+                                    <x-buttons.confirm-delete :route="route('settings.api.revoke', ['token' => $application['id']])" confirm="settings/api.revoke-confirm" delete="settings/api.revoke"/>
                                 </form>
                             </td>
                         </tr>
@@ -111,7 +111,7 @@
             </table>
         </div>
     @endif
-    @if (!request()->has('clients'))
+    @if (request()->has('clients'))
         <div class="container mx-auto p-4 max-w-4xl">
             <div class="card-header">
                 <div class="flex justify-between items-center">

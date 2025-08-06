@@ -7,6 +7,7 @@ use App\Http\Requests\Settings\StoreApiToken;
 use Illuminate\Http\Request;
 use Laravel\Passport\Client;
 use Laravel\Passport\Token;
+use Carbon\Carbon;
 
 class ApiController extends Controller
 {
@@ -27,6 +28,7 @@ class ApiController extends Controller
     {
         $tokens = Token::where('user_id', auth()->user()->id)
             ->where('revoked', false)
+            ->where('expires_at', '>', Carbon::now()->toDateString())
             ->orderByDesc('created_at')
             ->paginate(config('limits.pagination'), ['*'], 'tokensPage');
 
@@ -57,6 +59,10 @@ class ApiController extends Controller
 
     public function store(StoreApiToken $request)
     {
+        if (request()->ajax()) {
+            return response()->json(['success' => true]);
+        }
+
         $accessToken = auth()->user()->createToken($request['name'])->accessToken;
 
         return redirect()->route('settings.api')->with('new_token', $accessToken);
