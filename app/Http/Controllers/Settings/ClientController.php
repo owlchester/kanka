@@ -35,7 +35,7 @@ class ClientController extends Controller
     public function edit(Client $client)
     {
         $this->authorize('update', $client);
-        
+
         $client = Client::where('user_id', auth()->user()->id)
             ->where('id', $client->id)
             ->first();
@@ -77,7 +77,7 @@ class ClientController extends Controller
     public function revoke(Request $request, Client $client)
     {
         $this->authorize('update', $client);
- 
+
         $client = Client::where('user_id', auth()->user()->id)
             ->where('id', $client->id)
             ->first();

@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\StoreApiToken;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Laravel\Passport\Client;
 use Laravel\Passport\Token;
-use Carbon\Carbon;
 
 class ApiController extends Controller
 {

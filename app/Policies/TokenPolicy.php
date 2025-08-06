@@ -2,9 +2,9 @@
 
 namespace App\Policies;
 
-use Laravel\Passport\Token;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Laravel\Passport\Token;
 
 class TokenPolicy
 {
