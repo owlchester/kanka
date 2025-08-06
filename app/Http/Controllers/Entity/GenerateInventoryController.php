@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GenerateInventory;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\Inventory;
-use App\Models\Item;
+use App\Services\Entity\InventoryService;
 use App\Traits\GuestAuthTrait;
 
 class GenerateInventoryController extends Controller
 {
     use GuestAuthTrait;
+
+    public function __construct(protected InventoryService $service) {}
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -37,43 +38,9 @@ class GenerateInventoryController extends Controller
             return response()->json(['success' => true]);
         }
 
-        if ($request->isNotFilled('tags')) {
-            $items = Item::with('entity')
-                ->limit($request->get('item_amount', 1))
-                ->get();
-        } elseif ($request->has('tags') && $request->has('match_all') && $request['match_all'] == true) {
-            // Match all tags
-            $items = Item::whereHas('entity', function ($query) use ($request) {
-                $query
-                    ->whereHas('entityTags', function ($tagQuery) use ($request) {
-                        $tagQuery->whereIn('tag_id', $request->get('tags'));
-                    }, '=', count($request->get('tags'))); // requires all tags
-            })
-                ->limit($request->get('item_amount', 1))
-                ->get();
-
-        } else {
-            // Match one tag at least
-            $items = Item::whereHas('entity', function ($query) use ($request) {
-                $query->whereHas('entityTags', function ($tagQuery) use ($request) {
-                    $tagQuery->whereIn('tag_id', $request->get('tags'));
-                });
-            })
-                ->limit($request->get('item_amount', 1))
-                ->get();
-        }
-
-        if ($request->has('replace') && $request['replace'] == true) {
-            // Replace current inventory
-            Inventory::where('entity_id', $entity->id)->delete();
-        }
-
-        $count = 0;
-        foreach ($items as $item) {
-            $inventory = new Inventory;
-            $inventory = $inventory->create(['item_id' => $item->id, 'entity_id' => $entity->id]);
-            $count++;
-        }
+        $count = $this->service
+            ->entity($entity)
+            ->handle($request);
 
         return redirect()
             ->route('entities.inventory', [$campaign, $entity])
