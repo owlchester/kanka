@@ -24,7 +24,6 @@ class TimelineElementFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'entry' => '<p>' . fake()->text(500) . '<p>',
             'use_event_date' => false,
         ];
     }

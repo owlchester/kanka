@@ -100,7 +100,7 @@ class UserCacheService extends BaseCache
         return [
             'id' => $campaign->id,
             'name' => $campaign->name,
-            'route' => route('dashboard', $campaign),
+            'route' => route('dashboard', $campaign->id),
             'image' => $campaign->image,
             'boosted' => $campaign->boosted(),
         ];

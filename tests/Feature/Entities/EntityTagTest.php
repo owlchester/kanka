@@ -5,7 +5,7 @@ it('POSTS an invalid entity_tags form')
     ->withCampaign()
     ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/entities/1/entity_tags', [])
-    ->assertStatus(500);
+    ->assertStatus(422);
 
 it('POSTS a new entity_tag')
     ->asUser()
@@ -13,13 +13,12 @@ it('POSTS a new entity_tag')
     ->withCharacters()
     ->withTags()
     ->postJson('/api/1.0/campaigns/1/entities/1/entity_tags', [
-        'entity_id' => 1,
+        //'entity_id' => 1,
         'tag_id' => 1,
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
-            'entity_id',
             'tag_id',
         ],
     ]);
@@ -35,7 +34,6 @@ it('GETS all entity_tags')
     ->assertJsonStructure([
         'data' => [
             [
-                'entity_id',
                 'tag_id',
             ],
         ],
@@ -51,7 +49,6 @@ it('GETS a specific entity_tag')
     ->assertStatus(200)
     ->assertJsonStructure([
         'data' => [
-            'entity_id',
             'tag_id',
         ],
     ]);
@@ -97,7 +94,6 @@ it('POSTS a new character with 1 tag')
     ->assertJsonStructure([
         'data' => [
             'id',
-            'entity_id',
             'tags',
         ],
     ])

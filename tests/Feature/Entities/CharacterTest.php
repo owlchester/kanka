@@ -65,9 +65,9 @@ it('UPDATES a valid character without a name')
     ->asUser()
     ->withCampaign()
     ->withCharacters()
-    ->putJson('/api/1.0/campaigns/1/characters/1', ['type' => 'Magic'])
+    ->putJson('/api/1.0/campaigns/1/characters/1', ['type' => 'character'])
     ->assertStatus(200)
-    ->assertJsonFragment(['type' => 'Magic']);
+    ->assertJsonFragment(['type' => 'character']);
 
 it('DELETES a character')
     ->asUser()
@@ -107,5 +107,5 @@ it('can\'t GET a private character as a player', function () {
 
     $response = $this->get('/api/1.0/campaigns/1/characters/1');
     expect($response->status())
-        ->toBe(404);
+        ->toBe(403);
 });

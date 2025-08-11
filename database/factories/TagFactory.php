@@ -24,7 +24,6 @@ class TagFactory extends Factory
     {
         return [
             'name' => fake()->text(10),
-            'entry' => '<p>' . fake()->text(500) . '<p>',
             'is_hidden' => 0,
         ];
     }

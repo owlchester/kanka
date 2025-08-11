@@ -20,11 +20,13 @@ return new class extends Migration
         ];
         foreach ($tables as $tablename => $extra) {
             Schema::table($tablename, function (Blueprint $table) use ($extra, $tablename) {
-                foreach ($extra as $column) {
-                    if (\Illuminate\Support\Str::endsWith($column, '_id')) {
-                        $table->dropForeign($tablename . '_' . $column . '_foreign');
+                if (Schema::getConnection()->getDriverName() !== 'sqlite') {
+                    foreach ($extra as $column) {
+                        if (\Illuminate\Support\Str::endsWith($column, '_id')) {
+                            $table->dropForeign($tablename . '_' . $column . '_foreign');
+                        }
+                        $table->dropColumn($column);
                     }
-                    $table->dropColumn($column);
                 }
             });
         }

@@ -24,7 +24,6 @@ class OrganisationFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'entry' => '<p>' . fake()->text(500) . '<p>',
         ];
     }
 }
