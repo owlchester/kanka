@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reminders', function (Blueprint $table) {
-        if (Schema::getConnection()->getDriverName() !== 'sqlite') {
-            $table->dropForeign('entity_events_entity_id_foreign');
-            $table->dropColumn('entity_id');
-        }
+            if (Schema::getConnection()->getDriverName() !== 'sqlite') {
+                $table->dropForeign('entity_events_entity_id_foreign');
+                $table->dropColumn('entity_id');
+            }
         });
     }
 

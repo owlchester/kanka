@@ -23,6 +23,7 @@ trait ApiRequest
                     $rules[$field] = $rule;
 
                 }
+
                 continue;
             }
 

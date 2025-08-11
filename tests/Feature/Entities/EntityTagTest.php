@@ -13,7 +13,7 @@ it('POSTS a new entity_tag')
     ->withCharacters()
     ->withTags()
     ->postJson('/api/1.0/campaigns/1/entities/1/entity_tags', [
-        //'entity_id' => 1,
+        // 'entity_id' => 1,
         'tag_id' => 1,
     ])
     ->assertStatus(201)

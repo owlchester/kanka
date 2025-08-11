@@ -30,7 +30,7 @@ return new class extends Migration
             'creatures',
         ];
         foreach ($tables as $tablename) {
-            if (!in_array($tablename, ['families', 'items', 'events', 'calendars', 'races', 'quests', 'journals', 'tags', 'creatures'])) {
+            if (! in_array($tablename, ['families', 'items', 'events', 'calendars', 'races', 'quests', 'journals', 'tags', 'creatures'])) {
                 Schema::table($tablename, function (Blueprint $table) {
                     $table->dropIndex(['name_type']); // drops index that contains "type"
                     $table->dropColumn('type');

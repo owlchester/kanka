@@ -8,7 +8,7 @@ return new class extends Migration
     public function up(): void
     {
         if (Schema::getConnection()->getDriverName() == 'sqlite') {
-            DB::statement("
+            DB::statement('
                 UPDATE items
                 SET creator_id = (
                     SELECT entities.id
@@ -17,15 +17,15 @@ return new class extends Migration
                     AND entities.type_id = 1
                 )
                 WHERE character_id IS NOT NULL
-            ");
+            ');
         } else {
-            DB::statement("
+            DB::statement('
                 UPDATE items
                 JOIN entities ON entities.entity_id = items.character_id
                     AND entities.type_id = 1
                 SET items.creator_id = entities.id
                 WHERE items.character_id IS NOT NULL
-            ");
+            ');
         }
     }
 

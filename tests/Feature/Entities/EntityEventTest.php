@@ -37,7 +37,7 @@ it('GETS all reminders')
     ->get('/api/1.0/campaigns/1/entities/1/reminders')
     ->assertStatus(200)
     ->assertJsonFragment([
-        'id' => 1
+        'id' => 1,
     ]);
 
 it('GETS a specific entity event')
