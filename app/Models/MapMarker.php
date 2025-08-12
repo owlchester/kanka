@@ -280,7 +280,7 @@ class MapMarker extends Model
                 fillOpacity: ' . $this->floatOpacity() . ',
                 className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . '\','
             . ($this->isDraggable() ? 'draggable: true' : null) . '
-            })' . $this->popup() .  $this->draggable();
+            })' . $this->popup() . $this->draggable();
     }
 
     /**
