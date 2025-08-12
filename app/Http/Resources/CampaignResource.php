@@ -31,7 +31,7 @@ class CampaignResource extends JsonResource
         /** @var Campaign $campaign */
         $campaign = $this->resource;
 
-        $url = route('dashboard', ['campaign' => $campaign->id]);
+        $url = route('dashboard', ['campaign' => $campaign]);
         $apiViewUrl = 'campaigns.show';
 
         $data = [

@@ -155,7 +155,7 @@ abstract class TestCase extends BaseTestCase
         $this->seed(\Database\Seeders\EntityTypesTableSeeder::class);
         Storage::fake('s3');
 
-        $campaign = Campaign::factory()->create($extra);
+        $campaign = Campaign::factory()->create($extra + ['slug' => 'test-campaign']);
         CampaignLocalization::forceCampaign($campaign);
 
         CampaignUser::create([
@@ -225,7 +225,7 @@ abstract class TestCase extends BaseTestCase
 
     public function withCampaigns(array $extra = []): self
     {
-        Campaign::factory()->create($extra);
+        Campaign::factory()->create($extra + ['slug' => 'test-campaign-2']);
 
         CampaignUser::create([
             'campaign_id' => 2,

@@ -217,7 +217,7 @@ class Entity extends Model
 
             return route($this->entityType->code . '.' . $action, $routeOptions);
         } catch (Exception $e) {
-            return route('dashboard', $campaign->id);
+            return route('dashboard', $campaign);
         }
     }
 
