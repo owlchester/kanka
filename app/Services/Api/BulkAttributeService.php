@@ -8,15 +8,15 @@ use App\Services\Attributes\RandomService;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
-use Illuminate\Support\Arr;
-use Stevebauman\Purify\Facades\Purify;
 use Exception;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
+use Stevebauman\Purify\Facades\Purify;
 
 class BulkAttributeService
 {
-    use EntityAware;
     use CampaignAware;
+    use EntityAware;
     use UserAware;
 
     protected MiscModel $new;
@@ -52,7 +52,7 @@ class BulkAttributeService
             // Need with() for saving to meilisearch
             ->with('entity')
             ->get();
-        
+
         foreach ($existingAttributes as $att) {
             $this->existing[$att->id] = $att;
             $this->existingNames[$att->id] = $att->name;
@@ -78,12 +78,12 @@ class BulkAttributeService
     protected function saveAttribute(array $attributeArray): self
     {
         try {
-            //If they set an id we check if its a valid one, then fetch that attribute to edit it
+            // If they set an id we check if its a valid one, then fetch that attribute to edit it
             if (isset($attributeArray['id'])) {
                 /** @var Attribute $attribute */
                 $attribute = Arr::get($this->existing, $attributeArray['id']);
-                //If its an existing attribute we remove it from the existing names list.
-                if (!empty($attribute)) {
+                // If its an existing attribute we remove it from the existing names list.
+                if (! empty($attribute)) {
                     unset($this->existingNames[$attribute->id]);
                 }
             }
@@ -99,7 +99,7 @@ class BulkAttributeService
             // Save empty strings as null
             $value = $value === '' ? null : $value;
 
-            if (!isset($attribute) || empty($attribute)) {
+            if (! isset($attribute) || empty($attribute)) {
                 $attribute = new Attribute;
             }
 
@@ -114,7 +114,7 @@ class BulkAttributeService
             $attribute->is_private = $attr->is_private ?? 0;
             $attribute->is_pinned = $attr->is_pinned ?? 0;
             $attribute->type_id = $attr->type_id; // @phpstan-ignore-line
-            
+
             // Some fields can only be defined on creation
             if (! $attribute->exists) {
                 $attribute->entity_id = $this->entity->id;
@@ -129,7 +129,7 @@ class BulkAttributeService
 
             // Remove it from the list of existing ids, so that it doesn't get deleted
             unset($this->existing[$attribute->id]);
-            //We add the new name to the list
+            // We add the new name to the list
             $this->existingNames[$attribute->id] = $attribute->name;
 
             $this->order++;

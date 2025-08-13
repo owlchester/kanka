@@ -10,7 +10,6 @@ use App\Services\Api\BulkAttributeService;
 
 class EntityBulkAttributeApiController extends ApiController
 {
-
     public function __construct(
         protected BulkAttributeService $service,
 
