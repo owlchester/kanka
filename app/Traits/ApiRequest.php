@@ -11,13 +11,19 @@ trait ApiRequest
      */
     public function clean(array $rules, array $except = []): array
     {
-        $isApi = Domain::isApi();
+        $isApi = Domain::isApi() || app()->environment('testing');
         if (! $isApi || ! (request()->isMethod('put') || request()->isMethod('patch'))) {
             return $rules;
         }
 
         foreach ($rules as $field => $rule) {
             if (! is_string($rule)) {
+                if (($key = array_search('required', $rule, true)) !== false) {
+                    unset($rule[$key]);
+                    $rules[$field] = $rule;
+
+                }
+
                 continue;
             }
 

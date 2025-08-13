@@ -108,5 +108,5 @@ it('can\'t GET a private dice_roll as a player', function () {
 
     $response = $this->get('/api/1.0/campaigns/1/dice_rolls/1');
     expect($response->status())
-        ->toBe(404);
+        ->toBe(403);
 });

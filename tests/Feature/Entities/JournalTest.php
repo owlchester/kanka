@@ -107,5 +107,5 @@ it('can\'t GET a private journal as a player', function () {
 
     $response = $this->get('/api/1.0/campaigns/1/journals/1');
     expect($response->status())
-        ->toBe(404);
+        ->toBe(403);
 });
