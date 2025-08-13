@@ -45,7 +45,7 @@ class BulkAttributeService
      *
      * @throws Exception
      */
-    public function save(array $attributes, $deleteOld = false): self
+    public function save(array $attributes, $deleteOld = true): self
     {
         // First, let's get all the stuff for this entity
         $existingAttributes = $this->entity->attributes()
