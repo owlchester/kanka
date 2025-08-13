@@ -45,6 +45,7 @@ class PostController extends Controller
         /** @var PostLayout[] $layouts */
         $layouts = PostLayout::entity($entity->entityType)->get();
         $layoutDefault = ['' => __('crud.fields.entry')];
+        $layoutOptions = [];
 
         foreach ($layouts as $layout) {
             $layoutOptions[$layout->id] = $layout->name();

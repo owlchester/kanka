@@ -26,6 +26,7 @@ class EntityTypesTableSeeder extends Seeder
                     'is_enabled' => true,
                     'is_special' => false,
                     'position' => $position,
+                    'icon' => '',
                 ])->save();
                 $created++;
             }

@@ -443,6 +443,9 @@ class CrudController extends Controller
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-update')) {
                 $route = route($this->route . '.edit', [$this->campaign, $new]);
+                if (! $new instanceof Bookmark) {
+                    $route = route('entities.edit', [$this->campaign, $new->entity]);
+                }
 
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-view') && $new->entity) {
@@ -486,15 +489,13 @@ class CrudController extends Controller
         return redirect()->route('entities.show', [$this->campaign, $model->entity]);
     }
 
-    /**
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     */
     public function crudEdit(Model|MiscModel $model, array $params = [])
     {
         $this->authorize('update', $model instanceof MiscModel ? $model->entity : $model);
+
+        if ($model instanceof MiscModel) {
+            return redirect()->route('entities.edit', [$this->campaign, $model->entity]);
+        }
 
         /** @var MiscModel $model */
         $editingUsers = null;

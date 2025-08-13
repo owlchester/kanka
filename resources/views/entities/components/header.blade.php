@@ -46,7 +46,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
 ?>
 <div class="w-full h-full entity-header flex-wrap md:flex-no-wrap flex gap-2 md:gap-5 items-end relative @if ($hasBanner) with-entity-banner p-4 text-white aspect-[3/1] xl:aspect-auto @endif">
     @if ($imageUrl)
-    <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto">
+    <div class="entity-header-image relative w-28 flex-none md:w-48 self-start md:self-auto z-10">
 
         @can('update', $entity)
             @if(isset($printing) && $printing)
@@ -123,14 +123,14 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
         @endcan
     </div>
     @endif
-    <div class="entity-header-text grow flex flex-col gap-1 md:gap-2">
-            <ol class="entity-breadcrumb text-sm m-0 p-0">
-                <li class="inline-block">
-                    <a href="{{ $breadcrumb['url'] }}" class="" title="{{ $breadcrumb['label'] }}">
-                        {!! $breadcrumb['label'] !!}
-                    </a>
-                </li>
-            </ol>
+    <div class="entity-header-text grow flex flex-col gap-1 md:gap-2  z-10">
+        <ol class="entity-breadcrumb text-sm m-0 p-0">
+            <li class="inline-block">
+                <a href="{{ $breadcrumb['url'] }}" class="" title="{{ $breadcrumb['label'] }}">
+                    {!! $breadcrumb['label'] !!}
+                </a>
+            </li>
+        </ol>
         <div class="entity-name-header flex gap-3 items-center">
             <h1 class="entity-name text-lg md:text-4xl break-all">
                 {!! $entity->name !!}
@@ -238,7 +238,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
         <span
             role="button"
             tabindex="0"
-            class="header-visibility absolute top-2 right-2 rounded cursor-pointer"
+            class="header-visibility absolute top-2 right-2 rounded cursor-pointer z-10"
             data-toggle="dialog"
             data-url="{{ route('gallery.file.visibility', [$campaign, $entity->header]) }}"
             data-target="primary-dialog"
@@ -248,13 +248,13 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
         </span>
         @else
             <span
-                class="header-visibility absolute top-2 right-2 rounded">
+                class="header-visibility absolute top-2 right-2 rounded z-10">
                 <x-icon :class="$entity->header->visibilityIcon()['class']" :title="$headerHelper" tooltip />
             </span>
         @endcan
     @endif
         @if ($hasBanner)
-            <picture class="entity-banner absolute top-0 left-0 -z-10 w-full h-full">
+            <picture class="entity-banner absolute top-0 left-0 w-full h-full">
                 <source media="(min-width:2400px)" srcset="{{ $headerImageXL }}">
                 <source media="(min-width:1600px)" srcset="{{ $headerImageL }}">
                 <source media="(min-width:800px)" srcset="{{ $headerImageM }}">

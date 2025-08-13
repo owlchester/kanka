@@ -9,15 +9,16 @@ it('POSTS an invalid bookmark form')
 it('POSTS a new bookmark')
     ->asUser()
     ->withCampaign()
+    ->withCharacters()
     ->postJson('/api/1.0/campaigns/1/bookmarks', [
         'name' => fake()->name(),
-        'type' => 'ability',
+        'entity_id' => 1,
     ])
     ->assertStatus(201)
     ->assertJsonStructure([
         'data' => [
             'id',
-            'type',
+            'entity_id',
         ],
     ]);
 
@@ -55,8 +56,9 @@ it('GETS a specific bookmark')
 it('UPDATES a valid bookmark')
     ->asUser()
     ->withCampaign()
+    ->withCharacters()
     ->withBookmarks()
-    ->putJson('/api/1.0/campaigns/1/bookmarks/1', ['name' => 'Bob', 'type' => 'character'])
+    ->putJson('/api/1.0/campaigns/1/bookmarks/1', ['name' => 'Bob', 'entity_id' => 1])
     ->assertStatus(200)
     ->assertJsonFragment(['name' => 'Bob']);
 

@@ -18,7 +18,6 @@ class CreatureFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'entry' => fake()->text(500),
             'is_private' => false,
         ];
     }

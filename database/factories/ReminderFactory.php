@@ -6,7 +6,7 @@ namespace Database\Factories;
 use App\Models\Reminder;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class EntityEventFactory extends Factory
+class ReminderFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
