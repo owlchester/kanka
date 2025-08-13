@@ -98,7 +98,7 @@ trait EntityScopes
         $modules = Arr::get($request, 'type_id');
         if (! empty($modules) && is_array($modules)) {
             $validateModules = EntityType::inCampaign($campaign)->whereIn('id', $modules)->pluck('id')->toArray();
-            if (!empty($validateModules)) {
+            if (! empty($validateModules)) {
                 $query->whereIn('type_id', $validateModules);
             }
         }

@@ -443,9 +443,10 @@ class CrudController extends Controller
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-update')) {
                 $route = route($this->route . '.edit', [$this->campaign, $new]);
-                if (!$new instanceof Bookmark) {
+                if (! $new instanceof Bookmark) {
                     $route = route('entities.edit', [$this->campaign, $new->entity]);
                 }
+
                 return response()->redirectTo($route);
             } elseif ($request->has('submit-view') && $new->entity) {
                 $route = route('entities.show', [$this->campaign, $new->entity]);
