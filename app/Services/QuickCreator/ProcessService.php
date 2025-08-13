@@ -83,6 +83,8 @@ class ProcessService
         // To prevent observer from creating duplicate tags.
         if (Arr::has($values, 'tags')) {
             $this->request->merge(['tags' => $values['tags']]);
+            request()->merge(['tags' => $values['tags']]);
+            // The EntityObserver reads request() for saving tags because of dumb reasons.
         }
 
         foreach ($names as $name) {

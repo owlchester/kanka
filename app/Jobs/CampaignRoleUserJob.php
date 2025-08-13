@@ -56,7 +56,7 @@ class CampaignRoleUserJob
             [
                 'role' => e($this->campaignRoleUser->campaignRole->name),
                 'campaign' => e($this->campaignRoleUser->campaignRole->campaign->name),
-                'link' => route('dashboard', ['campaign' => $this->campaignRoleUser->campaignRole->campaign]),
+                'link' => route('dashboard', ['campaign' => $this->campaignRoleUser->campaignRole->campaign->id]),
             ]
         );
 

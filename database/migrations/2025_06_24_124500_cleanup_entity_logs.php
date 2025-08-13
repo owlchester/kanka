@@ -12,10 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('entity_logs', function (Blueprint $table) {
-            $table->dropForeign('entity_logs_entity_id_foreign');
-            $table->dropColumn('entity_id');
-            $table->dropForeign('entity_logs_post_id_foreign');
-            $table->dropColumn('post_id');
+            if (Schema::getConnection()->getDriverName() !== 'sqlite') {
+                $table->dropForeign('entity_logs_entity_id_foreign');
+                $table->dropColumn('entity_id');
+                $table->dropForeign('entity_logs_post_id_foreign');
+                $table->dropColumn('post_id');
+            } else {
+                $table->dropConstrainedForeignId('entity_id');
+                $table->dropConstrainedForeignId('post_id');
+            }
         });
     }
 

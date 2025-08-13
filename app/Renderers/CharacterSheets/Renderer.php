@@ -145,8 +145,6 @@ abstract class Renderer
 
     /**
      * Load abilities of the entity and make them available to blade
-     *
-     * @throws Exception
      */
     protected function abilities(): array
     {

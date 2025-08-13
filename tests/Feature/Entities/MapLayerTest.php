@@ -14,7 +14,7 @@ it('POSTS a new map layer')
     ->withMaps()
     ->postJson('/api/1.0/campaigns/1/maps/1/map_layers', [
         'name' => fake()->name(),
-        'image_uuid' => '1',
+        'image_uuid' => '16598f1b-7d93-36d9-bea5-212bfa1e354b',
         'map_id' => 1,
     ])
     ->assertStatus(201)

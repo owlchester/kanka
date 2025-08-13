@@ -44,7 +44,7 @@ it('POSTS a new character with a mention and checks that a new entity is created
         'name' => fake()->name(),
         'entry' => '[new:item|Mega sword]',
     ]);
-    $this->assertStringStartsWith('<a href="', json_decode($response->content(), true)['data']['entry_parsed']);
+    $this->assertStringStartsWith('<p><a href="', json_decode($response->content(), true)['data']['entry_parsed']);
 });
 
 it('Transfers entities')
@@ -56,8 +56,8 @@ it('Transfers entities')
         'entities' => [1, 2, 3],
         'campaign_id' => 2,
     ])
-    ->assertJsonFragment(['success' => 'Succesfully transfered 3 entities.'])
-    ->assertStatus(200);
+    ->assertStatus(200)
+    ->assertJsonFragment(['success' => 'Succesfully transfered 3 entities.']);
 
 it('Copies entities')
     ->asUser()
@@ -69,5 +69,5 @@ it('Copies entities')
         'campaign_id' => 2,
         'copy' => true,
     ])
-    ->assertJsonFragment(['success' => 'Succesfully copied 3 entities.'])
-    ->assertStatus(200);
+    ->assertStatus(200)
+    ->assertJsonFragment(['success' => 'Succesfully copied 3 entities.']);

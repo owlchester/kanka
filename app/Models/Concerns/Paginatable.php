@@ -18,7 +18,7 @@ trait Paginatable
         if (auth()->check()) {
             $pageSize = auth()->user()->pagination;
             $pagService = app()->make(PaginationService::class);
-            $this->pageSizeMax = $pagService->max();
+            $this->pageSizeMax = $pagService->user(auth()->user())->max();
         }
 
         // Currently exporting single or bulk? Rise limit to 100.

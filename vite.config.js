@@ -32,7 +32,6 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/auth.js',
                 'resources/js/location/map-v3.js',
-                'resources/js/api.js',
                 'resources/js/attributes.js',
                 'resources/js/abilities.js',
                 'resources/js/story.js',

@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Policies\ClientPolicy;
+use App\Policies\TokenPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Passport\Client;
 use Laravel\Passport\Passport;
+use Laravel\Passport\Token;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -26,5 +30,7 @@ class AuthServiceProvider extends ServiceProvider
      * Laravel auto-discoveres policies if the Model is named \App\Models\XYZ and the police is \App\Policies\XYZPolicy
      */
     protected $policies = [
+        Token::class => TokenPolicy::class,
+        Client::class => ClientPolicy::class,
     ];
 }

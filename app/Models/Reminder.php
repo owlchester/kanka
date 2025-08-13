@@ -52,7 +52,6 @@ class Reminder extends Model
 
     protected $fillable = [
         'calendar_id',
-        'date',
         'length',
         'comment',
         'is_recurring',
@@ -69,7 +68,6 @@ class Reminder extends Model
     protected array $sortable = [
         'remindable.name',
         'length',
-        'date',
         'is_recurring',
         'visibility_id',
         'comment',

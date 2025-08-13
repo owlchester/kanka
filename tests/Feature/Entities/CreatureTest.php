@@ -109,5 +109,5 @@ it('can\'t GET a private creature as a player', function () {
 
     $response = $this->get('/api/1.0/campaigns/1/creatures/1');
     expect($response->status())
-        ->toBe(404);
+        ->toBe(403);
 });

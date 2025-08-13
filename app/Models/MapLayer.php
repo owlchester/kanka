@@ -156,4 +156,21 @@ class MapLayer extends Model
     {
         return Mentions::parseForEdit($this);
     }
+
+    public function exportFields(): array
+    {
+        return [
+            'id',
+            'map_id',
+            'image_uuid',
+            'image_path',
+            'name',
+            'entry',
+            'position',
+            'height',
+            'width',
+            'visibility_id',
+            'type_id',
+        ];
+    }
 }

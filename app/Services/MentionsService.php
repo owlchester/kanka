@@ -317,7 +317,7 @@ class MentionsService
                     $url .= '#' . $data['anchor'];
                 }
 
-                $dataUrl = route('entities.tooltip', [$this->campaign, $entity]);
+                $dataUrl = route('entities.tooltip', [$this->campaign->id, $entity->id]);
                 if (! empty($data['tooltip']) && $data['tooltip'] === 'attributes') {
                     $dataUrl = route('entities.tooltip', [$this->campaign, $entity, 'render' => 'attributes']);
                 }
