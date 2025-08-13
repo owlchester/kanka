@@ -39,4 +39,6 @@ return [
     'applications' => [
         'title' => 'Authorized Applications',
     ],
+    'revoke' => 'Revoke',
+    'revoke-confirm' => 'Confirm revocation',
 ];
