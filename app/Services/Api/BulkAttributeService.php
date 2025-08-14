@@ -5,10 +5,10 @@ namespace App\Services\Api;
 use App\Models\Attribute;
 use App\Services\Attributes\BaseAttributesService;
 use App\Services\Attributes\RandomService;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Stevebauman\Purify\Facades\Purify;
-use Exception;
 
 class BulkAttributeService extends BaseAttributesService
 {

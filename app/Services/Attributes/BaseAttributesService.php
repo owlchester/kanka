@@ -22,7 +22,7 @@ abstract class BaseAttributesService
     protected int $order = 0;
 
     protected bool $touched = false;
-    
+
     /**
      * When we're done updating the attributes, if anything was changed, we need to "touch" the entity to have a log and
      * updated timestamp.
@@ -56,5 +56,4 @@ abstract class BaseAttributesService
 
         return $this;
     }
-
 }
