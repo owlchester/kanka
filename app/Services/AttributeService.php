@@ -11,11 +11,11 @@ use App\Models\Entity;
 use App\Services\Attributes\BaseAttributesService;
 use App\Services\Attributes\RandomService;
 use App\Services\Attributes\TemplateService;
+use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
-use Exception;
 
 class AttributeService extends BaseAttributesService
 {
