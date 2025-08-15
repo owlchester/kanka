@@ -3,15 +3,11 @@
 namespace App\Services\Attributes;
 
 use App\Models\Attribute;
-use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
-use App\Traits\UserAware;
 
 abstract class BaseAttributesService
 {
-    use CampaignAware;
     use EntityAware;
-    use UserAware;
 
     protected Attribute $attribute;
 

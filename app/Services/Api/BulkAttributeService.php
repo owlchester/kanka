@@ -9,9 +9,12 @@ use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Stevebauman\Purify\Facades\Purify;
+use App\Traits\EntityAware;
 
 class BulkAttributeService extends BaseAttributesService
 {
+    use EntityAware;
+
     protected array $existingNames = [];
 
     protected RandomService $randomService;
@@ -80,7 +83,7 @@ class BulkAttributeService extends BaseAttributesService
             // Save empty strings as null
             $value = $value === '' ? null : $value;
 
-            if (! isset($attribute) || empty($attribute)) {
+            if (! isset($attribute)) {
                 $attribute = new Attribute;
             }
 
@@ -94,7 +97,7 @@ class BulkAttributeService extends BaseAttributesService
             $attribute->setValue($value);
             $attribute->is_private = $attr->is_private ?? 0;
             $attribute->is_pinned = $attr->is_pinned ?? 0;
-            $attribute->type_id = $attr->type_id; // @phpstan-ignore-line
+            $attribute->type_id = $attr->type_id;
 
             // Some fields can only be defined on creation
             if (! $attribute->exists) {

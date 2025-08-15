@@ -11,6 +11,9 @@ use App\Models\Entity;
 use App\Services\Attributes\BaseAttributesService;
 use App\Services\Attributes\RandomService;
 use App\Services\Attributes\TemplateService;
+use App\Traits\CampaignAware;
+use App\Traits\EntityAware;
+use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
@@ -19,6 +22,10 @@ use Stevebauman\Purify\Facades\Purify;
 
 class AttributeService extends BaseAttributesService
 {
+    use EntityAware;
+    use CampaignAware;
+    use UserAware;
+
     protected array $existing = [];
 
     protected array $names;

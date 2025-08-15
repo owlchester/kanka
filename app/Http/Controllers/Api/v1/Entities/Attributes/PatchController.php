@@ -21,10 +21,8 @@ class PatchController extends ApiController
         $this->authorize('update', $entity);
 
         $attributes = $request->get('attribute', []);
-
         $this->service
             ->entity($entity)
-            ->user($request->user())
             ->save($attributes, false)
             ->touch();
 

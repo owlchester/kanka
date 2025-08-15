@@ -24,7 +24,6 @@ class PutController extends ApiController
 
         $this->service
             ->entity($entity)
-            ->user($request->user())
             ->save($attributes)
             ->touch();
 
