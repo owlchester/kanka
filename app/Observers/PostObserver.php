@@ -14,11 +14,6 @@ class PostObserver
 
     public function saving(Post $post)
     {
-        // Is private hook for non-admin (who can't set is_private)
-        if (! isset($post->is_private)) {
-            $post->is_private = false;
-        }
-
         $settings = $post->settings;
         if (request()->has('settings[collapse]')) {
             if ((bool) request()->get('settings[collapse]')) {
