@@ -22,8 +22,8 @@ use Stevebauman\Purify\Facades\Purify;
 
 class AttributeService extends BaseAttributesService
 {
-    use EntityAware;
     use CampaignAware;
+    use EntityAware;
     use UserAware;
 
     protected array $existing = [];
