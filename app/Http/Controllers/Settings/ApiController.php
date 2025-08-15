@@ -26,14 +26,15 @@ class ApiController extends Controller
      */
     public function index()
     {
-        $tokens = Token::where('user_id', auth()->user()->id)
+        $tokens = Token::with('client') // eager-load here
+            ->where('user_id', auth()->id())
             ->where('revoked', false)
             ->where('expires_at', '>', Carbon::now()->toDateString())
             ->orderByDesc('created_at')
             ->paginate(config('limits.pagination'), ['*'], 'tokensPage');
 
         // Retrieving all the user's connections to third-party OAuth app clients.
-        $applications = $tokens->load('client')
+        $applications = $tokens
             ->reject(fn (Token $token) => $token->client->firstParty())
             ->values();
 

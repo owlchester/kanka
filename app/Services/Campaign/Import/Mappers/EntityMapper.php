@@ -216,7 +216,6 @@ trait EntityMapper
         $import = [
             'name',
             'entry',
-            'is_private',
             'visibility_id',
             'position',
             'settings',

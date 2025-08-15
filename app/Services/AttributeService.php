@@ -8,6 +8,7 @@ use App\Models\AttributeTemplate;
 use App\Models\Campaign;
 use App\Models\CampaignPlugin;
 use App\Models\Entity;
+use App\Services\Attributes\BaseAttributesService;
 use App\Services\Attributes\RandomService;
 use App\Services\Attributes\TemplateService;
 use App\Traits\CampaignAware;
@@ -19,17 +20,13 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Stevebauman\Purify\Facades\Purify;
 
-class AttributeService
+class AttributeService extends BaseAttributesService
 {
     use CampaignAware;
     use EntityAware;
     use UserAware;
 
-    protected array $purifyConfig;
-
     protected array $existing = [];
-
-    protected int $order = 0;
 
     protected array $names;
 
@@ -42,8 +39,6 @@ class AttributeService
     protected array $stars;
 
     protected array $hidden;
-
-    protected bool $touched = false;
 
     protected RandomService $randomService;
 
@@ -96,20 +91,6 @@ class AttributeService
             $this->touched = true;
             $attribute->delete();
         }
-
-        return $this;
-    }
-
-    /**
-     * When we're done updating the attributes, if anything was changed, we need to "touch" the entity to have a log and
-     * updated timestamp.
-     */
-    public function touch(): self
-    {
-        if (! $this->touched) {
-            return $this;
-        }
-        $this->entity->touch();
 
         return $this;
     }
@@ -271,26 +252,6 @@ class AttributeService
         }
 
         return $templates;
-    }
-
-    /**
-     * Prepare a custom HTML purifying config for attributes. We remove all custom fields that are added to purify.php
-     * and in PurifySetupProvider.
-     */
-    protected function purifyConfig(): self
-    {
-        $purifyConfig = config('purify.configs.default');
-        $purifyConfig['HTML.Allowed'] = preg_replace('`,a\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
-        $purifyConfig['HTML.Allowed'] = preg_replace('`,iframe\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
-        $purifyConfig['HTML.Allowed'] = preg_replace('`,summary\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
-        $purifyConfig['HTML.Allowed'] = preg_replace('`,table\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
-        $purifyConfig['HTML.Allowed'] = preg_replace('`,details\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
-        $purifyConfig['HTML.Allowed'] = preg_replace('`,figure\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
-        $purifyConfig['HTML.Allowed'] = preg_replace('`,figcaption\[(.*?)\]`', '$2', $purifyConfig['HTML.Allowed']);
-
-        $this->purifyConfig = $purifyConfig;
-
-        return $this;
     }
 
     public function replaceMentions(int $sourceId): self
