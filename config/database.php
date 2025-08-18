@@ -117,6 +117,19 @@ return [
             'sslmode' => 'prefer',
         ],
 
+        'vector_pgsql' => [
+            'driver' => 'pgsql',
+            'host' => env('VECTOR_DB_HOST', '127.0.0.1'),
+            'port' => env('VECTOR_DB_PORT', '5432'),
+            'database' => env('VECTOR_DB_DATABASE', 'kanka_vectors'),
+            'username' => env('VECTOR_DB_USERNAME', 'laravel'),
+            'password' => env('VECTOR_DB_PASSWORD', 'secret'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'host' => env('DB_HOST', 'localhost'),

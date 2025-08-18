@@ -42,6 +42,7 @@
         "owlchester/laravel-translation-manager": "^12",
         "pragmarx/google2fa-laravel": "^2.3",
         "predis/predis": "^2.0",
+        "prism-php/prism": "^0.85.0",
         "sentry/sentry-laravel": "^4.0",
         "sergej-kurakin/diceroller": "^2.0",
         "spatie/laravel-backup": "^9.0",

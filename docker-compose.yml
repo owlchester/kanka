@@ -28,6 +28,7 @@ services:
             - minio
             - meilisearch
             - mailpit
+            - pgvector
     mariadb:
         image: 'mariadb:11'
         ports:
@@ -149,6 +150,19 @@ services:
             test: ["CMD", "wget", "--no-verbose", "--spider",  "http://127.0.0.1:7700/health"]
             retries: 3
             timeout: 5s
+    pgvector:
+        image: pgvector/pgvector:pg16
+        restart: always
+        environment:
+            POSTGRES_DB: laravel
+            POSTGRES_USER: laravel
+            POSTGRES_PASSWORD: secret
+        ports:
+            - "5432:5432"
+        volumes:
+            - sail-pgvector:/var/lib/postgresql/data
+        networks:
+            - sail
 networks:
     sail:
         name: sail
@@ -165,4 +179,6 @@ volumes:
     sail-thumbor-nginx:
         driver: local
     sail-meilisearch:
+        driver: local
+    sail-pgvector:
         driver: local
