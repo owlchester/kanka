@@ -129,7 +129,7 @@ trait EntityScopes
             ->with($related ? [
                 'attributes', 'attributes.entity',
                 'posts', 'posts.permissions', 'posts.entity',
-                'events', 'events.entity',
+                'reminders', 'reminders.remindable',
                 'inventories', 'inventories.entity',
                 'relationships', 'abilities',
                 'tags', 'image', 'assets',
