@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Facades\Mentions;
 use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use Illuminate\Support\Str;
@@ -23,7 +24,7 @@ class TooltipService
             // html syntax, and thus a lot more control on what is displayed.
             $boostedTooltip = strip_tags($this->entity->tooltip);
             if (! empty(mb_trim($boostedTooltip))) {
-                $text = $this->entity->parsedEntry();
+                $text = Mentions::mapEntity($this->entity);
                 $text = strip_tags($text, $this->allowedTooltipTags());
                 if (! empty($text)) {
                     return '<div>' . nl2br($text) . '<div>';

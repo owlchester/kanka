@@ -317,7 +317,7 @@ class CrudController extends Controller
                     ->with('name', $this->view);
             }
         }
-
+        FormCopy::request(request());
         if (! isset($params['source'])) {
             $copyId = request()->input('copy');
             if (! empty($copyId)) {
@@ -327,7 +327,7 @@ class CrudController extends Controller
                     abort(404);
                 }
                 $params['source'] = $model;
-                FormCopy::request(request())->source($params['source']);
+                FormCopy::source($params['source']);
             } else {
                 $params['source'] = null;
             }
