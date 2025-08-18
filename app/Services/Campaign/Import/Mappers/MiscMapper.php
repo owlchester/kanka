@@ -10,6 +10,7 @@ abstract class MiscMapper
 {
     use CampaignAware;
     use EntityMapper;
+    use BaseEntityMapper;
     use ImportMapper;
     use ImportMentions;
     use UserAware;
