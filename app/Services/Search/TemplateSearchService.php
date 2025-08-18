@@ -7,6 +7,8 @@ use App\Models\Entity;
 use App\Traits\CampaignAware;
 use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
+use App\Traits\Search\Orderable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class TemplateSearchService
@@ -14,6 +16,9 @@ class TemplateSearchService
     use CampaignAware;
     use EntityTypeAware;
     use RequestAware;
+    use Orderable;
+
+    protected Builder $query;
 
     public function search(): array
     {
@@ -21,27 +26,18 @@ class TemplateSearchService
         $excludes = $this->request->has('exclude') ? $this->request->get('exclude') : null;
 
         $with = ['image', 'entityType'];
-        $query = Entity::inTypes($this->entityType->id);
+        $this->query = Entity::inTypes($this->entityType->id);
         if (! empty($excludes)) {
-            $query->whereNotIn('id', [$excludes]);
+            $this->query->whereNotIn('id', [$excludes]);
         }
         if ($this->entityType->isStandard()) {
             $with[] = Str::camel($this->entityType->code);
         }
-        $query->with($with);
+        $this->query->with($with);
+        $this->order($term);
 
-        if (empty($term)) {
-            $query->orderBy('updated_at', 'DESC');
-        } else {
-            // Exact match
-            if (Str::startsWith($term, '=')) {
-                $query->where('name', mb_ltrim($term, '='));
-            } else {
-                $query->where('name', 'like', "%{$term}%");
-            }
-        }
-        $entities = $query
-            ->template()
+        $entities = $this->query
+            ->template() //@phpstan-ignore-line
             ->limit(10)
             ->get();
 
