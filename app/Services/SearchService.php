@@ -396,6 +396,9 @@ class SearchService
     protected function newOptions(): array
     {
         $options = [];
+        if (!isset($this->user)) {
+            return $options;
+        }
         $term = str_replace('_', ' ', $this->term);
         $available = $this->newService->campaign($this->campaign)->user($this->user)->available();
 
