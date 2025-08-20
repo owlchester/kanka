@@ -154,11 +154,11 @@ services:
         image: pgvector/pgvector:pg16
         restart: always
         environment:
-            POSTGRES_DB: laravel
-            POSTGRES_USER: laravel
-            POSTGRES_PASSWORD: secret
+            POSTGRES_DB: '${POSTGRES_DB}'
+            POSTGRES_USER: '${POSTGRES_USER}'
+            POSTGRES_PASSWORD: '${POSTGRES_PASSWORD}'
         ports:
-            - "5432:5432"
+            - "${FORWARD_PGVECTOR_PORT:-5432}:5432"
         volumes:
             - sail-pgvector:/var/lib/postgresql/data
         networks:

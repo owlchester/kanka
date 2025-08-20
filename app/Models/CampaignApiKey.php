@@ -7,6 +7,7 @@ use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\SortableTrait;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class CampaignApiKey
@@ -18,7 +19,7 @@ use App\Models\Concerns\SortableTrait;
  * @property bool|int $is_enabled
  * @property Campaign $campaign
  */
-class CampaignApiKey extends MiscModel
+class CampaignApiKey extends Model
 {
     use HasCampaign;
     use HasUser;
@@ -43,6 +44,11 @@ class CampaignApiKey extends MiscModel
     ];
 
     protected string $userField = 'created_by';
+
+    public function url(string $sub): string
+    {
+        return 'api-keys.' . $sub;
+    }
 
     /**
      * Determine if the model is extinct.

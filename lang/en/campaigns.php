@@ -372,6 +372,7 @@ return [
         'tabs'      => [
             'achievements'      => 'Achievements',
             'applications'      => 'Applications',
+            'api-keys'          => 'Api Keys',
             'customisation'     => 'Customisation',
             'danger'            => 'Danger',
             'data'              => 'Data',

@@ -1,3 +1,9 @@
+@if (!isset($apiKey))
+    <p class="text-neutral-content">
+        {{ __('campaigns/api-keys.helper.create') }}
+    </p>
+@endif
+
 <x-grid type="1/1">
     <x-forms.field
         field="provider"
@@ -24,19 +30,21 @@
         <x-forms.select name="model" :options="$options" :selected="$apiKey->model ?? null" />
     </x-forms.field>
 
-    <x-forms.field
-        field="api_key"
-        required
-        :label="__('campaigns/api-keys.fields.api-key')"
-        >
-        <input type="text" name="api_key" value="{{ old('api_key', $apiKey->api_key ?? null) }}" maxlength="191" required class="w-full" placeholder="{{ __('campaigns/api-keys.placeholders.api-key') }}"/>
-    </x-forms.field>
-
+    @if (!isset($apiKey))
+        <x-forms.field
+            field="api_key"
+            required
+            :label="__('campaigns/api-keys.fields.api-key')"
+            >
+            <input type="text" name="api_key" maxlength="191" required class="w-full" placeholder="{{ __('campaigns/api-keys.placeholders.api-key') }}"/>
+        </x-forms.field>
+    @endif
+    
     <x-forms.field
         field="is_enabled"
         :label="__('campaigns/webhooks.fields.enabled')">
         <input type="hidden" name="is_enabled" value="0" />
-        <x-checkbox :text="__('campaigns/api-keys.helper.active')">
+        <x-checkbox :text="__('campaigns/api-keys.helper.enabled')">
             <input type="checkbox" name="is_enabled" value="1" @if (old('is_enabled', $apiKey->status ?? true)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>

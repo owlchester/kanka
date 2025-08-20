@@ -33,7 +33,8 @@ class CampaignApiKey extends Layout
                 'label' => 'campaigns/api-keys.fields.api-key',
                 'render' => function (\App\Models\CampaignApiKey $model) {
                     /** @var \App\Models\CampaignApiKey $model */
-                    return $model->api_key;
+
+                   return '********' . substr($model->api_key, -4);
                 },
             ],
             'is_enabled' => [

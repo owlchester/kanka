@@ -22,16 +22,7 @@ class SaveService
         return $this;
     }
 
-    public function save(): CampaignApiKey
-    {
-        if (! isset($this->apiKey)) {
-            $this->create();
-        }
-
-        return $this->apiKey;
-    }
-
-    protected function create(): void
+    public function create(): void
     {
         $this->apiKey = new CampaignApiKey($this->request->all());
         $this->apiKey->campaign_id = $this->campaign->id;
