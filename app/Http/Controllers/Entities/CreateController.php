@@ -26,6 +26,7 @@ class CreateController extends Controller
 
         $tabCopy = false;
         $source = null;
+        FormCopy::request($request);
         if ($request->filled('copy')) {
             $source = Entity::inTypes([$entityType->id])->find($request->get('copy'));
             if ($source) {

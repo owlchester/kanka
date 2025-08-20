@@ -189,7 +189,6 @@ You can view the recoverable deleted posts on the `/recovery/posts` endpoint.
             "entry": null,
             "entry_parsed": "",
             "id": 4042,
-            "is_private": false,
             "layout_id": null,
             "name": "First Encounter",
             "permissions": [],

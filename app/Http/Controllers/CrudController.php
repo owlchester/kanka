@@ -22,6 +22,7 @@ use App\Services\MultiEditingService;
 use App\Traits\BulkControllerTrait;
 use App\Traits\CampaignAware;
 use App\Traits\Controllers\HasDatagrid;
+use App\Traits\Controllers\HasNested;
 use App\Traits\Controllers\HasSubview;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -39,6 +40,7 @@ class CrudController extends Controller
     use GuestAuthTrait;
     use HasDatagrid;
     use HasSubview;
+    use HasNested;
 
     /** The view where to find the resources */
     protected string $view = '';
@@ -315,7 +317,7 @@ class CrudController extends Controller
                     ->with('name', $this->view);
             }
         }
-
+        FormCopy::request(request());
         if (! isset($params['source'])) {
             $copyId = request()->input('copy');
             if (! empty($copyId)) {
@@ -325,7 +327,7 @@ class CrudController extends Controller
                     abort(404);
                 }
                 $params['source'] = $model;
-                FormCopy::request(request())->source($params['source']);
+                FormCopy::source($params['source']);
             } else {
                 $params['source'] = null;
             }
@@ -795,24 +797,7 @@ class CrudController extends Controller
         }
         $key = $this->module . '_nested';
         if ($this->request->has('n')) {
-            $new = (bool) $this->request->get('n');
-            if (auth()->guest()) {
-                Session::put($key, $new);
-            } else {
-                $settings = auth()->user()->settings;
-                if (auth()->check() && Arr::get($settings, $key) !== $new) {
-                    $settings = auth()->user()->settings;
-                    if ($new) {
-                        unset($settings[$key]);
-                    } else {
-                        $settings[$key] = false;
-                    }
-                    auth()->user()->settings = $settings;
-                    auth()->user()->updateQuietly();
-                }
-            }
-
-            return $new;
+            return $this->saveNested($key);
         }
 
         if (auth()->guest()) {

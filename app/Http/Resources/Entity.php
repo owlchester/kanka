@@ -18,7 +18,7 @@ class Entity extends EntityChild
         /** @var \App\Models\Entity $model */
         $model = $this->resource;
 
-        if (empty($model->child)) {
+        if ($model->isMissingChild()) {
             return ['error' => 'KA7: Entity #' . $model->id . ' missing child.'];
         }
 
@@ -26,8 +26,9 @@ class Entity extends EntityChild
         $apiViewUrl = 'campaigns.' . $model->entityType->pluralCode() . '.show';
 
         return [
-            'id' => $model->child->id,
-            'entity_id' => $model->id,
+            'id' => $model->id,
+            'child_id' => $model->hasChild() ? $model->id : null,
+            'child_type' => $model->hasChild() ? $model->entityType->code : null,
             'name' => $model->name,
             'image' => Avatar::entity($model)->original(),
             'image_thumb' => Avatar::entity($model)->size(40)->thumbnail(),
@@ -40,11 +41,11 @@ class Entity extends EntityChild
             'url' => $model->url(),
             'is_attributes_private' => $model->is_attributes_private,
 
-            'is_private' => (bool) $model->child->is_private,
+            'is_private' => (bool) $model->is_private,
 
-            'created_at' => $model->child->created_at,
+            'created_at' => $model->created_at,
             'created_by' => $model->created_by,
-            'updated_at' => $model->child->updated_at,
+            'updated_at' => $model->updated_at,
             'updated_by' => $model->updated_by,
 
             'urls' => [

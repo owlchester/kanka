@@ -76,9 +76,9 @@ class AuthController extends Controller
             return redirect()->route('home');
         } catch (Exception $ex) {
             // Send the exception to Sentry
-            if (app()->bound('sentry')) {
-                app('sentry')->captureException($ex);
-            }
+//            if (app()->bound('sentry')) {
+//                app('sentry')->captureException($ex);
+//            }
 
             if ($ex->getCode() == '1') {
                 return redirect()->route('login')->withErrors(__('auth.register.errors.email_already_taken'));

@@ -11,6 +11,7 @@ use App\Models\Campaign;
 use App\Models\Entity;
 use App\Models\EntityType;
 use App\Services\FilterService;
+use App\Traits\Controllers\HasNested;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Session;
 
 class IndexController extends Controller
 {
+    use HasNested;
+
     protected EntityType $entityType;
 
     protected Request $request;
@@ -229,24 +232,7 @@ class IndexController extends Controller
     {
         $key = $this->entityType->code . '_nested';
         if ($this->request->has('n')) {
-            $new = (bool) $this->request->get('n');
-            if (auth()->guest()) {
-                Session::put($key, $new);
-            } else {
-                $settings = auth()->user()->settings;
-                if (auth()->check() && Arr::get($settings, $key) !== $new) {
-                    $settings = auth()->user()->settings;
-                    if ($new) {
-                        unset($settings[$key]);
-                    } else {
-                        $settings[$key] = false;
-                    }
-                    auth()->user()->settings = $settings;
-                    auth()->user()->updateQuietly();
-                }
-            }
-
-            return $new;
+            return $this->saveNested($key);
         }
 
         if (auth()->guest()) {

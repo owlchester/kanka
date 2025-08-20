@@ -40,7 +40,6 @@ use Laravel\Scout\Searchable;
  * @property \App\Enums\Visibility $visibility_id
  * @property ?int $layout_id
  * @property ?string $marketplace_uuid
- * @property bool|int $is_private
  * @property int $deleted_by
  * @property bool|int $is_template
  * @property int $position
@@ -78,7 +77,6 @@ class Post extends Model
         'name',
         'entry',
         'created_by',
-        'is_private',
         'is_pinned',
         'position',
         'visibility_id',

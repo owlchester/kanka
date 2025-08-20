@@ -1,12 +1,11 @@
-name: Fix Code Style
+name: Fix Code Style & Duplication Check
 
 on:
   pull_request:
+    branches: [main, develop]
+  push:
     branches:
-      - develop
-#  push:
-#    branches:
-#      - main
+      - main
 
 jobs:
   lint:
@@ -41,6 +40,9 @@ jobs:
 
       - name: Run Pint
         run: pint
+
+      - name: Run PHPCPD
+          run: ./vendor/bin/phpcpd app/ --min-lines=5 --min-tokens=70
 
       - name: Auto-commit fixes
         uses: stefanzweifel/git-auto-commit-action@v6

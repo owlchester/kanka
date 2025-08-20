@@ -8,6 +8,7 @@ use App\Traits\UserAware;
 
 class CustomMapper
 {
+    use BaseEntityMapper;
     use CampaignAware;
     use CustomEntityMapper;
     use ImportMapper;
