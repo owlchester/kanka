@@ -15,7 +15,7 @@ class UniqueAttributeNames implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $attributes = [];
-        if (is_array($value)) {
+        if (is_array($value[0])) {
             $attributes = $value;
         } else {
             foreach ($value as $att) {

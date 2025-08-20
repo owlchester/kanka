@@ -12,7 +12,6 @@ use App\Services\Attributes\BaseAttributesService;
 use App\Services\Attributes\RandomService;
 use App\Services\Attributes\TemplateService;
 use App\Traits\CampaignAware;
-use App\Traits\EntityAware;
 use App\Traits\UserAware;
 use Exception;
 use Illuminate\Support\Arr;
@@ -23,7 +22,6 @@ use Stevebauman\Purify\Facades\Purify;
 class AttributeService extends BaseAttributesService
 {
     use CampaignAware;
-    use EntityAware;
     use UserAware;
 
     protected array $existing = [];
