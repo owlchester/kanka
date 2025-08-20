@@ -159,6 +159,16 @@
                                 ></x-sidebar.element>
                             </li>
                         @endif
+                        @can('apiKeys', $campaign)
+                            <li class="px-2 section-api-keys {{ $active('api-keys') }}">
+                                <x-sidebar.element
+                                    :url="route('api-keys.index', [$campaign])"
+                                    icon="fa-duotone fa-webhook"
+                                    :text="__('campaigns.show.tabs.api-keys')"
+                                    premium
+                                ></x-sidebar.element>
+                            </li>
+                        @endif
                         @can('logs', $campaign)
                             <li class="px-2 section-webhooks {{ $active('logs') }}">
                                 <x-sidebar.element

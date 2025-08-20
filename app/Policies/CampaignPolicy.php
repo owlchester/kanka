@@ -78,6 +78,14 @@ class CampaignPolicy
     /**
      * Determine whether the user can manage the webhooks of the campaign.
      */
+    public function apiKeys(User $user, Campaign $campaign): bool
+    {
+        return $this->recover($user, $campaign);
+    }
+
+    /**
+     * Determine whether the user can manage the webhooks of the campaign.
+     */
     public function logs(User $user, Campaign $campaign): bool
     {
         return $this->recover($user, $campaign);

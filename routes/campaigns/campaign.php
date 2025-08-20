@@ -98,6 +98,8 @@ Route::resources([
 
     '/w/{campaign}/webhooks' => 'Campaign\WebhookController',
     '/w/{campaign}/entity_types' => 'Campaign\EntityTypeController',
+    
+    '/w/{campaign}/api-keys' => 'Campaign\ApiKeyController',
 ]);
 Route::get('/w/{campaign}/leave', 'Campaign\LeaveController@index')->name('campaign.leave');
 Route::post('/w/{campaign}/leave-for-real', 'Campaign\LeaveController@process')->name('campaign.leave-process');

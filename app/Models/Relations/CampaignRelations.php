@@ -7,6 +7,7 @@ use App\Models\Application;
 use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\Calendar;
+use App\Models\CampaignApiKey;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignExport;
@@ -169,6 +170,14 @@ trait CampaignRelations
     public function webhooks(): HasMany
     {
         return $this->hasMany(Webhook::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignApiKey, $this>
+     */
+    public function apiKeys(): HasMany
+    {
+        return $this->hasMany(CampaignApiKey::class);
     }
 
     /**
