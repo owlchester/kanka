@@ -17,6 +17,13 @@
     <tbody>
     @forelse ($rows as $row)
         @if ($row instanceof \App\Models\MiscModel && empty($row->entity))
+            @if (app()->hasDebugModeEnabled())
+                <tr>
+                    <td class="bg-error text-error-content" colspan="{{ count(Datagrid::headers()) }}">
+                        <code>$row</code> extends MiscModel but has no attached entity.
+                    </td>
+                </tr>
+            @endif
             @continue
         @endif
         <tr class="{{ method_exists($row, 'rowClasses') ? $row->rowClasses() : null }} @if (Datagrid::isHighlighted($row)) warning row-highlighted @endif" @if (method_exists($row, 'rowAttributes')) {!! Datagrid::rowAttributes($row) !!} @endif>
