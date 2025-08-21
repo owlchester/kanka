@@ -21,4 +21,9 @@ class WebhookPolicy
     {
         return $user->isAdmin() && $webhook->isActive();
     }
+
+    public function delete(User $user, Webhook $webhook): bool
+    {
+        return $user->isAdmin();
+    }
 }
