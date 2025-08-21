@@ -32,10 +32,9 @@ return [
         'updated'   => 'Ažurirani sljedeći entiteti:',
     ],
     'info'          => [
-        'helper'        => 'Kad izađe nova verzija dodatka, možeš ga ažurirati na najnoviju verziju za svoju kampanju.',
-        'title'         => 'Ažuriranja dodatka :plugin',
-        'updates'       => 'Ažuriranja',
-        'your_version'  => 'Tvoja verzija',
+        'helper'    => 'Kad izađe nova verzija dodatka, možeš ga ažurirati na najnoviju verziju za svoju kampanju.',
+        'title'     => 'Ažuriranja dodatka :plugin',
+        'updates'   => 'Ažuriranja',
     ],
     'status'        => [
         'disabled'  => 'Onemogućeno',

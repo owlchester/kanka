@@ -51,10 +51,9 @@ return [
         'updated'               => 'Nasledujúce objekty boli aktualizované:',
     ],
     'info'          => [
-        'helper'        => 'Ak je vydaná novšia verzia pluginu, môžeš si ho aktualizovať v tvojej kampani na poslednú verziu.',
-        'title'         => 'Aktualizácie pluginu :plugin',
-        'updates'       => 'Aktualizácie',
-        'your_version'  => 'Tvoja verzia',
+        'helper'    => 'Ak je vydaná novšia verzia pluginu, môžeš si ho aktualizovať v tvojej kampani na poslednú verziu.',
+        'title'     => 'Aktualizácie pluginu :plugin',
+        'updates'   => 'Aktualizácie',
     ],
     'pitch'         => 'Inštaluj a spravuj pluginy z :marketplace.',
     'status'        => [

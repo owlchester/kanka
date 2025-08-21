@@ -63,7 +63,6 @@ return [
         'title'         => 'Aktualizacje dodatku :plugin',
         'updates'       => 'Aktualizacje',
         'versions'      => 'Wersje',
-        'your_version'  => 'Używana wersja',
     ],
     'pitch'         => 'Instaluj i zarządzaj dodatkami z :marketplace.',
     'status'        => [

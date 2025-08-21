@@ -56,11 +56,10 @@ return [
         'updated'               => 'Les entités suivantes ont été modifiées:',
     ],
     'info'          => [
-        'helper'        => 'Dès qu\'un plugin a une nouvelle version, tu peux mettre à jour le plugin à la version la plus récente.',
-        'title'         => 'Mises à jour du plugin :plugin',
-        'updates'       => 'Mises à jour',
-        'versions'      => 'Versions',
-        'your_version'  => 'Ta version',
+        'helper'    => 'Dès qu\'un plugin a une nouvelle version, tu peux mettre à jour le plugin à la version la plus récente.',
+        'title'     => 'Mises à jour du plugin :plugin',
+        'updates'   => 'Mises à jour',
+        'versions'  => 'Versions',
     ],
     'pitch'         => 'Installes et gères les plugins du :marketplace.',
     'status'        => [

@@ -63,7 +63,6 @@ return [
         'title'         => 'Atualizações do plug-in :plugin',
         'updates'       => 'Atualizações',
         'versions'      => 'Versões',
-        'your_version'  => 'Sua versão',
     ],
     'pitch'         => 'Instale e gerencie plugins do :marketplace.',
     'status'        => [
