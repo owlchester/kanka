@@ -160,6 +160,11 @@ class AbilityController extends Controller
             ]);
         }
 
+        $from = request()->get('from');
+        if ($from == 'ability') {
+            return redirect()->route('abilities.entities', [$campaign, $entityAbility->ability]);
+        }
+
         return redirect()
             ->route('entities.entity_abilities.index', [$campaign, $entity]);
     }
