@@ -14,11 +14,21 @@ class UniqueAttributeNames implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
+        if (!is_array($value)) {
+            $fail;
+            return;
+        }
+
         $attributes = [];
-        if (is_array($value[0])) {
+        if (is_array(reset($value))) {
             $attributes = $value;
         } else {
             foreach ($value as $att) {
+               $tempAtt = json_decode($att, true);
+                if (! is_array($tempAtt)) {
+                    $fail(__('entities/attributes.errors.api'));
+                    return;
+                }
                 $attributes[] = json_decode($att, true);
             }
         }
