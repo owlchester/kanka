@@ -47,7 +47,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(AnonymiseUserLogs::class)->onOneServer()->dailyAt('03:50');
         $schedule->command(CleanupTrashed::class)->onOneServer()->dailyAt('02:15');
         $schedule->command(CleanupTrashedCampaigns::class)->onOneServer()->dailyAt('02:45');
-        //$schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50');
+        $schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50');
     }
 
     /**
