@@ -3,6 +3,7 @@
 return [
     'actions'       => [],
     'create'        => [
+        'helper'    => 'Dodaj informację o pogodzie, która pojawi się w kalendarzu.',
         'success'   => 'Dodano pogodę.',
         'title'     => 'Nowy efekt pogody',
     ],

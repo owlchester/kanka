@@ -27,7 +27,8 @@ return [
             'success'   => 'Usunięto członka organizacji.',
         ],
         'edit'          => [
-            'title' => 'Edycja członka :name',
+            'helper'    => 'Zmienia status członkostwa elementu :name.',
+            'title'     => 'Edycja członka :name',
         ],
         'fields'        => [
             'parent'    => 'Zwierzchnik',

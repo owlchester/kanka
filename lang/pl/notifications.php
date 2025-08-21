@@ -20,6 +20,7 @@ return [
             'remove'        => ':user nie doładowuje już kampanii :campaign.',
             'superboost'    => 'Kampania :campaign została turbodoładowana przez :user.',
         ],
+        'created'           => 'Stworzono :campaign.',
         'deleted'           => 'Usunięto kampanię :campaign',
         'export'            => 'Można pobrać wyeksportowaną kampanię. Odnośnik będzie dostępny przez :time minut.',
         'export_error'      => 'Podczas eksportowania plików kampanii wystąpił błąd. Jeżeli będzie się powtarzał, skontaktuj się z nami. To się zdarza w dużych kampaniach posiadających duże obrazy.',
@@ -30,6 +31,7 @@ return [
         ],
         'join'              => ':user dołącza do kampanii :campaign.',
         'leave'             => ':user opuszcza do kampanię :campaign.',
+        'new_owner'         => 'Jesteś teraz administratorem :campaign.',
         'plugin'            => [
             'deleted'   => 'Wtyczka :plugin została usunięta z targowiska, więc usunięto ją również z kampanii :campaign.',
         ],

@@ -156,6 +156,7 @@ return [
                 'not_playing'       => 'Już nie gram albo kampania została zawieszona',
                 'not_using'         => 'Nie używam ostatnio Kanki',
                 'other'             => 'Inne',
+                'testing'           => 'Tylko testuję Kankę',
             ],
             'text'      => 'Szkoda, że rezygnujesz! Po zaniechaniu subskrypcji konto pozostanie aktywne do końca okresu rozliczeniowego. Potem stracisz doładowania i inne korzyści wynikające ze wspierania Kanki. Wypełniając poniższy formularz nasz nam znać, co możemy poprawić i dlaczego rezygnujesz.',
             'title'     => 'Anulowane subskrybcji',

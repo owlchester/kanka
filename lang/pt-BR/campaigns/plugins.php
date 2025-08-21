@@ -10,8 +10,10 @@ return [
         'changelog'         => 'Histórico de alterações',
         'disable'           => 'Desativar plugin',
         'enable'            => 'Ativar plugin',
+        'find-plugins'      => 'Encontrar plugins',
         'import'            => 'Importar',
         'update'            => 'Atualizar plug-in',
+        'update-to'         => 'Atualizar para versão :version',
         'update_available'  => 'Atualização disponível!',
     ],
     'bulks'         => [
@@ -42,6 +44,10 @@ return [
     'import'        => [
         'button'                => 'Importar',
         'created'               => 'Criada as seguintes entidades:',
+        'fields'                => [
+            'only_new'  => 'Somente novas entidades',
+            'private'   => 'Entidades privadas',
+        ],
         'helper'                => 'Você está prestes a importar :count entidades do plugin :plugin. Se este plug-in foi importado anteriormente, as alterações feitas nas entidades importadas podem ser perdidas.',
         'no_new_entities'       => 'Não há novas entidades a serem importadas.',
         'option_only_import'    => 'Importe apenas novas entidades, ignorando entidades importadas anteriormente.',
@@ -51,13 +57,17 @@ return [
         'updated'               => 'Atualizadas as seguintes entidades:',
     ],
     'info'          => [
+        'description'   => 'Exibindo as últimas atualizações para o plugin :plugin.',
         'helper'        => 'Quando uma nova versão de um plugin é liberada, você pode atualizá-lo para a nova versão para sua campanha.',
+        'installed'     => 'Instalado',
         'title'         => 'Atualizações do plug-in :plugin',
         'updates'       => 'Atualizações',
+        'versions'      => 'Versões',
         'your_version'  => 'Sua versão',
     ],
     'pitch'         => 'Instale e gerencie plugins do :marketplace.',
     'status'        => [
+        'always'    => 'Este tipo de plugin está sempre ativo, a menos que seja removido.',
         'disabled'  => 'Desativado',
         'enabled'   => 'Ativado',
     ],

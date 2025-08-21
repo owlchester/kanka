@@ -16,6 +16,7 @@ return [
         'email'                     => 'Email',
         'hide_subscription'         => 'Ukryj moje imię na stronie :hall_of_fame.',
         'last_login_share'          => 'Informuj innych członków kampanii o moim ostatnim logowaniu',
+        'link'                      => 'Media społecznościowe',
         'login_sharing'             => 'Informacja o logowaniu',
         'name'                      => 'Nazwa',
         'new_password'              => 'Nowe hasło',
@@ -23,12 +24,18 @@ return [
         'newsletter'                => 'Chcę dostawać okazjonalne emaile',
         'password'                  => 'Obecne hasło',
         'profile-name'              => 'Nazwa profilu',
+        'pronouns'                  => 'Zaimki',
         'settings'                  => 'Ustawienia',
         'subscription_hiding'       => 'Tajna subskrybcja',
         'theme'                     => 'Motyw',
     ],
     'helpers'                       => [
+        'link'          => 'Zmienia odnośnik do profilu społecznościowego wyświetlany w twoim :profile i na :marketplace. Jeżeli wiersz jest pusty, użyta zostanie nazwa konta.',
         'profile-name'  => 'Zmienia nazwę wyświetlaną w twoim :profile i na :marketplace. Jeżeli wiersz jest pusty, użyta zostanie nazwa konta.',
+        'pronouns'      => 'Zmienia zaimki wyświetlane w twoim :profile i na :marketplace. Jeżeli wiersz jest pusty, nie będziemy informować o twoich zaimkach.',
+    ],
+    'link'                          => [
+        'button'    => 'Profil społecznościowy :name',
     ],
     'newsletter'                    => [
         'helpers'   => [

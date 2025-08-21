@@ -57,12 +57,12 @@ return [
         'updated'               => 'Updated the following entities:',
     ],
     'info'          => [
-        'description' => 'Showing the latest updates for the :plugin plugin.',
+        'description'   => 'Showing the latest updates for the :plugin plugin.',
         'helper'        => 'When a new version of a plugin is released, you can update it to the latest version for your campaign.',
+        'installed'     => 'Installed',
         'title'         => 'Plugin :plugin updates',
         'updates'       => 'Updates',
         'versions'      => 'Versions',
-        'installed'     => 'Installed',
     ],
     'pitch'         => 'Install and manage plugins from the :marketplace.',
     'status'        => [

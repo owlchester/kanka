@@ -19,13 +19,28 @@ return [
     'errors'        => [],
     'fields'        => [
         'application'   => 'Solicitação',
+        'reason'        => 'Motivo de aprovação/rejeição',
     ],
     'helpers'       => [
-        'modal'             => 'Uma campanha aberta a solicitações e ao público pode fazer com que os usuários se inscrevam para participar da campanha.',
-        'no_applications'   => 'No momento, não há solicitações pendentes para participar de sua campanha. Os usuários podem solicitar para participar de sua campanha visitando seu painel e clicando no botão :button.',
+        'modal'                 => 'Uma campanha aberta a solicitações e ao público pode fazer com que os usuários se inscrevam para participar da campanha.',
+        'no_applications'       => 'No momento, não há solicitações pendentes para participar de sua campanha. Os usuários podem solicitar para participar de sua campanha visitando seu painel e clicando no botão :button.',
+        'no_applications_title' => 'Nenhuma solicitação encontrada',
+        'reason'                => 'Se fornecido, o solicitante será notificado sobre esse motivo.',
+        'role'                  => 'Se aprovado, o cargo ào qual o solicitante será adicionado.',
+    ],
+    'open'          => [
+        'closed'    => 'Campanha está fechada',
+        'open'      => 'Campanha está aberta',
+        'title'     => 'Campanha aberta',
     ],
     'placeholders'  => [
-        'note'  => 'Escreva a sua solicitação para se inscrever na campanha.',
+        'note'      => 'Escreva a sua solicitação para se inscrever na campanha.',
+        'reason'    => 'Sua razão',
+    ],
+    'public'        => [
+        'private'   => 'Campanha está privada.',
+        'public'    => 'Campanha está pública.',
+        'title'     => 'Campanha pública',
     ],
     'statuses'      => [],
     'toggle'        => [

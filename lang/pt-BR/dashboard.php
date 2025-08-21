@@ -2,6 +2,7 @@
 
 return [
     'actions'       => [
+        'customise' => 'Personalizar dashboard',
         'follow'    => 'Seguir',
         'join'      => 'Entrar',
         'unfollow'  => 'Deixar de seguir',
@@ -14,6 +15,7 @@ return [
             'switch'    => 'Trocar para dashboard',
         ],
         'create'        => [
+            'helper'    => 'Crie um novo dashboard para :name e atribua quais cargos podem vê-lo ou tê-lo como dashboard padrão.',
             'success'   => 'Novo dashboard :name da campanha criado',
             'title'     => 'Novo Dashboard de Campanha',
         ],
@@ -64,6 +66,7 @@ return [
             'new'               => 'Novo widget de :type',
         ],
         'reorder'   => [
+            'helper'    => 'Arraste-me para me mover',
             'success'   => 'Widgets reordenados.',
         ],
         'title'     => 'Configurar Dashboard',
@@ -97,7 +100,10 @@ return [
             'helper'    => 'Este widget exibe o cabeçalho da campanha. Este widget é sempre exibido no dashboard padrão.',
         ],
         'create'                    => [
-            'success'   => 'Widget adicionado ao dashboard.',
+            'helper'            => 'Selecione um tipo de widget para adicionar ao dashboard :name.',
+            'helper-default'    => 'Selecione um tipo de widget para adicionar ao dashboard padrão.',
+            'success'           => 'Widget adicionado ao dashboard.',
+            'title'             => 'Novo widget',
         ],
         'delete'                    => [
             'success'   => 'Widget removido so dashboard.',
@@ -144,6 +150,7 @@ return [
                 'mentionless'   => 'Sem Menções (entidades que não mencionam outras entidades)',
                 'unmentioned'   => 'Não Mencionadas (entidades que não são mencionadas por outras entidades)',
             ],
+            'all-entities'      => 'Todas entidades',
             'entity-header'     => 'Use o cabeçalho da entidade como imagem',
             'filters'           => 'Filtros',
             'help'              => 'Exiba somente a primeira entidade como uma prévia em vez de uma lista.',
@@ -151,31 +158,31 @@ return [
                 'entity-header'     => 'Se sua entidade tiver um cabeçalho de entidade (recurso de campanha aprimorada), defina este widget para usar essa imagem ao invés da imagem da entidade.',
                 'show_attributes'   => 'Exiba os atributos fixados da entidade abaixo da introdução.',
                 'show_members'      => 'Se a entidade for uma família ou organização, exiba seus membros abaixo da introdução.',
-                'show_relations'    => 'Exiba as relações fixadas da entidade abaixo da introdução.',
+                'show_relations'    => 'Mostrar as relações fixadas da entidade abaixo da introdução.',
             ],
-            'show_attributes'   => 'Exiba atributos fixados',
-            'show_members'      => 'Exiba membros',
-            'show_relations'    => 'Exiba relações fixadas',
+            'show_attributes'   => 'Mostrar atributos fixados',
+            'show_members'      => 'Mostrar membros',
+            'show_relations'    => 'Mostrar relações fixadas',
             'singular'          => 'Pré-visualização',
             'tags'              => 'Filtrar a lista de entidades com tags especificadas.',
             'title'             => 'Lista de entidade',
         ],
         'tabs'                      => [
             'advanced'  => 'Avançado',
-            'setup'     => 'Configurações',
+            'setup'     => 'Configurar',
         ],
         'unmentioned'               => [
             'title' => 'Entidades não mencionadas',
         ],
         'update'                    => [
-            'success'   => 'Widget modificado',
+            'success'   => 'Widget modificado.',
         ],
         'welcome'                   => [
             'helper'    => 'Este widget exibe uma mensagem de boas-vindas no painel que inclui links úteis para novos usuários do Kanka.',
         ],
         'widths'                    => [
             '0' => 'Automático',
-            '12'=> 'Inteiro (100%)',
+            '12'=> 'Completo (100%)',
             '3' => 'Minúsculo (25%)',
             '4' => 'Pequeno (33%)',
             '6' => 'Metade (50%)',

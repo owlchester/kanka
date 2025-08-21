@@ -125,6 +125,7 @@ return [
         ],
     ],
     'leave'                             => [
+        'action'            => 'Opuść kampanię',
         'confirm'           => 'Czy na pewno chcesz opuścić kampanię :name? Utracisz do niej dostęp do czasu, gdy administrator kampanii zaprosi cię ponownie.',
         'confirm-button'    => 'Tak, opuść kampanię',
         'error'             => 'Nie możesz opuścić kampanii.',
@@ -384,6 +385,7 @@ return [
             'deletion'          => 'Usunięcie',
             'export'            => 'Eksport',
             'import'            => 'Import',
+            'logs'              => 'Rejestr',
             'management'        => 'Zarządzanie',
             'members'           => 'Uczestnicy',
             'modules'           => 'Moduły',

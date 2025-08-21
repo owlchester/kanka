@@ -10,6 +10,7 @@ return [
         'left'  => ':amount sobrando',
     ],
     'create'    => [
+        'helper'            => 'Anexar uma das diversas habilidades a :name.',
         'success'           => 'Habilidade :ability adicionada a :entity.',
         'success_multiple'  => 'Habilidades :abilities adicionadas a entidade.',
         'title'             => 'Adicionar habilidade a :name',
@@ -44,6 +45,9 @@ return [
         'helper'    => 'Adicione habilidades a esta entidade. Você sempre pode editar a visibilidade ou remover uma habilidade. Habilidades pertencentes à mesma habilidade primária serão exibidas como caixas de filtro.',
         'reorder'   => 'Reordenar Habilidades',
         'title'     => 'Habilidades de :name',
+    ],
+    'types'     => [
+        'unorganised'   => 'As habilidades são agrupadas pelo campo pai e retornam para cá.',
     ],
     'update'    => [
         'success'   => 'Habilidade :ability da entidade atualizada.',

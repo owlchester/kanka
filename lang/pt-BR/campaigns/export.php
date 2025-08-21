@@ -6,8 +6,9 @@ return [
         'export'    => 'Exportar a campanha',
     ],
     'confirm'   => [
-        'title'     => 'Confirmação de exportação',
-        'warning'   => 'Você está prestes a exportar os dados da campanha. Este processo pode demorar muito dependendo do tamanho da campanha. Você pode continuar usando o Kanka enquanto nossos servidores geram a exportação.',
+        'notification'  => 'Os membros do cargo :admin serão notificados quando a exportação estiver pronta para download.',
+        'title'         => 'Confirmação de exportação',
+        'warning'       => 'Você está prestes a exportar os dados da campanha. Este processo pode demorar muito dependendo do tamanho da campanha. Você pode continuar usando o Kanka enquanto nossos servidores geram a exportação.',
     ],
     'errors'    => [
         'limit' => 'A campanha já foi exportada uma vez hoje. Por favor, tente novamente amanhã.',

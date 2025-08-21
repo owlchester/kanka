@@ -10,6 +10,8 @@ return [
             'attach_success'        => '{1} Adicionada :count entidade à tag :name.|[2,*] Adicionadas :count entidades à tag :name.',
             'attach_success_entity' => 'Tags atualizadas com sucesso para :name',
             'entity'                => 'Adicionar tags a :name',
+            'helper'                => 'Marque uma ou várias entidades com :name',
+            'title'                 => 'Entidades de tags',
         ],
     ],
     'create'        => [
@@ -24,6 +26,7 @@ return [
     ],
     'helpers'       => [
         'no_children'   => 'No momento não há entidades marcadas com esta tag.',
+        'no_posts'      => 'Atualmente não há nenhuma post marcado com esta tag.',
     ],
     'hints'         => [
         'children'          => 'Esta lista contém todas entidades diretamente relacionadas a esta tag ou às tags secundárias.',
@@ -42,8 +45,18 @@ return [
     ],
     'tags'          => [],
     'transfer'      => [
-        'fail'      => 'Falha ao transferir entidades de :tag para :newTag',
-        'success'   => 'Entidades transferidas com sucesso de :tag para :newTag',
-        'transfer'  => 'Transferir',
+        'entities'      => [
+            'helper'    => 'Transferir entidades marcadas com :name para outra tag.',
+            'title'     => 'Transferir entidades',
+        ],
+        'fail'          => 'Falha ao transferir entidades de :tag para :newTag',
+        'fail_post'     => 'Falha ao transferir posts de :tag para :newTag',
+        'posts'         => [
+            'helper'    => 'Transfira posts marcados com :name para outra tag.',
+            'title'     => 'Transferir posts',
+        ],
+        'success'       => 'Entidades transferidas com sucesso de :tag para :newTag',
+        'success_post'  => 'Posts transferidos com sucesso de :tag para :newTag',
+        'transfer'      => 'Transferir',
     ],
 ];

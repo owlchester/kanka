@@ -166,7 +166,7 @@ return [
         ],
         'hints'     => [
             'limit'         => 'In jedem Objekt kann eine maximale Anzahl von :max Dateien hochgeladen werden.',
-            'limitations'   => 'Unterstütze Formate: jpg, png, gif, und pdf. Max. Dateigröße: :size',
+            'limitations'   => 'Unterstütze Formate: :formats. Max. Dateigröße: :size',
         ],
     ],
     'filter'            => 'Filter',

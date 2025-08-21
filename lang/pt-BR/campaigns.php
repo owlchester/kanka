@@ -400,7 +400,12 @@ return [
         'title'     => 'Visão Geral - :name',
     ],
     'status'                            => [
-        'free'  => 'Recursos premium desativados.',
+        'free'      => 'Recursos premium desativados.',
+        'legacy'    => [
+            'title' => 'Recursos impulsionados (legado)',
+        ],
+        'premium'   => 'Recursos premium desbloqueados por :name.',
+        'title'     => 'Recursos premium',
     ],
     'superboosted'                      => [],
     'themes'                            => [
@@ -415,6 +420,10 @@ return [
             'explorer'  => 'Explorador de relações (se disponível, para campanhas impulsionadas)',
             'list'      => 'Interface da lista',
         ],
+        'descendants'       => [
+            'all'       => 'Mostrar todos os descendentes por padrão',
+            'direct'    => 'Mostrar descendentes diretos por padrão',
+        ],
         'entity_history'    => [
             'hidden'    => 'Apenas visível aos administradores da campanha.',
             'visible'   => 'Visível aos membros',
@@ -422,6 +431,7 @@ return [
         'fields'            => [
             'connections'       => 'Interface padrão das conexões da entidade',
             'connections_mode'  => 'Modo explorador de relações padrão',
+            'descendants'       => 'Filtragem de descendentes',
             'entity_history'    => 'Registro de histórico da entidade',
             'member_list'       => 'Lista de membros da campanha',
             'post_collapsed'    => 'Valor padrão do campo recolhido de um novo post',
@@ -429,6 +439,7 @@ return [
         'helpers'           => [
             'connections'       => 'Ao clicar na subpágina de conexões de uma entidade, selecione a interface padrão mostrada.',
             'connections_mode'  => 'Ao visualizar o gerenciador de relações de uma entidade, defina o modo padrão selecionado.',
+            'descendants'       => 'Controle a filtragem padrão ao carregar uma sublista. Por exemplo, os personagens de um local.',
             'entity-history'    => 'Controle quem pode ver as alterações recentes feitas em entidades individuais da campanha.',
             'member-list'       => 'Controle quem pode ver quem está na campanha.',
             'other'             => 'Outras opções visuais para a campanha.',

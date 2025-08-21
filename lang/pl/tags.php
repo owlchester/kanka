@@ -10,6 +10,8 @@ return [
             'attach_success'        => '{1} Dodano etykietę :name :count elementowi.|[2,*] Dodano etykietę :name :count elementom.',
             'attach_success_entity' => 'Pomyślnie zmieniono etykiety :name.',
             'entity'                => 'Dodaj etykiety do :name',
+            'helper'                => 'Oznacza jeden lub więcej elementów etykietą :name',
+            'title'                 => 'Oznaczanie etykietą',
         ],
     ],
     'create'        => [
@@ -43,8 +45,16 @@ return [
     ],
     'tags'          => [],
     'transfer'      => [
+        'entities'      => [
+            'helper'    => 'Zmienia etykietę :name na inną u wszystkich elementów',
+            'title'     => 'Zmiana etykiety elementów',
+        ],
         'fail'          => 'Nie udało się zmienić elementom etykiety :tag na nową etykietę :newTag.',
         'fail_post'     => 'Nie udało się zmienić komentarzom etykiety :tag na nową etykietę :newTag.',
+        'posts'         => [
+            'helper'    => 'Zmienia etykietę :name na inną u wszystkich komentarzy',
+            'title'     => 'Zmiana etykiety komentarzy',
+        ],
         'success'       => 'Zamieniono elementom etykietę :tag na nową etykietę :newTag.',
         'success_post'  => 'Zamieniono komentarzom etykietę :tag na nową etykietę :newTag.',
         'transfer'      => 'Zamień',

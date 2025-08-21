@@ -11,6 +11,11 @@ return [
         'helper'    => 'Por favor confirme sua senha antes de continuar.',
         'title'     => 'Confirmação de senha',
     ],
+    'continue'  => [
+        'facebook'  => 'Continuar com Facebook',
+        'google'    => 'Continuar com Google',
+        'x'         => 'Continuar com X',
+    ],
     'failed'    => 'Essas credenciais não correspondem ao do nosso sistema.',
     'helpers'   => [
         'password'  => 'Mostrar / Esconder senha',
@@ -21,8 +26,10 @@ return [
             'email'     => 'Email',
             'password'  => 'Senha',
         ],
+        'no-account'            => 'Não tem uma conta?',
         'or'                    => 'OU',
         'password_forgotten'    => 'Esqueceu sua senha?',
+        'sign-up'               => 'Inscrever-se',
         'submit'                => 'Entrar',
         'title'                 => 'Entrar',
     ],

@@ -9,6 +9,7 @@ return [
         'patch'     => '{1} Atualizado :count grupo.|[2,*] Atualizados :count grupos.',
     ],
     'create'        => [
+        'helper'    => 'Adicione um novo grupo a :name. Os marcadores poderão então ser atribuídos a este grupo.',
         'success'   => 'Grupo :name criado.',
         'title'     => 'Novo Grupo',
     ],
@@ -32,7 +33,16 @@ return [
     'index'         => [
         'title' => 'Grupos de :name',
     ],
-    'pitch'         => [],
+    'pitch'         => [
+        'max'       => [
+            'helper'    => 'Você não pode adicionar mais grupos a menos que remova um existente.',
+            'limit'     => 'Este mapa atingiu seu limite de grupo',
+        ],
+        'upgrade'   => [
+            'limit'     => 'Você atingiu o limite de :limit grupos para este mapa',
+            'upgrade'   => 'Faça upgrade para uma campanha premium para adicionar até :limit grupos e desbloquear ainda mais flexibilidade criativa.',
+        ],
+    ],
     'placeholders'  => [
         'name'          => 'Lojas, Tesouros, PdMs',
         'position'      => 'Primeiro',

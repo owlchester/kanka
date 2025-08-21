@@ -26,4 +26,7 @@ return [
     'show'              => [
         'title' => 'Rejestr Elementu :name',
     ],
+    'tooltips'          => [
+        'post'  => 'Przejdź do komentarza',
+    ],
 ];
