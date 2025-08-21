@@ -15,7 +15,7 @@ class UniqueAttributeNames implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (!is_array($value)) {
-            $fail;
+            $fail(__('entities/attributes.errors.api'));
             return;
         }
 
