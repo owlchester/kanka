@@ -161,6 +161,25 @@ To PATCH attributes, use the following endpoint.
 | `attribute.*.is_pinned` | `boolean` | If the attribute is "pinned" on the entity view |
 | `attribute.*.api_key` | `string` (max 20) | A custom field only shown in the API for you to link attributes to your system ids. |
 
+### Example
+```json
+{
+    "attribute": [
+        {
+            "id": 444,
+            "name": "Mana potions",
+            "value": 3,
+            "type_id": 1
+        },
+        {
+            "name": "Gold coins",
+            "value": 10,
+            "type_id": 1
+        }
+    ]
+}
+```
+
 ### Results
 
 > {success} Code 200 with JSON body of the all of the entity's attributes.
@@ -187,6 +206,27 @@ To PUT attributes, use the following endpoint, keep in mind that any other attri
 | `attribute.*.is_private` | `boolean` | If the attribute is only visible to `admin` members of the campaign |
 | `attribute.*.is_pinned` | `boolean` | If the attribute is "pinned" on the entity view |
 | `attribute.*.api_key` | `string` (max 20) | A custom field only shown in the API for you to link attributes to your system ids. |
+
+### Example
+```json
+{
+    "attribute": [
+        {
+            "id": 444,
+            "name": "Mana potions",
+            "value": 3,
+            "type_id": 1
+        },
+        {
+            "name": "Gold coins",
+            "value": 10,
+            "type_id": 1,
+            "is_pinned": true
+        }
+        
+    ]
+}
+```
 
 ### Results
 
