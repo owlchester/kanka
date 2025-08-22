@@ -26,7 +26,21 @@ $weather = $calendar->calendarWeather()
     ->where('day', $calendar->currentDay())
     ->first();
 
+$daysService = new \App\Services\Calendars\DaysService();
+$totalDays = $daysService->calendar($calendar)
+    ->intercalary(true)
+    ->year($calendar->currentYear())
+    ->month($calendar->currentMonth())
+    ->daysToDate();
 
+$moonService = new \App\Services\Calendars\MoonService();
+$moonService->calendar($calendar);
+
+$moonService->build(
+    $totalDays,
+    $calendar->daysInYear()
+);
+$currentMoons = $moonService->get($calendar->currentDay());
 ?>
 <div class="flex flex-col gap-2">
 
@@ -45,6 +59,19 @@ $weather = $calendar->calendarWeather()
         @else
             {{ $calendar->niceDate() }}
         @endcan
+
+        @if (!empty($currentMoons))
+            <div class="flex gap-1 moons">
+                @foreach ($currentMoons as $moon)
+                    <i
+                        class="{{ $moon['class'] }} text-{{ $moon['colour'] }}"
+                        data-id="{{ $moon['id'] }}"
+                        data-toggle="tooltip"
+                        data-title="{{ __('calendars.show.moon_' . $moon['type'], ['moon' => $moon['name']]) }}"
+                    ></i>
+                @endforeach
+            </div>
+        @endif
 
     </div>
 
