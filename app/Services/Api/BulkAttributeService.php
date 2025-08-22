@@ -17,6 +17,8 @@ class BulkAttributeService extends BaseAttributesService
 
     protected array $existingNames = [];
 
+    protected bool $deleteOld = false;
+
     protected RandomService $randomService;
 
     public function __construct(RandomService $randomService)
@@ -24,12 +26,19 @@ class BulkAttributeService extends BaseAttributesService
         $this->randomService = $randomService;
     }
 
+    public function deleteOld(bool $deleteOld = true): self
+    {
+        $this->deleteOld = $deleteOld;
+
+        return $this;
+    }
+
     /**
      * Add form attributes to an entity
      *
      * @throws Exception
      */
-    public function save(array $attributes, $deleteOld = true): self
+    public function save(array $attributes): self
     {
         // First, let's get all the stuff for this entity
         $existingAttributes = $this->entity->attributes()
@@ -48,7 +57,7 @@ class BulkAttributeService extends BaseAttributesService
             $this->saveAttribute($attribute);
         }
 
-        if ($deleteOld) {
+        if ($this->deleteOld) {
             // Remaining existing attributes have been deleted
             foreach ($this->existing as $id => $attribute) {
                 $this->touched = true;
@@ -75,9 +84,20 @@ class BulkAttributeService extends BaseAttributesService
             /** @var Attribute $attr */
             $attr = new Attribute($attributeArray);
 
-            if (empty($attr->name) || in_array($attr->name, $this->existingNames)) {
+            if (empty($attr->name)) {
                 return $this;
             }
+
+            //If patching an attribute with the same name as one existing, delete the old one.
+            if (!$this->deleteOld && in_array($attr->name, $this->existingNames)) {
+                $key = array_search($attr->name, $this->existingNames);
+
+                /** @var Attribute $attribute */
+                $attribute = Arr::get($this->existing, $key);
+                $this->touched = true;
+                $attribute->delete();
+            }
+
             $name = Purify::config($this->purifyConfig)->clean($attr->name);
             $value = Purify::config($this->purifyConfig)->clean($attr->value ?? '');
             // Save empty strings as null

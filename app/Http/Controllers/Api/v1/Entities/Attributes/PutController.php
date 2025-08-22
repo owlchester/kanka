@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\v1\Entities\Attributes;
 
 use App\Http\Controllers\Api\v1\ApiController;
-use App\Http\Requests\SaveAttributes;
+use App\Http\Requests\SaveAttributesApi;
 use App\Http\Resources\AttributeResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -15,7 +15,7 @@ class PutController extends ApiController
         protected BulkAttributeService $service,
     ) {}
 
-    public function put(SaveAttributes $request, Campaign $campaign, Entity $entity)
+    public function put(SaveAttributesApi $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
@@ -24,6 +24,7 @@ class PutController extends ApiController
 
         $this->service
             ->entity($entity)
+            ->deleteOld()
             ->save($attributes)
             ->touch();
 

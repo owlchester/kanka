@@ -5,7 +5,7 @@ namespace App\Rules;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class UniqueAttributeNames implements ValidationRule
+class ApiUniqueAttributeNames implements ValidationRule
 {
     /**
      * Run the validation rule.
@@ -14,11 +14,7 @@ class UniqueAttributeNames implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $attributes = [];
-        foreach ($value as $att) {
-            $attributes[] = json_decode($att, true);
-        }
-        $names = array_column($attributes, 'name');
+        $names = array_column($value, 'name');
         if (! (count($names) === count(array_flip($names)))) {
             $fail(__('validation.attribute_unique'));
         }

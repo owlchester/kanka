@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\v1\Entities\Attributes;
 
 use App\Http\Controllers\Api\v1\ApiController;
-use App\Http\Requests\SaveAttributes;
+use App\Http\Requests\SaveAttributesApi;
 use App\Http\Resources\AttributeResource as Resource;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -15,7 +15,7 @@ class PatchController extends ApiController
         protected BulkAttributeService $service,
     ) {}
 
-    public function patch(SaveAttributes $request, Campaign $campaign, Entity $entity)
+    public function patch(SaveAttributesApi $request, Campaign $campaign, Entity $entity)
     {
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
@@ -23,7 +23,7 @@ class PatchController extends ApiController
         $attributes = $request->get('attribute', []);
         $this->service
             ->entity($entity)
-            ->save($attributes, false)
+            ->save($attributes)
             ->touch();
 
         return Resource::collection($entity->attributes()->with('entity')->get());
