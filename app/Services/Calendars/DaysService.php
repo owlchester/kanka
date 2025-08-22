@@ -10,7 +10,7 @@ class DaysService
     use CalendarAware;
 
     protected bool $intercalary = true;
-    protected int $mont;
+    protected int $month;
     protected int $year;
     protected int $day;
 
