@@ -36,6 +36,7 @@ class RandomEntity extends Component
         $this->readyToLoad = true;
 
         CampaignLocalization::forceCampaign($this->campaign);
+        request()->route()->setParameter('campaign', $this->campaign);
         UserCache::campaign($this->campaign);
         Avatar::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
@@ -49,6 +50,10 @@ class RandomEntity extends Component
         $this->widget->setEntity($this->entity);
 
         $this->specificPreview = 'dashboard.widgets.previews.' . $this->entity->entityType->code;
+        if ($entity->isMap()) {
+            $this->specificPreview = 'dashboard.widgets.previews.random-map';
+        }
+
         $this->customName = ! empty($this->widget->conf('text')) ? str_replace('{name}', $this->entity->name, $this->widget->conf('text')) : null;
     }
 
