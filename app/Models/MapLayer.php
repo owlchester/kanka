@@ -159,7 +159,7 @@ class MapLayer extends Model
 
     public function exportFields(): array
     {
-        return  [
+        return [
             'id',
             'map_id',
             'image_uuid',

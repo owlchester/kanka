@@ -9,15 +9,12 @@ use Illuminate\Http\Request;
 
 class SearchApiController extends ApiController
 {
-
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(protected EntityService $entityService)
-    {
-    }
+    public function __construct(protected EntityService $entityService) {}
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection

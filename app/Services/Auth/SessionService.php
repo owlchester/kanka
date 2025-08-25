@@ -46,14 +46,10 @@ class SessionService
             return null;
         }
         try {
-            $campaign = $this->starterService
+            $this->starterService
                 ->user($this->user)
                 ->create();
             session()->remove('first_login');
-            $this->campaignService
-                ->user($this->user)
-                ->campaign($campaign)
-                ->set();
 
             return true;
         } catch (Exception $e) {
