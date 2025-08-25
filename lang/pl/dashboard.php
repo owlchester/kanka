@@ -15,6 +15,7 @@ return [
             'switch'    => 'Przełącz na pulpit',
         ],
         'create'        => [
+            'helper'    => 'Tworzy nowy pulpit dla :name, i pozwala określić które role mogą go zobaczyć albo dla których jest pulpitem domyślnym',
             'success'   => 'Stworzono w kampanii nowy pulpit :name.',
             'title'     => 'Nowy pulpit kampanii',
         ],
@@ -99,8 +100,10 @@ return [
             'helper'    => 'Ten widżet wyświetla nagłówek kampanii. Jest zawsze widoczny na podstawowym pulpicie.',
         ],
         'create'                    => [
-            'success'   => 'Dodano widżet do pulpitu.',
-            'title'     => 'Nowy widżet',
+            'helper'            => 'Wybór rodzaju widżetu do umieszczenia na pulpicie :name.',
+            'helper-default'    => 'Wybór rodzaju widżetu do umieszczenia na pulpicie domyślnym.',
+            'success'           => 'Dodano widżet do pulpitu.',
+            'title'             => 'Nowy widżet',
         ],
         'delete'                    => [
             'success'   => 'Usunięto widżet z pulpitu.',

@@ -52,6 +52,10 @@ return [
         'title'     => 'Zmień motyw kampanii',
     ],
     'title'         => 'Motywy kampanii',
+    'toggle'        => [
+        'disable'   => 'Skutecznie zastosowano styl.',
+        'enable'    => 'Skuteczne usunięto styl.',
+    ],
     'update'        => [
         'success'   => 'Zmieniono styl :name.',
         'title'     => 'Zmiana stylu',

@@ -26,6 +26,9 @@ return [
         'bulk_names'                => 'Jedna nazwa na wiersz',
         'duplicate'                 => 'Istnieje inny element tego typu o tej samej nazwie.',
         'helper_v2'                 => 'Szybko stwórz szkic nowego elementu nie przerywając obecnej pracy.',
+        'helpers'                   => [
+            'template'  => 'Wskazuje szablon, którego kopią będą nowo tworzone elementy.',
+        ],
         'missing_v2'                => 'W tym panelu widoczne są tylko włączone moduły, w których masz prawo tworzyć elementy. :learn-more.',
         'modes'                     => [
             'bulk'      => 'Stwórz wiele',

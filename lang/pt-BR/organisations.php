@@ -27,7 +27,8 @@ return [
             'success'   => 'Membro removido da organização.',
         ],
         'edit'          => [
-            'title' => 'Atualizar Membro para :name',
+            'helper'    => 'Alterar o status de afiliação para :name.',
+            'title'     => 'Atualizar Membro para :name',
         ],
         'fields'        => [
             'parent'    => 'Superior',

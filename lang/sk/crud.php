@@ -166,7 +166,7 @@ return [
         ],
         'hints'     => [
             'limit'         => 'Do každého objektu môže byť nahratých maximálne :max súborov.',
-            'limitations'   => 'Podporované formáty: jpg, png, gif a pdf. Max. veľkosť súboru: :size.',
+            'limitations'   => 'Podporované formáty: :formats. Max. veľkosť súboru: :size.',
         ],
     ],
     'filter'            => 'Filter',

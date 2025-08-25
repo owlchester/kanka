@@ -11,6 +11,7 @@ return [
         'success'   => '{1} :count entidade transformada ao novo tipo: :type.|[2,*] :count entidades transformadas ao novo tipo: :type',
     ],
     'fields'    => [
+        'current'       => 'Módulo atual',
         'select_one'    => 'Selecione um',
         'target'        => 'Novo tipo de entidade',
     ],

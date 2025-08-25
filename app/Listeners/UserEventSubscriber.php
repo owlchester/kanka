@@ -90,12 +90,21 @@ class UserEventSubscriber
     /**
      * Register the listeners for the subscriber.
      */
-    public function subscribe(Dispatcher $events): array
+    public function subscribe(Dispatcher $events): void
     {
-        return [
-            Login::class => 'handleUserLogin',
-            Logout::class => 'handleUserLogout',
-            Registered::class => 'handleUserRegistered',
-        ];
+        $events->listen(
+            Login::class,
+            [UserEventSubscriber::class, 'handleUserLogin']
+        );
+
+        $events->listen(
+            Logout::class,
+            [UserEventSubscriber::class, 'handleUserLogout']
+        );
+
+        $events->listen(
+            Registered::class,
+            [UserEventSubscriber::class, 'handleUserRegistered']
+        );
     }
 }

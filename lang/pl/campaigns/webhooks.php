@@ -25,6 +25,9 @@ return [
         'success'   => 'Zmieniono webhook',
         'title'     => 'Edycja webhooka',
     ],
+    'error'         => [
+        'pitch' => 'Ulepsz do poziomu premium by używać webhooków.',
+    ],
     'fields'        => [
         'enabled'           => 'Aktywny',
         'event'             => 'Sytuacja',
@@ -59,4 +62,8 @@ return [
         'success'   => 'Wysłano zapytanie testowe',
     ],
     'title'         => 'Webhooki',
+    'toggle'        => [
+        'disable'   => 'Skutecznie uruchomiono webhook.',
+        'enable'    => 'Skutecznie wyłączono webhook.',
+    ],
 ];

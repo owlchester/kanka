@@ -14,6 +14,7 @@ use App\Models\CampaignDashboardWidget;
 use App\Models\Character;
 use App\Models\Location;
 use App\Observers\CharacterObserver;
+use App\Services\Campaign\CreateService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 
@@ -22,17 +23,24 @@ class StarterService
     use CampaignAware;
     use UserAware;
 
+    public function __construct(protected CreateService $createService) {}
+
     /**
      * Create a new campaign for the user when they register their account
      */
     public function create(): Campaign
     {
-        $data = [
+        $request = [
             'name' => __('starter.campaign.name', ['user' => $this->user->name]),
             'entry' => '',
             'excerpt' => '',
         ];
-        $this->campaign = Campaign::create($data);
+
+        $this->campaign = $this->createService
+            ->user($this->user)
+            ->data($request)
+            ->create();
+
         EntityPermission::campaign($this->campaign);
         CampaignCache::campaign($this->campaign);
         UserCache::campaign($this->campaign);

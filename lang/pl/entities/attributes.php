@@ -82,6 +82,7 @@ return [
             'success'   => 'Wczytano szablon',
             'title'     => 'Wczytaj szablon',
         ],
+        'pitch'     => 'Załaduj cechy z szablonu albo dodatków zainstalowanych za pomocą :plugin.',
         'success'   => 'Zastosowano szablon cech :name dla :entity',
         'title'     => 'Zastosuj szablon cech dla :name',
     ],

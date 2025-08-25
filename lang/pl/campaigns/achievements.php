@@ -10,6 +10,7 @@ return [
     'level'             => 'poziom :number',
     'markers'           => '{0} Mapa nie ma znaczników|{1} Stworzono jeden znacznik|[2,4] Stworzono :amount znaczniki|[5,] Dodano :amount znaczników',
     'painter'           => '{0} Nie stworzono motywów|{1} Stworzono jeden motyw|[2,4] Stworzono :amount motywy|[5,] Dodano :amount motywów',
+    'pitch'             => 'Osiągnięcia to fajny sposób celebracji postępów w budowie twojego świata. Pomagają śledzić progres, angażować graczy i chwalić się dokonaniami w kampaniach premium.',
     'plugins'           => '{0} Nie zainstalowano dodatków|{1} Zainstalowano jeden dodatek|[2,4] Zainstalowano :amount dodatki|[5,] Zainstalowano :amount dodatków',
     'remaining'         => [
         'generic'   => 'Do następnego poziomu.',

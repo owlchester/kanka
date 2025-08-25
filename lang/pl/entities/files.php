@@ -1,7 +1,15 @@
 <?php
 
 return [
-    'call-to-action'    => [],
+    'call-to-action'    => [
+        'max'       => [
+            'helper'    => 'Nie możesz dołączać nowych plików, póki któregoś nie usuniesz.',
+            'limit'     => 'Element osiągnął limit dołączonych plików.',
+        ],
+        'upgrade'   => [
+            'upgrade'   => 'Ulepsz kampanię do poziomu premium by zwiększyć limit plików do :limit i zyskać większą swobodę twórczą.',
+        ],
+    ],
     'create'            => [
         'helper'            => 'Dodaje plik do :name. Zostanie doliczony do limitu pojemności galerii.',
         'success_plural'    => '{1} Dodano plik :name.|[2,4] Dodano :count pliki.|[5,*] Dodano :count plików.',

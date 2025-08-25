@@ -25,6 +25,9 @@ return [
         'success'   => 'Webhook atualizado com sucesso',
         'title'     => 'Atualizar webhook',
     ],
+    'error'         => [
+        'pitch' => 'Desbloqueie recursos premium para acessar webhooks.',
+    ],
     'fields'        => [
         'enabled'           => 'Ativado',
         'event'             => 'Evento',
@@ -59,4 +62,8 @@ return [
         'success'   => 'Requisição de teste enviada',
     ],
     'title'         => 'Webhooks',
+    'toggle'        => [
+        'disable'   => 'Webhook desabilitado com sucesso.',
+        'enable'    => 'Webhook habilitado com sucesso.',
+    ],
 ];

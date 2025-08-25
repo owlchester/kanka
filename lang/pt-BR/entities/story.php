@@ -8,6 +8,7 @@ return [
         'login_for_more'    => 'Entre para ver mais posts',
     ],
     'reorder'   => [
+        'helper'        => 'Arraste e solte os posts para reordená-los na página de visão geral da entidade.',
         'icon_tooltip'  => 'Reordenar posts',
         'panel_title'   => 'Reordenar posts',
         'save'          => 'Salvar nova ordem',

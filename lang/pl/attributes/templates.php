@@ -10,6 +10,7 @@ return [
     'helpers'   => [],
     'list'      => [
         'campaign'  => 'Szablony kampanii',
+        'sheets'    => 'Karty postaci',
     ],
     'pitch'     => 'Wyszukaj i dodaj do :boosted-campaign karty postaci z :marketplace',
 ];

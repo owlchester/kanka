@@ -16,6 +16,7 @@ return [
     'index'         => [],
     'members'       => [
         'create'    => [
+            'helper'    => 'Adicione um ou vários membros a :name.',
             'success'   => '{0} Nenhum membro foi adicionado.|{1} 1 membro foi adicionado.|[2,*] :count membros foram adicionados.',
             'title'     => 'Novos Membros',
         ],

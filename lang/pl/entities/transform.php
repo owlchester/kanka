@@ -11,6 +11,7 @@ return [
         'success'   => '{1} zmieniono rodzaj :count elementu.|[2,*] zmieniono rodzaj :count elementów.',
     ],
     'fields'    => [
+        'current'       => 'Obecny moduł',
         'select_one'    => 'Wybierz',
         'target'        => 'Nowy typ elementu',
     ],

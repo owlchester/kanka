@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions'   => [
+        'subscription'  => 'Dowiedz się więcej o subskrypcji',
+    ],
     'booster'   => [
         'actions'       => [
             'boost'         => 'Doładuj :campaign',
@@ -25,6 +28,7 @@ return [
     'premium'   => [
         'learn-more'    => 'Czym jest kampania premium?',
         'limitation'    => 'Opcja dostępna wyłącznie w kampaniach premium.',
+        'multiple'      => 'By używać tych funkcji należy odblokować poziom premium kampanii :campaign.',
         'title'         => 'Opcja premium',
         'unlock'        => 'Odblokuj opcje premium dla :campaign',
     ],

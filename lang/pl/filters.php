@@ -14,7 +14,8 @@ return [
         'success'   => 'Stworzono zakładkę',
     ],
     'helpers'   => [
-        'guest' => 'Zaloguj się by zobaczyć wyniki filtrowania.',
-        'icon'  => 'Dodaje zakładce specjalną ikonę :fontawesome, na przykład :example.',
+        'guest'         => 'Zaloguj się by zobaczyć wyniki filtrowania.',
+        'icon'          => 'Dodaje zakładce specjalną ikonę :fontawesome, na przykład :example.',
+        'icon-premium'  => 'Dodaje zakładce specjalną ikonę :fontawesome, na przykład :example w kampanii :premium.',
     ],
 ];

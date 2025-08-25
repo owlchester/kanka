@@ -13,6 +13,7 @@ return [
         'find-plugins'      => 'Znajdź dodatek',
         'import'            => 'Importuj',
         'update'            => 'Aktualizuj dodatek',
+        'update-to'         => 'Zaktualizowano do wersji :version',
         'update_available'  => 'Dostępna aktualizacja!',
     ],
     'bulks'         => [
@@ -43,6 +44,10 @@ return [
     'import'        => [
         'button'                => 'Importuj',
         'created'               => 'Stworzono następujące elementy:',
+        'fields'                => [
+            'only_new'  => 'Tylko nowe elementy',
+            'private'   => 'Elementy tajne',
+        ],
         'helper'                => 'Zaimportujesz zaraz :elementów z dodatku :plugin. Jeżeli był importowany wcześniej, utracisz wszystkie zmiany wprowadzone w tych elementach.',
         'no_new_entities'       => 'Brak nowych elementów do zaimportowania.',
         'option_only_import'    => 'Importuj tylko nowe elementy i pomijaj już zaimportowanie.',
@@ -52,11 +57,12 @@ return [
         'updated'               => 'Zmieniono następujące elementy:',
     ],
     'info'          => [
+        'description'   => 'Wyświetla ostatnie aktualizacje dodatku :plugin.',
         'helper'        => 'Wydano nowszą wersję tego dodatku - możesz go zaktualizować.',
+        'installed'     => 'Zainstalowany',
         'title'         => 'Aktualizacje dodatku :plugin',
         'updates'       => 'Aktualizacje',
         'versions'      => 'Wersje',
-        'your_version'  => 'Używana wersja',
     ],
     'pitch'         => 'Instaluj i zarządzaj dodatkami z :marketplace.',
     'status'        => [
