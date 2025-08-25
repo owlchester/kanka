@@ -26,11 +26,20 @@ class CreateService
 
     protected Campaign $campaign;
 
+    protected array $data;
+
     public function __construct(protected CampaignService $campaignService) {}
+
+    public function data(array $data): self
+    {
+        $this->data = $data;
+
+        return $this;
+    }
 
     public function create(): Campaign
     {
-        $data = $this->request->all();
+        $data = $this->data ?? $this->request->all();
         $data['entry'] = Arr::get($data, 'entry');
         $data['excerpt'] = Arr::get($data, 'excerpt');
 
