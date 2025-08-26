@@ -2,12 +2,15 @@
 
 namespace App\Policies;
 
+use App\Enums\CampaignFlags;
 use App\Facades\CampaignCache;
 use App\Facades\EntityPermission;
 use App\Facades\Identity;
 use App\Models\Campaign;
+use App\Models\CampaignFlag;
 use App\Models\CampaignPermission;
 use App\Models\User;
+use App\Models\UserFlag;
 use App\Traits\AdminPolicyTrait;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -308,4 +311,17 @@ class CampaignPolicy
 
         return empty($campaign->export_date) || ! $campaign->export_date->isToday() && $campaign->queuedCampaignExports->count() === 0;
     }
+
+    /**
+     * Determine if the user can use the AskBragi feature.
+     */
+    public function ask(User $user, Campaign $campaign): bool
+    {
+        $flag = $campaign->flags()
+            ->where('flag', CampaignFlags::AskBragi->value)
+            ->first();
+
+        return isset($flag);
+    }
+
 }

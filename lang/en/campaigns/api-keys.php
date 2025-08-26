@@ -24,7 +24,11 @@ return [
         'enabled'   => 'If the API key is enabled',
     ],
     'placeholders'  => [
-        'api-key'       => 'The API key provided by your AI service',
+        'api-key'   => 'The API key provided by your AI service',
     ],
     'title'         => 'Campaign API keys',
+    'not-available' => [
+        'title'     => 'This feature is not available.',
+        'helper'     => 'This experimental feature is currently available to a handful of select campaigns only.'
+    ],
 ];
