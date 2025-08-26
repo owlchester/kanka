@@ -193,7 +193,7 @@ class ApiService
         $first = true;
         $count = $template->entity->attributes->count();
         $this->template = true;
-        foreach ($template->entity->attributes as $attribute) {
+        foreach ($template->entity->attributes()->ordered()->get() as $attribute) {
             $this->parseAttribute($attribute, $first ? $template : null, $count);
             $first = false;
         }

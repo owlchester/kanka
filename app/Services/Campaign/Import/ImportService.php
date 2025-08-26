@@ -147,17 +147,17 @@ class ImportService
         $files = $this->job->config['files'];
         $path = '/campaigns/' . $this->campaign->id . '/imports/';
         foreach ($files as $file) {
-            Log::info('Want to download ' . $file);
+            //Log::info('Want to download ' . $file);
             $s3 = Storage::disk('export')->get($file);
             $local = $path . uniqid() . '.zip';
-            Log::info('Will download from ' . $s3 . ' to local ' . $local);
+            //Log::info('Will download from the export disk to local ' . $local);
             Storage::disk('local')->put($local, $s3);
 
             $this->archive = new ZipArchive;
             $zipPath = storage_path('app/' . $local);
-            Log::info('Want to open ' . $zipPath);
+            //Log::info('Want to open ' . $zipPath);
             $this->archive->open($zipPath);
-            Log::info('Opened ' . $local . ' file');
+            //Log::info('Opened ' . $local . ' file');
             $this->extract();
             $this->archive->close();
             unlink($zipPath);
@@ -184,14 +184,14 @@ class ImportService
             $this->job->status_id = CampaignImportStatus::FINISHED;
         } catch (ImportException $e) {
             $this->logs[] = $e->getMessage();
-            Log::error('Import', ['error' => $e->getMessage()]);
+            Log::error('Import', ['where' => 'importException', 'error' => $e->getMessage()]);
             $this->job->status_id = CampaignImportStatus::FAILED;
             $this->exception = $e;
         } catch (Exception $e) {
             // dump($e->getMessage());
             // dump($e->getTrace());
             $this->logs[] = $e->getMessage();
-            Log::error('Import', ['error' => $e->getMessage()]);
+            Log::error('Import', ['where' => 'exception', 'error' => $e->getMessage()]);
             $this->job->status_id = CampaignImportStatus::FAILED;
             $this->exception = $e;
         }
@@ -263,6 +263,7 @@ class ImportService
             return $this;
         }
 
+        Log::info('Campaign import', ['importing' => 'gallery']);
         $files = Storage::disk('local')->files($path);
         foreach ($files as $file) {
             if (! Str::endsWith($file, '.json')) {
@@ -289,6 +290,7 @@ class ImportService
         if (! $data) {
             return $this;
         }
+        Log::info('Campaign import', ['importing' => 'module settings']);
 
         $moduleSettings = $this->campaign->setting;
 
@@ -356,6 +358,7 @@ class ImportService
          */
         foreach ($this->mappers as $model => $mapper) {
             if ($model == 'custom') {
+                Log::info('Campaign import', ['importing' => 'custom entities']);
                 // We handle custom models differently.
                 foreach ($fileNames as $fileName => $newID) {
                     $this->logs[] = 'Processing ' . $fileName;
@@ -366,8 +369,8 @@ class ImportService
                         }
                         $filePath = Str::replace($this->dataPath, '', $file);
                         $data = $this->open($filePath);
-                        Log::info('array: ' . json_encode($data));
-                        Log::info('array: ' . $filePath);
+                        //Log::info('array: ' . json_encode($data));
+                        //Log::info('array: ' . $filePath);
 
                         $mapper
                             ->path($this->dataPath)
@@ -381,6 +384,7 @@ class ImportService
                 }
             } else {
                 $this->logs[] = 'Processing ' . $model;
+                Log::info('Campaign import', ['importing' => $model]);
                 $count = 0;
                 foreach ($this->files($model) as $file) {
                     if (! Str::endsWith($file, '.json')) {
@@ -578,6 +582,11 @@ class ImportService
         $this->job->config = $config;
         $this->job->status_id = CampaignImportStatus::FAILED;
         $this->job->save();
+
+        if (app()->bound('sentry')) {
+            app('sentry')->captureException($e);
+        }
+        Log::error('Import', ['where' => 'fail', 'error' => $e->getMessage()]);
 
         return $this->cleanup();
     }
