@@ -41,10 +41,13 @@ use App\Models\Organisation;
 use App\Models\Plugin;
 use App\Models\Post;
 use App\Models\Quest;
+use App\Models\QuestElement;
 use App\Models\Race;
 use App\Models\Tag;
 use App\Models\Theme;
 use App\Models\Timeline;
+use App\Models\TimelineElement;
+use App\Models\TimelineEra;
 use App\Models\User;
 use App\Models\Webhook;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -268,6 +271,18 @@ trait CampaignRelations
         return $this->hasMany(Quest::class);
     }
 
+    public function questElements(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            QuestElement::class,
+            Quest::class,
+            'campaign_id',
+            'quest_id',
+            'id',
+            'id'
+        )->with(['entity', 'entity.image']);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Ability, $this>
      */
@@ -298,6 +313,30 @@ trait CampaignRelations
     public function timelines(): HasMany
     {
         return $this->hasMany(Timeline::class);
+    }
+
+    public function timelineElements(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            TimelineElement::class,
+            Timeline::class,
+            'campaign_id',
+            'timeline_id',
+            'id',
+            'id'
+        );
+    }
+
+    public function timelineEras(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            TimelineEra::class,
+            Timeline::class,
+            'campaign_id',
+            'timeline_id',
+            'id',
+            'id'
+        );
     }
 
     /**
