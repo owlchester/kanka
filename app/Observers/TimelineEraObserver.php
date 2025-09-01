@@ -2,6 +2,8 @@
 
 namespace App\Observers;
 
+use App\Jobs\BragiTimelineEraFeedJob;
+use App\Models\Embedding;
 use App\Models\TimelineEra;
 
 class TimelineEraObserver
@@ -19,6 +21,22 @@ class TimelineEraObserver
             $timelineEra->position = (int) $lastGroup + 1;
         } else {
             $timelineEra->position = 1;
+        }
+    }
+
+    public function saved(TimelineEra $timelineEra)
+    {
+        if (auth()->user()->can('ask', $timelineEra->timeline->campaign)) {
+            BragiTimelineEraFeedJob::dispatch($timelineEra);
+        }
+    }
+
+    public function deleted(TimelineEra $timelineEra)
+    {
+        //Delete Ask Bragi embedding
+        $oldEmbed = Embedding::where('parent_type', TimelineEra::class )->where('parent_id', $timelineEra->id)->first();
+        if ($oldEmbed) {
+            $oldEmbed->delete();
         }
     }
 }

@@ -76,7 +76,9 @@ use App\Listeners\Campaigns\Styles\ClearStylesCache;
 use App\Listeners\Campaigns\Styles\LogStyle;
 use App\Listeners\Campaigns\Thumbnails\LogThumbnail;
 use App\Listeners\Campaigns\Webhooks\LogWebhook;
+use App\Listeners\Entities\FeedEntity;
 use App\Listeners\Entities\LogEntity;
+use App\Listeners\Posts\FeedPost;
 use App\Listeners\Posts\LogPost;
 use App\Listeners\SendAdminInviteNotification;
 use App\Listeners\SendFeatureNotification;
@@ -234,18 +236,23 @@ class EventServiceProvider extends ServiceProvider
         ],
         EntityRestored::class => [
             LogEntity::class,
+            FeedEntity::class
         ],
         PostRestored::class => [
             LogPost::class,
+            FeedPost::class,
         ],
         PostCreated::class => [
             LogPost::class,
+            FeedPost::class,
         ],
         PostUpdated::class => [
             LogPost::class,
+            FeedPost::class,
         ],
         PostDeleted::class => [
             LogPost::class,
+            FeedPost::class,
         ],
         EntityTypeCreated::class => [
             LogEntityType::class,

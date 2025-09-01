@@ -9,10 +9,18 @@ use App\Facades\Domain;
 use App\Facades\EntityLogger;
 use App\Facades\Images;
 use App\Facades\Permissions;
+use App\Jobs\BragiEntityFeedJob;
 use App\Jobs\EntityUpdatedJob;
 use App\Jobs\EntityWebhookJob;
 use App\Models\CampaignPermission;
+use App\Models\Embedding;
 use App\Models\Entity;
+use App\Models\Post;
+use App\Models\Quest;
+use App\Models\QuestElement;
+use App\Models\Timeline;
+use App\Models\TimelineElement;
+use App\Models\TimelineEra;
 use App\Services\Entity\TagService;
 use App\Services\PermissionService;
 
@@ -143,6 +151,10 @@ class EntityObserver
         if ($entity->campaign->premium()) {
             EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::CREATED->value);
         }
+
+        if (auth()->user()->can('ask', $entity->campaign)) {
+            BragiEntityFeedJob::dispatch($entity, auth()->user());
+        }
     }
 
     protected function grant(Entity $entity, int $action): CampaignPermission
@@ -169,6 +181,10 @@ class EntityObserver
 
         if ($entity->campaign->premium()) {
             EntityWebhookJob::dispatch($entity, auth()->user(), WebhookAction::EDITED->value);
+        }
+
+        if (auth()->user()->can('ask', $entity->campaign)) {
+            BragiEntityFeedJob::dispatch($entity, auth()->user());
         }
     }
 
@@ -199,6 +215,29 @@ class EntityObserver
 
     public function deleted(Entity $entity)
     {
+        if (auth()->user()->can('ask', $entity->campaign)) {
+            //Delete Ask Bragi embedding
+            $oldEmbed = Embedding::where('parent_type', Entity::class )->where('parent_id', $entity->id)->first();
+            if ($oldEmbed) {
+                $oldEmbed->delete();
+            }
+            
+            //Handle Embeds
+            $posts = $entity->posts->pluck('id')->toArray();
+            Embedding::where('parent_type', Post::class )->whereIn('parent_id', $posts)->delete();
+
+            if ($entity->hasChild() && $entity->child instanceof Timeline) {
+                $elements = $entity->child->elements->pluck('id')->toArray();
+                $eras = $entity->child->eras->pluck('id')->toArray();
+
+                Embedding::where('parent_type', TimelineElement::class )->whereIn('parent_id', $elements)->delete();
+                Embedding::where('parent_type', TimelineEra::class )->whereIn('parent_id', $eras)->delete();
+            } elseif ($entity->hasChild() && $entity->child instanceof Quest) {
+                $elements = $entity->child->elements->pluck('id')->toArray();
+                Embedding::where('parent_type', QuestElement::class )->whereIn('parent_id', $elements)->delete();
+            }
+        }
+
         // When an entity is soft-deleted, we just want some webhooks to trigger,
         // not actually delete the entity and its image.
         if ($entity->trashed()) {

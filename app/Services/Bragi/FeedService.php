@@ -43,6 +43,179 @@ class FeedService
         }
     }
 
+    public function feedEntity(Entity $entity): void
+    {
+        $this->campaign = $entity->campaign;
+
+        Module::campaign($this->campaign);
+
+        $oldEmbed = Embedding::where('parent_type', Entity::class )->where('parent_id', $entity->id)->first();
+        
+        if ($oldEmbed) {
+            $oldEmbed->delete();
+        }
+
+        $relations = $entity->relationships->map(function ($relationship) {
+            return [
+                'name'     => $relationship->target->name ?? null,
+                'relation' => $relationship->relation,
+                'attitude' => $relationship->attitude,
+            ];
+        })->toArray();
+
+        $entityData = [
+            'name' => $entity->name,
+            'entry' => $entity->entry,
+            'type' => $entity->entityType->name(),
+            'relations' => $relations,
+            'tags' => $entity->tags->pluck('name'),
+        ];
+
+        //Get vector
+        $response = Prism::embeddings()
+            ->using(Provider::OpenAI, 'text-embedding-3-small')
+            ->fromInput(json_encode($entityData))
+            ->asEmbeddings();
+
+        // Store vector into db
+        $embedding = $response->embeddings[0];
+
+        Embedding::create([
+            'parent_id'   => $entity->id,
+            'campaign_id' => $entity->campaign_id,
+            'parent_type' => Entity::class,
+            'embedding'   => $embedding->embedding, //The actual vector.
+        ]);
+    }
+
+    public function feedPost(Post $post): void
+    {
+        $oldEmbed = Embedding::where('parent_type', Post::class )->where('parent_id', $post->id)->first();
+        
+        if ($oldEmbed) {
+            $oldEmbed->delete();
+        }
+
+        $postData = [
+            'name' => $post->name,
+            'entry' => $post->entry,
+            'tags' => $post->tags->pluck('name'),
+        ];
+
+        //Get vector
+        $response = Prism::embeddings()
+            ->using(Provider::OpenAI, 'text-embedding-3-small')
+            ->fromInput(json_encode($postData))
+            ->asEmbeddings();
+
+        // Store vectors into db
+        $embedding = $response->embeddings[0];
+        Embedding::create([
+            'parent_id'   => $post->id,
+            'campaign_id' => $post->entity->campaign_id,
+            'parent_type' => Post::class,
+            'embedding'   => $embedding->embedding, //The actual vector.
+        ]);
+    }
+
+    public function feedQuestElement(QuestElement $element): void
+    {
+        $oldEmbed = Embedding::where('parent_type', QuestElement::class )->where('parent_id', $element->id)->first();
+        
+        if ($oldEmbed) {
+            $oldEmbed->delete();
+        }
+
+        $elementData = [
+            'name' => $element->name,
+            'entry' => $element->description,
+            'quest' => $element->quest->name,
+            'entity' => $element->entity->name ?? '',
+        ];
+
+        //Get vector
+        $response = Prism::embeddings()
+            ->using(Provider::OpenAI, 'text-embedding-3-small')
+            ->fromInput(json_encode($elementData))
+            ->asEmbeddings();
+
+        // Store vector into db
+        $embedding = $response->embeddings[0];
+
+        Embedding::create([
+            'parent_id'   => $element->id,
+            'campaign_id' => $element->quest->campaign_id,
+            'parent_type' => QuestElement::class,
+            'embedding'   => $embedding->embedding, //The actual vector.
+        ]);       
+    }
+
+    public function feedTimelineElement(TimelineElement $element): void
+    {
+        $oldEmbed = Embedding::where('parent_type', TimelineElement::class )->where('parent_id', $element->id)->first();
+        
+        if ($oldEmbed) {
+            $oldEmbed->delete();
+        }
+
+        $elementData = [
+            'name' => $element->name,
+            'entry' => $element->description,
+            'timeline' => $element->timeline->name,
+            'era' => $element->era->name,
+            'entity' => $element->entity->name ?? '',
+            'date' => $element->date,
+        ];
+
+        //Get vector
+        $response = Prism::embeddings()
+            ->using(Provider::OpenAI, 'text-embedding-3-small')
+            ->fromInput(json_encode($elementData))
+            ->asEmbeddings();
+
+        // Store vector into db
+        $embedding = $response->embeddings[0];
+
+        Embedding::create([
+            'parent_id'   => $element->id,
+            'campaign_id' => $element->timeline->campaign_id,
+            'parent_type' => TimelineElement::class,
+            'embedding'   => $embedding->embedding, //The actual vector.
+        ]);
+    }
+
+    public function feedTimelineEra(TimelineEra $era): void
+    {
+        $oldEmbed = Embedding::where('parent_type', TimelineEra::class )->where('parent_id', $era->id)->first();
+        
+        if ($oldEmbed) {
+            $oldEmbed->delete();
+        }
+
+        $eraData = [
+            'name' => $era->name,
+            'entry' => $era->entry,
+            'timeline' => $era->timeline->name,
+            'start_year' => $era->start_year,
+            'end_year' => $era->end_year
+        ];
+
+        //Get vector
+        $response = Prism::embeddings()
+            ->using(Provider::OpenAI, 'text-embedding-3-small')
+            ->fromInput(json_encode($eraData))
+            ->asEmbeddings();
+
+        // Store vector into db
+        $embedding = $response->embeddings[0];
+        Embedding::create([
+            'parent_id'   => $era->id,
+            'campaign_id' => $era->timeline->campaign_id,
+            'parent_type' => TimelineEra::class,
+            'embedding'   => $embedding->embedding, //The actual vector.
+        ]);
+    }
+
     protected function feedEntities(): void
     {
         $this->campaign->entities()
