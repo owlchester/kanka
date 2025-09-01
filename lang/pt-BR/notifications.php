@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'apps'              => [
+        'discord'   => [
+            'invalid'   => 'Seu token do Discord expirou. Por favor, sincronize novamente suas contas do Discord e do Kanka.',
+        ],
+    ],
     'campaign'          => [
         'application'       => [
             'approved'              => 'Sua inscrição para a campanha :campaign foi aprovada.',
@@ -15,6 +20,7 @@ return [
             'remove'        => ':user não está mais impulsionando a campanha :campaign',
             'superboost'    => 'A campanha :campaign está sendo super-impulsionada por :user',
         ],
+        'created'           => 'Você criou :campaign.',
         'deleted'           => 'A campanha :campaign foi excluída.',
         'export'            => 'A exportação da campanha está disponível. O link estará disponível por :time minutos.',
         'export_error'      => 'Ocorreu um erro enquanto sua campanha era exportada. Por favor, contate-nos se o problema persistir,',
@@ -25,6 +31,7 @@ return [
         ],
         'join'              => ':user se juntou à campanha :campaign',
         'leave'             => ':user saiu da campanha :campaign',
+        'new_owner'         => 'Você foi nomeado administrador de :campaign.',
         'plugin'            => [
             'deleted'   => 'O plugin :plugin foi deletado do mercado e removido de sua campanha :campaign.',
         ],
@@ -59,6 +66,12 @@ return [
         'chunked'   => 'Mapa :name terminou de fragmentar e agora está pronto para uso.',
     ],
     'no_notifications'  => 'As notificações aparecerão aqui assim que você tiver algumas.',
+    'plugins'           => [
+        'comments'  => [
+            'new_comment'   => ':user deixou um novo comentário no plugin :plugin.',
+            'new_reply'     => ':user respondeu ao seu comentário em :plugin.',
+        ],
+    ],
     'subscriptions'     => [
         'charge_fail'   => 'Ocorreu um erro ao tentar processar seu pagamento. Por favor, aguarde alguns momentos enquanto tentamos novamente. Se nada mudar, por favor entre em contato conosco.',
         'deleted'       => 'Sua assinatura do Kanka foi cancelada após muitas tentativas malsucedidas de cobrar seu cartão. Por favor, vá até suas configurações de Assinatura e tente atualizar os detalhes de sua forma de pagamento.',

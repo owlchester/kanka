@@ -27,11 +27,13 @@ class Action extends Column
                     $this->actions[] = $action;
                 }
             } elseif ($action == Layout::ACTION_DELETE) {
-                if (! $permissions) {
+                if (!$permissions) {
                     $this->actions[] = $action;
                 } elseif (auth()->user()->can('delete', $this->model)) {
                     $this->actions[] = $action;
                 }
+            } elseif (is_string($action) && view()->exists($action)) {
+                $this->actions[] = $action;
             } elseif (is_array($action)) {
                 // Custom, to do?
                 $this->import($action);

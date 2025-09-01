@@ -6,8 +6,9 @@ return [
         'export'    => 'Eksportuj dane kampanii',
     ],
     'confirm'   => [
-        'title'     => 'Potwierdź eksport',
-        'warning'   => 'Zaraz wyeksportujesz dane kampanii. To może potrwać dłuższą chwilę, zależnie od rozmiaru kampanii. Podczas generowania pliku możesz normalnie używać Kanki.',
+        'notification'  => 'Uczestnicy o roli :admin zostaną powiadomieni gdy eksport będzie gotowy do pobrania.',
+        'title'         => 'Potwierdź eksport',
+        'warning'       => 'Zaraz wyeksportujesz dane kampanii. To może potrwać dłuższą chwilę, zależnie od rozmiaru kampanii. Podczas generowania pliku możesz normalnie używać Kanki.',
     ],
     'errors'    => [
         'limit' => 'Dzisiaj już eksportowano kampanię. Spróbuj ponownie jutro.',

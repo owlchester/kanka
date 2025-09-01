@@ -51,10 +51,9 @@ return [
         'updated'               => 'Folgende Objekte wurden aktualisiert:',
     ],
     'info'          => [
-        'helper'        => 'Wenn eine neue Version eines Plugins veröffentlicht wird, können Sie es auf die neueste Version für Ihre Kampagne aktualisieren.',
-        'title'         => 'Plugin :plugin Aktualisierungen',
-        'updates'       => 'Aktualisierungen',
-        'your_version'  => 'Deine Version',
+        'helper'    => 'Wenn eine neue Version eines Plugins veröffentlicht wird, können Sie es auf die neueste Version für Ihre Kampagne aktualisieren.',
+        'title'     => 'Plugin :plugin Aktualisierungen',
+        'updates'   => 'Aktualisierungen',
     ],
     'pitch'         => 'Installiere und verwalte Plug-ins vom :marketplace.',
     'status'        => [

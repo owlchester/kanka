@@ -6,6 +6,8 @@ return [
         'apply'             => 'Aplicar',
         'back'              => 'Voltar',
         'change'            => 'Alterar',
+        'close'             => 'Fechar',
+        'confirm'           => 'Confirmar',
         'copy'              => 'Copiar',
         'copy_mention'      => 'Copiar menção [ ]',
         'copy_to_campaign'  => 'Copiar para campanha',
@@ -104,6 +106,10 @@ return [
     'destroy_many'      => [
         'success'   => 'Deletado :count entity.|Deletado :count entities.',
     ],
+    'dynamic'           => [
+        'permission'    => 'Você não tem as permissões corretas para criar uma entidade do módulo :module.',
+        'unknown'       => 'Entidade inválida do módulo :module.',
+    ],
     'edit'              => 'Editar',
     'errors'            => [
         'boosted_campaigns'     => 'Esse recurso está somente disponível para :boosted.',
@@ -133,6 +139,7 @@ return [
         'gallery_image'     => 'Imagem da Galeria',
         'has_attributes'    => 'Possui atributos',
         'has_entity_files'  => 'Possui arquivos de entidade',
+        'has_entry'         => 'Possui introdução',
         'has_image'         => 'Possui uma imagem',
         'has_posts'         => 'Possui posts',
         'header_image'      => 'Imagem de Cabeçalho',
@@ -143,6 +150,7 @@ return [
         'is_star'           => 'Fixado',
         'locations'         => ':first em :second',
         'name'              => 'Nome',
+        'names'             => 'Nomes',
         'parent'            => 'Primário',
         'position'          => 'Posição',
         'replace_mentions'  => 'Substitua as menções de atributo na introdução pelas da nova entidade',
@@ -150,6 +158,7 @@ return [
         'tooltip'           => 'Dica de Contexto',
         'type'              => 'Tipo',
         'visibility'        => 'Visibilidade',
+        'word-count'        => 'Contagem de palavras: :number',
     ],
     'files'             => [
         'errors'    => [
@@ -210,6 +219,7 @@ return [
             'settings'  => 'configurações de aparência',
             'text'      => 'Mais resultados por página podem ser exibidos alterando suas :settings.',
         ],
+        'parent'        => 'Selecione um pai para o qual a entidade será filho',
     ],
     'hidden'            => 'Escondido',
     'hints'             => [
@@ -256,7 +266,9 @@ return [
             ],
             'delete'        => 'Remover',
             'edit'          => 'Editar',
+            'private'       => 'Tornar privado',
             'toggle'        => 'Alternar',
+            'view'          => 'Visualizar',
         ],
         'fields'            => [
             'member'    => 'Membro',
@@ -293,7 +305,9 @@ return [
         'quest'         => 'Escolha uma missão',
         'race'          => 'Escolha uma raça',
         'tag'           => 'Escolha uma tag',
+        'template'      => 'Escolha um template',
         'timeline'      => 'Escolha uma linha do tempo',
+        'type'          => 'Tipo da entidade',
         'user'          => 'Escolha um usuário',
     ],
     'relations'         => [],

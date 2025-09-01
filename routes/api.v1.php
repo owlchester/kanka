@@ -138,3 +138,7 @@ Route::get('campaigns/{campaign}/applications', [App\Http\Controllers\Api\v1\App
 Route::get('campaigns/{campaign}/applications/{application}', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'show']);
 Route::post('campaigns/{campaign}/applications/{application}/approve', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'approve']);
 Route::post('campaigns/{campaign}/applications/{application}/reject', [App\Http\Controllers\Api\v1\ApplicationApiController::class, 'reject']);
+
+// Bulk entity attributes
+Route::put('campaigns/{campaign}/entities/{entity}/attributes', [App\Http\Controllers\Api\v1\Entities\Attributes\PutController::class, 'put']);
+Route::patch('campaigns/{campaign}/entities/{entity}/attributes', [App\Http\Controllers\Api\v1\Entities\Attributes\PatchController::class, 'patch']);

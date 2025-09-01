@@ -104,4 +104,10 @@ class EntityAbility extends Model
             'note',
         ];
     }
+
+
+    public function url(string $sub): string
+    {
+        return 'entities.entity_abilities.' . $sub;
+    }
 }

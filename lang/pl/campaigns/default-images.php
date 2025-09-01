@@ -15,5 +15,6 @@ return [
         'success'   => 'Usunięto domyślną ilustrację dla elementu :type.',
     ],
     'empty'             => 'Żaden moduł nie ma obecnie domyślnej miniatury.',
+    'helper'            => 'Używane dla wszystkich elementów tego moduły bez własnej ilustracji.',
     'index'             => [],
 ];

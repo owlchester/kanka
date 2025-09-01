@@ -39,4 +39,14 @@ class Entity extends Layout
             ],
         ];
     }
+
+    /**
+     * Available actions on each row
+     */
+    public function actions(): array
+    {
+        return [
+            'abilities.entities.actions.delete'
+        ];
+    }
 }

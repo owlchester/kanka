@@ -9,6 +9,7 @@ return [
         'patch'     => '{1} Zmieniono :count kategorię.|[2,3,4] Zmieniono :count kategorie.|[5,*] Zmieniono :count kategorii.',
     ],
     'create'        => [
+        'helper'    => 'Dodaje nową kategorię do :name. Potem można',
         'success'   => 'Stworzono kategorię :name.',
         'title'     => 'Nowa kategoria',
     ],
@@ -32,7 +33,16 @@ return [
     'index'         => [
         'title' => 'Kategorie mapy :name',
     ],
-    'pitch'         => [],
+    'pitch'         => [
+        'max'       => [
+            'helper'    => 'Nie możesz tworzyć kolejnych kategorii dopóki którejś nie usuniesz.',
+            'limit'     => 'Osiągnięto limit kategorii na tej mapie',
+        ],
+        'upgrade'   => [
+            'limit'     => 'Osiągnięto limit :limit kategorii na tej mapie',
+            'upgrade'   => 'Ulepsz kampanię do poziomu premium by zwiększyć limit do :limit i uzyskać większą twórczą swobodę.',
+        ],
+    ],
     'placeholders'  => [
         'name'          => 'Sklepy, skarby, BNi.',
         'position'      => 'Pole opcjonalne, pozwala ustalić kolejność w której pojawiają się kategorie.',

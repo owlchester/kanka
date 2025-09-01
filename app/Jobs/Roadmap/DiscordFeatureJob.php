@@ -38,7 +38,7 @@ class DiscordFeatureJob implements ShouldQueue
             ->content('A new idea has been submitted and needs approval.')
             ->user($this->feature->user)
             ->description($this->feature->description)
-            ->url('https://admin.kanka.io/features/' . $this->feature->user->id)
+            ->url('https://admin.kanka.io/features/' . $this->feature->id)
             ->send();
     }
 }

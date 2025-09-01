@@ -46,10 +46,16 @@ return [
         'title'     => 'Reordenar estilos',
     ],
     'theme'         => [
+        'none'      => 'Usar preferência do usuário',
+        'override'  => 'Substituição de tema',
         'success'   => 'Tema da campanha atualizado.',
         'title'     => 'Atualizar tema da campanha.',
     ],
     'title'         => 'Temas da Campanha',
+    'toggle'        => [
+        'disable'   => 'Estilo desabilitado com sucesso.',
+        'enable'    => 'Estilo habilitado com sucesso.',
+    ],
     'update'        => [
         'success'   => 'Estilo :name atualizado.',
         'title'     => 'Atualizar estilo',

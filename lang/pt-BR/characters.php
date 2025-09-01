@@ -12,7 +12,13 @@ return [
     'destroy'       => [],
     'dice_rolls'    => [],
     'edit'          => [],
-    'families'      => [],
+    'families'      => [
+        'helper'    => 'Reordene e controle quais famílias de :name são visíveis ou ocultas para não administradores.',
+        'reorder'   => [
+            'success'   => 'Famílias de personagens atualizadas com sucesso.',
+        ],
+        'title2'    => 'Gerenciar famílias',
+    ],
     'fields'        => [
         'age'                       => 'Idade',
         'is_appearance_pinned'      => 'Aparência fixada',
@@ -27,7 +33,8 @@ return [
         'traits'                    => 'Características',
     ],
     'helpers'       => [
-        'age'   => 'Você pode vincular essa entidade a um calendário de sua campanha para calcular automaticamente sua idade. :more.',
+        'age'                   => 'Você pode vincular essa entidade a um calendário de sua campanha para calcular automaticamente sua idade. :more.',
+        'personality_visible'   => 'Se selecionado, os traços de personalidade deste personagem serão visíveis para todos. Caso contrário, apenas os membros do cargo :admin poderão vê-los.',
     ],
     'hints'         => [
         'is_appearance_pinned'      => 'Exiba os traços de aparência na página de visão geral.',
@@ -88,9 +95,11 @@ return [
         ],
     ],
     'races'         => [
+        'helper'    => 'Reordene e controle quais raças de :name são visíveis ou ocultas para não administradores.',
         'reorder'   => [
             'success'   => 'Raças de personagens atualizadas com sucesso',
         ],
+        'title2'    => 'Gerenciar raças',
     ],
     'sections'      => [
         'appearance'    => 'Aparência',

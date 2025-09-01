@@ -3,6 +3,7 @@
 return [
     'actions'       => [
         'apply_template'    => 'Aplicar um modelo de atributo',
+        'load'              => 'Carregar',
         'manage'            => 'Gerenciar',
         'more'              => 'Mais opções',
         'remove_all'        => 'Remover Tudo',
@@ -81,6 +82,7 @@ return [
             'success'   => 'Modelo carregado',
             'title'     => 'Carregar do modelo',
         ],
+        'pitch'     => 'Carregue atributos de um modelo de atributo ou plugins instalados do :plugin.',
         'success'   => 'Modelo de Atributo :name aplicado em :entity',
         'title'     => 'Aplicar um modelo de atributo para :name',
     ],
@@ -92,6 +94,11 @@ return [
         'pin'           => 'Atributo fixado',
         'unlock'        => 'Atributo desbloqueado',
         'unpin'         => 'Atributo desafixado',
+    ],
+    'tutorials'     => [
+        'character' => 'Por exemplo, eles podem ter uma propriedade :hp e :str.',
+        'general'   => 'Atributos são pequenos pedaços de informação anexados a :name.',
+        'location'  => 'Por exemplo, eles podem ter uma propriedade :pop.',
     ],
     'types'         => [
         'attribute' => 'Atributo',

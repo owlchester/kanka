@@ -6,6 +6,13 @@ return [
     ],
     'cta'       => 'Wyświetla listę ostatnich zmian w kampanii.',
     'empty'     => 'Brak',
+    'fields'    => [
+        'action'    => 'Działanie',
+        'details'   => 'Szczegóły',
+        'module'    => 'Moduł',
+        'when'      => 'Kiedy',
+        'who'       => 'Kto',
+    ],
     'filters'   => [
         'all-actions'   => 'Wszystkie działania',
         'all-users'     => 'Wszyscy uczestnicy',

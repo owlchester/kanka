@@ -31,7 +31,16 @@ return [
     'index'         => [
         'title' => 'Camadas de :name',
     ],
-    'pitch'         => [],
+    'pitch'         => [
+        'max'       => [
+            'helper'    => 'Não é possível adicionar mais camadas a menos que você remova uma existente.',
+            'limit'     => 'Este mapa atingiu seu limite de camadas',
+        ],
+        'upgrade'   => [
+            'limit'     => 'Você atingiu o limite de :limit camadas para este mapa',
+            'upgrade'   => 'Atualize para uma campanha premium para adicionar até :limit camadas e desbloquear ainda mais flexibilidade criativa.',
+        ],
+    ],
     'placeholders'  => [
         'name'          => 'Subterrãneo, Nível 2, Navio Naufragado',
         'position'      => 'Primeiro',

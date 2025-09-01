@@ -56,11 +56,10 @@ return [
         'updated'               => 'Se han actualizado las siguientes entidades:',
     ],
     'info'          => [
-        'helper'        => 'Cuando salga una nueva versión de un plugin, puedes actualizarla a la nueva versión.',
-        'title'         => 'Actualitzaciones del plugin :plugin',
-        'updates'       => 'Actualizaciones',
-        'versions'      => 'Versiones',
-        'your_version'  => 'Tu versión',
+        'helper'    => 'Cuando salga una nueva versión de un plugin, puedes actualizarla a la nueva versión.',
+        'title'     => 'Actualitzaciones del plugin :plugin',
+        'updates'   => 'Actualizaciones',
+        'versions'  => 'Versiones',
     ],
     'pitch'         => 'Instale y gestione plugins desde el :marketplace.',
     'status'        => [

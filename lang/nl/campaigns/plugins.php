@@ -26,10 +26,9 @@ return [
         'type'      => 'Plugin type',
     ],
     'info'          => [
-        'helper'        => 'Wanneer er een nieuwe versie van een plugin wordt uitgebracht, kan je deze bijwerken naar de nieuwste versie voor je campaign.',
-        'title'         => 'Plugin :plugin updates',
-        'updates'       => 'Updates',
-        'your_version'  => 'Jouw versie',
+        'helper'    => 'Wanneer er een nieuwe versie van een plugin wordt uitgebracht, kan je deze bijwerken naar de nieuwste versie voor je campaign.',
+        'title'     => 'Plugin :plugin updates',
+        'updates'   => 'Updates',
     ],
     'status'        => [
         'disabled'  => 'Uitgeschakeld',

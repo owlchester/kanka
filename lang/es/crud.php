@@ -168,7 +168,7 @@ return [
         ],
         'hints'     => [
             'limit'         => 'Cada entidad puede tener un máximo de :max archivos.',
-            'limitations'   => 'Formatos soportados: jpg, png, gif y pdf. Tamaño máximo de archivo: :size',
+            'limitations'   => 'Formatos soportados: :formats. Tamaño máximo de archivo: :size',
         ],
     ],
     'filter'            => 'Filtrar',

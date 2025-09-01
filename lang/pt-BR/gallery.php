@@ -16,6 +16,11 @@ return [
         'title'         => 'Galeria',
         'unauthorized'  => 'Nenhum de seus cargos tem a permissão "navegar pela galeria".',
     ],
+    'cta'       => [
+        'action'    => 'Desbloqueie mais espaço de armazenamento',
+        'helper'    => 'Desbloqueie até :size GB de espaço de armazenamento com uma :premium-campaign.',
+        'title'     => 'Armazenamento cheio',
+    ],
     'delete'    => [
         'success'   => '[0] Excluído 0 elementos|[1] Excluído um elemento|{2,*} Excluídos :count elementos',
     ],
@@ -34,6 +39,7 @@ return [
     ],
     'filters'   => [
         'only_unused'   => 'Somente mostrar arquivos não salvos',
+        'sort'          => 'Ordenar por',
     ],
     'move'      => [
         'success'   => '[0] Movido 0 elementos|[1] Movido um elemento|{2,*} Movidos :count elementos',

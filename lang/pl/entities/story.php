@@ -8,6 +8,7 @@ return [
         'login_for_more'    => 'Zaloguj się, by zobaczyć kolejne wpisy',
     ],
     'reorder'   => [
+        'helper'        => 'Przeciągaj komentarze by zmienić ich kolejność na stronie z opisem elementu',
         'icon_tooltip'  => 'Zmień kolejność',
         'panel_title'   => 'Zmiana kolejności',
         'save'          => 'Zapisz nową kolejność',

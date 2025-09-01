@@ -4,6 +4,14 @@ return [
     'actions'   => [
         'status'    => 'Status :status',
     ],
+    'create'    => [
+        'helper'    => 'Crie um novo cargo para a campanha.',
+    ],
+    'overview'  => [
+        'limited'   => ':amount de ::total cargos criados.',
+        'title'     => 'Cargos disponíveis',
+        'unlimited' => ':amount de cargos ilimitados criados.',
+    ],
     'public'    => [
         'campaign'      => [
             'private'   => 'A campanha está atualmente privada.',

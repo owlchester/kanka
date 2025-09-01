@@ -9,17 +9,12 @@ use Illuminate\Http\Request;
 
 class SearchApiController extends ApiController
 {
-    protected EntityService $entity;
-
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(EntityService $entityService)
-    {
-        $this->entity = $entityService;
-    }
+    public function __construct(protected EntityService $entityService) {}
 
     /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
@@ -31,8 +26,12 @@ class SearchApiController extends ApiController
         $this->authorize('access', $campaign);
 
         $term = mb_trim($search);
-        $enabledEntities = $this->entity->campaign($campaign)->getEnabledEntitiesID();
-        $models = Entity::whereIn('type_id', $enabledEntities)->where('name', 'like', "%{$term}%")->limit(10)->get();
+        $enabledEntities = $this->entityService->campaign($campaign)->getEnabledEntitiesID();
+        $models = Entity::with('entityType')
+            ->whereIn('type_id', $enabledEntities)
+            ->where('name', 'like', "%{$term}%")
+            ->limit(10)
+            ->get();
 
         return \App\Http\Resources\Entity::collection($models);
     }

@@ -47,6 +47,14 @@ class Quest extends Layout
                     return '<i class="fa-regular fa-check-circle" data-title="' . __('quests.fields.is_completed') . '" aria-hidden="true"></i>';
                 },
             ],
+            'location' => [
+                'key' => 'location.name',
+                'label' => Module::singular(config('entities.ids.location'), 'entities.location'),
+                'render' => Standard::LOCATION,
+                'visible' => function () {
+                    return ! request()->has('location_id');
+                },
+            ],
             'tags' => [
                 'render' => Standard::TAGS,
             ],

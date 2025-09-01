@@ -8,7 +8,11 @@
             {!! session()->get('info')  !!}
         </div>
     @endif
-    @include('partials.success')
+    @if (session()->has('error'))
+        <div class="p-4 rounded bg-red-500 text-red-800">
+            {!! session()->get('error')  !!}
+        </div>
+    @endif
 
 
     @if(config('auth.user_list'))

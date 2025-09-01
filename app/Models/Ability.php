@@ -110,7 +110,7 @@ class Ability extends MiscModel
     {
         return $this
             ->belongsToMany(Entity::class, 'entity_abilities')
-            ->withPivot('visibility_id');
+            ->withPivot(['visibility_id', 'id']);
     }
 
     /**

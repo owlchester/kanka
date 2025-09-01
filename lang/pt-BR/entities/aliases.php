@@ -5,6 +5,7 @@ return [
         'add'   => 'Adicionar um pseudônimo',
     ],
     'create'        => [
+        'helper'    => 'Crie um alias para :name, que o tornará encontrável na pesquisa global e por meio de menções de :code.',
         'success'   => 'Pseudônimo :name adicionado a :entity.',
         'title'     => 'Adicionar um pseudônimo ao :name',
     ],

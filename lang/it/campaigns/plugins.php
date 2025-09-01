@@ -51,10 +51,9 @@ return [
         'updated'               => 'Aggiornate le seguenti entità:',
     ],
     'info'          => [
-        'helper'        => 'Quando viene rilasciata una nuova versione di un plugin, puoi aggiornarlo alla versione più recente per la tua campagna.',
-        'title'         => 'Aggiornamenti del plugin :plugin',
-        'updates'       => 'Aggiornamenti',
-        'your_version'  => 'La tua versione',
+        'helper'    => 'Quando viene rilasciata una nuova versione di un plugin, puoi aggiornarlo alla versione più recente per la tua campagna.',
+        'title'     => 'Aggiornamenti del plugin :plugin',
+        'updates'   => 'Aggiornamenti',
     ],
     'pitch'         => 'Installa e organizza i plugin dal :marketplace',
     'status'        => [

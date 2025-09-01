@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\Attribute;
 use App\Models\MiscModel;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -58,6 +59,10 @@ class EntityChild extends JsonResource
             'updated_at' => $model->updated_at,
             'updated_by' => $model->updated_by,
         ];
+
+        if ($model instanceof Post) {
+            unset($merged['is_private']);
+        }
 
         $final = array_merge($prepared, $merged);
         ksort($final);

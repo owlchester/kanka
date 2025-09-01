@@ -31,7 +31,16 @@ return [
     'index'         => [
         'title' => 'Warstwy mapy :name',
     ],
-    'pitch'         => [],
+    'pitch'         => [
+        'max'       => [
+            'helper'    => 'Nie możesz dodawać kolejnych warstw dopóki którejś nie usuniesz.',
+            'limit'     => 'Osiągnięto limit warstw mapy',
+        ],
+        'upgrade'   => [
+            'limit'     => 'Osiągnięto limit :limit warstw mapy',
+            'upgrade'   => 'Ulepsz kampanię do poziomu premium by zwiększyć limit warstw do :limit i zyskać większą swobodę twórczą.',
+        ],
+    ],
     'placeholders'  => [
         'name'          => 'Podziemia, poziom 2, wrak statku',
         'position'      => 'Pole opcjonalne, pozwala ustalić kolejność wyświetlania warstw.',

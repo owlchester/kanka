@@ -39,6 +39,7 @@ return [
     ],
     'filters'   => [
         'only_unused'   => 'Pokaż tylko nieużywane pliki',
+        'sort'          => 'Sortuj według',
     ],
     'move'      => [
         'success'   => '[0] Przeniesiono 0 elementów|[1] Przeniesiono jeden element|{2,4} Przeniesiono :count elementy|{5,*} Przeniesiono :count elementów',
