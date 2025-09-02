@@ -10,6 +10,7 @@ use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\Calendar;
 use App\Models\Campaign;
+use App\Models\CampaignApiKey;
 use App\Models\CampaignDashboard;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignFollower;
@@ -181,6 +182,7 @@ class AppServiceProvider extends ServiceProvider
         AttributeTemplate::observe('App\Observers\AttributeTemplateObserver');
         Calendar::observe(CalendarObserver::class);
         Campaign::observe(CampaignObserver::class);
+        CampaignApiKey::observe('App\Observers\CampaignApiKeyObserver');
         CampaignUser::observe(CampaignUserObserver::class);
         CampaignRole::observe('App\Observers\CampaignRoleObserver');
         CampaignRoleUser::observe('App\Observers\CampaignRoleUserObserver');

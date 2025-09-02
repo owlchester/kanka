@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Campaigns;
 
+use App\Events\Campaigns\Bragi\DisabledBragi;
 use App\Jobs\Campaigns\Delete;
 use App\Jobs\DeletedCampaignCleanupJob;
 use App\Models\Campaign;
@@ -44,6 +45,7 @@ class DeleteCommand extends Command
         $campaign = Campaign::where('id', $campaignId)->first();
         if ($campaign) {
             Delete::dispatch($campaign);
+            DisabledBragi::dispatch($campaign);
             DeletedCampaignCleanupJob::dispatch($campaign);
             $this->info('Queued campaign #' . $campaignId . ' for deletion');
         } else {

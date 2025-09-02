@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Events\Campaigns\Bragi\DisabledBragi;
 use App\Events\Campaigns\Deleted;
 use App\Events\Campaigns\Saved;
 use App\Events\Campaigns\Updated;
@@ -60,6 +61,7 @@ class CampaignObserver
 
     public function deleted(Campaign $campaign)
     {
+        DisabledBragi::dispatch($campaign, auth()->user());
         Deleted::dispatch($campaign, auth()->user());
     }
 }

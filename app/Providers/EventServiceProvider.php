@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\AdminInviteCreated;
 use App\Events\Campaigns\Applications\Accepted;
 use App\Events\Campaigns\Applications\Rejected;
+use App\Events\Campaigns\Bragi\DisabledBragi;
 use App\Events\Campaigns\Dashboards\DashboardCreated;
 use App\Events\Campaigns\Dashboards\DashboardDeleted;
 use App\Events\Campaigns\Dashboards\DashboardUpdated;
@@ -82,6 +83,7 @@ use App\Listeners\Posts\FeedPost;
 use App\Listeners\Posts\LogPost;
 use App\Listeners\SendAdminInviteNotification;
 use App\Listeners\SendFeatureNotification;
+use App\Listeners\Campaigns\CleanupBragi;
 use App\Listeners\Users\ClearUserCache;
 use App\Listeners\Users\SendEmailUpdate;
 use App\Listeners\Users\Subscriptions\LogPremium;
@@ -287,6 +289,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         EmailChanged::class => [
             SendEmailUpdate::class,
+        ],
+        DisabledBragi::class => [
+            CleanupBragi::class,
         ],
     ];
 
