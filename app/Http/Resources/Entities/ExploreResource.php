@@ -90,7 +90,7 @@ class ExploreResource extends JsonResource
 
         $tags = [];
         $campaign = CampaignLocalization::getCampaign();
-        foreach ($entity->visibleTags as $tag) {
+        foreach ($entity->visibleTags() as $tag) {
             $tags[] = [
                 'id' => $tag->id,
                 'urls' => [

@@ -43,9 +43,9 @@ trait Taggable
         return null;
     }
 
-    public function visibleTags(): BelongsToMany
+    public function visibleTags(): \Illuminate\Support\Collection
     {
-        return $this->tags()
-            ->onlyVisible();
+        return $this->tags
+            ->where('is_hidden', 0);
     }
 }

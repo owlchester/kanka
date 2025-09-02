@@ -36,7 +36,7 @@ class MapController extends Controller
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'parent', 'parent.entity',
-                'entity', 'entity.image', 'entity.entityType', 'entity.visibleTags',
+                'entity', 'entity.image', 'entity.entityType', 'entity.tags',
             ])
             ->paginate();
 

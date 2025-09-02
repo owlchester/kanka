@@ -32,7 +32,7 @@ class MemberController extends Controller
                 'organisation.entity.entityType' => function ($sub) {
                     $sub->select('id', 'code');
                 },
-                'organisation.entity.visibleTags',
+                'organisation.entity.tags',
             ])
             ->rows()
             ->paginate();

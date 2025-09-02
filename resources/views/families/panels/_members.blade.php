@@ -6,7 +6,7 @@
  * @var \App\Models\Character $member
  */
 $allMembers = false;
-$model = $model ?? $entity->child;
+$model = $entity->child;
 $datagridOptions = [
     $campaign,
     $model,

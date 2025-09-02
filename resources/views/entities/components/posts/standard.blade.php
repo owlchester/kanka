@@ -5,7 +5,7 @@
 */
 
 /** @var \App\Models\Tag[] $entityTags */
-$entityTags = $post->visibleTags;
+$entityTags = $post->visibleTags();
 ?>
 <article class="flex flex-col gap-2 post-block post-{{ $post->id }} entity-note-{{ $post->id }} entity-note-position-{{ $post->position }} post-position-{{ $post->position }}@if (isset($post->settings['class']) && $campaign->boosted()) {{ $post->settings['class'] }}@endif @foreach ($entityTags as $tag) tag-{{ $tag->slug }} @endforeach" data-visibility="{{ $post->visibility_id }}" data-position="{{ $post->position }}" data-template="{{ $post->isTemplate() ? '1' : '0' }}" id="post-{{ $post->id }}" data-word-count="{{ $post->words }}">
     <div class="post-header flex gap-1 md:gap-2 items-center justify-between ">
@@ -47,7 +47,7 @@ $entityTags = $post->visibleTags;
 
                 @if ($post->location || $post->calendarReminder()?->calendar_id)
                 <div class="post-details entity-note-details">
-                    @if ($post->location)
+                    @if ($post->location && $post->location->entity)
                         <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
                             <x-icon entity="location" />
                             <x-entity-link :entity="$post->location->entity" :campaign="$campaign" />

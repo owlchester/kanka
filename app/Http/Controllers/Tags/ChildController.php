@@ -34,7 +34,7 @@ class ChildController extends Controller
         $this->rows = $tag
             ->{$base}()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with(['image', 'visibleTags', 'entityType'])
+            ->with(['image', 'tags', 'entityType'])
             ->paginate(config('limits.pagination'));
 
         // Ajax Datagrid

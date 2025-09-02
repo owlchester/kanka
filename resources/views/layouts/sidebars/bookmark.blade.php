@@ -1,4 +1,6 @@
-<?php /** @var \App\Models\Bookmark $bookmark */ ?>
+<?php /** @var \App\Models\Bookmark $bookmark */
+$bookmark->setRelation('campaign', $campaign);
+?>
 @if ($bookmark->dashboard && $campaign->boosted() && $bookmark->isValidDashboard())
     <li class="{{ $css ?? null }} p-0 m-0 subsection sidebar-bookmark sidebar-bookmark-{{ $bookmark->position }} {{ $bookmark->customClass($campaign) }}">
         <x-sidebar.bookmark :bookmark="$bookmark" :campaign="$campaign" />

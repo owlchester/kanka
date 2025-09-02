@@ -8,7 +8,16 @@ $wrapper = false;
 $entryShown = false;
 if (!isset($posts)) {
     $pagination = config('limits.pagination');
-    $posts = $entity->posts()->with(['permissions', 'calendarDate', 'calendarDate.calendar', 'calendarDate.calendar.entity', 'location', 'layout', 'visibleTags'])->ordered()->paginate($pagination);
+    $posts = $entity->posts()->with([
+            'permissions',
+            'calendarDate',
+            'calendarDate.calendar',
+            'calendarDate.calendar.entity',
+            'location',
+            'location',
+            'layout',
+            'tags' => function ($sub) { $sub->select('tags.id', 'tags.name', 'tags.slug', 'tags.colour', 'tags.is_hidden'); }
+        ])->ordered()->paginate($pagination);
     $wrapper = true;
 }
 
