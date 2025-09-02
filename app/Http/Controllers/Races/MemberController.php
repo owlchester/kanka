@@ -36,7 +36,7 @@ class MemberController extends Controller
             ->with([
                 'location', 'location.entity',
                 'characterRaces',
-                'entity', 'entity.tags', 'entity.image', 'entity.visibleTags',
+                'entity', 'entity.tags', 'entity.image', 'entity.tags',
                 'entity.entityType',
             ])
             ->has('entity')

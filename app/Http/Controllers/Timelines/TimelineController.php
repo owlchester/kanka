@@ -35,7 +35,7 @@ class TimelineController extends Controller
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
-                'entity', 'entity.image', 'entity.entityType', 'entity.visibleTags',
+                'entity', 'entity.image', 'entity.entityType', 'entity.tags',
                 'parent', 'parent.entity',
             ])
             ->filter($filters)
