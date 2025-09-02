@@ -36,7 +36,7 @@ class NoteController extends Controller
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'entity', 'entity.image', 'entity.entityType',
-                'entity.visibleTags',
+                'entity.tags',
                 'parent', 'parent.entity',
             ])
             ->has('entity')

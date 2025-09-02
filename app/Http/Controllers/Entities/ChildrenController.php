@@ -40,7 +40,7 @@ class ChildrenController extends Controller
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
                 'image', 'entityType',
-                'visibleTags',
+                'tags',
                 'children',
                 'parent',
             ])

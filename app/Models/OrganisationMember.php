@@ -102,7 +102,7 @@ class OrganisationMember extends Model
 
     public function tags()
     {
-        return $this->organisation->entity->visibleTags;
+        return $this->organisation->entity->visibleTags();
     }
 
     public function pinned(): bool

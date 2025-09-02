@@ -110,7 +110,7 @@ trait EntityRelations
     public function entityAttributes()
     {
         return $this->attributes()
-            ->with('entity')
+            ->with(['entity' => function ($sub) { $sub->select('entities.id', 'entities.name'); }])
             ->ordered();
     }
 

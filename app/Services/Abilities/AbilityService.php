@@ -116,7 +116,7 @@ class AbilityService extends BaseAbilityService
     protected function formatAbility(EntityAbility $entityAbility): array
     {
         $classes = [];
-        $tags = $entityAbility->ability->entity->visibleTags;
+        $tags = $entityAbility->ability->entity->visibleTags();
         foreach ($tags as $tag) {
             $classes[] = ' kanka-tag-' . $tag->id;
             $classes[] = ' kanka-tag-' . $tag->slug;

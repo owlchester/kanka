@@ -75,7 +75,7 @@ if ($hasImage) {
 <div class="flex flex-col gap-3 md:px-3">
     @if ($marker->entity && $marker->entity->tags->isNotEmpty())
         <div class="marker-tags flex flex-wrap gap-2">
-            @foreach ($marker->entity->visibleTags as $tag)
+            @foreach ($marker->entity->visibleTags() as $tag)
                 @if (!$tag->entity) @continue @endif
                 <a href="{{ $tag->getLink() }}" class="tooltip-tag" data-id="{{ $tag->entity->id }}" data-tag-slug="{{ $tag->slug }}" title="{{ $tag->name }}">
                     @include ('tags._badge')

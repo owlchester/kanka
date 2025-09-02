@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'title' =>  $model->name . ' ' . __('organisations.fields.members'),
+    'title' =>  $entity->name . ' ' . __('organisations.fields.members'),
     'breadcrumbs' => false,
     'mainTitle' => false,
 ])

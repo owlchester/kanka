@@ -133,6 +133,7 @@ class ApiService
         $templates = $this->entityType
             ->attributeTemplates()
             ->with(['entity', 'entity.attributes', 'ancestors'])
+            ->enabled()
             ->has('entity')
             ->get();
         /** @var AttributeTemplate $template */
@@ -140,6 +141,10 @@ class ApiService
             $this->addTemplate($template);
             /** @var AttributeTemplate $child */
             foreach ($template->ancestors as $child) {
+                /** @var AttributeTemplate $template */
+                if (!$child->isEnabled()) {
+                    continue;
+                }
                 /*if (!in_array($child->id, $ids)) {
                     $ids[] = $child->id;
                     $attributeTemplates[] = $child;

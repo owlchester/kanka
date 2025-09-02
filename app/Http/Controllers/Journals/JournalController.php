@@ -35,7 +35,7 @@ class JournalController extends Controller
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->filter($filters)
             ->with([
-                'entity', 'entity.visibleTags', 'entity.image',
+                'entity', 'entity.tags', 'entity.image',
                 'parent', 'parent.entity',
                 'author',
             ])

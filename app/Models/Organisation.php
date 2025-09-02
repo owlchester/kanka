@@ -61,6 +61,8 @@ class Organisation extends MiscModel
      */
     protected string $entityType = 'organisation';
 
+    protected int $allMembersCount;
+
     /**
      * Fields that can be sorted on
      */
@@ -209,6 +211,14 @@ class Organisation extends MiscModel
         return OrganisationMember::whereIn('organisation_member.organisation_id', $organisationId)
             ->with('character')
             ->has('character.entity');
+    }
+
+    public function allMembersCount(): int
+    {
+        if (isset($this->allMembersCount)) {
+            return $this->allMembersCount;
+        }
+        return $this->allMembersCount = $this->allMembers()->count();
     }
 
     /**

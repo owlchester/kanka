@@ -30,7 +30,7 @@ class PostController extends Controller
         $this->rows = $tag
             ->posts()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
-            ->with(['entity', 'entity.image', 'visibleTags'])
+            ->with(['entity', 'entity.image', 'tags'])
             ->has('entity')
             ->paginate(config('limits.pagination'));
 
