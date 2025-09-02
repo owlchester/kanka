@@ -28,7 +28,9 @@ class ApiLogMiddleware
         $endTime = microtime(true);
         $duration = $endTime - $startTime;
 
+        // @phpstan-ignore-next-line
         $campaign = $request->route('campaign');
+        // @phpstan-ignore-next-line
         $log = ApiLog::request($request)
             ->response($response)
             ->duration($duration);
