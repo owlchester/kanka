@@ -262,4 +262,9 @@ class AttributeTemplate extends MiscModel
             'type' => 'attribute_template',
         ];
     }
+
+    public function isEnabled(): bool
+    {
+        return $this->is_enabled;
+    }
 }
