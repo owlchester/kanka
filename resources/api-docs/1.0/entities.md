@@ -130,9 +130,9 @@ There are several models in Kanka which represent objects attached to `entities`
 * [Entity Mentions](/api-docs/{{version}}/entities/entity-mentions)
 * [Entity Tags](/api-docs/{{version}}/entities/entity-tags)
 * [Entity Connections](/api-docs/{{version}}/entities/connections)
-* [Entity Inventory](/api-docs/{{version}}/entities/entity-inventory)
+* [Inventory](/api-docs/{{version}}/entities/entity-inventory)
 * [Entity Abilities](/api-docs/{{version}}/entities/entity-abilities)
-* [Entity Links](/api-docs/{{version}}/entities/ntity-links)
+* [Entity Links](/api-docs/{{version}}/entities/entity-links)
 * [Posts](/api-docs/{{version}}/entities/posts)
 
 With each request to an object (ie. `character`, `location`, etc), you can include the following parameter to get those related objects directly.
