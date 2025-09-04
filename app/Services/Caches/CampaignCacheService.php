@@ -4,6 +4,7 @@ namespace App\Services\Caches;
 
 use App\Services\Caches\Traits\Campaign\ApplicationCache;
 use App\Services\Caches\Traits\Campaign\DashboardCache;
+use App\Services\Caches\Traits\Campaign\FlagCache;
 use App\Services\Caches\Traits\Campaign\MemberCache;
 use App\Services\Caches\Traits\Campaign\RoleCache;
 use App\Services\Caches\Traits\Campaign\SettingCache;
@@ -22,6 +23,7 @@ class CampaignCacheService extends BaseCache
     use ApplicationCache;
     use CampaignAware;
     use DashboardCache;
+    use FlagCache;
     use MemberCache;
     use PrimaryCache;
     use RoleCache;
@@ -39,6 +41,7 @@ class CampaignCacheService extends BaseCache
             'members' => $this->formatMembers(),
             'admin-role' => $this->formatAdminRole(),
             'applications' => $this->formatApplications(),
+            'flags' => $this->formatFlags(),
             'time' => time(),
         ];
     }

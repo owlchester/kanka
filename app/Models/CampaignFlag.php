@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property \App\Enums\CampaignFlags $flag
+ * @property string $value
  */
 class CampaignFlag extends Model
 {
