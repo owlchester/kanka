@@ -53,21 +53,46 @@ class WordCount extends Command
     protected function process(string $className, string $field = 'entry')
     {
         $model = app()->make($className);
+        $table = $model->getTable();
 
         // DB::statement('UPDATE ' . $model->getTable() . ' SET words = null');
         $this->info($className);
         $total = $model::whereNull('words')->whereNotNull($field)->count();
         $progressBar = $this->output->createProgressBar($total);
-        $model::whereNotNull($field)->whereNull('words')
-            ->chunkById(5000, function ($models) use ($progressBar) {
-                /** @var Entity $model */
-                foreach ($models as $model) {
-                    $model->words = str_word_count(strip_tags($model->{$model->entryFieldName()}));
-                    $model->saveQuietly();
-                    $progressBar->advance();
-                }
-            });
+
+        $batchSize = 5000;
+        $processed = 0;
+
+        do {
+            // Process in batches using LIMIT/OFFSET or better yet, use a cursor approach
+            $updated = DB::table($table)
+                ->whereNotNull($field)
+                ->whereNull('words')
+                ->limit($batchSize)
+                ->update([
+                    'words' => DB::raw("
+                    CASE
+                        WHEN TRIM(REGEXP_REPLACE($field, '<[^>]*>', '')) = '' THEN 0
+                        ELSE (
+                            LENGTH(TRIM(REGEXP_REPLACE($field, '<[^>]*>', ''))) -
+                            LENGTH(REPLACE(TRIM(REGEXP_REPLACE($field, '<[^>]*>', '')), ' ', '')) + 1
+                        )
+                    END
+                ")
+                ]);
+
+            $processed += $updated;
+            $progressBar->advance($updated);
+
+            // Small delay to prevent overwhelming the database
+            usleep(10000); // 10ms delay
+
+        } while ($updated > 0);
+
         $progressBar->finish();
         $this->newLine();
+
+        $this->info("Processed {$processed} records total");
+
     }
 }
