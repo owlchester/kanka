@@ -123,16 +123,16 @@ You can call this endpoint with the `?related` option described below to get the
 
 There are several models in Kanka which represent objects attached to `entities`.
 
-* [Attributes](/api-docs/{{version}}/attributes)
-* [Entity Events](/api-docs/{{version}}/entity-events)
-* [Entity Files](/api-docs/{{version}}/entity-files)
-* [Entity Mentions](/api-docs/{{version}}/entity-mentions)
-* [Entity Tags](/api-docs/{{version}}/entity-tags)
-* [Entity Relations](/api-docs/{{version}}/entity-relations)
-* [Entity Inventory](/api-docs/{{version}}/entity-inventory)
-* [Entity Abilities](/api-docs/{{version}}/entity-abilities)
-* [Entity Links](/api-docs/{{version}}/entity-links)
-* [Posts](/api-docs/{{version}}/posts)
+* [Attributes](/api-docs/{{version}}/entities/attributes)
+* [Reminders](/api-docs/{{version}}/entities/reminders)
+* [Entity Files](/api-docs/{{version}}/entities/entity-files)
+* [Entity Mentions](/api-docs/{{version}}/entities/entity-mentions)
+* [Entity Tags](/api-docs/{{version}}/entities/entity-tags)
+* [Entity Connections](/api-docs/{{version}}/entities/connections)
+* [Inventory](/api-docs/{{version}}/entities/entity-inventory)
+* [Entity Abilities](/api-docs/{{version}}/entities/entity-abilities)
+* [Entity Links](/api-docs/{{version}}/entities/entity-links)
+* [Posts](/api-docs/{{version}}/entities/posts)
 
 With each request to an object (ie. `character`, `location`, etc), you can include the following parameter to get those related objects directly.
 

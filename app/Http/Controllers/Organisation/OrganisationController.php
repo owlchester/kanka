@@ -35,11 +35,12 @@ class OrganisationController extends Controller
             ->descendants()
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->with([
-                'entity', 'entity.image', 'entity.entityType', 'entity.tags',
+                'entity', 'entity.image', 'entity.entityType',
+                'entity.tags',
                 'parent', 'parent.entity',
             ])
             ->filter($filters)
-            ->paginate();
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

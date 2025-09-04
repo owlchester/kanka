@@ -39,7 +39,7 @@ class AbilityService extends BaseAbilityService
             ->with(['ability',
                 // entity
                 'ability.entity', 'ability.entity.image', 'ability.entity.attributes', 'ability.entity.attributes.entity',
-                'ability.entity.visibleTags',
+                'ability.entity.tags',
                 // parent
                 'ability.parent', 'ability.parent.entity', 'ability.parent.entity.tags', 'ability.parent.entity.image',
             ])

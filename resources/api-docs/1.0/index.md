@@ -52,7 +52,7 @@
   - [Mentions](/api-docs/{{version}}/entities/entity-mentions)
   - [Permissions](/api-docs/{{version}}/entities/entity-permissions)
   - [Posts](/api-docs/{{version}}/entities/posts)
-  - [Relations](/api-docs/{{version}}/entities/relations)
+  - [Connections](/api-docs/{{version}}/entities/connections)
   - [Reminders](/api-docs/{{version}}/entities/reminders)
   - [Tags](/api-docs/{{version}}/entities/entity-tags)
   - [Templates](/api-docs/{{version}}/entities/templates)

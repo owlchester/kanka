@@ -64,13 +64,13 @@
                         @if ($superboosted || $count === 0)
 @php
 $postLink = null;
-/** @var \App\Models\Entity $entity */
-$entity = $log->isPost() ? $log->parent->entity : $log->parent;
-if (!$entity || $entity->trashed()) {
-$entityLink = '<a href="' . route('recovery', $campaign) . '">' . ($entity ? $entity->name : __('history.unknown.entity')) . '</a>';
+/** @var \App\Models\Entity $logEntity */
+$logEntity = $log->isPost() ? $log->parent->entity : $log->parent;
+if (!$logEntity || $logEntity->trashed()) {
+$entityLink = '<a href="' . route('recovery', $campaign) . '">' . ($logEntity ? $logEntity->name : __('history.unknown.entity')) . '</a>';
 } else {
 $entityLink = \Illuminate\Support\Facades\Blade::renderComponent(
-    new \App\View\Components\EntityLink($entity, $campaign)
+    new \App\View\Components\EntityLink($logEntity, $campaign)
 );
 }
 @endphp
@@ -79,10 +79,10 @@ $entityLink = \Illuminate\Support\Facades\Blade::renderComponent(
                                 'entity' => $entityLink,
                             ]) !!}
                             @if ($log->isPost()) -
-                                @if ($log->parent->trashed() || $entity->trashed())
+                                @if ($log->parent->trashed() || $logEntity->trashed())
                                     {!! $log->parent->name !!}
                                 @else
-                                <a href="{{ route('entities.show', [$campaign, $entity, '#post-' . $log->parent->id]) }}">
+                                <a href="{{ route('entities.show', [$campaign, $logEntity, '#post-' . $log->parent->id]) }}">
                                     {!! $log->parent->name !!}
                                 </a>
                                 @endif
@@ -123,7 +123,7 @@ $entityLink = \Illuminate\Support\Facades\Blade::renderComponent(
                         @if (is_array($value)) @continue @endif
                         <div class="flex">
                             <div class="flex-initial w-32 font-bold" data-attribute="{{ $attribute }}">
-                                {!! $log->attributeKey($entity->entityType->pluralCode(), $attribute) !!}
+                                {!! $log->attributeKey($logEntity->entityType->pluralCode(), $attribute) !!}
                             </div>
                             <div class="flex-1 break-all">
                                 @if (\Illuminate\Support\Str::contains($attribute, ['has_', 'is_']))
