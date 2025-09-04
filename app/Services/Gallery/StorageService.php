@@ -2,6 +2,7 @@
 
 namespace App\Services\Gallery;
 
+use App\Facades\CampaignCache;
 use App\Models\Image;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
@@ -50,6 +51,10 @@ class StorageService
      */
     public function totalSpace(): int
     {
+        $flags = CampaignCache::campaign($this->campaign)->flags();
+        if ($flags->has('gallery')) {
+            return $flags->get('gallery');
+        }
         if ($this->campaign->boosted()) {
             return config('limits.gallery.premium');
         }
