@@ -151,7 +151,7 @@ return [
             'filters'           => 'Filters',
             'help'              => 'Only show the first entity as a preview instead of a list.',
             'helpers'           => [
-                'entity-header'     => 'If your entity has an entity header (premium campaign feature), set this widget to use that image instead of the entity\'s image.',
+                'entity-header'     => 'If the entity has an entity header (premium campaign feature), set this widget to use that image instead of the entity\'s image.',
                 'show_attributes'   => 'Show the entity\'s pinned attributes below the entry.',
                 'show_members'      => 'If the entity is a family or organisation, show its members below the entry.',
                 'show_relations'    => 'Show the entity\'s pinned relations below the entry.',
