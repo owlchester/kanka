@@ -9,7 +9,7 @@
 
 You can get a list of all the available post layouts by using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/`.
+> {warning} Remember that all endpoints documented here need to be prefixed with `{{version}}/`.
 
 
 | Method | URI | Headers |
