@@ -12,7 +12,7 @@ return [
     ],
     'confirm' => [
         'label' => 'Confirm data loss',
-        'checkbox' => 'You understand that by transforming :entity to another module, the following elements will be lost:',
+        'checkbox' => 'I understand that by transforming :entity to another module, the following elements will be lost:',
     ],
     'fields'    => [
         'current'       => 'Current module',

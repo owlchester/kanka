@@ -3,7 +3,7 @@
 return [
     'actions'           => [
         'add'               => 'Add Item',
-        'generate'          => 'Generate inventory',
+        'generate'          => 'Generate',
         'copy_from'         => 'Copy from',
         'copy_inventory'    => 'Copy inventory',
     ],
@@ -11,7 +11,8 @@ return [
         'helper'    => 'Copy the whole inventory of an entity to :name.',
     ],
     'generate'              => [
-        'helper'    => 'Generate inventory for :name.',
+        'title' => 'Generate inventory',
+        'helper'    => 'Generate an inventory for :name based on existing items in the campaign.',
     ],
     'create'            => [
         'helper'        => 'Add an item to :name\'s inventory. It can optionally be linked to an existing object from the campaign.',
