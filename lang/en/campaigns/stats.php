@@ -16,6 +16,10 @@ return [
         'created'   => 'Created on',
         'creator'   => 'Created by',
         'general'   => 'General',
+        'words' => 'Total words',
+        'from-entities' => 'From entities',
+        'from-posts' => 'From posts',
+        'from-elements' => 'From elements',
     ],
     'title2'        => 'Statistics',
     'titles'        => [
