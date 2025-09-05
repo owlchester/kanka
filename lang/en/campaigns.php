@@ -371,6 +371,7 @@ return [
         ],
         'tabs'      => [
             'achievements'      => 'Achievements',
+            'ask-bragi'         => 'Ask Bragi',
             'applications'      => 'Applications',
             'api-keys'          => 'Api Keys',
             'customisation'     => 'Customisation',

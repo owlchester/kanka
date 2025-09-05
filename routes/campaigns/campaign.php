@@ -104,6 +104,8 @@ Route::resources([
 Route::get('/w/{campaign}/leave', 'Campaign\LeaveController@index')->name('campaign.leave');
 Route::post('/w/{campaign}/leave-for-real', 'Campaign\LeaveController@process')->name('campaign.leave-process');
 
+Route::get('/w/{campaign}/ask', 'Bragi\AskController@index')->name('campaign.ask');
+
 // Campaign CRUD
 Route::get('/w/{campaign}/edit', [App\Http\Controllers\Crud\CampaignController::class, 'edit'])->name('campaigns.edit');
 Route::patch('/w/{campaign}/update', [App\Http\Controllers\Crud\CampaignController::class, 'update'])->name('campaigns.update');

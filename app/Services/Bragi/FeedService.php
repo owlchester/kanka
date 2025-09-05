@@ -276,6 +276,7 @@ class FeedService
 
                     $entityData = [
                         'name' => $post->name,
+                        'entity' => $post->entity->name,
                         'entry' => $post->entry,
                         'tags' => $post->tags->pluck('name'),
                     ];
@@ -353,7 +354,7 @@ class FeedService
             ->chunkById(10, function ($elements): void {
                 foreach ($elements as $element) {
 
-                    $entityData = [
+                    $elementData = [
                         'name' => $element->name,
                         'entry' => $element->description,
                         'timeline' => $element->timeline->name,
@@ -362,7 +363,7 @@ class FeedService
                         'date' => $element->date,
                     ];
 
-                    $data[] = json_encode($entityData);
+                    $data[] = json_encode($elementData);
                 }
 
                 //Get vectors
@@ -396,7 +397,7 @@ class FeedService
             ->chunkById(10, function ($eras): void {
                 foreach ($eras as $era) {
 
-                    $entityData = [
+                    $eraData = [
                         'name' => $era->name,
                         'entry' => $era->entry,
                         'timeline' => $era->timeline->name,
@@ -404,7 +405,7 @@ class FeedService
                         'end_year' => $era->end_year
                     ];
 
-                    $data[] = json_encode($entityData);
+                    $data[] = json_encode($eraData);
                 }
 
                 //Get vectors
