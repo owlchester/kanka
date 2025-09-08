@@ -7,6 +7,7 @@ return [
             'limit'     => 'Element osiągnął limit dołączonych plików.',
         ],
         'upgrade'   => [
+            'limit'     => 'Osiągnięto limit :limit plików dla tego elementu.',
             'upgrade'   => 'Ulepsz kampanię do poziomu premium by zwiększyć limit plików do :limit i zyskać większą swobodę twórczą.',
         ],
     ],
