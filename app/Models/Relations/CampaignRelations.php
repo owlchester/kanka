@@ -4,6 +4,7 @@ namespace App\Models\Relations;
 
 use App\Models\Ability;
 use App\Models\Application;
+use App\Models\AskLog;
 use App\Models\AttributeTemplate;
 use App\Models\Bookmark;
 use App\Models\Calendar;
@@ -181,6 +182,14 @@ trait CampaignRelations
     public function apiKeys(): HasMany
     {
         return $this->hasMany(CampaignApiKey::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\CampaignApiKey, $this>
+     */
+    public function askLogs(): HasMany
+    {
+        return $this->hasMany(AskLog::class);
     }
 
     /**

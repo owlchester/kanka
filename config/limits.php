@@ -58,4 +58,7 @@ return [
             'default' => env('API_THROTTLE_LIMIT', 30),
         ],
     ],
+    
+    'ask' => env('APP_ASKBRAGI_LIMIT', 100),
+
 ];

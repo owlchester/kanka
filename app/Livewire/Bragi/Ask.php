@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Bragi;
 
+use App\Models\AskLog;
 use App\Models\Campaign;
 use App\Models\Embedding;
 use App\Models\Post;
@@ -12,6 +13,7 @@ use App\Models\User;
 use Avatar;
 use CampaignCache;
 use CampaignLocalization;
+use Carbon\Carbon;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Prism\Prism\Prism;
@@ -83,8 +85,9 @@ class Ask extends Component
     {
         /** @var User $user */
         $user = auth()->user();
+        $canAsk = $this->campaign->askLogs()->recent(Carbon::now()->startOfDay())->count() < config('limits.ask');
 
-        return view('livewire.bragi.ask', ['user' => $user]);
+        return view('livewire.bragi.ask', ['user' => $user, 'canAsk' => $canAsk]);
     }
 
     public function handle()
@@ -195,7 +198,7 @@ class Ask extends Component
 
         // Process a document
         $response = Prism::text()
-            ->using(Provider::OpenAI, 'gpt-5-mini')  //This might need to be turned into some variable for each model?
+            ->using(Provider::OpenAI, 'gpt-5')  //This might need to be turned into some variable for each model?
             ->usingProviderConfig([
                 'api_key' => $key->api_key
             ])
@@ -204,7 +207,20 @@ class Ask extends Component
                 $this->query,
             )
             ->asText();
-
+        $this->log();
         return $response->text;
+    }
+
+    /**
+     * Log usage
+     *
+     * @return void
+     */
+    protected function log()
+    {
+        $log = new AskLog;
+        $log->user_id = auth()->user()->id;
+        $log->campaign_id = $this->campaign->id;
+        $log->save();
     }
 }

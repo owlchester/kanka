@@ -6,8 +6,10 @@
         <div class="rounded-2xl justify-center overflow-hidden flex">
             @if ($isLoading)
                 {{__('bragi.loading')}}
-            @else
+            @elseif ($canAsk)
                 {{__('bragi/ask-bragi.helper.bragi')}}
+            @else
+                {{__('bragi/ask-bragi.helper.uses')}}
             @endif
         </div>
     @endforelse
@@ -19,6 +21,7 @@
         {{ __('bragi/ask-bragi.title') }}
     </x-slot>
     <div>
+        @if ($canAsk)
         <div class="flex flex-wrap gap-2 justify-between items-end">
             <div class="field field-query">
                 <label>
@@ -36,6 +39,9 @@
                 </button>
             </div>
         </div>
+        @else
+            {{ __('bragi/ask-bragi.helper.uses') }} 
+        @endif
     </div>
 </x-box>
 </div>
