@@ -26,9 +26,8 @@ return [
         'token_name'    => 'Nom du jeton',
     ],
     'new'               => [
-        'copy'      => 'Jeton d\'accès copié au presse-papier',
-        'helper'    => 'Ton nouveau jeton d\'accès personnel:',
-        'title'     => 'Ton nouveau jeton d\'accès personnel:',
+        'copy'  => 'Jeton d\'accès copié au presse-papier',
+        'title' => 'Ton nouveau jeton d\'accès personnel:',
     ],
     'revoke'            => 'Révoker',
     'revoke-confirm'    => 'Confirmer la révocation',
