@@ -199,7 +199,7 @@ class Ask extends Component
             ->usingProviderConfig([
                 'api_key' => $key->api_key
             ])
-            ->withSystemPrompt('You are Bragi, you don\'t create anything new, don\'t make any offers, just answer questions, you are a lore expert that will answer questions about a fantasy universe based on this context: ' . $text)
+            ->withSystemPrompt(config('system-prompt.openai') . $text)
             ->withPrompt(
                 $this->query,
             )
