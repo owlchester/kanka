@@ -5,6 +5,7 @@ return [
         'add'               => 'Ajouter',
         'copy_from'         => 'Copier depuis',
         'copy_inventory'    => 'Copier l\'inventaire',
+        'generate'          => 'Générer',
     ],
     'copy'              => [
         'helper'    => 'Copie l\'inventaire complet d\'une entité à :name.',
@@ -25,9 +26,16 @@ return [
         'copy_entity_entry_v2'  => 'Utiliser l\'entrée de l\'objet',
         'description'           => 'Description',
         'is_equipped'           => 'Equipé',
+        'item_amount'           => 'Nombre d\'objets',
+        'match_all'             => 'Avec toutes les étiquettes',
         'name'                  => 'Nom',
         'position'              => 'Position',
         'qty'                   => 'Qté',
+        'replace'               => 'Remplacer l\'inventaire',
+    ],
+    'generate'          => [
+        'helper'    => 'Générer un inventaire pour :name basé sur des objets de la campagne.',
+        'title'     => 'Générer un inventaire',
     ],
     'helpers'           => [
         'amount'                => 'Nombre d\'objets',
@@ -35,6 +43,7 @@ return [
         'description'           => 'Ajouter une description personnalisée à l\'objet',
         'is_equipped'           => 'Marquer cet objet comme étant équipé.',
         'name'                  => 'Donner un nom à l\'objet. Un nom est requis si aucun objet n\'est sélectionné',
+        'replace'               => 'Remplacer l\'inventaire actuel avec les nouveaux éléments générés.',
     ],
     'placeholders'      => [
         'amount'        => 'Un nombre',
