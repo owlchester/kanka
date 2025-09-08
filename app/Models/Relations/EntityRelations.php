@@ -46,6 +46,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property Conversation $conversation
  * @property Character $character
  * @property Creature $creature
+ * @property Tag $tag
  * @property Tag[]|Collection $tags
  * @property EntityTag[]|Collection $entityTags
  * @property Post[]|Collection $posts

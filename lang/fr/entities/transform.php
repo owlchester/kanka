@@ -10,6 +10,10 @@ return [
         ],
         'success'   => '{1} :count entité transformée au nouveau type: :type.|[2,*] :count entités transformées au nouveau type: :type.',
     ],
+    'confirm'   => [
+        'checkbox'  => 'Je comprends qu\'en transformant :entity en un autre module, les éléments suivants seront perdus:',
+        'label'     => 'Confirmer la perte de données',
+    ],
     'fields'    => [
         'current'       => 'Module actuel',
         'select_one'    => 'Sélectionner un',

@@ -35,6 +35,9 @@
                     icon="trash">
                     {{ __('crud.remove') }}
                 </x-dropdowns.item>
+                @elseif (is_string($action) && view()->exists($action))
+                    @include($action)
+
                 @elseif (is_array($action))
                     @if (\Illuminate\Support\Arr::get($action, 'type') === 'dialog-ajax')
                         <x-dropdowns.item

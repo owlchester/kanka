@@ -7,6 +7,8 @@
 - [Create an attribute](#create-attribute)
 - [Update an attribute](#update-attribute)
 - [Delete an attribute](#delete-attribute)
+- [Patch attributes](#patch-attributes)
+- [Put attributes](#put-attributes)
 
 <a name="all-attributes"></a>
 ## All Attributes
@@ -135,3 +137,97 @@ To delete an attribute, use the following endpoint.
 ### Results
 
 > {success} Code 200 with JSON.
+
+<a name="patch-attributes"></a>
+## Patch attributes
+
+To PATCH attributes, use the following endpoint.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| PATCH | `entities/{entity.id}/attributes` | Default |
+
+### Body
+
+| Parameter | Type | Detail |
+| :- |   :-   |  :-  |
+| `attribute` | `array` (Required) | Array containing attributes |
+| `attribute.*.name` | `string` (Required) | Name of the attribute |
+| `attribute.*.id` | `int` | The attribute's id if it exists |
+| `attribute.*.value` | `string` | The attribute's value |
+| `attribute.*.default_order` | `integer` | The attribute's order |
+| `attribute.*.type_id` | `int` | The attribute's type ID: `1` for standard, `2` for a multiline text block, `3` for a checkbox, `4` for a section, `5` for a random number, `6` for a number, `7` for a list choice. |
+| `attribute.*.is_private` | `boolean` | If the attribute is only visible to `admin` members of the campaign |
+| `attribute.*.is_pinned` | `boolean` | If the attribute is "pinned" on the entity view |
+| `attribute.*.api_key` | `string` (max 20) | A custom field only shown in the API for you to link attributes to your system ids. |
+
+### Example
+```json
+{
+    "attribute": [
+        {
+            "id": 444,
+            "name": "Mana potions",
+            "value": 3,
+            "type_id": 1
+        },
+        {
+            "name": "Gold coins",
+            "value": 10,
+            "type_id": 1
+        }
+    ]
+}
+```
+
+### Results
+
+> {success} Code 200 with JSON body of the all of the entity's attributes.
+
+<a name="put-attributes"></a>
+## Put attributes
+
+To PUT attributes, use the following endpoint, keep in mind that any other attributes for the corresponding entity will be deleted unless they are included on the body of the request, sending an empty PUT request will result in the deletion every attribute of the entity.
+
+| Method | URI | Headers |
+| :- |   :-   |  :-  |
+| PUT | `entities/{entity.id}/attributes` | Default |
+
+### Body
+
+| Parameter | Type | Detail |
+| :- |   :-   |  :-  |
+| `attribute` | `array` (Required) | Array containing attributes |
+| `attribute.*.name` | `string` (Required) | Name of the attribute |
+| `attribute.*.id` | `int` | The attribute's id if it exists |
+| `attribute.*.value` | `string` | The attribute's value |
+| `attribute.*.default_order` | `integer` | The attribute's order |
+| `attribute.*.type_id` | `int` | The attribute's type ID: `1` for standard, `2` for a multiline text block, `3` for a checkbox, `4` for a section, `5` for a random number, `6` for a number, `7` for a list choice. |
+| `attribute.*.is_private` | `boolean` | If the attribute is only visible to `admin` members of the campaign |
+| `attribute.*.is_pinned` | `boolean` | If the attribute is "pinned" on the entity view |
+| `attribute.*.api_key` | `string` (max 20) | A custom field only shown in the API for you to link attributes to your system ids. |
+
+### Example
+```json
+{
+    "attribute": [
+        {
+            "id": 444,
+            "name": "Mana potions",
+            "value": 3,
+            "type_id": 1
+        },
+        {
+            "name": "Gold coins",
+            "value": 10,
+            "type_id": 1,
+            "is_pinned": true
+        }
+        
+    ]
+}
+```
+
+### Results
+
+> {success} Code 200 with JSON body of the all of the entity's attributes.

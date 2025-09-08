@@ -107,5 +107,5 @@ it('can\'t GET a private item as a player', function () {
 
     $response = $this->get('/api/1.0/campaigns/1/items/1');
     expect($response->status())
-        ->toBe(404);
+        ->toBe(403);
 });

@@ -7,6 +7,7 @@ use App\Models\Entity;
 use App\Models\EntityEventType;
 use App\Models\Post;
 use App\Models\Reminder;
+use App\Services\Calendars\DaysService;
 use App\Services\Calendars\MoonService;
 use App\Services\Calendars\SeasonService;
 use App\Services\Calendars\WeatherService;
@@ -77,10 +78,15 @@ class CalendarRenderer
      */
     protected array $eventEnd = [];
 
+    protected array $dayData;
+
+    protected array $remainingRecurring;
+
     public function __construct(
         protected MoonService $moonService,
         protected SeasonService $seasonService,
         protected WeatherService $weatherService,
+        protected DaysService $daysService
     ) {}
 
     public function prepare(): self
@@ -342,7 +348,7 @@ class CalendarRenderer
         $monthLength = $month['length'];
         $weekLength = 0;
         $week = [];
-        $remainingRecurring = [];
+        $this->remainingRecurring = [];
 
         // Calc julian based on previous months
         $julian = 1;
@@ -358,7 +364,7 @@ class CalendarRenderer
                 $day--;
             } else {
                 $exact = $this->getYear() . '-' . $this->getMonth() . '-' . $day;
-                $dayData = [
+                $this->dayData = [
                     'day' => $day,
                     'year' => $this->getYear(),
                     'month' => $this->getMonth(),
@@ -369,63 +375,32 @@ class CalendarRenderer
                 ];
 
                 if (isset($events[$exact])) {
-                    $dayData['events'] = $events[$exact];
+                    $this->dayData['events'] = $events[$exact];
                 }
 
                 if ($exact == $this->calendar->date) {
-                    $dayData['isToday'] = true;
+                    $this->dayData['isToday'] = true;
                 }
 
                 if ($this->moonService->has($day)) {
-                    $dayData['moons'] = $this->moonService->get($day);
+                    $this->dayData['moons'] = $this->moonService->get($day);
                 }
 
                 if ($this->weatherService->has($exact)) {
-                    $dayData['weather'] = $this->weatherService->get($exact);
+                    $this->dayData['weather'] = $this->weatherService->get($exact);
                 }
 
                 $monthday = $this->getMonth() . '-' . $day;
                 if ($this->seasonService->has($monthday)) {
-                    $dayData['season'] = $this->seasonService->get($monthday);
+                    $this->dayData['season'] = $this->seasonService->get($monthday);
                 }
 
                 // Add recurring events that span multiple days from the previous call
-                $newRemaining = [];
-                foreach ($remainingRecurring as $recurring) {
-                    if ($recurring['remaining'] == 1) {
-                        $this->eventEnd[$recurring['event']->id][] = $dayData['date'];
-                    }
-                    $dayData['events'][] = $recurring['event'];
-                    if ($recurring['remaining'] > 1) {
-                        $newRemaining[] = ['remaining' => $recurring['remaining'] - 1, 'event' => $recurring['event']];
-                    }
-                }
-                $remainingRecurring = $newRemaining;
+                $this->recurringReminders();
+                $this->addMoonReminders($day);
 
-                // Add recurring events if the moon stuff fits
-                if (! empty($dayData['moons'])) {
-                    foreach ($dayData['moons'] as $moon) {
-                        $key = $moon['id'] . '_' . $moon['type'][0];
-                        if (! isset($this->recurring[$key])) {
-                            continue;
-                        }
-                        /** @var Reminder $event */
-                        // dump'found events for ' . $key);
-                        foreach ($this->recurring[$key] as $event) {
-                            if (! $event->isPastDate($this->getYear(), $this->getMonth(), $day)) {
-                                // dd("$event->year $event->month $event->day is past {$this->getYear()} {$this->getMonth()} $day");
-                                continue;
-                            }
-                            $dayData['events'][] = $event;
 
-                            if ($event->length > 1) {
-                                $this->eventStart[$event->id][] = $dayData['date'];
-                                $remainingRecurring[] = ['remaining' => $event->length - 1, 'event' => $event];
-                            }
-                        }
-                    }
-                }
-                $week[] = $dayData;
+                $week[] = $this->dayData;
                 $julian++;
             }
 
@@ -530,13 +505,13 @@ class CalendarRenderer
             }
 
             // Add each day of the month to the day thing
-            $remainingRecurring = [];
+            $this->remainingRecurring  = [];
             $endedWeek = false;
             for ($day = 1; $day <= $monthLength; $day++) {
                 $endedWeek = false;
                 $exact = $this->getYear() . '-' . $monthNumber . '-' . $day;
                 // if ($weekNumber < 13) dump('new day ' . $weekday . ', ' . $totalDay . ', ' . $exact);
-                $dayData = [
+                $this->dayData = [
                     'day' => $day,
                     'events' => [],
                     'date' => $exact,
@@ -548,61 +523,28 @@ class CalendarRenderer
                 ];
 
                 if (isset($events[$exact])) {
-                    $dayData['events'] = $events[$exact];
+                    $this->dayData['events'] = $events[$exact];
                 }
 
                 if ($exact == $this->calendar->date) {
-                    $dayData['isToday'] = true;
+                    $this->dayData['isToday'] = true;
                 }
 
                 if ($this->moonService->has($totalDay)) {
-                    $dayData['moons'] = $this->moonService->get($totalDay);
+                    $this->dayData['moons'] = $this->moonService->get($totalDay);
                 }
                 if ($this->weatherService->has($exact)) {
-                    $dayData['weather'] = $this->weatherService->get($exact);
+                    $this->dayData['weather'] = $this->weatherService->get($exact);
                 }
 
-                // Add recurring events that span multiple days from the previous call
-                $newRemaining = [];
-                foreach ($remainingRecurring as $recurring) {
-                    if ($recurring['remaining'] == 1) {
-                        $this->eventEnd[$recurring['event']->id][] = $dayData['date'];
-                    }
-                    $dayData['events'][] = $recurring['event'];
-                    if ($recurring['remaining'] > 1) {
-                        $newRemaining[] = ['remaining' => $recurring['remaining'] - 1, 'event' => $recurring['event']];
-                    }
-                }
-                $remainingRecurring = $newRemaining;
-
-                // Add recurring events if the moon stuff fits
-                if (! empty($dayData['moons'])) {
-                    foreach ($dayData['moons'] as $moon) {
-                        $key = $moon['id'] . '_' . $moon['type'][0];
-                        if (! isset($this->recurring[$key])) {
-                            continue;
-                        }
-                        /** @var Reminder $event */
-                        // dump('found events for ' . $key);
-                        foreach ($this->recurring[$key] as $event) {
-                            if (! $event->isPastDate($this->getYear(), $this->getMonth(), $day)) {
-                                continue;
-                            }
-                            $dayData['events'][] = $event;
-
-                            if ($event->length > 1) {
-                                $this->eventStart[$event->id][] = $dayData['date'];
-                                $remainingRecurring[] = ['remaining' => $event->length - 1, 'event' => $event];
-                            }
-                        }
-                    }
-                }
+                $this->recurringReminders();
+                $this->addMoonReminders($day);
 
                 $monthday = $monthNumber . '-' . $day;
                 if ($this->seasonService->has($monthday)) {
-                    $dayData['season'] = $this->seasonService->get($monthday);
+                    $this->dayData['season'] = $this->seasonService->get($monthday);
                 }
-                $data[] = $dayData;
+                $data[] = $this->dayData;
 
                 $totalDay++;
 
@@ -1082,62 +1024,12 @@ class CalendarRenderer
      */
     protected function daysToDate(bool $includeIntercalary = true)
     {
-        // We assume that the 01 01 00 is a monday.
-        // We need to know how many days elapsed since that day, to calculate the offset (total days / week length)
-
-        $daysInAYear = $days = $leapDays = 0;
-        foreach ($this->calendar->months() as $count => $month) {
-            if (! $includeIntercalary && Arr::get($month, 'type') == 'intercalary') {
-                continue;
-            }
-            $length = $month['length'];
-            $daysInAYear += $length;
-
-            // If the month has already passed, add it to the days for this year
-            if ($count < $this->getMonth() - 1) {
-                $days += $length;
-            }
-        }
-
-        if ($this->calendar->has_leap_year && $this->getYear() >= $this->calendar->leap_year_start) {
-            // If the leap month is intercalary, we don't need to offset anything.
-            $months = $this->calendar->months();
-            $leapMonth = Arr::get($months, $this->calendar->leap_year_month - 1, false);
-            if ($leapMonth && Arr::get($leapMonth, 'type') == 'intercalary') {
-                // Nothing
-            } else {
-                // Calc the number of years that were leap years
-                //            dump("the current year (" . $this->getYear() . ") is >= to when the calendar leap year starts
-                //               (" . $this->calendar->leap_year_start . ")");
-                $yearDiffWithLeapStart = $this->getYear() - $this->calendar->leap_year_start;
-                $amountOfYears = ceil($yearDiffWithLeapStart / max(1, $this->calendar->leap_year_offset));
-                //            dump ("the amount of leap years that has elapsed since the beginning is the following: $amountOfYears");
-                //            dump ("the value is ceil((" . $this->getYear() . "-" . $this->calendar->leap_year_start . ")
-                //               / " . $this->calendar->leap_year_offset . ")");
-                if ($amountOfYears < 0) {
-                    $amountOfYears = 0;
-                }
-
-                $leapDays = $amountOfYears * $this->calendar->leap_year_amount;
-
-                //            dump ("total leap days elapsed: $leapDays");
-
-                // But if we are a leap year, we need to do the math
-                if (($this->getYear() - $this->calendar->leap_year_start) % max($this->calendar->leap_year_offset, 1) == 0) {
-                    if ($this->getMonth() > $this->calendar->leap_year_month) {
-                        // We've passed the leap month of the year
-                        $leapDays += $this->calendar->leap_year_amount;
-                    }
-                }
-            }
-        }
-
-        // Number of days since the beginning of the year
-        if (! $this->calendar->hasYearZero() && $this->getYear() > 0) {
-            return ($daysInAYear * ($this->getYear() - 1)) + $days + $leapDays;
-        }
-
-        return ($daysInAYear * $this->getYear()) + $days + $leapDays;
+        return $this->daysService
+            ->calendar($this->calendar)
+            ->intercalary($includeIntercalary)
+            ->month($this->getMonth())
+            ->year($this->getYear())
+            ->daysToDate();
     }
 
     /**
@@ -1243,5 +1135,48 @@ class CalendarRenderer
     public function isEventEndDate(Reminder $reminder, string $date): bool
     {
         return isset($this->eventEnd[$reminder->id]) && in_array($date, $this->eventEnd[$reminder->id]);
+    }
+
+    protected function recurringReminders(): void
+    {
+        // Add recurring events that span multiple days from the previous call
+        $newRemaining = [];
+        foreach ($this->remainingRecurring as $recurring) {
+            if ($recurring['remaining'] == 1) {
+                $this->eventEnd[$recurring['event']->id][] = $this->dayData['date'];
+            }
+            $this->dayData['events'][] = $recurring['event'];
+            if ($recurring['remaining'] > 1) {
+                $newRemaining[] = ['remaining' => $recurring['remaining'] - 1, 'event' => $recurring['event']];
+            }
+        }
+        $this->remainingRecurring = $newRemaining;
+    }
+
+    protected function addMoonReminders(int $day): void
+    {
+        // Add recurring events if the moon stuff fits
+        if (empty($this->dayData['moons'])) {
+            return;
+        }
+        foreach ($this->dayData['moons'] as $moon) {
+            $key = $moon['id'] . '_' . $moon['type'][0];
+            if (! isset($this->recurring[$key])) {
+                continue;
+            }
+            /** @var Reminder $event */
+            // dump('found events for ' . $key);
+            foreach ($this->recurring[$key] as $event) {
+                if (! $event->isPastDate($this->getYear(), $this->getMonth(), $day)) {
+                    continue;
+                }
+                $this->dayData['events'][] = $event;
+
+                if ($event->length > 1) {
+                    $this->eventStart[$event->id][] = $this->dayData['date'];
+                    $this->remainingRecurring[] = ['remaining' => $event->length - 1, 'event' => $event];
+                }
+            }
+        }
     }
 }

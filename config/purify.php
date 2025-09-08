@@ -208,6 +208,7 @@ return [
                 . "discord\.com/|"
                 . "discord\.gg/|"
                 . "bardly\.io/|"
+                . "view\.genially\.com/|"
                 . ')%',
         ],
 

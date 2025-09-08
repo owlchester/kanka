@@ -3,13 +3,15 @@
 namespace Tests;
 
 use App\Facades\Avatar;
+use App\Facades\BookmarkCache;
 use App\Facades\CampaignCache;
 use App\Facades\CampaignLocalization;
 use App\Facades\CharacterCache;
+use App\Facades\EntityAssetCache;
 use App\Facades\EntityCache;
 use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
-use App\Facades\Permissions;
+use App\Facades\Module;
 use App\Facades\QuestCache;
 use App\Facades\TimelineElementCache;
 use App\Facades\UserCache;
@@ -19,8 +21,10 @@ use App\Models\Bookmark;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
+use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
 use App\Models\CampaignRoleUser;
+use App\Models\CampaignSetting;
 use App\Models\CampaignStyle;
 use App\Models\CampaignUser;
 use App\Models\Character;
@@ -30,8 +34,8 @@ use App\Models\ConversationParticipant;
 use App\Models\Creature;
 use App\Models\DiceRoll;
 use App\Models\EntityAsset;
-use App\Models\EntityEvent;
 use App\Models\EntityTag;
+use App\Models\EntityType;
 use App\Models\Event;
 use App\Models\Family;
 use App\Models\Image;
@@ -49,10 +53,12 @@ use App\Models\Quest;
 use App\Models\QuestElement;
 use App\Models\Race;
 use App\Models\Relation;
+use App\Models\Reminder;
 use App\Models\Tag;
 use App\Models\Timeline;
 use App\Models\TimelineElement;
 use App\Models\TimelineEra;
+use App\Models\User;
 use App\Services\Permissions\RolePermissionService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -122,13 +128,6 @@ abstract class TestCase extends BaseTestCase
             'campaign_role_id' => 3,
             'user_id' => $user2->id,
         ]);
-        Permissions::reset();
-        /** @var RolePermissionService $service */
-        $service = app()->make(RolePermissionService::class);
-        $service->role(CampaignRole::where('id', 3)->first())->toggle(1, 1);
-        $service->role(CampaignRole::where('id', 3)->first())->toggle(10, 1);
-        $service->role(CampaignRole::where('id', 3)->first())->toggle(11, 1);
-        $service->role(CampaignRole::where('id', 3)->first())->toggle(7, 1);
 
         return $this;
     }
@@ -147,10 +146,6 @@ abstract class TestCase extends BaseTestCase
             'user_id' => $user3->id,
         ]);
 
-        /** @var RolePermissionService $service */
-        $service = app()->make(RolePermissionService::class);
-        $service->role(CampaignRole::where('id', 3)->first())->toggle(1, 1);
-
         return $this;
     }
 
@@ -160,14 +155,66 @@ abstract class TestCase extends BaseTestCase
         $this->seed(\Database\Seeders\EntityTypesTableSeeder::class);
         Storage::fake('s3');
 
-        $campaign = Campaign::factory()->create($extra);
+        $campaign = Campaign::factory()->create($extra + ['slug' => 'test-campaign']);
         CampaignLocalization::forceCampaign($campaign);
+
+        CampaignUser::create([
+            'campaign_id' => 1,
+            'user_id' => 1,
+        ]);
+
+        CampaignRole::create([
+            'campaign_id' => $campaign->id,
+            'name' => __('campaigns.members.roles.owner'),
+            'is_admin' => true,
+        ]);
+
+        $readOnlyRoles = [];
+
+        $readOnlyRoles[] = CampaignRole::create([
+            'campaign_id' => $campaign->id,
+            'name' => __('campaigns.members.roles.public'),
+            'is_public' => true,
+        ]);
+
+        $readOnlyRoles[] = CampaignRole::create([
+            'campaign_id' => $campaign->id,
+            'name' => __('campaigns.members.roles.player'),
+        ]);
+
+        $entityTypes = EntityType::default()->get();
+
+        foreach ($readOnlyRoles as $readOnlyRole) {
+            foreach ($entityTypes as $entityType) {
+                CampaignPermission::create([
+                    'campaign_role_id' => $readOnlyRole->id,
+                    'access' => true,
+                    'action' => CampaignPermission::ACTION_READ,
+                    'entity_type_id' => $entityType->id,
+                ]);
+            }
+        }
+
+        CampaignRoleUser::create([
+            'campaign_role_id' => 1,
+            'user_id' => 1,
+        ]);
+
+        $setting = new CampaignSetting([
+            'campaign_id' => $campaign->id,
+            'dice_rolls' => 0,
+            'conversations' => 0,
+        ]);
+        $setting->save();
 
         EntityCache::campaign($campaign);
         CampaignCache::campaign($campaign);
         UserCache::campaign($campaign);
         Mentions::campaign($campaign);
+        Module::campaign($campaign);
         QuestCache::campaign($campaign);
+        BookmarkCache::campaign($campaign);
+        EntityAssetCache::campaign($campaign);
         TimelineElementCache::campaign($campaign);
         CharacterCache::campaign($campaign);
         MapMarkerCache::campaign($campaign);
@@ -178,7 +225,30 @@ abstract class TestCase extends BaseTestCase
 
     public function withCampaigns(array $extra = []): self
     {
-        Campaign::factory()->create($extra);
+        Campaign::factory()->create($extra + ['slug' => 'test-campaign-2']);
+
+        CampaignUser::create([
+            'campaign_id' => 2,
+            'user_id' => 1,
+        ]);
+
+        CampaignRole::create([
+            'campaign_id' => 2,
+            'name' => __('campaigns.members.roles.owner'),
+            'is_admin' => true,
+        ]);
+
+        CampaignRoleUser::create([
+            'campaign_role_id' => 4,
+            'user_id' => 1,
+        ]);
+
+        $setting = new CampaignSetting([
+            'campaign_id' => 2,
+            'dice_rolls' => 0,
+            'conversations' => 0,
+        ]);
+        $setting->save();
 
         return $this;
     }
@@ -187,9 +257,9 @@ abstract class TestCase extends BaseTestCase
     {
         /** @var RolePermissionService $service */
         $service = app()->make(RolePermissionService::class);
-        $service->role(CampaignRole::where('id', 3)->first())->toggle(1, 1);
-        $service->role(CampaignRole::where('id', 3)->first())->toggle(1, 2);
-        $service->role(CampaignRole::where('id', 3)->first())->toggle(1, 3);
+        $service->role(CampaignRole::where('id', 3)->first())->entityType(EntityType::find(1))->toggle(1, 1);
+        $service->role(CampaignRole::where('id', 3)->first())->entityType(EntityType::find(1))->toggle(1, 2);
+        $service->role(CampaignRole::where('id', 3)->first())->entityType(EntityType::find(1))->toggle(1, 3);
 
         return $this;
     }
@@ -464,11 +534,11 @@ abstract class TestCase extends BaseTestCase
         return $this;
     }
 
-    public function withEntityEvents(array $extra = []): self
+    public function withReminders(array $extra = []): self
     {
-        EntityEvent::factory()
+        Reminder::factory()
             ->count(5)
-            ->create(['entity_id' => 1] + $extra);
+            ->create(['remindable_id' => 1, 'remindable_type' => 'App\Models\Entity'] + $extra);
 
         return $this;
     }

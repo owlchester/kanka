@@ -15,7 +15,7 @@ class Character extends Layout
      */
     public function columns(): array
     {
-        $columns = [
+        return [
             'image' => [
                 'render' => Standard::IMAGE,
             ],
@@ -48,7 +48,5 @@ class Character extends Layout
                 'render' => Standard::TAGS,
             ],
         ];
-
-        return $columns;
     }
 }

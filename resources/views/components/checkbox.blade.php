@@ -2,5 +2,8 @@
 @if (!empty($dataProperties)) @foreach ($dataProperties as $key => $val) data-{{ $key }}="{{ $val }}" @endforeach
     @endif>
     <span>{!! $slot !!}</span>
-    <p class="select-none cursor-pointer">{!! $text !!}</p>
+    <div class="select-none cursor-pointer flex flex-col gap-1">
+        <p>{!! $text !!}</p>
+        @if (isset($extra)) {!! $extra !!} @endif
+    </div>
 </label>

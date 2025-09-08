@@ -68,7 +68,7 @@ it('UPDATES a valid timeline era without a name')
     ->withTimelineEras()
     ->putJson('/api/1.0/campaigns/1/timelines/1/timeline_eras/1', ['entry' => 'Magic'])
     ->assertStatus(200)
-    ->assertJsonFragment(['entry' => 'Magic']);
+    ->assertJsonFragment(['entry' => '<p>Magic</p>']);
 
 it('DELETES a timeline era')
     ->asUser()

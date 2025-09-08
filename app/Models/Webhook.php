@@ -48,6 +48,11 @@ class Webhook extends Model
         'action',
     ];
 
+    public function url(string $sub): string
+    {
+        return 'webhooks.' . $sub;
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Tag, $this>
      */

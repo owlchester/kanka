@@ -108,7 +108,7 @@ class CampaignPolicy
 
     public function recover(User $user, Campaign $campaign): bool
     {
-        return $user->isAdmin();
+        return $user->isAdmin($campaign);
     }
 
     public function history(User $user, Campaign $campaign): bool

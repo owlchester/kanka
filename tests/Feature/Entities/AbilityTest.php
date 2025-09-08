@@ -101,5 +101,5 @@ it('can\'t GET a private ability as a player', function () {
 
     $response = $this->get('/api/1.0/campaigns/1/abilities/1');
     expect($response->status())
-        ->toBe(404);
+        ->toBe(403);
 });

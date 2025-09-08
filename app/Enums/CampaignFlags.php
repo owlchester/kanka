@@ -4,5 +4,5 @@ namespace App\Enums;
 
 enum CampaignFlags: string
 {
-    // Placeholder
+    case Gallery = 'gallery';
 }

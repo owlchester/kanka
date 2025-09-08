@@ -23,7 +23,7 @@ class RecentEntityApiController extends ApiController
 
         return Resource::collection(
             $campaign->entities()
-                ->apiFilter(request()->all())
+                ->apiFilter($campaign, request()->all())
                 ->orderBy('updated_at', 'DESC')
                 ->limit(min(max(1, request()->get('amount')), 10))
                 ->lastSync(request()->get('lastSync'))

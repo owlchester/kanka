@@ -65,6 +65,7 @@ class Cdn extends Command
         $this->info("Migrating $tableName ($column)...");
         do {
             $affected = DB::update("
+
                 UPDATE `$tableName`
                 SET `$column` = REPLACE(`$column`, ?, ?)
                 WHERE `$column` LIKE ?

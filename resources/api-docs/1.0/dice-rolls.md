@@ -1,9 +1,6 @@
 # Dice Rolls
 
----
-
 - [All Dice Rolls](#all-dice-rolls)
-
 - [Single Dice Roll](#dice-roll)
 - [Create a Dice Roll](#create-dice-roll)
 - [Update a Dice Roll](#update-dice-roll)

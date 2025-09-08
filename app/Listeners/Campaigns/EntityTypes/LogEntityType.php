@@ -22,6 +22,10 @@ class LogEntityType
      */
     public function handle(EntityTypeCreated|EntityTypeUpdated|EntityTypeDeleted|EntityTypeToggled $event): void
     {
+        if (! isset($event->entityType->campaign_id) && ! isset($event->campaign)) {
+            return;
+        }
+
         $action = match (true) {
             $event instanceof EntityTypeCreated => 'created',
             $event instanceof EntityTypeUpdated => 'updated',

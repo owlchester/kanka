@@ -108,6 +108,32 @@
                             <div class="permission-count">
                                 {{ number_format($stats['permissions']['roles']) }}
                             </div>
+
+                            <div class="permission-name">
+                                {{ __('campaigns/stats.fields.words') }}
+                            </div>
+                            <div class="permission-count">
+                                {{ number_format(\Illuminate\Support\Arr::get($stats, 'words.total', 0)) }}
+                            </div>
+
+                            <div class="permission-name">
+                                {{ __('campaigns/stats.fields.from-entities') }}
+                            </div>
+                            <div class="permission-count">
+                                {{ number_format(\Illuminate\Support\Arr::get($stats, 'words.entities', 0)) }}
+                            </div>
+                            <div class="permission-name">
+                                {{ __('campaigns/stats.fields.from-posts') }}
+                            </div>
+                            <div class="permission-count">
+                                {{ number_format(\Illuminate\Support\Arr::get($stats, 'words.posts', 0)) }}
+                            </div>
+                            <div class="permission-name">
+                                {{ __('campaigns/stats.fields.from-elements') }}
+                            </div>
+                            <div class="permission-count">
+                                {{ number_format(\Illuminate\Support\Arr::get($stats, 'words.elements', 0)) }}
+                            </div>
                         </div>
                     </x-box>
                 </div>

@@ -7,13 +7,26 @@ return new class extends Migration
 {
     public function up(): void
     {
-        DB::statement('
-            UPDATE items
-            JOIN entities ON entities.entity_id = items.character_id
-                AND entities.type_id = 1
-            SET items.creator_id = entities.id
-            WHERE items.character_id IS NOT NULL
-        ');
+        if (Schema::getConnection()->getDriverName() == 'sqlite') {
+            DB::statement('
+                UPDATE items
+                SET creator_id = (
+                    SELECT entities.id
+                    FROM entities
+                    WHERE entities.entity_id = items.character_id
+                    AND entities.type_id = 1
+                )
+                WHERE character_id IS NOT NULL
+            ');
+        } else {
+            DB::statement('
+                UPDATE items
+                JOIN entities ON entities.entity_id = items.character_id
+                    AND entities.type_id = 1
+                SET items.creator_id = entities.id
+                WHERE items.character_id IS NOT NULL
+            ');
+        }
     }
 
     public function down(): void
