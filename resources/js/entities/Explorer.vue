@@ -516,7 +516,7 @@ const hasPermissions = () => {
 
 const gridLayout = () => {
     if (isGrid()) {
-        return "entities-grid flex flex-wrap gap-3 lg:gap-5"
+        return "entities-grid flex flex-wrap gap-3 lg:gap-5 w-full"
     }
     return "entities-grid flex flex-col gap-1 w-full"
 }
