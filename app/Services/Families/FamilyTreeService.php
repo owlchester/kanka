@@ -105,7 +105,9 @@ class FamilyTreeService
         if (! $familyTree) {
             $familyTree = new FamilyTree;
             $familyTree->family_id = $this->family->id;
-            $familyTree->save();
+            if (isset($this->user)) {
+                $familyTree->save();
+            }
         }
         $this->familyTree = $familyTree;
     }
