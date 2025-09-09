@@ -38,7 +38,7 @@ class TooltipController extends Controller
         $tooltip = view('entities.components.tooltip')
             ->with('campaign', $campaign)
             ->with('entity', $entity)
-            ->with('tags', $entity->visibleTags)
+            ->with('tags', $entity->visibleTags())
             ->with('hasImage', $hasImage)
             ->with('tagClasses', $tagClasses)
             ->with('render', $render)

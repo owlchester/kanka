@@ -28,7 +28,7 @@ To differenciate between the three types of assets, use the following reference
 
 You can get a list of all the assets of an entity by using the following endpoint.
 
-> {warning} Don't forget that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
+> {warning} Remember that all endpoints documented here need to be prefixed with `{{version}}/campaigns/{campaign.id}/`.
 
 
 | Method | URI | Headers |

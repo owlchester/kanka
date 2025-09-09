@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\StoreApiToken;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Laravel\Passport\Client;
 use Laravel\Passport\Token;
 
@@ -24,24 +25,31 @@ class ApiController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tokens = Token::with('client') // eager-load here
-            ->where('user_id', auth()->id())
+        $tokens = $request->user()->tokens()
+            ->with('client')
             ->where('revoked', false)
-            ->where('expires_at', '>', Carbon::now()->toDateString())
+            ->where('expires_at', '>', Date::now())
             ->orderByDesc('created_at')
-            ->paginate(config('limits.pagination'), ['*'], 'tokensPage');
+            ->get();
 
         // Retrieving all the user's connections to third-party OAuth app clients.
         $applications = $tokens
-            ->reject(fn (Token $token) => $token->client->firstParty())
+            ->reject(fn (Token $token): bool => $token->client->revoked || $token->client->firstParty())
             ->values();
 
         $clients = Client::where('user_id', auth()->user()->id)
             ->where('revoked', false)
             ->orderByDesc('created_at')
             ->paginate(config('limits.pagination'), ['*'], 'clientsPage');
+
+        $tokens = $request->user()->tokens()
+            ->with('client')
+            ->where('revoked', false)
+            ->where('expires_at', '>', Date::now())
+            ->orderByDesc('created_at')
+            ->paginate(config('limits.pagination'), ['*'], 'tokensPage');
 
         return view('settings.api', compact('tokens', 'clients', 'applications'));
     }

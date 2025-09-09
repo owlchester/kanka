@@ -19,7 +19,7 @@ return [
         'title' => 'How to use filters',
     ],
     'link'              => [
-        'description'   => 'You can easily link to other entities in your campaign using the following shorthands.',
+        'description'   => 'You can easily link to other entities in the campaign using the following shorthands.',
     ],
     'public'            => 'Watch a tutorial video on Youtube explaining public campaigns.',
     'troubleshooting'   => [

@@ -13,9 +13,13 @@ return [
     ],
     'cached'        => 'These statistics are recalculated every :amount hours.',
     'fields'        => [
-        'created'   => 'Created on',
-        'creator'   => 'Created by',
-        'general'   => 'General',
+        'created'       => 'Created on',
+        'creator'       => 'Created by',
+        'from-elements' => 'From elements',
+        'from-entities' => 'From entities',
+        'from-posts'    => 'From posts',
+        'general'       => 'General',
+        'words'         => 'Total words',
     ],
     'title2'        => 'Statistics',
     'titles'        => [

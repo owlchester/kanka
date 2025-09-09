@@ -13,6 +13,7 @@ return [
         'toggle_privacy'    => 'Privé/Public',
     ],
     'errors'        => [
+        'api'                   => 'Données invalides',
         'loop'                  => 'Il y a une boucle sur la calculation de cet attribut!',
         'no_attribute_selected' => 'Sélectionner d\'abord un ou plusieurs attributs.',
         'too_many_v2'           => 'Le nombre maximum de champs est atteint (:count/:max). Supprimer d\'abord certains attributs avant de pouvoir en ajouter d\'autres.',

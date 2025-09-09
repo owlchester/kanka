@@ -13,6 +13,7 @@ return [
         'find-plugins'      => 'Trouver des plugins',
         'import'            => 'Importer',
         'update'            => 'Mettre à jour le plugin',
+        'update-to'         => 'Mettre à jour à la version :version',
         'update_available'  => 'Mise à jour disponible!',
     ],
     'bulks'         => [
@@ -56,10 +57,12 @@ return [
         'updated'               => 'Les entités suivantes ont été modifiées:',
     ],
     'info'          => [
-        'helper'    => 'Dès qu\'un plugin a une nouvelle version, tu peux mettre à jour le plugin à la version la plus récente.',
-        'title'     => 'Mises à jour du plugin :plugin',
-        'updates'   => 'Mises à jour',
-        'versions'  => 'Versions',
+        'description'   => 'Affichage des dernières mises à jour du plugin :plugin.',
+        'helper'        => 'Dès qu\'un plugin a une nouvelle version, tu peux mettre à jour le plugin à la version la plus récente.',
+        'installed'     => 'Installé',
+        'title'         => 'Mises à jour du plugin :plugin',
+        'updates'       => 'Mises à jour',
+        'versions'      => 'Versions',
     ],
     'pitch'         => 'Installes et gères les plugins du :marketplace.',
     'status'        => [

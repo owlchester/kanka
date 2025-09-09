@@ -16,7 +16,7 @@ $imageClass = (!empty($imageVisibility) ? 'visibility-' . strtolower($imageVisib
 $addTagsUrl = route('entity.tags-add', [$campaign, $entity]);
 
 /** @var \App\Models\Tag[] $entityTags */
-$entityTags = $entity->visibleTags;
+$entityTags = $entity->visibleTags();
 
 $buttonsClass = 1;
 if ($entity->isCharacter() && $entity->child->is_dead) {
@@ -203,7 +203,7 @@ $breadcrumb = Breadcrumb::campaign($campaign)->entity($entity)->list();
         @if($entityTags->count() > 0)
             @foreach ($entityTags as $tag)
                 @if (!$tag->entity) @continue @endif
-                <a href="{{ route('tags.show', [$campaign, $tag]) }}" data-toggle="tooltip-ajax"
+                <a href="{{ route('entities.show', [$campaign, $tag->entity]) }}" data-toggle="tooltip-ajax"
                    data-id="{{ $tag->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $tag->entity->id]) }}"
                    data-tag-slug="{{ $tag->slug }}"
                 >

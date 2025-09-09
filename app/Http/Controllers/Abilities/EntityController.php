@@ -29,7 +29,7 @@ class EntityController extends Controller
 
         $this->rows = $ability
             ->entities()
-            ->with(['image', 'visibleTags'])
+            ->with(['image', 'tags'])
             ->sort(request()->only(['o', 'k']), ['name' => 'asc'])
             ->paginate();
 

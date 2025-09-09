@@ -3,15 +3,12 @@
 return [
     'actions'           => [
         'add'               => 'Add Item',
-        'generate'          => 'Generate inventory',
         'copy_from'         => 'Copy from',
         'copy_inventory'    => 'Copy inventory',
+        'generate'          => 'Generate',
     ],
     'copy'              => [
         'helper'    => 'Copy the whole inventory of an entity to :name.',
-    ],
-    'generate'              => [
-        'helper'    => 'Generate inventory for :name.',
     ],
     'create'            => [
         'helper'        => 'Add an item to :name\'s inventory. It can optionally be linked to an existing object from the campaign.',
@@ -30,11 +27,15 @@ return [
         'description'           => 'Description',
         'is_equipped'           => 'Equipped',
         'item_amount'           => 'Number of Items',
-        'name'                  => 'Name',
         'match_all'             => 'Match all tags',
+        'name'                  => 'Name',
         'position'              => 'Position',
         'qty'                   => 'QTY',
         'replace'               => 'Replace Inventory',
+    ],
+    'generate'          => [
+        'helper'    => 'Generate an inventory for :name based on existing items in the campaign.',
+        'title'     => 'Generate inventory',
     ],
     'helpers'           => [
         'amount'                => 'Number of items',
@@ -42,7 +43,7 @@ return [
         'description'           => 'Add a custom description to the item',
         'is_equipped'           => 'Mark this item as being equipped.',
         'name'                  => 'Give the name to the item. A name is required if no object is selected',
-        'replace'   => 'Replaces current inventory with the generated one',
+        'replace'               => 'Replaces current inventory with the generated one',
     ],
     'placeholders'      => [
         'amount'        => 'Any amount',

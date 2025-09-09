@@ -5,7 +5,7 @@
  * @var \App\Models\Organisation $model
  */
 $allMembers = false;
-$model = $model ?? $entity->child;
+$model = $entity->child;
 $datagridOptions = [
     $campaign,
     $model->id,
@@ -22,7 +22,7 @@ if (!empty($rows)) {
     $datagridCall = [];
 }
 $direct = number_format($model->members()->has('character')->count());
-$all = number_format($model->allMembers()->count());
+$all = number_format($model->allMembersCount());
 ?>
 <div class="flex gap-2 items-center justify-between flex-wrap">
     <h3 class="members-title">
