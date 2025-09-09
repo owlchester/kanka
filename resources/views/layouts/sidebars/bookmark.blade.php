@@ -1,7 +1,10 @@
 <?php /** @var \App\Models\Bookmark $bookmark */
 $bookmark->setRelation('campaign', $campaign);
 ?>
-@if ($bookmark->dashboard && $campaign->boosted() && $bookmark->isValidDashboard())
+@auth
+    @php \App\Facades\Dashboard::user(auth()->user()); @endphp
+@endif
+@if ($bookmark->dashboard && $campaign->boosted() && $bookmark->isValidDashboard($campaign))
     <li class="{{ $css ?? null }} p-0 m-0 subsection sidebar-bookmark sidebar-bookmark-{{ $bookmark->position }} {{ $bookmark->customClass($campaign) }}">
         <x-sidebar.bookmark :bookmark="$bookmark" :campaign="$campaign" />
     </li>
