@@ -12,7 +12,7 @@ use Illuminate\Console\Command;
 use Prism\Prism\Prism;
 use Prism\Prism\Enums\Provider;
 
-class Search extends Command
+class SearchFeed extends Command
 {
     protected $signature = 'prism:searchFeed {prompt : The question to ask Bragi} {id : The id of the campaign where the search is performed}';
     protected $description = 'Ask a question to Bragi based on previously indexed data';
@@ -33,7 +33,7 @@ class Search extends Command
         // Step 2: Fetch the top $neighbours nearest embeddings
         $neighbours = 3; //for test case since we only have a few
         $nearestVectors = Embedding::where('campaign_id', $campaignId)->nearest($question->embeddings[0]->embedding, $neighbours)->get()->groupBy('parent_type');
-    
+
 
         $text = '';
         foreach ($nearestVectors as $class => $vectors) {
@@ -71,7 +71,7 @@ class Search extends Command
                 $eras = TimelineEra::whereIn('id', $ids)->with(['timeline', 'timeline.campaign'])->get();
                 Module::campaign($eras[1]->campaign);
 
-            
+
             } elseif ($class == 'App\Models\QuestElement' ) {
                 $elements = QuestElement::whereIn('id', $ids)->with(['quest', 'quest.campaign'])->get();
                 Module::campaign($elements[1]->campaign);
