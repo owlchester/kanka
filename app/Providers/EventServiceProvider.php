@@ -140,14 +140,17 @@ class EventServiceProvider extends ServiceProvider
         StyleCreated::class => [
             LogStyle::class,
             ClearStylesCache::class,
+            ClearCampaignCache::class,
         ],
         StyleUpdated::class => [
             LogStyle::class,
             ClearStylesCache::class,
+            ClearCampaignCache::class,
         ],
         StyleDeleted::class => [
             LogStyle::class,
             ClearStylesCache::class,
+            ClearCampaignCache::class,
         ],
         SettingsSaved::class => [
             ClearCampaignCache::class,
