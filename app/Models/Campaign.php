@@ -202,18 +202,6 @@ class Campaign extends Model
     }
 
     /**
-     * Determine if the user is in the campaign
-     */
-    public function userIsMember(?User $user = null): bool
-    {
-        if (empty($user)) {
-            $user = auth()->user();
-        }
-
-        return CampaignCache::campaign($this)->members()->where('id', $user->id)->count() == 1;
-    }
-
-    /**
      * Determine if a campaign has a module enabled or not
      */
     public function enabled(string|EntityType $module): bool

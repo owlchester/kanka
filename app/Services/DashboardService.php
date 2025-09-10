@@ -72,7 +72,7 @@ class DashboardService
         $available = $this->availableDashboards();
         $dashboards = [];
 
-        if (! isset($this->user) || ! $this->campaign->userIsMember()) {
+        if (! isset($this->user) || ! $this->user->can('member', $this->campaign)) {
             foreach ($available['public'] as $role) {
                 $dashboards[] = $role->dashboard;
             }
@@ -255,7 +255,7 @@ class DashboardService
     protected function defaultDashboard(array $available)
     {
         // Unlogged or not a member
-        if (! isset($this->user) || ! $this->campaign->userIsMember()) {
+        if (! isset($this->user) || ! $this->user->can('member', $this->campaign)) {
             foreach ($available['public'] as $role) {
                 if ($role->is_default) {
                     return $role->dashboard;
@@ -301,7 +301,7 @@ class DashboardService
     protected function validateDashboard(array $available, int $dashboard)
     {
         $filtered = false;
-        if (! isset($this->user) || ! $this->campaign->userIsMember()) {
+        if (! isset($this->user) || ! $this->user->can('member', $this->campaign)) {
             $filtered = $available['public'];
         } elseif ($this->user) {
             $filtered = $available['admin'];

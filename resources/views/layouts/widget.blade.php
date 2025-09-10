@@ -42,7 +42,7 @@ $showSidebar = (!empty($sidebar) && $sidebar === 'settings') || !empty($campaign
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
 </head>
 {{-- Hide the sidebar if the there is no current campaign --}}
-<body class="@if(isset($entity)){{ $entity->bodyClasses() }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif " @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && $campaign->userIsMember(auth()->user()) ? 1 : 0 }}" @endif>
+<body class="@if(isset($entity)){{ $entity->bodyClasses() }}@endif @if(isset($bodyClass)){{ $bodyClass }}@endif @if (!empty($campaign) && auth()->check() && auth()->user()->isAdmin()) is-admin @endif @if(!app()->isProduction()) env-{{ app()->environment() }} @endif " @if(!empty($specificTheme)) data-theme="{{ $specificTheme }}" @endif @if (!empty($campaign)) data-user-member="{{ auth()->check() && auth()->user()->can('member', $campaign) ? 1 : 0 }}" @endif>
 
     <div id="app" class="wrapper ">
         <div class="content-wrapper">

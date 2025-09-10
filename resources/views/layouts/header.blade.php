@@ -23,7 +23,7 @@
         @endif
         </div>
 
-        @if (auth()->check() && !empty($campaign) && $campaign->userIsMember() && (!isset($qq) || $qq))
+        @if (auth()->check() && !empty($campaign) && auth()->user()->can('member', $campaign) && (!isset($qq) || $qq))
         <div class="flex-none">
             <a href="#" data-url="{{ route('entity-creator.selection', $campaign) }}" data-toggle="dialog" data-target="primary-dialog" class="quick-creator-button btn2 btn-primary btn-sm"
             tabindex="0">
