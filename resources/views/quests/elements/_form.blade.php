@@ -19,7 +19,7 @@
         <input type="text" name="role" value="{{ old('role', $model->role ?? null) }}" spellcheck="true" maxlength="45" autocomplete="off" list="quest-element-roles" />
         <div class="hidden">
             <datalist id="quest-element-roles">
-                @foreach (\App\Facades\QuestCache::roleSuggestion() as $name)
+                @foreach (\App\Facades\QuestCache::campaign($campaign)->roleSuggestion() as $name)
                     <option value="{{ $name }}">{{ $name }}</option>
                 @endforeach
             </datalist>

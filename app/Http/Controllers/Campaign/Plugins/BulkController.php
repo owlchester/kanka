@@ -52,7 +52,7 @@ class BulkController extends Controller
                 $count++;
             }
         }
-        CampaignCache::clearTheme();
+        CampaignCache::campaign($campaign)->clearTheme();
 
         return redirect()
             ->route('campaign_plugins.index', $campaign)

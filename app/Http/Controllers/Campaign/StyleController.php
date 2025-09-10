@@ -94,7 +94,7 @@ class StyleController extends Controller
         $style = new CampaignStyle($request->only('name', 'content', 'is_enabled'));
         $style->campaign_id = $campaign->id;
         $style->save();
-        CampaignCache::clearStyles()->clear();
+        CampaignCache::campaign($campaign)->clearStyles()->clear();
 
         if ($request->has('submit-update')) {
             return redirect()
@@ -125,7 +125,7 @@ class StyleController extends Controller
         $this->authorize('update', $campaign);
 
         $campaignStyle->update($request->only('name', 'content', 'is_enabled'));
-        CampaignCache::clearStyles()->clear();
+        CampaignCache::campaign($campaign)->clearStyles()->clear();
 
         if ($request->has('submit-update')) {
             return redirect()
@@ -143,7 +143,7 @@ class StyleController extends Controller
         $this->authorize('update', $campaign);
 
         $campaignStyle->delete();
-        CampaignCache::clearStyles()->clear();
+        CampaignCache::campaign($campaign)->clearStyles()->clear();
 
         return redirect()
             ->route('campaign_styles.index', $campaign)
@@ -210,7 +210,7 @@ class StyleController extends Controller
                 $count++;
             }
         }
-        CampaignCache::clearStyles()->clear();
+        CampaignCache::campaign($campaign)->clearStyles()->clear();
 
         return redirect()
             ->route('campaign_styles.index', $campaign)
@@ -231,7 +231,7 @@ class StyleController extends Controller
             $style->update();
             $order++;
         }
-        CampaignCache::clearStyles()->clear();
+        CampaignCache::campaign($campaign)->clearStyles()->clear();
 
         $order--;
 
@@ -257,7 +257,7 @@ class StyleController extends Controller
 
         $campaignStyle->update(['is_enabled' => ! $campaignStyle->is_enabled]);
 
-        CampaignCache::clearStyles()->clear();
+        CampaignCache::campaign($campaign)->clearStyles()->clear();
 
         return redirect()->route('campaign_styles.index', $campaign)
             ->with(

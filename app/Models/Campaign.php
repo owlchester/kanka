@@ -210,7 +210,7 @@ class Campaign extends Model
             $user = auth()->user();
         }
 
-        return CampaignCache::members()->where('id', $user->id)->count() == 1;
+        return CampaignCache::campaign($this)->members()->where('id', $user->id)->count() == 1;
     }
 
     /**
@@ -446,7 +446,7 @@ class Campaign extends Model
      */
     public function hasEditingWarning(): bool
     {
-        $members = CampaignCache::members();
+        $members = CampaignCache::campaign($this)->members();
 
         return $members->count() > 1;
     }

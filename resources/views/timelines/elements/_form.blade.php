@@ -57,7 +57,7 @@ if (!empty($era)) {
         <input type="text" name="icon" value="{{ old('icon', $source->icon ?? $model->icon ?? null) }}" placeholder="fa-solid fa-gem, ra ra-sword" class="w-full" autocomplete="off" data-paste="fontawesome" list="timeline-element-icon-list" maxlength="45" @if (!$campaign->boosted()) disabled="disabled" @endif />
         <div class="hidden">
             <datalist id="timeline-element-icon-list">
-                @foreach (\App\Facades\TimelineElementCache::iconSuggestion() as $icon)
+                @foreach (\App\Facades\TimelineElementCache::campaign($campaign)->iconSuggestion() as $icon)
                     <option value="{{ $icon }}">{{ $icon }}</option>
                 @endforeach
             </datalist>

@@ -91,7 +91,7 @@ class CampaignPolicy
         return
             $campaign->userIsMember($user) &&
             $user->isAdmin() &&
-            CampaignCache::members()->count() == 1;
+            CampaignCache::campaign($campaign)->members()->count() == 1;
     }
 
     public function invite(User $user, Campaign $campaign): bool

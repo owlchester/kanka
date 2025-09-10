@@ -2,15 +2,17 @@
 
 namespace App\Observers;
 
+use App\Events\Campaigns\SettingsSaved;
 use App\Facades\CampaignCache;
+use App\Models\CampaignSetting;
 
 /**
  * Class CampaignSettingObserver
  */
 class CampaignSettingObserver
 {
-    public function saved()
+    public function saved(CampaignSetting $campaignSetting)
     {
-        CampaignCache::clear();
+        SettingsSaved::dispatch($campaignSetting->campaign, auth()->user());
     }
 }

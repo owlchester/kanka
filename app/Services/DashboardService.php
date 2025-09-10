@@ -246,7 +246,7 @@ class DashboardService
      */
     protected function availableDashboards(): array
     {
-        return CampaignCache::dashboards();
+        return CampaignCache::campaign($this->campaign)->dashboards();
     }
 
     /**

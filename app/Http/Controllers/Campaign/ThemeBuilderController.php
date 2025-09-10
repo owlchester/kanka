@@ -36,7 +36,7 @@ class ThemeBuilderController extends Controller
             ->campaign($campaign)
             ->save($request->get('config'));
 
-        CampaignCache::clearStyles()->clear();
+        CampaignCache::campaign($campaign)->clearStyles()->clear();
 
         return redirect()
             ->route('campaign_styles.index', $campaign)
@@ -53,7 +53,7 @@ class ThemeBuilderController extends Controller
                 ->route('campaign_styles.index', $campaign);
         }
         $theme->delete();
-        CampaignCache::clearStyles()->clear();
+        CampaignCache::campaign($campaign)->clearStyles()->clear();
 
         return redirect()
             ->route('campaign_styles.index', $campaign)

@@ -9,7 +9,7 @@ $fieldname = $iconFieldName ?? 'icon';
         <input type="text" name="{{ $fieldname }}" value="{{ !isset($bulk) ? old($fieldname, $source->{$fieldname} ?? $model->icon ?? null) : null }}" placeholder="{{ $placeholder ?? 'fa-regular fa-users' }}" list="link-icon-list" class="w-full" autocomplete="off" data-paste="fontawesome" maxlength="45" />
         <div class="hidden">
             <datalist id="link-icon-list">
-                @foreach ($suggestions ?? \App\Facades\EntityAssetCache::iconSuggestion() as $icon)
+                @foreach ($suggestions ?? \App\Facades\EntityAssetCache::campaign($campaign)->iconSuggestion() as $icon)
                     <option value="{{ $icon }}">{{ $icon }}</option>
                 @endforeach
             </datalist>

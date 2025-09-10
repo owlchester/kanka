@@ -30,6 +30,7 @@ use App\Events\Campaigns\Roles\RoleCreated;
 use App\Events\Campaigns\Roles\RoleDeleted;
 use App\Events\Campaigns\Roles\RoleUpdated;
 use App\Events\Campaigns\Saved;
+use App\Events\Campaigns\SettingsSaved;
 use App\Events\Campaigns\Sidebar\SidebarReset;
 use App\Events\Campaigns\Sidebar\SidebarSaved;
 use App\Events\Campaigns\Styles\StyleCreated;
@@ -147,6 +148,9 @@ class EventServiceProvider extends ServiceProvider
         StyleDeleted::class => [
             LogStyle::class,
             ClearStylesCache::class,
+        ],
+        SettingsSaved::class => [
+            ClearCampaignCache::class,
         ],
         Accepted::class => [
             LogApplication::class,
