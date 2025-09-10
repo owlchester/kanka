@@ -83,7 +83,13 @@ const startProcess = (form, data) => {
             form.classList.remove('hidden');
             fileProgress.classList.add('hidden');
 
-            if (err.response && err.response.data.message) {
+            if (err.status === 413) {
+                window.showToast("File is too big for our servers to handle.", 'error');
+            }
+            else if (err.code == 'ERR_NETWORK') {
+                window.showToast("Network error, the upload server seems to be down.", 'error');
+            }
+            else if (err.response && err.response.data.errors) {
                 //fileError.text(err.response.data.message).fadeToggle();
 
                 let errors = err.response.data.errors;
