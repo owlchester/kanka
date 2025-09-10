@@ -151,12 +151,21 @@ class CampaignPolicy
         if (Identity::isImpersonating()) {
             return false;
         }
-        if (! $this->member($user, $campaign)) {
+        if (!$this->member($user, $campaign)) {
             return false;
         }
 
-        // If we are not the owner, or that we are an owner but there are other owners
-        return ! $user->isAdmin() || $campaign->adminCount() > 1;
+        // If we are not the owner
+        if (!$user->isAdmin()) {
+            return true;
+        }
+
+        // If there are other admins
+        return $campaign->roles()
+                ->admin()
+                ->first()
+                ->users
+                ->count() > 1;
     }
 
     /**

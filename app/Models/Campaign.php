@@ -190,18 +190,6 @@ class Campaign extends Model
     }
 
     /**
-     * Count the number of admins in a campaign. Used by the CampaignPolicy
-     */
-    public function adminCount(): int
-    {
-        return $this->roles()
-            ->admin()
-            ->first()
-            ->users
-            ->count();
-    }
-
-    /**
      * Determine if a campaign has a module enabled or not
      */
     public function enabled(string|EntityType $module): bool
@@ -213,7 +201,7 @@ class Campaign extends Model
             $module = 'entity_attributes';
         }
 
-        return (bool) CampaignCache::settings()->get($module);
+        return (bool) CampaignCache::campaign($this)->settings()->get($module);
     }
 
     /**
@@ -302,15 +290,6 @@ class Campaign extends Model
     public function getHideHistoryAttribute()
     {
         return Arr::get($this->ui_settings, 'hide_history', false);
-    }
-
-    public function maxEntityFiles(): int
-    {
-        if ($this->boosted()) {
-            return config('limits.campaigns.files.premium');
-        }
-
-        return config('limits.campaigns.files.standard');
     }
 
     public function existingDefaultImages(): array

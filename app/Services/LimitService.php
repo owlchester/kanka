@@ -63,4 +63,13 @@ class LimitService
 
         return ceil($size / 1024) . 'MiB';
     }
+
+    public function entityFiles(): int
+    {
+        if ($this->campaign->boosted()) {
+            return config('limits.campaigns.files.premium');
+        }
+
+        return config('limits.campaigns.files.standard');
+    }
 }

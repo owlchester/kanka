@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Enums\Permission;
 use App\Facades\EntityPermission;
+use App\Facades\Limit;
 use App\Facades\UserCache;
 use App\Models\Campaign;
 use App\Models\Entity;
@@ -113,6 +114,6 @@ class EntityPolicy
 
     public function addFile(User $user, Entity $entity, Campaign $campaign): bool
     {
-        return $entity->assets()->file()->count() < $campaign->maxEntityFiles();
+        return $entity->assets()->file()->count() < Limit::campaign($campaign)->entityFiles();
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Entity;
 
 use App\Exceptions\TranslatableException;
+use App\Facades\Limit;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAsset;
 use App\Http\Requests\StoreEntityAssets;
@@ -206,7 +207,7 @@ class AssetController extends Controller
         if (! auth()->user()->can('addFile', [$entity, $campaign])) {
             return view('entities.pages.files.max')
                 ->with('campaign', $campaign)
-                ->with('max', $campaign->maxEntityFiles());
+                ->with('max', Limit::campaign($campaign)->entityFiles());
         }
 
         return view('entities.pages.files.create')
