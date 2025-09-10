@@ -30,7 +30,7 @@
                 @if (isset($model) && $model->boosted())
                     <input type="hidden" name="is_discreet" value="0" />
                     <x-checkbox :text="__('campaigns.helpers.is_discreet', ['public-campaigns' => '<a href=\'https://kanka.io/campaigns\'>' . __('footer.public-campaigns') . '</a>'])">
-                        <input type="checkbox" name="is_discreet" value="1" @if (old('is_discreet', $model->is_discreet ?? false)) checked="checked" @endif />
+                        <input type="checkbox" name="is_discreet" value="1" @if (old('is_discreet', $model->isDiscreet() ?? false)) checked="checked" @endif />
                     </x-checkbox>
                 @else
                     <x-checkbox :text="__('campaigns.helpers.is_discreet_locked', ['public-campaigns' => '<a href=\'https://kanka.io/campaigns\'>' . __('footer.public-campaigns') . '</a>'])">

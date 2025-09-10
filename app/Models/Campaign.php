@@ -262,11 +262,6 @@ class Campaign extends Model
         return Mentions::parseForEdit($this, 'excerpt');
     }
 
-    public function defaultToNested(): bool
-    {
-        return (bool) Arr::get($this->ui_settings, 'nested', false) == 'all';
-    }
-
     public function defaultDescendantsMode(): Descendants
     {
         return Descendants::from(Arr::get($this->ui_settings, 'descendants', 0));
@@ -435,7 +430,7 @@ class Campaign extends Model
      */
     public function follower(): int
     {
-        if (config('app.debug') && request()->has('_followers')) {
+        if (app()->hasDebugModeEnabled() && request()->has('_followers')) {
             return request()->get('_followers');
         }
 
