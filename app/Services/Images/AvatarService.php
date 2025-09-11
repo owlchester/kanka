@@ -146,7 +146,7 @@ class AvatarService
         }
 
         $cloudfront = config('filesystems.disks.cloudfront.url');
-        if ($this->campaign->boosted() && Arr::has(CampaignCache::defaultImages(), $this->entity->entityType->code)) {
+        if ($this->campaign->boosted() && Arr::has(CampaignCache::campaign($this->campaign)->defaultImages(), $this->entity->entityType->code)) {
             $url = Img::crop($this->width, $this->height)
                 ->url(CampaignCache::defaultImages()[$this->entity->entityType->code]);
 

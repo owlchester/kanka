@@ -62,7 +62,7 @@ $boxClass = 'rounded p-5 text-center bg-box shadow-xs flex items-center justify-
         ajax
     ></x-infoBox>
 
-    @if (auth()->check() && $campaign->userIsMember())
+    @can('member', $campaign)
         <x-infoBox
             title="{{ __('campaigns/overview.member.title') }}"
             icon="fa-regular fa-clock text-neutral-content"

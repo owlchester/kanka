@@ -12,7 +12,7 @@ class CssController extends Controller
     {
         $css = null;
         if ($campaign->boosted()) {
-            $css = CampaignCache::themes();
+            $css = CampaignCache::campaign($campaign)->themes();
         }
 
         $response = \Illuminate\Support\Facades\Response::make($css);

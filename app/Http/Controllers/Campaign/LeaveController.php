@@ -10,19 +10,16 @@ use Exception;
 
 class LeaveController extends Controller
 {
-    protected LeaveService $leaveService;
-
-    protected CampaignService $campaignService;
-
-    public function __construct(LeaveService $leaveService, CampaignService $campaignService)
-    {
+    public function __construct(
+        protected LeaveService $leaveService,
+        protected CampaignService $campaignService,
+    ) {
         $this->middleware('auth');
-        $this->leaveService = $leaveService;
-        $this->campaignService = $campaignService;
     }
 
     public function index(Campaign $campaign)
     {
+        $this->authorize('member', $campaign);
         return view('campaigns.leave')->with('campaign', $campaign);
     }
 

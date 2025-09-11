@@ -34,7 +34,7 @@ $groups[-1] = __('crud.filters.options.none');
 
         <div class="hidden">
             <datalist id="map-marker-icon-list">
-                @foreach (\App\Facades\MapMarkerCache::iconSuggestion() as $icon)
+                @foreach (\App\Facades\MapMarkerCache::campaign($campaign)->iconSuggestion() as $icon)
                     <option value="{{ $icon }}">{{ $icon }}</option>
                 @endforeach
             </datalist>

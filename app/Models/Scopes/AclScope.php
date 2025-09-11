@@ -154,7 +154,7 @@ class AclScope implements Scope
         $campaign = CampaignLocalization::getCampaign();
         $table = $model->getTable();
         // Guest, or not part of the campaign either, just get the all visibility
-        if (auth()->guest() || ! $campaign->userIsMember()) {
+        if (! auth()->user()->can('member', $campaign)) {
             return $query->where($table . '.visibility_id', Visibility::All);
         }
 

@@ -190,30 +190,6 @@ class Campaign extends Model
     }
 
     /**
-     * Count the number of admins in a campaign. Used by the CampaignPolicy
-     */
-    public function adminCount(): int
-    {
-        return $this->roles()
-            ->admin()
-            ->first()
-            ->users
-            ->count();
-    }
-
-    /**
-     * Determine if the user is in the campaign
-     */
-    public function userIsMember(?User $user = null): bool
-    {
-        if (empty($user)) {
-            $user = auth()->user();
-        }
-
-        return CampaignCache::members()->where('id', $user->id)->count() == 1;
-    }
-
-    /**
      * Determine if a campaign has a module enabled or not
      */
     public function enabled(string|EntityType $module): bool
@@ -225,7 +201,7 @@ class Campaign extends Model
             $module = 'entity_attributes';
         }
 
-        return (bool) CampaignCache::settings()->get($module);
+        return (bool) CampaignCache::campaign($this)->settings()->get($module);
     }
 
     /**
@@ -286,11 +262,6 @@ class Campaign extends Model
         return Mentions::parseForEdit($this, 'excerpt');
     }
 
-    public function defaultToNested(): bool
-    {
-        return (bool) Arr::get($this->ui_settings, 'nested', false) == 'all';
-    }
-
     public function defaultDescendantsMode(): Descendants
     {
         return Descendants::from(Arr::get($this->ui_settings, 'descendants', 0));
@@ -314,15 +285,6 @@ class Campaign extends Model
     public function getHideHistoryAttribute()
     {
         return Arr::get($this->ui_settings, 'hide_history', false);
-    }
-
-    public function maxEntityFiles(): int
-    {
-        if ($this->boosted()) {
-            return config('limits.campaigns.files.premium');
-        }
-
-        return config('limits.campaigns.files.standard');
     }
 
     public function existingDefaultImages(): array
@@ -446,7 +408,7 @@ class Campaign extends Model
      */
     public function hasEditingWarning(): bool
     {
-        $members = CampaignCache::members();
+        $members = CampaignCache::campaign($this)->members();
 
         return $members->count() > 1;
     }
@@ -468,7 +430,7 @@ class Campaign extends Model
      */
     public function follower(): int
     {
-        if (config('app.debug') && request()->has('_followers')) {
+        if (app()->hasDebugModeEnabled() && request()->has('_followers')) {
             return request()->get('_followers');
         }
 

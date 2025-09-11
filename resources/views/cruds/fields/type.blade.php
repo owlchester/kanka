@@ -12,7 +12,7 @@
            value="{!! htmlspecialchars(str_replace('&amp;', '&', old('type', $source->type ?? $entity->type ?? ''))) !!}"/>
     <div class="hidden">
         <datalist id="entity-type-list-<?=$trans?>">
-            @foreach (\App\Facades\EntityCache::typeSuggestion($entityType ?? $entity->entityType) as $name)
+            @foreach (\App\Facades\EntityCache::campaign($campaign)->typeSuggestion($entityType ?? $entity->entityType) as $name)
                 <option value="{{ $name }}">{!! $name !!}</option>
             @endforeach
         </datalist>
