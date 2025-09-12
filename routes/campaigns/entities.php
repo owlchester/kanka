@@ -280,6 +280,7 @@ Route::resources([
     '/w/{campaign}/entities.relations' => 'Entity\RelationController',
 
     '/w/{campaign}/attribute_templates' => 'Crud\AttributeTemplateController',
+    '/w/{campaign}/whiteboards' => 'Whiteboards\CrudController',
     // 'presets' => 'PresetController',
 ]);
 
