@@ -40,7 +40,7 @@ class LocationController extends Controller
                 'parent', 'parent.entity',
             ])
             ->has('entity')
-            ->paginate();
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

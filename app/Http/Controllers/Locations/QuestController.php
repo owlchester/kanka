@@ -34,7 +34,7 @@ class QuestController extends Controller
             ->allQuests()
             ->filter($filters)
             ->filteredQuests()
-            ->paginate();
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

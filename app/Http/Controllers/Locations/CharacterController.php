@@ -34,7 +34,7 @@ class CharacterController extends Controller
             ->allCharacters()
             ->filter($filters)
             ->filteredCharacters()
-            ->paginate();
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

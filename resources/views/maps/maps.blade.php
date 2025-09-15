@@ -9,17 +9,16 @@
 @section('entity-header-actions')
     <div class="header-buttons flex gap-2 items-center justify-end flex-wrap">
         @if ($mode === \App\Enums\Descendants::Direct)
-            <a href="{{ route('maps.maps', [$campaign, $model, 'm' => \App\Enums\Descendants::All]) }}" class="btn2 btn-sm" data-toggle="tooltip" data-title="{{ __('crud.filters.lists.paginated') }}">
-                <x-icon class="filter" />
-                <span class="hidden lg:inline">{{ __('crud.filters.all') }}</span>
-                ({{ $model->descendants->count() }})
-            </a>
+            <x-toggles.filter-button
+                route="{{ route('maps.maps', [$campaign, $model, 'm' => \App\Enums\Descendants::All]) }}"
+                :count="$model->descendants()->has('entity')->count()"
+                all
+            />
         @else
-            <a href="{{ route('maps.maps', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct, '#map-maps']) }}" class="btn2 btn-sm" data-toggle="tooltip" data-title="{{ __('crud.filters.lists.paginated') }}">
-                <x-icon class="filter" />
-                <span class="hidden lg:inline">{{ __('crud.filters.direct') }}</span>
-                ({{ $model->children->count() }})
-            </a>
+            <x-toggles.filter-button
+                route="{{ route('maps.maps', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct]) }}"
+                :count="$model->children()->has('entity')->count()"
+            />
         @endif
         @include('entities.headers.actions', ['edit' => false])
     </div>

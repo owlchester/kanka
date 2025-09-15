@@ -12,17 +12,16 @@
             <span class="hidden lg:inline">{{ __('crud.actions.help') }}</span>
         </a>
         @if ($mode === \App\Enums\Descendants::Direct)
-            <a href="{{ route('locations.characters', [$campaign, $model, 'm' => \App\Enums\Descendants::All]) }}" class="btn2 btn-sm" data-toggle="tooltip" data-title="{{ __('crud.filters.lists.paginated') }}">
-                <x-icon class="filter" />
-                <span class="hidden lg:inline">{{ __('crud.filters.all') }}</span>
-                ({{ $model->allCharacters()->count() }})
-            </a>
+            <x-toggles.filter-button
+                route="{{ route('locations.characters', [$campaign, $model, 'm' => \App\Enums\Descendants::All]) }}"
+                :count="$model->allCharacters()->count()"
+                all
+            />
         @else
-            <a href="{{ route('locations.characters', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct]) }}" class="btn2 btn-sm" data-toggle="tooltip" data-title="{{ __('crud.filters.lists.paginated') }}">
-                <x-icon class="filter" />
-                <span class="hidden lg:inline">{{ __('crud.filters.direct') }}</span>
-                ({{ $model->characters()->count() }})
-            </a>
+            <x-toggles.filter-button
+                route="{{ route('locations.characters', [$campaign, $model, 'm' => \App\Enums\Descendants::Direct]) }}"
+                :count="$model->characters()->count()"
+            />
         @endif
         @include('entities.headers.actions', ['edit' => false])
     </div>

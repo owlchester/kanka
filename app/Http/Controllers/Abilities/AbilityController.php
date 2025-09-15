@@ -39,7 +39,7 @@ class AbilityController extends Controller
             ])
             ->has('entity')
             ->filter($filters)
-            ->paginate();
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();
