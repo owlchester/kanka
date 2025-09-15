@@ -10,13 +10,13 @@
             <x-icon class="question" /> {{ __('crud.actions.help') }}
         </a>
         @if ($mode === \App\Enums\Descendants::Direct)
-            <a href="{{ route('tags.tags', [$campaign, $entity->child, 'm' => \App\Enums\Descendants::All, '#tag-tags']) }}" class="btn2 btn-sm">
+            <a href="{{ route('tags.tags', [$campaign, $entity->child, 'm' => \App\Enums\Descendants::All, '#tag-tags']) }}" class="btn2 btn-sm" data-toggle="tooltip" data-title="{{ __('crud.filters.lists.paginated') }}">
                 <x-icon class="filter" />
                 <span class="hidden md:inline">{{ __('crud.filters.all') }}</span>
                 ({{ $entity->child->descendants()->has('entity')->count() }})
             </a>
         @else
-            <a href="{{ route('tags.tags', [$campaign, $entity->child, 'm' => \App\Enums\Descendants::Direct, '#tag-tags']) }}" class="btn2 btn-sm">
+            <a href="{{ route('tags.tags', [$campaign, $entity->child, 'm' => \App\Enums\Descendants::Direct, '#tag-tags']) }}" class="btn2 btn-sm" data-toggle="tooltip" data-title="{{ __('crud.filters.lists.paginated') }}">
                 <x-icon class="filter" />
                 <span class="hidden md:inline">{{ __('crud.filters.direct') }}</span>
                 ({{ $entity->child->children()->has('entity')->count() }})
