@@ -178,9 +178,10 @@ return [
         'direct'            => 'Filter to direct descendants',
         'filtered'          => 'Showing :count of :total :entity.',
         'lists'             => [
+            'paginated' => 'Switch between direct children and all levels of descendants. Results are paginated for performance.',
             'desktop'   => [
-                'all'       => 'Show all :count descendants',
-                'filtered'  => 'Show direct :count descendants',
+                'all'       => 'All descendants (:count)',
+                'filtered'  => 'Direct descendants (:count)',
             ],
         ],
         'mobile'            => [
