@@ -31,15 +31,15 @@
             <v-group
                 v-for="shape in shapes"
                 :key="shape.id"
-                :config="{ id: `group-${shape.id}`, draggable: !shape.locked }"
-                @dragstart="handleDragstart(shape.id)"
-                @dragmove="handleDragmove(shape.id)"
-                @dragend="handleDragend(shape.id)"
+                :config="{ id: `group-${shape.id}`, draggable: !shape.locked, x: shape.x, y: shape.y }"
+                @dragstart="handleDragstart(shape)"
+                @dragmove="handleDragmove(shape)"
+                @dragend="handleDragend($event, shape)"
                 @click="selectShape(shape)"
             >
                 <v-rect v-if="shape.type==='rect'"
                         :config="{
-                            x: shape.x, y: shape.y,
+                            x: 0, y: 0,
                             width: shape.width, height: shape.height,
                             fill: shape.fill || 'lightblue',
                             cornerRadius: 6,
@@ -47,7 +47,7 @@
                 />
                 <v-circle v-if="shape.type==='circle'"
                           :config="{
-                            x: shape.x, y: shape.y,
+                            x: 0, y: 0,
                             radius: shape.radius,
                             fill: shape.fill || 'lightgreen',
                         }"
@@ -55,10 +55,11 @@
 
                 <v-text v-if="!editingTextId || editingTextId !== shape.id"
                         :config="{
-                            x: shape.type === 'rect' ? shape.x + getTextPadding(shape) : shape.x - shape.radius + getTextPadding(shape),
-                            y: shape.type === 'rect' ? shape.y + getTextPadding(shape) : shape.y - getTextSize(shape) / 2,
+                            x: shape.type === 'rect' ? getTextPadding(shape) : -shape.radius + getTextPadding(shape),
+                            y: shape.type === 'rect' ? getTextPadding(shape) : -getTextSize(shape) / 2,
                             width: shape.type === 'rect' ? shape.width - (getTextPadding(shape) * 2) : (shape.radius * 2) - (getTextPadding(shape) * 2),
                             height: shape.type === 'rect' ? shape.height - (getTextPadding(shape) * 2) : undefined,
+
                             text: shape.text,
                             fontSize: getTextSize(shape),
                             fontFamily: 'Arial',
@@ -101,7 +102,7 @@
     ></textarea>
     <!-- Floating toolbar for selected group -->
     <div
-        v-if="selectedShape && !editingTextId"
+        v-if="selectedShape && !editingTextId && !moving"
         :style="toolbarStyle"
         class="absolute z-50 flex items-center gap-1 bg-base-100 rounded px-1 py-1 shadow"
         @mousedown.stop
@@ -168,6 +169,7 @@ const textInput = ref(null);
 
 // UI tick to re-compute overlay position on Konva events without syncing geometry to Vue
 const uiTick = ref(0);
+const moving = ref(false);
 
 // Toolbar refs and helpers
 const colorInput = ref<HTMLInputElement|null>(null);
@@ -200,7 +202,7 @@ const inputStyle = computed(() => {
     if (shape.type === 'rect') {
         const rectNode = groupNode.findOne('Rect');
         if (!rectNode) return {};
-        const r = rectNode.getClientRect({ relativeTo: stageNode });
+        const r = rectNode.getClientRect();
         rect = { x: r.x, y: r.y, width: r.width, height: r.height };
         const padding = Math.max(5, Math.min(rect.width, rect.height) * 0.1);
         const fontSize = Math.max(10, Math.min(rect.height * 0.15, rect.width * 0.08, 24));
@@ -218,7 +220,7 @@ const inputStyle = computed(() => {
     } else if (shape.type === 'circle') {
         const circleNode = groupNode.findOne('Circle');
         if (!circleNode) return {};
-        const c = circleNode.getClientRect({ relativeTo: stageNode });
+        const c = circleNode.getClientRect();
         rect = { x: c.x, y: c.y, width: c.width, height: c.height };
 
         const radiusPx = Math.min(rect.width, rect.height) / 2;
@@ -254,7 +256,7 @@ const toolbarStyle = computed(() => {
     if (!groupNode) return { display: 'none' };
 
     // Use the group's visual bounds
-    const bounds = groupNode.getClientRect({ relativeTo: stageNode });
+    const bounds = groupNode.getClientRect();
     const containerRect = stageNode.container().getBoundingClientRect();
 
     // Place toolbar centered horizontally, a few pixels above the shape
@@ -271,18 +273,29 @@ const toolbarStyle = computed(() => {
 });
 
 
-const handleDragstart = (id) => {
-    dragItemId.value = id;
+const handleDragstart = (shape) => {
+    dragItemId.value = shape.id;
+    shape.moving = true;
+    moving.value = true;
 
     // Move the dragged group visually on top without mutating shapes array
     const stageNode = stage.value?.getNode();
-    const groupNode = stageNode?.findOne(`#group-${id}`);
+    const groupNode = stageNode?.findOne(`#group-${shape.id}`);
     groupNode?.moveToTop();
 
 };
 
-const handleDragend = (id) => {
+const handleDragend = (e, shape) => {
     dragItemId.value = null;
+    shape.moving = false;
+    moving.value = false;
+
+    const pos = {
+        x: e.target.x(),
+        y: e.target.y()
+    };
+    shape.x = pos.x;
+    shape.y = pos.y;
 };
 
 const handleDragmove = () => {
@@ -459,6 +472,7 @@ const addShape = (type) => {
         fill: type === "rect" ? '#add8e6' : '#90ee90',
         text: "Click to edit",
         locked: false,
+        moving: false,
     });
 };
 
