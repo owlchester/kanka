@@ -63,7 +63,7 @@ $statuses = [
         @endforeach
     </div>
 
-    <button class="btn2 btn-sm" id="add_organisation" href="#">
+    <button class="btn2 btn-sm btn-outline" id="add_organisation" href="#">
         <x-icon class="plus" />
         {!! $singular !!}
     </button>
