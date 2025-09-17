@@ -176,6 +176,10 @@ class FilterService
         foreach ($this->data as $key => $value) {
             if (in_array($key, $availableFilters)) {
                 // Update the value we have in the session.
+                // But skip empty arrays (typically when sending `families[]=`
+                if ($value === [0 => null]) {
+                    $value = null;
+                }
                 $this->filters[$key] = $value;
 
                 continue;
