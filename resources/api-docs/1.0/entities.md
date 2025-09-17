@@ -57,7 +57,7 @@ Most entities have the following attributes.
 <a name="entity-types"></a>
 ## Entity Types / Modules
 
-You can see all entity types/modules and their ID's on the following endpoint: [Entity Types](/api-docs/{{version}}/modules)
+You can see all entity types/modules and their ID's on the following endpoint: [Entity Types](/api-docs/{{version}}/campaigns/modules)
 
 
 <a name="entity"></a>
@@ -104,7 +104,7 @@ You can filter the returned entities on the `entities/` endpoint with the follow
 
 | Parameter     | Values             | Description                                                                                                                    |
 |:--------------|:-------------------|:-------------------------------------------------------------------------------------------------------------------------------||
-| `type_id[]`   | `array`            | Filter the returned entities by their [type_id](/api-docs/{{version}}/modules) field. Ex `type_id[]=1&type_id[]=420`            |
+| `type_id[]`   | `array`            | Filter the returned entities by their [type_id](/api-docs/{{version}}/campaigns/modules) field. Ex `type_id[]=1&type_id[]=420`            |
 | `name`        | `string`           | The name of the entity (like %% search)                                                                                        |
 | `type`        | `string`           | The type of the entity, for exmaple "NPC" on a character (like %% search)                                                      |
 | `is_private`  | `bool`             | Search for private entities with `is_private=true`                                                                             |
