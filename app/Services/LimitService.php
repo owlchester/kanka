@@ -56,6 +56,12 @@ class LimitService
 
     protected function finalize(int $size): string|int
     {
+        $flag = $this->user->flags()->uploadLimit()->first();
+
+        if (isset($flag) && $flag->amount > ceil($size / 1024)) {
+            $size = $flag->amount * 1024;
+        }
+
         if (! $this->readable) {
             return $size;
         }
