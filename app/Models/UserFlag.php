@@ -26,4 +26,9 @@ class UserFlag extends Model
     {
         return $query->where('flag', UserFlags::freeTrial);
     }
+
+    public function scopeUploadLimit(Builder $query): Builder
+    {
+        return $query->where('flag', UserFlags::uploadSize);
+    }
 }
