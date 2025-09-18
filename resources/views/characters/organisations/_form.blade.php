@@ -15,7 +15,7 @@ $fromOrg = request()->get('from') === 'org';
 @endphp
 <x-grid type="1/1">
     <x-helper>
-        <p>{!! __('organisations.members.edit.helper', ['name' => $member->character->name]) !!}</p>
+        <p>{!! __('organisations.members.edit.helper', ['name' => $model->name]) !!}</p>
     </x-helper>
 
 @if ($fromOrg)
