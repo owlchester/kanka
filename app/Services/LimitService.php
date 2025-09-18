@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Enums\UserFlags;
+use App\Facades\UserCache;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 
@@ -56,10 +58,10 @@ class LimitService
 
     protected function finalize(int $size): string|int
     {
-        $flag = $this->user->flags()->uploadLimit()->first();
+        $flags = UserCache::user($this->user)->campaign($this->campaign)->flags();
 
-        if (isset($flag) && $flag->amount > ceil($size / 1024)) {
-            $size = $flag->amount * 1024;
+        if (isset($flags[UserFlags::uploadSize->value]) && $flags[UserFlags::uploadSize->value]['amount'] > ceil($size / 1024)) {
+            $size = $flags[UserFlags::uploadSize->value]['amount'] * 1024;
         }
 
         if (! $this->readable) {
