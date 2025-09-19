@@ -60,5 +60,6 @@ return [
     ],
     
     'ask' => env('APP_ASKBRAGI_LIMIT', 100),
+    'neighbours' => env('APP_ASKBRAGI_NEIGHBOURS', 3),
 
 ];

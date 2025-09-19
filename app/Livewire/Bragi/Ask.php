@@ -109,7 +109,7 @@ class Ask extends Component
             ->asEmbeddings();
 
         // Step 2: Fetch the top $neighbours nearest embeddings
-        $neighbours = 3; //for test case since we only have a few
+        $neighbours = config('limits.neighbours');
         $nearestVectors = Embedding::where('campaign_id', $this->campaign->id)->nearest($question->embeddings[0]->embedding, $neighbours)->get()->groupBy('parent_type');
 
         $text = '';
