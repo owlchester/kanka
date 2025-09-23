@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Validators\HashValidator;
+use App\Jobs\Campaigns\Import;
 use App\Models\Ability;
 use App\Models\AdminInvite;
 use App\Models\Application;
@@ -74,7 +75,9 @@ use App\Observers\TagObserver;
 use App\Observers\UserObserver;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Queue\Events\JobProcessing;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
