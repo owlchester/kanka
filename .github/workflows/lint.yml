@@ -5,9 +5,13 @@ on:
     branches:
       - main
       - develop
+    paths:
+      - '**.php'
   push:
     branches:
       - main
+    paths:
+      - '**.php'
 
 jobs:
   lint:
