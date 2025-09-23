@@ -1,23 +1,12 @@
 <template>
-    <div class="toolbar">
+    <div class="toolbar fixed w-full bg-base-100 p-2 flex items-center gap-2 z-50">
         <input v-model="name" placeholder="Whiteboard name" />
 
-        <div class="join">
-            <button
-                @click="addShape('rect')"
-                class="btn2 btn-sm join-item">
-                <i class="fa-regular fa-square" aria-hidden="true" />
-                <span class="sr-only">Add square</span>
-            </button>
-            <button
-                @click="addShape('circle')"
-                class="btn2 btn-sm join-item">
-                <i class="fa-regular fa-circle" aria-hidden="true" />
-                <span class="sr-only">Add circle</span>
-            </button>
+        <div class="actions flex items-center">
             <button
                 class="btn2 btn-sm btn-primary join-item"
                 @click="saveWhiteboard">
+                <i class="fa-regular fa-save" aria-hidden="true" />
                 Save
             </button>
         </div>
@@ -26,7 +15,11 @@
     <v-stage
         ref="stage"
         :config="stageSize"
-        @click="handleStageClick">
+        @click="handleStageClick"
+        @mousedown="handleMouseDown"
+        @mousemove="draw"
+        @mouseup="handeMouseUp"
+    >
         <v-layer ref="layer">
             <v-group
                 v-for="shape in shapes"
@@ -47,18 +40,64 @@
                 />
                 <v-circle v-if="shape.type==='circle'"
                           :config="{
-                            x: 0, y: 0,
+                            x: 0, y: 0,x:
+                            shape.radius,
+                            y: shape.radius,
                             radius: shape.radius,
                             fill: shape.fill || 'lightgreen',
                         }"
                 />
-
-                <v-text v-if="!editingTextId || editingTextId !== shape.id"
+                <v-line v-if="shape.type === 'group'" v-for="line in shape.children"
+                        :key="line.id"
                         :config="{
-                            x: shape.type === 'rect' ? getTextPadding(shape) : -shape.radius + getTextPadding(shape),
-                            y: shape.type === 'rect' ? getTextPadding(shape) : -getTextSize(shape) / 2,
-                            width: shape.type === 'rect' ? shape.width - (getTextPadding(shape) * 2) : (shape.radius * 2) - (getTextPadding(shape) * 2),
-                            height: shape.type === 'rect' ? shape.height - (getTextPadding(shape) * 2) : undefined,
+                            points: line.points,
+                            stroke: shape.fill,
+                            strokeWidth: line.strokeWidth,
+                            lineCap: 'round',
+                            lineJoin: 'round',
+                        }" />
+
+                <v-image v-if="shape.type === 'image'"
+                         :config="{
+                            width: shape.width,
+                            height: shape.height,
+                            image: getImageEl(shape),
+                            cornerRadius: 4
+                         }" />
+
+
+                <v-image v-if="shape.type === 'entity'"
+                         :config="{
+                            width: shape.width,
+                            height: shape.height,
+                            image: getImageEl(shape),
+                            cornerRadius: 4
+                         }">
+                </v-image>
+                <v-text
+                    v-if="shape.type === 'entity'"
+                    @click="openEntityLink(shape)"
+                    :config="{
+                        x: 0,
+                        y: shape.height + 6,
+                        width: shape.width,
+                        text: shape.name || '',
+                        fontSize: 14,
+                        fontFamily: 'Arial',
+                        fill: shape.fill,
+                        align: 'center',
+                        draggable: false,
+                        listening: true,
+                        // show cursor-hand on hover
+                    }"
+                />
+
+                <v-text v-if="shape.type === 'text' && (!editingTextId || editingTextId !== shape.id)"
+                        :config="{
+                            x: getTextPadding(shape),
+                            y: getTextPadding(shape),
+                            width: shape.width - (getTextPadding(shape) * 2),
+                            height: shape.height - (getTextPadding(shape) * 2),
 
                             text: shape.text,
                             fontSize: getTextSize(shape),
@@ -68,9 +107,21 @@
                             verticalAlign: 'middle',
                             wrap: 'word',
                         }"
-                        @click="editText(shape.id)"
                 />
             </v-group>
+
+            <v-group v-if="tempGroup" :key="tempGroup.id" :config="{ id: `temp-group-${tempGroup.id}` }">
+                <v-line v-for="line in tempGroup.children"
+                        :key="line.id"
+                        :config="{
+                            points: line.points,
+                            stroke: tempGroup.fill,
+                            strokeWidth: line.strokeWidth,
+                            lineCap: 'round',
+                            lineJoin: 'round',
+                        }" />
+            </v-group>
+
 
             <v-transformer
                 ref="transformer"
@@ -78,10 +129,10 @@
                     resizeEnabled: true,
                     rotateEnabled: true,
                     borderEnabled: true,
-                    borderStroke: '#4285f4',
+                    borderStroke: cssVariable('--p'),
                     borderStrokeWidth: 1,
-                    anchorStroke: '#4285f4',
-                    anchorFill: 'white',
+                    anchorStroke: cssVariable('--p'),
+                    anchorFill: cssVariable('--pc'),
                     anchorSize: 7,
                     keepRatio: true,
                 }"
@@ -94,65 +145,158 @@
         ref="textInput"
         v-model="editingText"
         :style="inputStyle"
-        class="absolute bg-transparent border-2 border-blue-400 rounded resize-none outline-none z-50"
+        class="absolute bg-transparent border-2 border-accent rounded resize-none outline-none z-50"
         @blur="saveText"
         @keydown.enter.exact="saveText"
         @keydown.escape="cancelTextEdit"
         @input="updateTextPreview"
     ></textarea>
-    <!-- Floating toolbar for selected group -->
+
     <div
-        v-if="selectedShape && !editingTextId && !moving"
         :style="toolbarStyle"
-        class="absolute z-50 flex items-center gap-1 bg-base-100 rounded px-1 py-1 shadow"
+        class="fixed z-50 flex items-center justify-center inset-x-0 gap-1 bottom-8 tools"
         @mousedown.stop
         @click.stop
     >
-        <button
-            class="btn2 btn-xs"
-            title="Delete"
-            @click.stop="deleteSelected"
-        >
-            <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
-            <span class="sr-only">Delete</span>
-        </button>
+        <div class="flex items-center gap-2 shape-toolbar " v-if="selectedShape">
+            <div class="join">
+                <button
+                    class="btn2 btn-sm join-item"
+                    :class="selectedShape.locked ? 'btn-warning' : ''"
+                    :title="selectedShape.locked ? 'Unlock' : 'Lock'"
+                    @click.stop="toggleLock"
+                >
+                    <i class="fa-regular" :class="selectedShape.locked ? 'fa-lock' : 'fa-lock-open'" aria-hidden="true"></i>
+                    <span class="sr-only">{{ selectedShape.locked ? 'Unlock' : 'Lock' }}</span>
+                </button>
 
-        <button
-            class="btn2 btn-xs"
-            :class="selectedShape.locked ? 'btn-warning' : ''"
-            :title="selectedShape.locked ? 'Unlock' : 'Lock'"
-            @click.stop="toggleLock"
-        >
-            <i class="fa-solid" :class="selectedShape.locked ? 'fa-lock' : 'fa-lock-open'"></i>
-            <span class="sr-only">{{ selectedShape.locked ? 'Unlock' : 'Lock' }}</span>
-        </button>
+                <button
+                    class="btn2 btn-sm join-item"
+                    title="Change color"
+                    @click.stop="openColorPicker"
+                >
+                    <i class="fa-regular fa-palette" aria-hidden="true"></i>
+                    <span class="sr-only">Color</span>
+                </button>
+            </div>
 
-        <button
-            class="btn2 btn-xs"
-            title="Change color"
-            @click.stop="openColorPicker"
-        >
-            <i class="fa-regular fa-palette" aria-hidden="true"></i>
-            <span class="sr-only">Color</span>
-        </button>
-        <input
-            ref="colorInput"
-            type="color"
-            class="hidden"
-            :value="selectedShape.fill || defaultFillFor(selectedShape)"
-            @input="onPickColor"
-            @change="onPickColor"
-        />
+            <input
+                ref="colorInput"
+                type="color"
+                class="hidden"
+                :value="selectedShape.fill || defaultFillFor(selectedShape)"
+                @input="onPickColor"
+                @change="onPickColor"
+            />
+
+            <div class="join">
+                <button
+                    class="btn2 btn-sm join-item"
+                    title="Push to front"
+                    @click.stop="pushTo('front')"
+                >
+                    <i class="fa-regular fa-up-to-line" aria-hidden="true"></i>
+                    <span class="sr-only">Push to front</span>
+                </button>
+                <button
+                    class="btn2 btn-sm join-item"
+                    title="Push to back"
+                    @click.stop="pushTo('back')"
+                >
+                    <i class="fa-regular fa-down-to-line" aria-hidden="true"></i>
+                    <span class="sr-only">Push to back</span>
+                </button>
+            </div>
+            <button
+                class="btn2 btn-sm text-error"
+                title="Delete"
+                @click.stop="deleteSelected"
+            >
+                <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                <span class="sr-only">Delete</span>
+            </button>
+        </div>
+        <div v-else class="flex items-center gap-2 main-toolbar">
+            <div class="join">
+                <button
+                    @click="addShape('rect')"
+                    class="btn2 btn-sm join-item"
+                    :class="{ 'btn-disabled': drawingMode }">
+                    <i class="fa-regular fa-square" aria-hidden="true" />
+                    <span class="sr-only">Add square</span>
+                </button>
+                <button
+                    @click="addShape('circle')"
+                    class="btn2 btn-sm join-item"
+                    :class="{ 'btn-disabled': drawingMode }">
+                    <i class="fa-regular fa-circle" aria-hidden="true" />
+                    <span class="sr-only">Add circle</span>
+                </button>
+                <button
+                    @click="addShape('text')"
+                    class="btn2 btn-sm join-item"
+                    :class="{ 'btn-disabled': drawingMode }">
+                    <i class="fa-regular fa-text" aria-hidden="true" />
+                    <span class="sr-only">Add text</span>
+                </button>
+                <button
+                    @click="toggleDrawing"
+                    class="btn2 btn-sm join-item">
+                    <i class="fa-regular fa-scribble" aria-hidden="true" v-if="!drawingMode" />
+                    <i class="fa-regular fa-check" aria-hidden="true" v-else />
+                    <span class="sr-only" v-if="!drawingMode">Start drawing</span>
+                    <span class="sr-only" v-else>End drawing</span>
+                </button>
+            </div>
+            <div class="join">
+                <button
+                    @click="openSearch"
+                    class="btn2 btn-sm join-item"
+                    :class="{ 'btn-disabled': drawingMode }">
+                    <i class="fa-regular fa-search" aria-hidden="true" />
+                    <span class="sr-only">Add entity</span>
+                </button>
+                <button
+                    @click="openGallery"
+                    class="btn2 btn-sm join-item"
+                    :class="{ 'btn-disabled': drawingMode }">
+                    <i class="fa-regular fa-file-image" aria-hidden="true" />
+                    <span class="sr-only">Add image</span>
+                </button>
+            </div>
+        </div>
     </div>
+
+    <Browser
+        :api="props.gallery"
+        :opened="galleryOpened"
+        :i18n="i18n"
+        @selected="selectImage"
+        @closed="closedGallery"
+    ></Browser>
+
+    <Entity
+        :api="props.search"
+        :opened="searchOpened"
+        @selected="selectEntity"
+        @closed="closedSearch">
+    </Entity>
 
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, reactive, nextTick, computed} from 'vue';
+import { ref, onMounted, reactive, nextTick, computed, watch} from 'vue';
+import Browser from "../../gallery/Browser.vue";
+import {useImage} from "vue-konva";
+import Entity from "./Entity.vue";
+import { hslFromVar, readCssVar, hslString, tweakHsl } from '../../utility/colours';
 
 const props = defineProps<{
     api: String,
-    new: Boolean
+    gallery: String,
+    search: String,
+    new: Boolean,
+    i18n: undefined
 }>()
 
 const shapes = ref([]);
@@ -161,6 +305,7 @@ const selectedId = ref(null);
 const name = ref('My whiteboard');
 const stage = ref(null);
 const transformer = ref(null);
+const layer = ref(null);
 
 // Text editing state
 const editingTextId = ref(null);
@@ -174,6 +319,18 @@ const moving = ref(false);
 // Toolbar refs and helpers
 const colorInput = ref<HTMLInputElement|null>(null);
 const selectedShape = computed(() => shapes.value.find(s => s.id === selectedId.value) || null);
+
+// Drawing
+const drawingMode = ref(false);
+const isDrawing = ref(false);
+const tempGroup = ref(null);
+
+// Gallery
+const galleryOpened = ref(false)
+const imageRefs = ref({});
+
+// Search
+const searchOpened = ref(false)
 
 
 // Reactive input style that updates automatically
@@ -199,77 +356,26 @@ const inputStyle = computed(() => {
     // Use getClientRect() of the actual node so transforms/scale are accounted for
     let rect: { x: number; y: number; width: number; height: number } | null = null;
 
-    if (shape.type === 'rect') {
-        const rectNode = groupNode.findOne('Rect');
-        if (!rectNode) return {};
-        const r = rectNode.getClientRect();
-        rect = { x: r.x, y: r.y, width: r.width, height: r.height };
-        const padding = Math.max(5, Math.min(rect.width, rect.height) * 0.1);
-        const fontSize = Math.max(10, Math.min(rect.height * 0.15, rect.width * 0.08, 24));
+    const r = groupNode.getClientRect();
+    rect = { x: r.x, y: r.y, width: r.width, height: r.height };
+    const padding = Math.max(5, Math.min(rect.width, rect.height) * 0.1);
+    const fontSize = Math.max(10, Math.min(rect.height * 0.15, rect.width * 0.08, 24));
 
-        return {
-            left: (containerRect.left + rect.x + padding) + 'px',
-            top: (containerRect.top + rect.y + padding) + 'px',
-            width: (rect.width - (padding * 2)) + 'px',
-            height: (rect.height - (padding * 2)) + 'px',
-            fontSize: fontSize + 'px',
-            textAlign: 'center',
-            fontFamily: 'Arial',
-            color: getTextColor(shape),
-        };
-    } else if (shape.type === 'circle') {
-        const circleNode = groupNode.findOne('Circle');
-        if (!circleNode) return {};
-        const c = circleNode.getClientRect();
-        rect = { x: c.x, y: c.y, width: c.width, height: c.height };
-
-        const radiusPx = Math.min(rect.width, rect.height) / 2;
-        const padding = Math.max(3, radiusPx * 0.15);
-        const fontSize = Math.max(8, Math.min(radiusPx * 0.25, 20));
-
-        return {
-            left: (containerRect.left + rect.x + padding) + 'px',
-            top: (containerRect.top + rect.y + padding) + 'px',
-            width: (rect.width - (padding * 2)) + 'px',
-            height: (rect.height - (padding * 2)) + 'px',
-            fontSize: fontSize + 'px',
-            textAlign: 'center',
-            fontFamily: 'Arial',
-            color: getTextColor(shape),
-        };
-    }
-
-    return {};
+    return {
+        left: (containerRect.left + rect.x + padding) + 'px',
+        top: (containerRect.top + rect.y + padding) + 'px',
+        width: (rect.width - (padding * 2)) + 'px',
+        height: (rect.height - (padding * 2)) + 'px',
+        fontSize: fontSize + 'px',
+        textAlign: 'center',
+        fontFamily: 'Arial',
+        color: getTextColor(shape),
+    };
 });
 
 
-// Position toolbar above selected group
 const toolbarStyle = computed(() => {
-    void uiTick.value; // follow during drag/transform
 
-    if (!selectedShape.value) return { display: 'none' };
-
-    const stageNode = stage.value?.getNode();
-    if (!stageNode) return { display: 'none' };
-
-    const groupNode = stageNode.findOne(`#group-${selectedShape.value.id}`);
-    if (!groupNode) return { display: 'none' };
-
-    // Use the group's visual bounds
-    const bounds = groupNode.getClientRect();
-    const containerRect = stageNode.container().getBoundingClientRect();
-
-    // Place toolbar centered horizontally, a few pixels above the shape
-    const top = containerRect.top + bounds.y - 40; // 40px above; adjust as needed
-    const left = containerRect.left + bounds.x + bounds.width / 2;
-
-    return {
-        position: 'absolute',
-        top: `${top}px`,
-        left: `${left}px`,
-        transform: 'translateX(-50%)',
-        pointerEvents: 'auto'
-    };
 });
 
 
@@ -336,6 +442,10 @@ const setupTransformerEvents = () => {
 };
 
 const selectShape = (shape) => {
+    // If clicking a second time on a text, edit the text
+    if (shape.text && selectedId.value === shape.id) {
+        editText(shape)
+    }
     selectedId.value = shape.id;
     nextTick(() => {
         updateTransformer();
@@ -347,16 +457,25 @@ const updateTransformer = () => {
     const transformerNode = transformer.value?.getNode();
     const stageNode = stage.value?.getNode();
 
-    if (!transformerNode || !stageNode) return;
+    if (!transformerNode || !stageNode) {
+        return;
+    }
 
     if (selectedId.value) {
         const shape = shapes.value.find(s => s.id === selectedId.value);
         const selectedGroup = stageNode.findOne(`#group-${selectedId.value}`);
+        // console.log(selectedGroup);
         if (selectedGroup && shape) {
             if (shape.locked) {
                 transformerNode.nodes([]);
             } else {
                 transformerNode.nodes([selectedGroup]);
+                if (shape.type === 'entity') {
+                    transformerNode.keepRatio(true);
+                } else {
+                    transformerNode.keepRatio(false);
+                }
+
             }
             transformerNode.getLayer().batchDraw();
         }
@@ -405,31 +524,19 @@ const onPickColor = (e: Event) => {
 };
 
 const getTextSize = (shape) => {
-    if (shape.type === 'rect') {
-        const baseSizeFromHeight = shape.height * 0.15;
-        const baseSizeFromWidth = shape.width * 0.08;
-        const baseSize = Math.min(baseSizeFromHeight, baseSizeFromWidth);
-        return Math.max(10, Math.min(baseSize, 24));
-    } else if (shape.type === 'circle') {
-        const baseSize = shape.radius * 0.25;
-        return Math.max(8, Math.min(baseSize, 20));
-    }
-    return 12;
+    const baseSizeFromHeight = shape.height * 0.15;
+    const baseSizeFromWidth = shape.width * 0.08;
+    const baseSize = Math.min(baseSizeFromHeight, baseSizeFromWidth);
+    return Math.max(10, Math.min(baseSize, 24));
 };
 
 const getTextPadding = (shape) => {
-    if (shape.type === 'rect') {
-        return Math.max(5, Math.min(shape.width, shape.height) * 0.1);
-    } else if (shape.type === 'circle') {
-        return Math.max(3, shape.radius * 0.15);
-    }
     return 5;
 };
 
-const editText = (id) => {
-    const shape = shapes.value.find(s => s.id === id);
+const editText = (shape) => {;
     if (!shape || shape.locked) return;
-    editingTextId.value = id;
+    editingTextId.value = shape.id;
     editingText.value = shape.text || '';
     nextTick(() => {
         textInput.value?.focus();
@@ -461,22 +568,31 @@ const cancelTextEdit = () => {
 };
 
 const addShape = (type) => {
+    const { x: tlx, y: tly, scaleX, scaleY } = getStageVisibleTopLeft();
+    // Convert 50px screen offset into stage-space offset
+    const offsetX = 50 / scaleX;
+    const offsetY = 50 / scaleY;
+
+
     shapes.value.push({
         id: Math.round(Math.random() * 10000).toString(),
         type,
-        x: 100,
-        y: 100,
-        width: type === "rect" ? 120 : 80,
-        height: type === "rect" ? 80 : 80,
+        x: tlx + offsetX,
+        y: tly + offsetY,
+        width: 100,
+        height: type === "text" ? 50 : 80,
         radius: type === "circle" ? 40 : null,
-        fill: type === "rect" ? '#add8e6' : '#90ee90',
-        text: "Click to edit",
+        fill: type === 'text' ? cssVariable('--bc') : cssVariable('--b1'),
+        text: type === "text" ? "Click to edit" : null,
         locked: false,
         moving: false,
     });
 };
 
 const handleStageClick = (e) => {
+    if (drawingMode.value) {
+        return;
+    }
     if (e.target === e.target.getStage()) {
         selectedId.value = null;
         updateTransformer();
@@ -486,73 +602,297 @@ const handleStageClick = (e) => {
     }
 };
 
-
-// Choose readable text color (black or white) based on shape's fill using WCAG contrast
 const getTextColor = (shape) => {
-    const bg = (shape.fill || defaultFillFor(shape) || '#ffffff').toString();
-    const rgb = parseColorToRgb(bg);
-    if (!rgb) return '#000000';
-
-    const contrastWithBlack = contrastRatio(rgb, { r: 0, g: 0, b: 0 });
-    const contrastWithWhite = contrastRatio(rgb, { r: 255, g: 255, b: 255 });
-
-    return contrastWithWhite >= contrastWithBlack ? '#ffffff' : '#000000';
+    return (shape.fill || '#000').toString();
 };
 
-// Parse #RGB/#RRGGBB or rgb()/rgba() into {r,g,b}
-function parseColorToRgb(input: string): { r: number; g: number; b: number } | null {
-    if (!input) return null;
-    const str = input.trim().toLowerCase();
-
-    // Hex formats
-    if (str[0] === '#') {
-        const hex = str.slice(1);
-        if (hex.length === 3) {
-            const r = parseInt(hex[0] + hex[0], 16);
-            const g = parseInt(hex[1] + hex[1], 16);
-            const b = parseInt(hex[2] + hex[2], 16);
-            return { r, g, b };
-        }
-        if (hex.length === 6) {
-            const r = parseInt(hex.slice(0, 2), 16);
-            const g = parseInt(hex.slice(2, 4), 16);
-            const b = parseInt(hex.slice(4, 6), 16);
-            return { r, g, b };
-        }
-        return null;
+const toggleDrawing = () => {
+    // Start
+    if (!drawingMode.value) {
+        drawingMode.value = true;
+        return;
     }
 
-    // rgb/rgba
-    const rgbMatch = str.match(/^rgba?\(([^)]+)\)$/);
-    if (rgbMatch) {
-        const parts = rgbMatch[1].split(',').map(p => p.trim());
-        if (parts.length >= 3) {
-            const to255 = (v: string) => v.endsWith('%') ? Math.round(parseFloat(v) * 2.55) : parseInt(v, 10);
-            const r = to255(parts[0]);
-            const g = to255(parts[1]);
-            const b = to255(parts[2]);
-            if (Number.isFinite(r) && Number.isFinite(g) && Number.isFinite(b)) return { r, g, b };
-        }
-        return null;
-    }
+    // Finalize
+    drawingMode.value = false;
+    if (tempGroup.value) {
+        // Measure visual bounds and normalize children points
+        const stageNode = stage.value?.getNode();
+        const node = stageNode?.findOne(`#temp-group-${tempGroup.value.id}`);
+        // console.log('on a le node', node);
+        if (node) {
+            const r = node.getClientRect();
 
-    // Unsupported formats (e.g., hsl) -> fallback
-    return null;
+            // Normalize points from stage-space to group-local space
+            tempGroup.value.children = tempGroup.value.children.map((line) => {
+                const pts = line.points;
+                const normalized = pts.map((v, idx) => (idx % 2 === 0 ? v - r.x : v - r.y));
+                return { ...line, points: normalized };
+            });
+
+            // Save group geometry
+            tempGroup.value.x = r.x;
+            tempGroup.value.y = r.y;
+            tempGroup.value.width = r.width;
+            tempGroup.value.height = r.height;
+        }
+
+        tempGroup.value.moving = false;
+        tempGroup.value.locked = false;
+        tempGroup.value.draggable = true;
+        shapes.value.push(tempGroup.value);
+        tempGroup.value = null;
+    }
 }
 
-// WCAG relative luminance and contrast ratio
-function relativeLuminance({ r, g, b }: { r: number; g: number; b: number }): number {
-    const srgb = [r, g, b].map(v => v / 255).map(c =>
-        c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4)
+const handleMouseDown = (e) => {
+    if (!drawingMode.value) return;
+    isDrawing.value = true;
+
+    const pos = getPointerInLayerSpace();
+    if (!pos) return;
+
+    if (!tempGroup.value) {
+        tempGroup.value = {
+            id: Date.now(),
+            type: "group",
+            children: [],
+            fill: cssVariable('--bc')
+        }
+    }
+
+    tempGroup.value.children.push({
+        id: Date.now() + "-lin",
+        type: "draw",
+        points: [pos.x, pos.y],
+        fill: cssVariable('--bc'),
+        strokeWidth: 2,
+    });
+}
+
+// Add this helper to convert pointer position into the layer's local coordinates
+function getPointerInLayerSpace() {
+    const stageNode = stage.value?.getNode();
+    const layerNode = (stageNode && stageNode.findOne('Layer')) || layer.value?.getNode();
+    if (!stageNode || !layerNode) return null;
+
+    const p = stageNode.getPointerPosition();
+    if (!p) return null;
+
+    // Transform pointer from screen/stage space into this layer's local space
+    const tr = layerNode.getAbsoluteTransform().copy();
+    tr.invert();
+    const local = tr.point(p);
+    return { x: local.x, y: local.y };
+}
+
+
+const draw = (e) => {
+    if (!isDrawing.value) return;
+
+    const pos = getPointerInLayerSpace();
+    if (!pos) return;
+
+    const last = tempGroup.value.children[tempGroup.value.children.length - 1];
+    last.points = last.points.concat([pos.x, pos.y]);
+}
+
+const handeMouseUp = (e) => {
+    if (!drawingMode.value) {
+        return
+    }
+    isDrawing.value = false;
+}
+
+
+// Disable stage dragging while in drawing mode
+watch(drawingMode, (isOn) => {
+    const stageNode = stage.value?.getNode();
+    if (stageNode) {
+        stageNode.draggable(!isOn);
+        stageNode.getLayer()?.batchDraw?.();
+    }
+});
+
+
+// Compute the visible top-left of the stage in stage coordinates
+function getStageVisibleTopLeft() {
+    const stageNode = stage.value?.getNode();
+    if (!stageNode) return { x: 0, y: 0, scaleX: 1, scaleY: 1 };
+
+    const scaleX = stageNode.scaleX() || 1;
+    const scaleY = stageNode.scaleY() || 1;
+
+    // When the stage is panned to (stage.x(), stage.y()), the visible top-left
+    // in stage coordinates is (-x/scaleX, -y/scaleY)
+    const x = -stageNode.x() / scaleX;
+    const y = -stageNode.y() / scaleY;
+
+    return { x, y, scaleX, scaleY };
+}
+
+const openGallery = () => {
+    galleryOpened.value = true
+}
+
+// Force redraw when an image finishes loading
+function watchImage(uuid: string, shapeId: string) {
+    const r = imageRefs.value[uuid];
+    if (!r) return;
+
+    console.log('uuid', uuid);
+    console.log('imgRefs', imageRefs.value);
+    console.log('r', r);
+
+    watch(
+        () => r,
+        (imgEl) => {
+            console.log('imgEl', imgEl);
+            if (imgEl) {
+                // If you want the shape to match the real image size the first time it loads:
+                const shape = shapes.value.find(s => s.id === shapeId);
+                console.log('update shape', shape);
+                if (shape && (!shape.width || !shape.height)) {
+                    console.log('a');
+                    // Use natural size on first load if width/height were falsy
+                    shape.width = imgEl.naturalWidth || shape.width || 100;
+                    shape.height = imgEl.naturalHeight || shape.height || 80;
+                    console.log(imgEl.naturalWidth, imgEl.naturalHeight);
+                }
+                console.log('n');
+
+                // Force Konva to repaint immediately
+                const layerNode = layer.value?.getNode();
+                layerNode?.batchDraw?.();
+            }
+        },
+        { immediate: true }
     );
-    return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
 }
 
-function contrastRatio(c1: { r: number; g: number; b: number }, c2: { r: number; g: number; b: number }): number {
-    const L1 = relativeLuminance(c1);
-    const L2 = relativeLuminance(c2);
-    const [lighter, darker] = L1 >= L2 ? [L1, L2] : [L2, L1];
-    return (lighter + 0.05) / (darker + 0.05);
+
+const selectImage = (image) => {
+    const [imageNode] = useImage(image.src, 'anonymous');
+    imageRefs.value[image.uuid] = imageNode;
+
+    const { x: tlx, y: tly, scaleX, scaleY } = getStageVisibleTopLeft();
+    // Convert 50px screen offset into stage-space offset
+    const offsetX = 50 / scaleX;
+    const offsetY = 50 / scaleY;
+
+    const id = Math.round(Math.random() * 10000).toString();
+
+    shapes.value.push({
+        id: id,
+        type: "image",
+        x: tlx + offsetX,
+        y: tly + offsetY,
+        width: null,
+        height: null,
+        uuid: image.uuid,
+        name: image.name,
+        locked: false,
+        moving: false,
+    });
+    watchImage(image.uuid, id);
+}
+
+const closedGallery = () => {
+    galleryOpened.value = false
+}
+
+// Return the actual HTMLImageElement (or null) for Konva
+const getImageEl = (shape) => {
+    if (shape.type === 'entity') {
+        return imageRefs.value[shape.entity] || null;
+    }
+    return imageRefs.value[shape.uuid] || null;
+}
+
+const openSearch = () => {
+    searchOpened.value = true
+}
+
+const closedSearch = () => {
+    searchOpened.value = false
+}
+
+const selectEntity = (entity) => {
+    searchOpened.value = false;
+    console.log('selected entity', entity);
+
+
+    const [imageNode] = useImage(entity.image, 'anonymous');
+    imageRefs.value[entity.id] = imageNode;
+
+    const { x: tlx, y: tly, scaleX, scaleY } = getStageVisibleTopLeft();
+    // Convert 50px screen offset into stage-space offset
+    const offsetX = 50 / scaleX;
+    const offsetY = 50 / scaleY;
+
+    const id = Math.round(Math.random() * 10000).toString();
+
+    shapes.value.push({
+        id: id,
+        type: "entity",
+        x: tlx + offsetX,
+        y: tly + offsetY,
+        width: 128,
+        height: 128,
+        entity: entity.id,
+        name: entity.name,
+        link: entity.link,
+        fill: '#add8e6',
+        locked: false,
+        moving: false,
+    });
+}
+
+const openEntityLink = (shape) => {
+    if (!shape || !shape.link) return;
+    try {
+        window.open(shape.link, '_blank', 'noopener');
+    } catch (e) {
+        // Fallback: set location
+        window.location.href = shape.link;
+    }
+}
+
+
+const saveWhiteboard = () => {
+
+}
+
+const pushTo = (where: 'front' | 'back') => {
+    const s = selectedShape.value;
+    if (!s) return;
+
+    // Find current index in model array
+    const idx = shapes.value.findIndex(x => x.id === s.id);
+    if (idx === -1) return;
+
+    // Reorder shapes array so Vue re-renders and Konva will reflect stacking
+    // when layer is redrawn. Splice out and insert at proper position.
+    const [item] = shapes.value.splice(idx, 1);
+
+    if (where === 'front') {
+        // move to end => top in rendering order
+        shapes.value.push(item);
+    } else {
+        // move to start => bottom in rendering order
+        shapes.value.unshift(item);
+    }
+
+    // Force UI refresh for overlays and transformer
+    uiTick.value++;
+
+}
+
+const cssVariable = (variable: string) => {
+    const base = hslFromVar(variable);
+    console.log('base', variable, base);
+    if (!base) return `hsl(${readCssVar('--p')})`;
+    return hslString(base);
 }
 
 
