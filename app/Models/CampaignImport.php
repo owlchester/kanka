@@ -60,10 +60,16 @@ class CampaignImport extends Model
      */
     public function prunable(): Builder
     {
-        return static::/*where('updated_at', '<=', now()->subDays(1))
-            ->*/ whereIn('status_id', [CampaignImportStatus::PREPARED, CampaignImportStatus::QUEUED])
-            ->where('created_at', '<=', now()->subDays(config('imports.prune')));
+        return static::where(function ($query) {
+                $query->whereIn('status_id', [
+                        CampaignImportStatus::PREPARED, 
+                        CampaignImportStatus::QUEUED
+                    ])
+                    ->where('created_at', '<=', now()->subDay());
+            })
+            ->orWhere('created_at', '<=', now()->subDays(config('imports.prune')));
     }
+
 
     public function isPrepared(): bool
     {
