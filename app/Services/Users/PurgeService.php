@@ -5,6 +5,7 @@ namespace App\Services\Users;
 use App\Jobs\Emails\Purge\FirstWarningJob;
 use App\Jobs\Emails\Purge\SecondWarningJob;
 use App\Jobs\Users\DeleteUser;
+use App\Models\JobLog;
 use App\Models\User;
 use App\Models\UserFlag;
 use Carbon\Carbon;
@@ -15,6 +16,12 @@ class PurgeService
     protected int $count = 0;
 
     protected string $date;
+
+    protected array $firstWarningIds = [];
+
+    protected array $secondWarningIds = [];
+
+    protected array $purgedIds = [];
 
     protected bool $dry = true;
 
@@ -189,9 +196,15 @@ class PurgeService
                         FirstWarningJob::dispatch($user->id);
                     }
 
+                    $this->firstWarningIds[] = $user->id;
                     $this->count++;
                 }
             });
+
+            JobLog::create([
+                'name' => 'users:purge',
+                'result' => 'First warning: ' . implode(', ', $this->firstWarningIds),
+            ]);
 
         return $this->count;
     }
@@ -246,9 +259,15 @@ class PurgeService
                         SecondWarningJob::dispatch($user->id);
                     }
 
+                    $this->secondWarningIds[] = $user->id;
                     $this->count++;
                 }
             });
+
+            JobLog::create([
+                'name' => 'users:purge',
+                'result' => 'Second warning: ' . implode(', ', $this->secondWarningIds),
+            ]);
 
         return $this->count;
     }
@@ -295,9 +314,15 @@ class PurgeService
                         DeleteUser::dispatch($user);
                     }
 
+                    $this->purgedIds[$user->id] = $user->email;
                     $this->count++;
                 }
             }, 'users.id', 'id');
+
+            JobLog::create([
+                'name' => 'users:purge',
+                'result' => 'Purged: ' . implode(', ', $this->purgedIds),
+            ]);
 
         return $this->count;
     }
