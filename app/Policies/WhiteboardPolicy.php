@@ -11,4 +11,14 @@ class WhiteboardPolicy
     {
         return true;
     }
+
+    public function create(User $user)
+    {
+        return true;
+    }
+
+    public function update(User $user, Whiteboard $whiteboard)
+    {
+        return true;
+    }
 }

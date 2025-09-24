@@ -7,9 +7,14 @@ use App\Http\Requests\Whiteboards\CreateRequest;
 use App\Http\Requests\Whiteboards\UpdateRequest;
 use App\Models\Campaign;
 use App\Models\Whiteboard;
+use App\Services\Whiteboards\ApiService;
 
 class CrudController extends Controller
 {
+    public function __construct(protected ApiService $apiService)
+    {
+
+    }
     public function index(Campaign $campaign)
     {
         $this->authorize('view', $campaign);
@@ -33,21 +38,33 @@ class CrudController extends Controller
         $whiteboard->campaign_id = $campaign->id;
         $whiteboard->save();
 
-        return response()->json(['success' => true, 'whiteboard' => $whiteboard->id]);
+        return response()->json([
+            'success' => true,
+            'id' => $whiteboard->id,
+            'toast' => __('whiteboards.create.success')
+        ]);
     }
 
-    public function view(Campaign $campaign, Whiteboard $whiteboard)
+    public function show(Campaign $campaign, Whiteboard $whiteboard)
     {
         $this->authorize('view', $campaign);
         $this->authorize('view', $whiteboard);
 
-        return view('whiteboards.view', compact('campaign', 'whiteboard'));
+        if (request()->ajax()) {
+            return response()->json(
+                $this->apiService->campaign($campaign)->whiteboard($whiteboard)->load()
+            );
+        }
+
+        return view('whiteboards.show', compact('campaign', 'whiteboard'));
     }
 
     public function update(UpdateRequest $request, Campaign $campaign, Whiteboard $whiteboard)
     {
         $this->authorize('view', $campaign);
         $this->authorize('view', $whiteboard);
+
+        $whiteboard->update($request->only('name', 'data'));
 
         return response()->json(['success' => true]);
     }

@@ -75,7 +75,7 @@ const open = () => {
         }
     });
 
-    axios.get(props.api + '?v2=true')
+    axios.get(props.api + '?v2=true&thumb=256')
         .then(res => {
             entities.value = res.data.entities
             loading.value = false
@@ -126,7 +126,7 @@ const search = () => {
     lastTerm.value = term.value
     searching.value= true
 
-    axios.get(props.api + '?v2=true&q=' + lastTerm.value).then(res => {
+    axios.get(props.api + '?v2=true&thumb=256&q=' + lastTerm.value).then(res => {
         entities.value = res.data.entities
         searching.value = false
         highlightedIndex.value = 0

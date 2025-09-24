@@ -1,5 +1,5 @@
 @extends('layouts.whiteboard', [
-    'title' => __('whiteboards.create.title'),
+    'title' => $whiteboard->name,
     'breadcrumbs' => false,
     'mainTitle' => false,
 ])
@@ -33,8 +33,9 @@
         @endphp
     <div id="whiteboard">
         <whiteboard
-            :new="true"
-            save="{{ route('whiteboards.store', $campaign) }}"
+            :new="false"
+            save="{{ route('whiteboards.update', [$campaign, $whiteboard]) }}"
+            load="{{ route('whiteboards.show', [$campaign, $whiteboard]) }}"
             gallery="{{ route('gallery.browse', $campaign) }}"
             search="{{ route('search.live', $campaign) }}"
             i18n="{{ $translations }}"

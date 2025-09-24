@@ -1,18 +1,24 @@
 <template>
-    <div class="toolbar fixed w-full bg-base-100 p-2 flex items-center gap-2 z-50">
+    <div class="w-full h-screen flex items-center justify-center align-middle text-2xl flex-col gap-4" v-if="loading">
+        <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" />
+        <span>Loading</span>
+    </div>
+    <div class="toolbar fixed w-full bg-base-100 p-2 flex items-center gap-2 z-50" v-if="!loading">
         <input v-model="name" placeholder="Whiteboard name" />
 
         <div class="actions flex items-center">
             <button
                 class="btn2 btn-sm btn-primary join-item"
+                :class="{ 'btn-disabled': saving }"
                 @click="saveWhiteboard">
-                <i class="fa-regular fa-save" aria-hidden="true" />
+                <i class="fa-regular fa-save" aria-hidden="true" v-if="!saving" />
+                <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" v-else />
                 Save
             </button>
         </div>
     </div>
 
-    <v-stage
+    <v-stage v-if="!loading"
         ref="stage"
         :config="stageSize"
         @click="handleStageClick"
@@ -40,8 +46,7 @@
                 />
                 <v-circle v-if="shape.type==='circle'"
                           :config="{
-                            x: 0, y: 0,x:
-                            shape.radius,
+                            x: shape.radius,
                             y: shape.radius,
                             radius: shape.radius,
                             fill: shape.fill || 'lightgreen',
@@ -133,7 +138,7 @@
                     borderStrokeWidth: 1,
                     anchorStroke: cssVariable('--p'),
                     anchorFill: cssVariable('--pc'),
-                    anchorSize: 7,
+                    anchorSize: 8,
                     keepRatio: true,
                 }"
             />
@@ -141,7 +146,7 @@
     </v-stage>
 
     <textarea
-        v-if="editingTextId"
+        v-if="editingTextId && !loading"
         ref="textInput"
         v-model="editingText"
         :style="inputStyle"
@@ -153,12 +158,48 @@
     ></textarea>
 
     <div
+        v-if="!loading"
         :style="toolbarStyle"
         class="fixed z-50 flex items-center justify-center inset-x-0 gap-1 bottom-8 tools"
         @mousedown.stop
         @click.stop
     >
-        <div class="flex items-center gap-2 shape-toolbar " v-if="selectedShape">
+        <div v-if="drawingMode" class="flex items-center gap-2 main-toolbar">
+            <div class="join">
+
+                <button
+                    class="btn2 btn-sm join-item"
+                    title="Thin stroke"
+                    @click.stop="strokeSize = 1"
+                >
+                    <i class="fa-regular fa-paintbrush-fine" aria-hidden="true"></i>
+                    <span class="sr-only">Thin stroke</span>
+                </button>
+                <button
+                    class="btn2 btn-sm join-item"
+                    title="Large stroke"
+                    @click.stop="strokeSize = 3"
+                >
+                    <i class="fa-regular fa-paintbrush" aria-hidden="true"></i>
+                    <span class="sr-only">Large stroke</span>
+                </button>
+                <button
+                    class="btn2 btn-sm join-item"
+                    title="Change color"
+                    @click.stop="openColorPicker"
+                >
+                    <i class="fa-regular fa-palette" aria-hidden="true"></i>
+                    <span class="sr-only">Color</span>
+                </button>
+                <button
+                    @click="toggleDrawing"
+                    class="btn2 btn-sm join-item">
+                    <i class="fa-regular fa-check" aria-hidden="true" />
+                    <span class="sr-only">End drawing</span>
+                </button>
+            </div>
+        </div>
+        <div class="flex items-center gap-2 shape-toolbar " v-else-if="selectedShape">
             <div class="join">
                 <button
                     class="btn2 btn-sm join-item"
@@ -179,15 +220,6 @@
                     <span class="sr-only">Color</span>
                 </button>
             </div>
-
-            <input
-                ref="colorInput"
-                type="color"
-                class="hidden"
-                :value="selectedShape.fill || defaultFillFor(selectedShape)"
-                @input="onPickColor"
-                @change="onPickColor"
-            />
 
             <div class="join">
                 <button
@@ -216,7 +248,7 @@
                 <span class="sr-only">Delete</span>
             </button>
         </div>
-        <div v-else class="flex items-center gap-2 main-toolbar">
+        <div v-else-if="!drawingMode" class="flex items-center gap-2 main-toolbar">
             <div class="join">
                 <button
                     @click="addShape('rect')"
@@ -242,10 +274,8 @@
                 <button
                     @click="toggleDrawing"
                     class="btn2 btn-sm join-item">
-                    <i class="fa-regular fa-scribble" aria-hidden="true" v-if="!drawingMode" />
-                    <i class="fa-regular fa-check" aria-hidden="true" v-else />
-                    <span class="sr-only" v-if="!drawingMode">Start drawing</span>
-                    <span class="sr-only" v-else>End drawing</span>
+                    <i class="fa-regular fa-scribble" aria-hidden="true" />
+                    <span class="sr-only">Start drawing</span>
                 </button>
             </div>
             <div class="join">
@@ -267,7 +297,18 @@
         </div>
     </div>
 
+    <input
+        v-if="!loading"
+        ref="colorInput"
+        type="color"
+        class="hidden"
+        :value="currentColor"
+        @input="onPickColor"
+        @change="onPickColor"
+    />
+
     <Browser
+        v-if="!loading"
         :api="props.gallery"
         :opened="galleryOpened"
         :i18n="i18n"
@@ -276,6 +317,7 @@
     ></Browser>
 
     <Entity
+        v-if="!loading"
         :api="props.search"
         :opened="searchOpened"
         @selected="selectEntity"
@@ -292,7 +334,8 @@ import Entity from "./Entity.vue";
 import { hslFromVar, readCssVar, hslString, tweakHsl } from '../../utility/colours';
 
 const props = defineProps<{
-    api: String,
+    save: String,
+    load: String,
     gallery: String,
     search: String,
     new: Boolean,
@@ -306,6 +349,12 @@ const name = ref('My whiteboard');
 const stage = ref(null);
 const transformer = ref(null);
 const layer = ref(null);
+
+// Saving
+const saving = ref(false);
+const loading = ref(true);
+const savingUrl = ref()
+const savingMethod = ref('post')
 
 // Text editing state
 const editingTextId = ref(null);
@@ -321,13 +370,16 @@ const colorInput = ref<HTMLInputElement|null>(null);
 const selectedShape = computed(() => shapes.value.find(s => s.id === selectedId.value) || null);
 
 // Drawing
-const drawingMode = ref(false);
-const isDrawing = ref(false);
-const tempGroup = ref(null);
+const drawingMode = ref(false)
+const isDrawing = ref(false)
+const tempGroup = ref(null)
+const strokeSize = ref(1)
+const currentColor = ref(null)
+const strokeSizePicker = ref(false)
 
 // Gallery
 const galleryOpened = ref(false)
-const imageRefs = ref({});
+const imageRefs = ref({})
 
 // Search
 const searchOpened = ref(false)
@@ -442,11 +494,18 @@ const setupTransformerEvents = () => {
 };
 
 const selectShape = (shape) => {
+    // Don't do any selection while in drawing mode to avoid confusion
+    if (drawingMode.value) {
+        return;
+    }
     // If clicking a second time on a text, edit the text
     if (shape.text && selectedId.value === shape.id) {
         editText(shape)
     }
     selectedId.value = shape.id;
+    if (shape.fill) {
+        currentColor.value = shape.fill;
+    }
     nextTick(() => {
         updateTransformer();
         setupTransformerEvents();
@@ -505,20 +564,23 @@ const toggleLock = () => {
     uiTick.value++;
 };
 
-const defaultFillFor = (shape) => {
-    return shape.type === 'rect' ? '#add8e6' /* lightblue */ : '#90ee90' /* lightgreen */;
-};
-
 const openColorPicker = () => {
     colorInput.value?.click();
 };
 
 const onPickColor = (e: Event) => {
+    const input = e.target as HTMLInputElement
+    if (!input) return
+    if (drawingMode.value) {
+        tempGroup.value.fill = input.value
+        currentColor.value = input.value
+        return
+    }
     const s = selectedShape.value;
     if (!s) return;
-    const input = e.target as HTMLInputElement;
     if (input?.value) {
         s.fill = input.value;
+        currentColor.value = input.value;
         uiTick.value++;
     }
 };
@@ -657,7 +719,7 @@ const handleMouseDown = (e) => {
             id: Date.now(),
             type: "group",
             children: [],
-            fill: cssVariable('--bc')
+            fill: currentColor.value
         }
     }
 
@@ -665,8 +727,8 @@ const handleMouseDown = (e) => {
         id: Date.now() + "-lin",
         type: "draw",
         points: [pos.x, pos.y],
-        fill: cssVariable('--bc'),
-        strokeWidth: 2,
+        fill: currentColor.value,
+        strokeWidth: strokeSize.value,
     });
 }
 
@@ -740,26 +802,17 @@ function watchImage(uuid: string, shapeId: string) {
     const r = imageRefs.value[uuid];
     if (!r) return;
 
-    console.log('uuid', uuid);
-    console.log('imgRefs', imageRefs.value);
-    console.log('r', r);
-
     watch(
         () => r,
         (imgEl) => {
-            console.log('imgEl', imgEl);
             if (imgEl) {
                 // If you want the shape to match the real image size the first time it loads:
                 const shape = shapes.value.find(s => s.id === shapeId);
-                console.log('update shape', shape);
                 if (shape && (!shape.width || !shape.height)) {
-                    console.log('a');
                     // Use natural size on first load if width/height were falsy
                     shape.width = imgEl.naturalWidth || shape.width || 100;
                     shape.height = imgEl.naturalHeight || shape.height || 80;
-                    console.log(imgEl.naturalWidth, imgEl.naturalHeight);
                 }
-                console.log('n');
 
                 // Force Konva to repaint immediately
                 const layerNode = layer.value?.getNode();
@@ -819,7 +872,6 @@ const closedSearch = () => {
 
 const selectEntity = (entity) => {
     searchOpened.value = false;
-    console.log('selected entity', entity);
 
 
     const [imageNode] = useImage(entity.image, 'anonymous');
@@ -842,7 +894,7 @@ const selectEntity = (entity) => {
         entity: entity.id,
         name: entity.name,
         link: entity.link,
-        fill: '#add8e6',
+        fill: cssVariable('--bc'),
         locked: false,
         moving: false,
     });
@@ -860,7 +912,43 @@ const openEntityLink = (shape) => {
 
 
 const saveWhiteboard = () => {
+    if (saving.value) return
 
+    let data = {
+        'name': name.value,
+        'data': shapes.value
+    }
+
+    saving.value = true;
+
+    axios({
+        method: savingMethod.value,
+        url: savingUrl.value,
+        data: data
+    })
+        .then(res => {
+            // Change the url to the new board without reloading the page
+            const newId = res.data?.id ?? null;
+            if (newId) {
+                // Update the URL to the new board
+                const newUrl = window.location.pathname.replace(/\/create\/?$/, '') + '/' + newId;
+                // Use replaceState so we don't add an extra history entry on every save.
+                window.history.replaceState({ whiteboardId: newId }, '', newUrl);
+            }
+
+            if (res.data?.toast) {
+                window.showToast(res.data.toast);
+            }
+
+            if (savingMethod.value === 'post') {
+                savingMethod.value = 'put';
+            }
+            saving.value = false
+        }).catch(err => {
+        // Result with a response, hopefully a 422 error
+        console.error(err)
+        saving.value = false
+    })
 }
 
 const pushTo = (where: 'front' | 'back') => {
@@ -890,9 +978,16 @@ const pushTo = (where: 'front' | 'back') => {
 
 const cssVariable = (variable: string) => {
     const base = hslFromVar(variable);
-    console.log('base', variable, base);
     if (!base) return `hsl(${readCssVar('--p')})`;
     return hslString(base);
+}
+
+const loadImages = (images) => {
+    console.log(images);
+    Object.entries(images).forEach(([id, src]) => {
+        const [imageNode] = useImage(src, 'anonymous');
+        imageRefs.value[id] = imageNode;
+    })
 }
 
 
@@ -901,5 +996,30 @@ const stageSize = {
     height: window.innerHeight,
     draggable: true,
 };
+
+
+
+onMounted(() => {
+    currentColor.value = cssVariable('--bc')
+    savingUrl.value = props.save
+
+    if (props.new) {
+        loading.value = false
+        return
+    }
+
+    axios.get(props.load).then(res => {
+        if (res.data) {
+            name.value = res.data.name
+            shapes.value = res.data.data
+
+            if (res.data.images) {
+                loadImages(res.data.images)
+            }
+        }
+        savingMethod.value = 'put'
+        loading.value = false
+    })
+})
 
 </script>
