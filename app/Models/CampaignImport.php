@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 /**
  * @property int $id
  * @property array $config
+ * @property array $logs
+ * @property array $errors
  * @property CampaignImportStatus $status_id
  * @property Campaign $campaign
  */
@@ -28,10 +30,14 @@ class CampaignImport extends Model
         'user_id',
         'campaign_id',
         'status_id',
+        'logs',
+        'errors',
     ];
 
     public $casts = [
         'config' => 'array',
+        'logs' => 'array',
+        'errors' => 'array',
         'status_id' => CampaignImportStatus::class,
     ];
 
@@ -54,9 +60,16 @@ class CampaignImport extends Model
      */
     public function prunable(): Builder
     {
-        return static::/*where('updated_at', '<=', now()->subDays(1))
-            ->*/ whereIn('status_id', [CampaignImportStatus::PREPARED, CampaignImportStatus::QUEUED]);
+        return static::where(function ($query) {
+                $query->whereIn('status_id', [
+                        CampaignImportStatus::PREPARED, 
+                        CampaignImportStatus::QUEUED
+                    ])
+                    ->where('created_at', '<=', now()->subDay());
+            })
+            ->orWhere('created_at', '<=', now()->subDays(config('imports.prune')));
     }
+
 
     public function isPrepared(): bool
     {
