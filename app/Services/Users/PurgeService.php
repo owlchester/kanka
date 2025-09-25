@@ -17,11 +17,7 @@ class PurgeService
 
     protected string $date;
 
-    protected array $firstWarningIds = [];
-
-    protected array $secondWarningIds = [];
-
-    protected array $purgedIds = [];
+    protected array $warnedIds = [];
 
     protected bool $dry = true;
 
@@ -196,16 +192,16 @@ class PurgeService
                         FirstWarningJob::dispatch($user->id);
                     }
 
-                    $this->firstWarningIds[] = $user->id;
+                    $this->warnedIds[] = $user->id;
                     $this->count++;
                 }
             });
 
             JobLog::create([
                 'name' => 'users:purge',
-                'result' => 'First warning: ' . implode(', ', $this->firstWarningIds),
+                'result' => 'First warning: ' . implode(', ', $this->warnedIds),
             ]);
-
+            $this->warnedIds = [];
         return $this->count;
     }
 
@@ -259,15 +255,16 @@ class PurgeService
                         SecondWarningJob::dispatch($user->id);
                     }
 
-                    $this->secondWarningIds[] = $user->id;
+                    $this->warnedIds[] = $user->id;
                     $this->count++;
                 }
             });
 
             JobLog::create([
                 'name' => 'users:purge',
-                'result' => 'Second warning: ' . implode(', ', $this->secondWarningIds),
+                'result' => 'Second warning: ' . implode(', ', $this->warnedIds),
             ]);
+            $this->warnedIds = [];
 
         return $this->count;
     }
@@ -314,15 +311,16 @@ class PurgeService
                         DeleteUser::dispatch($user);
                     }
 
-                    $this->purgedIds[$user->id] = $user->email;
+                    $this->warnedIds[$user->id] = $user->email;
                     $this->count++;
                 }
             }, 'users.id', 'id');
 
             JobLog::create([
                 'name' => 'users:purge',
-                'result' => 'Purged: ' . implode(', ', $this->purgedIds),
+                'result' => 'Purged: ' . implode(', ', $this->warnedIds),
             ]);
+            $this->warnedIds = [];
 
         return $this->count;
     }
