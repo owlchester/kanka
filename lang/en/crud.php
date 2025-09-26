@@ -189,6 +189,7 @@ return [
             'copy'  => 'Clipboard',
         ],
         'options'           => [
+            'any'       => 'Any',
             'children'  => 'Matches this or its descendants',
             'exclude'   => 'Doesn\'t match',
             'hide'      => 'Hide',
