@@ -99,35 +99,35 @@ class MoonService
     {
         switch ($colour) {
             case 'aqua':
-                return 'blue-500';
+                return '#3B82F6'; // blue-500
             case 'black':
-                return 'black';
+                return '#000000'; // black
             case 'brown':
-                return 'orange-900';
-                /*case 'green':
-                    return 'green-500';*/
+                return '#7C2D12'; // orange-900 (closest brown)
+            case 'green':
+                return '#22C55E'; // green-500
             case 'light-blue':
-                return 'blue-300';
+                return '#93C5FD'; // blue-300
             case 'maroon':
-                return 'pink-800';
+                return '#9D174D'; // pink-800 (closest maroon)
             case 'navy':
-                return 'blue-900';
-                /*case 'orange':
-                    return 'orange-500';
-                case 'pink':
-                    return 'pink-500';
-                case 'purple':
-                    return 'purple-500';
-                case 'red':
-                    return 'red-500';
-                case 'teal':
-                    return 'teal-500';
-                case 'yellow':
-                    return 'yellow-500';*/
+                return '#1E3A8A'; // blue-900
+            case 'orange':
+                return '#F97316'; // orange-500
+            case 'pink':
+                return '#EC4899'; // pink-500
+            case 'purple':
+                return '#A855F7'; // purple-500
+            case 'red':
+                return '#EF4444'; // red-500
+            case 'teal':
+                return '#14B8A6'; // teal-500
+            case 'yellow':
+                return '#EAB308'; // yellow-500
             case 'grey':
-                return 'gray-500';
+                return '#6B7280'; // gray-500
         }
 
-        return $colour . '-500';
+        return $colour;
     }
 }

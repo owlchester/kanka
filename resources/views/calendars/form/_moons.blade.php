@@ -62,10 +62,12 @@ if (!empty($moonNames)) {
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-2">
-                    <div class="field w-full">
-                        <label class="sr-only">{{ __('crud.fields.colour') }}</label>
-                        <x-forms.select name="moon_colour[]" :options="FormCopy::colours(false)" :selected="\Illuminate\Support\Arr::get($fullmoon, 'colour', 'grey')" class="w-full select2-colour" :label="__('crud.fields.colour')"/>
-                    </div>
+                    <x-forms.field field="moon_colour[]">
+                        <span>
+                            <input type="text" name="moon_colour[]" value="{{ \Illuminate\Support\Arr::get($fullmoon, 'colour', 'grey') }}"
+                            maxlength="7" class="spectrum" @if (isset($dropdownParent)) data-append-to="{{ $dropdownParent }}" @endif />
+                        </span>
+                    </x-forms.field>
                     <div class="flex gap-2 items-center">
                         <div class="grow field">
                             <label class="sr-only">{{ __('calendars.parameters.moon.offset') }}</label>
@@ -103,10 +105,12 @@ if (!empty($moonNames)) {
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-2">
-                <div class="field w-full">
-                    <label class="sr-only">{{ __('crud.fields.colour') }}</label>
-                    <x-forms.select name="moon_colour[]" :options="FormCopy::colours(false)" selected="grey" class="w-full select2-colour" :label="__('crud.fields.colour')"/>
-                </div>
+                <x-forms.field field="moon_colour[]">
+                    <span>
+                        <input type="text" name="moon_colour[]" value="grey"
+                        maxlength="7" class="spectrum" @if (isset($dropdownParent)) data-append-to="{{ $dropdownParent }}" @endif />
+                    </span>
+                </x-forms.field>
                 <div class="flex gap-2 items-center">
                     <div class="grow field">
                         <label class="sr-only">{{ __('calendars.parameters.moon.offset') }}</label>
