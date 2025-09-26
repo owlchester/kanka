@@ -51,7 +51,9 @@
                         @include('cruds.datagrids.filters._array')
                     @endif
                 @else
-                    <label>{{ __((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template']) ? 'crud.fields.' : $langKey . '.fields.') . $field) }}</label>
+                    <label>
+                        {{ __($field === 'is_dead' ? 'characters.fields.' . $field : ((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template']) ? 'crud.fields.' : $langKey . '.fields.') . $field)) }}
+                    </label>
                     @if ($filterService->isCheckbox($field))
                         @include('cruds.datagrids.filters._choice')
                     @elseif ($field === 'type' && !empty($entityModel))
