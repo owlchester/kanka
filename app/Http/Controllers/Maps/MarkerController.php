@@ -35,6 +35,7 @@ class MarkerController extends Controller
         'pin_size',
         'circle_radius', 'polygon_style',
         'is_popupless',
+        'css',
     ];
 
     public function index(Campaign $campaign, Map $map)

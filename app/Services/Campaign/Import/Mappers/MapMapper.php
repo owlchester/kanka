@@ -125,7 +125,7 @@ class MapMapper extends MiscMapper
     protected function markers(): self
     {
         $fields = [
-            'pin_size', 'name', 'entry', 'longitude', 'latitude', 'colour', 'shape_id', 'size_id', 'icon', 'custom_icon', 'custom_shape', 'is_draggable', 'visibility_id', 'font_colour', 'circle_radius', 'polygon_style', 'opacity',
+            'pin_size', 'name', 'entry', 'longitude', 'latitude', 'colour', 'shape_id', 'size_id', 'icon', 'custom_icon', 'custom_shape', 'is_draggable', 'visibility_id', 'font_colour', 'circle_radius', 'polygon_style', 'opacity', 'css',
         ];
         foreach ($this->data['markers'] as $data) {
             $marker = new MapMarker;

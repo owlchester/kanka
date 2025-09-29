@@ -59,6 +59,7 @@ return [
     ],
     'helpers'       => [
         'base'                      => 'Add markers to the map by clicking on any spot.',
+        'css'                       => 'Define a custom CSS class added to the marker.',
         'copy_elements'             => 'Copy groups, layers, and markers.',
         'copy_elements_to_campaign' => 'Copy groups, layers, and markers of the maps. Markers linked to an entity will be converted to a standard marker.',
         'custom_icon_v2'            => 'Use icons from :fontawesome, :rpgawesome, or a custom SVG icon. Find out how in the :docs.',

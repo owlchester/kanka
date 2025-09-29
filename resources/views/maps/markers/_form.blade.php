@@ -194,6 +194,18 @@ $sizeOptions = [
         </div>
         @endif
 
+        <x-forms.field
+            field="css"
+            :label="__('dashboard.widgets.fields.class')"
+            :helper="__('maps/markers.helpers.css')"
+        >
+        <input type="text" name="css" value="{{ old('css', $model->css ?? $source->css ?? null) }}" class="w-full"
+                maxlength="45" id="css"/>
+        <p class="text-neutral-content md:hidden">
+            {{ __('maps/markers.helpers.css') }}
+        </p>
+
+        </x-forms.field>
         @include('maps.markers.fields.opacity')
 
         <div class="" id="map-marker-bg-colour" @if((isset($model) && $model->isLabel()) || (isset($source) && $source->isLabel())) style="display: none;"@endif>
