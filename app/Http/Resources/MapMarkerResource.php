@@ -37,6 +37,7 @@ class MapMarkerResource extends ModelResource
             'circle_radius' => $model->circle_radius,
             'polygon_style' => $model->polygon_style,
             'visibility_id' => $model->visibility_id,
+            'css' => $model->css,
         ]);
     }
 }

@@ -39,6 +39,7 @@ use Illuminate\Support\Str;
  * @property string $custom_icon
  * @property string $custom_shape
  * @property ?int $circle_radius
+ * @property string $css
  * @property bool|int $is_draggable
  * @property bool|int $is_popupless
  * @property array $polygon_style
@@ -90,6 +91,7 @@ class MapMarker extends Model
         'circle_radius',
         'polygon_style',
         'is_popupless',
+        'css',
     ];
 
     protected array $sortable = [
@@ -112,6 +114,7 @@ class MapMarker extends Model
 
     protected array $sanitizable = [
         'name',
+        'css'
     ];
 
     /** Editing the map */
@@ -172,6 +175,11 @@ class MapMarker extends Model
     public function isCircle(): bool
     {
         return $this->shape_id == self::SHAPE_CIRCLE;
+    }
+
+    public function css(): string
+    {
+        return (string) $this->css;
     }
 
     /**
@@ -278,7 +286,7 @@ class MapMarker extends Model
                 title: \'' . $this->markerTitle() . '\',
                 stroke: false,
                 fillOpacity: ' . $this->floatOpacity() . ',
-                className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . '\','
+                className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . ' ' . $this->css . '\','
             . ($this->isDraggable() ? 'draggable: true' : null) . '
             })' . $this->popup() . $this->draggable();
     }
@@ -480,7 +488,7 @@ class MapMarker extends Model
                 iconSize: [' . $size . ', ' . $size . '],
                 iconAnchor: [' . ceil($size / 2) . ', ' . ($size + ceil($size / 4)) . '],
                 popupAnchor: [0, -' . ($size + ceil($size / 4)) . '],
-                className: \'marker marker-' . $this->id . '\'
+                className: \'marker marker-' . $this->id . ' ' . $this->css . '\'
         })';
     }
 
