@@ -36,6 +36,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(VisibileEntityCountCommand::class)->onOneServer()->dailyAt('01:00');
         // $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
         $schedule->command(EndSubscriptions::class)->onOneServer()->dailyAt('00:05');
+        $schedule->command(EndFreeTrials::class)->onOneServer()->dailyAt('00:01');
         $schedule->command(RegenerateDiscordToken::class)->onOneServer()->dailyAt('00:15');
         $schedule->command(ExpiringCardCommand::class)->onOneServer()->monthlyOn(1, '02:00');
 
@@ -49,8 +50,6 @@ class Kernel extends ConsoleKernel
         $schedule->command(CleanupTrashed::class)->onOneServer()->dailyAt('02:15');
         $schedule->command(CleanupTrashedCampaigns::class)->onOneServer()->dailyAt('02:45');
         $schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50');
-
-        $schedule->command(EndFreeTrials::class)->onOneServer()->everyMinute();
     }
 
     /**

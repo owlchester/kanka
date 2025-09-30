@@ -68,7 +68,7 @@ class SubscriptionEndJob implements ShouldQueue
         $boostService = app()->make('App\Services\Campaign\BoostService');
         $unboostedCampaigns = [];
         /** @var CampaignBoost $boost */
-        foreach ($user->boosts()->with(['campaign'])->get() as $boost) {
+        foreach ($user->boosts()->with(['campaign'])->groupBy('campaign_id')->get() as $boost) {
             $boostService
                 ->campaign($boost->campaign)
                 ->user($user)

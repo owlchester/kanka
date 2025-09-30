@@ -32,7 +32,7 @@ class TrialService
         $sub->stripe_status = 'canceled';
         $sub->stripe_price = 'trial_' . $this->user->pledge;
         $sub->quantity = 1;
-        $sub->ends_at = now()->addDays(15);
+        $sub->ends_at = now()->addDays(16)->startOfDay();
         $sub->save();
 
         $flag = new UserFlag;

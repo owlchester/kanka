@@ -37,10 +37,7 @@ class FreeTrialEndService
             ->where('stripe_id', 'like', 'manual_sub%')
             ->where('stripe_status', 'canceled')
             ->whereLike('stripe_price', 'trial_%')
-            ->whereBetween('ends_at', [
-                Carbon::now()->subMinute()->startOfMinute(),
-                Carbon::now()->subMinute()->endOfMinute(),
-            ])
+            ->whereDate('ends_at', '=', Carbon::now()->startOfDay())
             ->get();
         if ($subscriptions->count() === 0) {
             return;
