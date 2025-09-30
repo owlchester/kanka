@@ -197,11 +197,12 @@ class PurgeService
                 }
             });
 
-            JobLog::create([
-                'name' => 'users:purge',
-                'result' => 'First warning: ' . implode(', ', $this->warnedIds),
-            ]);
-            $this->warnedIds = [];
+        JobLog::create([
+            'name' => 'users:purge',
+            'result' => 'First warning: ' . implode(', ', $this->warnedIds),
+        ]);
+        $this->warnedIds = [];
+
         return $this->count;
     }
 
@@ -260,11 +261,11 @@ class PurgeService
                 }
             });
 
-            JobLog::create([
-                'name' => 'users:purge',
-                'result' => 'Second warning: ' . implode(', ', $this->warnedIds),
-            ]);
-            $this->warnedIds = [];
+        JobLog::create([
+            'name' => 'users:purge',
+            'result' => 'Second warning: ' . implode(', ', $this->warnedIds),
+        ]);
+        $this->warnedIds = [];
 
         return $this->count;
     }
@@ -316,11 +317,11 @@ class PurgeService
                 }
             }, 'users.id', 'id');
 
-            JobLog::create([
-                'name' => 'users:purge',
-                'result' => 'Purged: ' . implode(', ', $this->warnedIds),
-            ]);
-            $this->warnedIds = [];
+        JobLog::create([
+            'name' => 'users:purge',
+            'result' => 'Purged: ' . implode(', ', $this->warnedIds),
+        ]);
+        $this->warnedIds = [];
 
         return $this->count;
     }

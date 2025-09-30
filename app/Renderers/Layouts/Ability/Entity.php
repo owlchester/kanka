@@ -46,7 +46,7 @@ class Entity extends Layout
     public function actions(): array
     {
         return [
-            'abilities.entities.actions.delete'
+            'abilities.entities.actions.delete',
         ];
     }
 }

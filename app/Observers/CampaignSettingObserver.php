@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Events\Campaigns\SettingsSaved;
-use App\Facades\CampaignCache;
 use App\Models\CampaignSetting;
 
 /**

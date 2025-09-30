@@ -78,7 +78,7 @@ class WordCount extends Command
                             LENGTH(REPLACE(TRIM(REGEXP_REPLACE($field, '<[^>]*>', '')), ' ', '')) + 1
                         )
                     END
-                ")
+                "),
                 ]);
 
             $processed += $updated;

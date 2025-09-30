@@ -21,10 +21,10 @@ class UserCacheService extends BaseCache
     use CampaignAware;
     use CampaignCache;
     use PrimaryCache;
-    use UserFlagCache;
     use RoleCache;
     use TutorialCache;
     use UserAware;
+    use UserFlagCache;
 
     /**
      * Get the username

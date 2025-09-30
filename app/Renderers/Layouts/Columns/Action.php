@@ -27,7 +27,7 @@ class Action extends Column
                     $this->actions[] = $action;
                 }
             } elseif ($action == Layout::ACTION_DELETE) {
-                if (!$permissions) {
+                if (! $permissions) {
                     $this->actions[] = $action;
                 } elseif (auth()->user()->can('delete', $this->model)) {
                     $this->actions[] = $action;

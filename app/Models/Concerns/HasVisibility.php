@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
  *
  *
  * @property ?Visibility $visibility_id
+ *
  * @method static self|Builder withPrivate()
  */
 trait HasVisibility
