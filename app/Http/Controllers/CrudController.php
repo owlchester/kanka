@@ -208,6 +208,12 @@ class CrudController extends Controller
             // left join on the entities table)
             $filteredCount = $models->total();
         } else {
+
+            //Filter out archived entities
+            $base = $base->whereHas('entity', function ($query) {
+                $query->whereNull('archived_at');
+            });
+    
             /** @var Paginator $models */
             $models = $base->paginate();
             $unfilteredCount = $filteredCount = $models->count();

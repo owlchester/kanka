@@ -274,7 +274,9 @@ class CampaignDashboardWidget extends Model
             $base = $base->mentionless()
                 ->whereNotIn($base->getTable() . '.type_id', $excludedTypes);
         }
-
+        //Get only non archived entities
+        $base = $base->whereNull('archived_at');
+        
         // Ordering
         $order = Arr::get($this->config, 'order', null);
         if (empty($order)) {

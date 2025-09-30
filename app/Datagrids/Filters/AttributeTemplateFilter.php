@@ -24,6 +24,7 @@ class AttributeTemplateFilter extends DatagridFilter
             ->add('is_enabled')
             ->isPrivate()
             ->template()
+            ->archived()
             ->hasAttributes()
             ->tags()
             ->attributes()

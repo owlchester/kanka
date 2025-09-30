@@ -41,6 +41,7 @@ class CharacterFilter extends DatagridFilter
             ->add('is_dead')
             ->isPrivate()
             ->template()
+            ->archived()
             ->hasImage()
             ->hasEntry()
             ->hasPosts()

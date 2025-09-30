@@ -52,7 +52,7 @@
                     @endif
                 @else
                     <label>
-                        {{ __($field === 'is_dead' ? 'characters.fields.' . $field : ((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template']) ? 'crud.fields.' : $langKey . '.fields.') . $field)) }}
+                        {{ __($field === 'is_dead' ? 'characters.fields.' . $field : ((in_array($field, ['name', 'type', 'is_private', 'has_image', 'has_attributes', 'has_entity_files', 'has_entry', 'has_posts', 'date_range', 'template', 'archived']) ? 'crud.fields.' : $langKey . '.fields.') . $field)) }}
                     </label>
                     @if ($filterService->isCheckbox($field))
                         @include('cruds.datagrids.filters._choice')
@@ -68,6 +68,8 @@
                         @include('cruds.datagrids.filters._date-range')
                     @elseif ($field === 'template')
                         @include('cruds.datagrids.filters._template')
+                    @elseif ($field === 'archived')
+                        @include('cruds.datagrids.filters._archived')
                     @else
                         <input type="text" class="w-full entity-list-filter" name="{{ $field }}" value="{{ $filterService->single($field) }}" data-1p-ignore="true" />
                     @endif

@@ -47,6 +47,7 @@
   - [Abilities](/api-docs/{{version}}/entities/entity-abilities)
   - [Attributes](/api-docs/{{version}}/entities/attributes)
   - [Assets](/api-docs/{{version}}/entities/entity-assets)
+  - [Archives](/api-docs/{{version}}/entities/archives)
   - [Image](/api-docs/{{version}}/entities/entity-image)
   - [Inventory](/api-docs/{{version}}/entities/inventory)
   - [Mentions](/api-docs/{{version}}/entities/entity-mentions)

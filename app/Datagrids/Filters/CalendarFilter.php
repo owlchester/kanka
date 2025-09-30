@@ -14,6 +14,7 @@ class CalendarFilter extends DatagridFilter
             ->add('type')
             ->isPrivate()
             ->template()
+            ->archived()
             ->hasImage()
             ->hasEntry()
             ->hasPosts()

@@ -343,4 +343,14 @@ abstract class DatagridFilter
 
         return $this;
     }
+
+    /**
+     * Add the is archived filter
+     */
+    protected function archived(): self
+    {
+        $this->filters[] = 'archived';
+
+        return $this;
+    }
 }

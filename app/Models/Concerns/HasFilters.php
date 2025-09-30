@@ -73,6 +73,7 @@ trait HasFilters
             'connections',
             'connection_target',
             'connection_name',
+            'archived',
         ];
     }
 
@@ -115,6 +116,8 @@ trait HasFilters
 
                 if ($key === 'tags') {
                     $this->filterTags($query, $value);
+                } elseif ($key === 'archived') {
+                    $this->filterArchived($query, $value);
                 } elseif ($key == 'locations') {
                     $this->filterLocations($query, $value);
                 } elseif ($key == 'organisations') {
@@ -818,6 +821,21 @@ trait HasFilters
                 ->leftJoin('entity_tags as et' . $v, "et{$v}.entity_id", 'e.id')
                 ->where("et{$v}.tag_id", $v);
         }
+    }
+
+    /**
+     * Filter on archived entities
+     */
+    protected function filterArchived(Builder $query, null|string $value = null): void
+    {   
+        $query
+            ->joinEntity();
+
+        if ($value) {              
+            $query->whereNotNull('e.archived_at');
+            return;
+        }
+
     }
 
     /**

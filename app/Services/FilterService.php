@@ -89,6 +89,7 @@ class FilterService
             'updated_by',
             'attribute_name',
             'attribute_value',
+            'archived',
         ])
             ->prepareOrder(['name', 'type', 'is_private'])
             ->prepareSearch();

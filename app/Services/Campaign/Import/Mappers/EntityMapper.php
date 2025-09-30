@@ -17,6 +17,7 @@ use App\Models\Post;
 use App\Models\PostTag;
 use App\Models\Relation;
 use App\Services\EntityMappingService;
+use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -92,6 +93,10 @@ trait EntityMapper
         }
         foreach ($entityMapping as $field) {
             $this->entity->$field = $this->data['entity'][$field];
+        }
+
+        if (isset($this->data['entity']['archived_at'])) {
+            $this->entity->archived_at = Carbon::now();
         }
 
         $this

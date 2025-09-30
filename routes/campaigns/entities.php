@@ -326,6 +326,9 @@ Route::get('/w/{campaign}/entities/{entity}.md', 'Entity\ExportController@markdo
 Route::get('/w/{campaign}/entities/{entity}/template', 'Entity\TemplateController@update')->name('entities.template');
 Route::get('/w/{campaign}/posts/{post}/template', 'Entity\Posts\TemplateController@update')->name('posts.template');
 
+//Archive
+Route::get('/w/{campaign}/entities/{entity}/archive', 'Entity\ArchiveController@update')->name('entities.archive');
+
 // Attribute template
 Route::get('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@index')->name('entities.attributes.template');
 Route::post('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@process')->name('entities.attributes.template-process');

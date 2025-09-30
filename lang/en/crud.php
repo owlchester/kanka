@@ -115,6 +115,7 @@ return [
         'unavailable_feature'   => 'Unavailable feature',
     ],
     'fields'            => [
+        'archived'          => 'Archived',
         'calendar_date'     => 'Calendar Date',
         'child'             => 'Child',
         'closed'            => 'Closed',

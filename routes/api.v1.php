@@ -75,6 +75,9 @@ Route::get('campaigns/{campaign}/search/{query}', [App\Http\Controllers\Api\v1\S
 Route::get('campaigns/{campaign}/entities/templates', [App\Http\Controllers\Api\v1\EntityTemplateApiController::class, 'index']);
 Route::post('campaigns/{campaign}/entities/templates/{entity}/switch', [App\Http\Controllers\Api\v1\EntityTemplateApiController::class, 'switch']);
 
+Route::get('campaigns/{campaign}/entities/archived', [App\Http\Controllers\Api\v1\EntityArchiveApiController::class, 'index']);
+Route::post('campaigns/{campaign}/entities/archive/{entity}', [App\Http\Controllers\Api\v1\EntityArchiveApiController::class, 'switch']);
+
 Route::get('campaigns/{campaign}/entities', [App\Http\Controllers\Api\v1\EntityApiController::class, 'index']);
 Route::get('campaigns/{campaign}/entities/recent', [App\Http\Controllers\Api\v1\RecentEntityApiController::class, 'index']);
 Route::post('campaigns/{campaign}/entities/{entity_type}', [App\Http\Controllers\Api\v1\EntityApiController::class, 'put']);

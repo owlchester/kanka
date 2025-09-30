@@ -153,6 +153,8 @@ class IndexController extends Controller
         if ($this->filterService->hasFilters()) {
             $unfilteredCount = $base->count();
             $base = $base->filter($this->filterService->filters());
+        } else {
+            $base = $base->whereNull('archived_at');
         }
         $models = $base->orderBy('name')->paginate();
 
