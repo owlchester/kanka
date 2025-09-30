@@ -126,6 +126,13 @@ class EntityResource extends JsonResource
             }
         }
 
+        // Check for ?fields
+        $fields = request()->query('fields');
+        if ($fields) {
+            $fields = array_map('trim', explode(',', $fields));
+            $data = array_intersect_key($data, array_flip($fields));
+        }
+
         return $data;
     }
 
@@ -230,6 +237,13 @@ class EntityResource extends JsonResource
         }
 
         $final = array_merge($merged, $prepared);
+
+        // Check for ?fields
+        $fields = request()->query('fields');
+        if ($fields) {
+            $fields = array_map('trim', explode(',', $fields));
+            $final = array_intersect_key($final, array_flip($fields));
+        }
 
         // ksort($final);
         return $final;

@@ -24,6 +24,26 @@ To get a list of filters, first call `/filters` to get the endpoint for each [en
 }
 ```
 
+## Filtering
+
+You can add filters to multiple endpoints, to do so you can add the fields you wish to keep separated by commas under the fields key to the query, note that this feature works when viewing a single of most entity types and entities.
+
+| Method | URI                   | Headers |
+| :- |:----------------------|  :-  |
+| GET/HEAD | `...entities/{entity.id}?fields=id,name,type...` | Default |
+
+### Results
+```json
+{
+    "data": {
+        "id": 1324,
+        "name": "War on a death world",
+        "type": "Global conflict",
+    }
+}
+```
+
+
 ## Character filters
 
 To get a list of available filters for the characters endpoint, call the following endpoint.
