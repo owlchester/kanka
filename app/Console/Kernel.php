@@ -9,6 +9,7 @@ use App\Console\Commands\Cleanup\CleanupTrashed;
 use App\Console\Commands\Cleanup\CleanupTrashedCampaigns;
 use App\Console\Commands\Cleanup\CleanupUsers;
 use App\Console\Commands\Entities\CalendarAdvancer;
+use App\Console\Commands\Subscriptions\EndFreeTrials;
 use App\Console\Commands\Subscriptions\EndSubscriptions;
 use App\Console\Commands\Subscriptions\ExpiringCardCommand;
 use App\Console\Commands\Users\RegenerateDiscordToken;
@@ -48,6 +49,8 @@ class Kernel extends ConsoleKernel
         $schedule->command(CleanupTrashed::class)->onOneServer()->dailyAt('02:15');
         $schedule->command(CleanupTrashedCampaigns::class)->onOneServer()->dailyAt('02:45');
         $schedule->command(CleanupUsers::class)->onOneServer()->dailyAt('01:50');
+
+        $schedule->command(EndFreeTrials::class)->onOneServer()->everyMinute();
     }
 
     /**

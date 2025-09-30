@@ -35,10 +35,13 @@ class SubscriptionEndJob implements ShouldQueue
 
     public bool $cancelled;
 
-    public function __construct(User $user, bool $cancelled = false)
+    public bool $trial;
+
+    public function __construct(User $user, bool $cancelled = false, bool $trial = false)
     {
         $this->userId = $user->id;
         $this->cancelled = $cancelled;
+        $this->trial = $trial;
     }
 
     /**
@@ -82,10 +85,11 @@ class SubscriptionEndJob implements ShouldQueue
         $user->roles()->detach($role->id);
 
         // Notify the user in app about the change
+        $key = 'subscriptions.' . ($this->trial ? 'trial' : ($this->cancelled ? 'failed' : 'ended'));
         $user->notify(
             new Header(
-                'subscriptions.' . ($this->cancelled ? 'failed' : 'ended'),
-                'fa-regular fa-credit-card',
+                $key,
+                'fa-regular fa-gem',
                 'orange'
             )
         );

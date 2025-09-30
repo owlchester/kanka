@@ -7,7 +7,7 @@ use App\Models\JobLog;
 use Carbon\Carbon;
 use Laravel\Cashier\Subscription;
 
-class SubscriptionEndService
+class FreeTrialEndService
 {
     protected int $count = 0;
 
@@ -25,45 +25,27 @@ class SubscriptionEndService
     {
         $this->dispatch = $dispatch;
 
-        $this->endSoforts();
-        $this->endManuals();
+        $this->endFreeTrials();
         $this->log();
 
         return $this->count;
     }
 
-    protected function endSoforts(): void
+    protected function endFreeTrials(): void
     {
-        $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
-            ->where(function ($sub) {
-                $sub->where('stripe_id', 'like', 'sofort_%')
-                    ->orWhere('stripe_id', 'like', 'giropay_%');
-            })
-            ->where('stripe_status', 'active')
-            ->whereDate('ends_at', '<', Carbon::today()->toDateString())
-            ->get();
-        if ($subscriptions->count() === 0) {
-            return;
-        }
-        $this->logs[] = 'Sofort';
-        foreach ($subscriptions as $subscription) {
-            $this->process($subscription);
-        }
-    }
-
-    protected function endManuals(): void
-    {
-        // Now do the same thing for manual subs which ended on the current day, as manual subs end at midnight server time
         $subscriptions = Subscription::with(['user', 'user.boosts', 'user.boosts.campaign'])
             ->where('stripe_id', 'like', 'manual_sub%')
             ->where('stripe_status', 'canceled')
-            ->whereNotLike('stripe_price', 'trial_%')
-            ->whereDate('ends_at', '=', Carbon::today()->toDateString())
+            ->whereLike('stripe_price', 'trial_%')
+            ->whereBetween('ends_at', [
+                Carbon::now()->subMinute()->startOfMinute(),
+                Carbon::now()->subMinute()->endOfMinute(),
+            ])
             ->get();
         if ($subscriptions->count() === 0) {
             return;
         }
-        $this->logs[] = 'Manual';
+        $this->logs[] = 'Free trials';
         foreach ($subscriptions as $subscription) {
             $this->process($subscription);
         }
@@ -73,9 +55,7 @@ class SubscriptionEndService
     {
         $this->logs[] = 'User ' . $subscription->user->name . ' (' . $subscription->user->id . '): ' . $subscription->ends_at;
         if ($this->dispatch) {
-            SubscriptionEndJob::dispatch($subscription->user);
-            $subscription->stripe_status = 'canceled';
-            $subscription->save();
+            SubscriptionEndJob::dispatch($subscription->user, false, true);
         }
         $this->count++;
     }
@@ -92,8 +72,8 @@ class SubscriptionEndService
         }
 
         JobLog::create([
-            'name' => 'subscriptions:end',
-            'result' => implode('<br />', $this->logs),
+            'name' => 'subscriptions:end-free-trials',
+            'result' => implode("\n", $this->logs),
         ]);
     }
 }
