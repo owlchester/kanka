@@ -25,6 +25,7 @@ trait HasNested
                 auth()->user()->updateQuietly();
             }
         }
+
         return $new;
     }
 }

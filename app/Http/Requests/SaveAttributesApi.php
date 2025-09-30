@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\AttributeType;
 use App\Rules\ApiUniqueAttributeNames;
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
-use App\Enums\AttributeType;
 
 class SaveAttributesApi extends FormRequest
 {
@@ -33,7 +33,7 @@ class SaveAttributesApi extends FormRequest
         return $this->clean([
             'attribute' => ['array', new ApiUniqueAttributeNames],
             'attribute.*' => ['array'],
-            'attribute.*.name' =>  ['nullable', 'string'],
+            'attribute.*.name' => ['nullable', 'string'],
             'attribute.*.id' => ['nullable', 'integer', 'exists:attributes,id'],
             'attribute.*.type_id' => [
                 'required_without:attribute.*.id',

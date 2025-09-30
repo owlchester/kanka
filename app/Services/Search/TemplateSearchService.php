@@ -15,8 +15,8 @@ class TemplateSearchService
 {
     use CampaignAware;
     use EntityTypeAware;
-    use RequestAware;
     use Orderable;
+    use RequestAware;
 
     protected Builder $query;
 
@@ -36,7 +36,7 @@ class TemplateSearchService
         $this->query->with($with);
         $this->order($term);
 
-        //@phpstan-ignore-next-line
+        // @phpstan-ignore-next-line
         $entities = $this->query
             ->template()
             ->limit(10)

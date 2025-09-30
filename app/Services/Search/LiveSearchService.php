@@ -15,8 +15,8 @@ class LiveSearchService
 {
     use CampaignAware;
     use EntityTypeAware;
-    use RequestAware;
     use Orderable;
+    use RequestAware;
 
     protected Builder $query;
 

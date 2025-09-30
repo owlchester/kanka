@@ -26,13 +26,14 @@ class EndFreeTrials extends Command
     {
         parent::__construct();
     }
+
     /**
      * Execute the console command.
      */
     public function handle()
     {
         $count = $this->service->run();
-        //$this->info(Carbon::now()->subMinute()->startOfMinute() . ' and ' . Carbon::now()->subMinute()->endOfMinute());
+        // $this->info(Carbon::now()->subMinute()->startOfMinute() . ' and ' . Carbon::now()->subMinute()->endOfMinute());
         $this->info('Ended ' . $count . ' free trials.');
 
         return 0;

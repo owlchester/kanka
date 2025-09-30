@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignCache;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Campaigns\StoreCampaignVisibility;
-use App\Http\Requests\ReorderStyles;
 use App\Models\Campaign;
-use App\Models\CampaignStyle;
 
 class VisibilityController extends Controller
 {

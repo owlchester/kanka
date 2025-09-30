@@ -88,8 +88,8 @@ class BulkAttributeService extends BaseAttributesService
                 return $this;
             }
 
-            //If patching an attribute with the same name as one existing, delete the old one.
-            if (!$this->deleteOld && in_array($attr->name, $this->existingNames)) {
+            // If patching an attribute with the same name as one existing, delete the old one.
+            if (! $this->deleteOld && in_array($attr->name, $this->existingNames)) {
                 $key = array_search($attr->name, $this->existingNames);
 
                 /** @var Attribute $attribute */
