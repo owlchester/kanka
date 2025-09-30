@@ -142,7 +142,7 @@ class ApiService
             /** @var AttributeTemplate $child */
             foreach ($template->ancestors as $child) {
                 /** @var AttributeTemplate $template */
-                if (!$child->isEnabled()) {
+                if (! $child->isEnabled()) {
                     continue;
                 }
                 /*if (!in_array($child->id, $ids)) {

@@ -2,24 +2,10 @@
 
 namespace App\Services\Campaign\Import\Mappers;
 
-use App\Enums\Visibility;
 use App\Facades\EntityLogger;
 use App\Facades\ImportIdMapper;
-use App\Models\Attribute;
 use App\Models\Entity;
-use App\Models\EntityAbility;
-use App\Models\EntityAsset;
-use App\Models\EntityMention;
-use App\Models\EntityTag;
-use App\Models\Image;
-use App\Models\Inventory;
-use App\Models\Post;
-use App\Models\PostTag;
-use App\Models\Relation;
 use App\Services\EntityMappingService;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 trait EntityMapper
 {
@@ -130,7 +116,6 @@ trait EntityMapper
             ->abilities()
             ->inventory();
     }
-
 
     protected function foreign(string $model, string $field): self
     {

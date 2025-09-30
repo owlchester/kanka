@@ -9,6 +9,7 @@ use App\Console\Commands\Cleanup\CleanupTrashed;
 use App\Console\Commands\Cleanup\CleanupTrashedCampaigns;
 use App\Console\Commands\Cleanup\CleanupUsers;
 use App\Console\Commands\Entities\CalendarAdvancer;
+use App\Console\Commands\Subscriptions\EndFreeTrials;
 use App\Console\Commands\Subscriptions\EndSubscriptions;
 use App\Console\Commands\Subscriptions\ExpiringCardCommand;
 use App\Console\Commands\Users\RegenerateDiscordToken;
@@ -35,6 +36,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(VisibileEntityCountCommand::class)->onOneServer()->dailyAt('01:00');
         // $schedule->command(UpcomingYearlyCommand::class)->dailyAt('06:30');
         $schedule->command(EndSubscriptions::class)->onOneServer()->dailyAt('00:05');
+        $schedule->command(EndFreeTrials::class)->onOneServer()->dailyAt('00:01');
         $schedule->command(RegenerateDiscordToken::class)->onOneServer()->dailyAt('00:15');
         $schedule->command(ExpiringCardCommand::class)->onOneServer()->monthlyOn(1, '02:00');
 

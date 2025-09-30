@@ -10,8 +10,11 @@ class DaysService
     use CalendarAware;
 
     protected bool $intercalary = true;
+
     protected int $month;
+
     protected int $year;
+
     protected int $day;
 
     public function intercalary(bool $intercalary): self
@@ -24,16 +27,21 @@ class DaysService
     public function month(int $month): self
     {
         $this->month = $month;
+
         return $this;
     }
+
     public function day(int $day): self
     {
         $this->day = $day;
+
         return $this;
     }
+
     public function year(int $year): self
     {
         $this->year = $year;
+
         return $this;
     }
 

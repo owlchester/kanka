@@ -177,7 +177,7 @@ class EntityLog extends Model
         // Entity name
         $key = 'entities.' . $name;
         $translation = __($key);
-        if ($key !== $translation) {
+        if ($key !== $translation && ! is_array($translation)) {
             return $translation;
         }
 

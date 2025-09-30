@@ -149,17 +149,17 @@ class ImportService
         $files = $this->job->config['files'];
         $path = '/campaigns/' . $this->campaign->id . '/imports/';
         foreach ($files as $file) {
-            //Log::info('Want to download ' . $file);
+            // Log::info('Want to download ' . $file);
             $s3 = Storage::disk('export')->get($file);
             $local = $path . uniqid() . '.zip';
-            //Log::info('Will download from the export disk to local ' . $local);
+            // Log::info('Will download from the export disk to local ' . $local);
             Storage::disk('local')->put($local, $s3);
 
             $this->archive = new ZipArchive;
             $zipPath = storage_path('app/' . $local);
-            //Log::info('Want to open ' . $zipPath);
+            // Log::info('Want to open ' . $zipPath);
             $this->archive->open($zipPath);
-            //Log::info('Opened ' . $local . ' file');
+            // Log::info('Opened ' . $local . ' file');
             $this->extract();
             $this->archive->close();
             unlink($zipPath);
@@ -369,8 +369,8 @@ class ImportService
                         }
                         $filePath = Str::replace($this->dataPath, '', $file);
                         $data = $this->open($filePath);
-                        //Log::info('array: ' . json_encode($data));
-                        //Log::info('array: ' . $filePath);
+                        // Log::info('array: ' . json_encode($data));
+                        // Log::info('array: ' . $filePath);
 
                         $mapper
                             ->path($this->dataPath)

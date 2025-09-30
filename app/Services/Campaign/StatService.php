@@ -112,7 +112,7 @@ class StatService
         $this->stats['words'] = [
             'total' => 0,
             'entities' => 0,
-            'posts' => 0
+            'posts' => 0,
         ];
 
         // Count the `words` field in the entities
@@ -173,8 +173,6 @@ class StatService
             ->sum('character_traits.words');
         $this->stats['words']['total'] += $traitWords;
         $this->stats['words']['elements'] += $traitWords;
-
-
 
         return $this;
     }

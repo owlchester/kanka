@@ -8,9 +8,9 @@ use App\Traits\UserAware;
 
 abstract class MiscMapper
 {
+    use BaseEntityMapper;
     use CampaignAware;
     use EntityMapper;
-    use BaseEntityMapper;
     use ImportMapper;
     use ImportMentions;
     use UserAware;
