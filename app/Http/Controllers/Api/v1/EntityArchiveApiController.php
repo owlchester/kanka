@@ -47,7 +47,7 @@ class EntityArchiveApiController extends ApiController
         $this->authorize('access', $campaign);
         $this->authorize('update', $entity);
 
-        $this->service->entity($entity)->archive();
+        $this->service->entity($entity)->toggle();
 
         $resource = new Resource($entity);
 

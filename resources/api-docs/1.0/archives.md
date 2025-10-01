@@ -48,11 +48,11 @@ You can get a list of entities marked as archived by calling the following API e
 <a name="switch-archive"></a>
 ## Switch archival status
 
-To change the archived status of an entity, use the following endpoint.
+To toggle the archival status of an entity, use the following endpoint.
 
 | Method | URI | Headers |
 | :- |   :-   |  :-  |
-| POST | `entities/archive/{entity.id}` | Default |
+| POST | `entities/{entity.id}/archive` | Default |
 
 ### Body
 

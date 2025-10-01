@@ -9,7 +9,7 @@ class ArchiveService
 {
     use EntityAware;
 
-    public function archive(): void
+    public function toggle(): void
     {
         //If archived, unarchive and vice versa 
         if (isset($this->entity->archived_at)) {

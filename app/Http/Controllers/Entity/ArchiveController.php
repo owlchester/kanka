@@ -25,7 +25,7 @@ class ArchiveController extends Controller
             return response()->json();
         }
 
-        $this->service->entity($entity)->archive();
+        $this->service->entity($entity)->toggle();
 
         return redirect()->back()
             ->with(
