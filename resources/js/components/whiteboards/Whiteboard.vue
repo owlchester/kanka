@@ -3,8 +3,22 @@
         <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" />
         <span>Loading</span>
     </div>
-    <div class="toolbar fixed w-full bg-base-100 p-2 flex items-center gap-2 z-50" v-if="!loading">
-        <input v-model="name" placeholder="Whiteboard name" />
+    <div class="toolbar fixed w-full bg-base-100 p-2 flex items-center justify-between gap-2 z-50" v-if="!loading">
+        <div class="flex gap-1 items-center">
+            <span v-html="name"></span>
+            <div
+                class="cursor-pointer"
+                @click="openSettings"
+            >
+                <i
+                    class="fa-regular fa-cog"
+                    aria-hidden="true"
+                >
+                </i>
+                <span class="sr-only">Edit settings</span>
+            </div>
+        </div>
+
 
         <div class="actions flex items-center">
             <button
@@ -316,6 +330,13 @@
         @closed="closedGallery"
     ></Browser>
 
+    <Settings
+        v-if="!loading"
+        :name="name"
+        :opened="settingsOpened"
+        @closed="closedSettings"
+    ></Settings>
+
     <Entity
         v-if="!loading"
         :api="props.search"
@@ -328,17 +349,17 @@
 
 <script setup lang="ts">
 import { ref, onMounted, reactive, nextTick, computed, watch} from 'vue';
-import Browser from "../../gallery/Browser.vue";
 import {useImage} from "vue-konva";
-import Entity from "./Entity.vue";
 import { hslFromVar, readCssVar, hslString, tweakHsl } from '../../utility/colours';
+import Browser from "../../gallery/Browser.vue";
+import Entity from "./Entity.vue";
+import Settings from "./Settings.vue";
 
 const props = defineProps<{
     save: String,
     load: String,
     gallery: String,
     search: String,
-    new: Boolean,
     i18n: undefined
 }>()
 
@@ -354,7 +375,6 @@ const layer = ref(null);
 const saving = ref(false);
 const loading = ref(true);
 const savingUrl = ref()
-const savingMethod = ref('post')
 
 // Text editing state
 const editingTextId = ref(null);
@@ -383,6 +403,9 @@ const imageRefs = ref({})
 
 // Search
 const searchOpened = ref(false)
+
+// Settings
+const settingsOpened = ref(false)
 
 
 // Reactive input style that updates automatically
@@ -922,32 +945,26 @@ const saveWhiteboard = () => {
     saving.value = true;
 
     axios({
-        method: savingMethod.value,
+        method: 'put',
         url: savingUrl.value,
         data: data
     })
         .then(res => {
-            // Change the url to the new board without reloading the page
-            const newId = res.data?.id ?? null;
-            if (newId) {
-                // Update the URL to the new board
-                const newUrl = window.location.pathname.replace(/\/create\/?$/, '') + '/' + newId;
-                // Use replaceState so we don't add an extra history entry on every save.
-                window.history.replaceState({ whiteboardId: newId }, '', newUrl);
-            }
 
             if (res.data?.toast) {
                 window.showToast(res.data.toast);
             }
 
-            if (savingMethod.value === 'post') {
-                savingMethod.value = 'put';
-            }
             saving.value = false
         }).catch(err => {
         // Result with a response, hopefully a 422 error
-        console.error(err)
         saving.value = false
+
+        if (err.response.data.errors) {
+            Object.entries(err.response.data.errors).forEach(([name, text]) => {
+                window.showToast(text, 'error');
+            })
+        }
     })
 }
 
@@ -991,6 +1008,16 @@ const loadImages = (images) => {
 }
 
 
+
+const openSettings = () => {
+    settingsOpened.value = true
+}
+const closedSettings = (newName) => {
+    settingsOpened.value = false
+    name.value = newName;
+}
+
+
 const stageSize = {
     width: window.innerWidth,
     height: window.innerHeight,
@@ -1017,7 +1044,6 @@ onMounted(() => {
                 loadImages(res.data.images)
             }
         }
-        savingMethod.value = 'put'
         loading.value = false
     })
 })

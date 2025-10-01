@@ -19,7 +19,7 @@ class CrudController extends Controller
     {
         $this->authorize('view', $campaign);
 
-        $models = Whiteboard::orderBy('name')->paginate();
+        $models = Whiteboard::orderBy('updated_at')->paginate();
         return view('whiteboards.index', compact('models', 'campaign'));
     }
 
@@ -27,22 +27,13 @@ class CrudController extends Controller
     {
         $this->authorize('member', $campaign);
 
-        return view('whiteboards.create', compact('campaign'));
-    }
-
-    public function store(CreateRequest $request, Campaign $campaign)
-    {
-        $this->authorize('member', $campaign);
-
-        $whiteboard = new Whiteboard($request->only('name', 'data'));
+        $whiteboard = new Whiteboard();
+        $whiteboard->name = __('whiteboards.create.default-name');
+        $whiteboard->data = [];
         $whiteboard->campaign_id = $campaign->id;
         $whiteboard->save();
 
-        return response()->json([
-            'success' => true,
-            'id' => $whiteboard->id,
-            'toast' => __('whiteboards.create.success')
-        ]);
+        return redirect()->route('whiteboards.show', [$campaign, $whiteboard]);
     }
 
     public function show(Campaign $campaign, Whiteboard $whiteboard)
@@ -66,6 +57,9 @@ class CrudController extends Controller
 
         $whiteboard->update($request->only('name', 'data'));
 
-        return response()->json(['success' => true]);
+        return response()->json([
+            'success' => true,
+            'toast' => __('whiteboards.update.success')
+        ]);
     }
 }

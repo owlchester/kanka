@@ -124,7 +124,7 @@ const search = () => {
     }
 
     lastTerm.value = term.value
-    searching.value= true
+    searching.value = true
 
     axios.get(props.api + '?v2=true&thumb=256&q=' + lastTerm.value).then(res => {
         entities.value = res.data.entities

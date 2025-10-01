@@ -33,7 +33,6 @@
         @endphp
     <div id="whiteboard">
         <whiteboard
-            :new="false"
             save="{{ route('whiteboards.update', [$campaign, $whiteboard]) }}"
             load="{{ route('whiteboards.show', [$campaign, $whiteboard]) }}"
             gallery="{{ route('gallery.browse', $campaign) }}"

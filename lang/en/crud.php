@@ -344,6 +344,9 @@ return [
     'users'             => [
         'unknown'   => 'Unknown',
     ],
+    'timestamps' => [
+        'edited' => 'Edited :ago',
+    ],
     'view'              => 'View',
     'visibilities'      => [
         'admin'         => 'Admins',

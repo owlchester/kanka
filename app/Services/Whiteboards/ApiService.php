@@ -26,7 +26,7 @@ class ApiService
     public function load(): array
     {
         $this->data['name'] = $this->whiteboard->name;
-        $this->data['data'] = $this->whiteboard->data;
+        $this->data['data'] = $this->whiteboard->data ?? [];
         $this->loadImages();
 
         return $this->data;
