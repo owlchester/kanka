@@ -14,7 +14,6 @@ class Icon extends Component
      */
     public function __construct(
         public ?string $class = null,
-        public ?string $entity = null,
         public bool $tooltip = false,
         public ?string $title = null,
         public ?string $link = null,
@@ -28,11 +27,7 @@ class Icon extends Component
      */
     public function render(): View|Closure|string
     {
-        if (empty($this->class) && ! empty($this->entity)) {
-            $this->class = $this->mapEntity($this->entity);
-        } elseif (! empty($this->class)) {
-            $this->class = $this->map($this->class);
-        }
+        $this->class = $this->map($this->class);
 
         return view('components.icon');
     }
@@ -63,18 +58,5 @@ class Icon extends Component
             'link' => 'fa-regular fa-external-link',
             default => $class,
         };
-    }
-
-    /**
-     * Get the icon class based on the entity type
-     */
-    protected function mapEntity(string $entity): string
-    {
-        $class = config('entities.icons.' . $entity);
-        if (config('fontawesome.kit')) {
-            return $class;
-        }
-
-        return Str::replace('fa-duotone', 'fa-solid', $class);
     }
 }
