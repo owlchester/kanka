@@ -57,6 +57,7 @@ use App\Models\TimelineEra;
 use App\Models\User;
 use App\Models\UserLog;
 use App\Models\Webhook;
+use App\Models\Whiteboard;
 use App\Observers\AdminInviteObserver;
 use App\Observers\CalendarObserver;
 use App\Observers\CampaignObserver;
@@ -230,6 +231,7 @@ class AppServiceProvider extends ServiceProvider
         Quest::observe('App\Observers\QuestObserver');
         QuestElement::observe('App\Observers\QuestElementObserver');
         Race::observe('App\Observers\RaceObserver');
+        Whiteboard::observe('App\Observers\WhiteboardObserver');
 
         if (request()->has('_debug_perm') && config('app.debug')) {
             // Add in boot function

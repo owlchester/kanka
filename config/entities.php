@@ -29,6 +29,7 @@ return [
         'timeline' => 18,
         'bookmark' => 19,
         'creature' => 20,
+        'whiteboard' => 35,
     ],
 
     'classes' => [

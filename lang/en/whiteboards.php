@@ -2,6 +2,7 @@
 
 return [
     'create' => [
+        'title' => 'New whiteboard',
         'default-name' => 'Untitled whiteboard',
     ],
     'index' => [

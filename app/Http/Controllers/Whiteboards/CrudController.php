@@ -2,64 +2,64 @@
 
 namespace App\Http\Controllers\Whiteboards;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Whiteboards\CreateRequest;
-use App\Http\Requests\Whiteboards\UpdateRequest;
+use App\Datagrids\Filters\WhiteboardFilter;
+use App\Http\Requests\StoreWhiteboard;
 use App\Models\Campaign;
+use App\Models\EntityType;
+use App\Http\Controllers\CrudController as BaseCrudController;
 use App\Models\Whiteboard;
-use App\Services\Whiteboards\ApiService;
 
-class CrudController extends Controller
+class CrudController extends BaseCrudController
 {
-    public function __construct(protected ApiService $apiService)
+    protected string $view = 'whiteboards';
+
+    protected string $route = 'whiteboards';
+
+    protected string $model = Whiteboard::class;
+
+    protected string $filter = WhiteboardFilter::class;
+
+    protected string $module = 'whiteboards';
+
+    public function store(StoreWhiteboard $request, Campaign $campaign)
     {
-
-    }
-    public function index(Campaign $campaign)
-    {
-        $this->authorize('view', $campaign);
-
-        $models = Whiteboard::orderBy('updated_at')->paginate();
-        return view('whiteboards.index', compact('models', 'campaign'));
-    }
-
-    public function create(Campaign $campaign)
-    {
-        $this->authorize('member', $campaign);
-
-        $whiteboard = new Whiteboard();
-        $whiteboard->name = __('whiteboards.create.default-name');
-        $whiteboard->data = [];
-        $whiteboard->campaign_id = $campaign->id;
-        $whiteboard->save();
-
-        return redirect()->route('whiteboards.show', [$campaign, $whiteboard]);
+        return $this->campaign($campaign)->crudStore($request);
     }
 
+    /**
+     * Display the specified resource.
+     */
     public function show(Campaign $campaign, Whiteboard $whiteboard)
     {
-        $this->authorize('view', $campaign);
-        $this->authorize('view', $whiteboard);
-
-        if (request()->ajax()) {
-            return response()->json(
-                $this->apiService->campaign($campaign)->whiteboard($whiteboard)->load()
-            );
-        }
-
-        return view('whiteboards.show', compact('campaign', 'whiteboard'));
+        return $this->campaign($campaign)->crudShow($whiteboard);
     }
 
-    public function update(UpdateRequest $request, Campaign $campaign, Whiteboard $whiteboard)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Campaign $campaign, Whiteboard $whiteboard)
     {
-        $this->authorize('view', $campaign);
-        $this->authorize('view', $whiteboard);
+        return $this->campaign($campaign)->crudEdit($whiteboard);
+    }
 
-        $whiteboard->update($request->only('name', 'data'));
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(StoreWhiteboard $request, Campaign $campaign, Whiteboard $whiteboard)
+    {
+        return $this->campaign($campaign)->crudUpdate($request, $whiteboard);
+    }
 
-        return response()->json([
-            'success' => true,
-            'toast' => __('whiteboards.update.success')
-        ]);
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Campaign $campaign, Whiteboard $whiteboard)
+    {
+        return $this->campaign($campaign)->crudDestroy($whiteboard);
+    }
+
+    protected function getEntityType(): EntityType
+    {
+        return EntityType::where('id', config('entities.ids.whiteboard'))->first();
     }
 }

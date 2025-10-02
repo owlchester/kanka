@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property int $id
  * @property string $name
+ * @property int|bool $is_private
  * @property array $data
  */
 class Whiteboard extends MiscModel
@@ -29,6 +30,7 @@ class Whiteboard extends MiscModel
     use SortableTrait;
 
     public $fillable = [
+        'campaign_id',
         'name',
         'data',
         'is_private',
@@ -45,5 +47,13 @@ class Whiteboard extends MiscModel
     protected array $sanitizable = [
         'name',
     ];
+
+    /**
+     * Get the entity_type id from the entity_types table
+     */
+    public function entityTypeId(): int
+    {
+        return (int) config('entities.ids.whiteboard');
+    }
 
 }
