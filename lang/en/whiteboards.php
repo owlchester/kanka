@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'actions' => [
+        'draw' => 'Draw',
+    ],
     'create' => [
         'title' => 'New whiteboard',
         'default-name' => 'Untitled whiteboard',
