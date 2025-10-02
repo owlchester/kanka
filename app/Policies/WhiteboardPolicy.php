@@ -5,20 +5,10 @@ namespace App\Policies;
 use App\Models\User;
 use App\Models\Whiteboard;
 
-class WhiteboardPolicy
+class WhiteboardPolicy extends MiscPolicy
 {
-    public function view(?User $user, Whiteboard $whiteboard): bool
+    public function entityTypeID(): int
     {
-        return true;
-    }
-
-    public function create(User $user)
-    {
-        return true;
-    }
-
-    public function update(User $user, Whiteboard $whiteboard)
-    {
-        return true;
+        return config('entities.ids.timeline');
     }
 }

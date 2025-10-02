@@ -50,7 +50,7 @@
             'class' => 'icon'
         ],
         [
-            'label' => '<i class="' . \App\Facades\Module::duoIcon('creature') . '" title="' . \App\Facades\Module::plural(config('entities.ids.creature'), __('entities.creatures')) . '"></i>',
+            'label' => '<i class="' . $entityType->icon() . '" title="' . $entityType->plural() . '" aria-hidden="true"></i>',
             'render' => function($model) {
                 return number_format($model->children_count);
             },

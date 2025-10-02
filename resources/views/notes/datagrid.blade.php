@@ -13,7 +13,7 @@
             'type' => 'parent',
         ],
         [
-            'label' => '<i class="' . \App\Facades\Module::duoIcon('note') . '" title="' . \App\Facades\Module::plural(config('entities.ids.note'), __('entities.notes')) . '"></i>',
+            'label' => '<i class="' . $entityType->icon() . '" title="' . $entityType->plural() . '" aria-hidden="true"></i>',
             'render' => function($model) {
                 return number_format($model->children_count);
             },

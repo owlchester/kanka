@@ -38,7 +38,6 @@
         @includeWhen(config('entities.custom'), 'campaigns.modules._custom')
         @include('campaigns.modules._default')
         @include('campaigns.modules._features')
-        @include('campaigns.modules._early-access')
     </div>
 @endsection
 

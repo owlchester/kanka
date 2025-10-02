@@ -32,7 +32,7 @@
             'class' => 'icon'
         ],
         [
-            'label' => '<i class="' . \App\Facades\Module::duoIcon('race') . '" title="' . \App\Facades\Module::plural(config('entities.ids.race'), __('entities.races')) . '"></i>',
+            'label' => '<i class="' . $entityType->icon() . '" title="' . $entityType->plural() . '"></i>',
             'render' => function($model) {
                 return number_format($model->children_count);
             },

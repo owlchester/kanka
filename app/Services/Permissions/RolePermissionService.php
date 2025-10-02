@@ -203,48 +203,6 @@ class RolePermissionService
         return $permissions;
     }
 
-    public function whiteboardPermissions(): array
-    {
-        $permissions = [];
-
-        $campaignRolePermissions = [];
-        foreach ($this->role->permissions as $perm) {
-            if ($perm->entity_type_id || ! $perm->isWhiteboard()) {
-                continue;
-            }
-            $campaignRolePermissions['campaign_' . $perm->action] = 1;
-        }
-
-        $entityActions = [
-            CampaignPermission::ACTION_WHITEBOARDS_VIEW,
-            CampaignPermission::ACTION_WHITEBOARDS_CREATE,
-        ];
-        $icons = [
-            CampaignPermission::ACTION_WHITEBOARDS_VIEW => [
-                'fa-regular fa-eye', 'read',
-            ],
-            CampaignPermission::ACTION_WHITEBOARDS_CREATE => [
-                'fa-regular fa-plus-square', 'add',
-            ],
-        ];
-
-        foreach ($entityActions as $action) {
-            if (! isset($permissions['campaign'])) {
-                $permissions['campaign'] = [];
-            }
-            $key = "campaign_{$action}";
-            $permissions['campaign'][] = [
-                'action' => $action,
-                'key' => $key,
-                'icon' => Arr::first($icons[$action]),
-                'label' => Arr::last($icons[$action]),
-                'enabled' => isset($campaignRolePermissions[$key]),
-            ];
-        }
-
-        return $permissions;
-    }
-
     public function templatePermissions(): array
     {
         $permissions = [];

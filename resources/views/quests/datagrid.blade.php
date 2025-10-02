@@ -46,7 +46,7 @@
             'type' => 'reminder',
         ],
         [
-            'label' => '<i class="' . \App\Facades\Module::duoIcon('quest') . '" title="' . \App\Facades\Module::plural(config('entities.ids.quest'), __('entities.quests')) . '"></i>',
+            'label' => '<i class="' . $entityType->icon() . '" title="' . $entityType->plural() . '"></i>',
             'render' => function($model) {
                 return number_format($model->children_count);
             },

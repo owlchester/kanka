@@ -157,11 +157,12 @@ class EntityType extends Model
      */
     public function icon(): string
     {
-        if (! empty($this->icon)) {
+        // Custom module? Always use the icon
+        if (! empty($this->campaign_id)) {
             return $this->icon;
         }
 
-        return Module::duoIcon($this->code);
+        return Module::duoIcon($this);
     }
 
     /**

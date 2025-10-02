@@ -11,16 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::dropIfExists('whiteboards');
+
         Schema::create('whiteboards', function (Blueprint $table) {
             $table->id();
             $table->foreignId('campaign_id')->cascadeOnDelete();
-            $table->string('name')->index();
+            $table->string('name', 191)->index();
+            $table->string('type', 45)->nullable();
             $table->json('data')->nullable();
+            $table->boolean('is_private')->default(false);
             $table->timestamps();
             $table->softDeletes();
+
             $table->foreignId('created_by')->nullable()->nullOnDelete();
             $table->foreignId('updated_by')->nullable()->nullOnDelete();
             $table->foreignId('deleted_by')->nullable()->nullOnDelete();
+
+            $table->index(['name', 'type', 'is_private']);
         });
     }
 
