@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Campaign;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Campaigns\Boosted;
 use App\Models\Campaign;
+use App\Models\EntityType;
 use App\Services\Campaign\Sidebar\SaveService;
 use App\Services\Campaign\Sidebar\SetupService;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class SidebarController extends Controller
             'campaigns.sidebar.index',
             compact(
                 'campaign',
-                'layout'
+                'layout',
             )
         );
     }

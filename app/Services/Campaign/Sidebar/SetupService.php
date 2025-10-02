@@ -3,6 +3,7 @@
 namespace App\Services\Campaign\Sidebar;
 
 use App\Facades\Module;
+use App\Models\EntityType;
 use App\Traits\CampaignAware;
 use App\Traits\RequestAware;
 use App\Traits\UserAware;
@@ -55,6 +56,8 @@ class SetupService
         // 'search' => null,
     ];
 
+    protected $modules = [];
+
     public function __construct()
     {
         $this->setupElements();
@@ -71,8 +74,7 @@ class SetupService
                 'fixed' => true,
             ],
             'bookmarks' => [
-                'icon' => config('entities.icons.bookmark'),
-                'label' => 'entities.bookmarks',
+                'type' => 'bookmark',
                 'fixed' => true,
             ],
             'world' => [
@@ -83,58 +85,40 @@ class SetupService
                 'route' => false,
             ],
             'characters' => [
-                'icon' => config('entities.icons.character'),
-                'label' => 'entities.characters',
+                'type' => 'character',
                 'mode' => true,
-                'type_id' => config('entities.ids.character'),
             ],
             'locations' => [
-                'icon' => config('entities.icons.location'),
-                'label' => 'entities.locations',
+                'type' => 'location',
                 'mode' => true,
-                'type_id' => config('entities.ids.location'),
             ],
             'maps' => [
-                'icon' => config('entities.icons.map'),
-                'label' => 'entities.maps',
                 'mode' => true,
-                'type_id' => config('entities.ids.map'),
+                'type' => 'map',
             ],
             'organisations' => [
-                'icon' => config('entities.icons.organisation'),
-                'label' => 'entities.organisations',
                 'mode' => true,
-                'type_id' => config('entities.ids.organisation'),
+                'type' => 'organisation',
             ],
             'families' => [
-                'icon' => config('entities.icons.family'),
-                'label' => 'entities.families',
                 'mode' => true,
-                'type_id' => config('entities.ids.family'),
+                'type' => 'family',
             ],
             'calendars' => [
-                'icon' => config('entities.icons.calendar'),
-                'label' => 'entities.calendars',
                 'mode' => true,
-                'type_id' => config('entities.ids.calendar'),
+                'type' => 'calendar',
             ],
             'timelines' => [
-                'icon' => config('entities.icons.timeline'),
-                'label' => 'entities.timelines',
                 'mode' => true,
-                'type_id' => config('entities.ids.timeline'),
+                'type' => 'timeline',
             ],
             'races' => [
-                'icon' => config('entities.icons.race'),
-                'label' => 'entities.races',
                 'mode' => true,
-                'type_id' => config('entities.ids.race'),
+                'type' => 'race',
             ],
             'creatures' => [
-                'icon' => config('entities.icons.creature'),
-                'label' => 'entities.creatures',
                 'mode' => true,
-                'type_id' => config('entities.ids.creature'),
+                'type' => 'creature',
             ],
             'game' => [
                 'icon' => 'fa-duotone fa-book',
@@ -143,40 +127,28 @@ class SetupService
                 'fixed' => true,
             ],
             'quests' => [
-                'icon' => config('entities.icons.quest'),
-                'label' => 'entities.quests',
                 'mode' => true,
-                'type_id' => config('entities.ids.quest'),
+                'type' => 'quest',
             ],
             'journals' => [
-                'icon' => config('entities.icons.journal'),
-                'label' => 'entities.journals',
                 'mode' => true,
-                'type_id' => config('entities.ids.journal'),
+                'type' => 'journal',
             ],
             'items' => [
-                'icon' => config('entities.icons.item'),
-                'label' => 'entities.items',
                 'mode' => true,
-                'type_id' => config('entities.ids.item'),
+                'type' => 'item',
             ],
             'events' => [
-                'icon' => config('entities.icons.event'),
-                'label' => 'entities.events',
                 'mode' => true,
-                'type_id' => config('entities.ids.event'),
+                'type' => 'event',
             ],
             'abilities' => [
-                'icon' => config('entities.icons.ability'),
-                'label' => 'entities.abilities',
                 'mode' => true,
-                'type_id' => config('entities.ids.ability'),
+                'type' => 'ability',
             ],
             'notes' => [
-                'icon' => config('entities.icons.note'),
-                'label' => 'entities.notes',
                 'mode' => true,
-                'type_id' => config('entities.ids.note'),
+                'type' => 'note',
             ],
             'other' => [
                 'icon' => 'fa-duotone fa-database',
@@ -193,18 +165,14 @@ class SetupService
                 'fixed' => true,
             ],
             'tags' => [
-                'icon' => config('entities.icons.tag'),
-                'label' => 'entities.tags',
                 'mode' => true,
-                'type_id' => config('entities.ids.tag'),
+                'type' => 'tag',
             ],
             'conversations' => [
-                'icon' => config('entities.icons.conversation'),
-                'label' => 'entities.conversations',
+                'type' => 'conversation',
             ],
             'dice_rolls' => [
-                'icon' => config('entities.icons.dice_roll'),
-                'label' => 'entities.dice_rolls',
+                'type' => 'dice_roll',
             ],
             'relations' => [
                 'icon' => 'fa-duotone fa-circle-nodes',
@@ -220,12 +188,10 @@ class SetupService
                 'module' => false,
             ],
             'attribute_templates' => [
-                'icon' => config('entities.icons.attribute_template'),
-                'label' => 'entities.attribute_templates',
+                'type' => 'attribute_template',
             ],
             'whiteboards' => [
-                'icon' => config('entities.icons.whiteboards'),
-                'label' => 'entities.whiteboards',
+                'type' => 'whiteboard',
             ],
             'settings' => [
                 'icon' => 'fa-duotone fa-cog',
@@ -268,6 +234,7 @@ class SetupService
         if (! $this->withDisabled && Cache::has($key)) {
             return Cache::get($key);
         }
+        $this->loadModules();
         $layout = [];
         $layoutSetup = $this->customLayout();
         $rewrite = [];
@@ -409,6 +376,13 @@ class SetupService
     protected function customElement(string $key): array
     {
         $element = $this->elements[$key];
+
+        if (isset($element['type'])) {
+            $entityType = $this->modules[$element['type']];
+            $element['label'] = $entityType->name();
+            $element['icon'] = $entityType->icon();
+        }
+
         $element['label_key'] = $element['label'];
         unset($element['label']);
 
@@ -457,5 +431,13 @@ class SetupService
         }
 
         return $labels;
+    }
+
+    protected function loadModules(): void
+    {
+        $modules = EntityType::default()->get();
+        foreach ($modules as $module) {
+            $this->modules[$module->code] = $module;
+        }
     }
 }
