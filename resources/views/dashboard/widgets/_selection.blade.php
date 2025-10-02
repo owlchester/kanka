@@ -16,8 +16,9 @@
             <x-icon class="fa-solid fa-align-justify" />
             {{ __('dashboard.setup.widgets.preview') }}
         </a>
+        @php $calendarModule = \App\Models\EntityType::default()->where('code', 'calendar')->first(); @endphp
         <a  href="#" class="{{ $newWidgetListClass }}" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'calendar', 'dashboard' => $dashboard]) }}" data-toggle="dialog" data-target="primary-dialog">
-            <x-icon entity="calendar" />
+            <x-icon :class="$calendarModule->icon()" />
             {{ __('dashboard.setup.widgets.calendar') }}
         </a>
 

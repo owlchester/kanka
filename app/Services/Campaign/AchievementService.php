@@ -5,6 +5,7 @@ namespace App\Services\Campaign;
 use App\Facades\Module;
 use App\Models\CampaignPlugin;
 use App\Models\EntityTag;
+use App\Models\EntityType;
 use App\Models\MapMarker;
 use App\Models\Relation;
 use App\Traits\CampaignAware;
@@ -21,6 +22,8 @@ class AchievementService
 
     protected array $tertiaryTargets = [1, 2, 5, 10, 20];
     // protected $secondaryTargets = [1, 2, 3, 4, 5];
+
+    protected array $modules;
 
     public function stats(): array|false
     {
@@ -56,55 +59,57 @@ class AchievementService
         $connections = $this->connections() + $this->random(30, 60);
         $markers = $this->markers() + $this->random(30, 60);
 
+        $this->loadModules();
+
         $stats = [
             'characters' => [
-                'icon' => config('entities.icons.character'),
+                'icon' => $this->modules['character']->icon(),
                 'amount' => $characters,
                 'target' => $this->target($characters),
                 'level' => $this->level($characters),
-                'module' => $this->moduleName('character', 'characters'),
+                'module' => $this->moduleName('character'),
             ],
             'locations' => [
-                'icon' => config('entities.icons.location'),
+                'icon' => $this->modules['location']->icon(),
                 'amount' => $locations,
                 'target' => $this->target($locations),
                 'level' => $this->level($locations),
-                'module' => $this->moduleName('location', 'locations'),
+                'module' => $this->moduleName('location'),
             ],
             'creatures' => [
-                'icon' => config('entities.icons.creature'),
+                'icon' => $this->modules['creature']->icon(),
                 'amount' => $creatures,
                 'target' => $this->target($creatures),
                 'level' => $this->level($creatures),
-                'module' => $this->moduleName('creature', 'creatures'),
+                'module' => $this->moduleName('creature'),
             ],
             'families' => [
-                'icon' => config('entities.icons.family'),
+                'icon' => $this->modules['family']->icon(),
                 'amount' => $families,
                 'target' => $this->target($families, 2),
                 'level' => $this->level($families, 2),
-                'module' => $this->moduleName('family', 'families'),
+                'module' => $this->moduleName('family'),
             ],
             'organisations' => [
-                'icon' => config('entities.icons.organisation'),
+                'icon' => $this->modules['organisation']->icon(),
                 'amount' => $organisations,
                 'target' => $this->target($organisations, 2),
                 'level' => $this->level($organisations, 2),
-                'module' => $this->moduleName('organisation', 'organisations'),
+                'module' => $this->moduleName('organisation'),
             ],
             'calendars' => [
-                'icon' => config('entities.icons.calendar'),
+                'icon' => $this->modules['calendar']->icon(),
                 'amount' => $calendars,
                 'target' => $this->target($calendars, 3),
                 'level' => $this->level($calendars, 3),
-                'module' => $this->moduleName('calendar', 'calendars'),
+                'module' => $this->moduleName('calendar'),
             ],
             'events' => [
-                'icon' => config('entities.icons.event'),
+                'icon' => $this->modules['event']->icon(),
                 'amount' => $events,
                 'target' => $this->target($events, 2),
                 'level' => $this->level($events, 2),
-                'module' => $this->moduleName('event', 'events'),
+                'module' => $this->moduleName('event'),
             ],
             'dead' => [
                 'icon' => 'fa-regular fa-skull',
@@ -114,7 +119,7 @@ class AchievementService
                 'history' => 'dead',
             ],
             'tags' => [
-                'icon' => config('entities.icons.tag'),
+                'icon' => $this->modules['tag']->icon(),
                 'amount' => $tags,
                 'target' => $this->target($tags, 1),
                 'level' => $this->level($tags, 1),
@@ -266,11 +271,13 @@ class AchievementService
             ->count();
     }
 
-    protected function moduleName(string $singular, string $plural): array
+    protected function moduleName(string $module): array
     {
+        /** @var EntityType $entityType */
+        $entityType = $this->modules[$module];
         return [
-            'singular' => Module::singular(config('entities.ids.' . $singular), __('entities.' . $singular)),
-            'plural' => Module::plural(config('entities.ids.' . $singular), __('entities.' . $plural)),
+            'singular' => $entityType->name(),
+            'plural' => $entityType->plural(),
         ];
     }
 
@@ -281,5 +288,13 @@ class AchievementService
         }
 
         return mt_rand($min, $max);
+    }
+
+    protected function loadModules(): void
+    {
+        /** @var EntityType $module */
+        foreach (EntityType::default()->get() as $module) {
+            $this->modules[$module->code] = $module;
+        }
     }
 }

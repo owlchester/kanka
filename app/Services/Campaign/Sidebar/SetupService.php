@@ -436,6 +436,7 @@ class SetupService
     protected function loadModules(): void
     {
         $modules = EntityType::default()->get();
+        /** @var EntityType $module */
         foreach ($modules as $module) {
             $this->modules[$module->code] = $module;
         }
