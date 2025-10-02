@@ -39,6 +39,7 @@ class CampaignSetting extends Model
         'timelines',
         'inventories',
         'creatures',
+        'whiteboards',
     ];
 
     /**

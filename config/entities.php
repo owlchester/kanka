@@ -100,5 +100,6 @@ return [
         'timeline' => 'fa-duotone fa-list-timeline',
         'bookmark' => 'fa-duotone fa-bookmark',
         'creature' => 'fa-duotone fa-deer',
+        'whiteboards' => 'fa-duotone fa-chalkboard',
     ],
 ];

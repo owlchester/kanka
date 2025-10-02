@@ -47,6 +47,7 @@ class SetupService
             'dice_rolls',
             'relations',
             'attribute_templates',
+            'whiteboards',
         ],
         'gallery' => null,
         'history' => null,
@@ -221,6 +222,10 @@ class SetupService
             'attribute_templates' => [
                 'icon' => config('entities.icons.attribute_template'),
                 'label' => 'entities.attribute_templates',
+            ],
+            'whiteboards' => [
+                'icon' => config('entities.icons.whiteboards'),
+                'label' => 'entities.whiteboards',
             ],
             'settings' => [
                 'icon' => 'fa-duotone fa-cog',

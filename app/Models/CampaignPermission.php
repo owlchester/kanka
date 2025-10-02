@@ -63,6 +63,9 @@ class CampaignPermission extends Model
 
     public const ACTION_BOOKMARKS = 19;
 
+    public const ACTION_WHITEBOARDS_VIEW = 30;
+    public const ACTION_WHITEBOARDS_CREATE = 31;
+
     protected $fillable = [
         'campaign_role_id',
         'campaign_id',
@@ -146,6 +149,16 @@ class CampaignPermission extends Model
             self::ACTION_GALLERY,
             self::ACTION_GALLERY_BROWSE,
             self::ACTION_GALLERY_UPLOAD,
+        ];
+
+        return in_array($this->action, $galleryPermissions);
+    }
+
+    public function isWhiteboard(): bool
+    {
+        $galleryPermissions = [
+            self::ACTION_WHITEBOARDS_VIEW,
+            self::ACTION_WHITEBOARDS_CREATE,
         ];
 
         return in_array($this->action, $galleryPermissions);
