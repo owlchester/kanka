@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Facades\CampaignLocalization;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
+use App\Models\Concerns\Nested;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Sanitizable;
 use App\Models\Concerns\SortableTrait;
@@ -13,15 +14,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Collection;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
  * Class MapGroup
  *
  * @property int $id
  * @property int $map_id
+ * @property int $parent_id
  * @property string $name
  * @property int $position
  * @property bool|int $is_shown
+ * @property ?MapGroup $parent
  * @property Map $map
  *
  * @method static self|Builder ordered()
@@ -34,14 +39,18 @@ class MapGroup extends Model
     use Paginatable;
     use Sanitizable;
     use SortableTrait;
+    use Nested;
+    use HasRecursiveRelationships;
 
     protected array $sortable = [
         'name',
         'position',
+        'parent_id',
     ];
 
     protected $fillable = [
         'map_id',
+        'parent_id',
         'name',
         'position',
         'visibility_id',
@@ -65,6 +74,34 @@ class MapGroup extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\MapGroup, $this>
+     */
+    public function parent(): BelongsTo
+    {
+        return $this->belongsTo(MapGroup::class, 'parent_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapGroup, $this>
+     */
+    public function children(): HasMany
+    {
+        return $this->hasMany(MapGroup::class, 'parent_id');
+    }
+
+    public function descendantGroupIds(): array
+    {
+        $ids = [];
+
+        foreach ($this->children as $child) {
+            $ids[] = $child->id;
+            $ids = array_merge($ids, $child->descendantGroupIds());
+        }
+
+        return $ids;
+    }
+
+    /**
      * @return Builder
      */
     public function scopeOrdered(Builder $query)
@@ -85,17 +122,30 @@ class MapGroup extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapMarker, $this>
      */
-    public function markersWithEntity(): HasMany
+    public function markersWithEsntity(): HasMany
     {
         return $this->hasMany(MapMarker::class, 'group_id')
             ->with(['entity', 'entity.entityType', 'group']);
+    }
+
+    
+    public function markersWithEntity()
+    {
+        $ids = $this->descendantGroupIds();
+        $ids[] = $this->id; // include this group itself
+
+        return MapMarker::whereIn('group_id', $ids)
+            ->with(['entity', 'entity.entityType', 'group'])
+            ->get();
     }
 
     public function markerGroupHtml(): string
     {
         $data = [];
         /** @var MapMarker[] $markers */
-        $markers = $this->markersWithEntity;
+        $markers = $this->markersWithEntity();
+       // dd($markers);
+
         foreach ($markers as $marker) {
             if ($marker->visible()) {
                 $data[] = 'marker' . $marker->id;

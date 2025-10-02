@@ -7,6 +7,7 @@ use App\Http\Controllers\Search\FullTextController;
 use App\Http\Controllers\Search\ImageController;
 use App\Http\Controllers\Search\ListController;
 use App\Http\Controllers\Search\LiveController;
+use App\Http\Controllers\Search\MapGroupController;
 use App\Http\Controllers\Search\MarkerController;
 use App\Http\Controllers\Search\RecentController;
 use App\Http\Controllers\Search\TemplateController;
@@ -35,6 +36,7 @@ Route::get('/w/{campaign}/search/ability-entities', [LiveController::class, 'abi
 Route::get('/w/{campaign}/search/organisation-member', [LiveController::class, 'organisationMembers'])->name('search.organisation-member');
 
 Route::get('/w/{campaign}/search/type/{entity_type}', [ListController::class, 'index'])->name('search-list');
+Route::get('/w/{campaign}/search/{map}/map_groups', [MapGroupController::class, 'index'])->name('map-groups-list');
 Route::get('/w/{campaign}/search/type/{entity_type}/templates', [TemplateController::class, 'index'])->name('search.templates');
 
 Route::get('/w/{campaign}/search/live', [LiveController::class, 'index'])->name('search.live');

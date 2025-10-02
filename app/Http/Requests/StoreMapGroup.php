@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Traits\ApiRequest;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\MapGroup;
+use App\Rules\Nested;
 
 class StoreMapGroup extends FormRequest
 {
@@ -30,7 +32,19 @@ class StoreMapGroup extends FormRequest
             'name' => 'required|max:191',
             'position' => 'nullable|string|max:3',
             'visibility_id' => 'nullable|exists:visibilities,id',
+            'parent_id' => 'nullable|integer|exists:map_groups,id',
         ];
+
+        /** @var MapGroup $self */
+        $self = request()->route('map_group');
+        if (! empty($self)) {
+            $rules['parent_id'] = [
+                'nullable',
+                'integer',
+                'exists:map_groups,id',
+                new Nested(MapGroup::class, $self),
+            ];
+        }
 
         return $this->clean($rules);
     }

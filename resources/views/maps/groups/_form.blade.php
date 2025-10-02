@@ -11,6 +11,20 @@
         css="col-span-2">
         <input type="text" name="name" maxlength="191" placeholder="{{ __('maps/groups.placeholders.name') }}" required value="{!! htmlspecialchars(old('name', $model->name ?? null)) !!}" />
     </x-forms.field>
+    
+
+    <x-forms.foreign
+        :campaign="$campaign"
+        name="parent_id"
+        key="parent"
+        :allowNew="false"
+        :dynamicNew="false"
+        :allowClear="true"
+        :parent="true"
+        :route="route('map-groups-list', [$campaign, $map] + (isset($model) ? ['exclude' => $model->id] : []))"
+        :selected="$model->parent ?? null"
+        :dropdownParent="$dropdownParent ?? null">
+    </x-forms.foreign>
 
     <x-forms.field
         field="shown col-span-2"
