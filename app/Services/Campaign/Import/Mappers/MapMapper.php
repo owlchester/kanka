@@ -137,7 +137,9 @@ class MapMapper extends MiscMapper
                 $marker->entity_id = ImportIdMapper::getEntity($data['entity_id']);
             }
             foreach ($fields as $field) {
-                $marker->$field = $data[$field];
+                if (isset($data[$field])) {
+                    $marker->$field = $data[$field];
+                }
             }
 
             if (! empty($data['group_id'])) {
