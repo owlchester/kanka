@@ -40,6 +40,7 @@
         @mousedown="handleMouseDown"
         @mousemove="draw"
         @mouseup="handeMouseUp"
+         @wheel="handleWheel"
     >
         <v-layer ref="layer">
             <v-group
@@ -1038,6 +1039,88 @@ const stageSize = {
 };
 
 
+// Zoom state and helpers
+const minScale = 0.2;
+const maxScale = 3;
+const zoomStep = 1.15; // multiplicative step for smooth zooming
+
+function setStageScale(newScale: number, pointer?: { x: number; y: number }) {
+    const stageNode = stage.value?.getNode();
+    if (!stageNode) return;
+
+    // Clamp
+    const scale = Math.max(minScale, Math.min(maxScale, newScale));
+
+    if (pointer) {
+        // Zoom to pointer: compute position in stage coords before changing scale
+        const mousePointTo = {
+            x: (pointer.x - stageNode.x()) / (stageNode.scaleX() || 1),
+            y: (pointer.y - stageNode.y()) / (stageNode.scaleY() || 1),
+        };
+
+        stageNode.scale({ x: scale, y: scale });
+
+        // after scale, adjust stage position so that the pointer stays pointing at same stage coordinate
+        const newPos = {
+            x: pointer.x - mousePointTo.x * scale,
+            y: pointer.y - mousePointTo.y * scale,
+        };
+        stageNode.x(newPos.x);
+        stageNode.y(newPos.y);
+    } else {
+        // center-preserving fallback: keep center in place
+        const container = stageNode.container();
+        const rect = container.getBoundingClientRect();
+        const stageCenter = { x: rect.width / 2, y: rect.height / 2 };
+        setStageScale(newScale, stageCenter);
+        return;
+    }
+
+    stageNode.getLayer()?.batchDraw?.();
+    uiTick.value++; // update overlays
+}
+
+const zoomBy = (factor: number, pointer?: { x: number; y: number }) => {
+    const stageNode = stage.value?.getNode();
+    if (!stageNode) return;
+    const current = stageNode.scaleX() || 1;
+    setStageScale(current * factor, pointer);
+};
+
+const zoomIn = (ev?: MouseEvent) => {
+    const stageNode = stage.value?.getNode();
+    if (!stageNode) return;
+    const pointer = ev ? { x: ev.clientX, y: ev.clientY } : undefined;
+    zoomBy(zoomStep, pointer);
+};
+
+const zoomOut = (ev?: MouseEvent) => {
+    const stageNode = stage.value?.getNode();
+    if (!stageNode) return;
+    const pointer = ev ? { x: ev.clientX, y: ev.clientY } : undefined;
+    zoomBy(1 / zoomStep, pointer);
+};
+
+// Wheel handler: when Shift is pressed, zoom; otherwise default behavior (we keep stage draggable)
+const handleWheel = (e) => {
+    // Only act if shift key is held. This avoids interfering with normal panning or other interactions.
+    //if (!e.shiftKey) return;
+
+    // Prevent page scroll
+    e.evt.preventDefault();
+
+    const stageNode = stage.value?.getNode();
+    if (!stageNode) return;
+
+    const pointer = { x: e.evt.clientX, y: e.evt.clientY };
+
+    // Use deltaY to determine zoom direction; normalize sign.
+    const zoomDirection = e.evt.deltaY > 0 ? 1 / zoomStep : zoomStep;
+    zoomBy(zoomDirection, pointer);
+};
+
+
+
 
 onMounted(() => {
     currentColor.value = cssVariable('--bc')
@@ -1060,33 +1143,41 @@ onMounted(() => {
         loading.value = false
     })
 
-    // Keyboard handler: delete selected shape when Delete key pressed
-    const handleKeyDown = (e: KeyboardEvent) => {
-        // Ignore if readonly, or currently editing text (we don't want to delete while typing),
-        // or if focus is inside an input/textarea (native behavior)
-        const active = document.activeElement;
-        const inputFocused = active && (
-            active.tagName === 'INPUT' ||
-            active.tagName === 'TEXTAREA' ||
-            (active as HTMLElement).isContentEditable
-        );
-
-        if (props.readonly || editingTextId.value || inputFocused) return;
-
-        // Support both 'Delete' and legacy keyCode 46
-        if (e.key === 'Delete' || (e as any).keyCode === 46) {
-            e.preventDefault();
-            deleteSelected();
-        }
-    };
-
     window.addEventListener('keydown', handleKeyDown);
+
+
+
 
     // Clean up listener on unmount
     onBeforeUnmount(() => {
-        window.removeEventListener('keydown', handleKeyDown);
+        cleanupBeforeUnmount();
     });
 
 })
+
+
+// Keyboard handler: delete selected shape when Delete key pressed
+const handleKeyDown = (e: KeyboardEvent) => {
+    // Ignore if readonly, or currently editing text (we don't want to delete while typing),
+    // or if focus is inside an input/textarea (native behavior)
+    const active = document.activeElement;
+    const inputFocused = active && (
+        active.tagName === 'INPUT' ||
+        active.tagName === 'TEXTAREA' ||
+        (active as HTMLElement).isContentEditable
+    );
+
+    if (props.readonly || editingTextId.value || inputFocused) return;
+
+    // Support both 'Delete' and legacy keyCode 46
+    if (e.key === 'Delete' || (e as any).keyCode === 46) {
+        e.preventDefault();
+        deleteSelected();
+    }
+};
+
+const cleanupBeforeUnmount = () => {
+    window.removeEventListener('keydown', handleKeyDown);
+}
 
 </script>
