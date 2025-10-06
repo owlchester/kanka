@@ -7,6 +7,7 @@
         <div class="flex gap-1 items-center">
             <span v-html="name"></span>
             <div
+                v-if="!props.readonly"
                 class="cursor-pointer"
                 @click="openSettings"
             >
@@ -20,7 +21,7 @@
         </div>
 
 
-        <div class="actions flex items-center">
+        <div class="actions flex items-center" v-if="!props.readonly">
             <button
                 class="btn2 btn-sm btn-primary join-item"
                 :class="{ 'btn-disabled': saving }"
@@ -72,6 +73,7 @@
                             points: line.points,
                             stroke: shape.fill,
                             strokeWidth: line.strokeWidth,
+                            hitStrokeWidth: hitStrokeWidth,
                             lineCap: 'round',
                             lineJoin: 'round',
                         }" />
@@ -262,7 +264,7 @@
                 <span class="sr-only">Delete</span>
             </button>
         </div>
-        <div v-else-if="!drawingMode" class="flex items-center gap-2 main-toolbar">
+        <div v-else-if="!drawingMode && !readonly" class="flex items-center gap-2 main-toolbar">
             <div class="join">
                 <button
                     @click="addShape('rect')"
@@ -309,6 +311,9 @@
                 </button>
             </div>
         </div>
+        <div v-else-if="readonly">
+            <i>Readonly</i>
+        </div>
     </div>
 
     <input
@@ -348,7 +353,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, reactive, nextTick, computed, watch} from 'vue';
+import { ref, onMounted, reactive, nextTick, computed, watch, onBeforeUnmount} from 'vue';
 import {useImage} from "vue-konva";
 import { hslFromVar, readCssVar, hslString, tweakHsl } from '../../utility/colours';
 import Browser from "../../gallery/Browser.vue";
@@ -360,7 +365,8 @@ const props = defineProps<{
     load: String,
     gallery: String,
     search: String,
-    i18n: undefined
+    i18n: undefined,
+    readonly: Boolean,
 }>()
 
 const shapes = ref([]);
@@ -396,6 +402,7 @@ const tempGroup = ref(null)
 const strokeSize = ref(1)
 const currentColor = ref(null)
 const strokeSizePicker = ref(false)
+const hitStrokeWidth = ref(12)
 
 // Gallery
 const galleryOpened = ref(false)
@@ -577,6 +584,11 @@ const deleteSelected = () => {
     selectedId.value = null;
     editingTextId.value = null;
     uiTick.value++;
+
+    // Ensure transformer no longer references the removed node and force redraw.
+    // updateTransformer() will clear transformer nodes when selectedId is null.
+    updateTransformer();
+
 };
 
 const toggleLock = () => {
@@ -675,7 +687,7 @@ const addShape = (type) => {
 };
 
 const handleStageClick = (e) => {
-    if (drawingMode.value) {
+    if (drawingMode.value || props.readonly) {
         return;
     }
     if (e.target === e.target.getStage()) {
@@ -752,6 +764,7 @@ const handleMouseDown = (e) => {
         points: [pos.x, pos.y],
         fill: currentColor.value,
         strokeWidth: strokeSize.value,
+        hitStrokeWidth: hitStrokeWidth.value,
     });
 }
 
@@ -1000,7 +1013,7 @@ const cssVariable = (variable: string) => {
 }
 
 const loadImages = (images) => {
-    console.log(images);
+    //console.log(images);
     Object.entries(images).forEach(([id, src]) => {
         const [imageNode] = useImage(src, 'anonymous');
         imageRefs.value[id] = imageNode;
@@ -1046,6 +1059,34 @@ onMounted(() => {
         }
         loading.value = false
     })
+
+    // Keyboard handler: delete selected shape when Delete key pressed
+    const handleKeyDown = (e: KeyboardEvent) => {
+        // Ignore if readonly, or currently editing text (we don't want to delete while typing),
+        // or if focus is inside an input/textarea (native behavior)
+        const active = document.activeElement;
+        const inputFocused = active && (
+            active.tagName === 'INPUT' ||
+            active.tagName === 'TEXTAREA' ||
+            (active as HTMLElement).isContentEditable
+        );
+
+        if (props.readonly || editingTextId.value || inputFocused) return;
+
+        // Support both 'Delete' and legacy keyCode 46
+        if (e.key === 'Delete' || (e as any).keyCode === 46) {
+            e.preventDefault();
+            deleteSelected();
+        }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    // Clean up listener on unmount
+    onBeforeUnmount(() => {
+        window.removeEventListener('keydown', handleKeyDown);
+    });
+
 })
 
 </script>

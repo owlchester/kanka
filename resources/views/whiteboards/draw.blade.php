@@ -38,6 +38,7 @@
             gallery="{{ route('gallery.browse', $campaign) }}"
             search="{{ route('search.live', $campaign) }}"
             i18n="{{ $translations }}"
+            :readonly="{{ !$campaign->isWyvernPremium() ? 1 : 0 }}"
         />
     </div>
 
