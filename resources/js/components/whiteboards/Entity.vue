@@ -3,7 +3,7 @@
 
     <dialog class="dialog rounded-2xl text-center bg-base-100 text-base-content" id="gallery-dialog" ref="dialog" aria-modal="true" aria-labelledby="modal-card-label">
         <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
-            <h4 v-html="trans('Entity search')" class="text-lg font-normal"></h4>
+            <h4 v-html="trans('entity-search')" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeDialog()" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">trans('close')</span>
@@ -11,7 +11,7 @@
         </header>
         <article class="max-w-4xl p-4">
 
-            <div class="flex gap-1 w-full" v-if="!loading">
+            <div class="flex gap-0.5 w-full" v-if="!loading">
                 <div class="grow">
                     <input
                         type="text"
@@ -46,6 +46,7 @@ import { ref, onMounted, nextTick, watch} from 'vue';
 const props = defineProps<{
     api: String,
     opened: boolean,
+    i18n: undefined,
 }>()
 
 const loading = ref(false);
@@ -96,8 +97,8 @@ const closeDialog = () => {
     emit('closed')
 }
 
-const trans = (key) => {
-    return key;
+const trans = (key: string) => {
+    return props.i18n[key] || key
 }
 
 

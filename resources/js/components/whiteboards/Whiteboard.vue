@@ -6,18 +6,18 @@
     <div class="toolbar fixed w-full bg-base-100 p-2 flex items-center justify-between gap-2 z-50" v-if="!loading">
         <div class="flex gap-1 items-center">
             <span v-html="name"></span>
-            <div
-                v-if="!props.readonly"
-                class="cursor-pointer"
-                @click="openSettings"
-            >
-                <i
-                    class="fa-regular fa-cog"
-                    aria-hidden="true"
-                >
-                </i>
-                <span class="sr-only">Edit settings</span>
-            </div>
+<!--            <div-->
+<!--                v-if="!props.readonly"-->
+<!--                class="cursor-pointer"-->
+<!--                @click="openSettings"-->
+<!--            >-->
+<!--                <i-->
+<!--                    class="fa-regular fa-cog"-->
+<!--                    aria-hidden="true"-->
+<!--                >-->
+<!--                </i>-->
+<!--                <span class="sr-only" v-html="trans('edit-settings')"></span>-->
+<!--            </div>-->
         </div>
 
 
@@ -28,7 +28,7 @@
                 @click="saveWhiteboard">
                 <i class="fa-regular fa-save" aria-hidden="true" v-if="!saving" />
                 <i class="fa-solid fa-spinner fa-spin" aria-hidden="true" v-else />
-                Save
+                <span v-html="trans('save')"></span>
             </button>
         </div>
     </div>
@@ -46,7 +46,7 @@
             <v-group
                 v-for="shape in shapes"
                 :key="shape.id"
-                :config="{ id: `group-${shape.id}`, draggable: !shape.locked, x: shape.x, y: shape.y }"
+                :config="{ id: `group-${shape.id}`, draggable: !shape.locked, x: shape.x, y: shape.y, scaleX: shape.scaleX || 1, scaleY: shape.scaleY || 1 }"
                 @dragstart="handleDragstart(shape)"
                 @dragmove="handleDragmove(shape)"
                 @dragend="handleDragend($event, shape)"
@@ -72,7 +72,7 @@
                         :key="line.id"
                         :config="{
                             points: line.points,
-                            stroke: shape.fill,
+                            stroke: line.fill,
                             strokeWidth: line.strokeWidth,
                             hitStrokeWidth: hitStrokeWidth,
                             lineCap: 'round',
@@ -137,7 +137,7 @@
                         :key="line.id"
                         :config="{
                             points: line.points,
-                            stroke: tempGroup.fill,
+                            stroke: line.fill,
                             strokeWidth: line.strokeWidth,
                             lineCap: 'round',
                             lineJoin: 'round',
@@ -186,33 +186,34 @@
 
                 <button
                     class="btn2 btn-sm join-item"
-                    title="Thin stroke"
+                    :title="trans('thin-stroke')"
                     @click.stop="strokeSize = 1"
                 >
                     <i class="fa-regular fa-paintbrush-fine" aria-hidden="true"></i>
-                    <span class="sr-only">Thin stroke</span>
+                    <span class="sr-only" v-html="trans('thin-stroke')"></span>
                 </button>
                 <button
                     class="btn2 btn-sm join-item"
-                    title="Large stroke"
+                    :title="trans('large-stroke')"
                     @click.stop="strokeSize = 3"
                 >
                     <i class="fa-regular fa-paintbrush" aria-hidden="true"></i>
-                    <span class="sr-only">Large stroke</span>
+                    <span class="sr-only" v-html="trans('large-stroke')"></span>
                 </button>
                 <button
                     class="btn2 btn-sm join-item"
-                    title="Change color"
+                    :title="trans('color')"
                     @click.stop="openColorPicker"
                 >
                     <i class="fa-regular fa-palette" aria-hidden="true"></i>
-                    <span class="sr-only">Color</span>
+                    <span class="sr-only" v-html="trans('color')"></span>
                 </button>
                 <button
                     @click="toggleDrawing"
-                    class="btn2 btn-sm join-item">
+                    class="btn2 btn-sm join-item"
+                    :title="trans('end-drawing')">
                     <i class="fa-regular fa-check" aria-hidden="true" />
-                    <span class="sr-only">End drawing</span>
+                    <span class="sr-only" v-html="trans('end-drawing')"></span>
                 </button>
             </div>
         </div>
@@ -221,48 +222,48 @@
                 <button
                     class="btn2 btn-sm join-item"
                     :class="selectedShape.locked ? 'btn-warning' : ''"
-                    :title="selectedShape.locked ? 'Unlock' : 'Lock'"
+                    :title="selectedShape.locked ? trans('unlock') : trans('lock')"
                     @click.stop="toggleLock"
                 >
                     <i class="fa-regular" :class="selectedShape.locked ? 'fa-lock' : 'fa-lock-open'" aria-hidden="true"></i>
-                    <span class="sr-only">{{ selectedShape.locked ? 'Unlock' : 'Lock' }}</span>
+                    <span class="sr-only">{{ selectedShape.locked ? trans('unlock') : trans('lock') }}</span>
                 </button>
 
                 <button
                     class="btn2 btn-sm join-item"
-                    title="Change color"
+                    :title="trans('color')"
                     @click.stop="openColorPicker"
                 >
                     <i class="fa-regular fa-palette" aria-hidden="true"></i>
-                    <span class="sr-only">Color</span>
+                    <span class="sr-only" v-html="trans('color')"></span>
                 </button>
             </div>
 
             <div class="join">
                 <button
                     class="btn2 btn-sm join-item"
-                    title="Push to front"
+                    :title="trans('push-to-front')"
                     @click.stop="pushTo('front')"
                 >
                     <i class="fa-regular fa-up-to-line" aria-hidden="true"></i>
-                    <span class="sr-only">Push to front</span>
+                    <span class="sr-only" v-html="trans('push-to-front')"></span>
                 </button>
                 <button
                     class="btn2 btn-sm join-item"
-                    title="Push to back"
+                    :title="trans('push-to-back')"
                     @click.stop="pushTo('back')"
                 >
                     <i class="fa-regular fa-down-to-line" aria-hidden="true"></i>
-                    <span class="sr-only">Push to back</span>
+                    <span class="sr-only" v-html="trans('push-to-back')"></span>
                 </button>
             </div>
             <button
                 class="btn2 btn-sm text-error"
-                title="Delete"
+                :title="trans('delete')"
                 @click.stop="deleteSelected"
             >
                 <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
-                <span class="sr-only">Delete</span>
+                <span class="sr-only" v-html="trans('delete')"></span>
             </button>
         </div>
         <div v-else-if="!drawingMode && !readonly" class="flex items-center gap-2 main-toolbar">
@@ -270,50 +271,56 @@
                 <button
                     @click="addShape('rect')"
                     class="btn2 btn-sm join-item"
+                    :title="trans('add-square')"
                     :class="{ 'btn-disabled': drawingMode }">
                     <i class="fa-regular fa-square" aria-hidden="true" />
-                    <span class="sr-only">Add square</span>
+                    <span class="sr-only" v-html="trans('add-square')"></span>
                 </button>
                 <button
                     @click="addShape('circle')"
                     class="btn2 btn-sm join-item"
+                    :title="trans('add-circle')"
                     :class="{ 'btn-disabled': drawingMode }">
                     <i class="fa-regular fa-circle" aria-hidden="true" />
-                    <span class="sr-only">Add circle</span>
+                    <span class="sr-only" v-html="trans('add-circle')"></span>
                 </button>
                 <button
                     @click="addShape('text')"
                     class="btn2 btn-sm join-item"
+                    :title="trans('add-text')"
                     :class="{ 'btn-disabled': drawingMode }">
                     <i class="fa-regular fa-text" aria-hidden="true" />
-                    <span class="sr-only">Add text</span>
+                    <span class="sr-only" v-html="trans('add-text')"></span>
                 </button>
                 <button
                     @click="toggleDrawing"
+                    :title="trans('start-drawing')"
                     class="btn2 btn-sm join-item">
                     <i class="fa-regular fa-scribble" aria-hidden="true" />
-                    <span class="sr-only">Start drawing</span>
+                    <span class="sr-only" v-html="trans('start-drawing')"></span>
                 </button>
             </div>
             <div class="join">
                 <button
                     @click="openSearch"
                     class="btn2 btn-sm join-item"
+                    :title="trans('add-entity')"
                     :class="{ 'btn-disabled': drawingMode }">
                     <i class="fa-regular fa-search" aria-hidden="true" />
-                    <span class="sr-only">Add entity</span>
+                    <span class="sr-only" v-html="trans('add-entity')"></span>
                 </button>
                 <button
                     @click="openGallery"
+                    :title="trans('add-image')"
                     class="btn2 btn-sm join-item"
                     :class="{ 'btn-disabled': drawingMode }">
                     <i class="fa-regular fa-file-image" aria-hidden="true" />
-                    <span class="sr-only">Add image</span>
+                    <span class="sr-only" v-html="trans('add-image')"></span>
                 </button>
             </div>
         </div>
         <div v-else-if="readonly">
-            <i>Readonly</i>
+            <i v-html="trans('readonly')"></i>
         </div>
     </div>
 
@@ -341,12 +348,14 @@
         :name="name"
         :opened="settingsOpened"
         @closed="closedSettings"
+        :i18n="i18n"
     ></Settings>
 
     <Entity
         v-if="!loading"
         :api="props.search"
         :opened="searchOpened"
+        :i18n="i18n"
         @selected="selectEntity"
         @closed="closedSearch">
     </Entity>
@@ -366,7 +375,6 @@ const props = defineProps<{
     load: String,
     gallery: String,
     search: String,
-    i18n: undefined,
     readonly: Boolean,
 }>()
 
@@ -377,6 +385,7 @@ const name = ref('My whiteboard');
 const stage = ref(null);
 const transformer = ref(null);
 const layer = ref(null);
+const i18n = ref(null);
 
 // Saving
 const saving = ref(false);
@@ -504,23 +513,23 @@ const setupTransformerEvents = () => {
     transformerNode.off('transformend.transformer');
     transformerNode.off('dragend.transformer');
 
-    transformerNode.on('transform.transformer dragmove.transformer', () => {
-        if (editingTextId.value) uiTick.value++;
-
-        // Live-adjust corner radius to keep it visually ~6px
+    transformerNode.on('transformend.transformer', (e) => {
+        if (!selectedShape.value) return;
         const group = transformerNode.nodes()[0];
         if (!group) return;
-        const rectNode = group.findOne('Rect');
-        if (rectNode) {
-            const abs = group.getAbsoluteScale();
-            const s = Math.max(abs.x, abs.y) || 1; // keepRatio true -> x≈y
-            // Set model corner radius so rendered radius ≈ 6px
-            rectNode.cornerRadius(6 / s);
-            rectNode.getLayer()?.batchDraw();
-        }
-    });
-    transformerNode.on('transformend.transformer dragend.transformer', () => {
-        if (editingTextId.value) uiTick.value++;
+
+        const scaleX = group.scaleX() || 1;
+        const scaleY = group.scaleY() || 1;
+
+        // Persist scale into your model
+        selectedShape.value.scaleX = scaleX;
+        selectedShape.value.scaleY = scaleY;
+
+
+
+        // Force redraw and update overlays
+        uiTick.value++;
+        transformerNode.getLayer().batchDraw();
     });
 };
 
@@ -677,6 +686,8 @@ const addShape = (type) => {
         type,
         x: tlx + offsetX,
         y: tly + offsetY,
+        scaleX: 1,
+        scaleY: 1,
         width: 100,
         height: type === "text" ? 50 : 80,
         radius: type === "circle" ? 40 : null,
@@ -755,7 +766,8 @@ const handleMouseDown = (e) => {
             id: Date.now(),
             type: "group",
             children: [],
-            fill: currentColor.value
+            scaleX: 1,
+            scaleY: 1,
         }
     }
 
@@ -877,6 +889,8 @@ const selectImage = (image) => {
         type: "image",
         x: tlx + offsetX,
         y: tly + offsetY,
+        scaleX: 1,
+        scaleY: 1,
         width: null,
         height: null,
         uuid: image.uuid,
@@ -928,6 +942,8 @@ const selectEntity = (entity) => {
         y: tly + offsetY,
         width: 128,
         height: 128,
+        scaleX: 1,
+        scaleY: 1,
         entity: entity.id,
         name: entity.name,
         link: entity.link,
@@ -1119,6 +1135,9 @@ const handleWheel = (e) => {
     zoomBy(zoomDirection, pointer);
 };
 
+const trans = (key: string) => {
+    return i18n.value[key] || key
+}
 
 
 
@@ -1135,6 +1154,7 @@ onMounted(() => {
         if (res.data) {
             name.value = res.data.name
             shapes.value = res.data.data
+            i18n.value = res.data.i18n
 
             if (res.data.images) {
                 loadImages(res.data.images)

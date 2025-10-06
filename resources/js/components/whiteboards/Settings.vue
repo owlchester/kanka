@@ -1,7 +1,7 @@
 <template>
     <dialog class="dialog rounded-2xl bg-base-100 text-base-content" id="gallery-dialog" ref="dialog" aria-modal="true" aria-labelledby="modal-card-label">
         <header class="flex gap-6 items-center p-4 md:p-6 justify-between">
-            <h4 v-html="trans('Whiteboard settings')" class="text-lg font-normal"></h4>
+            <h4 v-html="trans('whiteboard-settings')" class="text-lg font-normal"></h4>
             <button type="button" class="text-base-content" @click="closeDialog()" title="Close">
                 <i class="fa-regular fa-circle-xmark" aria-hidden="true"></i>
                 <span class="sr-only">trans('close')</span>
@@ -11,7 +11,7 @@
 
             <div class="flex gap-1 w-full">
                 <div class="flex flex-col gap-1 grow">
-                    <label v-html="trans('Name')"></label>
+                    <label v-html="trans('name')"></label>
                     <input
                         type="text"
                         class="w-full"
@@ -21,10 +21,10 @@
                 </div>
             </div>
         </article>
-        <div class="mt-5 flex gap-2 md:gap-5 text-left w-full justify-between p-4 md:p-6 w-full">
+        <div class="mt-5 flex gap-2 md:gap-5 text-left w-full justify-between p-4 md:p-6">
             <menu class="flex flex-wrap gap-3 ps-0 ms-0">
             </menu>
-            <button class="btn2 btn-primary" @click="closeDialog()" v-html="trans('Save')"></button>
+            <button class="btn2 btn-primary" @click="closeDialog()" v-html="trans('save')"></button>
         </div>
     </dialog>
 </template>
@@ -36,6 +36,7 @@ import { ref, onMounted, watch} from 'vue';
 const props = defineProps<{
     name: String,
     opened: boolean,
+    i18n: undefined,
 }>()
 
 const emit = defineEmits(['closed'])
