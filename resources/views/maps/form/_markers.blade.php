@@ -32,6 +32,8 @@
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.path.drag.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.editable.js"></script>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.zoomcss.js"></script>
+    <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.layerstree.css"/>
+    <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.layerstree.js"></script>
     @vite([
         'resources/js/location/map-v3.js',
     ])
