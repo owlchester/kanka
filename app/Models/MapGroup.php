@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Collection;
 use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 /**
@@ -35,12 +34,12 @@ class MapGroup extends Model
 {
     use Blameable;
     use HasFactory;
+    use HasRecursiveRelationships;
     use HasVisibility;
+    use Nested;
     use Paginatable;
     use Sanitizable;
     use SortableTrait;
-    use Nested;
-    use HasRecursiveRelationships;
 
     protected array $sortable = [
         'name',
@@ -128,7 +127,6 @@ class MapGroup extends Model
             ->with(['entity', 'entity.entityType', 'group']);
     }
 
-    
     public function markersWithEntity()
     {
         $ids = $this->descendantGroupIds();
@@ -144,7 +142,7 @@ class MapGroup extends Model
         $data = [];
         /** @var MapMarker[] $markers */
         $markers = $this->markersWithEntity();
-       // dd($markers);
+        // dd($markers);
 
         foreach ($markers as $marker) {
             if ($marker->visible()) {

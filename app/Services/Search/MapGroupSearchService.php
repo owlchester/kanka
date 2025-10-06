@@ -35,7 +35,7 @@ class MapGroupSearchService
         if (! empty($excludes)) {
             $this->query->whereNotIn('id', [$excludes]);
         }
-        
+
         $this->order($term);
         $groups = $this->query
             ->limit(10)

@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Traits\ApiRequest;
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\MapGroup;
 use App\Rules\Nested;
+use App\Traits\ApiRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
 class StoreMapGroup extends FormRequest
 {
