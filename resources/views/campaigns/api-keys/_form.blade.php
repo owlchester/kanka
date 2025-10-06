@@ -45,7 +45,7 @@
         :label="__('campaigns/webhooks.fields.enabled')">
         <input type="hidden" name="is_enabled" value="0" />
         <x-checkbox :text="__('campaigns/api-keys.helper.enabled')">
-            <input type="checkbox" name="is_enabled" value="1" @if (old('is_enabled', $apiKey->status ?? true)) checked="checked" @endif />
+            <input type="checkbox" name="is_enabled" value="1" @if (old('is_enabled', $apiKey->is_enabled ?? true)) checked="checked" @endif />
         </x-checkbox>
     </x-forms.field>
 </x-grid>

@@ -20,9 +20,9 @@ class Feed extends Command
     /**
      * @return \Illuminate\Foundation\Bus\PendingDispatch
      */
-    protected function dispatch(int $mapID)
+    protected function dispatch(int $campaignId)
     {
-        return BragiFeedJob::dispatch($mapID);
+        return BragiFeedJob::dispatch($campaignId);
     }
 }
 

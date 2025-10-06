@@ -139,7 +139,7 @@ class Ask extends Component
                     $text = $text . '' . json_encode($entityData);
                 }
             } elseif ($class == 'App\Models\TimelineElement' ) {
-                $elements = TimelineElement::whereIn('id', $ids)->with(['campaign', 'entityType', 'relationships', 'relationships.target'])->get();
+                $elements = TimelineElement::whereIn('id', $ids)->with(['timeline', 'timeline.campaign'])->get();
                 foreach ($elements as $element) {
                     $elementData = [
                         'name' => $element->name,

@@ -13,6 +13,7 @@ use App\Models\TimelineEra;
 use Exception;
 use Prism\Prism\Prism;
 use Prism\Prism\Enums\Provider;
+use Illuminate\Support\Facades\Log;
 
 class FeedService
 {
@@ -30,13 +31,20 @@ class FeedService
         $log = '';
 
         Module::campaign($this->campaign);
+            
+            Log::info('Feeding entities');
+            $this->feedEntities();
+            Log::info('Feeding posts');
+            $this->feedPosts();
+            Log::info('Feeding timeline elements');
+            $this->feedTimelineElements();
+            Log::info('Feeding eras');
+            $this->feedTimelineEras();
+            Log::info('Feeding quest elements');
+            $this->feedQuestElements();
 
         try {
-            $this->feedEntities();
-            $this->feedPosts();
-            $this->feedTimelineElements();
-            $this->feedTimelineEras();
-            $this->feedQuestElements();
+
 
         } catch (Exception $e) {
             $log .= '<br />' . $e->getMessage();
@@ -221,9 +229,10 @@ class FeedService
         $this->campaign->entities()
             ->with(['campaign', 'entityType', 'relationships', 'relationships.target'])
             ->has('campaign')
-            ->chunkById(10, function ($entities): void {
+            ->chunkById(1, function ($entities): void {
+                $count = 0;
                 foreach ($entities as $entity) {
-
+                    $count = $count + 1;
                     $relations = $entity->relationships->map(function ($relationship) {
                         return [
                             'name'     => $relationship->target->name ?? null,
@@ -242,6 +251,10 @@ class FeedService
 
                     $data[] = json_encode($entityData);
                 }
+                Log::info('Feeding ' . $count . ' entities');
+                Log::info('Feeding ', $data);
+
+                
 
                 //Get vectors
                 $response = Prism::embeddings()
@@ -271,7 +284,7 @@ class FeedService
         $this->campaign->posts()
             ->whereNull('layout_id')
             ->with(['entity', 'entity.campaign'])
-            ->chunkById(10, function ($posts): void {
+            ->chunkById(3, function ($posts): void {
                 foreach ($posts as $post) {
 
                     $entityData = [
@@ -311,7 +324,7 @@ class FeedService
     {
         $this->campaign->questElements()
             ->with(['quest'])
-            ->chunkById(10, function ($elements): void {
+            ->chunkById(3, function ($elements): void {
                 foreach ($elements as $element) {
 
                     $entityData = [
@@ -351,7 +364,7 @@ class FeedService
     {
         $this->campaign->timelineElements()
             ->with(['timeline', 'era'])
-            ->chunkById(10, function ($elements): void {
+            ->chunkById(3, function ($elements): void {
                 foreach ($elements as $element) {
 
                     $elementData = [
@@ -394,7 +407,7 @@ class FeedService
     {
         $this->campaign->timelineEras()
             ->with(['timeline'])
-            ->chunkById(10, function ($eras): void {
+            ->chunkById(3, function ($eras): void {
                 foreach ($eras as $era) {
 
                     $eraData = [
