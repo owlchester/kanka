@@ -31,22 +31,24 @@
                     </div>
                 @endif
             </a>
-            @if ($model instanceof \App\Models\Map && $model->explorable())
-                <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
-                    <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow">
-                        {!! $model->name !!}
-                    </a>
+            <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
+                <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow">
+                    {!! $model->name !!}
+                </a>
+                @if ($model instanceof \App\Models\Map && $model->explorable())
                     <a href="{{ $model->getLink('explore') }}" class="block text-center h-12 p-4" target="_blank" title="{{ __('maps.actions.explore') }}">
                         <x-icon class="fa-regular fa-map" />
                         <span class="sr-only">{{ __('maps.actions.explore') }}</span>
                     </a>
-                </div>
-            @else
-            <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 p-4" data-toggle="tooltip-ajax" data-id="{{ $model->entity->id }}"
-               data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
-                {!! $model->name !!}
-            </a>
-            @endif
+                @elseif ($model instanceof \App\Models\Whiteboard)
+                    <a href="{{ $model->getLink('draw') }}" class="block text-center h-12 p-4" target="_blank" title="{{ __('whiteboards.actions.draw') }}">
+                        <x-icon class="fa-regular fa-chalkboard" />
+                        <span class="sr-only">{{ __('whiteboards.actions.draw') }}</span>
+                    </a>
+                @else
+                    @dd($model)
+                @endif
+            </div>
         </div>
         @for ($s = 0; $s < $stacked; $s++)
             <div class="entity entity-stack bg-base-300 w-full overflow-hidden rounded aspect-square flex flex-col shadow-xs" title="{{ __('datagrids.tooltips.nested') }}" data-stack="{{ $s }}">
@@ -64,21 +66,21 @@
                 </div>
             @endif
         </a>
-        @if ($model instanceof \App\Models\Map && $model->explorable())
-            <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
-                <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow" >
-                    {!! $model->name !!}
-                </a>
+        <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
+            <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow" >
+                {!! $model->name !!}
+            </a>
+            @if ($model instanceof \App\Models\Map && $model->explorable())
                 <a href="{{ $model->getLink('explore') }}" class="block text-center h-12 p-4" target="_blank" title="{{ __('maps.actions.explore') }}">
                     <x-icon class="fa-regular fa-map" />
                     <span class="sr-only">{{ __('maps.actions.explore') }}</span>
                 </a>
-            </div>
-        @else
-        <a href="{{ $model->getLink() }}" class="block truncate text-center px-2 py-4 h-12" data-toggle="tooltip-ajax" data-id="{{ $model->entity->id }}"
-        data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
-            {!! $model->name !!}
-        </a>
-        @endif
+            @elseif ($model instanceof \App\Models\Whiteboard)
+                <a href="{{ $model->getLink('draw') }}" class="block text-center h-12 p-4" target="_blank" title="{{ __('whiteboards.actions.draw') }}">
+                    <x-icon class="fa-regular fa-chalkboard" />
+                    <span class="sr-only">{{ __('whiteboards.actions.draw') }}</span>
+                </a>
+            @endif
+        </div>
     </div>
 @endif

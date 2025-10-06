@@ -21,8 +21,22 @@ class CrudController extends BaseCrudController
 
     protected string $module = 'whiteboards';
 
+
+    public function create(Campaign $campaign)
+    {
+        if (!$campaign->isWyvernPremium()) {
+            return view('whiteboards.cta')
+                ->with('campaign', $campaign);
+        }
+        return $this->campaign($campaign)->crudCreate();
+    }
+
     public function store(StoreWhiteboard $request, Campaign $campaign)
     {
+        if (!$campaign->isWyvernPremium()) {
+            return view('whiteboards.cta')
+                ->with('campaign', $campaign);
+        }
         return $this->campaign($campaign)->crudStore($request);
     }
 

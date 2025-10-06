@@ -52,4 +52,9 @@ trait Boosted
 
         return $this->boost_count >= 4;
     }
+
+    public function isWyvernPremium(): bool
+    {
+        return $this->premium() && $this->boosts()->with('user')->first()?->user->isWyvern();
+    }
 }

@@ -14,4 +14,8 @@ return [
     'update' => [
         'success' => 'Whiteboard saved',
     ],
+    'cta' => [
+        'title' => 'Premium feature',
+        'text' => 'Whiteboards are a premium feature unlocked when a Wyvern or higher subscriber supports this campaign.',
+    ]
 ];

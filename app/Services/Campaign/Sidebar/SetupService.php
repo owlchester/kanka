@@ -379,7 +379,7 @@ class SetupService
 
         if (isset($element['type'])) {
             $entityType = $this->modules[$element['type']];
-            $element['label'] = $entityType->name();
+            $element['label'] = $entityType->plural();
             $element['icon'] = $entityType->icon();
         }
 
