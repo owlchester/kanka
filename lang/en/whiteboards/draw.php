@@ -14,6 +14,7 @@ return [
         'push-to-back' => 'Push to back',
         'lock' => 'Lock',
         'unlock' => 'Unlock',
+        'back' => 'Back to overview',
     ],
     'fields' => [
         'color' => 'Colour',

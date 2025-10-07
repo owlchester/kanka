@@ -5,7 +5,10 @@
     </div>
     <div class="toolbar fixed w-full bg-base-100 p-2 flex items-center justify-between gap-2 z-50" v-if="!loading">
         <div class="flex gap-1 items-center">
-            <span v-html="name"></span>
+            <a :href="urls.overview" :title="trans('back')" class="flex items-center gap-1">
+                <i class="fa-regular fa-left-to-bracket" aria-hidden="true"></i>
+                <span v-html="name"></span>
+            </a>
 <!--            <div-->
 <!--                v-if="!props.readonly"-->
 <!--                class="cursor-pointer"-->
@@ -422,6 +425,7 @@ const stage = ref(null);
 const transformer = ref(null);
 const layer = ref(null);
 const i18n = ref(null);
+const urls = ref(null);
 
 // Saving
 const saving = ref(false);
@@ -1211,6 +1215,7 @@ onMounted(() => {
             name.value = res.data.name
             shapes.value = res.data.data
             i18n.value = res.data.i18n
+            urls.value = res.data.urls
 
             if (res.data.images) {
                 loadImages(res.data.images)

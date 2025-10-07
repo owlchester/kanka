@@ -16,6 +16,6 @@ return [
     ],
     'cta' => [
         'title' => 'Premium feature',
-        'text' => 'Whiteboards are a premium feature unlocked when a Wyvern or higher subscriber supports this campaign.',
+        'text' => 'To unlock whiteboards, a campaign needs to be made premium by a user at the Wyvern or Elemental tier.',
     ]
 ];

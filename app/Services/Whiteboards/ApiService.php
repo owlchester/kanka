@@ -29,6 +29,7 @@ class ApiService
         $this->data['data'] = $this->whiteboard->data ?? [];
         $this->loadImages();
         $this->translations();
+        $this->urls();
         $this->fixData();
 
         return $this->data;
@@ -71,6 +72,9 @@ class ApiService
             'push-to-back' => __('whiteboards/draw.actions.push-to-back'),
             'lock' => __('whiteboards/draw.actions.lock'),
             'unlock' => __('whiteboards/draw.actions.unlock'),
+
+            // General UI
+            'back' => __('whiteboards/draw.actions.back'),
 
             // Entity search
             'entity-search' => __('whiteboards/draw.entity-search.title'),
@@ -137,5 +141,12 @@ class ApiService
             }
             $this->data['data'][$id] = $shape;
         }
+    }
+
+    protected function urls(): void
+    {
+        $this->data['urls'] = [
+            'overview' => route('entities.show', [$this->campaign, $this->whiteboard->entity])
+        ];
     }
 }
