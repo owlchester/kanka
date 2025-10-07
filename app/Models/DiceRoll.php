@@ -68,6 +68,11 @@ class DiceRoll extends MiscModel
         'parameters',
     ];
 
+    public function datagridSelectFields(): array
+    {
+        return ['character_id', 'parameters'];
+    }
+
     /**
      * Who created this entry
      *

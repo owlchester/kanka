@@ -839,7 +839,6 @@ trait HasFilters
             $query->whereNotNull('e.archived_at');
             return;
         }
-
     }
 
     /**
