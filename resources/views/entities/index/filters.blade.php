@@ -50,6 +50,10 @@
                     <label>{!! __('crud.fields.template') !!}</label>
                     @include('cruds.datagrids.filters._choice', ['field' => 'template'])
                 </div>
+                <div class="field flex flex-col gap-1 field-archived">
+                    <label>{!! __('crud.fields.archived') !!}</label>
+                    @include('cruds.datagrids.filters._archived', ['field' => 'archived'])
+                </div>
                 <div class="field flex flex-col gap-1 field-tags">
                     <label>{!! __('entities.tags') !!}</label>
                     @include('cruds.datagrids.filters._tag', ['value' => $filterService->filterValue('tags'), 'field' => ['field' => 'tags']])

@@ -199,6 +199,10 @@ trait EntityScopes
                 } else {
                     $query->whereNull($property);
                 }
+            } elseif ($name === 'archived') {
+                if ($values) {
+                    $query->whereNotNull('archived_at');
+                }
             } elseif ($name === 'has_entity_files') {
                 // @phpstan-ignore-next-line
                 $query->filterHasFiles($values);

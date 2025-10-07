@@ -76,6 +76,7 @@ class EntityResource extends JsonResource
             'created_by' => $entity->created_by,
             'updated_at' => $entity->updated_at,
             'updated_by' => $entity->updated_by,
+            'archived_at' => $entity->archived_at,
 
             'urls' => [
                 'view' => $url,

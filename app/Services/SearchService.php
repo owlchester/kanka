@@ -182,7 +182,7 @@ class SearchService
         }
 
         $cleanTerm = mb_ltrim(str_replace('_', ' ', $this->term), '=');
-        $query = Entity::inTypes($availableEntityTypes);
+        $query = Entity::inTypes($availableEntityTypes)->whereNull('archived_at');
         if (empty($this->term)) {
             $query->orderBy('updated_at', 'DESC');
         } else {

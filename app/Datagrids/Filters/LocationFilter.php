@@ -25,6 +25,7 @@ class LocationFilter extends DatagridFilter
             ->add('is_destroyed')
             ->isPrivate()
             ->template()
+            ->archived()
             ->hasImage()
             ->hasEntry()
             ->hasPosts()

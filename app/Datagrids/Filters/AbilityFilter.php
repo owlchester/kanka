@@ -24,6 +24,7 @@ class AbilityFilter extends DatagridFilter
             ])
             ->isPrivate()
             ->template()
+            ->archived()
             ->hasImage()
             ->hasEntry()
             ->hasPosts()

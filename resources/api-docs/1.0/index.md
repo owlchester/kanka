@@ -59,6 +59,7 @@
 
 - ## Search
   - [Search](/api-docs/{{version}}/search)
+  - [Archives](/api-docs/{{version}}/archives)
 
 - ## Other Concepts
   - [Last Sync](/api-docs/{{version}}/misc/last-sync)
