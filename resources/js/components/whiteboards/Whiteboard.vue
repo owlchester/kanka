@@ -105,7 +105,7 @@
                         width: shape.width,
                         text: shape.name || '',
                         fontSize: 14,
-                        fontFamily: 'Arial',
+                        fontFamily: shape.fontFamily || 'Arial',
                         fill: shape.fill,
                         align: 'center',
                         draggable: false,
@@ -123,7 +123,7 @@
 
                             text: shape.text,
                             fontSize: getTextSize(shape),
-                            fontFamily: 'Arial',
+                            fontFamily: shape.fontFamily || 'Arial',
                             fill: getTextColor(shape),
                             align: 'center',
                             verticalAlign: 'middle',
@@ -187,6 +187,7 @@
                 <button
                     class="btn2 btn-sm join-item"
                     :title="trans('thin-stroke')"
+                    :class="{ 'btn-disabled': strokeSize === 1 }"
                     @click.stop="strokeSize = 1"
                 >
                     <i class="fa-regular fa-paintbrush-fine" aria-hidden="true"></i>
@@ -195,6 +196,7 @@
                 <button
                     class="btn2 btn-sm join-item"
                     :title="trans('large-stroke')"
+                    :class="{ 'btn-disabled': strokeSize === 3 }"
                     @click.stop="strokeSize = 3"
                 >
                     <i class="fa-regular fa-paintbrush" aria-hidden="true"></i>
@@ -203,6 +205,7 @@
                 <button
                     class="btn2 btn-sm join-item"
                     :title="trans('color')"
+                    :style="{'color': currentColor}"
                     @click.stop="openColorPicker"
                 >
                     <i class="fa-regular fa-palette" aria-hidden="true"></i>
@@ -236,6 +239,39 @@
                 >
                     <i class="fa-regular fa-palette" aria-hidden="true"></i>
                     <span class="sr-only" v-html="trans('color')"></span>
+                </button>
+            </div>
+
+            <div class="join" v-if="selectedShape.type === 'text'">
+                <button
+                    class="btn2 btn-sm join-item"
+                    :class="{'btn-disabled': editingTextId}"
+                    :title="trans('auto-font')"
+                    @click.stop="autoFont()"
+                >
+                    <i class="fa-regular fa-text-size" aria-hidden="true"></i>
+                    <span class="sr-only">{{ trans('auto-font') }}</span>
+                </button>
+
+
+                <button
+                    class="btn2 btn-sm join-item"
+                    :class="{'btn-disabled': editingTextId || selectedShape.fontSize === 2}"
+                    :title="trans('fmaller-font')"
+                    @click.stop="smallerFont()"
+                >
+                    <i class="fa-regular fa-minus" aria-hidden="true"></i>
+                    <span class="sr-only">{{ trans('smaller-font') }}</span>
+                </button>
+
+                <button
+                    class="btn2 btn-sm join-item"
+                    :class="{'btn-disabled': editingTextId || selectedShape.fontSize === 12}"
+                    :title="trans('larger-font')"
+                    @click.stop="biggerFont()"
+                >
+                    <i class="fa-regular fa-plus" aria-hidden="true"></i>
+                    <span class="sr-only">{{ trans('larger-font') }}</span>
                 </button>
             </div>
 
@@ -631,10 +667,29 @@ const onPickColor = (e: Event) => {
 };
 
 const getTextSize = (shape) => {
-    const baseSizeFromHeight = shape.height * 0.15;
-    const baseSizeFromWidth = shape.width * 0.08;
-    const baseSize = Math.min(baseSizeFromHeight, baseSizeFromWidth);
-    return Math.max(10, Math.min(baseSize, 24));
+    if (!shape) return 14;
+
+    if (shape.fontSize) {
+        return shape.fontSize;
+    }
+
+    let fontSize = 42;
+    const text = (shape.text || '').toString();
+
+    // Decrease font size until fits
+    while (true) {
+        const tmp = new Konva.Text({
+            text,
+            fontSize,
+            fontFamily: shape.fontFamily,
+        });
+        const { width, height } = tmp.getClientRect();
+
+        if (width <= shape.width && height <= shape.height) break;
+        fontSize -= 1;
+        if (fontSize <= 1) break;
+    }
+    return fontSize;
 };
 
 const getTextPadding = (shape) => {
@@ -693,6 +748,7 @@ const addShape = (type) => {
         radius: type === "circle" ? 40 : null,
         fill: type === 'text' ? cssVariable('--bc') : cssVariable('--b1'),
         text: type === "text" ? "Click to edit" : null,
+        fontFamily: type === "text" ? 'Arial' : null,
         locked: false,
         moving: false,
     });
@@ -1195,6 +1251,21 @@ const handleKeyDown = (e: KeyboardEvent) => {
         deleteSelected();
     }
 };
+
+const autoFont = () => {
+    if (!selectedShape.value || selectedShape.value.type !== 'text') return
+    delete selectedShape.value.fontSize;
+}
+
+const biggerFont = () => {
+    if (!selectedShape.value || selectedShape.value.type !== 'text') return
+    selectedShape.value.fontSize = (selectedShape.value.fontSize || 10) + 2
+}
+
+const smallerFont = () => {
+    if (!selectedShape.value || selectedShape.value.type !== 'text') return
+    selectedShape.value.fontSize = (selectedShape.value.fontSize || 12) - 2
+}
 
 const cleanupBeforeUnmount = () => {
     window.removeEventListener('keydown', handleKeyDown);
