@@ -76,6 +76,7 @@ return [
         'charge_fail'   => 'An error occurred while processing your payment. Please wait a moment while we try again. If nothing changes, please contact us.',
         'deleted'       => 'Your subscription to Kanka was automatically cancelled after too many failed attempts to charge your card. Please go to your Subscription settings and try updating your payment details.',
         'ended'         => 'Your subscription to Kanka has ended. Your premium campaigns and Discord roles have been disabled. We hope to see you back soon!',
+        'trial' => 'Your free trial to Kanka has ended. We hope you loved it and hope to see you back soon!',
         'failed'        => 'We couldn\'t charge your payment details. Please update them in your Payment Method settings.',
         'started'       => 'Your subscription to Kanka has started.',
     ],

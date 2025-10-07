@@ -809,8 +809,8 @@ trait HasFilters
                 $tagIds[] = (int) $v;
             }
             // $query->leftJoin('entity_tags as et_tags', "et_tags.entity_id", 'e.id')
-            //$query                
-            $query->leftJoin('entity_tags as et_tags', "et_tags.entity_id", 'e.id')
+            // $query
+            $query->leftJoin('entity_tags as et_tags', 'et_tags.entity_id', 'e.id')
                 ->whereIn('et_tags.tag_id', $tagIds);
 
             return;

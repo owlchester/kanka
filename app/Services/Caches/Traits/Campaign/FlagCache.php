@@ -17,6 +17,7 @@ trait FlagCache
         foreach ($this->campaign->flags as $flag) {
             $flags[$flag->flag->value] = $flag->value;
         }
+
         return $flags;
     }
 }

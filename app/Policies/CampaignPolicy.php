@@ -27,8 +27,8 @@ class CampaignPolicy
     public function member(User $user, Campaign $campaign): bool
     {
         return CampaignCache::campaign($campaign)
-                ->members()
-                ->where('id', $user->id)->count() == 1;
+            ->members()
+            ->where('id', $user->id)->count() == 1;
     }
 
     /**
@@ -151,21 +151,21 @@ class CampaignPolicy
         if (Identity::isImpersonating()) {
             return false;
         }
-        if (!$this->member($user, $campaign)) {
+        if (! $this->member($user, $campaign)) {
             return false;
         }
 
         // If we are not the owner
-        if (!$user->isAdmin()) {
+        if (! $user->isAdmin()) {
             return true;
         }
 
         // If there are other admins
         return $campaign->roles()
-                ->admin()
-                ->first()
-                ->users
-                ->count() > 1;
+            ->admin()
+            ->first()
+            ->users
+            ->count() > 1;
     }
 
     /**

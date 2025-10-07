@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignCache;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Campaigns\Boosted;

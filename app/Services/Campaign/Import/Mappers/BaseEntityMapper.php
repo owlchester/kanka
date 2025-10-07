@@ -3,6 +3,7 @@
 namespace App\Services\Campaign\Import\Mappers;
 
 use App\Enums\Visibility;
+use App\Facades\ImportIdMapper;
 use App\Models\Attribute;
 use App\Models\Entity;
 use App\Models\EntityAbility;
@@ -15,7 +16,6 @@ use App\Models\Post;
 use App\Models\PostTag;
 use App\Models\Relation;
 use App\Models\Reminder;
-use App\Facades\ImportIdMapper;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -221,6 +221,7 @@ trait BaseEntityMapper
 
         return $this;
     }
+
     protected function relations(): self
     {
         if (empty($this->data['entity']['relationships'])) {
@@ -248,8 +249,6 @@ trait BaseEntityMapper
 
         return $this;
     }
-
-
 
     protected function abilities(): self
     {
@@ -324,7 +323,6 @@ trait BaseEntityMapper
         $this
             ->foreignMentions();
     }
-
 
     /**
      * Migrate old entity image system to the gallery.

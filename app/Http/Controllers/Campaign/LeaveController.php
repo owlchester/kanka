@@ -20,6 +20,7 @@ class LeaveController extends Controller
     public function index(Campaign $campaign)
     {
         $this->authorize('member', $campaign);
+
         return view('campaigns.leave')->with('campaign', $campaign);
     }
 

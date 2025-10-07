@@ -67,7 +67,7 @@ class NewSubscriptionMail extends Mailable
 
         return new Content(
             markdown: 'emails.subscriptions.new.md',
-            with: ['lastCancel' => $lastCancel, 'user' => $this->user, 'period' => $this->period],
+            with: ['lastCancel' => $lastCancel, 'user' => $this->user, 'period' => $this->period, 'trial' => false],
         );
     }
 }

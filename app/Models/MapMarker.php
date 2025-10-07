@@ -114,7 +114,7 @@ class MapMarker extends Model
 
     protected array $sanitizable = [
         'name',
-        'css'
+        'css',
     ];
 
     /** Editing the map */

@@ -4,11 +4,13 @@ namespace App\Services;
 
 use App\Enums\PricingPeriod;
 use App\Enums\UserAction;
+use App\Enums\UserFlags;
 use App\Exceptions\TranslatableException;
 use App\Jobs\DiscordRoleJob;
 use App\Jobs\Emails\MailSettingsChangeJob;
 use App\Jobs\Emails\SubscriptionCreatedEmailJob;
 use App\Jobs\Emails\SubscriptionDowngradedEmailJob;
+use App\Jobs\Emails\Subscriptions\Converted;
 use App\Jobs\Emails\Subscriptions\WelcomeSubscriptionEmailJob;
 use App\Models\Pledge;
 use App\Models\Role;
@@ -237,8 +239,12 @@ class SubscriptionService
 
         // Don't send emails when called from the webhook
         if (! $this->webhook) {
-            SubscriptionCreatedEmailJob::dispatch($this->user, $this->period, $new);
-            WelcomeSubscriptionEmailJob::dispatch($this->user, $this->tier);
+            if ($this->userConvertedFromFreeTrial()) {
+                Converted::dispatch($this->user);
+            } else {
+                SubscriptionCreatedEmailJob::dispatch($this->user, $this->period, $new);
+                WelcomeSubscriptionEmailJob::dispatch($this->user, $this->tier);
+            }
 
             // Save the new sub value
             if (isset($this->tier)) {
@@ -396,5 +402,13 @@ class SubscriptionService
             ->where('currency', $this->user->currency())
             ->where('period', $this->isYearly() ? PricingPeriod::Yearly->value : PricingPeriod::Monthly->value)
             ->first();
+    }
+
+    protected function userConvertedFromFreeTrial(): bool
+    {
+        return $this->user->flags()
+            ->where('flag', UserFlags::startTrial)
+            ->whereDate('created_at', '>=', Carbon::now()->subDays(30))
+            ->exists();
     }
 }

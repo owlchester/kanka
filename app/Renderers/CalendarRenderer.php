@@ -399,7 +399,6 @@ class CalendarRenderer
                 $this->recurringReminders();
                 $this->addMoonReminders($day);
 
-
                 $week[] = $this->dayData;
                 $julian++;
             }
@@ -505,7 +504,7 @@ class CalendarRenderer
             }
 
             // Add each day of the month to the day thing
-            $this->remainingRecurring  = [];
+            $this->remainingRecurring = [];
             $endedWeek = false;
             for ($day = 1; $day <= $monthLength; $day++) {
                 $endedWeek = false;

@@ -1,9 +1,18 @@
 <x-mail::message layout="admin">
+@if ($trial)
+# Free trial conversion
+@else
 # New subscription
+@endif
 
-New subscription for user [{{ $user->name }}](https://admin.kanka.io/users/{{ $user->id }}) in {{ $user->currencySymbol() }} (#{{ $user->id }}) {{ $user->email }}.
+User [{{ $user->email }}](mailto:{{ $user->email }}) [{{ $user->name }}](https://admin.kanka.io/users/{{ $user->id }})
+Currency: {{ $user->currencySymbol() }}
 
 Account created {{ $user->created_at->diffForHumans() }} ({{ $user->created_at->format('d.m.Y') }}).
+
+@if ($trial)
+Trial started on {{ $trial->created_at->format('d.m.Y') }}.
+@endif
 
 @if ($lastCancel)
 Previously cancelled {{ $lastCancel->tier }} subscription {{ $lastCancel->created_at->diffForHumans() }} ({{ $lastCancel->created_at->format('d.m.Y') }}).

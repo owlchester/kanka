@@ -15,8 +15,7 @@ class FilterButton extends Component
         public int $count,
         public string $route,
         public bool $all = false,
-    )
-    {
+    ) {
         //
     }
 
