@@ -54,11 +54,6 @@ class Journal extends MiscModel
     ];
 
     /**
-     * Entity type
-     */
-    protected string $entityType = 'journal';
-
-    /**
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [

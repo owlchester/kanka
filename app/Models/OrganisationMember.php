@@ -46,10 +46,6 @@ class OrganisationMember extends Model
 
     public const int STATUS_UNKNOWN = 2;
 
-    public $entityType = 'character';
-
-    public $aclFieldName = 'character_id';
-
     public $table = 'organisation_member';
 
     protected $filterableColumns = ['organisation_id'];

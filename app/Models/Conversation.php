@@ -46,11 +46,6 @@ class Conversation extends MiscModel
     public const int TARGET_CHARACTERS = 2;
 
     /**
-     * Entity type
-     */
-    protected string $entityType = 'conversation';
-
-    /**
      * Searchable fields
      */
     protected array $searchableColumns = ['name'];

@@ -38,11 +38,6 @@ class AttributeTemplate extends MiscModel
     ];
 
     /**
-     * Entity type
-     */
-    protected string $entityType = 'attribute_template';
-
-    /**
      * Searchable fields
      */
     protected array $searchableColumns = ['name'];

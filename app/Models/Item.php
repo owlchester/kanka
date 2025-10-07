@@ -56,11 +56,6 @@ class Item extends MiscModel
     ];
 
     /**
-     * Entity type
-     */
-    protected string $entityType = 'item';
-
-    /**
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [

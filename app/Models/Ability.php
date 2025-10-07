@@ -64,10 +64,6 @@ class Ability extends MiscModel
         'ability_id',
     ];
 
-    /**
-     * Entity type
-     */
-    protected string $entityType = 'ability';
 
     protected array $exportFields = [
         'base',

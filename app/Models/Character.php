@@ -92,11 +92,6 @@ class Character extends MiscModel
     protected array $exploreGridFields = ['is_dead'];
 
     /**
-     * Entity type
-     */
-    protected string $entityType = 'character';
-
-    /**
      * Searchable fields
      */
     protected array $searchableColumns = ['name', 'title'];

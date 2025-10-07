@@ -70,11 +70,6 @@ class Quest extends MiscModel
     ];
 
     /**
-     * Entity type
-     */
-    protected string $entityType = 'quest';
-
-    /**
      * Fields that can be sorted on
      */
     protected array $sortableColumns = [

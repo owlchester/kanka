@@ -52,8 +52,6 @@ class Event extends MiscModel
         'type',
     ];
 
-    protected string $entityType = 'event';
-
     /**
      * Fields that can be sorted on
      */

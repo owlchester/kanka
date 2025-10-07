@@ -56,11 +56,6 @@ class Organisation extends MiscModel
         'is_defunct',
     ];
 
-    /**
-     * Entity type
-     */
-    protected string $entityType = 'organisation';
-
     protected int $allMembersCount;
 
     /**

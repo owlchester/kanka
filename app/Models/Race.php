@@ -48,11 +48,6 @@ class Race extends MiscModel
         'race_id',
     ];
 
-    /**
-     * Entity type
-     */
-    protected string $entityType = 'race';
-
     protected array $sortable = [
         'name',
         'type',

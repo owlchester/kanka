@@ -45,11 +45,6 @@ class Tag extends MiscModel
     use SortableTrait;
     use TagScopes;
 
-    /**
-     * Entity type
-     */
-    protected string $entityType = 'tag';
-
     protected array $explicitFilters = ['tag_id'];
 
     protected array $sortable = [

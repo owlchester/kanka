@@ -100,11 +100,6 @@ class Family extends MiscModel
     ];
 
     /**
-     * Entity type
-     */
-    protected string $entityType = 'family';
-
-    /**
      * Parent ID used for the Node Trait
      *
      * @return string
