@@ -54,19 +54,21 @@
                 <x-dropdowns.item link="#" :data="['title' => $entity->entityType->code . ':' . $entity->id, 'toggle' => 'tooltip', 'clipboard' => '[' . $entity->entityType->code . ':' . $entity->id .']', 'toast' => __('crud.alerts.copy_mention')]" icon="fa-regular fa-at">
                     {{ __('crud.actions.copy_mention') }}
                 </x-dropdowns.item>
-                <x-dropdowns.item :link="route('entities.archive', [$campaign, $entity])" icon="fa-solid fa-archive">
-                    @if ($entity->archived_at)
-                        {{ __('entities/actions.unarchive.title') }}
-                    @else
-                        {{ __('entities/actions.archive.title') }}
-                    @endif
-                </x-dropdowns.item>
                 @can('setTemplates', $campaign)
                     <x-dropdowns.item :link="route('entities.template', [$campaign, $entity])" :icon="$entity->isTemplate() ? 'fa-regular fa-star' : 'fa-solid fa-star'">
                         @if($entity->isTemplate())
                             {{ __('entities/actions.templates.unset') }}
                         @else
                             {{ __('entities/actions.templates.set') }}
+                        @endif
+                    </x-dropdowns.item>
+                @endcan
+                @can('update', $entity)
+                    <x-dropdowns.item :link="route('entities.archive', [$campaign, $entity])" icon="fa-solid fa-archive">
+                        @if ($entity->archived_at)
+                            {{ __('entities/actions.unarchive.title') }}
+                        @else
+                            {{ __('entities/actions.archive.title') }}
                         @endif
                     </x-dropdowns.item>
                 @endcan

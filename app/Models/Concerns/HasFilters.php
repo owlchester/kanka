@@ -184,6 +184,10 @@ trait HasFilters
                 }
             } elseif (Str::endsWith($key, '_option') && $value == 'none') {
                 $this->filterNoneOptions($query, $key, $fields);
+            } elseif ($key == 'archived' && !isset($value)) {
+                $query
+                    ->joinEntity()
+                    ->whereNull('e.archived_at');
             }
         }
 
@@ -831,7 +835,7 @@ trait HasFilters
         $query
             ->joinEntity();
 
-        if ($value) {              
+        if ($value) {
             $query->whereNotNull('e.archived_at');
             return;
         }
