@@ -8,9 +8,14 @@ use App\Http\Requests\Whiteboards\UpdateRequest;
 use App\Models\Campaign;
 use App\Models\Whiteboard;
 use App\Services\Whiteboards\ApiService;
+use App\Traits\CampaignAware;
+use App\Traits\GuestAuthTrait;
 
 class DrawController extends Controller
 {
+    use CampaignAware;
+    use GuestAuthTrait;
+
     public function __construct(protected ApiService $apiService)
     {
 
@@ -18,16 +23,14 @@ class DrawController extends Controller
 
     public function show(Campaign $campaign, Whiteboard $whiteboard)
     {
-        $this->authorize('view', $campaign);
-        $this->authorize('view', $whiteboard->entity);
+        $this->campaign($campaign)->authEntityView($whiteboard->entity);
 
         return view('whiteboards.draw', compact('campaign', 'whiteboard'));
     }
 
     public function api(Campaign $campaign, Whiteboard $whiteboard)
     {
-        $this->authorize('view', $campaign);
-        $this->authorize('view', $whiteboard->entity);
+        $this->campaign($campaign)->authEntityView($whiteboard->entity);
 
         return response()->json(
             $this->apiService->campaign($campaign)->whiteboard($whiteboard)->load()

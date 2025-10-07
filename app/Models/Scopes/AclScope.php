@@ -137,14 +137,6 @@ class AclScope implements Scope
     }
 
     /**
-     * Map the misc model to the entity type. Should move this somewhere else?
-     */
-    protected function entityType(MiscModel $model): int
-    {
-        return config('entities.ids.' . $model->getEntityType());
-    }
-
-    /**
      * Apply the ACL scope to posts.
      *
      * @return Builder
@@ -154,7 +146,7 @@ class AclScope implements Scope
         $campaign = CampaignLocalization::getCampaign();
         $table = $model->getTable();
         // Guest, or not part of the campaign either, just get the all visibility
-        if (! auth()->user()->can('member', $campaign)) {
+        if (auth()->guest() || ! auth()->user()->can('member', $campaign)) {
             return $query->where($table . '.visibility_id', Visibility::All);
         }
 

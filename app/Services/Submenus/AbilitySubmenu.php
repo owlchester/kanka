@@ -13,7 +13,7 @@ class AbilitySubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Ability $ability */
         $ability = $this->entity->child;
         $items['second']['abilities'] = [
-            'name' => Module::plural($ability->entityTypeId(), 'entities.abilities'),
+            'name' => $this->entity->entityType->plural(),
             'route' => 'abilities.abilities',
             'count' => $ability->descendants()->has('entity')->count(),
         ];

@@ -13,7 +13,7 @@ class EventSubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Event $event */
         $event = $this->entity->child;
         $items['second']['events'] = [
-            'name' => Module::plural($event->entityTypeId(), 'entities.events'),
+            'name' => $this->entity->entityType->plural(),
             'route' => 'events.events',
             'count' => $event->descendants()->has('entity')->count(),
         ];
