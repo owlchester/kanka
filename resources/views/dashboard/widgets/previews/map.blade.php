@@ -46,7 +46,6 @@ $map = $entity->child;
             markers.push('marker' + {{ $marker->id }});
         @endforeach
     </script>
-    <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.layerstree.css"/>
     <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.layerstree.js"></script>
     @include('maps._setup')
 
@@ -97,6 +96,7 @@ $map = $entity->child;
 
 @section('styles')
     @parent
+    <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.layerstree.css"/>
     <style>
         @foreach ($map->markers as $marker)
             @if(!$marker->visible())

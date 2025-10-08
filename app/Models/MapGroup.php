@@ -118,15 +118,6 @@ class MapGroup extends Model
         return $this->hasMany(MapMarker::class, 'group_id');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\MapMarker, $this>
-     */
-    public function markersWithEsntity(): HasMany
-    {
-        return $this->hasMany(MapMarker::class, 'group_id')
-            ->with(['entity', 'entity.entityType', 'group']);
-    }
-
     public function markersWithEntity()
     {
         $ids = $this->descendantGroupIds();

@@ -31,7 +31,8 @@ class MapGroupSearchService
         $term = mb_trim($this->request->get('q') ?? '');
         $excludes = $this->request->has('exclude') ? $this->request->get('exclude') : null;
 
-        $this->query = MapGroup::where('map_id', $this->map->id);
+        $this->query = $this->map->groups()->getQuery();
+
         if (! empty($excludes)) {
             $this->query->whereNotIn('id', [$excludes]);
         }

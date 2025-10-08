@@ -39,6 +39,7 @@ $specificTheme = null;
             @php $specificTheme = auth()->user()->theme @endphp
         @endif
     @endif
+    <link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.layerstree.css"/>
     @includeWhen(!empty($campaign), 'layouts._theme')
 @yield('styles')
 </head>
@@ -150,7 +151,6 @@ $specificTheme = null;
 @endif
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.path.drag.js"></script>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.editable.js"></script>
-<link rel="stylesheet" href="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.layerstree.css"/>
 <script src="{{ config('app.asset_url') }}/vendor/leaflet/leaflet.layerstree.js"></script>
 @vite('resources/js/location/map-v3.js')
 @yield('scripts')
