@@ -23,6 +23,7 @@ return [
     'fields'        => [
         'is_shown'  => 'Show group markers',
         'position'  => 'Position',
+        'parent'    => 'Parent Group',
     ],
     'helper'        => [
         'amount_v3' => 'Markers can be grouped together using map groups. Each group can then be clicked when exploring a map to quickly show or hide all markers in it.',

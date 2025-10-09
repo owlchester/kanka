@@ -36,6 +36,7 @@ class MapMapper extends MiscMapper
         $this->loadModel()
             ->foreign('locations', 'location_id')
             ->groups()
+            ->groupsParents()
             ->layers()
             ->markers()
             ->entitySecond();
@@ -74,6 +75,19 @@ class MapMapper extends MiscMapper
             $el->created_by = $this->user->id;
             $el->save();
             $this->groups[$data['id']] = $el->id;
+        }
+
+        return $this;
+    }
+
+    protected function groupsParents(): self
+    {
+        foreach ($this->data['groups'] as $data) {
+            if (isset($data['parent_id'])) {
+                $group = MapGroup::where('id', $this->groups[$data['id']])->first();
+                $group->parent_id = $this->groups[$data['parent_id']];
+                $group->save();
+            }
         }
 
         return $this;
