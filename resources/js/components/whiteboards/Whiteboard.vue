@@ -579,20 +579,22 @@ const selectShape = (shape) => {
         return;
     }
     // If clicking a second time on a text, edit the text
+    let editingText = false;
     if (shape.text && selectedId.value === shape.id) {
         editText(shape)
+        editingText = true;
     }
     selectedId.value = shape.id;
     if (shape.fill) {
         currentColor.value = shape.fill;
     }
     nextTick(() => {
-        updateTransformer();
+        updateTransformer(editingText);
         setupTransformerEvents();
     });
 };
 
-const updateTransformer = () => {
+const updateTransformer = (editingText = false) => {
     const transformerNode = transformer.value?.getNode();
     const stageNode = stage.value?.getNode();
 
@@ -605,7 +607,7 @@ const updateTransformer = () => {
         const selectedGroup = stageNode.findOne(`#group-${selectedId.value}`);
         // console.log(selectedGroup);
         if (selectedGroup && shape) {
-            if (shape.locked) {
+            if (shape.locked || editingText) {
                 transformerNode.nodes([]);
             } else {
                 transformerNode.nodes([selectedGroup]);
