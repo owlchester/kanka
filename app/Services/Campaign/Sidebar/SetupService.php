@@ -376,14 +376,7 @@ class SetupService
     protected function customElement(string $key): array
     {
         $element = $this->elements[$key];
-
-        if (isset($element['type'])) {
-            $entityType = $this->modules[$element['type']];
-            $element['label'] = $entityType->plural();
-            $element['icon'] = $entityType->icon();
-        }
-
-        $element['label_key'] = $element['label'];
+        $element['label_key'] = $element['label'] ?? null;
         unset($element['label']);
 
         if (! $this->campaign->boosted()) {
@@ -391,16 +384,13 @@ class SetupService
         }
 
         // Module custom name
-        if (! empty($element['type_id']) && ! $this->withDisabled) {
-            $type = $element['type_id'];
-            $label = Module::plural($type);
-            if (! empty($label)) {
-                $element['custom_label'] = $label;
-            }
-            $icon = Module::icon($type);
-            if (! empty($icon)) {
-                $element['custom_icon'] = $icon;
-            }
+        if (isset($element['type'])) {
+            /** @var EntityType $entityType */
+            $entityType = $this->modules[$element['type']];
+            $element['custom_label'] = $entityType->plural();
+            $element['custom_icon'] = $entityType->icon();
+            $element['icon'] = Module::defaultIcon($entityType);
+            $element['label'] = $entityType->defaultPlural();
         }
 
         $label = Arr::get($this->campaign->ui_settings, 'sidebar.labels.' . $key);

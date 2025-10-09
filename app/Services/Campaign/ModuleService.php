@@ -63,6 +63,11 @@ class ModuleService
         if ($this->campaign->hasModuleIcon($entityType->id)) {
             return $this->campaign->moduleIcon($entityType->id);
         }
+        return $this->defaultIcon($entityType);
+    }
+
+    public function defaultIcon(EntityType $entityType): string
+    {
         if (config('fontawesome.kit')) {
             return 'fa-duotone ' . $entityType->icon;
         }

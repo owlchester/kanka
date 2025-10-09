@@ -149,7 +149,12 @@ class EntityType extends Model
             return $this->plural;
         }
 
-        return Module::plural($this->id, __('entities.' . $this->pluralCode()));
+        return Module::plural($this->id, $this->defaultPlural());
+    }
+
+    public function defaultPlural(): string
+    {
+        return __('entities.' . $this->pluralCode());
     }
 
     /**
