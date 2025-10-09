@@ -29,7 +29,7 @@ return [
         'timeline' => 18,
         'bookmark' => 19,
         'creature' => 20,
-        'whiteboard' => env('APP_WHITEBOARD_ID', 35),
+        'whiteboard' => (int) env('APP_WHITEBOARD_ID', 10000),
     ],
 
     'classes' => [
