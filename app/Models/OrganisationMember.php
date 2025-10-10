@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\OrganisationMemberPin;
+use App\Enums\OrganisationMemberStatus;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
@@ -33,18 +35,6 @@ class OrganisationMember extends Model
     use Privatable;
     use Sanitizable;
     use SortableTrait;
-
-    public const int PIN_CHARACTER = 1;
-
-    public const int PIN_ORGANISATION = 2;
-
-    public const int PIN_BOTH = 3;
-
-    public const int STATUS_ACTIVE = 0;
-
-    public const int STATUS_INACTIVE = 1;
-
-    public const int STATUS_UNKNOWN = 2;
 
     public $entityType = 'character';
 
@@ -115,7 +105,7 @@ class OrganisationMember extends Model
      */
     public function pinnedToCharacter(): bool
     {
-        return $this->pin_id == self::PIN_CHARACTER;
+        return $this->pin_id === OrganisationMemberPin::CHARACTER->value;
     }
 
     /**
@@ -123,7 +113,7 @@ class OrganisationMember extends Model
      */
     public function pinnedToOrganisation(): bool
     {
-        return $this->pin_id == self::PIN_ORGANISATION;
+        return $this->pin_id == OrganisationMemberPin::ORGANISATION->value;
     }
 
     /**
@@ -131,7 +121,7 @@ class OrganisationMember extends Model
      */
     public function pinnedToBoth(): bool
     {
-        return $this->pin_id == self::PIN_BOTH;
+        return $this->pin_id == OrganisationMemberPin::BOTH->value;
     }
 
     /**
@@ -139,7 +129,7 @@ class OrganisationMember extends Model
      */
     public function inactive(): bool
     {
-        return $this->status_id === self::STATUS_INACTIVE;
+        return $this->status_id == OrganisationMemberStatus::INACTIVE->value;
     }
 
     /**
@@ -147,7 +137,7 @@ class OrganisationMember extends Model
      */
     public function unknown(): bool
     {
-        return $this->status_id === self::STATUS_UNKNOWN;
+        return $this->status_id === OrganisationMemberStatus::UNKNOWN->value;
     }
 
     public function scopePinned(Builder $query, int $pin): Builder

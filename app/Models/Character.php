@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\FilterOption;
+use App\Enums\OrganisationMemberPin;
 use App\Facades\CharacterCache;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
@@ -378,7 +379,10 @@ class Character extends MiscModel
             ->organisationMemberships()
             ->has('organisation')
             ->with(['organisation', 'organisation.entity'])
-            ->whereIn('pin_id', [OrganisationMember::PIN_CHARACTER, OrganisationMember::PIN_BOTH])
+            ->whereIn('pin_id', [
+                OrganisationMemberPin::CHARACTER->value,
+                OrganisationMemberPin::BOTH->value,
+            ])
             ->orderBy('role');
     }
 
