@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\EntityAssetType;
 use App\Facades\Avatar;
 use App\Facades\Mentions;
 use App\Models\Calendar;
@@ -197,7 +198,7 @@ class SearchService
                         } else {
                             $join->where('ea.name', 'like', '%' . $this->term . '%');
                         }
-                        $join->where('ea.type_id', EntityAsset::TYPE_ALIAS);
+                        $join->where('ea.type_id', EntityAssetType::ALIAS->value);
                     })
                     ->where(function ($sub) use ($cleanTerm) {
                         if (Str::startsWith($this->term, '=')) {

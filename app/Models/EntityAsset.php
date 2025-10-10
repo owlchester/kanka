@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EntityAssetType;
 use App\Facades\EntityAssetCache;
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
@@ -41,12 +42,6 @@ class EntityAsset extends Model
     use HasVisibility;
     use Pinnable;
     use Sanitizable;
-
-    public const int TYPE_FILE = 1;
-
-    public const int TYPE_LINK = 2;
-
-    public const int TYPE_ALIAS = 3;
 
     public $fillable = [
         'type_id',
@@ -94,7 +89,7 @@ class EntityAsset extends Model
      */
     public function isFile(): bool
     {
-        return $this->type_id == self::TYPE_FILE;
+        return $this->type_id == EntityAssetType::FILE->value;
     }
 
     /**
@@ -102,7 +97,7 @@ class EntityAsset extends Model
      */
     public function isLink(): bool
     {
-        return $this->type_id == self::TYPE_LINK;
+        return $this->type_id == EntityAssetType::LINK->value;
     }
 
     /**
@@ -110,7 +105,7 @@ class EntityAsset extends Model
      */
     public function isAlias(): bool
     {
-        return $this->type_id == self::TYPE_ALIAS;
+        return $this->type_id == EntityAssetType::ALIAS->value;
     }
 
     /**
