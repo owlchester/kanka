@@ -153,6 +153,22 @@
                         }" />
             </v-group>
 
+            <v-group v-if="tempRect" :key="tempRect.id" :config="{ id: `temp-rect-${tempRect.id}` }">
+                <v-rect
+                    :config="{
+                        x: tempRect.x || 0,
+                        y: tempRect.y || 0,
+                        width: tempRect.width || 0,
+                        height: tempRect.height || 0,
+                        fill: tempRect.fill ? tempRect.fill + '33' : cssVariable('--pf'),
+                        stroke: cssVariable('--p'),
+                        strokeWidth: 2,
+                        listening: false
+                    }"
+                />
+            </v-group>
+
+
 
             <v-transformer
                 ref="transformer"
@@ -190,7 +206,7 @@
         @mousedown.stop
         @click.stop
     >
-        <div v-if="drawingMode" class="flex items-center gap-2 main-toolbar">
+        <div v-if="toolbarMode === 'drawing'" class="flex items-center gap-2 main-toolbar">
             <div class="join">
 
                 <button
@@ -321,28 +337,28 @@
                 <span class="sr-only" v-html="trans('delete')"></span>
             </button>
         </div>
-        <div v-else-if="!drawingMode && !readonly" class="flex items-center gap-2 main-toolbar">
+        <div v-else-if="toolbarMode !== 'drawing' && !readonly" class="flex items-center gap-2 main-toolbar">
             <div class="join">
                 <button
-                    class="btn2 btn-sm btn-join"
+                    class="btn2 btn-sm join-item"
                     :title="trans('select-shapes')"
-                    :class="{ 'btn-disabled': selectMode }">
+                    :class="{ 'btn-disabled': toolbarMode === 'select' }">
                     <i class="fa-regular fa-mouse-pointer" aria-hidden="true"></i>
                     <span class="sr-only" v-html="trans('select-shapes')"></span>
                 </button>
                 <button
-                    @click="addShape('rect')"
+                    @click="startShapeDraw('rect')"
                     class="btn2 btn-sm join-item"
                     :title="trans('add-square')"
-                    :class="{ 'btn-disabled': drawingMode }">
+                    :class="{ 'btn-disabled': toolbarMode === 'rect' }">
                     <i class="fa-regular fa-square" aria-hidden="true" />
                     <span class="sr-only" v-html="trans('add-square')"></span>
                 </button>
                 <button
-                    @click="addShape('circle')"
+                    @click="startShapeDraw('circle')"
                     class="btn2 btn-sm join-item"
                     :title="trans('add-circle')"
-                    :class="{ 'btn-disabled': drawingMode }">
+                    :class="{ 'btn-disabled': toolbarMode === 'circle' }">
                     <i class="fa-regular fa-circle" aria-hidden="true" />
                     <span class="sr-only" v-html="trans('add-circle')"></span>
                 </button>
@@ -350,7 +366,7 @@
                     @click="addShape('text')"
                     class="btn2 btn-sm join-item"
                     :title="trans('add-text')"
-                    :class="{ 'btn-disabled': drawingMode }">
+                    :class="{ 'btn-disabled': toolbarMode === 'text' }">
                     <i class="fa-regular fa-text" aria-hidden="true" />
                     <span class="sr-only" v-html="trans('add-text')"></span>
                 </button>
@@ -367,7 +383,7 @@
                     @click="openSearch"
                     class="btn2 btn-sm join-item"
                     :title="trans('add-entity')"
-                    :class="{ 'btn-disabled': drawingMode }">
+                    :class="{ 'btn-disabled': toolbarMode === 'drawing' }">
                     <i class="fa-regular fa-search" aria-hidden="true" />
                     <span class="sr-only" v-html="trans('add-entity')"></span>
                 </button>
@@ -375,7 +391,7 @@
                     @click="openGallery"
                     :title="trans('add-image')"
                     class="btn2 btn-sm join-item"
-                    :class="{ 'btn-disabled': drawingMode }">
+                    :class="{ 'btn-disabled': toolbarMode === 'drawing' }">
                     <i class="fa-regular fa-file-image" aria-hidden="true" />
                     <span class="sr-only" v-html="trans('add-image')"></span>
                 </button>
@@ -453,7 +469,7 @@ const i18n = ref(null);
 const urls = ref(null);
 
 // Select mode
-const selectMode = ref(true)
+const toolbarMode = ref('select')
 
 // Saving
 const saving = ref(false);
@@ -483,14 +499,16 @@ const selectedShape = computed(() => {
     return null;
 });
 
+// Shape mode drawing
+const tempRect = ref<any>(null);
+const shapeDrawStart = ref<{ x: number; y: number } | null>(null);
+
 
 // Drawing
-const drawingMode = ref(false)
 const isDrawing = ref(false)
 const tempGroup = ref(null)
 const strokeSize = ref(1)
 const currentColor = ref(null)
-const strokeSizePicker = ref(false)
 const hitStrokeWidth = ref(12)
 
 // Gallery
@@ -581,6 +599,22 @@ const handleDragmove = () => {
     }
 };
 
+// Called from UI when user clicks the "add square" toolbar button.
+const startShapeDraw = (type: 'rect') => {
+    // Cancel other modes
+    toolbarMode.value = type;
+    tempRect.value = null;
+    shapeDrawStart.value = null;
+
+    // Prevent stage panning while drawing a shape
+    const stageNode = stage.value?.getNode();
+    if (stageNode) {
+        stageNode.draggable(false);
+    }
+
+};
+
+
 
 const setupTransformerEvents = () => {
     const transformerNode = transformer.value?.getNode();
@@ -626,7 +660,7 @@ const setupTransformerEvents = () => {
 
 const selectShape = (shape, event?: MouseEvent) => {
     // Don't do any selection while in drawing mode to avoid confusion
-    if (drawingMode.value) {
+    if (toolbarMode.value === 'drawing') {
         return;
     }
 
@@ -754,7 +788,7 @@ const openColorPicker = () => {
 const onPickColor = (e: Event) => {
     const input = e.target as HTMLInputElement
     if (!input) return
-    if (drawingMode.value) {
+    if (toolbarMode.value === 'drawing') {
         tempGroup.value.fill = input.value
         currentColor.value = input.value
         return
@@ -857,7 +891,7 @@ const addShape = (type) => {
 };
 
 const handleStageClick = (e) => {
-    if (drawingMode.value || props.readonly) {
+    if (toolbarMode.value === 'drawing' || props.readonly) {
         return;
     }
     if (e.target === e.target.getStage()) {
@@ -876,13 +910,13 @@ const getTextColor = (shape) => {
 
 const toggleDrawing = () => {
     // Start
-    if (!drawingMode.value) {
-        drawingMode.value = true;
+    if (toolbarMode.value !== 'drawing') {
+        toolbarMode.value = 'drawing';
         return;
     }
 
     // Finalize
-    drawingMode.value = false;
+    toolbarMode.value = 'select';
     if (tempGroup.value) {
         // Measure visual bounds and normalize children points
         const stageNode = stage.value?.getNode();
@@ -914,8 +948,60 @@ const toggleDrawing = () => {
 }
 
 const handleMouseDown = (e) => {
-    if (!drawingMode.value) return;
-    isDrawing.value = true;
+    // If freehand drawing mode
+    if (toolbarMode.value === 'drawing') {
+        isDrawing.value = true;
+
+        const pos = getPointerInLayerSpace();
+        if (!pos) return;
+
+        if (!tempGroup.value) {
+            tempGroup.value = {
+                id: Date.now(),
+                type: "group",
+                children: [],
+                scaleX: 1,
+                scaleY: 1,
+            }
+        }
+
+        tempGroup.value.children.push({
+            id: Date.now() + "-lin",
+            type: "draw",
+            points: [pos.x, pos.y],
+            fill: currentColor.value,
+            strokeWidth: strokeSize.value,
+            hitStrokeWidth: hitStrokeWidth.value,
+        });
+        return;
+    }
+
+    // If shape-draw (rectangle) mode
+    if (toolbarMode.value === 'rect') {
+        const pos = getPointerInLayerSpace();
+        if (!pos) return;
+        shapeDrawStart.value = pos;
+
+        // Create a temporary visual rect
+        tempRect.value = {
+            id: 'temp-rect-' + Date.now(),
+            type: 'rect',
+            x: pos.x,
+            y: pos.y,
+            width: 0,
+            height: 0,
+            scaleX: 1,
+            scaleY: 1,
+            fill: currentColor.value || cssVariable('--b1'),
+            stroke: null,
+            locked: false,
+            moving: false,
+        };
+        return;
+    }
+
+
+    if (toolbarMode.value === 'select') return;
 
     const pos = getPointerInLayerSpace();
     if (!pos) return;
@@ -958,25 +1044,82 @@ function getPointerInLayerSpace() {
 
 
 const draw = (e) => {
-    if (!isDrawing.value) return;
+    // Freehand drawing
+    if (isDrawing.value && toolbarMode.value === 'drawing') {
+        const pos = getPointerInLayerSpace();
+        if (!pos) return;
 
-    const pos = getPointerInLayerSpace();
-    if (!pos) return;
+        const last = tempGroup.value.children[tempGroup.value.children.length - 1];
+        last.points = last.points.concat([pos.x, pos.y]);
+        return;
+    }
 
-    const last = tempGroup.value.children[tempGroup.value.children.length - 1];
-    last.points = last.points.concat([pos.x, pos.y]);
+    // Rectangle live preview
+    if (toolbarMode.value === 'rect' && shapeDrawStart.value && tempRect.value) {
+        const pos = getPointerInLayerSpace();
+        if (!pos) return;
+
+        // Compute box that supports dragging in any direction
+        const sx = shapeDrawStart.value.x;
+        const sy = shapeDrawStart.value.y;
+        const x = Math.min(sx, pos.x);
+        const y = Math.min(sy, pos.y);
+        const w = Math.abs(pos.x - sx);
+        const h = Math.abs(pos.y - sy);
+
+        tempRect.value.x = x;
+        tempRect.value.y = y;
+        tempRect.value.width = Math.max(1, w);
+        tempRect.value.height = Math.max(1, h);
+        // request overlay update
+        uiTick.value++;
+    }
+
 }
 
 const handeMouseUp = (e) => {
-    if (!drawingMode.value) {
-        return
+    // Finalize freehand drawing
+    if (toolbarMode.value === 'drawing') {
+        isDrawing.value = false;
+        return;
     }
-    isDrawing.value = false;
+
+    // Finalize rectangle drawing
+    if (toolbarMode.value === 'rect') {
+        if (tempRect.value) {
+            // Push normalized rect into shapes
+            const newRect = {
+                id: Math.round(Math.random() * 10000).toString(),
+                type: 'rect',
+                x: tempRect.value.x,
+                y: tempRect.value.y,
+                scaleX: 1,
+                scaleY: 1,
+                width: tempRect.value.width,
+                height: tempRect.value.height,
+                radius: null,
+                fill: tempRect.value.fill || cssVariable('--b1'),
+                locked: false,
+                moving: false,
+            };
+            shapes.value.push(newRect);
+            uiTick.value++;
+        }
+
+        // Clear temporary state and exit shape draw mode
+        tempRect.value = null;
+        shapeDrawStart.value = null;
+        // If you want to remain in rect-draw mode for drawing multiple rectangles, do not clear shapeDrawMode here.
+        // For now we exit after a single rectangle is created:
+        toolbarMode.value = 'select';
+        return;
+    }
+
 }
 
 
 // Disable stage dragging while in drawing mode
-watch(drawingMode, (isOn) => {
+watch(toolbarMode, (isOn) => {
     const stageNode = stage.value?.getNode();
     if (stageNode) {
         stageNode.draggable(!isOn);
@@ -1374,6 +1517,45 @@ const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Delete' || (e as any).keyCode === 46) {
         e.preventDefault();
         deleteSelected();
+    }
+    if (e.key === 'Escape' || (e as any).keyCode === 27) {
+        e.preventDefault();
+
+        // If currently in freehand drawing and there is a tempGroup, discard it and stop drawing
+        if (toolbarMode.value === 'drawing') {
+            isDrawing.value = false;
+            tempGroup.value = null;
+            // exit drawing mode
+            toolbarMode.value = 'select';
+            uiTick.value++;
+            return;
+        }
+
+        // If in rectangle or circle draw mode: cancel the temporary rect/circle and exit to select
+        if (toolbarMode.value === 'rect' || toolbarMode.value === 'circle') {
+            tempRect.value = null;
+            shapeDrawStart.value = null;
+            toolbarMode.value = 'select';
+            uiTick.value++;
+            return;
+        }
+
+        // If any shapes are selected, clear selection
+        if (selectedIds.value && selectedIds.value.length) {
+            selectedIds.value = [];
+            selectedId.value = null;
+            updateTransformer();
+            uiTick.value++;
+            return;
+        }
+    }
+    if (e.key === 'Enter' || (e as any).keyCode === 13) {
+        if (toolbarMode.value === 'drawing') {
+            e.preventDefault();
+            // Reuse the same finalization as the UI toggle: push tempGroup into shapes
+            toggleDrawing();
+            return;
+        }
     }
 };
 
