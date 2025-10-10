@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Enums\EntityAssetType;
 use App\Exceptions\TranslatableException;
 use App\Facades\Limit;
 use App\Http\Controllers\Controller;
@@ -53,11 +54,12 @@ class AssetController extends Controller
         $this->authorize('update', $entity);
 
         $typeID = (int) request()->get('type');
-        if ($typeID == EntityAsset::TYPE_FILE) {
+
+        if ($typeID === EntityAssetType::FILE->value) {
             return $this->createFile($campaign, $entity);
-        } elseif ($typeID == EntityAsset::TYPE_LINK) {
+        } elseif ($typeID === EntityAssetType::LINK->value) {
             return $this->createLink($campaign, $entity);
-        } elseif ($typeID == EntityAsset::TYPE_ALIAS) {
+        } elseif ($typeID === EntityAssetType::ALIAS->value) {
             return $this->createAlias($campaign, $entity);
         }
         abort(404);
@@ -73,14 +75,14 @@ class AssetController extends Controller
         $data = [];
         $type = '';
         $typeId = null;
-        if (request()->get('type_id') == EntityAsset::TYPE_FILE) {
+        if (request()->get('type_id') == EntityAssetType::FILE->value) {
             return $this->storeFile($request, $campaign, $entity);
-        } elseif (request()->get('type_id') == EntityAsset::TYPE_LINK) {
+        } elseif (request()->get('type_id') == EntityAssetType::LINK->value) {
             $data = $request->only(['name', 'position', 'visibility_id', 'metadata']);
             $type = 'links';
-            $typeId = EntityAsset::TYPE_LINK;
-        } elseif (request()->get('type_id') == EntityAsset::TYPE_ALIAS) {
-            $typeId = EntityAsset::TYPE_ALIAS;
+            $typeId = EntityAssetType::LINK->value;
+        } elseif (request()->get('type_id') == EntityAssetType::ALIAS->value) {
+            $typeId = EntityAssetType::ALIAS->value;
             $data = $request->only(['name', 'visibility_id', 'is_pinned']);
             $type = 'aliases';
         }

@@ -21,4 +21,4 @@
     @include('cruds.fields.icon', ['iconFieldName' => 'metadata[icon]', 'placeholder' => 'fa-brands fa-d-and-d-beyond, ra ra-aura', 'model' => $entityAsset ?? null])
     @include('cruds.fields.visibility_id', ['model' => $entityAsset ?? null])
 </x-grid>
-<input type="hidden" name="type_id" value="{{ \App\Models\EntityAsset::TYPE_LINK }}" />
+<input type="hidden" name="type_id" value="{{ \App\Enums\EntityAssetType::LINK->value }}" />

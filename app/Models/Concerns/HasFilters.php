@@ -359,7 +359,7 @@ trait HasFilters
         $query
             ->joinEntity()
             ->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'e.id')
-            ->where('entity_assets.type_id', \App\Models\EntityAsset::TYPE_FILE);
+            ->where('entity_assets.type_id', \App\Enums\EntityAssetType::FILE->value);
 
         if ($value) {
             $query->whereNotNull('entity_assets.id');

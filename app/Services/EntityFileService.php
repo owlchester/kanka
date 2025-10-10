@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\EntityAssetType;
 use App\Exceptions\TranslatableException;
 use App\Facades\Limit;
 use App\Http\Requests\StoreEntityAsset;
@@ -72,7 +73,7 @@ class EntityFileService
                 );
 
             $file = new EntityAsset;
-            $file->type_id = EntityAsset::TYPE_FILE;
+            $file->type_id = EntityAssetType::FILE->value;
             $file->entity_id = $this->entity->id;
             $file->metadata = [
                 'size' => $uploadedFile->getSize(),

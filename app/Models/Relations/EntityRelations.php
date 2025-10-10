@@ -2,6 +2,7 @@
 
 namespace App\Models\Relations;
 
+use App\Enums\EntityAssetType;
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -464,7 +465,7 @@ trait EntityRelations
     public function links()
     {
         return $this->assets
-            ->where('type_id', EntityAsset::TYPE_LINK);
+            ->where('type_id', EntityAssetType::LINK->value);
     }
 
     /**
