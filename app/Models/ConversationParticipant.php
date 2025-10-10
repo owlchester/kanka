@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ConversationTarget;
 use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -64,8 +65,8 @@ class ConversationParticipant extends Model
 
     public function target(): ?int
     {
-        return ! empty($this->character_id) ? Conversation::TARGET_CHARACTERS :
-            (! empty($this->user_id) ? Conversation::TARGET_USERS : null);
+        return ! empty($this->character_id) ? ConversationTarget::CHARACTERS->value :
+            (! empty($this->user_id) ? ConversationTarget::USERS->value : null);
     }
 
     public function isMember(): bool

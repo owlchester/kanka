@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Enums\ConversationTarget;
 use App\Facades\Identity;
 use App\Models\Conversation;
 use App\Models\Entity;
@@ -273,7 +274,7 @@ class LoggerService
             // Silence
             if ($attribute == 'target_id' && $this->model instanceof Conversation) {
                 return __('conversations.targets.' . (
-                    $original == Conversation::TARGET_USERS ? 'members' : 'characters'
+                    $original == ConversationTarget::USERS->value ? 'members' : 'characters'
                 ));
             }
 
