@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ConversationTarget;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\LastSync;
@@ -78,8 +79,8 @@ class ConversationMessage extends Model
      */
     public function target()
     {
-        return ! empty($this->character_id) ? Conversation::TARGET_CHARACTERS :
-            (! empty($this->user_id) ? Conversation::TARGET_USERS : null);
+        return !empty($this->character_id) ? ConversationTarget::CHARACTERS->value : 
+            (!empty($this->user_id) ? ConversationTarget::USERS->value : null);
     }
 
     /**

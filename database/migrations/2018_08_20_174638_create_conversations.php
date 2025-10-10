@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\ConversationTarget;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,7 +22,7 @@ class CreateConversations extends Migration
             $table->string('image', 255)->nullable();
             $table->string('type', 45)->nullable();
             $table->unsignedTinyInteger('target_id')
-                ->default(App\Models\Conversation::TARGET_USERS);
+                ->default(ConversationTarget::USERS->value);
 
             $table->boolean('is_private')->default(false);
             $table->boolean('is_closed')->default(false);

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ConversationTarget;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -40,10 +41,6 @@ class Conversation extends MiscModel
         'is_private',
         'is_closed',
     ];
-
-    public const int TARGET_USERS = 1;
-
-    public const int TARGET_CHARACTERS = 2;
 
     /**
      * Entity type
@@ -138,7 +135,7 @@ class Conversation extends MiscModel
 
     public function forCharacters(): bool
     {
-        return $this->target_id == self::TARGET_CHARACTERS;
+        return $this->target_id == ConversationTarget::CHARACTERS->value;
     }
 
     /**
