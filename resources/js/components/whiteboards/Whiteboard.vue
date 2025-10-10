@@ -49,7 +49,15 @@
             <v-group
                 v-for="shape in shapes"
                 :key="shape.id"
-                :config="{ id: `group-${shape.id}`, draggable: !shape.locked, x: shape.x, y: shape.y, scaleX: shape.scaleX || 1, scaleY: shape.scaleY || 1 }"
+                :config="{
+                    id: `group-${shape.id}`,
+                    draggable: !shape.locked,
+                    x: shape.x,
+                    y: shape.y,
+                    scaleX: shape.scaleX || 1,
+                    scaleY: shape.scaleY || 1,
+                    rotation: shape.rotation || 0
+                }"
                 @dragstart="handleDragstart(shape)"
                 @dragmove="handleDragmove(shape)"
                 @dragend="handleDragend($event, shape)"
@@ -91,31 +99,11 @@
                          }" />
 
 
-                <v-image v-if="shape.type === 'entity'"
-                         :config="{
-                            width: shape.width,
-                            height: shape.height,
-                            image: getImageEl(shape),
-                            cornerRadius: 4
-                         }">
-                </v-image>
-                <v-text
-                    v-if="shape.type === 'entity'"
-                    @click="openEntityLink(shape)"
-                    :config="{
-                        x: 0,
-                        y: shape.height + 6,
-                        width: shape.width,
-                        text: shape.name || '',
-                        fontSize: 14,
-                        fontFamily: shape.fontFamily || 'Arial',
-                        fill: shape.fill,
-                        align: 'center',
-                        draggable: false,
-                        listening: true,
-                        // show cursor-hand on hover
-                    }"
-                />
+                <Entity v-if="shape.type === 'entity'"
+                        :shape="shape"
+                        :get-image-el="getImageEl">
+                </Entity>
+
 
                 <v-text v-if="shape.type === 'text' && (!editingTextId || editingTextId !== shape.id)"
                         :config="{
@@ -390,14 +378,14 @@
         :i18n="i18n"
     ></Settings>
 
-    <Entity
+    <EntitySearch
         v-if="!loading"
         :api="props.search"
         :opened="searchOpened"
         :i18n="i18n"
         @selected="selectEntity"
         @closed="closedSearch">
-    </Entity>
+    </EntitySearch>
 
 </template>
 
@@ -406,6 +394,7 @@ import { ref, onMounted, reactive, nextTick, computed, watch, onBeforeUnmount} f
 import {useImage} from "vue-konva";
 import { hslFromVar, readCssVar, hslString, tweakHsl } from '../../utility/colours';
 import Browser from "../../gallery/Browser.vue";
+import EntitySearch from "./EntitySearch.vue";
 import Entity from "./Entity.vue";
 import Settings from "./Settings.vue";
 
@@ -561,10 +550,12 @@ const setupTransformerEvents = () => {
         const scaleX = group.scaleX() || 1;
         const scaleY = group.scaleY() || 1;
 
-        // Persist scale into your model
+        // Persist scale
         selectedShape.value.scaleX = scaleX;
         selectedShape.value.scaleY = scaleY;
 
+        // Persist rotation (degrees)
+        selectedShape.value.rotation = group.rotation() || 0;
 
 
         // Force redraw and update overlays
@@ -1015,15 +1006,6 @@ const selectEntity = (entity) => {
     });
 }
 
-const openEntityLink = (shape) => {
-    if (!shape || !shape.link) return;
-    try {
-        window.open(shape.link, '_blank', 'noopener');
-    } catch (e) {
-        // Fallback: set location
-        window.location.href = shape.link;
-    }
-}
 
 
 const saveWhiteboard = () => {
