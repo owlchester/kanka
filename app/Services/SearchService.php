@@ -7,7 +7,6 @@ use App\Facades\Avatar;
 use App\Facades\Mentions;
 use App\Models\Calendar;
 use App\Models\Entity;
-use App\Models\EntityAsset;
 use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Services\Entity\NewService;

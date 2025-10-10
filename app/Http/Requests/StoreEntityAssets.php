@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Enums\EntityAssetType;
 use App\Facades\Limit;
-use App\Models\EntityAsset;
 use App\Rules\EntityFile;
 use App\Rules\FontAwesomeIcon;
 use App\Traits\ApiRequest;

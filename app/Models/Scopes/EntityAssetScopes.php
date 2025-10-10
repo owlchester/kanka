@@ -3,7 +3,6 @@
 namespace App\Models\Scopes;
 
 use App\Enums\EntityAssetType;
-use App\Models\EntityAsset;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
