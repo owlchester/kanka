@@ -160,13 +160,27 @@
                         y: tempRect.y || 0,
                         width: tempRect.width || 0,
                         height: tempRect.height || 0,
-                        fill: tempRect.fill ? tempRect.fill + '33' : cssVariable('--pf'),
+                        fill: currentBgColor,
                         stroke: cssVariable('--p'),
                         strokeWidth: 2,
                         listening: false
                     }"
                 />
             </v-group>
+            <v-group v-if="tempCircle" :key="tempCircle.id" :config="{ id: `temp-circle-${tempCircle.id}` }">
+                <v-circle
+                    :config="{
+                        x: tempCircle.cx || 0,
+                        y: tempCircle.cy || 0,
+                        radius: tempCircle.radius || 0,
+                        fill: currentBgColor,
+                        stroke: cssVariable('--p'),
+                        strokeWidth: 2,
+                        listening: false
+                    }"
+                />
+            </v-group>
+
 
 
 
@@ -340,6 +354,7 @@
         <div v-else-if="toolbarMode !== 'drawing' && !readonly" class="flex items-center gap-2 main-toolbar">
             <div class="join">
                 <button
+                    @click="startSelect()"
                     class="btn2 btn-sm join-item"
                     :title="trans('select-shapes')"
                     :class="{ 'btn-disabled': toolbarMode === 'select' }">
@@ -501,6 +516,7 @@ const selectedShape = computed(() => {
 
 // Shape mode drawing
 const tempRect = ref<any>(null);
+const tempCircle = ref<any>(null);
 const shapeDrawStart = ref<{ x: number; y: number } | null>(null);
 
 
@@ -509,6 +525,7 @@ const isDrawing = ref(false)
 const tempGroup = ref(null)
 const strokeSize = ref(1)
 const currentColor = ref(null)
+const currentBgColor = ref(null)
 const hitStrokeWidth = ref(12)
 
 // Gallery
@@ -599,11 +616,18 @@ const handleDragmove = () => {
     }
 };
 
+const startSelect = () => {
+    toolbarMode.value = 'select';
+    tempRect.value = null;
+    tempCircle.value = null;
+}
+
 // Called from UI when user clicks the "add square" toolbar button.
-const startShapeDraw = (type: 'rect') => {
+const startShapeDraw = (type: 'rect'|'circle') => {
     // Cancel other modes
     toolbarMode.value = type;
     tempRect.value = null;
+    tempCircle.value = null;
     shapeDrawStart.value = null;
 
     // Prevent stage panning while drawing a shape
@@ -611,9 +635,7 @@ const startShapeDraw = (type: 'rect') => {
     if (stageNode) {
         stageNode.draggable(false);
     }
-
 };
-
 
 
 const setupTransformerEvents = () => {
@@ -791,6 +813,7 @@ const onPickColor = (e: Event) => {
     if (toolbarMode.value === 'drawing') {
         tempGroup.value.fill = input.value
         currentColor.value = input.value
+        currentBgColor.value = input.value
         return
     }
     const s = selectedShape.value;
@@ -798,6 +821,7 @@ const onPickColor = (e: Event) => {
     if (input?.value) {
         s.fill = input.value;
         currentColor.value = input.value;
+        currentBgColor.value = input.value
         uiTick.value++;
     }
 };
@@ -948,6 +972,29 @@ const toggleDrawing = () => {
 }
 
 const handleMouseDown = (e) => {
+    // Ignore mousedown when clicking on an existing shape/group so Konva's drag handling
+    // can proceed without us starting a new temporary drawing stroke/shape.
+    try {
+        const node = e.target;
+        // If the event target or any of its parent groups is a shape group (id starts with 'group-'),
+        // bail out — this is a user interacting with an existing shape (drag/transform/etc).
+        if (node && typeof node.getParent === 'function') {
+            let p = node;
+            while (p) {
+                const id = typeof p.id === 'function' ? p.id() : (p.id ?? null);
+                if (id && id.toString().startsWith('group-')) {
+                    return;
+                }
+                p = p.getParent ? p.getParent() : null;
+                // stop when we reach the stage
+                if (p && p.getStage && p.getStage() === p) break;
+            }
+        }
+    } catch (err) {
+        // ignore any unexpected shape of the event object and continue normally
+    }
+
+
     // If freehand drawing mode
     if (toolbarMode.value === 'drawing') {
         isDrawing.value = true;
@@ -992,13 +1039,36 @@ const handleMouseDown = (e) => {
             height: 0,
             scaleX: 1,
             scaleY: 1,
-            fill: currentColor.value || cssVariable('--b1'),
+            fill: currentBgColor.value || cssVariable('--b1'),
             stroke: null,
             locked: false,
             moving: false,
         };
         return;
     }
+    // If shape-draw (circle) mode
+    if (toolbarMode.value === 'circle') {
+        const pos = getPointerInLayerSpace();
+        if (!pos) return;
+        shapeDrawStart.value = pos;
+
+        // Create a temporary visual circle (center at start point, radius 0 initially)
+        tempCircle.value = {
+            id: 'temp-circle-' + Date.now(),
+            type: 'circle',
+            cx: pos.x,
+            cy: pos.y,
+            radius: 0,
+            scaleX: 1,
+            scaleY: 1,
+            fill: currentBgColor.value || cssVariable('--b1'),
+            stroke: null,
+            locked: false,
+            moving: false,
+        };
+        return;
+    }
+
 
 
     if (toolbarMode.value === 'select') return;
@@ -1074,7 +1144,22 @@ const draw = (e) => {
         // request overlay update
         uiTick.value++;
     }
+    // Circle live preview
+    if (toolbarMode.value === 'circle' && shapeDrawStart.value && tempCircle.value) {
+        const pos = getPointerInLayerSpace();
+        if (!pos) return;
 
+        const sx = shapeDrawStart.value.x;
+        const sy = shapeDrawStart.value.y;
+        const dx = pos.x - sx;
+        const dy = pos.y - sy;
+        const r = Math.max(1, Math.sqrt(dx * dx + dy * dy));
+
+        tempCircle.value.cx = sx;
+        tempCircle.value.cy = sy;
+        tempCircle.value.radius = r;
+        uiTick.value++;
+    }
 }
 
 const handeMouseUp = (e) => {
@@ -1108,13 +1193,33 @@ const handeMouseUp = (e) => {
 
         // Clear temporary state and exit shape draw mode
         tempRect.value = null;
-        shapeDrawStart.value = null;
-        // If you want to remain in rect-draw mode for drawing multiple rectangles, do not clear shapeDrawMode here.
-        // For now we exit after a single rectangle is created:
-        toolbarMode.value = 'select';
         return;
     }
 
+    // Finalize circle drawing
+    if (toolbarMode.value === 'circle') {
+        if (tempCircle.value) {
+            const newCircle = {
+                id: Math.round(Math.random() * 10000).toString(),
+                type: 'circle',
+                x: tempCircle.value.cx - tempCircle.value.radius,
+                y: tempCircle.value.cy - tempCircle.value.radius,
+                scaleX: 1,
+                scaleY: 1,
+                width: tempCircle.value.radius * 2,
+                height: tempCircle.value.radius * 2,
+                radius: tempCircle.value.radius,
+                fill: tempCircle.value.fill || cssVariable('--b1'),
+                locked: false,
+                moving: false,
+            };
+            shapes.value.push(newCircle);
+            uiTick.value++;
+        }
+
+        tempCircle.value = null;
+        return;
+    }
 }
 
 
@@ -1469,6 +1574,7 @@ const trans = (key: string) => {
 
 onMounted(() => {
     currentColor.value = cssVariable('--bc')
+    currentBgColor.value = cssVariable('--b1')
     savingUrl.value = props.save
 
     if (props.new) {
