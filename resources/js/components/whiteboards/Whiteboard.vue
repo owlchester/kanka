@@ -54,9 +54,11 @@
                 <v-rect v-if="shape.type==='rect'"
                         :config="{
                             x: 0, y: 0,
-                            width: shape.width, height: shape.height,
+                            width: shape.width,
+                            height: shape.height,
                             fill: shape.fill || 'lightblue',
                             cornerRadius: 6,
+                            opacity: shape.opacity || 1
                         }"
                 />
                 <v-circle v-if="shape.type==='circle'"
@@ -65,6 +67,7 @@
                             y: shape.radius,
                             radius: shape.radius,
                             fill: shape.fill || 'lightgreen',
+                            opacity: shape.opacity || 1
                         }"
                 />
                 <v-line v-if="shape.type === 'group'" v-for="line in shape.children"
@@ -76,6 +79,7 @@
                             hitStrokeWidth: hitStrokeWidth,
                             lineCap: 'round',
                             lineJoin: 'round',
+                            opacity: shape.opacity || 1
                         }" />
 
                 <v-image v-if="shape.type === 'image'"
@@ -83,7 +87,8 @@
                             width: shape.width,
                             height: shape.height,
                             image: getImageEl(shape),
-                            cornerRadius: 4
+                            cornerRadius: 4,
+                            opacity: shape.opacity || 1
                          }" />
 
 
@@ -99,7 +104,7 @@
                             y: getTextPadding(shape),
                             width: shape.width - (getTextPadding(shape) * 2),
                             height: shape.height - (getTextPadding(shape) * 2),
-
+                            opacity: shape.opacity || 1,
                             text: shape.text,
                             fontSize: getTextSize(shape),
                             fontFamily: shape.fontFamily || 'Arial',
@@ -122,6 +127,7 @@
                             strokeWidth: 2,
                             strokeScaleEnabled: false,
                             dash: [6,4],
+                            opacity: shape.opacity || 1,
                             listening: false
                         }"
                 />
@@ -134,6 +140,7 @@
                             stroke: cssVariable('--p'),
                             strokeWidth: 2,
                             strokeScaleEnabled: false,
+                            opacity: shape.opacity || 1,
                             dash: [6,4],
                             listening: false
                         }"
@@ -589,6 +596,7 @@ const handleDragstart = (shape) => {
     dragItemId.value = shape.id;
     shape.moving = true;
     moving.value = true;
+    shape.opacity = 0.9;
 
     // Move the dragged group visually on top without mutating shapes array
     const stageNode = stage.value?.getNode();
@@ -601,6 +609,7 @@ const handleDragend = (e, shape) => {
     dragItemId.value = null;
     shape.moving = false;
     moving.value = false;
+    shape.opacity = 1;
 
     const pos = {
         x: e.target.x(),

@@ -6,6 +6,7 @@
             height: shape.height + nameHeight,
             fill: cssVariable('--b1'),
             cornerRadius: radius,
+            opacity: shape.opacity || 1,
         }">
 
     </v-rect>
@@ -14,7 +15,8 @@
             width: shape.width,
             height: shape.height,
             image: imageEl,
-            cornerRadius: radius
+            cornerRadius: radius,
+            opacity: shape.opacity || 1,
          }">
     </v-image>
     <v-text
@@ -35,6 +37,7 @@
             verticalAlign: 'middle',
             draggable: false,
             listening: true,
+            opacity: shape.opacity || 1,
         }"
     />
 </template>
