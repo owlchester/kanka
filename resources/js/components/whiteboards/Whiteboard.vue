@@ -9,18 +9,6 @@
                 <i class="fa-regular fa-left-to-bracket" aria-hidden="true"></i>
                 <span v-html="name"></span>
             </a>
-<!--            <div-->
-<!--                v-if="!props.readonly"-->
-<!--                class="cursor-pointer"-->
-<!--                @click="openSettings"-->
-<!--            >-->
-<!--                <i-->
-<!--                    class="fa-regular fa-cog"-->
-<!--                    aria-hidden="true"-->
-<!--                >-->
-<!--                </i>-->
-<!--                <span class="sr-only" v-html="trans('edit-settings')"></span>-->
-<!--            </div>-->
         </div>
 
 
@@ -61,7 +49,7 @@
                 @dragstart="handleDragstart(shape)"
                 @dragmove="handleDragmove(shape)"
                 @dragend="handleDragend($event, shape)"
-                @click="selectShape(shape)"
+                @click="selectShape(shape, $event)"
             >
                 <v-rect v-if="shape.type==='rect'"
                         :config="{
@@ -121,6 +109,36 @@
                             wrap: 'word',
                         }"
                 />
+
+                <!-- Selection outline overlays (pointerEvents disabled so they don't block clicks) -->
+                <v-rect
+                    v-if="isSelected(shape.id) && selectedIds.length > 1 && shape.type !== 'circle'"
+                    :config="{
+                            x: 0,
+                            y: 0,
+                            width: shape.width,
+                            height: shape.height,
+                            stroke: cssVariable('--p'),
+                            strokeWidth: 2,
+                            strokeScaleEnabled: false,
+                            dash: [6,4],
+                            listening: false
+                        }"
+                />
+                <v-circle
+                    v-if="isSelected(shape.id) && selectedIds.length > 1 && shape.type === 'circle'"
+                    :config="{
+                            x: shape.radius,
+                            y: shape.radius,
+                            radius: shape.radius + 2,
+                            stroke: cssVariable('--p'),
+                            strokeWidth: 2,
+                            strokeScaleEnabled: false,
+                            dash: [6,4],
+                            listening: false
+                        }"
+                />
+
             </v-group>
 
             <v-group v-if="tempGroup" :key="tempGroup.id" :config="{ id: `temp-group-${tempGroup.id}` }">
@@ -231,6 +249,16 @@
                     <i class="fa-regular fa-palette" aria-hidden="true"></i>
                     <span class="sr-only" v-html="trans('color')"></span>
                 </button>
+
+                <button
+                    class="btn2 btn-sm join-item"
+                    :class="{'btn-disabled': nothingToRotate()}"
+                    :title="trans('reset-rotation')"
+                    @click.stop="resetRotation()"
+                >
+                    <i class="fa-regular fa-rotate" aria-hidden="true"></i>
+                    <span class="sr-only">{{ trans('reset-rotation') }}</span>
+                </button>
             </div>
 
             <div class="join" v-if="selectedShape.type === 'text'">
@@ -295,6 +323,13 @@
         </div>
         <div v-else-if="!drawingMode && !readonly" class="flex items-center gap-2 main-toolbar">
             <div class="join">
+                <button
+                    class="btn2 btn-sm btn-join"
+                    :title="trans('select-shapes')"
+                    :class="{ 'btn-disabled': selectMode }">
+                    <i class="fa-regular fa-mouse-pointer" aria-hidden="true"></i>
+                    <span class="sr-only" v-html="trans('select-shapes')"></span>
+                </button>
                 <button
                     @click="addShape('rect')"
                     class="btn2 btn-sm join-item"
@@ -408,6 +443,7 @@ const props = defineProps<{
 
 const shapes = ref([]);
 const dragItemId = ref(null);
+const selectedIds = ref([]);
 const selectedId = ref(null);
 const name = ref('My whiteboard');
 const stage = ref(null);
@@ -415,6 +451,9 @@ const transformer = ref(null);
 const layer = ref(null);
 const i18n = ref(null);
 const urls = ref(null);
+
+// Select mode
+const selectMode = ref(true)
 
 // Saving
 const saving = ref(false);
@@ -432,7 +471,18 @@ const moving = ref(false);
 
 // Toolbar refs and helpers
 const colorInput = ref<HTMLInputElement|null>(null);
-const selectedShape = computed(() => shapes.value.find(s => s.id === selectedId.value) || null);
+const selectedShape = computed(() => {
+    // If multiple selected, prefer the primary selectedId for single-shape UI.
+    if (selectedId.value) {
+        return shapes.value.find(s => s.id === selectedId.value) || null;
+    }
+    // fallback to first of selectedIds when primary isn't set
+    if (selectedIds.value.length > 0) {
+        return shapes.value.find(s => s.id === selectedIds.value[0]) || null;
+    }
+    return null;
+});
+
 
 // Drawing
 const drawingMode = ref(false)
@@ -543,20 +593,30 @@ const setupTransformerEvents = () => {
     transformerNode.off('dragend.transformer');
 
     transformerNode.on('transformend.transformer', (e) => {
-        if (!selectedShape.value) return;
-        const group = transformerNode.nodes()[0];
-        if (!group) return;
+        if (!selectedIds.value || !selectedIds.value.length) return;
+        const nodes = transformerNode.nodes() || [];
+        if (!nodes.length) return;
 
-        const scaleX = group.scaleX() || 1;
-        const scaleY = group.scaleY() || 1;
+        // When multiple nodes are selected, persist each node's transform back to its shape model.
+        nodes.forEach((group) => {
+            // group.id() is `group-<shapeId>`; extract the shape id suffix.
+            const gid = group.id();
+            const match = gid && gid.toString().match(/^group-(.+)$/);
+            if (!match) return;
+            const sid = match[1];
+            const shape = shapes.value.find(s => s.id === sid);
+            if (!shape) return;
 
-        // Persist scale
-        selectedShape.value.scaleX = scaleX;
-        selectedShape.value.scaleY = scaleY;
+            const scaleX = group.scaleX() || 1;
+            const scaleY = group.scaleY() || 1;
 
-        // Persist rotation (degrees)
-        selectedShape.value.rotation = group.rotation() || 0;
-
+            // Persist transforms/position/rotation
+            shape.scaleX = scaleX;
+            shape.scaleY = scaleY;
+            shape.rotation = group.rotation() || 0;
+            shape.x = group.x();
+            shape.y = group.y();
+        });
 
         // Force redraw and update overlays
         uiTick.value++;
@@ -564,18 +624,48 @@ const setupTransformerEvents = () => {
     });
 };
 
-const selectShape = (shape) => {
+const selectShape = (shape, event?: MouseEvent) => {
     // Don't do any selection while in drawing mode to avoid confusion
     if (drawingMode.value) {
         return;
     }
+
     // If clicking a second time on a text, edit the text
     let editingText = false;
     if (shape.text && selectedId.value === shape.id) {
         editText(shape)
         editingText = true;
     }
+
+    // Shift-click: add/remove from multi-selection
+    if (event && event.evt && event.evt.shiftKey) {
+        const idx = selectedIds.value.indexOf(shape.id);
+        if (idx === -1) {
+            // add
+            selectedIds.value.push(shape.id);
+            // if no primary selectedId set, make this primary
+            if (!selectedId.value) selectedId.value = shape.id;
+        } else {
+            // remove
+            selectedIds.value.splice(idx, 1);
+            // if it was primary, clear or pick next
+            if (selectedId.value === shape.id) {
+                selectedId.value = selectedIds.value.length ? selectedIds.value[0] : null;
+            }
+        }
+
+        // update transformer to reflect multiple selection
+        nextTick(() => {
+            updateTransformer(false);
+            setupTransformerEvents();
+        });
+        return;
+    }
+
+    // Regular click: select only this shape
+    selectedIds.value = [shape.id];
     selectedId.value = shape.id;
+
     if (shape.fill) {
         currentColor.value = shape.fill;
     }
@@ -585,7 +675,13 @@ const selectShape = (shape) => {
     });
 };
 
-const updateTransformer = (editingText = false) => {
+// Helper used by the template to check whether a shape is in current multi-selection
+const isSelected = (id: string) => {
+    return selectedIds.value.indexOf(id) !== -1;
+};
+
+
+const updateTransformer = (editingText: boolean = false) => {
     const transformerNode = transformer.value?.getNode();
     const stageNode = stage.value?.getNode();
 
@@ -593,45 +689,54 @@ const updateTransformer = (editingText = false) => {
         return;
     }
 
-    if (selectedId.value) {
-        const shape = shapes.value.find(s => s.id === selectedId.value);
-        const selectedGroup = stageNode.findOne(`#group-${selectedId.value}`);
-        // console.log(selectedGroup);
-        if (selectedGroup && shape) {
-            if (shape.locked || editingText) {
-                transformerNode.nodes([]);
-            } else {
-                transformerNode.nodes([selectedGroup]);
-                if (shape.type === 'entity') {
-                    transformerNode.keepRatio(true);
-                } else {
-                    transformerNode.keepRatio(false);
-                }
+    // Build node list from selectedIds
+    const nodeList = selectedIds.value
+        .map(id => stageNode.findOne(`#group-${id}`))
+        .filter(n => !!n);
 
-            }
-            transformerNode.getLayer().batchDraw();
-        }
-    } else {
+    // If nothing selected, clear transformer
+    if (!nodeList.length) {
         transformerNode.nodes([]);
         transformerNode.getLayer().batchDraw();
+        return;
     }
+
+    // If any of selected shapes are locked or editing text -> disable transformer
+    const anyLocked = selectedIds.value.some(id => {
+        const s = shapes.value.find(x => x.id === id);
+        return s && s.locked;
+    });
+    if (anyLocked || editingText) {
+        transformerNode.nodes([]);
+        transformerNode.getLayer().batchDraw();
+        return;
+    }
+
+    transformerNode.nodes(nodeList);
+    transformerNode.getLayer().batchDraw();
 };
 
 
 // Actions: delete, lock, color
 const deleteSelected = () => {
-    if (!selectedShape.value) return;
-    const id = selectedShape.value.id;
-    const idx = shapes.value.findIndex(s => s.id === id);
-    if (idx !== -1) shapes.value.splice(idx, 1);
+    if (!selectedIds.value.length) return;
+
+    // Remove all selected shapes from shapes array
+    const idsToRemove = new Set(selectedIds.value);
+    for (let i = shapes.value.length - 1; i >= 0; i--) {
+        if (idsToRemove.has(shapes.value[i].id)) {
+            shapes.value.splice(i, 1);
+        }
+    }
+
+    // Clear selection state
+    selectedIds.value = [];
     selectedId.value = null;
     editingTextId.value = null;
     uiTick.value++;
 
-    // Ensure transformer no longer references the removed node and force redraw.
-    // updateTransformer() will clear transformer nodes when selectedId is null.
+    // Ensure transformer no longer references removed nodes
     updateTransformer();
-
 };
 
 const toggleLock = () => {
@@ -757,6 +862,7 @@ const handleStageClick = (e) => {
     }
     if (e.target === e.target.getStage()) {
         selectedId.value = null;
+        selectedIds.value = [];
         updateTransformer();
         if (editingTextId.value) {
             cancelTextEdit();
@@ -1042,25 +1148,58 @@ const saveWhiteboard = () => {
     })
 }
 
-const pushTo = (where: 'front' | 'back') => {
-    const s = selectedShape.value;
-    if (!s) return;
+const resetRotation = () => {
+    if (!selectedIds.value || !selectedIds.value.length) return;
 
-    // Find current index in model array
-    const idx = shapes.value.findIndex(x => x.id === s.id);
-    if (idx === -1) return;
+    selectedIds.value.forEach(id => {
+        const shape = shapes.value.find(s => s.id === id);
+        if (shape) {
+            shape.rotation = 0;
+        }
+    })
+}
 
-    // Reorder shapes array so Vue re-renders and Konva will reflect stacking
-    // when layer is redrawn. Splice out and insert at proper position.
-    const [item] = shapes.value.splice(idx, 1);
-
-    if (where === 'front') {
-        // move to end => top in rendering order
-        shapes.value.push(item);
-    } else {
-        // move to start => bottom in rendering order
-        shapes.value.unshift(item);
+const nothingToRotate = () => {
+    if (!selectedIds.value || !selectedIds.value.length) {
+        console.log('nothing selected');
+        return true;
     }
+    let rotatable = false;
+    selectedIds.value.forEach(id => {
+        const shape = shapes.value.find(s => s.id === id);
+        if (shape && shape.rotation) {
+            rotatable = true;
+        }
+    })
+    return !rotatable;
+}
+
+const pushTo = (where: 'front' | 'back') => {
+    if (!selectedIds.value || !selectedIds.value.length) return;
+
+    // Build a map for quick lookup of selected ids
+    const selectedSet = new Set(selectedIds.value);
+
+    // Extract selected items preserving their current relative order
+    const selectedItems = shapes.value.filter(s => selectedSet.has(s.id));
+
+    // Remove selected items from shapes array in-place (iterate backwards)
+    for (let i = shapes.value.length - 1; i >= 0; i--) {
+        if (selectedSet.has(shapes.value[i].id)) {
+            shapes.value.splice(i, 1);
+        }
+    }
+    if (where === 'front') {
+        // Append selected items in their original relative order -> top of canvas
+        selectedItems.forEach(item => shapes.value.push(item));
+    } else {
+        // Prepend selected items in their original relative order -> bottom of canvas
+        // To maintain original relative order when unshifting, insert them in reverse.
+        for (let i = selectedItems.length - 1; i >= 0; i--) {
+            shapes.value.unshift(selectedItems[i]);
+        }
+    }
+
 
     // Force UI refresh for overlays and transformer
     uiTick.value++;
@@ -1209,9 +1348,6 @@ onMounted(() => {
     })
 
     window.addEventListener('keydown', handleKeyDown);
-
-
-
 
     // Clean up listener on unmount
     onBeforeUnmount(() => {
