@@ -2,7 +2,6 @@
 
 namespace App\Services\Submenus;
 
-use App\Facades\Module;
 use App\Models\Creature;
 
 class CreatureSubmenu extends BaseSubmenu implements EntitySubmenu

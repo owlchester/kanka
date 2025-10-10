@@ -3,7 +3,6 @@
 namespace App\Datagrids\Filters;
 
 use App\Facades\Module;
-use App\Models\Timeline;
 
 class WhiteboardFilter extends DatagridFilter
 {

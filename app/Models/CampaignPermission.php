@@ -64,6 +64,7 @@ class CampaignPermission extends Model
     public const ACTION_BOOKMARKS = 19;
 
     public const ACTION_WHITEBOARDS_VIEW = 30;
+
     public const ACTION_WHITEBOARDS_CREATE = 31;
 
     protected $fillable = [

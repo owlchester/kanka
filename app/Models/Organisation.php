@@ -213,6 +213,7 @@ class Organisation extends MiscModel
         if (isset($this->allMembersCount)) {
             return $this->allMembersCount;
         }
+
         return $this->allMembersCount = $this->allMembers()->count();
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Services\Submenus;
 
-use App\Facades\Module;
 use App\Models\Race;
 
 class RaceSubmenu extends BaseSubmenu implements EntitySubmenu

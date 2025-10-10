@@ -2,7 +2,6 @@
 
 namespace App\Services\Campaign;
 
-use App\Facades\Module;
 use App\Models\CampaignPlugin;
 use App\Models\EntityTag;
 use App\Models\EntityType;
@@ -275,6 +274,7 @@ class AchievementService
     {
         /** @var EntityType $entityType */
         $entityType = $this->modules[$module];
+
         return [
             'singular' => $entityType->name(),
             'plural' => $entityType->plural(),

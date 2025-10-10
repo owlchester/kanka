@@ -2,7 +2,6 @@
 
 namespace App\Services\Submenus;
 
-use App\Facades\Module;
 use App\Models\Event;
 
 class EventSubmenu extends BaseSubmenu implements EntitySubmenu

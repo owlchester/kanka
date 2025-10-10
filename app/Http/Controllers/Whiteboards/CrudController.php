@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Whiteboards;
 
 use App\Datagrids\Filters\WhiteboardFilter;
+use App\Http\Controllers\CrudController as BaseCrudController;
 use App\Http\Requests\StoreWhiteboard;
 use App\Models\Campaign;
 use App\Models\EntityType;
-use App\Http\Controllers\CrudController as BaseCrudController;
 use App\Models\Whiteboard;
 
 class CrudController extends BaseCrudController
@@ -21,22 +21,23 @@ class CrudController extends BaseCrudController
 
     protected string $module = 'whiteboards';
 
-
     public function create(Campaign $campaign)
     {
-        if (!$campaign->isWyvernPremium()) {
+        if (! $campaign->isWyvernPremium()) {
             return view('whiteboards.cta')
                 ->with('campaign', $campaign);
         }
+
         return $this->campaign($campaign)->crudCreate();
     }
 
     public function store(StoreWhiteboard $request, Campaign $campaign)
     {
-        if (!$campaign->isWyvernPremium()) {
+        if (! $campaign->isWyvernPremium()) {
             return view('whiteboards.cta')
                 ->with('campaign', $campaign);
         }
+
         return $this->campaign($campaign)->crudStore($request);
     }
 

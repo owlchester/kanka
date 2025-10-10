@@ -64,7 +64,6 @@ class Ability extends MiscModel
         'ability_id',
     ];
 
-
     protected array $exportFields = [
         'base',
         'charges',

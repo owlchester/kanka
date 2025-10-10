@@ -63,6 +63,7 @@ class ModuleService
         if ($this->campaign->hasModuleIcon($entityType->id)) {
             return $this->campaign->moduleIcon($entityType->id);
         }
+
         return $this->defaultIcon($entityType);
     }
 

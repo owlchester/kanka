@@ -58,6 +58,7 @@ trait Boosted
         if (app()->hasDebugModeEnabled()) {
             return true;
         }
+
         return $this->premium() && $this->boosts()->with('user')->first()?->user->isWyvern();
     }
 }

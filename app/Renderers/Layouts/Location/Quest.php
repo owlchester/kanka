@@ -2,7 +2,4 @@
 
 namespace App\Renderers\Layouts\Location;
 
-class Quest extends \App\Renderers\Layouts\Quest\Quest
-{
-
-}
+class Quest extends \App\Renderers\Layouts\Quest\Quest {}

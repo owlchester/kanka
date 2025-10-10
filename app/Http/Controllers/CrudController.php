@@ -39,8 +39,8 @@ class CrudController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
     use HasDatagrid;
-    use HasSubview;
     use HasNested;
+    use HasSubview;
 
     /** The view where to find the resources */
     protected string $view = '';

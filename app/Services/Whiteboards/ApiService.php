@@ -101,9 +101,8 @@ class ApiService
             'cta_action' => __('gallery.cta.action'),
             'cta_helper' => __('gallery.cta.helper', [
                 'premium-campaign' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaign') . '</a>',
-                'size' => number_format(config('limits.gallery.premium') / (1024 * 1024), 2)
+                'size' => number_format(config('limits.gallery.premium') / (1024 * 1024), 2),
             ]),
-
 
         ];
     }
@@ -117,8 +116,10 @@ class ApiService
         foreach ($entities as $entity) {
             $this->data['images'][$entity->id] = Avatar::entity($entity)->size(256)->fallback()->thumbnail();
         }
+
         return $this;
     }
+
     protected function loadGallery(array $ids): self
     {
         /** @var Image[] $images */
@@ -127,16 +128,17 @@ class ApiService
         foreach ($images as $image) {
             $this->data['images'][$image->id] = $image->url();
         }
+
         return $this;
     }
 
     protected function fixData(): void
     {
         foreach ($this->data['data'] as $id => $shape) {
-            if (!isset($shape['scaleX'])) {
+            if (! isset($shape['scaleX'])) {
                 $shape['scaleX'] = 1;
             }
-            if (!isset($shape['scaleY'])) {
+            if (! isset($shape['scaleY'])) {
                 $shape['scaleY'] = 1;
             }
             $this->data['data'][$id] = $shape;
@@ -146,7 +148,7 @@ class ApiService
     protected function urls(): void
     {
         $this->data['urls'] = [
-            'overview' => route('entities.show', [$this->campaign, $this->whiteboard->entity])
+            'overview' => route('entities.show', [$this->campaign, $this->whiteboard->entity]),
         ];
     }
 }

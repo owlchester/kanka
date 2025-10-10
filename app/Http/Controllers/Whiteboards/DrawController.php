@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Whiteboards;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Whiteboards\CreateRequest;
 use App\Http\Requests\Whiteboards\UpdateRequest;
 use App\Models\Campaign;
 use App\Models\Whiteboard;
@@ -16,10 +15,7 @@ class DrawController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
 
-    public function __construct(protected ApiService $apiService)
-    {
-
-    }
+    public function __construct(protected ApiService $apiService) {}
 
     public function show(Campaign $campaign, Whiteboard $whiteboard)
     {
@@ -46,7 +42,7 @@ class DrawController extends Controller
 
         return response()->json([
             'success' => true,
-            'toast' => __('whiteboards.update.success')
+            'toast' => __('whiteboards.update.success'),
         ]);
     }
 }
