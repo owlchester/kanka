@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\OrganisationMemberPin;
+use App\Enums\OrganisationMemberStatus;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
@@ -10,8 +12,6 @@ use App\Models\Concerns\SortableTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Enums\OrganisationMemberPin;
-use App\Enums\OrganisationMemberStatus;
 
 /**
  * Class OrganisationMember
