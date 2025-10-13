@@ -70,6 +70,8 @@ class SetupService
                 'manage' => $this->user->can('galleryManage', $this->campaign),
                 'upload' => $this->user->can('galleryUpload', $this->campaign),
                 'premium' => $this->campaign->boosted(),
+                'elemental' => $this->campaign->isElemental(),
+                'wyvern' => $this->campaign->isWyvern(),
             ],
             'files' => $this->files(),
             'i18n' => $this->i18n(),
@@ -285,8 +287,10 @@ class SetupService
 
     protected function upgradeLink(): ?string
     {
-        if ($this->campaign->boosted()) {
+        if ($this->campaign->isElemental() || $this->campaign->isWyvern()) {
             return null;
+        } elseif ($this->campaign->boosted()) {
+            return route('settings.subscription');
         }
 
         return route('settings.premium');

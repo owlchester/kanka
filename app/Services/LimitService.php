@@ -40,15 +40,23 @@ class LimitService
                 $min = config('limits.filesize.map');
             }
             $size = ($min * 1024);
-        } elseif ($this->user->isElemental()) {
+        } elseif ($this->user->isElemental() || $this->campaign->isElemental()) {
             // Anders gets higher upload sizes until we handle this in the db.
             if ($this->user->id === 34122) {
                 $size = 102400;
+            } elseif ($this->map) {
+                $size = config('limits.filesize.map') * 1024;
             } else {
-                $size = $this->map ? 51200 : 25600;
+                $size = config('limits.filesize.image_elemental') * 1024;
             }
-        } elseif ($this->user->isWyvern()) {
-            $size = $this->map ? 20480 : 15360;
+        } elseif ($this->user->isWyvern() || $this->campaign->isWyvern()) {
+            $min = config('limits.filesize.image_wyvern');
+
+            if ($this->map) {
+                $min = config('limits.filesize.map');
+            }
+
+            $size = ($min * 1024);
         }
 
         $this->map = false;

@@ -147,7 +147,7 @@
     ]
   },
   "resources/js/campaigns/import.js": {
-    "file": "assets/import-rRfj6B6d.js",
+    "file": "assets/import-No3t4ssh.js",
     "name": "import",
     "src": "resources/js/campaigns/import.js",
     "isEntry": true,
@@ -252,7 +252,7 @@
     ]
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-C5b0W17h.js",
+    "file": "assets/gallery-0s4NQoVa.js",
     "name": "gallery",
     "src": "resources/js/gallery/gallery.js",
     "isEntry": true,
@@ -328,12 +328,12 @@
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-BEwQ4pIy.css",
+    "file": "assets/app-AMCDoalv.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-Cq3Grxx2.css",
+    "file": "assets/auth-DPcC7Dp0.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -358,7 +358,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-sz7sa4k8.css",
+    "file": "assets/front-BwO-0nVk.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },

@@ -40,6 +40,8 @@ return [
      */
     'filesize' => [
         'image' => env('APP_IMAGE_SIZE_MB', 3),
+        'image_wyvern' => env('APP_IMAGE_SIZE_WYVERN_MB', 10),
+        'image_elemental' => env('APP_IMAGE_SIZE_WYVERN_MB', 25),
         'map' => env('APP_MAP_SIZE_MB', 5),
     ],
 

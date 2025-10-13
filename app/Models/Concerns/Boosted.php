@@ -52,4 +52,22 @@ trait Boosted
 
         return $this->boost_count >= 4;
     }
+
+    /**
+     * Determine if a campaign is boosted by a wyvern
+     */
+    public function isWyvern(): bool
+    {
+        $boost =  $this->boosts->first();
+        return $boost?->user->isWyvern() ?? false;
+    }
+
+        /**
+     * Determine if a campaign is boosted by an elemental
+     */
+    public function isElemental(): bool
+    {
+        $boost =  $this->boosts->first();
+        return $boost?->user->isElemental() ?? false;
+    }
 }
