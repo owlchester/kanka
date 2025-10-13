@@ -28,13 +28,13 @@ class CampaignExport extends Model
     use MassPrunable;
     use SortableTrait;
 
-    //public const int STATUS_SCHEDULED = 1;
+    // public const int STATUS_SCHEDULED = 1;
 
-    //public const int STATUS_RUNNING = 2;
+    // public const int STATUS_RUNNING = 2;
 
-    //public const int STATUS_FINISHED = 3;
+    // public const int STATUS_FINISHED = 3;
 
-    //public const int STATUS_FAILED = 4;
+    // public const int STATUS_FAILED = 4;
 
     public $fillable = [
         'size',
