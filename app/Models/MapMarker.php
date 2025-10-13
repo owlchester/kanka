@@ -180,7 +180,7 @@ class MapMarker extends Model
      */
     public function isPolygon(): bool
     {
-        return $this->shape_id === MapMarkerShape::POLY->value && !empty($this->custom_shape);
+        return $this->shape_id === MapMarkerShape::POLY->value && ! empty($this->custom_shape);
     }
 
     /**
