@@ -35,29 +35,23 @@ class LimitService
         // Default for Owlbears and legacy Goblins/Kobolds, or members of a campaign
         $size = $this->map ? 10240 : 8192;
         if (! $this->user->isSubscriber() && (! isset($this->campaign) || ! $this->campaign->boosted())) {
-            $min = config('limits.filesize.image');
+            $min = config('limits.filesize.image.standard');
             if ($this->map) {
                 $min = config('limits.filesize.map');
             }
-            $size = ($min * 1024);
         } elseif ($this->user->isElemental() || $this->campaign->isElemental()) {
-            // Anders gets higher upload sizes until we handle this in the db.
-            if ($this->user->id === 34122) {
-                $size = 102400;
-            } elseif ($this->map) {
-                $size = config('limits.filesize.map') * 1024;
-            } else {
-                $size = config('limits.filesize.image_elemental') * 1024;
+            $min = config('limits.filesize.image.elemental') * 1024;
+            if ($this->map) {
+                $min = config('limits.filesize.map') * 1024;
             }
         } elseif ($this->user->isWyvern() || $this->campaign->isWyvern()) {
-            $min = config('limits.filesize.image_wyvern');
-
+            $min = config('limits.filesize.image.wyvern');
             if ($this->map) {
                 $min = config('limits.filesize.map');
             }
-
-            $size = ($min * 1024);
         }
+
+        $size = ($min * 1024);
 
         $this->map = false;
 
