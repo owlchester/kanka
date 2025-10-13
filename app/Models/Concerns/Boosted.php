@@ -58,16 +58,18 @@ trait Boosted
      */
     public function isWyvern(): bool
     {
-        $boost =  $this->boosts->first();
+        $boost = $this->boosts->first();
+
         return $boost?->user->isWyvern() ?? false;
     }
 
-        /**
+    /**
      * Determine if a campaign is boosted by an elemental
      */
     public function isElemental(): bool
     {
-        $boost =  $this->boosts->first();
+        $boost = $this->boosts->first();
+
         return $boost?->user->isElemental() ?? false;
     }
 }
