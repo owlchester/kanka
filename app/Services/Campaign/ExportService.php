@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Enums\CampaignExportStatus;
 use App\Facades\CampaignCache;
 use App\Models\CampaignExport;
 use App\Models\Entity;
@@ -74,16 +75,15 @@ class ExportService
                 ->finish()
                 ->notify();
 
-            $this->log
-                ->update([
-                    'status' => CampaignExport::STATUS_FINISHED,
-                    'size' => $this->filesize(),
-                    'path' => $this->exportPath(),
-                ]);
+            $this->log->update([
+                'status' => CampaignExportStatus::FINISHED->value,
+                'size' => $this->filesize(),
+                'path' => $this->exportPath(),
+            ]);
         } catch (Exception $e) {
             $this->log
                 ->update([
-                    'status' => CampaignExport::STATUS_FAILED,
+                    'status' => CampaignExportStatus::FAILED->value,
                 ]);
             if (isset($this->path)) {
                 $this->cleanup();
