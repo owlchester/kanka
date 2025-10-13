@@ -2,6 +2,7 @@
 
 namespace App\Models\Relations;
 
+use App\Enums\CampaignExportStatus;
 use App\Models\Ability;
 use App\Models\Application;
 use App\Models\AttributeTemplate;
@@ -434,7 +435,10 @@ trait CampaignRelations
     public function queuedCampaignExports()
     {
         return $this->campaignExports()
-            ->whereIn('status', [CampaignExport::STATUS_SCHEDULED, CampaignExport::STATUS_RUNNING]);
+            ->whereIn('status', [
+                CampaignExportStatus::SCHEDULED->value,
+                CampaignExportStatus::RUNNING->value,
+            ]);
     }
 
     /**
