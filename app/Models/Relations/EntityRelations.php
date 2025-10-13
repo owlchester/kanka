@@ -14,7 +14,6 @@ use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
-use App\Models\EntityEventType;
 use App\Models\EntityLog;
 use App\Models\EntityTag;
 use App\Models\EntityType;

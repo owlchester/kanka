@@ -4,7 +4,6 @@ namespace App\Models\Scopes;
 
 use App\Enums\EntityEventTypes;
 use App\Models\Calendar;
-use App\Models\EntityEventType;
 use Illuminate\Database\Eloquent\Builder;
 
 trait EntityEventScopes

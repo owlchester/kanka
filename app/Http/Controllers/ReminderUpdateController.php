@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateCalendarEvent;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\EntityEventType;
 use App\Models\Post;
 use App\Models\Reminder;
 use App\Services\CalendarService;
