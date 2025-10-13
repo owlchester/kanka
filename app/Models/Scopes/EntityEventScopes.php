@@ -2,8 +2,8 @@
 
 namespace App\Models\Scopes;
 
+use App\Enums\EntityEventTypes;
 use App\Models\Calendar;
-use App\Models\EntityEventType;
 use Illuminate\Database\Eloquent\Builder;
 
 trait EntityEventScopes
@@ -73,6 +73,6 @@ trait EntityEventScopes
 
     public function scopeCalendarDate(Builder $query): Builder
     {
-        return $query->where('type_id', EntityEventType::CALENDAR_DATE);
+        return $query->where('type_id', EntityEventTypes::CALENDAR_DATE->values);
     }
 }

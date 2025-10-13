@@ -3,6 +3,7 @@
 namespace App\Models\Relations;
 
 use App\Enums\EntityAssetType;
+use App\Enums\EntityEventTypes;
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -13,7 +14,6 @@ use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
-use App\Models\EntityEventType;
 use App\Models\EntityLog;
 use App\Models\EntityTag;
 use App\Models\EntityType;
@@ -399,7 +399,7 @@ trait EntityRelations
         return $this->morphOne(Reminder::class, 'remindable')
             ->with('calendar')
             ->has('calendar')
-            ->where('type_id', EntityEventType::CALENDAR_DATE);
+            ->where('type_id', EntityEventTypes::CALENDAR_DATE->values);
     }
 
     public function elapsedEvents(): MorphMany

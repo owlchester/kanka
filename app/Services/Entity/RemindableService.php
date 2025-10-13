@@ -2,9 +2,9 @@
 
 namespace App\Services\Entity;
 
+use App\Enums\EntityEventTypes;
 use App\Models\Calendar;
 use App\Models\Entity;
-use App\Models\EntityEventType;
 use App\Models\Post;
 use App\Models\Reminder;
 use App\Traits\RequestAware;
@@ -71,7 +71,7 @@ class RemindableService
         $reminder->is_recurring = (bool) $this->request->post('calendar_is_recurring');
         $reminder->recurring_periodicity = $this->request->post('calendar_recurring_periodicity');
         $reminder->colour = $this->request->post('calendar_colour', '#cccccc');
-        $reminder->type_id = EntityEventType::CALENDAR_DATE;
+        $reminder->type_id = EntityEventTypes::CALENDAR_DATE->values;
         try {
             $reminder->save();
             $model->setRelation('calendarDate', $reminder);
