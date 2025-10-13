@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\MapMarkerShape;
 use App\Facades\CampaignLocalization;
 use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
@@ -59,14 +60,6 @@ class MapMarker extends Model
     use Paginatable;
     use Sanitizable;
     use SortableTrait;
-
-    public const SHAPE_MARKER = 1;
-
-    public const SHAPE_LABEL = 2;
-
-    public const SHAPE_CIRCLE = 3;
-
-    public const SHAPE_POLY = 5;
 
     protected $fillable = [
         'map_id',
@@ -166,7 +159,7 @@ class MapMarker extends Model
      */
     public function isLabel(): bool
     {
-        return $this->shape_id == self::SHAPE_LABEL;
+        return $this->shape_id === MapMarkerShape::LABEL->value;
     }
 
     /**
@@ -174,7 +167,7 @@ class MapMarker extends Model
      */
     public function isCircle(): bool
     {
-        return $this->shape_id == self::SHAPE_CIRCLE;
+        return $this->shape_id === MapMarkerShape::CIRCLE->value;
     }
 
     public function css(): string
@@ -187,7 +180,7 @@ class MapMarker extends Model
      */
     public function isPolygon(): bool
     {
-        return $this->shape_id == MapMarker::SHAPE_POLY && ! empty($this->custom_shape);
+        return $this->shape_id === MapMarkerShape::POLY->value && !empty($this->custom_shape);
     }
 
     /**
