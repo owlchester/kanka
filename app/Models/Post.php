@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EntityEventTypes;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasEntry;
@@ -303,7 +304,7 @@ class Post extends Model
         return $this->morphOne(Reminder::class, 'remindable')
             ->with('calendar')
             ->has('calendar')
-            ->where('type_id', EntityEventType::CALENDAR_DATE);
+            ->where('type_id', EntityEventTypes::CALENDAR_DATE->value);
     }
 
     public function elapsedEvents(): MorphMany
