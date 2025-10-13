@@ -232,9 +232,12 @@ class SetupService
     {
         $key = $this->cacheKey();
         if (! $this->withDisabled && Cache::has($key)) {
-            return Cache::get($key);
+            if (!app()->hasDebugModeEnabled()) {
+                return Cache::get($key);
+            }
         }
         $this->loadModules();
+        $this->fillElements();
         $layout = [];
         $layoutSetup = $this->customLayout();
         $rewrite = [];
@@ -384,13 +387,11 @@ class SetupService
         }
 
         // Module custom name
-        if (isset($element['type'])) {
-            /** @var EntityType $entityType */
-            $entityType = $this->modules[$element['type']];
-            $element['custom_label'] = $entityType->plural();
-            $element['custom_icon'] = $entityType->icon();
-            $element['icon'] = Module::defaultIcon($entityType);
-            $element['label'] = $entityType->defaultPlural();
+        if (! empty($element['type']) && ! $this->withDisabled) {
+            /** @var ?EntityType $type */
+            $type = $this->modules[$element['type']];
+            $element['custom_label'] = $type->plural();
+            $element['custom_icon'] = $type->icon();
         }
 
         $label = Arr::get($this->campaign->ui_settings, 'sidebar.labels.' . $key);
@@ -429,6 +430,25 @@ class SetupService
         /** @var EntityType $module */
         foreach ($modules as $module) {
             $this->modules[$module->code] = $module;
+        }
+    }
+
+    protected function fillElements(): void
+    {
+        foreach ($this->elements as $key => $element) {
+            if (!isset($element['type'])) {
+                continue;
+            }
+
+            /** @var ?EntityType $module */
+            $module = $this->modules[$element['type']];
+            if (!$module) {
+                continue;
+            }
+
+            $element['icon'] = Module::defaultIcon($module);
+            $element['label'] = $module->defaultPlural();
+            $this->elements[$key] = $element;
         }
     }
 }
