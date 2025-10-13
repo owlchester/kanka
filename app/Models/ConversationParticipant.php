@@ -28,11 +28,6 @@ class ConversationParticipant extends Model
     ];
 
     /**
-     * We want to use the dice_roll entity type for permissions
-     */
-    protected string $entityType = 'conversation_participants';
-
-    /**
      * Who created this entry
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>

@@ -16,7 +16,7 @@ class LocationSubmenu extends BaseSubmenu implements EntitySubmenu
         $count = $location->descendants()->has('parent')->count();
         if ($count > 0) {
             $items['second']['locations'] = [
-                'name' => Module::plural($location->entityTypeId(), 'entities.locations'),
+                'name' => $this->entity->entityType->plural(),
                 'route' => 'locations.locations',
                 'count' => $count,
             ];

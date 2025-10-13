@@ -26,27 +26,27 @@
             <a href="{{ route($route, [$campaign, 'parent_id' => $model->id]) }}"  class="block avatar grow relative cover-background overflow-hidden text-center" style="background-image: url('{{ Avatar::entity($model->entity)->fallback()->size(192, 144)->thumbnail() }}')">
 
                 @if ($model->is_private)
-                    <div class="bubble-private absolute left-1.5 top-1.5 text-base shadow-xs flex justify-center align-items-center items-center aspect-square rounded-full w-6 h-6 bg-box opacity-80 text-base-content">
+                    <div class="bubble-private absolute left-1.5 top-1.5 shadow-xs flex justify-center align-items-center items-center aspect-square rounded-full w-6 h-6 bg-box text-xs opacity-80 text-base-content">
                         <x-icon class="fa-regular fa-lock" :title="__('crud.is_private')" />
                     </div>
                 @endif
             </a>
-            @if ($model instanceof \App\Models\Map && $model->explorable())
-                <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
-                    <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow">
-                        {!! $model->name !!}
-                    </a>
+            <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
+                <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow">
+                    {!! $model->name !!}
+                </a>
+                @if ($model instanceof \App\Models\Map && $model->explorable())
                     <a href="{{ $model->getLink('explore') }}" class="block text-center h-12 p-4" target="_blank" title="{{ __('maps.actions.explore') }}">
                         <x-icon class="fa-regular fa-map" />
                         <span class="sr-only">{{ __('maps.actions.explore') }}</span>
                     </a>
-                </div>
-            @else
-            <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 p-4" data-toggle="tooltip-ajax" data-id="{{ $model->entity->id }}"
-               data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
-                {!! $model->name !!}
-            </a>
-            @endif
+                @elseif ($model instanceof \App\Models\Whiteboard)
+                    <a href="{{ $model->getLink('draw') }}" class="block text-center h-12 p-4" target="_blank" title="{{ __('whiteboards.actions.draw') }}">
+                        <x-icon class="fa-regular fa-chalkboard" />
+                        <span class="sr-only">{{ __('whiteboards.actions.draw') }}</span>
+                    </a>
+                @endif
+            </div>
         </div>
         @for ($s = 0; $s < $stacked; $s++)
             <div class="entity entity-stack bg-base-300 w-full overflow-hidden rounded aspect-square flex flex-col shadow-xs" title="{{ __('datagrids.tooltips.nested') }}" data-stack="{{ $s }}">
@@ -64,21 +64,21 @@
                 </div>
             @endif
         </a>
-        @if ($model instanceof \App\Models\Map && $model->explorable())
-            <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
-                <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow" >
-                    {!! $model->name !!}
-                </a>
+        <div class="flex items-center" data-toggle="tooltip-ajax"  data-id="{{ $model->entity->id }}" data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
+            <a href="{{ $model->getLink() }}" class="block text-center relative truncate h-12 px-2 py-4 grow" >
+                {!! $model->name !!}
+            </a>
+            @if ($model instanceof \App\Models\Map && $model->explorable())
                 <a href="{{ $model->getLink('explore') }}" class="block text-center h-12 p-4" target="_blank" title="{{ __('maps.actions.explore') }}">
                     <x-icon class="fa-regular fa-map" />
                     <span class="sr-only">{{ __('maps.actions.explore') }}</span>
                 </a>
-            </div>
-        @else
-        <a href="{{ $model->getLink() }}" class="block truncate text-center px-2 py-4 h-12" data-toggle="tooltip-ajax" data-id="{{ $model->entity->id }}"
-        data-url="{{ route('entities.tooltip', [$campaign, $model->entity->id]) }}">
-            {!! $model->name !!}
-        </a>
-        @endif
+            @elseif ($model instanceof \App\Models\Whiteboard)
+                <a href="{{ $model->getLink('draw') }}" class="block text-center h-12 p-4" target="_blank" title="{{ __('whiteboards.actions.draw') }}">
+                    <x-icon class="fa-regular fa-chalkboard" />
+                    <span class="sr-only">{{ __('whiteboards.actions.draw') }}</span>
+                </a>
+            @endif
+        </div>
     </div>
 @endif

@@ -2,7 +2,6 @@
 
 namespace App\Services\Submenus;
 
-use App\Facades\Module;
 use App\Models\Journal;
 
 class JournalSubmenu extends BaseSubmenu implements EntitySubmenu
@@ -13,7 +12,7 @@ class JournalSubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Journal $journal */
         $journal = $this->entity->child;
         $items['second']['journals'] = [
-            'name' => Module::plural($journal->entityTypeId(), 'entities.journals'),
+            'name' => $this->entity->entityType->plural(),
             'route' => 'journals.journals',
             'count' => $journal->descendants()->has('entity')->count(),
         ];

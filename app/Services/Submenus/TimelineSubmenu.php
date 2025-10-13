@@ -2,7 +2,6 @@
 
 namespace App\Services\Submenus;
 
-use App\Facades\Module;
 use App\Models\Timeline;
 
 class TimelineSubmenu extends BaseSubmenu implements EntitySubmenu
@@ -13,7 +12,7 @@ class TimelineSubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Timeline $model */
         $model = $this->entity->child;
         $items['second']['timelines'] = [
-            'name' => Module::plural($model->entityTypeId(), 'entities.timelines'),
+            'name' => $this->entity->entityType->plural(),
             'route' => 'timelines.timelines',
             'count' => $model->descendants()->has('entity')->count(),
         ];

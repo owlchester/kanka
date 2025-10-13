@@ -75,11 +75,6 @@ class Location extends MiscModel
     ];
 
     /**
-     * Entity type
-     */
-    protected string $entityType = 'location';
-
-    /**
      * Nullable values (foreign keys)
      */
     public array $nullableForeignKeys = [

@@ -107,11 +107,6 @@ abstract class MiscModel extends Model
         return method_exists($this, 'entityTypeID');
     }
 
-    public function getEntityType(): ?string
-    {
-        return $this->entityType;
-    }
-
     public function getLink(string $action = 'show'): string
     {
         if (empty($this->entity)) {

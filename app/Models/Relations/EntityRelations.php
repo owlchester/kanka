@@ -246,6 +246,14 @@ trait EntityRelations
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Timeline, $this>
+     */
+    public function whiteboard(): HasOne
+    {
+        return $this->hasOne('App\Models\Whiteboard', 'id', 'entity_id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityTag, $this>
      */
     public function entityTags(): HasMany

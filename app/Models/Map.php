@@ -147,11 +147,6 @@ class Map extends MiscModel
     ];
 
     /**
-     * Entity type
-     */
-    protected string $entityType = 'map';
-
-    /**
      * Extra relations loaded for the API endpoint
      *
      * @var string[]

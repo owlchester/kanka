@@ -34,6 +34,10 @@ class LiveController extends Controller
         if ($request->has('posts')) {
             $this->searchService->posts()->new();
         }
+        if ($request->has('thumb')) {
+            $size = min(max($request->get('thumb'), 64), 512);
+            $this->searchService->thumb($size);
+        }
 
         $this->searchService
             ->term($term)

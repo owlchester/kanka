@@ -48,11 +48,6 @@ class Creature extends MiscModel
         'is_dead',
     ];
 
-    /**
-     * Entity type
-     */
-    protected string $entityType = 'creature';
-
     protected array $sortableColumns = [
         'is_extinct',
         'is_dead',

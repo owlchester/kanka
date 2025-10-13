@@ -2,7 +2,6 @@
 
 namespace App\Services\Submenus;
 
-use App\Facades\Module;
 use App\Models\Map;
 
 class MapSubmenu extends BaseSubmenu implements EntitySubmenu
@@ -13,7 +12,7 @@ class MapSubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Map $map */
         $map = $this->entity->child;
         $items['second']['maps'] = [
-            'name' => Module::plural($map->entityTypeId(), 'entities.maps'),
+            'name' => $this->entity->entityType->plural(),
             'route' => 'maps.maps',
             'count' => $map->descendants()->has('entity')->count(),
         ];

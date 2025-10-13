@@ -43,11 +43,6 @@ class Conversation extends MiscModel
     ];
 
     /**
-     * Entity type
-     */
-    protected string $entityType = 'conversation';
-
-    /**
      * Searchable fields
      */
     protected array $searchableColumns = ['name'];

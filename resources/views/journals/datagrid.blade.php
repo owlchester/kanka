@@ -35,7 +35,7 @@
             },
         ],
         [
-            'label' => '<i class="' . \App\Facades\Module::duoIcon('journal') . '" title="' . \App\Facades\Module::plural(config('entities.ids.journal'), __('entities.journals')) . '"></i>',
+            'label' => '<i class="' . $entityType->icon() . '" title="' . $entityType->plural() . '" aria-hidden="true"></i>',
             'render' => function($model) {
                 return number_format($model->children_count);
             },
