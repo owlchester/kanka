@@ -154,7 +154,7 @@ class EntityType extends Model
 
     public function defaultPlural(): string
     {
-        return __('entities.' . $this->pluralCode());
+        return 'entities.' . $this->pluralCode();
     }
 
     /**
