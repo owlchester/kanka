@@ -15,7 +15,7 @@ class TagSubmenu extends BaseSubmenu implements EntitySubmenu
         $count = $model->descendants->count();
         if ($count > 0) {
             $items['second']['tags'] = [
-                'label' => $this->entity->entityType->plural(),
+                'name' => $this->entity->entityType->plural(),
                 'route' => 'tags.tags',
                 'count' => $count,
             ];

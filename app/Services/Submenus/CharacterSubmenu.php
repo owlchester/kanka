@@ -12,7 +12,7 @@ class CharacterSubmenu extends BaseSubmenu implements EntitySubmenu
         $canEdit = isset($this->user) && $this->user->can('update', $this->entity);
 
         $items['second']['profile'] = [
-            'name' => 'entities/profile.show.tab_name',
+            'name' => __('entities/profile.show.tab_name'),
             'route' => 'entities.profile',
             'entity' => true,
 

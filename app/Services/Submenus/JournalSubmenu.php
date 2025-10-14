@@ -12,7 +12,7 @@ class JournalSubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Journal $journal */
         $journal = $this->entity->child;
         $items['second']['journals'] = [
-            'label' => $this->entity->entityType->plural(),
+            'name' => $this->entity->entityType->plural(),
             'route' => 'journals.journals',
             'count' => $journal->descendants()->has('entity')->count(),
         ];

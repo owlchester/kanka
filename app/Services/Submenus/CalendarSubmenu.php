@@ -15,7 +15,7 @@ class CalendarSubmenu extends BaseSubmenu implements EntitySubmenu
         $items = [];
         if ($count > 0) {
             $items['second']['events'] = [
-                'name' => 'crud.tabs.reminders',
+                'name' => __('crud.tabs.reminders'),
                 'route' => 'calendars.events',
                 'count' => $count,
             ];

@@ -12,14 +12,14 @@ class FamilySubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Family $family */
         $family = $this->entity->child;
         $items['second']['families'] = [
-            'label' => $this->entity->entityType->plural(),
+            'name' => $this->entity->entityType->plural(),
             'route' => 'families.families',
             'count' => $family->descendants()->has('entity')->count(),
         ];
 
         if (config('services.stripe.enabled')) {
             $items['second']['tree'] = [
-                'name' => 'families.show.tabs.tree',
+                'name' => __('families.show.tabs.tree'),
                 'route' => 'families.family-tree',
             ];
         }

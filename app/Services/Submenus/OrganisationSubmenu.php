@@ -14,7 +14,7 @@ class OrganisationSubmenu extends BaseSubmenu implements EntitySubmenu
         $count = $model->descendants()->has('entity')->count();
         if ($count > 0) {
             $items['second']['organisations'] = [
-                'label' => $this->entity->entityType->plural(),
+                'name' => $this->entity->entityType->plural(),
                 'route' => 'organisations.organisations',
                 'count' => $count,
             ];
