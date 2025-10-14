@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Facades\EntityLogger;
-use App\Models\Character;
 use App\Models\FamilyTree;
 
 class FamilyTreeObserver
