@@ -7,6 +7,7 @@ use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class SubmenuService
 {
@@ -174,7 +175,7 @@ class SubmenuService
         if (Arr::has($this->items, 'third')) {
             $sortedItems = array_combine(array_keys($this->items['third']), array_column($this->items['third'], 'name'));
             foreach ($sortedItems as $key => $item) {
-                $sortedItems[$key] = __($item);
+                $sortedItems[$key] = Str::contains($item, '.') ? __($item) : $item;
             }
 
             $collator = new \Collator(app()->getLocale());
