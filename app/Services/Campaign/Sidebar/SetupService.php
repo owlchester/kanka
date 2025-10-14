@@ -232,7 +232,7 @@ class SetupService
     {
         $key = $this->cacheKey();
         if (! $this->withDisabled && Cache::has($key)) {
-            if (!app()->hasDebugModeEnabled()) {
+            if (! app()->hasDebugModeEnabled()) {
                 return Cache::get($key);
             }
         }
@@ -436,13 +436,13 @@ class SetupService
     protected function fillElements(): void
     {
         foreach ($this->elements as $key => $element) {
-            if (!isset($element['type'])) {
+            if (! isset($element['type'])) {
                 continue;
             }
 
             /** @var ?EntityType $module */
             $module = $this->modules[$element['type']];
-            if (!$module) {
+            if (! $module) {
                 continue;
             }
 
