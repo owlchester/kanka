@@ -4,8 +4,8 @@ namespace App\Enums;
 
 enum CampaignExportStatus: int
 {
-    case SCHEDULED = 1;
-    case RUNNING = 2;
-    case FINISHED = 3;
-    case FAILED = 4;
+    case scheduled = 1;
+    case running = 2;
+    case finished = 3;
+    case failed = 4;
 }

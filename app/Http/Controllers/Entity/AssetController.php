@@ -55,11 +55,11 @@ class AssetController extends Controller
 
         $typeID = (int) request()->get('type');
 
-        if ($typeID === EntityAssetType::FILE->value) {
+        if ($typeID === EntityAssetType::file->value) {
             return $this->createFile($campaign, $entity);
-        } elseif ($typeID === EntityAssetType::LINK->value) {
+        } elseif ($typeID === EntityAssetType::link->value) {
             return $this->createLink($campaign, $entity);
-        } elseif ($typeID === EntityAssetType::ALIAS->value) {
+        } elseif ($typeID === EntityAssetType::alias->value) {
             return $this->createAlias($campaign, $entity);
         }
         abort(404);
@@ -75,14 +75,14 @@ class AssetController extends Controller
         $data = [];
         $type = '';
         $typeId = null;
-        if (request()->get('type_id') == EntityAssetType::FILE->value) {
+        if (request()->get('type_id') == EntityAssetType::file->value) {
             return $this->storeFile($request, $campaign, $entity);
-        } elseif (request()->get('type_id') == EntityAssetType::LINK->value) {
+        } elseif (request()->get('type_id') == EntityAssetType::link->value) {
             $data = $request->only(['name', 'position', 'visibility_id', 'metadata']);
             $type = 'links';
-            $typeId = EntityAssetType::LINK->value;
-        } elseif (request()->get('type_id') == EntityAssetType::ALIAS->value) {
-            $typeId = EntityAssetType::ALIAS->value;
+            $typeId = EntityAssetType::link;
+        } elseif (request()->get('type_id') == EntityAssetType::alias->value) {
+            $typeId = EntityAssetType::alias;
             $data = $request->only(['name', 'visibility_id', 'is_pinned']);
             $type = 'aliases';
         }

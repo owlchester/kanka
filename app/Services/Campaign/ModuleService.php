@@ -5,6 +5,7 @@ namespace App\Services\Campaign;
 use App\Models\EntityType;
 use App\Traits\CampaignAware;
 use Exception;
+use Hamcrest\Arrays\IsArray;
 use Illuminate\Support\Str;
 
 /**
@@ -45,6 +46,9 @@ class ModuleService
             return $this->pluralFallback($id);
         }
 
+        if (is_array(__($fallback))){
+            return $this->pluralFallback($id);
+        }
         return __($fallback);
     }
 

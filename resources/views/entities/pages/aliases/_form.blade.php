@@ -12,4 +12,4 @@
     @include('cruds.fields.is_pinned', ['model' => $entityAsset ?? null, 'fieldName' => 'is_pinned'])
     @include('cruds.fields.visibility_id', ['model' => $entityAsset ?? null])
 </x-grid>
-<input type="hidden" name="type_id" value="{{ \App\Enums\EntityAssetType::ALIAS->value }}" />
+<input type="hidden" name="type_id" value="{{ \App\Enums\EntityAssetType::alias }}" />

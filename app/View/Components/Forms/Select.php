@@ -66,6 +66,9 @@ class Select extends Component
         if (is_int($this->selected)) {
             return $value == $this->selected;
         }
+        if ($this->selected instanceof \UnitEnum) {
+            return $value == $this->selected->value;
+        }
 
         // Always force values to lower to avoid thinking
         return mb_strtolower($value) == mb_strtolower($this->selected);

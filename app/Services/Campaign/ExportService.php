@@ -76,14 +76,14 @@ class ExportService
                 ->notify();
 
             $this->log->update([
-                'status' => CampaignExportStatus::FINISHED->value,
+                'status' => CampaignExportStatus::finished,
                 'size' => $this->filesize(),
                 'path' => $this->exportPath(),
             ]);
         } catch (Exception $e) {
             $this->log
                 ->update([
-                    'status' => CampaignExportStatus::FAILED->value,
+                    'status' => CampaignExportStatus::failed,
                 ]);
             if (isset($this->path)) {
                 $this->cleanup();

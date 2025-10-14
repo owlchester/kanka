@@ -73,6 +73,6 @@ trait EntityEventScopes
 
     public function scopeCalendarDate(Builder $query): Builder
     {
-        return $query->where('type_id', EntityEventTypes::CALENDAR_DATE->values);
+        return $query->where('type_id', EntityEventTypes::calendarDate);
     }
 }

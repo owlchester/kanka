@@ -4,8 +4,8 @@ namespace App\Enums;
 
 enum MapMarkerShape: int
 {
-    case MARKER = 1;
-    case LABEL = 2;
-    case CIRCLE = 3;
-    case POLY = 5;
+    case marker = 1;
+    case label = 2;
+    case circle = 3;
+    case poly = 5;
 }

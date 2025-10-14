@@ -34,7 +34,7 @@ trait Orderable
                 ->leftJoin('reminders as cd', function ($on) {
                     return $on->on('cd.remindable_id', 'e.id')
                         ->on('cd.remindable_type', '=', DB::raw("'" . addslashes(Entity::class) . "'"))
-                        ->where('cd.type_id', EntityEventTypes::CALENDAR_DATE->values);
+                        ->where('cd.type_id', EntityEventTypes::calendarDate);
                 })
                 ->orderBy('cd.year', $direction)
                 ->orderBy('cd.month', $direction)

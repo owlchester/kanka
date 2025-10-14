@@ -42,6 +42,10 @@ class Conversation extends MiscModel
         'is_closed',
     ];
 
+    public $casts = [
+        'target_id' => \App\Enums\ConversationTarget::class,
+    ];
+
     /**
      * Searchable fields
      */
@@ -130,7 +134,7 @@ class Conversation extends MiscModel
 
     public function forCharacters(): bool
     {
-        return $this->target_id == ConversationTarget::CHARACTERS->value;
+        return $this->target_id == ConversationTarget::characters;
     }
 
     /**

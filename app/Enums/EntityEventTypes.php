@@ -4,8 +4,8 @@ namespace App\Enums;
 
 enum EntityEventTypes: int
 {
-    case BIRTH = 2;
-    case DEATH = 3;
-    case CALENDAR_DATE = 4;
-    case FOUNDED = 5;
+    case birth = 2;
+    case death = 3;
+    case calendarDate = 4;
+    case founded = 5;
 }

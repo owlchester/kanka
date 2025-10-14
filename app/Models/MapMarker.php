@@ -99,6 +99,7 @@ class MapMarker extends Model
     public $casts = [
         'polygon_style' => 'array',
         'visibility_id' => \App\Enums\Visibility::class,
+        'type_id' => \App\Enums\MapMarkerShape::class,
     ];
 
     protected array $suggestions = [
@@ -159,7 +160,7 @@ class MapMarker extends Model
      */
     public function isLabel(): bool
     {
-        return $this->shape_id === MapMarkerShape::LABEL->value;
+        return $this->shape_id === MapMarkerShape::label;
     }
 
     /**
@@ -167,7 +168,7 @@ class MapMarker extends Model
      */
     public function isCircle(): bool
     {
-        return $this->shape_id === MapMarkerShape::CIRCLE->value;
+        return $this->shape_id === MapMarkerShape::circle;
     }
 
     public function css(): string
@@ -180,7 +181,7 @@ class MapMarker extends Model
      */
     public function isPolygon(): bool
     {
-        return $this->shape_id === MapMarkerShape::POLY->value && ! empty($this->custom_shape);
+        return $this->shape_id === MapMarkerShape::poly && ! empty($this->custom_shape);
     }
 
     /**

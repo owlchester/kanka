@@ -209,7 +209,7 @@ class SearchService
                         } else {
                             $join->where('ea.name', 'like', '%' . $this->term . '%');
                         }
-                        $join->where('ea.type_id', EntityAssetType::ALIAS->value);
+                        $join->where('ea.type_id', EntityAssetType::alias);
                     })
                     ->where(function ($sub) use ($cleanTerm) {
                         if (Str::startsWith($this->term, '=')) {
