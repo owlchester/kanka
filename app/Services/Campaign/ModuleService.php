@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Models\EntityType;
 use App\Traits\CampaignAware;
 use Exception;
 use Illuminate\Support\Str;
@@ -44,7 +45,11 @@ class ModuleService
             return $this->pluralFallback($id);
         }
 
-        return $fallback;
+        if (is_array(__($fallback))) {
+            return $this->pluralFallback($id);
+        }
+
+        return __($fallback);
     }
 
     public function icon(string|int $key, ?string $fallback = null): ?string
@@ -57,18 +62,22 @@ class ModuleService
         return $fallback;
     }
 
-    public function duoIcon(string $entityType): string
+    public function duoIcon(EntityType $entityType): string
     {
-        $id = $this->id($entityType);
-        if ($this->campaign->hasModuleIcon($id)) {
-            return $this->campaign->moduleIcon($id);
-        }
-        $fallback = config('entities.icons.' . $entityType);
-        if (config('fontawesome.kit')) {
-            return $fallback;
+        if ($this->campaign->hasModuleIcon($entityType->id)) {
+            return $this->campaign->moduleIcon($entityType->id);
         }
 
-        return Str::replace('duotone', 'solid', $fallback);
+        return $this->defaultIcon($entityType);
+    }
+
+    public function defaultIcon(EntityType $entityType): string
+    {
+        if (config('fontawesome.kit')) {
+            return 'fa-duotone ' . $entityType->icon;
+        }
+
+        return 'fa-regular ' . $entityType->icon;
     }
 
     /**

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\EntityEventTypes;
 use App\Http\Requests\UpdateCalendarEvent;
 use App\Models\Calendar;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Models\EntityEventType;
 use App\Models\Post;
 use App\Models\Reminder;
 use App\Services\CalendarService;
@@ -86,7 +86,7 @@ class ReminderUpdateController extends Controller
         }
 
         if (! is_null($this->post)) {
-            $request->merge(['type_id' => EntityEventType::CALENDAR_DATE]);
+            $request->merge(['type_id' => EntityEventTypes::calendarDate]);
         }
 
         $routeOptions = ['campaign' => $campaign, 'entity' => $reminder->calendar->entity, 'year' => request()->post('year')];

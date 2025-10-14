@@ -19,7 +19,7 @@
             'disableSort' => true,
         ],
         [
-            'label' => '<i class="' . \App\Facades\Module::duoIcon('timeline') . '" title="' . \App\Facades\Module::plural(config('entities.ids.timeline'), __('entities.timelines')) . '"></i>',
+            'label' => '<i class="' . $entityType->icon() . '" title="' . $entityType->plural() . '"></i>',
             'render' => function($model) {
                 return number_format($model->children_count);
             },

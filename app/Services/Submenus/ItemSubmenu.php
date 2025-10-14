@@ -20,7 +20,7 @@ class ItemSubmenu extends BaseSubmenu implements EntitySubmenu
         $inventoryCount = $item->inventories()->with('item')->has('entity')->count();
         if ($inventoryCount > 0) {
             $items['second']['inventories'] = [
-                'name' => 'items.show.tabs.inventories',
+                'name' => __('items.show.tabs.inventories'),
                 'route' => 'items.inventories',
                 'count' => $inventoryCount,
             ];

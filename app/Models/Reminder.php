@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EntityEventTypes;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasVisibility;
 use App\Models\Concerns\SortableTrait;
@@ -524,7 +525,7 @@ class Reminder extends Model
      */
     public function isBirth(): bool
     {
-        return $this->type_id === EntityEventType::BIRTH;
+        return $this->type_id === EntityEventTypes::birth;
     }
 
     /**
@@ -532,7 +533,7 @@ class Reminder extends Model
      */
     public function isFounded(): bool
     {
-        return $this->type_id === EntityEventType::FOUNDED;
+        return $this->type_id === EntityEventTypes::founded;
     }
 
     /**
@@ -540,7 +541,7 @@ class Reminder extends Model
      */
     public function isDeath(): bool
     {
-        return $this->type_id === EntityEventType::DEATH;
+        return $this->type_id === EntityEventTypes::death;
     }
 
     /**
@@ -548,7 +549,7 @@ class Reminder extends Model
      */
     public function isCalendarDate(): bool
     {
-        return $this->type_id === EntityEventType::CALENDAR_DATE;
+        return $this->type_id === EntityEventTypes::calendarDate;
     }
 
     /**
@@ -570,7 +571,7 @@ class Reminder extends Model
     {
         return $this->morphOne(Reminder::class, 'remindable')
             ->whereColumn('calendar_id', 'reminders.calendar_id')
-            ->where('type_id', EntityEventType::DEATH);
+            ->where('type_id', EntityEventTypes::death);
     }
 
     /**

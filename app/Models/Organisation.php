@@ -57,11 +57,6 @@ class Organisation extends MiscModel
         'is_defunct',
     ];
 
-    /**
-     * Entity type
-     */
-    protected string $entityType = 'organisation';
-
     protected int $allMembersCount;
 
     /**
@@ -175,8 +170,8 @@ class Organisation extends MiscModel
             ->has('character')
             ->with(['character', 'character.entity'])
             ->whereIn('pin_id', [
-                OrganisationMemberPin::ORGANISATION->value,
-                OrganisationMemberPin::BOTH->value,
+                OrganisationMemberPin::organisation,
+                OrganisationMemberPin::both,
             ])
             ->orderBy('role');
     }

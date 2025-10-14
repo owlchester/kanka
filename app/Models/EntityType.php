@@ -145,11 +145,17 @@ class EntityType extends Model
      */
     public function plural(): string
     {
+        // Custom module always uses the defined plural
         if (! empty($this->plural)) {
             return $this->plural;
         }
 
-        return Module::plural($this->id, __('entities.' . $this->pluralCode()));
+        return Module::plural($this->id, $this->defaultPluralKey());
+    }
+
+    public function defaultPluralKey(): string
+    {
+        return 'entities.' . $this->pluralCode();
     }
 
     /**
@@ -157,11 +163,12 @@ class EntityType extends Model
      */
     public function icon(): string
     {
-        if (! empty($this->icon)) {
+        // Custom module? Always use the icon
+        if (! empty($this->campaign_id)) {
             return $this->icon;
         }
 
-        return Module::duoIcon($this->code);
+        return Module::duoIcon($this);
     }
 
     /**

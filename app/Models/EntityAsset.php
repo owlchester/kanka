@@ -56,6 +56,7 @@ class EntityAsset extends Model
     public $casts = [
         'metadata' => 'array',
         'visibility_id' => \App\Enums\Visibility::class,
+        'type_id' => \App\Enums\EntityAssetType::class,
     ];
 
     protected array $sanitizable = [
@@ -89,7 +90,7 @@ class EntityAsset extends Model
      */
     public function isFile(): bool
     {
-        return $this->type_id == EntityAssetType::FILE->value;
+        return $this->type_id == EntityAssetType::file;
     }
 
     /**
@@ -97,7 +98,7 @@ class EntityAsset extends Model
      */
     public function isLink(): bool
     {
-        return $this->type_id == EntityAssetType::LINK->value;
+        return $this->type_id == EntityAssetType::link;
     }
 
     /**
@@ -105,7 +106,7 @@ class EntityAsset extends Model
      */
     public function isAlias(): bool
     {
-        return $this->type_id == EntityAssetType::ALIAS->value;
+        return $this->type_id == EntityAssetType::alias;
     }
 
     /**

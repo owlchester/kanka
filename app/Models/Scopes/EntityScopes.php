@@ -230,7 +230,7 @@ trait EntityScopes
     {
         $query
             ->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'entities.id')
-            ->where('entity_assets.type_id', \App\Enums\EntityAssetType::FILE->value);
+            ->where('entity_assets.type_id', \App\Enums\EntityAssetType::file);
 
         if ($value) {
             $query->whereNotNull('entity_assets.id');

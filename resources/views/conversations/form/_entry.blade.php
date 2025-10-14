@@ -1,7 +1,7 @@
 <?php
 $targets = [
-    \App\Enums\ConversationTarget::USERS->value => __('conversations.targets.members'),
-    \App\Enums\ConversationTarget::CHARACTERS->value => __('conversations.targets.characters'),
+    \App\Enums\ConversationTarget::users->value => __('conversations.targets.members'),
+    \App\Enums\ConversationTarget::characters->value => __('conversations.targets.characters'),
 ];
 ?>
 

@@ -45,27 +45,27 @@ class RolePermissionService
         ];
         $icons = [
             CampaignPermission::ACTION_READ => [
-                'fa-solid fa-eye',
+                'fa-regular fa-eye',
                 'read',
             ],
             CampaignPermission::ACTION_EDIT => [
-                'fa-solid fa-pen',
+                'fa-regular fa-pen',
                 'edit',
             ],
             CampaignPermission::ACTION_ADD => [
-                'fa-solid fa-plus-square',
+                'fa-regular fa-plus-square',
                 'add',
             ],
             CampaignPermission::ACTION_DELETE => [
-                'fa-solid fa-trash-alt',
+                'fa-regular fa-trash-alt',
                 'delete',
             ],
             CampaignPermission::ACTION_POSTS => [
-                'fa-solid fa-file',
+                'fa-regular fa-file',
                 'entity-note',
             ],
             CampaignPermission::ACTION_PERMS => [
-                'fa-solid fa-cog',
+                'fa-regular fa-cog',
                 'permission',
             ],
         ];
@@ -129,14 +129,14 @@ class RolePermissionService
         ];
         $icons = [
             CampaignPermission::ACTION_MANAGE => [
-                'fa-solid fa-cog',
+                'fa-regular fa-cog',
                 'manage',
             ],
             CampaignPermission::ACTION_DASHBOARD => [
-                'fa-solid fa-columns', 'dashboard',
+                'fa-regular fa-columns', 'dashboard',
             ],
             CampaignPermission::ACTION_MEMBERS => [
-                'fa-solid fa-users', 'members',
+                'fa-regular fa-users', 'members',
             ],
         ];
 
@@ -176,13 +176,13 @@ class RolePermissionService
         ];
         $icons = [
             CampaignPermission::ACTION_GALLERY => [
-                'fa-solid fa-cog', 'gallery.manage',
+                'fa-regular fa-cog', 'gallery.manage',
             ],
             CampaignPermission::ACTION_GALLERY_BROWSE => [
-                'fa-solid fa-eye', 'gallery.browse',
+                'fa-regular fa-eye', 'gallery.browse',
             ],
             CampaignPermission::ACTION_GALLERY_UPLOAD => [
-                'fa-solid fa-upload', 'gallery.upload',
+                'fa-regular fa-upload', 'gallery.upload',
             ],
         ];
 
@@ -222,10 +222,10 @@ class RolePermissionService
         ];
         $icons = [
             CampaignPermission::ACTION_TEMPLATES => [
-                'fa-solid fa-cog', 'entities',
+                'fa-regular fa-cog', 'entities',
             ],
             CampaignPermission::ACTION_POST_TEMPLATES => [
-                'fa-solid fa-cog', 'posts',
+                'fa-regular fa-cog', 'posts',
             ],
         ];
 
@@ -263,7 +263,7 @@ class RolePermissionService
         ];
         $icons = [
             CampaignPermission::ACTION_BOOKMARKS => [
-                'fa-solid fa-cog', 'manage',
+                'fa-regular fa-cog', 'manage',
             ],
         ];
 

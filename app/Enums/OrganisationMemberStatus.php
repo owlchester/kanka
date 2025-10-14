@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum OrganisationMemberStatus: int
 {
-    case ACTIVE = 0;
-    case INACTIVE = 1;
-    case UNKNOWN = 2;
+    case active = 0;
+    case inactive = 1;
+    case unknown = 2;
 }

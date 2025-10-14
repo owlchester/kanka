@@ -58,11 +58,6 @@ class DiceRoll extends MiscModel
         'character_id',
     ];
 
-    /**
-     * Entity type
-     */
-    protected string $entityType = 'dice_roll';
-
     protected array $sanitizable = [
         'name',
         'parameters',

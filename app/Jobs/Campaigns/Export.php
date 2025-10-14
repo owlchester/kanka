@@ -2,6 +2,7 @@
 
 namespace App\Jobs\Campaigns;
 
+use App\Enums\CampaignExportStatus;
 use App\Jobs\FileCleanup;
 use App\Models\Campaign;
 use App\Models\CampaignExport;
@@ -61,8 +62,7 @@ class Export implements ShouldQueue
             return 0;
         }
         Log::info('Campaign export', ['running', 'id' => $this->campaignExportId]);
-        $campaignExport->update(['status' => CampaignExport::STATUS_RUNNING]);
-
+        $campaignExport->update(['status' => CampaignExportStatus::running]);
         /** @var Campaign|null $campaign */
         $campaign = Campaign::find($this->campaignId);
         if (! $campaign) {
@@ -99,8 +99,7 @@ class Export implements ShouldQueue
         if (! $campaignExport) {
             return;
         }
-        $campaignExport->update(['status' => CampaignExport::STATUS_FAILED]);
-
+        $campaignExport->update(['status' => CampaignExportStatus::failed]);
         // Set the campaign export date to null so that the user can try again.
         // If it failed once, trying again won't help, but this might motivate
         // them to report the error.

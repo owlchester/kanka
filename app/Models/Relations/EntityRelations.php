@@ -3,6 +3,7 @@
 namespace App\Models\Relations;
 
 use App\Enums\EntityAssetType;
+use App\Enums\EntityEventTypes;
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -13,7 +14,6 @@ use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
-use App\Models\EntityEventType;
 use App\Models\EntityLog;
 use App\Models\EntityTag;
 use App\Models\EntityType;
@@ -246,6 +246,14 @@ trait EntityRelations
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Timeline, $this>
+     */
+    public function whiteboard(): HasOne
+    {
+        return $this->hasOne('App\Models\Whiteboard', 'id', 'entity_id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityTag, $this>
      */
     public function entityTags(): HasMany
@@ -399,7 +407,7 @@ trait EntityRelations
         return $this->morphOne(Reminder::class, 'remindable')
             ->with('calendar')
             ->has('calendar')
-            ->where('type_id', EntityEventType::CALENDAR_DATE);
+            ->where('type_id', EntityEventTypes::calendarDate);
     }
 
     public function elapsedEvents(): MorphMany
@@ -465,7 +473,7 @@ trait EntityRelations
     public function links()
     {
         return $this->assets
-            ->where('type_id', EntityAssetType::LINK->value);
+            ->where('type_id', EntityAssetType::link);
     }
 
     /**

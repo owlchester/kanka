@@ -1,20 +1,20 @@
 @php
 $options = [
     '' => __('organisations.members.pinned.none'),
-    App\Enums\OrganisationMemberPin::CHARACTER->value => Module::singular(
+    App\Enums\OrganisationMemberPin::character->value => App\Facades\Module::singular(
         config('entities.ids.character'),
         __('entities.character')
     ),
-    App\Enums\OrganisationMemberPin::ORGANISATION->value => Module::singular(
+    App\Enums\OrganisationMemberPin::organisation->value => App\Facades\Module::singular(
         config('entities.ids.organisation'),
         __('entities.organisation')
     ),
-    App\Enums\OrganisationMemberPin::BOTH->value => __('organisations.members.pinned.both'),
+    App\Enums\OrganisationMemberPin::both->value => __('organisations.members.pinned.both'),
 ];
 $statuses = [
-    App\Enums\OrganisationMemberStatus::ACTIVE->value => __('organisations.members.status.active'),
-    App\Enums\OrganisationMemberStatus::INACTIVE->value => __('organisations.members.status.inactive'),
-    App\Enums\OrganisationMemberStatus::UNKNOWN->value => __('organisations.members.status.unknown'),
+    App\Enums\OrganisationMemberStatus::active->value => __('organisations.members.status.active'),
+    App\Enums\OrganisationMemberStatus::inactive->value => __('organisations.members.status.inactive'),
+    App\Enums\OrganisationMemberStatus::unknown->value => __('organisations.members.status.unknown'),
 ];
 $fromOrg = request()->get('from') === 'org';
 @endphp

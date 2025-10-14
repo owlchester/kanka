@@ -93,11 +93,6 @@ class Character extends MiscModel
     protected array $exploreGridFields = ['is_dead'];
 
     /**
-     * Entity type
-     */
-    protected string $entityType = 'character';
-
-    /**
      * Searchable fields
      */
     protected array $searchableColumns = ['name', 'title'];
@@ -380,8 +375,8 @@ class Character extends MiscModel
             ->has('organisation')
             ->with(['organisation', 'organisation.entity'])
             ->whereIn('pin_id', [
-                OrganisationMemberPin::CHARACTER->value,
-                OrganisationMemberPin::BOTH->value,
+                OrganisationMemberPin::character,
+                OrganisationMemberPin::both,
             ])
             ->orderBy('role');
     }

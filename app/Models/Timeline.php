@@ -79,11 +79,6 @@ class Timeline extends MiscModel
         'name',
     ];
 
-    /**
-     * Entity type
-     */
-    protected string $entityType = 'timeline';
-
     protected array $apiWith = [
         'eras',
         'eras.elements',

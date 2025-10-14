@@ -10,7 +10,7 @@ class CustomSubmenu extends BaseSubmenu implements EntitySubmenu
         $childCount = $this->entity->children()->count();
         if ($childCount > 0) {
             $items['second']['children'] = [
-                'name' => 'entities/children.title',
+                'name' => __('entities/children.title'),
                 'route' => 'entities.children',
                 'count' => $childCount,
                 'entity' => true,

@@ -49,6 +49,7 @@ return [
     'sections'      => [
         'custom'    => 'Custom modules',
         'default'   => 'Default modules',
+        'early-access' => 'Early access',
         'features'  => 'Features',
     ],
     'states'        => [

@@ -49,13 +49,11 @@ $entityTags = $post->visibleTags();
                 <div class="post-details entity-note-details">
                     @if ($post->location && $post->location->entity)
                         <span class="entity-note-detail-element entity-note-location post-detail-element post-location">
-                            <x-icon entity="location" />
                             <x-entity-link :entity="$post->location->entity" :campaign="$campaign" />
                         </span>
                     @endif
                     @if ($post->calendarReminder()?->calendar_id)
                         <span class="entity-note-detail-element entity-note-reminder post-detail-element post-reminder">
-                            <x-icon entity="calendar" />
                             <a href="{{ $post->calendarReminder()->calendar->getLink() . '?year=' . $post->calendarReminder()->year . '&month=' . $post->calendarReminder()->month }} "> {{ $post->calendarReminder()->readableDate() }} </a>
                         </span>
                     @endif

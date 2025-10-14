@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CampaignExportStatus;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\SortableTrait;
 use App\Observers\CampaignExportObserver;
@@ -27,14 +28,6 @@ class CampaignExport extends Model
     use MassPrunable;
     use SortableTrait;
 
-    public const int STATUS_SCHEDULED = 1;
-
-    public const int STATUS_RUNNING = 2;
-
-    public const int STATUS_FINISHED = 3;
-
-    public const int STATUS_FAILED = 4;
-
     public $fillable = [
         'size',
         'type',
@@ -49,6 +42,10 @@ class CampaignExport extends Model
         'type',
         'created_at',
         'created_by',
+    ];
+
+    public $casts = [
+        'status' => \App\Enums\CampaignExportStatus::class,
     ];
 
     protected string $userField = 'created_by';
@@ -71,21 +68,21 @@ class CampaignExport extends Model
 
     public function finished(): bool
     {
-        return $this->status === CampaignExport::STATUS_FINISHED;
+        return $this->status === CampaignExportStatus::finished;
     }
 
     public function running(): bool
     {
-        return $this->status === CampaignExport::STATUS_RUNNING;
+        return $this->status === CampaignExportStatus::running;
     }
 
     public function scheduled(): bool
     {
-        return $this->status === CampaignExport::STATUS_SCHEDULED;
+        return $this->status === CampaignExportStatus::scheduled;
     }
 
     public function failed(): bool
     {
-        return $this->status === CampaignExport::STATUS_FAILED;
+        return $this->status === CampaignExportStatus::failed;
     }
 }

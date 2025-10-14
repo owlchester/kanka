@@ -92,6 +92,9 @@ class Campaign extends Component
         'abilities' => [
             'abilities',
         ],
+        'whiteboards' => [
+            'whiteboards',
+        ],
         'relations' => [
             'relations',
         ],

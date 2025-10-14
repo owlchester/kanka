@@ -108,4 +108,6 @@ return [
     'timeline'              => 'Timeline',
     'timeline_element'      => 'Timeline element',
     'timelines'             => 'Timelines',
+    'whiteboard'            => 'Whiteboard',
+    'whiteboards'           => 'Whiteboards',
 ];

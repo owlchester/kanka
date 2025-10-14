@@ -7,6 +7,7 @@ use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class SubmenuService
 {
@@ -28,7 +29,7 @@ class SubmenuService
     protected function default(): self
     {
         $this->items['first']['story'] = [
-            'name' => 'crud.tabs.story',
+            'name' => __('crud.tabs.story'),
             'route' => 'entities.show',
             'entity' => true,
             'button' => isset($this->user) && $this->user->can('update', $this->entity) ? [
@@ -41,7 +42,7 @@ class SubmenuService
         // Each entity can have relations
         //        if (!isset($this->model->hasRelations) || $this->model->hasRelations === true) {
         $this->items['first']['relations'] = [
-            'name' => 'crud.tabs.connections',
+            'name' => __('crud.tabs.connections'),
             'route' => 'entities.relations.index',
             'count' => $this->entity->relationships()->has('target')->count(),
             'entity' => true,
@@ -62,7 +63,7 @@ class SubmenuService
 
         if ($this->campaign->enabled('calendars')) {
             $this->items['third']['reminders'] = [
-                'name' => 'crud.tabs.reminders',
+                'name' => __('crud.tabs.reminders'),
                 'route' => 'entities.reminders.index',
                 'count' => 0, // $this->entity->abilities()->has('ability')->count(),
                 'entity' => true,
@@ -72,7 +73,7 @@ class SubmenuService
 
         if ($this->campaign->enabled('entity_attributes')) {
             $this->items['third']['attributes'] = [
-                'name' => 'crud.tabs.attributes',
+                'name' => __('crud.tabs.attributes'),
                 'route' => 'entities.attributes',
                 'entity' => true,
                 'icon' => '',
@@ -83,7 +84,7 @@ class SubmenuService
         // Each entity can have an inventory
         if ($this->campaign->enabled('inventories')) {
             $this->items['third']['inventory'] = [
-                'name' => 'crud.tabs.inventory',
+                'name' => __('crud.tabs.inventory'),
                 'route' => 'entities.inventory',
                 'count' => 0, // $this->entity->inventories()->has('item')->count(),
                 'entity' => true,
@@ -94,7 +95,7 @@ class SubmenuService
         // Each entity can have assets
         if ($this->campaign->enabled('assets') && $this->entity->hasFiles()) {
             $this->items['third']['assets'] = [
-                'name' => 'crud.tabs.assets',
+                'name' => __('crud.tabs.assets'),
                 'route' => 'entities.entity_assets.index',
                 'count' => $this->entity->assets()->count(),
                 'entity' => true,
@@ -106,7 +107,7 @@ class SubmenuService
         $mentionsCount = $this->entity->mentionsCount();
         if (isset($this->user) && $mentionsCount > 0) {
             $this->items['fourth']['mentions'] = [
-                'name' => 'crud.tabs.mentions',
+                'name' => __('crud.tabs.mentions'),
                 'route' => 'entities.mentions',
                 'entity' => true,
                 'count' => $mentionsCount,
@@ -116,7 +117,7 @@ class SubmenuService
         // Permissions for the admin?
         if (isset($this->user) && $this->user->can('permissions', $this->entity)) {
             $this->items['fourth']['permissions'] = [
-                'name' => 'crud.tabs.permissions',
+                'name' => __('crud.tabs.permissions'),
                 'route' => 'entities.permissions',
                 'entity' => true,
                 'ajax' => true,
@@ -174,7 +175,7 @@ class SubmenuService
         if (Arr::has($this->items, 'third')) {
             $sortedItems = array_combine(array_keys($this->items['third']), array_column($this->items['third'], 'name'));
             foreach ($sortedItems as $key => $item) {
-                $sortedItems[$key] = __($item);
+                $sortedItems[$key] = $item;
             }
 
             $collator = new \Collator(app()->getLocale());

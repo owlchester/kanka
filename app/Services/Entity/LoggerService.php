@@ -128,6 +128,12 @@ class LoggerService
         $this->log->save();
     }
 
+    public function updatedFamilyTree(): void
+    {
+        $this->log(EntityLog::ACTION_UPDATE_FAMILY_TREE);
+        $this->log->save();
+    }
+
     protected function log(int $action)
     {
         $this->log = new EntityLog;
@@ -274,7 +280,7 @@ class LoggerService
             // Silence
             if ($attribute == 'target_id' && $this->model instanceof Conversation) {
                 return __('conversations.targets.' . (
-                    $original == ConversationTarget::USERS->value ? 'members' : 'characters'
+                    $original == ConversationTarget::users ? 'members' : 'characters'
                 ));
             }
 

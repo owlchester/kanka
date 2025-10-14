@@ -23,7 +23,7 @@ class CreateEntityAssetsTable extends Migration
             $table->index(['type_id', 'is_pinned']);
         });
 
-        DB::update('update entity_aliases set type_id = ' . \App\Enums\EntityAssetType::ALIAS->value);
+        DB::update('update entity_aliases set type_id = ' . \App\Enums\EntityAssetType::alias->value);
 
         Schema::rename('entity_aliases', 'entity_assets');
     }

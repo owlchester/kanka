@@ -2,7 +2,6 @@
 
 namespace App\Services\Submenus;
 
-use App\Facades\Module;
 use App\Models\Organisation;
 
 class OrganisationSubmenu extends BaseSubmenu implements EntitySubmenu
@@ -15,7 +14,7 @@ class OrganisationSubmenu extends BaseSubmenu implements EntitySubmenu
         $count = $model->descendants()->has('entity')->count();
         if ($count > 0) {
             $items['second']['organisations'] = [
-                'name' => Module::plural($model->entityTypeId(), 'entities.organisations'),
+                'name' => $this->entity->entityType->plural(),
                 'route' => 'organisations.organisations',
                 'count' => $count,
             ];

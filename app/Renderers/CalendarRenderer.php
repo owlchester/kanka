@@ -2,9 +2,9 @@
 
 namespace App\Renderers;
 
+use App\Enums\EntityEventTypes;
 use App\Models\Calendar;
 use App\Models\Entity;
-use App\Models\EntityEventType;
 use App\Models\Post;
 use App\Models\Reminder;
 use App\Services\Calendars\DaysService;
@@ -751,7 +751,7 @@ class CalendarRenderer
                     ->orWhere(function ($sub) {
                         if ($this->calendar->show_birthdays) {
                             $sub->where('year', '<=', $this->getYear())
-                                ->whereIn('type_id', [EntityEventType::BIRTH, EntityEventType::DEATH]);
+                                ->whereIn('type_id', [EntityEventTypes::births, EntityEventTypes::deaths]);
                             if (! $this->isYearlyLayout()) {
                                 $sub->where('month', $this->getMonth());
                             }

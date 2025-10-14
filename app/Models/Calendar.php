@@ -103,8 +103,6 @@ class Calendar extends MiscModel
 
     protected array $loadedMonthAliases;
 
-    protected string $entityType = 'calendar';
-
     protected array $cachedCurrentDate;
 
     public function scopePreparedWith(Builder $query): Builder

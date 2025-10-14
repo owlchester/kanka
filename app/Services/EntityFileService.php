@@ -73,7 +73,7 @@ class EntityFileService
                 );
 
             $file = new EntityAsset;
-            $file->type_id = EntityAssetType::FILE->value;
+            $file->type_id = EntityAssetType::file;
             $file->entity_id = $this->entity->id;
             $file->metadata = [
                 'size' => $uploadedFile->getSize(),
