@@ -375,8 +375,8 @@ class Character extends MiscModel
             ->has('organisation')
             ->with(['organisation', 'organisation.entity'])
             ->whereIn('pin_id', [
-                OrganisationMemberPin::CHARACTER->value,
-                OrganisationMemberPin::BOTH->value,
+                OrganisationMemberPin::character,
+                OrganisationMemberPin::both,
             ])
             ->orderBy('role');
     }

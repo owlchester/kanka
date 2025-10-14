@@ -48,7 +48,7 @@ class EntityAssetApiController extends ApiController
         $data = $request->all();
         $data['entity_id'] = $entity->id;
 
-        if ($request->get('type_id') == EntityAssetType::FILE->value) {
+        if ($request->get('type_id') == EntityAssetType::file->value) {
             /** @var EntityFileService $service */
             $service = app()->make(EntityFileService::class);
             $files = $service

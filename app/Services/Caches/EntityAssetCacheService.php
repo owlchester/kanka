@@ -30,7 +30,7 @@ class EntityAssetCacheService extends BaseCache
 , MAX(entity_assets.created_at) as cmat'))
                 ->groupBy('metadata')
                 ->whereNotNull('metadata->icon')
-                ->where('entity_assets.type_id', EntityAssetType::LINK->value)
+                ->where('entity_assets.type_id', EntityAssetType::link)
                 ->orderBy('cmat', 'DESC')
                 ->take(10)
                 ->pluck('icon')

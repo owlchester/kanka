@@ -22,7 +22,7 @@ class CreateConversations extends Migration
             $table->string('image', 255)->nullable();
             $table->string('type', 45)->nullable();
             $table->unsignedTinyInteger('target_id')
-                ->default(ConversationTarget::USERS->value);
+                ->default(ConversationTarget::users->value);
 
             $table->boolean('is_private')->default(false);
             $table->boolean('is_closed')->default(false);

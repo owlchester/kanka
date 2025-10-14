@@ -436,8 +436,8 @@ trait CampaignRelations
     {
         return $this->campaignExports()
             ->whereIn('status', [
-                CampaignExportStatus::SCHEDULED->value,
-                CampaignExportStatus::RUNNING->value,
+                CampaignExportStatus::scheduled,
+                CampaignExportStatus::running,
             ]);
     }
 

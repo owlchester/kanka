@@ -407,7 +407,7 @@ trait EntityRelations
         return $this->morphOne(Reminder::class, 'remindable')
             ->with('calendar')
             ->has('calendar')
-            ->where('type_id', EntityEventTypes::CALENDAR_DATE->values);
+            ->where('type_id', EntityEventTypes::calendarDate);
     }
 
     public function elapsedEvents(): MorphMany
@@ -473,7 +473,7 @@ trait EntityRelations
     public function links()
     {
         return $this->assets
-            ->where('type_id', EntityAssetType::LINK->value);
+            ->where('type_id', EntityAssetType::link);
     }
 
     /**

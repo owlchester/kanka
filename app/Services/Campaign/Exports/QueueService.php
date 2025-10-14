@@ -22,7 +22,7 @@ class QueueService
             'campaign_id' => $this->campaign->id,
             'created_by' => $this->user->id,
             'type' => 1,
-            'status' => CampaignExportStatus::SCHEDULED->value,
+            'status' => CampaignExportStatus::scheduled,
         ]);
 
         Export::dispatch($this->campaign, $this->user, $entitiesExport)->onQueue('heavy');

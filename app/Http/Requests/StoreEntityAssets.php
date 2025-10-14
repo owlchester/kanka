@@ -31,15 +31,15 @@ class StoreEntityAssets extends FormRequest
     public function rules()
     {
         return $this->clean([
-            'name' => 'required_unless:type_id,' . EntityAssetType::FILE->value . '|max:45',
+            'name' => 'required_unless:type_id,' . EntityAssetType::file->value . '|max:45',
             'visibility_id' => 'nullable|integer|exists:visibilities,id',
-            'files' => ['required_if:type_id,' . EntityAssetType::FILE->value],
+            'files' => ['required_if:type_id,' . EntityAssetType::file->value],
             'files.*' => [
                 'file',
                 'max:' . Limit::upload(),
                 new EntityFile,
             ],
-            'metadata.url' => 'required_if:type_id,' . EntityAssetType::LINK->value . '|string|url',
+            'metadata.url' => 'required_if:type_id,' . EntityAssetType::link->value . '|string|url',
             'metadata.icon' => ['max:45', new FontAwesomeIcon],
         ]);
     }

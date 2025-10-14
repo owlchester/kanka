@@ -74,8 +74,8 @@ class ConversationMessage extends Model
      */
     public function target()
     {
-        return ! empty($this->character_id) ? ConversationTarget::CHARACTERS->value :
-            (! empty($this->user_id) ? ConversationTarget::USERS->value : null);
+        return ! empty($this->character_id) ? ConversationTarget::characters :
+            (! empty($this->user_id) ? ConversationTarget::users : null);
     }
 
     /**

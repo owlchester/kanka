@@ -71,7 +71,7 @@ class RemindableService
         $reminder->is_recurring = (bool) $this->request->post('calendar_is_recurring');
         $reminder->recurring_periodicity = $this->request->post('calendar_recurring_periodicity');
         $reminder->colour = $this->request->post('calendar_colour', '#cccccc');
-        $reminder->type_id = EntityEventTypes::CALENDAR_DATE->values;
+        $reminder->type_id = EntityEventTypes::calendarDate;
         try {
             $reminder->save();
             $model->setRelation('calendarDate', $reminder);

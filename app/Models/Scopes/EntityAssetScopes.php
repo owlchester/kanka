@@ -22,11 +22,11 @@ trait EntityAssetScopes
     public function scopeFiltered(Builder $query, bool $premium = false): Builder
     {
         $types = [
-            EntityAssetType::FILE->value,
+            EntityAssetType::file,
         ];
         if ($premium) {
-            $types[] = EntityAssetType::LINK->value;
-            $types[] = EntityAssetType::ALIAS->value;
+            $types[] = EntityAssetType::link;
+            $types[] = EntityAssetType::alias;
         }
 
         return $query->whereIn('type_id', $types);
@@ -35,18 +35,18 @@ trait EntityAssetScopes
     public function scopeFile(Builder $query)
     {
         // @phpstan-ignore-next-line
-        return $query->type(EntityAssetType::FILE->value);
+        return $query->type(EntityAssetType::file);
     }
 
     public function scopeLink(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
-        return $query->type(EntityAssetType::LINK->value);
+        return $query->type(EntityAssetType::link);
     }
 
     public function scopeAlias(Builder $query)
     {
         // @phpstan-ignore-next-line
-        return $query->type(EntityAssetType::ALIAS->value);
+        return $query->type(EntityAssetType::alias);
     }
 }

@@ -28,6 +28,7 @@ class AppRelease extends Model
     public $casts = [
         'published_at' => 'date',
         'end_at' => 'date',
+        'category_id' => \App\Enums\AppReleaseCategory::class,
     ];
 
     /**
@@ -43,15 +44,15 @@ class AppRelease extends Model
      */
     public function category(): string
     {
-        if ($this->category_id == AppReleaseCategory::RELEASE->value) {
+        if ($this->category_id == AppReleaseCategory::release) {
             return __('releases.categories.release');
-        } elseif ($this->category_id == AppReleaseCategory::EVENT->value) {
+        } elseif ($this->category_id == AppReleaseCategory::event) {
             return __('releases.categories.event');
-        } elseif ($this->category_id == AppReleaseCategory::VOTE->value) {
+        } elseif ($this->category_id == AppReleaseCategory::vote) {
             return __('releases.categories.vote');
-        } elseif ($this->category_id == AppReleaseCategory::OTHER->value) {
+        } elseif ($this->category_id == AppReleaseCategory::other) {
             return __('releases.categories.other');
-        } elseif ($this->category_id == AppReleaseCategory::LIVESTREAM->value) {
+        } elseif ($this->category_id == AppReleaseCategory::livestream) {
             return __('releases.categories.livestream');
         }
 
@@ -70,7 +71,7 @@ class AppRelease extends Model
         }
 
         // Check if the user has the release tutorial entry on the db.
-        return UserCache::user(auth()->user())->dismissedTutorial('releases_' . $this->category_id . '_' . $this->id);
+        return UserCache::user(auth()->user())->dismissedTutorial('releases_' . $this->category_id->value . '_' . $this->id);
     }
 
     /**

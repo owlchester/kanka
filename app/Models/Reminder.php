@@ -525,7 +525,7 @@ class Reminder extends Model
      */
     public function isBirth(): bool
     {
-        return $this->type_id === EntityEventTypes::BIRTH->value;
+        return $this->type_id === EntityEventTypes::birth;
     }
 
     /**
@@ -533,7 +533,7 @@ class Reminder extends Model
      */
     public function isFounded(): bool
     {
-        return $this->type_id === EntityEventTypes::FOUNDED->value;
+        return $this->type_id === EntityEventTypes::founded;
     }
 
     /**
@@ -541,7 +541,7 @@ class Reminder extends Model
      */
     public function isDeath(): bool
     {
-        return $this->type_id === EntityEventTypes::DEATH->value;
+        return $this->type_id === EntityEventTypes::death;
     }
 
     /**
@@ -549,7 +549,7 @@ class Reminder extends Model
      */
     public function isCalendarDate(): bool
     {
-        return $this->type_id === EntityEventTypes::CALENDAR_DATE->value;
+        return $this->type_id === EntityEventTypes::calendarDate;
     }
 
     /**
@@ -571,7 +571,7 @@ class Reminder extends Model
     {
         return $this->morphOne(Reminder::class, 'remindable')
             ->whereColumn('calendar_id', 'reminders.calendar_id')
-            ->where('type_id', EntityEventTypes::DEATH->value);
+            ->where('type_id', EntityEventTypes::death);
     }
 
     /**

@@ -304,7 +304,7 @@ class Post extends Model
         return $this->morphOne(Reminder::class, 'remindable')
             ->with('calendar')
             ->has('calendar')
-            ->where('type_id', EntityEventTypes::CALENDAR_DATE->value);
+            ->where('type_id', EntityEventTypes::calendarDate);
     }
 
     public function elapsedEvents(): MorphMany

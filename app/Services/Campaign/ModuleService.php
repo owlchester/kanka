@@ -45,6 +45,10 @@ class ModuleService
             return $this->pluralFallback($id);
         }
 
+        if (is_array(__($fallback))) {
+            return $this->pluralFallback($id);
+        }
+
         return __($fallback);
     }
 

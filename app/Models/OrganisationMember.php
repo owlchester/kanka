@@ -66,6 +66,11 @@ class OrganisationMember extends Model
         'role',
     ];
 
+    public $casts = [
+        'status_id' => \App\Enums\OrganisationMemberStatus::class,
+        'pin_id' => \App\Enums\OrganisationMemberPin::class,
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
      */
@@ -105,7 +110,7 @@ class OrganisationMember extends Model
      */
     public function pinnedToCharacter(): bool
     {
-        return $this->pin_id === OrganisationMemberPin::CHARACTER->value;
+        return $this->pin_id === OrganisationMemberPin::character;
     }
 
     /**
@@ -113,7 +118,7 @@ class OrganisationMember extends Model
      */
     public function pinnedToOrganisation(): bool
     {
-        return $this->pin_id == OrganisationMemberPin::ORGANISATION->value;
+        return $this->pin_id == OrganisationMemberPin::organisation;
     }
 
     /**
@@ -121,7 +126,7 @@ class OrganisationMember extends Model
      */
     public function pinnedToBoth(): bool
     {
-        return $this->pin_id == OrganisationMemberPin::BOTH->value;
+        return $this->pin_id == OrganisationMemberPin::both;
     }
 
     /**
@@ -129,7 +134,7 @@ class OrganisationMember extends Model
      */
     public function inactive(): bool
     {
-        return $this->status_id == OrganisationMemberStatus::INACTIVE->value;
+        return $this->status_id == OrganisationMemberStatus::inactive;
     }
 
     /**
@@ -137,7 +142,7 @@ class OrganisationMember extends Model
      */
     public function unknown(): bool
     {
-        return $this->status_id === OrganisationMemberStatus::UNKNOWN->value;
+        return $this->status_id === OrganisationMemberStatus::unknown;
     }
 
     public function scopePinned(Builder $query, int $pin): Builder
