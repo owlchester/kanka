@@ -14,7 +14,7 @@ class RaceSubmenu extends BaseSubmenu implements EntitySubmenu
         $count = $model->descendants()->has('entity')->count();
         if ($count > 0) {
             $items['second']['races'] = [
-                'name' => $this->entity->entityType->plural(),
+                'label' => $this->entity->entityType->plural(),
                 'route' => 'races.races',
                 'count' => $count,
             ];

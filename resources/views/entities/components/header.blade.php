@@ -12,6 +12,7 @@ $imagePathXL = Avatar::entity($entity)->size(400)->thumbnail();
 $imagePathMobile = Avatar::entity($entity)->size(192)->thumbnail();
 $imageVisibility = $entity->image ? $entity->image->visibility_id : null;
 $imageClass = (!empty($imageVisibility) ? 'visibility-' . strtolower($imageVisibility->name) : null);
+$entityType = $entityType ?? $entity->entityType;
 
 $addTagsUrl = route('entity.tags-add', [$campaign, $entity]);
 

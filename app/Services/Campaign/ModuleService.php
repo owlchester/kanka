@@ -45,7 +45,7 @@ class ModuleService
             return $this->pluralFallback($id);
         }
 
-        return $fallback;
+        return __($fallback);
     }
 
     public function icon(string|int $key, ?string $fallback = null): ?string

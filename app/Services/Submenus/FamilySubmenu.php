@@ -12,7 +12,7 @@ class FamilySubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Family $family */
         $family = $this->entity->child;
         $items['second']['families'] = [
-            'name' => $this->entity->entityType->plural(),
+            'label' => $this->entity->entityType->plural(),
             'route' => 'families.families',
             'count' => $family->descendants()->has('entity')->count(),
         ];

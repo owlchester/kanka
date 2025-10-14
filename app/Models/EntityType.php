@@ -145,14 +145,15 @@ class EntityType extends Model
      */
     public function plural(): string
     {
+        // Custom module always uses the defined plural
         if (! empty($this->plural)) {
             return $this->plural;
         }
 
-        return Module::plural($this->id, $this->defaultPlural());
+        return Module::plural($this->id, $this->defaultPluralKey());
     }
 
-    public function defaultPlural(): string
+    public function defaultPluralKey(): string
     {
         return 'entities.' . $this->pluralCode();
     }

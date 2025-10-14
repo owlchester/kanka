@@ -447,7 +447,7 @@ class SetupService
             }
 
             $element['icon'] = Module::defaultIcon($module);
-            $element['label'] = $module->defaultPlural();
+            $element['label'] = __($module->defaultPluralKey());
             $this->elements[$key] = $element;
         }
     }
