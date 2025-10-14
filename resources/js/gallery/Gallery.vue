@@ -18,7 +18,7 @@
                     <div :class="usedClasses()" :style="{width: usedPercentage() + '%'}"></div>
                 </div>
             </div>
-            <div v-if="!premium">
+            <div v-if="!premium || (usedPercentage() > 89) && (isWyvern || isElemental)">
                 <a :href="upgradeLink" v-html="trans('upgrade')" class="btn2 btn-default"></a>
             </div>
         </div>
@@ -254,6 +254,8 @@ const loadingMore = ref(false)
 const canUpload = ref(false)
 const isBulking = ref(false)
 const premium = ref(false)
+const isWyvern = ref(false)
+const isElemental = ref(false)
 const canManage = ref(false)
 const breadcrumbs = ref()
 const nextPage = ref()
@@ -337,6 +339,8 @@ onMounted(() => {
             bulkVisibilities.value = res.data.bulkVisibilities
             canUpload.value = res.data.acl.upload
             premium.value = res.data.acl.premium
+            isWyvern.value = res.data.acl.wyvern
+            isElemental.value = res.data.acl.elemental
             canManage.value = res.data.acl.manage
             folders.value = res.data.folders
 
