@@ -48,6 +48,8 @@ class EntityLog extends Model
 
     public const ACTION_UPDATE_POST = 8;
 
+    public const ACTION_UPDATE_FAMILY_TREE = 10;
+
     public $fillable = [
         'created_by',
         'impersonated_by',
@@ -107,6 +109,8 @@ class EntityLog extends Model
             return 'delete_post';
         } elseif ($this->action == self::ACTION_REORDER_POST) {
             return 'reorder_post';
+        } elseif ($this->action == self::ACTION_UPDATE_FAMILY_TREE) {
+            return 'update_tree';
         }
 
         return 'unknown';
@@ -116,7 +120,7 @@ class EntityLog extends Model
     {
         if ($this->action == self::ACTION_CREATE || $this->action == self::ACTION_CREATE_POST) {
             return 'fa-plus';
-        } elseif ($this->action == self::ACTION_UPDATE || $this->action == self::ACTION_UPDATE_POST) {
+        } elseif ($this->action == self::ACTION_UPDATE || $this->action == self::ACTION_UPDATE_POST || $this->action == self::ACTION_UPDATE_FAMILY_TREE) {
             return 'fa-pencil';
         } elseif ($this->action == self::ACTION_REORDER_POST) {
             return 'fa-arrows-rotate';
@@ -133,7 +137,7 @@ class EntityLog extends Model
     {
         if ($this->action == self::ACTION_CREATE || $this->action == self::ACTION_CREATE_POST) {
             return 'bg-green-300';
-        } elseif ($this->action == self::ACTION_UPDATE || $this->action == self::ACTION_UPDATE_POST) {
+        } elseif ($this->action == self::ACTION_UPDATE || $this->action == self::ACTION_UPDATE_POST || $this->action == self::ACTION_UPDATE_FAMILY_TREE) {
             return 'bg-blue-200';
         } elseif ($this->action == self::ACTION_REORDER_POST) {
             return 'bg-yellow-300';
@@ -235,7 +239,7 @@ class EntityLog extends Model
         if ($action == self::ACTION_CREATE || $action == self::ACTION_CREATE_POST) {
             return [self::ACTION_CREATE, self::ACTION_CREATE_POST];
         } elseif ($action == self::ACTION_UPDATE) {
-            return [self::ACTION_UPDATE, self::ACTION_UPDATE_POST, self::ACTION_REORDER_POST];
+            return [self::ACTION_UPDATE, self::ACTION_UPDATE_POST, self::ACTION_REORDER_POST, self::ACTION_UPDATE_FAMILY_TREE];
         } elseif ($action == self::ACTION_DELETE) {
             return [self::ACTION_DELETE, self::ACTION_DELETE_POST];
         } elseif ($action == self::ACTION_RESTORE) {
