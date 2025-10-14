@@ -31,6 +31,7 @@ return [
         'restore'       => ':user restored :entity',
         'update'        => ':user updated :entity',
         'update_post'   => ':user updated a post on :entity',
+        'update_tree'   => ':user updated the family tree of :entity',
     ],
     'title'     => 'History',
     'unknown'   => [

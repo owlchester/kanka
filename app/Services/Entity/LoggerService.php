@@ -128,6 +128,12 @@ class LoggerService
         $this->log->save();
     }
 
+    public function updatedFamilyTree(): void
+    {
+        $this->log(EntityLog::ACTION_UPDATE_FAMILY_TREE);
+        $this->log->save();
+    }
+
     protected function log(int $action)
     {
         $this->log = new EntityLog;
