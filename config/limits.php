@@ -17,6 +17,16 @@ return [
             'premium' => 20,
         ],
         'modules' => env('APP_MODULE_LIMIT', 5),
+        
+        /**
+         * Number of custom modules allowed per subscription tier.
+         */
+        'modules' => [
+            'premium' => env('APP_MODULE_LIMIT', 5),
+            'wyvern' => env('APP_WYVERN_MODULE_LIMIT', 10),
+            'elemental' => env('APP_ELEMENTAL_MODULE_LIMIT', 20),
+        ],
+
         'export' => 6, // hours after which exports get deleted
         'maps' => [
             // Maximum number of groups per map
