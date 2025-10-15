@@ -242,7 +242,7 @@ class AssetController extends Controller
      */
     protected function createAlias(Campaign $campaign, Entity $entity)
     {
-        if (! $campaign->boosted()) {
+        if (! $campaign->boosted() && $campaign->entityAliases->count() > 2) {
             return view('entities.pages.aliases.not-premium')
                 ->with('campaign', $campaign);
         }

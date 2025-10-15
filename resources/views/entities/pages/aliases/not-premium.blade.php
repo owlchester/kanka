@@ -3,7 +3,7 @@
 </x-dialog.header>
 <x-dialog.article class="max-w-3xl">
     <x-helper>
-        <p>{{ __('entities/aliases.pitch') }}</p>
+        <p>{{ __('entities/aliases.limit') }}</p>
     </x-helper>
     <x-premium-cta-footer :campaign="$campaign" />
 </x-dialog.article>
