@@ -19,7 +19,7 @@ return [
     'errors'        => [
         'disabled'              => 'The :name module is disabled. :fix',
         'limit'                 => 'Campaigns are currently limited to only :max custom modules while we iron out this new feature.',
-        'subscription-limit'    => 'You\'ve reached the maximum amount of custom modules available with your subscription tier, to increase this limit and unlock more features, consider upgrading to a higher tier.',
+        'subscription-limit'    => 'The campaign has reached the maximum amount of custom modules available. The person unlocking premium features can subscribe to a higher tier to increase this limit.',
         'limit-title'           => 'Custom Module limit reached',
     ],
     'fields'        => [

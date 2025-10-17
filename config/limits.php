@@ -16,8 +16,6 @@ return [
             'standard' => 3,
             'premium' => 20,
         ],
-        'modules' => env('APP_MODULE_LIMIT', 5),
-
         /**
          * Number of custom modules allowed per subscription tier.
          */
