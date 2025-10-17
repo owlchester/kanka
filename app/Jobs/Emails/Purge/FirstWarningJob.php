@@ -53,6 +53,9 @@ class FirstWarningJob implements ShouldQueue
         $user->log(UserAction::purgeWarningFirst);
 
         $target = app()->isProduction() ? $user->email : config('mail.from.address');
+        if (empty($target)) {
+            return;
+        }
         try {
             Mail::to($target)
                 ->locale($user->locale ?? 'en-US')
