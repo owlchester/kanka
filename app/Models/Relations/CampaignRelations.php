@@ -3,6 +3,7 @@
 namespace App\Models\Relations;
 
 use App\Enums\CampaignExportStatus;
+use App\Enums\EntityAssetType;
 use App\Models\Ability;
 use App\Models\Application;
 use App\Models\AttributeTemplate;
@@ -24,6 +25,7 @@ use App\Models\Conversation;
 use App\Models\Creature;
 use App\Models\DiceRoll;
 use App\Models\Entity;
+use App\Models\EntityAsset;
 use App\Models\EntityMention;
 use App\Models\EntityType;
 use App\Models\EntityUser;
@@ -387,6 +389,14 @@ trait CampaignRelations
     public function posts(): HasManyThrough
     {
         return $this->hasManyThrough(Post::class, Entity::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\Post, \App\Models\Entity, $this>
+     */
+    public function entityAliases(): HasManyThrough
+    {
+        return $this->hasManyThrough(EntityAsset::class, Entity::class)->where('entity_assets.type_id', EntityAssetType::alias);
     }
 
     /**
