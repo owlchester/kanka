@@ -18,7 +18,7 @@ return [
     'helpers'       => [
         'primary'   => 'Setting one or several aliases on the entity will make it findable in the global search (top bar) and through :code mentions.',
     ],
-    'limit'         => 'You\'ve reached the limit of aliases available for free campaigns, however premium campaigns enjoy unlimited aliases and tons of other benefits.',
+    'limit'         => 'The campaign has reached the limit of aliases available to it. To get unlimited aliases, unlock premium features.',
     'placeholders'  => [
         'name'  => 'New alias',
     ],
