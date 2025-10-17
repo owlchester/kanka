@@ -17,8 +17,10 @@ return [
         'title'     => 'Module deletion',
     ],
     'errors'        => [
-        'disabled'  => 'The :name module is disabled. :fix',
-        'limit'     => 'Campaigns are currently limited to only :max custom modules while we iron out this new feature.',
+        'disabled'              => 'The :name module is disabled. :fix',
+        'limit'                 => 'Campaigns are currently limited to only :max custom modules while we iron out this new feature.',
+        'subscription-limit'    => 'The campaign has reached the maximum amount of custom modules available. The person unlocking premium features can subscribe to a higher tier to increase this limit.',
+        'limit-title'           => 'Custom Module limit reached',
     ],
     'fields'        => [
         'icon'      => 'Module icon',
