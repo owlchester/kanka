@@ -283,7 +283,7 @@
                     :title="trans('duplicate')"
                     @click.stop="duplicateSelected"
                 >
-                    <i class="fa-regular" :class="'fa-copy'" aria-hidden="true"></i>
+                    <i class="fa-regular fa-copy" aria-hidden="true"></i>
                     <span class="sr-only">{{ trans('duplicate') }}</span>
                 </button>
 
