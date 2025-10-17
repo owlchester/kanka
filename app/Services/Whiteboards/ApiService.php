@@ -72,6 +72,7 @@ class ApiService
             'push-to-back' => __('whiteboards/draw.actions.push-to-back'),
             'lock' => __('whiteboards/draw.actions.lock'),
             'unlock' => __('whiteboards/draw.actions.unlock'),
+            'duplicate' => __('whiteboards/draw.actions.duplicate'),
 
             // General UI
             'back' => __('whiteboards/draw.actions.back'),

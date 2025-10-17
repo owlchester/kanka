@@ -15,6 +15,7 @@ return [
         'lock' => 'Lock',
         'unlock' => 'Unlock',
         'back' => 'Back to overview',
+        'duplicate' => 'Duplicate selected',
     ],
     'fields' => [
         'color' => 'Colour',
