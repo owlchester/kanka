@@ -50,11 +50,12 @@ class GalleryController extends Controller
             ->where('is_default', false)
             ->orderBy('is_folder', 'desc')
             ->orderBy('updated_at', 'desc')
-            ->imageFolder($folderId)
             ->offset($offset)
             ->take(20);
         if ($name) {
             $images->where('name', 'like', "%{$name}%");
+        } else {
+            $images->imageFolder($folderId);
         }
         $images = $images->get();
         /** @var Image $image */

@@ -85,7 +85,7 @@ class SubscriptionEndJob implements ShouldQueue
         $user->roles()->detach($role->id);
 
         // Notify the user in app about the change
-        $key = 'subscriptions.' . ($this->trial == true ? 'trial' : ($this->cancelled ? 'failed' : 'ended'));
+        $key = 'subscriptions.' . (isset($this->trial) && $this->trial ? 'trial' : ($this->cancelled ? 'failed' : 'ended'));
         $user->notify(
             new Header(
                 $key,

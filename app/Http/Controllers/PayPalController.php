@@ -48,6 +48,7 @@ class PayPalController extends Controller
                 ->route('settings.subscription')
                 ->with('error', __('settings.subscription.errors.failed', ['email' => config('app.email')]));
         } else {
+            Log::error('Subscription PayPal error', $response);
             return redirect()
                 ->route('settings.subscription')
                 ->with('error', __('settings.subscription.errors.failed', ['email' => config('app.email')]));
@@ -88,6 +89,7 @@ class PayPalController extends Controller
                 ->with('sub_id', $tierPrice?->id)
                 ->with('sub_value', $response['purchase_units']['0']['payments']['captures'][0]['amount']['value']);
         } else {
+            Log::error('Subscription PayPal error 2', $response);
             return redirect()
                 ->route('settings.subscription')
                 ->with('error', __('settings.subscription.errors.failed', ['email' => config('app.email')]));
