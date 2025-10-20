@@ -23,7 +23,7 @@ use Illuminate\Support\Str;
 
 /**
  * @property int $id
- * @property int $type_id
+ * @property EntityAssetType $type_id
  * @property int $entity_id
  * @property ?string $image_uuid
  * @property string $name
@@ -90,7 +90,7 @@ class EntityAsset extends Model
      */
     public function isFile(): bool
     {
-        return $this->type_id == EntityAssetType::file;
+        return $this->type_id === EntityAssetType::file;
     }
 
     /**
@@ -98,7 +98,7 @@ class EntityAsset extends Model
      */
     public function isLink(): bool
     {
-        return $this->type_id == EntityAssetType::link;
+        return $this->type_id === EntityAssetType::link;
     }
 
     /**
@@ -106,7 +106,7 @@ class EntityAsset extends Model
      */
     public function isAlias(): bool
     {
-        return $this->type_id == EntityAssetType::alias;
+        return $this->type_id === EntityAssetType::alias;
     }
 
     /**

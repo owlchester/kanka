@@ -60,7 +60,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
- * @property Carbon $archived_at
+ * @property ?Carbon $archived_at
  */
 class Entity extends Model
 {

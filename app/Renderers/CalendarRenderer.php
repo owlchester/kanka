@@ -659,7 +659,7 @@ class CalendarRenderer
         }
 
         // Yearly layout does things a bit differently, reset month to first
-        $this->layout = $this->request->get('layout', $this->calendar->defaultLayout()) ?? 'month' ;
+        $this->layout = $this->request->get('layout', $this->calendar->defaultLayout()) ?? 'month';
         if ($this->isYearlyLayout()) {
             $this->setMonth(1);
         }
@@ -751,7 +751,7 @@ class CalendarRenderer
                     ->orWhere(function ($sub) {
                         if ($this->calendar->show_birthdays) {
                             $sub->where('year', '<=', $this->getYear())
-                                ->whereIn('type_id', [EntityEventTypes::births, EntityEventTypes::deaths]);
+                                ->whereIn('type_id', [EntityEventTypes::birth, EntityEventTypes::death]);
                             if (! $this->isYearlyLayout()) {
                                 $sub->where('month', $this->getMonth());
                             }

@@ -66,7 +66,7 @@ class Select extends Component
         if (is_int($this->selected)) {
             return $value == $this->selected;
         }
-        if ($this->selected instanceof \UnitEnum) {
+        if ($this->selected instanceof \BackedEnum) {
             return $value == $this->selected->value;
         }
 
