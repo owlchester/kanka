@@ -24,6 +24,7 @@ class CrudController extends BaseCrudController
     public function create(Campaign $campaign)
     {
         if (! $campaign->isWyvernPremium()) {
+            // @phpstan-ignore-next-line
             return view('whiteboards.cta')
                 ->with('campaign', $campaign);
         }

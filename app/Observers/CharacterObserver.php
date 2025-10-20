@@ -2,6 +2,8 @@
 
 namespace App\Observers;
 
+use App\Enums\OrganisationMemberPin;
+use App\Enums\OrganisationMemberStatus;
 use App\Facades\EntityLogger;
 use App\Models\Character;
 use App\Models\CharacterTrait;
@@ -141,8 +143,8 @@ class CharacterObserver extends MiscObserver
             }
             $model->organisation_id = (int) $id;
             $model->role = $roles->has($key) ? $roles->get($key, '') : $newRoles->shift();
-            $model->pin_id = (int) ($pins->has($key) ? $pins->get($key, '') : $newPins->shift());
-            $model->status_id = (int) ($statuses->has($key) ? $statuses->get($key, '') : $newStatuses->shift());
+            $model->pin_id = OrganisationMemberPin::tryFrom((int) ($pins->has($key) ? $pins->get($key, '') : $newPins->shift()));
+            $model->status_id = OrganisationMemberStatus::from((int) ($statuses->has($key) ? $statuses->get($key, '') : $newStatuses->shift()));
             if (request()->has('organisation_privates')) {
                 $model->is_private = $privates->has($key) ? $privates->get($key, false) : $newPrivates->shift();
             } else {

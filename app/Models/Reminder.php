@@ -31,7 +31,7 @@ use Illuminate\Support\Str;
  * @property bool|int $is_recurring
  * @property ?int $recurring_until
  * @property string $recurring_periodicity
- * @property int $type_id
+ * @property EntityEventTypes $type_id
  * @property ?int $elapsed
  * @property ?Calendar $calendar
  * @property ?Reminder $death

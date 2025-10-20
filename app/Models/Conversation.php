@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $name
  * @property string $image
  * @property string $type
- * @property int $target_id
+ * @property ConversationTarget $target_id
  * @property bool|int $is_private
  * @property bool|int $is_closed
  * @property ConversationParticipant[]|Collection $participants
@@ -134,7 +134,7 @@ class Conversation extends MiscModel
 
     public function forCharacters(): bool
     {
-        return $this->target_id == ConversationTarget::characters;
+        return $this->target_id === ConversationTarget::characters;
     }
 
     /**
