@@ -8,7 +8,7 @@ return [
         ],
         'upgrade'   => [
             'limit'     => 'You\'ve reached the limit of :limit files for this entity',
-            'upgrade'   => 'Upgrade to a premium campaign to attach up to :limit files and unlock even more creative flexibility.',
+            'premium'   => 'Upgrade to a premium campaign to attach up to unlimited files and unlock even more creative flexibility.',
         ],
     ],
     'create'            => [

@@ -114,6 +114,6 @@ class EntityPolicy
 
     public function addFile(User $user, Entity $entity, Campaign $campaign): bool
     {
-        return $entity->assets()->file()->count() < Limit::campaign($campaign)->entityFiles();
+        return $campaign->isWyvern() || $campaign->isElemental() || $entity->assets()->file()->count() < Limit::campaign($campaign)->entityFiles();
     }
 }
