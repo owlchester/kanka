@@ -1,11 +1,4 @@
 {
-  "_Browser.vue_vue_type_script_setup_true_lang-CrCCdjGs.js": {
-    "file": "assets/Browser.vue_vue_type_script_setup_true_lang-CrCCdjGs.js",
-    "name": "Browser.vue_vue_type_script_setup_true_lang",
-    "imports": [
-      "_vue.esm-bundler-DB8zkVd9.js"
-    ]
-  },
   "__commonjsHelpers-Cpj98o6Y.js": {
     "file": "assets/_commonjsHelpers-Cpj98o6Y.js",
     "name": "_commonjsHelpers"
@@ -53,8 +46,8 @@
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   },
-  "_vue.esm-bundler-DB8zkVd9.js": {
-    "file": "assets/vue.esm-bundler-DB8zkVd9.js",
+  "_vue.esm-bundler-CFGjzRou.js": {
+    "file": "assets/vue.esm-bundler-CFGjzRou.js",
     "name": "vue.esm-bundler"
   },
   "node_modules/cytoscape-dblclick/dist/index.esm.js": {
@@ -97,16 +90,16 @@
     "src": "resources/images/leaflet/icon.png"
   },
   "resources/js/abilities.js": {
-    "file": "assets/abilities-CMWrvfN3.js",
+    "file": "assets/abilities-C7ezZnY3.js",
     "name": "abilities",
     "src": "resources/js/abilities.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-DB8zkVd9.js"
+      "_vue.esm-bundler-CFGjzRou.js"
     ]
   },
   "resources/js/app.js": {
-    "file": "assets/app-DwMWZQOI.js",
+    "file": "assets/app-DnpMXrA_.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -114,20 +107,19 @@
       "_sortable.esm-C83syoBY.js",
       "_dialog-bdBi4zz3.js",
       "_tippy.esm-IVmNb8lF.js",
-      "_vue.esm-bundler-DB8zkVd9.js",
+      "_vue.esm-bundler-CFGjzRou.js",
       "_v-click-outside.umd-CFxmCgl1.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
-      "_Browser.vue_vue_type_script_setup_true_lang-CrCCdjGs.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   },
   "resources/js/attributes-manager.js": {
-    "file": "assets/attributes-manager-CCPXtTW6.js",
+    "file": "assets/attributes-manager-CpNvgCJp.js",
     "name": "attributes-manager",
     "src": "resources/js/attributes-manager.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-DB8zkVd9.js",
+      "_vue.esm-bundler-CFGjzRou.js",
       "_v-click-outside.umd-CFxmCgl1.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
@@ -145,17 +137,17 @@
     "isEntry": true
   },
   "resources/js/billing.js": {
-    "file": "assets/billing-BVqsxIqt.js",
+    "file": "assets/billing-CJo_IXEr.js",
     "name": "billing",
     "src": "resources/js/billing.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-DB8zkVd9.js",
+      "_vue.esm-bundler-CFGjzRou.js",
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ]
   },
   "resources/js/campaigns/import.js": {
-    "file": "assets/import-No3t4ssh.js",
+    "file": "assets/import-rRfj6B6d.js",
     "name": "import",
     "src": "resources/js/campaigns/import.js",
     "isEntry": true,
@@ -173,12 +165,12 @@
     ]
   },
   "resources/js/conversation.js": {
-    "file": "assets/conversation-CrCjC2UI.js",
+    "file": "assets/conversation-CjmuzYRt.js",
     "name": "conversation",
     "src": "resources/js/conversation.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-DB8zkVd9.js",
+      "_vue.esm-bundler-CFGjzRou.js",
       "_v-click-outside.umd-CFxmCgl1.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "__commonjsHelpers-Cpj98o6Y.js"
@@ -206,24 +198,24 @@
     "isEntry": true
   },
   "resources/js/entities/explore.js": {
-    "file": "assets/explore-Ht4pEdCy.js",
+    "file": "assets/explore-Dw4ajBdR.js",
     "name": "explore",
     "src": "resources/js/entities/explore.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-DB8zkVd9.js",
+      "_vue.esm-bundler-CFGjzRou.js",
       "__plugin-vue_export-helper-DlAUqK2U.js",
       "_v-click-outside.umd-CFxmCgl1.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
   },
   "resources/js/family-tree-vue.js": {
-    "file": "assets/family-tree-vue-C8D0cfy6.js",
+    "file": "assets/family-tree-vue-UYH4NCmq.js",
     "name": "family-tree-vue",
     "src": "resources/js/family-tree-vue.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-DB8zkVd9.js",
+      "_vue.esm-bundler-CFGjzRou.js",
       "_index-NIGUFBhG.js",
       "__plugin-vue_export-helper-DlAUqK2U.js"
     ]
@@ -260,12 +252,12 @@
     ]
   },
   "resources/js/gallery/gallery.js": {
-    "file": "assets/gallery-0s4NQoVa.js",
+    "file": "assets/gallery-C5b0W17h.js",
     "name": "gallery",
     "src": "resources/js/gallery/gallery.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-DB8zkVd9.js",
+      "_vue.esm-bundler-CFGjzRou.js",
       "__commonjsHelpers-Cpj98o6Y.js",
       "_v-click-outside.umd-CFxmCgl1.js"
     ]
@@ -289,12 +281,12 @@
     "isEntry": true
   },
   "resources/js/recovery/recovery.js": {
-    "file": "assets/recovery-KE9DT5Pq.js",
+    "file": "assets/recovery-D8wb7olO.js",
     "name": "recovery",
     "src": "resources/js/recovery/recovery.js",
     "isEntry": true,
     "imports": [
-      "_vue.esm-bundler-DB8zkVd9.js",
+      "_vue.esm-bundler-CFGjzRou.js",
       "_v-click-outside.umd-CFxmCgl1.js",
       "__commonjsHelpers-Cpj98o6Y.js"
     ]
@@ -335,23 +327,13 @@
     "src": "resources/js/vendor-final.js",
     "isEntry": true
   },
-  "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-CDUMl6eG.js",
-    "name": "whiteboards",
-    "src": "resources/js/whiteboards.js",
-    "isEntry": true,
-    "imports": [
-      "_vue.esm-bundler-DB8zkVd9.js",
-      "_Browser.vue_vue_type_script_setup_true_lang-CrCCdjGs.js"
-    ]
-  },
   "resources/sass/app.scss": {
-    "file": "assets/app-AMCDoalv.css",
+    "file": "assets/app-C_aKmCEL.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-DPcC7Dp0.css",
+    "file": "assets/auth-BFMACH-p.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -376,7 +358,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-BwO-0nVk.css",
+    "file": "assets/front-CfEoOxXI.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },
@@ -424,12 +406,6 @@
   "resources/sass/vendor.scss": {
     "file": "assets/vendor-Bi-eoZRG.css",
     "src": "resources/sass/vendor.scss",
-    "isEntry": true
-  },
-  "resources/sass/whiteboards.scss": {
-    "file": "assets/whiteboards-l0sNRNKZ.js",
-    "name": "whiteboards",
-    "src": "resources/sass/whiteboards.scss",
     "isEntry": true
   }
 }

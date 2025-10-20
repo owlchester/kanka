@@ -537,7 +537,10 @@ class Map extends MiscModel
 
         $this->height = $height;
         $this->width = $width;
-        $this->saveQuietly();
+        // Don't save on the replica db
+        if (auth()->check()) {
+            $this->saveQuietly();
+        }
     }
 
     /**
