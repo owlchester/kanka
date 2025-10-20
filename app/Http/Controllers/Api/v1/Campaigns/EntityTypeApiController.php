@@ -45,10 +45,20 @@ class EntityTypeApiController extends ApiController
     {
         $this->authorize('setting', $campaign);
 
-        if ($campaign->entityTypes->count() >= config('limits.campaigns.modules')) {
-            return response()->json(['error' => 'Max number of custom modules reached (:count/:max)', [
+        $error = '. Consider upgrading to a higher tier to unlock a higher limit';
+
+        $limit = config('limits.campaigns.modules.premium');
+        if ($campaign->isWyvern()) {
+            $limit = config('limits.campaigns.modules.wyvern');
+        } elseif ($campaign->isElemental()) {
+            $limit = config('limits.campaigns.modules.elemental');
+            $error = '';
+        }
+
+        if ($campaign->entityTypes->count() >= $limit) {
+            return response()->json(['error' => 'Max number of custom modules reached (:count/:max)' . $error, [
                 'count' => $campaign->entityTypes->count(),
-                'max' => config('limits.campaigns.modules'),
+                'max' => $limit,
             ]], 401);
         }
 

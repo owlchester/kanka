@@ -24,9 +24,18 @@ class EntityTypeController extends Controller
             return view('campaigns.entity-types.not-premium')
                 ->with('campaign', $campaign);
         }
-        if ($campaign->entityTypes->count() >= config('limits.campaigns.modules')) {
+
+        $limit = config('limits.campaigns.modules.premium');
+        if ($campaign->isWyvern()) {
+            $limit = config('limits.campaigns.modules.wyvern');
+        } elseif ($campaign->isElemental()) {
+            $limit = config('limits.campaigns.modules.elemental');
+        }
+
+        if ($campaign->entityTypes->count() >= $limit) {
             return view('campaigns.entity-types.max-reached')
-                ->with('campaign', $campaign);
+                ->with('campaign', $campaign)
+                ->with('limit', $limit);
         }
 
         return view('campaigns.entity-types.create')

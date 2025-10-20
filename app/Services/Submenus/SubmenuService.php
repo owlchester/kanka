@@ -7,7 +7,6 @@ use App\Traits\CampaignAware;
 use App\Traits\EntityAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 
 class SubmenuService
 {

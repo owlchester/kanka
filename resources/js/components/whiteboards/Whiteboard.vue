@@ -280,6 +280,15 @@
 
                 <button
                     class="btn2 btn-sm join-item"
+                    :title="trans('duplicate')"
+                    @click.stop="duplicateSelected"
+                >
+                    <i class="fa-regular fa-copy" aria-hidden="true"></i>
+                    <span class="sr-only">{{ trans('duplicate') }}</span>
+                </button>
+
+                <button
+                    class="btn2 btn-sm join-item"
                     :title="trans('color')"
                     @click.stop="openColorPicker"
                 >
@@ -802,6 +811,44 @@ const deleteSelected = () => {
 
     // Ensure transformer no longer references removed nodes
     updateTransformer();
+};
+
+const duplicateSelected = () => {
+    if (!selectedIds.value.length) return;
+
+    const offset = 30;
+    const newShapes = [];
+
+    // Duplicate each selected shape
+    for (const id of selectedIds.value) {
+        const shape = shapes.value.find(s => s.id === id);
+        if (!shape) continue;
+
+        const clone = JSON.parse(JSON.stringify(shape));
+
+        // Generate new unique ID
+        clone.id = Math.round(Math.random() * 10000).toString();
+
+        // Offset position
+        if (typeof clone.x === 'number') clone.x += offset;
+        if (typeof clone.y === 'number') clone.y += offset;
+
+        shapes.value.push(clone);
+        newShapes.push(clone);
+    }
+
+    // Update selection to new clones
+    selectedIds.value = newShapes.map(s => s.id);
+    selectedId.value = newShapes.length === 1 ? newShapes[0].id : null;
+    editingTextId.value = null;
+
+    // update transformer to reflect multiple selection
+    nextTick(() => {
+        updateTransformer(false);
+        setupTransformerEvents();
+    });
+
+    uiTick.value++;
 };
 
 const toggleLock = () => {
@@ -1633,6 +1680,13 @@ const handleKeyDown = (e: KeyboardEvent) => {
         e.preventDefault();
         deleteSelected();
     }
+
+    // Support duplicating selected shapes with Ctrl+D or Cmd+D
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'd') {
+        e.preventDefault(); // prevent browser "bookmark" shortcut
+        duplicateSelected();
+    }
+
     if (e.key === 'Escape' || (e as any).keyCode === 27) {
         e.preventDefault();
 
