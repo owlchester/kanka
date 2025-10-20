@@ -77,7 +77,7 @@ class MoonService
     protected function addPhase(float $nextFullMoon, array $moon, string $type = 'full', string $class = 'fa-regular fa-circle'): void
     {
         // Moons can be float so we "floor" them
-        $nextFullMoon = floor($nextFullMoon);
+        $nextFullMoon = (int) floor($nextFullMoon);
 
         // If the next full moon is before year 0... What?
         if ($nextFullMoon < 0) {

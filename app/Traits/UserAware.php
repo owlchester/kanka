@@ -9,7 +9,7 @@ use App\Models\User;
  */
 trait UserAware
 {
-    public User $user;
+    public ?User $user = null;
 
     public function user(User $user): self
     {
