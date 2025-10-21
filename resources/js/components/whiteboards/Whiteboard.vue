@@ -486,6 +486,7 @@ const props = defineProps<{
     gallery: String,
     search: String,
     readonly: Boolean,
+    entity: String,
 }>()
 
 const shapes = ref([]);
@@ -848,6 +849,242 @@ const duplicateSelected = () => {
         setupTransformerEvents();
     });
 
+    uiTick.value++;
+};
+
+// Action: toggle select all shapes (Ctrl+A or Cmd+A)
+const toggleSelectAll = () => {
+    // If all shapes are already selected, deselect them
+    const allSelected = selectedIds.value.length === shapes.value.length && shapes.value.length > 0;
+
+    if (allSelected) {
+        selectedIds.value = [];
+        selectedId.value = null;
+    } else {
+        selectedIds.value = shapes.value.map(s => s.id);
+        selectedId.value = null; // multiple selection
+    }
+
+    editingTextId.value = null;
+
+    // Trigger re-render and update transformer to reflect selection state
+    uiTick.value++;
+    updateTransformer();
+};
+
+// Action: move selected shapes using arrow keys
+const moveSelectedByArrowKey = (key: string) => {
+    if (!selectedIds.value.length) return;
+
+    const reposition = 10;
+
+    for (const id of selectedIds.value) {
+        const shape = shapes.value.find(s => s.id === id);
+        if (!shape || shape.locked) continue;
+
+        switch (key) {
+            case 'ArrowUp':
+                shape.y = (shape.y ?? 0) - reposition;
+                break;
+            case 'ArrowDown':
+                shape.y = (shape.y ?? 0) + reposition;
+                break;
+            case 'ArrowLeft':
+                shape.x = (shape.x ?? 0) - reposition;
+                break;
+            case 'ArrowRight':
+                shape.x = (shape.x ?? 0) + reposition;
+                break;
+        }
+    }
+
+    uiTick.value++;
+    updateTransformer();
+};
+
+// Hidden clipboard fallback element (used for dev)
+let hiddenClipboardEl: HTMLTextAreaElement | null = null;
+
+const ensureHiddenClipboard = () => {
+    if (!hiddenClipboardEl) {
+        hiddenClipboardEl = document.createElement('textarea');
+        hiddenClipboardEl.id = 'hidden-clipboard';
+        hiddenClipboardEl.style.position = 'fixed';
+        hiddenClipboardEl.style.opacity = '0';
+        hiddenClipboardEl.style.pointerEvents = 'none';
+        hiddenClipboardEl.style.zIndex = '-1';
+        document.body.appendChild(hiddenClipboardEl);
+    }
+    return hiddenClipboardEl;
+};
+
+const copySelectedToClipboard = () => {
+    try {
+        if (!selectedIds.value.length) return;
+
+        const selectedShapes = shapes.value.filter(s => selectedIds.value.includes(s.id));
+        const json = JSON.stringify(selectedShapes);
+
+        const isSecure = window.isSecureContext && navigator.clipboard;
+
+        if (isSecure) {
+            navigator.clipboard.writeText(json).then(() => {
+                //console.log('Shapes copied to clipboard');
+            }).catch(err => {
+                //console.warn('Clipboard write failed:', err);
+                // fallback to hidden textarea
+                const el = ensureHiddenClipboard();
+                el.value = json;
+            });
+        } else {
+            // Localhost/dev fallback
+            const el = ensureHiddenClipboard();
+            //Testing link and text pasting on dev enviroment:
+            //el.value = 'This is text';
+            //el.value = json;
+            el.value = 'http://app.kanka.test:8081/w/1/entities/1650';
+            // Also try classic execCommand for good measure
+            try {
+                el.focus();
+                el.select();
+                document.execCommand('copy');
+            } catch (err) {
+                //console.warn('execCommand copy failed (fallback stored only):', err);
+            }
+
+            console.log('Shapes copied via hidden clipboard fallback');
+        }
+    } catch (err) {
+        console.error('Failed to copy shapes:', err);
+    }
+};
+const pasteFromClipboard = async () => {
+    try {
+        let text = '';
+
+        // Use modern API if possible
+        if (navigator.clipboard && window.isSecureContext) {
+            text = await navigator.clipboard.readText();
+        } else {
+            // Fallback for localhost/dev
+            const el = ensureHiddenClipboard();
+            text = el.value;
+        }
+
+        if (!text) return;
+
+        // Regex to detect /w/{{campaign_id}}/entities/{{id}}
+        const entityUrlRegex = /\/w\/\d+\/entities\/(\d+)/;
+        const match = text.match(entityUrlRegex);
+
+        if (match) {
+            const entityId = match[1];
+
+            try {
+                const res = await axios.get(`${props.entity}?entity_id=${entityId}`);
+                const entityData = res.data.data;
+                console.log(entityData);
+
+                // Create the entity shape
+                createEntityShape(entityData);
+            } catch (err) {
+                console.error('Failed to fetch entity:', err);
+            }
+
+            return;
+        }
+
+        let pasted = [];
+
+        // Attempt to parse shapes JSON first
+        try {
+            const copiedShapes = JSON.parse(text);
+            if (Array.isArray(copiedShapes) && copiedShapes.length) {
+                pasted = pastedShapesCentered(copiedShapes);
+            } else {
+                pasted = [createTextShapeFromClipboard(text)];
+            }
+        } catch {
+            // Plain text fallback
+            pasted = [createTextShapeFromClipboard(text)];
+        }
+
+        if (!pasted.length) return;
+
+        shapes.value.push(...pasted);
+        selectedIds.value = pasted.map(s => s.id);
+        selectedId.value = pasted.length === 1 ? pasted[0].id : null;
+
+        updateTransformer();
+        uiTick.value++;
+    } catch (err) {
+        console.error('Failed to paste:', err);
+    }
+};
+
+const createTextShapeFromClipboard = (textValue: string) => {
+
+    const stageNode = stage.value?.getNode?.();
+    if (!stageNode) return;
+
+    // Get the mouse pointer position; fallback to center if unavailable
+    const pointer = stageNode.getPointerPosition?.();
+    const x = pointer?.x ?? stageNode.width() / 2;
+    const y = pointer?.y ?? stageNode.height() / 2;
+
+    return {
+        id: Math.round(Math.random() * 10000).toString(),
+        type: 'text',
+        x: x,
+        y: y,
+        scaleX: 1,
+        scaleY: 1,
+        width: 100,
+        height: 50,
+        radius: null,
+        fill: cssVariable('--bc'),
+        text: textValue, // use clipboard text here
+        fontFamily: 'Arial',
+        locked: false,
+        moving: false,
+    };
+};
+
+const createEntityShape = (entity: any) => {
+    const [imageNode] = useImage(entity.image_thumb, 'anonymous');
+    imageRefs.value[entity.id] = imageNode;
+
+    const stageNode = stage.value?.getNode?.();
+    if (!stageNode) return;
+
+    // Get the mouse pointer position; fallback to center if unavailable
+    const pointer = stageNode.getPointerPosition?.();
+    const x = pointer?.x ?? stageNode.width() / 2;
+    const y = pointer?.y ?? stageNode.height() / 2;
+
+    const id = Math.round(Math.random() * 10000).toString();
+
+    shapes.value.push({
+        id: id,
+        type: "entity",
+        x: x,
+        y: y,
+        width: 128,
+        height: 128,
+        scaleX: 1,
+        scaleY: 1,
+        entity: entity.id,
+        name: entity.name,
+        link: entity.urls.view,
+        fill: cssVariable('--bc'),
+        locked: false,
+        moving: false,
+    });
+
+    // Select the newly added entity
+    selectedIds.value = [id];
+    selectedId.value = id;
+    updateTransformer();
     uiTick.value++;
 };
 
@@ -1683,8 +1920,46 @@ const handleKeyDown = (e: KeyboardEvent) => {
 
     // Support duplicating selected shapes with Ctrl+D or Cmd+D
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'd') {
-        e.preventDefault(); // prevent browser "bookmark" shortcut
+        e.preventDefault(); // Prevent browser "bookmark" shortcut
         duplicateSelected();
+    }
+
+    // Select or deselect all shapes with Ctrl+A or Cmd+A
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'a') {
+        e.preventDefault(); // Prevent browser "Select All" in page
+        toggleSelectAll();
+    }
+
+    // Move selected shapes with arrow keys
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        e.preventDefault(); // Prevent page scrolling
+
+        moveSelectedByArrowKey(e.key);
+    }
+
+    // Save whiteboard with Ctrl+S or Cmd+S
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+        e.preventDefault(); // prevent browser "Save page" dialog
+        saveWhiteboard();
+    }
+
+    // Copy selected shapes to clipboard with Ctrl+C or Cmd+C
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'c') {
+
+        // Don't override native copy when editing text
+        if (editingTextId.value) return;
+
+        e.preventDefault(); // prevent browser "Copy" action
+        copySelectedToClipboard();
+    }
+
+    // Paste shapes from clipboard with Ctrl+V or Cmd+V
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'v') {
+        // Don't override native paste when editing text
+        if (editingTextId.value) return;
+
+        e.preventDefault(); // prevent browser "Paste" action
+        pasteFromClipboard();
     }
 
     if (e.key === 'Escape' || (e as any).keyCode === 27) {

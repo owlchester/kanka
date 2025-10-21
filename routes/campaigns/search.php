@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Search\EntityJsonController;
 use App\Http\Controllers\Search\AttributeController;
 use App\Http\Controllers\Search\CalendarController;
 use App\Http\Controllers\Search\CampaignController;
@@ -43,3 +44,6 @@ Route::get('/w/{campaign}/search/live', [LiveController::class, 'index'])->name(
 Route::get('/w/{campaign}/search/recent', [RecentController::class, 'index'])->name('search.recent');
 
 Route::get('/w/{campaign}/search/fulltext', [FullTextController::class, 'index'])->name('search.fulltext');
+
+Route::get('/w/{campaign}/search/json', [EntityJsonController::class, 'jsonSearch'])->name('search.json');
+
