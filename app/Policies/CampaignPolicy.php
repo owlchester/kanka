@@ -304,4 +304,13 @@ class CampaignPolicy
 
         return empty($campaign->export_date) || ! $campaign->export_date->isToday() && $campaign->queuedCampaignExports->count() === 0;
     }
+
+    public function whiteboards(User $user, Campaign $campaign): bool
+    {
+        if (app()->hasDebugModeEnabled()) {
+            return true;
+        }
+
+        return $campaign->premium() && $campaign->isWyvern();
+    }
 }

@@ -23,7 +23,10 @@ class CrudController extends BaseCrudController
 
     public function create(Campaign $campaign)
     {
-        if (! $campaign->isWyvernPremium()) {
+        // @phpstan-ignore-next-line
+        $this->authorize('create', [$this->getEntityType(), $campaign]);
+
+        if (! auth()->user()->can('whiteboards', $campaign)) {
             // @phpstan-ignore-next-line
             return view('whiteboards.cta')
                 ->with('campaign', $campaign);
@@ -34,7 +37,10 @@ class CrudController extends BaseCrudController
 
     public function store(StoreWhiteboard $request, Campaign $campaign)
     {
-        if (! $campaign->isWyvernPremium()) {
+        // @phpstan-ignore-next-line
+        $this->authorize('create', [$this->getEntityType(), $campaign]);
+
+        if (! auth()->user()->can('whiteboards', $campaign)) {
             return view('whiteboards.cta')
                 ->with('campaign', $campaign);
         }

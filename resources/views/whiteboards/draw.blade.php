@@ -11,7 +11,7 @@
             load="{{ route('whiteboards.api', [$campaign, $whiteboard]) }}"
             gallery="{{ route('gallery.browse', $campaign) }}"
             search="{{ route('search.live', $campaign) }}"
-            :readonly="{{ auth()->check() && auth()->user()->can('update', $whiteboard->entity) && $campaign->isWyvernPremium() ? 0 : 1 }}"
+            :readonly="{{ auth()->check() && auth()->user()->can('update', $whiteboard->entity) && auth()->user()->can('whiteboards', $campaign) ? 0 : 1 }}"
         />
     </div>
 
