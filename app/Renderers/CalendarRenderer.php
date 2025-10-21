@@ -659,7 +659,7 @@ class CalendarRenderer
         }
 
         // Yearly layout does things a bit differently, reset month to first
-        $this->layout = $this->request->get('layout', $this->calendar->defaultLayout()) ?? 'month' ;
+        $this->layout = $this->request->get('layout', $this->calendar->defaultLayout()) ?? 'month';
         if ($this->isYearlyLayout()) {
             $this->setMonth(1);
         }
