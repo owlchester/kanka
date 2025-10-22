@@ -555,6 +555,8 @@ const searchOpened = ref(false)
 // Settings
 const settingsOpened = ref(false)
 
+// Hidden clipboard fallback element (used for dev)
+let hiddenClipboardEl: HTMLTextAreaElement | null = null;
 
 // Reactive input style that updates automatically
 const inputStyle = computed(() => {
@@ -902,9 +904,6 @@ const moveSelectedByArrowKey = (key: string) => {
     updateTransformer();
 };
 
-// Hidden clipboard fallback element (used for dev)
-let hiddenClipboardEl: HTMLTextAreaElement | null = null;
-
 const ensureHiddenClipboard = () => {
     if (!hiddenClipboardEl) {
         hiddenClipboardEl = document.createElement('textarea');
@@ -930,6 +929,7 @@ const copySelectedToClipboard = () => {
         if (isSecure) {
             navigator.clipboard.writeText(json).then(() => {
                 //console.log('Shapes copied to clipboard');
+                window.showToast(trans('copy-success'));
             }).catch(err => {
                 //console.warn('Clipboard write failed:', err);
                 // fallback to hidden textarea
@@ -941,8 +941,8 @@ const copySelectedToClipboard = () => {
             const el = ensureHiddenClipboard();
             //Testing link and text pasting on dev enviroment:
             //el.value = 'This is text';
-            //el.value = json;
-            el.value = 'http://app.kanka.test:8081/w/1/entities/1650';
+            el.value = json;
+            //el.value = 'http://app.kanka.test:8081/w/1/entities/1650';
             // Also try classic execCommand for good measure
             try {
                 el.focus();
@@ -953,6 +953,7 @@ const copySelectedToClipboard = () => {
             }
 
             console.log('Shapes copied via hidden clipboard fallback');
+            window.showToast(trans('copy-success'));
         }
     } catch (err) {
         console.error('Failed to copy shapes:', err);
@@ -981,7 +982,8 @@ const pasteFromClipboard = async () => {
             const entityId = match[1];
 
             try {
-                const res = await axios.get(`${props.entity}?entity_id=${entityId}`);
+                // Replace the first occurrence
+                const res = await axios.get(props.entity.replace("/0.json", `/${entityId}.json`));
                 const entityData = res.data.data;
                 console.log(entityData);
 
@@ -989,6 +991,7 @@ const pasteFromClipboard = async () => {
                 createEntityShape(entityData);
             } catch (err) {
                 console.error('Failed to fetch entity:', err);
+                window.showToast(trans('paste-error') + ': ' + err.message, 'error');
             }
 
             return;
@@ -1000,7 +1003,36 @@ const pasteFromClipboard = async () => {
         try {
             const copiedShapes = JSON.parse(text);
             if (Array.isArray(copiedShapes) && copiedShapes.length) {
-                pasted = pastedShapesCentered(copiedShapes);
+                const stageNode = stage.value?.getNode?.();
+                if (!stageNode) return;
+
+                // Compute bounding box
+                const minX = Math.min(...copiedShapes.map(s => s.x ?? 0));
+                const minY = Math.min(...copiedShapes.map(s => s.y ?? 0));
+                const maxX = Math.max(...copiedShapes.map(s => (s.x ?? 0) + (s.width ?? 0)));
+                const maxY = Math.max(...copiedShapes.map(s => (s.y ?? 0) + (s.height ?? 0)));
+
+                const copiedWidth = maxX - minX;
+                const copiedHeight = maxY - minY;
+
+                // Stage center
+                const stageCenter = stageNode.getPointerPosition?.() || {
+                    x: stageNode.width() / 2,
+                    y: stageNode.height() / 2,
+                };
+
+                const offsetX = stageCenter.x - (minX + copiedWidth / 2);
+                const offsetY = stageCenter.y - (minY + copiedHeight / 2);
+
+                pasted = copiedShapes.map(shape => {
+                    const newShape = { ...shape };
+                    newShape.id = `${shape.id}-paste-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+
+                    if (typeof newShape.x === 'number') newShape.x += offsetX;
+                    if (typeof newShape.y === 'number') newShape.y += offsetY;
+
+                    return newShape;
+                });
             } else {
                 pasted = [createTextShapeFromClipboard(text)];
             }
@@ -1042,7 +1074,7 @@ const createTextShapeFromClipboard = (textValue: string) => {
         width: 100,
         height: 50,
         radius: null,
-        fill: cssVariable('--bc'),
+        fill: currentColor.value,
         text: textValue, // use clipboard text here
         fontFamily: 'Arial',
         locked: false,
@@ -1076,7 +1108,7 @@ const createEntityShape = (entity: any) => {
         entity: entity.id,
         name: entity.name,
         link: entity.urls.view,
-        fill: cssVariable('--bc'),
+        fill: currentColor.value,
         locked: false,
         moving: false,
     });
