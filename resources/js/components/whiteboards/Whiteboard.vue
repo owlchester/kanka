@@ -1039,7 +1039,7 @@ const pasteFromClipboard = async () => {
 
                 pasted = copiedShapes.map(shape => {
                     const newShape = { ...shape };
-                    newShape.id = `${shape.id}-paste-${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
+                    newShape.id = Math.round(Math.random() * 10000).toString();
 
                     if (typeof newShape.x === 'number') newShape.x += offsetX;
                     if (typeof newShape.y === 'number') newShape.y += offsetY;
