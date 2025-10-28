@@ -73,6 +73,8 @@ class ApiService
             'lock' => __('whiteboards/draw.actions.lock'),
             'unlock' => __('whiteboards/draw.actions.unlock'),
             'duplicate' => __('whiteboards/draw.actions.duplicate'),
+            'copy-success' => __('whiteboards/draw.toast.copy.success'),
+            'paste-error' => __('whiteboards/draw.toast.paste.error'),
 
             // General UI
             'back' => __('whiteboards/draw.actions.back'),

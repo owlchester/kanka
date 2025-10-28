@@ -28,4 +28,12 @@ return [
         'title' => 'Entity search',
         'placeholder' => 'Type an entity\'s name or alias',
     ],
+    'toast' => [
+        'copy' => [
+            'success' => 'Elements copied to clipboard.',
+        ],
+        'paste' => [
+            'error' => 'Something went wrong',
+        ]
+    ],
 ];

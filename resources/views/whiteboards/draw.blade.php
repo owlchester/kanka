@@ -11,6 +11,7 @@
             load="{{ route('whiteboards.api', [$campaign, $whiteboard]) }}"
             gallery="{{ route('gallery.browse', $campaign) }}"
             search="{{ route('search.live', $campaign) }}"
+            entity="{{ route('entities.json.export', [$campaign, 0]) }}"
             :readonly="{{ auth()->check() && auth()->user()->can('update', $whiteboard->entity) && auth()->user()->can('whiteboards', $campaign) ? 0 : 1 }}"
         />
     </div>
