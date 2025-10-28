@@ -925,6 +925,30 @@ const ensureHiddenClipboard = () => {
         hiddenClipboardEl.style.opacity = '0';
         hiddenClipboardEl.style.pointerEvents = 'none';
         hiddenClipboardEl.style.zIndex = '-1';
+
+        // hiddenClipboardEl.style.top = '50px';
+        // hiddenClipboardEl.style.left = '50px';
+        // hiddenClipboardEl.style.width = '300px';
+        // hiddenClipboardEl.style.opacity = '1';
+        // hiddenClipboardEl.style.zIndex = '1';
+        // hiddenClipboardEl.rows = 8
+
+        hiddenClipboardEl.setAttribute('aria-hidden', 'true');
+        hiddenClipboardEl.readOnly = true;
+        hiddenClipboardEl.tabIndex = -1;
+
+        // Ensure it cannot receive or react to keyboard input
+        hiddenClipboardEl.addEventListener('keydown', (ev) => {
+            ev.stopImmediatePropagation();
+            ev.preventDefault();
+        }, { capture: true });
+
+        // Also block focus attempts
+        hiddenClipboardEl.addEventListener('focus', (ev) => {
+            ev.preventDefault();
+            hiddenClipboardEl.blur();
+        });
+
         document.body.appendChild(hiddenClipboardEl);
     }
     return hiddenClipboardEl;
@@ -986,6 +1010,8 @@ const pasteFromClipboard = async () => {
         }
 
         if (!text) return;
+
+        console.log('pasted text', text);
 
         // Regex to detect /w/{{campaign_id}}/entities/{{id}}
         const entityUrlRegex = /\/w\/\d+\/entities\/(\d+)/;
