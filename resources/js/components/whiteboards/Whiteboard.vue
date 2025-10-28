@@ -394,7 +394,7 @@
                     <span class="sr-only" v-html="trans('add-circle')"></span>
                 </button>
                 <button
-                    @click="addShape('text')"
+                    @click="startShapeDraw('text')"
                     class="btn2 btn-sm join-item"
                     :title="trans('add-text')"
                     :class="{ 'btn-disabled': toolbarMode === 'text' }">
@@ -641,7 +641,7 @@ const startSelect = () => {
 }
 
 // Called from UI when user clicks the "add square" toolbar button.
-const startShapeDraw = (type: 'rect'|'circle') => {
+const startShapeDraw = (type: 'rect'|'circle'|'text') => {
     // Cancel other modes
     toolbarMode.value = type;
     tempRect.value = null;
@@ -945,31 +945,6 @@ const cancelTextEdit = () => {
     editingText.value = '';
 };
 
-const addShape = (type) => {
-    const { x: tlx, y: tly, scaleX, scaleY } = getStageVisibleTopLeft();
-    // Convert 50px screen offset into stage-space offset
-    const offsetX = 50 / scaleX;
-    const offsetY = 50 / scaleY;
-
-
-    shapes.value.push({
-        id: Math.round(Math.random() * 10000).toString(),
-        type,
-        x: tlx + offsetX,
-        y: tly + offsetY,
-        scaleX: 1,
-        scaleY: 1,
-        width: 100,
-        height: type === "text" ? 50 : 80,
-        radius: type === "circle" ? 40 : null,
-        fill: type === 'text' ? cssVariable('--bc') : cssVariable('--b1'),
-        text: type === "text" ? "Click to edit" : null,
-        fontFamily: type === "text" ? 'Arial' : null,
-        locked: false,
-        moving: false,
-    });
-};
-
 const handleStageClick = (e) => {
     if (toolbarMode.value === 'drawing' || props.readonly) {
         return;
@@ -1080,7 +1055,7 @@ const handleMouseDown = (e) => {
     }
 
     // If shape-draw (rectangle) mode
-    if (toolbarMode.value === 'rect') {
+    if (toolbarMode.value === 'rect' || toolbarMode.value === 'text') {
         const pos = getPointerInLayerSpace();
         if (!pos) return;
         shapeDrawStart.value = pos;
@@ -1088,7 +1063,7 @@ const handleMouseDown = (e) => {
         // Create a temporary visual rect
         tempRect.value = {
             id: 'temp-rect-' + Date.now(),
-            type: 'rect',
+            type: toolbarMode.value,
             x: pos.x,
             y: pos.y,
             width: 0,
@@ -1102,6 +1077,7 @@ const handleMouseDown = (e) => {
         };
         return;
     }
+
     // If shape-draw (circle) mode
     if (toolbarMode.value === 'circle') {
         const pos = getPointerInLayerSpace();
@@ -1181,7 +1157,7 @@ const draw = (e) => {
     }
 
     // Rectangle live preview
-    if (toolbarMode.value === 'rect' && shapeDrawStart.value && tempRect.value) {
+    if ((toolbarMode.value === 'rect' || toolbarMode.value === 'text' ) && shapeDrawStart.value && tempRect.value) {
         const pos = getPointerInLayerSpace();
         if (!pos) return;
 
@@ -1200,6 +1176,7 @@ const draw = (e) => {
         // request overlay update
         uiTick.value++;
     }
+
     // Circle live preview
     if (toolbarMode.value === 'circle' && shapeDrawStart.value && tempCircle.value) {
         const pos = getPointerInLayerSpace();
@@ -1244,6 +1221,35 @@ const handeMouseUp = (e) => {
                 moving: false,
             };
             shapes.value.push(newRect);
+            uiTick.value++;
+        }
+
+        // Clear temporary state and exit shape draw mode
+        tempRect.value = null;
+        return;
+    }
+
+    // Finalize text drawing
+    if (toolbarMode.value === 'text') {
+        if (tempRect.value) {
+            // Push normalized rect into shapes
+            const newText = {
+                id: Math.round(Math.random() * 10000).toString(),
+                type: 'text',
+                x: tempRect.value.x,
+                y: tempRect.value.y,
+                scaleX: 1,
+                scaleY: 1,
+                width: tempRect.value.width,
+                height: tempRect.value.height,
+                radius: null,
+                fill: cssVariable('--bc'),
+                text: "Click to edit",
+                fontFamily: 'Arial',
+                locked: false,
+                moving: false,
+            };
+            shapes.value.push(newText);
             uiTick.value++;
         }
 
@@ -1701,7 +1707,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
         }
 
         // If in rectangle or circle draw mode: cancel the temporary rect/circle and exit to select
-        if (toolbarMode.value === 'rect' || toolbarMode.value === 'circle') {
+        if (toolbarMode.value === 'rect' || toolbarMode.value === 'circle' || toolbarMode.value === 'text') {
             tempRect.value = null;
             shapeDrawStart.value = null;
             toolbarMode.value = 'select';
