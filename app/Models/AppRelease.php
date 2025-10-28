@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $published_at
  * @property Carbon $end_at
  * @property int $created_by
- * @property int $category_id
+ * @property AppReleaseCategory $category_id
  * @property User $author
  */
 class AppRelease extends Model
@@ -44,15 +44,15 @@ class AppRelease extends Model
      */
     public function category(): string
     {
-        if ($this->category_id == AppReleaseCategory::release) {
+        if ($this->category_id === AppReleaseCategory::release) {
             return __('releases.categories.release');
-        } elseif ($this->category_id == AppReleaseCategory::event) {
+        } elseif ($this->category_id === AppReleaseCategory::event) {
             return __('releases.categories.event');
-        } elseif ($this->category_id == AppReleaseCategory::vote) {
+        } elseif ($this->category_id === AppReleaseCategory::vote) {
             return __('releases.categories.vote');
-        } elseif ($this->category_id == AppReleaseCategory::other) {
+        } elseif ($this->category_id === AppReleaseCategory::other) {
             return __('releases.categories.other');
-        } elseif ($this->category_id == AppReleaseCategory::livestream) {
+        } elseif ($this->category_id === AppReleaseCategory::livestream) {
             return __('releases.categories.livestream');
         }
 

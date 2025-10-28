@@ -394,7 +394,7 @@
                     <span class="sr-only" v-html="trans('add-circle')"></span>
                 </button>
                 <button
-                    @click="addShape('text')"
+                    @click="startShapeDraw('text')"
                     class="btn2 btn-sm join-item"
                     :title="trans('add-text')"
                     :class="{ 'btn-disabled': toolbarMode === 'text' }">
@@ -516,6 +516,11 @@ const textInput = ref(null);
 // UI tick to re-compute overlay position on Konva events without syncing geometry to Vue
 const uiTick = ref(0);
 const moving = ref(false);
+
+//Check if there are any unsaved changes.
+const isDirty = ref(false);
+let initialState = null;
+const hasLoaded = ref(false);
 
 // Toolbar refs and helpers
 const colorInput = ref<HTMLInputElement|null>(null);
@@ -644,7 +649,7 @@ const startSelect = () => {
 }
 
 // Called from UI when user clicks the "add square" toolbar button.
-const startShapeDraw = (type: 'rect'|'circle') => {
+const startShapeDraw = (type: 'rect'|'circle'|'text') => {
     // Cancel other modes
     toolbarMode.value = type;
     tempRect.value = null;
@@ -1214,31 +1219,6 @@ const cancelTextEdit = () => {
     editingText.value = '';
 };
 
-const addShape = (type) => {
-    const { x: tlx, y: tly, scaleX, scaleY } = getStageVisibleTopLeft();
-    // Convert 50px screen offset into stage-space offset
-    const offsetX = 50 / scaleX;
-    const offsetY = 50 / scaleY;
-
-
-    shapes.value.push({
-        id: Math.round(Math.random() * 10000).toString(),
-        type,
-        x: tlx + offsetX,
-        y: tly + offsetY,
-        scaleX: 1,
-        scaleY: 1,
-        width: 100,
-        height: type === "text" ? 50 : 80,
-        radius: type === "circle" ? 40 : null,
-        fill: type === 'text' ? cssVariable('--bc') : cssVariable('--b1'),
-        text: type === "text" ? "Click to edit" : null,
-        fontFamily: type === "text" ? 'Arial' : null,
-        locked: false,
-        moving: false,
-    });
-};
-
 const handleStageClick = (e) => {
     if (toolbarMode.value === 'drawing' || props.readonly) {
         return;
@@ -1349,7 +1329,7 @@ const handleMouseDown = (e) => {
     }
 
     // If shape-draw (rectangle) mode
-    if (toolbarMode.value === 'rect') {
+    if (toolbarMode.value === 'rect' || toolbarMode.value === 'text') {
         const pos = getPointerInLayerSpace();
         if (!pos) return;
         shapeDrawStart.value = pos;
@@ -1357,7 +1337,7 @@ const handleMouseDown = (e) => {
         // Create a temporary visual rect
         tempRect.value = {
             id: 'temp-rect-' + Date.now(),
-            type: 'rect',
+            type: toolbarMode.value,
             x: pos.x,
             y: pos.y,
             width: 0,
@@ -1371,6 +1351,7 @@ const handleMouseDown = (e) => {
         };
         return;
     }
+
     // If shape-draw (circle) mode
     if (toolbarMode.value === 'circle') {
         const pos = getPointerInLayerSpace();
@@ -1450,7 +1431,7 @@ const draw = (e) => {
     }
 
     // Rectangle live preview
-    if (toolbarMode.value === 'rect' && shapeDrawStart.value && tempRect.value) {
+    if ((toolbarMode.value === 'rect' || toolbarMode.value === 'text' ) && shapeDrawStart.value && tempRect.value) {
         const pos = getPointerInLayerSpace();
         if (!pos) return;
 
@@ -1469,6 +1450,7 @@ const draw = (e) => {
         // request overlay update
         uiTick.value++;
     }
+
     // Circle live preview
     if (toolbarMode.value === 'circle' && shapeDrawStart.value && tempCircle.value) {
         const pos = getPointerInLayerSpace();
@@ -1521,6 +1503,35 @@ const handeMouseUp = (e) => {
         return;
     }
 
+    // Finalize text drawing
+    if (toolbarMode.value === 'text') {
+        if (tempRect.value) {
+            // Push normalized rect into shapes
+            const newText = {
+                id: Math.round(Math.random() * 10000).toString(),
+                type: 'text',
+                x: tempRect.value.x,
+                y: tempRect.value.y,
+                scaleX: 1,
+                scaleY: 1,
+                width: tempRect.value.width,
+                height: tempRect.value.height,
+                radius: null,
+                fill: cssVariable('--bc'),
+                text: "Click to edit",
+                fontFamily: 'Arial',
+                locked: false,
+                moving: false,
+            };
+            shapes.value.push(newText);
+            uiTick.value++;
+        }
+
+        // Clear temporary state and exit shape draw mode
+        tempRect.value = null;
+        return;
+    }
+
     // Finalize circle drawing
     if (toolbarMode.value === 'circle') {
         if (tempCircle.value) {
@@ -1557,6 +1568,21 @@ watch(toolbarMode, (isOn) => {
     }
 });
 
+//Check for unsaved changes
+watch(
+    [shapes, name],
+    () => {
+        if (loading.value || !initialState) return;
+
+        const current = JSON.stringify({
+            shapes: shapes.value,
+            name: name.value,
+        });
+
+        isDirty.value = current !== JSON.stringify(initialState);
+    },
+    { deep: true }
+);
 
 // Compute the visible top-left of the stage in stage coordinates
 function getStageVisibleTopLeft() {
@@ -1709,6 +1735,7 @@ const saveWhiteboard = () => {
             }
 
             saving.value = false
+            isDirty.value = false; // reset after successful save
         }).catch(err => {
         // Result with a response, hopefully a 422 error
         saving.value = false
@@ -1904,6 +1931,10 @@ onMounted(() => {
 
     if (props.new) {
         loading.value = false
+        initialState = JSON.parse(JSON.stringify({
+            shapes: [],
+            name: '',
+        }));
         return
     }
 
@@ -1919,12 +1950,25 @@ onMounted(() => {
             }
         }
         loading.value = false
+        initialState = JSON.parse(JSON.stringify({
+            shapes: shapes.value,
+            name: name.value,
+        }));
     })
 
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+        if (isDirty.value) {
+            e.preventDefault();
+            e.returnValue = ''; // triggers browser’s default “leave site?” dialog
+        }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
     window.addEventListener('keydown', handleKeyDown);
 
     // Clean up listener on unmount
     onBeforeUnmount(() => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
         cleanupBeforeUnmount();
     });
 
@@ -2008,7 +2052,7 @@ const handleKeyDown = (e: KeyboardEvent) => {
         }
 
         // If in rectangle or circle draw mode: cancel the temporary rect/circle and exit to select
-        if (toolbarMode.value === 'rect' || toolbarMode.value === 'circle') {
+        if (toolbarMode.value === 'rect' || toolbarMode.value === 'circle' || toolbarMode.value === 'text') {
             tempRect.value = null;
             shapeDrawStart.value = null;
             toolbarMode.value = 'select';

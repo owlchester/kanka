@@ -72,13 +72,4 @@ trait Boosted
 
         return $boost?->user->isElemental() ?? false;
     }
-
-    public function isWyvernPremium(): bool
-    {
-        if (app()->hasDebugModeEnabled()) {
-            return true;
-        }
-
-        return $this->premium() && $this->boosts()->with('user')->first()?->user->isWyvern();
-    }
 }

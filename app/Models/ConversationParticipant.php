@@ -60,8 +60,8 @@ class ConversationParticipant extends Model
 
     public function target(): ?int
     {
-        return ! empty($this->character_id) ? ConversationTarget::characters :
-            (! empty($this->user_id) ? ConversationTarget::users : null);
+        return ! empty($this->character_id) ? ConversationTarget::characters->value :
+            (! empty($this->user_id) ? ConversationTarget::users->value : null);
     }
 
     public function isMember(): bool

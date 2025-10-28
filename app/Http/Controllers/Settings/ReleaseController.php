@@ -26,7 +26,7 @@ class ReleaseController extends Controller
         $user = auth()->user();
 
         // Track it using the system already set up for tutorials.
-        $this->tutorialService->user($user)->track('releases_' . $appRelease->category_id . '_' . $appRelease->id);
+        $this->tutorialService->user($user)->track('releases_' . $appRelease->category_id->value . '_' . $appRelease->id);
 
         return response()->json([
             'success' => true,

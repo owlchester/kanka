@@ -751,7 +751,7 @@ class CalendarRenderer
                     ->orWhere(function ($sub) {
                         if ($this->calendar->show_birthdays) {
                             $sub->where('year', '<=', $this->getYear())
-                                ->whereIn('type_id', [EntityEventTypes::births, EntityEventTypes::deaths]);
+                                ->whereIn('type_id', [EntityEventTypes::birth, EntityEventTypes::death]);
                             if (! $this->isYearlyLayout()) {
                                 $sub->where('month', $this->getMonth());
                             }

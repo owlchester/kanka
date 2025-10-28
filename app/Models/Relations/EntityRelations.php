@@ -246,7 +246,7 @@ trait EntityRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Timeline, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Whiteboard, $this>
      */
     public function whiteboard(): HasOne
     {

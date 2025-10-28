@@ -22,8 +22,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $parent_id
  * @property string $role
  * @property bool|int $is_private
- * @property int $pin_id
- * @property int $status_id
+ * @property OrganisationMemberPin $pin_id
+ * @property OrganisationMemberStatus $status_id
  * @property ?Character $character
  * @property ?Organisation $organisation
  * @property ?OrganisationMember $parent
@@ -118,7 +118,7 @@ class OrganisationMember extends Model
      */
     public function pinnedToOrganisation(): bool
     {
-        return $this->pin_id == OrganisationMemberPin::organisation;
+        return $this->pin_id === OrganisationMemberPin::organisation;
     }
 
     /**
@@ -126,7 +126,7 @@ class OrganisationMember extends Model
      */
     public function pinnedToBoth(): bool
     {
-        return $this->pin_id == OrganisationMemberPin::both;
+        return $this->pin_id === OrganisationMemberPin::both;
     }
 
     /**
@@ -134,7 +134,7 @@ class OrganisationMember extends Model
      */
     public function inactive(): bool
     {
-        return $this->status_id == OrganisationMemberStatus::inactive;
+        return $this->status_id === OrganisationMemberStatus::inactive;
     }
 
     /**

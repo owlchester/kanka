@@ -392,7 +392,7 @@ trait CampaignRelations
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\Post, \App\Models\Entity, $this>
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\EntityAsset, \App\Models\Entity, $this>
      */
     public function entityAliases(): HasManyThrough
     {
