@@ -1014,7 +1014,7 @@ const pasteFromClipboard = async () => {
         console.log('pasted text', text);
 
         // Regex to detect /w/{{campaign_id}}/entities/{{id}}
-        const entityUrlRegex = /\/w\/\d+\/entities\/(\d+)/;
+        const entityUrlRegex = /\/w\/\d+\/entities\/(\d+)$/;
         const match = text.match(entityUrlRegex);
 
         if (match) {
@@ -1024,7 +1024,6 @@ const pasteFromClipboard = async () => {
                 // Replace the first occurrence
                 const res = await axios.get(props.entity.replace("/0.json", `/${entityId}.json`));
                 const entityData = res.data.data;
-                console.log(entityData);
 
                 // Create the entity shape
                 createEntityShape(entityData);
@@ -1032,7 +1031,11 @@ const pasteFromClipboard = async () => {
                 console.error('Failed to fetch entity:', err);
                 window.showToast(trans('paste-error') + ': ' + err.message, 'error');
             }
-
+            // update transformer to reflect multiple selection
+            nextTick(() => {
+                updateTransformer(false);
+                setupTransformerEvents();
+            });
             return;
         }
 
@@ -1091,6 +1094,12 @@ const pasteFromClipboard = async () => {
     } catch (err) {
         console.error('Failed to paste:', err);
     }
+
+    // update transformer to reflect multiple selection
+    nextTick(() => {
+        updateTransformer(false);
+        setupTransformerEvents();
+    });
 };
 
 const createTextShapeFromClipboard = (textValue: string) => {
