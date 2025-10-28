@@ -516,6 +516,11 @@ const textInput = ref(null);
 const uiTick = ref(0);
 const moving = ref(false);
 
+//Check if there are any unsaved changes.
+const isDirty = ref(false);
+let initialState = null;
+const hasLoaded = ref(false);
+
 // Toolbar refs and helpers
 const colorInput = ref<HTMLInputElement|null>(null);
 const selectedShape = computed(() => {
@@ -1294,6 +1299,21 @@ watch(toolbarMode, (isOn) => {
     }
 });
 
+//Check for unsaved changes
+watch(
+    [shapes, name],
+    () => {
+        if (loading.value || !initialState) return;
+
+        const current = JSON.stringify({
+            shapes: shapes.value,
+            name: name.value,
+        });
+
+        isDirty.value = current !== JSON.stringify(initialState);
+    },
+    { deep: true }
+);
 
 // Compute the visible top-left of the stage in stage coordinates
 function getStageVisibleTopLeft() {
@@ -1446,6 +1466,7 @@ const saveWhiteboard = () => {
             }
 
             saving.value = false
+            isDirty.value = false; // reset after successful save
         }).catch(err => {
         // Result with a response, hopefully a 422 error
         saving.value = false
@@ -1641,6 +1662,10 @@ onMounted(() => {
 
     if (props.new) {
         loading.value = false
+        initialState = JSON.parse(JSON.stringify({
+            shapes: [],
+            name: '',
+        }));
         return
     }
 
@@ -1656,12 +1681,25 @@ onMounted(() => {
             }
         }
         loading.value = false
+        initialState = JSON.parse(JSON.stringify({
+            shapes: shapes.value,
+            name: name.value,
+        }));
     })
 
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+        if (isDirty.value) {
+            e.preventDefault();
+            e.returnValue = ''; // triggers browser’s default “leave site?” dialog
+        }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
     window.addEventListener('keydown', handleKeyDown);
 
     // Clean up listener on unmount
     onBeforeUnmount(() => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
         cleanupBeforeUnmount();
     });
 
