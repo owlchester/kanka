@@ -9,6 +9,13 @@
                 <i class="fa-regular fa-left-to-bracket" aria-hidden="true"></i>
                 <span v-html="name"></span>
             </a>
+
+            <a v-if="props.creator" href="#" @click="openQQ()"  class="quick-creator-button btn2 btn-primary btn-sm"
+               tabindex="0">
+                <i class="flex-none fa-regular fa-plus" aria-hidden="true"></i>
+                <span class="grow hidden sm:inline-block" v-html="trans('create')"></span>
+                <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" :data-title="trans('qq-keyboard-shortcut')" data-html="true" data-placement="bottom" >N</span>
+            </a>
         </div>
 
 
@@ -486,6 +493,7 @@ const props = defineProps<{
     gallery: String,
     search: String,
     readonly: Boolean,
+    creator: Boolean,
     entity: String,
 }>()
 
@@ -2092,6 +2100,10 @@ const biggerFont = () => {
 const smallerFont = () => {
     if (!selectedShape.value || selectedShape.value.type !== 'text') return
     selectedShape.value.fontSize = (selectedShape.value.fontSize || 12) - 2
+}
+
+const openQQ = () => {
+    window.openDialog("primary-dialog", urls.value.creator)
 }
 
 const cleanupBeforeUnmount = () => {

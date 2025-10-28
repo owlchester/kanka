@@ -58,6 +58,7 @@ class ApiService
         $this->data['i18n'] = [
             'close' => __('crud.actions.close'),
             'save' => __('crud.save'),
+            'create' => __('crud.create'),
             'delete' => __('crud.permissions.actions.delete'),
             'add-square' => __('whiteboards/draw.actions.add-square'),
             'add-circle' => __('whiteboards/draw.actions.add-circle'),
@@ -106,6 +107,7 @@ class ApiService
                 'premium-campaign' => '<a href="https://kanka.io/premium" target="_blank">' . __('concept.premium-campaign') . '</a>',
                 'size' => number_format(config('limits.gallery.premium') / (1024 * 1024), 2),
             ]),
+            'qq-keyboard-shortcut' => __('crud.keyboard-shortcut', ['code' => '<code>N</code>']),
 
         ];
     }
@@ -152,6 +154,7 @@ class ApiService
     {
         $this->data['urls'] = [
             'overview' => route('entities.show', [$this->campaign, $this->whiteboard->entity]),
+            'creator' => route('entity-creator.selection', $this->campaign)
         ];
     }
 }
