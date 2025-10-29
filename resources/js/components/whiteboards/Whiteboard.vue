@@ -486,6 +486,7 @@ import Browser from "../../gallery/Browser.vue";
 import EntitySearch from "./EntitySearch.vue";
 import Entity from "./Entity.vue";
 import Settings from "./Settings.vue";
+import { refreshInfinitePersistSelection } from '@syncfusion/ej2-vue-grids';
 
 const props = defineProps<{
     save: String,
@@ -1319,6 +1320,36 @@ const toggleDrawing = () => {
     }
 }
 
+const resetSelection = () => {
+    // If currently in freehand drawing and there is a tempGroup, discard it and stop drawing
+    if (toolbarMode.value === 'drawing') {
+        isDrawing.value = false;
+        tempGroup.value = null;
+        // exit drawing mode
+        toolbarMode.value = 'select';
+        uiTick.value++;
+        return;
+    }
+
+    // If in rectangle or circle draw mode: cancel the temporary rect/circle and exit to select
+    if (toolbarMode.value === 'rect' || toolbarMode.value === 'circle' || toolbarMode.value === 'text') {
+        tempRect.value = null;
+        shapeDrawStart.value = null;
+        toolbarMode.value = 'select';
+        uiTick.value++;
+        return;
+    }
+
+    // If any shapes are selected, clear selection
+    if (selectedIds.value && selectedIds.value.length) {
+        selectedIds.value = [];
+        selectedId.value = null;
+        updateTransformer();
+        uiTick.value++;
+        return;
+    }
+}
+
 const handleMouseDown = (e) => {
     // Ignore mousedown when clicking on an existing shape/group so Konva's drag handling
     // can proceed without us starting a new temporary drawing stroke/shape.
@@ -2008,6 +2039,8 @@ onMounted(() => {
 
     window.addEventListener('beforeunload', handleBeforeUnload);
     window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('mousedown', handleClick);
+    window.addEventListener('contextmenu', e => e.preventDefault());
 
     // Clean up listener on unmount
     onBeforeUnmount(() => {
@@ -2017,6 +2050,13 @@ onMounted(() => {
 
 })
 
+// Mouse handler
+const handleClick = (e: MouseEvent) => {
+    if (e.button === 2) {
+        e.preventDefault();
+        resetSelection();
+    }
+}
 
 // Keyboard handler: delete selected shape when Delete key pressed
 const handleKeyDown = (e: KeyboardEvent) => {
@@ -2083,34 +2123,8 @@ const handleKeyDown = (e: KeyboardEvent) => {
 
     if (e.key === 'Escape' || (e as any).keyCode === 27) {
         e.preventDefault();
-
-        // If currently in freehand drawing and there is a tempGroup, discard it and stop drawing
-        if (toolbarMode.value === 'drawing') {
-            isDrawing.value = false;
-            tempGroup.value = null;
-            // exit drawing mode
-            toolbarMode.value = 'select';
-            uiTick.value++;
-            return;
-        }
-
-        // If in rectangle or circle draw mode: cancel the temporary rect/circle and exit to select
-        if (toolbarMode.value === 'rect' || toolbarMode.value === 'circle' || toolbarMode.value === 'text') {
-            tempRect.value = null;
-            shapeDrawStart.value = null;
-            toolbarMode.value = 'select';
-            uiTick.value++;
-            return;
-        }
-
-        // If any shapes are selected, clear selection
-        if (selectedIds.value && selectedIds.value.length) {
-            selectedIds.value = [];
-            selectedId.value = null;
-            updateTransformer();
-            uiTick.value++;
-            return;
-        }
+        resetSelection();
+        return;
     }
     if (e.key === 'Enter' || (e as any).keyCode === 13) {
         if (toolbarMode.value === 'drawing') {
