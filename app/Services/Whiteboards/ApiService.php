@@ -154,7 +154,7 @@ class ApiService
     {
         $this->data['urls'] = [
             'overview' => route('entities.show', [$this->campaign, $this->whiteboard->entity]),
-            'creator' => route('entity-creator.selection', $this->campaign)
+            'creator' => route('entity-creator.selection', $this->campaign),
         ];
     }
 }
