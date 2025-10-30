@@ -486,7 +486,6 @@ import Browser from "../../gallery/Browser.vue";
 import EntitySearch from "./EntitySearch.vue";
 import Entity from "./Entity.vue";
 import Settings from "./Settings.vue";
-import { refreshInfinitePersistSelection } from '@syncfusion/ej2-vue-grids';
 
 const props = defineProps<{
     save: String,
