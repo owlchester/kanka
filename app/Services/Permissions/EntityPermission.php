@@ -76,10 +76,6 @@ class EntityPermission
         $entityKey = '_' . $permission->value . '_' . $this->entity->id;
         //        dump('check entity');
         //        dd($entityKey);
-        if (request()->has('_debug_perm')) {
-            dump($this->cached);
-            dd($entityKey);
-        }
         if (isset($this->cached[$entityKey])) {
             return $this->cached[$entityKey];
         }
@@ -239,6 +235,11 @@ class EntityPermission
         // dump('roles');
         if (! empty($campaignRoleIDs)) {
             $permissions = \App\Facades\RolePermission::rolesPermissions($campaignRoleIDs);
+
+            if (request()->has('_debug_perm')) {
+                dump($permissions);
+                dd('perm dump');
+            }
             /** @var CampaignPermission $permission */
             foreach ($permissions as $permission) {
                 // dump($permission->id . ' - ' . $permission->key());
