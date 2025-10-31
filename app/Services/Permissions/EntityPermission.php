@@ -76,6 +76,10 @@ class EntityPermission
         $entityKey = '_' . $permission->value . '_' . $this->entity->id;
         //        dump('check entity');
         //        dd($entityKey);
+        if (request()->has('_debug_perm')) {
+            dump($this->cached);
+            dd($entityKey);
+        }
         if (isset($this->cached[$entityKey])) {
             return $this->cached[$entityKey];
         }
