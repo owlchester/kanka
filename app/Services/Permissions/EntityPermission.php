@@ -236,10 +236,6 @@ class EntityPermission
         if (! empty($campaignRoleIDs)) {
             $permissions = \App\Facades\RolePermission::rolesPermissions($campaignRoleIDs);
 
-            if (request()->has('_debug_perm')) {
-                dump($permissions);
-                dd('perm dump');
-            }
             /** @var CampaignPermission $permission */
             foreach ($permissions as $permission) {
                 // dump($permission->id . ' - ' . $permission->key());
