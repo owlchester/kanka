@@ -813,7 +813,7 @@ class CalendarRenderer
             }
 
             // Make sure the user can actually see the requested event
-            if (empty($event->remindable) || ($event->remindable instanceof Entity && $event->remindable->isMissingChild())) {
+            if (empty($event->remindable) || ($event->remindable instanceof Entity && $event->remindable->isMissingChild()) || ($event->remindable instanceof Post && !$event->remindable->entity)) {
                 continue;
             }
             // If the event reoccurs each month, let's add it everywhere
