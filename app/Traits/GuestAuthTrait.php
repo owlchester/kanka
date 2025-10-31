@@ -11,9 +11,15 @@ trait GuestAuthTrait
     public function authEntityView(?Entity $entity = null): void
     {
         if (empty($entity)) {
+            if (request()->has('_debug_perm')) {
+                dd('cccc');
+            }
             abort(403);
         }
         if ($entity->entityType->isStandard() && $entity->isMissingChild()) {
+            if (request()->has('_debug_perm')) {
+                dd('bb');
+            }
             abort(403);
         }
         if (auth()->check()) {
@@ -32,7 +38,7 @@ trait GuestAuthTrait
     {
         // If the misc model is null ($entity->child), the user has no valid access
         if ($entity === null) {
-            if (request()->filled('_debug_perm')) {
+            if (request()->has('_debug_perm')) {
                 dd('a');
             }
             abort(403);
@@ -44,7 +50,7 @@ trait GuestAuthTrait
         // @phpstan-ignore-next-line
         if ($this->campaign->id != $entity->campaign_id || ! $permission) {
             // Raise an error
-            if (request()->filled('_debug_perm')) {
+            if (request()->has('_debug_perm')) {
                 dump($permission);
                 dd('b');
             }
