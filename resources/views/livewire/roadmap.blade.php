@@ -72,8 +72,8 @@
                     <div class="rounded-2xl bg-gray-200 overflow-hidden">
                         <h3 class="bg-purple text-white p-5">{{ $category->name }}</h3>
                         <div class="p-5 grid grid-cols-1 xl:grid-cols-4 gap-5">
-                            <div class="border-r xl:col-span-2">
-                                <div class="grid xl:grid-cols-2 gap-5">
+                            <div class="border-r xl:col-span-4">
+                                <div class="grid xl:grid-cols-4 gap-5">
                                     @foreach ($category->done as $feat)
                                         @include('roadmap.feature._progress', ['feature' => $feat])
                                     @endforeach
