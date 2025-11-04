@@ -118,6 +118,8 @@ class MapService
                         ->addQuests()
                         ->addAuthorJournals()
                         ->addLocations();
+                } else {
+                    $this->addCustom();
                 }
                 $this->addMapMarkers();
             }
@@ -394,18 +396,19 @@ class MapService
 
         if ($this->withRelated()) {
             $this->relatedRelations()
-                ->addCharacters()
-                ->addItems()
-                ->addFamilies()
-                ->addJournals()
-                ->addOrganisations()
-                ->addParent()
-                ->addQuests()
-                ->addMapMarkers()
-                ->addMaps()
-                ->addAuthorJournals()
-                ->addRaces()
-                ->addLocationCreatures();
+//                ->addCharacters()
+//                ->addItems()
+//                ->addFamilies()
+//                ->addJournals()
+//                ->addOrganisations()
+//                ->addParent()
+//                ->addQuests()
+//                ->addMapMarkers()
+//                ->addMaps()
+//                ->addAuthorJournals()
+//                ->addRaces()
+//                ->addLocationCreatures()
+                ->addEntities();
         }
 
         return $this;
@@ -880,6 +883,32 @@ class MapService
 
         return $this;
     }
+    /**
+     * Location's custom entities
+     */
+    protected function addEntities(): self
+    {
+        $entities = $this->entity->child
+            ->entities()
+            ->with(['image'])
+            ->get();
+        foreach ($entities as $entity) {
+            $this->addEntity($entity);
+            $this->addRelations($entity);
+
+            $this->relations[] = [
+                'source' => $entity->id,
+                'target' => $this->entity->id,
+                'text' => $this->entity->entityType->name(),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'location-entity',
+                'shape' => 'triangle',
+            ];
+        }
+
+        return $this;
+    }
 
     protected function addLocations(): self
     {
@@ -1003,6 +1032,32 @@ class MapService
             $this->relatedRelations();
         } elseif ($this->onlyRelations()) {
             // Just requested the entity's relations and target entities, nothing else
+        }
+
+        return $this;
+    }
+
+    protected function addCustom(): self
+    {
+        // Add the entitiy's locations
+        $locations = $this->entity
+            ->locations()
+            ->with(['entity', 'entity.image', 'entity.entityType'])->has('entity')
+            ->get();
+        /** @var Location $sub */
+        foreach ($locations as $sub) {
+            $this->addEntity($sub->entity);
+            $this->addRelations($sub->entity);
+
+            $this->relations[] = [
+                'source' => $sub->entity->id,
+                'target' => $this->entity->id,
+                'text' => $sub->entity->entityType->name(),
+                'colour' => '#ccc',
+                'attitude' => null,
+                'type' => 'child',
+                'shape' => 'triangle',
+            ];
         }
 
         return $this;

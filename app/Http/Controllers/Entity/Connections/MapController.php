@@ -14,18 +14,15 @@ class MapController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
 
-    protected MapService $service;
-
-    public function __construct(MapService $mapService)
+    public function __construct(protected MapService $mapService)
     {
-        $this->service = $mapService;
     }
 
     public function index(Campaign $campaign, Entity $entity)
     {
         $this->campaign($campaign)->authEntityView($entity);
 
-        $map = $this->service
+        $map = $this->mapService
             ->campaign($campaign)
             ->entity($entity)
             ->option(request()->get('option', null))

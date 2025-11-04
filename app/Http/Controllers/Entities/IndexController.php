@@ -117,7 +117,7 @@ class IndexController extends Controller
         $nested = $this->isNested();
         $layout = $this->layoutMode();
 
-        $with = ['entityType', 'image'];
+        $with = ['entityType', 'image', 'locations'];
         if ($this->entityType->isStandard()) {
             $with[] = $this->entityType->code;
         }

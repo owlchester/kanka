@@ -11,6 +11,7 @@ use App\Models\Concerns\EntityLogs;
 use App\Models\Concerns\EntityType;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
+use App\Models\Concerns\HasLocations;
 use App\Models\Concerns\HasMentions;
 use App\Models\Concerns\HasReminder;
 use App\Models\Concerns\HasSuggestions;
@@ -72,6 +73,7 @@ class Entity extends Model
     use EntityType;
     use HasCampaign;
     use HasEntry;
+    use HasLocations;
     use HasMentions;
     use HasRecursiveRelationships;
     use HasReminder;
@@ -525,5 +527,10 @@ class Entity extends Model
             'type' => $this->type,
             'entry' => strip_tags($this->entry),
         ];
+    }
+
+    public function getLocationPivotTableName(): string
+    {
+        return 'entity_locations';
     }
 }
