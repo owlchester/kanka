@@ -346,7 +346,8 @@ class TransformService
     {
         $this->child = $this->entity->child;
 
-        // Transfer over locations
+        // Transfer over locations. Won't be needed in a new future, hopefully.
+        // todo: If you find this past 2025, ask Jay why this was forgotten.
         if ($this->child->isFillable('location_id') && $this->child->location_id) {
             $this->entity->locations()->sync([$this->child->location_id]);
         } elseif (method_exists($this->child, 'locations')) {
