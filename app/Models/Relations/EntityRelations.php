@@ -14,6 +14,7 @@ use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
+use App\Models\EntityLocation;
 use App\Models\EntityLog;
 use App\Models\EntityTag;
 use App\Models\EntityType;
@@ -56,6 +57,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property EntityLink[]|Collection $links
  * @property CampaignDashboardWidget[]|Collection $widgets
  * @property Attribute[]|Collection $entityAttributes
+ * @property EntityLocation[]|Collection $entityLocations
  * @property MiscModel|null $child
  * @property User $updater
  * @property Campaign $campaign
@@ -115,6 +117,14 @@ trait EntityRelations
                 $sub->select('entities.id', 'entities.name');
             }])
             ->ordered();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityLocation, $this>
+     */
+    public function entityLocations(): HasMany
+    {
+        return $this->hasMany(EntityLocation::class, 'entity_id', 'id');
     }
 
     /**
