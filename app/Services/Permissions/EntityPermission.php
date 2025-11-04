@@ -235,6 +235,7 @@ class EntityPermission
         // dump('roles');
         if (! empty($campaignRoleIDs)) {
             $permissions = \App\Facades\RolePermission::rolesPermissions($campaignRoleIDs);
+
             /** @var CampaignPermission $permission */
             foreach ($permissions as $permission) {
                 // dump($permission->id . ' - ' . $permission->key());
