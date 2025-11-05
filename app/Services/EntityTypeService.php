@@ -153,7 +153,7 @@ class EntityTypeService
     protected function updateBookmark(): self
     {
         $bookmarks = $this->entityType->bookmarks()->whereNull('filters')->get();
-        foreach ($bookmarks as $bookmark) {    
+        foreach ($bookmarks as $bookmark) {
             $bookmark->name = $this->entityType->plural;
             $bookmark->update();
         }
