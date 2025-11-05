@@ -54,7 +54,14 @@
                 'multiple' => true,
             ]])
         </x-forms.field>
-
+    @else
+        <x-forms.field
+            field="update-name">
+            <input type="hidden" name="update_name" value="" />
+            <x-checkbox :text="__('campaigns/modules.fields.update_name')">
+                <input type="checkbox" name="update_name" value="1" checked="checked" />
+            </x-checkbox>
+        </x-forms.field>
     @endif
 
 </x-grid>
