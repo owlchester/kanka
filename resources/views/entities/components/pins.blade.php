@@ -45,4 +45,6 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
     @includeWhen(!isset($printing) && $campaign->boosted() && $entity->hasLinks(), 'entities.components.links')
 
     @include('entities.components.history')
+
+    @include('ads.siderail_right')
 </aside>
