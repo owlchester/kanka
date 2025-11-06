@@ -4,7 +4,7 @@
      * @var \App\Models\EntityType $entityType
      * @var \App\Services\FilterService $filterService
      */
-        use Illuminate\Support\Arr;
+    use Illuminate\Support\Arr;
 @endphp
 <x-form :action="['entities.index', $campaign, $entityType]" method="GET" id="crud-filters-form" class="block">
     <x-dialog.header>
@@ -17,13 +17,18 @@
             </x-helper>
         @else
             <x-grid class="max-w-3xl">
+
                 <div class="field flex flex-col gap-1 field-name">
                     <label>{!! __('crud.fields.name') !!}</label>
                     <input type="text" class="w-full entity-list-filter" name="name" value="{{ $filterService->single('name') }}" data-1p-ignore="true" />
                 </div>
-                <div class="field flex flex-col gap-1 field-type">
+                <div class="field flex flex-col gap-1 field-locations">
                     <label>{!! __('crud.fields.type') !!}</label>
                     @include('cruds.datagrids.filters._type', ['field' => 'type'])
+                </div>
+                <div class="field flex flex-col gap-1 field-type">
+                    <label>{{ \App\Facades\Module::singular(config('entities.ids.location'), __('entities.location')) }}</label>
+                    @include('cruds.datagrids.filters._array', ['field' => ['id' => uniqid('locations_'), 'field' => 'locations', 'data' => []], 'value' => $filterService->filterValue('locations')])
                 </div>
 
                 <div class="field flex flex-col gap-1 field-is_private">

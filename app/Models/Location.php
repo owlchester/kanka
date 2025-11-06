@@ -139,6 +139,14 @@ class Location extends MiscModel
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Entity, $this>
+     */
+    public function entities(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Models\Entity', 'entity_locations');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Item, $this>
      */
     public function items(): HasMany

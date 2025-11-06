@@ -8,6 +8,7 @@ class EntityBulk extends Bulk
         'name',
         'type',
         'parent_id',
+        'locations',
         'tags',
         'private_choice',
         'entity_image',

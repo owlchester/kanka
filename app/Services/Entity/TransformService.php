@@ -156,10 +156,8 @@ class TransformService
         // If the entity is switched from one location to multiple locations
         if (! in_array($this->child->entityTypeId(), [$raceID, $creatureID, $organisationID]) && in_array($this->new->entityTypeId(), [$raceID, $creatureID, $organisationID])) {
             if (in_array('location_id', $this->child->getFillable()) && ! empty($this->child->location_id)) {
-                // @phpstan-ignore-next-line
                 $this->new->locations()->attach($this->child->location_id);
             } elseif (in_array('location_id', $this->child->getFillable()) && ! empty($this->child->location_id)) {
-                // @phpstan-ignore-next-line
                 $this->new->locations()->attach($this->child->location_id);
             }
 
@@ -180,7 +178,6 @@ class TransformService
 
         // @phpstan-ignore-next-line
         foreach ($this->child->locations as $loc) {
-            // @phpstan-ignore-next-line
             $this->new->locations()->attach($loc->id);
         }
         // @phpstan-ignore-next-line
@@ -317,6 +314,7 @@ class TransformService
 
     protected function specialToMisc(): Entity
     {
+        $firstLocation = $this->entity->locations()->first();
         $this->orphanChildren();
 
         // Create misc without calling its observers, to not create duplicates
@@ -324,7 +322,17 @@ class TransformService
         $this->new->name = $this->entity->name;
         $this->new->is_private = $this->entity->is_private;
         $this->new->campaign_id = $this->campaign->id;
+        if ($firstLocation && $this->new->isFillable('location_id')) {
+            // @phpstan-ignore-next-line
+            $this->new->location_id = $firstLocation->id;
+        }
         $this->new->saveQuietly();
+
+        // We need to get rid of the entity's locations, for now. In a future refactor, we can skip this part
+        if (method_exists($this->new, 'locations')) {
+            $this->new->locations()->sync($this->entity->locations()->get()->pluck('id'));
+        }
+        $this->entity->locations()->sync([]);
 
         $this->finish();
 
@@ -334,6 +342,15 @@ class TransformService
     protected function miscToSpecial(): Entity
     {
         $this->child = $this->entity->child;
+
+        // Transfer over locations. Won't be needed in a new future, hopefully.
+        // todo: If you find this past 2025, ask Jay why this was forgotten.
+        // @phpstan-ignore-next-line
+        if ($this->child->isFillable('location_id') && $this->child->location_id) {
+            $this->entity->locations()->sync([$this->child->location_id]);
+        } elseif (method_exists($this->child, 'locations')) {
+            $this->entity->locations()->sync($this->child->locations()->get()->pluck('id'));
+        }
 
         $this->finish();
 

@@ -88,6 +88,10 @@ class EntityResource extends JsonResource
             $data['entry'] = $entity->entry;
             $data['entry_parsed'] = $entity->parsedEntry();
             $data['parent_id'] = $entity->parent_id;
+            $data['locations'] = [];
+            foreach ($entity->locations as $loc) {
+                $data['locations'][] = $loc->id;
+            }
         } else {
             $data['child_id'] = $entity->entity_id;
         }
@@ -117,7 +121,7 @@ class EntityResource extends JsonResource
         }
 
         // Get the actual model
-        if ($this->withMisc) {
+        if ($this->withMisc && $entity->entityType->isStandard()) {
             $className = 'App\Http\Resources\\' . ucfirst($entity->entityType->code) . 'Resource';
             if (class_exists($className)) {
                 $obj = new $className($entity->child);

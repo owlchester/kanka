@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Filters;
 
 use App\Datagrids\Filters\CharacterFilter;
+use App\Datagrids\Filters\CustomEntityFilter;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\EntityType;
@@ -30,7 +31,12 @@ class FormController extends Controller
         if ($entityType->isCustom()) {
             $this->filterService->entityType($entityType)->build();
 
-            return view('entities.index.filters')
+            /** @var CustomEntityFilter $filters */
+            $filters = app()->make(CustomEntityFilter::class);
+            $filters->campaign($campaign)->build();
+
+            return view('filters.form')
+                ->with('filters', $filters->filters())
                 ->with('campaign', $campaign)
                 ->with('entityType', $entityType)
                 ->with('filterService', $this->filterService);
