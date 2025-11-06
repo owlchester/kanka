@@ -4,7 +4,18 @@
     <script>
         window['nitroAds'].createAd('ad-nitro-inline', {
             "sizes": [
-                [728,90]
+                [
+                    "728",
+                    "90"
+                ],
+                [
+                    "320",
+                    "100"
+                ],
+                [
+                    "970",
+                    "90"
+                ]
             ],
             "report": {
                 "enabled": true,
