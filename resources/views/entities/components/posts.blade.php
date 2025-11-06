@@ -29,7 +29,6 @@ $postCount = 0;
 @if (isset($withEntry) && ($posts->count() === 0 || (!empty($first) && $first->position >= 0)))
     @include('entities.components.entry')
     @php $entryShown = true; $adShown = true; @endphp
-    @include('ads.inline', ['cta' => true])
 @endif
 
 
@@ -56,7 +55,6 @@ $postCount = 0;
     @if (isset($withEntry) && !$entryShown)
         @include('entities.components.entry')
         @php $entryShown = true; $adShown = true; @endphp
-        @include('ads.inline', ['cta' => true])
     @endif
 
     <div id="post-anchor-loader" data-url="{{ route('entities.posts.show', [$campaign, $entity, 'post' => 0]) }}"></div>
