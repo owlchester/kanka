@@ -61,6 +61,7 @@ return [
         'base'                      => 'Ajouter des marqueurs en cliquant sur la carte.',
         'copy_elements'             => 'Copier les groupes, couches, et marqueurs.',
         'copy_elements_to_campaign' => 'Copier les groupes, couches, et marqueurs de la carte. Les marqueurs liés à des entités seront transformés en marqueurs standards.',
+        'css'                       => 'Définir une class CSS personnalisés pour le marqueur.',
         'custom_icon_v2'            => 'Utilises des icônes de :fontawesome, :rpgawesome, ou avec un SVG personalisé. Découvres comment dans notre :docs.',
         'custom_radius'             => 'Sélectionner l\'option personnalisée pour définir une taille.',
         'draggable'                 => 'Cocher pour permettre au marqueur d\'être déplacé en mode exploration.',

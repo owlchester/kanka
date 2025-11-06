@@ -361,6 +361,7 @@ return [
             'races'             => 'Si la campagne a plus d\'une race, ce module permet de facilement organiser celles-ci.',
             'tags'              => 'Chaque entité peut avoir plusieurs étiquettes. Les étiquettes peuvent appartenir à d\'autres étiquettes.',
             'timelines'         => 'Représenter l\'histoire du monde de manière visuelle avec des chronologies.',
+            'whiteboards'       => 'Dessiner et écrire sur des tableaux blancs pour visualiser le monde et ses objectifs.',
         ],
     ],
     'sharing'                           => [

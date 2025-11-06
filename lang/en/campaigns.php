@@ -358,7 +358,7 @@ return [
             'races'             => 'Track the origins, ethnicities, and racial traits of the world\'s characters with the race module.',
             'tags'              => 'Each entity can have several tags. Tags can belong to other tags, and entries can be filtered by tag.',
             'timelines'         => 'Represent the history of your world with timelines.',
-            'whiteboards' => 'Draw and write on whiteboards to visually plan your world and goals.',
+            'whiteboards'       => 'Draw and write on whiteboards to visually plan your world and goals.',
         ],
     ],
     'sharing'                           => [

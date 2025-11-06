@@ -42,7 +42,7 @@ class DrawController extends Controller
 
         return response()->json([
             'success' => true,
-            'toast' => __('whiteboards.update.success'),
+            'toast' => __('whiteboards.update.success', ['name' => $whiteboard->name]),
         ]);
     }
 }

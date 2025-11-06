@@ -78,6 +78,7 @@ return [
         'ended'         => 'Ton abonnement a Kanka est terminée. Tes campagnes premium et rôles Discord ont été retirés. Nous espérons te revoir bientôt!',
         'failed'        => 'Problème lors du traitement de la méthode de paiement, merci de les mettre à jour.',
         'started'       => 'L\'abonnement à Kanka a commencé.',
+        'trial'         => 'Ton essai gratuit de Kanka est terminé. Nous espérons que tu l\'as apprécié et nous espérons te revoir bientôt!',
     ],
     'unread'            => 'Nouvelle notification',
 ];

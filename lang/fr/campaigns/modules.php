@@ -17,8 +17,10 @@ return [
         'title'     => 'Suppression de module',
     ],
     'errors'        => [
-        'disabled'  => 'Le module :name est désactivé. :fix',
-        'limit'     => 'Il n\'est actuellement que possible de créer :max modules personnalités pendant qu\'on termine de construire cette nouvelle fonctionnalité.',
+        'disabled'              => 'Le module :name est désactivé. :fix',
+        'limit'                 => 'Il n\'est actuellement que possible de créer :max modules personnalités pendant qu\'on termine de construire cette nouvelle fonctionnalité.',
+        'limit-title'           => 'Limite des modules personnalisés atteinte.',
+        'subscription-limit'    => 'La campagne a atteint le nombre maximal de modules personnalisés disponibles. La personne qui débloque les fonctionnalités premium peut souscrire à un abonnement supérieur pour augmenter cette limite.',
     ],
     'fields'        => [
         'icon'      => 'Icône du module',
@@ -47,9 +49,10 @@ return [
         'warning'   => 'Es-tu ous sûr de vouloir rétablir les noms et icônes d\'origine des modules de la campagne=',
     ],
     'sections'      => [
-        'custom'    => 'Modules personnalisés',
-        'default'   => 'Modules par défaut',
-        'features'  => 'Fonctionnalités',
+        'custom'        => 'Modules personnalisés',
+        'default'       => 'Modules par défaut',
+        'early-access'  => 'Accès anticipé',
+        'features'      => 'Fonctionnalités',
     ],
     'states'        => [
         'disable'   => 'Désactiver',

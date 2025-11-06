@@ -1,39 +1,37 @@
 <?php
 
-
 return [
-    'actions' => [
-        'add-circle' => 'Add circle',
-        'add-square' => 'Add square',
-        'add-entity' => 'Add entity',
-        'add-image' => 'Add image',
-        'add-text' => 'Add text',
-        'start-drawing' => 'Start drawing',
-        'end-drawing' => 'End drawing',
+    'actions'       => [
+        'add-circle'    => 'Add circle',
+        'add-entity'    => 'Add entity',
+        'add-image'     => 'Add image',
+        'add-square'    => 'Add square',
+        'add-text'      => 'Add text',
+        'duplicate'     => 'Duplicate selected',
+        'end-drawing'   => 'End drawing',
+        'lock'          => 'Lock',
+        'push-to-back'  => 'Push to back',
         'push-to-front' => 'Push to front',
-        'push-to-back' => 'Push to back',
-        'lock' => 'Lock',
-        'unlock' => 'Unlock',
-        'back' => 'Back to overview',
-        'duplicate' => 'Duplicate selected',
-    ],
-    'fields' => [
-        'color' => 'Colour',
-    ],
-    'pen' => [
-        'thin-stroke' => 'Thin stroke',
-        'large-stroke' => 'Large stroke',
+        'start-drawing' => 'Start drawing',
+        'unlock'        => 'Unlock',
     ],
     'entity-search' => [
-        'title' => 'Entity search',
-        'placeholder' => 'Type an entity\'s name or alias',
+        'placeholder'   => 'Type an entity\'s name or alias',
+        'title'         => 'Entity search',
     ],
-    'toast' => [
-        'copy' => [
-            'success' => 'Elements copied to clipboard.',
+    'fields'        => [
+        'color' => 'Colour',
+    ],
+    'pen'           => [
+        'large-stroke'  => 'Large stroke',
+        'thin-stroke'   => 'Thin stroke',
+    ],
+    'toast'         => [
+        'copy'  => [
+            'success'   => 'Elements copied to clipboard.',
         ],
         'paste' => [
             'error' => 'Something went wrong',
-        ]
+        ],
     ],
 ];

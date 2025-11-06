@@ -115,6 +115,7 @@ return [
         'unavailable_feature'   => 'Fonctionnalité indisponible',
     ],
     'fields'            => [
+        'archived'          => 'Archivé',
         'calendar_date'     => 'Date calendrier',
         'child'             => 'Enfant',
         'closed'            => 'Fermée',
@@ -182,12 +183,14 @@ return [
                 'all'       => 'Afficher tous les descendants (:count)',
                 'filtered'  => 'Afficher les descendants directs (:count)',
             ],
+            'paginated' => 'Passer facilement des enfants directs à tous les niveaux de descendance. Les résultats sont paginés pour optimiser les performances.',
         ],
         'mobile'            => [
             'clear' => 'Effacer',
             'copy'  => 'Presse-papier',
         ],
         'options'           => [
+            'any'       => 'Quelconque',
             'children'  => 'Correspond à ceci ou ses descendants',
             'exclude'   => 'Ne correspond pas à',
             'hide'      => 'Cacher',

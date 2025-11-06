@@ -179,11 +179,11 @@ return [
         'direct'            => 'Filter to direct descendants',
         'filtered'          => 'Showing :count of :total :entity.',
         'lists'             => [
-            'paginated' => 'Switch between direct children and all levels of descendants. Results are paginated for performance.',
             'desktop'   => [
-                'all'       => 'All descendants (:count)',
-                'filtered'  => 'Direct descendants (:count)',
+                'all'       => 'Show all :count descendants',
+                'filtered'  => 'Show direct :count descendants',
             ],
+            'paginated' => 'Switch between direct children and all levels of descendants. Results are paginated for performance.',
         ],
         'mobile'            => [
             'clear' => 'Clear',
@@ -339,6 +339,9 @@ return [
         'reminders'     => 'Reminders',
         'story'         => 'Overview',
     ],
+    'timestamps'        => [
+        'edited'    => 'Edited :ago',
+    ],
     'titles'            => [
         'editing'   => 'Editing :name',
         'new'       => 'New :module',
@@ -346,9 +349,6 @@ return [
     'update'            => 'Update',
     'users'             => [
         'unknown'   => 'Unknown',
-    ],
-    'timestamps' => [
-        'edited' => 'Edited :ago',
     ],
     'view'              => 'View',
     'visibilities'      => [
