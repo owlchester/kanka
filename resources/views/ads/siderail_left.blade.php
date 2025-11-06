@@ -14,7 +14,8 @@
                 "icon": true,
                 "wording": "Report Ad",
                 "position": "bottom-right"
-            }
+            },
+            "demo": {{ request()->filled('nitro_demo') ? "true" : "false" }}
         });
     </script>
 </x-ad>

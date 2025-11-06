@@ -3,18 +3,14 @@
 
     <script>
         window['nitroAds'].createAd('ad-nitro-inline', {
-            "sizes": [
-                [
-                    "728",
-                    "90"
-                ]
-            ],
+            "delayLoading": true,
             "report": {
                 "enabled": true,
                 "icon": true,
                 "wording": "Report Ad",
                 "position": "bottom-right"
-            }
+            },
+            "demo": {{ request()->filled('nitro_demo') ? "true" : "false" }}
         });
     </script>
 </x-ad>
