@@ -7,7 +7,6 @@ return [
         'add-image'     => 'Ajouter une image',
         'add-square'    => 'Ajouter un carré',
         'add-text'      => 'Ajouter du texte',
-        'back'          => 'Retour',
         'duplicate'     => 'Dupliquer la sélection',
         'end-drawing'   => 'Terminer le dessin',
         'lock'          => 'Verrouiller',

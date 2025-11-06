@@ -340,6 +340,9 @@ return [
         'reminders'     => 'Rappels',
         'story'         => 'Histoire',
     ],
+    'timestamps'        => [
+        'edited'    => 'Modifié :ago',
+    ],
     'titles'            => [
         'editing'   => 'Modification de :name',
         'new'       => 'Nouveau/elle :module',

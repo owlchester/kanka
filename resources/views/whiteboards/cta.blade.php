@@ -11,7 +11,7 @@
         <h1 class="">{{ __('whiteboards.cta.title') }}</h1>
 
         <p class="max-w-2xl">
-            {{ __('whiteboards.cta.text') }}
+            {!! __('whiteboards.cta.text', ['wyvern' => '<strong>Wyvern</strong>', 'elemental' => '<strong>Elemental</strong>']) !!}
         </p>
 
         <x-premium-cta-footer :campaign="$campaign" />

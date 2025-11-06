@@ -19,14 +19,14 @@ return [
     'errors'        => [
         'disabled'              => 'The :name module is disabled. :fix',
         'limit'                 => 'Campaigns are currently limited to only :max custom modules while we iron out this new feature.',
-        'subscription-limit'    => 'The campaign has reached the maximum amount of custom modules available. The person unlocking premium features can subscribe to a higher tier to increase this limit.',
         'limit-title'           => 'Custom Module limit reached',
+        'subscription-limit'    => 'The campaign has reached the maximum amount of custom modules available. The person unlocking premium features can subscribe to a higher tier to increase this limit.',
     ],
     'fields'        => [
-        'icon'         => 'Module icon',
-        'plural'       => 'Module plural name',
-        'singular'     => 'Module singular name',
-        'update_name'  => 'Rename module bookmark with new name',
+        'icon'          => 'Module icon',
+        'plural'        => 'Module plural name',
+        'singular'      => 'Module singular name',
+        'update_name'   => 'Rename module bookmark with new name',
     ],
     'helpers'       => [
         'custom'    => 'This is a custom module.',
@@ -50,10 +50,10 @@ return [
         'warning'   => 'Are you sure you want to reset the campaign modules to their original names and icons?',
     ],
     'sections'      => [
-        'custom'    => 'Custom modules',
-        'default'   => 'Default modules',
-        'early-access' => 'Early access',
-        'features'  => 'Features',
+        'custom'        => 'Custom modules',
+        'default'       => 'Default modules',
+        'early-access'  => 'Early access',
+        'features'      => 'Features',
     ],
     'states'        => [
         'disable'   => 'Disable',

@@ -23,9 +23,10 @@ return [
         'subscription-limit'    => 'La campagne a atteint le nombre maximal de modules personnalisés disponibles. La personne qui débloque les fonctionnalités premium peut souscrire à un abonnement supérieur pour augmenter cette limite.',
     ],
     'fields'        => [
-        'icon'      => 'Icône du module',
-        'plural'    => 'Nom au pluriel du module',
-        'singular'  => 'Nom au singulier du module',
+        'icon'          => 'Icône du module',
+        'plural'        => 'Nom au pluriel du module',
+        'singular'      => 'Nom au singulier du module',
+        'update_name'   => 'Renommer le favori avec le nouveau nom du module',
     ],
     'helpers'       => [
         'custom'    => 'Ceci est un module personnalisé.',

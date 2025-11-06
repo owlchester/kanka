@@ -19,6 +19,7 @@ return [
         'primary'   => 'Setting one or several aliases on the entity will make it findable in the global search (top bar) and through :code mentions.',
     ],
     'limit'         => 'The campaign has reached the limit of aliases available to it. To get unlimited aliases, unlock premium features.',
+    'pitch'         => 'Add aliases to this entity to make it easier to find in search and when using mentions. Perfect for nicknames, titles, or alternate spellings.',
     'placeholders'  => [
         'name'  => 'New alias',
     ],
