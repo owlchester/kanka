@@ -7,10 +7,6 @@
                 [
                     "160",
                     "600"
-                ],
-                [
-                    "160",
-                    "600"
                 ]
             ],
             "report": {
@@ -31,8 +27,12 @@
         window['nitroAds'].createAd('ad-nitro-siderail-right-mobile', {
             "sizes": [
                 [
-                    "160",
-                    "600"
+                    "320",
+                    "100"
+                ],
+                [
+                    "320",
+                    "480"
                 ]
             ],
             "report": {

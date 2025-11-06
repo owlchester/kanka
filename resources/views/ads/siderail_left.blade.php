@@ -26,8 +26,12 @@
         window['nitroAds'].createAd('ad-nitro-siderail-left-mobile', {
             "sizes": [
                 [
-                    "300",
-                    "400"
+                    "320",
+                    "100"
+                ],
+                [
+                    "320",
+                    "480"
                 ]
             ],
             "report": {
