@@ -129,6 +129,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @yield('scripts')
 
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')
+@include('ads.anchor')
 @livewireScripts
 </body>
 </html>
