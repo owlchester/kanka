@@ -1,8 +1,20 @@
 <x-ad section="leaderboard" :campaign="isset($campaign) ? $campaign : null">
-    <!-- Tag ID:  {{ \App\Facades\AdCache::newId()->id(config('ads.freestar.tags.leaderboard')) }} -->
-    <div align="center" data-freestar-ad="__200x600" id="{{ \App\Facades\AdCache::id(config('ads.freestar.tags.leaderboard')) }}">
-        <script data-cfasync="false" type="text/javascript">
-            freestar.config.enabled_slots.push({ placementName: "{{ config('ads.freestar.tags.leaderboard') }}", slotId: "{{ \App\Facades\AdCache::id(config('ads.freestar.tags.leaderboard')) }}" });
-        </script>
-    </div>
+    <div id="ad-nitro-inline"></div>
+
+    <script>
+        window['nitroAds'].createAd('ad-nitro-inline', {
+            "sizes": [
+                [
+                    "728",
+                    "90"
+                ]
+            ],
+            "report": {
+                "enabled": true,
+                "icon": true,
+                "wording": "Report Ad",
+                "position": "bottom-right"
+            }
+        });
+    </script>
 </x-ad>
