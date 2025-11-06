@@ -26,7 +26,6 @@ $headerImage = true;
 
 @section('content')
 
-    @include('ads.cta')
     @if(view()->exists($entity->entityType->pluralCode() . '.show'))
         @include($entity->entityType->pluralCode() . '.show')
     @else
