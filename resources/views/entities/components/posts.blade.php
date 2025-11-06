@@ -6,6 +6,7 @@
  */
 $wrapper = false;
 $entryShown = false;
+$adShown = false;
 if (!isset($posts)) {
     $pagination = config('limits.pagination');
     $posts = $entity->posts()->with([
@@ -27,7 +28,7 @@ $postCount = 0;
 
 @if (isset($withEntry) && ($posts->count() === 0 || (!empty($first) && $first->position >= 0)))
     @include('entities.components.entry')
-    @php $entryShown = true; @endphp
+    @php $entryShown = true; $adShown = true; @endphp
     @include('ads.inline')
 @endif
 
@@ -54,7 +55,7 @@ $postCount = 0;
 
     @if (isset($withEntry) && !$entryShown)
         @include('entities.components.entry')
-        @php $entryShown = true @endphp
+        @php $entryShown = true; $adShown = true; @endphp
         @include('ads.inline')
     @endif
 

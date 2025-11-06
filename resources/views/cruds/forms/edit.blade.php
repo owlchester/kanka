@@ -16,6 +16,7 @@
 ])
 
 @section('content')
+    @include('ads.top')
     <x-form
         method="PATCH"
         :action="[$name . '.update', $campaign, $entity->id]"

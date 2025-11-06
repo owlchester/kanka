@@ -6,7 +6,7 @@
             "sizes": [
                 [
                     "160",
-                    "600"
+                    "400"
                 ]
             ],
             "report": {
@@ -15,6 +15,28 @@
                 "wording": "Report Ad",
                 "position": "bottom-right"
             },
+            "mediaQuery": "(min-width: 1025px)",
+            "demo": {{ request()->filled('nitro_demo') ? "true" : "false" }}
+        });
+    </script>
+
+    <div id="ad-nitro-siderail-left-mobile"></div>
+
+    <script>
+        window['nitroAds'].createAd('ad-nitro-siderail-left-mobile', {
+            "sizes": [
+                [
+                    "300",
+                    "400"
+                ]
+            ],
+            "report": {
+                "enabled": true,
+                "icon": true,
+                "wording": "Report Ad",
+                "position": "bottom-right"
+            },
+            "mediaQuery": "(max-width: 767px)",
             "demo": {{ request()->filled('nitro_demo') ? "true" : "false" }}
         });
     </script>

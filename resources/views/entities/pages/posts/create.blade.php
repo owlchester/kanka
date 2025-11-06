@@ -11,6 +11,7 @@
 ])
 
 @section('content')
+    @include('ads.top')
     <x-form
         :action="['entities.posts.store', $campaign, $entity->id]"
         :extra="['data-max-fields' => ini_get('max_input_vars'),]"

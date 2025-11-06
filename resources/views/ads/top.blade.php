@@ -3,14 +3,51 @@
 
     <script>
         window['nitroAds'].createAd('ad-nitro-leaderboard', {
-            "delayLoading": true,
+            "sizes": [
+                [
+                    "728",
+                    "90"
+                ],
+                [
+                    "970",
+                    "90"
+                ],
+                [
+                    "970",
+                    "250"
+                ]
+            ],
             "report": {
                 "enabled": true,
                 "icon": true,
                 "wording": "Report Ad",
                 "position": "bottom-right"
             },
+            "mediaQuery": "(min-width: 1025px)",
             "demo": {{ request()->filled('nitro_demo') ? "true" : "false" }}
+        });
+    </script>
+
+    <div id="ad-nitro-top-mobile"></div>
+    <script>
+        window['nitroAds'].createAd('ad-nitro-top-mobile', {
+            "sizes": [
+                [
+                    "320",
+                    "50"
+                ],
+                [
+                    "320",
+                    "100"
+                ]
+            ],
+            "report": {
+                "enabled": true,
+                "icon": true,
+                "wording": "Report Ad",
+                "position": "top-right"
+            },
+            "mediaQuery": "(max-width: 767px)"
         });
     </script>
 
