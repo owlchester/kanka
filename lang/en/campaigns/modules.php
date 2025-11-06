@@ -23,9 +23,10 @@ return [
         'limit-title'           => 'Custom Module limit reached',
     ],
     'fields'        => [
-        'icon'      => 'Module icon',
-        'plural'    => 'Module plural name',
-        'singular'  => 'Module singular name',
+        'icon'         => 'Module icon',
+        'plural'       => 'Module plural name',
+        'singular'     => 'Module singular name',
+        'update_name'  => 'Rename module bookmark with new name',
     ],
     'helpers'       => [
         'custom'    => 'This is a custom module.',
