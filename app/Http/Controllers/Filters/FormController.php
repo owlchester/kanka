@@ -31,16 +31,15 @@ class FormController extends Controller
         if ($entityType->isCustom()) {
             $this->filterService->entityType($entityType)->build();
 
-            /** @var CustomEntityFilter::class $filters */
+            /** @var CustomEntityFilter $filters */
             $filters = app()->make(CustomEntityFilter::class);
             $filters->campaign($campaign)->build();
 
-            return // view('entities.index.filters')
-                view('filters.form')
-                    ->with('filters', $filters->filters())
-                    ->with('campaign', $campaign)
-                    ->with('entityType', $entityType)
-                    ->with('filterService', $this->filterService);
+            return view('filters.form')
+                ->with('filters', $filters->filters())
+                ->with('campaign', $campaign)
+                ->with('entityType', $entityType)
+                ->with('filterService', $this->filterService);
         }
         $model = $entityType->getClass();
 

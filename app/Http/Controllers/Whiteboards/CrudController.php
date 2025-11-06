@@ -23,7 +23,6 @@ class CrudController extends BaseCrudController
 
     public function create(Campaign $campaign)
     {
-        // @phpstan-ignore-next-line
         $this->authorize('create', [$this->getEntityType(), $campaign]);
 
         if (! auth()->user()->can('whiteboards', $campaign)) {
@@ -37,7 +36,6 @@ class CrudController extends BaseCrudController
 
     public function store(StoreWhiteboard $request, Campaign $campaign)
     {
-        // @phpstan-ignore-next-line
         $this->authorize('create', [$this->getEntityType(), $campaign]);
 
         if (! auth()->user()->can('whiteboards', $campaign)) {
