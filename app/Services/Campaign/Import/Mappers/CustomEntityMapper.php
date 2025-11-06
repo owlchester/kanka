@@ -5,6 +5,7 @@ namespace App\Services\Campaign\Import\Mappers;
 use App\Facades\EntityLogger;
 use App\Facades\ImportIdMapper;
 use App\Models\Entity;
+use App\Models\EntityLocation;
 use App\Services\EntityMappingService;
 use Illuminate\Support\Facades\Log;
 
@@ -54,7 +55,7 @@ trait CustomEntityMapper
         $this->entity->created_by = $this->user->id;
         $this->entity->updated_by = $this->user->id;
         $this->entity->campaign_id = $this->campaign->id;
-        Log::info(ImportIdMapper::getCustomEntityTypes());
+        //Log::info(ImportIdMapper::getCustomEntityTypes());
 
         $this->entity->type_id = ImportIdMapper::getCustomEntityType($this->data['entity']['type_id']);
         foreach ($entityMapping as $field) {
@@ -92,7 +93,29 @@ trait CustomEntityMapper
             ->relations()
             ->reminders()
             ->abilities()
-            ->inventory();
+            ->inventory()
+            ->locations();
+    }
+
+
+    protected function locations(): self
+    {
+        if (empty($this->data['entity']['entityLocations'])) {
+            return $this;
+        }
+
+        foreach ($this->data['entity']['entityLocations'] as $data) {
+            if (! ImportIdMapper::has('locations', $data['location_id'])) {
+                continue;
+            }
+            $locID = ImportIdMapper::get('locations', $data['location_id']);
+            $entityLoc = new EntityLocation();
+            $entityLoc->entity_id = $this->entity->id;
+            $entityLoc->location_id = $locID;
+            $entityLoc->save();
+        }
+
+        return $this;
     }
 
     public function tree(): self
