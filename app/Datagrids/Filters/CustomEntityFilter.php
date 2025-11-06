@@ -2,8 +2,6 @@
 
 namespace App\Datagrids\Filters;
 
-use App\Models\Creature;
-
 class CustomEntityFilter extends DatagridFilter
 {
     /**

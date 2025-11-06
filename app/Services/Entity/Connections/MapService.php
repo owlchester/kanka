@@ -883,6 +883,7 @@ class MapService
 
         return $this;
     }
+
     /**
      * Location's custom entities
      */

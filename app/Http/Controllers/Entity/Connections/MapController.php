@@ -14,9 +14,7 @@ class MapController extends Controller
     use CampaignAware;
     use GuestAuthTrait;
 
-    public function __construct(protected MapService $mapService)
-    {
-    }
+    public function __construct(protected MapService $mapService) {}
 
     public function index(Campaign $campaign, Entity $entity)
     {

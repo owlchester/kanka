@@ -336,7 +336,6 @@ class TransformService
         }
         $this->entity->locations()->sync([]);
 
-
         $this->finish();
 
         return $this->entity;

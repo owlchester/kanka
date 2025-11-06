@@ -55,7 +55,7 @@ trait CustomEntityMapper
         $this->entity->created_by = $this->user->id;
         $this->entity->updated_by = $this->user->id;
         $this->entity->campaign_id = $this->campaign->id;
-        //Log::info(ImportIdMapper::getCustomEntityTypes());
+        // Log::info(ImportIdMapper::getCustomEntityTypes());
 
         $this->entity->type_id = ImportIdMapper::getCustomEntityType($this->data['entity']['type_id']);
         foreach ($entityMapping as $field) {
@@ -97,7 +97,6 @@ trait CustomEntityMapper
             ->locations();
     }
 
-
     protected function locations(): self
     {
         if (empty($this->data['entity']['entityLocations'])) {
@@ -109,7 +108,7 @@ trait CustomEntityMapper
                 continue;
             }
             $locID = ImportIdMapper::get('locations', $data['location_id']);
-            $entityLoc = new EntityLocation();
+            $entityLoc = new EntityLocation;
             $entityLoc->entity_id = $this->entity->id;
             $entityLoc->location_id = $locID;
             $entityLoc->save();

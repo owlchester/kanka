@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- *
  * @property int $entity_id
  * @property int $location_id
  * @property Entity $entity
@@ -16,8 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class EntityLocation extends Model
 {
-    use HasTimestamps;
     use Blameable;
+    use HasTimestamps;
 
     protected $fillable = [
         'entity_id',

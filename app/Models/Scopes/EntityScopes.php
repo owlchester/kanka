@@ -147,11 +147,11 @@ trait EntityScopes
                 'entityType',
                 'locations' => function ($query) {
                     $query->select('id');
-                }
+                },
             ] : ['tags', 'image', 'entityType',
                 'locations' => function ($query) {
                     $query->select('id');
-                }
+                },
             ]);
     }
 

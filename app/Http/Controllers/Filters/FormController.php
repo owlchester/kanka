@@ -35,12 +35,12 @@ class FormController extends Controller
             $filters = app()->make(CustomEntityFilter::class);
             $filters->campaign($campaign)->build();
 
-            return //view('entities.index.filters')
+            return // view('entities.index.filters')
                 view('filters.form')
-                ->with('filters', $filters->filters())
-                ->with('campaign', $campaign)
-                ->with('entityType', $entityType)
-                ->with('filterService', $this->filterService);
+                    ->with('filters', $filters->filters())
+                    ->with('campaign', $campaign)
+                    ->with('entityType', $entityType)
+                    ->with('filterService', $this->filterService);
         }
         $model = $entityType->getClass();
 
