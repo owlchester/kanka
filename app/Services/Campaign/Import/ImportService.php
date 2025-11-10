@@ -319,7 +319,7 @@ class ImportService
         // Open the campaign settings file
         $data = $this->open('settings/custom-modules.json');
 
-        if (! $data) {
+        if (! $data || ! $this->campaign->premium()) {
             return $this;
         }
 
@@ -331,7 +331,14 @@ class ImportService
             $limit = config('limits.campaigns.modules.elemental');
         }
 
+        $entityTypes = $this->campaign->entityTypes->count();
+
         foreach ($data as $module) {
+
+            if ($entityTypes >= $limit) {
+                break;
+            }
+
             // Create Custom Module
             $newModule = new EntityType;
             $newModule->campaign_id = $this->campaign->id;
@@ -351,10 +358,7 @@ class ImportService
 
             ImportIdMapper::putCustomEntityType($module['id'], $newModule->id);
             ImportIdMapper::putCustomEntityTypeName($module['code'] . '_' . $module['id'], $newModule->id);
-
-            if ($this->campaign->entityTypes->count() >= $limit) {
-                break;
-            }
+            $entityTypes++;
         }
 
         return $this;
