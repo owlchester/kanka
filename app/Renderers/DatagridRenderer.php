@@ -298,7 +298,7 @@ class DatagridRenderer
             $html .= $this->renderRow($model);
 
             if ($rows % 7 === 0) {
-                $html .= $this->renderAdRow();
+                $html .= $this->renderAdRow($rows);
             }
         }
 
@@ -346,7 +346,7 @@ class DatagridRenderer
         return $html . '</tr>';
     }
 
-    protected function renderAdRow(): string
+    protected function renderAdRow(int $rows): string
     {
         if (! $this->showAds()) {
             return '';
@@ -355,7 +355,7 @@ class DatagridRenderer
         $colspan = count($this->columns) + (auth()->check() ? 2 : 0);
 
         return '<tr><td class="adrow" colspan="' . $colspan . '">' .
-            Blade::render('ads.table', ['campaign' => $this->campaign]) .
+            Blade::render('ads.table', ['campaign' => $this->campaign, 'rows' => $rows]) .
         '</td></tr>';
     }
 
