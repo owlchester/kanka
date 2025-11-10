@@ -319,8 +319,16 @@ class ImportService
         // Open the campaign settings file
         $data = $this->open('settings/custom-modules.json');
 
-        if (! $data || ! $this->campaign->premium()) {
+        if (! $data) {
             return $this;
+        }
+
+        //Dont import more than the campaign is allowed to have.
+        $limit = config('limits.campaigns.modules.premium');
+        if ($this->campaign->isWyvern()) {
+            $limit = config('limits.campaigns.modules.wyvern');
+        } elseif ($this->campaign->isElemental()) {
+            $limit = config('limits.campaigns.modules.elemental');
         }
 
         foreach ($data as $module) {
@@ -343,6 +351,10 @@ class ImportService
 
             ImportIdMapper::putCustomEntityType($module['id'], $newModule->id);
             ImportIdMapper::putCustomEntityTypeName($module['code'] . '_' . $module['id'], $newModule->id);
+
+            if ($this->campaign->entityTypes->count() >= $limit) {
+                break;
+            }
         }
 
         return $this;
