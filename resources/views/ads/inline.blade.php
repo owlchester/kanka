@@ -3,7 +3,24 @@
 
     <script>
         window['nitroAds'].createAd('ad-nitro-inline', {
-            "delayLoading": true,
+            "sizes": [
+                [
+                    "300",
+                    "250"
+                ],
+                [
+                    "728",
+                    "90"
+                ],
+                [
+                    "970",
+                    "90"
+                ],
+                [
+                    "970",
+                    "250"
+                ]
+            ],
             "report": {
                 "enabled": true,
                 "icon": true,
