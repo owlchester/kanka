@@ -323,7 +323,7 @@ class ImportService
             return $this;
         }
 
-        //Dont import more than the campaign is allowed to have.
+        // Dont import more than the campaign is allowed to have.
         $limit = config('limits.campaigns.modules.premium');
         if ($this->campaign->isWyvern()) {
             $limit = config('limits.campaigns.modules.wyvern');
