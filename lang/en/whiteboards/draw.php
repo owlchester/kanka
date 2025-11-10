@@ -26,6 +26,10 @@ return [
         'large-stroke'  => 'Large stroke',
         'thin-stroke'   => 'Thin stroke',
     ],
+    'reset'         => [
+        'helper'  => 'Are you sure you want to reset the whiteboard? This action cannot be undone.',
+        'title'   => 'Reset Whiteboard',
+    ],
     'toast'         => [
         'copy'  => [
             'success'   => 'Elements copied to clipboard.',
