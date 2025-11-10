@@ -323,7 +323,22 @@ class ImportService
             return $this;
         }
 
+        // Dont import more than the campaign is allowed to have.
+        $limit = config('limits.campaigns.modules.premium');
+        if ($this->campaign->isWyvern()) {
+            $limit = config('limits.campaigns.modules.wyvern');
+        } elseif ($this->campaign->isElemental()) {
+            $limit = config('limits.campaigns.modules.elemental');
+        }
+
+        $entityTypes = $this->campaign->entityTypes->count();
+
         foreach ($data as $module) {
+
+            if ($entityTypes >= $limit) {
+                break;
+            }
+
             // Create Custom Module
             $newModule = new EntityType;
             $newModule->campaign_id = $this->campaign->id;
@@ -343,6 +358,7 @@ class ImportService
 
             ImportIdMapper::putCustomEntityType($module['id'], $newModule->id);
             ImportIdMapper::putCustomEntityTypeName($module['code'] . '_' . $module['id'], $newModule->id);
+            $entityTypes++;
         }
 
         return $this;
