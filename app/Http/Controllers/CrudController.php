@@ -158,9 +158,13 @@ class CrudController extends Controller
             $base = $model
                 ->preparedGrid();
         } else {
+            // here
+
             $base = $model
                 ->preparedSelect()
                 ->preparedWith();
+            //             dd(get_class($model), get_class($base));
+
             if ($nested) {
                 $this->datagrid->nested();
             }
@@ -209,8 +213,17 @@ class CrudController extends Controller
             $filteredCount = $models->total();
         } else {
 
+            $relation = 'entity';
+            // If $model is a Relation, theres no entity, we have to handle it differently
+            if ($model instanceof \App\Models\Relation) {
+                $relation = 'owner';
+                $base = $base->whereHas('target', function ($query) {
+                    $query->whereNull('archived_at');
+                });
+            }
+
             // Filter out archived entities
-            $base = $base->whereHas('entity', function ($query) {
+            $base = $base->whereHas($relation, function ($query) {
                 $query->whereNull('archived_at');
             });
 
