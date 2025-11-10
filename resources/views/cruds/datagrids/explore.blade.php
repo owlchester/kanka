@@ -41,8 +41,9 @@
             </div>
         @endif
     </div>
-    @include('ads.siderail_right')
 </div>
+
+@include('ads.inline')
 
 
 @if($models instanceof \Illuminate\Pagination\LengthAwarePaginator && $models->hasPages())

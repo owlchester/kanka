@@ -46,7 +46,7 @@ if (auth()->check() && auth()->user()->can('update', $entity)) {
 
     @include('entities.components.history')
 
-        <div class="col-span-2">
-            @include('ads.siderail_right')
-        </div>
+    <div class="col-span-2">
+        @include('ads.siderail_right')
+    </div>
 </aside>
