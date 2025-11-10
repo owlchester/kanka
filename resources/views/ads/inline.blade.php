@@ -1,8 +1,12 @@
 <x-ad section="leaderboard" :campaign="isset($campaign) ? $campaign : null">
-    <div id="ad-nitro-inline"></div>
+    @php
+        $adId = uniqid('nitro-inline-');
+        $adIdMobile = uniqid('nitro-inline-mobile-');
+    @endphp
+    <div id="{{ $adId }}"></div>
 
     <script>
-        window['nitroAds'].createAd('ad-nitro-inline', {
+        window['nitroAds'].createAd('{{ $adId }}', {
             "sizes": [
                 [
                     "300",
@@ -32,10 +36,10 @@
         });
     </script>
 
-    <div id="ad-nitro-inline-mobile"></div>
+    <div id="{{ $adIdMobile }}"></div>
 
     <script>
-        window['nitroAds'].createAd('ad-nitro-inline-mobile', {
+        window['nitroAds'].createAd('{{ $adIdMobile }}', {
             "sizes": [
                 [
                     "320",

@@ -31,9 +31,6 @@ class Ad extends Component
         if (auth()->check()) {
             $this->user = auth()->user();
         }
-        if (! $this->hasAd()) {
-            return '';
-        }
 
         return view('components.ad');
     }
@@ -41,7 +38,7 @@ class Ad extends Component
     /**
      * Determine if ads should be displayed
      */
-    protected function hasAd(): bool
+    public function shouldRender(): bool
     {
         // If we don't have free enabled, then we don't have any ads to show
         $provider = config('ads.provider');

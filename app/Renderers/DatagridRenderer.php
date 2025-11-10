@@ -355,7 +355,7 @@ class DatagridRenderer
         $colspan = count($this->columns) + (auth()->check() ? 2 : 0);
 
         return '<tr><td class="adrow" colspan="' . $colspan . '">' .
-            '<div class="vm-placement" data-id="' . config('tracking.venatus.inline') . '"></div>' .
+            Blade::render('ads.inline', ['campaign' => $this->campaign]) .
         '</td></tr>';
     }
 
@@ -364,7 +364,7 @@ class DatagridRenderer
         if (isset($this->showAds)) {
             return $this->showAds;
         }
-        if (! config('tracking.venatus.enabled')) {
+        if (! config('ads.nitro.enabled')) {
             return $this->showAds = false;
         }
         if ($this->request->has('_showads')) {
