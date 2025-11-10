@@ -355,7 +355,7 @@ class DatagridRenderer
         $colspan = count($this->columns) + (auth()->check() ? 2 : 0);
 
         return '<tr><td class="adrow" colspan="' . $colspan . '">' .
-            Blade::render('ads.inline', ['campaign' => $this->campaign]) .
+            Blade::render('ads.table', ['campaign' => $this->campaign]) .
         '</td></tr>';
     }
 

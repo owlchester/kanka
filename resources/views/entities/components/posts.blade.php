@@ -47,7 +47,7 @@ $postCount = 0;
             @continue
         @endif
         @include('entities.pages.posts.show')
-        @includeWhen($postCount > 0 && $postCount % 3 === 0, 'ads.inline')
+        @includeWhen($postCount > 0 && $postCount % 3 === 0, 'ads.inline', ['count' => $postCount])
         @php $postCount++; @endphp
     @endforeach
 

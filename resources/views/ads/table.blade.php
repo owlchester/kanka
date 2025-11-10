@@ -1,7 +1,7 @@
 <x-ad section="leaderboard" :campaign="isset($campaign) ? $campaign : null">
     @php
-        $adId = 'nitro-inline' . (isset($postCount) ? '-' . $postCount : null);
-        $adIdMobile = 'nitro-inline-mobile' . (isset($postCount) ? '-' . $postCount : null);
+        $adId = uniqid('nitro-row-');
+        $adIdMobile = uniqid('nitro-row-mobile-');
     @endphp
     <div id="{{ $adId }}"></div>
 
