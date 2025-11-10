@@ -158,13 +158,12 @@ class CrudController extends Controller
             $base = $model
                 ->preparedGrid();
         } else {
-            //here
-
+            // here
 
             $base = $model
                 ->preparedSelect()
                 ->preparedWith();
-               //             dd(get_class($model), get_class($base));
+            //             dd(get_class($model), get_class($base));
 
             if ($nested) {
                 $this->datagrid->nested();
