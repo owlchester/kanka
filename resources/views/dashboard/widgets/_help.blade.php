@@ -12,7 +12,7 @@
         </li>
         <li>
             <a href="{{ \App\Facades\Domain::toFront('kb') }}">
-               <x-icon class="fa-regular fa-question" />
+               <x-icon class="fa-regular fa-question-circle" />
                {{ __('footer.kb') }}
             </a>
         </li>
