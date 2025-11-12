@@ -1,3 +1,6 @@
+@if (isset($entityType) && $models->isEmpty() && !$filterService->hasFilters())
+    <x-lists.empty-state :entityType="$entityType" :campaign="$campaign" />
+@else
 <div class="flex gap-1 items-start">
     <x-box :padding="false" >
         <div class="table-responsive">
@@ -20,4 +23,5 @@
     <div class="">
         {{ $models->appends(isset($filterService) ? $filterService->pagination() : null)->onEachSide(0)->links() }}
     </div>
+@endif
 @endif

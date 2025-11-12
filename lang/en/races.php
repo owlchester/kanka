@@ -10,6 +10,9 @@ return [
     'hints'         => [
         'is_extinct'    => 'This race is extinct.',
     ],
+    'lists' => [
+        'empty' => 'Define the species, cultures, or peoples that inhabit your world.'
+    ],
     'members'       => [
         'create'    => [
             'helper'    => 'Add one or several characters to :name.',

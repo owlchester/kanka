@@ -39,9 +39,9 @@ class LimitService
             if ($this->map) {
                 $min = config('limits.filesize.map');
             }
-        } elseif ($this->user->isElemental() || $this->campaign->isElemental()) {
+        } elseif ($this->user->isElemental() || (isset($this->campaign) && $this->campaign->isElemental())) {
             $min = config('limits.filesize.image.elemental') * 1024;
-        } elseif ($this->user->isWyvern() || $this->campaign->isWyvern()) {
+        } elseif ($this->user->isWyvern() || (isset($this->campaign) && $this->campaign->isWyvern())) {
             $min = config('limits.filesize.image.wyvern');
         }
 

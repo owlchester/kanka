@@ -264,6 +264,7 @@ class CrudController extends Controller
         if (method_exists($this, 'getEntityType')) {
             $data['entityType'] = $this->getEntityType();
             $data['templates'] = $this->loadTemplates($data['entityType']);
+            $this->datagrid->entityType($data['entityType']);
         } else {
             $data['singular'] = __('entities.' . \Illuminate\Support\Str::singular($route));
         }

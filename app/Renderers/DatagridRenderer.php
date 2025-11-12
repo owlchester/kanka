@@ -11,6 +11,7 @@ use App\Models\Location;
 use App\Models\MiscModel;
 use App\Services\FilterService;
 use App\Traits\CampaignAware;
+use App\Traits\EntityTypeAware;
 use App\Traits\RequestAware;
 use App\Traits\UserAware;
 use Carbon\Carbon;
@@ -23,6 +24,7 @@ use Illuminate\Support\Str;
 
 class DatagridRenderer
 {
+    use EntityTypeAware;
     use CampaignAware;
     use RequestAware;
     use UserAware;

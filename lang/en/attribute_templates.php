@@ -17,6 +17,9 @@ return [
         'is_enabled'                => 'Enable this template for use in the campaign.',
         'parent_attribute_template' => 'This attribute template can be a child of another attribute template. When applying this attribute template, it and all of its parents will be applied.',
     ],
+    'lists' => [
+        'empty' => 'Create templates to reuse common attributes across multiple entities.',
+    ],
     'placeholders'  => [
         'name'  => 'Name of the Attribute Template',
     ],

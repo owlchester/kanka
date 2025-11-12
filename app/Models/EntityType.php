@@ -213,7 +213,12 @@ class EntityType extends Model
 
     public function isBookmark(): bool
     {
-        return (bool) $this->id == config('entities.ids.bookmark');
+        return $this->id == config('entities.ids.bookmark');
+    }
+
+    public function isAttributeTemplate(): bool
+    {
+        return $this->id == config('entities.ids.attribute_template');
     }
 
     public function createRoute(Campaign $campaign, array $params = []): string

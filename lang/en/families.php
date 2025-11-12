@@ -15,6 +15,9 @@ return [
             'title'     => 'New Members',
         ],
     ],
+    'lists' => [
+        'empty' => 'Track lineages, clans, or noble houses that connect your characters together.'
+    ],
     'placeholders'  => [
         'name'  => 'Name of the family',
         'type'  => 'Royal, Noble, Extinct',
