@@ -74,10 +74,14 @@ class Export implements ShouldQueue
         if (! $user) {
             return 0;
         }
-
+        $isMarkdown = false;
+        if ($campaignExport->type == 2 ) {
+            $isMarkdown = true;
+        }   
         /** @var ExportService $service */
         $service = app()->make(ExportService::class);
         $service
+            ->markdown($isMarkdown)
             ->user($user)
             ->campaign($campaign)
             ->log($campaignExport)

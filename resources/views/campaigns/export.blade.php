@@ -46,18 +46,24 @@
             $campaign,
         ) . '">' . $campaign->adminRoleName() . '</a>']) !!}</p>
             </x-helper>
+            <x-form :action="['campaign.export-process', $campaign]">
+                <x-forms.field
+                    field="type"
+                    required
+                    :label="__('campaigns/export.confirm.type')"
+                    :helper="__('campaigns/export.helpers.type')">
+                    <x-forms.select name="type" radio :options="[1 => 'Json', 2 => 'Markdown']" selected="1" />
+                </x-forms.field>
+                <div class="grid grid-cols-2 gap-2 w-full">
+                    <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
+                        {{ __('crud.cancel') }}
+                    </x-buttons.confirm>
 
-            <div class="grid grid-cols-2 gap-2 w-full">
-                <x-buttons.confirm type="ghost" full="true" dismiss="dialog">
-                    {{ __('crud.cancel') }}
-                </x-buttons.confirm>
-
-                <x-form :action="['campaign.export-process', $campaign]">
                     <x-buttons.confirm type="primary" full="true">
                         {{ __('crud.actions.confirm') }}
                     </x-buttons.confirm>
-                </x-form>
-            </div>
+                </div>
+            </x-form>
         @else
             <x-helper>
                 <p>

@@ -42,6 +42,7 @@ class ExportController extends Controller
         $this->queueService
             ->campaign($campaign)
             ->user($request->user())
+            ->type($request->get('type'))
             ->queue();
 
         $adminRoleName = $campaign->adminRoleName();
