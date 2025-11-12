@@ -13,6 +13,7 @@ return [
     ],
     'errors'    => [
         'limit' => 'The campaign has already been exported once today. Please try again tomorrow.',
+        'premium' => 'Markdown export is a feature exclusive to premium campaigns.'
     ],
     'expired'   => 'Link expired',
     'helpers'   => [
@@ -29,4 +30,9 @@ return [
     'success'   => 'The campaign export has been queued for processing. All members of the :admin role will be notified once the file is ready for downloading.',
     'title'     => 'Export',
     'type'      => 'Type',
+    'types'     => [
+        'md'       => 'Markdown',
+        'md-pitch' => 'Markdown (Premium Campaigns only)',
+        'json'     => 'Json',
+    ]
 ];

@@ -2,7 +2,7 @@
     <div class="flex flex-col gap-2">
     @foreach ($options as $k => $v)
         <div class="flex gap-2 items-center">
-            <input type="radio" name="{{ $name }}" id="{{ $fieldId() . '_' . $k }}" value="{{ $k }}" @if ($isSelected($k)) checked="checked" @endif />
+            <input type="radio" name="{{ $name }}" id="{{ $fieldId() . '_' . $k }}" @if(isset($disabled) && isset($disabled[$k])) disabled='true' @endif value="{{ $k }}" @if ($isSelected($k)) checked="checked" @endif />
             <label for="{{  $fieldId() . '_' . $k }}" class="cursor-pointer">{!! $v !!}</label>
         </div>
     @endforeach

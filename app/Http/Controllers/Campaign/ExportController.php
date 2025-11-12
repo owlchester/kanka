@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Campaign;
 
+use App\Events\Subscriptions\Premium;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Services\Campaign\Exports\QueueService;
@@ -37,6 +38,12 @@ class ExportController extends Controller
             return redirect()
                 ->route('campaign.export', $campaign)
                 ->withError(__('campaigns/export.errors.limit'));
+        }
+
+        if ($request->get('type') == 2 && !$campaign->premium()) {
+            return redirect()
+                ->route('campaign.export', $campaign)
+                ->withError(__('campaigns/export.errors.premium'));
         }
 
         $this->queueService

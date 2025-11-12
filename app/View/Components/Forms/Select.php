@@ -18,6 +18,7 @@ class Select extends Component
         public string $name,
         public array|Collection $options,
         public array|Collection $optionAttributes = [],
+        public array $disabled = [],
         public string $id = '',
         public bool $required = false,
         public bool $multiple = false,
