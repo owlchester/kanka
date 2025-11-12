@@ -37,7 +37,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
         'resources/sass/app.scss',
     ])
     @if (!config('fontawesome.kit'))<link href="/vendor/fontawesome/6.0.0/css/all.min.css" rel="stylesheet">@endif
-    @includeWhen (config('ads.freestar.enabled'), 'ads.freestar.styles')
+    @includeWhen (config('ads.nitro.enabled'), 'ads.nitro.styles')
     @yield('styles')
     @if (!empty($themeOverride) && in_array($themeOverride, ['dark', 'midnight', 'base']))
         @php $specificTheme = $themeOverride; @endphp
@@ -110,7 +110,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
             </div>
         </div>
 
-        @include('ads.incontent')
+        @include('ads.video')
         @include('layouts.footer')
     </div>
 
@@ -129,6 +129,7 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
     @yield('scripts')
 
 @includeWhen(config('tracking.consent'), 'partials.cookieconsent')
+@include('ads.anchor')
 @livewireScripts
 </body>
 </html>

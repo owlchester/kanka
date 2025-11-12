@@ -6,6 +6,7 @@
  */
 $wrapper = false;
 $entryShown = false;
+$adShown = false;
 if (!isset($posts)) {
     $pagination = config('limits.pagination');
     $posts = $entity->posts()->with([
@@ -27,8 +28,7 @@ $postCount = 0;
 
 @if (isset($withEntry) && ($posts->count() === 0 || (!empty($first) && $first->position >= 0)))
     @include('entities.components.entry')
-    @php $entryShown = true; @endphp
-    @include('ads.inline')
+    @php $entryShown = true; $adShown = true; @endphp
 @endif
 
 
@@ -47,15 +47,14 @@ $postCount = 0;
             @continue
         @endif
         @include('entities.pages.posts.show')
-        @includeWhen($postCount > 0 && $postCount % 3 === 0, 'ads.inline')
+        @includeWhen($postCount > 0 && $postCount % 3 === 0, 'ads.inline', ['count' => $postCount])
         @php $postCount++; @endphp
     @endforeach
 
 
     @if (isset($withEntry) && !$entryShown)
         @include('entities.components.entry')
-        @php $entryShown = true @endphp
-        @include('ads.inline')
+        @php $entryShown = true; $adShown = true; @endphp
     @endif
 
     <div id="post-anchor-loader" data-url="{{ route('entities.posts.show', [$campaign, $entity, 'post' => 0]) }}"></div>

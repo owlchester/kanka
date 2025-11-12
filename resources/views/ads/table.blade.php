@@ -1,9 +1,17 @@
 <x-ad section="leaderboard" :campaign="isset($campaign) ? $campaign : null">
-    <div id="ad-nitro-leaderboard"></div>
+    @php
+        $adId = 'nitro-row-' . $rows;
+        $adIdMobile = 'nitro-row-mobile-' . $rows;
+    @endphp
+    <div id="{{ $adId }}"></div>
 
     <script>
-        window['nitroAds'].createAd('ad-nitro-leaderboard', {
+        window['nitroAds'].createAd('{{ $adId }}', {
             "sizes": [
+                [
+                    "300",
+                    "250"
+                ],
                 [
                     "728",
                     "90"
@@ -28,9 +36,10 @@
         });
     </script>
 
-    <div id="ad-nitro-top-mobile"></div>
+    <div id="{{ $adIdMobile }}"></div>
+
     <script>
-        window['nitroAds'].createAd('ad-nitro-top-mobile', {
+        window['nitroAds'].createAd('{{ $adIdMobile }}', {
             "sizes": [
                 [
                     "320",
@@ -45,21 +54,24 @@
                 "enabled": true,
                 "icon": true,
                 "wording": "Report Ad",
-                "position": "top-right"
+                "position": "bottom-right"
             },
-            "mediaQuery": "(max-width: 767px)"
+            "mediaQuery": "(max-width: 767px)",
+            "demo": {{ request()->filled('nitro_demo') ? "true" : "false" }}
         });
     </script>
 
-    @php $amount = auth()->check() && auth()->user()->currency() === 'brl' ? 20 : 5; @endphp
-    <p class="italic mb-4 mx-4">
-        {!! __('misc.ads.remove_v5', [
-        'amount' => $amount,
-        'currency' => auth()->check() ? auth()->user()->currencySymbol() : '$',
-        'premium' =>  __('concept.premium-campaigns'),
-        ]) !!}
-        <a href="{{ route('settings.subscription') }}">
-            {{ __('misc.ads.member') }}
-        </a>
-    </p>
+    @isset($cta)
+        @php $amount = auth()->check() && auth()->user()->currency() === 'brl' ? 20 : 5; @endphp
+        <p class="italic mb-4 mx-4">
+            {!! __('misc.ads.remove_v5', [
+            'amount' => $amount,
+            'currency' => auth()->check() ? auth()->user()->currencySymbol() : '$',
+            'premium' =>  __('concept.premium-campaigns'),
+            ]) !!}
+            <a href="{{ route('settings.subscription') }}">
+                {{ __('misc.ads.member') }}
+            </a>
+        </p>
+    @endif
 </x-ad>

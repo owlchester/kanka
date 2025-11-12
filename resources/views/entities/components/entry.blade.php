@@ -17,6 +17,8 @@
 </article>
 @endif
 
+@include('ads.inline', ['cta' => true])
+
 @includeWhen($entity->isCharacter() && $entity->child->is_appearance_pinned, 'characters.panels._appearance')
 @includeWhen($entity->isCharacter() && $entity->child->is_personality_pinned, 'characters.panels._personality')
 

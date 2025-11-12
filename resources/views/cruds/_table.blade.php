@@ -4,8 +4,8 @@
             @include($name . '.datagrid')
         </div>
     </x-box>
-    @include('ads.siderail_right')
 </div>
+@include('ads.inline')
 
 @includeWhen($models->hasPages() && auth()->check(), 'cruds.helpers.pagination', ['action' => 'index'])
 @includeWhen(isset($datagridActions) && auth()->check() && $filteredCount > 0, 'cruds.datagrids.bulks.actions')

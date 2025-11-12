@@ -11,6 +11,7 @@
 ])
 
 @section('content')
+    @include('ads.top')
 
     <x-form
         method="PATCH"

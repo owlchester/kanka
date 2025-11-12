@@ -9,6 +9,7 @@
 ])
 
 @section('content')
+    @include('ads.top')
     <x-form
         :action="[$name . '.store', $campaign]"
         files

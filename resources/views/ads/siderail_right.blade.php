@@ -1,9 +1,60 @@
 <x-ad section="siderail_right" :campaign="isset($campaign) ? $campaign : null">
-    <div id="yoyoyoyo"></div>
-    <!-- Tag ID:  {{ config('ads.freestar.tags.siderail_right') }} -->
-    <div align="center" data-freestar-ad="__200x600" id="{{ config('ads.freestar.tags.siderail_right') }}">
-        <script data-cfasync="false" type="text/javascript">
-            freestar.config.enabled_slots.push({ placementName: "{{ config('ads.freestar.tags.siderail_right') }}", slotId: "{{ config('ads.freestar.tags.siderail_right') }}" });
-        </script>
-    </div>
+    <div id="ad-nitro-siderail-right"></div>
+
+    <script>
+        window['nitroAds'].createAd('ad-nitro-siderail-right', {
+            "sizes": [
+                [
+                    "160",
+                    "600"
+                ]
+            ],
+            "report": {
+                "enabled": true,
+                "icon": true,
+                "wording": "Report Ad",
+                "position": "bottom-right"
+            },
+            "mediaQuery": "(min-width: 1025px)",
+            "demo": {{ request()->filled('nitro_demo') ? "true" : "false" }}
+        });
+    </script>
+
+
+    <div id="ad-nitro-siderail-right-mobile"></div>
+
+    <script>
+        window['nitroAds'].createAd('ad-nitro-siderail-right-mobile', {
+            "sizes": [
+                [
+                    "320",
+                    "100"
+                ],
+                [
+                    "320",
+                    "50"
+                ],
+                [
+                    "300",
+                    "250"
+                ],
+                [
+                    "320",
+                    "480"
+                ],
+                [
+                    "336",
+                    "280"
+                ]
+            ],
+            "report": {
+                "enabled": true,
+                "icon": true,
+                "wording": "Report Ad",
+                "position": "bottom-right"
+            },
+            "mediaQuery": "(max-width: 767px)",
+            "demo": {{ request()->filled('nitro_demo') ? "true" : "false" }}
+        });
+    </script>
 </x-ad>

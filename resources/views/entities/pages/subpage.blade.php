@@ -1,5 +1,5 @@
 @include('partials.errors')
-@include('ads.top')
+@include('ads.cta')
 
 
 <div class="entity-grid flex flex-col gap-5">
