@@ -55,32 +55,5 @@
 ]) !!}
         </li>
     </ul>
-
-
-    <p class="font-bold">
-        {!! __('dashboards/widgets/welcome.endings.lead', [
-    ]) !!}
-    </p>
-    <ul class="flex flex-col gap-2">
-        <li class="">
-            {!! __('dashboards/widgets/welcome.endings.1', [
-    'kb' => '<a target="_blank" href="https://kanka.io/kb">' . __('footer.kb') . '</a>',
-    'documentation' => '<a target="_blank" href="https://docs.kanka.io">' . __('footer.documentation') . '</a>'
-]) !!}
-        </li>
-        <li class="">
-            {!! __('dashboards/widgets/welcome.endings.2', ['discord' => '<a href="https://kanka.io/go/discord">Discord</a>']) !!}
-        </li>
-        <li class="">
-            {!! __('dashboards/widgets/welcome.endings.3', [
-    'public-campaigns' => '<a href="https://kanka.io/campaigns"> ' . __('footer.public-campaigns') . '</a>'
-]) !!}
-        </li>
-        <li class="">
-            {!! __('dashboards/widgets/welcome.endings.4', [
-    'supporting-us' => '<a href="' . route('settings.subscription') . '">' .  __('dashboards/widgets/welcome.endings.supporting-us') . '</a>'
-]) !!}
-        </li>
-    </ul>
     </div>
 </x-box>

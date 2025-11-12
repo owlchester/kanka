@@ -1,3 +1,3 @@
 <x-helper>
-    <p>{{ __('dashboard.widgets.welcome.helper') }}</p>
+    <p>{{ __('dashboards/widgets/welcome.description') }}</p>
 </x-helper>

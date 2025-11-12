@@ -1,14 +1,7 @@
 <?php
 
 return [
-    'endings'   => [
-        '1'             => 'Most common questions are answered in our :kb. We also have an extensive :documentation that gets updated every week.',
-        '2'             => 'Join us on :discord! The whole team and community are happy to help out with your questions.',
-        '3'             => 'Find inspiration on how others use Kanka by visiting our :public-campaigns.',
-        '4'             => 'Loving the app and want to unlock more advanced features? Consider :supporting-us!',
-        'lead'          => 'Last but not least, here are some useful resources.',
-        'supporting-us' => 'supporting us',
-    ],
+    'description' => 'Display a welcome message with tips and tricks on the dashboard.',
     'focus'     => [
         'text'  => 'Here, that\'s me!',
         'title' => 'Hey',

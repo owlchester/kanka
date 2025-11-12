@@ -46,11 +46,12 @@ use App\Enums\Widget;
                     @include('dashboard.widgets._campaign')
                     @continue;
                 @endif
-                <?php if (!in_array($widget->widget->value, [
-                            Widget::Recent->value,
-                            Widget::Random->value,
-                            Widget::Header->value,
-                            Widget::Welcome->value
+                <?php if (!in_array($widget->widget, [
+                            Widget::Recent,
+                            Widget::Random,
+                            Widget::Header,
+                            Widget::Welcome,
+                            Widget::Help,
                         ]) && empty($widget->entity)):
                     continue;
                 elseif ($widget->widget === Widget::Preview && !$widget->entity):

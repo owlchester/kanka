@@ -120,10 +120,9 @@ class StarterService
      */
     protected function dashboard()
     {
-        // Note for the dashboard
         $widget = new CampaignDashboardWidget([
             'campaign_id' => $this->campaign->id,
-            'widget' => Widget::Welcome->value,
+            'widget' => Widget::Welcome,
             'width' => 6, // half
             'position' => 1,
         ]);
@@ -132,9 +131,17 @@ class StarterService
         // Recent widget
         $widget = new CampaignDashboardWidget([
             'campaign_id' => $this->campaign->id,
-            'widget' => Widget::Recent->value,
+            'widget' => Widget::Recent,
             'width' => 0,
             'position' => 2,
+        ]);
+        $widget->save();
+
+        $widget = new CampaignDashboardWidget([
+            'campaign_id' => $this->campaign->id,
+            'widget' => Widget::Help,
+            'width' => 6, // half
+            'position' => 3,
         ]);
         $widget->save();
     }
