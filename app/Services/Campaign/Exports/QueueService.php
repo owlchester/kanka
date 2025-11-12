@@ -33,6 +33,7 @@ class QueueService
     public function type(int $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 }

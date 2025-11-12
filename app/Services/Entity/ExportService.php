@@ -2,21 +2,21 @@
 
 namespace App\Services\Entity;
 
-use App\Http\Resources\Public\CampaignResource;
 use App\Http\Resources\EntityResource;
+use App\Http\Resources\Public\CampaignResource;
 use App\Models\Campaign;
 use App\Models\Entity;
-use Illuminate\Support\Str;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class ExportService
 {
     /** @var Entity */
     protected $entity;
-    
+
     /** @var ?Campaign */
     protected $campaign;
 
@@ -58,6 +58,7 @@ class ExportService
         if (isset($this->campaign)) {
             $resource = new CampaignResource($this->campaign);
             $this->campaign = null;
+
             return $this->resourceToMarkdown($resource->toArray(request()));
         }
 
@@ -85,19 +86,19 @@ class ExportService
 
         // If there's a clear title field, adjust accordingly
         if (isset($data['name'])) {
-            $markdown .= "## " . $data['name'] . "\n\n";
+            $markdown .= '## ' . $data['name'] . "\n\n";
             unset($data['name']);
         } else {
             $markdown .= "## Export\n\n";
         }
 
         if (isset($data['image_full'])) {
-            $markdown .= "![avatar](" . $data["image_full"] . ")\n\n";
+            $markdown .= '![avatar](' . $data['image_full'] . ")\n\n";
             unset($data['image_full']);
         }
 
         foreach ($data as $key => $value) {
-            $markdown .= "### " . Str::title(str_replace('_', ' ', $key)) . "\n\n";
+            $markdown .= '### ' . Str::title(str_replace('_', ' ', $key)) . "\n\n";
             $markdown .= $this->markdownList($value);
             $markdown .= "\n";
         }
@@ -108,7 +109,7 @@ class ExportService
     protected function markdownList($data, int $depth = 0): string
     {
         if (empty($data)) {
-            return str_repeat("    ", $depth) . "* empty \n";
+            return str_repeat('    ', $depth) . "* empty \n";
         }
         // Convert Resource or ResourceCollection to array
         if ($data instanceof JsonResource || $data instanceof AnonymousResourceCollection) {
@@ -126,8 +127,8 @@ class ExportService
         }
 
         // If still not array, now it's safe to render it as a string
-        if (!is_array($data)) {
-            return str_repeat("    ", $depth) . "* " . (string)$data . "\n";
+        if (! is_array($data)) {
+            return str_repeat('    ', $depth) . '* ' . (string) $data . "\n";
         }
 
         // Determine if associative array
@@ -152,7 +153,7 @@ class ExportService
                 $value = $value->name;
             }
 
-            $indent = str_repeat("    ", $depth);
+            $indent = str_repeat('    ', $depth);
 
             if (is_array($value)) {
                 // Nested section
@@ -167,14 +168,13 @@ class ExportService
             } else {
                 // Simple value
                 if ($isAssoc) {
-                    $markdown .= "{$indent}* **{$key}:** " . (string)$value . "\n";
+                    $markdown .= "{$indent}* **{$key}:** " . (string) $value . "\n";
                 } else {
-                    $markdown .= "{$indent}* " . (string)$value . "\n";
+                    $markdown .= "{$indent}* " . (string) $value . "\n";
                 }
             }
         }
 
         return $markdown;
     }
-    
 }

@@ -50,7 +50,7 @@ class MarkdownExportService
     protected int $totalElements;
 
     protected int $currentElements;
-    
+
     protected ExportService $service;
 
     public function __construct(ExportService $service)
@@ -134,7 +134,7 @@ class MarkdownExportService
         // Count the number of elements to export to get a rough idea of progress
         $this->totalElements =
             Entity::where('campaign_id', $this->campaign->id)->count() +
-            //Image::where('campaign_id', $this->campaign->id)->count() +
+            // Image::where('campaign_id', $this->campaign->id)->count() +
             1; // Campaign json;
         $this->currentElements = 0;
 
@@ -167,7 +167,7 @@ class MarkdownExportService
             'featured_reason', 'visible_entity_count', 'system', 'follower', 'is_hidden',
         ];
 
-        //$exportData = $this->service->campaign($this->campaign)->markdown();
+        // $exportData = $this->service->campaign($this->campaign)->markdown();
         $exportData = ' we wooo';
         $this->archive->addFromString('campaign.json', $exportData);
         $this->files++;

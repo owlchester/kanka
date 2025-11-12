@@ -52,7 +52,7 @@ class ExportService
     protected int $totalElements;
 
     protected int $currentElements;
-    
+
     protected EntityExportService $service;
 
     public function __construct(EntityExportService $service)
@@ -121,7 +121,7 @@ class ExportService
 
     protected function campaignModules(): self
     {
-        //If markdown export, skip
+        // If markdown export, skip
         if ($this->isMarkdown) {
             return $this;
         }
@@ -155,7 +155,7 @@ class ExportService
 
     protected function customCampaignModules(): self
     {
-        //If markdown export, skip
+        // If markdown export, skip
         if ($this->isMarkdown) {
             return $this;
         }
@@ -195,7 +195,7 @@ class ExportService
 
         // Count the number of elements to export to get a rough idea of progress
         $this->totalElements = Entity::where('campaign_id', $this->campaign->id)->count() + 1; // Campaign json;
-        if (!$this->isMarkdown) {
+        if (! $this->isMarkdown) {
             $this->totalElements = $this->totalElements + Image::where('campaign_id', $this->campaign->id)->count();
         }
 
