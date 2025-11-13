@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'new-action-button' => 'Fui transferido para cá!',
-    'templates'         => [
+    'templates' => [
         'set'       => 'Definir como modelo',
         'success'   => [
             'set'   => 'Entidade :name definida como um modelo.',

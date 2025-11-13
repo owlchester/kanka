@@ -174,9 +174,6 @@ return [
         'update'                    => [
             'success'   => 'Widget bol upravený.',
         ],
-        'welcome'                   => [
-            'helper'    => 'Tento widget zobrazuje uvítaciu správu na nástenke, ktorá obsahuje nápomocné linky pre nových užívateľov/ky Kanky.',
-        ],
         'widths'                    => [
             '0' => 'Automatická',
             '12'=> 'Plná (100%)',

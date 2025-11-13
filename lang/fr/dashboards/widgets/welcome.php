@@ -2,14 +2,7 @@
 
 return [
     'description'   => 'Affiche un message de bienvenue avec des conseils et astuces sur le tableau de bord.',
-    'endings'       => [
-        '1'             => 'Les questions les plus courantes trouvent leur réponse dans notre :kb. Nous disposons également d\'une :documentation étendue qui est mise à jour chaque semaine.',
-        '2'             => 'Rejoin-nous sur :discord! Toute l\'équipe et la communauté sont heureuses de répondre à tes questions.',
-        '3'             => 'Trouves de l\'inspiration sur la façon dont les autres utilisent Kanka en visitant nos :public-campaigns.',
-        '4'             => 'Tu adores l\'application et souhaites débloquer des fonctionnalités plus avancées? Tu peux :supporting-us!',
-        'lead'          => 'Pour finir, voici quelques liens utiles.',
-        'supporting-us' => 'nous soutenir',
-    ],
+    'endings'       => [],
     'focus'         => [
         'text'  => 'Ici, c\'est moi!',
         'title' => 'Hey',

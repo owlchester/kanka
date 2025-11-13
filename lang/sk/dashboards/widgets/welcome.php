@@ -1,14 +1,7 @@
 <?php
 
 return [
-    'endings'   => [
-        '1'             => 'Najčastejšie otázky sú zodpovedané v našej :kb. Máme tiež rozsiahlu :documentation, ktorá je aktualizovaná každý týždeň.',
-        '2'             => 'Pridaj sa k nám na :discord! Celý tím a naša komunita ti rada pomôže s tvojimi otázkami.',
-        '3'             => 'Nájdi inšpiráciu, ako Kanku používajú ostatní, v zozname :public-campaigns.',
-        '4'             => 'Miluješ našu apku a chceš v nej viac vyspelejších funkcionalít? Porozmýšľaj o možnosti :supporting-us!',
-        'lead'          => 'A nakoniec, tu je pár užitočných informácií.',
-        'supporting-us' => 'nás podporiť',
-    ],
+    'endings'   => [],
     'focus'     => [
         'text'  => 'Tu, ja som to!',
         'title' => 'Ahoj',

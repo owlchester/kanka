@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'new-action-button' => 'Ich bin hierher gezogen!',
-    'templates'         => [
+    'templates' => [
         'set'       => 'Vorlage erstellen',
         'success'   => [
             'set'   => 'Objekt :name als Vorlage gesetzt',

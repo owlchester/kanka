@@ -170,9 +170,6 @@ return [
         'update'                    => [
             'success'   => 'Widget modificato.',
         ],
-        'welcome'                   => [
-            'helper'    => 'Questo widget visualizza un messaggio di benvenuto sulla Pagina Principale che include link utili per i nuovi utenti di Kanka.',
-        ],
         'widths'                    => [
             '0' => 'Automatica',
             '12'=> 'Intera (100%)',

@@ -175,9 +175,6 @@ return [
         'update'                    => [
             'success'   => 'Widget angepasst.',
         ],
-        'welcome'                   => [
-            'helper'    => 'Dieses Widget zeigt eine Willkommensnachricht auf dem Dashboard an, die hilfreiche Links für neue Benutzer zu Kanka enthält.',
-        ],
         'widths'                    => [
             '0' => 'automatisch',
             '12'=> 'Komplett (100%)',
