@@ -12,9 +12,9 @@ $options = [
     App\Enums\OrganisationMemberPin::both->value => __('organisations.members.pinned.both'),
 ];
 $statuses = [
-    App\Enums\OrganisationMemberStatus::active => __('organisations.members.status.active'),
-    App\Enums\OrganisationMemberStatus::inactive => __('organisations.members.status.inactive'),
-    App\Enums\OrganisationMemberStatus::unknown => __('organisations.members.status.unknown'),
+    App\Enums\OrganisationMemberStatus::active->value => __('organisations.members.status.active'),
+    App\Enums\OrganisationMemberStatus::inactive->value => __('organisations.members.status.inactive'),
+    App\Enums\OrganisationMemberStatus::unknown->value => __('organisations.members.status.unknown'),
 ];
 @endphp
 
