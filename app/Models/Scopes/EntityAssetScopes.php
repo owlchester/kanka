@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Builder;
  */
 trait EntityAssetScopes
 {
-    public function scopeType(Builder $query, EntityAssetType|int $type): Builder
+    public function scopeType(Builder $query, EntityAssetType $type): Builder
     {
-        return $query->where('type_id', $type instanceof EntityAssetType ? $type->value : $type);
+        return $query->where('type_id', $type);
     }
 
     public function scopeFiltered(Builder $query, bool $premium = false): Builder
