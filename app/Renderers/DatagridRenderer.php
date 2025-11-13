@@ -24,8 +24,8 @@ use Illuminate\Support\Str;
 
 class DatagridRenderer
 {
-    use EntityTypeAware;
     use CampaignAware;
+    use EntityTypeAware;
     use RequestAware;
     use UserAware;
 
