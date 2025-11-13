@@ -10,6 +10,28 @@
                 <span v-html="name"></span>
             </a>
 
+            <div v-if="props.creator" class="relative">
+                <button @click="settingsOpen = !settingsOpen"
+                        class="btn2 btn-primary btn-sm flex items-center gap-1">
+                    <i class="fa-regular fa-gear"></i>
+                </button>
+
+                <div v-if="settingsOpen" class="absolute left-0 mt-1 border shadow-md bg-base-100 rounded z-20 w-36">
+                    <button 
+                        class="px-3 py-2 w-full hover:bg-base-200 rounded flex items-center gap-1.5 text-sm text-base-content transition-all duration-150"
+                        @click="openResetDialog" v-html="trans('reset')">
+                    </button>
+
+                    <button disabled class="block px-3 py-2 w-full hover:bg-base-200 rounded flex items-center gap-1.5 text-sm text-base-content transition-all duration-150">
+                        Placeholder 1
+                    </button>
+
+                    <button disabled class="block px-3 py-2 w-full hover:bg-base-200 rounded flex items-center gap-1.5 text-sm text-base-content transition-all duration-150">
+                        Placeholder 2
+                    </button>
+                </div>
+            </div>
+
             <a v-if="props.creator" href="#" @click="openQQ()"  class="quick-creator-button btn2 btn-primary btn-sm"
                tabindex="0">
                 <i class="flex-none fa-regular fa-plus" aria-hidden="true"></i>
@@ -17,7 +39,6 @@
                 <span class="flex-none keyboard-shortcut" id="qq-kb-shortcut" data-toggle="tooltip" :data-title="trans('qq-keyboard-shortcut')" data-html="true" data-placement="bottom" >N</span>
             </a>
         </div>
-
 
         <div class="actions flex items-center" v-if="!props.readonly">
             <button
@@ -467,6 +488,13 @@
         :i18n="i18n"
     ></Settings>
 
+    <Reset
+        v-if="!loading"
+        :opened="resetOpen"
+        @closed="confirmReset"
+        :i18n="i18n"
+    ></Reset>
+
     <EntitySearch
         v-if="!loading"
         :api="props.search"
@@ -486,6 +514,7 @@ import Browser from "../../gallery/Browser.vue";
 import EntitySearch from "./EntitySearch.vue";
 import Entity from "./Entity.vue";
 import Settings from "./Settings.vue";
+import Reset from './Reset.vue';
 
 const props = defineProps<{
     save: String,
@@ -574,6 +603,9 @@ const redoStack: any[] = [];
 const drawUndoStack: string[] = [];
 const drawRedoStack: string[] = [];
 
+const settingsOpen = ref(false);
+const resetOpen = ref(false);
+
 // Hidden clipboard fallback element (used for dev)
 let hiddenClipboardEl: HTMLTextAreaElement | null = null;
 
@@ -622,6 +654,15 @@ const toolbarStyle = computed(() => {
 
 });
 
+const openResetDialog = () => {
+    settingsOpen.value = false;
+    resetOpen.value = true;};
+
+// Clears board and saves
+const confirmReset = () => {
+    shapes.value = [];
+    saveWhiteboard();
+};
 
 const handleDragstart = (shape) => {
     saveHistory();
