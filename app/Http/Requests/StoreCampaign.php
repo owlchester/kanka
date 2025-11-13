@@ -26,7 +26,7 @@ class StoreCampaign extends FormRequest
     public function rules()
     {
         $rules = [
-            'name' => 'required|string|min:4',
+            'name' => 'required|string|min:4|max:191',
             'entry' => 'nullable|string',
             'image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),
             'header_image' => 'mimes:jpeg,png,jpg,gif,webp|max:' . Limit::upload(),

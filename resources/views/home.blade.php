@@ -106,4 +106,7 @@ use App\Enums\Widget;
     @can('apply', $campaign)
     <x-dialog id="apply-dialog" title="Loading"></x-dialog>
     @endif
+
+    @includeWhen($onboarding, 'dashboard.dialogs.onboarding')
+
 @endsection

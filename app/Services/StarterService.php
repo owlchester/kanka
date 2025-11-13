@@ -133,7 +133,7 @@ class StarterService
             'campaign_id' => $this->campaign->id,
             'widget' => Widget::Recent,
             'width' => 0,
-            'position' => 2,
+            'position' => 6,
         ]);
         $widget->save();
 

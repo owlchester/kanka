@@ -7,6 +7,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property Campaign $campaign
+ *
+ * @property int|bool $characters
+ * @property int|bool $quests
+ * @property int|bool $events
+ * @property int|bool $dice_rolls
+ * @property int|bool $conversations
+ * @property int|bool $abilities
+ * @property int|bool $calendars
+ * @property int|bool $items
+ * @property int|bool $timelines
+ * @property int|bool $races
  */
 class CampaignSetting extends Model
 {

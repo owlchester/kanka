@@ -221,3 +221,11 @@ Route::post('/w/{campaign}/sidebar/image', [App\Http\Controllers\Campaign\ImageC
 Route::get('/w/{campaign}/stats', [App\Http\Controllers\Campaign\StatController::class, 'index'])->name('campaign.stats');
 
 Route::get('/w/{campaign}/logs', [App\Http\Controllers\Campaign\LogController::class, 'index'])->name('campaign.logs');
+
+
+Route::post('/w/{campaign}/onboarding/initial', [
+    \App\Http\Controllers\Onboarding\InitialController::class, 'save'
+])->name('campaign.onboarding.initial');
+Route::post('/w/{campaign}/onboarding/initial-skip', [
+    \App\Http\Controllers\Onboarding\InitialController::class, 'skip'
+])->name('campaign.onboarding.initial-skip');

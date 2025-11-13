@@ -45,6 +45,10 @@
   --tw-text-opacity: 1;
   color:hsl(var(--p)/var(--tw-text-opacity))
 }
+.focus\:text-primary:focus {
+  --tw-text-opacity: 1;
+  color:hsl(var(--p)/var(--tw-text-opacity))
+}
 .hover\:text-primary-content:hover {
   --tw-text-opacity: 1;
   color:hsl(var(--pc)/var(--tw-text-opacity))
@@ -155,6 +159,10 @@
     border-color: hsl(var(--p)/var(--tw-border-opacity));
 }
 .hover\:border-primary:hover {
+    --tw-border-opacity: 1;
+    border-color: hsl(var(--p)/var(--tw-border-opacity));
+}
+.focus\:border-primary:focus {
     --tw-border-opacity: 1;
     border-color: hsl(var(--p)/var(--tw-border-opacity));
 }
