@@ -336,7 +336,7 @@
     "isEntry": true
   },
   "resources/js/whiteboards.js": {
-    "file": "assets/whiteboards-DOw28yiu.js",
+    "file": "assets/whiteboards-VHLHlJQr.js",
     "name": "whiteboards",
     "src": "resources/js/whiteboards.js",
     "isEntry": true,
@@ -346,12 +346,12 @@
     ]
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-BwuV4w7C.css",
+    "file": "assets/app-TINZ5Iek.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-6Dwc9_-o.css",
+    "file": "assets/auth-1cHCsqjD.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -376,7 +376,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-CUQiY1k7.css",
+    "file": "assets/front-BwbjWXoB.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },
