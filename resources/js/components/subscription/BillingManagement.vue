@@ -201,7 +201,6 @@
                 axios.post('/subscription-api/payments', {
                     payment_method: method
                 }).then(function () {
-                    console.log('what');
                     this.loadPaymentMethods();
                 }.bind(this));
             },

@@ -36,12 +36,17 @@ class DashboardController extends Controller
 
         // A user with campaigns doesn't need this process.
         $gaTrackingEvent = null;
-        $welcome = false;
+        $welcome = $onboarding = false;
         if (session()->has('user_registered')) {
             session()->remove('user_registered');
             $gaTrackingEvent = 'pa10CJTvrssBEOaOq7oC';
             DataLayer::newAccount();
             $welcome = true;
+        }
+        // Onboarding
+        if (session()->has('onboarding') || request()->filled('onboarding')) {
+            session()->remove('onboarding');
+            $onboarding = true;
         }
 
         $hasMap = $hasCampaignHeader = false;
@@ -62,6 +67,7 @@ class DashboardController extends Controller
             'dashboard',
             'dashboards',
             'welcome',
+            'onboarding',
             'gaTrackingEvent',
         ))
             ->with('hasMap', $hasMap)

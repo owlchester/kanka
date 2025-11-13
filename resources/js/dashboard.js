@@ -1,4 +1,8 @@
 import Sortable from "sortablejs";
+import { createApp } from 'vue'
+import Onboarding from "./dashboards/onboarding/Onboarding.vue"
+import vClickOutside from "click-outside-vue3"
+
 
 const widgetVisible = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
@@ -157,10 +161,18 @@ const initPreviewExpander = () => {
     });
 };
 
+const initOnboarding = () => {
+    const app = createApp({});
+    app.component('onboarding', Onboarding);
+    app.use(vClickOutside);
+    app.mount('#onboarding');
+};
+
 initDashboardCalendars();
 initFollow();
 initPreviewExpander();
 initDashboardAdminUI();
+initOnboarding();
 
 document.querySelectorAll('[data-render]')?.forEach((i) => {
     widgetVisible.observe(i);
