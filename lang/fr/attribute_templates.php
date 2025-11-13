@@ -17,6 +17,9 @@ return [
         'is_enabled'                => 'Activer ce modèle pour l\'utiliser dans la campagne.',
         'parent_attribute_template' => 'Ce modèle d\'attribut peut être l\'enfant d\'un autre modèle d\'attribut. Lorsqu\'un modèle d\'attribut est appliqué, celui-ci ainsi que tous ses descendants seront aussi appliqués.',
     ],
+    'lists'         => [
+        'empty' => 'Créé des modèles pour réutiliser des attributs communs à plusieurs entités.',
+    ],
     'placeholders'  => [
         'name'  => 'Nom du modèle d\'attribut',
     ],

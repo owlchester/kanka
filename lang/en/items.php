@@ -11,7 +11,7 @@ return [
         'size'          => 'Size',
         'weight'        => 'Weight',
     ],
-    'lists' => [
+    'lists'         => [
         'empty' => 'Add weapons, artifacts, or items of importance to your world.',
     ],
     'placeholders'  => [

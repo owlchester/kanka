@@ -117,8 +117,8 @@ return [
         'year'      => 'Year',
         'yearly'    => 'Yearly by default',
     ],
-    'lists' => [
-        'empty' => 'Create a calendar to track dates, festivals, or in-game events over time.'
+    'lists'         => [
+        'empty' => 'Create a calendar to track dates, festivals, or in-game events over time.',
     ],
     'modals'        => [
         'switcher'  => [

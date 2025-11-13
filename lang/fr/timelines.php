@@ -19,6 +19,9 @@ return [
         'no_era_v2'     => 'Cette chronologie ne possède pas d\'ères. Les ères peuvent être ajoutées ici, après quoi des éléments pourront y être ajouté.',
         'reverse_order' => 'Activer pour afficher les ères dans le sens chronologique inversé (plus ancien en premier)',
     ],
+    'lists'         => [
+        'empty' => 'Créé une frise chronologique visuelle pour consigner les événements majeurs et suivre l\'évolution du monde.',
+    ],
     'placeholders'  => [
         'type'  => 'Principale, chronique du monde, chronologie du royaume',
     ],

@@ -9,6 +9,9 @@ return [
         'is_extinct'    => 'Cette famille est éteinte.',
         'members'       => 'Les membres d\'une famille sont affichés ici. Un personnage peut être ajouté à une famille lors de l\'édition du personnage en utilisant le champ "Famille".',
     ],
+    'lists'         => [
+        'empty' => 'Suis les lignées, les clans ou les maisons nobles qui relient tes personnages entre eux.',
+    ],
     'members'       => [
         'create'    => [
             'helper'    => 'Ajouter un ou plusieurs membres à :name.',

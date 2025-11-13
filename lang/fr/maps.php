@@ -57,6 +57,9 @@ return [
         'min_zoom'              => 'La valeur minimale à laquelle la carte peut être rétrécie. La valeur par défaut est de :default, et la valeur minimale est de :min.',
         'missing_image'         => 'Enregister la carte avec une image avant de pouvoir ajouter des couches et des marqueurs.',
     ],
+    'lists'         => [
+        'empty' => 'Télécharge une carte pour visualiser les lieux et explorer la géographie de ton monde.',
+    ],
     'panels'        => [
         'groups'    => 'Groupes',
         'layers'    => 'Couches',

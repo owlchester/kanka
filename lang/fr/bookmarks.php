@@ -32,6 +32,9 @@ return [
         'selector'          => 'Configurer vers quel type d\'entité l\'utilisateur ira en cliquant sur le favori dans le menu de navigation.',
         'type'              => 'Définir ce favori pour aller directement sur une liste d\'entité. Pour filtrer les résultats, il faut copier l\'url de la page filtrée après le :? de l\'url dans le champs :filter.',
     ],
+    'lists'             => [
+        'empty' => 'Enregistre des favoris dans tes entités les plus utilisées ou tes listes filtrées pour un accès plus rapide.',
+    ],
     'placeholders'      => [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Sous-page (dernière partie de l\'url)',

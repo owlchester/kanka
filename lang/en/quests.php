@@ -34,8 +34,8 @@ return [
     'helpers'       => [
         'is_completed'  => 'The quest is considered as completed.',
     ],
-    'lists' => [
-        'empty' => 'Create quests to record objectives, storylines, or character motivations.'
+    'lists'         => [
+        'empty' => 'Create quests to record objectives, storylines, or character motivations.',
     ],
     'placeholders'  => [
         'date'      => 'Real world date for the quest',

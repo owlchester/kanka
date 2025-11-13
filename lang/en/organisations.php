@@ -11,8 +11,8 @@ return [
     'hints'         => [
         'is_defunct'    => 'This organisation is defunct.',
     ],
-    'lists' => [
-        'empty' => 'Create guilds, factions, or secret societies to shape your world\'s power structure.'
+    'lists'         => [
+        'empty' => 'Create guilds, factions, or secret societies to shape your world\'s power structure.',
     ],
     'members'       => [
         'actions'       => [

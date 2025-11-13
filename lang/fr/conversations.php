@@ -13,6 +13,9 @@ return [
         'empty'         => 'Il n\'y a aucun participant dans cette convertation.',
         'participants'  => 'Ajoute des participants à la conversation.',
     ],
+    'lists'         => [
+        'empty' => 'Enregistre les dialogues, les lettres ou les échanges entre les personnages et les factions.',
+    ],
     'messages'      => [
         'destroy'       => [
             'success'   => 'Message supprimé.',

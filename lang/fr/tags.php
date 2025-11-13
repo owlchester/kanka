@@ -32,6 +32,9 @@ return [
         'is_hidden'         => 'Si activé, cette étiquette ne s\'affichera pas dans l\'entête d\'entité, ni dans les infobulles.',
         'tag'               => 'Affichées ci-dessous sont toutes les étiquettes enfants de cette étiquette.',
     ],
+    'lists'         => [
+        'empty' => 'Utilise des balises pour regrouper et filtrer les entités dans ton univers afin de faciliter la navigation.',
+    ],
     'placeholders'  => [
         'type'  => 'Légende, Guerres, Histoire, Religion',
     ],

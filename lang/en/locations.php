@@ -13,7 +13,7 @@ return [
     'hints'         => [
         'is_destroyed'  => 'This location is destroyed.',
     ],
-    'lists' => [
+    'lists'         => [
         'empty' => 'Add your first city, tavern, or hidden ruin to anchor your world.',
     ],
     'placeholders'  => [

@@ -1,12 +1,11 @@
 <?php
 
 return [
-    'archive'           => [
+    'archive'   => [
         'success'   => ':name a été archivé.',
         'title'     => 'Archiver',
     ],
-    'new-action-button' => 'J\'ai été déplacé ici!',
-    'templates'         => [
+    'templates' => [
         'set'       => 'Définir comme modèle',
         'success'   => [
             'set'   => 'L\'entité :name définie comme modèle.',
@@ -15,7 +14,7 @@ return [
         'toggle'    => 'Changement d\'état.',
         'unset'     => 'Retirer des modèles',
     ],
-    'unarchive'         => [
+    'unarchive' => [
         'success'   => ':name n\'est plus archivé.',
         'title'     => 'Désarchiver',
     ],

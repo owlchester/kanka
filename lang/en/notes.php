@@ -7,7 +7,7 @@ return [
     'fields'        => [
         'notes' => 'Sub Notes',
     ],
-    'lists' => [
+    'lists'         => [
         'empty' => 'Store ideas, references, rules, or information that doesn’t fit anywhere else.',
     ],
     'placeholders'  => [

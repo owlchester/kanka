@@ -79,7 +79,6 @@ return [
             'recent'        => 'Entity list',
             'unmentioned'   => 'Unmentioned entities list',
             'welcome'       => 'Welcome',
-            'help' => 'Help & community',
         ],
     ],
     'title'         => 'Dashboard',

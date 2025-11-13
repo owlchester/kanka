@@ -13,7 +13,7 @@ return [
         'empty'         => 'There are no participants in this conversation.',
         'participants'  => 'Please add participants to the conversation by pressing on the :icon icon on the upper-right.',
     ],
-    'lists' => [
+    'lists'         => [
         'empty' => 'Record dialogues, letters, or exchanges between characters and factions.',
     ],
     'messages'      => [

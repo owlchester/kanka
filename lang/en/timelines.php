@@ -19,8 +19,8 @@ return [
         'no_era_v2'     => 'This timeline currently doesn\'t have any eras. Add one or several eras to it, after which you can add elements to the eras here.',
         'reverse_order' => 'Enable to display eras in reverse chronological order (older era first)',
     ],
-    'lists' => [
-        'empty' => 'Build a visual timeline to record major events and track how your world has evolved.'
+    'lists'         => [
+        'empty' => 'Build a visual timeline to record major events and track how your world has evolved.',
     ],
     'placeholders'  => [
         'type'  => 'Primary, World chronicle, Kingdom legacy',

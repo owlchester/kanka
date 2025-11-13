@@ -21,7 +21,7 @@ return [
             'results'   => 'Results',
         ],
     ],
-    'lists' => [
+    'lists'         => [
         'empty' => 'Create and save rolls for your campaign to keep track of results directly in Kanka.',
     ],
     'placeholders'  => [

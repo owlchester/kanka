@@ -42,7 +42,7 @@
         </a>
         <a  href="#" class="{{ $newWidgetListClass }}" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'help', 'dashboard' => $dashboard]) }}" data-toggle="dialog" data-target="primary-dialog">
             <x-icon class="fa-regular fa-comments" />
-            {{ __('dashboard.setup.widgets.help') }}
+            {{ __('dashboards/widgets/help.title') }}
         </a>
     </div>
 </x-grid>

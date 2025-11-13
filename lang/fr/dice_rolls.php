@@ -21,6 +21,9 @@ return [
             'results'   => 'Résultats',
         ],
     ],
+    'lists'         => [
+        'empty' => 'Crée et enregistre des jets pour votre campagne afin de suivre les résultats directement dans Kanka.',
+    ],
     'placeholders'  => [
         'name'          => 'Nom du jet de dés',
         'parameters'    => '4d6+3',

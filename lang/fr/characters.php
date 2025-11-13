@@ -50,6 +50,9 @@ return [
             'name'  => 'Nom du trait de personnalité',
         ],
     ],
+    'lists'         => [
+        'empty' => 'Créé ton premier héros, méchant ou acolyte pour donner vie à ton univers.',
+    ],
     'organisations' => [
         'create'    => [
             'success'   => 'Personne ajoutée à l\'organisation.',

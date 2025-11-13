@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'archive'           => [
+    'archive'   => [
         'success'   => ':name has been archived.',
         'title'     => 'Archive',
     ],
-    'templates'         => [
+    'templates' => [
         'set'       => 'Set as template',
         'success'   => [
             'set'   => ':name set as a template.',
@@ -14,7 +14,7 @@ return [
         'toggle'    => 'Toggled template status.',
         'unset'     => 'Remove as template',
     ],
-    'unarchive'         => [
+    'unarchive' => [
         'success'   => ':name is no longer archived.',
         'title'     => 'Unarchive',
     ],

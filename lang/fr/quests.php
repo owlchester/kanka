@@ -35,6 +35,9 @@ return [
         'is_completed'  => 'Sélectionner si la quête est considérée comme completée.',
     ],
     'hints'         => [],
+    'lists'         => [
+        'empty' => 'Créé des quêtes pour enregistrer les objectifs, les scénarios ou les motivations des personnages.',
+    ],
     'placeholders'  => [
         'date'      => 'Date réelle de la quête',
         'entity'    => 'Nom d\'un élément dans la quête',

@@ -19,6 +19,9 @@ return [
     'fields'        => [
         'charges'   => 'Charges',
     ],
+    'lists'         => [
+        'empty' => 'Ajoute des pouvoirs, des sorts ou des talents. De nombreux créateurs utilisent cette fonctionnalité pour modéliser les classes de D&D.',
+    ],
     'placeholders'  => [
         'charges'   => 'Nombre d\'utilisation. Les attributs peuvent être référencés avec {Level}*{CHA}',
         'name'      => 'Jet de feu, Alert, Résistance',

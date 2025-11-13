@@ -50,7 +50,7 @@ return [
             'name'  => 'Personality trait name',
         ],
     ],
-    'lists' => [
+    'lists'         => [
         'empty' => 'Create your first hero, villain, or sidekick to bring your world to life.',
     ],
     'organisations' => [

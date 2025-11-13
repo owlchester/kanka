@@ -10,6 +10,9 @@ return [
     'hints'         => [
         'is_extinct'    => 'Cette race est éteinte.',
     ],
+    'lists'         => [
+        'empty' => 'Défini les espèces, les cultures ou les peuples qui peuplent ton monde.',
+    ],
     'members'       => [
         'create'    => [
             'helper'    => 'Ajouter un ou plusieurs personnages à :name.',

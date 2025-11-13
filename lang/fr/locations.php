@@ -13,6 +13,9 @@ return [
     'hints'         => [
         'is_destroyed'  => 'Ce lieu est détruit.',
     ],
+    'lists'         => [
+        'empty' => 'Ajoutez ta première ville, taverne ou ruine cachée pour ancrer ton monde.',
+    ],
     'placeholders'  => [
         'type'  => 'Village, Royaume, Ruine',
     ],

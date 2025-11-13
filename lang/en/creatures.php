@@ -11,8 +11,8 @@ return [
         'is_dead'       => 'This creature is dead.',
         'is_extinct'    => 'This creature is extinct.',
     ],
-    'lists' => [
-        'empty' => 'Add beasts, monsters, or mythical beings your heroes may face or befriend.'
+    'lists'         => [
+        'empty' => 'Add beasts, monsters, or mythical beings your heroes may face or befriend.',
     ],
     'placeholders'  => [
         'type'  => 'Herbivore, Aquatic, Mythical',
