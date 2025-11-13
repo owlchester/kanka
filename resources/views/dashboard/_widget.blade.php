@@ -21,7 +21,7 @@ use App\Enums\Widget;
         <div class="rounded-xl bg-box flex gap-2 flex-col p-4 h-full">
             <div class="flex gap-4 items-center w-full ">
                 <div class="grow truncate">
-                    <x-icon :class="$widget->widgetIcon()" tooltip title="{{ __('dashboard.setup.widgets.' . $widget->widget->value) }}" />
+                    <x-icon :class="$widget->widgetIcon()" tooltip title="{{ __('dashboards/widgets/' . $widget->widget->value . '.name') }}" />
                     @if (!empty($widget->conf('text')))
                         {{ $widget->conf('text') }} ({{ __('dashboards/widgets/' . $widget->widget->value . '.name') }})
                     @else

@@ -15,7 +15,7 @@
                 } elseif ($model->isList()) {
                     return '<i class="fa-regular fa-th-list"></i> ' . __('crud.fields.entity_type');
                 } elseif ($model->isRandom()) {
-                    return '<i class="fa-regular fa-question"></i> ' . __('dashboard.setup.widgets.random');
+                    return '<i class="fa-regular fa-question"></i> ' . __('dashboards/widgets/random.name');
                 }
                 return '';
             },

@@ -70,16 +70,6 @@ return [
             'blog'  => 'our tutorial',
             'text'  => 'Need help setting up the dashboard? Read :blog for some help and inspiration.',
         ],
-        'widgets'   => [
-            'calendar'      => 'Calendar',
-            'campaign'      => 'Campaign header',
-            'header'        => 'Title',
-            'preview'       => 'Entity preview',
-            'random'        => 'Random entity',
-            'recent'        => 'Entity list',
-            'unmentioned'   => 'Unmentioned entities list',
-            'welcome'       => 'Welcome',
-        ],
     ],
     'title'         => 'Dashboard',
     'widgets'       => [
