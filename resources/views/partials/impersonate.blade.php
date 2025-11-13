@@ -6,7 +6,7 @@
                 {{ __('campaigns.members.impersonating.title', ['name' => auth()->user()->name]) }}
             </div>
             <p class="text-justify">
-                {{ __('campaigns.members.impersonating.message', ['name' => auth()->user()->name]) }}
+                {{ __('campaigns.members.impersonating.message', ['name' => auth()->user()->name, 'campaign' => $campaign->name]) }}
             </p>
         </div>
         <a href="{{ route('identity.back', $campaign) }}" class="btn2 btn-sm switch-back">
