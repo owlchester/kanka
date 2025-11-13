@@ -47,9 +47,6 @@ abstract class MiscModel extends Model
     use SubEntityScopes;
     use TouchSilently;
 
-    /** Entity type (character, location) */
-    protected string $entityType;
-
     /**
      * Explicit fields for filtering.
      * Ex. ['sex']
