@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'description'   => 'Displays a welcome message with tips and tricks on the dashboard.',
+    'name' => 'Welcome',
+    'description'   => 'Shows a welcome message with tips.',
     'focus'         => [
         'text'  => 'Here, that\'s me!',
         'title' => 'Hey',

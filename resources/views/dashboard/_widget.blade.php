@@ -23,9 +23,9 @@ use App\Enums\Widget;
                 <div class="grow truncate">
                     <x-icon :class="$widget->widgetIcon()" tooltip title="{{ __('dashboard.setup.widgets.' . $widget->widget->value) }}" />
                     @if (!empty($widget->conf('text')))
-                        {{ $widget->conf('text') }} ({{ __('dashboard.setup.widgets.' . $widget->widget->value) }})
+                        {{ $widget->conf('text') }} ({{ __('dashboards/widgets/' . $widget->widget->value . '.name') }})
                     @else
-                        {{ __('dashboard.setup.widgets.' . $widget->widget->value) }}
+                        {{ __('dashboards/widgets/' . $widget->widget->value . '.name') }}
                     @endif
                 </div>
                 <div class="flex-none handle cursor-move text-neutral-content" data-toggle="tooltip" data-title="{{ __('dashboard.setup.reorder.helper') }}">

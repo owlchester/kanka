@@ -1,6 +1,7 @@
 <?php
 
 return [
-    'description'   => 'Displays links to help and community resources on the dashboard.',
-    'title'         => 'Help & community',
+    'description'   => 'Shows help and community links.',
+    'name' => 'Help & Community',
+    'title'         => 'Help & Community',
 ];
