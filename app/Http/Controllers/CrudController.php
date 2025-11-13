@@ -212,20 +212,21 @@ class CrudController extends Controller
             // left join on the entities table)
             $filteredCount = $models->total();
         } else {
+            if (!$model instanceof \App\Models\Bookmark) {
+                $relation = 'entity';
+                // If $model is a Relation, theres no entity, we have to handle it differently
+                if ($model instanceof \App\Models\Relation) {
+                    $relation = 'owner';
+                    $base = $base->whereHas('target', function ($query) {
+                        $query->whereNull('archived_at');
+                    });
+                }
 
-            $relation = 'entity';
-            // If $model is a Relation, theres no entity, we have to handle it differently
-            if ($model instanceof \App\Models\Relation) {
-                $relation = 'owner';
-                $base = $base->whereHas('target', function ($query) {
+                // Filter out archived entities
+                $base = $base->whereHas($relation, function ($query) {
                     $query->whereNull('archived_at');
                 });
             }
-
-            // Filter out archived entities
-            $base = $base->whereHas($relation, function ($query) {
-                $query->whereNull('archived_at');
-            });
 
             /** @var Paginator $models */
             $models = $base->paginate();
