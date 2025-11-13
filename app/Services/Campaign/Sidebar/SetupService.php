@@ -417,8 +417,9 @@ class SetupService
     public function availableParents(): array
     {
         $labels = [];
+        $this->loadModules();
         foreach ($this->elements as $key => $element) {
-            $labels[$key] = __($element['label']);
+            $labels[$key] = $this->elementName($element);
         }
 
         return $labels;
@@ -450,5 +451,20 @@ class SetupService
             $element['label'] = __($module->defaultPluralKey());
             $this->elements[$key] = $element;
         }
+    }
+
+    protected function elementName(array $element): string
+    {
+        if (empty($element['type'])) {
+            return __($element['label']);
+        }
+
+        /** @var ?EntityType $module */
+        $module = $this->modules[$element['type']];
+        if (! $module) {
+            return __($element['label']);
+        }
+
+        return __($module->defaultPluralKey());
     }
 }
