@@ -74,6 +74,10 @@ class Reminder extends Model
         'comment',
     ];
 
+    protected $casts = [
+        'type_id' => EntityEventTypes::class,
+    ];
+
     public function remindable()
     {
         return $this->morphTo();
