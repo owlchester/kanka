@@ -24,6 +24,13 @@ class CampaignPolicy
         return $this->access($user, $campaign);
     }
 
+    public function member(User $user, Campaign $campaign): bool
+    {
+        return CampaignCache::campaign($campaign)
+            ->members()
+            ->where('id', $user->id)->count() == 1;
+    }
+
     /**
      * Determine whether the user can access the campaign
      */
@@ -51,7 +58,7 @@ class CampaignPolicy
     public function update(User $user, Campaign $campaign): bool
     {
         return
-            $campaign->userIsMember($user) && (
+            $this->member($user, $campaign) && (
                 $user->isAdmin() || $this->checkPermission(CampaignPermission::ACTION_MANAGE, $user, $campaign)
             );
     }
@@ -62,7 +69,7 @@ class CampaignPolicy
     public function roles(User $user, Campaign $campaign): bool
     {
         return
-            $campaign->userIsMember($user) && (
+            $this->member($user, $campaign) && (
                 $user->isAdmin()
             );
     }
@@ -89,14 +96,14 @@ class CampaignPolicy
     public function delete(User $user, Campaign $campaign): bool
     {
         return
-            $campaign->userIsMember($user) &&
+            $this->member($user, $campaign) &&
             $user->isAdmin() &&
-            CampaignCache::members()->count() == 1;
+            CampaignCache::campaign($campaign)->members()->count() == 1;
     }
 
     public function invite(User $user, Campaign $campaign): bool
     {
-        return $campaign->userIsMember($user) && (
+        return $this->member($user, $campaign) && (
             $user->isAdmin() || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)
         );
     }
@@ -123,7 +130,7 @@ class CampaignPolicy
 
     public function stats(User $user, Campaign $campaign): bool
     {
-        return $user->isAdmin() || $campaign->userIsMember();
+        return $this->member($user, $campaign);
     }
 
     public function search(User $user, Campaign $campaign): bool
@@ -144,55 +151,52 @@ class CampaignPolicy
         if (Identity::isImpersonating()) {
             return false;
         }
-        if (! $campaign->userIsMember()) {
+        if (! $this->member($user, $campaign)) {
             return false;
         }
 
-        // If we are not the owner, or that we are an owner but there are other owners
-        return ! $user->isAdmin() || $campaign->adminCount() > 1;
+        // If we are not the owner
+        if (! $user->isAdmin()) {
+            return true;
+        }
+
+        // If there are other admins
+        return $campaign->roles()
+            ->admin()
+            ->first()
+            ->users
+            ->count() > 1;
     }
 
     /**
      * Determine if a user can follow a campaign
      */
-    public function follow(?User $user, Campaign $campaign): bool
+    public function follow(User $user, Campaign $campaign): bool
     {
-        if (empty($user)) {
-            return false;
-        }
-
         if (! $campaign->isPublic()) {
             return false;
         }
 
-        return ! $campaign->userIsMember();
+        return ! $this->member($user, $campaign);
     }
 
     /**
      * Determine if a user can apply to a campaign
      */
-    public function apply(?User $user, Campaign $campaign): bool
+    public function apply(User $user, Campaign $campaign): bool
     {
-        if (empty($user)) {
-            return false;
-        }
-
         if (! $campaign->isPublic() || ! $campaign->is_open) {
             return false;
         }
 
-        return ! $campaign->userIsMember();
+        return ! $this->member($user, $campaign);
     }
 
     /**
      * Permission to view the members of a campaign
      */
-    public function members(?User $user, Campaign $campaign): bool
+    public function members(User $user, Campaign $campaign): bool
     {
-        if (! $user) {
-            return false;
-        }
-
         return ($user->isAdmin($campaign) || $this->checkPermission(CampaignPermission::ACTION_MEMBERS, $user, $campaign)) ||
             ! ($campaign->boosted() && $campaign->hide_members);
     }
@@ -299,5 +303,14 @@ class CampaignPolicy
         }
 
         return empty($campaign->export_date) || ! $campaign->export_date->isToday() && $campaign->queuedCampaignExports->count() === 0;
+    }
+
+    public function whiteboards(User $user, Campaign $campaign): bool
+    {
+        if (app()->hasDebugModeEnabled()) {
+            return true;
+        }
+
+        return $campaign->premium() && $campaign->isWyvern();
     }
 }

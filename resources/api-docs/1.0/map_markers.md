@@ -47,7 +47,8 @@ You can get a list of all the map-markers of a map by using the following endpoi
             "size_id": 1,
             "updated_at": "2020-07-25T10:10:30.000000Z",
             "updated_by": null,
-            "visibility_id": 1
+            "visibility_id": 1,
+            "css": "bright"
         }
     ]
 }
@@ -86,6 +87,7 @@ To create a map marker, use the following endpoint.
 | `font_colour` | `string` | Hex colour code with leading `#` |
 | `circle_radius` | `null` or `int` | If the shape_id is 3 (circle) and size_id is 6 (cursom), can provide a custom circle radius size |
 | `polygon_style` | `null` or `array` | Polygon rendering options include `stroke`, `stroke-width` and `stroke-opacity` |
+| `css` | `string` | A custom css class for the map marker |
 
 
 ### Results

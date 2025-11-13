@@ -32,6 +32,9 @@ return [
         'is_hidden'         => 'Don\'t display this tag in an entity\'s header or tooltip.',
         'tag'               => 'This list contains all the tags are children of this tag or its children tags.',
     ],
+    'lists'         => [
+        'empty' => 'Use tags to group and filter entities across your world for easier navigation.',
+    ],
     'placeholders'  => [
         'type'  => 'Lore, Wars, History, Religion, Vexillology',
     ],

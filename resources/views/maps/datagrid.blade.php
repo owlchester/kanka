@@ -23,7 +23,7 @@
             'visible' => $campaign->enabled('locations'),
         ],
         [
-            'label' => '<i class="' . \App\Facades\Module::duoIcon('map') . '" title="' . \App\Facades\Module::plural(config('entities.ids.map'), __('entities.maps')) . '"></i>',
+            'label' => '<i class="' . $entityType->icon() . '" title="' . $entityType->plural() . '" aria-hidden="true"></i>',
             'render' => function($model) {
                 return number_format($model->children_count);
             },

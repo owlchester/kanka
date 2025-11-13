@@ -25,6 +25,7 @@ class MapFilter extends DatagridFilter
             ->location()
             ->isPrivate()
             ->template()
+            ->archived()
             ->hasImage()
             ->hasEntry()
             ->hasPosts()

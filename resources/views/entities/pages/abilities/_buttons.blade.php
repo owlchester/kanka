@@ -9,8 +9,9 @@
     <span class="md:hidden">{{ __('crud.actions.reset') }}</span>
 </a>
 @if ($entity->isCharacter())
+    @php $raceModule = \App\Models\EntityType::default()->where('code', 'race')->first(); @endphp
     <a href="{{ route('entities.entity_abilities.import', [$campaign, $entity, 'from' => 'race']) }}" class="btn2 btn-sm" data-title="{{ __('entities/abilities.helpers.sync') }}" data-toggle="tooltip">
-        <x-icon entity="race" />
+        <x-icon :class="$raceModule->icon()" />
         <span class="hidden md:inline">{{ __('entities/abilities.actions.sync') }}</span>
     </a>
 @endif

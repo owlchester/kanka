@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign\Exports;
 
+use App\Enums\CampaignExportStatus;
 use App\Jobs\Campaigns\Export;
 use App\Models\CampaignExport;
 use App\Traits\CampaignAware;
@@ -21,7 +22,7 @@ class QueueService
             'campaign_id' => $this->campaign->id,
             'created_by' => $this->user->id,
             'type' => 1,
-            'status' => CampaignExport::STATUS_SCHEDULED,
+            'status' => CampaignExportStatus::scheduled,
         ]);
 
         Export::dispatch($this->campaign, $this->user, $entitiesExport)->onQueue('heavy');

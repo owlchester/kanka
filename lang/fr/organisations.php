@@ -11,6 +11,9 @@ return [
     'hints'         => [
         'is_defunct'    => 'Cette organisation n\'est plus en opération.',
     ],
+    'lists'         => [
+        'empty' => 'Créé des guildes, des factions ou des sociétés secrètes pour façonner la structure du pouvoir dans ton monde.',
+    ],
     'members'       => [
         'actions'       => [
             'add_multiple'  => 'Ajouter des membres',

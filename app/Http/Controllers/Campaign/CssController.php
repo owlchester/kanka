@@ -18,7 +18,7 @@ class CssController extends Controller
     {
         $css = null;
         if ($campaign->boosted()) {
-            $css = CampaignCache::styles();
+            $css = CampaignCache::campaign($campaign)->styles();
         }
 
         $response = \Illuminate\Support\Facades\Response::make($css);

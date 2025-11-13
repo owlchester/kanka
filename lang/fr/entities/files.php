@@ -8,6 +8,7 @@ return [
         ],
         'upgrade'   => [
             'limit'     => 'Tu as atteint la limite de :limit fichiers pour cette entité.',
+            'premium'   => 'Passer à une campagne premium pour joindre un nombre illimité de fichiers et bénéficier d\'une flexibilité créative encore plus grande.',
             'upgrade'   => 'Passe à une campagne premium pour pouvoir joindre jusqu\'à :limit fichiers et débloquer encore plus de flexibilité créative.',
         ],
     ],

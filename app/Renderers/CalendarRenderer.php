@@ -2,9 +2,9 @@
 
 namespace App\Renderers;
 
+use App\Enums\EntityEventTypes;
 use App\Models\Calendar;
 use App\Models\Entity;
-use App\Models\EntityEventType;
 use App\Models\Post;
 use App\Models\Reminder;
 use App\Services\Calendars\DaysService;
@@ -659,7 +659,7 @@ class CalendarRenderer
         }
 
         // Yearly layout does things a bit differently, reset month to first
-        $this->layout = $this->request->get('layout', $this->calendar->defaultLayout()) ?? 'month' ;
+        $this->layout = $this->request->get('layout', $this->calendar->defaultLayout()) ?? 'month';
         if ($this->isYearlyLayout()) {
             $this->setMonth(1);
         }
@@ -751,7 +751,7 @@ class CalendarRenderer
                     ->orWhere(function ($sub) {
                         if ($this->calendar->show_birthdays) {
                             $sub->where('year', '<=', $this->getYear())
-                                ->whereIn('type_id', [EntityEventType::BIRTH, EntityEventType::DEATH]);
+                                ->whereIn('type_id', [EntityEventTypes::birth, EntityEventTypes::death]);
                             if (! $this->isYearlyLayout()) {
                                 $sub->where('month', $this->getMonth());
                             }
@@ -813,7 +813,7 @@ class CalendarRenderer
             }
 
             // Make sure the user can actually see the requested event
-            if (empty($event->remindable) || ($event->remindable instanceof Entity && $event->remindable->isMissingChild()) || ($event->remindable instanceof Post && !$event->remindable->entity)) {
+            if (empty($event->remindable) || ($event->remindable instanceof Entity && $event->remindable->isMissingChild()) || ($event->remindable instanceof Post && ! $event->remindable->entity)) {
                 continue;
             }
             // If the event reoccurs each month, let's add it everywhere

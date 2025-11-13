@@ -16,8 +16,9 @@
             <x-icon class="fa-solid fa-align-justify" />
             {{ __('dashboard.setup.widgets.preview') }}
         </a>
+        @php $calendarModule = \App\Models\EntityType::default()->where('code', 'calendar')->first(); @endphp
         <a  href="#" class="{{ $newWidgetListClass }}" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'calendar', 'dashboard' => $dashboard]) }}" data-toggle="dialog" data-target="primary-dialog">
-            <x-icon entity="calendar" />
+            <x-icon :class="$calendarModule->icon()" />
             {{ __('dashboard.setup.widgets.calendar') }}
         </a>
 
@@ -29,15 +30,19 @@
             <x-icon class="fa-solid fa-dice-d20" />
             {{ __('dashboard.setup.widgets.random') }}
         </a>
-        <a  href="#" class="{{ $newWidgetListClass }}" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'welcome', 'dashboard' => $dashboard]) }}" data-toggle="dialog" data-target="primary-dialog">
-            <x-icon class="fa-solid fa-party-horn" />
-            {{ __('dashboard.setup.widgets.welcome') }}
-        </a>
         @if(!empty($dashboard))
             <a  href="#" class="{{ $newWidgetListClass }}" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'campaign', 'dashboard' => $dashboard]) }}" data-toggle="dialog" data-target="primary-dialog">
                 <x-icon class="fa-regular fa-th-list" />
                 {{ __('dashboard.setup.widgets.campaign') }}
             </a>
         @endif
+        <a  href="#" class="{{ $newWidgetListClass }}" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'welcome', 'dashboard' => $dashboard]) }}" data-toggle="dialog" data-target="primary-dialog">
+            <x-icon class="fa-solid fa-party-horn" />
+            {{ __('dashboard.setup.widgets.welcome') }}
+        </a>
+        <a  href="#" class="{{ $newWidgetListClass }}" data-url="{{ route('campaign_dashboard_widgets.create', [$campaign, 'widget' => 'help', 'dashboard' => $dashboard]) }}" data-toggle="dialog" data-target="primary-dialog">
+            <x-icon class="fa-regular fa-comments" />
+            {{ __('dashboards/widgets/help.title') }}
+        </a>
     </div>
 </x-grid>

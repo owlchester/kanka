@@ -19,6 +19,9 @@ return [
     'fields'        => [
         'charges'   => 'Charges',
     ],
+    'lists'         => [
+        'empty' => 'Add powers, spells, or talents. Many creators use this to model D&D classes.',
+    ],
     'placeholders'  => [
         'charges'   => 'Amount of charges. Reference attributes with {Level}*{CHA}',
         'name'      => 'Fireball, Alert, Cunning Strike',

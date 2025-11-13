@@ -2,6 +2,7 @@
 
 namespace App\Services\Caches;
 
+use App\Enums\EntityAssetType;
 use App\Models\EntityAsset;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Facades\Cache;
@@ -29,7 +30,7 @@ class EntityAssetCacheService extends BaseCache
 , MAX(entity_assets.created_at) as cmat'))
                 ->groupBy('metadata')
                 ->whereNotNull('metadata->icon')
-                ->where('entity_assets.type_id', EntityAsset::TYPE_LINK)
+                ->where('entity_assets.type_id', EntityAssetType::link)
                 ->orderBy('cmat', 'DESC')
                 ->take(10)
                 ->pluck('icon')

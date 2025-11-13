@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\OrganisationMemberPin;
+use App\Enums\OrganisationMemberStatus;
 use App\Models\Concerns\HasFilters;
 use App\Models\Concerns\Paginatable;
 use App\Models\Concerns\Privatable;
@@ -20,8 +22,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $parent_id
  * @property string $role
  * @property bool|int $is_private
- * @property int $pin_id
- * @property int $status_id
+ * @property OrganisationMemberPin $pin_id
+ * @property OrganisationMemberStatus $status_id
  * @property ?Character $character
  * @property ?Organisation $organisation
  * @property ?OrganisationMember $parent
@@ -33,18 +35,6 @@ class OrganisationMember extends Model
     use Privatable;
     use Sanitizable;
     use SortableTrait;
-
-    public const int PIN_CHARACTER = 1;
-
-    public const int PIN_ORGANISATION = 2;
-
-    public const int PIN_BOTH = 3;
-
-    public const int STATUS_ACTIVE = 0;
-
-    public const int STATUS_INACTIVE = 1;
-
-    public const int STATUS_UNKNOWN = 2;
 
     public $entityType = 'character';
 
@@ -74,6 +64,11 @@ class OrganisationMember extends Model
 
     protected array $sanitizable = [
         'role',
+    ];
+
+    public $casts = [
+        'status_id' => \App\Enums\OrganisationMemberStatus::class,
+        'pin_id' => \App\Enums\OrganisationMemberPin::class,
     ];
 
     /**
@@ -115,7 +110,7 @@ class OrganisationMember extends Model
      */
     public function pinnedToCharacter(): bool
     {
-        return $this->pin_id == self::PIN_CHARACTER;
+        return $this->pin_id === OrganisationMemberPin::character;
     }
 
     /**
@@ -123,7 +118,7 @@ class OrganisationMember extends Model
      */
     public function pinnedToOrganisation(): bool
     {
-        return $this->pin_id == self::PIN_ORGANISATION;
+        return $this->pin_id === OrganisationMemberPin::organisation;
     }
 
     /**
@@ -131,7 +126,7 @@ class OrganisationMember extends Model
      */
     public function pinnedToBoth(): bool
     {
-        return $this->pin_id == self::PIN_BOTH;
+        return $this->pin_id === OrganisationMemberPin::both;
     }
 
     /**
@@ -139,7 +134,7 @@ class OrganisationMember extends Model
      */
     public function inactive(): bool
     {
-        return $this->status_id === self::STATUS_INACTIVE;
+        return $this->status_id === OrganisationMemberStatus::inactive;
     }
 
     /**
@@ -147,7 +142,7 @@ class OrganisationMember extends Model
      */
     public function unknown(): bool
     {
-        return $this->status_id === self::STATUS_UNKNOWN;
+        return $this->status_id === OrganisationMemberStatus::unknown;
     }
 
     public function scopePinned(Builder $query, int $pin): Builder

@@ -3,7 +3,7 @@
  * @var \App\Models\Campaign $campaign
  */
 ?>
-<aside class="main-sidebar main-sidebar-placeholder absolute z-[840] h-auto min-h-full flex flex-col background-cover @if(auth()->check() && $campaign->userIsMember())main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(240, 208)->url($campaign->image) }})" @endif>
+<aside class="main-sidebar main-sidebar-placeholder absolute z-[840] h-auto min-h-full flex flex-col background-cover @can('member', $campaign)main-sidebar-member @else main-sidebar-public @endif" @if ($campaign->image) style="--sidebar-placeholder: url({{ Img::crop(240, 208)->url($campaign->image) }})" @endif>
 
     @include('layouts.sidebars._campaign')
 
@@ -15,8 +15,8 @@
                         <li class="px-2 {{ $active('bookmarks') }} sidebar-quick-links sidebar-bookmarks">
                             <x-sidebar.element
                                 :url="auth()->check() && auth()->user()->can('create', new App\Models\Bookmark()) ? route('bookmarks.index', $campaign) : null"
-                                :icon="$element['custom_icon'] ?? $element['icon']"
-                                :text="$element['custom_label'] ?? $element['label'] ?? __($element['label_key'])"
+                                :icon="$element['custom_icon'] ?? $element['icon'] ?? 'fa-solid fa-question'"
+                                :text="$element['custom_label'] ?? $element['label'] ?? __($element['label_key']) ?? 'unknown'"
                             ></x-sidebar.element>
                             <ul class="sidebar-submenu list-none p-0 pl-3 m-0">
                                 @foreach ($bookmarks('bookmarks') as $bookmark)
@@ -38,13 +38,13 @@
                         @endphp
                         <x-sidebar.element
                             :url="route($route, [$campaign])"
-                            :icon="$element['custom_icon'] ?? $element['icon']"
-                            :text="$element['custom_label'] ?? __($element['label_key'])"
+                            :icon="$element['custom_icon'] ?? $element['icon'] ?? 'fa-solid fa-question'"
+                            :text="$element['custom_label'] ?? __($element['label_key']) ?? 'unknown'"
                         ></x-sidebar.element>
                     @else
                         <x-sidebar.element
-                            :icon="$element['custom_icon'] ?? $element['icon']"
-                            :text="$element['custom_label'] ?? __($element['label_key'])"
+                            :icon="$element['custom_icon'] ?? $element['icon'] ?? 'fa-solid fa-question'"
+                            :text="$element['custom_label'] ?? __($element['label_key']) ?? 'unknown'"
                         ></x-sidebar.element>
                     @endif
                     @if (!empty($element['children']))
@@ -57,8 +57,8 @@
                                     @endphp
                                     <x-sidebar.element
                                         :url="route($route, $campaign)"
-                                        :icon="$child['custom_icon'] ?? $child['icon']"
-                                        :text="$child['custom_label'] ?? __($child['label_key'])"
+                                        :icon="$child['custom_icon'] ?? $child['icon'] ?? 'fa-solid fa-question'"
+                                        :text="$child['custom_label'] ?? __($child['label_key']) ?? 'unknown'"
                                     ></x-sidebar.element>
                                 </li>
                                 @includeWhen($hasBookmarks($childName), 'layouts.sidebars.bookmarks', ['links' => $bookmarks($childName)])

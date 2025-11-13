@@ -280,6 +280,7 @@ Route::resources([
     '/w/{campaign}/entities.relations' => 'Entity\RelationController',
 
     '/w/{campaign}/attribute_templates' => 'Crud\AttributeTemplateController',
+    '/w/{campaign}/whiteboards' => 'Whiteboards\CrudController',
     // 'presets' => 'PresetController',
 ]);
 
@@ -326,6 +327,9 @@ Route::get('/w/{campaign}/entities/{entity}.md', 'Entity\ExportController@markdo
 Route::get('/w/{campaign}/entities/{entity}/template', 'Entity\TemplateController@update')->name('entities.template');
 Route::get('/w/{campaign}/posts/{post}/template', 'Entity\Posts\TemplateController@update')->name('posts.template');
 
+// Archive
+Route::get('/w/{campaign}/entities/{entity}/archive', 'Entity\ArchiveController@update')->name('entities.archive');
+
 // Attribute template
 Route::get('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@index')->name('entities.attributes.template');
 Route::post('/w/{campaign}/entities/{entity}/attribute-template', 'Entity\AttributeTemplateController@process')->name('entities.attributes.template-process');
@@ -341,3 +345,8 @@ Route::get('/w/{campaign}/entity-creator/{entity_type}', [App\Http\Controllers\E
 Route::get('/w/{campaign}/entity-creator-post', [App\Http\Controllers\EntityCreatorController::class, 'post'])->name('entity-creator.post');
 Route::post('/w/{campaign}/entity-creator/{entity_type}', [App\Http\Controllers\EntityCreatorController::class, 'store'])->name('entity-creator.store');
 Route::post('/w/{campaign}/entity-creator-post', [App\Http\Controllers\EntityCreatorController::class, 'storePost'])->name('entity-creator.store-post');
+
+// Whiteboards
+Route::get('/w/{campaign}/whiteboards/{whiteboard}/draw', [App\Http\Controllers\Whiteboards\DrawController::class, 'show'])->name('whiteboards.draw');
+Route::get('/w/{campaign}/whiteboards/{whiteboard}/api', [App\Http\Controllers\Whiteboards\DrawController::class, 'api'])->name('whiteboards.api');
+Route::put('/w/{campaign}/whiteboards/{whiteboard}/api', [App\Http\Controllers\Whiteboards\DrawController::class, 'save'])->name('whiteboards.save-draw');

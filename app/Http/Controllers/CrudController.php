@@ -158,9 +158,13 @@ class CrudController extends Controller
             $base = $model
                 ->preparedGrid();
         } else {
+            // here
+
             $base = $model
                 ->preparedSelect()
                 ->preparedWith();
+            //             dd(get_class($model), get_class($base));
+
             if ($nested) {
                 $this->datagrid->nested();
             }
@@ -208,6 +212,21 @@ class CrudController extends Controller
             // left join on the entities table)
             $filteredCount = $models->total();
         } else {
+
+            $relation = 'entity';
+            // If $model is a Relation, theres no entity, we have to handle it differently
+            if ($model instanceof \App\Models\Relation) {
+                $relation = 'owner';
+                $base = $base->whereHas('target', function ($query) {
+                    $query->whereNull('archived_at');
+                });
+            }
+
+            // Filter out archived entities
+            $base = $base->whereHas($relation, function ($query) {
+                $query->whereNull('archived_at');
+            });
+
             /** @var Paginator $models */
             $models = $base->paginate();
             $unfilteredCount = $filteredCount = $models->count();
@@ -245,6 +264,7 @@ class CrudController extends Controller
         if (method_exists($this, 'getEntityType')) {
             $data['entityType'] = $this->getEntityType();
             $data['templates'] = $this->loadTemplates($data['entityType']);
+            $this->datagrid->entityType($data['entityType']);
         } else {
             $data['singular'] = __('entities.' . \Illuminate\Support\Str::singular($route));
         }

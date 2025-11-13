@@ -5,6 +5,7 @@ return [
         'add'               => 'Añadir objeto',
         'copy_from'         => 'Copiar de',
         'copy_inventory'    => 'Copiar inventario',
+        'generate'          => 'Generar',
     ],
     'copy'              => [
         'helper'    => 'Copiar todo el inventario de una entidad a :name.',
@@ -25,9 +26,16 @@ return [
         'copy_entity_entry_v2'  => 'Utilizar entrada del objeto',
         'description'           => 'Observaciones',
         'is_equipped'           => 'Equipado',
+        'item_amount'           => 'Número de objetos',
+        'match_all'             => 'Coincidir todas las etiquetas',
         'name'                  => 'Nombre',
         'position'              => 'Localización',
         'qty'                   => 'Cantidad',
+        'replace'               => 'Reemplazar inventario',
+    ],
+    'generate'          => [
+        'helper'    => 'Generar un inventario para :name basado en los objetos existentes en la campaña.',
+        'title'     => 'Generar inventario',
     ],
     'helpers'           => [
         'amount'                => 'Número de objetos',
@@ -35,6 +43,7 @@ return [
         'description'           => 'Añadir una descripción personalizada al objeto',
         'is_equipped'           => 'Marca estos objetos como equipados.',
         'name'                  => 'Da nombre al objeto. Se requiere un nombre si no se selecciona ningún objeto',
+        'replace'               => 'Reemplaza el inventario actual por el generado.',
     ],
     'placeholders'      => [
         'amount'        => 'Cualquier cantidad',

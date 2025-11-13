@@ -1,4 +1,7 @@
-<?php /** @var \App\Models\MiscModel $model */?>
+<?php /**
+ * @var \App\Models\MiscModel $model
+ * @var \App\Models\EntityType $entityType
+ * */?>
 <div class="flex gap-1 items-start">
     <div class="entities-grid flex flex-wrap gap-3 lg:gap-5 w-full">
         @if (!empty($parent))
@@ -21,9 +24,14 @@
             @includeWhen(!isset($entityType) || $entityType->isCustom(), 'entities.index._entity')
             @includeWhen(isset($entityType) && $entityType->isStandard(), 'cruds.datagrids._grid')
         @empty
+            @isset($entityType)
+            <x-lists.empty-state :entityType="$entityType" :campaign="$campaign">
+            </x-lists.empty-state>
+            @else
             <p class="italic">
                 {{ __('search.no_results') }}
             </p>
+            @endif
         @endforelse
 
         @if (!isset($skipPaginationHelper) && auth()->check() && $models instanceof \Illuminate\Pagination\LengthAwarePaginator && $models->hasPages() && !UserCache::dismissedTutorial('pagination'))

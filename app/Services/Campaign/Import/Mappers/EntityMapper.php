@@ -6,6 +6,7 @@ use App\Facades\EntityLogger;
 use App\Facades\ImportIdMapper;
 use App\Models\Entity;
 use App\Services\EntityMappingService;
+use Carbon\Carbon;
 
 trait EntityMapper
 {
@@ -78,6 +79,10 @@ trait EntityMapper
         }
         foreach ($entityMapping as $field) {
             $this->entity->$field = $this->data['entity'][$field];
+        }
+
+        if (isset($this->data['entity']['archived_at'])) {
+            $this->entity->archived_at = Carbon::now();
         }
 
         $this

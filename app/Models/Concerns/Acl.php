@@ -5,6 +5,9 @@ namespace App\Models\Concerns;
 use App\Models\Scopes\AclScope;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * @method static self|Builder withInvisible()
+ */
 trait Acl
 {
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EntityAssetType;
 use App\Facades\EntityAssetCache;
 use App\Facades\Img;
 use App\Models\Concerns\Blameable;
@@ -22,7 +23,7 @@ use Illuminate\Support\Str;
 
 /**
  * @property int $id
- * @property int $type_id
+ * @property EntityAssetType $type_id
  * @property int $entity_id
  * @property ?string $image_uuid
  * @property string $name
@@ -42,12 +43,6 @@ class EntityAsset extends Model
     use Pinnable;
     use Sanitizable;
 
-    public const int TYPE_FILE = 1;
-
-    public const int TYPE_LINK = 2;
-
-    public const int TYPE_ALIAS = 3;
-
     public $fillable = [
         'type_id',
         'entity_id',
@@ -61,6 +56,7 @@ class EntityAsset extends Model
     public $casts = [
         'metadata' => 'array',
         'visibility_id' => \App\Enums\Visibility::class,
+        'type_id' => \App\Enums\EntityAssetType::class,
     ];
 
     protected array $sanitizable = [
@@ -94,7 +90,7 @@ class EntityAsset extends Model
      */
     public function isFile(): bool
     {
-        return $this->type_id == self::TYPE_FILE;
+        return $this->type_id === EntityAssetType::file;
     }
 
     /**
@@ -102,7 +98,7 @@ class EntityAsset extends Model
      */
     public function isLink(): bool
     {
-        return $this->type_id == self::TYPE_LINK;
+        return $this->type_id === EntityAssetType::link;
     }
 
     /**
@@ -110,7 +106,7 @@ class EntityAsset extends Model
      */
     public function isAlias(): bool
     {
-        return $this->type_id == self::TYPE_ALIAS;
+        return $this->type_id === EntityAssetType::alias;
     }
 
     /**

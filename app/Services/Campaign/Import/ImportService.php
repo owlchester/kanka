@@ -68,6 +68,8 @@ class ImportService
 
     protected array $logs = [];
 
+    protected array $errors = [];
+
     protected Exception $exception;
 
     public function __construct(EntityMappingService $entityMappingService)
@@ -183,14 +185,14 @@ class ImportService
                 ->secondCampaign();
             $this->job->status_id = CampaignImportStatus::FINISHED;
         } catch (ImportException $e) {
-            $this->logs[] = $e->getMessage();
+            $this->errors = [$e->getMessage()];
             Log::error('Import', ['where' => 'importException', 'error' => $e->getMessage()]);
             $this->job->status_id = CampaignImportStatus::FAILED;
             $this->exception = $e;
         } catch (Exception $e) {
             // dump($e->getMessage());
             // dump($e->getTrace());
-            $this->logs[] = $e->getMessage();
+            $this->errors = [$e->getMessage()];
             Log::error('Import', ['where' => 'exception', 'error' => $e->getMessage()]);
             $this->job->status_id = CampaignImportStatus::FAILED;
             $this->exception = $e;
@@ -203,9 +205,7 @@ class ImportService
     {
         Storage::disk('local')->deleteDirectory($this->dataPath);
 
-        $config = $this->job->config;
-        $config['logs'] = $this->logs;
-        $this->job->config = $config;
+        $this->job->logs = $this->logs;
         $this->job->save();
 
         $key = 'failed';
@@ -323,7 +323,22 @@ class ImportService
             return $this;
         }
 
+        // Dont import more than the campaign is allowed to have.
+        $limit = config('limits.campaigns.modules.premium');
+        if ($this->campaign->isWyvern()) {
+            $limit = config('limits.campaigns.modules.wyvern');
+        } elseif ($this->campaign->isElemental()) {
+            $limit = config('limits.campaigns.modules.elemental');
+        }
+
+        $entityTypes = $this->campaign->entityTypes->count();
+
         foreach ($data as $module) {
+
+            if ($entityTypes >= $limit) {
+                break;
+            }
+
             // Create Custom Module
             $newModule = new EntityType;
             $newModule->campaign_id = $this->campaign->id;
@@ -343,6 +358,7 @@ class ImportService
 
             ImportIdMapper::putCustomEntityType($module['id'], $newModule->id);
             ImportIdMapper::putCustomEntityTypeName($module['code'] . '_' . $module['id'], $newModule->id);
+            $entityTypes++;
         }
 
         return $this;
@@ -578,7 +594,7 @@ class ImportService
         if (! isset($config['logs'])) {
             $config['logs'] = [];
         }
-        $config['logs'][] = $e->getMessage();
+        $this->job->errors = [$e->getMessage()];
         $this->job->config = $config;
         $this->job->status_id = CampaignImportStatus::FAILED;
         $this->job->save();

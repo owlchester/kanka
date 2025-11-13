@@ -53,7 +53,7 @@
             'class' => 'icon'
         ],
         [
-            'label' => '<i class="' . \App\Facades\Module::duoIcon('tag') . '" title="' . \App\Facades\Module::plural(config('entities.ids.tag'), __('entities.tags')) . '"></i>',
+            'label' => '<i class="' . $entityType->icon() . '" title="' . $entityType->plural() . '"></i>',
             'render' => function($model) {
                 return number_format($model->children_count);
             },

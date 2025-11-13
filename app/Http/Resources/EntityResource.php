@@ -76,6 +76,7 @@ class EntityResource extends JsonResource
             'created_by' => $entity->created_by,
             'updated_at' => $entity->updated_at,
             'updated_by' => $entity->updated_by,
+            'archived_at' => $entity->archived_at,
 
             'urls' => [
                 'view' => $url,
@@ -87,6 +88,10 @@ class EntityResource extends JsonResource
             $data['entry'] = $entity->entry;
             $data['entry_parsed'] = $entity->parsedEntry();
             $data['parent_id'] = $entity->parent_id;
+            $data['locations'] = [];
+            foreach ($entity->locations as $loc) {
+                $data['locations'][] = $loc->id;
+            }
         } else {
             $data['child_id'] = $entity->entity_id;
         }
@@ -116,7 +121,7 @@ class EntityResource extends JsonResource
         }
 
         // Get the actual model
-        if ($this->withMisc) {
+        if ($this->withMisc && $entity->entityType->isStandard()) {
             $className = 'App\Http\Resources\\' . ucfirst($entity->entityType->code) . 'Resource';
             if (class_exists($className)) {
                 $obj = new $className($entity->child);
@@ -124,6 +129,13 @@ class EntityResource extends JsonResource
             } else {
                 $data['child'] = 'unknown child class ' . $className;
             }
+        }
+
+        // Check for ?fields
+        $fields = request()->query('fields');
+        if ($fields) {
+            $fields = array_map('trim', explode(',', $fields));
+            $data = array_intersect_key($data, array_flip($fields));
         }
 
         return $data;
@@ -230,6 +242,13 @@ class EntityResource extends JsonResource
         }
 
         $final = array_merge($merged, $prepared);
+
+        // Check for ?fields
+        $fields = request()->query('fields');
+        if ($fields) {
+            $fields = array_map('trim', explode(',', $fields));
+            $final = array_intersect_key($final, array_flip($fields));
+        }
 
         // ksort($final);
         return $final;

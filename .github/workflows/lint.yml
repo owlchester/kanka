@@ -2,10 +2,16 @@ name: Fix Code Style & Duplication Check
 
 on:
   pull_request:
-    branches: [main, develop]
+    branches:
+      - main
+      - develop
+    paths:
+      - '**.php'
   push:
     branches:
       - main
+    paths:
+      - '**.php'
 
 jobs:
   lint:
@@ -41,8 +47,9 @@ jobs:
       - name: Run Pint
         run: pint
 
-      - name: Run PHPCPD
-          run: ./vendor/bin/phpcpd app/ --min-lines=5 --min-tokens=70
+# can't run this in a github action
+#      - name: Run PHPCPD
+#        run: ./vendor/bin/phpcpd app/ --min-lines=5 --min-tokens=70
 
       - name: Auto-commit fixes
         uses: stefanzweifel/git-auto-commit-action@v6

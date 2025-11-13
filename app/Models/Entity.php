@@ -11,6 +11,7 @@ use App\Models\Concerns\EntityLogs;
 use App\Models\Concerns\EntityType;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasEntry;
+use App\Models\Concerns\HasLocations;
 use App\Models\Concerns\HasMentions;
 use App\Models\Concerns\HasReminder;
 use App\Models\Concerns\HasSuggestions;
@@ -60,6 +61,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
+ * @property ?Carbon $archived_at
  */
 class Entity extends Model
 {
@@ -71,6 +73,7 @@ class Entity extends Model
     use EntityType;
     use HasCampaign;
     use HasEntry;
+    use HasLocations;
     use HasMentions;
     use HasRecursiveRelationships;
     use HasReminder;
@@ -384,7 +387,7 @@ class Entity extends Model
         // Entity relations
         $relations = [
             'entityTags', 'relationships', 'posts', 'abilities', 'reminders',
-            'entityAttributes', 'assets', 'mentions', 'inventories',
+            'entityAttributes', 'assets', 'mentions', 'inventories', 'entityLocations',
         ];
         foreach ($relations as $relation) {
             foreach ($this->$relation as $model) {
@@ -488,6 +491,10 @@ class Entity extends Model
             $classes[] = 'kanka-entity-private';
         }
 
+        if ($this->archived_at) {
+            $classes[] = 'kanka-entity-archived';
+        }
+
         if ($this->hasHeaderImage()) {
             $classes[] = 'entity-with-banner';
         }
@@ -520,5 +527,10 @@ class Entity extends Model
             'type' => $this->type,
             'entry' => strip_tags($this->entry),
         ];
+    }
+
+    public function getLocationPivotTableName(): string
+    {
+        return 'entity_locations';
     }
 }

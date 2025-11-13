@@ -20,6 +20,7 @@ return [
             'remove'        => ':user ya no está mejorando la campaña :campaign.',
             'superboost'    => ':user está supermejorando la campaña :campaign.',
         ],
+        'created'           => 'Has creado :campaña.',
         'deleted'           => 'Se ha eliminado la campaña :campaign.',
         'export'            => 'Ya se ha exportado tu campaña. El enlace estará disponible durante :time minutos.',
         'export_error'      => 'Ha ocurrido un error mientras se exportaba tu campaña. Por favor, contáctanos si el error persiste.',

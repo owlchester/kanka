@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Enums\EntityAssetType;
 use App\Exceptions\TranslatableException;
+use App\Facades\Limit;
 use App\Http\Requests\StoreEntityAsset;
 use App\Http\Requests\StoreEntityAssets;
 use App\Models\EntityAsset;
@@ -39,7 +41,7 @@ class EntityFileService
             // Already above max capacity?
             if (! $request->user()->can('addFile', [$this->entity, $this->campaign])) {
                 throw (new TranslatableException('crud.files.errors.max'))
-                    ->setOptions(['max' => $this->campaign->maxEntityFiles()]);
+                    ->setOptions(['max' => Limit::campaign($this->campaign)->entityFiles()]);
             }
             if ($service->campaign($this->campaign)->available() < $uploadedFile->getSize() / 1024) {
                 $key = 'gallery.download.errors.gallery_full_free';
@@ -71,7 +73,7 @@ class EntityFileService
                 );
 
             $file = new EntityAsset;
-            $file->type_id = EntityAsset::TYPE_FILE;
+            $file->type_id = EntityAssetType::file;
             $file->entity_id = $this->entity->id;
             $file->metadata = [
                 'size' => $uploadedFile->getSize(),

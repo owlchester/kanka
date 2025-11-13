@@ -2,8 +2,8 @@
 
 namespace App\Models\Concerns;
 
+use App\Enums\EntityEventTypes;
 use App\Models\Entity;
-use App\Models\EntityEventType;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +34,7 @@ trait Orderable
                 ->leftJoin('reminders as cd', function ($on) {
                     return $on->on('cd.remindable_id', 'e.id')
                         ->on('cd.remindable_type', '=', DB::raw("'" . addslashes(Entity::class) . "'"))
-                        ->where('cd.type_id', EntityEventType::CALENDAR_DATE);
+                        ->where('cd.type_id', EntityEventTypes::calendarDate);
                 })
                 ->orderBy('cd.year', $direction)
                 ->orderBy('cd.month', $direction)

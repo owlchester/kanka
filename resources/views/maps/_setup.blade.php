@@ -16,6 +16,24 @@ if (isset($single) && $single) {
     }
 }
 
+function renderGroupTree($groups) {
+    $output = '';
+
+    foreach ($groups as $group) {
+        $children = $group->children;
+        $output .= '{';
+        $output .= 'label: "' . e($group->name) . '", ';
+        $output .= 'layer: group' . $group->id . ', ';
+        if ($children) {
+            //  $output .= 'selectAllCheckbox: true,';
+            $output .= 'children: [' . renderGroupTree($children) . ']';
+        }
+        $output .= '},';
+    }
+
+    return $output;
+}
+
 ?>
 <script type="text/javascript">
     /** Kanka map {{ $map->id }} setup **/
@@ -39,13 +57,19 @@ if (isset($single) && $single) {
     @endif
 @endforeach
 
-    var baseMaps{{ $map->id }} = {
+    var baseMaps{{ $map->id }} = [
 @foreach ($map->layers->where('type_id', '<', 1)->sortBy('position') as $layer)
 @if (!$layer->hasImage()) @continue @endif
-        "{{ $layer->name }}": layer{{ $layer->id }},
+        {
+        label: '{{ $layer->name }}',
+        layer: layer{{ $layer->id }},
+        },
 @endforeach
-        "{{ __('maps/layers.base') }}": baseLayer{{ $map->id }}
-    }
+        {
+        label: "{{ __('maps/layers.base') }}",
+        layer: baseLayer{{ $map->id }},
+        },
+    ];
 
 @if(!isset($single) || !$single)
     /** Groups Init **/
@@ -58,13 +82,18 @@ if (isset($single) && $single) {
 @endforeach
 
     var overlayMaps{{ $map->id }} = {
+        label: "{{ __('maps.panels.groups') }}",
+        selectAllCheckbox: 'True',
+        children: [
 @foreach($map->layers->where('type_id', '>', 0)->sortBy('position') as $layer)
 @if (!$layer->hasImage()) @continue @endif
-        "{{ $layer->name }} ({{ $layer->position }})": layer{{ $layer->id }},
+    {
+       label: "{{ $layer->name }} ({{ $layer->position }})",
+       layer: layer{{ $layer->id }},
+    },
 @endforeach
-@foreach($map->groups->sortBy('position') as $group)
-        "{{ $group->name }}": group{{ $group->id }},
-@endforeach
+    {!! renderGroupTree($map->groups->whereNull('parent_id')->sortBy('position')) !!}
+        ],
     }
 @else
     var overlayMaps{{ $map->id }} = {};
@@ -90,7 +119,7 @@ if (isset($single) && $single) {
         @endif
     });
 
-    L.control.layers(baseMaps{{ $map->id }}, overlayMaps{{ $map->id }}).addTo(map{{ $map->id }});
+    L.control.layers.tree(baseMaps{{ $map->id }}, overlayMaps{{ $map->id }}).addTo(map{{ $map->id }});
     @else
 
     var map{{ $map->id }} = L.map('map{{ $map->id }}', {
@@ -120,7 +149,7 @@ if (isset($single) && $single) {
     }).addTo(map{{ $map->id }});
     @endif
 
-    L.control.layers(null, overlayMaps{{ $map->id }}).addTo(map{{ $map->id }});
+    L.control.layers.tree(null, overlayMaps{{ $map->id }}).addTo(map{{ $map->id }});
 
     @endif
 

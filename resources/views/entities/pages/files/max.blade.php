@@ -13,7 +13,7 @@
     @else
         <x-helper>
             <p>
-                {!! __('entities/files.call-to-action.upgrade.upgrade', ['limit' => '<strong>' . config('limits.campaigns.files.premium') . '</strong>']) !!}
+                {!! __('entities/files.call-to-action.upgrade.premium') !!}
             </p>
         </x-helper>
         <x-premium-cta-footer :campaign="$campaign" />

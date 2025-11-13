@@ -219,6 +219,7 @@ return [
             'settings'  => 'ajustes de apariencia',
             'text'      => 'Se pueden mostrar más resultados por página cambiando la :settings.',
         ],
+        'parent'        => 'Selecciona un padre del que la entidad será hijo.',
     ],
     'hidden'            => 'Oculto',
     'hints'             => [

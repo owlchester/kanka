@@ -39,7 +39,7 @@ class TimelineController extends Controller
                 'parent', 'parent.entity',
             ])
             ->filter($filters)
-            ->paginate();
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this

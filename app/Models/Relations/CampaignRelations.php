@@ -2,6 +2,8 @@
 
 namespace App\Models\Relations;
 
+use App\Enums\CampaignExportStatus;
+use App\Enums\EntityAssetType;
 use App\Models\Ability;
 use App\Models\Application;
 use App\Models\AttributeTemplate;
@@ -23,6 +25,7 @@ use App\Models\Conversation;
 use App\Models\Creature;
 use App\Models\DiceRoll;
 use App\Models\Entity;
+use App\Models\EntityAsset;
 use App\Models\EntityMention;
 use App\Models\EntityType;
 use App\Models\EntityUser;
@@ -389,6 +392,14 @@ trait CampaignRelations
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough<\App\Models\EntityAsset, \App\Models\Entity, $this>
+     */
+    public function entityAliases(): HasManyThrough
+    {
+        return $this->hasManyThrough(EntityAsset::class, Entity::class)->where('entity_assets.type_id', EntityAssetType::alias);
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Plugin, $this>
      */
     public function plugins(): BelongsToMany
@@ -434,7 +445,10 @@ trait CampaignRelations
     public function queuedCampaignExports()
     {
         return $this->campaignExports()
-            ->whereIn('status', [CampaignExport::STATUS_SCHEDULED, CampaignExport::STATUS_RUNNING]);
+            ->whereIn('status', [
+                CampaignExportStatus::scheduled,
+                CampaignExportStatus::running,
+            ]);
     }
 
     /**

@@ -173,9 +173,6 @@ return [
         'update'                    => [
             'success'   => 'Widget modifié.',
         ],
-        'welcome'                   => [
-            'helper'    => 'Ce widget affiche un message de bienvenue sur le tableau de bord qui comprend des liens utiles pour les nouveaux utilisateurs de Kanka.',
-        ],
         'widths'                    => [
             '0' => 'Automatique',
             '12'=> 'Complet (100%)',

@@ -16,7 +16,15 @@ return [
             'standard' => 3,
             'premium' => 20,
         ],
-        'modules' => env('APP_MODULE_LIMIT', 5),
+        /**
+         * Number of custom modules allowed per subscription tier.
+         */
+        'modules' => [
+            'premium' => env('APP_MODULE_LIMIT', 5),
+            'wyvern' => env('APP_WYVERN_MODULE_LIMIT', 10),
+            'elemental' => env('APP_ELEMENTAL_MODULE_LIMIT', 20),
+        ],
+
         'export' => 6, // hours after which exports get deleted
         'maps' => [
             // Maximum number of groups per map
@@ -39,7 +47,11 @@ return [
      * Default file upload size for standard user, in MB
      */
     'filesize' => [
-        'image' => env('APP_IMAGE_SIZE_MB', 3),
+        'image' => [
+            'standard' => env('APP_IMAGE_SIZE_MB', 3),
+            'wyvern' => env('APP_IMAGE_SIZE_WYVERN_MB', 10),
+            'elemental' => env('APP_IMAGE_SIZE_WYVERN_MB', 25),
+        ],
         'map' => env('APP_MAP_SIZE_MB', 5),
     ],
 

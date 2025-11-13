@@ -2,6 +2,8 @@
 
 namespace App\Models\Relations;
 
+use App\Enums\EntityAssetType;
+use App\Enums\EntityEventTypes;
 use App\Models\Attribute;
 use App\Models\Campaign;
 use App\Models\CampaignDashboardWidget;
@@ -12,7 +14,7 @@ use App\Models\Creature;
 use App\Models\Entity;
 use App\Models\EntityAbility;
 use App\Models\EntityAsset;
-use App\Models\EntityEventType;
+use App\Models\EntityLocation;
 use App\Models\EntityLog;
 use App\Models\EntityTag;
 use App\Models\EntityType;
@@ -55,6 +57,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property EntityLink[]|Collection $links
  * @property CampaignDashboardWidget[]|Collection $widgets
  * @property Attribute[]|Collection $entityAttributes
+ * @property EntityLocation[]|Collection $entityLocations
  * @property MiscModel|null $child
  * @property User $updater
  * @property Campaign $campaign
@@ -68,7 +71,7 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
  * @property Relation[]|Collection $pinnedRelations
  * @property EntityAsset[]|Collection $pinnedFiles
  * @property EntityAsset[]|Collection $pinnedAssets
- * @property Relation[]|Collection $relations
+ * @property Relation[]|Collection $relationships
  * @property Reminder[]|Collection $elapsedEvents
  * @property Reminder[]|Collection $calendarDateEvents
  * @property Reminder[]|Collection $reminders
@@ -114,6 +117,14 @@ trait EntityRelations
                 $sub->select('entities.id', 'entities.name');
             }])
             ->ordered();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\EntityLocation, $this>
+     */
+    public function entityLocations(): HasMany
+    {
+        return $this->hasMany(EntityLocation::class, 'entity_id', 'id');
     }
 
     /**
@@ -242,6 +253,14 @@ trait EntityRelations
     public function timeline(): HasOne
     {
         return $this->hasOne('App\Models\Timeline', 'id', 'entity_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne<\App\Models\Whiteboard, $this>
+     */
+    public function whiteboard(): HasOne
+    {
+        return $this->hasOne('App\Models\Whiteboard', 'id', 'entity_id');
     }
 
     /**
@@ -398,7 +417,7 @@ trait EntityRelations
         return $this->morphOne(Reminder::class, 'remindable')
             ->with('calendar')
             ->has('calendar')
-            ->where('type_id', EntityEventType::CALENDAR_DATE);
+            ->where('type_id', EntityEventTypes::calendarDate);
     }
 
     public function elapsedEvents(): MorphMany
@@ -464,7 +483,7 @@ trait EntityRelations
     public function links()
     {
         return $this->assets
-            ->where('type_id', EntityAsset::TYPE_LINK);
+            ->where('type_id', EntityAssetType::link);
     }
 
     /**

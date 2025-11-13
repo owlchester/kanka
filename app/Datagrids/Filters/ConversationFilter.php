@@ -22,6 +22,7 @@ class ConversationFilter extends DatagridFilter
 //            ])
             ->add('is_closed')
             ->isPrivate()
+            ->archived()
             ->tags();
     }
 }

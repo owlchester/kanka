@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ConversationTarget;
 use App\Models\Concerns\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,11 +26,6 @@ class ConversationParticipant extends Model
         'character_id',
         'user_id',
     ];
-
-    /**
-     * We want to use the dice_roll entity type for permissions
-     */
-    protected string $entityType = 'conversation_participants';
 
     /**
      * Who created this entry
@@ -64,8 +60,8 @@ class ConversationParticipant extends Model
 
     public function target(): ?int
     {
-        return ! empty($this->character_id) ? Conversation::TARGET_CHARACTERS :
-            (! empty($this->user_id) ? Conversation::TARGET_USERS : null);
+        return ! empty($this->character_id) ? ConversationTarget::characters->value :
+            (! empty($this->user_id) ? ConversationTarget::users->value : null);
     }
 
     public function isMember(): bool

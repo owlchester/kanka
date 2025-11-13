@@ -20,6 +20,7 @@ class MapGroupResource extends ModelResource
         return $this->entity([
             'map_id' => $model->map_id,
             'name' => $model->name,
+            'parent_id' => $model->parent_id,
             'position' => (int) $model->position,
             'visibility_id' => $model->visibility_id,
             'is_shown' => (bool) $model->is_shown,

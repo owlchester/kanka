@@ -90,7 +90,8 @@ To get the details of a single entity, use the following endpoint.
         "created_at": "2017-12-07T14:23:57.000000Z",
         "created_by": null,
         "updated_at": "2017-12-07T14:23:57.000000Z",
-        "updated_by": null
+        "updated_by": null,
+        "archived_at": null
     }
 }
 ```
@@ -197,7 +198,8 @@ With each request to an object (ie. `character`, `location`, etc), you can inclu
             "type": null,
             "families": [],
             "is_dead": false,
-            "traits": []
+            "traits": [],
+            "archived_at": null
         }
     ]
 }
@@ -238,6 +240,7 @@ You can see the 10 most recently edited entities on the `entities/recent` endpoi
             "created_by": null,
             "updated_at": "2024-08-22T20:22:21.000000Z",
             "updated_by": null,
+            "archived_at": null,
             "urls": {
                 "view": "{url}",
                 "api": "{url}"
@@ -418,6 +421,7 @@ You can view the recoverable deleted entities on the `/recovery` endpoint
             "created_by": null,
             "updated_at": "2023-08-22T23:19:07.000000Z",
             "updated_by": 1,
+            "archived_at": null,
             "urls": {
                 "view": "http://app.kanka.test:8081/w/1/entities/2",
                 "api": "http://api.kanka.test:8081/1.0/campaigns/1/locations/2"
@@ -441,6 +445,7 @@ You can view the recoverable deleted entities on the `/recovery` endpoint
             "created_by": null,
             "updated_at": "2023-08-22T23:19:07.000000Z",
             "updated_by": null,
+            "archived_at": null,
             "urls": {
                 "view": "http://app.kanka.test:8081/w/1/entities/23",
                 "api": "http://api.kanka.test:8081/1.0/campaigns/1/locations/16"

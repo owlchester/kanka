@@ -20,6 +20,9 @@
 @endphp
 <div class="grid grid-cols-4 gap-2">
     <div class="col-span-3 text-left">
+        @if ($field['type'] == 'selectMultiple')
+        <input type="hidden" name="{{ $field['field'] . '[]' }}" value="" />
+        @endif
         <x-forms.select
             :name="($field['type'] == 'selectMultiple') ? $field['field'] . '[]' : $field['field']"
             :options="$selectedModels"

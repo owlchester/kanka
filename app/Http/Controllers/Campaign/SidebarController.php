@@ -27,7 +27,7 @@ class SidebarController extends Controller
             'campaigns.sidebar.index',
             compact(
                 'campaign',
-                'layout'
+                'layout',
             )
         );
     }

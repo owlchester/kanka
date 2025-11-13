@@ -22,6 +22,7 @@ return [
     ],
     'fields'        => [
         'is_shown'  => 'Show group markers',
+        'parent'    => 'Parent Group',
         'position'  => 'Position',
     ],
     'helper'        => [

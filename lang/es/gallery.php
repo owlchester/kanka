@@ -39,6 +39,7 @@ return [
     ],
     'filters'   => [
         'only_unused'   => 'Mostrar sólo los archivos no utilizados',
+        'sort'          => 'Ordenar por',
     ],
     'move'      => [
         'success'   => '[0] Se han movido 0 elementos|[1] Se ha movido un elemento|{2,*} Se han movido :count elementos',

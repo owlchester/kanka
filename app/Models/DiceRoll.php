@@ -58,15 +58,15 @@ class DiceRoll extends MiscModel
         'character_id',
     ];
 
-    /**
-     * Entity type
-     */
-    protected string $entityType = 'dice_roll';
-
     protected array $sanitizable = [
         'name',
         'parameters',
     ];
+
+    public function datagridSelectFields(): array
+    {
+        return ['character_id', 'parameters'];
+    }
 
     /**
      * Who created this entry

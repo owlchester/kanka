@@ -102,29 +102,7 @@ class WebhookService
                     'webhook_id' => $webhook->id,
                     'timestamp' => time(),
                 ],
-                'entity' => '{
-                    "data": [
-                        {
-                            "id": 1,
-                            "name": "Thaelia",
-                            "entry": "\n<p>Lorem Ipsum.</p>\n",
-                            "image": "{path}",
-                            "image_full": "{url}",
-                            "image_thumb": "{url}",
-                            "has_custom_image": false,
-                            "is_private": true,
-                            "location_id": null,
-                            "entity_id": 5,
-                            "tags": [],
-                            "created_at":  "2019-01-30T00:01:44.000000Z",
-                            "created_by": 1,
-                            "updated_at":  "2019-08-29T13:48:54.000000Z",
-                            "updated_by": 1,
-                            "location_id": 4,
-                            "type": "Kingdom"
-                        }
-                    ]
-                },',
+                'entity' => '{"id": 1,"name":"Thaelia","entry":"\n<p>Lorem Ipsum.</p>\n","image":"{path}","image_full":"{url}","image_thumb":"{url}","has_custom_image":false,"is_private":true,"location_id": null,"entity_id": 5,"tags":[],"created_at":"2019-01-30T00:01:44.000000Z","created_by": 1,"updated_at":"2019-08-29T13:48:54.000000Z","updated_by":1,"location_id":4,"type":"Kingdom"}',
             ];
         }
 

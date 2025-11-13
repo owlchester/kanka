@@ -19,6 +19,6 @@
             </div>
         @endforeach
 
-        {{ $ideas->links('livewire.front-pagination', data: ['scrollTo' => false]) }}
+        {{ $ideas->links('livewire.front-pagination', data: ['scrollTo' => '#ideas']) }}
     </div>
 </div>

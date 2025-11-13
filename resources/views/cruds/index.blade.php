@@ -29,10 +29,7 @@
 
     <div class="flex flex-col gap-5">
     @if (auth()->guest())
-        <div class="text-muted grow">
-            <x-icon class="fa-regular fa-filter" />
-            {{ __('filters.helpers.guest') }}
-        </div>
+        @include('cruds.clear-filters')
     @else
         @if (isset($route))
             <div class="flex flex-stretch gap-2 items-center">

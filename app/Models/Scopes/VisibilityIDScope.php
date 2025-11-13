@@ -51,7 +51,7 @@ class VisibilityIDScope implements Scope
             return;
         }
         $campaign = CampaignLocalization::getCampaign();
-        if (! $campaign->userIsMember()) {
+        if (! auth()->user()->can('member', $campaign)) {
             $builder->where($model->getTable() . '.visibility_id', Visibility::All);
 
             return;

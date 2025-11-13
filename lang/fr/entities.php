@@ -108,4 +108,6 @@ return [
     'timeline'              => 'Chronologie',
     'timeline_element'      => 'Elément de chronologie',
     'timelines'             => 'Chronologies',
+    'whiteboard'            => 'Tableau blanc',
+    'whiteboards'           => 'Tableaux blancs',
 ];

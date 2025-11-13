@@ -34,7 +34,7 @@ class EventController extends Controller
             ->allEvents()
             ->filter($filters)
             ->filteredEvents()
-            ->paginate();
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

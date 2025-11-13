@@ -5,7 +5,7 @@ if (!$campaign->enabled('locations') || !$entity->child->location || !$entity->c
 }
 ?>
 <div class="entity-header-sub-element">
-    <x-icon :class="\App\Facades\Module::duoIcon('location')" :title="\App\Facades\Module::singular(config('entities.ids.location'), __('entities.location'))" />
+    <x-icon :class="$entity->child->location->entity->entityType->icon()" :title="$entity->child->location->entity->entityType->name()" />
     @if ($entity->child->location->parent && $entity->child->location->parent->entity)
         {!! __('crud.fields.locations', [
             'first' => Blade::renderComponent(

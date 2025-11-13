@@ -45,8 +45,6 @@ class Note extends MiscModel
         'parent.name',
     ];
 
-    protected string $entityType = 'note';
-
     /**
      * Fields that can be set to null (foreign keys)
      */

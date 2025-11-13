@@ -30,6 +30,7 @@ class ItemFilter extends DatagridFilter
             ->character()
             ->isPrivate()
             ->template()
+            ->archived()
             ->hasImage()
             ->hasEntry()
             ->hasPosts()

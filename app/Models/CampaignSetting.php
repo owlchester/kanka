@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property Campaign $campaign
+ */
 class CampaignSetting extends Model
 {
     /**
@@ -36,6 +39,7 @@ class CampaignSetting extends Model
         'timelines',
         'inventories',
         'creatures',
+        'whiteboards',
     ];
 
     /**

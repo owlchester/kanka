@@ -116,6 +116,7 @@ class StatService
         ];
 
         // Count the `words` field in the entities
+        // @phpstan-ignore-next-line
         $entityWords = $this->campaign
             ->entities()
             ->withInvisible()
@@ -124,6 +125,7 @@ class StatService
         $this->stats['words']['total'] += $entityWords;
 
         // Count words from all posts of entities in the campaign
+        // @phpstan-ignore-next-line
         $postWords = Post::withInvisible()
             ->leftJoin('entities', 'entities.id', 'posts.entity_id')
             ->where('entities.campaign_id', $this->campaign->id)
@@ -132,12 +134,15 @@ class StatService
         $this->stats['words']['posts'] = $postWords;
 
         // Count words from all quest and timeline elements in the campaign
+        // @phpstan-ignore-next-line
         $questWords = QuestElement::withPrivate()
             ->leftJoin('quests', 'quests.id', 'quest_elements.quest_id')
             ->where('quests.campaign_id', $this->campaign->id)
             ->sum('quest_elements.words');
         $this->stats['words']['total'] += $questWords;
         $this->stats['words']['elements'] = $questWords;
+
+        // @phpstan-ignore-next-line
         $timelineWords = TimelineElement::withPrivate()
             ->leftJoin('timelines', 'timelines.id', 'timeline_elements.timeline_id')
             ->where('timelines.campaign_id', $this->campaign->id)

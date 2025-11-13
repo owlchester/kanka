@@ -1,8 +1,11 @@
 <?php
 
 return [
-    'new-action-button' => 'I have been moved to here!',
-    'templates'         => [
+    'archive'   => [
+        'success'   => ':name has been archived.',
+        'title'     => 'Archive',
+    ],
+    'templates' => [
         'set'       => 'Set as template',
         'success'   => [
             'set'   => ':name set as a template.',
@@ -10,5 +13,9 @@ return [
         ],
         'toggle'    => 'Toggled template status.',
         'unset'     => 'Remove as template',
+    ],
+    'unarchive' => [
+        'success'   => ':name is no longer archived.',
+        'title'     => 'Unarchive',
     ],
 ];

@@ -117,7 +117,7 @@ class IndexController extends Controller
         $nested = $this->isNested();
         $layout = $this->layoutMode();
 
-        $with = ['entityType', 'image'];
+        $with = ['entityType', 'image', 'locations'];
         if ($this->entityType->isStandard()) {
             $with[] = $this->entityType->code;
         }
@@ -153,6 +153,8 @@ class IndexController extends Controller
         if ($this->filterService->hasFilters()) {
             $unfilteredCount = $base->count();
             $base = $base->filter($this->filterService->filters());
+        } else {
+            $base = $base->whereNull('archived_at');
         }
         $models = $base->orderBy('name')->paginate();
 

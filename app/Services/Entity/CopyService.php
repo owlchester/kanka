@@ -39,7 +39,11 @@ class CopyService
         if (! $this->request->filled('copy_source_id')) {
             return $this;
         }
-        $this->source = Entity::find((int) $this->request->get('copy_source_id'));
+        $entity = Entity::find((int) $this->request->get('copy_source_id'));
+        if (empty($entity)) {
+            return $this;
+        }
+        $this->source = $entity;
 
         return $this;
     }

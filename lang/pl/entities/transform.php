@@ -10,6 +10,10 @@ return [
         ],
         'success'   => '{1} zmieniono rodzaj :count elementu.|[2,*] zmieniono rodzaj :count elementów.',
     ],
+    'confirm'   => [
+        'checkbox'  => 'Rozumiem, że po przekształceniu :entity w element innego moduły stracę następujące dane:',
+        'label'     => 'Potwierdzenie utraty danych',
+    ],
     'fields'    => [
         'current'       => 'Obecny moduł',
         'select_one'    => 'Wybierz',

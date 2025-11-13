@@ -5,6 +5,7 @@ namespace App\Models\Concerns;
 use App\Enums\Visibility;
 use App\Models\Scopes\VisibilityIDScope;
 use App\Observers\VisibilityObserver;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Trait VisibilityTrait
@@ -13,6 +14,8 @@ use App\Observers\VisibilityObserver;
  *
  *
  * @property ?Visibility $visibility_id
+ *
+ * @method static self|Builder withPrivate()
  */
 trait HasVisibility
 {

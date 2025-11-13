@@ -1,14 +1,20 @@
 @php
 $options = [
     '' => __('organisations.members.pinned.none'),
-    \App\Models\OrganisationMember::PIN_CHARACTER => \App\Facades\Module::singular(config('entities.ids.character'), __('entities.character')),
-    \App\Models\OrganisationMember::PIN_ORGANISATION => \App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation')),
-    \App\Models\OrganisationMember::PIN_BOTH => __('organisations.members.pinned.both'),
+    App\Enums\OrganisationMemberPin::character->value => App\Facades\Module::singular(
+        config('entities.ids.character'),
+        __('entities.character')
+    ),
+    App\Enums\OrganisationMemberPin::organisation->value => App\Facades\Module::singular(
+        config('entities.ids.organisation'),
+        __('entities.organisation')
+    ),
+    App\Enums\OrganisationMemberPin::both->value => __('organisations.members.pinned.both'),
 ];
 $statuses = [
-    \App\Models\OrganisationMember::STATUS_ACTIVE => __('organisations.members.status.active'),
-    \App\Models\OrganisationMember::STATUS_INACTIVE => __('organisations.members.status.inactive'),
-    \App\Models\OrganisationMember::STATUS_UNKNOWN => __('organisations.members.status.unknown'),
+    App\Enums\OrganisationMemberStatus::active => __('organisations.members.status.active'),
+    App\Enums\OrganisationMemberStatus::inactive => __('organisations.members.status.inactive'),
+    App\Enums\OrganisationMemberStatus::unknown => __('organisations.members.status.unknown'),
 ];
 @endphp
 

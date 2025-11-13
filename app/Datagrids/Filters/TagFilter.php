@@ -31,6 +31,7 @@ class TagFilter extends DatagridFilter
             ->add('is_auto_applied')
             ->isPrivate()
             ->template()
+            ->archived()
             ->hasImage()
             ->hasEntry()
             ->hasPosts()

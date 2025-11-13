@@ -32,6 +32,7 @@ use App\Models\EntityAsset;
 use App\Models\EntityType;
 use App\Models\Event;
 use App\Models\Family;
+use App\Models\FamilyTree;
 use App\Models\Image;
 use App\Models\Inventory;
 use App\Models\Item;
@@ -57,6 +58,7 @@ use App\Models\TimelineEra;
 use App\Models\User;
 use App\Models\UserLog;
 use App\Models\Webhook;
+use App\Models\Whiteboard;
 use App\Observers\AdminInviteObserver;
 use App\Observers\CalendarObserver;
 use App\Observers\CampaignObserver;
@@ -64,6 +66,7 @@ use App\Observers\CampaignUserObserver;
 use App\Observers\CharacterObserver;
 use App\Observers\EventObserver;
 use App\Observers\FamilyObserver;
+use App\Observers\FamilyTreeObserver;
 use App\Observers\ItemObserver;
 use App\Observers\JournalObserver;
 use App\Observers\LocationObserver;
@@ -75,6 +78,7 @@ use App\Observers\UserObserver;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
@@ -211,6 +215,7 @@ class AppServiceProvider extends ServiceProvider
         Post::observe('App\Observers\PostObserver');
         Reminder::observe('App\Observers\ReminderObserver');
         Family::observe(FamilyObserver::class);
+        FamilyTree::observe(FamilyTreeObserver::class);
         Image::observe('App\Observers\ImageObserver');
         Inventory::observe('App\Observers\InventoryObserver');
         Map::observe('App\Observers\MapObserver');
@@ -230,6 +235,7 @@ class AppServiceProvider extends ServiceProvider
         Quest::observe('App\Observers\QuestObserver');
         QuestElement::observe('App\Observers\QuestElementObserver');
         Race::observe('App\Observers\RaceObserver');
+        Whiteboard::observe('App\Observers\WhiteboardObserver');
 
         if (request()->has('_debug_perm') && config('app.debug')) {
             // Add in boot function

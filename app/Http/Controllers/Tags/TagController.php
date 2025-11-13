@@ -39,7 +39,7 @@ class TagController extends Controller
                 'entity', 'entity.image', 'entity.entityType',
                 'parent', 'parent.entity',
             ])
-            ->paginate();
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

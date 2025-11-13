@@ -26,6 +26,7 @@ class RaceFilter extends DatagridFilter
             ->add('is_extinct')
             ->isPrivate()
             ->template()
+            ->archived()
             ->hasImage()
             ->hasEntry()
             ->hasPosts()

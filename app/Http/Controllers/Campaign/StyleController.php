@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Campaign;
 
-use App\Facades\CampaignCache;
 use App\Facades\Datagrid;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Campaigns\Boosted;
@@ -94,7 +93,6 @@ class StyleController extends Controller
         $style = new CampaignStyle($request->only('name', 'content', 'is_enabled'));
         $style->campaign_id = $campaign->id;
         $style->save();
-        CampaignCache::clearStyles()->clear();
 
         if ($request->has('submit-update')) {
             return redirect()
@@ -125,7 +123,6 @@ class StyleController extends Controller
         $this->authorize('update', $campaign);
 
         $campaignStyle->update($request->only('name', 'content', 'is_enabled'));
-        CampaignCache::clearStyles()->clear();
 
         if ($request->has('submit-update')) {
             return redirect()
@@ -143,7 +140,6 @@ class StyleController extends Controller
         $this->authorize('update', $campaign);
 
         $campaignStyle->delete();
-        CampaignCache::clearStyles()->clear();
 
         return redirect()
             ->route('campaign_styles.index', $campaign)
@@ -210,7 +206,6 @@ class StyleController extends Controller
                 $count++;
             }
         }
-        CampaignCache::clearStyles()->clear();
 
         return redirect()
             ->route('campaign_styles.index', $campaign)
@@ -231,7 +226,6 @@ class StyleController extends Controller
             $style->update();
             $order++;
         }
-        CampaignCache::clearStyles()->clear();
 
         $order--;
 
@@ -256,8 +250,6 @@ class StyleController extends Controller
         }
 
         $campaignStyle->update(['is_enabled' => ! $campaignStyle->is_enabled]);
-
-        CampaignCache::clearStyles()->clear();
 
         return redirect()->route('campaign_styles.index', $campaign)
             ->with(

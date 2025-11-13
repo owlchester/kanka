@@ -23,10 +23,7 @@
 
     <div class="flex flex-col gap-5">
     @if (auth()->guest())
-        <div class="text-muted grow">
-            <x-icon class="fa-regular fa-filter" />
-            {{ __('filters.helpers.guest') }}
-        </div>
+        @include('cruds.clear-filters')
     @else
         <div class="flex flex-stretch gap-2 items-center">
             @includeWhen($model->hasSearchableFields(), 'layouts.datagrid.search', ['route' => route($route . '.index', $campaign)])

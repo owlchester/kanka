@@ -11,15 +11,20 @@ $isAdmin = auth()->user()->isAdmin();
 $singular = App\Facades\Module::singular(config('entities.ids.organisation'), __('entities.organisation'));
 $options = [
     '' => __('organisations.members.pinned.none'),
-    \App\Models\OrganisationMember::PIN_CHARACTER => \App\Facades\Module::singular(config('entities.ids.character'), __('entities.character')),
-    \App\Models\OrganisationMember::PIN_ORGANISATION => $singular,
-    \App\Models\OrganisationMember::PIN_BOTH => __('organisations.members.pinned.both'),
+    App\Enums\OrganisationMemberPin::character->value => \App\Facades\Module::singular(
+        config('entities.ids.character'),
+        __('entities.character')
+    ),
+    App\Enums\OrganisationMemberPin::organisation->value => $singular,
+    App\Enums\OrganisationMemberPin::both->value => __('organisations.members.pinned.both'),
 ];
+
 $statuses = [
-    \App\Models\OrganisationMember::STATUS_ACTIVE => __('organisations.members.status.active'),
-    \App\Models\OrganisationMember::STATUS_INACTIVE => __('organisations.members.status.inactive'),
-    \App\Models\OrganisationMember::STATUS_UNKNOWN => __('organisations.members.status.unknown'),
+    App\Enums\OrganisationMemberStatus::active->value => __('organisations.members.status.active'),
+    App\Enums\OrganisationMemberStatus::inactive->value => __('organisations.members.status.inactive'),
+    App\Enums\OrganisationMemberStatus::unknown->value => __('organisations.members.status.unknown'),
 ];
+
 ?>
 <x-grid type="1/1">
     <div class="character-organisations flex flex-col gap-2 md:gap-4">
@@ -63,7 +68,7 @@ $statuses = [
         @endforeach
     </div>
 
-    <button class="btn2 btn-sm" id="add_organisation" href="#">
+    <button class="btn2 btn-sm btn-outline" id="add_organisation" href="#">
         <x-icon class="plus" />
         {!! $singular !!}
     </button>

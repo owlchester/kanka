@@ -12,6 +12,7 @@ enum Widget: string
     case Header = 'header';
     case Campaign = 'campaign';
     case Welcome = 'welcome';
+    case Help = 'help';
 
     public function isHeader(): bool
     {

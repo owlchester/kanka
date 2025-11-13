@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Enums\UserFlags;
+use App\Facades\UserCache;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 
@@ -31,23 +33,19 @@ class LimitService
     public function upload(): int|string
     {
         // Default for Owlbears and legacy Goblins/Kobolds, or members of a campaign
-        $size = $this->map ? 10240 : 8192;
+        $min = $this->map ? 10 : 8;
         if (! $this->user->isSubscriber() && (! isset($this->campaign) || ! $this->campaign->boosted())) {
-            $min = config('limits.filesize.image');
+            $min = config('limits.filesize.image.standard');
             if ($this->map) {
                 $min = config('limits.filesize.map');
             }
-            $size = ($min * 1024);
-        } elseif ($this->user->isElemental()) {
-            // Anders gets higher upload sizes until we handle this in the db.
-            if ($this->user->id === 34122) {
-                $size = 102400;
-            } else {
-                $size = $this->map ? 51200 : 25600;
-            }
-        } elseif ($this->user->isWyvern()) {
-            $size = $this->map ? 20480 : 15360;
+        } elseif ($this->user->isElemental() || (isset($this->campaign) && $this->campaign->isElemental())) {
+            $min = config('limits.filesize.image.elemental') * 1024;
+        } elseif ($this->user->isWyvern() || (isset($this->campaign) && $this->campaign->isWyvern())) {
+            $min = config('limits.filesize.image.wyvern');
         }
+
+        $size = ($min * 1024);
 
         $this->map = false;
 
@@ -56,11 +54,28 @@ class LimitService
 
     protected function finalize(int $size): string|int
     {
+        if (isset($this->campaign)) {
+            $flags = UserCache::user($this->user)->campaign($this->campaign)->flags();
+        }
+
+        if (isset($flags[UserFlags::uploadSize->value]) && $flags[UserFlags::uploadSize->value]['amount'] > ceil($size / 1024)) {
+            $size = $flags[UserFlags::uploadSize->value]['amount'] * 1024;
+        }
+
         if (! $this->readable) {
             return $size;
         }
         $this->readable = false;
 
         return ceil($size / 1024) . 'MiB';
+    }
+
+    public function entityFiles(): int
+    {
+        if ($this->campaign->boosted()) {
+            return config('limits.campaigns.files.premium');
+        }
+
+        return config('limits.campaigns.files.standard');
     }
 }

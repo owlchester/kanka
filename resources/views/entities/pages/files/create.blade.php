@@ -15,6 +15,6 @@
             'title' => __('entities/files.create.title', ['entity' => $entity->name]),
             'content' => 'entities.pages.files._form',
         ])
-        <input type="hidden" name="type_id" value="{{ \App\Models\EntityAsset::TYPE_FILE }}" />
+        <input type="hidden" name="type_id" value="{{ \App\Enums\EntityAssetType::file }}" />
     </x-form>
 @endsection

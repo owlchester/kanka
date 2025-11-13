@@ -12,6 +12,9 @@ return [
         'weight'        => 'Poids',
     ],
     'hints'         => [],
+    'lists'         => [
+        'empty' => 'Ajoute des armes, des artefacts ou des objets importants à ton monde.',
+    ],
     'placeholders'  => [
         'price' => 'Prix de l\'objet',
         'size'  => 'Taille, Dimensions, Capacité',

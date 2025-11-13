@@ -45,6 +45,10 @@ class GalleryMapper
 
     public function import(): void
     {
+        // We allow uploading json files in the gallery, which will be ignored here for now.
+        if (empty($this->data['id'])) {
+            return;
+        }
         $this->image = new Image;
         $this->image->campaign_id = $this->campaign->id;
         // Need to save to set the id otherwise it stores wrong data.

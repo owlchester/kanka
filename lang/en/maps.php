@@ -57,6 +57,9 @@ return [
         'min_zoom'              => 'The most a map can be zoomed out of. The default value is :default, while the lowest allowed value is :min.',
         'missing_image'         => 'Save the map with an image before being able to add layers and markers.',
     ],
+    'lists'         => [
+        'empty' => 'Upload a map to visualize locations and reveal the geography of your world.',
+    ],
     'panels'        => [
         'groups'    => 'Groups',
         'layers'    => 'Layers',

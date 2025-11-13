@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\AppReleaseCategory;
 use App\Facades\UserCache;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -17,26 +18,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $published_at
  * @property Carbon $end_at
  * @property int $created_by
- * @property int $category_id
+ * @property AppReleaseCategory $category_id
  * @property User $author
  */
 class AppRelease extends Model
 {
-    public const int CATEGORY_RELEASE = 1;
-
-    public const int CATEGORY_EVENT = 2;
-
-    public const int CATEGORY_VOTE = 3;
-
-    public const int CATEGORY_OTHER = 4;
-
-    public const int CATEGORY_LIVESTREAM = 5;
-
     public $table = 'releases';
 
     public $casts = [
         'published_at' => 'date',
         'end_at' => 'date',
+        'category_id' => \App\Enums\AppReleaseCategory::class,
     ];
 
     /**
@@ -52,15 +44,15 @@ class AppRelease extends Model
      */
     public function category(): string
     {
-        if ($this->category_id == self::CATEGORY_RELEASE) {
+        if ($this->category_id === AppReleaseCategory::release) {
             return __('releases.categories.release');
-        } elseif ($this->category_id == self::CATEGORY_EVENT) {
+        } elseif ($this->category_id === AppReleaseCategory::event) {
             return __('releases.categories.event');
-        } elseif ($this->category_id == self::CATEGORY_VOTE) {
+        } elseif ($this->category_id === AppReleaseCategory::vote) {
             return __('releases.categories.vote');
-        } elseif ($this->category_id == self::CATEGORY_OTHER) {
+        } elseif ($this->category_id === AppReleaseCategory::other) {
             return __('releases.categories.other');
-        } elseif ($this->category_id == self::CATEGORY_LIVESTREAM) {
+        } elseif ($this->category_id === AppReleaseCategory::livestream) {
             return __('releases.categories.livestream');
         }
 
@@ -79,7 +71,7 @@ class AppRelease extends Model
         }
 
         // Check if the user has the release tutorial entry on the db.
-        return UserCache::user(auth()->user())->dismissedTutorial('releases_' . $this->category_id . '_' . $this->id);
+        return UserCache::user(auth()->user())->dismissedTutorial('releases_' . $this->category_id->value . '_' . $this->id);
     }
 
     /**

@@ -36,6 +36,7 @@ class MapMapper extends MiscMapper
         $this->loadModel()
             ->foreign('locations', 'location_id')
             ->groups()
+            ->groupsParents()
             ->layers()
             ->markers()
             ->entitySecond();
@@ -74,6 +75,19 @@ class MapMapper extends MiscMapper
             $el->created_by = $this->user->id;
             $el->save();
             $this->groups[$data['id']] = $el->id;
+        }
+
+        return $this;
+    }
+
+    protected function groupsParents(): self
+    {
+        foreach ($this->data['groups'] as $data) {
+            if (isset($data['parent_id'])) {
+                $group = MapGroup::where('id', $this->groups[$data['id']])->first();
+                $group->parent_id = $this->groups[$data['parent_id']];
+                $group->save();
+            }
         }
 
         return $this;
@@ -125,7 +139,7 @@ class MapMapper extends MiscMapper
     protected function markers(): self
     {
         $fields = [
-            'pin_size', 'name', 'entry', 'longitude', 'latitude', 'colour', 'shape_id', 'size_id', 'icon', 'custom_icon', 'custom_shape', 'is_draggable', 'visibility_id', 'font_colour', 'circle_radius', 'polygon_style', 'opacity',
+            'pin_size', 'name', 'entry', 'longitude', 'latitude', 'colour', 'shape_id', 'size_id', 'icon', 'custom_icon', 'custom_shape', 'is_draggable', 'visibility_id', 'font_colour', 'circle_radius', 'polygon_style', 'opacity', 'css',
         ];
         foreach ($this->data['markers'] as $data) {
             $marker = new MapMarker;
@@ -137,7 +151,9 @@ class MapMapper extends MiscMapper
                 $marker->entity_id = ImportIdMapper::getEntity($data['entity_id']);
             }
             foreach ($fields as $field) {
-                $marker->$field = $data[$field];
+                if (isset($data[$field])) {
+                    $marker->$field = $data[$field];
+                }
             }
 
             if (! empty($data['group_id'])) {

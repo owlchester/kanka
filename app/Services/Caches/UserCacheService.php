@@ -5,10 +5,12 @@ namespace App\Services\Caches;
 use App\Models\Campaign;
 use App\Models\CampaignRole;
 use App\Models\User;
+use App\Models\UserFlag;
 use App\Services\Caches\Traits\PrimaryCache;
 use App\Services\Caches\Traits\User\CampaignCache;
 use App\Services\Caches\Traits\User\RoleCache;
 use App\Services\Caches\Traits\User\TutorialCache;
+use App\Services\Caches\Traits\User\UserFlagCache;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Illuminate\Support\Facades\Cache;
@@ -22,6 +24,7 @@ class UserCacheService extends BaseCache
     use RoleCache;
     use TutorialCache;
     use UserAware;
+    use UserFlagCache;
 
     /**
      * Get the username
@@ -70,6 +73,7 @@ class UserCacheService extends BaseCache
             'follows' => [],
             'roles' => [],
             'tutorials' => [],
+            'flags' => [],
         ];
 
         /** @var Campaign $campaign */
@@ -85,6 +89,10 @@ class UserCacheService extends BaseCache
         // Track the user's admin roles
         foreach ($this->user->campaignRoles as $role) {
             $data['roles'][$role->campaign_id][] = $this->formatRole($role);
+        }
+
+        foreach ($this->user->flags as $flag) {
+            $data['flags'][$flag->flag->value] = $this->formatFlag($flag);
         }
 
         $data['tutorials'] = $this->prepareTutorials();
@@ -116,6 +124,16 @@ class UserCacheService extends BaseCache
             'name' => $role->name,
             'is_admin' => $role->isAdmin(),
             'is_public' => $role->isPublic(),
+        ];
+    }
+
+    /**
+     * Format a flag for the cache
+     */
+    protected function formatFlag(UserFlag $role): array
+    {
+        return [
+            'amount' => $role->amount,
         ];
     }
 

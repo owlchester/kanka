@@ -145,7 +145,14 @@ trait EntityScopes
                 'relationships', 'abilities',
                 'tags', 'image', 'assets',
                 'entityType',
-            ] : ['tags', 'image', 'entityType']);
+                'locations' => function ($query) {
+                    $query->select('id');
+                },
+            ] : ['tags', 'image', 'entityType',
+                'locations' => function ($query) {
+                    $query->select('id');
+                },
+            ]);
     }
 
     /**
@@ -199,6 +206,10 @@ trait EntityScopes
                 } else {
                     $query->whereNull($property);
                 }
+            } elseif ($name === 'archived') {
+                if ($values) {
+                    $query->whereNotNull('archived_at');
+                }
             } elseif ($name === 'has_entity_files') {
                 // @phpstan-ignore-next-line
                 $query->filterHasFiles($values);
@@ -226,7 +237,7 @@ trait EntityScopes
     {
         $query
             ->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'entities.id')
-            ->where('entity_assets.type_id', \App\Models\EntityAsset::TYPE_FILE);
+            ->where('entity_assets.type_id', \App\Enums\EntityAssetType::file);
 
         if ($value) {
             $query->whereNotNull('entity_assets.id');

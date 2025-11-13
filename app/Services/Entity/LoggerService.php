@@ -2,6 +2,7 @@
 
 namespace App\Services\Entity;
 
+use App\Enums\ConversationTarget;
 use App\Facades\Identity;
 use App\Models\Conversation;
 use App\Models\Entity;
@@ -124,6 +125,12 @@ class LoggerService
     public function restore(): void
     {
         $this->log(EntityLog::ACTION_RESTORE);
+        $this->log->save();
+    }
+
+    public function updatedFamilyTree(): void
+    {
+        $this->log(EntityLog::ACTION_UPDATE_FAMILY_TREE);
         $this->log->save();
     }
 
@@ -273,7 +280,7 @@ class LoggerService
             // Silence
             if ($attribute == 'target_id' && $this->model instanceof Conversation) {
                 return __('conversations.targets.' . (
-                    $original == Conversation::TARGET_USERS ? 'members' : 'characters'
+                    $original == ConversationTarget::users ? 'members' : 'characters'
                 ));
             }
 

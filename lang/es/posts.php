@@ -39,6 +39,9 @@ return [
         'first'         => 'Primero',
         'last'          => 'Último',
     ],
+    'remove'        => [
+        'title' => 'Eliminar publicación',
+    ],
     'visibility'    => [
         'helper'    => 'Cambia la visibilidad del post :name.',
         'title'     => 'Visibilidad del post',

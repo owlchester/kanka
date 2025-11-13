@@ -36,6 +36,17 @@ class Group extends Layout
                     return '';
                 },
             ],
+            'parent' => [
+                'label' => 'maps/groups.fields.parent',
+                'key' => 'parent_id',
+                'render' => function ($model) {
+                    if ($model->parent) {
+                        return '<a href="' . $model->parent->getLink() . '" data-target="primary-dialog" data-url="' . $model->parent->getLink() . '" data-toggle="dialog">' . $model->parent->name . '</a>';
+                    }
+
+                    return '';
+                },
+            ],
             'visibility' => [
                 'label' => 'crud.fields.visibility',
                 'render' => Standard::VISIBILITY,

@@ -137,6 +137,10 @@ class EntityTypeService
             $this->permissions()->bookmark();
         }
 
+        if ($this->request->get('update_name')) {
+            $this->updateBookmark();
+        }
+
         return $this->entityType;
     }
 
@@ -144,6 +148,17 @@ class EntityTypeService
     {
         $this->entityType->is_enabled = ! $this->entityType->is_enabled;
         $this->entityType->save();
+    }
+
+    protected function updateBookmark(): self
+    {
+        $bookmarks = $this->entityType->bookmarks()->whereNull('filters')->get();
+        foreach ($bookmarks as $bookmark) {
+            $bookmark->name = $this->entityType->plural;
+            $bookmark->update();
+        }
+
+        return $this;
     }
 
     protected function bookmark(): self

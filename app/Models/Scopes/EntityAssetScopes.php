@@ -2,7 +2,7 @@
 
 namespace App\Models\Scopes;
 
-use App\Models\EntityAsset;
+use App\Enums\EntityAssetType;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -22,11 +22,11 @@ trait EntityAssetScopes
     public function scopeFiltered(Builder $query, bool $premium = false): Builder
     {
         $types = [
-            EntityAsset::TYPE_FILE,
+            EntityAssetType::file,
         ];
         if ($premium) {
-            $types[] = EntityAsset::TYPE_LINK;
-            $types[] = EntityAsset::TYPE_ALIAS;
+            $types[] = EntityAssetType::link;
+            $types[] = EntityAssetType::alias;
         }
 
         return $query->whereIn('type_id', $types);
@@ -35,18 +35,18 @@ trait EntityAssetScopes
     public function scopeFile(Builder $query)
     {
         // @phpstan-ignore-next-line
-        return $query->type(EntityAsset::TYPE_FILE);
+        return $query->type(EntityAssetType::file);
     }
 
     public function scopeLink(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
-        return $query->type(EntityAsset::TYPE_LINK);
+        return $query->type(EntityAssetType::link);
     }
 
     public function scopeAlias(Builder $query)
     {
         // @phpstan-ignore-next-line
-        return $query->type(EntityAsset::TYPE_ALIAS);
+        return $query->type(EntityAssetType::alias);
     }
 }

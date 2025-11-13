@@ -47,7 +47,7 @@
             'class' => 'icon'
         ],
         [
-            'label' => '<i class="' . \App\Facades\Module::duoIcon('organisation') . '" title="' . \App\Facades\Module::plural(config('entities.ids.organisation'), __('entities.organisations')) . '"></i>',
+            'label' => '<i class="' . $entityType->icon() . '" title="' . $entityType->plural() . '"></i>',
             'render' => function($model) {
                 return number_format($model->children_count);
             },

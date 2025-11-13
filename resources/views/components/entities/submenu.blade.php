@@ -19,7 +19,7 @@ use \Illuminate\Support\Arr;
                         :ajax="Arr::get($menuItem, 'ajax') ? route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $entity->child : $entity)]) : null"
                         :id="$menuItem['id'] ?? null"
                     >
-                        {!! __($menuItem['name']) !!}
+                        {!! $menuItem['name'] !!}
                     </x-menu.element>
 
                 @endforeach
@@ -42,7 +42,7 @@ use \Illuminate\Support\Arr;
                     @if($key == $active) selected="selected" @endif
                     @if(Arr::get($menuItem, 'ajax')) data-toggle="dialog" data-target="primary-dialog" data-url="{{ route($menuItem['route'], [$campaign, (!isset($menuItem['entity']) ? $entity->child : $entity)]) }}" @endif
                 >
-                    {{ __($menuItem['name']) }}
+                    {{  $menuItem['name'] }}
                     @if (!empty($menuItem['count']))
                         ({{ $menuItem['count'] }})
                     @endif

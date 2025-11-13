@@ -48,7 +48,7 @@
   - [Attributes](/api-docs/{{version}}/entities/attributes)
   - [Assets](/api-docs/{{version}}/entities/entity-assets)
   - [Image](/api-docs/{{version}}/entities/entity-image)
-  - [Inventory](/api-docs/{{version}}/entities/inventory)
+  - [Inventory](/api-docs/{{version}}/entities/entity-inventory)
   - [Mentions](/api-docs/{{version}}/entities/entity-mentions)
   - [Permissions](/api-docs/{{version}}/entities/entity-permissions)
   - [Posts](/api-docs/{{version}}/entities/posts)
@@ -59,6 +59,7 @@
 
 - ## Search
   - [Search](/api-docs/{{version}}/search)
+  - [Archives](/api-docs/{{version}}/archives)
 
 - ## Other Concepts
   - [Last Sync](/api-docs/{{version}}/misc/last-sync)

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ConversationTarget;
 use App\Models\Concerns\Blameable;
 use App\Models\Concerns\HasUser;
 use App\Models\Concerns\LastSync;
@@ -53,11 +54,6 @@ class ConversationMessage extends Model
     ];
 
     /**
-     * We want to use the dice_roll entity type for permissions
-     */
-    protected string $entityType = 'conversation_messages';
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Character, $this>
      */
     public function character(): BelongsTo
@@ -78,8 +74,8 @@ class ConversationMessage extends Model
      */
     public function target()
     {
-        return ! empty($this->character_id) ? Conversation::TARGET_CHARACTERS :
-            (! empty($this->user_id) ? Conversation::TARGET_USERS : null);
+        return ! empty($this->character_id) ? ConversationTarget::characters->value :
+            (! empty($this->user_id) ? ConversationTarget::users->value : null);
     }
 
     /**

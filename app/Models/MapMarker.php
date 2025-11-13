@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\MapMarkerShape;
 use App\Facades\CampaignLocalization;
 use App\Facades\MapMarkerCache;
 use App\Facades\Mentions;
@@ -39,6 +40,7 @@ use Illuminate\Support\Str;
  * @property string $custom_icon
  * @property string $custom_shape
  * @property ?int $circle_radius
+ * @property string $css
  * @property bool|int $is_draggable
  * @property bool|int $is_popupless
  * @property array $polygon_style
@@ -58,14 +60,6 @@ class MapMarker extends Model
     use Paginatable;
     use Sanitizable;
     use SortableTrait;
-
-    public const SHAPE_MARKER = 1;
-
-    public const SHAPE_LABEL = 2;
-
-    public const SHAPE_CIRCLE = 3;
-
-    public const SHAPE_POLY = 5;
 
     protected $fillable = [
         'map_id',
@@ -90,6 +84,7 @@ class MapMarker extends Model
         'circle_radius',
         'polygon_style',
         'is_popupless',
+        'css',
     ];
 
     protected array $sortable = [
@@ -104,6 +99,7 @@ class MapMarker extends Model
     public $casts = [
         'polygon_style' => 'array',
         'visibility_id' => \App\Enums\Visibility::class,
+        'type_id' => \App\Enums\MapMarkerShape::class,
     ];
 
     protected array $suggestions = [
@@ -112,6 +108,7 @@ class MapMarker extends Model
 
     protected array $sanitizable = [
         'name',
+        'css',
     ];
 
     /** Editing the map */
@@ -163,7 +160,7 @@ class MapMarker extends Model
      */
     public function isLabel(): bool
     {
-        return $this->shape_id == self::SHAPE_LABEL;
+        return $this->shape_id === MapMarkerShape::label;
     }
 
     /**
@@ -171,7 +168,12 @@ class MapMarker extends Model
      */
     public function isCircle(): bool
     {
-        return $this->shape_id == self::SHAPE_CIRCLE;
+        return $this->shape_id === MapMarkerShape::circle;
+    }
+
+    public function css(): string
+    {
+        return (string) $this->css;
     }
 
     /**
@@ -179,7 +181,7 @@ class MapMarker extends Model
      */
     public function isPolygon(): bool
     {
-        return $this->shape_id == MapMarker::SHAPE_POLY && ! empty($this->custom_shape);
+        return $this->shape_id === MapMarkerShape::poly && ! empty($this->custom_shape);
     }
 
     /**
@@ -278,7 +280,7 @@ class MapMarker extends Model
                 title: \'' . $this->markerTitle() . '\',
                 stroke: false,
                 fillOpacity: ' . $this->floatOpacity() . ',
-                className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . '\','
+                className: \'marker marker-circle marker-' . $this->id . ' size-' . $this->size_id . ' ' . $this->css . '\','
             . ($this->isDraggable() ? 'draggable: true' : null) . '
             })' . $this->popup() . $this->draggable();
     }
@@ -480,7 +482,7 @@ class MapMarker extends Model
                 iconSize: [' . $size . ', ' . $size . '],
                 iconAnchor: [' . ceil($size / 2) . ', ' . ($size + ceil($size / 4)) . '],
                 popupAnchor: [0, -' . ($size + ceil($size / 4)) . '],
-                className: \'marker marker-' . $this->id . '\'
+                className: \'marker marker-' . $this->id . ' ' . $this->css . '\'
         })';
     }
 

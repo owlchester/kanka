@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ConversationTarget;
 use App\Models\Concerns\Acl;
 use App\Models\Concerns\HasCampaign;
 use App\Models\Concerns\HasFilters;
@@ -18,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $name
  * @property string $image
  * @property string $type
- * @property int $target_id
+ * @property ConversationTarget $target_id
  * @property bool|int $is_private
  * @property bool|int $is_closed
  * @property ConversationParticipant[]|Collection $participants
@@ -41,14 +42,9 @@ class Conversation extends MiscModel
         'is_closed',
     ];
 
-    public const int TARGET_USERS = 1;
-
-    public const int TARGET_CHARACTERS = 2;
-
-    /**
-     * Entity type
-     */
-    protected string $entityType = 'conversation';
+    public $casts = [
+        'target_id' => \App\Enums\ConversationTarget::class,
+    ];
 
     /**
      * Searchable fields
@@ -138,7 +134,7 @@ class Conversation extends MiscModel
 
     public function forCharacters(): bool
     {
-        return $this->target_id == self::TARGET_CHARACTERS;
+        return $this->target_id === ConversationTarget::characters;
     }
 
     /**

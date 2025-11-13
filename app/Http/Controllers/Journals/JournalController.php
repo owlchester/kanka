@@ -39,7 +39,7 @@ class JournalController extends Controller
                 'parent', 'parent.entity',
                 'author',
             ])
-            ->paginate();
+            ->paginate(config('limits.pagination'));
 
         if (request()->ajax()) {
             return $this->campaign($campaign)->datagridAjax();

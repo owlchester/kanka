@@ -75,11 +75,6 @@ class Location extends MiscModel
     ];
 
     /**
-     * Entity type
-     */
-    protected string $entityType = 'location';
-
-    /**
      * Nullable values (foreign keys)
      */
     public array $nullableForeignKeys = [
@@ -141,6 +136,14 @@ class Location extends MiscModel
     public function creatures(): BelongsToMany
     {
         return $this->belongsToMany('App\Models\Creature', 'creature_location');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Entity, $this>
+     */
+    public function entities(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Models\Entity', 'entity_locations');
     }
 
     /**

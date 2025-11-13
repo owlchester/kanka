@@ -50,8 +50,10 @@ class FreeTrialEndService
 
     protected function process(Subscription $subscription): void
     {
+        // @phpstan-ignore-next-line
         $this->logs[] = 'User ' . $subscription->user->name . ' (' . $subscription->user->id . '): ' . $subscription->ends_at;
         if ($this->dispatch) {
+            // @phpstan-ignore-next-line
             SubscriptionEndJob::dispatch($subscription->user, false, true);
         }
         $this->count++;

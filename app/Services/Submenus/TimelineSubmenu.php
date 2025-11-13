@@ -2,7 +2,6 @@
 
 namespace App\Services\Submenus;
 
-use App\Facades\Module;
 use App\Models\Timeline;
 
 class TimelineSubmenu extends BaseSubmenu implements EntitySubmenu
@@ -13,18 +12,18 @@ class TimelineSubmenu extends BaseSubmenu implements EntitySubmenu
         /** @var Timeline $model */
         $model = $this->entity->child;
         $items['second']['timelines'] = [
-            'name' => Module::plural($model->entityTypeId(), 'entities.timelines'),
+            'name' => $this->entity->entityType->plural(),
             'route' => 'timelines.timelines',
             'count' => $model->descendants()->has('entity')->count(),
         ];
         if (isset($this->user) && $this->user->can('update', $this->entity)) {
             $items['second']['eras'] = [
-                'name' => 'timelines.fields.eras',
+                'name' => __('timelines.fields.eras'),
                 'route' => 'timelines.timeline_eras.index',
                 'count' => $model->eras->count(),
             ];
             $items['second']['reorder'] = [
-                'name' => 'crud.actions.reorder',
+                'name' => __('crud.actions.reorder'),
                 'route' => 'timelines.reorder',
             ];
         }

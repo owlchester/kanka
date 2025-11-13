@@ -65,7 +65,7 @@ class CampaignBoostController extends Controller
                     ->campaign($campaign)
                     ->action($action)
                     ->boost();
-                CampaignCache::clearSidebar()->clear();
+                CampaignCache::campaign($campaign)->clearSidebar()->clear();
 
                 $superboost = $action == 'superboost';
 
@@ -84,7 +84,7 @@ class CampaignBoostController extends Controller
                 ->user(auth()->user())
                 ->campaign($campaign)
                 ->premium();
-            CampaignCache::clearSidebar()->clear();
+            CampaignCache::campaign($campaign)->clearSidebar()->clear();
 
             return redirect()
                 ->route('settings.premium')

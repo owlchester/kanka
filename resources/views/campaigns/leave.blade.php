@@ -3,7 +3,7 @@
 </x-dialog.header>
 
 <article class="max-w-xl p-4 md:px-6">
-    @if(auth()->user()->can('leave', $campaign))
+    @can('leave', $campaign)
         <x-helper>
             <p>
                 {!! __('campaigns.leave.confirm', ['name' => '<strong>' . $campaign->name . '</strong>']) !!}

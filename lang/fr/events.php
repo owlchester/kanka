@@ -13,6 +13,9 @@ return [
     'helpers'       => [
         'date'  => 'Ce champ peut contenir n\'importe quelle valeur et n\'est pas lié aux calendriers de la campagne. Pour lier cet événement à un calendrier, il faut se rendre sur l\'onglet rappels de cet événement.',
     ],
+    'lists'         => [
+        'empty' => 'Ajoute des moments importants tels que des batailles, des couronnements ou des découvertes à l\'histoire de ton monde.',
+    ],
     'placeholders'  => [
         'date'  => 'La date de l\'événement',
         'type'  => 'Cérémonie, Festival, Désastre, Bataille, Naissance',

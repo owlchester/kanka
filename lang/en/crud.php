@@ -115,6 +115,7 @@ return [
         'unavailable_feature'   => 'Unavailable feature',
     ],
     'fields'            => [
+        'archived'          => 'Archived',
         'calendar_date'     => 'Calendar Date',
         'child'             => 'Child',
         'closed'            => 'Closed',
@@ -178,17 +179,18 @@ return [
         'direct'            => 'Filter to direct descendants',
         'filtered'          => 'Showing :count of :total :entity.',
         'lists'             => [
-            'paginated' => 'Switch between direct children and all levels of descendants. Results are paginated for performance.',
             'desktop'   => [
-                'all'       => 'All descendants (:count)',
-                'filtered'  => 'Direct descendants (:count)',
+                'all'       => 'Show all :count descendants',
+                'filtered'  => 'Show direct :count descendants',
             ],
+            'paginated' => 'Switch between direct children and all levels of descendants. Results are paginated for performance.',
         ],
         'mobile'            => [
             'clear' => 'Clear',
             'copy'  => 'Clipboard',
         ],
         'options'           => [
+            'any'       => 'Any',
             'children'  => 'Matches this or its descendants',
             'exclude'   => 'Doesn\'t match',
             'hide'      => 'Hide',
@@ -336,6 +338,9 @@ return [
         'relations'     => 'Relations',
         'reminders'     => 'Reminders',
         'story'         => 'Overview',
+    ],
+    'timestamps'        => [
+        'edited'    => 'Edited :ago',
     ],
     'titles'            => [
         'editing'   => 'Editing :name',

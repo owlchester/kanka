@@ -32,6 +32,9 @@ return [
         'selector'          => 'Configure where this bookmark goes when a user clicks on it in the sidebar.',
         'type'              => 'Set up this bookmark to go directly to a list of entities. To filter the results, copy parts of the url on the filtered entity list after the :? sign into the :filter field.',
     ],
+    'lists'             => [
+        'empty' => 'Save bookmarks to your most used entities or filtered lists for faster access.',
+    ],
     'placeholders'      => [
         'filters'   => 'location_id=15&type=city',
         'menu'      => 'Menu subpage (use the last text of the url)',

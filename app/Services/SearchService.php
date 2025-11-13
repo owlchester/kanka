@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
+use App\Enums\EntityAssetType;
 use App\Facades\Avatar;
 use App\Facades\Mentions;
 use App\Models\Calendar;
 use App\Models\Entity;
-use App\Models\EntityAsset;
 use App\Models\EntityType;
 use App\Models\MiscModel;
 use App\Services\Entity\NewService;
@@ -47,6 +47,11 @@ class SearchService
     protected bool $full = false;
 
     /**
+     * Thumb size
+     */
+    protected int $thumbSize = 64;
+
+    /**
      * Set to true to return new entity options
      */
     protected bool $new = false;
@@ -79,6 +84,13 @@ class SearchService
     public function v2(): self
     {
         $this->v2 = true;
+
+        return $this;
+    }
+
+    public function thumb(int $size): self
+    {
+        $this->thumbSize = $size;
 
         return $this;
     }
@@ -182,7 +194,7 @@ class SearchService
         }
 
         $cleanTerm = mb_ltrim(str_replace('_', ' ', $this->term), '=');
-        $query = Entity::inTypes($availableEntityTypes);
+        $query = Entity::inTypes($availableEntityTypes)->whereNull('archived_at');
         if (empty($this->term)) {
             $query->orderBy('updated_at', 'DESC');
         } else {
@@ -197,7 +209,7 @@ class SearchService
                         } else {
                             $join->where('ea.name', 'like', '%' . $this->term . '%');
                         }
-                        $join->where('ea.type_id', EntityAsset::TYPE_ALIAS);
+                        $join->where('ea.type_id', EntityAssetType::alias);
                     })
                     ->where(function ($sub) use ($cleanTerm) {
                         if (Str::startsWith($this->term, '=')) {
@@ -430,7 +442,7 @@ class SearchService
             'id' => $entity->id,
             'name' => $entity->name,
             'is_private' => $entity->is_private,
-            'image' => Avatar::entity($entity)->fallback()->size(64)->thumbnail(),
+            'image' => Avatar::entity($entity)->fallback()->size($this->thumbSize)->thumbnail(),
             'link' => $entity->url(),
             'type' => $entity->entityType->name(),
             'preview' => route('entities.preview', [$this->campaign, $entity]),

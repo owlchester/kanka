@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Entity;
 
+use App\Enums\EntityAssetType;
 use App\Exceptions\TranslatableException;
+use App\Facades\Limit;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEntityAsset;
 use App\Http\Requests\StoreEntityAssets;
@@ -52,11 +54,12 @@ class AssetController extends Controller
         $this->authorize('update', $entity);
 
         $typeID = (int) request()->get('type');
-        if ($typeID == EntityAsset::TYPE_FILE) {
+
+        if ($typeID === EntityAssetType::file->value) {
             return $this->createFile($campaign, $entity);
-        } elseif ($typeID == EntityAsset::TYPE_LINK) {
+        } elseif ($typeID === EntityAssetType::link->value) {
             return $this->createLink($campaign, $entity);
-        } elseif ($typeID == EntityAsset::TYPE_ALIAS) {
+        } elseif ($typeID === EntityAssetType::alias->value) {
             return $this->createAlias($campaign, $entity);
         }
         abort(404);
@@ -72,14 +75,14 @@ class AssetController extends Controller
         $data = [];
         $type = '';
         $typeId = null;
-        if (request()->get('type_id') == EntityAsset::TYPE_FILE) {
+        if (request()->get('type_id') == EntityAssetType::file->value) {
             return $this->storeFile($request, $campaign, $entity);
-        } elseif (request()->get('type_id') == EntityAsset::TYPE_LINK) {
+        } elseif (request()->get('type_id') == EntityAssetType::link->value) {
             $data = $request->only(['name', 'position', 'visibility_id', 'metadata']);
             $type = 'links';
-            $typeId = EntityAsset::TYPE_LINK;
-        } elseif (request()->get('type_id') == EntityAsset::TYPE_ALIAS) {
-            $typeId = EntityAsset::TYPE_ALIAS;
+            $typeId = EntityAssetType::link;
+        } elseif (request()->get('type_id') == EntityAssetType::alias->value) {
+            $typeId = EntityAssetType::alias;
             $data = $request->only(['name', 'visibility_id', 'is_pinned']);
             $type = 'aliases';
         }
@@ -206,7 +209,7 @@ class AssetController extends Controller
         if (! auth()->user()->can('addFile', [$entity, $campaign])) {
             return view('entities.pages.files.max')
                 ->with('campaign', $campaign)
-                ->with('max', $campaign->maxEntityFiles());
+                ->with('max', Limit::campaign($campaign)->entityFiles());
         }
 
         return view('entities.pages.files.create')
@@ -239,7 +242,7 @@ class AssetController extends Controller
      */
     protected function createAlias(Campaign $campaign, Entity $entity)
     {
-        if (! $campaign->boosted()) {
+        if (! $campaign->boosted() && $campaign->entityAliases->count() > 2) {
             return view('entities.pages.aliases.not-premium')
                 ->with('campaign', $campaign);
         }

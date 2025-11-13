@@ -99,7 +99,7 @@ class GroupController extends Controller
                 ->with('max', config('limits.campaigns.maps.groups.premium'));
         }
         $model = new MapGroup;
-        $data = $request->only('name', 'position', 'entry', 'visibility_id', 'is_shown');
+        $data = $request->only('name', 'position', 'entry', 'visibility_id', 'is_shown', 'parent_id');
         if (Arr::exists($data, 'position')) {
             $map->groups()->where('position', '>', $data['position'] - 1)->increment('position');
         }
@@ -145,7 +145,7 @@ class GroupController extends Controller
             return response()->json(['success' => true]);
         }
 
-        $mapGroup->update($request->only('name', 'position', 'entry', 'visibility_id', 'is_shown'));
+        $mapGroup->update($request->only('name', 'position', 'entry', 'visibility_id', 'is_shown', 'parent_id'));
 
         if ($request->has('submit-update')) {
             return redirect()

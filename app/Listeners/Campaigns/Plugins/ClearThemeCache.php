@@ -23,7 +23,7 @@ class ClearThemeCache
     {
         // If we changed the theme we'll need to re-think it
         if ($event->campaignPlugin->plugin->isTheme()) {
-            CampaignCache::clearTheme();
+            CampaignCache::campaign($event->campaignPlugin->campaign)->clearTheme();
         }
     }
 }

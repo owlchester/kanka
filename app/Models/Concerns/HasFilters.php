@@ -73,6 +73,7 @@ trait HasFilters
             'connections',
             'connection_target',
             'connection_name',
+            'archived',
         ];
     }
 
@@ -115,6 +116,8 @@ trait HasFilters
 
                 if ($key === 'tags') {
                     $this->filterTags($query, $value);
+                } elseif ($key === 'archived') {
+                    $this->filterArchived($query, $value);
                 } elseif ($key == 'locations') {
                     $this->filterLocations($query, $value);
                 } elseif ($key == 'organisations') {
@@ -181,6 +184,10 @@ trait HasFilters
                 }
             } elseif (Str::endsWith($key, '_option') && $value == 'none') {
                 $this->filterNoneOptions($query, $key, $fields);
+            } elseif ($key == 'archived' && ! isset($value)) {
+                $query
+                    ->joinEntity()
+                    ->whereNull('e.archived_at');
             }
         }
 
@@ -352,7 +359,7 @@ trait HasFilters
         $query
             ->joinEntity()
             ->leftJoin('entity_assets', 'entity_assets.entity_id', '=', 'e.id')
-            ->where('entity_assets.type_id', \App\Models\EntityAsset::TYPE_FILE);
+            ->where('entity_assets.type_id', \App\Enums\EntityAssetType::file);
 
         if ($value) {
             $query->whereNotNull('entity_assets.id');
@@ -796,6 +803,19 @@ trait HasFilters
             return;
         }
 
+        if ($this->filterOption('any')) {
+            $tagIds = [];
+            foreach ($value as $v) {
+                $tagIds[] = (int) $v;
+            }
+            // $query->leftJoin('entity_tags as et_tags', "et_tags.entity_id", 'e.id')
+            // $query
+            $query->leftJoin('entity_tags as et_tags', 'et_tags.entity_id', 'e.id')
+                ->whereIn('et_tags.tag_id', $tagIds);
+
+            return;
+        }
+
         foreach ($value as $v) {
             if (! is_numeric($v)) {
                 continue;
@@ -804,6 +824,21 @@ trait HasFilters
             $query
                 ->leftJoin('entity_tags as et' . $v, "et{$v}.entity_id", 'e.id')
                 ->where("et{$v}.tag_id", $v);
+        }
+    }
+
+    /**
+     * Filter on archived entities
+     */
+    protected function filterArchived(Builder $query, ?string $value = null): void
+    {
+        $query
+            ->joinEntity();
+
+        if ($value) {
+            $query->whereNotNull('e.archived_at');
+
+            return;
         }
     }
 

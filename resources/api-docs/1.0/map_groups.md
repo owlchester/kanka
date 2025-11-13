@@ -27,6 +27,7 @@ You can get a list of all the map-groups of a map by using the following endpoin
             "created_at": "2020-07-25T16:24:34.000000Z",
             "created_by": 1,
             "id": 3,
+            "parent_id": 43,
             "is_private": false,
             "is_shown": true,
             "map_id": 1,
@@ -56,6 +57,7 @@ To create a map group, use the following endpoint.
 | :- |   :-   |  :-  |
 | `name` | `string` (Required without `entity_id`) | Name of the map group |
 | `map_id` | `int` (Required) | The parent map |
+| `parent_id` | `int` | The parent map group, must be different than self |
 | `is_shown` | `boolean` | If the layer is shown on map load |
 | `position` | `int` | Position in the list of groups |
 | `visibility_id` | `integer` | The visibility: 1 for `all`, 2 `self`, 3 `admin`, 4 `self-admin` or 5 `members`. |

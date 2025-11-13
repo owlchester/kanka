@@ -57,7 +57,12 @@ const props = defineProps<{
 const trans = ref(null)
 
 onBeforeMount(() => {
-    trans.value = JSON.parse(props.i18n)
+    // if props.i18n is a string, it's a JSON string
+    if (props.i18n && typeof props.i18n === 'string') {
+        trans.value = JSON.parse(props.i18n)
+    } else {
+        trans.value = props.i18n;
+    }
 })
 
 const emit = defineEmits(['selected', 'closed'])
