@@ -33,7 +33,7 @@ class PluginController extends Controller
             ->has('user')
             ->with('versions');
 
-        if (! auth()->user()->can('member', $campaign)) {
+        if (auth()->guest() || ! auth()->user()->can('member', $campaign)) {
             $plugins->where('campaign_plugins.is_active', true);
         }
         $rows = $plugins->paginate();
