@@ -61,7 +61,10 @@ class Ad extends Component
             return true;
         }
 
-        // Temp workaround for venatus to fix their ads
+        // shouldRender is called before render() so we need to re-read the user
+        if (auth()->check()) {
+            $this->user = auth()->user();
+        }
         if (isset($this->user)) {
             // Subscribed users don't have ads
             if ($this->user->isSubscriber()) {
