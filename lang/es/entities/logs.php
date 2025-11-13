@@ -26,4 +26,7 @@ return [
     'show'              => [
         'title' => 'Historial de :name',
     ],
+    'tooltips'          => [
+        'post'  => 'Ir a la publicación',
+    ],
 ];

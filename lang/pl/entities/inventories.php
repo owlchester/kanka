@@ -5,6 +5,7 @@ return [
         'add'               => 'Dodaj przedmiot',
         'copy_from'         => 'Kopiuj od',
         'copy_inventory'    => 'Kopiuj wyposażenie',
+        'generate'          => 'Generuj',
     ],
     'copy'              => [
         'helper'    => 'Kopiuje całe wyposażenie elementu do :name.',
@@ -25,9 +26,16 @@ return [
         'copy_entity_entry_v2'  => 'Użyj opisu elementu',
         'description'           => 'Opis',
         'is_equipped'           => 'W użyciu',
+        'item_amount'           => 'Liczba przedmiotów',
+        'match_all'             => 'Użyj wszystkich etykiet',
         'name'                  => 'Nazwa',
         'position'              => 'Umiejscowienie',
         'qty'                   => 'Ilość',
+        'replace'               => 'Zastąp wyposażenie',
+    ],
+    'generate'          => [
+        'helper'    => 'Generuje wyposażenie dla :name w oparciu o przedmioty już używane w kampanii.',
+        'title'     => 'Generowanie wyposażenia',
     ],
     'helpers'           => [
         'amount'                => 'Liczba przedmiotów',
@@ -35,6 +43,7 @@ return [
         'description'           => 'Dodaj lokalny opis przedmiotu',
         'is_equipped'           => 'Oznacza przedmioty, których element używa.',
         'name'                  => 'Nazwij przedmiot. To konieczne, jeśli nie wybrano istniejącego obiektu.',
+        'replace'               => 'Zastępuje obecne wyposażenie wygenerowanym',
     ],
     'placeholders'      => [
         'amount'        => 'Dowolna ilość',

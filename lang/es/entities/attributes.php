@@ -13,6 +13,7 @@ return [
         'toggle_privacy'    => 'Privado/Público',
     ],
     'errors'        => [
+        'api'                   => 'Datos no válidos',
         'loop'                  => '¡Hay un bucle infinito en el cálculo de este atributo!',
         'no_attribute_selected' => 'Selecciona uno o varios atributos primero.',
         'too_many_v2'           => 'Se ha alcanzado el máximo de campos (:count/:max). Elimina algunos atributos primero antes de poder añadir más.',

@@ -28,6 +28,7 @@ return [
         'premium'   => 'Las campañas con funciones premium activadas perderán su estado premium.',
         'title'     => '¿Qué sucede después de eso?',
     ],
+    'seo_title' => 'Lamentamos que te vayas',
     'subtitle'  => 'Gracias por haber sido suscriptor, tu apoyo ha significado mucho para nosotros. Esto es lo que puedes esperar ahora:',
     'title'     => 'Lamentamos verte partir, :name',
 ];

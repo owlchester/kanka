@@ -6,6 +6,7 @@ return [
         'nothing'   => 'No hay registros para mostrar. Ten en cuenta que los registros solo se conservan durante :amount días.',
         'title'     => 'Sin registros',
     ],
+    'pitch'     => 'Mantén un registro de los cambios generales realizados en la campaña durante un máximo de :amount días con una campaña premium.',
     'premium'   => [
         'helper'    => 'Se necesitan funciones premium para ver registros con más de :amount días.',
     ],

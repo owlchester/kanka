@@ -13,6 +13,7 @@ return [
         'toggle_privacy'    => 'Prywatne/Publiczne',
     ],
     'errors'        => [
+        'api'                   => 'Niewłaściwe dane',
         'loop'                  => 'W obliczeniu tej cechy występuje nie kończąca się pętla!',
         'no_attribute_selected' => 'Wybierz najpierw jedną lub więcej cech.',
         'too_many_v2'           => 'Maksymalna liczba pól (:count/max). Skasuj jakieś cechy przed dodaniem nowych.',

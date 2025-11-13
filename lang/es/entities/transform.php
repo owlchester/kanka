@@ -10,7 +10,12 @@ return [
         ],
         'success'   => '{1} Se ha transformado :count entidad al nuevo tipo: :type.|[2,*] Se han transformado :count entidades al nuevo tipo: :type.',
     ],
+    'confirm'   => [
+        'checkbox'  => 'Entiendo que al transformar :entity a otro módulo, se perderán los siguientes elementos:',
+        'label'     => 'Confirmar pérdida de datos',
+    ],
     'fields'    => [
+        'current'       => 'Módulo actual',
         'select_one'    => 'Elige una',
         'target'        => 'Nuevo tipo de entidad',
     ],

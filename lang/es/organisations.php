@@ -27,7 +27,8 @@ return [
             'success'   => 'Miembro borrado de la organización.',
         ],
         'edit'          => [
-            'title' => 'Actualizar miembro de :name',
+            'helper'    => 'Cambia el estado de la membresía de :name.',
+            'title'     => 'Actualizar miembro de :name',
         ],
         'fields'        => [
             'parent'    => 'Superior',

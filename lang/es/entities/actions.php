@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'new-action-button' => '¡Me han movido aquí!',
-    'templates'         => [
+    'templates' => [
         'set'       => 'Usar como plantilla',
         'success'   => [
             'set'   => 'Se ha creado una plantilla a partir de :name.',

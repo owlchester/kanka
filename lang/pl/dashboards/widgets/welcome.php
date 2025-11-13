@@ -1,14 +1,7 @@
 <?php
 
 return [
-    'endings'   => [
-        '1'             => 'Odpowiedzi na najczęstsze pytania znajdziesz w :kb. Pomoże ci też szczegółowa :documentation, aktualizowana co tydzień.',
-        '2'             => 'Dołącz do nas na :discord! Na twoje pytania odpowie tam cały zespół oraz społeczność.',
-        '3'             => 'Jeżeli szukasz inspiracji albo ciekawi cię, jak inni używają Kanki, pomogą ci :public-campaigns.',
-        '4'             => 'Aplikacja ci się podoba i chcesz skorzystać z jej zaawansowanych funkcji? Rozważ :support-us!',
-        'lead'          => 'I wreszcie, oto garść przydatnych zasobów.',
-        'supporting-us' => 'wsparcie',
-    ],
+    'endings'   => [],
     'focus'     => [
         'text'  => 'Witaj, to właśnie ja!',
         'title' => 'Cześć',

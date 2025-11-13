@@ -177,9 +177,6 @@ return [
         'update'                    => [
             'success'   => 'Zmodyfikowano widżet.',
         ],
-        'welcome'                   => [
-            'helper'    => 'Ten widżet zawiera komunikat powitalny oraz szereg odnośników, które przydadzą się nowym użytkownikom Kanki.',
-        ],
         'widths'                    => [
             '0' => 'Automatyczna',
             '12'=> 'Pełny (100%)',

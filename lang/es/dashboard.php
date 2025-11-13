@@ -178,9 +178,6 @@ return [
         'update'                    => [
             'success'   => 'Widget modificado.',
         ],
-        'welcome'                   => [
-            'helper'    => 'Este widget muestra un mensaje de bienvenida en el panel de control que incluye enlaces útiles para los nuevos usuarios de Kanka.',
-        ],
         'widths'                    => [
             '0' => 'Auto',
             '12'=> 'Completa (100%)',
