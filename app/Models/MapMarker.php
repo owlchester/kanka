@@ -67,7 +67,6 @@ class MapMarker extends Model
         'entry',
         'visibility_id',
         'entity_id',
-        'type_id',
         'size_id',
         'shape_id',
         'icon',
@@ -99,7 +98,7 @@ class MapMarker extends Model
     public $casts = [
         'polygon_style' => 'array',
         'visibility_id' => \App\Enums\Visibility::class,
-        'type_id' => \App\Enums\MapMarkerShape::class,
+        'shape_id' => MapMarkerShape::class,
     ];
 
     protected array $suggestions = [
