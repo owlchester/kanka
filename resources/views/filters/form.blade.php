@@ -122,7 +122,7 @@
         </menu>
     </footer>
 @endif
-    @if ($entityType->isStandard())
+    @if (isset($entityType) && $entityType->isStandard())
 <input type="hidden" name="m" value="{{ $mode }}" />
     @endif
 </x-form>
