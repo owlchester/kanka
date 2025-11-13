@@ -15,25 +15,6 @@ if (isset($single) && $single) {
         $focus = "$pin->latitude, $pin->longitude";
     }
 }
-
-function renderGroupTree($groups) {
-    $output = '';
-
-    foreach ($groups as $group) {
-        $children = $group->children;
-        $output .= '{';
-        $output .= 'label: "' . e($group->name) . '", ';
-        $output .= 'layer: group' . $group->id . ', ';
-        if ($children) {
-            //  $output .= 'selectAllCheckbox: true,';
-            $output .= 'children: [' . renderGroupTree($children) . ']';
-        }
-        $output .= '},';
-    }
-
-    return $output;
-}
-
 ?>
 <script type="text/javascript">
     /** Kanka map {{ $map->id }} setup **/
@@ -92,7 +73,8 @@ function renderGroupTree($groups) {
        layer: layer{{ $layer->id }},
     },
 @endforeach
-    {!! renderGroupTree($map->groups->whereNull('parent_id')->sortBy('position')) !!}
+            /** Map Group Tree **/
+            {!! $map->buildGroupTree() !!}
         ],
     }
 @else

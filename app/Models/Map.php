@@ -671,4 +671,26 @@ class Map extends MiscModel
 
         return $actions;
     }
+
+    public function buildGroupTree(): string
+    {
+        $groups = $this->groups->whereNull('parent_id')->sortBy('position');
+        return $this->buildGroup($groups);
+    }
+
+    protected function buildGroup($groups): string
+    {
+        $json = '';
+        foreach ($groups as $group) {
+            $children = $group->children;
+            $element = "{label: '" . str_replace('&amp;', '&', e($group->name)) . "', layer: group" . $group->id;
+            if ($children) {
+                $element .= ',children: [' . $this->buildGroup($children) . ']';
+            }
+            $json .= $element . '},';
+        }
+        return $json;
+    }
 }
+
+

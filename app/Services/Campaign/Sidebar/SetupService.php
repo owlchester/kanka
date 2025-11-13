@@ -389,9 +389,11 @@ class SetupService
         // Module custom name
         if (! empty($element['type']) && ! $this->withDisabled) {
             /** @var ?EntityType $type */
-            $type = $this->modules[$element['type']];
-            $element['custom_label'] = $type->plural();
-            $element['custom_icon'] = $type->icon();
+            $type = $this->modules[$element['type']] ?? null;
+            if ($type) {
+                $element['custom_label'] = $type->plural();
+                $element['custom_icon'] = $type->icon();
+            }
         }
 
         $label = Arr::get($this->campaign->ui_settings, 'sidebar.labels.' . $key);
@@ -442,7 +444,7 @@ class SetupService
             }
 
             /** @var ?EntityType $module */
-            $module = $this->modules[$element['type']];
+            $module = $this->modules[$element['type']] ?? null;
             if (! $module) {
                 continue;
             }
