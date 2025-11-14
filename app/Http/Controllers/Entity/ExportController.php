@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Entity;
 use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
-use App\Services\Entity\MarkdownExportService;
 use App\Services\Entity\ExportService;
+use App\Services\Entity\MarkdownExportService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Str;
@@ -22,6 +22,7 @@ class ExportController extends Controller
     use GuestAuthTrait;
 
     protected ExportService $service;
+
     protected MarkdownExportService $markdownExportService;
 
     public function __construct(ExportService $service, MarkdownExportService $markdownExportService)

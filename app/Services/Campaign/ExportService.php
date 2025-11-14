@@ -72,7 +72,7 @@ class ExportService
 
     public function isJson(): bool
     {
-        return !$this->isMarkdown;
+        return ! $this->isMarkdown;
     }
 
     public function log(CampaignExport $campaignExport): self

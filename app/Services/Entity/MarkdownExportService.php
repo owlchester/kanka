@@ -21,24 +21,24 @@ class MarkdownExportService
 
     /**
      * Main function for the Resource to Markdown conversion.
-     * 
+     *
      * @return string|mixed
      */
     public function markdown()
     {
-        //Check if we're exporting a campaign, if so, then export the campaign.
-        if (isset($this->campaign) && !$this->exportedCampaign) {
+        // Check if we're exporting a campaign, if so, then export the campaign.
+        if (isset($this->campaign) && ! $this->exportedCampaign) {
             $resource = new CampaignResource($this->campaign);
             $this->exportedCampaign = true;
 
             return $this->resourceToMarkdown($resource->toArray(request()));
         }
 
-        //Get the model's resource.
+        // Get the model's resource.
         $child = Str::studly($this->entity->entityType->code);
         $className = 'App\Http\Resources\\' . $child . 'Resource';
 
-        //If its a normal entity type, export it using its own resource, if its a custom, use the entity resource.
+        // If its a normal entity type, export it using its own resource, if its a custom, use the entity resource.
         if (class_exists($className)) {
             $resource = new $className($this->entity->child);
 
@@ -54,11 +54,8 @@ class MarkdownExportService
         }
     }
 
-
     /**
      * Converts a JsonResource to Markdown format
-     * 
-     * @return string
      */
     protected function resourceToMarkdown(array $data): string
     {
@@ -77,7 +74,7 @@ class MarkdownExportService
             unset($data['image_full']);
         }
 
-        //Iterate on each data entry to convert it into a list.
+        // Iterate on each data entry to convert it into a list.
         foreach ($data as $key => $value) {
             $markdown .= '### ' . Str::title(str_replace('_', ' ', $key)) . "\n\n";
             $markdown .= $this->markdownList($value);
@@ -89,8 +86,6 @@ class MarkdownExportService
 
     /**
      * Generate a nested list, according to the array depth.
-     * 
-     * @return string
      */
     protected function markdownList($data, int $depth = 0): string
     {
