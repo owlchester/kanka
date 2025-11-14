@@ -13,6 +13,8 @@ class QueueService
     use CampaignAware;
     use UserAware;
 
+    public int $type = 1;
+
     public function queue()
     {
         $this->campaign->export_date = date('Y-m-d');
@@ -21,10 +23,17 @@ class QueueService
         $entitiesExport = CampaignExport::create([
             'campaign_id' => $this->campaign->id,
             'created_by' => $this->user->id,
-            'type' => 1,
+            'type' => $this->type,
             'status' => CampaignExportStatus::scheduled,
         ]);
 
         Export::dispatch($this->campaign, $this->user, $entitiesExport)->onQueue('heavy');
+    }
+
+    public function type(int $type): self
+    {
+        $this->type = $type;
+
+        return $this;
     }
 }

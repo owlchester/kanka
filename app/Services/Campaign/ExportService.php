@@ -4,6 +4,7 @@ namespace App\Services\Campaign;
 
 use App\Enums\CampaignExportStatus;
 use App\Facades\CampaignCache;
+use App\Facades\Mentions;
 use App\Models\CampaignExport;
 use App\Models\Entity;
 use App\Models\EntityAsset;
@@ -11,8 +12,10 @@ use App\Models\Image;
 use App\Models\Map;
 use App\Models\MiscModel;
 use App\Notifications\Header;
+use App\Services\Entity\MarkdownExportService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
+use Avatar;
 use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -40,6 +43,8 @@ class ExportService
 
     protected bool $cloudfront = false;
 
+    protected bool $isMarkdown = false;
+
     protected string $version;
 
     protected CampaignExport $log;
@@ -48,9 +53,26 @@ class ExportService
 
     protected int $currentElements;
 
+    public function __construct(protected MarkdownExportService $markdownExportService)
+    {
+        $this->markdownExportService = $markdownExportService;
+    }
+
     public function exportPath(): string
     {
         return $this->exportPath;
+    }
+
+    public function markdown($isMarkdown = false): self
+    {
+        $this->isMarkdown = $isMarkdown;
+
+        return $this;
+    }
+
+    public function isJson(): bool
+    {
+        return ! $this->isMarkdown;
     }
 
     public function log(CampaignExport $campaignExport): self
@@ -102,6 +124,11 @@ class ExportService
 
     protected function campaignModules(): self
     {
+        // If markdown export, skip
+        if ($this->isMarkdown) {
+            return $this;
+        }
+
         $modules = [];
         $settings = $this->campaign->setting->toArray();
         unset($settings['id'], $settings['campaign_id'], $settings['created_at'], $settings['updated_at']);
@@ -131,6 +158,11 @@ class ExportService
 
     protected function customCampaignModules(): self
     {
+        // If markdown export, skip
+        if ($this->isMarkdown) {
+            return $this;
+        }
+
         $settings = $this->campaign->entityTypes->where('is_special', 1)->select('id', 'code', 'is_enabled', 'singular', 'plural', 'icon')->toArray();
         $this->archive->addFromString('settings/custom-modules.json', json_encode($settings));
         $this->files++;
@@ -151,6 +183,11 @@ class ExportService
             date('Ymd_His') . '.zip';
         Log::debug('Campaign export', ['action' => 'preparing', 'exportPath' => $this->exportPath, 'file' => $this->file]);
         CampaignCache::campaign($this->campaign);
+        if ($this->isMarkdown) {
+            CampaignCache::user($this->user);
+            Mentions::campaign($this->campaign);
+            Avatar::campaign($this->campaign);
+        }
         $this->path = $saveFolder . $this->file;
         $this->archive = new ZipArchive;
         $creation = $this->archive->open($this->path, ZipArchive::CREATE | ZipArchive::OVERWRITE);
@@ -160,10 +197,11 @@ class ExportService
         Log::debug('Campaign export', ['action' => 'zip created', 'path' => $this->path]);
 
         // Count the number of elements to export to get a rough idea of progress
-        $this->totalElements =
-            Entity::where('campaign_id', $this->campaign->id)->count() +
-            Image::where('campaign_id', $this->campaign->id)->count() +
-            1; // Campaign json;
+        $this->totalElements = Entity::where('campaign_id', $this->campaign->id)->count() + 1; // Campaign json;
+        if ($this->isJson()) {
+            $this->totalElements = $this->totalElements + Image::where('campaign_id', $this->campaign->id)->count();
+        }
+
         $this->currentElements = 0;
 
         $cloudfront = config('filesystems.disks.cloudfront.url');
@@ -194,7 +232,13 @@ class ExportService
             'boost_count', 'export_date', 'is_featured', 'featured_until',
             'featured_reason', 'visible_entity_count', 'system', 'follower', 'is_hidden',
         ];
-        $this->archive->addFromString('campaign.json', $this->campaign->makeHidden($hidden)->toJson());
+
+        if ($this->isMarkdown) {
+            $this->archive->addFromString('campaign.md', $this->markdownExportService->campaign($this->campaign)->markdown());
+        } else {
+            $this->archive->addFromString('campaign.json', $this->campaign->makeHidden($hidden)->toJson());
+        }
+
         $this->files++;
         $image = $this->campaign->image;
         if (! empty($image) && Str::contains($image, '?') && Storage::exists($image)) {
@@ -353,11 +397,17 @@ class ExportService
             $entity = $model->entity;
         }
 
-        $exportData = $model->export();
-        if ($model instanceof Entity) {
-            $exportData = json_encode(['entity' => $exportData]);
+        if ($this->isMarkdown) {
+            $exportData = $this->markdownExportService->entity($entity)->markdown();
+            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.md', $exportData);
+        } else {
+            $exportData = $model->export();
+            if ($model instanceof Entity) {
+                $exportData = json_encode(['entity' => $exportData]);
+            }
+            $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.json', $exportData);
         }
-        $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.json', $exportData);
+
         $this->files++;
 
         $path = $entity->image_path;

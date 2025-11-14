@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Campaign;
 use App\Models\Entity;
 use App\Services\Entity\ExportService;
+use App\Services\Entity\MarkdownExportService;
 use App\Traits\CampaignAware;
 use App\Traits\GuestAuthTrait;
 use Illuminate\Support\Str;
@@ -22,9 +23,12 @@ class ExportController extends Controller
 
     protected ExportService $service;
 
-    public function __construct(ExportService $service)
+    protected MarkdownExportService $markdownExportService;
+
+    public function __construct(ExportService $service, MarkdownExportService $markdownExportService)
     {
         $this->service = $service;
+        $this->markdownExportService = $markdownExportService;
     }
 
     public function json(Campaign $campaign, Entity $entity)
@@ -42,7 +46,7 @@ class ExportController extends Controller
         $converter->getConfig()->setOption('strip_tags', true);
         $converter->getEnvironment()->addConverter(new TableConverter);
 
-        return response()->view('entities.pages.print.markdown', ['entity' => $entity, 'converter' => $converter, 'campaign' => $campaign])
+        return response()->view('entities.pages.print.markdown', ['markdown' => $this->markdownExportService->entity($entity)->markdown()])
             ->header('Content-Type', 'application/md')
             ->header('Content-disposition', 'attachment; filename="' . Str::slug($entity->name) . '.md"');
     }

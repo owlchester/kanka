@@ -3,20 +3,12 @@
 namespace App\Services\Entity;
 
 use App\Http\Resources\EntityResource;
-use App\Models\Entity;
+use App\Traits\EntityAware;
 use Illuminate\Support\Str;
 
 class ExportService
 {
-    /** @var Entity */
-    protected $entity;
-
-    public function entity(Entity $entity): self
-    {
-        $this->entity = $entity;
-
-        return $this;
-    }
+    use EntityAware;
 
     /**
      * @return array|mixed

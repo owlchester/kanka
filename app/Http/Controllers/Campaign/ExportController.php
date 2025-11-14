@@ -39,9 +39,16 @@ class ExportController extends Controller
                 ->withError(__('campaigns/export.errors.limit'));
         }
 
+        if ($request->get('type') == 2 && ! $campaign->premium()) {
+            return redirect()
+                ->route('campaign.export', $campaign)
+                ->withError(__('campaigns/export.errors.premium'));
+        }
+
         $this->queueService
             ->campaign($campaign)
             ->user($request->user())
+            ->type($request->get('type'))
             ->queue();
 
         $adminRoleName = $campaign->adminRoleName();
