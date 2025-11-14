@@ -12,7 +12,7 @@ use App\Models\Image;
 use App\Models\Map;
 use App\Models\MiscModel;
 use App\Notifications\Header;
-use App\Services\Entity\ExportService as EntityExportService;
+use App\Services\Entity\MarkdownExportService;
 use App\Traits\CampaignAware;
 use App\Traits\UserAware;
 use Avatar;
@@ -53,11 +53,9 @@ class ExportService
 
     protected int $currentElements;
 
-    protected EntityExportService $service;
-
-    public function __construct(EntityExportService $service)
+    public function __construct(protected MarkdownExportService $markdownExportService)
     {
-        $this->service = $service;
+        $this->markdownExportService = $markdownExportService;
     }
 
     public function exportPath(): string
@@ -70,6 +68,11 @@ class ExportService
         $this->isMarkdown = $isMarkdown;
 
         return $this;
+    }
+
+    public function isJson(): bool
+    {
+        return !$this->isMarkdown;
     }
 
     public function log(CampaignExport $campaignExport): self
@@ -195,7 +198,7 @@ class ExportService
 
         // Count the number of elements to export to get a rough idea of progress
         $this->totalElements = Entity::where('campaign_id', $this->campaign->id)->count() + 1; // Campaign json;
-        if (! $this->isMarkdown) {
+        if ($this->isJson()) {
             $this->totalElements = $this->totalElements + Image::where('campaign_id', $this->campaign->id)->count();
         }
 
@@ -231,7 +234,7 @@ class ExportService
         ];
 
         if ($this->isMarkdown) {
-            $this->archive->addFromString('campaign.md', $this->service->campaign($this->campaign)->markdown());
+            $this->archive->addFromString('campaign.md', $this->markdownExportService->campaign($this->campaign)->markdown());
         } else {
             $this->archive->addFromString('campaign.json', $this->campaign->makeHidden($hidden)->toJson());
         }
@@ -395,7 +398,7 @@ class ExportService
         }
 
         if ($this->isMarkdown) {
-            $exportData = $this->service->entity($entity)->markdown();
+            $exportData = $this->markdownExportService->entity($entity)->markdown();
             $this->archive->addFromString($module . '/' . Str::slug($model->name) . '.md', $exportData);
         } else {
             $exportData = $model->export();

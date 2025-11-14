@@ -17,7 +17,7 @@ return [
     ],
     'expired'   => 'Link expired',
     'helpers'   => [
-        'type'  => 'Export as json, used for re-importing, or export as markdown, which cannot be used for re-importing',
+        'type'  => 'Export as JSON, used for re-importing, or export as markdown, which cannot be used for re-importing',
     ],
     'progress'  => 'Progress',
     'size'      => 'Size',
@@ -33,6 +33,6 @@ return [
     'types'     => [
         'md'       => 'Markdown',
         'md-pitch' => 'Markdown (Premium Campaigns only)',
-        'json'     => 'Json',
+        'json'     => 'JSON',
     ]
 ];
