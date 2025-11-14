@@ -391,7 +391,9 @@ class SetupService
             /** @var ?EntityType $type */
             $type = $this->modules[$element['type']] ?? null;
             if ($type) {
-                $element['custom_label'] = $type->plural();
+                if ($type->isCustom() || $this->campaign->hasModuleName($type->id, true)) {
+                    $element['custom_label'] = $type->plural();
+                }
                 $element['custom_icon'] = $type->icon();
             }
         }
@@ -450,7 +452,7 @@ class SetupService
             }
 
             $element['icon'] = Module::defaultIcon($module);
-            $element['label'] = __($module->defaultPluralKey());
+            $element['label'] = $module->defaultPluralKey();
             $this->elements[$key] = $element;
         }
     }
