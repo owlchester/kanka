@@ -108,9 +108,10 @@ $cleanCanonical = \Illuminate\Support\Str::before(request()->fullUrl(), '%3');
                     Back to top
                 </a>
             </div>
+
+            @include('ads.video')
         </div>
 
-        @include('ads.video')
         @include('layouts.footer')
     </div>
 

@@ -346,12 +346,12 @@
     ]
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-TINZ5Iek.css",
+    "file": "assets/app-BJCyKqDC.css",
     "src": "resources/sass/app.scss",
     "isEntry": true
   },
   "resources/sass/auth.scss": {
-    "file": "assets/auth-1cHCsqjD.css",
+    "file": "assets/auth-Dh02gWDE.css",
     "src": "resources/sass/auth.scss",
     "isEntry": true
   },
@@ -376,7 +376,7 @@
     "isEntry": true
   },
   "resources/sass/front.scss": {
-    "file": "assets/front-BwbjWXoB.css",
+    "file": "assets/front-CLMdvUln.css",
     "src": "resources/sass/front.scss",
     "isEntry": true
   },
