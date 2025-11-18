@@ -675,6 +675,7 @@ class Map extends MiscModel
     public function buildGroupTree(): string
     {
         $groups = $this->groups->whereNull('parent_id')->sortBy('position');
+
         return $this->buildGroup($groups);
     }
 
@@ -689,8 +690,7 @@ class Map extends MiscModel
             }
             $json .= $element . '},';
         }
+
         return $json;
     }
 }
-
-

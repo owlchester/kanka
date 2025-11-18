@@ -222,10 +222,9 @@ Route::get('/w/{campaign}/stats', [App\Http\Controllers\Campaign\StatController:
 
 Route::get('/w/{campaign}/logs', [App\Http\Controllers\Campaign\LogController::class, 'index'])->name('campaign.logs');
 
-
 Route::post('/w/{campaign}/onboarding/initial', [
-    \App\Http\Controllers\Onboarding\InitialController::class, 'save'
+    \App\Http\Controllers\Onboarding\InitialController::class, 'save',
 ])->name('campaign.onboarding.initial');
 Route::post('/w/{campaign}/onboarding/initial-skip', [
-    \App\Http\Controllers\Onboarding\InitialController::class, 'skip'
+    \App\Http\Controllers\Onboarding\InitialController::class, 'skip',
 ])->name('campaign.onboarding.initial-skip');

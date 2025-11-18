@@ -65,9 +65,12 @@ class NewSubscriptionMail extends Mailable
     {
         $lastCancel = $this->user->cancellations()->orderByDesc('id')->first();
 
+        /** @var ?UserLog $log */
+        $log = $this->user->logs()->whereNotNull('country')->latest()->first();
+
         return new Content(
             markdown: 'emails.subscriptions.new.md',
-            with: ['lastCancel' => $lastCancel, 'user' => $this->user, 'period' => $this->period, 'trial' => false],
+            with: ['lastCancel' => $lastCancel, 'user' => $this->user, 'period' => $this->period, 'trial' => false, 'country' => $log?->country],
         );
     }
 }
