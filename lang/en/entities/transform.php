@@ -2,7 +2,7 @@
 
 return [
     'actions'   => [
-        'transform' => 'Transform',
+        'transform' => 'Convert',
     ],
     'bulk'      => [
         'errors'    => [
@@ -22,9 +22,10 @@ return [
     'panel'     => [
         'bulk_description'  => 'Change the module of multiple entities. Please be aware that some data might be lost due to the different fields between modules.',
         'bulk_title'        => 'Bulk transform entities',
-        'description'       => 'Did you create this entity in one module but realised another one would suit it better? No worries, you can change the entity\'s module at any time. Please be aware that some data might be lost due to the different fields between modules.',
+        'description'       => 'You can convert this entity to another module. Some data may not carry over if the modules use different fields.',
         'title'             => 'Transform an entity',
     ],
     'success'   => 'Entity :name transformed.',
-    'title'     => 'Transform :name',
+    'documentation' => 'Documentation: Converting entity modules',
+    'title'     => 'Convert :name',
 ];

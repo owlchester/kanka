@@ -3,7 +3,7 @@
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
-        __('crud.actions.transform'),
+        __('entities/actions.convert'),
     ],
     'centered' => true,
     'entity' => null,
@@ -18,6 +18,7 @@
                 <x-helper>
                     <p>{{ __('entities/transform.panel.description') }}</p>
                     <x-slot name="docs">guides/transform.html</x-slot>
+                    <x-slot name="doc">{{ __('entities/transform.documentation') }}</x-slot>
                 </x-helper>
 
                 <x-forms.field field="current" :label="__('entities/transform.fields.current')">
@@ -47,10 +48,10 @@
                 @endif
             </x-grid>
 
-            <x-dialog.footer>
+            <x-dialog.footer class="!px-0">
                 <button class="btn2 btn-primary">
-                    <x-icon class="fa-regular fa-exchange-alt" />
-                    {{ __('entities/transform.actions.transform') }}
+                    <x-icon class="fa-regular fa-arrows-rotate" />
+                    {{ __('entities/actions.convert') }}
                 </button>
             </x-dialog.footer>
         </x-box>

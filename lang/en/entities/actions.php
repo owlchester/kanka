@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'transfer' => 'Transfer to campaign',
+    'copy-campaign' => 'Copy to campaign',
+    'convert' => 'Convert module',
     'archive'   => [
         'success'   => ':name has been archived.',
         'title'     => 'Archive',
@@ -18,4 +21,6 @@ return [
         'success'   => ':name is no longer archived.',
         'title'     => 'Unarchive',
     ],
+    'json-export' => 'JSON export',
+    'markdown-export' => 'Markdown export',
 ];

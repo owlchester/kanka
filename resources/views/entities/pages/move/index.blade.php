@@ -3,7 +3,7 @@
     'breadcrumbs' => [
         Breadcrumb::campaign($campaign)->entity($entity)->list(),
         Breadcrumb::show(),
-        __('crud.actions.move'),
+        __('entities/actions.transfer'),
     ],
     'centered' => true,
     'entity' => null,
@@ -43,8 +43,13 @@
 
         <x-dialog.footer>
             <button class="btn2 btn-primary">
-                <x-icon class="copy" />
-                @can('update', $entity) {{ __('entities/move.actions.move') }} @else  {{ __('entities/move.actions.copy') }} @endcan
+                @can('update', $entity)
+                    <x-icon class="fa-regular fa-share-from-square" />
+                    {{ __('entities/move.actions.transfer') }}
+                @else
+                    <x-icon class="copy" />
+                    {{ __('entities/move.actions.copy') }}
+                @endcan
             </button>
         </x-dialog.footer>
     </x-box>

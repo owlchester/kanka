@@ -94,18 +94,20 @@
         @if ((empty($disableCopyCampaign) || !$disableCopyCampaign) && auth()->check())
             @php /** todo: the option should be visible even if a user has no other campaigns to show that its possible, and the page should then warn the user about them not having another campaign */ @endphp
             <x-dropdowns.divider />
-            <x-dropdowns.item link="{{ route('entities.move', [$campaign, $entity]) }}" icon="fa-regular fa-clone">
                 @can('update', $entity)
-                    {{ __('crud.actions.move') }}
+                    <x-dropdowns.item link="{{ route('entities.move', [$campaign, $entity]) }}" icon="fa-regular fa-share-from-square">
+                    {{ __('entities/actions.transfer') }}
+                    </x-dropdowns.item>
                 @else
-                    {{ __('crud.actions.copy') }}
+                    <x-dropdowns.item link="{{ route('entities.move', [$campaign, $entity]) }}" icon="copy">
+                    {{ __('entities/actions.copy-campaign') }}
+                    </x-dropdowns.item>
                 @endcan
-            </x-dropdowns.item>
         @endif
 
         @if ((empty($disableMove) || !$disableMove) && auth()->check() && auth()->user()->can('move', $entity))
-            <x-dropdowns.item link="{{ route('entities.transform', [$campaign, $entity]) }}" icon="fa-regular fa-exchange-alt">
-                {{ __('crud.actions.transform') }}
+            <x-dropdowns.item link="{{ route('entities.transform', [$campaign, $entity]) }}" icon="fa-regular fa-arrows-rotate">
+                {{ __('entities/actions.convert') }}
             </x-dropdowns.item>
         @endif
 
@@ -115,10 +117,10 @@
                 {{ __('crud.actions.print') }}
             </x-dropdowns.item>
             <x-dropdowns.item link="{{ route('entities.json.export', [$campaign, $entity]) }}" icon="fa-regular fa-download">
-                {{ __('crud.actions.json-export') }}
+                {{ __('entities/actions.json-export') }}
             </x-dropdowns.item>
-            <x-dropdowns.item link="{{ route('entities.markdown.export', [$campaign, $entity]) }}" icon="fa-regular fa-download">
-                {{ __('crud.actions.markdown-export') }}
+            <x-dropdowns.item link="{{ route('entities.markdown.export', [$campaign, $entity]) }}" icon="fa-brands fa-markdown">
+                {{ __('entities/actions.markdown-export') }}
             </x-dropdowns.item>
         @endif
 
