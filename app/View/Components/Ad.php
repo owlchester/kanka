@@ -45,9 +45,6 @@ class Ad extends Component
         if (empty($provider)) {
             return false;
         }
-        if (request()->has('cf_debug')) {
-            dd(request()->headers);
-        }
 
         // If requesting a section that isn't set up, don't show
         $key = 'ads.' . $provider . '.tags.' . $this->section;
@@ -75,11 +72,6 @@ class Ad extends Component
             }
             // User has been created less than 24 hours ago
             if ($this->user->created_at->diffInHours(Carbon::now()) < 24) {
-                return false;
-            }
-        } else {
-            // If cloudflare thinks we are a bot, don't show ads
-            if (request()->header('CF-Bot-Score') < 30) {
                 return false;
             }
         }
