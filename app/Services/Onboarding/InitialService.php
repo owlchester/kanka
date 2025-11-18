@@ -46,15 +46,15 @@ class InitialService
 
     protected function saveName(): self
     {
-        if (!$this->request->has('name')) {
+        if (! $this->request->has('name')) {
             return $this;
         }
 
         $this->campaign->update([
-            'name' => $this->request->get('name')
+            'name' => $this->request->get('name'),
         ]);
 
-        if (!$this->campaign->wasChanged('name')) {
+        if (! $this->campaign->wasChanged('name')) {
             return $this;
         }
         $this->user->campaignLog(
@@ -62,14 +62,14 @@ class InitialService
             'onboarding',
             'rename'
         );
+
         return $this;
     }
-
 
     protected function saveType(): self
     {
 
-        if (!$this->request->has('type')) {
+        if (! $this->request->has('type')) {
             return $this;
         }
         $type = $this->request->get('type');
@@ -100,7 +100,6 @@ class InitialService
 
         $playerRole = $this->playerRole();
         $playerRole->update(['name' => __('dashboards/onboarding.roles.contributor')]);
-
 
         $entityTypes = config('entities.ids');
         foreach ($entityTypes as $entityType => $entityTypeId) {

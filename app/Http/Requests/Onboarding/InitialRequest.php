@@ -23,7 +23,7 @@ class InitialRequest extends FormRequest
     {
         return [
             'name' => 'nullable|min:4|max:191',
-            'type' => 'nullable|in:worldbuilding,campaign,story,skip'
+            'type' => 'nullable|in:worldbuilding,campaign,story,skip',
         ];
     }
 }

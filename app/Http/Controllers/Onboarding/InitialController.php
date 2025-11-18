@@ -9,8 +9,7 @@ use App\Services\Onboarding\InitialService;
 
 class InitialController extends Controller
 {
-    public function __construct(protected InitialService $initialService)
-    {}
+    public function __construct(protected InitialService $initialService) {}
 
     public function save(InitialRequest $request, Campaign $campaign)
     {
@@ -24,9 +23,10 @@ class InitialController extends Controller
 
         return response()->json([
             'success' => true,
-            'redirect' => route('home', $campaign)
+            'redirect' => route('home', $campaign),
         ]);
     }
+
     public function skip(Campaign $campaign)
     {
         $this->authorize('update', $campaign);

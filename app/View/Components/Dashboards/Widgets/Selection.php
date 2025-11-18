@@ -19,8 +19,7 @@ class Selection extends Component
         public Campaign $campaign,
         public Widget $widget,
         public string $icon,
-    )
-    {
+    ) {
         //
     }
 
