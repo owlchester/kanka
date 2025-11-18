@@ -27,43 +27,73 @@ $weekNumber = 1;
     <a
         href="{{ route('entities.show', [$campaign, 'entity' => $entity, 'month' => $renderer->currentMonthId(), 'year' => $renderer->currentYear()]) }}"
         class="btn2 btn-sm @if ($renderer->todayButtonIsDisabled()) btn-disabled" disabled="disabled @endif"
+        rel="nofollow"
     >
         {{ __('calendars.actions.today') }}
     </a>
 
     @if (!$renderer->isYearlyLayout())
     <div class="join">
-        <a href="{{ $renderer->previous() }}" class="btn2 join-item btn-sm" data-shortcut="previous" data-title="{{ $renderer->previous(true) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)" data-html="true" data-toggle="tooltip">
+        <a
+            href="{{ $renderer->previous() }}"
+            class="btn2 join-item btn-sm"
+            data-shortcut="previous"
+            data-title="{{ $renderer->previous(true) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)"
+            data-html="true"
+            data-toggle="tooltip"
+            rel="nofollow">
             <x-icon class="fa-solid fa-chevron-left" />
         </a>
         <div class="btn2 join-item btn-sm btn-disabled" disabled>
             {!! $renderer->currentMonthName() !!}
         </div>
-        <a href="{{ $renderer->next() }}" class="btn2 join-item btn-sm" data-shortcut="next" data-title="{{ $renderer->next(true) }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" data-toggle="tooltip">
+        <a
+            href="{{ $renderer->next() }}"
+            class="btn2 join-item btn-sm"
+            data-shortcut="next"
+            data-title="{{ $renderer->next(true) }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)"
+            data-html="true"
+            data-toggle="tooltip"
+            rel="nofollow">
             <x-icon class="fa-solid fa-chevron-right" />
         </a>
     </div>
     @endif
     <div class="join grow">
-        <a href="{{ $renderer->linkToYear(false) }}" class="btn2 join-item btn-sm" @if ($renderer->isYearlyLayout()) data-shortcut="previous" data-title="{{ $renderer->titleToYear(false) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)" data-html="true" @else data-title="{{ $renderer->titleToYear(false) }}" @endif data-toggle="tooltip">
+        <a
+            href="{{ $renderer->linkToYear(false) }}"
+            class="btn2 join-item btn-sm"
+            @if ($renderer->isYearlyLayout()) data-shortcut="previous" data-title="{{ $renderer->titleToYear(false) }} (Ctrl <i class='fa-solid fa-arrow-left' aria-hidden='true'></i>)"
+            data-html="true" @else data-title="{{ $renderer->titleToYear(false) }}" @endif
+            data-toggle="tooltip"
+            rel="nofollow">
             <x-icon class="fa-solid fa-chevron-left" />
         </a>
         <div data-toggle="dialog" data-target="calendar-year-switcher" title="{{ __('calendars.modals.switcher.title') }}"
              class="btn2 join-item btn-sm">
             {!! $renderer->currentYearName() !!}
         </div>
-        <a href="{{ $renderer->linkToYear() }}" class="btn2 join-item btn-sm" @if ($renderer->isYearlyLayout()) data-shortcut="next" data-title="{{ $renderer->titleToYear() }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" @else data-title="{{ $renderer->titleToYear() }}" @endif data-toggle="tooltip">
+        <a
+            href="{{ $renderer->linkToYear() }}"
+            class="btn2 join-item btn-sm"
+            @if ($renderer->isYearlyLayout()) data-shortcut="next" data-title="{{ $renderer->titleToYear() }} (Ctrl <i class='fa-solid fa-arrow-right' aria-hidden='true'></i>)" data-html="true" @else data-title="{{ $renderer->titleToYear() }}" @endif
+            data-toggle="tooltip"
+            rel="nofollow">
             <x-icon class="fa-solid fa-chevron-right" />
         </a>
     </div>
 
     <div class="join">
-        <a href="{{ route('entities.show', [$campaign, $entity, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}"
-           class="btn2 join-item btn-sm  <?=($renderer->isYearlyLayout() ? 'btn-disabled" disabled="disabled' : null)?>">
+        <a
+            href="{{ route('entities.show', [$campaign, $entity, 'layout' => 'year', 'year' => $renderer->currentYear()]) }}"
+            class="btn2 join-item btn-sm  <?=($renderer->isYearlyLayout() ? 'btn-disabled" disabled="disabled' : null)?>"
+            rel="nofollow">
             {{ __('calendars.layouts.year') }}
         </a>
-        <a href="{{ route('entities.show', array_merge([$campaign, $entity, 'year' => $renderer->currentYear()], $model->defaultLayout() === 'year' ? ['layout' => 'month'] : [])) }}"
-           class="btn2 join-item btn-sm <?=(!$renderer->isYearlyLayout() ? ' btn-disabled" disabled="disabled' : null)?>">
+        <a
+            href="{{ route('entities.show', array_merge([$campaign, $entity, 'year' => $renderer->currentYear()], $model->defaultLayout() === 'year' ? ['layout' => 'month'] : [])) }}"
+            class="btn2 join-item btn-sm <?=(!$renderer->isYearlyLayout() ? ' btn-disabled" disabled="disabled' : null)?>"
+            rel="nofollow">
             {{ __('calendars.layouts.month') }}
         </a>
     </div>
