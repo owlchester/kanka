@@ -2,7 +2,7 @@
 
 return [
     'actions'   => [
-        'transform' => 'Convert',
+        'convert' => 'Convert to module',
     ],
     'bulk'      => [
         'errors'    => [
@@ -16,14 +16,14 @@ return [
     ],
     'fields'    => [
         'current'       => 'Current module',
-        'select_one'    => 'Select one',
+        'select_one'    => 'Select target module',
         'target'        => 'New module',
     ],
     'panel'     => [
-        'bulk_description'  => 'Change the module of multiple entities. Please be aware that some data might be lost due to the different fields between modules.',
+        'warning' => 'Some data may not carry over if the new module uses different fields.',
+        'bulk_description'  => 'Convert the module of multiple entities. Please be aware that some data might be lost due to the different fields between modules.',
         'bulk_title'        => 'Bulk transform entities',
-        'description'       => 'You can convert this entity to another module. Some data may not carry over if the modules use different fields.',
-        'title'             => 'Transform an entity',
+        'title'       => 'You can convert this entity to another module.',
     ],
     'success'   => 'Entity :name transformed.',
     'documentation' => 'Documentation: Converting entity modules',

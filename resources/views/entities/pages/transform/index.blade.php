@@ -16,9 +16,7 @@
         <x-box>
             <x-grid type="1/1">
                 <x-helper>
-                    <p>{{ __('entities/transform.panel.description') }}</p>
-                    <x-slot name="docs">guides/transform.html</x-slot>
-                    <x-slot name="doc">{{ __('entities/transform.documentation') }}</x-slot>
+                    <p>{{ __('entities/transform.panel.title') }}</p>
                 </x-helper>
 
                 <x-forms.field field="current" :label="__('entities/transform.fields.current')">
@@ -44,6 +42,11 @@
                         </x-checkbox>
                     </x-forms.field>
                 @else
+                    <x-helper>
+                        <p>{{ __('entities/transform.panel.warning') }}</p>
+                        <x-slot name="docs">guides/transform.html</x-slot>
+                        <x-slot name="doc">{{ __('entities/transform.documentation') }}</x-slot>
+                    </x-helper>
                     <input type="hidden" name="confirm" value="1" />
                 @endif
             </x-grid>
@@ -51,7 +54,7 @@
             <x-dialog.footer class="!px-0">
                 <button class="btn2 btn-primary">
                     <x-icon class="fa-regular fa-arrows-rotate" />
-                    {{ __('entities/actions.convert') }}
+                    {{ __('entities/transform.actions.convert') }}
                 </button>
             </x-dialog.footer>
         </x-box>

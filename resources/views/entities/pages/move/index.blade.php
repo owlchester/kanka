@@ -41,11 +41,11 @@
             @includeIf($entity->entityType->pluralCode() . '.bulk.modals._copy_to_campaign')
         </x-grid>
 
-        <x-dialog.footer>
+        <x-dialog.footer class="!px-0">
             <button class="btn2 btn-primary">
                 @can('update', $entity)
                     <x-icon class="fa-regular fa-share-from-square" />
-                    {{ __('entities/move.actions.transfer') }}
+                    {{ __('entities/actions.transfer') }}
                 @else
                     <x-icon class="copy" />
                     {{ __('entities/move.actions.copy') }}

@@ -13,14 +13,14 @@ return [
     ],
     'fields'        => [
         'campaign'      => 'Target campaign',
-        'copy'          => 'Create a copy',
+        'copy'          => 'Copy option',
         'select_one'    => 'Select a campaign',
     ],
     'helpers'       => [
-        'copy'  => 'Keep a copy of the entity in the current campaign.',
+        'copy'  => 'Keep a copy in the current campaign.',
     ],
     'panel'         => [
-        'description'           => 'Transfer this entity to another campaign, optionally keeping a copy in the current campaign.',
+        'description'           => 'Transfer this entity to another campaign. You can optionally keep a copy here.',
         'description_bulk_copy' => 'Select a campaign you want to copy the selected entities to.',
         'title'                 => 'Transfer an entity to another campaign',
     ],
