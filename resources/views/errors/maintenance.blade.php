@@ -48,7 +48,7 @@
 </section>
 
 <section class="max-w-2xl mx-auto flex flex-col gap-10 lg:gap-10 py-10 lg:py-12 px-4 xl:px-0 text-dark">
-    <img src="/images/errors/maintenance.jpeg" alt="Maintenance" class="rounded-2xl" />
+    <img src="https://d3a4xjr8r2ldhu.cloudfront.net/images/errors/maintenance.jpeg" alt="Maintenance" class="rounded-2xl" />
 </section>
 
 @yield('content')
