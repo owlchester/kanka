@@ -39,8 +39,8 @@ if (auth()->check() && auth()->user()->isAdmin()) {
         $dropdownActions[] = [
              'data' => ['target' => 'primary-dialog', 'bulk-action' => 'ajax', 'toggle' => 'dialog', 'url' => route('bulk.transform', [$campaign, 'entity_type' => $entityType->id])],
             'class' => 'bulk-transform',
-            'icon' => 'fa-regular fa-exchange-alt',
-            'text' => __('crud.actions.transform')
+            'icon' => 'fa-regular fa-arrows-rotate',
+            'text' => __('entities/actions.convert')
         ];
     }
     if ($datagridActions->hasBulkCopy()) {
