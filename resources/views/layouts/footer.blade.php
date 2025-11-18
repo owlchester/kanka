@@ -88,3 +88,5 @@
         </div>
     </div>
 </footer>
+<span data-ccpa-link="1"></span>
+<div id="ncmp-consent-link"></div>
