@@ -85,8 +85,8 @@
                     Kanka v{{ config('app.version') }} - {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!} - {{ __('footer.server_time', ['time' => \Carbon\Carbon::now()->isoFormat('MMMM Do YYYY, h:mm a')]) }} ({{ gethostname() }})
                 </div>
             </div>
+            <span data-ccpa-link="1"></span>
+            <div id="ncmp-consent-link"></div>
         </div>
     </div>
 </footer>
-<span data-ccpa-link="1"></span>
-<div id="ncmp-consent-link"></div>

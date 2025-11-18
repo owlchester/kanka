@@ -1,8 +1,6 @@
 <footer class="bg-dark text-light py-12 px-6">
     <div class="mx-auto lg:max-w-7xl flex flex-col gap-10">
-
         <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
-
             <div class="flex-col gap-8 hidden lg:flex col-span-2 ">
                 <div>
                     @include('icons.kanka-svg')
@@ -74,7 +72,8 @@
                 Kanka {!! __('footer.copyright', ['copy' => '&copy;', 'year' => date('Y'), 'company' => 'Owlchester SNC'])!!}
             </div>
         </div>
+
+        <span data-ccpa-link="1"></span>
+        <div id="ncmp-consent-link"></div>
     </div>
 </footer>
-<span data-ccpa-link="1"></span>
-<div id="ncmp-consent-link"></div>
