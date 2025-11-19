@@ -4,6 +4,7 @@ namespace App\Mail\Subscription\Admin;
 
 use App\Enums\PricingPeriod;
 use App\Models\User;
+use App\Models\UserLog;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;

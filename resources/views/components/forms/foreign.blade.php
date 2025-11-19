@@ -4,7 +4,7 @@
     :required="$required"
     :label="__($label)"
     :helper="$helper"
-    tooltip>
+>
 
     <select
             @if ($multiple) multiple="multiple" @endif

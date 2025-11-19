@@ -22,7 +22,7 @@ return [
         ],
     ],
     'lists'         => [
-        'empty' => 'Create and save rolls for your campaign to keep track of results directly in Kanka.',
+        'empty' => 'Create and save rolls for the campaign to keep track of results directly in Kanka.',
     ],
     'placeholders'  => [
         'name'          => 'Name of the Dice Roll',

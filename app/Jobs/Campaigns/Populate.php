@@ -46,6 +46,6 @@ class Populate implements ShouldQueue
         $service
             ->campaign($campaign)
             ->bind()
-            ->populate();
+            ->create();
     }
 }

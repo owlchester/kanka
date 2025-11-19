@@ -28,6 +28,12 @@ use App\Facades\Datagrid ?>
                 @endif
             </div>
         </div>
+
+
+        <p>
+            {!! __('campaigns/styles.helpers.tutorial') !!}
+        </p>
+
         @if (!$campaign->boosted())
             <x-premium-cta :campaign="$campaign">
                 <p>{!! __('campaigns/styles.pitch') !!}</p>

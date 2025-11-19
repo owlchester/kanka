@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'splash' => 'Welcome, :name 👋 Your world is ready.',
     'title' => 'Make this world yours',
     'intro' => 'Your world is ready. Make it yours before you dive in.',
     'fields' => [

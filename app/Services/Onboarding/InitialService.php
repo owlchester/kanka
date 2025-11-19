@@ -7,6 +7,7 @@ use App\Facades\CampaignCache;
 use App\Models\CampaignDashboardWidget;
 use App\Models\CampaignPermission;
 use App\Models\CampaignRole;
+use App\Models\CampaignSetting;
 use App\Models\Family;
 use App\Models\Quest;
 use App\Models\Tag;
@@ -90,6 +91,7 @@ class InitialService
 
     protected function worldbuilding(): void
     {
+        /** @var CampaignSetting $settings */
         $settings = $this->campaign->setting;
         $settings->quests = 0;
         $settings->dice_rolls = 0;

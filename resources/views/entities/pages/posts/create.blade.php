@@ -12,6 +12,16 @@
 
 @section('content')
     @include('ads.top')
+
+    <x-tutorial code="posts" doc="https://docs.kanka.io/en/latest/features/posts.html" title="">
+        <x-slot name="title">
+            {!! __('onboarding/posts.title') !!}
+        </x-slot>
+        <p>
+            {!! __('onboarding/posts.text') !!}
+        </p>
+    </x-tutorial>
+
     <x-form
         :action="['entities.posts.store', $campaign, $entity->id]"
         :extra="['data-max-fields' => ini_get('max_input_vars'),]"

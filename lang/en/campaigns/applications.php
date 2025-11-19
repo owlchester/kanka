@@ -41,6 +41,7 @@ return [
         'public'    => 'Campaign is public.',
         'title'     => 'Public campaign',
     ],
+    'tutorial' => 'Campaign applications let people request access to this campaign. Applicants submit a short form, and campaign admins can review, accept, or decline each request. Approved users are added to the campaign with the role you assign during review.',
     'toggle'        => [
         'closed'    => 'Closed to applications',
         'label'     => 'Status',

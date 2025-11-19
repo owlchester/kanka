@@ -50,7 +50,7 @@ class FilteredLink extends Component
         if (! empty($this->entityString)) {
             $title = __($this->entityString) . ' - ';
         }
-        $title .= __('dashboard.widgets.recent.title');
+        $title .= __('dashboards/widgets/recent.name');
 
         return $title;
     }

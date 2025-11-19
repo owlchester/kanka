@@ -19,11 +19,9 @@
             </h3>
         </div>
 
-        <x-helper>
             <p>
-                {{ __('campaigns/stats.cached', ['amount' => 24]) }}
+                {{ __('campaigns/stats.tutorial', ['amount' => 24]) }}
             </p>
-        </x-helper>
 
         <x-grid>
 

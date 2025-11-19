@@ -2,7 +2,7 @@
 
 return [
     'actions'   => [
-        'status'    => 'Status: :status',
+        'status'    => 'Visibility: :status',
     ],
     'create'    => [
         'helper'    => 'Create a new role for the campaign.',
@@ -13,12 +13,12 @@ return [
         'unlimited' => ':amount of unlimited roles created.',
     ],
     'public'    => [
-        'campaign'      => [
-            'private'   => 'The campaign is currently private.',
-            'public'    => 'The campaign is currently public.',
+        'helpers' => [
+            'intro' => 'Control what non-members can see in the campaign.',
+            'main' => 'Select which modules are visible to anyone viewing the campaign, whether they\'re logged in or not. This includes both public visitors and Kanka users who aren\'t campaign members.',
+            'preview' => 'Preview as non-member',
+            'click' => 'Click any module to toggle public access to all entities within it.',
         ],
-        'description'   => 'Set the permissions for the public role to view entities of the following modules of the campaign. A user is automatically considered to be in the public role if they are viewing the campaign without being one of its members.',
-        'test'          => 'To test the public role\'s permissions, open the campaign dashboard :url in an incognito window.',
     ],
     'show'      => [
         'title' => ':role permissions - :campaign',

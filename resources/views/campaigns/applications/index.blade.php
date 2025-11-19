@@ -24,6 +24,8 @@
             <x-learn-more url="features/campaigns/applications.html" />
         </div>
 
+        <p>{!! __('campaigns/applications.tutorial') !!}</p>
+
         @include('campaigns.applications._requirements')
         @includeWhen(!$applications->isEmpty(), 'campaigns.applications._list')
         @if($applications->isEmpty())

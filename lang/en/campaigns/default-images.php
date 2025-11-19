@@ -14,6 +14,7 @@ return [
     'destroy'           => [
         'success'   => 'Default thumbnail for :type removed.',
     ],
+    'tutorial' => 'Set the default images used when entities have no custom picture. Thumbnails apply immediately across the campaign and help keep lists visually consistent.',
     'empty'             => 'No modules currently have a default thumbnail setup.',
     'helper'            => 'Used for all entities of this module without an image.',
 ];

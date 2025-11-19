@@ -2,11 +2,13 @@
 
 return [
     'helpers'   => [
-        'main'  => 'Campaigns can be set to either be public or private. Public campaigns are visible to all users that have a link to the campaign, and also show up on in the :public-campaigns. This setting only controls access to the campaign. Permissions to view content of the campaigns still need to be set up through the :public-role role.',
+        'new' => 'Make it public for the community to discover, or keep it private for invited members only.',
+        'permissions' => 'Making your campaign public doesn\'t automatically share content. Configure what public viewers can see in the :public role settings.'
     ],
-    'title'     => 'Change the campaign\'s visibility',
+    'title'     => 'Control who can access the campaign',
     'update'    => [
         'private'   => 'The campaign is now private, and only visible to members of it.',
         'public'    => 'The campaign is now public. It might take some time to appear in the :public-campaigns page.',
+        'unlisted' => 'The campaign is now unlisted. Anyone with a link can access it, but it won\'t show up in the :public-campaigns page.'
     ],
 ];

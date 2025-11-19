@@ -39,7 +39,12 @@ if (!empty($model->entity) && !empty($model->entity->image) && !$canBrowse) {
     <div class="flex flex-row gap-2">
         <div class="grow flex flex-col gap-2 w-full">
             <div class="image-file field">
-                <input type="file" name="image" class="image w-full" id="image_field_{{ rand() }}" accept="{{ $inputFileTypes }}" />
+                <input
+                    type="file"
+                    name="image"
+                    class="image w-full"
+                    id="image_field_{{ rand() }}"
+                    accept="{{ $inputFileTypes }}" />
             </div>
             <div class="image-url field">
                 <input type="text" name="image_url" value="{{ old('image_url', ((!empty($source) && $source->entity->image_path) ? Avatar::entity($source->entity)->original() : '')) }}" placeholder="{{ __('crud.placeholders.image_url') }}" class="w-full" />

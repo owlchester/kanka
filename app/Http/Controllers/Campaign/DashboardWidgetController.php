@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Campaign;
 
+use App\Enums\Widget;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCampaignDashboardWidget;
 use App\Models\Campaign;
@@ -34,9 +35,14 @@ class DashboardWidgetController extends Controller
             $dashboard = CampaignDashboard::findOrFail(request()->get('dashboard'));
         }
 
+        $withOnboarding = $campaign->widgets()->onDashboard($dashboard)->where('widget', Widget::Onboarding)->count() === 0;
+        $withHelp = $campaign->widgets()->onDashboard($dashboard)->where('widget', Widget::Help)->count() === 0;
+
         return view('dashboard.widgets.selection')
             ->with('campaign', $campaign)
-            ->with('dashboard', $dashboard);
+            ->with('dashboard', $dashboard)
+            ->with('withOnboarding', $withOnboarding)
+            ->with('withHelp', $withHelp);
     }
 
     public function create(Campaign $campaign)

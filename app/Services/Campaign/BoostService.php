@@ -2,6 +2,7 @@
 
 namespace App\Services\Campaign;
 
+use App\Enums\CampaignVisibility;
 use App\Events\Subscriptions\Boost;
 use App\Events\Subscriptions\Disable;
 use App\Events\Subscriptions\Premium;
@@ -122,7 +123,10 @@ class BoostService
         }
         $boostCount = $this->campaign->boosts()->count();
         $this->campaign->boost_count = $boostCount;
-        $this->campaign->is_discreet = false;
+        // Revert back to public visibility
+        if ($this->campaign->isUnlisted()) {
+            $this->campaign->visibility_id = CampaignVisibility::public;
+        }
 
         $this->campaign->saveQuietly();
 

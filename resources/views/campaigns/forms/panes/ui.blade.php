@@ -16,9 +16,6 @@ if (!isset($model) || !$model->boosted()) {
 
 <div class="tab-pane" id="form-ui">
     <x-grid type="1/1">
-        <h4>
-            {{ ucfirst(__('concept.premium-campaign')) }}
-        </h4>
         @if (isset($model) && $model->boosted())
             <x-helper>
                 <p>{!! __('campaigns.helpers.premium', ['settings' => '<a href="https://kanka.io/premium">' . __('concept.premium-campaigns') . '</a>']) !!}</p>
@@ -108,7 +105,7 @@ if (!isset($model) || !$model->boosted()) {
                 :label="__('campaigns.ui.fields.post_collapsed')"
                 :helper="__('campaigns.ui.helpers.post_collapsed')"
                 >
-                <x-forms.select name="ui_settings[post_collapsed]" :options="[0 => __('campaigns.ui.collapsed.default'), 1 => __('campaigns.ui.collapsed.collapsed')]" :selected="$campaign->ui_settings['post_collapsed'] ?? null"  />
+                <x-forms.select name="ui_settings[post_collapsed]" :options="[0 => __('campaigns.ui.collapsed.expanded'), 1 => __('campaigns.ui.collapsed.collapsed')]" :selected="$campaign->ui_settings['post_collapsed'] ?? null"  />
             </x-forms.field>
 
             <x-forms.field

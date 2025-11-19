@@ -53,18 +53,21 @@
                 icon="fa-th-list"
             ></x-dashboards.widgets.selection>
         @endif
-
+        @if ($withOnboarding)
         <x-dashboards.widgets.selection
-            :widget="Widget::Welcome"
+            :widget="Widget::Onboarding"
             :campaign="$campaign"
             :dashboard="$dashboard"
-            icon="fa-party-horn"
+            icon="fa-calendar-check"
         ></x-dashboards.widgets.selection>
+        @endif
+        @if ($withHelp)
         <x-dashboards.widgets.selection
             :widget="Widget::Help"
             :campaign="$campaign"
             :dashboard="$dashboard"
             icon="fa-comments"
         ></x-dashboards.widgets.selection>
+        @endif
     </div>
 </x-grid>

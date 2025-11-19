@@ -1,7 +1,7 @@
 <x-box class="widget-welcome" id="dashboard-widget-{{ $widget->id }}">
-    <h4 class="text-lg mb-3">
+    <span class="widget-title block text-lg mb-3">
         {{ __('dashboards/widgets/welcome.title', ['kanka' => config('app.name')]) }}
-    </h4>
+    </span>
     <div class=" entity-content">
     <p>
         {!! __('dashboards/widgets/welcome.intros.1', [

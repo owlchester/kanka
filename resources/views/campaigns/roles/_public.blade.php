@@ -12,36 +12,39 @@
             {{ __('crud.permissions.title') }}
         </h1>
         <div class="flex-none flex gap-2">
-
-            <button class="btn2 btn-sm btn-ghost" data-toggle="dialog"
-                    data-target="public-help">
-                <x-icon class="question" />
-                {{ __('general.learn-more') }}
-            </button>
             <a href="#" data-url="{{ route('campaign-visibility', $campaign) }}" data-target="campaign-visibility" data-toggle="dialog-ajax" class="btn2 btn-sm btn-primary" >
                 <x-icon class="fa-solid fa-user-secret" />
-                {{ __('campaigns/roles.actions.status', ['status' => $campaign->isPublic() ? __('campaigns.visibilities.public') : __('campaigns.visibilities.private')]) }}
+                {{ __('campaigns/roles.actions.status', [
+                'status' => $campaign->isUnlisted() ? __('campaigns/visibilities.titles.unlisted') : ($campaign->isPublic() ? __('campaigns/visibilities.titles.public') : __('campaigns/visibilities.titles.private'))
+                ]) }}
             </a>
         </div>
     </div>
 
-    <x-tutorial code="public_permissions">
-        <p>
-            {!! __('campaigns/roles.public.description', ['name' => $role->name]) !!}
-        </p>
+    <p>
+        {!! __('campaigns/roles.public.helpers.intro') !!}
+    </p>
+    <p>
+        {!! __('campaigns/roles.public.helpers.main') !!}
+    </p>
+    <div class="flex gap-4">
+        <a href="{{ route('dashboard', [$campaign, 'goal' => 'incognito']) }}" target="_blank">
+            {!! __('campaigns/roles.public.helpers.preview') !!}
+            <x-icon class="link" />
+        </a>
+        <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank">
+            {{ __('general.tutorial') }}
+            <x-icon class="link" />
+        </a>
+    </div>
 
-        <p>
-            {!! __('campaigns/roles.public.test', [
-    'url' => '<a href="' . route('dashboard', $campaign) . '">' . route('dashboard', $campaign) . '</a>']) !!}
-        </p>
+    <h2>
+        {{ __('campaigns.show.tabs.modules') }}
+    </h2>
 
-        <p>
-            <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank">
-                <x-icon class="link" />
-                {{ __('helpers.public') }}
-            </a>
-        </p>
-    </x-tutorial>
+    <x-helper>
+        <p>{{ __('campaigns/roles.public.helpers.click') }}</p>
+    </x-helper>
 
     <div class="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         @foreach ($modules as $entityType)
@@ -71,14 +74,4 @@
     @parent
 
     <x-dialog id="campaign-visibility" :loading="true" />
-
-    @include('partials.helper-modal', [
-    'id' => 'public-help',
-    'title' => __('campaigns.roles.modals.details.title'),
-    'textes' => [
-        __('campaigns/roles.public.description', ['name' => $role->name]),
-        __('campaigns/roles.public.test', ['url' => '<a href="' . route('dashboard', $campaign) . '">' . route('dashboard', $campaign) . '</a>']),
-        '<a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank"><i class="fa-regular fa-external-link-alt"></i> ' . __('helpers.public') . '</a>'
-]
-])
 @endsection

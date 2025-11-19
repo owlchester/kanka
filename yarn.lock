@@ -2477,6 +2477,13 @@ vue-panzoom@^1.1.6:
   dependencies:
     panzoom "^9.4.1"
 
+vue-tippy@v6:
+  version "6.7.1"
+  resolved "https://registry.yarnpkg.com/vue-tippy/-/vue-tippy-6.7.1.tgz#8f5f1cb0944f71d668d7fee98f7916e219e3b578"
+  integrity sha512-gdHbBV5/Vc8gH87hQHLA7TN1K4BlLco3MAPrTb70ZYGXxx+55rAU4a4mt0fIoP+gB3etu1khUZ6c29Br1n0CiA==
+  dependencies:
+    tippy.js "^6.3.7"
+
 vue@^3.2.47, vue@^3.3, vue@^3.4.21:
   version "3.5.17"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.5.17.tgz#ea8a6a45abb2b0620e7d479319ce8434b55650cf"

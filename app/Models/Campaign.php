@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\CampaignVisibility;
 use App\Enums\Descendants;
 use App\Enums\Permission;
 use App\Enums\Visibility;
@@ -32,7 +33,7 @@ use Illuminate\Support\Collection;
  * @property string $slug
  * @property string $locale
  * @property Carbon|string $export_date
- * @property int $visibility_id
+ * @property CampaignVisibility $visibility_id
  * @property bool|int $entity_visibility
  * @property bool|int $entity_personality_visibility
  * @property string $header_image
@@ -45,7 +46,6 @@ use Illuminate\Support\Collection;
  * @property array $ui_settings
  * @property bool|int $is_open
  * @property bool|int $is_featured
- * @property bool|int $is_discreet
  * @property Carbon $featured_until
  * @property string $featured_reason
  * @property array|null $default_images
@@ -75,15 +75,6 @@ class Campaign extends Model
     use Sanitizable;
     use SoftDeletes;
 
-    /**
-     * Visibility of a campaign
-     */
-    public const int VISIBILITY_PRIVATE = 1;
-
-    public const int VISIBILITY_REVIEW = 2;
-
-    public const int VISIBILITY_PUBLIC = 3;
-
     protected $fillable = [
         'name',
         'slug',
@@ -102,7 +93,6 @@ class Campaign extends Model
         'ui_settings',
         'settings',
         'is_open',
-        'is_discreet',
     ];
 
     protected $casts = [
@@ -111,6 +101,7 @@ class Campaign extends Model
         'settings' => 'array',
         'featured_until' => 'date',
         'export_date' => 'date',
+        'visibility_id' => CampaignVisibility::class,
     ];
 
     protected array $sanitizable = [
@@ -204,12 +195,14 @@ class Campaign extends Model
         return (bool) CampaignCache::campaign($this)->settings()->get($module);
     }
 
-    /**
-     * Get the is public attribute for forms
-     */
-    public function getIsPublicAttribute()
+    public function isPublic(): bool
     {
-        return $this->visibility_id == self::VISIBILITY_PUBLIC;
+        return $this->visibility_id == CampaignVisibility::public;
+    }
+
+    public function isPrivate(): bool
+    {
+        return $this->visibility_id == CampaignVisibility::private;
     }
 
     /**
@@ -221,19 +214,11 @@ class Campaign extends Model
     }
 
     /**
-     * Determine if a campaign is public
-     */
-    public function isPublic(): bool
-    {
-        return $this->visibility_id == self::VISIBILITY_PUBLIC;
-    }
-
-    /**
      * Determine if a campaign is discreet
      */
-    public function isDiscreet(): bool
+    public function isUnlisted(): bool
     {
-        return $this->is_discreet;
+        return $this->visibility_id === CampaignVisibility::unlisted;
     }
 
     /**

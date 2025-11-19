@@ -1,43 +1,9 @@
 <?php /** @var \App\Models\Campaign $model */?>
 <div class="tab-pane" id="form-public">
     <x-grid type="1/1">
-        @if (isset($campaign))
-            <x-tutorial code="public_campaign_helper">
-                <p class="mb-2">
-                    {!! __('campaigns/public.helpers.main', [
-                        'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank">' .  __('footer.public-campaigns') . '</a>',
-                        'public-role' => '<a href="' . route('campaigns.campaign_roles.public', $campaign). '" target="_blank">' .  __('campaigns.members.roles.public') . '</a>',
-                    ]) !!}
-                </p>
-                <p>
-                    <a href="https://www.youtube.com/watch?v=VpY_D2PAguM" target="_blank">
-                        <x-icon class="link" />
-                        {{ __('helpers.public') }}
-                    </a>
-                </p>
-            </x-tutorial>
-        @endif
 
         <x-grid type="1/1">
-            <x-forms.field
-                field="public"
-                :label="__('campaigns.fields.public')"
-                >
-                <x-forms.select name="is_public" :options="[0 => __('campaigns.visibilities.private'), 1 => __('campaigns.visibilities.public')]" :selected="$campaign->is_public ?? null" />
-            </x-forms.field>
-
-            <x-forms.field field="discreet" :label="__('campaigns.fields.is_discreet')" :disabled="true">
-                @if (isset($model) && $model->boosted())
-                    <input type="hidden" name="is_discreet" value="0" />
-                    <x-checkbox :text="__('campaigns.helpers.is_discreet', ['public-campaigns' => '<a href=\'https://kanka.io/campaigns\'>' . __('footer.public-campaigns') . '</a>'])">
-                        <input type="checkbox" name="is_discreet" value="1" @if (old('is_discreet', $model->isDiscreet() ?? false)) checked="checked" @endif />
-                    </x-checkbox>
-                @else
-                    <x-checkbox :text="__('campaigns.helpers.is_discreet_locked', ['public-campaigns' => '<a href=\'https://kanka.io/campaigns\'>' . __('footer.public-campaigns') . '</a>'])">
-                        <input type="checkbox" name="premium_feature" value="1" disabled="disabled" />
-                    </x-checkbox>
-                @endif
-            </x-forms.field>
+            @include('campaigns.forms._visibility', ['campaign' => $model ?? null])
 
             @if (isset($model) && $model->isPublic())
                 <x-helper>
@@ -87,7 +53,7 @@
                     :placeholder="__('campaigns.placeholders.system')"
                     allowClear="true"
                     :route="route('search.systems')"
-                    :selected="$selected"
+                    :selected="$selected">
                 >
                 </x-forms.foreign>
 
