@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Campaigns;
 
 use App\Enums\CampaignVisibility;
-use App\Enums\Widget;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
@@ -27,7 +26,7 @@ class StoreCampaignVisibility extends FormRequest
     public function rules()
     {
         $rules = [
-            'visibility_id' => ['required', new Enum(CampaignVisibility::class)]
+            'visibility_id' => ['required', new Enum(CampaignVisibility::class)],
         ];
 
         return $rules;

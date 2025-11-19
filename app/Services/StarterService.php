@@ -35,7 +35,7 @@ class StarterService
             'name' => $name,
             'entry' => '',
             'excerpt' => '',
-            'settings' => ['default-name' => $name]
+            'settings' => ['default-name' => $name],
         ];
 
         $this->campaign = $this->createService

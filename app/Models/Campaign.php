@@ -75,7 +75,6 @@ class Campaign extends Model
     use Sanitizable;
     use SoftDeletes;
 
-
     protected $fillable = [
         'name',
         'slug',

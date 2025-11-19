@@ -37,7 +37,6 @@ class VisibilityController extends Controller
             'visibility_id' => $request->get('visibility_id'),
         ]);
 
-
         $key = $campaign->isUnlisted() ? 'unlisted' : ($campaign->isPublic() ? 'public' : 'private');
         $success = __('campaigns/public.update.' . $key, [
             'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank">' . __('footer.public-campaigns') . '</a>',

@@ -37,6 +37,7 @@ class DashboardWidgetController extends Controller
 
         $withOnboarding = $campaign->widgets()->onDashboard($dashboard)->where('widget', Widget::Onboarding)->count() === 0;
         $withHelp = $campaign->widgets()->onDashboard($dashboard)->where('widget', Widget::Help)->count() === 0;
+
         return view('dashboard.widgets.selection')
             ->with('campaign', $campaign)
             ->with('dashboard', $dashboard)

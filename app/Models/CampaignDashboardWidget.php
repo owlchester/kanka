@@ -506,10 +506,10 @@ class CampaignDashboardWidget extends Model
     public function missingEntity(): bool
     {
         return in_array($this->widget, [
-                Widget::Calendar,
-                Widget::Preview,
-                Widget::Random,
-                Widget::Unmentioned,
-            ]) && empty($this->entity);
+            Widget::Calendar,
+            Widget::Preview,
+            Widget::Random,
+            Widget::Unmentioned,
+        ]) && empty($this->entity);
     }
 }

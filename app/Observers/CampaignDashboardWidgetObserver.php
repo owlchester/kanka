@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Events\DashboardWidgetChanged;
 use App\Models\CampaignDashboardWidget;
 
 class CampaignDashboardWidgetObserver

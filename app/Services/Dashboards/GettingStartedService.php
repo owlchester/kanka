@@ -2,7 +2,6 @@
 
 namespace App\Services\Dashboards;
 
-use App\Enums\Widget;
 use App\Traits\CampaignAware;
 use Illuminate\Support\Arr;
 
@@ -21,8 +20,7 @@ class GettingStartedService
             ->character()
             ->location()
             ->invite()
-            ->widgets()
-        ;
+            ->widgets();
 
         return $this->tasks;
     }
@@ -33,6 +31,7 @@ class GettingStartedService
             'campaign',
             true
         );
+
         return $this;
     }
 
@@ -40,7 +39,7 @@ class GettingStartedService
     {
         $completed = true;
         $originalName = Arr::get($this->campaign->settings, 'default-name');
-        if (!empty($originalName) && $originalName === $this->campaign->name) {
+        if (! empty($originalName) && $originalName === $this->campaign->name) {
             $completed = false;
         }
         $this->track(
@@ -55,9 +54,9 @@ class GettingStartedService
     protected function character(): self
     {
         $completed = $this->campaign
-                ->characters()
-                ->where('created_at', '>', $this->campaign->created_at)
-                ->count() > 0;
+            ->characters()
+            ->where('created_at', '>', $this->campaign->created_at)
+            ->count() > 0;
         $this->track(
             'character',
             $completed,
@@ -70,9 +69,9 @@ class GettingStartedService
     protected function location(): self
     {
         $completed = $this->campaign
-                ->locations()
-                ->where('created_at', '>', $this->campaign->created_at)
-                ->count() > 0;
+            ->locations()
+            ->where('created_at', '>', $this->campaign->created_at)
+            ->count() > 0;
         $this->track(
             'location',
             $completed,
@@ -97,9 +96,9 @@ class GettingStartedService
     protected function widgets(): self
     {
         $completed = $this->campaign
-                ->widgets()
-                ->where('created_at', '>', $this->campaign->created_at)
-                ->count() > 0;
+            ->widgets()
+            ->where('created_at', '>', $this->campaign->created_at)
+            ->count() > 0;
         $this->track(
             'widgets',
             $completed,
