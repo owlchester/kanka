@@ -87,7 +87,7 @@
                     :placeholder="__('campaigns.placeholders.system')"
                     allowClear="true"
                     :route="route('search.systems')"
-                    :selected="$selected"
+                    :selected="$selected">
                 >
                 </x-forms.foreign>
 

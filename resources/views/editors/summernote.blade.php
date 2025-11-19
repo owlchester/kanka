@@ -44,7 +44,7 @@
         data-gallery-deselect-all="{{ __('general.deselect_all') }}"
         data-gallery-error="generic.gallery.error"
         data-filesize="{{ Limit::upload() }}"
-        data-placeholder="{{ __('crud.placeholders.entry') }}"
+        data-placeholder="{{ $editorPlaceholder ?? __('crud.placeholders.entry') }}"
         data-dialogs="{{ isset($dialogsInBody) ? '1' : '0' }}"
 @if (isset($name) && $name == 'characters')        data-bragi="{{ route('bragi', $campaign) }}"@endif
 @if(isset($campaign) && $campaign !== null)

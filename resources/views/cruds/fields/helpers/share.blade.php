@@ -1,4 +1,4 @@
-@can('boost', auth()->user())
+@auth
     @if (isset($campaign) && !$campaign->boosted())
         @can('boost', auth()->user())
             <p>

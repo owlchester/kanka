@@ -2,7 +2,8 @@
 
 return [
     'available' => 'The name :vanity is available!',
-    'helper'    => 'Make the campaign stand out with a unique name in the URL. For example, instead of showing up as :default, have every page\'s url in the campaign show up as :example. This field can only be set once and is permanent. Learn more about this feature in our :learn-more.',
+    'helper-v2' => 'Give the campaign a memorable, custom web address. Instead of :default, the campaign could appear as: :example',
+    'forever' => 'Once set, this cannot be changed. :docs',
     'rule'      => 'The :field field needs at least one alphabetical character.',
     'rule2'     => 'The :field field doesn\'t allow the following character: /.',
     'set'       => 'The campaign\'s vanity URL is permanently set to :vanity.',
