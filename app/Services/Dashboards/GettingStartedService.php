@@ -29,7 +29,10 @@ class GettingStartedService
 
     protected function start(): self
     {
-        $this->track(__('dashboards/widgets/onboarding.tasks.campaign'), true);
+        $this->track(
+            'campaign',
+            true
+        );
         return $this;
     }
 
@@ -41,7 +44,7 @@ class GettingStartedService
             $completed = false;
         }
         $this->track(
-            __('dashboards/widgets/onboarding.tasks.rename'),
+            'rename',
             $completed,
             route('campaigns.edit', [$this->campaign, 'from' => 'onboarding'])
         );
@@ -56,7 +59,7 @@ class GettingStartedService
                 ->where('created_at', '>', $this->campaign->created_at)
                 ->count() > 0;
         $this->track(
-            __('dashboards/widgets/onboarding.tasks.character'),
+            'character',
             $completed,
             route('characters.create', [$this->campaign, 'from' => 'onboarding'])
         );
@@ -71,7 +74,7 @@ class GettingStartedService
                 ->where('created_at', '>', $this->campaign->created_at)
                 ->count() > 0;
         $this->track(
-            __('dashboards/widgets/onboarding.tasks.location'),
+            'location',
             $completed,
             route('locations.create', [$this->campaign, 'from' => 'onboarding'])
         );
@@ -83,7 +86,7 @@ class GettingStartedService
     {
         $completed = $this->campaign->invites()->count() > 0;
         $this->track(
-            __('dashboards/widgets/onboarding.tasks.invite'),
+            'invite',
             $completed,
             route('campaign_users.index', [$this->campaign, 'from' => 'onboarding'])
         );
@@ -98,7 +101,7 @@ class GettingStartedService
                 ->where('created_at', '>', $this->campaign->created_at)
                 ->count() > 0;
         $this->track(
-            __('dashboards/widgets/onboarding.tasks.widgets'),
+            'widgets',
             $completed,
             route('dashboard.setup', [$this->campaign, 'from' => 'onboarding'])
         );
@@ -106,10 +109,11 @@ class GettingStartedService
         return $this;
     }
 
-    protected function track(string $title, bool $completed, ?string $url = null)
+    protected function track(string $key, bool $completed, ?string $url = null)
     {
         $this->tasks[] = [
-            'title' => $title,
+            'name' => __('dashboards/widgets/onboarding.tasks.' . $key . '.name'),
+            'helper' => __('dashboards/widgets/onboarding.tasks.' . $key . '.helper'),
             'completed' => $completed,
             'url' => $url ?? null,
         ];

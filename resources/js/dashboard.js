@@ -1,5 +1,6 @@
 import Sortable from "sortablejs"
 import { createApp } from 'vue'
+import VueTippy from 'vue-tippy'
 import Onboarding from "./dashboards/onboarding/Onboarding.vue"
 import GettingStarted from "./dashboards/widgets/getting-started/GettingStarted.vue"
 import vClickOutside from "click-outside-vue3"
@@ -177,6 +178,9 @@ const initGettingStarted = () => {
     const app = createApp({});
     app.component('getting-started', GettingStarted);
     app.use(vClickOutside);
+    app.use(VueTippy, {
+        theme: 'kanka',
+    });
     app.mount('#getting-started');
 };
 

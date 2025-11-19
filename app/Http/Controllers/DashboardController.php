@@ -46,6 +46,7 @@ class DashboardController extends Controller
         // Onboarding
         if (session()->has('onboarding') || request()->filled('onboarding')) {
             $onboarding = true;
+            session()->remove('onboarding');
         }
 
         $hasMap = $hasCampaignHeader = false;

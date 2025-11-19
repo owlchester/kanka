@@ -58,6 +58,7 @@
         "tributejs": "^5.1.3",
         "vue-draggable-next": "^2.2.1",
         "vue-konva": "^3.2.6",
-        "vue-panzoom": "^1.1.6"
+        "vue-panzoom": "^1.1.6",
+        "vue-tippy": "v6"
     }
 }

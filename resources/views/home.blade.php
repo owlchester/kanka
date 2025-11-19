@@ -70,7 +70,7 @@ use App\Enums\Widget;
         </div>
 
         @can('dashboard', $campaign)
-            <div class="flex justify-center">
+            <div class="flex justify-center mt-8">
                 <a href="{{ route('dashboard.setup', !empty($dashboard) ? [$campaign, 'dashboard' => $dashboard->id] : [$campaign]) }}" class="btn2 btn-block flex gap-1" title="{{ __('dashboard.settings.title') }}">
                     <x-icon class="cog" />
                     {{ __('dashboard.actions.customise') }}

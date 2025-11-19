@@ -19,7 +19,8 @@
         <div class="tasks flex flex-col gap-2 lg:gap-3 xl:gap-4">
             <div
                 v-for="task in tasks"
-            class="flex items-center gap-2 task">
+            class="flex items-center gap-2 task"
+            v-tippy="task.helper">
                 <div class="task-icon">
                     <i class="fa-regular fa-square-check" aria-label="Completed" v-if="task.completed"></i>
                     <i class="fa-regular fa-square" aria-label="Pending" v-else></i>
@@ -27,10 +28,10 @@
                 <a
                     v-if="!task.completed"
                     :href="task.url"
-                    v-html="task.title"></a>
+                    v-html="task.name"></a>
                 <span
                     v-else
-                    v-html="task.title"
+                    v-html="task.name"
                     class="line-through"></span>
             </div>
         </div>
