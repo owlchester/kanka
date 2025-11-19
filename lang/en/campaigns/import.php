@@ -4,7 +4,7 @@ return [
     'actions'       => [
         'import'    => 'Upload the export',
     ],
-    'description'   => 'Import the entities, posts, attributes, the gallery and other elements from a campaign export into this campaigns. This happens in the backend and can take a while, so grab a coffee. You and the other campaign admins will be notified when the import process is done.',
+    'description'   => 'Import entities, posts, attributes, galleries, and other data from a campaign export into this campaign. The import runs in the background and may take some time. You and any other campaign admins will be notified when it finishes.',
     'fields'        => [
         'file'      => 'Export ZIP file',
         'updated'   => 'Last updated',

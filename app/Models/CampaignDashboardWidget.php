@@ -443,6 +443,8 @@ class CampaignDashboardWidget extends Model
             return 'fa-regular fa-th-list';
         } elseif ($this->widget === Widget::Welcome) {
             return 'fa-regular fa-party-horn';
+        } elseif ($this->widget === Widget::Onboarding) {
+            return 'fa-regular fa-calendar-check';
         }
 
         return 'fa-regular fa-question-circle';
@@ -491,5 +493,23 @@ class CampaignDashboardWidget extends Model
 
         // Linked but no entity or no child? Permission issue or deleted entity
         return ! empty($this->entity);
+    }
+
+    public function noGuest(): bool
+    {
+        return $this->widget == Widget::Onboarding;
+    }
+
+    /**
+     * Some
+     */
+    public function missingEntity(): bool
+    {
+        return in_array($this->widget, [
+                Widget::Calendar,
+                Widget::Preview,
+                Widget::Random,
+                Widget::Unmentioned,
+            ]) && empty($this->entity);
     }
 }

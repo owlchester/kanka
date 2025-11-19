@@ -17,6 +17,10 @@
     @endif
 </div>
 
+<p>
+    {!! __('campaigns/webhooks.helper.tutorial') !!}
+</p>
+
 <?php /** @var \App\Models\Campaign $campaign
  * @var \App\Models\Webhook $webhook
  */?>

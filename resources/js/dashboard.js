@@ -1,6 +1,7 @@
-import Sortable from "sortablejs";
+import Sortable from "sortablejs"
 import { createApp } from 'vue'
 import Onboarding from "./dashboards/onboarding/Onboarding.vue"
+import GettingStarted from "./dashboards/widgets/getting-started/GettingStarted.vue"
 import vClickOutside from "click-outside-vue3"
 
 
@@ -168,11 +169,23 @@ const initOnboarding = () => {
     app.mount('#onboarding');
 };
 
+const initGettingStarted = () => {
+    const selector = document.getElementById('getting-started');
+    if (!selector) {
+        return;
+    }
+    const app = createApp({});
+    app.component('getting-started', GettingStarted);
+    app.use(vClickOutside);
+    app.mount('#getting-started');
+};
+
 initDashboardCalendars();
 initFollow();
 initPreviewExpander();
 initDashboardAdminUI();
 initOnboarding();
+initGettingStarted();
 
 document.querySelectorAll('[data-render]')?.forEach((i) => {
     widgetVisible.observe(i);

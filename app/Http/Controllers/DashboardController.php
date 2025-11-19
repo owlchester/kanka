@@ -45,7 +45,6 @@ class DashboardController extends Controller
         }
         // Onboarding
         if (session()->has('onboarding') || request()->filled('onboarding')) {
-            session()->remove('onboarding');
             $onboarding = true;
         }
 

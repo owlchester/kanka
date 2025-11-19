@@ -1,5 +1,10 @@
 <x-tutorial code="events" doc="https://docs.kanka.io/en/latest/features/reminders.html">
-    <p>{!! __('entities/events.helpers.reminders', ['name' => $entity->name]) !!}</p>
+
+    <x-slot name="title">
+        {!! __('onboarding/reminders.title') !!}
+    </x-slot>
+
+    <p>{!! __('onboarding/reminders.text', ['name' => $entity->name]) !!}</p>
 </x-tutorial>
 
 @if ($rows->count() > 0)

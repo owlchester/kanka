@@ -10,6 +10,32 @@
 
 @section('content')
     @include('ads.top')
+
+    @if ($entityType->isCharacter() && request()->get('from') === 'onboarding')
+        <div class="flex flex-col gap-2 bg-primary text-primary-content p-4 rounded-xl mb-6">
+            <p class="text-lg font-semibold mb-2">
+                {{ __('onboarding/characters.title') }}
+            </p>
+            <p>
+                {{ __('onboarding/characters.text') }}
+            </p>
+            <p>
+                {{ __('onboarding/characters.finisher') }}
+            </p>
+        </div>
+    @elseif ($entityType->isLocation() && request()->get('from') === 'onboarding')
+        <div class="flex flex-col gap-2 bg-primary text-primary-content p-4 rounded-xl mb-6">
+            <p class="text-lg font-semibold mb-2">
+                {{ __('onboarding/locations.title') }}
+            </p>
+            <p>
+                {{ __('onboarding/locations.text') }}
+            </p>
+            <p>
+                {{ __('onboarding/locations.finisher') }}
+            </p>
+        </div>
+    @endif
     <x-form
         :action="[$name . '.store', $campaign]"
         files

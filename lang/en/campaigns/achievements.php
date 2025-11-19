@@ -32,4 +32,5 @@ return [
         'tags'          => 'Under control',
         'themes'        => 'Painter',
     ],
+    'tutorial' => 'Achievements track notable actions within this campaign such as creating entities or using key features. They are informational only and update automatically as you explore and build.',
 ];

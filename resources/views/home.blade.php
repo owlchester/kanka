@@ -31,6 +31,13 @@ use App\Enums\Widget;
 
         @include('ads.top')
 
+            @if (isset($onboarding) && $onboarding && auth()->check())
+                <p class="text-2xl py-2">
+                    {!! __('dashboards/onboarding.splash', ['name' => auth()->user()->name]) !!}
+                </p>
+
+            @endif
+
         <div class="dashboard-widgets grid grid-cols-12 gap-4 md:gap-5 ">
 
 {{--            <x-alert type="error" class="col-span-12">--}}
@@ -46,19 +53,15 @@ use App\Enums\Widget;
                     @include('dashboard.widgets._campaign')
                     @continue;
                 @endif
-                <?php if (!in_array($widget->widget, [
-                            Widget::Recent,
-                            Widget::Random,
-                            Widget::Header,
-                            Widget::Welcome,
-                            Widget::Help,
-                        ]) && empty($widget->entity)):
-                    continue;
-                elseif ($widget->widget === Widget::Preview && !$widget->entity):
-                    continue;
-                elseif (!$widget->visible()):
-                    continue;
-                endif; ?>
+                @if ($widget->missingEntity())
+                    @continue
+                @elseif ($widget->widget === Widget::Preview && !$widget->entity)
+                    @continue
+                @elseif (!$widget->visible())
+                    @continue
+                @elseif ($widget->noGuest() && auth()->guest())
+                    @continue
+                @endif
                     <div class="col-span-12 md:col-span-{{ $widget->mdColSize() }} lg:col-span-{{ $widget->colSize() }} widget widget-{{ $widget->widget->value }}" id="widget-col-{{ $widget->id }}">
                         @include('dashboard.widgets._' . $widget->widget->value)
                     </div>

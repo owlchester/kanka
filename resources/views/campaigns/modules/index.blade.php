@@ -29,11 +29,9 @@
             @endcan
         </div>
 
-        <x-tutorial code="campaign_modules">
-            <p>
-                {{ __('campaigns/modules.helpers.info') }}
-            </p>
-        </x-tutorial>
+        <p>
+            {{ __('campaigns/modules.helpers.tutorial') }}
+        </p>
 
         @includeWhen(config('entities.custom'), 'campaigns.modules._custom')
         @include('campaigns.modules._default')

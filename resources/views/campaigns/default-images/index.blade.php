@@ -30,10 +30,9 @@
             @endif
         </div>
         @if ($campaign->boosted())
+            <p>{{ __('campaigns/default-images.tutorial') }}</p>
             @if (empty($images))
-                <x-helper>
-                    <p>{{ __('campaigns/default-images.empty') }}</p>
-                </x-helper>
+                <p class="italic">{{ __('campaigns/default-images.empty') }}</p>
             @endif
             <div class="grid grid-cols-1 gap-2 xl:grid-cols-2 xl:gap-5">
                 @foreach ($images as $image)

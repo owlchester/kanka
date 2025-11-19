@@ -30,10 +30,12 @@ class StarterService
      */
     public function create(): Campaign
     {
+        $name = __('starter.campaign.name', ['user' => $this->user->name]);
         $request = [
-            'name' => __('starter.campaign.name', ['user' => $this->user->name]),
+            'name' => $name,
             'entry' => '',
             'excerpt' => '',
+            'settings' => ['default-name' => $name]
         ];
 
         $this->campaign = $this->createService
@@ -45,7 +47,10 @@ class StarterService
         CampaignCache::campaign($this->campaign);
         UserCache::campaign($this->campaign);
 
-        $this->populate();
+        $this->entities();
+        $this->dashboard();
+
+        session()->put('onboarding', 1);
 
         return $this->campaign;
     }
@@ -57,7 +62,7 @@ class StarterService
         return $this;
     }
 
-    public function populate()
+    public function entities()
     {
         CampaignLocalization::forceCampaign($this->campaign);
         EntityCache::campaign($this->campaign);
@@ -111,8 +116,6 @@ class StarterService
             'is_private' => false,
         ]);
         $irwie->save();
-
-        $this->dashboard();
     }
 
     /**
@@ -120,28 +123,30 @@ class StarterService
      */
     protected function dashboard()
     {
-        $widget = new CampaignDashboardWidget([
-            'campaign_id' => $this->campaign->id,
-            'widget' => Widget::Welcome,
-            'width' => 6, // half
-            'position' => 1,
-        ]);
-        $widget->save();
+        $position = 0;
 
         // Recent widget
         $widget = new CampaignDashboardWidget([
             'campaign_id' => $this->campaign->id,
             'widget' => Widget::Recent,
-            'width' => 0,
-            'position' => 6,
+            'width' => 4,
+            'position' => $position++,
+        ]);
+        $widget->save();
+
+        $widget = new CampaignDashboardWidget([
+            'campaign_id' => $this->campaign->id,
+            'widget' => Widget::Onboarding,
+            'width' => 4,
+            'position' => $position++,
         ]);
         $widget->save();
 
         $widget = new CampaignDashboardWidget([
             'campaign_id' => $this->campaign->id,
             'widget' => Widget::Help,
-            'width' => 6, // half
-            'position' => 3,
+            'width' => 4,
+            'position' => $position++,
         ]);
         $widget->save();
     }

@@ -11,7 +11,7 @@ return [
             'title' => 'Murderer',
         ],
     ],
-    'cached'        => 'These statistics are recalculated every :amount hours.',
+    'tutorial'        => 'Campaign statistics show entity counts and recent activity. Data updates every :amount hours. Use this to track growth and usage over time.',
     'fields'        => [
         'created'       => 'Created on',
         'creator'       => 'Created by',

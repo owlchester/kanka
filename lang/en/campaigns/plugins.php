@@ -58,7 +58,7 @@ return [
     ],
     'info'          => [
         'description'   => 'Showing the latest updates for the :plugin plugin.',
-        'helper'        => 'When a new version of a plugin is released, you can update it to the latest version for your campaign.',
+        'helper'        => 'When a new version of a plugin is released, you can update it to the latest version for the campaign.',
         'installed'     => 'Installed',
         'title'         => 'Plugin :plugin updates',
         'updates'       => 'Updates',

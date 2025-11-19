@@ -9,7 +9,7 @@ return [
         'magic' => 'No commitments, no traps. Just more magic for your campaign.',
         'title' => 'Start my 15-day trial now',
     ],
-    'header'    => 'We’ve seen your dedication in the realms of Kanka. To honor your journey, we’re granting you a :what. No gold, gems, or credit card required.',
+    'header'    => 'We\'ve seen your dedication in the realms of Kanka. To honor your journey, we\'re granting you a :what. No gold, gems, or credit card required.',
     'included'  => [
         'title' => 'What\'s included',
         'upsell'=> [
@@ -18,7 +18,7 @@ return [
         ],
     ],
     'pitch'     => [
-        'title' => 'Enjoy a 15-day free trial on us! Unlock all premium features and see what you’ve been missing.',
+        'title' => 'Enjoy a 15-day free trial on us! Unlock all premium features and see what you\'ve been missing.',
     ],
     'started'   => [
         'header'    => 'You\'ve successfully started your free trial, welcome to the inner circle of worldbuilders!',

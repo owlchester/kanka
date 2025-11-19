@@ -228,3 +228,7 @@ Route::post('/w/{campaign}/onboarding/initial', [
 Route::post('/w/{campaign}/onboarding/initial-skip', [
     \App\Http\Controllers\Onboarding\InitialController::class, 'skip',
 ])->name('campaign.onboarding.initial-skip');
+
+Route::get('/w/{campaign}/widgets/getting-started', [
+    \App\Http\Controllers\Dashboards\GettingStartedController::class, 'index'
+])->name('campaign.widgets.getting-started');

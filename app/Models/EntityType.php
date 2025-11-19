@@ -221,6 +221,16 @@ class EntityType extends Model
         return $this->id == config('entities.ids.attribute_template');
     }
 
+    public function isCharacter(): bool
+    {
+        return $this->id == config('entities.ids.character');
+    }
+
+    public function isLocation(): bool
+    {
+        return $this->id == config('entities.ids.location');
+    }
+
     public function createRoute(Campaign $campaign, array $params = []): string
     {
         if ($this->isCustom()) {

@@ -28,6 +28,8 @@ use \Illuminate\Support\Arr;
             </x-premium-cta>
         @else
 
+            <p>{!! __('campaigns/achievements.tutorial') !!}</p>
+
         <div class="flex flex-wrap gap-5">
         @foreach ($achievements as $key => $stat)
                 @if ($stat['level'] === 5)

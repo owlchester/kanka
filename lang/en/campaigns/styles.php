@@ -35,6 +35,7 @@ return [
         'here'          => 'on our blog',
         'is_enabled'    => 'Enable this theme on every page.',
         'main'          => 'You can create custom CSS styling for your premium campaign. These styles are loaded after any themes from the marketplace that are enabled for the campaign. You can learn more about styling your campaign :here.',
+        'tutorial' => 'Control the visual style of the campaign. Choose colors, layout preferences, and other presentation options. These changes affect only this campaign and can be updated at any time.',
     ],
     'pitch'         => 'Create custom CSS styling to fully customise the look and feel of the campaign.',
     'placeholders'  => [

@@ -5,6 +5,11 @@
     </button>
     @endauth
     <div class="flex flex-col gap-2">
+        @if (!empty($title))
+            <p class="text-lg font-semibold">
+                {!! $title !!}
+            </p>
+        @endif
         {!! $slot !!}
         @if (!empty($doc))
             <a href="{{ $doc }}">
