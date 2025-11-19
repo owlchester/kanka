@@ -6,7 +6,7 @@
             <x-tab.tab target="entry" :default="true" :title="__('crud.tabs.overview')"></x-tab.tab>
             <x-tab.tab target="public" :title="__('campaigns.panels.sharing')" />
             <x-tab.tab target="ui" :title="__('campaigns.panels.ui')" />
-            <x-tab.tab target="permission" :title="__('campaigns.panels.permission')" />
+            <x-tab.tab target="permission" :title="__('campaigns.panels.privacy')" />
             <x-tab.tab target="dashboard" :title="__('campaigns.panels.dashboard')" />
         </ul>
     </div>

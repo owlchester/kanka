@@ -15,4 +15,5 @@ return [
         'updated'           => ':name updated.',
     ],
     'yes'           => 'Yes',
+    'tutorial' => 'Watch tutorial',
 ];

@@ -23,7 +23,7 @@ class VisibilityController extends Controller
         $this->authorize('update', $campaign);
         $from = request()->get('from');
 
-        return view('campaigns.forms.modals.public', compact('campaign', 'from'));
+        return view('campaigns.forms.modals.visibility', compact('campaign', 'from'));
     }
 
     public function save(StoreCampaignVisibility $request, Campaign $campaign)
@@ -34,10 +34,12 @@ class VisibilityController extends Controller
         }
 
         $campaign->update([
-            'is_public' => $request->get('is_public'),
+            'visibility_id' => $request->get('visibility_id'),
         ]);
 
-        $success = __('campaigns/public.update.' . ($campaign->isPublic() ? 'public' : 'private'), [
+
+        $key = $campaign->isUnlisted() ? 'unlisted' : ($campaign->isPublic() ? 'public' : 'private');
+        $success = __('campaigns/public.update.' . $key, [
             'public-campaigns' => '<a href="https://kanka.io/campaigns" target="_blank">' . __('footer.public-campaigns') . '</a>',
         ]);
 

@@ -2,6 +2,7 @@
 
 namespace App\Models\Scopes;
 
+use App\Enums\CampaignVisibility;
 use App\Facades\Identity;
 use App\Models\Campaign;
 use App\Models\User;
@@ -75,19 +76,14 @@ trait CampaignScopes
         return $query->where($this->getTable() . '.' . $key, '=', $slug);
     }
 
-    public function scopeVisibility(Builder $query, int $visibility): Builder
+    public function scopeVisibility(Builder $query, CampaignVisibility $visibility): Builder
     {
-        return $query->where($this->getTable() . '.visibility_id', $visibility);
+        return $query->where($this->getTable() . '.visibility_id', $visibility->value);
     }
 
     public function scopeOpen(Builder $query, bool $open = true): Builder
     {
         return $query->where('is_open', $open);
-    }
-
-    public function scopeDiscreet(Builder $query, bool $discreet = true): Builder
-    {
-        return $query->where('is_discreet', $discreet);
     }
 
     /**
@@ -125,7 +121,7 @@ trait CampaignScopes
     public function scopePublic(Builder $query): Builder
     {
         // @phpstan-ignore-next-line
-        return $query->visibility(Campaign::VISIBILITY_PUBLIC);
+        return $query->visibility(\App\Enums\CampaignVisibility::public);
     }
 
     /**
