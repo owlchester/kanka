@@ -3,10 +3,11 @@
         <div class="flex flex-col gap-10">
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
                 <div class="flex-col gap-4 hidden lg:flex col-span-2 ">
+                    <div>
                     <a href="{{ route('home') }}" class="logo">
                         @include('icons.kanka-svg')
                     </a>
-
+                    </div>
 
                     <div class="flex items-center gap-5 text-3xl flex-wrap">
                         @include('layouts._socials')
