@@ -30,4 +30,13 @@ return [
     'warnings'  => [
         'adding-to-admin'   => 'Members of the :name role have access to everything in the campaign, and cannot be removed by other members of the role. After :amount minutes, only they can remove themselves from the role.',
     ],
+    'permissions' => [
+        'content-modules' => 'Content modules',
+        'campaign-features' => 'Campaign features',
+
+        'toggle' => [
+            'action' => 'Toggle all',
+            'tooltip' => 'Toggle the :action permission for all modules.',
+        ],
+    ],
 ];

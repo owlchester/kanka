@@ -31,26 +31,25 @@
             </button>
         </div>
         @if (!$role->isAdmin())
-            <p>{!! __('campaigns.roles.hints.role_permissions', ['name' => '<span class="font-extrabold text-accent">' . $role->name . '</span>']) !!}</p>
+            <p>{!! __('campaigns.roles.hints.role_permissions', ['name' => '<span class="font-semibold">' . $role->name . '</span>']) !!}</p>
         @else
-            <p>{!! __('campaigns.roles.hints.role_admin', ['name' => '<span class="font-extrabold text-accent">' . $role->name . '</span>']) !!} </p>
+            <p>{!! __('campaigns.roles.hints.role_admin', ['name' => '<span class="font-semibold">' . $role->name . '</span>']) !!} </p>
         @endif
         @if (!$role->isAdmin())
-        <x-box>
             @can('permission', $role)
                 <x-form :action="['campaign_roles.savePermissions', $campaign, 'campaign_role' => $role]">
-                    <div class="w-full overflow-y-auto flex flex-col gap-5 pb-5">
+                    <div class="w-full flex flex-col gap-4">
                         @include('campaigns.roles._pretty')
-                    </div>
-                    <div class="text-right">
-                        <button class="btn2 btn-primary">
-                            <x-icon class="save" />
-                            {{ __('crud.save') }}
-                        </button>
+
+                        <div class="text-right">
+                            <button class="btn2 btn-primary">
+                                <x-icon class="save" />
+                                {{ __('crud.save') }}
+                            </button>
+                        </div>
                     </div>
                 </x-form>
             @endif
-        </x-box>
         @endif
     </div>
     @endif

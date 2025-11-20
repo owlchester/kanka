@@ -223,7 +223,7 @@ return [
             'campaign_not_public'   => 'The public role has permissions but the campaign is private. You can change this setting on the Sharing tab when editing the campaign.',
             'empty_role'            => 'The role doesn\'t have any members in it yet.',
             'role_admin'            => 'Members of the :name role can automatically access every entity and feature in the campaign.',
-            'role_permissions'      => 'Use this interface to allow the :name role to do the following actions on all entities.',
+            'role_permissions'      => 'Configure what members with the :name role can do in each module.',
         ],
         'members'       => 'Members',
         'modals'        => [
@@ -248,7 +248,7 @@ return [
                 ],
                 'manage'        => 'Manage',
                 'members'       => 'Members',
-                'permission'    => 'Permissions',
+                'permission'    => 'Manage permissions',
                 'read'          => 'View',
                 'toggle'        => 'Change for all',
             ],
