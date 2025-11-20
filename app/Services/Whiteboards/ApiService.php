@@ -76,7 +76,7 @@ class ApiService
             'duplicate' => __('whiteboards/draw.actions.duplicate'),
             'copy-success' => __('whiteboards/draw.toast.copy.success'),
             'paste-error' => __('whiteboards/draw.toast.paste.error'),
-
+            'group' => __('whiteboards/draw.actions.group'),
             // Reset
             'reset-helper' => __('whiteboards/draw.reset.helper'),
             'reset' => __('crud.actions.reset'),

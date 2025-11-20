@@ -79,54 +79,46 @@
                 @dragend="handleDragend($event, shape)"
                 @click="selectShape(shape, $event)"
             >
-                <v-rect v-if="shape.type==='rect'"
+
+                <!-- NORMAL SHAPES INSIDE GROUP -->
+                <template v-if="shape.type !== 'group'">
+                    <v-rect v-if="shape.type==='rect'"
                         :config="{
                             x: 0, y: 0,
-                            width: shape.width,
                             height: shape.height,
+                            width: shape.width,
                             fill: shape.fill || 'lightblue',
                             cornerRadius: 6,
                             opacity: shape.opacity || 1
                         }"
-                />
-                <v-circle v-if="shape.type==='circle'"
-                          :config="{
+                    />
+
+                    <v-circle v-if="shape.type==='circle'"
+                        :config="{
                             x: shape.radius,
                             y: shape.radius,
                             radius: shape.radius,
                             fill: shape.fill || 'lightgreen',
                             opacity: shape.opacity || 1
                         }"
-                />
-                <v-line v-if="shape.type === 'group'" v-for="line in shape.children"
-                        :key="line.id"
-                        :config="{
-                            points: line.points,
-                            stroke: line.fill,
-                            strokeWidth: line.strokeWidth,
-                            hitStrokeWidth: hitStrokeWidth,
-                            lineCap: 'round',
-                            lineJoin: 'round',
-                            opacity: shape.opacity || 1
-                        }" />
+                    />
 
-                <v-image v-if="shape.type === 'image'"
-                         :config="{
+                    <v-image v-if="shape.type === 'image'"
+                        :config="{
                             width: shape.width,
                             height: shape.height,
                             image: getImageEl(shape),
                             cornerRadius: 4,
                             opacity: shape.opacity || 1
-                         }" />
+                        }"
+                    />
 
-
-                <Entity v-if="shape.type === 'entity'"
+                    <Entity v-if="shape.type === 'entity'"
                         :shape="shape"
-                        :get-image-el="getImageEl">
-                </Entity>
+                        :get-image-el="getImageEl"
+                    />
 
-
-                <v-text v-if="shape.type === 'text' && (!editingTextId || editingTextId !== shape.id)"
+                    <v-text v-if="shape.type === 'text' && (!editingTextId || editingTextId !== shape.id)"
                         :config="{
                             x: getTextPadding(shape),
                             y: getTextPadding(shape),
@@ -141,39 +133,80 @@
                             verticalAlign: 'middle',
                             wrap: 'word',
                         }"
-                />
+                    />
+                </template>
 
-                <!-- Selection outline overlays (pointerEvents disabled so they don't block clicks) -->
-                <v-rect
-                    v-if="isSelected(shape.id) && selectedIds.length > 1 && shape.type !== 'circle'"
-                    :config="{
-                            x: 0,
-                            y: 0,
-                            width: shape.width,
-                            height: shape.height,
-                            stroke: cssVariable('--p'),
-                            strokeWidth: 2,
-                            strokeScaleEnabled: false,
-                            dash: [6,4],
-                            opacity: shape.opacity || 1,
-                            listening: false
-                        }"
-                />
-                <v-circle
-                    v-if="isSelected(shape.id) && selectedIds.length > 1 && shape.type === 'circle'"
-                    :config="{
-                            x: shape.radius,
-                            y: shape.radius,
-                            radius: shape.radius + 2,
-                            stroke: cssVariable('--p'),
-                            strokeWidth: 2,
-                            strokeScaleEnabled: false,
-                            opacity: shape.opacity || 1,
-                            dash: [6,4],
-                            listening: false
-                        }"
-                />
+                <!-- GROUPED SHAPES -->
+                <template v-else>
+                    <template v-for="child in shape.children" :key="child.id">
+                        <v-rect v-if="child.type==='rect'"
+                            :config="{
+                                x: child.x,
+                                y: child.y,
+                                rotation: child.rotation,
+                                width: child.width,
+                                height: child.height,
+                                scaleX: child.scaleX,
+                                scaleY: child.scaleY,
+                                fill: child.fill || 'lightblue',
+                                cornerRadius: 6,
+                                opacity: child.opacity || 1
+                            }"
+                        />
 
+                        <v-circle v-if="child.type==='circle'"
+                            :config="{
+                                x: child.x + child.radius,
+                                y: child.y + child.radius,
+                                scaleX: child.scaleX,
+                                scaleY: child.scaleY,
+                                radius: child.radius,
+                                fill: child.fill || 'lightgreen',
+                                opacity: child.opacity || 1
+                            }"
+                        />
+
+                        <v-image v-if="child.type === 'image'"
+                            :config="{
+                                x: child.x,
+                                y: child.y,
+                                width: child.width,
+                                height: child.height,
+                                rotation: child.rotation,
+                                image: getImageEl(child),
+                                cornerRadius: 4,
+                                scaleX: child.scaleX,
+                                scaleY: child.scaleY,
+                                opacity: child.opacity || 1
+                            }"
+                        />
+
+                        <Entity v-if="child.type === 'entity'"
+                            :shape="child"
+                            :get-image-el="getImageEl"
+                        />
+
+                        <v-text v-if="child.type === 'text'"
+                            :config="{
+                                x: child.x + getTextPadding(child),
+                                y: child.y + getTextPadding(child),
+                                width: child.width - (getTextPadding(child) * 2),
+                                height: child.height - (getTextPadding(child) * 2),
+                                opacity: child.opacity || 1,
+                                text: child.text,
+                                fontSize: getTextSize(child),
+                                rotation: child.rotation,
+                                scaleX: child.scaleX,
+                                scaleY: child.scaleY,
+                                fontFamily: child.fontFamily || 'Arial',
+                                fill: getTextColor(child),
+                                align: 'center',
+                                verticalAlign: 'middle',
+                                wrap: 'word',
+                            }"
+                        />
+                    </template>
+                </template>
             </v-group>
 
             <v-group v-if="tempGroup" :key="tempGroup.id" :config="{ id: `temp-group-${tempGroup.id}` }">
@@ -313,6 +346,16 @@
                 >
                     <i class="fa-regular fa-copy" aria-hidden="true"></i>
                     <span class="sr-only">{{ trans('duplicate') }}</span>
+                </button>
+
+                <button
+                    class="btn2 btn-sm join-item"
+                    :class="{'btn-disabled': nothingToGroup()}"
+                    :title="trans('group')"
+                    @click.stop="toggleGroup"
+                >
+                    <i :class="groupIcon()" aria-hidden="true"></i>
+                    <span class="sr-only">{{ trans('group') }}</span>
                 </button>
 
                 <button
@@ -771,18 +814,20 @@ const selectShape = (shape, event?: MouseEvent) => {
     // If clicking a second time on a text, edit the text
     let editingText = false;
     if (shape.text && selectedId.value === shape.id) {
-        editText(shape)
+        editText(shape);
         editingText = true;
     }
 
     // Shift-click: add/remove from multi-selection
     if (event && event.evt && event.evt.shiftKey) {
         const idx = selectedIds.value.indexOf(shape.id);
+
         if (idx === -1) {
             // add
             selectedIds.value.push(shape.id);
             // if no primary selectedId set, make this primary
             if (!selectedId.value) selectedId.value = shape.id;
+
         } else {
             // remove
             selectedIds.value.splice(idx, 1);
@@ -807,6 +852,7 @@ const selectShape = (shape, event?: MouseEvent) => {
     if (shape.fill) {
         currentColor.value = shape.fill;
     }
+
     nextTick(() => {
         updateTransformer(editingText);
         setupTransformerEvents();
@@ -875,6 +921,216 @@ const deleteSelected = () => {
 
     // Ensure transformer no longer references removed nodes
     updateTransformer();
+};
+const toggleGroup = () => {
+    if (selectedIds.value.length < 1) return;
+
+    const selected = shapes.value.filter(s => selectedIds.value.includes(s.id));
+    if (!selected.length) return;
+
+    saveHistory();
+
+    const selectedGroups = selected.filter(s => s.type === 'group');
+    const selectedNonGroups = selected.filter(s => s.type !== 'group');
+
+    // A single group selected, dissolve group
+    if (selected.length === 1 && selected[0].type === 'group') {
+        const group = selected[0];
+
+        // Remove group
+        shapes.value = shapes.value.filter(s => s.id !== group.id);
+
+        // Expand children into independent shapes
+        for (const child of group.children) {
+            const newShape = {
+                ...child,
+                id: Math.random().toString(36).slice(2),
+                x: (group.x ?? 0) + (child.x ?? 0),
+                y: (group.y ?? 0) + (child.y ?? 0),
+            };
+            shapes.value.push(newShape);
+        }
+
+        selectedIds.value = group.children.map(c => c.id);
+        selectedId.value = null;
+        // update transformer to reflect multiple selection
+        nextTick(() => {
+            updateTransformer(false);
+            setupTransformerEvents();
+        });
+
+        uiTick.value++;
+        return;
+    }
+
+    // Multiple groups selected, merge into one.
+    if (selectedGroups.length >= 2) {
+
+        // Gather all children from all groups
+        const allChildren = [];
+        for (const g of selectedGroups) {
+            for (const child of g.children) {
+                // Convert local → global
+                allChildren.push({
+                    ...child,
+                    x: g.x + child.x,
+                    y: g.y + child.y
+                });
+            }
+        }
+
+        // Also include any normal shapes selected
+        for (const s of selectedNonGroups) {
+            allChildren.push({ ...s });
+        }
+
+        // Compute bounding box
+        const minX = Math.min(...allChildren.map(s => s.x));
+        const minY = Math.min(...allChildren.map(s => s.y));
+        const maxX = Math.max(...allChildren.map(s => s.x + (s.width ?? s.radius * 2 ?? 0)));
+        const maxY = Math.max(...allChildren.map(s => s.y + (s.height ?? s.radius * 2 ?? 0)));
+
+        const newGroup = {
+            id: Math.random().toString(36).slice(2),
+            type: "group",
+            x: minX,
+            y: minY,
+            width: maxX - minX,
+            height: maxY - minY,
+            locked: false,
+            rotation: 0,
+            scaleX: 1,
+            scaleY: 1,
+            children: allChildren.map(child => ({
+                ...child,
+                x: child.x - minX,
+                y: child.y - minY
+            }))
+        };
+
+        // Remove old groups + shapes
+        const removeIds = new Set(selectedIds.value);
+        shapes.value = shapes.value.filter(s => !removeIds.has(s.id));
+
+        shapes.value.push(newGroup);
+        selectedIds.value = [newGroup.id];
+        selectedId.value = newGroup.id;
+
+        // update transformer to reflect multiple selection
+        nextTick(() => {
+            updateTransformer(false);
+            setupTransformerEvents();
+        });
+
+        uiTick.value++;
+        return;
+    }
+
+    // Groups and shapes selected, add everything into one.
+    if (selectedGroups.length === 1 && selectedNonGroups.length >= 1) {
+        const group = selectedGroups[0];
+
+        // Convert existing children back to global
+        const allChildren = group.children.map(c => ({
+            ...c,
+            x: group.x + c.x,
+            y: group.y + c.y
+        }));
+
+        // Add the selected non-group shapes (already global coords)
+        for (const s of selectedNonGroups) {
+            allChildren.push({ ...s });
+        }
+
+        // Compute bounding box
+        const minX = Math.min(...allChildren.map(s => s.x));
+        const minY = Math.min(...allChildren.map(s => s.y));
+        const maxX = Math.max(...allChildren.map(s => s.x + (s.width ?? s.radius * 2 ?? 0)));
+        const maxY = Math.max(...allChildren.map(s => s.y + (s.height ?? s.radius * 2 ?? 0)));
+
+        // Update group
+        group.x = minX;
+        group.y = minY;
+        group.width = maxX - minX;
+        group.height = maxY - minY;
+
+        group.children = allChildren.map(child => ({
+            ...child,
+            x: child.x - minX,
+            y: child.y - minY
+        }));
+
+        // Remove the non-group shapes from root array
+        const removeIds = new Set(selectedNonGroups.map(s => s.id));
+        shapes.value = shapes.value.filter(s => !removeIds.has(s.id));
+
+        selectedIds.value = [group.id];
+        selectedId.value = group.id;
+
+        // update transformer to reflect multiple selection
+        nextTick(() => {
+            updateTransformer(false);
+            setupTransformerEvents();
+        });
+
+        uiTick.value++;
+        return;
+    }
+
+    // Shapes only, create new group
+    const selectedNormals = selectedNonGroups;
+    if (selectedNormals.length >= 2) {
+
+        const minX = Math.min(...selectedNormals.map(s => s.x));
+        const minY = Math.min(...selectedNormals.map(s => s.y));
+
+
+        const newGroupChildren = selectedNormals.map(child => {
+        const stageNode = stage.value?.getNode();
+
+        const node = stageNode.findOne(`#group-${child.id}`);
+
+        const absPos = node.getAbsolutePosition();
+        const absRot = node.getAbsoluteRotation();
+        
+        const transform = node.getAbsoluteTransform();
+        const attrs = transform.decompose();
+
+        console.log(node);
+        return {
+            ...child,
+            x: absPos.x - minX,
+            y: absPos.y - minY,
+            rotation: absRot,
+        };
+    });
+
+        const newGroup = {
+            id: Math.random().toString(36).slice(2),
+            type: "group",
+            x: minX,
+            y: minY,
+            rotation: 0,
+            scaleX: 1,
+            scaleY: 1,
+            children: newGroupChildren,
+        };
+
+        console.log(newGroup);
+        shapes.value = shapes.value.filter(s => !selectedNormals.some(s2 => s2.id === s.id));
+        shapes.value.push(newGroup);
+
+        selectedIds.value = [newGroup.id];
+        selectedId.value = newGroup.id;
+
+        // update transformer to reflect multiple selection
+        nextTick(() => {
+            updateTransformer(false);
+            setupTransformerEvents();
+        });
+
+        uiTick.value++;
+    }
 };
 
 const duplicateSelected = () => {
@@ -1922,6 +2178,26 @@ const nothingToRotate = () => {
         }
     })
     return !rotatable;
+}
+
+const nothingToGroup = () => {
+    if (selectedIds.value) {
+        const selected = shapes.value.filter(s => selectedIds.value.includes(s.id));
+
+        if (selectedIds.value.length < 2 && selected[0].type != 'group') return true;
+    }
+
+    return false;
+}
+
+const groupIcon = () => {
+    if (selectedIds.value) {
+        const selected = shapes.value.filter(s => selectedIds.value.includes(s.id));
+
+        if (selectedIds.value.length < 2 && selected[0].type == 'group') return 'fa-regular fa-skull';
+    }
+
+    return 'fa-regular fa-tree';
 }
 
 const pushTo = (where: 'front' | 'back') => {

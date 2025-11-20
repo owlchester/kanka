@@ -14,6 +14,7 @@ return [
         'push-to-front' => 'Push to front',
         'start-drawing' => 'Start drawing',
         'unlock'        => 'Unlock',
+        'group'         => 'Group',
     ],
     'entity-search' => [
         'placeholder'   => 'Type an entity\'s name or alias',
