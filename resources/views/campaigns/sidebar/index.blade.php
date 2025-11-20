@@ -30,10 +30,10 @@
             </x-premium-cta>
         @else
             <p>
-                {!! __('campaigns/sidebar.helpers.reordering')  !!}. {!! __('campaigns/sidebar.helpers.bookmarks', ['position' => '<strong>' . __('bookmarks.fields.position') . '</strong>'])  !!}
+                {!! __('campaigns/sidebar.helpers.reordering')  !!} {!! __('campaigns/sidebar.helpers.bookmarks', ['position' => '<strong>' . __('bookmarks.fields.position') . '</strong>'])  !!}
             </p>
 
-            <x-form :action="['campaign-sidebar-save', $campaign]" class="sidebar-setup form-inline form-mobile-inline">
+        <x-form :action="['campaign-sidebar-save', $campaign]" class="sidebar-setup form-inline form-mobile-inline flex flex-col gap-4">
         <x-box>
             <x-grid type="1/1">
             <ul class="list-none m-0 p-0 flex flex-col gap-2 sidebar-sortable nested-sortable">
@@ -89,8 +89,12 @@
                 </li>
             @endforeach
             </ul>
-            <div class="text-right">
-                <a href="#" class="btn2 btn-error btn-outline pull-left" data-toggle="dialog" data-target="reset-confirm">
+            </x-grid>
+
+
+        </x-box>
+            <div class="sticky bottom-4 z-50 flex justify-between">
+                <a href="#" class="btn2 btn-error" data-toggle="dialog" data-target="reset-confirm">
                     <x-icon class="trash" />
                     {{ __('campaigns/sidebar.actions.reset') }}
                 </a>
@@ -99,8 +103,6 @@
                     {{ __('crud.save') }}
                 </button>
             </div>
-            </x-grid>
-        </x-box>
         </x-form>
         @endif
     </div>

@@ -20,7 +20,7 @@
     @if ($role->isPublic())
         @include('campaigns.roles._public')
     @else
-    <div class="flex flex-col gap-5">
+    <div class="flex flex-col gap-5 relative">
         @include('campaigns.roles._members')
 
         <div class="flex gap-2 items-center">
@@ -41,7 +41,7 @@
                     <div class="w-full flex flex-col gap-4">
                         @include('campaigns.roles._pretty')
 
-                        <div class="text-right">
+                        <div class="sticky bottom-4 ml-auto z-50">
                             <button class="btn2 btn-primary">
                                 <x-icon class="save" />
                                 {{ __('crud.save') }}

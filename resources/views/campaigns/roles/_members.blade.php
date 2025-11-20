@@ -5,7 +5,7 @@
  */
 ?>
 <h3 class="">
-    {{ __('campaigns.roles.members') }}
+    {{ __('campaigns.roles.members') }} ({{ $members->count() }})
 </h3>
 
 

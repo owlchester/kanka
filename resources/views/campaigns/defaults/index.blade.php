@@ -129,7 +129,7 @@ $visibilities = [
                 </x-grid>
             </x-box>
 
-            <div class="text-right">
+            <div class="sticky bottom-4 ml-auto z-50">
                 <button type="submit" class="btn2 btn-primary">
                     <x-icon class="save" />
                     {{ __('crud.save') }}
