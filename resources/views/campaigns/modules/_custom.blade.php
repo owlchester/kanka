@@ -1,12 +1,28 @@
-<h3 id="custom">{{ __('campaigns/modules.sections.custom')}}</h3>
+<div class="flex gap-2 items-center justify-between">
+    <h3 id="custom">{{ __('campaigns/modules.sections.custom')}}</h3>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4">
-    <div class="cell col-span-1 flex">
-        @include('campaigns.entity-types.box.new')
-    </div>
-    @foreach ($customEntityTypes as $entityType)
-        <div class="cell col-span-1 flex">
-            @include('campaigns.entity-types.box.custom')
-        </div>
-    @endforeach
+    <a
+        class="btn2 btn-primary btn-sm"
+        data-toggle="dialog-ajax"
+        data-url="{{ route('entity_types.create', [$campaign]) }}"
+        data-target="primary-dialog"
+        title="{{ __('campaigns/modules.actions.new') }}">
+        <x-icon class="plus" />
+        {{ __('crud.create') }}
+    </a>
 </div>
+
+@if ($customEntityTypes->isEmpty())
+    <x-helper>
+        <p>{{ __('campaigns/modules.errors.empty-custom') }}</p>
+    </x-helper>
+@else
+
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4">
+        @foreach ($customEntityTypes as $entityType)
+            <div class="cell col-span-1 flex">
+                <x-campaigns.module-box :campaign="$campaign" :entityType="$entityType"></x-campaigns.module-box>
+            </div>
+        @endforeach
+    </div>
+@endif

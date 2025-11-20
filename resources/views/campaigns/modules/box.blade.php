@@ -17,9 +17,11 @@ $enabled = $campaign->enabled($module);
     </div>
     <div class="grow flex flex-wrap flex-col">
         <div class="body p-4 grow flex flex-col gap-2">
-            <p class="">
-                {{ __('campaigns.settings.helpers.' . $module) }}
-            </p>
+            <x-helper>
+                <p class="">
+                    {{ __('campaigns.settings.helpers.' . $module) }}
+                </p>
+            </x-helper>
         </div>
         @can('update', $campaign)
         <div class="footer text-center my-4">

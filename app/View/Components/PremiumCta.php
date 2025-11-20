@@ -26,8 +26,17 @@ class PremiumCta extends Component
     public function render(): View|Closure|string
     {
         $legacy = auth()->check() && auth()->user()->hasBoosterNomenclature();
+        $amount = 4.99;
+        $currency = 'US$';
+        if (auth()->check()) {
+            if (auth()->user()->billedInBrl()) {
+                $amount = 19.99;
+            }
+        }
 
         return view('components.premium-cta')
-            ->with('legacy', $legacy);
+            ->with('legacy', $legacy)
+            ->with('currency', $currency)
+            ->with('amount', $amount);
     }
 }

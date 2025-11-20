@@ -3,6 +3,6 @@
         {{ __('crud.remove') }}
     </a>
     <button class="btn2 btn-primary">
-        {{ __('crud.save') }}
+        {{ __('crud.actions.save-changes') }}
     </button>
 </div>

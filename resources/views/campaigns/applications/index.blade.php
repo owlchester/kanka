@@ -3,9 +3,9 @@
     use \Illuminate\Support\Arr;
 @endphp
 @extends('layouts.app', [
-    'title' => __('campaigns.show.tabs.applications') . ' - ' . $campaign->name,
+    'title' => __('campaigns/applications.title') . ' - ' . $campaign->name,
     'breadcrumbs' => [
-        __('campaigns.show.tabs.applications')
+        __('campaigns/applications.title')
     ],
     'mainTitle' => false,
     'sidebar' => 'campaign',
@@ -19,7 +19,7 @@
     <div class="flex gap-5 flex-col">
         <div class="flex gap-2 items-center">
             <h3 class="inline-block grow">
-                {{ __('campaigns.show.tabs.applications') }}
+                {{ __('campaigns/applications.title') }}
             </h3>
             <x-learn-more url="features/campaigns/applications.html" />
         </div>

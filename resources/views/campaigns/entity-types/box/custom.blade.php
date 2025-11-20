@@ -5,7 +5,7 @@
      */
 @endphp
 
-<x-box class="box-module overflow-hidden flex flex-wrap flex-col select-none {{ $entityType->isEnabled() ? 'module-enabled' : null }} " id="{{ $entityType->code }}" :padding="false">
+<x-box class="hidden box-module overflow-hidden flex flex-wrap flex-col select-none {{ $entityType->isEnabled() ? 'module-enabled' : null }} " id="{{ $entityType->code }}" :padding="false">
     <div class="header p-2 bg-neutral text-neutral-content flex items-center gap-2 transition-all duration-300">
         <x-icon class="flex-0 text-lg {{ $entityType->icon() }}" />
         <span class="text-lg grow break-all">

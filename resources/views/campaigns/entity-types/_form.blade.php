@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\Models\EntityType $entityType
+ */
+?>
 <x-grid type="1/1">
     @if (!isset($entityType))
         <x-helper>
@@ -6,6 +11,19 @@
             </p>
         </x-helper>
     @endif
+
+
+    <x-forms.field
+        field="status"
+        :label="__('campaigns/modules.fields.status')"
+        :helper="__('campaigns/modules.helpers.status')">
+        <input type="hidden" name="is_enabled" value="0" />
+        <x-checkbox :text="__('campaigns/modules.status.enabled')">
+            <input type="checkbox" name="is_enabled" value="1" @if (old('enabled', $entityType?->isEnabled() ?? true)) checked="checked" @endif />
+        </x-checkbox>
+    </x-forms.field>
+
+    <hr />
 
     <x-forms.field
         field="singular"

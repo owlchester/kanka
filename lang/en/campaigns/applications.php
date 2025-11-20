@@ -22,8 +22,8 @@ return [
     ],
     'helpers'       => [
         'modal'                 => 'A campaign which is open to applications and public can have users apply to join the campaign.',
-        'no_applications'       => 'There are currently no pending applications to join the campaign. Users can apply to join the campaign by visiting it\'s dashboard and clicking on the :button button.',
-        'no_applications_title' => 'No applications found',
+        'no_applications'       => 'There are currently no pending requests to join the campaign. Users can apply to join the campaign by visiting it\'s dashboard and clicking on the :button button.',
+        'no_applications_title' => 'No pending requests',
         'reason'                => 'If provided, the applicant will be notified with this reason.',
         'role'                  => 'If approving, the role the applicant gets added to.',
     ],
@@ -41,6 +41,7 @@ return [
         'public'    => 'Campaign is public.',
         'title'     => 'Public campaign',
     ],
+    'title' => 'Join requests',
     'tutorial' => 'Campaign applications let people request access to this campaign. Applicants submit a short form, and campaign admins can review, accept, or decline each request. Approved users are added to the campaign with the role you assign during review.',
     'toggle'        => [
         'closed'    => 'Closed to applications',

@@ -21,27 +21,34 @@ return [
         'limit'                 => 'Campaigns are currently limited to only :max custom modules while we iron out this new feature.',
         'limit-title'           => 'Custom Module limit reached',
         'subscription-limit'    => 'The campaign has reached the maximum amount of custom modules available. The person unlocking premium features can subscribe to a higher tier to increase this limit.',
+        'empty-custom' => 'Add custom modules to organise data that doesn\'t fit in the default ones.',
     ],
     'fields'        => [
+        'status' => 'Module status',
         'icon'          => 'Module icon',
         'plural'        => 'Module plural name',
         'singular'      => 'Module singular name',
         'update_name'   => 'Rename module bookmark with new name',
     ],
+    'status' => [
+        'enabled' => 'Module enabled',
+    ],
     'helpers'       => [
+        'status' => 'Disabled modules are hidden from navigation and menus. No data is deleted.',
         'custom'    => 'This is a custom module.',
         'icon'      => 'Give this module a special :fontawesome icon, for example :example.',
         'tutorial' => 'Modules control which features are visible in the campaign. Enable the ones you use and hide the rest. Turning a module off never deletes data; it only removes it from navigation and creation menus.',
-        'plural'    => 'The plural name for entities of the new module. For example, potions',
+        'plural'    => 'Used in navigation and lists (.e.g, "view all potions")',
         'roles'     => 'Select roles that should have permission to view entities of this new module. This can later be changed in the role permissions.',
-        'singular'  => 'The singular name for an entity of the new module. For example, potion',
+        'singular'  => 'Used when referring to a single item (e.g., "new potion")',
     ],
     'pitch'         => 'Rename this module and choose a custom icon to better match the campaign\'s theme and style. Perfect for tailoring the experience to your world and players.',
-    'pitch-custom'  => 'Create custom modules to represent any kind of entity in your world. No limits, just creativity.',
+    'pitch-custom'  => 'Create custom modules for any entity type your world needs. Track deities, potions, succession laws, or whatever makes your campaign unique. Premium gives you complete flexibility.',
+    'pitch-title' => 'Unlock custom modules',
     'rename'        => [
-        'helper'    => 'Change the name and icon of the module throughout the campaign. Leave blank to use Kanka\'s default.',
+        'helper'    => 'Customise how this module appears throughout the campaign. Leave fields blank to use default values.',
         'success'   => 'Module customised.',
-        'title'     => 'Customise the :module module',
+        'title'     => 'Customise :module',
     ],
     'reset'         => [
         'default'   => 'This will only reset the default modules, not any custom ones.',
@@ -58,5 +65,7 @@ return [
     'states'        => [
         'disable'   => 'Disable',
         'enable'    => 'Enable',
+        'enabled' => 'Module is enabled',
+        'disabled' => 'Module is disabled',
     ],
 ];

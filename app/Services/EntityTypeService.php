@@ -124,13 +124,13 @@ class EntityTypeService
             $this->entityType = new EntityType;
             $this->entityType->campaign_id = $this->campaign->id;
             $this->entityType->is_special = true;
-            $this->entityType->is_enabled = true;
             $this->entityType->code = Str::slug($this->request->get('singular'));
         }
 
         $this->entityType->singular = $this->request->get('singular');
         $this->entityType->plural = $this->request->get('plural');
         $this->entityType->icon = $this->request->get('icon');
+        $this->entityType->is_enabled = (int) $this->request->get('is_enabled');
         $this->entityType->save();
 
         if ($this->entityType->wasRecentlyCreated) {

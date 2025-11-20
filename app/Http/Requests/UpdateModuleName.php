@@ -22,6 +22,7 @@ class UpdateModuleName extends FormRequest
     public function rules(): array
     {
         return [
+            'enabled' => 'nullable|boolean',
             'singular' => 'nullable|string|max:45',
             'plural' => 'nullable|string|max:45',
             'icon' => 'nullable|string|max:60',

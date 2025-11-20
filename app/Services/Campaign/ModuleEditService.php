@@ -51,6 +51,9 @@ class ModuleEditService
         $this->campaign->settings = $settings;
         $this->campaign->updateQuietly();
 
+        $this->campaign->setting->{$this->entityType->pluralCode()} = (int) $request->get('enabled');
+        $this->campaign->setting->save();
+
         Cache::forget('campaign_' . $this->campaign->id . '_sidebar');
 
         return $this;

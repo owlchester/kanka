@@ -70,7 +70,7 @@
                                 <x-sidebar.element
                                     :url="route('applications.index', [$campaign])"
                                     icon="fa-duotone fa-inbox"
-                                    :text="__('campaigns.show.tabs.applications')"
+                                    :text="__('campaigns/applications.title')"
                                 ></x-sidebar.element>
                             </li>
                         @endif
